@@ -1,0 +1,94 @@
+# Newtonian Mechanics
+
+The oldest and most intuitive formulation of classical mechanics is **Newton's Laws**. The idea is that objects move because of forces that act on them. Understanding mechanics in Newton's formulation is about understanding the underlying forces, as well as derived quantities like momentum, torque, and energy.
+
+## Newton's Laws
+
+1. If no forces act on a particle it keeps moving along at constant linear velocity,  $$\mathbf{F} = \mathbf{0} \Rightarrow \mathbf{v}=const.$$
+2. The total forces acting on a particle are proportional to the particle's acceleration, and in the same direction, $$\mathbf{F} = \mathbf{m} \mathbf{a}.$$
+3. The force of one particle on a second particle is equal and opposite to the force of the second particle on the first particle, $$\mathbf{F}_{12} = \mathbf{F}_{21}.$$
+
+Forces are **vectors**, which means they obey the superposition principle, and can be analyzed in components. Position, velocity, and acceleration are vectors as well. The proportionality constant between $\mathbf{F}$ and $\mathbf{a}$ is called the **mass**. Loosely speaking, the mass of an object is a measure of its *inertia* or resistance to motion. 
+
+The functional form of the forces themselves depend on the particular type of forces applied. Some common forces are:
+
+- Gravitational Force: $\mathbf{F} = -\frac{GMm}{r^2} \mathbf{e}_r$
+- Coulomb Force: $\mathbf{F} = k_e \frac{Qq}{r^2} \mathbf{e}_r$
+- Harmonic Oscillator: $\mathbf{F} = -k\mathbf{x}$
+- Lorentz Force: $\mathbf{F} = q\mathbf{E} + \frac{q}{c}\mathbf{v} \times \mathbf{B}$
+- Thrust: $\mathbf{F} = - v_{ex} \dot m \mathbf{e}_v$
+- Normal Force: $\mathbf{F} = \mathbf{N}$
+- Tension Force: $\mathbf{F} = \mathbf{T}$
+- Frictional Forces: $\mathbf{F} = -\mu |\mathbf{N}| \mathbf{e}_v$
+- Drag Forces: $\mathbf{F} = -f(\mathbf{v}) \mathbf{e}_v \approx -a\mathbf{v} -b\mathbf{v}^2\mathbf{e}_v$
+- Centrifugal Forces: $\mathbf{F} = m\boldsymbol{\omega} \times (\mathbf{r} \times \boldsymbol{\omega})$
+- Coriolis Forces: $\mathbf{F} = 2m \mathbf{v} \times \boldsymbol{\omega}$
+- Buoyant Forces: $\mathbf{F} = - \rho_{liq} V_{sub} \mathbf{g}$
+
+
+
+## Conservation Laws
+
+A quantity Q is said to be **conserved** if its time derivative is zero, $\dot Q = 0$. That is, Q is conserved it it's constant in time.
+
+### Momentum
+
+For an object moving at velocity $\mathbf{v}$, define its linear momentum $\mathbf{p}$ by $$\mathbf{p} = m \mathbf{v}.$$
+
+If the mass $m$ is constant, we evidently have $$\mathbf{F} = \mathbf{\dot p}.$$
+
+If $\mathbf{F} = \mathbf{0}$, then $\mathbf{p}=const$, hence momentum is conserved if there are no forces applied. This is the conservation of momentum.
+
+### Angular Momentum
+
+Define the angular momentum $\mathbf{L}$ of an object by $$\mathbf{L} = \mathbf{r} \times \mathbf{p}.$$
+
+Also, define the **torque** $\mathbf{N}$ by $$\mathbf{N} = \mathbf{r} \times \mathbf{F}.$$
+
+Note both angular momentum and torque depend on the choices of origin since the position $\mathbf{r}$ depends on choice of origin. Now, observe that $$\mathbf{\dot L} = \mathbf{\dot r} \times \mathbf{p} + \mathbf{r} \times \mathbf{\dot p} = m \mathbf{v} \times \mathbf{v} + \mathbf{r} \times \mathbf{F} = \mathbf{N}.$$
+
+Thus, $\mathbf{N} = \mathbf{\dot L}$. If $\mathbf{N} = \mathbf{0}$, then $\mathbf{L}=const$, hence angular momentum must be conserved if there are no torques applied. This is the conservation of angular momentum.
+
+### Work and Energy
+
+Define the **work** done *on* an object as it moves along a path $\gamma$ from $A$ to $B$ by $$W = \int_A^B \mathbf{F} \cdot d\mathbf{x}.$$
+
+In general, work depends on the path taken to get from $A$ to $B$, hence it isn't a unique property of the system. Now, observe that $$dW = \mathbf{F} \cdot d\mathbf{x} = \mathbf{F} \cdot \mathbf{v} dt = d\big(\frac{1}{2}m\mathbf{v}^2 \big).$$
+
+Define the **kinetic energy** of the system by $T = \frac{1}{2} m \mathbf{v}^2$. Then we evidently have $dW=dT$. That is, the work done on the system to get from $A$ to $B$ via $\gamma$ is just the change in kinetic energy between $A$ and $B$, $$W = \Delta T = T_B - T_A.$$
+
+When the work done is independent of the path taken it's a state function of the kinetic energy. In this case, the force $\mathbf{F}$ is said to be **conservative**. 
+
+By the Helmholtz theorem, the following conditions are all equivalent:
+
+- $\mathbf{F}$ is conservative,
+- $W$ is path-independent,
+- $\nabla \times \mathbf{F} = \mathbf{0}$,
+- There is a scalar potential $V$ such that $\mathbf{F} = -\nabla V$.
+
+The scalar potential $V$ is called the **potential energy** of the system. Evidently, if $\mathbf{F}$ is conservative, we have $$W = \int_A^B \mathbf{F} \cdot d\mathbf{x} = -\int_A^B \nabla V \cdot d\mathbf{x} = -\int_A^B dV = V_A - V_B = -\Delta V = \Delta T.$$
+
+That is, $\Delta T + \Delta V = 0$. Define the total mechanical **energy** $E$ of the system by $$E = T + V.$$
+
+Then $\Delta E = \Delta (T + V) = 0$. That is, energy is conserved when the forces on the system are conservative. This is the conservation of energy. 
+
+Energy isn't generally conserved if the forces aren't conservative. Examples of non-conservative forces include any force that's a function of velocity. These include dissipative forces like friction or drag, as well as magnetic forces.
+
+
+
+## Examples
+
+The primary goal of mechanics is to understand how systems evolve with time. To understand a particle's given trajectory in Newtonian Mechanics, we need to
+
+- Write down all the forces acting on the particle,
+- Use $\mathbf{F} = m \mathbf{a}$ to set up the equations of motion,
+- Solve the equations of motion for $\mathbf{x}(t)$, either analytically or (usually) numerically.
+
+Here are some examples.
+
+### Example: Projectile Motion
+
+
+
+
+
