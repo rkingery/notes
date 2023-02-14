@@ -61,10 +61,11 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 </head>
 
-<body class="nav-sidebar floating">
+<body class="nav-sidebar docked">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -78,9 +79,9 @@ ul.task-list li input[type="checkbox"] {
   </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation docked overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="../">Personal Notes</a> 
@@ -283,10 +284,19 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul class="collapse">
+  <li><a href="#maxwells-equations" id="toc-maxwells-equations" class="nav-link active" data-scroll-target="#maxwells-equations">Maxwell’s Equations</a></li>
+  <li><a href="#ohms-law" id="toc-ohms-law" class="nav-link" data-scroll-target="#ohms-law">Ohm’s Law</a></li>
+  <li><a href="#the-lumped-circuit-abstraction" id="toc-the-lumped-circuit-abstraction" class="nav-link" data-scroll-target="#the-lumped-circuit-abstraction">The Lumped Circuit Abstraction</a></li>
+  <li><a href="#lumped-elements" id="toc-lumped-elements" class="nav-link" data-scroll-target="#lumped-elements">Lumped Elements</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content column-body" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
@@ -305,8 +315,127 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
+<p>Engineering can be loosely speaking defined as “the purposeful use of science”. Electrical engineering can then be thought of as “the gainful employment of Maxwell’s Equations”. Here’s a broad overview of the topics we’ll cover in this course.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./resources/image-20230212045712110.png" class="img-fluid figure-img" width="500"></p>
+</figure>
+</div>
+<section id="maxwells-equations" class="level2">
+<h2 class="anchored" data-anchor-id="maxwells-equations">Maxwell’s Equations</h2>
+<p>Maxwell’s Equations are taught in electrodynamics courses. In SI units, they’re given as follows.</p>
+<table class="table">
+<colgroup>
+<col style="width: 14%">
+<col style="width: 42%">
+<col style="width: 42%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Name</th>
+<th style="text-align: center;">Differential Form</th>
+<th style="text-align: center;">Integral Form</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Gauss’s Law</td>
+<td style="text-align: center;"><span class="math inline">\(\nabla \cdot \mathbf{E} = \frac{\rho}{\varepsilon_0}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\oint \mathbf{E} \cdot d\mathbf{a} = \frac{q}{\varepsilon_0}\)</span></td>
+</tr>
+<tr class="even">
+<td>Faraday’s Law</td>
+<td style="text-align: center;"><span class="math inline">\(\nabla \times \mathbf{E} = -\frac{\partial \mathbf{B}}{\partial t}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\oint \mathbf{E} \cdot d\boldsymbol{\ell} = -\frac{\partial \Phi_M}{\partial t}\)</span></td>
+</tr>
+<tr class="odd">
+<td>No Magnetic Monopoles</td>
+<td style="text-align: center;"><span class="math inline">\(\nabla \cdot \mathbf{B} = 0\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\oint \mathbf{B} \cdot d\mathbf{a} = 0\)</span></td>
+</tr>
+<tr class="even">
+<td>Ampere’s Law</td>
+<td style="text-align: center;"><span class="math inline">\(\nabla \times \mathbf{B} = \mu_0 \mathbf{J} + \frac{1}{\varepsilon_0 \mu_0} \frac{\partial \mathbf{E}}{\partial t}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\oint \mathbf{B} \cdot d\boldsymbol{\ell} = \mu_0 I + \frac{1}{\varepsilon_0 \mu_0} \frac{\partial \Phi_E}{\partial t}\)</span></td>
+</tr>
+<tr class="odd">
+<td>Continuity Equation</td>
+<td style="text-align: center;"><span class="math inline">\(\frac{\partial \rho}{\partial t} - \nabla \cdot \mathbf{J} = 0\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\frac{\partial q}{\partial t} - \oint \mathbf{J} \cdot d\mathbf{a} = 0\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>Rather than use these equations directly we’ll derive three simpler laws that hold for circuits:</p>
+<ul>
+<li>Ohm’s Law: <span class="math inline">\(v = iR\)</span>.</li>
+<li>Kirchoff’s Voltage Law (KVL): <span class="math inline">\(\sum_{loop} v = 0\)</span>.</li>
+<li>Kirchoff’s Current Law (KCL): <span class="math inline">\(\sum_{node} i = 0\)</span>.</li>
+</ul>
+</section>
+<section id="ohms-law" class="level2">
+<h2 class="anchored" data-anchor-id="ohms-law">Ohm’s Law</h2>
+<p>For many materials, a linear relation holds between the electric field <span class="math inline">\(\mathbf{E}\)</span> inside the material and its current density <span class="math inline">\(\mathbf{J}\)</span>. This is the Generalized Ohm’s Law: <span class="math display">\[\mathbf{E} = \rho \mathbf{J},\]</span> where <span class="math inline">\(\rho\)</span> is the material’s <strong>resistivity</strong>. Consider a piece of cylindrical material, called a <strong>resistor</strong>, with a current <span class="math inline">\(i\)</span> pumped through its ends.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./resources/image-20230212052106358.png" class="img-fluid figure-img" width="150"></p>
+</figure>
+</div>
+<p>Since <span class="math inline">\(\mathbf{E} = E \mathbf{e}_y\)</span> and <span class="math inline">\(\mathbf{J} = J \mathbf{e}_y\)</span>, and <span class="math inline">\(A\)</span> and <span class="math inline">\(\ell\)</span> are constant, we have</p>
+<p><span class="math display">\[\begin{align*}
+
+i &amp;= \oint \mathbf{J} \cdot d\mathbf{a} = J \cdot A, \\\
+
+v &amp;= \oint \mathbf{E} \cdot d\mathbf{\ell} = E \cdot l.
+
+\end{align*}\]</span></p>
+<p>Thus, we have <span class="math inline">\(v = \frac{\rho \ell}{A}i \equiv Ri\)</span>, where <span class="math inline">\(R \equiv \frac{\rho \ell}{A}\)</span> is a constant, called the <strong>resistence</strong> of the material. The relation then becomes <span class="math display">\[v = iR,\]</span> which is the standard <strong>Ohm’s Law</strong>. Note Ohm’s Law as stated is only true for resistive materials.</p>
+</section>
+<section id="the-lumped-circuit-abstraction" class="level2">
+<h2 class="anchored" data-anchor-id="the-lumped-circuit-abstraction">The Lumped Circuit Abstraction</h2>
+<p>To easily and reliably analyze circuits we make a number of simplifying assumptions, or <strong>abstractions</strong>. By restricting ourselves to situations where these abstractions hold, we set up a simpler playground in which to work.</p>
+<p>The most fundamental abstraction in circuit analysis is the <strong>lumped circuit abstraction</strong> or <strong>LCA</strong>. In the LCA, we assume a circuit is made of a set of lumped elements that are connected to each other with ideal wires (i.e.&nbsp;wires with no voltage drop across any two points and a uniform current throughout).</p>
+<p>As an example, let’s consider a lightbulb connected to a battery supplying a voltage <span class="math inline">\(v\)</span>, which causes a current <span class="math inline">\(i\)</span> to flow across the bulb from the positive terminal of the battery to the negative terminal.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./resources/image-20230212053314477.png" class="img-fluid figure-img" width="300"></p>
+</figure>
+</div>
+<p>We’d like to solve for the current <span class="math inline">\(i\)</span> as a function of the input voltage <span class="math inline">\(v\)</span>. How should we do this? The <em>hard way</em> would be to just use Maxwell’s Equations. But this is unnecessary.</p>
+<p>Notice that we don’t care about many of the physical properties of the circuit, including the bulb’s shape, temperature, filament design, or what the wires are made of. We <em>only</em> care about the bulb’s resistance, since Ohm’s law says <span class="math inline">\(v=iR\)</span>. We can thus abstract the details of the bulb and the battery away, treating the bulb as a resistor and the battery as a voltage source.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./resources/image-20230212053637354.png" class="img-fluid figure-img" width="300"></p>
+</figure>
+</div>
+<p>Once we’ve done this, we can simply solve for the current in terms of the voltage simply as <span class="math display">\[i = \frac{v}{R}.\]</span></p>
+<p>A more abstract way to express this simple circuit is to use special symbols for the resistor and the voltage source. We’d write the exact same setup like this.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./resources/image-20230212053848916.png" class="img-fluid figure-img" width="200"></p>
+</figure>
+</div>
+<p>Now, how do we know we can do this? How do we even know that <span class="math inline">\(v\)</span> and <span class="math inline">\(i\)</span> are even defined? After all, neither voltage nor current need exist in a well-defined way. However, under certain conditions, they do exist. Consider the following setup, where a current <span class="math inline">\(i\)</span> flows through a wire from <span class="math inline">\(A\)</span> to <span class="math inline">\(B\)</span>. The voltage across the wire is <span class="math inline">\(v\)</span>. The cross-sectional areas through <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are <span class="math inline">\(s_A\)</span> and <span class="math inline">\(s_B\)</span>, respectively.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./resources/image-20230212054157207.png" class="img-fluid figure-img" width="200"></p>
+</figure>
+</div>
+<p>By the continuity equation, we have <span class="math display">\[i_A - i_B \equiv \int_{s_A} \mathbf{J} \cdot d\mathbf{a} - \int_{s_B} \mathbf{J} \cdot d\mathbf{a} = \frac{\partial q}{\partial t}.\]</span> Provided no charge can build up inside the wire, we have <span class="math display">\[\frac{\partial q}{\partial t} = 0 \Rightarrow i_A = i_B \equiv i.\]</span> That is, we have a well-defined current <span class="math inline">\(i\)</span> flowing through the wire provided we forbid a buildup of charge inside the wire.</p>
+<p>By Faraday’s Law, we also have <span class="math display">\[v_A - v_B \equiv \int_A^B \mathbf{E} \cdot d \boldsymbol{\ell} = -\frac{\partial \Phi_M}{\partial t}.\]</span> Provided magnetic flux is constant outside the wires, we can conclude <span class="math display">\[\frac{\partial \Phi_M}{\partial t} = 0 \Rightarrow v_A = v_b \equiv v.\]</span> That is, we have a well-defined voltage <span class="math inline">\(v\)</span> across the wire provided we forbid any change in magnetic flux outside the wire.</p>
+<p>The last condition we must require is that currents move much slower than the speed of light. This says that currents aren’t allowed to <em>radiate</em>.</p>
+<p>The requirement that circuits obey each of these properties is called the <strong>lumped matter discipline</strong>:</p>
+<ul>
+<li>Elements are discrete and independent of each other.</li>
+<li>No charge can build up inside of wires.</li>
+<li>Magnetic flux is constant outside of the circuit.</li>
+<li>Currents must move much slower than the speed of light.</li>
+</ul>
+</section>
+<section id="lumped-elements" class="level2">
+<h2 class="anchored" data-anchor-id="lumped-elements">Lumped Elements</h2>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -442,7 +571,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
-<nav class="page-navigation">
+<nav class="page-navigation column-body">
   <div class="nav-page nav-page-previous">
       <a href="../electrodynamics/electrostatics.html" class="pagination-link">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Electrostatics</span></span>

@@ -61,10 +61,11 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 </head>
 
-<body class="nav-sidebar floating">
+<body class="nav-sidebar docked">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -78,9 +79,9 @@ ul.task-list li input[type="checkbox"] {
   </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation docked overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="../">Personal Notes</a> 
@@ -283,10 +284,17 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul class="collapse">
+  <li><a href="#independent-forces" id="toc-independent-forces" class="nav-link active" data-scroll-target="#independent-forces">Independent Forces</a></li>
+  <li><a href="#drag-forces" id="toc-drag-forces" class="nav-link" data-scroll-target="#drag-forces">Drag Forces</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content column-body" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
@@ -305,8 +313,59 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
+<p>Even if we can easily find the equations of motion of a system, very few are simple enough to solve exactly using analytical methods. In this lesson we’ll consider some of the most common such systems. By and large, these will be linear systems, occasionally a quadratic system too.</p>
+<p>We’ll focus on (possibly non-conservative) forces acting on a single-particle particle of mass <span class="math inline">\(m\)</span> that take the form,</p>
+<p><span class="math display">\[\mathbf{F} = \mathbf{F}(\mathbf{x}, \mathbf{v}, t).\]</span></p>
+<section id="independent-forces" class="level2">
+<h2 class="anchored" data-anchor-id="independent-forces">Independent Forces</h2>
+<p>The first and simplest case we’ll consider are forces that don’t depend on position or velocity,</p>
+<p><span class="math display">\[m \mathbf{a} = \mathbf{F}_0(t).\]</span></p>
+<p>We can solve these systems directly by integrating both sides, i.e.&nbsp;<em>reducing to quadrature</em>. We have,</p>
+<p><span class="math display">\[\begin{align*}
+\mathbf{a}(t) &amp;= \frac{1}{m}\mathbf{F}_0(t), \\
+\mathbf{v}(t) &amp;= \mathbf{v}_0 + \frac{1}{m}\int_0^t dt'\mathbf{F}_0(t'), \\
+\mathbf{x}(t) &amp;= \mathbf{x}_0 + \mathbf{v}_0t + \frac{1}{m}\int_0^t dt' \int_0^{t'} dt''\mathbf{F}_0(t''). \\
+\end{align*}\]</span></p>
+<p>The simplest of these cases are when there are no forces at all, and when the forces are constant. If there are no forces at all acting on the system, <span class="math inline">\(\mathbf{F}_0 = \mathbf{0}\)</span>, in which case the equations of motion reduce to</p>
+<p><span class="math display">\[\begin{align*}
+\mathbf{a}(t) &amp;= 0, \\
+\mathbf{v}(t) &amp;= \mathbf{v}_0, \\
+\mathbf{x}(t) &amp;= \mathbf{x}_0 + \mathbf{v}_0t. \\
+\end{align*}\]</span></p>
+<p>This is just a statement of Newton’s First Law. If no forces act on a particle, it continues linearly along its path at constant velocity. The next simplest case is when <span class="math inline">\(\mathbf{F}_0=const\)</span>. In this case, the equations of motion become</p>
+<p><span class="math display">\[\begin{align*}
+\mathbf{a}(t) &amp;= \frac{1}{m}\mathbf{F}_0, \\
+\mathbf{v}(t) &amp;= \mathbf{v}_0 + \frac{1}{m}\mathbf{F}_0 t, \\
+\mathbf{x}(t) &amp;= \mathbf{x}_0 + \mathbf{v}_0t + \frac{1}{2m^2}\mathbf{F}_0^2. \\
+\end{align*}\]</span></p>
+<p>This case includes the gravitional force near the surface of the Earth, in which case <span class="math inline">\(\mathbf{F}_0=m\mathbf{g}\)</span>. It also includes the problem of an electric charge placed close to a large conducting sheet with a uniform electric field, where <span class="math inline">\(\mathbf{F}_0=q\mathbf{E}_0\)</span>.</p>
+<p>In these problems, the motion will always be along a parabolic arc. The parabola will slope downwards toward the force if the force is attractive, and upwards away from the force if it’s repulsive.</p>
+</section>
+<section id="drag-forces" class="level2">
+<h2 class="anchored" data-anchor-id="drag-forces">Drag Forces</h2>
+<p>The next type of forces we’ll consider are those which are functions of velocity,</p>
+<p><span class="math display">\[m\mathbf{a} = \mathbf{F}(\mathbf{v}).\]</span></p>
+<p>In the 1-dimensional case, this reduces to,</p>
+<p><span class="math display">\[ma = F(v).\]</span></p>
+<p>Provided <span class="math inline">\(v\)</span> is small, we can approximate <span class="math inline">\(F(v)\)</span> by its first few terms. I’ll write it as,</p>
+<p><span class="math display">\[F(v) \approx a - bv - cv^2.\]</span></p>
+<p>Typically, drag forces shouldn’t apply a force when the particle is at rest, which means <span class="math inline">\(a=0\)</span>. The remaining two terms cover two distinct regimes of drag:</p>
+<ul>
+<li>Linear or viscous drag: <span class="math inline">\(F(v) = -bv\)</span>, where <span class="math inline">\(b &gt; 0\)</span>.</li>
+<li>Quadratic or air drag: <span class="math inline">\(F(v) = -cv^2\)</span>, where <span class="math inline">\(c &gt; 0\)</span>.</li>
+</ul>
+<p>It’s convenient to analyze these two distinct cases separately. Let’s first look at linear drag. In that case <span class="math inline">\(c=0\)</span>, and we end up with the linear differential equation</p>
+<p><span class="math display">\[m \ddot x + b \dot x = 0.\]</span></p>
+<p>To solve this equation, re-write it in terms of <span class="math inline">\(v = \dot x\)</span>,</p>
+<p><span class="math display">\[\frac{dv}{dt} = -\frac{b}{m} v.\]</span></p>
+<p>This is a separable first-order differential equation with solution</p>
+<p><span class="math display">\[v(t) = v_0 e^{-\frac{b}{m} t}.\]</span></p>
+<p>For <span class="math inline">\(x(t)\)</span> just integrate both sides to get</p>
+<p><span class="math display">\[x(t) = x_0 + \int_0^t v_0 e^{-\frac{b}{m} t'} dt' = x_0 + \frac{mv_0}{b}\big(1 - e^{-\frac{b}{m} t}\big).\]</span></p>
+<p>Evidently, such forces cause a moving particle to slowly come to rest, since <span class="math inline">\(v \rightarrow 0\)</span> as <span class="math inline">\(t \rightarrow \infty\)</span>. The position where the particle comes to rest is evidently <span class="math inline">\(x = x_0 + \frac{mv_0}{b}\)</span>. The <span class="math inline">\(\frac{1}{e}\)</span> decay time is <span class="math inline">\(\tau = \frac{m}{b}\)</span>. This suggests that <span class="math inline">\(b\)</span> functions as a sort of <em>drag coefficient</em>, since a large <span class="math inline">\(b\)</span> causes the system to dissipate faster.</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -442,7 +501,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
-<nav class="page-navigation">
+<nav class="page-navigation column-body">
   <div class="nav-page nav-page-previous">
       <a href="../classical-mechanics/newtonian-mechanics.html" class="pagination-link">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Newtonian Mechanics</span></span>

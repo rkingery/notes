@@ -1,1 +1,79 @@
 # Simple Systems
+
+Even if we can easily find the equations of motion of a system, very few are simple enough to solve exactly using analytical methods. In this lesson we'll consider some of the most common such systems. By and large, these will be linear systems, occasionally a quadratic system too. 
+
+We'll focus on (possibly non-conservative) forces acting on a single-particle particle of mass $m$ that take the form,
+
+$$\mathbf{F} = \mathbf{F}(\mathbf{x}, \mathbf{v}, t).$$
+
+## Independent Forces
+
+The first and simplest case we'll consider are forces that don't depend on position or velocity,
+
+$$m \mathbf{a} = \mathbf{F}_0(t).$$
+
+We can solve these systems directly by integrating both sides, i.e. *reducing to quadrature*. We have,
+
+\begin{align*}
+\mathbf{a}(t) &= \frac{1}{m}\mathbf{F}_0(t), \\
+\mathbf{v}(t) &= \mathbf{v}_0 + \frac{1}{m}\int_0^t dt'\mathbf{F}_0(t'), \\
+\mathbf{x}(t) &= \mathbf{x}_0 + \mathbf{v}_0t + \frac{1}{m}\int_0^t dt' \int_0^{t'} dt''\mathbf{F}_0(t''). \\
+\end{align*}
+
+The simplest of these cases are when there are no forces at all, and when the forces are constant. If there are no forces at all acting on the system, $\mathbf{F}_0 = \mathbf{0}$, in which case the equations of motion reduce to
+
+\begin{align*}
+\mathbf{a}(t) &= 0, \\
+\mathbf{v}(t) &= \mathbf{v}_0, \\
+\mathbf{x}(t) &= \mathbf{x}_0 + \mathbf{v}_0t. \\
+\end{align*}
+
+This is just a statement of Newton's First Law. If no forces act on a particle, it continues linearly along its path at constant velocity. The next simplest case is when $\mathbf{F}_0=const$. In this case, the equations of motion become
+
+\begin{align*}
+\mathbf{a}(t) &= \frac{1}{m}\mathbf{F}_0, \\
+\mathbf{v}(t) &= \mathbf{v}_0 + \frac{1}{m}\mathbf{F}_0 t, \\
+\mathbf{x}(t) &= \mathbf{x}_0 + \mathbf{v}_0t + \frac{1}{2m^2}\mathbf{F}_0^2. \\
+\end{align*}
+
+This case includes the gravitional force near the surface of the Earth, in which case $\mathbf{F}_0=m\mathbf{g}$. It also includes the problem of an electric charge placed close to a large conducting sheet with a uniform electric field, where $\mathbf{F}_0=q\mathbf{E}_0$.
+
+In these problems, the motion will always be along a parabolic arc. The parabola will slope downwards toward the force if the force is attractive, and upwards away from the force if it's repulsive.
+
+## Drag Forces
+
+The next type of forces we'll consider are those which are functions of velocity, 
+
+$$m\mathbf{a} = \mathbf{F}(\mathbf{v}).$$
+
+In the 1-dimensional case, this reduces to,
+
+$$ma = F(v).$$
+
+Provided $v$ is small, we can approximate $F(v)$ by its first few terms. I'll write it as,
+
+$$F(v) \approx a - bv - cv^2.$$
+
+Typically, drag forces shouldn't apply a force when the particle is at rest, which means $a=0$. The remaining two terms cover two distinct regimes of drag:
+
+- Linear or viscous drag: $F(v) = -bv$, where $b > 0$.
+- Quadratic or air drag: $F(v) = -cv^2$, where $c > 0$.
+
+It's convenient to analyze these two distinct cases separately. Let's first look at linear drag. In that case $c=0$, and we end up with the linear differential equation
+
+$$m \ddot x + b \dot x = 0.$$
+
+To solve this equation, re-write it in terms of $v = \dot x$,
+
+$$\frac{dv}{dt} = -\frac{b}{m} v.$$
+
+This is a separable first-order differential equation with solution
+
+$$v(t) = v_0 e^{-\frac{b}{m} t}.$$
+
+For $x(t)$ just integrate both sides to get
+
+$$x(t) = x_0 + \int_0^t v_0 e^{-\frac{b}{m} t'} dt' = x_0 + \frac{mv_0}{b}\big(1 - e^{-\frac{b}{m} t}\big).$$
+
+Evidently, such forces cause a moving particle to slowly come to rest, since $v \rightarrow 0$ as $t \rightarrow \infty$. The position where the particle comes to rest is evidently $x = x_0 + \frac{mv_0}{b}$. The $\frac{1}{e}$ decay time is $\tau = \frac{m}{b}$. This suggests that $b$ functions as a sort of *drag coefficient*, since a large $b$ causes the system to dissipate faster.
+
