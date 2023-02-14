@@ -288,7 +288,8 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul class="collapse">
-  <li><a href="#newtons-laws" id="toc-newtons-laws" class="nav-link active" data-scroll-target="#newtons-laws">Newton’s Laws</a></li>
+  <li><a href="#point-particles" id="toc-point-particles" class="nav-link active" data-scroll-target="#point-particles">Point Particles</a></li>
+  <li><a href="#newtons-laws" id="toc-newtons-laws" class="nav-link" data-scroll-target="#newtons-laws">Newton’s Laws</a></li>
   <li><a href="#conservation-laws" id="toc-conservation-laws" class="nav-link" data-scroll-target="#conservation-laws">Conservation Laws</a></li>
   <li><a href="#examples" id="toc-examples" class="nav-link" data-scroll-target="#examples">Examples</a></li>
   <li><a href="#curvilinear-coordinates" id="toc-curvilinear-coordinates" class="nav-link" data-scroll-target="#curvilinear-coordinates">Curvilinear Coordinates</a></li>
@@ -316,9 +317,24 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
+<p><strong>Classical Mechanics</strong> can be thought of as the branch of physics that focuses on studying the mechanical properties of physical systems using classical laws. By <em>mechanical</em>, we mean we’re focused on analyzing how objects behave in response to <em>forces</em>.</p>
+<p>By <em>classical</em>, we mean we’re limiting ourselves to objects that are neither too big nor too small, and aren’t moving too fast. Roughly speaking, this means the size of objects are between the size of a human cell to the size of a galaxy cluster, and that those objects aren’t moving anywhere near close to the speed of light.</p>
 <p>The oldest and most intuitive formulation of classical mechanics is <strong>Newton’s Laws</strong>. The idea is that objects move because of forces that act on them. Understanding mechanics in Newton’s formulation is about understanding the underlying forces, as well as derived quantities like momentum, torque, and energy.</p>
+<section id="point-particles" class="level2">
+<h2 class="anchored" data-anchor-id="point-particles">Point Particles</h2>
+<p>In nature, an object is made of matter. It can be composed of many different molecules arranged in intricate and complicated ways. Further, each molecule is itself made of atoms, and each atom is itself made up of subatomic particles. Trying to model the motion of an object would be extremely cumbersome if we insisted on modeling the dynamics of each subatomic particle.</p>
+<p>Instead, it’s convenient to make abstractions. The most convenient abstraction to make is that we can describe the global behavior of an object as if it were a point object with no width. It can’t spin or deform. It’s one indivisible thing. We call these <strong>point particles</strong>.</p>
+<p>We’ll think of a point particle as following some trajectory in the 3-dimensional Euclidean space <span class="math inline">\(\mathbb{R}^{3}\)</span>. The trajectory or <strong>position</strong> is a time-dependent vector</p>
+<p><span class="math display">\[\mathbf{x}(t) = x(t)\mathbf{e}_x + y(t)\mathbf{e}_y + z(t)\mathbf{e}_z.\]</span></p>
+<p>A moving particle also has associated to it a <strong>velocity</strong> vector given by</p>
+<p><span class="math display">\[\mathbf{v} = \mathbf{\dot x} = \frac{d\mathbf{x}}{dt}.\]</span></p>
+<p>Perhaps the most fundamental goal of classical mechanics is to find these two vectors as a function of time. In the Newtonian formulation, if we want to find a particle’s trajectory, we start with the particle’s <strong>acceleration</strong> vector</p>
+<p><span class="math display">\[\mathbf{a} = \mathbf{\dot v} = \mathbf{\ddot x} = \frac{d^2\mathbf{x}}{dt^2},\]</span></p>
+<p>and match it with the <strong>force</strong> vector <span class="math inline">\(\mathbf{F}\)</span> via Newton’s Second Law to get a second-order differential equation for <span class="math inline">\(\mathbf{x}(t)\)</span>.</p>
+</section>
 <section id="newtons-laws" class="level2">
 <h2 class="anchored" data-anchor-id="newtons-laws">Newton’s Laws</h2>
+<p>Newton’s Laws efficiently encapsulate the fundamental physics of classical mechanics. They’re stated below specifically for a point particle, or <em>body</em>, but can be extended to more complex systems as well.</p>
 <ol type="1">
 <li>A body remains at rest, or in motion at a constant speed in a straight line, unless acted upon by a force. That is,</li>
 </ol>
@@ -668,7 +684,7 @@ T &amp;= \frac{1}{2}\sum m_i \mathbf{v}_i^2 = \sum m_i (\mathbf{V} + \boldsymbol
 <p>Suppose a rocket of mass <span class="math inline">\(m_0=m(t) + m_{ex}(t)\)</span> is moving through free space with no external forces acting on it. It’s expelling fuel for trust at some constant speed <span class="math inline">\(v_{ex}\)</span> with respect to the rocket.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="./resources/image-20230212033930176.png" class="img-fluid figure-img" width="200"></p>
+<p><img src="./resources/image-20230212033930176.png" class="img-fluid figure-img" width="150"></p>
 </figure>
 </div>
 <ul>

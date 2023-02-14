@@ -290,6 +290,7 @@ ul.task-list li input[type="checkbox"] {
   <ul class="collapse">
   <li><a href="#independent-forces" id="toc-independent-forces" class="nav-link active" data-scroll-target="#independent-forces">Independent Forces</a></li>
   <li><a href="#drag-forces" id="toc-drag-forces" class="nav-link" data-scroll-target="#drag-forces">Drag Forces</a></li>
+  <li><a href="#harmonic-oscillation" id="toc-harmonic-oscillation" class="nav-link" data-scroll-target="#harmonic-oscillation">Harmonic Oscillation</a></li>
   </ul>
 </nav>
     </div>
@@ -313,9 +314,11 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<p>Even if we can easily find the equations of motion of a system, very few are simple enough to solve exactly using analytical methods. In this lesson we’ll consider some of the most common such systems. By and large, these will be linear systems, occasionally a quadratic system too.</p>
-<p>We’ll focus on (possibly non-conservative) forces acting on a single-particle particle of mass <span class="math inline">\(m\)</span> that take the form,</p>
+<p>Even if we can easily find the equations of motion of a system, very few are simple enough to solve exactly using analytical methods. In this lesson we’ll consider some of the most common such systems. We’ll focus on (possibly non-conservative) forces acting on a single-particle particle of mass <span class="math inline">\(m\)</span> that take the form,</p>
 <p><span class="math display">\[\mathbf{F} = \mathbf{F}(\mathbf{x}, \mathbf{v}, t).\]</span></p>
+<p>We’ll assume <span class="math inline">\(\mathbf{F}\)</span> is either linear or quadratic in position and velocity. With a few exceptions, these are the few cases we can even solve the equations of motion analytically.</p>
+<p>For the most part, we’ll focus on the case when everything is 1-dimensional, <span class="math inline">\(F = F(x, v, t)\)</span>. While we’ll speak in this lesson of <span class="math inline">\(F\)</span> being a force, <span class="math inline">\(x\)</span> a position, and <span class="math inline">\(v\)</span> a velocity, the methods we describe indeed can apply to many other situations as well.</p>
+<p>For example, <span class="math inline">\(x\)</span> could represent a generalized coordinate (say an angle), in which case <span class="math inline">\(v\)</span> would be a generalized velocity (say an angular velocity) and <span class="math inline">\(F\)</span> a generalized force (say a torque). In some cases, <span class="math inline">\(x\)</span> need not be a coordinate at all. For example, we can use the same techniques from this lesson to analyze a simple circuit, in which case <span class="math inline">\(x\)</span> would be a charge or a current and <span class="math inline">\(F\)</span> would be a supplied voltage.</p>
 <section id="independent-forces" class="level2">
 <h2 class="anchored" data-anchor-id="independent-forces">Independent Forces</h2>
 <p>The first and simplest case we’ll consider are forces that don’t depend on position or velocity,</p>
@@ -339,30 +342,177 @@ ul.task-list li input[type="checkbox"] {
 \mathbf{x}(t) &amp;= \mathbf{x}_0 + \mathbf{v}_0t + \frac{1}{2m^2}\mathbf{F}_0^2. \\
 \end{align*}\]</span></p>
 <p>This case includes the gravitional force near the surface of the Earth, in which case <span class="math inline">\(\mathbf{F}_0=m\mathbf{g}\)</span>. It also includes the problem of an electric charge placed close to a large conducting sheet with a uniform electric field, where <span class="math inline">\(\mathbf{F}_0=q\mathbf{E}_0\)</span>.</p>
-<p>In these problems, the motion will always be along a parabolic arc. The parabola will slope downwards toward the force if the force is attractive, and upwards away from the force if it’s repulsive.</p>
+<p>In these problems, the motion will always be along a parabolic arc. The parabola will slope toward the force if the force is attractive, and away from the force if it’s repulsive.</p>
+<section id="example-free-fall-near-earth" class="level3">
+<h3 class="anchored" data-anchor-id="example-free-fall-near-earth">Example: Free-fall near Earth</h3>
+<p>Suppose an object of mass <span class="math inline">\(m\)</span> is falling freely near the Earth’s surface. In this case, <span class="math inline">\(\mathbf{F}_0 = m\mathbf{g}\)</span>, so</p>
+<p><span class="math display">\[\begin{align*}
+\mathbf{a}(t) &amp;= \mathbf{g}, \\
+\mathbf{v}(t) &amp;= \mathbf{v}_0 - \mathbf{g}t, \\
+\mathbf{x}(t) &amp;= \mathbf{x}_0 + \mathbf{v}_0t + \frac{1}{2}\mathbf{g}t^2.
+\end{align*}\]</span></p>
+<p>The motion in this case will always lie in the plane spanned by <span class="math inline">\(\mathbf{v}_0\)</span> and <span class="math inline">\(\mathbf{g}\)</span>. This means without loss of generality we can assume motion lies in the xy-plane with <span class="math inline">\(\mathbf{g} = -g\mathbf{e}_y\)</span>. Then <span class="math inline">\(y\)</span> can be solved as a function of <span class="math inline">\(x\)</span> to give <span class="math display">\[
+y(x) = v_{0}\frac{x}{v_0 \cos \theta}\sin \theta - \frac{1}{2} g\bigg(\frac{x}{v_0 \cos \theta}\bigg)^2,
+\]</span> which is of course a downward-sloping parabola centered at the vertex <span class="math inline">\(\big(\frac{v_0^2 \sin 2\theta}{2g}, \frac{v_0^2 \sin^2 \theta}{g}\big)\)</span>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./resources/image-20230214035909918.png" class="img-fluid figure-img" width="200"></p>
+</figure>
+</div>
+</section>
 </section>
 <section id="drag-forces" class="level2">
 <h2 class="anchored" data-anchor-id="drag-forces">Drag Forces</h2>
 <p>The next type of forces we’ll consider are those which are functions of velocity,</p>
-<p><span class="math display">\[m\mathbf{a} = \mathbf{F}(\mathbf{v}).\]</span></p>
-<p>In the 1-dimensional case, this reduces to,</p>
-<p><span class="math display">\[ma = F(v).\]</span></p>
-<p>Provided <span class="math inline">\(v\)</span> is small, we can approximate <span class="math inline">\(F(v)\)</span> by its first few terms. I’ll write it as,</p>
-<p><span class="math display">\[F(v) \approx a - bv - cv^2.\]</span></p>
-<p>Typically, drag forces shouldn’t apply a force when the particle is at rest, which means <span class="math inline">\(a=0\)</span>. The remaining two terms cover two distinct regimes of drag:</p>
+<p><span class="math display">\[
+m\mathbf{a} = \mathbf{F}(\mathbf{v}).
+\]</span> In the 1-dimensional case, this reduces to,</p>
+<p><span class="math display">\[
+ma = F(v).
+\]</span> Provided <span class="math inline">\(v\)</span> is small, we can approximate <span class="math inline">\(F(v)\)</span> by its first few terms. I’ll write it as,</p>
+<p><span class="math display">\[
+F(v) \approx a - bv - cv^2.
+\]</span> Typically, drag forces shouldn’t apply a force when the particle is at rest, which means <span class="math inline">\(a=0\)</span>. The remaining two terms cover two distinct regimes of drag:</p>
 <ul>
 <li>Linear or viscous drag: <span class="math inline">\(F(v) = -bv\)</span>, where <span class="math inline">\(b &gt; 0\)</span>.</li>
 <li>Quadratic or air drag: <span class="math inline">\(F(v) = -cv^2\)</span>, where <span class="math inline">\(c &gt; 0\)</span>.</li>
 </ul>
-<p>It’s convenient to analyze these two distinct cases separately. Let’s first look at linear drag. In that case <span class="math inline">\(c=0\)</span>, and we end up with the linear differential equation</p>
-<p><span class="math display">\[m \ddot x + b \dot x = 0.\]</span></p>
-<p>To solve this equation, re-write it in terms of <span class="math inline">\(v = \dot x\)</span>,</p>
-<p><span class="math display">\[\frac{dv}{dt} = -\frac{b}{m} v.\]</span></p>
-<p>This is a separable first-order differential equation with solution</p>
-<p><span class="math display">\[v(t) = v_0 e^{-\frac{b}{m} t}.\]</span></p>
-<p>For <span class="math inline">\(x(t)\)</span> just integrate both sides to get</p>
-<p><span class="math display">\[x(t) = x_0 + \int_0^t v_0 e^{-\frac{b}{m} t'} dt' = x_0 + \frac{mv_0}{b}\big(1 - e^{-\frac{b}{m} t}\big).\]</span></p>
-<p>Evidently, such forces cause a moving particle to slowly come to rest, since <span class="math inline">\(v \rightarrow 0\)</span> as <span class="math inline">\(t \rightarrow \infty\)</span>. The position where the particle comes to rest is evidently <span class="math inline">\(x = x_0 + \frac{mv_0}{b}\)</span>. The <span class="math inline">\(\frac{1}{e}\)</span> decay time is <span class="math inline">\(\tau = \frac{m}{b}\)</span>. This suggests that <span class="math inline">\(b\)</span> functions as a sort of <em>drag coefficient</em>, since a large <span class="math inline">\(b\)</span> causes the system to dissipate faster.</p>
+<section id="linear-drag" class="level3">
+<h3 class="anchored" data-anchor-id="linear-drag">Linear Drag</h3>
+<p>It’s convenient to analyze these two distinct cases separately. Let’s first look at linear drag. In that case <span class="math inline">\(c=0\)</span>, and we end up with the linear differential equation <span class="math display">\[
+m \ddot x + b \dot x = 0.
+\]</span> To solve this equation, re-write it in terms of <span class="math inline">\(v = \dot x\)</span>,</p>
+<p><span class="math display">\[
+\frac{dv}{dt} = -\frac{b}{m} v.
+\]</span> Integrating both sides, we get</p>
+<p><span class="math display">\[
+v(t) = v_0 e^{-\frac{b}{m} t}.
+\]</span> For <span class="math inline">\(x(t)\)</span> just integrate both sides again to get</p>
+<p><span class="math display">\[
+x(t) = x_0 + \int_0^t v_0 e^{-\frac{b}{m} t'} dt' = x_0 + \frac{mv_0}{b}\big(1 - e^{-\frac{b}{m} t}\big).
+\]</span> Evidently, such forces cause a moving particle to slowly come to rest, since <span class="math inline">\(v \rightarrow 0\)</span> as <span class="math inline">\(t \rightarrow \infty\)</span>. The position where the particle comes to rest is evidently <span class="math inline">\(x_f = x_0 + \frac{mv_0}{b}\)</span>. The <span class="math inline">\(\frac{1}{e}\)</span> decay time is <span class="math inline">\(\tau = \frac{m}{b}\)</span>. This suggests that <span class="math inline">\(b\)</span> functions as a sort of <em>drag coefficient</em>, since a large <span class="math inline">\(b\)</span> causes the system to dissipate faster.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./resources/image-20230214033729125.png" class="img-fluid figure-img" width="500"></p>
+</figure>
+</div>
+<p>Linear drag is frequently used to model objects moving through a viscous medium at low speeds. Suppose a spherical object of radius <span class="math inline">\(R\)</span> is moving slowly in a viscous medium with viscosity <span class="math inline">\(\eta\)</span>. Then the drag force on the object is given by <strong>Stokes’ Law</strong>,</p>
+<p><span class="math display">\[
+\mathbf{F}_d = -6\pi\eta R \mathbf{v}.
+\]</span> This force is linear in velocity, hence we can write <span class="math inline">\(F_d = -6\pi\eta R v\)</span>, which says the drag constant <span class="math inline">\(b\)</span> is just</p>
+<p><span class="math display">\[
+b = 6\pi\eta R.
+\]</span></p>
+</section>
+<section id="example-dropping-a-ball-in-syrup" class="level3">
+<h3 class="anchored" data-anchor-id="example-dropping-a-ball-in-syrup">Example: Dropping a ball in syrup</h3>
+<p>Suppose a ball of radius <span class="math inline">\(R\)</span> and mass <span class="math inline">\(m\)</span> is dropped in a viscous syrup from rest at <span class="math inline">\(x=0\)</span>. Find the velocity and position of the ball as it moves through the fluid.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./resources/image-20230214034514241.png" class="img-fluid figure-img" width="150"></p>
+</figure>
+</div>
+<p>This is a 1-dimensional motion problem since the ball is dropped from rest under gravity, with <span class="math inline">\(F=F_d + mg\)</span>. Here Stoke’s law applies, so the drag force is <span class="math inline">\(F_d = -bv = -b\dot x\)</span>. Plugging into Newton’s Second Law, we have <span class="math display">\[
+m\ddot x + b \dot x = g.
+\]</span> Re-writing this in terms of <span class="math inline">\(v = \dot x\)</span>, we get <span class="math display">\[
+m \dot v + bv = g,
+\]</span> which is a first order linear differential equation for the velocity <span class="math inline">\(v(t)\)</span>. Its general solution is given by <span class="math display">\[
+v(t) = v_0 e^{-\frac{b}{m}t} + \frac{mg}{b}(1-e^{-\frac{b}{m}t}).
+\]</span> Notice that as <span class="math inline">\(t \rightarrow \infty\)</span>, <span class="math inline">\(v(t) \rightarrow \frac{mg}{b}\)</span>. That is, <span class="math inline">\(v(t)\)</span> tends toward a <strong>terminal velocity</strong> <span class="math display">\[
+v_t = \frac{mg}{b} = \frac{mg}{6\pi\eta R}.
+\]</span> Since the ball is dropped from rest, <span class="math inline">\(v_0=0\)</span>. The velocity of the ball is thus given by <span class="math display">\[
+v(t) = v_t(1-e^{-\frac{b}{m}t}).
+\]</span> Using this we can solve for the position to get <span class="math display">\[
+x(t) = v_t\bigg(t - \frac{b}{m}(1 - e^{-\frac{b}{m}t})\bigg).
+\]</span> Notice that drag causes the ball to fall much slower than it would in free-fall. Instead of being a quadratic function of time, <span class="math inline">\(x(t)\)</span> is now approximately a linear function of time, with <span class="math inline">\(x(t) \sim v_t t\)</span> for large <span class="math inline">\(t\)</span>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./resources/image-20230214043325681.png" class="img-fluid figure-img" width="400"></p>
+</figure>
+</div>
+</section>
+<section id="quadratic-drag" class="level3">
+<h3 class="anchored" data-anchor-id="quadratic-drag">Quadratic Drag</h3>
+<p>We’ll now look at quadratic drag, where <span class="math inline">\(b=0\)</span>. Then we get the differential equation, <span class="math display">\[
+m\ddot x + c \dot x^2 = 0.
+\]</span> This is no longer a linear differential equation due to the appearance of <span class="math inline">\(\dot x^2\)</span>, but surprisingly we can still solve it using separation of variables. Again, let <span class="math inline">\(v = \dot x\)</span>. Then we get <span class="math display">\[
+m\dot v + cv^2 = 0.
+\]</span> Rearranging and solving for <span class="math inline">\(v(t)\)</span>, we have <span class="math display">\[
+\frac{dv}{dt} = -\frac{c}{m}v^2 \quad \Longrightarrow \quad
+\int_{v_0}^{v} \frac{dv}{v^2} = -\frac{c}{m} t \quad \Longrightarrow \quad
+v(t) = \frac{1}{\frac{1}{v_0} + \frac{c}{m}t}.
+\]</span> Integrating both sides and solving for the position, we get <span class="math display">\[
+x(t) = x_0 + \int_0^t \frac{dt}{\frac{1}{v_0} + \frac{c}{m}t} = x_0 + \frac{m}{c}\log\bigg( 1 + \frac{cv_0}{m}t \bigg).
+\]</span> In this case, <span class="math inline">\(v \rightarrow 0\)</span>, but <span class="math inline">\(x \rightarrow \infty\)</span> as <span class="math inline">\(t \rightarrow \infty\)</span>. Evidently, while linear drag is strong enough to slow a moving particle back down to rest, quadratic drag is not.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./resources/image-20230214045706509.png" class="img-fluid figure-img" width="400"></p>
+</figure>
+</div>
+<p>Quadratic drag is often used to model the drag experienced by objects moving through air or other media where pressure is more important than viscosity. For an object moving through air, drag is well-modeled by the <strong>drag equation</strong>, <span class="math display">\[
+\mathbf{F}_d = -\frac{1}{2}C \rho A v^2 \mathbf{e}_v,
+\]</span> where <span class="math inline">\(\rho\)</span> is the density of air, <span class="math inline">\(A\)</span> is the cross-sectional area of the object in the direction of motion, and <span class="math inline">\(C\)</span> is the <em>drag coefficient</em>. Since this force is proportional to <span class="math inline">\(v^2\)</span>, we evidently have <span class="math display">\[
+c = \frac{1}{2}C \rho A.
+\]</span></p>
+</section>
+<section id="reynolds-number" class="level3">
+<h3 class="anchored" data-anchor-id="reynolds-number">Reynold’s Number</h3>
+<p>In practice, how can we tell if drag is in the linear or quadratic situation? A simple way to do this is by looking at the <em>Reynold’s Number</em>. Let’s go back to the full quadratic equation for drag, with <span class="math inline">\(a\)</span> set to <span class="math inline">\(0\)</span>, <span class="math display">\[
+F_d = -bv - cv^2.
+\]</span> Notice that the ratio <span class="math inline">\(\frac{cv}{b}\)</span> gives the relative importance of the two drag terms. Using Stoke’s Law and the Drag Equation for the drag constants, we can re-write this expression as <span class="math display">\[
+\frac{cv}{b} = \frac{\frac{1}{2}C \rho Av}{6\pi\eta R} = \frac{C \rho Rv}{3\eta}.
+\]</span> This ratio is usually rescaled by a factor of <span class="math inline">\(\frac{3}{C}\)</span> to get the <strong>Reynold’s number</strong> <span class="math inline">\(r\)</span>, <span class="math display">\[
+r = \frac{\rho Rv}{\eta}.
+\]</span> The Reynold’s number is usually what’s used in practice to decide whether we’re in the linear or quadratic drag regime.</p>
+<ul>
+<li>When the Reynold’s number is <em>low</em>, <span class="math inline">\(r \ll 1\)</span>, <span class="math inline">\(v \ll \frac{\eta}{R\rho}\)</span>, and we’re in the linear regime.</li>
+<li>When the Reynold’s number is <em>high</em>, <span class="math inline">\(r \gg 1\)</span>, <span class="math inline">\(v \gg \frac{\eta}{R\rho}\)</span>, and we’re in the quadratic regime.</li>
+<li>The edge case is when <span class="math inline">\(r \approx 1\)</span>, or <span class="math inline">\(v \approx \frac{\eta}{R\rho}\)</span>. Then, we have to include <em>both</em> the linear and quadratic drag terms in the equation of motion. In this general case, there’s no analytic solution and we have to solve things numerically.</li>
+</ul>
+<p>The Reynold’s number is usually easy to calculate since we can often at least roughly estimate the object’s velocity and radius, and we can usually look up the medium’s viscosity and density. For example, a baseball thrown in air at 100 mph would have a Reynold’s number of about <span class="math inline">\(r \approx 3 \cdot 10^5 \gg 1\)</span>, which is solidly in the quadratic drag regime.</p>
+</section>
+</section>
+<section id="harmonic-oscillation" class="level2">
+<h2 class="anchored" data-anchor-id="harmonic-oscillation">Harmonic Oscillation</h2>
+<p>The next case we’ll consider is when the force is linear in position, <span class="math display">\[
+\mathbf{F} = -k \mathbf{x}.
+\]</span> This relationship is called <strong>Hooke’s Law</strong>. In the 1-dimensional case, it reduces to the equation of motion <span class="math display">\[
+m \ddot x + kx = 0.
+\]</span> This is a second-order linear differential equation for <span class="math inline">\(x(t)\)</span>. The general solution to this differential equation depends on the sign of <span class="math inline">\(k\)</span>. If <span class="math inline">\(k &lt; 0\)</span>, we have <span class="math display">\[
+x(t) = c_1 e^{\frac{k}{m}t} + c_2 e^{-\frac{k}{m}t}.
+\]</span> Since <span class="math inline">\(x \rightarrow \infty\)</span> pretty quickly as <span class="math inline">\(t \rightarrow \infty\)</span>, this kind of solution is usually non-physical, except perhaps in situations where <span class="math inline">\(x\)</span> is bounded between some known range.</p>
+<p>The most important case by far is when <span class="math inline">\(k &gt; 0\)</span>. In this setting, it’s typical to define <span class="math inline">\(\omega^2 \equiv \frac{k}{m}\)</span> and re-rewrite the equation as <span class="math display">\[
+\ddot x + \omega^2 x = 0.
+\]</span> This is called the <strong>simple harmonic oscillator</strong> or <strong>SHO</strong>. The canonical example of SHO is of course the motion of a mass attached to an ideal spring with spring constant <span class="math inline">\(k\)</span>.</p>
+<p>The general solution to SHO is a linear combination of sine and cosine functions, <span class="math display">\[
+x(t) = c_1 \cos \omega t + c_2 \sin \omega t.
+\]</span> This trajectory is oscillatory and stable since it only involves sines and cosines, both of which are bounded periodic functions. It’s custom to re-write this equation in a more useful form using trig identities,</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./resources/image-20230214055348215.png" class="img-fluid figure-img" width="150"></p>
+</figure>
+</div>
+<p><span class="math display">\[\begin{align*}
+x(t) &amp;= c_1 \cos \omega t + c_2 \sin \omega t \\
+&amp;= A\bigg(\frac{c_1}{A}\cos \omega t + \frac{c_2}{A}\sin\omega t \bigg) \\
+&amp;= A(\cos\delta \cos \omega t + \sin\delta\sin\omega t) \\
+&amp;= A\cos(\omega t - \delta). \\
+\end{align*}\]</span></p>
+<p>In this form, <span class="math inline">\(A\)</span> is the <strong>amplitude</strong> of oscillation and <span class="math inline">\(\delta\)</span> is the <strong>phase</strong> of oscillation. The period of oscillation is given by <span class="math display">\[
+\tau = \frac{2\pi}{\omega} = 2\pi\sqrt{\frac{m}{k}}.
+\]</span></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./resources/image-20230214060424511.png" class="img-fluid figure-img" width="300"></p>
+</figure>
+</div>
+<p>It’s usually convenient when dealing with harmonic oscillators to work in the complex plane. Consider the complex form of SHO, given by the differential equation <span class="math display">\[
+\ddot z + \omega^2 z = 0,
+\]</span> where <span class="math inline">\(z = x+iy = |z|e^{i\theta}\)</span> is a complex variable. Its general solution is given as a linear combination of complex exponentials, <span class="math display">\[
+z(t) = \tilde c_1 e^{i\omega t} + \tilde c_2 e^{-i\omega t}.
+\]</span> If we demand that the real solution we seek be given by <span class="math inline">\(x(t) = \text{Re}(z(t))\)</span>, then <span class="math display">\[
+x(t) =
+\]</span></p>
 
 
 </section>

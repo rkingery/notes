@@ -1,8 +1,34 @@
 # Newtonian Mechanics
 
+**Classical Mechanics** can be thought of as the branch of physics that focuses on studying the mechanical properties of physical systems using classical laws. By *mechanical*, we mean we're focused on analyzing how objects behave in response to *forces*.
+
+By *classical*, we mean we're limiting ourselves to objects that are neither too big nor too small, and aren't moving too fast. Roughly speaking, this means the size of objects are between the size of a human cell to the size of a galaxy cluster, and that those objects aren't moving anywhere near close to the speed of light.
+
 The oldest and most intuitive formulation of classical mechanics is **Newton's Laws**. The idea is that objects move because of forces that act on them. Understanding mechanics in Newton's formulation is about understanding the underlying forces, as well as derived quantities like momentum, torque, and energy.
 
+## Point Particles
+
+In nature, an object is made of matter. It can be composed of many different molecules arranged in intricate and complicated ways. Further, each molecule is itself made of atoms, and each atom is itself made up of subatomic particles. Trying to model the motion of an object would be extremely cumbersome if we insisted on modeling the dynamics of each subatomic particle. 
+
+Instead, it's convenient to make abstractions. The most convenient abstraction to make is that we can describe the global behavior of an object as if it were a point object with no width. It can't spin or deform. It's one indivisible thing. We call these **point particles**.
+
+We'll think of a point particle as following some trajectory in the 3-dimensional Euclidean space $\mathbb{R}^{3}$. The trajectory or **position** is a time-dependent vector
+
+$$\mathbf{x}(t) = x(t)\mathbf{e}_x + y(t)\mathbf{e}_y + z(t)\mathbf{e}_z.$$
+
+A moving particle also has associated to it a **velocity** vector given by
+
+$$\mathbf{v} = \mathbf{\dot x} = \frac{d\mathbf{x}}{dt}.$$
+
+Perhaps the most fundamental goal of classical mechanics is to find these two vectors as a function of time. In the Newtonian formulation, if we want to find a particle's trajectory, we start with the particle's **acceleration** vector
+
+$$\mathbf{a} = \mathbf{\dot v} = \mathbf{\ddot x} = \frac{d^2\mathbf{x}}{dt^2},$$
+
+and match it with the **force** vector $\mathbf{F}$ via Newton's Second Law to get a second-order differential equation for $\mathbf{x}(t)$.
+
 ## Newton's Laws
+
+Newton's Laws efficiently encapsulate the fundamental physics of classical mechanics. They're stated below specifically for a point particle, or *body*, but can be extended to more complex systems as well.
 
 1. A body remains at rest, or in motion at a constant speed in a straight line, unless acted upon by a force. That is,  
 
@@ -428,7 +454,7 @@ It's conserved provided the external force $\mathbf{F}^{ext}$ is conservative.
 
 Suppose a rocket of mass $m_0=m(t) + m_{ex}(t)$ is moving through free space with no external forces acting on it. It's expelling fuel for trust at some constant speed $v_{ex}$ with respect to the rocket.
 
-![](./resources/image-20230212033930176.png){fig-align="center" width=200}
+![](./resources/image-20230212033930176.png){fig-align="center" width=150}
 
 - What is the force of thrust on the rocket?
 
