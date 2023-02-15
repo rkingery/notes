@@ -291,6 +291,8 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#independent-forces" id="toc-independent-forces" class="nav-link active" data-scroll-target="#independent-forces">Independent Forces</a></li>
   <li><a href="#drag-forces" id="toc-drag-forces" class="nav-link" data-scroll-target="#drag-forces">Drag Forces</a></li>
   <li><a href="#harmonic-oscillation" id="toc-harmonic-oscillation" class="nav-link" data-scroll-target="#harmonic-oscillation">Harmonic Oscillation</a></li>
+  <li><a href="#damped-harmonic-oscillation" id="toc-damped-harmonic-oscillation" class="nav-link" data-scroll-target="#damped-harmonic-oscillation">Damped Harmonic Oscillation</a></li>
+  <li><a href="#driven-damped-harmonic-oscillation" id="toc-driven-damped-harmonic-oscillation" class="nav-link" data-scroll-target="#driven-damped-harmonic-oscillation">Driven Damped Harmonic Oscillation</a></li>
   </ul>
 </nav>
     </div>
@@ -510,11 +512,258 @@ x(t) &amp;= c_1 \cos \omega t + c_2 \sin \omega t \\
 \ddot z + \omega^2 z = 0,
 \]</span> where <span class="math inline">\(z = x+iy = |z|e^{i\theta}\)</span> is a complex variable. Its general solution is given as a linear combination of complex exponentials, <span class="math display">\[
 z(t) = \tilde c_1 e^{i\omega t} + \tilde c_2 e^{-i\omega t}.
-\]</span> If we demand that the real solution we seek be given by <span class="math inline">\(x(t) = \text{Re}(z(t))\)</span>, then <span class="math display">\[
-x(t) =
+\]</span> If we demand that the real solution we seek be given by <span class="math inline">\(x(t) = \text{Re}(z(t))\)</span>, then</p>
+<p><span class="math display">\[\begin{align*}
+x(t) &amp;= \Re(c_1 e^{i \omega t}) + \Re(c_2 e^{-i \omega t}) \\
+&amp;= \frac{1}{2}(c_1 + c_2^*)e^{i \omega t} + \frac{1}{2}(c_1^* + c_2)e^{-i \omega t} \\
+&amp;= \frac{1}{2} C e^{i \omega t} + \frac{1}{2} C^* e^{-i \omega t} \\
+&amp;= A \cdot \Re(e^{i(\omega t - \delta)}) \\
+&amp;= A \cos(\omega t - \delta),
+\end{align*}\]</span></p>
+<p>where <span class="math inline">\(C \equiv Ae^{i \delta}\)</span> is some complex number whose real and imaginary parts are <span class="math inline">\(c_1+c_2^*\)</span> and <span class="math inline">\(c_1^*+c_2\)</span> respectively. For the full complex solution we can similarly write <span class="math display">\[
+z(t) = A e^{i(\omega t - \delta)}
+\]</span> Evidently then, SHO is just a CCW circular rotation in the complex plane with radius <span class="math inline">\(A\)</span>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./resources/image-20230215084009899.png" class="img-fluid figure-img" width="200"></p>
+</figure>
+</div>
+<section id="example-bottle-sloshing-in-a-bucket" class="level3">
+<h3 class="anchored" data-anchor-id="example-bottle-sloshing-in-a-bucket">Example: Bottle sloshing in a bucket</h3>
+<p>Suppose a bottle of mass <span class="math inline">\(m\)</span> floats calmly in a bucket of water of density <span class="math inline">\(\rho\)</span> at some equilibrium depth of <span class="math inline">\(d=d_0\)</span>. Suppose we push down slightly on the bottle, perturbing its depth to <span class="math inline">\(d = d_0 + x\)</span>. The bottle will begin to oscillate. Find its period of oscillation <span class="math inline">\(\tau\)</span>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./resources/image-20230215084145892.png" class="img-fluid figure-img" width="200"></p>
+</figure>
+</div>
+<p>The forces on the bottle are gravity downward and an opposing buoyant force upward, <span class="math display">\[
+F = mg - \rho g V_{sub} = mg - \rho g A(d_0 + x).
+\]</span> At equilibrium, the forces must balance, so <span class="math inline">\(0 = mg - \rho g A d_0\)</span>, which means <span class="math inline">\(d_0 = \frac{m}{\rho A}\)</span> is the equilibrium depth. Simplifying, this says the equation of motion is given by <span class="math display">\[
+m \ddot x = mg - \rho g A(d_0 + x) = -\rho g A x = -\frac{mg}{d_0} x.
+\]</span> This is just SHO with spring constant <span class="math inline">\(k = \frac{mg}{d_0}\)</span>, or angular frequency <span class="math inline">\(\omega = \frac{g}{d}\)</span>. Thus, the period of the bottle’s oscillation when <span class="math inline">\(x\)</span> is small is given by <span class="math display">\[
+\tau = \frac{2 \pi}{\omega} = 2\pi\sqrt{\frac{d_0}{g}}.
 \]</span></p>
+</section>
+<section id="two-dimensional-harmonic-oscillation" class="level3">
+<h3 class="anchored" data-anchor-id="two-dimensional-harmonic-oscillation">Two-Dimensional Harmonic Oscillation</h3>
+<p>Suppose now we allow a mass to move in two dimensions. Hooke’s Law becomes</p>
+<p><span class="math display">\[\begin{align*}
+m \ddot x &amp;= -k_x x, \\
+m \ddot y &amp;= -k_y y.
+\end{align*}\]</span></p>
+<p>Since the equation of motions are uncoupled, the solutions are simply given by</p>
+<p><span class="math display">\[\begin{align*}
+x(t) &amp;= A_x \cos(\omega_x t - \delta_x), \\
+y(t) &amp;= A_y \cos(\omega_y t - \delta_y).
+\end{align*}\]</span></p>
+<p>Despite what intuition might suggest, the motion of the mass is now quite non-trivial. In fact, the behavior of the trajectory depends entirely on the ratio of the frequencies <span class="math inline">\(\frac{\omega_x}{\omega_y}\)</span> and the relative phase between the two oscillations <span class="math inline">\(\delta = \delta_x - \delta_y\)</span>.</p>
+<p>The motion will only be periodic if <span class="math inline">\(\frac{\omega_x}{\omega_y}\)</span> is <em>rational</em>, i.e.&nbsp;if the frequencies are integer multiples of each other. The curves traced out by <span class="math inline">\((x(t), y(t))\)</span> when <span class="math inline">\(\frac{\omega_x}{\omega_y}\)</span> is rational are called <strong>Lissajous curves</strong>. They can get quite complicated, but they’ll always be periodic. Here’s what a few of them look like for different<span class="math inline">\(\frac{\omega_x}{\omega_y}\)</span> and <span class="math inline">\(\delta\)</span>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/4/47/Lissajous_relaciones.png" class="img-fluid figure-img" width="400"></p>
+</figure>
+</div>
+</section>
+<section id="example-charged-particle-in-a-uniform-magnetic-field" class="level3">
+<h3 class="anchored" data-anchor-id="example-charged-particle-in-a-uniform-magnetic-field">Example: Charged particle in a uniform magnetic field</h3>
+<p>Suppose a particle with charge <span class="math inline">\(q\)</span> and mass <span class="math inline">\(m\)</span> is moving in the presence of a constant magnetic field <span class="math inline">\(\mathbf{B}\)</span>. Find its equations of motion, solve for the trajectory, and describe what it looks like.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./resources/image-20230215094609106.png" class="img-fluid figure-img" width="200"></p>
+</figure>
+</div>
+<p>If <span class="math inline">\(\mathbf{v}\)</span> is the velocity of the particle, the magnetic force is given by <span class="math inline">\(\mathbf{F} = \frac{q}{c} \mathbf{v} \times \mathbf{B}\)</span>. Suppose <span class="math inline">\(\mathbf{B} = B \mathbf{e}_z\)</span>. Then <span class="math display">\[
+\mathbf{F} = \frac{q}{c}\mathbf{v} \times \mathbf{B} = \frac{qB}{c}(\dot y \mathbf{e}_x - \dot x \mathbf{e}_y),
+\]</span> The equations of motion are thus</p>
+<p><span class="math display">\[\begin{align*}
+m \ddot x &amp;= \frac{qB}{c} \dot y , \\
+m \ddot y &amp;= -\frac{qB}{c} \dot x , \\
+m \ddot z &amp;=  0. \\
+\end{align*}\]</span></p>
+<p>Define <span class="math inline">\(\omega \equiv \frac{qB}{c}\)</span>. The first two equations can be decoupled to give two independent SHO equations in the velocities,</p>
+<p><span class="math display">\[\begin{align*}
+\ddot v_x &amp;= -\omega^2 v_x , \\
+\ddot v_y &amp;= -\omega^2 v_y , \\
+\end{align*}\]</span></p>
+<p>with solutions</p>
+<p><span class="math display">\[\begin{align*}
+v_x(t) &amp;= V_x \cos(\omega t - \delta_x) , \\
+v_y(t) &amp;= V_y \cos(\omega t - \delta_y)  , \\
+\end{align*}\]</span></p>
+<p>Now, since <span class="math inline">\(\ddot v_x = \omega \dot v_y\)</span>, we must have <span class="math inline">\(V_x = V_y\)</span> and <span class="math inline">\(\delta_y = \delta_x - \frac{\pi}{2}\)</span>. Taking <span class="math inline">\(\delta_x=0\)</span> and <span class="math inline">\(V_x = R\omega\)</span> for convenience, we get</p>
+<p><span class="math display">\[\begin{align*}
+v_x(t) &amp;= R\omega \cos(\omega t) , \\
+v_y(t) &amp;= -R\omega \sin(\omega t)  , \\
+\end{align*}\]</span></p>
+<p>Finally, integrating the velocity equations gives the trajectory,</p>
+<p><span class="math display">\[\begin{align*}
+x(t) &amp;=  x_0 + R \sin(\omega t), \\
+y(t) &amp;= (y_0 - R) + R \cos(\omega t) , \\
+z(t) &amp;=  z_0 + v_{0z} t. \\
+\end{align*}\]</span></p>
+<p>This is just a helix of radius <span class="math inline">\(R\)</span> directed along the z-axis. That is, the particle will just spiral around in a helix directed along the line of the magnetic field. The frequency <span class="math inline">\(\omega\)</span> is called the <em>cyclotron frequency</em>. Since charge can be positive or negative, it carries a sign, which determines which way the particle will spiral. Notice that <span class="math inline">\(R\)</span> is just the radius of orbit. It’s customarily expressed in terms of the tangential velocity <span class="math inline">\(v_\perp = \sqrt{v_x^2 + v_y^2} = R\omega\)</span>, <span class="math display">\[
+R = \frac{mcv_\perp}{qB}.
+\]</span></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./resources/image-20230215095809160.png" class="img-fluid figure-img" width="200"></p>
+</figure>
+</div>
+</section>
+</section>
+<section id="damped-harmonic-oscillation" class="level2">
+<h2 class="anchored" data-anchor-id="damped-harmonic-oscillation">Damped Harmonic Oscillation</h2>
+<p>Let’s now combine the forces of linear drag with the forces of harmonic oscillation. In the 1-dimensional case, this gives the <strong>damped harmonic oscillator</strong> or <strong>DHO</strong>, <span class="math display">\[
+m \ddot x + bx + kx = 0.
+\]</span> Define <span class="math inline">\(\beta \equiv \frac{b}{2m}\)</span> and <span class="math inline">\(\omega_0 \equiv \sqrt{\frac{k}{m}}\)</span>, called the <strong>damping constant</strong> and the <strong>natural frequency</strong> respectively. Then we can write the DHO equation of motion as <span class="math display">\[
+\ddot x + 2\beta x + \omega_0^2 x = 0.
+\]</span> It’ll be insightful to solve this in its complex form. Consider instead the equation <span class="math display">\[
+\ddot z + 2\beta z + \omega_0^2 z = 0,
+\]</span> where <span class="math inline">\(z\)</span> is complex-valued. Let’s try and assume a trial solution of the form <span class="math inline">\(z = A e^{i\omega t - \delta}\)</span>. Plugging this into the differential equation, we get <span class="math display">\[
+(-\omega^2 + 2\beta + \omega_0^2)A e^{i\omega t - \delta} = 0.
+\]</span> In the non-trivial case <span class="math inline">\(A \neq 0\)</span>, this implies <span class="math inline">\((-\omega^2 + 2\beta + \omega_0^2) = 0\)</span>, which we can solve for <span class="math inline">\(\omega\)</span> to get <span class="math display">\[
+\omega = i\beta \pm \sqrt{\omega_0^2 - \beta^2} \equiv i\beta \pm \omega',
+\]</span> where <span class="math inline">\(\omega' \equiv \sqrt{\omega_0^2 - \beta^2}\)</span>. Plugging this into <span class="math inline">\(z\)</span> then gives <span class="math display">\[
+z(t) = e^{-\beta t}(c_1 e^{i\omega' t} + c_2 e^{-i\omega' t}).
+\]</span> When dealing with damped systems, it’s customary to define a <strong>quality factor</strong> <span class="math inline">\(Q \equiv \frac{\omega_0}{2\beta}\)</span>, which expresses in relative terms how much the system is being damped. We can re-write <span class="math inline">\(\omega'\)</span> in terms of the Q-factor as <span class="math display">\[
+\omega' = \omega_0 \sqrt{1 - \bigg(\frac{1}{2Q}\bigg)^2}.
+\]</span> Evidently, the form of the solutions divide into three cases depending on the sign of <span class="math inline">\(\omega'\)</span>:</p>
+<ol type="1">
+<li><p>Underdamping (<span class="math inline">\(\omega' &gt; 0\)</span> or <span class="math inline">\(Q &lt; \frac{1}{2}\)</span>): In this case, <span class="math inline">\(\omega'\)</span> is real, which means we have a real solution <span class="math display">\[
+x(t) = A e^{-\beta t} \cos(\omega't - \delta).
+\]</span> This is an exponentially damped sinusoidal oscillation, where <span class="math inline">\(x \rightarrow 0\)</span> with time constant <span class="math inline">\(\tau = \frac{1}{\beta}\)</span>. Notice <span class="math inline">\(\omega' &lt; \omega_0\)</span>, which means the <em>actual</em> frequency of the oscillation is <em>less</em> than the natural frequency. When <span class="math inline">\(Q \gg 1\)</span> this distinction disappears, since <span class="math inline">\(\omega' \approx \omega_0\)</span>. In practice this occurs frequently for underdamped solutions, and <span class="math inline">\(Q\)</span> need not even be large for <span class="math inline">\(\omega' \approx \omega_0\)</span>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./resources/image-20230215123127416.png" class="img-fluid figure-img" width="200"></p>
+</figure>
+</div></li>
+<li><p>Overdamping (<span class="math inline">\(\omega' &lt; 0\)</span> or <span class="math inline">\(Q &gt; \frac{1}{2}\)</span>): In this case, <span class="math inline">\(\omega'\)</span> is complex. Define <span class="math inline">\(\kappa \equiv i\omega'\)</span>, which is real-valued. Then we have a solution of the form <span class="math display">\[
+x(t) = e^{-\beta t}(c_1 e^{\kappa t} + c_2 e^{-\kappa t}).
+\]</span> Since <span class="math inline">\(\kappa &lt; \beta\)</span>, <span class="math inline">\(x \rightarrow 0\)</span> monotonically, with time constant <span class="math inline">\(\tau = \frac{1}{\beta - \kappa}\)</span>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./resources/image-20230215123205612.png" class="img-fluid figure-img" width="200"></p>
+</figure>
+</div></li>
+<li><p>Critical damping (<span class="math inline">\(\omega' = 0\)</span> or <span class="math inline">\(Q = \frac{1}{2}\)</span>): This is the edge case where <span class="math inline">\(\omega_0 = \beta\)</span> exactly. Here the solution is degenerate, with <span class="math display">\[
+x(t) = (c_1 + c_2 t) e^{-\beta t}.
+\]</span> Again, <span class="math inline">\(x \rightarrow 0\)</span>, but with time constant <span class="math inline">\(\tau = \frac{1}{\beta}\)</span>. Evidently, the critically damped solution decays faster than the overdamped solution.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./resources/image-20230215123225987.png" class="img-fluid figure-img" width="200"></p>
+</figure>
+</div></li>
+</ol>
+<p>In all three cases the system must <em>eventually</em> come to rest due to the presence of damping. Only the “high Q” systems are allowed to oscillate. Note that as <span class="math inline">\(\beta \rightarrow 0\)</span>, <span class="math inline">\(Q \rightarrow \infty\)</span>. In this limit the solution turns into regular SHO, with <span class="math inline">\(\omega' \rightarrow \omega_0\)</span>.</p>
+</section>
+<section id="driven-damped-harmonic-oscillation" class="level2">
+<h2 class="anchored" data-anchor-id="driven-damped-harmonic-oscillation">Driven Damped Harmonic Oscillation</h2>
+<p>Let’s now add in the independent force term to the mix. In the 1-dimensional case, we get the equation of motion <span class="math display">\[
+m \ddot x + b \dot x + kx = F_0(t).
+\]</span> This is called the <strong>driven damped harmonic oscillator</strong> or <strong>DDHO</strong>. We imagine <span class="math inline">\(F_0(t)\)</span> to be some external <strong>driving force</strong> acting on the system. It’s again convenient to rewrite things by defining <span class="math inline">\(\beta = \frac{b}{2m}\)</span>, <span class="math inline">\(\omega_0^2 = \frac{k}{m}\)</span>, and <span class="math inline">\(f(t) = \frac{F_0(t)}{m}\)</span>. Then we have the linear differential equation <span class="math display">\[
+\ddot x + 2\beta\dot x + \omega_0^2 x = f(t).
+\]</span> Recall that the solutions of linear differential equations can be decomposed into two pieces, a <em>homogenous solution</em> and a <em>particular solution</em>. The homogenous solution is the general solution to <span class="math display">\[
+\ddot x_h + 2\beta\dot x_h + \omega_0^2 x_h = 0.
+\]</span> But this is just a DHO. We solved that part already. All we need to do now is find any particular solution that will solve <span class="math display">\[
+\ddot x_p + 2\beta\dot x_p + \omega_0^2 x_p = f(t).
+\]</span> Provided we do that, the full, general solution will be <span class="math inline">\(x(t) = x_h(t) + x_p(t)\)</span>. There are several ways to find a particular solution, including guessing methods and more systematic methods like Green functions and Fourier transforms. We’ll briefly touch on some of these.</p>
+<section id="example-underdamped-hanging-spring" class="level3">
+<h3 class="anchored" data-anchor-id="example-underdamped-hanging-spring">Example: Underdamped hanging spring</h3>
+<p>Suppose a spring is suspended vertically from a ceiling under the presence of gravity. Find the position <span class="math inline">\(x=x(t)\)</span>. Also, find the amount that gravity changes the spring’s equilibrium length.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./resources/image-20230215134622171.png" class="img-fluid figure-img" width="200"></p>
+</figure>
+</div>
+<p>The forces in this problem are gravity, linear drag, and a spring force, so if <span class="math inline">\(x\)</span> points downward, <span class="math display">\[
+F = mg - bv - kx.
+\]</span> The equation of motion is thus given by <span class="math display">\[
+m \ddot x + b \dot x + kx = mg.
+\]</span> This is just DDHO with <span class="math inline">\(f(t) = g\)</span>. We thus seek a particular solution <span class="math inline">\(x_p(t)\)</span> such that <span class="math display">\[
+\ddot x_p + 2\beta\dot x_p + \omega_0^2 x_p = g.
+\]</span> Assume a trial solution of the form <span class="math inline">\(x_p = c\)</span>. Then, <span class="math display">\[
+\omega_0^2 c = g \Longrightarrow c = \frac{g}{\omega_0^2} = \frac{gm}{k}.
+\]</span> Supposing the spring is underdamped, then <span class="math display">\[
+x(t) = Ae^{-\beta t} \cos(\omega' t - \delta) + \frac{gm}{k}.
+\]</span> The new equilibrium occurs when the object is at rest, i.e.&nbsp;when <span class="math inline">\(\ddot x = \dot x = 0\)</span>. This occurs at <span class="math inline">\(x = \frac{gm}{k}\)</span> relative to the free equilibrium <span class="math inline">\(x=0\)</span>.</p>
+</section>
+<section id="resonance" class="level3">
+<h3 class="anchored" data-anchor-id="resonance">Resonance</h3>
+<p>The most interesting driving forces in practice are ones that are periodic. Periodic driving functions lead to the important concept of <strong>resonance</strong>, which is a phenomenon that occurs when the driving frequency matches the natural frequency.</p>
+<p>Consider a driving force of the form <span class="math inline">\(f(t) = f_0 \cos\omega t\)</span>. In complex form, we can then write <span class="math display">\[
+\ddot z + 2\beta\dot z + \omega_0^2 z = f_0 e^{i \omega t}.
+\]</span> Assume a particular solution of the form <span class="math inline">\(z(t) = \tilde A e^{i \omega t}\)</span> where <span class="math inline">\(\tilde A = Ae^{-i\delta}\)</span>. Plugging this in, we have <span class="math display">\[
+(-\omega^2 + 2\beta\omega i + \omega_0^2)\tilde A e^{-i\omega t} = f_0 e^{i\omega t},
+\]</span> which we can solve for the complex amplitude <span class="math inline">\(\tilde A\)</span> to get <span class="math display">\[
+\tilde A = \frac{f_0}{(\omega_0^2-\omega^2) + 2\beta\omega i}.
+\]</span> With the help of little trig, we can decompose this solution to get the real amplitude and phase,</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./resources/image-20230215141606559.png" class="img-fluid figure-img" width="150"></p>
+</figure>
+</div>
+<p><span class="math display">\[
+A = \frac{f_0}{\sqrt{(\omega_0^2-\omega^2)^2 + 4\beta^2\omega^2}}, \quad \delta = \tan^{-1} \frac{2\beta\omega}{\omega_0^2-\omega^2}.
+\]</span></p>
+<p>With these, the real particular solution is given by <span class="math inline">\(x_p(t) = A \cos(\omega t - \delta)\)</span>. Since the homogenous solution decays to zero exponentially, <span class="math inline">\(x \rightarrow x_p\)</span> as <span class="math inline">\(t \rightarrow \infty\)</span>. That is, <span class="math inline">\(x_p(t)\)</span> describes the <em>steady state solution</em> of the DDHO. In this sense, the system evidently “forgets” its own natural frequency and starts to oscillate at the driving frequency as time goes on and the transient state dies off.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./resources/image-20230215142723690.png" class="img-fluid figure-img" width="300"></p>
+</figure>
+</div>
+<p>Interestingly, the memory of the transient system <em>are</em> preserved in the amplitude and phase. As a rule of thumb, the number of oscillations <span class="math inline">\(N\)</span> until <span class="math inline">\(x \approx x_p\)</span> is basically just the Q-factor, <span class="math display">\[
+N \approx \frac{Q}{\pi}.
+\]</span> Let’s now look more deeply at the amplitude and phase. It’s worth asking how they depend on the external driving frequency <span class="math inline">\(\omega\)</span>.</p>
+<ul>
+<li>When <span class="math inline">\(\omega \ll \omega_0\)</span>, <span class="math inline">\(A \approx \frac{f_0}{\omega_0^2}\)</span> and <span class="math inline">\(\delta \approx 0\)</span>.</li>
+<li>When <span class="math inline">\(\omega \gg \omega_0\)</span>, <span class="math inline">\(A \approx 0\)</span> and <span class="math inline">\(\delta \approx \pi\)</span>.</li>
+<li>When <span class="math inline">\(\omega \approx \omega_0\)</span>, <span class="math inline">\(A \approx \frac{f_0}{2\beta\omega_0}\)</span> and <span class="math inline">\(\delta \approx \frac{\pi}{2}\)</span>.</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./resources/image-20230215145247903.png" class="img-fluid figure-img" width="500"></p>
+</figure>
+</div>
+<p>Evidently, <span class="math inline">\(A\)</span> is maximized at <span class="math inline">\(\omega_R = \sqrt{\omega_0^2-2\beta^2} = \omega_0 \sqrt{1-\frac{1}{2Q^2}}\)</span>. When <span class="math inline">\(Q&gt;1\)</span>, <span class="math inline">\(\omega_R \approx \omega_0\)</span>, so this distinction doesn’t really matter. This frequency <span class="math inline">\(\omega_R \approx \omega_0\)</span> is called the <strong>resonance frequency</strong> of the system. When the driver is operating near the resonance frequency, the system responds extremely well to the driving force. It turns out that when a spectrum of frequencies is dumped on an oscillating system, the system tends to pick out the resonance frequencies and respond to those. This fact makes resonance a very important topic in physics and engineering.</p>
+<p>In practice, high-Q systems are very common. In those cases, <span class="math inline">\(A\)</span> dies off quickly when the driving frequencies aren’t close to <span class="math inline">\(\omega_0\)</span>. That means practically all the interesting behavior of a high-Q systems is in the band around the resonance frequency. Suppose <span class="math inline">\(\Delta \equiv \omega - \omega_0\)</span> is small. Then we can write <span class="math display">\[
+(\omega_0^2-\omega^2) = (\omega_0-\omega)(\omega_0+\omega) = -\Delta(2\omega_0+\Delta) \approx -2\omega_0 \Delta.
+\]</span> That means we can write the complex amplitude <span class="math inline">\(\tilde A\)</span> as <span class="math display">\[
+\tilde A = \frac{f_0}{(\omega_0^2-\omega^2) + 2\beta\omega i} \approx -\frac{\frac{f_0}{2\omega_0}}{\Delta-\beta i} = \frac{f_0}{2\omega_0}\bigg(-\frac{\Delta}{\Delta^2+\beta^2} + i\frac{\beta}{\Delta^2+\beta^2} \bigg).
+\]</span> This function on the right is called the <strong>Lorentzian</strong>. Using this, we can see <span class="math display">\[
+A \approx \frac{f_0}{2\omega_0} \frac{1}{\sqrt{\Delta^2 + \beta^2}} \quad \Longrightarrow \quad A^2 \approx \bigg(\frac{f_0}{2\omega_0}\bigg)^2 \frac{1}{\Delta^2 + \beta^2}.
+\]</span> Since the energy in a harmonic oscillator is just <span class="math inline">\(E = \frac{1}{2}kA^2 \propto A^2\)</span>, it’s common to look at plots of <span class="math inline">\(A^2\)</span> when plotting these <strong>resonance curves</strong>. Evidently, <span class="math inline">\(A^2 \rightarrow 0\)</span> as <span class="math inline">\(\Delta \rightarrow \infty\)</span>, and it’s maximized when <span class="math inline">\(\Delta = 0\)</span>, which is when <span class="math inline">\(\omega = \omega_0\)</span> and <span class="math inline">\(A_{max}^2 = \big(\frac{f_0}{2\omega_0 \beta}\big)^2\)</span>.</p>
+<p>It’s common to measure the <em>width</em> of the resonance curve by using the <strong>full width at half maximum</strong> or <strong>FWHM</strong>. The FWHM is defined as the difference between the left and right points around the maximum whose height is half the maximum, <span class="math display">\[
+FWHM \equiv \Delta \omega \equiv \omega_R - \omega_L, \quad \text{where} \quad A^2(\omega_L) = A^2(\omega_R) = \frac{1}{2}A_{max}.
+\]</span> Solving for these left and right points gives <span class="math inline">\(\omega_L = \omega_0 - \beta\)</span> and <span class="math inline">\(\omega_R = \omega_0 + \beta\)</span>, so <span class="math display">\[
+\Delta \omega = (\omega_0 + \beta) - (\omega_0 - \beta) = 2\beta.
+\]</span> The <em>relative width</em> of the resonance curve is then <span class="math display">\[
+\frac{\Delta \omega}{\omega_0} = \frac{2\beta}{\omega_0} = \frac{1}{Q}.
+\]</span> This indicates the <em>resolving power</em> of the resonance curve. Evidently, <span class="math inline">\(Q\)</span> represents the <em>signal-to-noise ratio</em> of the curve. The higher the Q-factor is, the more sharply peaked the resonance curve is, and the easier we can pinpoint the resonance frequency exactly. Indeed, this is why <span class="math inline">\(Q\)</span> is called a <em>quality factor</em>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./resources/image-20230215154645401.png" class="img-fluid figure-img" width="300"></p>
+</figure>
+</div>
+<p>One very important system where we want a high-Q is a <em>clock</em>. To keep precise time, we need to make sure that it’s oscillating pretty much <em>exactly</em> at its resonance frequencies. This is because we need to keep a regular period, so <span class="math inline">\(\tau = \frac{2\pi}{\omega}\)</span> can’t be allowed to vary very much from the true period <span class="math inline">\(\tau_0 = \frac{2\pi}{\omega_0}\)</span>. There’s a tradeoff though. Since the decay time of the transient behavior is <span class="math inline">\(N\tau_0 \equiv \frac{1}{\beta}\)</span>, it takes about <span class="math inline">\(N=\frac{Q}{\pi}\)</span> cycles of <em>ringing</em> for the system to come to steady state. So the better precision we want, the longer we’ll have to wait for the system to come to steady state.</p>
+<p>Note that <span class="math inline">\(Q\)</span> also affects the <em>phase curve</em> of the system, since <span class="math display">\[
+\delta = \tan^{-1} \frac{2\beta\omega}{\omega_0^2-\omega^2} \approx \tan^{-1} \frac{2\omega}{Q\Delta}.
+\]</span> Evidently as <span class="math inline">\(Q\)</span> increases, the system becomes more responsive to sudden changes in phase around <span class="math inline">\(\omega_0\)</span>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./resources/image-20230215160032343.png" class="img-fluid figure-img" width="300"></p>
+</figure>
+</div>
+</section>
+<section id="arbitrary-driving-forces" class="level3">
+<h3 class="anchored" data-anchor-id="arbitrary-driving-forces">Arbitrary Driving Forces</h3>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./resources/image-20230215160201364.png" class="img-fluid figure-img" width="250"></p>
+</figure>
+</div>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
