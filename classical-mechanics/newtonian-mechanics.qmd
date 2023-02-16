@@ -14,16 +14,18 @@ Instead, it's convenient to make abstractions. The most convenient abstraction t
 
 We'll think of a point particle as following some trajectory in the 3-dimensional Euclidean space $\mathbb{R}^{3}$. The trajectory or **position** is a time-dependent vector
 
-$$\mathbf{x}(t) = x(t)\mathbf{e}_x + y(t)\mathbf{e}_y + z(t)\mathbf{e}_z.$$
-
+$$
+\mathbf{x}(t) = x(t)\mathbf{e}_x + y(t)\mathbf{e}_y + z(t)\mathbf{e}_z.
+$$
 A moving particle also has associated to it a **velocity** vector given by
 
-$$\mathbf{v} = \mathbf{\dot x} = \frac{d\mathbf{x}}{dt}.$$
-
+$$
+\mathbf{v} = \mathbf{\dot x} = \frac{d\mathbf{x}}{dt}.
+$$
 Perhaps the most fundamental goal of classical mechanics is to find these two vectors as a function of time. In the Newtonian formulation, if we want to find a particle's trajectory, we start with the particle's **acceleration** vector
-
-$$\mathbf{a} = \mathbf{\dot v} = \mathbf{\ddot x} = \frac{d^2\mathbf{x}}{dt^2},$$
-
+$$
+\mathbf{a} = \mathbf{\dot v} = \mathbf{\ddot x} = \frac{d^2\mathbf{x}}{dt^2},
+$$
 and match it with the **force** vector $\mathbf{F}$ via Newton's Second Law to get a second-order differential equation for $\mathbf{x}(t)$.
 
 ## Newton's Laws
@@ -31,16 +33,19 @@ and match it with the **force** vector $\mathbf{F}$ via Newton's Second Law to g
 Newton's Laws efficiently encapsulate the fundamental physics of classical mechanics. They're stated below specifically for a point particle, or *body*, but can be extended to more complex systems as well.
 
 1. A body remains at rest, or in motion at a constant speed in a straight line, unless acted upon by a force. That is,  
-
-$$\mathbf{F} = \mathbf{0} \Rightarrow \mathbf{v}=const.$$
+   $$
+   \mathbf{F} = \mathbf{0} \Rightarrow \mathbf{v}=const.
+   $$
 
 2. When a body is acted upon by a force, the time rate of change of its acceleration is proportional to the force. That is, 
-
-$$\mathbf{F} = m \mathbf{a}.$$
+   $$
+   \mathbf{F} = m \mathbf{a}.
+   $$
 
 3. If two bodies exert forces on each other, these forces have the same magnitude but opposite directions. That is, 
-
-$$\mathbf{F}_{12} = \mathbf{F}_{21}.$$
+   $$
+   \mathbf{F}_{12} = \mathbf{F}_{21}.
+   $$
 
    ![](./resources/image-20230212035902274.png){fig-align="center" width=300}
 
@@ -86,42 +91,43 @@ A quantity Q is said to be **conserved** if its time derivative is zero, $\dot Q
 
 For an object moving at velocity $\mathbf{v}$, define its linear momentum $\mathbf{p}$ by 
 
-$$\mathbf{p} = m \mathbf{v}.$$
-
+$$
+\mathbf{p} = m \mathbf{v}.
+$$
 If the mass $m$ is constant, we evidently have 
-
-$$\mathbf{F} = \mathbf{\dot p}.$$
-
+$$
+\mathbf{F} = \mathbf{\dot p}.
+$$
 If $\mathbf{F} = \mathbf{0}$, then $\mathbf{p}=const$, hence momentum is conserved if there are no forces applied. This is the conservation of momentum.
 
 ### Angular Momentum
 
 Define the angular momentum $\mathbf{L}$ of an object by 
-
-$$\mathbf{L} = \mathbf{x} \times \mathbf{p}.$$
-
+$$
+\mathbf{L} = \mathbf{x} \times \mathbf{p}.
+$$
 Similarly, define the **torque** or **moment** $\mathbf{N}$ by $$\mathbf{N} = \mathbf{x} \times \mathbf{F}.$$
 
 Note both angular momentum and torque depend on the choice of coordinate system used since the position vector $\mathbf{x}$ depends on choice of origin. Now, observe that 
-
-$$\mathbf{\dot L} = \mathbf{\dot x} \times \mathbf{p} + \mathbf{x} \times \mathbf{\dot p} = m \mathbf{v} \times \mathbf{v} + \mathbf{x} \times \mathbf{F} = \mathbf{N}.$$
-
+$$
+\mathbf{\dot L} = \mathbf{\dot x} \times \mathbf{p} + \mathbf{x} \times \mathbf{\dot p} = m \mathbf{v} \times \mathbf{v} + \mathbf{x} \times \mathbf{F} = \mathbf{N}.
+$$
 Thus, $\mathbf{N} = \mathbf{\dot L}$. If $\mathbf{N} = \mathbf{0}$, then $\mathbf{L}=const$, hence angular momentum must be conserved if there are no torques applied. This is the conservation of angular momentum.
 
 ### Work and Energy
 
 Define the **work** done *on* an object as it moves along a path $\gamma$ from $A$ to $B$ by 
-
-$$W = \int_A^B \mathbf{F} \cdot d\mathbf{x}.$$
-
+$$
+W = \int_A^B \mathbf{F} \cdot d\mathbf{x}.
+$$
 ![](./resources/image-20230212032859080.png){fig-align="center" width=200}
 
 In general, work depends on the path taken to get from $A$ to $B$, hence it isn't a unique property of the system. 
 
 Observe that $$dW = \mathbf{F} \cdot d\mathbf{x} = \mathbf{F} \cdot \mathbf{v} dt = d\bigg(\frac{1}{2}m\mathbf{v}^2 \bigg).$$ Define the **kinetic energy** of the system by $T = \frac{1}{2} m \mathbf{v}^2$. Then we evidently have $dW=dT$. That is, the work done on the system to get from $A$ to $B$ via $\gamma$ is just the change in kinetic energy between $A$ and $B$, 
-
-$$W = \Delta T = T_B - T_A.$$
-
+$$
+W = \Delta T = T_B - T_A.
+$$
 When the work done is independent of the path taken it's a state function of the kinetic energy. In this case, the force $\mathbf{F}$ is said to be **conservative**. 
 
 By the Helmholtz theorem, the following conditions are all equivalent:
@@ -132,13 +138,13 @@ By the Helmholtz theorem, the following conditions are all equivalent:
 - There is a scalar potential $V=V(\mathbf{x})$ such that $\mathbf{F} = -\nabla V$.
 
 The scalar potential $V$ is called the **potential energy** of the system. Evidently, if $\mathbf{F}$ is conservative, we have 
-
-$$W = \int_A^B \mathbf{F} \cdot d\mathbf{x} = -\int_A^B \nabla V \cdot d\mathbf{x} = -\int_A^B dV = V_A - V_B = -\Delta V = \Delta T.$$
-
+$$
+W = \int_A^B \mathbf{F} \cdot d\mathbf{x} = -\int_A^B \nabla V \cdot d\mathbf{x} = -\int_A^B dV = V_A - V_B = -\Delta V = \Delta T.
+$$
 That is, $\Delta T + \Delta V = 0$. Define the total mechanical **energy** $E$ of the system by
-
-$$E = T + V.$$
-
+$$
+E = T + V.
+$$
 Then $\Delta E = \Delta (T + V) = 0$. That is, energy is conserved when the forces on the system are conservative. This is the conservation of energy. 
 
 Energy isn't generally conserved if the forces aren't conservative. Examples of non-conservative forces include any force that's a function of velocity. These include dissipative forces like friction or drag, as well as magnetic forces.
@@ -378,9 +384,9 @@ These can then be used to get the motion vectors in spherical coordinates,
 Thus far we've worked with single-particle systems. Let's now consider a system of $N$ particles with positions $\mathbf{x}_1, \mathbf{x}_2, \cdots, \mathbf{x}_N$ respectively. We can use the principle of superposition to extend the laws derived above for single particles.
 
 For $N$-particle systems it's convenient to characterize the system's position using the **center of mass** vector $\mathbf{R}$,
-
-$$\mathbf{R} \equiv \frac{1}{M}\sum_{i=1}^N m_i \mathbf{x}_i,$$
-
+$$
+\mathbf{R} \equiv \frac{1}{M}\sum_{i=1}^N m_i \mathbf{x}_i,
+$$
 where $M$ is just the *total mass* of the system, $M \equiv \sum_i m_i$. The center of mass is just the mass-weighted average of all the particle position vectors.
 
 Suppose an external force $\mathbf{F}^{ext}$ is acting on the system, and suppose each particle $i$ imparts a force $\mathbf{F}_{ij}$ on particle $j \neq i$. Here's what this would look like for $N=3$ particles.
@@ -388,25 +394,26 @@ Suppose an external force $\mathbf{F}^{ext}$ is acting on the system, and suppos
 ![](./resources/image-20230212034236830.png){fig-align="center" width=300}
 
 By superposition, the total force acting on the entire system is thus,
-
-$$\mathbf{F} = \mathbf{F}^{ext} + \sum_{i \neq j} \mathbf{F}_{ij} = \sum m_i \mathbf{a}_i = M\mathbf{\ddot R}.$$
-
+$$
+\mathbf{F} = \mathbf{F}^{ext} + \sum_{i \neq j} \mathbf{F}_{ij} = \sum m_i \mathbf{a}_i = M\mathbf{\ddot R}.
+$$
 Now, by Newton's third law, $\mathbf{F}_{ij} = -\mathbf{F}_{ji}$. This means all the internal forces cancel in pairs, so we have
-
-$$\mathbf{F}^{ext} = M\mathbf{\ddot R}.$$
-
+$$
+\mathbf{F}^{ext} = M\mathbf{\ddot R}.
+$$
 That is, the system as a whole moves as if it were a point mass $M$ with an external force $\mathbf{F}^{ext}$ acting on its center of mass $\mathbf{R}$. 
 
 If the total momentum is defined as $\mathbf{P} = M \mathbf{\dot R}$, this expression then says $\mathbf{F}^{ext} = \mathbf{\dot P}$. Thus, if no external forces act on the system, then its total linear momentum $\mathbf{P}$ is conserved.
 
 Let's now consider the total *torques* on the system. Suppose the system experiences an external torque $\mathbf{N}^{ext}$, and that each particle $i$ exerts a torque $\mathbf{N}_{ij}$ on particle $j$. Then by superposition, the total torque on the system is
-
-$$\mathbf{N} = \mathbf{N}^{ext} + \sum_{i \neq j} \mathbf{N}_{ij} = \mathbf{N}^{ext} + \sum_{i \neq j} \mathbf{x}_i \times \mathbf{F}_{ij},$$
-
+$$
+\mathbf{N} = \mathbf{N}^{ext} + \sum_{i \neq j} \mathbf{N}_{ij} = \mathbf{N}^{ext} + \sum_{i \neq j} \mathbf{x}_i \times \mathbf{F}_{ij},
+$$
 Again, we can use the fact that each $\mathbf{F}_{ij} = -\mathbf{F}_{ji}$. If we do this, we can re-write the total torque as
 
-$$\mathbf{N} = \mathbf{N}^{ext} + \sum_{i<j} (\mathbf{x}_{i}-\mathbf{x}_{j}) \times \mathbf{F}_{ij} = \mathbf{N}^{ext}.$$
-
+$$
+\mathbf{N} = \mathbf{N}^{ext} + \sum_{i<j} (\mathbf{x}_{i}-\mathbf{x}_{j}) \times \mathbf{F}_{ij} = \mathbf{N}^{ext}.
+$$
 Now, if we further assume that each internal force acts centrally, i.e. $\mathbf{F}_{ij} = \mathbf{F}_{ij}(\mathbf{x}_{i}-\mathbf{x}_{j})$, then the internal cross products all vanish, and we just get $\mathbf{N} = \mathbf{N}^{ext}$. That is, if all the internal forces are central, then the total torque on the system is just the external torque. 
 
 If the total angular momentum on the system is defined as $\mathbf{L} = \mathbf{R} \times \mathbf{P}$, this expression says $\mathbf{\dot L} = \mathbf{N}^{ext}$. Thus, if no external torques act on the system, then its total angular momentum $\mathbf{L}$ is conserved.
@@ -445,9 +452,9 @@ T &= \frac{1}{2}\sum m_i \mathbf{v}_i^2 = \sum m_i (\mathbf{V} + \boldsymbol{\ma
 \end{align*}
 
 Thus, the kinetic energy separates into a sum of the kinetic energy on the center of mass $T^{CM} = \frac{1}{2}M\mathbf{V}^2$, and the kinetic energy of the relative components $T^{rel} = \frac{1}{2}\sum m_i\boldsymbol{\mathscr{v}}_i^2$. Evidently, the total energy is
-
-$$E = T + V = T^{CM} + T^{rel} + V(\mathbf{x}_1, \mathbf{x}_2, \cdots, \mathbf{x}_N).$$
-
+$$
+E = T + V = T^{CM} + T^{rel} + V(\mathbf{x}_1, \mathbf{x}_2, \cdots, \mathbf{x}_N).
+$$
 It's conserved provided the external force $\mathbf{F}^{ext}$ is conservative.
 
 ### Example: Rockets
@@ -468,8 +475,9 @@ Suppose a rocket of mass $m_0=m(t) + m_{ex}(t)$ is moving through free space wit
 
   Assume $\dot m = -k = const$. Since there are no external forces, the rocket must be traveling along some line. Suppose without loss of generality then that $\mathbf{x}(t) =  z(t)\mathbf{e}_z$. Then we have,
   
+
 \begin{align*}
 z(t) &= \int_0^t v(t) dt = v_{ex} \int_0^t dt \log\frac{m_0}{m_0-kt} \\
-&= v_ex\bigg[t - \bigg(\frac{m_0-kt}{k} \bigg) \log \bigg(\frac{m_0}{m_0-kt} \bigg) \bigg] \\
+&= v_{ex} \bigg[t - \bigg(\frac{m_0-kt}{k} \bigg) \log \bigg(\frac{m_0}{m_0-kt} \bigg) \bigg] \\
 &= v_{ex} t - \frac{v_{ex}}{k}(m_0 - kt)\log\bigg(\frac{m_0}{m_0-kt} \bigg).
 \end{align*}

@@ -287,12 +287,31 @@ ul.task-list li input[type="checkbox"] {
         <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">Table of contents</h2>
    
+  <ul>
+  <li><a href="#independent-forces" id="toc-independent-forces" class="nav-link active" data-scroll-target="#independent-forces">Independent Forces</a>
   <ul class="collapse">
-  <li><a href="#independent-forces" id="toc-independent-forces" class="nav-link active" data-scroll-target="#independent-forces">Independent Forces</a></li>
-  <li><a href="#drag-forces" id="toc-drag-forces" class="nav-link" data-scroll-target="#drag-forces">Drag Forces</a></li>
-  <li><a href="#harmonic-oscillation" id="toc-harmonic-oscillation" class="nav-link" data-scroll-target="#harmonic-oscillation">Harmonic Oscillation</a></li>
+  <li><a href="#example-free-fall-near-earth" id="toc-example-free-fall-near-earth" class="nav-link" data-scroll-target="#example-free-fall-near-earth">Example: Free-fall near Earth</a></li>
+  </ul></li>
+  <li><a href="#drag-forces" id="toc-drag-forces" class="nav-link" data-scroll-target="#drag-forces">Drag Forces</a>
+  <ul class="collapse">
+  <li><a href="#linear-drag" id="toc-linear-drag" class="nav-link" data-scroll-target="#linear-drag">Linear Drag</a></li>
+  <li><a href="#example-dropping-a-ball-in-syrup" id="toc-example-dropping-a-ball-in-syrup" class="nav-link" data-scroll-target="#example-dropping-a-ball-in-syrup">Example: Dropping a ball in syrup</a></li>
+  <li><a href="#quadratic-drag" id="toc-quadratic-drag" class="nav-link" data-scroll-target="#quadratic-drag">Quadratic Drag</a></li>
+  <li><a href="#reynolds-number" id="toc-reynolds-number" class="nav-link" data-scroll-target="#reynolds-number">Reynold’s Number</a></li>
+  </ul></li>
+  <li><a href="#harmonic-oscillation" id="toc-harmonic-oscillation" class="nav-link" data-scroll-target="#harmonic-oscillation">Harmonic Oscillation</a>
+  <ul class="collapse">
+  <li><a href="#example-bottle-sloshing-in-a-bucket" id="toc-example-bottle-sloshing-in-a-bucket" class="nav-link" data-scroll-target="#example-bottle-sloshing-in-a-bucket">Example: Bottle sloshing in a bucket</a></li>
+  <li><a href="#two-dimensional-harmonic-oscillation" id="toc-two-dimensional-harmonic-oscillation" class="nav-link" data-scroll-target="#two-dimensional-harmonic-oscillation">Two-Dimensional Harmonic Oscillation</a></li>
+  <li><a href="#example-charged-particle-in-a-uniform-magnetic-field" id="toc-example-charged-particle-in-a-uniform-magnetic-field" class="nav-link" data-scroll-target="#example-charged-particle-in-a-uniform-magnetic-field">Example: Charged particle in a uniform magnetic field</a></li>
+  </ul></li>
   <li><a href="#damped-harmonic-oscillation" id="toc-damped-harmonic-oscillation" class="nav-link" data-scroll-target="#damped-harmonic-oscillation">Damped Harmonic Oscillation</a></li>
-  <li><a href="#driven-damped-harmonic-oscillation" id="toc-driven-damped-harmonic-oscillation" class="nav-link" data-scroll-target="#driven-damped-harmonic-oscillation">Driven Damped Harmonic Oscillation</a></li>
+  <li><a href="#driven-damped-harmonic-oscillation" id="toc-driven-damped-harmonic-oscillation" class="nav-link" data-scroll-target="#driven-damped-harmonic-oscillation">Driven Damped Harmonic Oscillation</a>
+  <ul class="collapse">
+  <li><a href="#example-underdamped-hanging-spring" id="toc-example-underdamped-hanging-spring" class="nav-link" data-scroll-target="#example-underdamped-hanging-spring">Example: Underdamped hanging spring</a></li>
+  <li><a href="#sinusoidal-driving-forces" id="toc-sinusoidal-driving-forces" class="nav-link" data-scroll-target="#sinusoidal-driving-forces">Sinusoidal Driving Forces</a></li>
+  <li><a href="#arbitrary-driving-forces" id="toc-arbitrary-driving-forces" class="nav-link" data-scroll-target="#arbitrary-driving-forces">Arbitrary Driving Forces</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -318,7 +337,7 @@ ul.task-list li input[type="checkbox"] {
 
 <p>Even if we can easily find the equations of motion of a system, very few are simple enough to solve exactly using analytical methods. In this lesson we’ll consider some of the most common such systems. We’ll focus on (possibly non-conservative) forces acting on a single-particle particle of mass <span class="math inline">\(m\)</span> that take the form,</p>
 <p><span class="math display">\[\mathbf{F} = \mathbf{F}(\mathbf{x}, \mathbf{v}, t).\]</span></p>
-<p>We’ll assume <span class="math inline">\(\mathbf{F}\)</span> is either linear or quadratic in position and velocity. With a few exceptions, these are the few cases we can even solve the equations of motion analytically.</p>
+<p>We’ll assume <span class="math inline">\(\mathbf{F}\)</span> is either linear or quadratic in position and velocity. With a few exceptions, these are the few cases for which we can even solve the equations of motion analytically.</p>
 <p>For the most part, we’ll focus on the case when everything is 1-dimensional, <span class="math inline">\(F = F(x, v, t)\)</span>. While we’ll speak in this lesson of <span class="math inline">\(F\)</span> being a force, <span class="math inline">\(x\)</span> a position, and <span class="math inline">\(v\)</span> a velocity, the methods we describe indeed can apply to many other situations as well.</p>
 <p>For example, <span class="math inline">\(x\)</span> could represent a generalized coordinate (say an angle), in which case <span class="math inline">\(v\)</span> would be a generalized velocity (say an angular velocity) and <span class="math inline">\(F\)</span> a generalized force (say a torque). In some cases, <span class="math inline">\(x\)</span> need not be a coordinate at all. For example, we can use the same techniques from this lesson to analyze a simple circuit, in which case <span class="math inline">\(x\)</span> would be a charge or a current and <span class="math inline">\(F\)</span> would be a supplied voltage.</p>
 <section id="independent-forces" class="level2">
@@ -687,10 +706,10 @@ m \ddot x + b \dot x + kx = mg.
 x(t) = Ae^{-\beta t} \cos(\omega' t - \delta) + \frac{gm}{k}.
 \]</span> The new equilibrium occurs when the object is at rest, i.e.&nbsp;when <span class="math inline">\(\ddot x = \dot x = 0\)</span>. This occurs at <span class="math inline">\(x = \frac{gm}{k}\)</span> relative to the free equilibrium <span class="math inline">\(x=0\)</span>.</p>
 </section>
-<section id="resonance" class="level3">
-<h3 class="anchored" data-anchor-id="resonance">Resonance</h3>
+<section id="sinusoidal-driving-forces" class="level3">
+<h3 class="anchored" data-anchor-id="sinusoidal-driving-forces">Sinusoidal Driving Forces</h3>
 <p>The most interesting driving forces in practice are ones that are periodic. Periodic driving functions lead to the important concept of <strong>resonance</strong>, which is a phenomenon that occurs when the driving frequency matches the natural frequency.</p>
-<p>Consider a driving force of the form <span class="math inline">\(f(t) = f_0 \cos\omega t\)</span>. In complex form, we can then write <span class="math display">\[
+<p>Consider a sinusoidal driving force of the form <span class="math inline">\(f(t) = f_0 \cos\omega t\)</span>. In complex form, we can then write <span class="math display">\[
 \ddot z + 2\beta\dot z + \omega_0^2 z = f_0 e^{i \omega t}.
 \]</span> Assume a particular solution of the form <span class="math inline">\(z(t) = \tilde A e^{i \omega t}\)</span> where <span class="math inline">\(\tilde A = Ae^{-i\delta}\)</span>. Plugging this in, we have <span class="math display">\[
 (-\omega^2 + 2\beta\omega i + \omega_0^2)\tilde A e^{-i\omega t} = f_0 e^{i\omega t},
@@ -736,9 +755,9 @@ A \approx \frac{f_0}{2\omega_0} \frac{1}{\sqrt{\Delta^2 + \beta^2}} \quad \Longr
 FWHM \equiv \Delta \omega \equiv \omega_R - \omega_L, \quad \text{where} \quad A^2(\omega_L) = A^2(\omega_R) = \frac{1}{2}A_{max}.
 \]</span> Solving for these left and right points gives <span class="math inline">\(\omega_L = \omega_0 - \beta\)</span> and <span class="math inline">\(\omega_R = \omega_0 + \beta\)</span>, so <span class="math display">\[
 \Delta \omega = (\omega_0 + \beta) - (\omega_0 - \beta) = 2\beta.
-\]</span> The <em>relative width</em> of the resonance curve is then <span class="math display">\[
-\frac{\Delta \omega}{\omega_0} = \frac{2\beta}{\omega_0} = \frac{1}{Q}.
-\]</span> This indicates the <em>resolving power</em> of the resonance curve. Evidently, <span class="math inline">\(Q\)</span> represents the <em>signal-to-noise ratio</em> of the curve. The higher the Q-factor is, the more sharply peaked the resonance curve is, and the easier we can pinpoint the resonance frequency exactly. Indeed, this is why <span class="math inline">\(Q\)</span> is called a <em>quality factor</em>.</p>
+\]</span> The <em>resolving power</em> of the resonance curve is then <span class="math display">\[
+\frac{\omega_0}{\Delta} = \frac{\omega_0}{2\beta} = Q.
+\]</span> Evidently then, <span class="math inline">\(Q\)</span> represents the resolving power of the resonance curve. The higher the Q-factor is, the more sharply peaked the resonance curve is, and the easier we can pinpoint the resonance frequency exactly. Indeed, this is why <span class="math inline">\(Q\)</span> is called a <em>quality factor</em>.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="./resources/image-20230215154645401.png" class="img-fluid figure-img" width="300"></p>
@@ -756,11 +775,31 @@ FWHM \equiv \Delta \omega \equiv \omega_R - \omega_L, \quad \text{where} \quad A
 </section>
 <section id="arbitrary-driving-forces" class="level3">
 <h3 class="anchored" data-anchor-id="arbitrary-driving-forces">Arbitrary Driving Forces</h3>
+<p>The situation where resonance occurs in a DDHO system is not just confined to sinusoidal driving forces. Using Fourier analysis, we can decompose more arbitrary driving forces into a sum of sinusoidal driving forces of different frequencies. The simplest of these cases is when the driving force is periodic with some period <span class="math inline">\(\tau\)</span>. Even if the driver isn’t sinusoidal, we can decompose it into a linear combination of cosines of different frequencies, i.e.&nbsp;a <em>Fourier Series</em>, <span class="math display">\[
+f(t) = \sum_{n=-\infty}^{\infty} f_n e^{i \omega n t},
+\]</span> where each <span class="math inline">\(f_n\)</span> can be found via the formula <span class="math display">\[
+f_n = \langle f(t), e^{i \omega n t} \rangle = \frac{\omega}{\pi} \int_0^{\tau} f(t) e^{i \omega n t} dt.
+\]</span> Using the principle of superposition, we could then find the solution for each of the sinusoidal drivers term by term, and then sum them together to get the full solution. Each term will have amplitude and phase <span class="math display">\[
+A_n = \frac{f_n}{\sqrt{(\omega_0^2-\omega^2 n^2)^2 + (2\beta\omega n)^2}}, \quad \delta_n = \tan^{-1} \frac{2\beta\omega n}{\omega_0^2-\omega^2n^2}.
+\]</span> Plugging these in will yield a general solution of the form <span class="math display">\[
+x(t) = x_h(t) + \sum_{n=1}^{\infty} A_n \cos(\omega n t - \delta_n).
+\]</span> Each component will yield its own resonance frequency where <span class="math inline">\(\omega n \approx -\omega_0\)</span>. As a function of the main driving frequency, this means there will resonances at each <span class="math inline">\(\omega_n = \frac{\omega_0}{n}\)</span>. The resonance curve for <span class="math inline">\(A^2\)</span> can be found via <em>Parseval’s Theorem</em>, which says <span class="math display">\[
+A^2 = \langle x^2(t) \rangle = \frac{1}{2} \sum_{n=0}^\infty A_n^2.
+\]</span> The peaks evidently go to zero as <span class="math inline">\(n \rightarrow \infty\)</span> since each <span class="math inline">\(A_n^2 \propto f_n^2\)</span> and each <span class="math inline">\(f_n \rightarrow 0\)</span> by the Riemann–Lebesgue lemma.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="./resources/image-20230215160201364.png" class="img-fluid figure-img" width="250"></p>
 </figure>
 </div>
+<p>What if the driving force isn’t periodic? In this case we have a few options. One would be to decompose it into its <em>Fourier transform</em>, <span class="math display">\[
+f(t) = \int_{-\infty}^{\infty} f(\omega) e^{i\omega t} dt.
+\]</span> Then each term gives a set of complex amplitudes and phases that can be solved for and stitched back together to get <span class="math inline">\(x(t)\)</span>. Another solution that’s perhaps more common is to use <em>Green’s functions</em>. Instead of decomposing the driver into a linear combination of periodic functions, we’ll decompose it into a linear combination of <em>impulse responses</em> or <em>delta functions</em>, <span class="math display">\[
+f(t) = \int_{-\infty}^{\infty} f(t') \delta(t-t') dt.
+\]</span> To find the solution <span class="math inline">\(x(t)\)</span>, we first need to find the particular solution <span class="math inline">\(G(t-t')\)</span> to the DDHO with an impulse response, <span class="math display">\[
+\ddot G + 2\beta\dot G + \omega_0^2 G = \delta(t - t').
+\]</span> Once this is found, we can stitch together the full solution as <span class="math display">\[
+x(t) = \int_{-\infty}^{\infty} f(t') G(t-t') dt.
+\]</span> Note the Green’s function solution already incorporates in the homogeneous solutions since <span class="math inline">\(G(t-t')\)</span> must itself satisfy the initial conditions.</p>
 
 
 </section>

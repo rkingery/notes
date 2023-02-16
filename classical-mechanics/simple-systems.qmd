@@ -4,7 +4,7 @@ Even if we can easily find the equations of motion of a system, very few are sim
 
 $$\mathbf{F} = \mathbf{F}(\mathbf{x}, \mathbf{v}, t).$$
 
-We'll assume $\mathbf{F}$ is either linear or quadratic in position and velocity. With a few exceptions, these are the few cases we can even solve the equations of motion analytically.
+We'll assume $\mathbf{F}$ is either linear or quadratic in position and velocity. With a few exceptions, these are the few cases for which we can even solve the equations of motion analytically.
 
 For the most part, we'll focus on the case when everything is 1-dimensional, $F = F(x, v, t)$.  While we'll speak in this lesson of $F$ being a force, $x$ a position, and $v$ a velocity, the methods we describe indeed can apply to many other situations as well. 
 
@@ -484,11 +484,11 @@ x(t) = Ae^{-\beta t} \cos(\omega' t - \delta) + \frac{gm}{k}.
 $$
 The new equilibrium occurs when the object is at rest, i.e. when $\ddot x = \dot x = 0$. This occurs at $x = \frac{gm}{k}$ relative to the free equilibrium $x=0$.
 
-### Resonance
+### Sinusoidal Driving Forces
 
 The most interesting driving forces in practice are ones that are periodic. Periodic driving functions lead to the important concept of **resonance**, which is a phenomenon that occurs when the driving frequency matches the natural frequency.
 
-Consider a driving force of the form $f(t) = f_0 \cos\omega t$. In complex form, we can then write
+Consider a sinusoidal driving force of the form $f(t) = f_0 \cos\omega t$. In complex form, we can then write
 $$
 \ddot z + 2\beta\dot z + \omega_0^2 z = f_0 e^{i \omega t}.
 $$
@@ -550,11 +550,11 @@ Solving for these left and right points gives $\omega_L = \omega_0 - \beta$ and 
 $$
 \Delta \omega = (\omega_0 + \beta) - (\omega_0 - \beta) = 2\beta.
 $$
-The *relative width* of the resonance curve is then
+The *resolving power* of the resonance curve is then
 $$
-\frac{\Delta \omega}{\omega_0} = \frac{2\beta}{\omega_0} = \frac{1}{Q}.
+\frac{\omega_0}{\Delta} = \frac{\omega_0}{2\beta} = Q.
 $$
-This indicates the *resolving power* of the resonance curve. Evidently, $Q$ represents the *signal-to-noise ratio* of the curve. The higher the Q-factor is, the more sharply peaked the resonance curve is, and the easier we can pinpoint the resonance frequency exactly. Indeed, this is why $Q$ is called a *quality factor*.
+Evidently then, $Q$ represents the resolving power of the resonance curve. The higher the Q-factor is, the more sharply peaked the resonance curve is, and the easier we can pinpoint the resonance frequency exactly. Indeed, this is why $Q$ is called a *quality factor*.
 
 ![](./resources/image-20230215154645401.png){width=300 fig-align=center}
 
@@ -572,11 +572,47 @@ Evidently as $Q$ increases, the system becomes more responsive to sudden changes
 
 ### Arbitrary Driving Forces
 
-
+The situation where resonance occurs in a DDHO system is not just confined to sinusoidal driving forces. Using Fourier analysis, we can decompose more arbitrary driving forces into a sum of sinusoidal driving forces of different frequencies. The simplest of these cases is when the driving force is periodic with some period $\tau$. Even if the driver isn't sinusoidal, we can decompose it into a linear combination of cosines of different frequencies, i.e. a *Fourier Series*,
+$$
+f(t) = \sum_{n=-\infty}^{\infty} f_n e^{i \omega n t},
+$$
+where each $f_n$ can be found via the formula
+$$
+f_n = \langle f(t), e^{i \omega n t} \rangle = \frac{\omega}{\pi} \int_0^{\tau} f(t) e^{i \omega n t} dt.
+$$
+Using the principle of superposition, we could then find the solution for each of the sinusoidal drivers term by term, and then sum them together to get the full solution. Each term will have amplitude and phase
+$$
+A_n = \frac{f_n}{\sqrt{(\omega_0^2-\omega^2 n^2)^2 + (2\beta\omega n)^2}}, \quad \delta_n = \tan^{-1} \frac{2\beta\omega n}{\omega_0^2-\omega^2n^2}.
+$$
+Plugging these in will yield a general solution of the form
+$$
+x(t) = x_h(t) + \sum_{n=1}^{\infty} A_n \cos(\omega n t - \delta_n).
+$$
+Each component will yield its own resonance frequency where $\omega n \approx -\omega_0$. As a function of the main driving frequency, this means there will resonances at each $\omega_n = \frac{\omega_0}{n}$. The resonance curve for $A^2$ can be found via *Parseval's Theorem*, which says
+$$
+A^2 = \langle x^2(t) \rangle = \frac{1}{2} \sum_{n=0}^\infty A_n^2.
+$$
+The peaks evidently go to zero as $n \rightarrow \infty$ since each $A_n^2 \propto f_n^2$ and each $f_n \rightarrow 0$ by the Riemann–Lebesgue lemma.
 
 ![](./resources/image-20230215160201364.png){width=250 fig-align=center}
 
-
+What if the driving force isn't periodic? In this case we have a few options. One would be to decompose it into its *Fourier transform*,
+$$
+f(t) = \int_{-\infty}^{\infty} f(\omega) e^{i\omega t} dt.
+$$
+Then each term gives a set of complex amplitudes and phases that can be solved for and stitched back together to get $x(t)$. Another solution that's perhaps more common is to use *Green's functions*. Instead of decomposing the driver into a linear combination of periodic functions, we'll decompose it into a linear combination of *impulse responses* or *delta functions*,
+$$
+f(t) = \int_{-\infty}^{\infty} f(t') \delta(t-t') dt.
+$$
+To find the solution $x(t)$, we first need to find the particular solution $G(t-t')$ to the DDHO with an impulse response,
+$$
+\ddot G + 2\beta\dot G + \omega_0^2 G = \delta(t - t').
+$$
+Once this is found, we can stitch together the full solution as
+$$
+x(t) = \int_{-\infty}^{\infty} f(t') G(t-t') dt.
+$$
+Note the Green's function solution already incorporates in the homogeneous solutions since $G(t-t')$ must itself satisfy the initial conditions.
 
 
 

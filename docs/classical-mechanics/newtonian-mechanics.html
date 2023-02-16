@@ -325,33 +325,35 @@ ul.task-list li input[type="checkbox"] {
 <p>In nature, an object is made of matter. It can be composed of many different molecules arranged in intricate and complicated ways. Further, each molecule is itself made of atoms, and each atom is itself made up of subatomic particles. Trying to model the motion of an object would be extremely cumbersome if we insisted on modeling the dynamics of each subatomic particle.</p>
 <p>Instead, it’s convenient to make abstractions. The most convenient abstraction to make is that we can describe the global behavior of an object as if it were a point object with no width. It can’t spin or deform. It’s one indivisible thing. We call these <strong>point particles</strong>.</p>
 <p>We’ll think of a point particle as following some trajectory in the 3-dimensional Euclidean space <span class="math inline">\(\mathbb{R}^{3}\)</span>. The trajectory or <strong>position</strong> is a time-dependent vector</p>
-<p><span class="math display">\[\mathbf{x}(t) = x(t)\mathbf{e}_x + y(t)\mathbf{e}_y + z(t)\mathbf{e}_z.\]</span></p>
-<p>A moving particle also has associated to it a <strong>velocity</strong> vector given by</p>
-<p><span class="math display">\[\mathbf{v} = \mathbf{\dot x} = \frac{d\mathbf{x}}{dt}.\]</span></p>
-<p>Perhaps the most fundamental goal of classical mechanics is to find these two vectors as a function of time. In the Newtonian formulation, if we want to find a particle’s trajectory, we start with the particle’s <strong>acceleration</strong> vector</p>
-<p><span class="math display">\[\mathbf{a} = \mathbf{\dot v} = \mathbf{\ddot x} = \frac{d^2\mathbf{x}}{dt^2},\]</span></p>
-<p>and match it with the <strong>force</strong> vector <span class="math inline">\(\mathbf{F}\)</span> via Newton’s Second Law to get a second-order differential equation for <span class="math inline">\(\mathbf{x}(t)\)</span>.</p>
+<p><span class="math display">\[
+\mathbf{x}(t) = x(t)\mathbf{e}_x + y(t)\mathbf{e}_y + z(t)\mathbf{e}_z.
+\]</span> A moving particle also has associated to it a <strong>velocity</strong> vector given by</p>
+<p><span class="math display">\[
+\mathbf{v} = \mathbf{\dot x} = \frac{d\mathbf{x}}{dt}.
+\]</span> Perhaps the most fundamental goal of classical mechanics is to find these two vectors as a function of time. In the Newtonian formulation, if we want to find a particle’s trajectory, we start with the particle’s <strong>acceleration</strong> vector <span class="math display">\[
+\mathbf{a} = \mathbf{\dot v} = \mathbf{\ddot x} = \frac{d^2\mathbf{x}}{dt^2},
+\]</span> and match it with the <strong>force</strong> vector <span class="math inline">\(\mathbf{F}\)</span> via Newton’s Second Law to get a second-order differential equation for <span class="math inline">\(\mathbf{x}(t)\)</span>.</p>
 </section>
 <section id="newtons-laws" class="level2">
 <h2 class="anchored" data-anchor-id="newtons-laws">Newton’s Laws</h2>
 <p>Newton’s Laws efficiently encapsulate the fundamental physics of classical mechanics. They’re stated below specifically for a point particle, or <em>body</em>, but can be extended to more complex systems as well.</p>
 <ol type="1">
-<li>A body remains at rest, or in motion at a constant speed in a straight line, unless acted upon by a force. That is,</li>
-</ol>
-<p><span class="math display">\[\mathbf{F} = \mathbf{0} \Rightarrow \mathbf{v}=const.\]</span></p>
-<ol start="2" type="1">
-<li>When a body is acted upon by a force, the time rate of change of its acceleration is proportional to the force. That is,</li>
-</ol>
-<p><span class="math display">\[\mathbf{F} = m \mathbf{a}.\]</span></p>
-<ol start="3" type="1">
-<li>If two bodies exert forces on each other, these forces have the same magnitude but opposite directions. That is,</li>
-</ol>
-<p><span class="math display">\[\mathbf{F}_{12} = \mathbf{F}_{21}.\]</span></p>
+<li><p>A body remains at rest, or in motion at a constant speed in a straight line, unless acted upon by a force. That is,<br>
+<span class="math display">\[
+\mathbf{F} = \mathbf{0} \Rightarrow \mathbf{v}=const.
+\]</span></p></li>
+<li><p>When a body is acted upon by a force, the time rate of change of its acceleration is proportional to the force. That is, <span class="math display">\[
+\mathbf{F} = m \mathbf{a}.
+\]</span></p></li>
+<li><p>If two bodies exert forces on each other, these forces have the same magnitude but opposite directions. That is, <span class="math display">\[
+\mathbf{F}_{12} = \mathbf{F}_{21}.
+\]</span></p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="./resources/image-20230212035902274.png" class="img-fluid figure-img" width="300"></p>
 </figure>
-</div>
+</div></li>
+</ol>
 <p>Forces are <strong>vectors</strong>, which means they obey the superposition principle, and can be analyzed in components. Position, velocity, and acceleration are vectors as well. The proportionality constant between <span class="math inline">\(\mathbf{F}\)</span> and <span class="math inline">\(\mathbf{a}\)</span> is called the <strong>mass </strong><span class="math inline">\(m\)</span>. Loosely speaking, the mass of an object is a measure of its <em>inertia</em> or resistance to motion.</p>
 <p>The functional form of the forces themselves depend on the particular type of forces applied. Some common forces are:</p>
 <ul>
@@ -385,33 +387,30 @@ ul.task-list li input[type="checkbox"] {
 <section id="momentum" class="level3">
 <h3 class="anchored" data-anchor-id="momentum">Momentum</h3>
 <p>For an object moving at velocity <span class="math inline">\(\mathbf{v}\)</span>, define its linear momentum <span class="math inline">\(\mathbf{p}\)</span> by</p>
-<p><span class="math display">\[\mathbf{p} = m \mathbf{v}.\]</span></p>
-<p>If the mass <span class="math inline">\(m\)</span> is constant, we evidently have</p>
-<p><span class="math display">\[\mathbf{F} = \mathbf{\dot p}.\]</span></p>
-<p>If <span class="math inline">\(\mathbf{F} = \mathbf{0}\)</span>, then <span class="math inline">\(\mathbf{p}=const\)</span>, hence momentum is conserved if there are no forces applied. This is the conservation of momentum.</p>
+<p><span class="math display">\[
+\mathbf{p} = m \mathbf{v}.
+\]</span> If the mass <span class="math inline">\(m\)</span> is constant, we evidently have <span class="math display">\[
+\mathbf{F} = \mathbf{\dot p}.
+\]</span> If <span class="math inline">\(\mathbf{F} = \mathbf{0}\)</span>, then <span class="math inline">\(\mathbf{p}=const\)</span>, hence momentum is conserved if there are no forces applied. This is the conservation of momentum.</p>
 </section>
 <section id="angular-momentum" class="level3">
 <h3 class="anchored" data-anchor-id="angular-momentum">Angular Momentum</h3>
-<p>Define the angular momentum <span class="math inline">\(\mathbf{L}\)</span> of an object by</p>
-<p><span class="math display">\[\mathbf{L} = \mathbf{x} \times \mathbf{p}.\]</span></p>
-<p>Similarly, define the <strong>torque</strong> or <strong>moment</strong> <span class="math inline">\(\mathbf{N}\)</span> by <span class="math display">\[\mathbf{N} = \mathbf{x} \times \mathbf{F}.\]</span></p>
-<p>Note both angular momentum and torque depend on the choice of coordinate system used since the position vector <span class="math inline">\(\mathbf{x}\)</span> depends on choice of origin. Now, observe that</p>
-<p><span class="math display">\[\mathbf{\dot L} = \mathbf{\dot x} \times \mathbf{p} + \mathbf{x} \times \mathbf{\dot p} = m \mathbf{v} \times \mathbf{v} + \mathbf{x} \times \mathbf{F} = \mathbf{N}.\]</span></p>
-<p>Thus, <span class="math inline">\(\mathbf{N} = \mathbf{\dot L}\)</span>. If <span class="math inline">\(\mathbf{N} = \mathbf{0}\)</span>, then <span class="math inline">\(\mathbf{L}=const\)</span>, hence angular momentum must be conserved if there are no torques applied. This is the conservation of angular momentum.</p>
+<p>Define the angular momentum <span class="math inline">\(\mathbf{L}\)</span> of an object by <span class="math display">\[
+\mathbf{L} = \mathbf{x} \times \mathbf{p}.
+\]</span> Similarly, define the <strong>torque</strong> or <strong>moment</strong> <span class="math inline">\(\mathbf{N}\)</span> by <span class="math display">\[\mathbf{N} = \mathbf{x} \times \mathbf{F}.\]</span></p>
+<p>Note both angular momentum and torque depend on the choice of coordinate system used since the position vector <span class="math inline">\(\mathbf{x}\)</span> depends on choice of origin. Now, observe that <span class="math display">\[
+\mathbf{\dot L} = \mathbf{\dot x} \times \mathbf{p} + \mathbf{x} \times \mathbf{\dot p} = m \mathbf{v} \times \mathbf{v} + \mathbf{x} \times \mathbf{F} = \mathbf{N}.
+\]</span> Thus, <span class="math inline">\(\mathbf{N} = \mathbf{\dot L}\)</span>. If <span class="math inline">\(\mathbf{N} = \mathbf{0}\)</span>, then <span class="math inline">\(\mathbf{L}=const\)</span>, hence angular momentum must be conserved if there are no torques applied. This is the conservation of angular momentum.</p>
 </section>
 <section id="work-and-energy" class="level3">
 <h3 class="anchored" data-anchor-id="work-and-energy">Work and Energy</h3>
-<p>Define the <strong>work</strong> done <em>on</em> an object as it moves along a path <span class="math inline">\(\gamma\)</span> from <span class="math inline">\(A\)</span> to <span class="math inline">\(B\)</span> by</p>
-<p><span class="math display">\[W = \int_A^B \mathbf{F} \cdot d\mathbf{x}.\]</span></p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="./resources/image-20230212032859080.png" class="img-fluid figure-img" width="200"></p>
-</figure>
-</div>
+<p>Define the <strong>work</strong> done <em>on</em> an object as it moves along a path <span class="math inline">\(\gamma\)</span> from <span class="math inline">\(A\)</span> to <span class="math inline">\(B\)</span> by <span class="math display">\[
+W = \int_A^B \mathbf{F} \cdot d\mathbf{x}.
+\]</span> <img src="./resources/image-20230212032859080.png" class="img-fluid" data-fig-align="center" width="200"></p>
 <p>In general, work depends on the path taken to get from <span class="math inline">\(A\)</span> to <span class="math inline">\(B\)</span>, hence it isn’t a unique property of the system.</p>
-<p>Observe that <span class="math display">\[dW = \mathbf{F} \cdot d\mathbf{x} = \mathbf{F} \cdot \mathbf{v} dt = d\bigg(\frac{1}{2}m\mathbf{v}^2 \bigg).\]</span> Define the <strong>kinetic energy</strong> of the system by <span class="math inline">\(T = \frac{1}{2} m \mathbf{v}^2\)</span>. Then we evidently have <span class="math inline">\(dW=dT\)</span>. That is, the work done on the system to get from <span class="math inline">\(A\)</span> to <span class="math inline">\(B\)</span> via <span class="math inline">\(\gamma\)</span> is just the change in kinetic energy between <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span>,</p>
-<p><span class="math display">\[W = \Delta T = T_B - T_A.\]</span></p>
-<p>When the work done is independent of the path taken it’s a state function of the kinetic energy. In this case, the force <span class="math inline">\(\mathbf{F}\)</span> is said to be <strong>conservative</strong>.</p>
+<p>Observe that <span class="math display">\[dW = \mathbf{F} \cdot d\mathbf{x} = \mathbf{F} \cdot \mathbf{v} dt = d\bigg(\frac{1}{2}m\mathbf{v}^2 \bigg).\]</span> Define the <strong>kinetic energy</strong> of the system by <span class="math inline">\(T = \frac{1}{2} m \mathbf{v}^2\)</span>. Then we evidently have <span class="math inline">\(dW=dT\)</span>. That is, the work done on the system to get from <span class="math inline">\(A\)</span> to <span class="math inline">\(B\)</span> via <span class="math inline">\(\gamma\)</span> is just the change in kinetic energy between <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span>, <span class="math display">\[
+W = \Delta T = T_B - T_A.
+\]</span> When the work done is independent of the path taken it’s a state function of the kinetic energy. In this case, the force <span class="math inline">\(\mathbf{F}\)</span> is said to be <strong>conservative</strong>.</p>
 <p>By the Helmholtz theorem, the following conditions are all equivalent:</p>
 <ul>
 <li><span class="math inline">\(\mathbf{F}\)</span> is conservative,</li>
@@ -419,11 +418,11 @@ ul.task-list li input[type="checkbox"] {
 <li><span class="math inline">\(\nabla \times \mathbf{F} = \mathbf{0}\)</span>,</li>
 <li>There is a scalar potential <span class="math inline">\(V=V(\mathbf{x})\)</span> such that <span class="math inline">\(\mathbf{F} = -\nabla V\)</span>.</li>
 </ul>
-<p>The scalar potential <span class="math inline">\(V\)</span> is called the <strong>potential energy</strong> of the system. Evidently, if <span class="math inline">\(\mathbf{F}\)</span> is conservative, we have</p>
-<p><span class="math display">\[W = \int_A^B \mathbf{F} \cdot d\mathbf{x} = -\int_A^B \nabla V \cdot d\mathbf{x} = -\int_A^B dV = V_A - V_B = -\Delta V = \Delta T.\]</span></p>
-<p>That is, <span class="math inline">\(\Delta T + \Delta V = 0\)</span>. Define the total mechanical <strong>energy</strong> <span class="math inline">\(E\)</span> of the system by</p>
-<p><span class="math display">\[E = T + V.\]</span></p>
-<p>Then <span class="math inline">\(\Delta E = \Delta (T + V) = 0\)</span>. That is, energy is conserved when the forces on the system are conservative. This is the conservation of energy.</p>
+<p>The scalar potential <span class="math inline">\(V\)</span> is called the <strong>potential energy</strong> of the system. Evidently, if <span class="math inline">\(\mathbf{F}\)</span> is conservative, we have <span class="math display">\[
+W = \int_A^B \mathbf{F} \cdot d\mathbf{x} = -\int_A^B \nabla V \cdot d\mathbf{x} = -\int_A^B dV = V_A - V_B = -\Delta V = \Delta T.
+\]</span> That is, <span class="math inline">\(\Delta T + \Delta V = 0\)</span>. Define the total mechanical <strong>energy</strong> <span class="math inline">\(E\)</span> of the system by <span class="math display">\[
+E = T + V.
+\]</span> Then <span class="math inline">\(\Delta E = \Delta (T + V) = 0\)</span>. That is, energy is conserved when the forces on the system are conservative. This is the conservation of energy.</p>
 <p>Energy isn’t generally conserved if the forces aren’t conservative. Examples of non-conservative forces include any force that’s a function of velocity. These include dissipative forces like friction or drag, as well as magnetic forces.</p>
 </section>
 </section>
@@ -625,26 +624,27 @@ d\mathbf{e}_\varphi &amp;= - \dot\varphi \mathbf{e}_r + \dot\theta \cos\varphi \
 <section id="many-particle-systems" class="level2">
 <h2 class="anchored" data-anchor-id="many-particle-systems">Many-Particle Systems</h2>
 <p>Thus far we’ve worked with single-particle systems. Let’s now consider a system of <span class="math inline">\(N\)</span> particles with positions <span class="math inline">\(\mathbf{x}_1, \mathbf{x}_2, \cdots, \mathbf{x}_N\)</span> respectively. We can use the principle of superposition to extend the laws derived above for single particles.</p>
-<p>For <span class="math inline">\(N\)</span>-particle systems it’s convenient to characterize the system’s position using the <strong>center of mass</strong> vector <span class="math inline">\(\mathbf{R}\)</span>,</p>
-<p><span class="math display">\[\mathbf{R} \equiv \frac{1}{M}\sum_{i=1}^N m_i \mathbf{x}_i,\]</span></p>
-<p>where <span class="math inline">\(M\)</span> is just the <em>total mass</em> of the system, <span class="math inline">\(M \equiv \sum_i m_i\)</span>. The center of mass is just the mass-weighted average of all the particle position vectors.</p>
+<p>For <span class="math inline">\(N\)</span>-particle systems it’s convenient to characterize the system’s position using the <strong>center of mass</strong> vector <span class="math inline">\(\mathbf{R}\)</span>, <span class="math display">\[
+\mathbf{R} \equiv \frac{1}{M}\sum_{i=1}^N m_i \mathbf{x}_i,
+\]</span> where <span class="math inline">\(M\)</span> is just the <em>total mass</em> of the system, <span class="math inline">\(M \equiv \sum_i m_i\)</span>. The center of mass is just the mass-weighted average of all the particle position vectors.</p>
 <p>Suppose an external force <span class="math inline">\(\mathbf{F}^{ext}\)</span> is acting on the system, and suppose each particle <span class="math inline">\(i\)</span> imparts a force <span class="math inline">\(\mathbf{F}_{ij}\)</span> on particle <span class="math inline">\(j \neq i\)</span>. Here’s what this would look like for <span class="math inline">\(N=3\)</span> particles.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="./resources/image-20230212034236830.png" class="img-fluid figure-img" width="300"></p>
 </figure>
 </div>
-<p>By superposition, the total force acting on the entire system is thus,</p>
-<p><span class="math display">\[\mathbf{F} = \mathbf{F}^{ext} + \sum_{i \neq j} \mathbf{F}_{ij} = \sum m_i \mathbf{a}_i = M\mathbf{\ddot R}.\]</span></p>
-<p>Now, by Newton’s third law, <span class="math inline">\(\mathbf{F}_{ij} = -\mathbf{F}_{ji}\)</span>. This means all the internal forces cancel in pairs, so we have</p>
-<p><span class="math display">\[\mathbf{F}^{ext} = M\mathbf{\ddot R}.\]</span></p>
-<p>That is, the system as a whole moves as if it were a point mass <span class="math inline">\(M\)</span> with an external force <span class="math inline">\(\mathbf{F}^{ext}\)</span> acting on its center of mass <span class="math inline">\(\mathbf{R}\)</span>.</p>
+<p>By superposition, the total force acting on the entire system is thus, <span class="math display">\[
+\mathbf{F} = \mathbf{F}^{ext} + \sum_{i \neq j} \mathbf{F}_{ij} = \sum m_i \mathbf{a}_i = M\mathbf{\ddot R}.
+\]</span> Now, by Newton’s third law, <span class="math inline">\(\mathbf{F}_{ij} = -\mathbf{F}_{ji}\)</span>. This means all the internal forces cancel in pairs, so we have <span class="math display">\[
+\mathbf{F}^{ext} = M\mathbf{\ddot R}.
+\]</span> That is, the system as a whole moves as if it were a point mass <span class="math inline">\(M\)</span> with an external force <span class="math inline">\(\mathbf{F}^{ext}\)</span> acting on its center of mass <span class="math inline">\(\mathbf{R}\)</span>.</p>
 <p>If the total momentum is defined as <span class="math inline">\(\mathbf{P} = M \mathbf{\dot R}\)</span>, this expression then says <span class="math inline">\(\mathbf{F}^{ext} = \mathbf{\dot P}\)</span>. Thus, if no external forces act on the system, then its total linear momentum <span class="math inline">\(\mathbf{P}\)</span> is conserved.</p>
-<p>Let’s now consider the total <em>torques</em> on the system. Suppose the system experiences an external torque <span class="math inline">\(\mathbf{N}^{ext}\)</span>, and that each particle <span class="math inline">\(i\)</span> exerts a torque <span class="math inline">\(\mathbf{N}_{ij}\)</span> on particle <span class="math inline">\(j\)</span>. Then by superposition, the total torque on the system is</p>
-<p><span class="math display">\[\mathbf{N} = \mathbf{N}^{ext} + \sum_{i \neq j} \mathbf{N}_{ij} = \mathbf{N}^{ext} + \sum_{i \neq j} \mathbf{x}_i \times \mathbf{F}_{ij},\]</span></p>
-<p>Again, we can use the fact that each <span class="math inline">\(\mathbf{F}_{ij} = -\mathbf{F}_{ji}\)</span>. If we do this, we can re-write the total torque as</p>
-<p><span class="math display">\[\mathbf{N} = \mathbf{N}^{ext} + \sum_{i&lt;j} (\mathbf{x}_{i}-\mathbf{x}_{j}) \times \mathbf{F}_{ij} = \mathbf{N}^{ext}.\]</span></p>
-<p>Now, if we further assume that each internal force acts centrally, i.e.&nbsp;<span class="math inline">\(\mathbf{F}_{ij} = \mathbf{F}_{ij}(\mathbf{x}_{i}-\mathbf{x}_{j})\)</span>, then the internal cross products all vanish, and we just get <span class="math inline">\(\mathbf{N} = \mathbf{N}^{ext}\)</span>. That is, if all the internal forces are central, then the total torque on the system is just the external torque.</p>
+<p>Let’s now consider the total <em>torques</em> on the system. Suppose the system experiences an external torque <span class="math inline">\(\mathbf{N}^{ext}\)</span>, and that each particle <span class="math inline">\(i\)</span> exerts a torque <span class="math inline">\(\mathbf{N}_{ij}\)</span> on particle <span class="math inline">\(j\)</span>. Then by superposition, the total torque on the system is <span class="math display">\[
+\mathbf{N} = \mathbf{N}^{ext} + \sum_{i \neq j} \mathbf{N}_{ij} = \mathbf{N}^{ext} + \sum_{i \neq j} \mathbf{x}_i \times \mathbf{F}_{ij},
+\]</span> Again, we can use the fact that each <span class="math inline">\(\mathbf{F}_{ij} = -\mathbf{F}_{ji}\)</span>. If we do this, we can re-write the total torque as</p>
+<p><span class="math display">\[
+\mathbf{N} = \mathbf{N}^{ext} + \sum_{i&lt;j} (\mathbf{x}_{i}-\mathbf{x}_{j}) \times \mathbf{F}_{ij} = \mathbf{N}^{ext}.
+\]</span> Now, if we further assume that each internal force acts centrally, i.e.&nbsp;<span class="math inline">\(\mathbf{F}_{ij} = \mathbf{F}_{ij}(\mathbf{x}_{i}-\mathbf{x}_{j})\)</span>, then the internal cross products all vanish, and we just get <span class="math inline">\(\mathbf{N} = \mathbf{N}^{ext}\)</span>. That is, if all the internal forces are central, then the total torque on the system is just the external torque.</p>
 <p>If the total angular momentum on the system is defined as <span class="math inline">\(\mathbf{L} = \mathbf{R} \times \mathbf{P}\)</span>, this expression says <span class="math inline">\(\mathbf{\dot L} = \mathbf{N}^{ext}\)</span>. Thus, if no external torques act on the system, then its total angular momentum <span class="math inline">\(\mathbf{L}\)</span> is conserved.</p>
 <p>It’s insightful to separate each particle’s motion vectors explicitly into a center of mass component and a relative component,</p>
 <p><span class="math display">\[\begin{align*}
@@ -676,9 +676,9 @@ T &amp;= \frac{1}{2}\sum m_i \mathbf{v}_i^2 = \sum m_i (\mathbf{V} + \boldsymbol
 &amp;= \frac{1}{2}M\mathbf{V}^2 + \frac{1}{2}\sum m_i\boldsymbol{\mathscr{v}}_i^2 \\
 &amp;= T^{CM} + T^{rel}.
 \end{align*}\]</span></p>
-<p>Thus, the kinetic energy separates into a sum of the kinetic energy on the center of mass <span class="math inline">\(T^{CM} = \frac{1}{2}M\mathbf{V}^2\)</span>, and the kinetic energy of the relative components <span class="math inline">\(T^{rel} = \frac{1}{2}\sum m_i\boldsymbol{\mathscr{v}}_i^2\)</span>. Evidently, the total energy is</p>
-<p><span class="math display">\[E = T + V = T^{CM} + T^{rel} + V(\mathbf{x}_1, \mathbf{x}_2, \cdots, \mathbf{x}_N).\]</span></p>
-<p>It’s conserved provided the external force <span class="math inline">\(\mathbf{F}^{ext}\)</span> is conservative.</p>
+<p>Thus, the kinetic energy separates into a sum of the kinetic energy on the center of mass <span class="math inline">\(T^{CM} = \frac{1}{2}M\mathbf{V}^2\)</span>, and the kinetic energy of the relative components <span class="math inline">\(T^{rel} = \frac{1}{2}\sum m_i\boldsymbol{\mathscr{v}}_i^2\)</span>. Evidently, the total energy is <span class="math display">\[
+E = T + V = T^{CM} + T^{rel} + V(\mathbf{x}_1, \mathbf{x}_2, \cdots, \mathbf{x}_N).
+\]</span> It’s conserved provided the external force <span class="math inline">\(\mathbf{F}^{ext}\)</span> is conservative.</p>
 <section id="example-rockets" class="level3">
 <h3 class="anchored" data-anchor-id="example-rockets">Example: Rockets</h3>
 <p>Suppose a rocket of mass <span class="math inline">\(m_0=m(t) + m_{ex}(t)\)</span> is moving through free space with no external forces acting on it. It’s expelling fuel for trust at some constant speed <span class="math inline">\(v_{ex}\)</span> with respect to the rocket.</p>
@@ -697,7 +697,7 @@ T &amp;= \frac{1}{2}\sum m_i \mathbf{v}_i^2 = \sum m_i (\mathbf{V} + \boldsymbol
 </ul>
 <p><span class="math display">\[\begin{align*}
 z(t) &amp;= \int_0^t v(t) dt = v_{ex} \int_0^t dt \log\frac{m_0}{m_0-kt} \\
-&amp;= v_ex\bigg[t - \bigg(\frac{m_0-kt}{k} \bigg) \log \bigg(\frac{m_0}{m_0-kt} \bigg) \bigg] \\
+&amp;= v_{ex} \bigg[t - \bigg(\frac{m_0-kt}{k} \bigg) \log \bigg(\frac{m_0}{m_0-kt} \bigg) \bigg] \\
 &amp;= v_{ex} t - \frac{v_{ex}}{k}(m_0 - kt)\log\bigg(\frac{m_0}{m_0-kt} \bigg).
 \end{align*}\]</span></p>
 
