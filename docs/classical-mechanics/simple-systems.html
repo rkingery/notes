@@ -335,16 +335,16 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<p>Even if we can easily find the equations of motion of a system, very few are simple enough to solve exactly using analytical methods. In this lesson we’ll consider some of the most common such systems. We’ll focus on (possibly non-conservative) forces acting on a single-particle particle of mass <span class="math inline">\(m\)</span> that take the form,</p>
-<p><span class="math display">\[\mathbf{F} = \mathbf{F}(\mathbf{x}, \mathbf{v}, t).\]</span></p>
-<p>We’ll assume <span class="math inline">\(\mathbf{F}\)</span> is either linear or quadratic in position and velocity. With a few exceptions, these are the few cases for which we can even solve the equations of motion analytically.</p>
+<p>Even if we can easily find the equations of motion of a system, very few are simple enough to solve exactly using analytical methods. In this lesson we’ll consider some of the most common such systems. We’ll focus on (possibly non-conservative) forces acting on a single-particle particle of mass <span class="math inline">\(m\)</span> that take the form, <span class="math display">\[
+\mathbf{F} = \mathbf{F}(\mathbf{x}, \mathbf{v}, t).
+\]</span> We’ll assume <span class="math inline">\(\mathbf{F}\)</span> is either linear or quadratic in position and velocity. With a few exceptions, these are the few cases for which we can even solve the equations of motion analytically.</p>
 <p>For the most part, we’ll focus on the case when everything is 1-dimensional, <span class="math inline">\(F = F(x, v, t)\)</span>. While we’ll speak in this lesson of <span class="math inline">\(F\)</span> being a force, <span class="math inline">\(x\)</span> a position, and <span class="math inline">\(v\)</span> a velocity, the methods we describe indeed can apply to many other situations as well.</p>
 <p>For example, <span class="math inline">\(x\)</span> could represent a generalized coordinate (say an angle), in which case <span class="math inline">\(v\)</span> would be a generalized velocity (say an angular velocity) and <span class="math inline">\(F\)</span> a generalized force (say a torque). In some cases, <span class="math inline">\(x\)</span> need not be a coordinate at all. For example, we can use the same techniques from this lesson to analyze a simple circuit, in which case <span class="math inline">\(x\)</span> would be a charge or a current and <span class="math inline">\(F\)</span> would be a supplied voltage.</p>
 <section id="independent-forces" class="level2">
 <h2 class="anchored" data-anchor-id="independent-forces">Independent Forces</h2>
-<p>The first and simplest case we’ll consider are forces that don’t depend on position or velocity,</p>
-<p><span class="math display">\[m \mathbf{a} = \mathbf{F}_0(t).\]</span></p>
-<p>We can solve these systems directly by integrating both sides, i.e.&nbsp;<em>reducing to quadrature</em>. We have,</p>
+<p>The first and simplest case we’ll consider are forces that don’t depend on position or velocity, <span class="math display">\[
+m \mathbf{a} = \mathbf{F}_0(t).
+\]</span> We can solve these systems directly by integrating both sides, i.e.&nbsp;<em>reducing to quadrature</em>. We have,</p>
 <p><span class="math display">\[\begin{align*}
 \mathbf{a}(t) &amp;= \frac{1}{m}\mathbf{F}_0(t), \\
 \mathbf{v}(t) &amp;= \mathbf{v}_0 + \frac{1}{m}\int_0^t dt'\mathbf{F}_0(t'), \\
@@ -730,7 +730,7 @@ A = \frac{f_0}{\sqrt{(\omega_0^2-\omega^2)^2 + 4\beta^2\omega^2}}, \quad \delta 
 <p><img src="./resources/image-20230215142723690.png" class="img-fluid figure-img" width="300"></p>
 </figure>
 </div>
-<p>Interestingly, the memory of the transient system <em>are</em> preserved in the amplitude and phase. As a rule of thumb, the number of oscillations <span class="math inline">\(N\)</span> until <span class="math inline">\(x \approx x_p\)</span> is basically just the Q-factor, <span class="math display">\[
+<p>Interestingly, the memory of the transient dynamics <em>is</em> preserved in the amplitude and phase. As a rule of thumb, the number of oscillations <span class="math inline">\(N\)</span> until <span class="math inline">\(x \approx x_p\)</span> is basically just the Q-factor, <span class="math display">\[
 N \approx \frac{Q}{\pi}.
 \]</span> Let’s now look more deeply at the amplitude and phase. It’s worth asking how they depend on the external driving frequency <span class="math inline">\(\omega\)</span>.</p>
 <ul>
@@ -794,12 +794,12 @@ A^2 = \langle x^2(t) \rangle = \frac{1}{2} \sum_{n=0}^\infty A_n^2.
 <p>What if the driving force isn’t periodic? In this case we have a few options. One would be to decompose it into its <em>Fourier transform</em>, <span class="math display">\[
 f(t) = \int_{-\infty}^{\infty} f(\omega) e^{i\omega t} dt.
 \]</span> Then each term gives a set of complex amplitudes and phases that can be solved for and stitched back together to get <span class="math inline">\(x(t)\)</span>. Another solution that’s perhaps more common is to use <em>Green’s functions</em>. Instead of decomposing the driver into a linear combination of periodic functions, we’ll decompose it into a linear combination of <em>impulse responses</em> or <em>delta functions</em>, <span class="math display">\[
-f(t) = \int_{-\infty}^{\infty} f(t') \delta(t-t') dt.
+f(t) = \int_{-\infty}^{\infty} f(t') \delta(t-t') dt'.
 \]</span> To find the solution <span class="math inline">\(x(t)\)</span>, we first need to find the particular solution <span class="math inline">\(G(t-t')\)</span> to the DDHO with an impulse response, <span class="math display">\[
 \ddot G + 2\beta\dot G + \omega_0^2 G = \delta(t - t').
 \]</span> Once this is found, we can stitch together the full solution as <span class="math display">\[
-x(t) = \int_{-\infty}^{\infty} f(t') G(t-t') dt.
-\]</span> Note the Green’s function solution already incorporates in the homogeneous solutions since <span class="math inline">\(G(t-t')\)</span> must itself satisfy the initial conditions.</p>
+x(t) = \int_{-\infty}^{\infty} f(t') G(t-t') dt'.
+\]</span> Note the Green’s function solution already incorporates in the homogeneous solution since <span class="math inline">\(G(t-t')\)</span> must itself satisfy the initial conditions.</p>
 
 
 </section>

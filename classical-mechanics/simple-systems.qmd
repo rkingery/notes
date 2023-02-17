@@ -1,9 +1,9 @@
 # Simple Systems
 
 Even if we can easily find the equations of motion of a system, very few are simple enough to solve exactly using analytical methods. In this lesson we'll consider some of the most common such systems. We'll focus on (possibly non-conservative) forces acting on a single-particle particle of mass $m$ that take the form,
-
-$$\mathbf{F} = \mathbf{F}(\mathbf{x}, \mathbf{v}, t).$$
-
+$$
+\mathbf{F} = \mathbf{F}(\mathbf{x}, \mathbf{v}, t).
+$$
 We'll assume $\mathbf{F}$ is either linear or quadratic in position and velocity. With a few exceptions, these are the few cases for which we can even solve the equations of motion analytically.
 
 For the most part, we'll focus on the case when everything is 1-dimensional, $F = F(x, v, t)$.  While we'll speak in this lesson of $F$ being a force, $x$ a position, and $v$ a velocity, the methods we describe indeed can apply to many other situations as well. 
@@ -13,9 +13,9 @@ For example, $x$ could represent a generalized coordinate (say an angle), in whi
 ## Independent Forces
 
 The first and simplest case we'll consider are forces that don't depend on position or velocity,
-
-$$m \mathbf{a} = \mathbf{F}_0(t).$$
-
+$$
+m \mathbf{a} = \mathbf{F}_0(t).
+$$
 We can solve these systems directly by integrating both sides, i.e. *reducing to quadrature*. We have,
 
 \begin{align*}
@@ -514,7 +514,7 @@ With these, the real particular solution is given by $x_p(t) = A \cos(\omega t -
 
 
 
-Interestingly, the memory of the transient system *are* preserved in the amplitude and phase. As a rule of thumb, the number of oscillations $N$ until $x \approx x_p$ is basically just the Q-factor,
+Interestingly, the memory of the transient dynamics *is* preserved in the amplitude and phase. As a rule of thumb, the number of oscillations $N$ until $x \approx x_p$ is basically just the Q-factor,
 $$
 N \approx \frac{Q}{\pi}.
 $$
@@ -602,7 +602,7 @@ f(t) = \int_{-\infty}^{\infty} f(\omega) e^{i\omega t} dt.
 $$
 Then each term gives a set of complex amplitudes and phases that can be solved for and stitched back together to get $x(t)$. Another solution that's perhaps more common is to use *Green's functions*. Instead of decomposing the driver into a linear combination of periodic functions, we'll decompose it into a linear combination of *impulse responses* or *delta functions*,
 $$
-f(t) = \int_{-\infty}^{\infty} f(t') \delta(t-t') dt.
+f(t) = \int_{-\infty}^{\infty} f(t') \delta(t-t') dt'.
 $$
 To find the solution $x(t)$, we first need to find the particular solution $G(t-t')$ to the DDHO with an impulse response,
 $$
@@ -610,9 +610,9 @@ $$
 $$
 Once this is found, we can stitch together the full solution as
 $$
-x(t) = \int_{-\infty}^{\infty} f(t') G(t-t') dt.
+x(t) = \int_{-\infty}^{\infty} f(t') G(t-t') dt'.
 $$
-Note the Green's function solution already incorporates in the homogeneous solutions since $G(t-t')$ must itself satisfy the initial conditions.
+Note the Green's function solution already incorporates in the homogeneous solution since $G(t-t')$ must itself satisfy the initial conditions.
 
 
 

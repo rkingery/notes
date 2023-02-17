@@ -61,6 +61,7 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 </head>
 
@@ -286,8 +287,22 @@ ul.task-list li input[type="checkbox"] {
         <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">Table of contents</h2>
    
+  <ul>
+  <li><a href="#orthogonal-transformations" id="toc-orthogonal-transformations" class="nav-link active" data-scroll-target="#orthogonal-transformations">Orthogonal Transformations</a>
   <ul class="collapse">
-  <li><a href="#orthogonal-transformations" id="toc-orthogonal-transformations" class="nav-link active" data-scroll-target="#orthogonal-transformations">Orthogonal Transformations</a></li>
+  <li><a href="#example-rotations-in-two-dimensions" id="toc-example-rotations-in-two-dimensions" class="nav-link" data-scroll-target="#example-rotations-in-two-dimensions">Example: Rotations in two dimensions</a></li>
+  <li><a href="#active-vs-passive-transformations" id="toc-active-vs-passive-transformations" class="nav-link" data-scroll-target="#active-vs-passive-transformations">Active vs Passive Transformations</a></li>
+  </ul></li>
+  <li><a href="#linearly-accelerating-frames" id="toc-linearly-accelerating-frames" class="nav-link" data-scroll-target="#linearly-accelerating-frames">Linearly Accelerating Frames</a>
+  <ul class="collapse">
+  <li><a href="#example-pendulum-in-an-accelerating-railcar" id="toc-example-pendulum-in-an-accelerating-railcar" class="nav-link" data-scroll-target="#example-pendulum-in-an-accelerating-railcar">Example: Pendulum in an accelerating railcar</a></li>
+  </ul></li>
+  <li><a href="#rotating-frames" id="toc-rotating-frames" class="nav-link" data-scroll-target="#rotating-frames">Rotating Frames</a>
+  <ul class="collapse">
+  <li><a href="#example-throwing-a-baseball-from-the-north-pole" id="toc-example-throwing-a-baseball-from-the-north-pole" class="nav-link" data-scroll-target="#example-throwing-a-baseball-from-the-north-pole">Example: Throwing a baseball from the North Pole</a></li>
+  </ul></li>
+  <li><a href="#example-hurricanes" id="toc-example-hurricanes" class="nav-link" data-scroll-target="#example-hurricanes">Example: Hurricanes</a></li>
+  <li><a href="#example-the-foucalt-pendulum" id="toc-example-the-foucalt-pendulum" class="nav-link" data-scroll-target="#example-the-foucalt-pendulum">Example: The Foucalt pendulum</a></li>
   </ul>
 </nav>
     </div>
@@ -315,6 +330,253 @@ ul.task-list li input[type="checkbox"] {
 <p>In practice, however, many reference frames of interest are <em>non-inertial</em>, which means Newton’s Laws does not hold in those reference frames. We have to modify Newton’s Laws in these frames by adding so-called <strong>fictitious forces</strong>. We’ll begin by focusing on the most common non-inertial frames, the <em>rotating reference frames</em>.</p>
 <section id="orthogonal-transformations" class="level2">
 <h2 class="anchored" data-anchor-id="orthogonal-transformations">Orthogonal Transformations</h2>
+<p>Suppose <span class="math inline">\(\mathbf{x}\)</span> is some vector, and <span class="math inline">\(\{\mathbf{e}_i\}\)</span> and <span class="math inline">\(\{\mathbf{e}_i'\}\)</span> are two orthonormal bases for <span class="math inline">\(\mathbb{R}^3\)</span>, then <span class="math display">\[
+\mathbf{x} = \sum_{j=1}^3 x_j \mathbf{e}_j = \sum_{i'=1}^3 x_{i'} \mathbf{e}_{i'},
+\]</span> where <span class="math inline">\(x_i = \mathbf{x} \cdot \mathbf{e}_i\)</span> and <span class="math inline">\(x_i' = \mathbf{x} \cdot \mathbf{e}_i'\)</span>.</p>
+<p><strong>Notation:</strong> From now on we’ll use the <em>Einstein summation convention</em>. If a repeated index occurs in a sum, we’ll omit the <span class="math inline">\(\sum\)</span> symbol. For example, we can re-write the above line as the following, where it’s understood we’re summing over <span class="math inline">\(j\)</span> and <span class="math inline">\(i'\)</span> in each case, <span class="math display">\[
+\mathbf{x} = x_j \mathbf{e}_j = x_{i'} \mathbf{e}_{i'}.
+\]</span> Now, observe we can write one component in terms of the other as <span class="math display">\[
+x_i' = \mathbf{x} \cdot \mathbf{e}_{i'} = (\mathbf{e}_j \cdot \mathbf{e}_{i'}) x_j \equiv R_{i'j} x_j,
+\]</span> where <span class="math inline">\(R_{i'j} = \mathbf{e}_j \cdot \mathbf{e}_i'\)</span> defines a matrix <span class="math inline">\(\mathbf{R}\)</span> called an <strong>orthogonal transformation</strong>.</p>
+<p>Notice that if we take the inner product of two vectors <span class="math inline">\(\mathbf{x}\)</span> and <span class="math inline">\(\mathbf{y}\)</span>, we get <span class="math display">\[
+\mathbf{x} \cdot \mathbf{y} = x_{i'} \delta_{i' j'} x_{j'} = R_{ii'} \delta_{i'j'} R_{j'j} x_i x_j = \mathbf{x} \cdot (\mathbf{R}^\top \mathbf{R}) \mathbf{y}.
+\]</span> Thus, an orthogonal transformation <span class="math inline">\(\mathbf{R}\)</span> satisfies the property that <span class="math display">\[
+\mathbf{R}^\top \mathbf{R} = \mathbf{I}, \quad \text{or} \quad R_{ij} R_{jk} = \delta_{ik}.
+\]</span> Due to the inner product preserving nature of orthogonal transformations, they can in a sense be used to <em>define</em> what we mean by a scalar or vector or tensor in classical mechanics. They’re objects that transform a certain way under an orthogonal transformation:</p>
+<ul>
+<li><p>A <strong>scalar</strong> is any object <span class="math inline">\(\alpha\)</span> that is <em>invariant</em> under an orthogonal transformation, <span class="math display">\[
+\alpha' = \alpha.
+\]</span></p></li>
+<li><p>A <strong>vector</strong> is any object <span class="math inline">\(\mathbf{v}\)</span> that transforms under an orthogonal transformation as, <span class="math display">\[
+v_{i'} = R_{i'i} v_i.
+\]</span></p></li>
+<li><p>A <strong>tensor</strong> of order <span class="math inline">\(k\)</span> is any object <span class="math inline">\(\mathbf{T}\)</span> that transforms under an orthogonal transformation as, <span class="math display">\[
+T_{i_1' i_2' \cdots i_k'} = R_{i_1' i_1} R_{i_2' i_2} \cdots R_{i_k' i_k} T_{i_1 i_2 \cdots i_k}.
+\]</span></p></li>
+</ul>
+<p>Notice since <span class="math inline">\(\mathbf{R}^\top \mathbf{R} = \mathbf{I}\)</span>, we can take the determinant of both sides to get <span class="math inline">\(\det(\mathbf{R}^\top \mathbf{R}) = \det^2(\mathbf{R}) = 1\)</span>, which implies that <span class="math inline">\(\det(\mathbf{R}) = \pm 1\)</span>. This fact divides orthogonal transformations into two distinct classes:</p>
+<ul>
+<li>Proper Rotations (<span class="math inline">\(\det(\mathbf{R}) = 1\)</span>): These correspond to pure <em>rotations</em> in space. They preserve the <em>handedness</em> of the underlying coordinate system.</li>
+<li>Improper Rotations (<span class="math inline">\(\det(\mathbf{R}) = -1\)</span>): These correspond to <em>reflections</em> in space, which are transformations <span class="math inline">\(\mathbf{v} \Rightarrow -\mathbf{v}\)</span> combined with a pure rotation. These transformations permute the handedness of the underlying coordinate system.</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./resources/image-20230216104709404.png" class="img-fluid figure-img" width="180"></p>
+</figure>
+</div>
+<p>Most vector operations are proper, in the sense that they preserve the handedness of the underlying coordinate system. If <span class="math inline">\(\mathbf{v}\)</span> is a vector, they’ll transform under a reflection to <span class="math inline">\(-\mathbf{v}\)</span>. The one major exception is the <em>cross product</em>, which reverses the handedness. Under a reflection, it keeps its sign, <span class="math display">\[
+\mathbf{v} \times \mathbf{w} \Rightarrow (-\mathbf{v}) \times (-\mathbf{w}) = \mathbf{v} \times \mathbf{w}.
+\]</span> For this reason, cross products are sometimes called <strong>pseudovectors</strong> or <strong>axial vectors</strong> to distinguish them from ordinary vectors that transform under a reflection as <span class="math inline">\(\mathbf{v} \Rightarrow -\mathbf{v}\)</span>.</p>
+<p><strong>Aside:</strong> It turns out that the set of all orthogonal transformations on <span class="math inline">\(\mathbb{R}^3\)</span> form a <em>group</em> <span class="math inline">\(G\)</span>, in the sense that it satisfies the following special “symmetry” properties:</p>
+<ul>
+<li>Closure: If <span class="math inline">\(A, B \in G\)</span> , then <span class="math inline">\(AB \in G\)</span> also.</li>
+<li>Associativity: For any <span class="math inline">\(A,B,C \in G\)</span>, we have <span class="math inline">\((AB)C = A(BC)\)</span>.</li>
+<li>Identity: There is a unique element <span class="math inline">\(I \in G\)</span> satisfying <span class="math inline">\(IA = AI\)</span> for any <span class="math inline">\(A \in G\)</span>.</li>
+<li>Invertibility: For any <span class="math inline">\(A \in G\)</span>, there is an inverse element <span class="math inline">\(A^{-1}\)</span> such that <span class="math inline">\(A^{-1} A = A A^{-1} = I\)</span>.</li>
+</ul>
+<p>The group of orthogonal transformations under matrix multiplication is called the <strong>orthogonal group</strong>, denoted <span class="math inline">\(O(3)\)</span>. The subset of <span class="math inline">\(O(3)\)</span> where <span class="math inline">\(\det(\mathbf{R})=1\)</span> happens to form a <strong>subgroup</strong>, i.e.&nbsp;a subset of <span class="math inline">\(O(3)\)</span> that’s closed under group operations. It’s called the <strong>special orthogonal group</strong>, denoted <span class="math inline">\(SO(3)\)</span>. This is essentially the group of all rotations in 3 dimensions. The orthogonal groups turn out to be very important in understanding the theory of angular momentum, especially in quantum mechanics.</p>
+<section id="example-rotations-in-two-dimensions" class="level3">
+<h3 class="anchored" data-anchor-id="example-rotations-in-two-dimensions">Example: Rotations in two dimensions</h3>
+<p>We can easily figure out what proper rotations look like in 2D space by looking at how to relate one basis with another. Suppose <span class="math inline">\(\{\mathbf{e}_x, \mathbf{e}_y \}\)</span> is the standard basis for <span class="math inline">\(\mathbb{R}^2\)</span>, and <span class="math inline">\(\{\mathbf{e}_{x'}, \mathbf{e}_{y'}\}\)</span> is some other orthonormal basis. Suppose <span class="math inline">\(\varphi\)</span> is the angle between <span class="math inline">\(\mathbf{e}_x\)</span> and <span class="math inline">\(\mathbf{e}_{x'}\)</span>. Using a little geometry, we have,</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./resources/image-20230216110516749.png" class="img-fluid figure-img" width="200"></p>
+</figure>
+</div>
+<p><span class="math display">\[\begin{align*}
+R_{x'x} &amp;= \mathbf{e}_{x'} \cdot \mathbf{e}_x = \cos\varphi,
+&amp;R_{x'y} &amp;= \mathbf{e}_{x'} \cdot \mathbf{e}_y = \sin\varphi, \\
+R_{y'x} &amp;= \mathbf{e}_{y'} \cdot \mathbf{e}_x = -\sin\varphi,
+&amp;R_{y'y} &amp;= \mathbf{e}_{y'} \cdot \mathbf{e}_y = \cos\varphi. \\
+\end{align*}\]</span></p>
+<p>We can thus express any proper rotation in <span class="math inline">\(\mathbb{R}^2\)</span> using a <span class="math inline">\(2 \times 2\)</span> matrix of the form <span class="math display">\[
+\mathbf{R}(\varphi) =
+\begin{pmatrix}
+\cos\varphi &amp; \sin\varphi \\
+-\sin\varphi &amp; \cos\varphi
+\end{pmatrix}.
+\]</span> This is the matrix that rotates the underlying basis <span class="math inline">\(\{\mathbf{e}_x, \mathbf{e}_y \}\)</span> to the new, rotated basis <span class="math inline">\(\{\mathbf{e}_{x'}, \mathbf{e}_{y'} \}\)</span>.</p>
+</section>
+<section id="active-vs-passive-transformations" class="level3">
+<h3 class="anchored" data-anchor-id="active-vs-passive-transformations">Active vs Passive Transformations</h3>
+<p>The previous example suggests that we can think about a rotation in space two different ways. One way is to rotate the underlying basis and keep the vector <span class="math inline">\(\mathbf{v}\)</span> fixed. That is, <span class="math inline">\(\mathbf{e}_i \Rightarrow R_{i'i} \mathbf{e}_i\)</span>.. This way of looking at a rotation is called a <strong>passive transformation</strong>. It rotates the coordinate system under <span class="math inline">\(\mathbf{v}\)</span>, not <span class="math inline">\(\mathbf{v}\)</span> itself.</p>
+<p>Another way of looking at a rotation is to imagine keeping the coordinate system fixed, but rotating the components of the vector <span class="math inline">\(\mathbf{v}\)</span> directly. That is, <span class="math inline">\(v_i \Rightarrow R_{i'i}v_i\)</span>. This way of looking at a rotation is called an <strong>active transformation</strong>. Despite sounding semantically different, these two ways are physically equivalent. Note though that if a vector rotates actively under <span class="math inline">\(\mathbf{R}(-\varphi)\)</span>, it will rotate passively under <span class="math inline">\(\mathbf{R}(\varphi)\)</span>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./resources/image-20230216112859340.png" class="img-fluid figure-img" width="700"></p>
+</figure>
+</div>
+<p>It’s usually more convenient to assume rotations are active transformations. The major exception is when dealing with rigid bodies, where it’s more convenient to passively transform to body coordinates. Note the same logic applies to 3D transformations. In that case, there are now three angles of rotation to deal with, not just one.</p>
+</section>
+</section>
+<section id="linearly-accelerating-frames" class="level2">
+<h2 class="anchored" data-anchor-id="linearly-accelerating-frames">Linearly Accelerating Frames</h2>
+<p>Let’s now examine the motion of systems in non-inertial reference frames. In examining accelerating frames, we’ll treat them as static coordinate systems, completely ignoring the forces that <em>cause</em> the reference frame to accelerate in the first place. We’ll start with linearly accelerating frames.</p>
+<p>Suppose a system is “locked into” a reference frame <span class="math inline">\(S_{rel}\)</span>, which is itself moving at a velocity <span class="math inline">\(\mathbf{v}_0\)</span> with respect to an inertial <em>lab frame</em> <span class="math inline">\(S\)</span>. We’ll seek out the equations of motion with respect to the non-inertial frame <span class="math inline">\(S_{rel}\)</span>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./resources/image-20230216114604959.png" class="img-fluid figure-img" width="250"></p>
+</figure>
+</div>
+<p>Evidently, <span class="math inline">\(\mathbf{x} = \mathbf{x}_{rel} + \mathbf{v}_0t\)</span>, which means <span class="math inline">\(\mathbf{v} = \mathbf{v}_{rel} + \mathbf{v}_0\)</span>, and <span class="math inline">\(\mathbf{a} = \mathbf{a}_{rel} + \mathbf{a}_0\)</span>. When <span class="math inline">\(\mathbf{a}_0=\mathbf{0}\)</span> we recover the special case of a <strong>Galilean transformation</strong>. In that case, <span class="math inline">\(\mathbf{F} = m \mathbf{a} = m \mathbf{a}_{rel}\)</span>, which means <span class="math inline">\(S_{rel}\)</span> is by definition an inertial frame.</p>
+<p>If <span class="math inline">\(\mathbf{a}_0 \neq \mathbf{0}\)</span>, we get <span class="math inline">\(\mathbf{F} = m(\mathbf{a}_0 + \mathbf{a}_{rel})\)</span>, or <span class="math inline">\(m\mathbf{a}_{rel} = \mathbf{F} - m \mathbf{a}_0\)</span>. We can think about this in another way, by defining a relative force <span class="math inline">\(\mathbf{F}_{rel} = m\mathbf{a}_{rel}\)</span> and thinking of it as being composed of an <em>inertial</em> force <span class="math inline">\(\mathbf{F}\)</span> along with a <em>fictitious</em> force <span class="math inline">\(\mathbf{F}_{lin} = -m\mathbf{a}_0\)</span>, <span class="math display">\[
+\mathbf{F}_{rel} = \mathbf{F} + \mathbf{F}_{lin} = \mathbf{F} - m \mathbf{a}_0.
+\]</span> One special case of a linear accelerating frame is an object free-falling under gravity. In that case, <span class="math inline">\(\mathbf{a}_0=-\mathbf{g}\)</span> is constant. In some sense, this means we can treat gravity as a kind of generalized coordinate transformation that shifts the acceleration from <span class="math inline">\(\mathbf{a}\)</span> to <span class="math inline">\(\mathbf{a}_{rel} = \mathbf{a} + \mathbf{g}\)</span>. This curious fact arises due to the <strong>equivalence principle</strong>, which says the gravitational force is proportional to the inertial mass <span class="math inline">\(m\)</span>. This curious fact causes the <span class="math inline">\(m\)</span> to cancel from both sides of <span class="math inline">\(m\mathbf{a} = m\mathbf{g}\)</span>. As far as we know, gravity is the <em>only</em> force in nature with this special property. The equivalence principle is essentially the launch point to Einstein’s general theory of relativity.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./resources/image-20230217104903472.png" class="img-fluid figure-img" width="400"></p>
+</figure>
+</div>
+<section id="example-pendulum-in-an-accelerating-railcar" class="level3">
+<h3 class="anchored" data-anchor-id="example-pendulum-in-an-accelerating-railcar">Example: Pendulum in an accelerating railcar</h3>
+<p>A railcar is moving along the x-axis at a constant acceleration <span class="math inline">\(\mathbf{a}_0\)</span> with respect to the lab frame. Inside the railcar, a pendulum with mass <span class="math inline">\(m\)</span> and length <span class="math inline">\(\ell\)</span> is attached to the ceiling and allowed to swing freely. Find the equations of motion for the swinging pendulum. Also, find the equilibrium position of the pendulum.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./resources/image-20230217105357519.png" class="img-fluid figure-img" width="300"></p>
+</figure>
+</div>
+<p>Working in the frame of the railcar, we have <span class="math inline">\(\mathbf{F}_{rel} = \mathbf{F} + \mathbf{F}_{lin}\)</span>. The inertial forces on the pendulum are the string tension <span class="math inline">\(\mathbf{T}\)</span> and gravity <span class="math inline">\(m\mathbf{g}\)</span>. We thus have <span class="math display">\[
+m\mathbf{a}_{rel} = \mathbf{T} + m\mathbf{g} - m\mathbf{a}_0 \equiv \mathbf{T} + m\mathbf{g}_{eff},
+\]</span> where <span class="math inline">\(\mathbf{g}_{eff} \equiv \mathbf{g} - \mathbf{a}_0\)</span> acts as an <em>effective gravity</em> on the pendulum inside the moving railcar. We can thus use the standard method to solve for the pendulum, but replacing <span class="math inline">\(\mathbf{g}\)</span> with <span class="math inline">\(\mathbf{g}_{eff}\)</span>, to get <span class="math display">\[
+\ddot \theta = -\omega^2 \sin \theta, \quad \text{where} \quad \omega^2 \equiv \frac{|\mathbf{g}_{eff}|}{\ell} = \frac{\sqrt{g^2 + a_0^2}}{\ell}.
+\]</span> The equilibrium position occurs when <span class="math inline">\(\mathbf{F}_{rel}=\mathbf{0}\)</span>, which is when <span class="math inline">\(\mathbf{T} = -m\mathbf{g}_{eff}\)</span>. Using a little trig, we can see the equilibrium angle will be shifted to the angle <span class="math inline">\(\theta_{eq}\)</span> given by</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./resources/image-20230217110859846.png" class="img-fluid figure-img" width="140"></p>
+</figure>
+</div>
+<p><span class="math display">\[
+\theta_{eq} = \tan^{-1} \frac{g}{a_0}.
+\]</span></p>
+<p>Notice when <span class="math inline">\(a_0\)</span> we get <span class="math inline">\(\theta_{eq}=0\)</span>, which is what we’d expect if the railcar weren’t accelerating.</p>
+</section>
+</section>
+<section id="rotating-frames" class="level2">
+<h2 class="anchored" data-anchor-id="rotating-frames">Rotating Frames</h2>
+<p>Let’s now look at reference frames that are rotating about some axis. Without loss of generality, we’ll consider a reference frame <span class="math inline">\(S_{rot}\)</span> that’s rotating about the z-axis with respect to the lab frame <span class="math inline">\(S\)</span> at some angular velocity <span class="math inline">\(\boldsymbol{\omega} = \dot \varphi \mathbf{e}_z\)</span>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./resources/image-20230217111757574.png" class="img-fluid figure-img" width="200"></p>
+</figure>
+</div>
+<p>Let <span class="math inline">\(\mathbf{A}\)</span> be some vector in this rotating frame that’s at an angle <span class="math inline">\(\theta\)</span> with the axis of rotation. The amount that <span class="math inline">\(\mathbf{A}\)</span> changes due to the frame’s rotation by an amount <span class="math inline">\(\delta\varphi\)</span> is given by <span class="math display">\[
+\delta A = A_\perp \delta\varphi = A\sin\theta\delta\varphi = |\mathbf{A} \times \delta\boldsymbol{\varphi}|,
+\]</span> so by the right-hand rule we have <span class="math inline">\(\delta\mathbf{A} = \delta\boldsymbol{\varphi} \times \mathbf{A}\)</span>. Dividing both sides by <span class="math inline">\(dt\)</span>, we finally have <span class="math display">\[
+\frac{d\mathbf{A}}{dt} = \boldsymbol{\omega} \times \mathbf{A}.
+\]</span> <strong>Remark: </strong> Since velocities add as vectors, so too do angular velocities. This means if <span class="math inline">\(S'\)</span> is a frame rotating relative <span class="math inline">\(S\)</span>, and <span class="math inline">\(S''\)</span> is yet <em>another</em> frame that’s rotating to <span class="math inline">\(S'\)</span>, then we have <span class="math display">\[
+\mathbf{v}_S'' = \mathbf{v}_S' + \mathbf{v}_{S'}'' \quad \Longrightarrow \quad  \boldsymbol{\omega}_S'' \times \mathbf{r}_S = \boldsymbol{\omega}' \times \mathbf{r}_S + \boldsymbol{\omega}'' \times \mathbf{r}_{S'} \quad \Longrightarrow \quad  \boldsymbol{\omega}_S'' = \boldsymbol{\omega}_S' + \boldsymbol{\omega}_{S'}''.
+\]</span> This fact allows us to easily solve problems involving complex hierarchies of rotations.</p>
+<p>Now, suppose <span class="math inline">\(S_{rot}\)</span> is rotating with angular velocity <span class="math inline">\(\boldsymbol{\omega}\)</span> with respect to the origin of <span class="math inline">\(S\)</span>. With respect to an observer in each frame, a vector <span class="math inline">\(\mathbf{A} = A_i \mathbf{e}_i = A_i^{rot}\mathbf{e}_i = \mathbf{A}_{rel}\)</span> changes as</p>
+<p><span class="math display">\[\begin{align*}
+\frac{d\mathbf{A}}{dt}\bigg|_{rot} &amp;= \dot A_i^{rot} \mathbf{e}_i^{rot}, \\
+\frac{d\mathbf{A}}{dt}\bigg|_{lab} &amp;= \dot A_i^{rot} \mathbf{e}_i^{rot} + A_i^{rot} \mathbf{\dot e}_i^{rot}, \\
+\frac{d\mathbf{e}_i^{rot}}{dt}\bigg|_{lab} &amp;= \boldsymbol{\omega} \times \mathbf{e}_i^{rot}.
+\end{align*}\]</span></p>
+<p>Thus, we have <span class="math display">\[
+\frac{d\mathbf{A}}{dt}\bigg|_{lab} = \frac{d\mathbf{A}}{dt}\bigg|_{rot} + \boldsymbol{\omega} \times \mathbf{A}_{rot}
+\]</span> This evidently defines a <em>transport</em> operation between the lab frame and the rotating frame. Namely, time derivatives in the lab frame are related to time derivatives in the rotating frame via <span class="math display">\[
+\frac{d}{dt}\bigg|_{lab} = \frac{d}{dt}\bigg|_{rot} + \boldsymbol{\omega} \times.
+\]</span> This result is sometimes called the <strong>transport theorem</strong>.</p>
+<p>Using the transport theorem we can now derive what the equations of motion look like inside the rotating frame. Plugging <span class="math inline">\(\mathbf{x}\)</span> into the transport equation, we get <span class="math display">\[
+\frac{d\mathbf{x}}{dt}\bigg|_{lab} = \frac{d\mathbf{x}}{dt}\bigg|_{rot} + \boldsymbol{\omega} \times \mathbf{x}_{rot},
+\]</span> or <span class="math display">\[
+\mathbf{v} = \mathbf{v}_{rot} + \boldsymbol{\omega} \times \mathbf{x}_{rot}.
+\]</span> To get the acceleration <span class="math inline">\(\mathbf{a}\)</span>, we need to apply the transport equation <em>again</em> to the velocity vector,</p>
+<p><span class="math display">\[\begin{align*}
+\frac{d\mathbf{v}}{dt}\bigg|_{lab} &amp;= \bigg(\frac{d}{dt}\bigg|_{rot} + \boldsymbol{\omega} \times \bigg) (\mathbf{v}_{rot} + \boldsymbol{\omega} \times \mathbf{x}_{rot}) \\
+&amp;= \mathbf{\dot v}_{rot} + \boldsymbol{\omega} \times \mathbf{v}_{rot} + \boldsymbol{\dot \omega} \times \mathbf{x}_{rot} + \boldsymbol{\omega} \times \mathbf{v}_{rot} + \boldsymbol{\omega} \times (\boldsymbol{\omega} \times \mathbf{x}_{rot}).
+\end{align*}\]</span></p>
+<p>Or after cleaning up a bit, <span class="math display">\[
+\mathbf{a} = \mathbf{a}_{rot} + 2 \boldsymbol{\omega} \times \mathbf{v}_{rot} + \boldsymbol{\dot \omega} \times \mathbf{x}_{rot} + \boldsymbol{\omega} \times (\boldsymbol{\omega} \times \mathbf{x}_{rot}).
+\]</span></p>
+<p>Since <span class="math inline">\(\mathbf{F} = m \mathbf{a}\)</span> in the lab frame, we can multiply both sides by <span class="math inline">\(m\)</span> and re-arrange terms to get the force vector <span class="math inline">\(\mathbf{F}_{rot}\)</span>, <span class="math display">\[
+\mathbf{F}_{rot} = \mathbf{F} + m \boldsymbol{\omega} \times (\mathbf{x}_{rot} \times \boldsymbol{\omega}) + 2m \mathbf{v}_{rot} \times \boldsymbol{\omega} + m \mathbf{x}_{rot} \times \boldsymbol{\dot \omega}.
+\]</span> Evidently, there are three distinct fictitious force terms. Naturally, they each have special names:</p>
+<ul>
+<li>Centrifugal Force: <span class="math inline">\(\mathbf{F}_{cf} = m \boldsymbol{\omega} \times (\mathbf{x}_{rot} \times \boldsymbol{\omega}) = m(\boldsymbol{\omega} \cdot \mathbf{x}_{rot})\mathbf{x}_{rot} - m\omega^2 \mathbf{x}_{rot}\)</span>.</li>
+<li>Coriolis Force: <span class="math inline">\(\mathbf{F}_{cor} = 2m \mathbf{v}_{rot} \times \boldsymbol{\omega}\)</span>.</li>
+<li>Euler Force: <span class="math inline">\(\mathbf{F}_{eul} = m \mathbf{x}_{rot} \times \boldsymbol{\dot \omega}\)</span>.</li>
+</ul>
+<p>In terms of these forces, we can finally write the force experienced in the rotating frame as <span class="math display">\[
+\mathbf{F}_{rot} = \mathbf{F} + \mathbf{F}_{cf} + \mathbf{F}_{cor} + \mathbf{F}_{eul}.
+\]</span> The centrifugal force tends to push a rotating object outward radially from the origin, similar to how a centrifuge works. In the simple case when the position is perpendicular to the axis of rotation, the centrifugal force reduces to the more familiar form from elementary physics, <span class="math display">\[
+\mathbf{F}_{cf} = - m\omega^2 \mathbf{x}_{rot} = -\frac{mv_{rot}^2}{r_{rot}} \mathbf{e}_r.
+\]</span> The Coriolis force tends to deflect a moving object away from its line of motion. It arises due to the fact that as the object moves, the frame under it is rotating underneath, which causes an apparent deflection sideward.</p>
+<p>One fact to be aware of about non-inertial frames is that energy need not be conserved. It’s only true in inertial frames that energy must be conserved. This has to do with the fact that in the relative frame we’re ignoring the forces on the relative frame itself, i.e.&nbsp;the forces that cause the frame to accelerate or rotate. We can generally recover the conservation of energy by transforming back to an inertial frame.</p>
+<section id="example-throwing-a-baseball-from-the-north-pole" class="level3">
+<h3 class="anchored" data-anchor-id="example-throwing-a-baseball-from-the-north-pole">Example: Throwing a baseball from the North Pole</h3>
+<p>Suppose a baseball is thrown from the North Pole for a distance <span class="math inline">\(\ell\)</span> and a constant velocity <span class="math inline">\(\mathbf{v}_0\)</span> with respect to the lab frame. Find the deflection angle <span class="math inline">\(\delta\theta\)</span> of the ball caused by the Coriolis force.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./resources/image-20230217134747801.png" class="img-fluid figure-img" width="400"></p>
+</figure>
+</div>
+<p>The rotating frame in this case is the Earth itself. The Earth rotates counterclockwise about the North Pole with an angular velocity of <span class="math inline">\(\omega_\oplus = \frac{2\pi}{\text{1 day}} \approx 7 \cdot 10^{-5} \frac{\text{rad}}{\text{sec}}\)</span>. Suppose <span class="math inline">\(\mathbf{e}_z\)</span> is the direction pointing <em>skyward</em>, with the origin at the North Pole. Then <span class="math inline">\(\boldsymbol{\omega} = \omega_{\oplus} \mathbf{e}_z\)</span>. Suppose the ball is thrown initially along the positive x-axis, so <span class="math inline">\(\mathbf{x} = \ell \mathbf{e}_x\)</span>. Since <span class="math inline">\(\mathbf{v} = \mathbf{v}_{rot} + \boldsymbol{\omega} \times \mathbf{x}_{rot}\)</span>, we have <span class="math display">\[
+\mathbf{v}_0 = \mathbf{v}_{rot} + \omega_{\oplus} v_0 t (\mathbf{e}_z \times \mathbf{e}_x) = \mathbf{v}_{rot} + \omega_{\oplus} v_0 t \mathbf{e}_y.
+\]</span> On time scales <span class="math inline">\(t \ll \text{1 day}\)</span>, we can say <span class="math inline">\(\mathbf{v}_{rot} \approx \mathbf{v}_0\)</span> since in that case <span class="math inline">\(\omega_{\oplus} t\)</span> becomes small. Then we have <span class="math display">\[
+\mathbf{F}_{cor} = 2m \mathbf{v}_{rot} \times \boldsymbol{\omega} \approx 2m v_0 \omega_{\oplus} (\mathbf{e}_x \times \mathbf{e}_z) = -2m v_0 \omega_{\oplus} \mathbf{e}_y,
+\]</span> Evidently, the Coriolis force in this case is constant, which means the acceleration <span class="math inline">\(\mathbf{a}_{cor}\)</span> is constant too. We thus get a simple constant equation of motion in <span class="math inline">\(y\)</span>, <span class="math display">\[
+\ddot y = -2v_0 \omega_{\oplus}.
+\]</span> Solving this EOM gives a deflection distance of <span class="math display">\[
+d = |y| = \frac{1}{2}(2v_0 \omega_{\oplus})^2 = v_0 \omega_{\oplus} t^2.
+\]</span> Finally, we can use this to calculate the deflection angle <span class="math inline">\(\delta\theta\)</span>, <span class="math display">\[
+\delta\theta \approx \frac{d}{\ell} = \frac{\omega_{\oplus}v_0 t^2}{v_0 t} = \omega_{\oplus} t.
+\]</span> To plug in some numbers, suppose the ball stays in the air for <span class="math inline">\(t = \text{100 sec}\)</span>. Then we’d get <span class="math inline">\(\delta\theta \approx 0.4^\circ\)</span>, indeed a very small deflection.</p>
+</section>
+</section>
+<section id="example-hurricanes" class="level2">
+<h2 class="anchored" data-anchor-id="example-hurricanes">Example: Hurricanes</h2>
+<p>It turns out that hurricanes rotate the direction they do due to the Coriolis force of the Earth. Pressure gradients cause water currents flowing east-west to spiral inward. In the Northern hemisphere, water deflects rightward, causing the gradients (or “hurricanes”) to spiral counterclockwise. Whereas in the Southern hemisphere, water deflects leftward, causing gradients (or “typhoons”) to spiral clockwise.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./resources/image-20230217142823695.png" class="img-fluid figure-img" width="300"></p>
+</figure>
+</div>
+</section>
+<section id="example-the-foucalt-pendulum" class="level2">
+<h2 class="anchored" data-anchor-id="example-the-foucalt-pendulum">Example: The Foucalt pendulum</h2>
+<p>The Foucalt pendulum is a classic problem that’s often used to demonstrate that the Earth rotates. Suppose a very long pendulum of length <span class="math inline">\(l\)</span> and mass <span class="math inline">\(m\)</span> is fixed near the Earth’s surface at some latitude <span class="math inline">\(\lambda\)</span> above the equator. Here’s a picture of what’s going on.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./resources/image-20230217145604558.png" class="img-fluid figure-img" width="400"></p>
+</figure>
+</div>
+<p>It’s reasonable to assume that <span class="math inline">\(\omega_{\oplus}\)</span> is constant, so the Euler force is zero. It’s also reasonable to assume the centrifugal force is zero since <span class="math inline">\(\omega_{\oplus}\)</span> is small. Thus, in the frame of the rotating Earth, we’re left with the inertial forces on the pendulum and the Coriolis force, <span class="math display">\[
+m\mathbf{a}_{rot} = m\mathbf{g} + \mathbf{T} - 2m\boldsymbol{\omega} \times \mathbf{v}_{rot}.
+\]</span> Choose the axes such that the z-axis is pointing outward from the Earth’s surface at the pendulum and the other axes are planar to the surface. Now, we can write <span class="math inline">\(\mathbf{g} = -g \mathbf{e}_z\)</span>, and using some trig it’s not too hard to show that <span class="math display">\[
+\mathbf{T} \approx -\frac{T}{\ell} (x \mathbf{e}_x + y \mathbf{e}_y + \ell \mathbf{z}).
+\]</span> Using the latitude angle <span class="math inline">\(\lambda\)</span> we can also express the angular velocity <span class="math inline">\(\boldsymbol{\omega}\)</span> as <span class="math display">\[
+\boldsymbol{\omega} = -\omega_{\oplus}\cos\lambda\mathbf{e}_x + \omega_{\oplus}\sin\lambda\mathbf{e}_z.
+\]</span> Since the pendulum approximately speaking only moves in the xy-plane, we also have <span class="math display">\[
+\mathbf{v}_{rot} = \dot x \mathbf{e}_x + \dot y \mathbf{e}_y.
+\]</span> Together, these together imply <span class="math display">\[
+\boldsymbol{\omega} \times \mathbf{v}_{rot} \approx -\dot y \omega_{\oplus} \sin\lambda \mathbf{e}_x + \dot x \omega_{\oplus} \sin\lambda \mathbf{e}_y - \dot y \omega_{\oplus} \cos\lambda \mathbf{e}_z.
+\]</span> This means <span class="math display">\[
+\mathbf{a}_{rot} = \bigg(-\frac{Tx}{m\ell} + 2\dot y \omega_{\oplus} \sin\lambda \bigg) \mathbf{e}_x + \bigg(-\frac{Ty}{m\ell} - 2\dot x \omega_{\oplus} \sin\lambda \bigg) \mathbf{e}_x,
+\]</span> which gives equations of motion</p>
+<p><span class="math display">\[\begin{align*}
+\ddot x &amp;= -\frac{T}{m\ell} \cdot x + 2\omega_{\oplus}\sin\lambda \cdot \dot y \\
+\ddot y &amp;= -\frac{T}{m\ell} \cdot y - 2\omega_{\oplus}\sin\lambda \cdot \dot x. \\
+\end{align*}\]</span></p>
+<p>If we define <span class="math inline">\(\omega_0^2 \equiv \frac{T}{m\ell} = \frac{g}{\ell}\)</span>, we can re-arrange and write the equations of motion in the form</p>
+<p><span class="math display">\[\begin{align*}
+\ddot x + \omega_0^2 \cdot x = 2\omega_z \dot y \\
+\ddot y + \omega_0^2 \frac{T}{m\ell} \cdot y = -2\omega_z \dot x, \\
+\end{align*}\]</span></p>
+<p>where <span class="math inline">\(\omega_z = \omega_{\oplus}\sin\lambda\)</span>. If we combine these two equations, this is equivalent to a complex DHO problem with imaginary damping, <span class="math display">\[
+\ddot z + 2i\omega_z \dot z + \omega_0^2 z = 0.
+\]</span> This means solutions will have the form <span class="math display">\[
+z(t) = e^{-i\omega_z t}(A e^{i\omega't} + B e^{-i\omega't}).
+\]</span> where <span class="math inline">\(\omega' \equiv \sqrt{\omega_z^2 + \omega_0^2}\)</span>. If we assume the pendulum swings much faster than the Earth rotates, we have <span class="math inline">\(\omega_0 \gg \omega_{\oplus}\)</span>, which means we can approximate <span class="math inline">\(z(t)\)</span> as <span class="math display">\[
+z(t) \approx e^{-i\omega_z t}(A e^{i\omega_0 t} + B e^{-i\omega_0 t}).
+\]</span> If we define <span class="math inline">\(z'(t) \equiv A e^{i\omega_0 t} + B e^{-i\omega_0 t}\)</span>, then <span class="math inline">\(z(t) = e^{-i\omega_z t} z'(t)\)</span>, and we can write the real solutions as</p>
+<p><span class="math display">\[\begin{align*}
+x(t) &amp;= x'(t) \cos\omega_z t + y'(t) \sin\omega_z t, \\
+y(t) &amp;= -x'(t) \sin\omega_z t + y'(t) \cos\omega_z t. \\
+\end{align*}\]</span></p>
+<p>This says that the plane of oscillation itself undergoes a rotation in the xy-plane. That is, the plane of the pendulum’s orbit <em>precesses</em> with a frequency given by <span class="math display">\[
+\omega_z = \omega_{\oplus} \sin\lambda = 2\pi\frac{\sin\lambda}{\text{1 day}}.
+\]</span> For example, at a latitude of <span class="math inline">\(\lambda = 34.5^\circ\)</span>, the pendulum precesses counterclockwise with a frequency of <span class="math inline">\(\omega_z \approx \text{3.86 rad/sec}\)</span>, or about <span class="math inline">\(8.5^\circ\)</span> per hour. It appears precession is non-existent at the equator and highest at the poles, where precession happens exactly with the Earth’s rotation.</p>
 
 
 </section>
