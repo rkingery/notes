@@ -75,13 +75,14 @@ We can easily figure out what proper rotations look like in 2D space by looking 
 
 ![](./resources/image-20230216110516749.png){width=200 fig-align=center}
 
+$$
 \begin{align*}
 R_{x'x} &= \mathbf{e}_{x'} \cdot \mathbf{e}_x = \cos\varphi,
 &R_{x'y} &= \mathbf{e}_{x'} \cdot \mathbf{e}_y = \sin\varphi, \\
 R_{y'x} &= \mathbf{e}_{y'} \cdot \mathbf{e}_x = -\sin\varphi,
 &R_{y'y} &= \mathbf{e}_{y'} \cdot \mathbf{e}_y = \cos\varphi. \\
 \end{align*}
-
+$$
 We can thus express any proper rotation in $\mathbb{R}^2$ using a $2 \times 2$ matrix of the form
 $$
 \mathbf{R}(\varphi) = 
@@ -168,12 +169,13 @@ This fact allows us to easily solve problems involving complex hierarchies of ro
 
 Now, suppose $S_{rot}$ is rotating with angular velocity $\boldsymbol{\omega}$ with respect to the origin of $S$. With respect to an observer in each frame, a vector $\mathbf{A} = A_i \mathbf{e}_i = A_i^{rot}\mathbf{e}_i = \mathbf{A}_{rel}$ changes as
 
+$$
 \begin{align*}
 \frac{d\mathbf{A}}{dt}\bigg|_{rot} &= \dot A_i^{rot} \mathbf{e}_i^{rot}, \\
 \frac{d\mathbf{A}}{dt}\bigg|_{lab} &= \dot A_i^{rot} \mathbf{e}_i^{rot} + A_i^{rot} \mathbf{\dot e}_i^{rot}, \\
 \frac{d\mathbf{e}_i^{rot}}{dt}\bigg|_{lab} &= \boldsymbol{\omega} \times \mathbf{e}_i^{rot}.
 \end{align*}
-
+$$
 Thus, we have
 $$
 \frac{d\mathbf{A}}{dt}\bigg|_{lab} = \frac{d\mathbf{A}}{dt}\bigg|_{rot} + \boldsymbol{\omega} \times \mathbf{A}_{rot}
@@ -196,11 +198,12 @@ $$
 $$
 To get the acceleration $\mathbf{a}$, we need to apply the transport equation *again* to the velocity vector,
 
+$$
 \begin{align*}
 \frac{d\mathbf{v}}{dt}\bigg|_{lab} &= \bigg(\frac{d}{dt}\bigg|_{rot} + \boldsymbol{\omega} \times \bigg) (\mathbf{v}_{rot} + \boldsymbol{\omega} \times \mathbf{x}_{rot}) \\
 &= \mathbf{\dot v}_{rot} + \boldsymbol{\omega} \times \mathbf{v}_{rot} + \boldsymbol{\dot \omega} \times \mathbf{x}_{rot} + \boldsymbol{\omega} \times \mathbf{v}_{rot} + \boldsymbol{\omega} \times (\boldsymbol{\omega} \times \mathbf{x}_{rot}).
 \end{align*}
-
+$$
 Or after cleaning up a bit,
 $$
 \mathbf{a} = \mathbf{a}_{rot} + 2 \boldsymbol{\omega} \times \mathbf{v}_{rot} + \boldsymbol{\dot \omega} \times \mathbf{x}_{rot} + \boldsymbol{\omega} \times (\boldsymbol{\omega} \times \mathbf{x}_{rot}).
@@ -225,8 +228,6 @@ $$
 \mathbf{F}_{cf} = - m\omega^2 \mathbf{x}_{rot} = -\frac{mv_{rot}^2}{r_{rot}} \mathbf{e}_r.
 $$
 The Coriolis force tends to deflect a moving object away from its line of motion. It arises due to the fact that as the object moves, the frame under it is rotating underneath, which causes an apparent deflection sideward.
-
-One fact to be aware of about non-inertial frames is that energy need not be conserved. It's only true in inertial frames that energy must be conserved. This has to do with the fact that in the relative frame we're ignoring the forces on the relative frame itself, i.e. the forces that cause the frame to accelerate or rotate. We can generally recover the conservation of energy by transforming back to an inertial frame.
 
 ### Example: Throwing a baseball from the North Pole
 
@@ -294,18 +295,20 @@ $$
 $$
 which gives equations of motion
 
+$$
 \begin{align*}
 \ddot x &= -\frac{T}{m\ell} \cdot x + 2\omega_{\oplus}\sin\lambda \cdot \dot y \\
 \ddot y &= -\frac{T}{m\ell} \cdot y - 2\omega_{\oplus}\sin\lambda \cdot \dot x. \\
 \end{align*}
-
+$$
 If we define $\omega_0^2 \equiv \frac{T}{m\ell} = \frac{g}{\ell}$, we can re-arrange and write the equations of motion in the form
 
+$$
 \begin{align*}
-\ddot x + \omega_0^2 \cdot x = 2\omega_z \dot y \\
-\ddot y + \omega_0^2 \frac{T}{m\ell} \cdot y = -2\omega_z \dot x, \\
+\ddot x + \omega_0^2 \cdot x &= 2\omega_z \dot y \\
+\ddot y + \omega_0^2 \frac{T}{m\ell} \cdot y &= -2\omega_z \dot x, \\
 \end{align*}
-
+$$
 where $\omega_z = \omega_{\oplus}\sin\lambda$. If we combine these two equations, this is equivalent to a complex DHO problem with imaginary damping,
 $$
 \ddot z + 2i\omega_z \dot z + \omega_0^2 z = 0.
@@ -320,20 +323,27 @@ z(t) \approx e^{-i\omega_z t}(A e^{i\omega_0 t} + B e^{-i\omega_0 t}).
 $$
 If we define $z'(t) \equiv A e^{i\omega_0 t} + B e^{-i\omega_0 t}$, then $z(t) = e^{-i\omega_z t} z'(t)$, and we can write the real solutions as
 
+$$
 \begin{align*}
 x(t) &= x'(t) \cos\omega_z t + y'(t) \sin\omega_z t, \\
 y(t) &= -x'(t) \sin\omega_z t + y'(t) \cos\omega_z t. \\
 \end{align*}
-
+$$
 This says that the plane of oscillation itself undergoes a rotation in the xy-plane. That is, the plane of the pendulum's orbit *precesses* with a frequency given by
 $$
 \omega_z = \omega_{\oplus} \sin\lambda = 2\pi\frac{\sin\lambda}{\text{1 day}}.
 $$
 For example, at a latitude of $\lambda = 34.5^\circ$, the pendulum precesses counterclockwise with a frequency of $\omega_z \approx \text{3.86 rad/sec}$, or about $8.5^\circ$ per hour. It appears precession is non-existent at the equator and highest at the poles, where precession happens exactly with the Earth's rotation.
 
+## General Non-Inertial Frames
 
+More generally, we can combine linearly accelerating and rotating frames by just adding the fictitious forces together. If $S_{rel}$ is both accelerating and rotating about some axis with respect to $S$, we'd have
+$$
+\mathbf{F}_{rel} = \mathbf{F} + \mathbf{F}_{lin} + \mathbf{F}_{cf} + \mathbf{F}_{cor} + \mathbf{F}_{eul}.
+$$
+This general form for a force in a non-inertial frame can be used to analyze a surprisingly large number of practical problems, where complicated forces can often be decomposed into a sum of linear forces and rotational forces.
 
-
+One fact to be aware of about non-inertial frames is that energy need not be conserved. It's only true in inertial frames that energy must be conserved. This has to do with the fact that in the relative frame we're ignoring the forces on the relative frame itself, i.e. the forces that cause the frame to accelerate or rotate. We can generally recover the conservation of energy by transforming back to an inertial frame.
 
 
 

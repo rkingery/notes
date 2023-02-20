@@ -287,13 +287,32 @@ ul.task-list li input[type="checkbox"] {
         <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">Table of contents</h2>
    
-  <ul class="collapse">
+  <ul>
   <li><a href="#point-particles" id="toc-point-particles" class="nav-link active" data-scroll-target="#point-particles">Point Particles</a></li>
   <li><a href="#newtons-laws" id="toc-newtons-laws" class="nav-link" data-scroll-target="#newtons-laws">Newton’s Laws</a></li>
-  <li><a href="#conservation-laws" id="toc-conservation-laws" class="nav-link" data-scroll-target="#conservation-laws">Conservation Laws</a></li>
-  <li><a href="#examples" id="toc-examples" class="nav-link" data-scroll-target="#examples">Examples</a></li>
-  <li><a href="#curvilinear-coordinates" id="toc-curvilinear-coordinates" class="nav-link" data-scroll-target="#curvilinear-coordinates">Curvilinear Coordinates</a></li>
-  <li><a href="#many-particle-systems" id="toc-many-particle-systems" class="nav-link" data-scroll-target="#many-particle-systems">Many-Particle Systems</a></li>
+  <li><a href="#conservation-laws" id="toc-conservation-laws" class="nav-link" data-scroll-target="#conservation-laws">Conservation Laws</a>
+  <ul class="collapse">
+  <li><a href="#momentum" id="toc-momentum" class="nav-link" data-scroll-target="#momentum">Momentum</a></li>
+  <li><a href="#angular-momentum" id="toc-angular-momentum" class="nav-link" data-scroll-target="#angular-momentum">Angular Momentum</a></li>
+  <li><a href="#work-and-energy" id="toc-work-and-energy" class="nav-link" data-scroll-target="#work-and-energy">Work and Energy</a></li>
+  </ul></li>
+  <li><a href="#examples" id="toc-examples" class="nav-link" data-scroll-target="#examples">Examples</a>
+  <ul class="collapse">
+  <li><a href="#example-projectile-motion" id="toc-example-projectile-motion" class="nav-link" data-scroll-target="#example-projectile-motion">Example: Projectile motion</a></li>
+  <li><a href="#example-block-sliding-on-a-ramp-with-friction" id="toc-example-block-sliding-on-a-ramp-with-friction" class="nav-link" data-scroll-target="#example-block-sliding-on-a-ramp-with-friction">Example: Block sliding on a ramp with friction</a></li>
+  </ul></li>
+  <li><a href="#curvilinear-coordinates" id="toc-curvilinear-coordinates" class="nav-link" data-scroll-target="#curvilinear-coordinates">Curvilinear Coordinates</a>
+  <ul class="collapse">
+  <li><a href="#polar-coordinates" id="toc-polar-coordinates" class="nav-link" data-scroll-target="#polar-coordinates">Polar Coordinates</a></li>
+  <li><a href="#example-circular-orbits" id="toc-example-circular-orbits" class="nav-link" data-scroll-target="#example-circular-orbits">Example: Circular orbits</a></li>
+  <li><a href="#example-simple-pendulum" id="toc-example-simple-pendulum" class="nav-link" data-scroll-target="#example-simple-pendulum">Example: Simple pendulum</a></li>
+  <li><a href="#cylindrical-coordinates" id="toc-cylindrical-coordinates" class="nav-link" data-scroll-target="#cylindrical-coordinates">Cylindrical Coordinates</a></li>
+  <li><a href="#spherical-coordinates" id="toc-spherical-coordinates" class="nav-link" data-scroll-target="#spherical-coordinates">Spherical Coordinates</a></li>
+  </ul></li>
+  <li><a href="#many-particle-systems" id="toc-many-particle-systems" class="nav-link" data-scroll-target="#many-particle-systems">Many-Particle Systems</a>
+  <ul class="collapse">
+  <li><a href="#example-rockets" id="toc-example-rockets" class="nav-link" data-scroll-target="#example-rockets">Example: Rockets</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -408,7 +427,9 @@ ul.task-list li input[type="checkbox"] {
 W = \int_A^B \mathbf{F} \cdot d\mathbf{x}.
 \]</span> <img src="./resources/image-20230212032859080.png" class="img-fluid" data-fig-align="center" width="200"></p>
 <p>In general, work depends on the path taken to get from <span class="math inline">\(A\)</span> to <span class="math inline">\(B\)</span>, hence it isn’t a unique property of the system.</p>
-<p>Observe that <span class="math display">\[dW = \mathbf{F} \cdot d\mathbf{x} = \mathbf{F} \cdot \mathbf{v} dt = d\bigg(\frac{1}{2}m\mathbf{v}^2 \bigg).\]</span> Define the <strong>kinetic energy</strong> of the system by <span class="math inline">\(T = \frac{1}{2} m \mathbf{v}^2\)</span>. Then we evidently have <span class="math inline">\(dW=dT\)</span>. That is, the work done on the system to get from <span class="math inline">\(A\)</span> to <span class="math inline">\(B\)</span> via <span class="math inline">\(\gamma\)</span> is just the change in kinetic energy between <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span>, <span class="math display">\[
+<p>Observe that <span class="math display">\[
+dW = \mathbf{F} \cdot d\mathbf{x} = \mathbf{F} \cdot \mathbf{v} dt = d\bigg(\frac{1}{2}m\mathbf{v}^2 \bigg).
+\]</span> Define the <strong>kinetic energy</strong> of the system by <span class="math inline">\(T = \frac{1}{2} m \mathbf{v}^2\)</span>. Then we evidently have <span class="math inline">\(dW=dT\)</span>. That is, the work done on the system to get from <span class="math inline">\(A\)</span> to <span class="math inline">\(B\)</span> via <span class="math inline">\(\gamma\)</span> is just the change in kinetic energy between <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span>, <span class="math display">\[
 W = \Delta T = T_B - T_A.
 \]</span> When the work done is independent of the path taken it’s a state function of the kinetic energy. In this case, the force <span class="math inline">\(\mathbf{F}\)</span> is said to be <strong>conservative</strong>.</p>
 <p>By the Helmholtz theorem, the following conditions are all equivalent:</p>
@@ -445,14 +466,28 @@ E = T + V.
 </div>
 <ul>
 <li><p>Write down the equations of motion. Assume drag is negligible.</p>
-<p>The forces are <span class="math inline">\(\mathbf{F} = \mathbf{g} = -g\mathbf{e}_y\)</span>. Then, <span class="math display">\[\mathbf{a} = \ddot x\mathbf{e}_x + \ddot y\mathbf{e}_y = -g\mathbf{e}_y\]</span> <span class="math display">\[\Longrightarrow    \ddot x = 0, \ \ \ddot y = -mg.\]</span></p></li>
+<p>The forces are <span class="math inline">\(\mathbf{F} = \mathbf{g} = -g\mathbf{e}_y\)</span>. Then, <span class="math display">\[
+\mathbf{a} = \ddot x\mathbf{e}_x + \ddot y\mathbf{e}_y = -g\mathbf{e}_y \quad \Longrightarrow \quad   \ddot x = 0, \ \ \ddot y = -mg.
+\]</span></p></li>
 <li><p>Find the trajectory <span class="math inline">\(\mathbf{x}(t) = x(t)\mathbf{e}_x + y(t)\mathbf{e}_y\)</span>.</p>
-<p>Integrating each element twice gives <span class="math display">\[x(t) = x_0 + v_{0x}t = v_0t \cos \theta,\]</span> <span class="math display">\[y(t) = y_0 + v_{0y}t - \frac{1}{2} gt^2 = v_{0}t\sin \theta - \frac{1}{2} gt^2.\]</span></p></li>
+<p>Integrating each element twice gives <span class="math display">\[
+\begin{align*}
+x(t) &amp;= x_0 + v_{0x}t = v_0t \cos \theta, \\
+y(t) &amp;= y_0 + v_{0y}t - \frac{1}{2} gt^2 = v_{0}t\sin \theta - \frac{1}{2} gt^2.
+\end{align*}
+\]</span></p></li>
 <li><p>Find the range, i.e.&nbsp;the value <span class="math inline">\(R=x(T)\)</span> when the cannon hits the ground. Which launch angle maximizes the range?</p>
-<p>First, we need to find the time <span class="math inline">\(T\)</span> when <span class="math inline">\(y(T) = 0\)</span>. Setting <span class="math display">\[y(T) = 0 = v_0 T \sin \theta - \frac{1}{2} gT^2 \Longrightarrow T = 0, \frac{2v_0 \sin \theta}{g}.\]</span> The <span class="math inline">\(T=0\)</span> case is trivial. Plugging the other one in to <span class="math inline">\(x(T)\)</span> finally gives the range, <span class="math display">\[R = x(T) = v_0T \cos \theta = \frac{2v_0^2 \sin \theta}{g} \cos \theta = \frac{v_0^2 \sin 2\theta}{g}.\]</span></p>
-<p>Note that the range is maximized when <span class="math inline">\(\sin 2 \theta = 1\)</span>, which is when the launch angle is <span class="math inline">\(\theta = 45^\circ\)</span>.</p></li>
+<p>First, we need to find the time <span class="math inline">\(T\)</span> when <span class="math inline">\(y(T) = 0\)</span>. Setting <span class="math display">\[
+y(T) = 0 = v_0 T \sin \theta - \frac{1}{2} gT^2 \Longrightarrow T = 0, \frac{2v_0 \sin \theta}{g}.
+\]</span> The <span class="math inline">\(T=0\)</span> case is trivial. Plugging the other one in to <span class="math inline">\(x(T)\)</span> finally gives the range, <span class="math display">\[
+R = x(T) = v_0T \cos \theta = \frac{2v_0^2 \sin \theta}{g} \cos \theta = \frac{v_0^2 \sin 2\theta}{g}.
+\]</span> Note that the range is maximized when <span class="math inline">\(\sin 2 \theta = 1\)</span>, which is when the launch angle is <span class="math inline">\(\theta = 45^\circ\)</span>.</p></li>
 <li><p>Find the shape of the motion <span class="math inline">\(y = y(x)\)</span>.</p>
-<p>We need to eliminate <span class="math inline">\(t\)</span> in both equations and solve for <span class="math inline">\(y=y(x(t))\)</span>. Solving <span class="math inline">\(x(t)\)</span> for <span class="math inline">\(t\)</span> gives, <span class="math display">\[x = v_0 t\cos \theta \Longrightarrow t = \frac{x}{v_0 \cos \theta}.\]</span> Plugging this into <span class="math inline">\(y\)</span> then gives <span class="math display">\[y = v_{0}\frac{x}{v_0 \cos \theta}\sin \theta - \frac{1}{2} g\bigg(\frac{x}{v_0 \cos \theta}\bigg)^2 =  \tan \theta \cdot x - \frac{g}{2v_0^2 \cos^2 \theta} x^2.\]</span> This is a downward sloping parabola with vertex at <span class="math inline">\(\big(\frac{v_0^2 \sin 2\theta}{2g}, \frac{v_0^2 \sin^2 \theta}{g}\big)\)</span>.</p></li>
+<p>We need to eliminate <span class="math inline">\(t\)</span> in both equations and solve for <span class="math inline">\(y=y(x(t))\)</span>. Solving <span class="math inline">\(x(t)\)</span> for <span class="math inline">\(t\)</span> gives, <span class="math display">\[
+x = v_0 t\cos \theta \Longrightarrow t = \frac{x}{v_0 \cos \theta}.
+\]</span> Plugging this into <span class="math inline">\(y\)</span> then gives <span class="math display">\[
+y = v_{0}\frac{x}{v_0 \cos \theta}\sin \theta - \frac{1}{2} g\bigg(\frac{x}{v_0 \cos \theta}\bigg)^2 =  \tan \theta \cdot x - \frac{g}{2v_0^2 \cos^2 \theta} x^2.
+\]</span> This is a downward sloping parabola with vertex at <span class="math inline">\(\big(\frac{v_0^2 \sin 2\theta}{2g}, \frac{v_0^2 \sin^2 \theta}{g}\big)\)</span>.</p></li>
 <li><p>Find any conserved quantities.</p>
 <ul>
 <li>Momentum: Since <span class="math inline">\(\mathbf{F} \neq \mathbf{0}\)</span>, momentum isn’t conserved. However, <span class="math inline">\(p_x\)</span> <em>is</em> conserved.</li>
@@ -471,26 +506,34 @@ E = T + V.
 </div>
 <ul>
 <li><p>Write down the equations of motion.</p>
-<p>Choose a coordinate system such that <span class="math inline">\(x\)</span> is pointing downwards parallel to the ramp and <span class="math inline">\(y\)</span> is pointing outwards perpendicular to the ramp. There are three forces acting, gravity, the normal force, and the frictional force, so <span class="math display">\[\mathbf{F} = \mathbf{N} + m\mathbf{g} - \mu \mathbf{N} \mathbf{e}_v = N\mathbf{e}_y + mg(\sin\theta\mathbf{e}_x - \cos\theta\mathbf{e}_y) - \mu N \mathbf{e}_x.\]</span> Resolving into components, we have</p>
-<p><span class="math display">\[\begin{align*}
+<p>Choose a coordinate system such that <span class="math inline">\(x\)</span> is pointing downwards parallel to the ramp and <span class="math inline">\(y\)</span> is pointing outwards perpendicular to the ramp. There are three forces acting, gravity, the normal force, and the frictional force, so <span class="math display">\[
+\mathbf{F} = \mathbf{N} + m\mathbf{g} - \mu \mathbf{N} \mathbf{e}_v = N\mathbf{e}_y + mg(\sin\theta\mathbf{e}_x - \cos\theta\mathbf{e}_y) - \mu N \mathbf{e}_x.
+\]</span> Resolving into components, we have <span class="math display">\[
+\begin{align*}
 m \ddot x &amp;= mg\sin\theta - \mu N, \\
 m \ddot y &amp;= N - mg\cos\theta = 0.
-\end{align*}\]</span></p>
-<p>The second equation follows from the assumption that the block is constrained to stay on the ramp.</p></li>
+\end{align*}
+\]</span> The second equation follows from the assumption that the block is constrained to stay on the ramp.</p></li>
 <li><p>Find the trajectory <span class="math inline">\(\mathbf{x}(t) = x(t)\mathbf{e}_x + y(t)\mathbf{e}_y\)</span>.</p>
 <p>To solve, we need to eliminate the normal force <span class="math inline">\(N\)</span>. Using the EOM for <span class="math inline">\(\ddot y\)</span>, we get <span class="math inline">\(N = mg\cos\theta\)</span>. Plugging this into the equation for <span class="math inline">\(\ddot x\)</span> then gives</p>
-<p><span class="math display">\[\begin{align*}
+<p><span class="math display">\[
+\begin{align*}
 \ddot x &amp;= g(\sin\theta - \mu\cos\theta) = const, \\
 \ddot y &amp;= 0.
-\end{align*}\]</span></p>
-<p>Suppose the block starts at the top of the ramp, which we’ll call the origin. Then integrating, we get,</p>
-<p><span class="math display">\[\begin{align*}
+\end{align*}
+\]</span> Suppose the block starts at the top of the ramp, which we’ll call the origin. Then integrating, we get,</p>
+<p><span class="math display">\[
+\begin{align*}
 x(t) &amp;= v_0 t + \frac{1}{2}g(\sin\theta - \mu\cos\theta)t^2, \\
 y(t) &amp;= 0.
-\end{align*}\]</span></p>
-<p>Notice <span class="math inline">\(x(t)\)</span> is just the equation of an object falling under a modified gravity <span class="math inline">\(\mathbf{g}'=-g(\sin\theta - \mu\cos\theta)\mathbf{e}_x\)</span>.</p></li>
+\end{align*}
+\]</span> Notice <span class="math inline">\(x(t)\)</span> is just the equation of an object falling under a modified gravity <span class="math display">\[
+\mathbf{g}'=-g(\sin\theta - \mu\cos\theta)\mathbf{e}_x.
+\]</span></p></li>
 <li><p>Find the angle <span class="math inline">\(\theta\)</span> at which the block will start sliding.</p>
-<p>The block will move if <span class="math inline">\(\ddot x \geq 0\)</span>, i.e.&nbsp;when <span class="math inline">\(\mu \leq \tan\theta\)</span>. It will start moving at the angle when <span class="math inline">\(\tan\theta=\mu\)</span> exactly, i.e.&nbsp;when <span class="math display">\[\theta = \arctan\mu.\]</span></p></li>
+<p>The block will move if <span class="math inline">\(\ddot x \geq 0\)</span>, i.e.&nbsp;when <span class="math inline">\(\mu \leq \tan\theta\)</span>. It will start moving at the angle when <span class="math inline">\(\tan\theta=\mu\)</span> exactly, i.e.&nbsp;when <span class="math display">\[
+\theta = \arctan\mu.
+\]</span></p></li>
 <li><p>Find any conserved quantities.</p>
 <ul>
 <li>Momentum: Since <span class="math inline">\(\mathbf{F} \neq \mathbf{0}\)</span>, momentum is not conserved. However, <span class="math inline">\(p_y\)</span> is conserved.</li>
@@ -498,7 +541,13 @@ y(t) &amp;= 0.
 <li>Energy: Since friction is present, <span class="math inline">\(\mathbf{F}\)</span> is a dissipative force, hence it’s not conservative, and energy is not conserved.</li>
 </ul></li>
 <li><p>Find the rate of energy dissipation as the block slides down the ramp.</p>
-<p>Friction dissipates as a heat <span class="math inline">\(Q\)</span>. If the block slides a distance <span class="math inline">\(L\)</span>, this means <span class="math inline">\(E(0) = E(L) + Q\)</span>. Since the block starts from rest, <span class="math inline">\(E(0) = 0\)</span>. At <span class="math inline">\(x=L\)</span>, the work done is <span class="math display">\[W = \int_0^L F_x dx = \int_0^L mg(\sin\theta - \mu\cos\theta)dx = mgL(\sin\theta - \mu\cos\theta) = T(L) - 0 = T(L),\]</span> so the energy when the block gets to the bottom is <span class="math display">\[E(L) = T(L) + V(L,0) = mgL(\sin\theta - \mu\cos\theta) - mgL\sin\theta = -\mu mgL\cos\theta.\]</span> Finally, using this to solve for <span class="math inline">\(Q\)</span>, the heat dissipated over the entire trajectory, we get <span class="math display">\[Q = E(0) - E(L) = \mu mgL\cos\theta.\]</span> The most important sanity check here is to notice there’s no heat dissipation if there is no friction.</p></li>
+<p>Friction dissipates as a heat <span class="math inline">\(Q\)</span>. If the block slides a distance <span class="math inline">\(L\)</span>, this means <span class="math inline">\(E(0) = E(L) + Q\)</span>. Since the block starts from rest, <span class="math inline">\(E(0) = 0\)</span>. At <span class="math inline">\(x=L\)</span>, the work done is <span class="math display">\[
+W = \int_0^L F_x dx = \int_0^L mg(\sin\theta - \mu\cos\theta)dx = mgL(\sin\theta - \mu\cos\theta) = T(L) - 0 = T(L),
+\]</span> so the energy when the block gets to the bottom is <span class="math display">\[
+E(L) = T(L) + V(L,0) = mgL(\sin\theta - \mu\cos\theta) - mgL\sin\theta = -\mu mgL\cos\theta.
+\]</span> Finally, using this to solve for <span class="math inline">\(Q\)</span>, the heat dissipated over the entire trajectory, we get <span class="math display">\[
+Q = E(0) - E(L) = \mu mgL\cos\theta.
+\]</span> The most important sanity check here is to notice there’s no heat dissipation if there is no friction.</p></li>
 </ul>
 </section>
 </section>
@@ -508,32 +557,37 @@ y(t) &amp;= 0.
 <section id="polar-coordinates" class="level3">
 <h3 class="anchored" data-anchor-id="polar-coordinates">Polar Coordinates</h3>
 <p>For problems with circular symmetry it’s convenient to use polar coordinates <span class="math inline">\((r,\varphi)\)</span>, defined by</p>
-<p><span class="math display">\[\begin{align*}
+<p><span class="math display">\[
+\begin{align*}
 x &amp;=  r\cos\varphi, \\
 y &amp;=  r\sin\varphi. \\
-\end{align*}\]</span></p>
-<p>where <span class="math inline">\(r \geq 0\)</span> and <span class="math inline">\(0 \leq \varphi \leq 2\pi\)</span>. We can assign basis vectors to polar coordinates <span class="math inline">\(\mathbf{e}_r, \mathbf{e}_\varphi\)</span> to each point as usual.</p>
+\end{align*}
+\]</span> where <span class="math inline">\(r \geq 0\)</span> and <span class="math inline">\(0 \leq \varphi \leq 2\pi\)</span>. We can assign basis vectors to polar coordinates <span class="math inline">\(\mathbf{e}_r, \mathbf{e}_\varphi\)</span> to each point as usual.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="./resources/image-20230212040057533.png" class="img-fluid figure-img" width="300"></p>
 </figure>
 </div>
 <p>The thing to keep in mind is that these curvilinear basis vectors are now functions of position,</p>
-<p><span class="math display">\[\begin{align*}
+<p><span class="math display">\[
+\begin{align*}
 \mathbf{e}_r &amp;= \mathbf{e}_r(r, \varphi), \\
 \mathbf{e}_\varphi &amp;= \mathbf{e}_\varphi(r, \varphi).
-\end{align*}\]</span></p>
-<p>We can figure out how these basis vectors change by taking their differentials, which follow from the figure above,</p>
-<p><span class="math display">\[\begin{align*}
+\end{align*}
+\]</span> We can figure out how these basis vectors change by taking their differentials, which follow from the figure above,</p>
+<p><span class="math display">\[
+\begin{align*}
 d\mathbf{e}_r &amp;= \mathbf{e}_\varphi d\varphi, \\
 d\mathbf{e}_\varphi &amp;= -\mathbf{e}_r d\varphi.
-\end{align*}\]</span></p>
-<p>Using these differential forms, we can conclude that the motion vectors change as follows,</p>
-<p><span class="math display">\[\begin{align*}
+\end{align*}
+\]</span> Using these differential forms, we can conclude that the motion vectors change as follows,</p>
+<p><span class="math display">\[
+\begin{align*}
 \mathbf{x} &amp;= r\mathbf{e}_r, \\
 \mathbf{v} &amp;= \dot r \mathbf{e}_r + r\dot \varphi \mathbf{e}_\varphi, \\
 \mathbf{a} &amp;= (\ddot r - r\dot \varphi^2)\mathbf{e}_r + (2\dot r \dot \varphi + r\ddot \varphi)\mathbf{e}_\varphi.
-\end{align*}\]</span></p>
+\end{align*}
+\]</span></p>
 </section>
 <section id="example-circular-orbits" class="level3">
 <h3 class="anchored" data-anchor-id="example-circular-orbits">Example: Circular orbits</h3>
@@ -544,14 +598,20 @@ d\mathbf{e}_\varphi &amp;= -\mathbf{e}_r d\varphi.
 </figure>
 </div>
 <ul>
-<li><p>Find the equations of motion. Since the object moves at constant <span class="math inline">\(\omega\)</span>, we have <span class="math inline">\(\dot \varphi = \omega = const\)</span>. Using the polar equations for velocity and acceleration, we have <span class="math display">\[\begin{align*}
+<li><p>Find the equations of motion. Since the object moves at constant <span class="math inline">\(\omega\)</span>, we have <span class="math inline">\(\dot \varphi = \omega = const\)</span>. Using the polar equations for velocity and acceleration, we have <span class="math display">\[
+\begin{align*}
 \mathbf{v} &amp;= \dot r \mathbf{e}_r, \\
 \mathbf{a} &amp;= -r\omega^2\mathbf{e}_r + r \dot \omega\mathbf{e}_\varphi = - \frac{F}{m}\mathbf{e}_r.
-\end{align*}\]</span> Note we can re-write these equations to get <span class="math inline">\(F = m\omega^2 r\)</span>.</p></li>
+\end{align*}
+\]</span> Note we can re-write these equations to get <span class="math inline">\(F = m\omega^2 r\)</span>.</p></li>
 <li><p>Find the <em>period</em> <span class="math inline">\(\tau\)</span> of the orbit.</p>
 <p>We want the time it takes for <span class="math inline">\(\Delta \varphi = 2\pi\)</span>. Since <span class="math inline">\(\Delta \varphi = \omega\tau\)</span>, solving for <span class="math inline">\(\tau\)</span> gives <span class="math display">\[\tau = \frac{2\pi}{\omega}.\]</span></p></li>
 <li><p>Suppose the central force is the gravitational force, <span class="math inline">\(F = \frac{GMm}{r^2}\)</span>. Find the angular velocity, the period, and the orbital velocity as a function of <span class="math inline">\(G, M, r\)</span>.</p>
-<p>We have <span class="math display">\[F = \frac{GMm}{r^2} = m\omega^2 r \ \Longrightarrow \ \omega = \sqrt{\frac{GM}{r^3}} \ \Longrightarrow \ \tau = \frac{2\pi}{\sqrt{GM}} r^{3/2}.\]</span> This is just a special case of Kepler’s third law, <span class="math inline">\(\tau^2 \propto r^3\)</span>. The orbital velocity is given by <span class="math display">\[v = r\omega = \sqrt{\frac{GM}{r}}.\]</span></p></li>
+<p>We have <span class="math display">\[
+F = \frac{GMm}{r^2} = m\omega^2 r \ \Longrightarrow \ \omega = \sqrt{\frac{GM}{r^3}} \ \Longrightarrow \ \tau = \frac{2\pi}{\sqrt{GM}} r^{3/2}.
+\]</span> This is just a special case of Kepler’s third law, <span class="math inline">\(\tau^2 \propto r^3\)</span>. The orbital velocity is given by <span class="math display">\[
+v = r\omega = \sqrt{\frac{GM}{r}}.
+\]</span></p></li>
 </ul>
 </section>
 <section id="example-simple-pendulum" class="level3">
@@ -564,61 +624,74 @@ d\mathbf{e}_\varphi &amp;= -\mathbf{e}_r d\varphi.
 </div>
 <ul>
 <li><p>Find the equations of motion from the forces directly.</p>
-<p>There are two forces in this problem, gravity and the tension in the string, <span class="math display">\[\mathbf{F} = \mathbf{T} + m\mathbf{g} = -T\mathbf{e}_r + mg(\cos\theta \mathbf{e}_r - \sin\theta\mathbf{e}_\theta).\]</span> Dividing by <span class="math inline">\(m\)</span> and setting equal to the polar form of <span class="math inline">\(\mathbf{a}\)</span>, we have <span class="math display">\[\mathbf{a} = (-T+mg\cos\theta)\mathbf{e}_r - mg\sin\theta\mathbf{e}_\theta = -m\ell^2 \dot \theta^2 \mathbf{e}_r + m\ell^2 \ddot \theta \mathbf{e}_\theta.\]</span> This gives two equations of motion, one for the tension and one for the angular acceleration, <span class="math display">\[\begin{align*}
+<p>There are two forces in this problem, gravity and the tension in the string, <span class="math display">\[
+\mathbf{F} = \mathbf{T} + m\mathbf{g} = -T\mathbf{e}_r + mg(\cos\theta \mathbf{e}_r - \sin\theta\mathbf{e}_\theta).
+\]</span> Dividing by <span class="math inline">\(m\)</span> and setting equal to the polar form of <span class="math inline">\(\mathbf{a}\)</span>, we have <span class="math display">\[
+\mathbf{a} = (-T+mg\cos\theta)\mathbf{e}_r - mg\sin\theta\mathbf{e}_\theta = -m\ell^2 \dot \theta^2 \mathbf{e}_r + m\ell^2 \ddot \theta \mathbf{e}_\theta.
+\]</span> This gives two equations of motion, one for the tension and one for the angular acceleration, <span class="math display">\[
+\begin{align*}
 T &amp;= m\ell^2 \dot\theta^2 + mg\cos\theta, \\
 \ddot \theta &amp;= -\frac{g}{\ell} \sin\theta. \\
-\end{align*}\]</span></p></li>
+\end{align*}
+\]</span></p></li>
 <li><p>Find the equations of motion again, but this time using torques.</p>
-<p>Recall <span class="math inline">\(\mathbf{N} = I \boldsymbol{\dot \omega}\)</span>, where <span class="math inline">\(I\)</span> is the scalar moment of inertia and <span class="math inline">\(\boldsymbol{\omega}\)</span> is the angular velocity vector. In this case, <span class="math inline">\(I=m\ell^2\)</span> and <span class="math inline">\(\boldsymbol{\dot \omega} = \ddot \theta \mathbf{e}_z\)</span>. Then we have <span class="math display">\[I \boldsymbol{\dot \omega} = m\ell^2 \ddot \theta \mathbf{e}_z \equiv \ell\mathbf{e}_r \times m\mathbf{g} = -mg\ell\sin\theta \mathbf{e}_z = \mathbf{N},\]</span> which can be solve to get <span class="math inline">\(\ddot \theta = -\frac{g}{\ell}\sin\theta\)</span>. Notice how in this approach we don’t need to worry about the tension at all.</p></li>
+<p>Recall <span class="math inline">\(\mathbf{N} = I \boldsymbol{\dot \omega}\)</span>, where <span class="math inline">\(I\)</span> is the scalar moment of inertia and <span class="math inline">\(\boldsymbol{\omega}\)</span> is the angular velocity vector. In this case, <span class="math inline">\(I=m\ell^2\)</span> and <span class="math inline">\(\boldsymbol{\dot \omega} = \ddot \theta \mathbf{e}_z\)</span>. Then we have <span class="math display">\[
+I \boldsymbol{\dot \omega} = m\ell^2 \ddot \theta \mathbf{e}_z \equiv \ell\mathbf{e}_r \times m\mathbf{g} = -mg\ell\sin\theta \mathbf{e}_z = \mathbf{N},
+\]</span> which can be solve to get <span class="math inline">\(\ddot \theta = -\frac{g}{\ell}\sin\theta\)</span>. Notice how in this approach we don’t need to worry about the tension at all.</p></li>
 <li><p>Suppose <span class="math inline">\(\theta\)</span> is small. Write down the equations of motion, solve them, and find the period.</p>
-<p>When <span class="math inline">\(\theta \ll 1\)</span> the small angle approximation applies, <span class="math inline">\(\sin\theta \approx \theta\)</span>. In this case, the equation of motion reduces to <span class="math display">\[\ddot \theta = -\frac{g}{\ell} \theta,\]</span> which is just simple harmonic oscillation with angular frequency <span class="math inline">\(\omega = \sqrt{\frac{g}{\ell}}\)</span>. The solution to SHO is <span class="math display">\[\theta(t) = A\sin(\omega t + \phi),\]</span> where <span class="math inline">\(A\)</span> is some amplitude and <span class="math inline">\(\phi\)</span> is some phase determined by the initial conditions. Finally, solving for the period, we have <span class="math display">\[\tau = \frac{2\pi}{\omega} = 2\pi\sqrt{\frac{\ell}{g}}.\]</span></p></li>
+<p>When <span class="math inline">\(\theta \ll 1\)</span> the small angle approximation applies, <span class="math inline">\(\sin\theta \approx \theta\)</span>. In this case, the equation of motion reduces to <span class="math display">\[\ddot \theta = -\frac{g}{\ell} \theta,\]</span> which is just simple harmonic oscillation with angular frequency <span class="math inline">\(\omega = \sqrt{\frac{g}{\ell}}\)</span>. The solution to SHO is <span class="math display">\[
+\theta(t) = A\sin(\omega t + \phi),
+\]</span> where <span class="math inline">\(A\)</span> is some amplitude and <span class="math inline">\(\phi\)</span> is some phase determined by the initial conditions. Finally, solving for the period, we have <span class="math display">\[
+\tau = \frac{2\pi}{\omega} = 2\pi\sqrt{\frac{\ell}{g}}.
+\]</span></p></li>
 </ul>
 </section>
 <section id="cylindrical-coordinates" class="level3">
 <h3 class="anchored" data-anchor-id="cylindrical-coordinates">Cylindrical Coordinates</h3>
 <p>Cylindrical coordinates extend polar coodinates by adding in the z-axis from the rectangular system,</p>
-<p><span class="math display">\[\begin{align*}
+<p><span class="math display">\[
+\begin{align*}
 x &amp;=  r\cos\varphi, \\
 y &amp;=  r\sin\varphi, \\
 z &amp;= z.
-\end{align*}\]</span></p>
-<p>The basis vectors are <span class="math inline">\(\mathbf{e}_r, \mathbf{e}_\varphi, \mathbf{e}_z\)</span>. Their differential forms are just <span class="math display">\[\begin{align*}
+\end{align*}
+\]</span> The basis vectors are <span class="math inline">\(\mathbf{e}_r, \mathbf{e}_\varphi, \mathbf{e}_z\)</span>. Their differential forms are just <span class="math display">\[
+\begin{align*}
 d\mathbf{e}_r &amp;= \mathbf{e}_\varphi d\varphi, \\
 d\mathbf{e}_\varphi &amp;= -\mathbf{e}_r d\varphi \\
 d\mathbf{e}_z &amp;= 0.
-\end{align*}\]</span> The motion vectors in cylindrical coordinates are thus given by, <span class="math display">\[\begin{align*}
+\end{align*}
+\]</span> The motion vectors in cylindrical coordinates are thus given by, <span class="math display">\[
+\begin{align*}
 \mathbf{x} &amp;= r\mathbf{e}_r, \\
 \mathbf{v} &amp;= \dot r \mathbf{e}_r + r\dot \varphi \mathbf{e}_\varphi + \dot z \mathbf{e}_z , \\
 \mathbf{a} &amp;= (\ddot r - r\dot \varphi^2)\mathbf{e}_r + (2\dot r \dot \varphi + r\ddot \varphi)\mathbf{e}_\varphi + \ddot z \mathbf{e}_z.
-\end{align*}\]</span></p>
+\end{align*}
+\]</span></p>
 </section>
 <section id="spherical-coordinates" class="level3">
 <h3 class="anchored" data-anchor-id="spherical-coordinates">Spherical Coordinates</h3>
-<p>Spherical coordinates extend polar coordinates in a slightly different way. The radius <span class="math inline">\(r\)</span> is now 3-dimensional, and there are two angles, a <em>polar angle</em> <span class="math inline">\(0 \leq \theta \leq \pi\)</span> and an <em>azimuthal angle</em> <span class="math inline">\(0 \leq \varphi \leq 2\pi\)</span>. The conversion to rectangular coordinates is given by, <span class="math display">\[\begin{align*}
+<p>Spherical coordinates extend polar coordinates in a slightly different way. The radius <span class="math inline">\(r\)</span> is now 3-dimensional, and there are two angles, a <em>polar angle</em> <span class="math inline">\(0 \leq \theta \leq \pi\)</span> and an <em>azimuthal angle</em> <span class="math inline">\(0 \leq \varphi \leq 2\pi\)</span>. The conversion to rectangular coordinates is given by, <span class="math display">\[
+\begin{align*}
 x &amp;=  r\sin\theta\cos\varphi, \\
 y &amp;=  r\sin\theta\sin\varphi, \\
 z &amp;= r\cos\theta. \\
-\end{align*}\]</span></p>
-<p>The basis vectors are <span class="math inline">\(\mathbf{e}_r, \mathbf{e}_\theta, \mathbf{e}_\varphi\)</span>. Deriving the differential forms of these is a good bit more complex. Here they are,</p>
-<span class="math display">\[\begin{aligned}
+\end{align*}
+\]</span> The basis vectors are <span class="math inline">\(\mathbf{e}_r, \mathbf{e}_\theta, \mathbf{e}_\varphi\)</span>. Deriving the differential forms of these is a good bit more complex. Here they are, <span class="math display">\[
+\begin{aligned}
 d\mathbf{e}_r &amp;= \dot\theta \sin\varphi d\mathbf{e}_\theta + \dot\varphi d\mathbf{e}_\varphi, \\
 d\mathbf{e}_\theta &amp;= - \dot\theta \sin\varphi d\mathbf{e}_r - \dot\theta \cos\varphi d\mathbf{e}_\varphi, \\
 d\mathbf{e}_\varphi &amp;= - \dot\varphi \mathbf{e}_r + \dot\theta \cos\varphi \mathbf{e}_\theta. \\
-\end{aligned}\]</span>
-<p>These can then be used to get the motion vectors in spherical coordinates,</p>
-<span class="math display">\[\begin{aligned}
+\end{aligned}
+\]</span> These can then be used to get the motion vectors in spherical coordinates, <span class="math display">\[
+\begin{align*}
 \mathbf{r} &amp;= r \mathbf{e}_r, \\
-\mathbf{v} &amp;= \dot{r} \mathbf{e}_r
-+ r \dot\theta \sin\varphi \mathbf{e}_{\theta}
-+ r \dot\varphi \mathbf{e}_{\varphi}, \\
-\mathbf{a} &amp;= (\ddot{r} - r \dot{\theta}^2 \sin^2\varphi
-- r \dot{\varphi}^2) \mathbf{e}_r \\
-&amp;\quad + (r \ddot\theta \sin\varphi
-+ 2 \dot{r} \dot\theta \sin\varphi
-+ 2 r \dot\theta \dot\varphi \cos\varphi) \mathbf{e}_{\theta} \\
-&amp;\quad + (r \ddot\varphi + 2 \dot{r} \dot\varphi
-- r \dot{\theta}^2 \sin\varphi \cos\varphi) \mathbf{e}_{\varphi}.
-\end{aligned}\]</span>
+\mathbf{v} &amp;= \dot{r} \mathbf{e}_r + r \dot\theta \sin\varphi \mathbf{e}_{\theta} + r \dot\varphi \mathbf{e}_{\varphi}, \\
+\mathbf{a} &amp;= (\ddot{r} - r \dot{\theta}^2 \sin^2\varphi - r \dot{\varphi}^2) \mathbf{e}_r \\
+&amp;\quad + (r \ddot\theta \sin\varphi + 2 \dot{r} \dot\theta \sin\varphi + 2 r \dot\theta \dot\varphi \cos\varphi) \mathbf{e}_{\theta} \\
+&amp;\quad + (r \ddot\varphi + 2 \dot{r} \dot\varphi - r \dot{\theta}^2 \sin\varphi \cos\varphi) \mathbf{e}_{\varphi}. \\
+\end{align*}
+\]</span></p>
 </section>
 </section>
 <section id="many-particle-systems" class="level2">
@@ -626,7 +699,7 @@ d\mathbf{e}_\varphi &amp;= - \dot\varphi \mathbf{e}_r + \dot\theta \cos\varphi \
 <p>Thus far we’ve worked with single-particle systems. Let’s now consider a system of <span class="math inline">\(N\)</span> particles with positions <span class="math inline">\(\mathbf{x}_1, \mathbf{x}_2, \cdots, \mathbf{x}_N\)</span> respectively. We can use the principle of superposition to extend the laws derived above for single particles.</p>
 <p>For <span class="math inline">\(N\)</span>-particle systems it’s convenient to characterize the system’s position using the <strong>center of mass</strong> vector <span class="math inline">\(\mathbf{R}\)</span>, <span class="math display">\[
 \mathbf{R} \equiv \frac{1}{M}\sum_{i=1}^N m_i \mathbf{x}_i,
-\]</span> where <span class="math inline">\(M\)</span> is just the <em>total mass</em> of the system, <span class="math inline">\(M \equiv \sum_i m_i\)</span>. The center of mass is just the mass-weighted average of all the particle position vectors.</p>
+\]</span> where <span class="math inline">\(M\)</span> is just the <em>total mass</em> of the system, <span class="math inline">\(M \equiv \sum m_i\)</span>. The center of mass is just the mass-weighted average of all the particle position vectors.</p>
 <p>Suppose an external force <span class="math inline">\(\mathbf{F}^{ext}\)</span> is acting on the system, and suppose each particle <span class="math inline">\(i\)</span> imparts a force <span class="math inline">\(\mathbf{F}_{ij}\)</span> on particle <span class="math inline">\(j \neq i\)</span>. Here’s what this would look like for <span class="math inline">\(N=3\)</span> particles.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -647,36 +720,35 @@ d\mathbf{e}_\varphi &amp;= - \dot\varphi \mathbf{e}_r + \dot\theta \cos\varphi \
 \]</span> Now, if we further assume that each internal force acts centrally, i.e.&nbsp;<span class="math inline">\(\mathbf{F}_{ij} = \mathbf{F}_{ij}(\mathbf{x}_{i}-\mathbf{x}_{j})\)</span>, then the internal cross products all vanish, and we just get <span class="math inline">\(\mathbf{N} = \mathbf{N}^{ext}\)</span>. That is, if all the internal forces are central, then the total torque on the system is just the external torque.</p>
 <p>If the total angular momentum on the system is defined as <span class="math inline">\(\mathbf{L} = \mathbf{R} \times \mathbf{P}\)</span>, this expression says <span class="math inline">\(\mathbf{\dot L} = \mathbf{N}^{ext}\)</span>. Thus, if no external torques act on the system, then its total angular momentum <span class="math inline">\(\mathbf{L}\)</span> is conserved.</p>
 <p>It’s insightful to separate each particle’s motion vectors explicitly into a center of mass component and a relative component,</p>
-<p><span class="math display">\[\begin{align*}
+<p><span class="math display">\[
+\begin{align*}
 \mathbf{x}_i &amp;= \mathbf{R} + \boldsymbol{\mathscr{r}}_i, \\
 \mathbf{v}_i &amp;= \mathbf{V} + \boldsymbol{\mathscr{v}}_i. \\
-\end{align*}\]</span></p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="./resources/image-20230213071525149.png" class="img-fluid figure-img" width="200"></p>
-</figure>
-</div>
+\end{align*}
+\]</span> <img src="./resources/image-20230213071525149.png" class="img-fluid" data-fig-align="center" width="200"></p>
 <p>Let’s re-write the total angular momentum <span class="math inline">\(\mathbf{L}\)</span> in terms of these vectors,</p>
-<p><span class="math display">\[\begin{align*}
+<p><span class="math display">\[
+\begin{align*}
 \mathbf{L} &amp;= \sum \mathbf{x}_i \times \mathbf{p}_i = \sum (\mathbf{R} + \boldsymbol{\mathscr{r}}_i) \times m_i(\mathbf{V} + \boldsymbol{\mathscr{v}}_i) \\
 &amp;= M\mathbf{R} \times \mathbf{V} + \sum m_i \boldsymbol{\mathscr{r}}_i \times \boldsymbol{\mathscr{v}}_i + \mathbf{R} \times \bigg(\sum m_i \boldsymbol{\mathscr{v}}_i \bigg) + \bigg(\sum m_i \boldsymbol{\mathscr{r}}_i \bigg)\times \mathbf{V} \\
 &amp;= \mathbf{R} \times \mathbf{P} + \sum m_i \boldsymbol{\mathscr{r}}_i \times \boldsymbol{\mathscr{v}}_i \\
 &amp;\equiv \mathbf{L}^{orb} + \mathbf{L}^{spin}. \\
-\end{align*}\]</span></p>
-<p>We’ve thus been able to separate the angular momentum into two components, an <strong>orbital angular momentum</strong> <span class="math inline">\(\mathbf{L}^{orb} = \mathbf{R} \times \mathbf{P}\)</span>, and a <strong>spin angular momentum</strong> <span class="math inline">\(\mathbf{L}^{spin} = \sum m_i \boldsymbol{\mathscr{r}}_i \times \boldsymbol{\mathscr{v}}_i\)</span>. The orbital angular momentum describes how the center of mass of the object tends to rotate about some external point. The spin angular momentum describes how the system itself tends to rotate about its center of mass.</p>
+\end{align*}
+\]</span> We’ve thus been able to separate the angular momentum into two components, an <strong>orbital angular momentum</strong> <span class="math inline">\(\mathbf{L}^{orb} = \mathbf{R} \times \mathbf{P}\)</span>, and a <strong>spin angular momentum</strong> <span class="math inline">\(\mathbf{L}^{spin} = \sum m_i \boldsymbol{\mathscr{r}}_i \times \boldsymbol{\mathscr{v}}_i\)</span>. The orbital angular momentum describes how the center of mass of the object tends to rotate about some external point. The spin angular momentum describes how the system itself tends to rotate about its center of mass.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="./resources/image-20230212040206890.png" class="img-fluid figure-img" width="200"></p>
 </figure>
 </div>
 <p>Last, let’s look at the total energies of the system. For a system with <span class="math inline">\(N\)</span> particles, the potential energy will be a function of all the position vectors, <span class="math inline">\(V = V(\mathbf{x}_1, \mathbf{x}_2, \cdots, \mathbf{x}_N)\)</span>. It won’t generally simplify. But the kinetic energy we can simplify. Writing it in terms of its relative and center of mass velocities, we have</p>
-<p><span class="math display">\[\begin{align*}
+<p><span class="math display">\[
+\begin{align*}
 T &amp;= \frac{1}{2}\sum m_i \mathbf{v}_i^2 = \sum m_i (\mathbf{V} + \boldsymbol{\mathscr{v}}_i)^2 \\
 &amp;= \frac{1}{2}M\mathbf{V}^2 + \frac{1}{2}\sum m_i\boldsymbol{\mathscr{v}}_i^2 + \mathbf{V} \cdot \bigg(\sum m_i \boldsymbol{\mathscr{v}}_i\bigg) \\
 &amp;= \frac{1}{2}M\mathbf{V}^2 + \frac{1}{2}\sum m_i\boldsymbol{\mathscr{v}}_i^2 \\
 &amp;= T^{CM} + T^{rel}.
-\end{align*}\]</span></p>
-<p>Thus, the kinetic energy separates into a sum of the kinetic energy on the center of mass <span class="math inline">\(T^{CM} = \frac{1}{2}M\mathbf{V}^2\)</span>, and the kinetic energy of the relative components <span class="math inline">\(T^{rel} = \frac{1}{2}\sum m_i\boldsymbol{\mathscr{v}}_i^2\)</span>. Evidently, the total energy is <span class="math display">\[
+\end{align*}
+\]</span> Thus, the kinetic energy separates into a sum of the kinetic energy on the center of mass <span class="math inline">\(T^{CM} = \frac{1}{2}M\mathbf{V}^2\)</span>, and the kinetic energy of the relative components <span class="math inline">\(T^{rel} = \frac{1}{2}\sum m_i\boldsymbol{\mathscr{v}}_i^2\)</span>. Evidently, the total energy is <span class="math display">\[
 E = T + V = T^{CM} + T^{rel} + V(\mathbf{x}_1, \mathbf{x}_2, \cdots, \mathbf{x}_N).
 \]</span> It’s conserved provided the external force <span class="math inline">\(\mathbf{F}^{ext}\)</span> is conservative.</p>
 <section id="example-rockets" class="level3">
@@ -689,17 +761,28 @@ E = T + V = T^{CM} + T^{rel} + V(\mathbf{x}_1, \mathbf{x}_2, \cdots, \mathbf{x}_
 </div>
 <ul>
 <li><p>What is the force of thrust on the rocket?</p>
-<p>No external forces are present, so <span class="math inline">\(\mathbf{F}^{ext} = \mathbf{0}\)</span>. The internal forces are the thrust of the rocket, and the force of the exhaust. In the frame of the rocket they cancel out, <span class="math inline">\(\mathbf{F}_{th} = \mathbf{F}_{ex}\)</span>, so we have <span class="math display">\[\mathbf{F}_{th} = -\mathbf{F}_{ex} = -\mathbf{\dot p}_{ex} = -\frac{d}{dt}(m_{ex} \mathbf{v}_{ex}) = -\dot m_{ex} \mathbf{v}_{ex}.\]</span> Now, since <span class="math inline">\(m_0 = m + m_{ex}\)</span>, <span class="math inline">\(\dot m = -\dot m_{ex}\)</span>, and <span class="math inline">\(\mathbf{v}_{ex} = -v_{ex}\mathbf{e}_v\)</span>, we have <span class="math display">\[\mathbf{F}_{th} = -\dot m v_{ex} \mathbf{e}_v.\]</span></p></li>
+<p>No external forces are present, so <span class="math inline">\(\mathbf{F}^{ext} = \mathbf{0}\)</span>. The internal forces are the thrust of the rocket, and the force of the exhaust. In the frame of the rocket they cancel out, <span class="math inline">\(\mathbf{F}_{th} = \mathbf{F}_{ex}\)</span>, so we have <span class="math display">\[
+\mathbf{F}_{th} = -\mathbf{F}_{ex} = -\mathbf{\dot p}_{ex} = -\frac{d}{dt}(m_{ex} \mathbf{v}_{ex}) = -\dot m_{ex} \mathbf{v}_{ex}.
+\]</span> Now, since <span class="math inline">\(m_0 = m + m_{ex}\)</span>, <span class="math inline">\(\dot m = -\dot m_{ex}\)</span>, and <span class="math inline">\(\mathbf{v}_{ex} = -v_{ex}\mathbf{e}_v\)</span>, we have <span class="math display">\[
+\mathbf{F}_{th} = -\dot m v_{ex} \mathbf{e}_v.
+\]</span></p></li>
 <li><p>Find the velocity <span class="math inline">\(\mathbf{v}(t)\)</span> of the rocket.</p>
-<p>Using the fact that <span class="math inline">\(\mathbf{F}_{th} = m\mathbf{a}\)</span>, we have <span class="math inline">\(-\dot m v_{ex} = m \dot v\)</span>, which is just a first-order differential equation in <span class="math inline">\(v(t)\)</span>, <span class="math display">\[\dot v + v_{ex} \frac{\dot m}{m} = 0.\]</span> Integrating both sides and solving for <span class="math inline">\(v(t)\)</span>, we get <span class="math display">\[v(t) = v_0 - v_{ex} \int_{m_0}^m \frac{dm}{m} = -v_{ex} \log \frac{m(t)}{m_0}.\]</span> Or, expressing in the form of the well-known <em>rocket equation</em>, <span class="math display">\[\Delta v = v_{ex} \log\frac{m_0}{m(t)}.\]</span></p></li>
+<p>Using the fact that <span class="math inline">\(\mathbf{F}_{th} = m\mathbf{a}\)</span>, we have <span class="math inline">\(-\dot m v_{ex} = m \dot v\)</span>, a first-order differential equation in <span class="math inline">\(v(t)\)</span>, <span class="math display">\[
+\dot v + v_{ex} \frac{\dot m}{m} = 0.
+\]</span> Integrating both sides and solving for <span class="math inline">\(v(t)\)</span>, we get <span class="math display">\[
+v(t) = v_0 - v_{ex} \int_{m_0}^m \frac{dm}{m} = -v_{ex} \log \frac{m(t)}{m_0}.
+\]</span> Or, expressing in the form of the well-known <em>rocket equation</em>, <span class="math display">\[
+\Delta v = v_{ex} \log\frac{m_0}{m(t)}.
+\]</span></p></li>
 <li><p>Find the position <span class="math inline">\(\mathbf{x}(t)\)</span> of the rocket, assuming fuel is expelled form the rocket at a constant rate.</p>
-<p>Assume <span class="math inline">\(\dot m = -k = const\)</span>. Since there are no external forces, the rocket must be traveling along some line. Suppose without loss of generality then that <span class="math inline">\(\mathbf{x}(t) = z(t)\mathbf{e}_z\)</span>. Then we have,</p></li>
-</ul>
-<p><span class="math display">\[\begin{align*}
+<p>Assume <span class="math inline">\(\dot m = -k = const\)</span>. Since there are no external forces, the rocket must be traveling along some line. Suppose without loss of generality then that <span class="math inline">\(\mathbf{x}(t) = z(t)\mathbf{e}_z\)</span>. Then we have, <span class="math display">\[
+\begin{align*}
 z(t) &amp;= \int_0^t v(t) dt = v_{ex} \int_0^t dt \log\frac{m_0}{m_0-kt} \\
 &amp;= v_{ex} \bigg[t - \bigg(\frac{m_0-kt}{k} \bigg) \log \bigg(\frac{m_0}{m_0-kt} \bigg) \bigg] \\
 &amp;= v_{ex} t - \frac{v_{ex}}{k}(m_0 - kt)\log\bigg(\frac{m_0}{m_0-kt} \bigg).
-\end{align*}\]</span></p>
+\end{align*}
+\]</span></p></li>
+</ul>
 
 
 </section>

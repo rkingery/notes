@@ -18,28 +18,31 @@ m \mathbf{a} = \mathbf{F}_0(t).
 $$
 We can solve these systems directly by integrating both sides, i.e. *reducing to quadrature*. We have,
 
+$$
 \begin{align*}
 \mathbf{a}(t) &= \frac{1}{m}\mathbf{F}_0(t), \\
 \mathbf{v}(t) &= \mathbf{v}_0 + \frac{1}{m}\int_0^t dt'\mathbf{F}_0(t'), \\
 \mathbf{x}(t) &= \mathbf{x}_0 + \mathbf{v}_0t + \frac{1}{m}\int_0^t dt' \int_0^{t'} dt''\mathbf{F}_0(t''). \\
 \end{align*}
-
+$$
 The simplest of these cases are when there are no forces at all, and when the forces are constant. If there are no forces at all acting on the system, $\mathbf{F}_0 = \mathbf{0}$, in which case the equations of motion reduce to
 
+$$
 \begin{align*}
 \mathbf{a}(t) &= 0, \\
 \mathbf{v}(t) &= \mathbf{v}_0, \\
 \mathbf{x}(t) &= \mathbf{x}_0 + \mathbf{v}_0t. \\
 \end{align*}
-
+$$
 This is just a statement of Newton's First Law. If no forces act on a particle, it continues linearly along its path at constant velocity. The next simplest case is when $\mathbf{F}_0=const$. In this case, the equations of motion become
 
+$$
 \begin{align*}
 \mathbf{a}(t) &= \frac{1}{m}\mathbf{F}_0, \\
 \mathbf{v}(t) &= \mathbf{v}_0 + \frac{1}{m}\mathbf{F}_0 t, \\
 \mathbf{x}(t) &= \mathbf{x}_0 + \mathbf{v}_0t + \frac{1}{2m^2}\mathbf{F}_0^2. \\
 \end{align*}
-
+$$
 This case includes the gravitional force near the surface of the Earth, in which case $\mathbf{F}_0=m\mathbf{g}$. It also includes the problem of an electric charge placed close to a large conducting sheet with a uniform electric field, where $\mathbf{F}_0=q\mathbf{E}_0$.
 
 In these problems, the motion will always be along a parabolic arc. The parabola will slope toward the force if the force is attractive, and away from the force if it's repulsive.
@@ -48,12 +51,13 @@ In these problems, the motion will always be along a parabolic arc. The parabola
 
 Suppose an object of mass $m$ is falling freely near the Earth's surface. In this case, $\mathbf{F}_0 = m\mathbf{g}$, so
 
+$$
 \begin{align*}
 \mathbf{a}(t) &= \mathbf{g}, \\
 \mathbf{v}(t) &= \mathbf{v}_0 - \mathbf{g}t, \\
 \mathbf{x}(t) &= \mathbf{x}_0 + \mathbf{v}_0t + \frac{1}{2}\mathbf{g}t^2.
 \end{align*}
-
+$$
 The motion in this case will always lie in the plane spanned by $\mathbf{v}_0$ and $\mathbf{g}$. This means without loss of generality we can assume motion lies in the xy-plane with $\mathbf{g} = -g\mathbf{e}_y$. Then $y$ can be solved as a function of $x$ to give
 $$
 y(x) = v_{0}\frac{x}{v_0 \cos \theta}\sin \theta - \frac{1}{2} g\bigg(\frac{x}{v_0 \cos \theta}\bigg)^2,
@@ -239,13 +243,14 @@ This trajectory is oscillatory and stable since it only involves sines and cosin
 
 ![](./resources/image-20230214055348215.png){width=150 fig-align=center}
 
+$$
 \begin{align*}
 x(t) &= c_1 \cos \omega t + c_2 \sin \omega t \\
 &= A\bigg(\frac{c_1}{A}\cos \omega t + \frac{c_2}{A}\sin\omega t \bigg) \\
 &= A(\cos\delta \cos \omega t + \sin\delta\sin\omega t) \\
 &= A\cos(\omega t - \delta). \\
 \end{align*}
-
+$$
 In this form, $A$ is the **amplitude** of oscillation and $\delta$ is the **phase** of oscillation. The period of oscillation is given by
 $$
 \tau = \frac{2\pi}{\omega} = 2\pi\sqrt{\frac{m}{k}}.
@@ -263,6 +268,7 @@ z(t) = \tilde c_1 e^{i\omega t} + \tilde c_2 e^{-i\omega t}.
 $$
 If we demand that the real solution we seek be given by $x(t) = \text{Re}(z(t))$, then
 
+$$
 \begin{align*}
 x(t) &= \Re(c_1 e^{i \omega t}) + \Re(c_2 e^{-i \omega t}) \\
 &= \frac{1}{2}(c_1 + c_2^*)e^{i \omega t} + \frac{1}{2}(c_1^* + c_2)e^{-i \omega t} \\
@@ -270,7 +276,7 @@ x(t) &= \Re(c_1 e^{i \omega t}) + \Re(c_2 e^{-i \omega t}) \\
 &= A \cdot \Re(e^{i(\omega t - \delta)}) \\
 &= A \cos(\omega t - \delta),
 \end{align*}
-
+$$
 where $C \equiv Ae^{i \delta}$ is some complex number whose real and imaginary parts are $c_1+c_2^*$ and $c_1^*+c_2$ respectively. For the full complex solution we can similarly write
 $$
 z(t) = A e^{i(\omega t - \delta)}
@@ -302,18 +308,20 @@ $$
 
 Suppose now we allow a mass to move in two dimensions. Hooke's Law becomes
 
+$$
 \begin{align*}
 m \ddot x &= -k_x x, \\
 m \ddot y &= -k_y y.
 \end{align*}
-
+$$
 Since the equation of motions are uncoupled, the solutions are simply given by
 
+$$
 \begin{align*}
 x(t) &= A_x \cos(\omega_x t - \delta_x), \\
 y(t) &= A_y \cos(\omega_y t - \delta_y).
 \end{align*}
-
+$$
 Despite what intuition might suggest, the motion of the mass is now quite non-trivial. In fact, the behavior of the trajectory  depends entirely on the ratio of the frequencies $\frac{\omega_x}{\omega_y}$ and the relative phase between the two oscillations $\delta = \delta_x - \delta_y$. 
 
 The motion will only be periodic if $\frac{\omega_x}{\omega_y}$ is *rational*, i.e. if the frequencies are integer multiples of each other. The curves traced out by $(x(t), y(t))$ when $\frac{\omega_x}{\omega_y}$ is rational are called **Lissajous curves**. They can get quite complicated, but they'll always be periodic. Here's what a few of them look like for different$\frac{\omega_x}{\omega_y}$ and $\delta$.
@@ -334,41 +342,46 @@ $$
 $$
 The equations of motion are thus
 
+$$
 \begin{align*}
 m \ddot x &= \frac{qB}{c} \dot y , \\
 m \ddot y &= -\frac{qB}{c} \dot x , \\
 m \ddot z &=  0. \\
 \end{align*}
-
+$$
 Define $\omega \equiv \frac{qB}{c}$. The first two equations can be decoupled to give two independent SHO equations in the velocities,
 
+$$
 \begin{align*}
 \ddot v_x &= -\omega^2 v_x , \\
 \ddot v_y &= -\omega^2 v_y , \\
 \end{align*}
-
+$$
 with solutions
 
+$$
 \begin{align*}
 v_x(t) &= V_x \cos(\omega t - \delta_x) , \\
 v_y(t) &= V_y \cos(\omega t - \delta_y)  , \\
 \end{align*}
-
+$$
 Now, since $\ddot v_x = \omega \dot v_y$, we must have $V_x = V_y$ and $\delta_y = \delta_x - \frac{\pi}{2}$. Taking $\delta_x=0$ and $V_x = R\omega$ for convenience, we get
 
+$$
 \begin{align*}
 v_x(t) &= R\omega \cos(\omega t) , \\
 v_y(t) &= -R\omega \sin(\omega t)  , \\
 \end{align*}
-
+$$
 Finally, integrating the velocity equations gives the trajectory,
 
+$$
 \begin{align*}
 x(t) &=  x_0 + R \sin(\omega t), \\
 y(t) &= (y_0 - R) + R \cos(\omega t) , \\
 z(t) &=  z_0 + v_{0z} t. \\
 \end{align*}
-
+$$
 This is just a helix of radius $R$ directed along the z-axis. That is, the particle will just spiral around in a helix directed along the line of the magnetic field. The frequency $\omega$ is called the *cyclotron frequency*. Since charge can be positive or negative, it carries a sign, which determines which way the particle will spiral. Notice that $R$ is just the radius of orbit. It's customarily expressed in terms of the tangential velocity $v_\perp = \sqrt{v_x^2 + v_y^2} = R\omega$,
 $$
 R = \frac{mcv_\perp}{qB}.

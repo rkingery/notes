@@ -303,6 +303,7 @@ ul.task-list li input[type="checkbox"] {
   </ul></li>
   <li><a href="#example-hurricanes" id="toc-example-hurricanes" class="nav-link" data-scroll-target="#example-hurricanes">Example: Hurricanes</a></li>
   <li><a href="#example-the-foucalt-pendulum" id="toc-example-the-foucalt-pendulum" class="nav-link" data-scroll-target="#example-the-foucalt-pendulum">Example: The Foucalt pendulum</a></li>
+  <li><a href="#general-non-inertial-frames" id="toc-general-non-inertial-frames" class="nav-link" data-scroll-target="#general-non-inertial-frames">General Non-Inertial Frames</a></li>
   </ul>
 </nav>
     </div>
@@ -383,13 +384,14 @@ T_{i_1' i_2' \cdots i_k'} = R_{i_1' i_1} R_{i_2' i_2} \cdots R_{i_k' i_k} T_{i_1
 <p><img src="./resources/image-20230216110516749.png" class="img-fluid figure-img" width="200"></p>
 </figure>
 </div>
-<p><span class="math display">\[\begin{align*}
+<p><span class="math display">\[
+\begin{align*}
 R_{x'x} &amp;= \mathbf{e}_{x'} \cdot \mathbf{e}_x = \cos\varphi,
 &amp;R_{x'y} &amp;= \mathbf{e}_{x'} \cdot \mathbf{e}_y = \sin\varphi, \\
 R_{y'x} &amp;= \mathbf{e}_{y'} \cdot \mathbf{e}_x = -\sin\varphi,
 &amp;R_{y'y} &amp;= \mathbf{e}_{y'} \cdot \mathbf{e}_y = \cos\varphi. \\
-\end{align*}\]</span></p>
-<p>We can thus express any proper rotation in <span class="math inline">\(\mathbb{R}^2\)</span> using a <span class="math inline">\(2 \times 2\)</span> matrix of the form <span class="math display">\[
+\end{align*}
+\]</span> We can thus express any proper rotation in <span class="math inline">\(\mathbb{R}^2\)</span> using a <span class="math inline">\(2 \times 2\)</span> matrix of the form <span class="math display">\[
 \mathbf{R}(\varphi) =
 \begin{pmatrix}
 \cos\varphi &amp; \sin\varphi \\
@@ -467,12 +469,13 @@ m\mathbf{a}_{rel} = \mathbf{T} + m\mathbf{g} - m\mathbf{a}_0 \equiv \mathbf{T} +
 \mathbf{v}_S'' = \mathbf{v}_S' + \mathbf{v}_{S'}'' \quad \Longrightarrow \quad  \boldsymbol{\omega}_S'' \times \mathbf{r}_S = \boldsymbol{\omega}' \times \mathbf{r}_S + \boldsymbol{\omega}'' \times \mathbf{r}_{S'} \quad \Longrightarrow \quad  \boldsymbol{\omega}_S'' = \boldsymbol{\omega}_S' + \boldsymbol{\omega}_{S'}''.
 \]</span> This fact allows us to easily solve problems involving complex hierarchies of rotations.</p>
 <p>Now, suppose <span class="math inline">\(S_{rot}\)</span> is rotating with angular velocity <span class="math inline">\(\boldsymbol{\omega}\)</span> with respect to the origin of <span class="math inline">\(S\)</span>. With respect to an observer in each frame, a vector <span class="math inline">\(\mathbf{A} = A_i \mathbf{e}_i = A_i^{rot}\mathbf{e}_i = \mathbf{A}_{rel}\)</span> changes as</p>
-<p><span class="math display">\[\begin{align*}
+<p><span class="math display">\[
+\begin{align*}
 \frac{d\mathbf{A}}{dt}\bigg|_{rot} &amp;= \dot A_i^{rot} \mathbf{e}_i^{rot}, \\
 \frac{d\mathbf{A}}{dt}\bigg|_{lab} &amp;= \dot A_i^{rot} \mathbf{e}_i^{rot} + A_i^{rot} \mathbf{\dot e}_i^{rot}, \\
 \frac{d\mathbf{e}_i^{rot}}{dt}\bigg|_{lab} &amp;= \boldsymbol{\omega} \times \mathbf{e}_i^{rot}.
-\end{align*}\]</span></p>
-<p>Thus, we have <span class="math display">\[
+\end{align*}
+\]</span> Thus, we have <span class="math display">\[
 \frac{d\mathbf{A}}{dt}\bigg|_{lab} = \frac{d\mathbf{A}}{dt}\bigg|_{rot} + \boldsymbol{\omega} \times \mathbf{A}_{rot}
 \]</span> This evidently defines a <em>transport</em> operation between the lab frame and the rotating frame. Namely, time derivatives in the lab frame are related to time derivatives in the rotating frame via <span class="math display">\[
 \frac{d}{dt}\bigg|_{lab} = \frac{d}{dt}\bigg|_{rot} + \boldsymbol{\omega} \times.
@@ -482,11 +485,12 @@ m\mathbf{a}_{rel} = \mathbf{T} + m\mathbf{g} - m\mathbf{a}_0 \equiv \mathbf{T} +
 \]</span> or <span class="math display">\[
 \mathbf{v} = \mathbf{v}_{rot} + \boldsymbol{\omega} \times \mathbf{x}_{rot}.
 \]</span> To get the acceleration <span class="math inline">\(\mathbf{a}\)</span>, we need to apply the transport equation <em>again</em> to the velocity vector,</p>
-<p><span class="math display">\[\begin{align*}
+<p><span class="math display">\[
+\begin{align*}
 \frac{d\mathbf{v}}{dt}\bigg|_{lab} &amp;= \bigg(\frac{d}{dt}\bigg|_{rot} + \boldsymbol{\omega} \times \bigg) (\mathbf{v}_{rot} + \boldsymbol{\omega} \times \mathbf{x}_{rot}) \\
 &amp;= \mathbf{\dot v}_{rot} + \boldsymbol{\omega} \times \mathbf{v}_{rot} + \boldsymbol{\dot \omega} \times \mathbf{x}_{rot} + \boldsymbol{\omega} \times \mathbf{v}_{rot} + \boldsymbol{\omega} \times (\boldsymbol{\omega} \times \mathbf{x}_{rot}).
-\end{align*}\]</span></p>
-<p>Or after cleaning up a bit, <span class="math display">\[
+\end{align*}
+\]</span> Or after cleaning up a bit, <span class="math display">\[
 \mathbf{a} = \mathbf{a}_{rot} + 2 \boldsymbol{\omega} \times \mathbf{v}_{rot} + \boldsymbol{\dot \omega} \times \mathbf{x}_{rot} + \boldsymbol{\omega} \times (\boldsymbol{\omega} \times \mathbf{x}_{rot}).
 \]</span></p>
 <p>Since <span class="math inline">\(\mathbf{F} = m \mathbf{a}\)</span> in the lab frame, we can multiply both sides by <span class="math inline">\(m\)</span> and re-arrange terms to get the force vector <span class="math inline">\(\mathbf{F}_{rot}\)</span>, <span class="math display">\[
@@ -502,7 +506,6 @@ m\mathbf{a}_{rel} = \mathbf{T} + m\mathbf{g} - m\mathbf{a}_0 \equiv \mathbf{T} +
 \]</span> The centrifugal force tends to push a rotating object outward radially from the origin, similar to how a centrifuge works. In the simple case when the position is perpendicular to the axis of rotation, the centrifugal force reduces to the more familiar form from elementary physics, <span class="math display">\[
 \mathbf{F}_{cf} = - m\omega^2 \mathbf{x}_{rot} = -\frac{mv_{rot}^2}{r_{rot}} \mathbf{e}_r.
 \]</span> The Coriolis force tends to deflect a moving object away from its line of motion. It arises due to the fact that as the object moves, the frame under it is rotating underneath, which causes an apparent deflection sideward.</p>
-<p>One fact to be aware of about non-inertial frames is that energy need not be conserved. It’s only true in inertial frames that energy must be conserved. This has to do with the fact that in the relative frame we’re ignoring the forces on the relative frame itself, i.e.&nbsp;the forces that cause the frame to accelerate or rotate. We can generally recover the conservation of energy by transforming back to an inertial frame.</p>
 <section id="example-throwing-a-baseball-from-the-north-pole" class="level3">
 <h3 class="anchored" data-anchor-id="example-throwing-a-baseball-from-the-north-pole">Example: Throwing a baseball from the North Pole</h3>
 <p>Suppose a baseball is thrown from the North Pole for a distance <span class="math inline">\(\ell\)</span> and a constant velocity <span class="math inline">\(\mathbf{v}_0\)</span> with respect to the lab frame. Find the deflection angle <span class="math inline">\(\delta\theta\)</span> of the ball caused by the Coriolis force.</p>
@@ -554,29 +557,39 @@ m\mathbf{a}_{rot} = m\mathbf{g} + \mathbf{T} - 2m\boldsymbol{\omega} \times \mat
 \]</span> This means <span class="math display">\[
 \mathbf{a}_{rot} = \bigg(-\frac{Tx}{m\ell} + 2\dot y \omega_{\oplus} \sin\lambda \bigg) \mathbf{e}_x + \bigg(-\frac{Ty}{m\ell} - 2\dot x \omega_{\oplus} \sin\lambda \bigg) \mathbf{e}_x,
 \]</span> which gives equations of motion</p>
-<p><span class="math display">\[\begin{align*}
+<p><span class="math display">\[
+\begin{align*}
 \ddot x &amp;= -\frac{T}{m\ell} \cdot x + 2\omega_{\oplus}\sin\lambda \cdot \dot y \\
 \ddot y &amp;= -\frac{T}{m\ell} \cdot y - 2\omega_{\oplus}\sin\lambda \cdot \dot x. \\
-\end{align*}\]</span></p>
-<p>If we define <span class="math inline">\(\omega_0^2 \equiv \frac{T}{m\ell} = \frac{g}{\ell}\)</span>, we can re-arrange and write the equations of motion in the form</p>
-<p><span class="math display">\[\begin{align*}
-\ddot x + \omega_0^2 \cdot x = 2\omega_z \dot y \\
-\ddot y + \omega_0^2 \frac{T}{m\ell} \cdot y = -2\omega_z \dot x, \\
-\end{align*}\]</span></p>
-<p>where <span class="math inline">\(\omega_z = \omega_{\oplus}\sin\lambda\)</span>. If we combine these two equations, this is equivalent to a complex DHO problem with imaginary damping, <span class="math display">\[
+\end{align*}
+\]</span> If we define <span class="math inline">\(\omega_0^2 \equiv \frac{T}{m\ell} = \frac{g}{\ell}\)</span>, we can re-arrange and write the equations of motion in the form</p>
+<p><span class="math display">\[
+\begin{align*}
+\ddot x + \omega_0^2 \cdot x &amp;= 2\omega_z \dot y \\
+\ddot y + \omega_0^2 \frac{T}{m\ell} \cdot y &amp;= -2\omega_z \dot x, \\
+\end{align*}
+\]</span> where <span class="math inline">\(\omega_z = \omega_{\oplus}\sin\lambda\)</span>. If we combine these two equations, this is equivalent to a complex DHO problem with imaginary damping, <span class="math display">\[
 \ddot z + 2i\omega_z \dot z + \omega_0^2 z = 0.
 \]</span> This means solutions will have the form <span class="math display">\[
 z(t) = e^{-i\omega_z t}(A e^{i\omega't} + B e^{-i\omega't}).
 \]</span> where <span class="math inline">\(\omega' \equiv \sqrt{\omega_z^2 + \omega_0^2}\)</span>. If we assume the pendulum swings much faster than the Earth rotates, we have <span class="math inline">\(\omega_0 \gg \omega_{\oplus}\)</span>, which means we can approximate <span class="math inline">\(z(t)\)</span> as <span class="math display">\[
 z(t) \approx e^{-i\omega_z t}(A e^{i\omega_0 t} + B e^{-i\omega_0 t}).
 \]</span> If we define <span class="math inline">\(z'(t) \equiv A e^{i\omega_0 t} + B e^{-i\omega_0 t}\)</span>, then <span class="math inline">\(z(t) = e^{-i\omega_z t} z'(t)\)</span>, and we can write the real solutions as</p>
-<p><span class="math display">\[\begin{align*}
+<p><span class="math display">\[
+\begin{align*}
 x(t) &amp;= x'(t) \cos\omega_z t + y'(t) \sin\omega_z t, \\
 y(t) &amp;= -x'(t) \sin\omega_z t + y'(t) \cos\omega_z t. \\
-\end{align*}\]</span></p>
-<p>This says that the plane of oscillation itself undergoes a rotation in the xy-plane. That is, the plane of the pendulum’s orbit <em>precesses</em> with a frequency given by <span class="math display">\[
+\end{align*}
+\]</span> This says that the plane of oscillation itself undergoes a rotation in the xy-plane. That is, the plane of the pendulum’s orbit <em>precesses</em> with a frequency given by <span class="math display">\[
 \omega_z = \omega_{\oplus} \sin\lambda = 2\pi\frac{\sin\lambda}{\text{1 day}}.
 \]</span> For example, at a latitude of <span class="math inline">\(\lambda = 34.5^\circ\)</span>, the pendulum precesses counterclockwise with a frequency of <span class="math inline">\(\omega_z \approx \text{3.86 rad/sec}\)</span>, or about <span class="math inline">\(8.5^\circ\)</span> per hour. It appears precession is non-existent at the equator and highest at the poles, where precession happens exactly with the Earth’s rotation.</p>
+</section>
+<section id="general-non-inertial-frames" class="level2">
+<h2 class="anchored" data-anchor-id="general-non-inertial-frames">General Non-Inertial Frames</h2>
+<p>More generally, we can combine linearly accelerating and rotating frames by just adding the fictitious forces together. If <span class="math inline">\(S_{rel}\)</span> is both accelerating and rotating about some axis with respect to <span class="math inline">\(S\)</span>, we’d have <span class="math display">\[
+\mathbf{F}_{rel} = \mathbf{F} + \mathbf{F}_{lin} + \mathbf{F}_{cf} + \mathbf{F}_{cor} + \mathbf{F}_{eul}.
+\]</span> This general form for a force in a non-inertial frame can be used to analyze a surprisingly large number of practical problems, where complicated forces can often be decomposed into a sum of linear forces and rotational forces.</p>
+<p>One fact to be aware of about non-inertial frames is that energy need not be conserved. It’s only true in inertial frames that energy must be conserved. This has to do with the fact that in the relative frame we’re ignoring the forces on the relative frame itself, i.e.&nbsp;the forces that cause the frame to accelerate or rotate. We can generally recover the conservation of energy by transforming back to an inertial frame.</p>
 
 
 </section>

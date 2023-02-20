@@ -61,10 +61,11 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 </head>
 
-<body class="nav-sidebar floating">
+<body class="nav-sidebar docked">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -78,9 +79,9 @@ ul.task-list li input[type="checkbox"] {
   </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation docked overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="../">Personal Notes</a> 
@@ -283,10 +284,18 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#configuration-space" id="toc-configuration-space" class="nav-link active" data-scroll-target="#configuration-space">Configuration Space</a></li>
+  <li><a href="#virtual-work" id="toc-virtual-work" class="nav-link" data-scroll-target="#virtual-work">Virtual Work</a></li>
+  <li><a href="#examples" id="toc-examples" class="nav-link" data-scroll-target="#examples">Examples</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content column-body" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
@@ -305,8 +314,130 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
+<p>While Newton’s Laws give a complete description of classical mechanics, they can be cumbersome to apply when complicated forces are present. Lagrangian mechanics is an alternative but completely equivalent approach to Newtonian mechanics that greatly simplifies many problems, particularly where constraint forces are present. Not only that, but unlike Newtonian mechanics, the Lagrangian formulation can be extended to many other areas of physics, including quantum mechanics and general relativity.</p>
+<section id="configuration-space" class="level2">
+<h2 class="anchored" data-anchor-id="configuration-space">Configuration Space</h2>
+<p>Many forces acting on a system do no work. They serve only to keep particles confined to some surface in space. Such forces are called <strong>forces of constraint</strong>. Examples of forces of constraint include the tension in a string and the normal force keeping an object on a physical surface.</p>
+<p>Suppose we have a system of <span class="math inline">\(N\)</span> particles with positions <span class="math inline">\(\mathbf{x}_1, \mathbf{x}_2, \cdots, \mathbf{x}_N\)</span> respectively. Taken together, these positions can be thought of as defining a trajectory in the <span class="math inline">\(3N\)</span>-dimensional space <span class="math inline">\(\mathbb{R}^{3N}\)</span>. A <strong>holonomic constraint</strong> is a constraint that keeps the <span class="math inline">\(N\)</span> particles confined to some lower-dimensional sub-manifold <span class="math inline">\(\mathcal{Q}\)</span> of <span class="math inline">\(\mathbb{R}^{3N}\)</span>. Equivalently, it’s a (possibly time-dependent) function of the form <span class="math display">\[
+f(\mathbf{x}_1, \mathbf{x}_2, \cdots, \mathbf{x}_N, t) = 0.
+\]</span> The dimension of <span class="math inline">\(\mathcal{Q}\)</span> is <span class="math inline">\(n=3N-C\)</span>, where <span class="math inline">\(C\)</span> is the total number of constraints on the system. These are the number of <strong>degrees of freedom</strong> of the system. This sub-manifold is called the <strong>configuration space</strong> of the system. Since <span class="math inline">\(\mathcal{Q}\)</span> is <span class="math inline">\(n\)</span>-dimensional, we should be able to parametrize it with <span class="math inline">\(n\)</span> coordinates <span class="math inline">\(q_1, q_2, \cdots, q_n\)</span>. We call these <strong>generalized coordinates</strong>. They’re not ordinary coordinates in real space. They’re a way of describing where in configuration space the system is at a given point in time.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./resources/image-20230218194924026.png" class="img-fluid figure-img" width="300"></p>
+</figure>
+</div>
+<p>Holonomicity requires that we be able to find a 1-1 map going back and forth between generalized coordinates and the position vectors, <span class="math display">\[
+q_i = q_i(\mathbf{x}_1, \mathbf{x}_2, \cdots, \mathbf{x}_N, t), \quad \mathbf{x}_\alpha = \mathbf{x}_\alpha(q_1, q_2, \cdots, q_n, t).
+\]</span> When the holonomic constraint isn’t time-dependent, they’re called <strong>scleronomic</strong> constraints. Otherwise they’re called <strong>rheonomic</strong> constraints. A system that’s not holonomic is called <strong>non-holonomic</strong>.</p>
+<p>As an easy example, consider the simple pendulum. Since there’s only one particle, <span class="math inline">\(N=1\)</span>. Since the length of the pendulum is fixed, that’s one constraint. Since the motion is confined to a plane, that’s another constraint. We thus have <span class="math inline">\(n=3N-C=3-2=1\)</span> degrees of freedom, which we can of course take to be the angle <span class="math inline">\(\theta\)</span>.</p>
+<p>A more interesting example is the rigid body. A <strong>rigid body</strong> is a system of <span class="math inline">\(N\)</span> particles whose particles are always a fixed distance apart, i.e.&nbsp;<span class="math inline">\(d_{ij} = |\mathbf{x}_i - \mathbf{x}_j|\)</span> is fixed for all <span class="math inline">\(i, j\)</span>. This fixed distance requirement introduces a lot of constraints on the system. To see this, suppose <span class="math inline">\(N=4\)</span>. Then there are <span class="math inline">\(C=6\)</span> constraints, since each particle must connect to each other particle. This means there are <span class="math inline">\(n=3N-C=6\)</span> degrees of freedom.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./resources/image-20230218201852629.png" class="img-fluid figure-img" width="200"></p>
+</figure>
+</div>
+<p>It turns out this fact extends to rigid bodies with arbitrarily many particles as well since adding a new particle gives 3 more coordinates, but also 3 more constraints. A rigid body will <em>always</em> have exactly 6 degrees of freedom, which we usually take to be the 3 center of mass coordinates and the three Euler angles.</p>
+</section>
+<section id="virtual-work" class="level2">
+<h2 class="anchored" data-anchor-id="virtual-work">Virtual Work</h2>
+<p>Suppose we have a system of <span class="math inline">\(N\)</span> particles in mechanical equilibrium, so <span class="math inline">\(\mathbf{F}_i=\mathbf{0}\)</span> for all <span class="math inline">\(i\)</span>. Let’s imagine we perturb each particle <span class="math inline">\(\mathbf{x}_i\)</span> by some amount <span class="math inline">\(\delta \mathbf{x}_i\)</span>, but only in a way that doesn’t change the configuration space. This means each perturbation must be a function of the generalized coordinates, <span class="math inline">\(\delta \mathbf{x}_i = \delta \mathbf{x}_i(q_1, q_2, \cdots, q_n, t)\)</span>. Define the <strong>virtual work</strong> done on the system by, <span class="math display">\[
+\delta W \equiv \sum \mathbf{F}_i \cdot \delta\mathbf{x}_i
+\]</span> Now, let’s decompose each force <span class="math inline">\(\mathbf{F}_i\)</span> into a sum of two components, an <em>applied force</em> <span class="math inline">\(\mathbf{F}_i^{app}\)</span> and a constraint force <span class="math inline">\(\mathbf{F}_i^{con}\)</span>. The applied forces are the ones that do work on each particle, while the constraint forces are the ones that keep them confined to the configuration space. If the system is exactly in equilibrium, then <span class="math inline">\(\mathbf{F}_i = \mathbf{F}_i^{app} + \mathbf{F}_i^{con} = \mathbf{0}\)</span>, which means <span class="math inline">\(\delta W = 0\)</span> in equilibrium. But since constraint forces do no work, we get <span class="math display">\[
+\delta W = \sum \mathbf{F}_i^{app} \cdot \delta\mathbf{x}_i = 0
+\]</span> This is called the <strong>principle of virtual work</strong>.</p>
+<p><strong>Note:</strong> Sometimes constraint forces <em>do</em> in fact do work on a system. One major example is a system in rolling motion, e.g.&nbsp;a wheel rolling down a ramp. We’ll mostly ignore these situations in this lesson.</p>
+<p>More generally, if a system is not in equilibrium, we have <span class="math inline">\(\mathbf{F}_i = m_i \mathbf{\dot v}_i\)</span>. If we insist the principle of virtual work must apply to these situations as well, we have <span class="math display">\[
+\begin{align*}
+0 = \delta W &amp;= \sum_i (\mathbf{F}_i^{app} - m_i \mathbf{\dot v}_i) \cdot \delta \mathbf{x}_i \\
+&amp;= \sum_i (\mathbf{F}_i^{app} - m_i \mathbf{\dot v}_i) \cdot \sum_j\frac{\partial \mathbf{x}_i}{\partial q_j} \delta q_j \\
+&amp;= \sum_j \bigg(\sum_i \mathbf{F}_i^{app} \cdot \frac{\partial \mathbf{x}_i}{\partial q_j}  - m_i \mathbf{\dot v}_i \cdot \frac{\partial \mathbf{x}_i}{\partial q_j} \bigg) \delta q_j \\
+&amp;= \sum_j \bigg[ Q_j - \bigg(\frac{d}{dt} \frac{\partial T}{\partial \dot q_j} - \frac{\partial T}{\partial q_j} \bigg) \bigg] \delta q_j.
+\end{align*}
+\]</span> Here I defined <span class="math inline">\(Q_j \equiv \mathbf{F}_i^{app} \cdot \frac{\partial \mathbf{x}_i}{\partial q_j}\)</span>. This term is called the <strong>generalized force</strong>. It acts as a force, but on the generalized coordinates instead of the position vectors directly. The other thing I did was re-wrote the momentum term by using the total kinetic energy <span class="math inline">\(T = \frac{1}{2} \sum_i m_i \mathbf{v}_i^2\)</span>. Now, if we insist that all the <span class="math inline">\(q_i\)</span> are independent of each other, then the terms in the sum must vanish individually, which means for all <span class="math inline">\(j=1,\cdots,n\)</span> we have <span class="math display">\[
+Q_j = \frac{d}{dt} \frac{\partial T}{\partial \dot q_j} - \frac{\partial T}{\partial q_j}.
+\]</span> In the special case where the forces on the system are conservative, we can use the potential energy <span class="math inline">\(V\)</span> to express the generalized forces as <span class="math inline">\(Q_j = -\frac{\partial V}{\partial q_i}\)</span>. Defining a function <span class="math inline">\(L \equiv T - V\)</span> called the <strong>Lagrangian</strong> and re-arranging terms, we finally have <span class="math display">\[
+\frac{\partial L}{\partial q_j} - \frac{d}{dt} \frac{\partial L}{\partial \dot q_j} = 0.
+\]</span> This gives a set of <span class="math inline">\(n\)</span> equations for the generalized coordinates, called <strong>Lagrange’s equations</strong>.</p>
+<p>To see why the Lagrange’s equations are useful, consider the special case where <span class="math inline">\(T=\frac{1}{2} \sum_i m_i \dot x_i^2\)</span> and <span class="math inline">\(V = V(x_1, x_2, \cdots, x_n)\)</span>. Then we have a Lagrangian of the form <span class="math display">\[
+L = T - V = \frac{1}{2} \sum_i m_i \dot x_i^2 - V(x_1, x_2, \cdots, x_n),
+\]</span> which we can plug into the Euler-Lagrange Equations to get <span class="math display">\[
+m \ddot x_i = - \frac{\partial V}{\partial x_i} \quad \forall i=1,2,\cdots,n.
+\]</span> But this is just <span class="math inline">\(\mathbf{F} = m \mathbf{a}\)</span>! Evidently we’ve managed to reproduce Newton’s Laws from Lagrange’s equations. This in some sense suggest that Lagrange’s equations might be more general than Newton’s Laws, and in fact they are as we’ll see later.</p>
+</section>
+<section id="examples" class="level2">
+<h2 class="anchored" data-anchor-id="examples">Examples</h2>
+<p>The Lagrangian formulation is very useful for solving problems that would be very complicated to solve using Newtonian approaches. This is particular true when there are complex constraints present. It’s thus very helpful to see a bunch of examples showing how to solve problems using Lagrangian methods.</p>
+<p>To solve a problem using Lagrange’s equations we need to do the following steps:</p>
+<ol type="1">
+<li>Figure out how many degrees of freedom the system has using <span class="math inline">\(n=3N-C\)</span>.</li>
+<li>Identify the generalized coordinates <span class="math inline">\(q_1,q_2,\cdots,q_n\)</span>.</li>
+<li>Express each of the velocity vectors as a function of the <span class="math inline">\(q_i\)</span>’s, <span class="math inline">\(\mathbf{v}_i = \mathbf{v}_i(q_1,q_2,\cdots,q_n)\)</span>. Use these to write down the kinetic energy as <span class="math inline">\(T = \frac{1}{2}\sum_i m_i \mathbf{v_i}^2\)</span>.</li>
+<li>Write down the potential energy as a function of the <span class="math inline">\(q_i\)</span>’s, so <span class="math inline">\(V=V(q_1,q_2,\cdots,q_n)\)</span>.</li>
+<li>Write down the Lagrangian <span class="math inline">\(L = T - V\)</span>.</li>
+<li>Use Lagrange’s equations to get the equations of motion for the <span class="math inline">\(q_i\)</span>’s.</li>
+<li>Solve for the trajectories <span class="math inline">\(q_1(t),q_2(t),\cdots,q_n(t)\)</span>.</li>
+<li>If desired, convert back to real space coordinates via <span class="math inline">\(\mathbf{x}_\alpha = \mathbf{x}_\alpha(q_1,q_2,\cdots,q_n)\)</span>.</li>
+</ol>
+<section id="example-the-simple-spring" class="level4">
+<h4 class="anchored" data-anchor-id="example-the-simple-spring">Example: The Simple Spring</h4>
+<p>Suppose a mass <span class="math inline">\(m\)</span> is attached to an ideal spring with spring constant <span class="math inline">\(k\)</span>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./resources/image-20230218211506460.png" class="img-fluid figure-img" width="300"></p>
+</figure>
+</div>
+<p>In this case, <span class="math inline">\(N = 1\)</span>, and the spring is constrained to move along, say, the x-axis, so <span class="math inline">\(C=2\)</span>, and there’s just <span class="math inline">\(n=3N-C=1\)</span> degree of freedom (as expected). If the generalized coordinate is just <span class="math inline">\(q=x\)</span>, we have <span class="math display">\[
+T = \frac{1}{2} m \dot q^2, \quad V = \frac{1}{2}kq^2,
+\]</span> which means the Lagrangian is <span class="math display">\[
+L = \frac{1}{2} m \dot q^2 - \frac{1}{2}kq^2.
+\]</span> Solving Lagrange’s equation in this case gives <span class="math display">\[
+-\frac{\partial}{\partial q} \frac{k q^2}{2} - \frac{d}{dt} \frac{\partial}{\partial \dot q} \frac{m\dot q^2}{2} = 0 \quad \Rightarrow \quad m\ddot q = -k q.
+\]</span> We’ve already seen the solution to this equation is just the SHO solution <span class="math display">\[
+q(t) = A\cos(\omega t - \delta), \quad \omega^2 \equiv \frac{k}{m}.
+\]</span> If desired, in this case we could convert back to real coordinates via <span class="math display">\[
+\mathbf{x}(t) = q(t) \mathbf{e}_x = A\cos(\omega t - \delta)\mathbf{e}_x.
+\]</span></p>
+</section>
+<section id="example-simple-pendulum" class="level4">
+<h4 class="anchored" data-anchor-id="example-simple-pendulum">Example: Simple Pendulum</h4>
+<p>Suppose a mass <span class="math inline">\(m\)</span> is attached to a massless string of fixed length <span class="math inline">\(\ell\)</span> and allowed to swing.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./resources/image-20230212040128210.png" class="img-fluid figure-img" width="300"></p>
+</figure>
+</div>
+<p>In this problem, there’s <span class="math inline">\(N=1\)</span> particle. The string being fixed adds one constraint, and motion being confined to the plane adds another, so we have <span class="math inline">\(n=1\)</span> degrees of freedom here, which we’ll take to be the angle <span class="math inline">\(q=\theta\)</span>. Using polar coordinates, we can write the kinetic and potential energies as <span class="math display">\[
+T = \frac{1}{2} m\ell^2 \dot q^2, \quad V = -mg\ell\cos q,
+\]</span> which gives a Lagrangian <span class="math display">\[
+L = \frac{1}{2} m\ell^2 \dot q^2 + mg\ell\cos q.
+\]</span> Solving Lagrange’s equation, we get the equation of motion <span class="math display">\[
+m\ell^2 \ddot q + mg\ell\sin q = 0,
+\]</span> which is of course the usual equation of motion for the pendulum when <span class="math inline">\(q=\theta\)</span>.</p>
+</section>
+<section id="example-central-potential" class="level4">
+<h4 class="anchored" data-anchor-id="example-central-potential">Example: Central Potential</h4>
+<p>Suppose a particle of mass <span class="math inline">\(m\)</span> is in the presence of a central force field <span class="math inline">\(V=V(r)\)</span>. There’s one constraint since the problem must be spherically symmetric, which means we have <span class="math inline">\(n=2\)</span> degrees of freedom. Working in spherical coordinates, the kinetic and potential energies are given by <span class="math display">\[
+T = \frac{1}{2} m (\dot r^2 + r \dot \varphi^2), \quad V = V(r).
+\]</span> Plugging these into Lagrange’s equation and solving gives two equations of motion for <span class="math inline">\(r\)</span> and <span class="math inline">\(\varphi\)</span>, <span class="math display">\[
+m \ddot r = mr \dot\varphi^2 - \frac{dV}{dr}\\
+\frac{d}{dt} mr^2 \dot\varphi = 0.
+\]</span> The second equation is interesting. It says the quantity <span class="math inline">\(\ell = mr^2 \dot\varphi\)</span> must be conserved. But this is just the angular momentum of the system! Evidently, conservation laws somehow fall out of Lagrange’s equations provided the right generalized coordinates are chosen.</p>
+</section>
+<section id="example-double-pendulum" class="level4">
+<h4 class="anchored" data-anchor-id="example-double-pendulum">Example: Double Pendulum</h4>
+<p>The examples considered so far are pretty easy to solve using Newtonian methods. Here’s an example that’s far easier to solve in the Lagrangian formulation. Suppose we have a double pendulum, where a mass is attached to the end of another pendulum and both are allowed to swing. Suppose both masses have mass <span class="math inline">\(m\)</span> and both strings are a fixed length <span class="math inline">\(\ell\)</span>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./resources/image-20230218215415855.png" class="img-fluid figure-img" width="300"></p>
+</figure>
+</div>
+<p>Here there are <span class="math inline">\(N=2\)</span> particles, each of which has two constraints. That means there are <span class="math inline">\(n=2\)</span> total degrees of freedom in this system. Take those to be the two angles <span class="math inline">\(\theta_1\)</span> and <span class="math inline">\(\theta_2\)</span>. Writing down the kinetic and potential energies, we have <span class="math display">\[
+T = \frac{1}{2}, \quad V =
+\]</span></p>
 
 
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -442,7 +573,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
-<nav class="page-navigation">
+<nav class="page-navigation column-body">
   <div class="nav-page nav-page-previous">
       <a href="../classical-mechanics/reference-frames.html" class="pagination-link">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Reference Frames</span></span>
