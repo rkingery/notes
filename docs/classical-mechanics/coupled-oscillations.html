@@ -61,6 +61,7 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 </head>
 
@@ -282,11 +283,18 @@ ul.task-list li input[type="checkbox"] {
     </div>
 </nav>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#one-dimensional-systems" id="toc-one-dimensional-systems" class="nav-link active" data-scroll-target="#one-dimensional-systems">One-Dimensional Systems</a></li>
+  <li><a href="#general-problem" id="toc-general-problem" class="nav-link" data-scroll-target="#general-problem">General Problem</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
-<main class="content column-page-right" id="quarto-document-content">
+<main class="content column-body" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
@@ -305,8 +313,91 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
+<p>Oscillations of a system about its stable equilibrium points is one of the most pervasive and important problems in physics. We’ve already studied the harmonic oscillator and its solutions in some detail already. We’ll now focus on studying the behavior of many-body systems near the equilibrium points.</p>
+<section id="one-dimensional-systems" class="level2">
+<h2 class="anchored" data-anchor-id="one-dimensional-systems">One-Dimensional Systems</h2>
+<p>Consider a system with one degree of freedom <span class="math inline">\(q\)</span> in the presence of a potential energy <span class="math inline">\(V(q)\)</span>. We say such a system has an <strong>equilibrium point</strong> at <span class="math inline">\(q=q_0\)</span> provided <span class="math display">\[
+F = -\frac{dV}{dq} \bigg|_{q=q_0} = 0.
+\]</span> Equivalently, <span class="math inline">\(q_0\)</span> is an equilibrium point if it’s a stationary point of <span class="math inline">\(V(q)\)</span>. We say <span class="math inline">\(q_0\)</span> is <strong>stable</strong> if it’s a local minimum of <span class="math inline">\(V(q)\)</span>, <strong>unstable</strong> if it’s a local maximum of <span class="math inline">\(V(q)\)</span>, and <strong>semi-stable</strong> if it’s a saddlepoint. In general, a potential energy <span class="math inline">\(V(q)\)</span> may have many different equilibrium points.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./resources/image-20230221151415754.png" class="img-fluid figure-img" width="300"></p>
+</figure>
+</div>
+<p>Now, if we expand <span class="math inline">\(V(q)\)</span> in a Taylor Series about <span class="math inline">\(q_0\)</span>, we get <span class="math display">\[
+V(q) = V(q_0) + \frac{dV}{dq}\bigg|_{q_0} (q - q_0) + \frac{1}{2} \frac{d^2 V}{dq^2}\bigg|_{q_0} (q - q_0)^2 + O\big((q-q_0)^3\big).
+\]</span> Since only differences in potential energy can affect the dynamics of a system, we can suppose without loss of generality that <span class="math inline">\(V(q_0) = 0\)</span>. Since <span class="math inline">\(q_0\)</span> is an equilibrium point, we must also have <span class="math inline">\(\frac{dV}{dq}\big|_{q_0} = 0\)</span>. We’re thus left with <span class="math display">\[
+V(q) = \frac{1}{2} \frac{d^2 V}{dq^2}\bigg|_{q_0} (q - q_0)^2 + O\big((q-q_0)^3\big).
+\]</span> We can always re-center the system so that <span class="math inline">\(q_0=0\)</span>. If we define <span class="math inline">\(k \equiv \frac{d^2 V}{dq^2}\big|_{q_0}\)</span>, we evidently have <span class="math display">\[
+V(q) = \frac{1}{2} k q^2.
+\]</span> But this is just the potential energy for Hooke’s Law, since <span class="math inline">\(F = -\frac{dV}{dq} = -kq\)</span>. We’ve thus evidently defined Hooke’s Law from the assumption that a system is undergoing small motions near an equilibrium point.</p>
+<p>Motions will only be small oscillations if the equilibrium point <span class="math inline">\(q_0\)</span> is stable, which is equivalent to requiring that <span class="math inline">\(k &gt; 0\)</span> since <span class="math inline">\(V(q_0)\)</span> is locally convex. If <span class="math inline">\(k &lt; 0\)</span> the motion will be unstable since <span class="math inline">\(V(q_0)\)</span> is locally concave. If <span class="math inline">\(k=0\)</span> we run into a special case where we have to consider higher orders in the Taylor Series expansion. In this case, motion will be very near constant around <span class="math inline">\(q_0\)</span>, but can either grow or decay as <span class="math inline">\(q\)</span> gets farther from <span class="math inline">\(q_0\)</span>.</p>
+<p>We can also plug <span class="math inline">\(V(q)\)</span> into the Lagrangian and get <span class="math display">\[
+L \approx \frac{1}{2}m \dot q^2 - \frac{1}{2} k q^2,
+\]</span> which is of course just the Lagrangian for SHO. We’ve thus derived the following important fact: Any 1-dimensional system undergoing small oscillations near a stable equilibrium point can be well-approximated by a simple harmonic oscillator.</p>
+<section id="example-kepler-orbits" class="level4">
+<h4 class="anchored" data-anchor-id="example-kepler-orbits">Example: Kepler Orbits</h4>
+<p>Recall for Kepler orbits we have a Lagrangian <span class="math inline">\(L = \frac{1}{2}m\dot r^2 - V_{eff}(r)\)</span>, where <span class="math display">\[
+V_{eff}(r) = \frac{\ell^2}{2mr^2} - \frac{GMm}{r}.
+\]</span> This effective potential has a stable equilibrium when the orbits are circular, i.e.&nbsp;<span class="math inline">\(r=r_0\)</span>.</p>
+<p>Setting the first derivative of <span class="math inline">\(V_{eff}(q)\)</span> to zero gives <span class="math display">\[
+\frac{dV_{eff}}{dr}\bigg|_{r_0} = -\frac{\ell^2}{mr_0^3} + \frac{GMm}{r_0^2} = 0 \quad \Longrightarrow \quad r_0 = \frac{\ell^2}{GMm^2}.
+\]</span> Setting the second derivative to <span class="math inline">\(k\)</span> gives <span class="math display">\[
+k = \frac{d^2V_{eff}}{dr^2}\bigg|_{r_0} = 3\frac{\ell^2}{mr_0^4} - 2\frac{GMm}{r_0^3} = \frac{GMm}{r_0^3} &gt; 0.
+\]</span> Thus, the Kepler orbit undergoes stable oscillations about the point <span class="math inline">\(r=r_0\)</span>, with a force law <span class="math inline">\(F(r) \approx -k(r-r_0)\)</span>. The oscillation frequency and period are given by <span class="math display">\[
+\omega = \sqrt{\frac{k}{m}} = \sqrt{GM}{r_0^3} \quad \Longrightarrow \quad \tau = \frac{2\pi}{\sqrt{GM}} r_0^{3/2},
+\]</span> which is just Kepler’s Third Law for circular orbits.</p>
+</section>
+<section id="example-two-coupled-springs" class="level4">
+<h4 class="anchored" data-anchor-id="example-two-coupled-springs">Example: Two Coupled Springs</h4>
+<p>Before deriving the general form for the solution of coupled linear systems, let’s try to solve the problem of two springs attached to each other in sequence. Assume both masses have mass <span class="math inline">\(m\)</span>. Assume the springs attached to the walls have spring constant <span class="math inline">\(k\)</span>, and the coupling spring constant between the two masses is <span class="math inline">\(k_{12}\)</span>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./resources/image-20230221162755528.png" class="img-fluid figure-img" width="300"></p>
+</figure>
+</div>
+<p>Denote the position of mass one relative to its equilibrium as <span class="math inline">\(x_1\)</span>, and the position of mass two relative to its equilibrium by <span class="math inline">\(x_2\)</span>. Then the Lagrangian is <span class="math display">\[
+L = \frac{1}{2} m (\dot x_1^2 + \dot x_2^2) - \frac{1}{2}(kx_1^2 + k_{12}(x_2-x_1)^2 + kx_2^2).
+\]</span> The equations of motion are thus given by <span class="math display">\[
+\begin{align*}
+m \ddot x_1 &amp;= -kx_1 + k_{12}(x_2 - x_1), \\
+m \ddot x_2 &amp;= -kx_1 - k_{12}(x_2 - x_1).
+\end{align*}
+\]</span> This is a coupled system of two linear differential equations. To solve, let’s suppose that both solutions are sinusoidal with the same frequency <span class="math inline">\(\omega\)</span>, say <span class="math inline">\(x_1 = A_1 \cos\omega t\)</span> and <span class="math inline">\(x_2 = A_2 \cos\omega t\)</span>. Then we have</p>
+</section>
+</section>
+<section id="general-problem" class="level2">
+<h2 class="anchored" data-anchor-id="general-problem">General Problem</h2>
+<p>Let’s now consider a system with <span class="math inline">\(n\)</span> degrees of freedom <span class="math inline">\(q_1, q_2, \cdots, q_n\)</span> given by a Lagrangian <span class="math display">\[
+L = \frac{1}{2} \dot q_i T_{ij}(q_1,\cdots,q_n) \dot q_j - V(q_1,\cdots,q_n).
+\]</span> Let’s re-write this in vector notation by defining <span class="math inline">\(\mathbf{q} \equiv (q_1,q_2,\cdots,q_n)\)</span> and <span class="math inline">\(\mathbf{T} \equiv (T_{ij})\)</span>. Then we have <span class="math display">\[
+L = \frac{1}{2}\mathbf{\dot q}^\top \mathbf{T}(\mathbf{q}) \mathbf{\dot q} - V(\mathbf{q}).
+\]</span> Now, suppose <span class="math inline">\(\mathbf{q}_0\)</span> is an equilibrium point of the system. Since the kinetic energy depends on <span class="math inline">\(\mathbf{q}\)</span> we’ll have to Taylor expand the entire Lagrangian about <span class="math inline">\(\mathbf{q}_0\)</span>. For <span class="math inline">\(V(\mathbf{q})\)</span> we have <span class="math display">\[
+V(\mathbf{q}) = V(\mathbf{q}_0) + \nabla V^\top(\mathbf{q}_0) (\mathbf{q}-\mathbf{q}_0) + \frac{1}{2} (\mathbf{q}-\mathbf{q}_0)^\top \mathbf{H}(\mathbf{q_0}) (\mathbf{q}-\mathbf{q}_0) + O\big(||\mathbf{q}-\mathbf{q}_0||^3\big).
+\]</span> Again, only differences in potential energy matter, so we can define <span class="math inline">\(V(\mathbf{q}_0) = 0\)</span>. Furthermore, since <span class="math inline">\(\mathbf{q}_0\)</span> is an equilibrium point, we must have <span class="math inline">\(\nabla V(\mathbf{q}_0) = \mathbf{0}\)</span>. Let’s define <span class="math inline">\(\mathbf{K} \equiv \mathbf{H}(\mathbf{q}_0)\)</span>. Then, to second-order in <span class="math inline">\(\mathbf{q}-\mathbf{q}_0\)</span> we have <span class="math display">\[
+V(\mathbf{q}) \approx \frac{1}{2} (\mathbf{q}-\mathbf{q}_0)^\top \mathbf{K} (\mathbf{q}-\mathbf{q}_0).
+\]</span> For the kinetic energy term, expanding <span class="math inline">\(\mathbf{T}(\mathbf{q})\)</span> about <span class="math inline">\(\mathbf{q}_0\)</span> in a similar manner gives <span class="math display">\[
+\mathbf{T}(\mathbf{q}) = \mathbf{T}(\mathbf{q}_0) + O\big(||\mathbf{q}-\mathbf{q}_0|| \big).
+\]</span> Defining <span class="math inline">\(\mathbf{M} \equiv \mathbf{T}(\mathbf{q}_0)\)</span> and dropping terms of higher order, we have <span class="math inline">\(\mathbf{T}(\mathbf{q}) \approx \mathbf{M}\)</span>. Plugging both of these terms into the Lagrangian and keeping only terms quadratic in <span class="math inline">\(\mathbf{q}\)</span> and <span class="math inline">\(\mathbf{q}_0\)</span>, we finally have, <span class="math display">\[
+L \approx \frac{1}{2} \mathbf{\dot q}^\top \mathbf{M} \mathbf{\dot q} - \frac{1}{2} (\mathbf{q}-\mathbf{q}_0)^\top \mathbf{K} (\mathbf{q}-\mathbf{q}_0).
+\]</span> This is the most general form of the Lagrangian for a many-body mechanical system when expanded to quadratic order about an equilibrium point. Most of the time we’ll want to re-center so that <span class="math inline">\(\mathbf{q}_0 = \mathbf{0}\)</span>. In that case, the Lagrangian reduces to just <span class="math display">\[
+L \approx \frac{1}{2} \mathbf{\dot q}^\top \mathbf{M} \mathbf{\dot q} - \frac{1}{2} \mathbf{q}^\top \mathbf{K} \mathbf{q}.
+\]</span> Notice this looks exactly like the scalar Lagrangian for SHO, <span class="math inline">\(L = \frac{1}{2}m \dot q^2 - \frac{1}{2} k q^2\)</span>, except everything is in matrix-vector notation now.</p>
+<p>We can solve Lagrange’s equations in matrix-vector notation now, <span class="math display">\[
+\frac{dL}{d\mathbf{q}} + \frac{d}{dt}\frac{dL}{d\mathbf{\dot q}} = \mathbf{0}.
+\]</span> Solving this system simply gives the vector equations of motion <span class="math display">\[
+\mathbf{M}\mathbf{\ddot q} = -\mathbf{K}\mathbf{q},
+\]</span> which is the <span class="math inline">\(n\)</span>-dimensional generalization of Hooke’s Law.</p>
+<p>Assuming <span class="math inline">\(\mathbf{M}\)</span> is invertible, we can define <span class="math inline">\(\mathbf{\Omega}^2 \equiv \mathbf{M}^{-1} \mathbf{K}\)</span>, and write <span class="math display">\[
+\mathbf{\ddot q} = -\mathbf{\Omega}^2 \mathbf{q}.
+\]</span> The nature of the solutions will depend on the definiteness of <span class="math inline">\(\mathbf{\Omega}^2\)</span>. Evidently, if <span class="math inline">\(\mathbf{\Omega}^2\)</span> is <em>positive definite</em>, the solutions will be stable. If <span class="math inline">\(\mathbf{\Omega}^2\)</span> is <em>negative definite</em>, the solutions will be unstable.</p>
+<p>Per ChatGPT: The general solution to the coupled oscillator <span class="math inline">\(M \ddot x = -K x\)</span> in closed form can be written as <span class="math display">\[
+x(t) = V \cos(\Omega t) c + V \sin(\Omega t) d,
+\]</span> where <span class="math inline">\(V\)</span> is the matrix of eigenvectors of <span class="math inline">\(\Omega^2 = M^{-1} K\)</span>, and <span class="math inline">\(c, d\)</span> are initial condition vectors.</p>
+<p>Verify this!!!</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -442,7 +533,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
-<nav class="page-navigation column-page-right">
+<nav class="page-navigation column-body">
   <div class="nav-page nav-page-previous">
       <a href="../classical-mechanics/central-forces.html" class="pagination-link">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Central Forces</span></span>

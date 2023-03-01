@@ -289,7 +289,16 @@ ul.task-list li input[type="checkbox"] {
    
   <ul>
   <li><a href="#configuration-space" id="toc-configuration-space" class="nav-link active" data-scroll-target="#configuration-space">Configuration Space</a></li>
-  <li><a href="#virtual-work" id="toc-virtual-work" class="nav-link" data-scroll-target="#virtual-work">Virtual Work</a></li>
+  <li><a href="#principle-of-virtual-work" id="toc-principle-of-virtual-work" class="nav-link" data-scroll-target="#principle-of-virtual-work">Principle of Virtual Work</a></li>
+  <li><a href="#solving-lagranges-equations" id="toc-solving-lagranges-equations" class="nav-link" data-scroll-target="#solving-lagranges-equations">Solving Lagrange’s Equations</a></li>
+  <li><a href="#principle-of-least-action" id="toc-principle-of-least-action" class="nav-link" data-scroll-target="#principle-of-least-action">Principle of Least Action</a></li>
+  <li><a href="#symmetries-and-conservation-laws" id="toc-symmetries-and-conservation-laws" class="nav-link" data-scroll-target="#symmetries-and-conservation-laws">Symmetries and Conservation Laws</a>
+  <ul class="collapse">
+  <li><a href="#cyclic-coordinates" id="toc-cyclic-coordinates" class="nav-link" data-scroll-target="#cyclic-coordinates">Cyclic Coordinates</a></li>
+  <li><a href="#noethers-theorem" id="toc-noethers-theorem" class="nav-link" data-scroll-target="#noethers-theorem">Noether’s Theorem</a></li>
+  </ul></li>
+  <li><a href="#non-conservative-forces" id="toc-non-conservative-forces" class="nav-link" data-scroll-target="#non-conservative-forces">Non-Conservative Forces</a></li>
+  <li><a href="#invariant-transformations" id="toc-invariant-transformations" class="nav-link" data-scroll-target="#invariant-transformations">Invariant Transformations</a></li>
   <li><a href="#examples" id="toc-examples" class="nav-link" data-scroll-target="#examples">Examples</a></li>
   </ul>
 </nav>
@@ -329,7 +338,11 @@ f(\mathbf{x}_1, \mathbf{x}_2, \cdots, \mathbf{x}_N, t) = 0.
 <p>Holonomicity requires that we be able to find a 1-1 map going back and forth between generalized coordinates and the position vectors, <span class="math display">\[
 q_i = q_i(\mathbf{x}_1, \mathbf{x}_2, \cdots, \mathbf{x}_N, t), \quad \mathbf{x}_\alpha = \mathbf{x}_\alpha(q_1, q_2, \cdots, q_n, t).
 \]</span> When the holonomic constraint isn’t time-dependent, they’re called <strong>scleronomic</strong> constraints. Otherwise they’re called <strong>rheonomic</strong> constraints. A system that’s not holonomic is called <strong>non-holonomic</strong>.</p>
+<hr>
+<p><strong>Example:</strong> Simple Pendulum</p>
 <p>As an easy example, consider the simple pendulum. Since there’s only one particle, <span class="math inline">\(N=1\)</span>. Since the length of the pendulum is fixed, that’s one constraint. Since the motion is confined to a plane, that’s another constraint. We thus have <span class="math inline">\(n=3N-C=3-2=1\)</span> degrees of freedom, which we can of course take to be the angle <span class="math inline">\(\theta\)</span>.</p>
+<hr>
+<p><strong>Example:</strong> Rigid Bodies</p>
 <p>A more interesting example is the rigid body. A <strong>rigid body</strong> is a system of <span class="math inline">\(N\)</span> particles whose particles are always a fixed distance apart, i.e.&nbsp;<span class="math inline">\(d_{ij} = |\mathbf{x}_i - \mathbf{x}_j|\)</span> is fixed for all <span class="math inline">\(i, j\)</span>. This fixed distance requirement introduces a lot of constraints on the system. To see this, suppose <span class="math inline">\(N=4\)</span>. Then there are <span class="math inline">\(C=6\)</span> constraints, since each particle must connect to each other particle. This means there are <span class="math inline">\(n=3N-C=6\)</span> degrees of freedom.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -337,9 +350,10 @@ q_i = q_i(\mathbf{x}_1, \mathbf{x}_2, \cdots, \mathbf{x}_N, t), \quad \mathbf{x}
 </figure>
 </div>
 <p>It turns out this fact extends to rigid bodies with arbitrarily many particles as well since adding a new particle gives 3 more coordinates, but also 3 more constraints. A rigid body will <em>always</em> have exactly 6 degrees of freedom, which we usually take to be the 3 center of mass coordinates and the three Euler angles.</p>
+<hr>
 </section>
-<section id="virtual-work" class="level2">
-<h2 class="anchored" data-anchor-id="virtual-work">Virtual Work</h2>
+<section id="principle-of-virtual-work" class="level2">
+<h2 class="anchored" data-anchor-id="principle-of-virtual-work">Principle of Virtual Work</h2>
 <p>Suppose we have a system of <span class="math inline">\(N\)</span> particles in mechanical equilibrium, so <span class="math inline">\(\mathbf{F}_i=\mathbf{0}\)</span> for all <span class="math inline">\(i\)</span>. Let’s imagine we perturb each particle <span class="math inline">\(\mathbf{x}_i\)</span> by some amount <span class="math inline">\(\delta \mathbf{x}_i\)</span>, but only in a way that doesn’t change the configuration space. This means each perturbation must be a function of the generalized coordinates, <span class="math inline">\(\delta \mathbf{x}_i = \delta \mathbf{x}_i(q_1, q_2, \cdots, q_n, t)\)</span>. Define the <strong>virtual work</strong> done on the system by, <span class="math display">\[
 \delta W \equiv \sum \mathbf{F}_i \cdot \delta\mathbf{x}_i
 \]</span> Now, let’s decompose each force <span class="math inline">\(\mathbf{F}_i\)</span> into a sum of two components, an <em>applied force</em> <span class="math inline">\(\mathbf{F}_i^{app}\)</span> and a constraint force <span class="math inline">\(\mathbf{F}_i^{con}\)</span>. The applied forces are the ones that do work on each particle, while the constraint forces are the ones that keep them confined to the configuration space. If the system is exactly in equilibrium, then <span class="math inline">\(\mathbf{F}_i = \mathbf{F}_i^{app} + \mathbf{F}_i^{con} = \mathbf{0}\)</span>, which means <span class="math inline">\(\delta W = 0\)</span> in equilibrium. But since constraint forces do no work, we get <span class="math display">\[
@@ -358,28 +372,31 @@ Q_j = \frac{d}{dt} \frac{\partial T}{\partial \dot q_j} - \frac{\partial T}{\par
 \]</span> In the special case where the forces on the system are conservative, we can use the potential energy <span class="math inline">\(V\)</span> to express the generalized forces as <span class="math inline">\(Q_j = -\frac{\partial V}{\partial q_i}\)</span>. Defining a function <span class="math inline">\(L \equiv T - V\)</span> called the <strong>Lagrangian</strong> and re-arranging terms, we finally have <span class="math display">\[
 \frac{\partial L}{\partial q_j} - \frac{d}{dt} \frac{\partial L}{\partial \dot q_j} = 0.
 \]</span> This gives a set of <span class="math inline">\(n\)</span> equations for the generalized coordinates, called <strong>Lagrange’s equations</strong>.</p>
-<p>To see why the Lagrange’s equations are useful, consider the special case where <span class="math inline">\(T=\frac{1}{2} \sum_i m_i \dot x_i^2\)</span> and <span class="math inline">\(V = V(x_1, x_2, \cdots, x_n)\)</span>. Then we have a Lagrangian of the form <span class="math display">\[
+<p>To see why Lagrange’s equations are useful, consider the case when <span class="math inline">\(T=\frac{1}{2} \sum_i m_i \dot x_i^2\)</span> and <span class="math inline">\(V = V(x_1, x_2, \cdots, x_n)\)</span>. Then we have a Lagrangian of the form <span class="math display">\[
 L = T - V = \frac{1}{2} \sum_i m_i \dot x_i^2 - V(x_1, x_2, \cdots, x_n),
 \]</span> which we can plug into the Euler-Lagrange Equations to get <span class="math display">\[
 m \ddot x_i = - \frac{\partial V}{\partial x_i} \quad \forall i=1,2,\cdots,n.
 \]</span> But this is just <span class="math inline">\(\mathbf{F} = m \mathbf{a}\)</span>! Evidently we’ve managed to reproduce Newton’s Laws from Lagrange’s equations. This in some sense suggest that Lagrange’s equations might be more general than Newton’s Laws, and in fact they are as we’ll see later.</p>
 </section>
-<section id="examples" class="level2">
-<h2 class="anchored" data-anchor-id="examples">Examples</h2>
+<section id="solving-lagranges-equations" class="level2">
+<h2 class="anchored" data-anchor-id="solving-lagranges-equations">Solving Lagrange’s Equations</h2>
 <p>The Lagrangian formulation is very useful for solving problems that would be very complicated to solve using Newtonian approaches. This is particular true when there are complex constraints present. It’s thus very helpful to see a bunch of examples showing how to solve problems using Lagrangian methods.</p>
 <p>To solve a problem using Lagrange’s equations we need to do the following steps:</p>
 <ol type="1">
-<li>Figure out how many degrees of freedom the system has using <span class="math inline">\(n=3N-C\)</span>.</li>
-<li>Identify the generalized coordinates <span class="math inline">\(q_1,q_2,\cdots,q_n\)</span>.</li>
-<li>Express each of the velocity vectors as a function of the <span class="math inline">\(q_i\)</span>’s, <span class="math inline">\(\mathbf{v}_i = \mathbf{v}_i(q_1,q_2,\cdots,q_n)\)</span>. Use these to write down the kinetic energy as <span class="math inline">\(T = \frac{1}{2}\sum_i m_i \mathbf{v_i}^2\)</span>.</li>
-<li>Write down the potential energy as a function of the <span class="math inline">\(q_i\)</span>’s, so <span class="math inline">\(V=V(q_1,q_2,\cdots,q_n)\)</span>.</li>
-<li>Write down the Lagrangian <span class="math inline">\(L = T - V\)</span>.</li>
-<li>Use Lagrange’s equations to get the equations of motion for the <span class="math inline">\(q_i\)</span>’s.</li>
-<li>Solve for the trajectories <span class="math inline">\(q_1(t),q_2(t),\cdots,q_n(t)\)</span>.</li>
-<li>If desired, convert back to real space coordinates via <span class="math inline">\(\mathbf{x}_\alpha = \mathbf{x}_\alpha(q_1,q_2,\cdots,q_n)\)</span>.</li>
+<li><p>Figure out how many degrees of freedom the system has using <span class="math inline">\(n=3N-C\)</span>.</p></li>
+<li><p>Identify the generalized coordinates <span class="math inline">\(q_1,q_2,\cdots,q_n\)</span>.</p></li>
+<li><p>Express the velocity vectors as a function of the generalized coordinates, <span class="math inline">\(\mathbf{v}_i = \mathbf{v}_i(q_1,q_2,\cdots,q_n)\)</span>.</p></li>
+<li><p>Write down the kinetic energy <span class="math inline">\(T = \frac{1}{2}\sum_i m_i \mathbf{v_i}^2(q_1,q_2,\cdots,q_n)\)</span>, the potential energy <span class="math inline">\(V=V(q_1,q_2,\cdots,q_n)\)</span>, and finally the Lagrangian <span class="math display">\[
+L = T - V.
+\]</span></p></li>
+<li><p>Use Lagrange’s equations to derive the equations of motion for the generalized coordinates, <span class="math display">\[
+\frac{\partial L}{\partial q_j} - \frac{d}{dt} \frac{\partial L}{\partial \dot q_j} = 0 \quad \forall j=1,2\cdots,n.
+\]</span></p></li>
+<li><p>Integrate the equations of motion to get the generalized trajectories <span class="math inline">\(q_1(t),q_2(t),\cdots,q_n(t)\)</span>.</p></li>
+<li><p>If desired, convert back to real space coordinates via <span class="math inline">\(\mathbf{x}_\alpha = \mathbf{x}_\alpha(q_1,q_2,\cdots,q_n)\)</span>.</p></li>
 </ol>
-<section id="example-the-simple-spring" class="level4">
-<h4 class="anchored" data-anchor-id="example-the-simple-spring">Example: The Simple Spring</h4>
+<hr>
+<p><strong>Example:</strong> The Simple Spring</p>
 <p>Suppose a mass <span class="math inline">\(m\)</span> is attached to an ideal spring with spring constant <span class="math inline">\(k\)</span>.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -397,9 +414,8 @@ q(t) = A\cos(\omega t - \delta), \quad \omega^2 \equiv \frac{k}{m}.
 \]</span> If desired, in this case we could convert back to real coordinates via <span class="math display">\[
 \mathbf{x}(t) = q(t) \mathbf{e}_x = A\cos(\omega t - \delta)\mathbf{e}_x.
 \]</span></p>
-</section>
-<section id="example-simple-pendulum" class="level4">
-<h4 class="anchored" data-anchor-id="example-simple-pendulum">Example: Simple Pendulum</h4>
+<hr>
+<p><strong>Example:</strong> Simple Pendulum</p>
 <p>Suppose a mass <span class="math inline">\(m\)</span> is attached to a massless string of fixed length <span class="math inline">\(\ell\)</span> and allowed to swing.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -413,30 +429,297 @@ L = \frac{1}{2} m\ell^2 \dot q^2 + mg\ell\cos q.
 \]</span> Solving Lagrange’s equation, we get the equation of motion <span class="math display">\[
 m\ell^2 \ddot q + mg\ell\sin q = 0,
 \]</span> which is of course the usual equation of motion for the pendulum when <span class="math inline">\(q=\theta\)</span>.</p>
-</section>
-<section id="example-central-potential" class="level4">
-<h4 class="anchored" data-anchor-id="example-central-potential">Example: Central Potential</h4>
+<hr>
+<p><strong>Example:</strong> Central Potential</p>
 <p>Suppose a particle of mass <span class="math inline">\(m\)</span> is in the presence of a central force field <span class="math inline">\(V=V(r)\)</span>. There’s one constraint since the problem must be spherically symmetric, which means we have <span class="math inline">\(n=2\)</span> degrees of freedom. Working in spherical coordinates, the kinetic and potential energies are given by <span class="math display">\[
 T = \frac{1}{2} m (\dot r^2 + r \dot \varphi^2), \quad V = V(r).
 \]</span> Plugging these into Lagrange’s equation and solving gives two equations of motion for <span class="math inline">\(r\)</span> and <span class="math inline">\(\varphi\)</span>, <span class="math display">\[
 m \ddot r = mr \dot\varphi^2 - \frac{dV}{dr}\\
 \frac{d}{dt} mr^2 \dot\varphi = 0.
 \]</span> The second equation is interesting. It says the quantity <span class="math inline">\(\ell = mr^2 \dot\varphi\)</span> must be conserved. But this is just the angular momentum of the system! Evidently, conservation laws somehow fall out of Lagrange’s equations provided the right generalized coordinates are chosen.</p>
-</section>
-<section id="example-double-pendulum" class="level4">
-<h4 class="anchored" data-anchor-id="example-double-pendulum">Example: Double Pendulum</h4>
-<p>The examples considered so far are pretty easy to solve using Newtonian methods. Here’s an example that’s far easier to solve in the Lagrangian formulation. Suppose we have a double pendulum, where a mass is attached to the end of another pendulum and both are allowed to swing. Suppose both masses have mass <span class="math inline">\(m\)</span> and both strings are a fixed length <span class="math inline">\(\ell\)</span>.</p>
+<hr>
+<p><strong>Example:</strong> Double Pendulum</p>
+<p>The examples considered so far are pretty easy to solve using Newtonian methods. Here’s an example where it’s far easier to write down the equations of motion in the Lagrangian formulation. Consider the double pendulum, where a mass is attached to the end of another pendulum and both are allowed to swing. Suppose both masses have mass <span class="math inline">\(m\)</span> and both strings are a fixed length <span class="math inline">\(\ell\)</span>.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="./resources/image-20230218215415855.png" class="img-fluid figure-img" width="300"></p>
 </figure>
 </div>
-<p>Here there are <span class="math inline">\(N=2\)</span> particles, each of which has two constraints. That means there are <span class="math inline">\(n=2\)</span> total degrees of freedom in this system. Take those to be the two angles <span class="math inline">\(\theta_1\)</span> and <span class="math inline">\(\theta_2\)</span>. Writing down the kinetic and potential energies, we have <span class="math display">\[
-T = \frac{1}{2}, \quad V =
+<p>Here there are <span class="math inline">\(N=2\)</span> particles, each of which has two constraints. That means there are <span class="math inline">\(n=2\)</span> total degrees of freedom in this system. From the above diagram we can see <span class="math display">\[
+\begin{align*}
+&amp;x_1 = \ell \sin\theta_1, \quad &amp;&amp;x_2 = \ell(\sin\theta_1 + \sin\theta_2), \\
+&amp;y_1 = -\ell \cos\theta_1, \quad &amp;&amp;y_2 = -\ell(\cos\theta_1 + \cos\theta_2). \\
+\end{align*}
+\]</span> We’ll choose the two angles <span class="math inline">\(\theta_1, \theta_2\)</span> to be the generalized coordinates. The energies for each mass are given by <span class="math display">\[
+\begin{align*}
+T_1 &amp;= \frac{1}{2}m (\dot x_1^2 + \dot y_1^2) = \frac{1}{2}m \ell^2 \dot \theta_1^2, \quad &amp;&amp;
+T_2 = \frac{1}{2}m (\dot x_2^2 + \dot y_2^2) = \frac{1}{2}m \ell^2\big(\dot\theta_1^2 + \dot\theta_2^2 + 2\cos(\theta_1-\theta_2)\dot\theta_1\dot\theta_2\big), \\
+V_1 &amp;= mgy_1 = -mg\ell\cos\theta_1, \quad &amp;&amp; V_2 = mgy_2 = -mg\ell(\cos\theta_1 + \cos\theta_2).\\
+\end{align*}
 \]</span></p>
-
-
+<p>Putting these all into the Lagrangian and simplifying, we evidently get <span class="math display">\[
+L = \frac{1}{2}m\ell^2\big(2\dot \theta_1^2 + \dot \theta_2^2 + 2\dot\theta_1\dot\theta_2\cos(\theta_1-\theta_2) \big) + mg\ell(2\cos\theta_1 + \cos\theta_2).
+\]</span> This then gives the following two equations of motion <span class="math display">\[
+\begin{align*}
+-m\ell^2\dot\theta_1\dot\theta_2\sin(\theta_1-\theta_2) - 2mg\ell\sin\theta_1 &amp;= m\ell^2 \frac{d}{dt} \big(\dot\theta_1 + 2\dot\theta_2\cos(\theta_1-\theta_2)\big), \\
+m\ell^2\dot\theta_1\dot\theta_2\sin(\theta_1-\theta_2) - mg\ell\sin\theta_2 &amp;= m\ell^2 \frac{d}{dt} \big(\dot\theta_2 + 2\dot\theta_1\cos(\theta_1-\theta_2) \big). \\
+\end{align*}
+\]</span></p>
+<hr>
 </section>
+<section id="principle-of-least-action" class="level2">
+<h2 class="anchored" data-anchor-id="principle-of-least-action">Principle of Least Action</h2>
+<p>A more general, first principles way to derive Lagrange’s equations is via an action principle. Action principles are a very general and powerful tool that applies across pretty much all of modern physics. Suppose we have <span class="math inline">\(n\)</span> generalized coordinates <span class="math inline">\(q_1,q_2,\cdots,q_n\)</span>. For simplicity I’ll write these as a vector, <span class="math display">\[
+\mathbf{q} = (q_1,q_2,\cdots,q_n).
+\]</span> Define the <strong>action</strong> <span class="math inline">\(S\)</span> as a <em>functional</em> of <span class="math inline">\(\mathbf{q}\)</span> of the form <span class="math display">\[
+S[\mathbf{q}] \equiv \int_{t_1}^{t_2} L(\mathbf{q}, \mathbf{\dot q}, t) dt.
+\]</span> We assume the times <span class="math inline">\(t_1\)</span> and <span class="math inline">\(t_2\)</span> are fixed. The integrand function <span class="math inline">\(L(\mathbf{q}, \mathbf{\dot q}, t)\)</span> is called the <strong>Lagrangian</strong>. Note in general the Lagrangian can depend explicitly on time.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./resources/image-20230301041011915.png" class="img-fluid figure-img" width="300"></p>
+</figure>
+</div>
+<p>Similar to how it’s useful to analyze a function by looking at its behavior around its minima, we’ll want to analyze the functional <span class="math inline">\(S\)</span> by looking at its behavior around the <em>stationary points</em> of <span class="math inline">\(\mathbf{q}\)</span>. To do so, consider a small perturbation <span class="math inline">\(\delta\mathbf{q} \equiv \varepsilon\boldsymbol{\eta}\)</span> of the coordinates, where <span class="math inline">\(\boldsymbol{\eta} = \boldsymbol{\eta}(t)\)</span> is a function that vanishes at the endpoints <span class="math inline">\(t_1\)</span> and <span class="math inline">\(t_2\)</span>, and <span class="math inline">\(\varepsilon \ll 1\)</span>. To proceed, we’ll assume the following fundamental principle:</p>
+<p><strong>Principle of Least Action: </strong> Physical trajectories evolve in such a way that the action remains stationary, i.e. <span class="math display">\[
+\delta S[\mathbf{q}] \equiv \frac{\partial S}{\partial \varepsilon} \bigg|_{\varepsilon=0} = 0.
+\]</span> This means if we want to figure out how physical trajectories evolve, we need to find the optimal <span class="math inline">\(\mathbf{q}\)</span> that make the action <span class="math inline">\(S\)</span> stationary. To do that, let’s set <span class="math inline">\(\delta S[\mathbf{q}] = 0\)</span> and solve. We have <span class="math display">\[
+0 = \delta S[\mathbf{q}] = \int_{t_1}^{t_2} \delta L(\mathbf{q}, \mathbf{\dot q}, t) dt = \int_{t_1}^{t_2}\bigg(\frac{\partial L}{\partial\mathbf{q}} \cdot \delta \mathbf{q} + \frac{\partial L}{\partial\mathbf{\dot q}} \cdot \delta \mathbf{\dot q} \bigg) \cdot \delta\mathbf{q} dt
+\]</span> Now, if we perform integration by parts on the second term, we can move the time derivative from <span class="math inline">\(\delta\mathbf{\dot q}\)</span> to the derivative <span class="math inline">\(\frac{\partial L}{\partial\mathbf{\dot q}}\)</span> at the cost of a minus sign, so we have <span class="math display">\[
+0 = \delta S[\mathbf{q}] = \int_{t_1}^{t_2}\bigg(\frac{\partial L}{\partial\mathbf{q}} - \frac{d}{dt}\frac{\partial L}{\partial\mathbf{\dot q}} \bigg) \cdot \delta \mathbf{q} dt.
+\]</span> Note the boundary terms vanish since we require <span class="math inline">\(\boldsymbol{\eta}\)</span> to vanish at the endpoints. Assuming each of the coordinates in <span class="math inline">\(\mathbf{q}\)</span> are functionally independent the integrand must vanish identically, so we have <span class="math display">\[
+\frac{\partial L}{\partial\mathbf{q}} - \frac{d}{dt}\frac{\partial L}{\partial\mathbf{\dot q}} = \mathbf{0}.
+\]</span> Of course, this is just the vector formulation of Lagrange’s equations. We’ve thus fully recovered Lagrange’s equations, and by extension Newton’s Laws for conservative systems, purely from the Principle of Least Action.</p>
+<p>Notice how general this derivation was. We didn’t even assume any specific form of the Lagrangian like <span class="math inline">\(L = T-V\)</span>. We only assumed it was a function of the generalized positions, velocities, and time. If we believe the Principle of Least Action, evidently <em>any</em> Lagrangian <span class="math inline">\(L(\mathbf{q}, \mathbf{\dot q}, t)\)</span> will produce equations of motion for <em>some</em> system, not necessarily mechanical, or even classical.</p>
+</section>
+<section id="symmetries-and-conservation-laws" class="level2">
+<h2 class="anchored" data-anchor-id="symmetries-and-conservation-laws">Symmetries and Conservation Laws</h2>
+<p>It’s a deep fact of physics that the symmetries of a system are intimately connected with its conservation laws. It’s both practically and theoretically useful to better understand this connection.</p>
+<section id="cyclic-coordinates" class="level3">
+<h3 class="anchored" data-anchor-id="cyclic-coordinates">Cyclic Coordinates</h3>
+<p>Consider a general Lagrangian of the form <span class="math inline">\(L = L(\mathbf{q}, \mathbf{\dot q}, t)\)</span>. Without loss of generality, suppose the Lagrangian happens to <em>not</em> be a function of the coordinate <span class="math inline">\(q_1\)</span>, so <span class="math display">\[
+L = L(q_2,\cdots,q_n,\dot q_1,\dot q_2, \cdots, \dot q_n, t).
+\]</span> Note it can still be a function of the first coordinate’s velocity <span class="math inline">\(\dot q_1\)</span>. In this situation, we’d say the coordinate <span class="math inline">\(q_1\)</span> is a <strong>cyclic coordinate</strong> or <strong>ignorable coordinate</strong>. Evidently, it follows that <span class="math display">\[
+\frac{\partial L}{\partial q_1} = 0 \quad \Longrightarrow \quad 0 = \frac{d}{dt} \frac{\partial L}{\partial \dot q_1} \quad \Longrightarrow \quad p_1 \equiv \frac{\partial L}{\partial \dot q_1} = const.
+\]</span> We call <span class="math inline">\(p_1\)</span> the <strong>conjugate momentum</strong> to <span class="math inline">\(q_1\)</span>. We’ve thus shown that if <span class="math inline">\(q_1\)</span> is cyclic, then its conjugate momentum <span class="math inline">\(p_1\)</span> is conserved.</p>
+<hr>
+<p><strong>Example:</strong> Free Particle</p>
+<p>For a free particle, we have <span class="math inline">\(L = \frac{1}{2}m \dot x^2\)</span>. Since <span class="math inline">\(L\)</span> is not a function of <span class="math inline">\(x\)</span>, evidently <span class="math inline">\(x\)</span> is cyclic, which means its conjugate momentum <span class="math inline">\(p_x\)</span> is conserved, <span class="math display">\[
+p_x = \frac{\partial L}{\partial \dot x} = m \dot x = const.
+\]</span> Notice in this case the conjugate momentum is the same thing as the ordinary linear momentum. This need not always be true. The conjugate momentum is more general than this.</p>
+<hr>
+<p><strong>Example</strong>: Central Force in a Plane</p>
+<p>In this case the Lagrangian is given by <span class="math display">\[
+L = \frac{1}{2} m (\dot r^2 + r^2 \dot\varphi^2) - V(r).
+\]</span> Since <span class="math inline">\(\varphi\)</span> is cyclic, its conjugate momentum <span class="math inline">\(p_\varphi\)</span> must evidently be conserved, <span class="math display">\[
+p_\varphi = \frac{\partial L}{\partial \dot \varphi} = mr^2\dot\varphi = const.
+\]</span> Notice this is just the <span class="math inline">\(z\)</span>-component of angular momentum <span class="math inline">\(L_z = \ell\)</span>.</p>
+<hr>
+</section>
+<section id="noethers-theorem" class="level3">
+<h3 class="anchored" data-anchor-id="noethers-theorem">Noether’s Theorem</h3>
+<p>We can still have conserved quantities in a given system even if none of its generalized coordinates are explicitly cyclic. This will happen, for example, if we didn’t happen to choose the <em>natural</em> choice of coordinates for some given problem, the ones that take advantage of the system’s symmetries.</p>
+<p>To find conserved quantities, we need to find the symmetries. Formally, we’ll say a <em>symmetry</em> is any continuous transformation on the generalized coordinates that leaves the Lagrangian invariant. That is, for some parameter <span class="math inline">\(s\)</span>, if <span class="math inline">\(\mathbf{q}\)</span> is continuously transformed to <span class="math inline">\(\mathbf{q}_s\)</span>, then <span class="math inline">\(s\)</span> is a <strong>symmetry</strong> provided <span class="math display">\[
+L(\mathbf{q}_s, \mathbf{\dot q}_s, t) = L(\mathbf{q}, \mathbf{\dot q}, t).
+\]</span> <strong>Noether’s Theorem:</strong> If <span class="math inline">\(s\)</span> is a symmetry of a system, then the quantity given by <span class="math display">\[
+Q \equiv \mathbf{p} \cdot \frac{\partial \mathbf{q}}{\partial s} = p_i \frac{\partial q_i}{\partial s}
+\]</span> must be conserved under transformation by <span class="math inline">\(s\)</span>. We call <span class="math inline">\(Q\)</span> the <strong>Noether charge</strong> associated with <span class="math inline">\(s\)</span>.</p>
+<hr>
+<p><strong>Proof:</strong> To prove this theorem we need to show that <span class="math inline">\(\dot Q = 0\)</span>. Since <span class="math inline">\(s\)</span> is a symmetry, we must have <span class="math display">\[
+\frac{\partial}{\partial s} L(\mathbf{q}_s, \mathbf{\dot q}_s, t) = \frac{\partial}{\partial s} L(\mathbf{q}, \mathbf{\dot q}, t) = 0.
+\]</span> Using the chain rule together with Lagrange’s equations on <span class="math inline">\(L(\mathbf{q}_s, \mathbf{\dot q}_s, t)\)</span>, we finally get <span class="math display">\[
+\begin{align*}
+\mathbf{0} &amp;= \frac{\partial}{\partial s} L(\mathbf{q}_s, \mathbf{\dot q}_s, t) \\
+&amp;= \frac{\partial L}{\partial \mathbf{q}_s} \cdot \frac{\partial \mathbf{q}_s}{\partial s} + \frac{\partial L}{\partial \mathbf{\dot q}_s} \cdot \frac{\partial \mathbf{\dot q}_s}{\partial s} \\
+&amp;= \frac{d}{dt} \frac{\partial L}{\partial \mathbf{\dot q}_s} \cdot \frac{\partial \mathbf{q}_s}{\partial s} + \frac{\partial L}{\partial \mathbf{\dot q}_s} \cdot \frac{d}{dt} \frac{\partial \mathbf{q}_s}{\partial s} \\
+&amp;= \frac{d}{dt} \bigg(\frac{\partial L}{\partial \mathbf{\dot q}_s} \cdot \frac{\partial \mathbf{q}_s}{\partial s}\bigg) \\
+&amp;= \frac{d}{dt} \bigg(\mathbf{p} \cdot \frac{\partial \mathbf{q}}{\partial s}\bigg). \tag*{$\square$}
+\end{align*}
+\]</span></p>
+<hr>
+<p><strong>Example: </strong> Conservation of Linear Momentum</p>
+<p>Suppose a single particle is moving through space. Suppose the space is <em>homogeneous</em>, that is, the particle’s Lagrangian is invariant to translations in space, <span class="math display">\[
+L(\mathbf{x}, \mathbf{\dot x}, t) = L(\mathbf{x} + \delta\mathbf{x}, \mathbf{\dot x}, t).
+\]</span> This is equivalent to saying the particle has a symmetry of the form <span class="math inline">\(\mathbf{x}(s) = \mathbf{x} + s\boldsymbol{\varepsilon}\)</span>, where <span class="math inline">\(\boldsymbol{\varepsilon}\)</span> is constant. In this case, we’d evidently have <span class="math display">\[
+Q = \mathbf{p} \cdot \frac{\partial \mathbf{x}}{\partial s} = \mathbf{p} \cdot \boldsymbol{\varepsilon} = const.
+\]</span> Since <span class="math inline">\(\boldsymbol{\varepsilon}\)</span> is an arbitrary constant, we must have <span class="math inline">\(\mathbf{p} = m \mathbf{\dot x} = const\)</span>. That is, the linear momentum of the particle is conserved. Equivalently, if space is <em>homogeneous</em>, then the total <em>linear momentum</em> will be conserved.</p>
+<hr>
+<p><strong>Example: </strong> Conservation of Angular Momentum</p>
+<p>Suppose again a single particle is moving through space. Suppose this time that space is <em>isotropic</em>, that is, the particle’s Lagrangian is invariant to <em>rotations</em> in space, <span class="math display">\[
+L(\mathbf{x}, \mathbf{\dot x}, t) = L\big(\delta\mathbf{R}\mathbf{x}, \mathbf{\dot x}, t\big).
+\]</span> Now, we can always think of a rotation in space as a rotation about some axis. For simplicity we’ll choose that axis to be the <span class="math inline">\(z\)</span>-axis, in which case we can think of <span class="math inline">\(\delta\mathbf{R}\)</span> as rotating <span class="math inline">\(\mathbf{x}\)</span> by some azimuthal angle <span class="math inline">\(\delta\varphi\)</span>. Take as generalized coordinates the spherical coordinates <span class="math inline">\(r, \theta, \varphi\)</span>. Then rotational invariance is equivalent to saying the particle has a symmetry of the form <span class="math inline">\(\varphi(s) = \varphi + s\)</span>. We thus have <span class="math display">\[
+Q = p_r \frac{\partial r}{\partial s} + p_\theta \frac{\partial \theta}{\partial s} + p_\varphi \frac{\partial \varphi}{\partial s} = p_\varphi = const.
+\]</span> That is, the angular momentum <span class="math inline">\(L_z = mr^2 \dot \varphi = const\)</span>. Since choosing the <span class="math inline">\(z\)</span>-axis as the rotation axis was arbitrary, this says the total angular momentum <span class="math inline">\(\mathbf{L} = const\)</span>. That is, the angular momentum of the particle is conserved. Equivalently, if space is <em>isotropic</em>, then the total <em>angular momentum</em> will be conserved.</p>
+<hr>
+<p>What about energy though? When is it conserved? It turns out that energy conservation is connected to <em>time translation invariance</em>, which is a little bit more subtle. Suppose a Lagrangian had a time translational symmetry of the form <span class="math inline">\(t(s) = t + s\)</span>. Since all of <span class="math inline">\(L\)</span>, <span class="math inline">\(\mathbf{q}\)</span>, and <span class="math inline">\(\mathbf{\dot q}\)</span> depend explicitly on time, this means we’d have <span class="math display">\[
+L\big(\mathbf{q}(t), \mathbf{\dot q}(t), t\big) = L\big(\mathbf{q}(t + s), \mathbf{\dot q}(t + s), t + s\big).
+\]</span> Following along the proof of Noether’s Theorem, we’d have <span class="math display">\[
+0 = \frac{\partial L}{\partial s} = \frac{\partial L}{\partial t} \frac{\partial t}{\partial s} = \frac{\partial L}{\partial t}.
+\]</span> That is, <span class="math inline">\(\frac{\partial L}{\partial t} = 0\)</span>, which means now <em>time</em> is cyclic, and the Lagrangian doesn’t have any explicit time dependence. Now, if we take the <em>total</em> time derivative of the Lagrangian, we get <span class="math display">\[
+\begin{align*}
+\frac{dL}{dt} &amp;= \frac{\partial L}{\partial \mathbf{q}} \cdot \mathbf{\dot q} + \frac{\partial L}{\partial \mathbf{\dot q}} \cdot \mathbf{\ddot q} + \frac{\partial L}{\partial t} \\
+&amp;= \frac{d}{dt} \frac{\partial L}{\partial \mathbf{\dot q}} \cdot \mathbf{\dot q} + \frac{\partial L}{\partial \mathbf{\dot q}} \cdot \mathbf{\ddot q} + \frac{\partial L}{\partial t} \\
+&amp;= \mathbf{\dot p} \cdot \mathbf{\dot q} + \mathbf{p} \cdot \mathbf{\ddot q} + \frac{\partial L}{\partial t} \\
+&amp;= \frac{d}{dt} \mathbf{p} \cdot \mathbf{\dot q} + \frac{\partial L}{\partial t}.
+\end{align*}
+\]</span> When time is cyclic, we must have <span class="math display">\[
+H \equiv \mathbf{p} \cdot \mathbf{\dot q} - L = const.
+\]</span> This function is called the <strong>Hamiltonian</strong>. We’ve just shown that when a system is time translation invariant, its Hamiltonian must be conserved, whatever that is.</p>
+<p>To see what exactly <span class="math inline">\(H\)</span> is, let’s consider a Lagrangian of the form <span class="math display">\[
+L = T - V = \frac{1}{2} \mathbf{\dot q} \cdot \mathbf{T}(\mathbf{q}) \cdot \mathbf{\dot q} - V(\mathbf{q}).
+\]</span> In this case, the Hamiltonian would be <span class="math display">\[
+\begin{align*}
+H &amp;= \frac{\partial L}{\partial \mathbf{\dot q}} \cdot \mathbf{\dot q} - L \\
+&amp;= \mathbf{\dot q} \cdot \mathbf{T}(\mathbf{q}) \cdot \mathbf{\dot q} - \frac{1}{2} \mathbf{\dot q} \cdot \mathbf{T}(\mathbf{q}) \cdot \mathbf{\dot q} + V(\mathbf{q}) \\
+&amp;= \frac{1}{2} \mathbf{\dot q} \cdot \mathbf{T}(\mathbf{q}) \cdot \mathbf{\dot q} + V(\mathbf{q}) \\
+&amp;= T + V. \\
+\end{align*}
+\]</span> That is, if <span class="math inline">\(L = T-V\)</span>, then <span class="math inline">\(H=T+V\)</span>. But <span class="math inline">\(T+V\)</span> is just the total energy <span class="math inline">\(E\)</span>. We thus finally have the conservation of energy. If <span class="math inline">\(L = T-V\)</span> and time is homogeneous, then the total energy <span class="math inline">\(E\)</span> is conserved.</p>
+</section>
+</section>
+<section id="non-conservative-forces" class="level2">
+<h2 class="anchored" data-anchor-id="non-conservative-forces">Non-Conservative Forces</h2>
+<p>As we’ve derived them, Lagrange’s equations only hold for systems with conservative forces. In some special cases, we can augment non-conservative forces into Lagrange’s equations as well. Suppose for example we had <span class="math inline">\(L = T - U\)</span>, where <span class="math inline">\(U = U(\mathbf{q}, \mathbf{\dot q}, t)\)</span> is some kind of generalized potential energy. Then the generalized forces have the form <span class="math display">\[
+\mathbf{Q} = - \frac{\partial U}{\partial \mathbf{q}} + \frac{d}{dt} \frac{\partial U}{\partial \mathbf{\dot q}}.
+\]</span> In this case, we can solve Lagrange’s equations for <span class="math inline">\(L = T-U\)</span> and everything would work fine even though <span class="math inline">\(U\)</span> is not a proper potential energy anymore.</p>
+<hr>
+<p><strong>Example:</strong> Charged Particle in an Electromagnetic Field</p>
+<p>Suppose a particle of mass <span class="math inline">\(m\)</span> and charge <span class="math inline">\(q\)</span> is moving in the presence of an electromagnetic field. We already know that such a particle obeys the Lorentz force law <span class="math display">\[
+\mathbf{F} = q \mathbf{E}(\mathbf{x},t) + \frac{q}{c} \mathbf{v} \times \mathbf{B}(\mathbf{x},t).
+\]</span> Can we derive this from a Lagrangian? Notice that this force isn’t conservative since it’s a function of the particle’s velocity. However, we can still derive a generalized potential energy <span class="math inline">\(U=U(\mathbf{x},\mathbf{v},t)\)</span> as follows. We know from electrodynamics that we can express the electric field <span class="math inline">\(\mathbf{E}\)</span> and magnetic field <span class="math inline">\(\mathbf{B}\)</span> as derivatives of a scalar potential <span class="math inline">\(\phi\)</span> and a vector potential <span class="math inline">\(\mathbf{A}\)</span>, <span class="math display">\[
+\begin{align*}
+\mathbf{E}(\mathbf{x},t) &amp;= - \nabla \phi(\mathbf{x},t) - \frac{1}{c} \frac{\partial}{\partial t} \mathbf{A}(\mathbf{x},t), \\
+\mathbf{B}(\mathbf{x},t) &amp;= \nabla \times \mathbf{A}(\mathbf{x},t). \\
+\end{align*}
+\]</span> Let’s define <span class="math display">\[
+U(\mathbf{x},\mathbf{v},t) = q \phi(\mathbf{x},t) - \frac{q}{c} \mathbf{v} \cdot \mathbf{A}(\mathbf{x},t).
+\]</span> Then the Lagrangian for this system is given by <span class="math display">\[
+L = T - U = \frac{1}{2} m \mathbf{v}^2 - q \phi(\mathbf{x},t) + \frac{q}{c} \mathbf{v} \cdot \mathbf{A}(\mathbf{x},t).
+\]</span> Though a little painful, it’s not hard to show that solving Lagrange’s equations reproduces the above Lorentz force law.</p>
+<hr>
+<p>More generally, we can always just manually add in any non-conservative forces to the equations of motion after Lagrange’s equations have been solved, but they’d need to be converted to generalized forces first. Given some force <span class="math inline">\(\mathbf{F}\)</span>, we can augment Lagrange’s equations by writing <span class="math display">\[
+\frac{\partial L}{\partial\mathbf{q}} - \frac{d}{dt}\frac{\partial L}{\partial\mathbf{\dot q}} = \mathbf{Q},
+\]</span> where <span class="math inline">\(\mathbf{Q} = \mathbf{F} \cdot \frac{\partial \mathbf{x}}{\partial \mathbf{q}}\)</span> is the associated generalized force.</p>
+<p>In the special case that a non-conservative force is linear in the generalized velocities, we can augment the Lagrangian by defining the <strong>Rayleigh dissipation function</strong> <span class="math inline">\(\mathcal{F}\)</span> given by <span class="math display">\[
+\mathcal{F} \equiv \frac{1}{2} \mathbf{\dot q} \cdot \mathbf{B}(\mathbf{q}) \cdot \mathbf{\dot q} = \sum_{i,j} b_{ij}(\mathbf{q}) \dot q_i \dot q_j.
+\]</span> In this case, the generalized forces are just the gradients of <span class="math inline">\(\mathcal{F}\)</span>, <span class="math display">\[
+\mathbf{Q} = -\frac{\partial \mathcal{F}}{\partial \mathbf{q}} = -\mathbf{B} \cdot \mathbf{\dot q},
+\]</span> which we can plug into the modified Lagrange’s equations to give <span class="math display">\[
+\frac{\partial L}{\partial\mathbf{q}} - \frac{d}{dt}\frac{\partial L}{\partial\mathbf{\dot q}} = \frac{\partial \mathcal{F}}{\partial\mathbf{\dot q}}.
+\]</span></p>
+<hr>
+<p><strong>Example:</strong> Damped Hanging Spring</p>
+<p>Suppose we have a spring with mass <span class="math inline">\(m\)</span> and spring constant <span class="math inline">\(k\)</span> allowed to hang from the top of a closed lid of thick syrup. Assume the viscosity of the syrup is high enough that Stoke’s Law holds.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./resources/image-20230301075040200.png" class="img-fluid figure-img" width="250"></p>
+</figure>
+</div>
+<p>In this case, we have <span class="math display">\[
+\begin{align*}
+T &amp;= \frac{1}{2} m \dot x^2, \\
+V &amp;= -mgx - \frac{1}{2} kx^2, \\
+L &amp;= \frac{1}{2} m \dot x^2 + mgx + \frac{1}{2} kx^2, \\
+\mathcal{F} &amp;= \frac{1}{2} b \dot x^2. \\
+\end{align*}
+\]</span> Plugging these into the modified Lagrange’s equations finally gives the DDHO equation of motion <span class="math display">\[
+m \ddot x + b \dot x + kx = mg.
+\]</span></p>
+<hr>
+</section>
+<section id="invariant-transformations" class="level2">
+<h2 class="anchored" data-anchor-id="invariant-transformations">Invariant Transformations</h2>
+<p>It’s natural to ask what kinds of transformations of a Lagrangian leave it invariant. We already saw that when a system has certain symmetries that the Lagrangian will be invariant under those symmetry transformations. In that case, the Lagrangian itself didn’t change. More general, we could ask what kinds of transformations will leave the equations of motion unchanged, even if the Lagrangian itself did change.</p>
+<p>One natural question to ask is how the Lagrangian behaves under a coordinate transformation. After all, the choice of coordinates should not affect the physical behavior of the system. Suppose we have two sets of coordinates to describe the system, <span class="math inline">\(\mathbf{q}\)</span> and <span class="math inline">\(\mathbf{Q}\)</span>. They’re related by a transformation <span class="math inline">\(\mathbf{Q} = \mathbf{Q}(\mathbf{q})\)</span>, called a <strong>point transformation</strong>. The transformed <em>velocities</em> <span class="math inline">\(\mathbf{\dot Q}\)</span> are a function of both <span class="math inline">\(\mathbf{q}\)</span> and <span class="math inline">\(\mathbf{\dot q}\)</span>, since <span class="math display">\[
+\mathbf{\dot Q} = \mathbf{\dot Q}(\mathbf{q}, \mathbf{\dot q}) = \mathbf{\dot q}\frac{\partial \mathbf{Q}}{\partial \mathbf{q}}.
+\]</span> Suppose the Lagrangian in each coordinate system is given by <span class="math inline">\(L_q = L(\mathbf{q}, \mathbf{\dot q}, t)\)</span> and <span class="math inline">\(L_Q = L(\mathbf{Q}, \mathbf{\dot Q}, t)\)</span> respectively. Assume that <span class="math inline">\(L_q\)</span> satisfies Lagrange’s equations, so <span class="math display">\[
+\frac{\partial L_q}{\partial \mathbf{q}} + \frac{d}{dt} \frac{\partial L_q}{\partial \mathbf{\dot q}} = \mathbf{0}.
+\]</span> What then can we conclude about <span class="math inline">\(L_Q\)</span>? If we express <span class="math inline">\(L_Q\)</span> in terms of <span class="math inline">\(\mathbf{q}\)</span>, we’d have <span class="math display">\[
+L_Q = L\big(\mathbf{q}(\mathbf{Q}), \mathbf{\dot q}(\mathbf{Q}, \mathbf{\dot Q}), t\big).
+\]</span> Taking derivatives of <span class="math inline">\(L_Q\)</span> with respect to <span class="math inline">\(\mathbf{Q}\)</span>, then <span class="math display">\[
+\begin{align*}
+\frac{\partial L_Q}{\partial \mathbf{Q}} &amp;=  \frac{\partial \mathbf{q}}{\partial \mathbf{Q}} \cdot \frac{\partial L_q}{\partial \mathbf{q}} + \frac{\partial \mathbf{\dot q}}{\partial \mathbf{Q}} \cdot \frac{\partial L_q}{\partial \mathbf{\dot q}} \\
+&amp;= \frac{\partial \mathbf{q}}{\partial \mathbf{Q}} \cdot \frac{d}{dt} \frac{\partial L_q}{\partial \mathbf{\dot q}} + \frac{d}{dt} \frac{\partial \mathbf{q}}{\partial \mathbf{Q}} \cdot \frac{\partial L_q}{\partial \mathbf{\dot q}} \\
+&amp;= \frac{d}{dt} \bigg(\frac{\partial \mathbf{q}}{\partial \mathbf{Q}} \cdot \frac{\partial L_q}{\partial \mathbf{\dot q}}\bigg) \\
+&amp;= \frac{d}{dt} \bigg(\frac{\partial \mathbf{\dot q}}{\partial \mathbf{\dot Q}} \cdot \frac{\partial L_q}{\partial \mathbf{\dot q}}\bigg) \\
+&amp;= \frac{d}{dt} \frac{\partial L_Q}{\partial \mathbf{\dot Q}}.
+\end{align*}
+\]</span> Thus, if <span class="math inline">\(L_q\)</span> satisfies Lagrange’s equations with respect to <span class="math inline">\(\mathbf{q}\)</span>, then <span class="math inline">\(L_Q\)</span> satisfies Lagrange’s equations with respect to <span class="math inline">\(\mathbf{Q}\)</span>. That is, the equations of motion are invariant to point transformations of the coordinates.</p>
+<p>This fact means we’re essentially free to write the Lagrangian of a system in whatever set of coordinates we wish. The underlying physics will stay the same. In relativistic language, this result says that the Lagrangian is a <em>proper scalar</em>. It doesn’t transform under coordinate transformations.</p>
+<p>It’s also natural to ask if we can add functions to a Lagrangian in a way that leave the equations of motion invariant. This leads to the notion of a <em>gauge transformation</em>. To leave the equations of motion invariant, it’s important that any such transformation leave the <em>action</em> stationary.</p>
+<p>Suppose we transformed a valid Lagrangian by adding a total time derivative to it, <span class="math display">\[
+\tilde L(\mathbf{q}, \mathbf{\dot q}, t) = L(\mathbf{q}, \mathbf{\dot q}, t) + \frac{d}{dt} F(t).
+\]</span> If we assume the original equations of motion satisfy the principle of least action, we have <span class="math inline">\(\delta S=0\)</span>, where <span class="math display">\[
+S = \int_{t_1}^{t_2} L(\mathbf{q}, \mathbf{\dot q}, t) dt.
+\]</span> Evidently, the modified action <span class="math inline">\(\tilde S\)</span> has the form <span class="math display">\[
+\begin{align*}
+\tilde S &amp;= \int_{t_1}^{t_2} \tilde L(\mathbf{q}, \mathbf{\dot q}, t) dt \\
+&amp;= \int_{t_1}^{t_2} \bigg(L(\mathbf{q}, \mathbf{\dot q}, t) +  \frac{d}{dt} F(t) \bigg)dt \\
+&amp;= \int_{t_1}^{t_2} L(\mathbf{q}, \mathbf{\dot q}, t)dt + F(t) \bigg|_{t_1}^{t_2} \\
+&amp;= S + \Delta F.
+\end{align*}
+\]</span> Since <span class="math inline">\(\Delta F\)</span> is a constant that depends only on the endpoints, we must have <span class="math display">\[
+\delta S = 0 \quad \Longleftrightarrow \quad \delta\tilde S = 0.
+\]</span> That is, adding a total time derivative to the Lagrangian leaves the equations of motion invariant.</p>
+<hr>
+<p><strong>Example:</strong> Gauge Transformations</p>
+<p>In electrodynamics, Maxwell’s Equations are known to be invariant under a change of <em>gauge</em>. We can add the derivative of any scalar field <span class="math inline">\(\lambda(\mathbf{x},t)\)</span> to the electromagnetic potentials in the following way and leave Maxwell’s Equations invariant, <span class="math display">\[
+\begin{align*}
+\phi'(\mathbf{x},t) &amp;= \phi(\mathbf{x},t) - \frac{1}{c} \frac{\partial}{\partial t} \lambda(\mathbf{x},t), \\
+\mathbf{A}'(\mathbf{x},t) &amp;= \mathbf{A}(\mathbf{x},t) + \nabla \lambda(\mathbf{x},t). \\
+\end{align*}
+\]</span> Suppose we had a particle moving in the presence of an electromagnetic field. We already showed such a Lagrangian would have the form <span class="math display">\[
+L = \frac{1}{2} m \mathbf{v}^2 - q \phi(\mathbf{x},t) + \frac{q}{c} \mathbf{v} \cdot \mathbf{A}(\mathbf{x},t).
+\]</span> Let’s ask what happens to the Lagrangian if we gauge-transform the potentials. Evidently, <span class="math display">\[
+\begin{align*}
+L' &amp;= \frac{1}{2} m \mathbf{v}^2 - q \phi' + \frac{q}{c} \mathbf{v} \cdot \mathbf{A}' \\
+&amp;= \frac{1}{2} m \mathbf{v}^2 - q \bigg(\phi - \frac{1}{c} \frac{\partial \lambda}{\partial t} \bigg) + \frac{q}{c} \mathbf{v} \cdot (\mathbf{A} + \nabla \lambda) \\
+&amp;= \bigg(\frac{1}{2} m \mathbf{v}^2 - q\phi + \frac{q}{c}\mathbf{v} \cdot \mathbf{A}\bigg) + \frac{q}{c} \bigg(\frac{\partial \lambda}{\partial t} + \mathbf{v} \cdot \nabla \lambda\bigg) \\
+&amp;= L + \frac{q}{c} \frac{d\lambda}{dt}.
+\end{align*}
+\]</span> Since the gauge-transformed Lagrangian is just the original Lagrangian plus a total time derivative, we can conclude the the Lorentz force law must be gauge invariant as well. Of course, this was already obvious from the fact that <span class="math inline">\(\mathbf{E}\)</span> and <span class="math inline">\(\mathbf{B}\)</span> were gauge invariant in Maxwell’s equations.</p>
+<hr>
+</section>
+<section id="examples" class="level2">
+<h2 class="anchored" data-anchor-id="examples">Examples</h2>
+<p>It’s good to get very comfortable being able to find the equations of motion of systems using Lagrange’s equations. Here are some more complicated examples, many of which would be highly non-trival to solve using Newton’s Laws.</p>
+<hr>
+<p><strong>Example: </strong> Uniform Rod on a Frictionless Table</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./resources/rod-on-table.png" class="img-fluid figure-img" width="250"></p>
+</figure>
+</div>
+<hr>
+<p><strong>Example: </strong> Atwood Machine</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./resources/image-20230301080337898.png" class="img-fluid figure-img" width="250"></p>
+</figure>
+</div>
+<hr>
+<p><strong>Example: </strong> Particle on a Cylinder</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./resources/image-20230301080406983.png" class="img-fluid figure-img" width="250"></p>
+</figure>
+</div>
+<hr>
+<p><strong>Example: </strong> Block Sliding on Moving Wedge</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./resources/image-20230301080440029.png" class="img-fluid figure-img" width="400"></p>
+</figure>
+</div>
+<hr>
+<p><strong>Example: </strong> Bead on a Wire</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./resources/image-20230301080510571.png" class="img-fluid figure-img" width="250"></p>
+</figure>
+</div>
+<hr>
+
+
 </section>
 
 </main> <!-- /main -->
