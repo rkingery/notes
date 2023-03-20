@@ -22,13 +22,13 @@ When the holonomic constraint isn't time-dependent, they're called **scleronomic
 
 ---
 
-**Example:** Simple Pendulum
+#### Example: Simple Pendulum
 
 As an easy example, consider the simple pendulum. Since there's only one particle, $N=1$. Since the length of the pendulum is fixed, that's one constraint. Since the motion is confined to a plane, that's another constraint. We thus have $n=3N-C=3-2=1$ degrees of freedom, which we can of course take to be the angle $\theta$.
 
 ---
 
-**Example:** Rigid Bodies
+#### Example: Rigid Bodies
 
 A more interesting example is the rigid body. A **rigid body** is a system of $N$ particles whose particles are always a fixed distance apart, i.e. $d_{ij} = |\mathbf{x}_i - \mathbf{x}_j|$ is fixed for all $i, j$. This fixed distance requirement introduces a lot of constraints on the system. To see this, suppose $N=4$. Then there are $C=6$ constraints, since each particle must connect to each other particle. This means there are $n=3N-C=6$ degrees of freedom.
 
@@ -109,7 +109,7 @@ To solve a problem using Lagrange's equations we need to do the following steps:
 
 ---
 
-**Example:** The Simple Spring
+#### Example: The Simple Spring
 
 Suppose a mass $m$ is attached to an ideal spring with spring constant $k$.
 
@@ -138,7 +138,7 @@ $$
 
 ---
 
-**Example:** Simple Pendulum
+#### Example: Simple Pendulum
 
 Suppose a mass $m$ is attached to a massless string of fixed length $\ell$ and allowed to swing.
 
@@ -160,7 +160,7 @@ which is of course the usual equation of motion for the pendulum when $q=\theta$
 
 ---
 
-**Example:** Central Potential
+#### Example: Central Potential
 
 Suppose a particle of mass $m$ is in the presence of a central force field $V=V(r)$. There's one constraint since the problem must be spherically symmetric, which means we have $n=2$ degrees of freedom. Working in spherical coordinates, the kinetic and potential energies are given by
 $$
@@ -175,7 +175,7 @@ The second equation is interesting. It says the quantity $\ell = mr^2 \dot\varph
 
 ---
 
-**Example:** Double Pendulum
+#### Example: Double Pendulum
 
 The examples considered so far are pretty easy to solve using Newtonian methods. Here's an example where it's far easier to write down the equations of motion in the Lagrangian formulation. Consider the double pendulum, where a mass is attached to the end of another pendulum and both are allowed to swing. Suppose both masses have mass $m$ and both strings are a fixed length $\ell$.
 
@@ -265,7 +265,7 @@ We call $p_1$ the **conjugate momentum** to $q_1$. We've thus shown that if $q_1
 
 ---
 
-**Example:** Free Particle
+#### Example: Free Particle
 
 For a free particle, we have $L = \frac{1}{2}m \dot x^2$. Since $L$ is not a function of $x$, evidently $x$ is cyclic, which means its conjugate momentum $p_x$ is conserved,
 $$
@@ -275,7 +275,7 @@ Notice in this case the conjugate momentum is the same thing as the ordinary lin
 
 ---
 
-**Example**: Central Force in a Plane
+#### Example: Central Force in a Plane
 
 In this case the Lagrangian is given by
 $$
@@ -322,7 +322,7 @@ $$
 
 ---
 
-**Example: ** Conservation of Linear Momentum
+#### Example: Conservation of Linear Momentum
 
 Suppose a single particle is moving through space.  Suppose the space is *homogeneous*, that is, the particle's Lagrangian is invariant to translations in space,
 $$
@@ -336,7 +336,7 @@ Since $\boldsymbol{\varepsilon}$ is an arbitrary constant, we must have $\mathbf
 
 ---
 
-**Example: ** Conservation of Angular Momentum
+#### Example: Conservation of Angular Momentum
 
 Suppose again a single particle is moving through space. Suppose this time that space is *isotropic*, that is, the particle's Lagrangian is invariant to *rotations* in space,
 $$
@@ -398,7 +398,7 @@ In this case, we can solve Lagrange's equations for $L = T-U$ and everything wou
 
 ---
 
-**Example:** Charged Particle in an Electromagnetic Field
+#### Example: Charged Particle in an Electromagnetic Field
 
 Suppose a particle of mass $m$ and charge $q$ is moving in the presence of an electromagnetic field. We already know that such a particle obeys the Lorentz force law
 $$
@@ -415,9 +415,9 @@ Let's define
 $$
 U(\mathbf{x},\mathbf{v},t) = q \phi(\mathbf{x},t) - \frac{q}{c} \mathbf{v} \cdot \mathbf{A}(\mathbf{x},t).
 $$
-Then the Lagrangian for this system is given by
+Then the Lagrangian for this system is then given by $L=T-U$, or
 $$
-L = T - U = \frac{1}{2} m \mathbf{v}^2 - q \phi(\mathbf{x},t) + \frac{q}{c} \mathbf{v} \cdot \mathbf{A}(\mathbf{x},t).
+L = \frac{1}{2} m \mathbf{v}^2 - q \phi + \frac{q}{c} \mathbf{v} \cdot \mathbf{A}.
 $$
 Though a little painful, it's not hard to show that solving Lagrange's equations reproduces the above Lorentz force law.
 
@@ -444,13 +444,11 @@ $$
 
 ---
 
-**Example:** Damped Hanging Spring
+#### Example: Damped Hanging Spring
 
 Suppose we have a spring with mass $m$ and spring constant $k$ allowed to hang from the top of a closed lid of thick syrup. Assume the viscosity of the syrup is high enough that Stoke's Law holds.
 
-![](./resources/image-20230301075040200.png){fig-align="center" width=250}
-
-In this case, we have
+In this case, we simply have
 $$
 \begin{align*}
 T &= \frac{1}{2} m \dot x^2, \\
@@ -523,7 +521,7 @@ That is, adding a total time derivative to the Lagrangian leaves the equations o
 
 ---
 
-**Example:** Gauge Transformations
+#### Example: Gauge Transformations
 
 In electrodynamics, Maxwell's Equations are known to be invariant under a change of *gauge*. We can add the derivative of any scalar field $\lambda(\mathbf{x},t)$ to the electromagnetic potentials in the following way and leave Maxwell's Equations invariant,
 $$
@@ -541,7 +539,7 @@ $$
 \begin{align*}
 L' &= \frac{1}{2} m \mathbf{v}^2 - q \phi' + \frac{q}{c} \mathbf{v} \cdot \mathbf{A}' \\
 &= \frac{1}{2} m \mathbf{v}^2 - q \bigg(\phi - \frac{1}{c} \frac{\partial \lambda}{\partial t} \bigg) + \frac{q}{c} \mathbf{v} \cdot (\mathbf{A} + \nabla \lambda) \\
-&= \bigg(\frac{1}{2} m \mathbf{v}^2 - q\phi + \frac{q}{c}\mathbf{v} \cdot \mathbf{A}\bigg) + \frac{q}{c} \bigg(\frac{\partial \lambda}{\partial t} + \mathbf{v} \cdot \nabla \lambda\bigg) \\
+&= \bigg(\frac{1}{2} m \mathbf{v}^2 - q\phi + \frac{q}{c}\mathbf{v} \cdot \mathbf{A}\bigg) + \frac{q}{c} \bigg(\mathbf{v} \cdot \nabla \lambda + \frac{\partial \lambda}{\partial t}\bigg) \\
 &= L + \frac{q}{c} \frac{d\lambda}{dt}.
 \end{align*}
 $$
@@ -555,31 +553,31 @@ It's good to get very comfortable being able to find the equations of motion of 
 
 ---
 
-**Example: ** Uniform Rod on a Frictionless Table
+#### Example: Uniform Rod on a Frictionless Table
 
 ![](./resources/rod-on-table.png){fig-align="center" width=250}
 
 ---
 
-**Example: ** Atwood Machine
+#### Example: Atwood Machine
 
 ![](./resources/image-20230301080337898.png){fig-align="center" width=250}
 
 ---
 
-**Example: ** Particle on a Cylinder
+#### Example: Particle on a Cylinder
 
 ![](./resources/image-20230301080406983.png){fig-align="center" width=250}
 
 ---
 
-**Example: ** Block Sliding on Moving Wedge
+#### Example: Block Sliding on Moving Wedge
 
 ![](./resources/image-20230301080440029.png){fig-align="center" width=400}
 
 ---
 
-**Example: ** Bead on a Wire
+#### Example: Bead on a Wire
 
 ![](./resources/image-20230301080510571.png){fig-align="center" width=250}
 

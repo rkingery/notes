@@ -274,7 +274,7 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../tmp.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">TODO</span></a>
+  <a href="../statistical-mechanics/thermodynamics.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Thermodynamics</span></a>
   </div>
 </li>
       </ul>
@@ -339,10 +339,13 @@ f(\mathbf{x}_1, \mathbf{x}_2, \cdots, \mathbf{x}_N, t) = 0.
 q_i = q_i(\mathbf{x}_1, \mathbf{x}_2, \cdots, \mathbf{x}_N, t), \quad \mathbf{x}_\alpha = \mathbf{x}_\alpha(q_1, q_2, \cdots, q_n, t).
 \]</span> When the holonomic constraint isn’t time-dependent, they’re called <strong>scleronomic</strong> constraints. Otherwise they’re called <strong>rheonomic</strong> constraints. A system that’s not holonomic is called <strong>non-holonomic</strong>.</p>
 <hr>
-<p><strong>Example:</strong> Simple Pendulum</p>
+<section id="example-simple-pendulum" class="level4">
+<h4 class="anchored" data-anchor-id="example-simple-pendulum">Example: Simple Pendulum</h4>
 <p>As an easy example, consider the simple pendulum. Since there’s only one particle, <span class="math inline">\(N=1\)</span>. Since the length of the pendulum is fixed, that’s one constraint. Since the motion is confined to a plane, that’s another constraint. We thus have <span class="math inline">\(n=3N-C=3-2=1\)</span> degrees of freedom, which we can of course take to be the angle <span class="math inline">\(\theta\)</span>.</p>
 <hr>
-<p><strong>Example:</strong> Rigid Bodies</p>
+</section>
+<section id="example-rigid-bodies" class="level4">
+<h4 class="anchored" data-anchor-id="example-rigid-bodies">Example: Rigid Bodies</h4>
 <p>A more interesting example is the rigid body. A <strong>rigid body</strong> is a system of <span class="math inline">\(N\)</span> particles whose particles are always a fixed distance apart, i.e.&nbsp;<span class="math inline">\(d_{ij} = |\mathbf{x}_i - \mathbf{x}_j|\)</span> is fixed for all <span class="math inline">\(i, j\)</span>. This fixed distance requirement introduces a lot of constraints on the system. To see this, suppose <span class="math inline">\(N=4\)</span>. Then there are <span class="math inline">\(C=6\)</span> constraints, since each particle must connect to each other particle. This means there are <span class="math inline">\(n=3N-C=6\)</span> degrees of freedom.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -351,6 +354,7 @@ q_i = q_i(\mathbf{x}_1, \mathbf{x}_2, \cdots, \mathbf{x}_N, t), \quad \mathbf{x}
 </div>
 <p>It turns out this fact extends to rigid bodies with arbitrarily many particles as well since adding a new particle gives 3 more coordinates, but also 3 more constraints. A rigid body will <em>always</em> have exactly 6 degrees of freedom, which we usually take to be the 3 center of mass coordinates and the three Euler angles.</p>
 <hr>
+</section>
 </section>
 <section id="principle-of-virtual-work" class="level2">
 <h2 class="anchored" data-anchor-id="principle-of-virtual-work">Principle of Virtual Work</h2>
@@ -396,7 +400,8 @@ L = T - V.
 <li><p>If desired, convert back to real space coordinates via <span class="math inline">\(\mathbf{x}_\alpha = \mathbf{x}_\alpha(q_1,q_2,\cdots,q_n)\)</span>.</p></li>
 </ol>
 <hr>
-<p><strong>Example:</strong> The Simple Spring</p>
+<section id="example-the-simple-spring" class="level4">
+<h4 class="anchored" data-anchor-id="example-the-simple-spring">Example: The Simple Spring</h4>
 <p>Suppose a mass <span class="math inline">\(m\)</span> is attached to an ideal spring with spring constant <span class="math inline">\(k\)</span>.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -415,7 +420,9 @@ q(t) = A\cos(\omega t - \delta), \quad \omega^2 \equiv \frac{k}{m}.
 \mathbf{x}(t) = q(t) \mathbf{e}_x = A\cos(\omega t - \delta)\mathbf{e}_x.
 \]</span></p>
 <hr>
-<p><strong>Example:</strong> Simple Pendulum</p>
+</section>
+<section id="example-simple-pendulum-1" class="level4">
+<h4 class="anchored" data-anchor-id="example-simple-pendulum-1">Example: Simple Pendulum</h4>
 <p>Suppose a mass <span class="math inline">\(m\)</span> is attached to a massless string of fixed length <span class="math inline">\(\ell\)</span> and allowed to swing.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -430,7 +437,9 @@ L = \frac{1}{2} m\ell^2 \dot q^2 + mg\ell\cos q.
 m\ell^2 \ddot q + mg\ell\sin q = 0,
 \]</span> which is of course the usual equation of motion for the pendulum when <span class="math inline">\(q=\theta\)</span>.</p>
 <hr>
-<p><strong>Example:</strong> Central Potential</p>
+</section>
+<section id="example-central-potential" class="level4">
+<h4 class="anchored" data-anchor-id="example-central-potential">Example: Central Potential</h4>
 <p>Suppose a particle of mass <span class="math inline">\(m\)</span> is in the presence of a central force field <span class="math inline">\(V=V(r)\)</span>. There’s one constraint since the problem must be spherically symmetric, which means we have <span class="math inline">\(n=2\)</span> degrees of freedom. Working in spherical coordinates, the kinetic and potential energies are given by <span class="math display">\[
 T = \frac{1}{2} m (\dot r^2 + r \dot \varphi^2), \quad V = V(r).
 \]</span> Plugging these into Lagrange’s equation and solving gives two equations of motion for <span class="math inline">\(r\)</span> and <span class="math inline">\(\varphi\)</span>, <span class="math display">\[
@@ -438,7 +447,9 @@ m \ddot r = mr \dot\varphi^2 - \frac{dV}{dr}\\
 \frac{d}{dt} mr^2 \dot\varphi = 0.
 \]</span> The second equation is interesting. It says the quantity <span class="math inline">\(\ell = mr^2 \dot\varphi\)</span> must be conserved. But this is just the angular momentum of the system! Evidently, conservation laws somehow fall out of Lagrange’s equations provided the right generalized coordinates are chosen.</p>
 <hr>
-<p><strong>Example:</strong> Double Pendulum</p>
+</section>
+<section id="example-double-pendulum" class="level4">
+<h4 class="anchored" data-anchor-id="example-double-pendulum">Example: Double Pendulum</h4>
 <p>The examples considered so far are pretty easy to solve using Newtonian methods. Here’s an example where it’s far easier to write down the equations of motion in the Lagrangian formulation. Consider the double pendulum, where a mass is attached to the end of another pendulum and both are allowed to swing. Suppose both masses have mass <span class="math inline">\(m\)</span> and both strings are a fixed length <span class="math inline">\(\ell\)</span>.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -466,6 +477,7 @@ m\ell^2\dot\theta_1\dot\theta_2\sin(\theta_1-\theta_2) - mg\ell\sin\theta_2 &amp
 \end{align*}
 \]</span></p>
 <hr>
+</section>
 </section>
 <section id="principle-of-least-action" class="level2">
 <h2 class="anchored" data-anchor-id="principle-of-least-action">Principle of Least Action</h2>
@@ -502,18 +514,22 @@ L = L(q_2,\cdots,q_n,\dot q_1,\dot q_2, \cdots, \dot q_n, t).
 \frac{\partial L}{\partial q_1} = 0 \quad \Longrightarrow \quad 0 = \frac{d}{dt} \frac{\partial L}{\partial \dot q_1} \quad \Longrightarrow \quad p_1 \equiv \frac{\partial L}{\partial \dot q_1} = const.
 \]</span> We call <span class="math inline">\(p_1\)</span> the <strong>conjugate momentum</strong> to <span class="math inline">\(q_1\)</span>. We’ve thus shown that if <span class="math inline">\(q_1\)</span> is cyclic, then its conjugate momentum <span class="math inline">\(p_1\)</span> is conserved.</p>
 <hr>
-<p><strong>Example:</strong> Free Particle</p>
+<section id="example-free-particle" class="level4">
+<h4 class="anchored" data-anchor-id="example-free-particle">Example: Free Particle</h4>
 <p>For a free particle, we have <span class="math inline">\(L = \frac{1}{2}m \dot x^2\)</span>. Since <span class="math inline">\(L\)</span> is not a function of <span class="math inline">\(x\)</span>, evidently <span class="math inline">\(x\)</span> is cyclic, which means its conjugate momentum <span class="math inline">\(p_x\)</span> is conserved, <span class="math display">\[
 p_x = \frac{\partial L}{\partial \dot x} = m \dot x = const.
 \]</span> Notice in this case the conjugate momentum is the same thing as the ordinary linear momentum. This need not always be true. The conjugate momentum is more general than this.</p>
 <hr>
-<p><strong>Example</strong>: Central Force in a Plane</p>
+</section>
+<section id="example-central-force-in-a-plane" class="level4">
+<h4 class="anchored" data-anchor-id="example-central-force-in-a-plane">Example: Central Force in a Plane</h4>
 <p>In this case the Lagrangian is given by <span class="math display">\[
 L = \frac{1}{2} m (\dot r^2 + r^2 \dot\varphi^2) - V(r).
 \]</span> Since <span class="math inline">\(\varphi\)</span> is cyclic, its conjugate momentum <span class="math inline">\(p_\varphi\)</span> must evidently be conserved, <span class="math display">\[
 p_\varphi = \frac{\partial L}{\partial \dot \varphi} = mr^2\dot\varphi = const.
 \]</span> Notice this is just the <span class="math inline">\(z\)</span>-component of angular momentum <span class="math inline">\(L_z = \ell\)</span>.</p>
 <hr>
+</section>
 </section>
 <section id="noethers-theorem" class="level3">
 <h3 class="anchored" data-anchor-id="noethers-theorem">Noether’s Theorem</h3>
@@ -536,14 +552,17 @@ Q \equiv \mathbf{p} \cdot \frac{\partial \mathbf{q}}{\partial s} = p_i \frac{\pa
 \end{align*}
 \]</span></p>
 <hr>
-<p><strong>Example: </strong> Conservation of Linear Momentum</p>
+<section id="example-conservation-of-linear-momentum" class="level4">
+<h4 class="anchored" data-anchor-id="example-conservation-of-linear-momentum">Example: Conservation of Linear Momentum</h4>
 <p>Suppose a single particle is moving through space. Suppose the space is <em>homogeneous</em>, that is, the particle’s Lagrangian is invariant to translations in space, <span class="math display">\[
 L(\mathbf{x}, \mathbf{\dot x}, t) = L(\mathbf{x} + \delta\mathbf{x}, \mathbf{\dot x}, t).
 \]</span> This is equivalent to saying the particle has a symmetry of the form <span class="math inline">\(\mathbf{x}(s) = \mathbf{x} + s\boldsymbol{\varepsilon}\)</span>, where <span class="math inline">\(\boldsymbol{\varepsilon}\)</span> is constant. In this case, we’d evidently have <span class="math display">\[
 Q = \mathbf{p} \cdot \frac{\partial \mathbf{x}}{\partial s} = \mathbf{p} \cdot \boldsymbol{\varepsilon} = const.
 \]</span> Since <span class="math inline">\(\boldsymbol{\varepsilon}\)</span> is an arbitrary constant, we must have <span class="math inline">\(\mathbf{p} = m \mathbf{\dot x} = const\)</span>. That is, the linear momentum of the particle is conserved. Equivalently, if space is <em>homogeneous</em>, then the total <em>linear momentum</em> will be conserved.</p>
 <hr>
-<p><strong>Example: </strong> Conservation of Angular Momentum</p>
+</section>
+<section id="example-conservation-of-angular-momentum" class="level4">
+<h4 class="anchored" data-anchor-id="example-conservation-of-angular-momentum">Example: Conservation of Angular Momentum</h4>
 <p>Suppose again a single particle is moving through space. Suppose this time that space is <em>isotropic</em>, that is, the particle’s Lagrangian is invariant to <em>rotations</em> in space, <span class="math display">\[
 L(\mathbf{x}, \mathbf{\dot x}, t) = L\big(\delta\mathbf{R}\mathbf{x}, \mathbf{\dot x}, t\big).
 \]</span> Now, we can always think of a rotation in space as a rotation about some axis. For simplicity we’ll choose that axis to be the <span class="math inline">\(z\)</span>-axis, in which case we can think of <span class="math inline">\(\delta\mathbf{R}\)</span> as rotating <span class="math inline">\(\mathbf{x}\)</span> by some azimuthal angle <span class="math inline">\(\delta\varphi\)</span>. Take as generalized coordinates the spherical coordinates <span class="math inline">\(r, \theta, \varphi\)</span>. Then rotational invariance is equivalent to saying the particle has a symmetry of the form <span class="math inline">\(\varphi(s) = \varphi + s\)</span>. We thus have <span class="math display">\[
@@ -576,13 +595,15 @@ H &amp;= \frac{\partial L}{\partial \mathbf{\dot q}} \cdot \mathbf{\dot q} - L \
 \]</span> That is, if <span class="math inline">\(L = T-V\)</span>, then <span class="math inline">\(H=T+V\)</span>. But <span class="math inline">\(T+V\)</span> is just the total energy <span class="math inline">\(E\)</span>. We thus finally have the conservation of energy. If <span class="math inline">\(L = T-V\)</span> and time is homogeneous, then the total energy <span class="math inline">\(E\)</span> is conserved.</p>
 </section>
 </section>
+</section>
 <section id="non-conservative-forces" class="level2">
 <h2 class="anchored" data-anchor-id="non-conservative-forces">Non-Conservative Forces</h2>
 <p>As we’ve derived them, Lagrange’s equations only hold for systems with conservative forces. In some special cases, we can augment non-conservative forces into Lagrange’s equations as well. Suppose for example we had <span class="math inline">\(L = T - U\)</span>, where <span class="math inline">\(U = U(\mathbf{q}, \mathbf{\dot q}, t)\)</span> is some kind of generalized potential energy. Then the generalized forces have the form <span class="math display">\[
 \mathbf{Q} = - \frac{\partial U}{\partial \mathbf{q}} + \frac{d}{dt} \frac{\partial U}{\partial \mathbf{\dot q}}.
 \]</span> In this case, we can solve Lagrange’s equations for <span class="math inline">\(L = T-U\)</span> and everything would work fine even though <span class="math inline">\(U\)</span> is not a proper potential energy anymore.</p>
 <hr>
-<p><strong>Example:</strong> Charged Particle in an Electromagnetic Field</p>
+<section id="example-charged-particle-in-an-electromagnetic-field" class="level4">
+<h4 class="anchored" data-anchor-id="example-charged-particle-in-an-electromagnetic-field">Example: Charged Particle in an Electromagnetic Field</h4>
 <p>Suppose a particle of mass <span class="math inline">\(m\)</span> and charge <span class="math inline">\(q\)</span> is moving in the presence of an electromagnetic field. We already know that such a particle obeys the Lorentz force law <span class="math display">\[
 \mathbf{F} = q \mathbf{E}(\mathbf{x},t) + \frac{q}{c} \mathbf{v} \times \mathbf{B}(\mathbf{x},t).
 \]</span> Can we derive this from a Lagrangian? Notice that this force isn’t conservative since it’s a function of the particle’s velocity. However, we can still derive a generalized potential energy <span class="math inline">\(U=U(\mathbf{x},\mathbf{v},t)\)</span> as follows. We know from electrodynamics that we can express the electric field <span class="math inline">\(\mathbf{E}\)</span> and magnetic field <span class="math inline">\(\mathbf{B}\)</span> as derivatives of a scalar potential <span class="math inline">\(\phi\)</span> and a vector potential <span class="math inline">\(\mathbf{A}\)</span>, <span class="math display">\[
@@ -592,8 +613,8 @@ H &amp;= \frac{\partial L}{\partial \mathbf{\dot q}} \cdot \mathbf{\dot q} - L \
 \end{align*}
 \]</span> Let’s define <span class="math display">\[
 U(\mathbf{x},\mathbf{v},t) = q \phi(\mathbf{x},t) - \frac{q}{c} \mathbf{v} \cdot \mathbf{A}(\mathbf{x},t).
-\]</span> Then the Lagrangian for this system is given by <span class="math display">\[
-L = T - U = \frac{1}{2} m \mathbf{v}^2 - q \phi(\mathbf{x},t) + \frac{q}{c} \mathbf{v} \cdot \mathbf{A}(\mathbf{x},t).
+\]</span> Then the Lagrangian for this system is then given by <span class="math inline">\(L=T-U\)</span>, or <span class="math display">\[
+L = \frac{1}{2} m \mathbf{v}^2 - q \phi + \frac{q}{c} \mathbf{v} \cdot \mathbf{A}.
 \]</span> Though a little painful, it’s not hard to show that solving Lagrange’s equations reproduces the above Lorentz force law.</p>
 <hr>
 <p>More generally, we can always just manually add in any non-conservative forces to the equations of motion after Lagrange’s equations have been solved, but they’d need to be converted to generalized forces first. Given some force <span class="math inline">\(\mathbf{F}\)</span>, we can augment Lagrange’s equations by writing <span class="math display">\[
@@ -607,14 +628,11 @@ L = T - U = \frac{1}{2} m \mathbf{v}^2 - q \phi(\mathbf{x},t) + \frac{q}{c} \mat
 \frac{\partial L}{\partial\mathbf{q}} - \frac{d}{dt}\frac{\partial L}{\partial\mathbf{\dot q}} = \frac{\partial \mathcal{F}}{\partial\mathbf{\dot q}}.
 \]</span></p>
 <hr>
-<p><strong>Example:</strong> Damped Hanging Spring</p>
+</section>
+<section id="example-damped-hanging-spring" class="level4">
+<h4 class="anchored" data-anchor-id="example-damped-hanging-spring">Example: Damped Hanging Spring</h4>
 <p>Suppose we have a spring with mass <span class="math inline">\(m\)</span> and spring constant <span class="math inline">\(k\)</span> allowed to hang from the top of a closed lid of thick syrup. Assume the viscosity of the syrup is high enough that Stoke’s Law holds.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="./resources/image-20230301075040200.png" class="img-fluid figure-img" width="250"></p>
-</figure>
-</div>
-<p>In this case, we have <span class="math display">\[
+<p>In this case, we simply have <span class="math display">\[
 \begin{align*}
 T &amp;= \frac{1}{2} m \dot x^2, \\
 V &amp;= -mgx - \frac{1}{2} kx^2, \\
@@ -625,6 +643,7 @@ L &amp;= \frac{1}{2} m \dot x^2 + mgx + \frac{1}{2} kx^2, \\
 m \ddot x + b \dot x + kx = mg.
 \]</span></p>
 <hr>
+</section>
 </section>
 <section id="invariant-transformations" class="level2">
 <h2 class="anchored" data-anchor-id="invariant-transformations">Invariant Transformations</h2>
@@ -661,7 +680,8 @@ S = \int_{t_1}^{t_2} L(\mathbf{q}, \mathbf{\dot q}, t) dt.
 \delta S = 0 \quad \Longleftrightarrow \quad \delta\tilde S = 0.
 \]</span> That is, adding a total time derivative to the Lagrangian leaves the equations of motion invariant.</p>
 <hr>
-<p><strong>Example:</strong> Gauge Transformations</p>
+<section id="example-gauge-transformations" class="level4">
+<h4 class="anchored" data-anchor-id="example-gauge-transformations">Example: Gauge Transformations</h4>
 <p>In electrodynamics, Maxwell’s Equations are known to be invariant under a change of <em>gauge</em>. We can add the derivative of any scalar field <span class="math inline">\(\lambda(\mathbf{x},t)\)</span> to the electromagnetic potentials in the following way and leave Maxwell’s Equations invariant, <span class="math display">\[
 \begin{align*}
 \phi'(\mathbf{x},t) &amp;= \phi(\mathbf{x},t) - \frac{1}{c} \frac{\partial}{\partial t} \lambda(\mathbf{x},t), \\
@@ -673,45 +693,55 @@ L = \frac{1}{2} m \mathbf{v}^2 - q \phi(\mathbf{x},t) + \frac{q}{c} \mathbf{v} \
 \begin{align*}
 L' &amp;= \frac{1}{2} m \mathbf{v}^2 - q \phi' + \frac{q}{c} \mathbf{v} \cdot \mathbf{A}' \\
 &amp;= \frac{1}{2} m \mathbf{v}^2 - q \bigg(\phi - \frac{1}{c} \frac{\partial \lambda}{\partial t} \bigg) + \frac{q}{c} \mathbf{v} \cdot (\mathbf{A} + \nabla \lambda) \\
-&amp;= \bigg(\frac{1}{2} m \mathbf{v}^2 - q\phi + \frac{q}{c}\mathbf{v} \cdot \mathbf{A}\bigg) + \frac{q}{c} \bigg(\frac{\partial \lambda}{\partial t} + \mathbf{v} \cdot \nabla \lambda\bigg) \\
+&amp;= \bigg(\frac{1}{2} m \mathbf{v}^2 - q\phi + \frac{q}{c}\mathbf{v} \cdot \mathbf{A}\bigg) + \frac{q}{c} \bigg(\mathbf{v} \cdot \nabla \lambda + \frac{\partial \lambda}{\partial t}\bigg) \\
 &amp;= L + \frac{q}{c} \frac{d\lambda}{dt}.
 \end{align*}
 \]</span> Since the gauge-transformed Lagrangian is just the original Lagrangian plus a total time derivative, we can conclude the the Lorentz force law must be gauge invariant as well. Of course, this was already obvious from the fact that <span class="math inline">\(\mathbf{E}\)</span> and <span class="math inline">\(\mathbf{B}\)</span> were gauge invariant in Maxwell’s equations.</p>
 <hr>
 </section>
+</section>
 <section id="examples" class="level2">
 <h2 class="anchored" data-anchor-id="examples">Examples</h2>
 <p>It’s good to get very comfortable being able to find the equations of motion of systems using Lagrange’s equations. Here are some more complicated examples, many of which would be highly non-trival to solve using Newton’s Laws.</p>
 <hr>
-<p><strong>Example: </strong> Uniform Rod on a Frictionless Table</p>
+<section id="example-uniform-rod-on-a-frictionless-table" class="level4">
+<h4 class="anchored" data-anchor-id="example-uniform-rod-on-a-frictionless-table">Example: Uniform Rod on a Frictionless Table</h4>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="./resources/rod-on-table.png" class="img-fluid figure-img" width="250"></p>
 </figure>
 </div>
 <hr>
-<p><strong>Example: </strong> Atwood Machine</p>
+</section>
+<section id="example-atwood-machine" class="level4">
+<h4 class="anchored" data-anchor-id="example-atwood-machine">Example: Atwood Machine</h4>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="./resources/image-20230301080337898.png" class="img-fluid figure-img" width="250"></p>
 </figure>
 </div>
 <hr>
-<p><strong>Example: </strong> Particle on a Cylinder</p>
+</section>
+<section id="example-particle-on-a-cylinder" class="level4">
+<h4 class="anchored" data-anchor-id="example-particle-on-a-cylinder">Example: Particle on a Cylinder</h4>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="./resources/image-20230301080406983.png" class="img-fluid figure-img" width="250"></p>
 </figure>
 </div>
 <hr>
-<p><strong>Example: </strong> Block Sliding on Moving Wedge</p>
+</section>
+<section id="example-block-sliding-on-moving-wedge" class="level4">
+<h4 class="anchored" data-anchor-id="example-block-sliding-on-moving-wedge">Example: Block Sliding on Moving Wedge</h4>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="./resources/image-20230301080440029.png" class="img-fluid figure-img" width="400"></p>
 </figure>
 </div>
 <hr>
-<p><strong>Example: </strong> Bead on a Wire</p>
+</section>
+<section id="example-bead-on-a-wire" class="level4">
+<h4 class="anchored" data-anchor-id="example-bead-on-a-wire">Example: Bead on a Wire</h4>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="./resources/image-20230301080510571.png" class="img-fluid figure-img" width="250"></p>
@@ -720,6 +750,7 @@ L' &amp;= \frac{1}{2} m \mathbf{v}^2 - q \phi' + \frac{q}{c} \mathbf{v} \cdot \m
 <hr>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
