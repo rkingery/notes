@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.335">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Personal Notes - 27&nbsp; Probability</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../statistical-mechanics/thermodynamics.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+</head>
+
+<body class="nav-sidebar docked">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-title">Probability</span></h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">Personal Notes</a> 
+    </div>
+      </div>
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">Preface</a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">Classical Mechanics</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../classical-mechanics/newtonian-mechanics.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Newtonian Mechanics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../classical-mechanics/simple-systems.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Simple Systems</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../classical-mechanics/reference-frames.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Reference Frames</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../classical-mechanics/lagrangian-mechanics.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Lagrangian Mechanics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../classical-mechanics/hamiltonian-mechanics.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Hamiltonian Mechanics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../classical-mechanics/central-forces.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Central Forces</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../classical-mechanics/coupled-oscillations.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Coupled Oscillations</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../classical-mechanics/rigid-bodies.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Rigid Bodies</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../classical-mechanics/canonical-transformations.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Canonical Transformations</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../classical-mechanics/integrability-and-chaos.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Integrability and Chaos</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../classical-mechanics/continuum-mechanics.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Continuum Mechanics</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">Electrodynamics</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../electrodynamics/introduction.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Introduction</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../electrodynamics/electrostatics.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Electrostatics</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">Circuit Analysis</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../circuits/circuit-abstraction.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">The Lumped Circuit Abstraction</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../circuits/analysis.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Analyzing Circuits</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../circuits/nonlinear-methods.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Nonlinear Methods</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../circuits/digital-abstraction.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">The Digital Abstraction</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../circuits/amplifiers.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Amplifiers</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../circuits/first-order-systems.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">First-Order Systems</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../circuits/second-order-systems.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Second-Order Systems</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../circuits/ac-analysis.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">AC Analysis</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../circuits/op-amps.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Operational Amplifiers</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../circuits/energy-power.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Energy and Power</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">Quantum Mechanics</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../quantum-mechanics/identical-particles.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Identical Particles</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../quantum-mechanics/second-quantization.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Second Quantization</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">Statistical Mechanics</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../statistical-mechanics/thermodynamics.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Thermodynamics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../statistical-mechanics/probability.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">Probability</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#random-variables" id="toc-random-variables" class="nav-link active" data-scroll-target="#random-variables">Random Variables</a></li>
+  <li><a href="#probability-distributions" id="toc-probability-distributions" class="nav-link" data-scroll-target="#probability-distributions">Probability Distributions</a></li>
+  <li><a href="#joint-random-variables" id="toc-joint-random-variables" class="nav-link" data-scroll-target="#joint-random-variables">Joint Random Variables</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content column-body" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title d-none d-lg-block"><span class="chapter-title">Probability</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<p>The laws of thermodynamics are based on observations of <em>macroscopic</em> bodies. They encapsulate the coarse-grained properties of a body like its temperature, pressure, or volume. On the other hand, matter is fundamentally composed of atoms and molecules whose motions are governed by the more fundamental laws of mechanics. In principle, we could describe macroscopic bodies the same way, by examining the motions of every particle inside the body. But this is largely impractical as we’ll see later. A more useful approach is to look at which states large numbers of particles are <em>likely</em> to be in and use that information to make macroscopic predictions. Statistical mechanics is an inherently probabilistic description of a system. As such, it requires an understanding of the mathematical theory of probability, which we’ll discuss here.</p>
+<section id="random-variables" class="level2">
+<h2 class="anchored" data-anchor-id="random-variables">Random Variables</h2>
+<p>At its root, probability is based on the study of <em>events</em> or <em>random variables</em>. Suppose <span class="math inline">\(S\)</span> is the set of all possible outcomes of an experiment, called the <strong>sample space</strong>. Any subset <span class="math inline">\(E \subset S\)</span> is called an <strong>event</strong>. A <strong>probability measure</strong> is a set function <span class="math inline">\(\mathbb{Pr}(E)\)</span> that maps events to numerical values between zero and one. It’s meant to formalize the concept of <em>chance</em>. If an event has probability one, we think of that event as being 100% certain to occur. If it has probability zero, we think of the event as having 0% chance to occur. Any values in between mean we’re uncertain whether the event will occur.</p>
+<p>Formally, a probability measure on a sample space <span class="math inline">\(S\)</span> satisfies the following properties:</p>
+<ul>
+<li>Positivity: For any event <span class="math inline">\(E \subset S\)</span>, <span class="math inline">\(\mathbb{Pr}(E) \geq 0\)</span>.</li>
+<li>Additivity: If <span class="math inline">\(A \subset S\)</span> and <span class="math inline">\(B \subset S\)</span> are distinct, disjoint events, then <span class="math inline">\(\mathbb{Pr}(A \text{ or } B) = \mathbb{Pr}(A) + \mathbb{Pr}(B)\)</span>.</li>
+<li>Normalization: For the entire set <span class="math inline">\(S\)</span>, we must have <span class="math inline">\(\mathbb{Pr}(S) = 1\)</span>.</li>
+</ul>
+<p>While this is a nice formal definition of probability, it’s not practically useful for saying how we should design a probability measure in a practical setting. There are two common approaches for designing probability measures:</p>
+<ol type="1">
+<li><p>The <strong>objective</strong> approach: In this approach, we imagine running a bunch of experiments and counting the frequency of occurrences of an event. That is, if we run a large number <span class="math inline">\(N\)</span> of experiments and observe an event <span class="math inline">\(A\)</span> occurs exactly <span class="math inline">\(N_A\)</span> times, then we define <span class="math inline">\(\mathbb{Pr}(A)\)</span> by the ratio <span class="math display">\[
+\mathbb{Pr}(A) = \lim_{N \rightarrow \infty} \frac{N_A}{N}.
+\]</span> The fact that the ratio <span class="math inline">\(\frac{N_A}{N}\)</span> stabilizes to a fixed value as <span class="math inline">\(N\)</span> gets infinitely large follows from the <strong>law of large numbers</strong>, which we’ll take as a kind of experimental fact.</p></li>
+<li><p>The <strong>subjective</strong> approach: In this approach we take a more theoretical view by looking for a “maximally random” probability distribution that matches what we know to be true. That is, we seek to find the <em>maximum entropy</em> probability distribution that satisfies some given set of known constraints. We’ll talk more about the principle of maximum entropy when we get to information theory. The subjective approach is the one used most heavily in statistical mechanics.</p></li>
+</ol>
+<p>A <strong>random variable</strong> is a variable <span class="math inline">\(X\)</span> that doesn’t take on a fixed value, but rather a <em>random</em> value determined by a <strong>probability distribution</strong>. If <span class="math inline">\(E\)</span> is an event, a random variable encodes that event using a numerical variable <span class="math inline">\(X=X(E)\)</span>. More formally, <span class="math inline">\(X(E)\)</span> is a function that maps events to a numerical value. It could be a real number, a complex number, or a real or complex vector, for example.</p>
+<p>A one-dimensional random variable is a mapping <span class="math inline">\(X(E)\)</span> from events into the real numbers <span class="math inline">\(\mathbb{R}\)</span>. In this case, we can define a <strong>cumulative distribution function</strong> or <strong>CDF</strong> as the function <span class="math display">\[
+P(x) \equiv \mathbb{Pr}\big(\{X \leq x\}\big).
+\]</span> That is, the CDF is the probability that the random variable <span class="math inline">\(X \leq x\)</span>, where <span class="math inline">\(x\)</span> is just some real number. To obey the laws of probability, the CDF must satisfy the following properties:</p>
+<ul>
+<li>It’s an increasing function of <span class="math inline">\(x\)</span>. That is, if <span class="math inline">\(x_1 \leq x_2\)</span> then <span class="math inline">\(P(x_1) \leq P(x_2)\)</span>.</li>
+<li>It has probability zero at <span class="math inline">\(x=-\infty\)</span>. That is, <span class="math inline">\(\lim_{x \rightarrow -\infty} P(x) = 0\)</span>.</li>
+<li>It has probability one at <span class="math inline">\(x=\infty\)</span>. That is, <span class="math inline">\(\lim_{x \rightarrow \infty} P(x) = 1\)</span>.</li>
+</ul>
+<p>If the set of all values <span class="math inline">\(X\)</span> can take on are discrete, we say <span class="math inline">\(X\)</span> is a <strong>discrete random variable</strong>. In this case, we can define a <strong>probability mass function</strong> or <strong>PMF</strong> as the function <span class="math display">\[
+p(x) \equiv \mathbb{Pr}(X = k).
+\]</span> By the laws of probability the PMF must satisfy the following properties:</p>
+<ul>
+<li>It’s between zero and one: <span class="math inline">\(0 \leq p(k) \leq 1\)</span>.</li>
+<li>It sums to one over all values, i.e.&nbsp;<span class="math inline">\(\sum_{k \in S} p(k) = 1\)</span>.</li>
+<li>It’s related to the CDF by <span class="math inline">\(P(x) = \sum_{k \leq x} p(k)\)</span>.</li>
+</ul>
+<p>If the set of all values it can take on are continuous, we say <span class="math inline">\(X\)</span> is a <strong>continuous random variable</strong>. In this case, we can define a <strong>probability density function</strong> or <strong>PDF</strong> by the function <span class="math display">\[
+p(x) = \mathbb{Pr}(x \leq X \leq x + dx).
+\]</span> By the laws of probability, the PDF must satisfy the following properties:</p>
+<ul>
+<li>It’s a positive function <span class="math inline">\(p(x) \geq 0\)</span>.</li>
+<li>It integrates to one over all values, <span class="math inline">\(\int_S p(x) dx = 1\)</span>.</li>
+<li>It’s related to the CDF by differentiation, <span class="math inline">\(p(x) = \frac{d}{dx} P(x)\)</span>.</li>
+</ul>
+<p>Note that in physics the PDF has <em>units</em>. If <span class="math inline">\(x\)</span> has units of <span class="math inline">\([x]\)</span>, then evidently <span class="math inline">\(p(x)\)</span> must have units of <span class="math inline">\(\frac{1}{[x]}\)</span>. This is why we think of the PDF as a <em>density</em>. It’s a probability per unit <span class="math inline">\(x\)</span>.</p>
+<p>By convention, if <span class="math inline">\(S \subset \mathbb{R}\)</span> we’ll assume <span class="math inline">\(p(x) = 0\)</span> on values of <span class="math inline">\(x\)</span> outside of <span class="math inline">\(S\)</span>. This means we can treat the PMF as a PDF by using delta functions to indicate where each discrete value of <span class="math inline">\(x\)</span> has non-zero <span class="math inline">\(p(x)\)</span>. That is, <span class="math display">\[
+p(k) = p(x) \delta (x - k).
+\]</span> For this reason, we’ll generally state results in the form of a continuous random variable.</p>
+<p>For both discrete and continuous random variables we can define the <em>expected value</em> of a random function <span class="math inline">\(F(x)\)</span> by summing or integrating the function, weighted by the PMF or PDF. In the continuous case, we’d define the <strong>expected value</strong> <span class="math inline">\(\langle F(x) \rangle\)</span> by <span class="math display">\[
+\langle F(x) \rangle \equiv \int_{\mathbb{R}} dx \ F(x) p(x).
+\]</span> Some of the functions <span class="math inline">\(F(x)\)</span> have special names:</p>
+<ul>
+<li>We call <span class="math inline">\(\mu \equiv \langle x \rangle\)</span> the <strong>mean</strong> of <span class="math inline">\(x\)</span>.</li>
+<li>We call <span class="math inline">\(\mu_n \equiv \langle x^n \rangle\)</span> the <strong>n<sup>th</sup> moment</strong> of <span class="math inline">\(x\)</span>.</li>
+<li>We call <span class="math inline">\(\langle e^{-ikx} \rangle\)</span> the <strong>characteristic function</strong> or <strong>CF</strong> of <span class="math inline">\(x\)</span>.</li>
+</ul>
+<p>Note the characteristic function is just the Fourier transform of the PDF since <span class="math display">\[
+\langle e^{-ikx} \rangle = \tilde p(k) = \int_{\mathbb{R}} dx \ e^{-ikx} p(x).
+\]</span> This means we can always go from the CF back to the PDF by taking the inverse Fourier transform, <span class="math display">\[
+p(x) = \int_{\mathbb{R}} \frac{dx}{2\pi} \ e^{ikx} \tilde p(k).
+\]</span> If we Taylor expand the CF, we can also evidently write <span class="math display">\[
+\langle e^{-ikx} \rangle = \bigg\langle \sum_{n=0}^\infty \frac{(-ik)^n}{n!} x^n \bigg\rangle = \sum_{n=0}^\infty \frac{(-ik)^n}{n!} \mu_n.
+\]</span> This means that the CF can be used to generate moments for a given distribution. Once we have a closed form for the CF, just expand it into a series and pick off each <span class="math inline">\(\mu_n = \langle x^n \rangle\)</span> term by term.</p>
+<p>We can translate the CF to any other point <span class="math inline">\(x_0\)</span> by observing that <span class="math display">\[
+\langle e^{-ik(x-x_0)} \rangle = \int_{\mathbb{R}} dx \ e^{-ik(x-x_0)} p(x) = e^{ikx_0} \tilde p(k).
+\]</span> More useful to us in practice is not the characteristic function, but its <em>logarithm</em>, called the <strong>cumulant function</strong>. We’ll assume we can expand <span class="math inline">\(\log \tilde p(k)\)</span> as a Taylor Series about <span class="math inline">\(k=0\)</span> weighted by some coefficients <span class="math inline">\(\kappa_n\)</span>. By expanding out the MGF inside the log, we can evidently then write <span class="math display">\[
+\log \tilde p(k) = \sum_{n=1}^\infty \frac{(-ik)^n}{n!} \kappa_n = \log\bigg(1 + \sum_{n=1}^\infty \frac{(-ik)^n}{n!} \mu_n \bigg).
+\]</span> The sum inside the log is of the form <span class="math inline">\(1+\varepsilon\)</span>. We can thus expand the log in powers of <span class="math inline">\(\varepsilon\)</span> to get <span class="math display">\[
+\log\big(1 + \varepsilon \big) = 1 + \varepsilon - \frac{1}{2} \varepsilon^2 + \frac{1}{3} \varepsilon^3 - \frac{1}{4} \varepsilon^4 + \cdots
+\]</span> Using this expansion and matching term-by-term to the original expansion of <span class="math inline">\(\log \tilde p(k)\)</span> we can find expressions for the coefficients <span class="math inline">\(\kappa_n\)</span> in terms of the moments <span class="math inline">\(\mu_n\)</span>. These coefficients are called the <strong>n<sup>th</sup> cumulants</strong> of <span class="math inline">\(x\)</span>. The <em>first cumulant</em> turns out to be the <em>mean</em> of <span class="math inline">\(x\)</span>, <span class="math display">\[
+\kappa_1 = \langle x \rangle.
+\]</span> Intuitively, the <em>mean</em> <span class="math inline">\(\mu\)</span> of a distribution represents its center of mass or average value. To see why, suppose <span class="math inline">\(x\)</span> is a discrete random variable taking on values <span class="math inline">\(1, 2, \cdots, n\)</span> each with probability <span class="math inline">\(p(x) = \frac{1}{n}\)</span>. Then we’d have <span class="math display">\[
+\mu = \sum_{x=1}^n x p(x) = \frac{1}{n} \sum_{x=1}^n x = \overline x.
+\]</span> That is, the mean is just the unweighted average <span class="math inline">\(\overline x\)</span> from elementary math. In general each <span class="math inline">\(x\)</span> will be <em>weighted</em> by its probability <span class="math inline">\(p(x)\)</span> giving a <em>weighted average</em>.</p>
+<p>The <em>second cumulant</em> is evidently given by <span class="math display">\[
+\kappa_2 = \langle x^2 \rangle - \langle x \rangle^2.
+\]</span> This is called the <strong>variance</strong> of <span class="math inline">\(x\)</span>, usually denoted <span class="math inline">\(\sigma^2\)</span>. By rearranging the right-hand side a little bit we can also write the variance in the form <span class="math display">\[
+\sigma^2 \equiv \langle x^2 \rangle - \langle x \rangle^2 = \langle (x-\mu) \rangle^2.
+\]</span> This gives an intuitive interpretation of the variance. It’s the <em>mean squared</em> difference from the mean. It’s a squared measure of the spread of the distribution. For this reason we often prefer to take its square root to get a measure of the spread in units of <span class="math inline">\(x\)</span> itself. This is called the <strong>standard deviation</strong>, <span class="math inline">\(\sigma \equiv \sqrt{\sigma^2}\)</span>.</p>
+<p>The third cumulant is evidently given by <span class="math display">\[
+\kappa_3 = \langle x^3 \rangle - 3\langle x^2 \rangle\langle x \rangle + 2 \langle x \rangle^3.
+\]</span> It’s not obvious what this represents, but it turns out to represent the <strong>skewness</strong> of <span class="math inline">\(x\)</span>. That is, the tendency for the distribution to <em>skew</em> left or right by some amount. A distribution symmetric about its mean will have zero skew since all of the odd moments will vanish, hence <span class="math inline">\(\kappa_3 = 0\)</span>. Strictly speaking, the skewness is often normalized by dividing by <span class="math inline">\(\sigma^3\)</span>.</p>
+<p>There’s a useful graphical trick that can be used to quickly find the relationship between cumulants and moments. The idea is to represent the n<sup>th</sup> cumulant <span class="math inline">\(\kappa_n\)</span> is a <em>bag</em> of <span class="math inline">\(n\)</span> points. Then we can get the n<sup>th</sup> <em>moment</em> by summing over all possible ways of distributing <span class="math inline">\(n\)</span> points among all possible bags <span class="math inline">\(1, 2, \cdots, n\)</span>. It’s easiest to show this by example.</p>
+<p>FILL THIS IN</p>
+<p>Occasionally we’ll want to make a change of variables from one random variable to another. To do that we need to figure out how the probabilities change under the change of variables. Suppose <span class="math inline">\(F=F(X)\)</span> is a random function of a random variable <span class="math inline">\(X\)</span>. If <span class="math inline">\(f = F(x)\)</span>, then probability that <span class="math inline">\(X \in [x, x+dx]\)</span> must be the same as the probability that <span class="math inline">\(F \in [f, f+df]\)</span>. Provided <span class="math inline">\(F(x)\)</span> is single-valued, that means we’d have <span class="math display">\[
+p_F(f) df = p_X(x) dx.
+\]</span> Dividing both sides by <span class="math inline">\(df\)</span> and noting that probabilities have to be positive, we have <span class="math display">\[
+p_F(f) = p_X(x) \bigg|\frac{dx}{df}\bigg|.
+\]</span> In general <span class="math inline">\(F(x)\)</span> need not be single-valued. This means we have to sum over all possible values <span class="math inline">\(x_i\)</span> such that <span class="math inline">\(f=F(x_i)\)</span>. In this case, we’d instead have <span class="math display">\[
+p_F(f) = \sum p_X(x_i) \bigg|\bigg(\frac{dx}{df}\bigg)_{x=x_i}\bigg|.
+\]</span></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./resources/image-20230402072420947.png" class="img-fluid figure-img" width="350"></p>
+</figure>
+</div>
+<hr>
+<p><strong>Example: The Laplace Distribution</strong></p>
+<p>Suppose <span class="math inline">\(p(x) \propto e^{-\lambda |x|}\)</span> where <span class="math inline">\(\lambda &gt; 0\)</span> is some scale parameter.</p>
+<ol type="1">
+<li><p>Find the normalization constant <span class="math inline">\(\mathcal{N}\)</span> such that <span class="math inline">\(p(x) = \mathcal{N} e^{-\lambda |x|}\)</span>.</p>
+<p>The PDF must integrate to one from <span class="math inline">\(-\infty\)</span> to <span class="math inline">\(\infty\)</span>. We have <span class="math display">\[
+1 = \int_{-\infty}^\infty dx \ p(x) = \int_{-\infty}^\infty dx \  \mathcal{N} e^{-\lambda |x|} = \frac{2\mathcal{N}}{\lambda}.
+\]</span> Thus, <span class="math inline">\(\mathcal{N} = \frac{\lambda}{2}\)</span>, so we finally just have <span class="math inline">\(p(x) = \frac{\lambda}{2} e^{-\lambda x}\)</span>. This is called the <em>Laplace distribution</em>.</p></li>
+<li><p>Suppose <span class="math inline">\(f = x^2\)</span>. Find the new PDF <span class="math inline">\(p_F(f)\)</span> using a change of variables.</p>
+<p>This transformation is multi-valued, with <span class="math inline">\(x = \pm \sqrt{f}\)</span>. Using the change of variables, we have <span class="math display">\[
+\begin{align*}
+p_F(f) &amp;= p(\sqrt{f}) \bigg|\frac{d}{df} \sqrt{f}\bigg| + p(-\sqrt{f}) \bigg|-\frac{d}{df} \sqrt{f}\bigg| \\
+&amp;= \frac{\lambda}{2} e^{-\lambda \sqrt{f}} \bigg(\frac{1}{2\sqrt{f}} +  \frac{1}{2\sqrt{f}} \bigg) \\
+&amp;= \frac{\lambda}{2\sqrt{f}} e^{-\lambda \sqrt{f}}. \\
+\end{align*}
+\]</span> Note that this new PDF is only defined when <span class="math inline">\(f \geq 0\)</span> due to the square root.</p></li>
+</ol>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./resources/image-20230402072235128.png" class="img-fluid figure-img" width="400"></p>
+</figure>
+</div>
+<hr>
+</section>
+<section id="probability-distributions" class="level2">
+<h2 class="anchored" data-anchor-id="probability-distributions">Probability Distributions</h2>
+<p>So far I’ve used the term <em>distribution</em> rather loosely. More formally, given a random variable <span class="math inline">\(x\)</span>, a <strong>probability distribution</strong> is a specific functional form for <span class="math inline">\(p(x)\)</span>. We’d write <span class="math inline">\(x \sim p(x)\)</span> to indicate that <span class="math inline">\(x\)</span> is distributed as <span class="math inline">\(p(x)\)</span>. Usually <span class="math inline">\(p(x)\)</span> will be <em>parametric</em>, meaning it will have external parameters that tune the shape of the distribution. Here are some common univariate distributions we’ll see in statistical mechanics:</p>
+<p><strong>Uniform Distribution</strong></p>
+<p>The uniform distribution is perhaps the simplest distribution of all, with <span class="math inline">\(p(x) = const\)</span> on some set <span class="math inline">\(x \in S\)</span>. As a shorthand we might write <span class="math inline">\(x \sim U(S)\)</span> to say <span class="math inline">\(x\)</span> is uniform on the set <span class="math inline">\(S\)</span>. In the discrete case, <span class="math inline">\(x\)</span> takes on some number of values <span class="math inline">\(N\)</span> each with equal probability, for example if <span class="math inline">\(S = \{1, 2, \cdots, n\}\)</span> we have <span class="math display">\[
+p(x) = \frac{1}{N}, \quad x = 1, 2, \cdots, N.
+\]</span> We can easily calculate the moments of a uniform random variable directly. In the discrete case, we’d have <span class="math display">\[
+\langle x^n \rangle = \sum_{j=1}^N j^n p(k) = \frac{1}{N} (1^n + 2^n + \cdots + N^n).
+\]</span> This is just an arithmetic sum in powers of <span class="math inline">\(n\)</span>. For example, the first two moments are <span class="math display">\[
+\begin{align*}
+\langle x \rangle &amp;= \frac{(N+1)}{2}, \\
+\langle x^2 \rangle &amp;= \frac{(N+1)(2N+1)}{6}. \\
+\end{align*}
+\]</span> Using these we can directly calculate the mean and variance, which are <span class="math display">\[
+\begin{align*}
+\mu &amp;= \langle x \rangle = \frac{(N+1)}{2}, \\
+\sigma^2 &amp;= \langle x^2 \rangle - \langle x \rangle^2 = \frac{N^2-1}{12}. \\
+\end{align*}
+\]</span> The characteristic function is just given by a geometric series in powers of <span class="math inline">\(e^{-ik}\)</span>, <span class="math display">\[
+\tilde p(k) = \sum_{j=1}^N p(j) e^{-ikj} = \sum_{j=1}^N \frac{1}{N} \big(e^{-ik}\big)^n = \frac{e^{-ik}-e^{-ik(N+1)}}{1-e^{-ik}}.
+\]</span> We could in principle calculate the cumulant function <span class="math inline">\(\log \tilde p(k)\)</span> as well, though it’s clearly not going to be as useful for finding the cumulants here. We’ll see later that the uniform distribution is the <em>maximum entropy</em> distribution when the only known constraints are that <span class="math inline">\(x\)</span> lies in some set <span class="math inline">\(S\)</span>.</p>
+<p><strong>Gaussian Distribution</strong></p>
+<p>The Gaussian distribution is one of the most fundamental distributions in physics. In statistical mechanics, for example, it describes the velocity of gases in a box. Suppose <span class="math inline">\(x\)</span> is a continuous random variable defined on the whole real line. We say it’s Gaussian distributed if its PDF is given by <span class="math display">\[
+p(x) = \frac{1}{\sqrt{2\pi\sigma^2}} \exp\bigg(-\frac{(x-\mu)^2}{2\sigma^2}\bigg).
+\]</span> The Gaussian distribution has two parameters, a real number <span class="math inline">\(\mu\)</span> and a positive number <span class="math inline">\(\sigma^2\)</span>. As a shorthand we’ll sometimes say <span class="math inline">\(x\)</span> is Gaussian distributed by writing <span class="math inline">\(x \sim \mathcal{N}(\mu, \sigma^2)\)</span>. The PDF’s curve is the distinctive bell-shaped curve that falls off exponentially fast symmetrically around <span class="math inline">\(\mu\)</span>. For practical purposes, almost all of the probability mass lies in the range <span class="math inline">\(-3\sigma \leq x \leq 3\sigma\)</span>.</p>
+<p>We can calculate the characteristic function by taking the Fourier transform of <span class="math inline">\(p(x)\)</span>. By using a couple of changes of variables and completing the square inside the exponent, we have, <span class="math display">\[
+\begin{align*}
+\tilde p(k) &amp;= \int_\mathbb{R} dx \ p(x) e^{-ikx} \\
+&amp;= \frac{1}{\sqrt{2\pi\sigma^2}} \int_\mathbb{R} dx \ e^{-\frac{(x-\mu)^2}{2\sigma^2}-ikx} \\
+&amp;= \frac{e^{-ik\mu}}{\sqrt{2\pi\sigma^2}} \int_\mathbb{R} dy \ e^{-\frac{y^2}{2\sigma^2}-ikx} \quad &amp;y \equiv&amp; \ x - \mu \\
+&amp;= e^{-ik\mu-\frac{1}{2}k^2 \sigma^2} \int_\mathbb{R} \frac{dz}{\sqrt{2\pi\sigma^2}} \ e^{-\frac{z^2}{2\sigma^2}} \quad &amp;z \equiv&amp; \ y + ik\sigma^2 \\
+&amp;= e^{-ik\mu-\frac{1}{2}k^2 \sigma^2}. \\
+\end{align*}
+\]</span> Notice the characteristic function is also itself a Gaussian, just with an imaginary shift. Taking the log immediately gives the cumulant function, which is just the exponent terms, <span class="math display">\[
+\log \tilde p(k) = -ik\mu-\frac{1}{2}k^2 \sigma^2.
+\]</span> Notice only the first two powers of <span class="math inline">\(k\)</span> appear in the cumulant. This means <span class="math inline">\(\kappa_1 = \mu\)</span>, <span class="math inline">\(\kappa_2 = \sigma^2\)</span>, and all higher cumulants are zero. Evidently, the parameter <span class="math inline">\(\mu\)</span> is just the <em>mean</em> and the parameter <span class="math inline">\(\sigma^2\)</span> is just the <em>variance</em>.</p>
+<p>If we like, we can use the graphical trick to read off the moments as well. In this case, there can’t be any bags with more than two points, which greatly simplifies terms. The first few moments are, <span class="math display">\[
+\begin{align*}
+\langle x \rangle &amp;= \kappa_1 = \mu, \\
+\langle x^2 \rangle &amp;= \kappa_2 + \kappa_1^2 = \sigma^2 + \mu^2, \\
+\langle x^3 \rangle &amp;= 3 \kappa_2 \kappa_1 + \kappa_1^3 = 3\sigma^2 \mu + \mu^3, \\
+\langle x^4 \rangle &amp;= 3 \kappa_2^2 + 6 \kappa_2 \kappa_1^2 + \kappa_1^4 = 3\sigma^4 + 6 \sigma^2 \mu^2 + \mu^4.
+\end{align*}
+\]</span> <strong>Binomial Distribution</strong></p>
+<p>Suppose we have a binary random variable <span class="math inline">\(x = 0, 1\)</span> that takes on the value one with a fixed probability <span class="math inline">\(p\)</span>. We can express its PMF simply as <span class="math display">\[
+p(x) = p^x (1-p)^{1-x}, \quad x = 0, 1.
+\]</span> We’d call such an <span class="math inline">\(x\)</span> a <em>Bernoulli random variable</em>. A common example would be flipping a coin, where heads occurs with a fixed probability <span class="math inline">\(p=0.5\)</span>. Now suppose we allow the binary outcome to repeat <span class="math inline">\(n\)</span> times independently. It turns out that the <em>sum</em> of those <span class="math inline">\(n\)</span> outcomes is distributed in a similar way, except now <span class="math inline">\(x\)</span> can take on any value in the range <span class="math inline">\(x = 0, 1, \cdots, n\)</span>. Accounting for normalization, we have <span class="math display">\[
+p(x) = \binom{n}{x} p^x (1-p)^{n-x}, \quad x = 0, 1, \cdots, n.
+\]</span> We’d say <span class="math inline">\(x\)</span> is <em>binomially distributed</em> with parameters <span class="math inline">\(p\)</span> and <span class="math inline">\(n\)</span>, sometimes written as <span class="math inline">\(x \sim \text{Bin}(n,p)\)</span>. The normalization constant is the <em>binomial coefficient</em>, <span class="math display">\[
+\binom{n}{x} \equiv \frac{n!}{x!(n-x)!}.
+\]</span> The binomial coefficient represents the number of ways to choose <span class="math inline">\(x\)</span> points from a total of <span class="math inline">\(n\)</span> points, assuming the order the points are chosen is irrelevant.</p>
+<p>The characteristic function of the binomial distribution can be found using the binomial theorem, <span class="math display">\[
+\begin{align*}
+\tilde p(k) &amp;= \sum_{x=0}^n \binom{n}{x} p^x (1-p)^{n-x} e^{-ikx} \\
+&amp;= \sum_{x=0}^n \binom{n}{x} \big(p e^{-ik}\big)^x (1-p)^{n-x} \\
+&amp;= \big(pe^{-ik} + (1-p) \big)^n.
+\end{align*}
+\]</span> Notice the parameter <span class="math inline">\(n\)</span> appears only in the exponent. This means the cumulant function is just <span class="math inline">\(n\)</span> times the cumulant function for the Bernoulli distribution, <span class="math display">\[
+\log \tilde p_n(k) = n \log \tilde p_1(k).
+\]</span> In particular, the cumulants are all proportional to <span class="math inline">\(n\)</span> times the Bernoulli cumulants. Expanding out <span class="math inline">\(\log \tilde p_1(k)\)</span>, we have <span class="math display">\[
+\begin{align*}
+\log \tilde p_1(k) &amp;= \log\big(pe^{-ik} + (1-p)\big) \\
+&amp;= \log\big(1 + p(e^{-ik}-1)\big) \\
+&amp;= p(e^{-ik}-1) - \frac{1}{2} p^2(e^{-ik}-1)^2 + \cdots \\
+&amp;= p\bigg(-ik + \frac{(-ik)^2}{2} + \cdots\bigg) - \frac{1}{2} p^2 \bigg(-ik + \frac{(-ik)^2}{2} + \cdots\bigg)^2 + \cdots \\
+&amp;= -ik p + \frac{(-ik)^2}{2} p(1-p) + \cdots
+\end{align*}
+\]</span> Thus, the mean and variance of the binomial distribution are just <span class="math display">\[
+\mu = np, \quad \sigma^2 = np(1-p).
+\]</span> These distributions can be straight-forwardly generalized to situations with more than binomial outcomes. The Bernoulli distribution generalizes to the <em>categorical distribution</em>, where <span class="math inline">\(x\)</span> is allowed to be one of <span class="math inline">\(k\)</span> categories, each with a fixed probability <span class="math inline">\(p_j\)</span>. Clearly those probabilities must sum to one. If the categories are <span class="math inline">\(x = 1, 2, \cdots, k\)</span> the PMF would be given by <span class="math display">\[
+p(x) = p_1^{\delta_{1x}} p_2^{\delta_{2x}} \cdots p_k^{\delta_{kx}}, \quad x = 1, 2, \cdots, k.
+\]</span> The binomial distribution generalizes to the <em>multinomial distribution</em>, where <span class="math inline">\(x\)</span> is now a <em>vector</em> whose j<sup>th</sup> component is the number of times category <span class="math inline">\(j\)</span> occurred in <span class="math inline">\(n\)</span> total trials. Each <span class="math inline">\(x_j = 0, 1, \cdots, n_j\)</span> is essentially its own binomial distribution, except we require <span class="math inline">\(n = n_1 + n_2 + \cdots n_k\)</span>. The PMF is given by <span class="math display">\[
+p(x) = \frac{n!}{n_1!n_2!\cdots n_k!} p_1^{n_1} p_2^{n_2} \cdots p_2^{n_2}.
+\]</span> The coefficient <span class="math inline">\(\frac{n!}{n_1!n_2!\cdots n_k!}\)</span> is called a <em>multinomial coefficient</em>. It’s a count of the number of ways to distribute <span class="math inline">\(n\)</span> points into <span class="math inline">\(k\)</span> bins such that each bin <span class="math inline">\(j\)</span> contains exactly <span class="math inline">\(n_j\)</span> points. We might say <span class="math inline">\(x\)</span> is multinomially distributed by writing <span class="math inline">\(x \sim \text{Multinomial}(n_1,n_2,\cdots,n_k; p_1, p_2, \cdots, p_k)\)</span>.</p>
+<p><strong>Poisson Distribution</strong></p>
+<p>Suppose we’re interested in answering the following question: What is the probability that <span class="math inline">\(x\)</span> events occur inside a time interval <span class="math inline">\([0,T]\)</span> provided each event is independent of the others, and that the probability of any one event occurring in an infinitesimal interval <span class="math inline">\([0,dt]\)</span> is a constant <span class="math inline">\(\alpha dt\)</span>. To figure out what <span class="math inline">\(p(x)\)</span> is, let’s imagine subdividing <span class="math inline">\([0,T]\)</span> up into <span class="math inline">\(N = \frac{T}{dt}\)</span> subintervals. In each subinterval, any single event is a Bernoulli random variable that either occurs with probability <span class="math inline">\(\alpha dt\)</span> or doesn’t occur with probability <span class="math inline">\((1-\alpha)dt\)</span>. If we assume each subinterval is independent of the others, the characteristic function of <span class="math inline">\(p(x)\)</span> is just <span class="math display">\[
+\begin{align*}
+\tilde p(k) &amp;= (\tilde p_1(k))^N \\
+&amp;= \big(\alpha e^{-ik}dt + (1-\alpha)dt\big)^N \\
+&amp;= \big(1 + \alpha dt(e^{-ik}-1)\big)^{T/dt} \\
+&amp;\approx e^{\alpha T(e^{-ik} - 1)}. \\
+\end{align*}
+\]</span> The last equality becomes exact when <span class="math inline">\(dt\)</span> is infinitesimal. Let’s define <span class="math inline">\(\lambda \equiv \alpha T\)</span> as a dimensionless rate parameter. Then we can write the characteristic function as <span class="math display">\[
+\tilde p(k) = e^{\lambda(e^{-ik} - 1)}.
+\]</span> To get the sought after PDF <span class="math inline">\(p(x)\)</span> we just need to take the inverse Fourier transform of <span class="math inline">\(\tilde p(k)\)</span>. We have <span class="math display">\[
+\begin{align*}
+p(x) &amp;= \int_{\mathbb{R}} \frac{dk}{2\pi} \ \tilde p(k) e^{ikx} \\
+&amp;= \int_{\mathbb{R}} \frac{dk}{2\pi} \ e^{\lambda (e^{-ik}-1)}e^{ikx} \\
+&amp;= e^{-\lambda} \int_{\mathbb{R}} \frac{dk}{2\pi} \  e^{ikx} \sum_{n=0}^\infty \frac{(\lambda e^{-ik})^n}{n!} \\
+&amp;= e^{-\lambda} \sum_{n=0}^\infty \frac{\lambda^n}{n!} \int_{\mathbb{R}} \frac{dk}{2\pi} e^{-ik(x-n)} \\
+&amp;= e^{-\lambda} \sum_{n=0}^\infty \frac{\lambda^n}{n!} \delta(x-n). \\
+\end{align*}
+\]</span> The delta function forces <span class="math inline">\(x\)</span> to be a positive integer for <span class="math inline">\(p(x)\)</span> to be non-zero. That is, <span class="math inline">\(p(x)\)</span> is actually a PMF <span class="math display">\[
+p(x) = e^{-\lambda} \frac{\lambda^x}{x!}, \quad x = 0, 1, 2, \cdots
+\]</span> This is called the <em>Poisson distribution</em>. The Poisson distribution is used to model <em>counts</em> of events, where each event is allowed to occur independently with some fixed rate <span class="math inline">\(\lambda = \alpha T\)</span>. We can denote that <span class="math inline">\(x\)</span> is Poisson distributed by writing <span class="math inline">\(x \sim \text{Poisson}(\lambda)\)</span>.</p>
+<p>This distribution has the unusual property that all its cumulants are equal. Indeed, observe we have <span class="math display">\[
+\log \tilde p(k) = \lambda (e^{-ik} - 1) = \sum_{n=1}^\infty \frac{(-ik)^n}{n!} \lambda.
+\]</span> That is, all the cumulants are just <span class="math inline">\(\lambda\)</span>. In particular, <span class="math inline">\(\mu = \sigma^2 = \lambda\)</span>.</p>
+</section>
+<section id="joint-random-variables" class="level2">
+<h2 class="anchored" data-anchor-id="joint-random-variables">Joint Random Variables</h2>
+<p>Let’s now look at the situation where we have <span class="math inline">\(N\)</span> random variables <span class="math inline">\(X_1, X_2, \cdots, X_N\)</span>. The vector of all such random variables is called a <strong>random vector</strong>, i.e.&nbsp;a vector <span class="math inline">\(\mathbf{X} = (X_1, X_2, \cdots, X_N)\)</span>. To each random vector we can assign a <strong>joint CDF</strong> of the form <span class="math display">\[
+P(\mathbf{x}) \equiv \mathbb{Pr}(\{\mathbf{X} \leq \mathbf{x}\}) = \mathbb{Pr}(\{X_1 \leq x_1, X_2 \leq x_2, \cdots, X_N \leq x_N\}).
+\]</span> The CDF must be an increasing function in each <span class="math inline">\(x_i\)</span>, go to <span class="math inline">\(0\)</span> as all <span class="math inline">\(x_i \rightarrow -\infty\)</span>, and go to <span class="math inline">\(1\)</span> as all the <span class="math inline">\(x_i \rightarrow \infty\)</span>.</p>
+<p>If <span class="math inline">\(\mathbf{X}\)</span> is discrete, we can assign a <strong>joint PMF</strong> to each value in the support <span class="math inline">\(S \in \mathbb{R}^N\)</span> by defining <span class="math display">\[
+p(\mathbf{n}) \equiv \mathbb{Pr}(\{\mathbf{X} = \mathbf{n}\}).
+\]</span> The joint PMF is a valid probability, meaning it must satisfy <span class="math inline">\(0 \leq p(\mathbf{n}) \leq 1\)</span> and <span class="math inline">\(\sum_{\mathbf{n} \in S} p(\mathbf{n}) = 1\)</span>.</p>
+<p>Similarly, if <span class="math inline">\(\mathbf{X}\)</span> is continuous, we can assign a <strong>joint PDF</strong> to each value in <span class="math inline">\(S \in \mathbb{R}^N\)</span> by defining <span class="math display">\[
+p(\mathbf{x}) d^Nx \equiv \mathbb{Pr}(\{x_1 \leq X_1 \leq x_1 + dx_1, x_2 \leq X_2 \leq x_2 + dx_2, \cdots, x_N \leq X_N \leq x_N + dx_N\}),
+\]</span> where <span class="math inline">\(d^N x = dx_1dx_2\cdots dx_N\)</span> is the <span class="math inline">\(N\)</span>-dimensional <em>volume element</em>. The joint PMF must satisfy both <span class="math inline">\(p(\mathbf{x}) \geq 0\)</span>, and <span class="math inline">\(\int_S d^N x \ p(\mathbf{x}) = 1\)</span>. Clearly the joint PMF is just a special case of the joint PDF, since we can always just use delta functions to express a PMF as a PDF.</p>
+<p>For any function <span class="math inline">\(F(\mathbf{x})\)</span> of a random vector <span class="math inline">\(\mathbf{x}\)</span> we can define its expectation value as <span class="math display">\[
+\langle \mathbf{x} \rangle \equiv \int_S d^N x \ F(\mathbf{x}) p(\mathbf{x}).
+\]</span> For both discrete and continuous random vectors we can define the <strong>joint characteristic function</strong> <span class="math display">\[
+\tilde p(\mathbf{k}) \equiv \langle e^{-i\mathbf{k} \cdot \mathbf{x}} \rangle \equiv \int_{\mathbb{R}^N} d^Nx \ p(\mathbf{x}) e^{-i\mathbf{k} \cdot \mathbf{x}}.
+\]</span> By taking the logarithm of the joint CF, we can also define the <strong>joint cumulant function</strong> <span class="math inline">\(\log \tilde p(\mathbf{k})\)</span>. From these two functions we can extract the joint moments and cumulants. The <span class="math inline">\(n_1, n_2, \cdots, n_N\)</span> <strong>joint moment</strong> <span class="math inline">\(\mu_{n_1,n_2,\cdots,n_N} \equiv \langle x_1^{n_1} x_2^{n_2} \cdots x_N^{n_N} \rangle\)</span> of <span class="math inline">\(\mathbf{X}\)</span> is given by taking partial derivatives of the joint characteristic function, <span class="math display">\[
+\langle x_1^{n_1} x_2^{n_2} \cdots x_N^{n_N} \rangle \equiv \frac{\partial^{n_1}}{\partial (-i k_1)^{n_1}} \frac{\partial^{n_2}}{\partial (-i k_2)^{n_2}} \cdots \frac{\partial^{n_N}}{\partial (-i k_N)^{n_N}} \tilde p(k_1, k_2, \cdots, k_N) \bigg |_{k_1=k_2=\cdots=k_N=0}.
+\]</span> Similarly, the <span class="math inline">\(n_1, n_2, \cdots, n_N\)</span> <strong>joint cumulant</strong> <span class="math inline">\(\kappa_{n_1,n_2,\cdots,n_N}\)</span> is given by taking partial derivatives of the joint cumulant function, <span class="math display">\[
+\kappa_{n_1,n_2,\cdots,n_N} \equiv \frac{\partial^{n_1}}{\partial (-i k_1)^{n_1}} \frac{\partial^{n_2}}{\partial (-i k_2)^{n_2}} \cdots \frac{\partial^{n_N}}{\partial (-i k_N)^{n_N}} \log \tilde p(k_1, k_2, \cdots, k_N) \bigg |_{k_1=k_2=\cdots=k_N=0}.
+\]</span> The sum <span class="math inline">\(n \equiv n_1 + n_2 + \cdots n_N\)</span> determines the order of the moment or cumulant. Of particular interest are the first and second cumulants. The first cumulants are the means <span class="math inline">\(\mu_i \equiv \langle x_i \rangle\)</span>. We can think of these together by putting them all into a <strong>mean vector</strong> <span class="math inline">\(\boldsymbol{\mu} \equiv \langle \mathbf{x} \rangle\)</span>. The second cumulants are the <em>covariances</em>, <span class="math inline">\(\sigma_{ij} \equiv \kappa_{ij}\)</span>. We can put all these into an <span class="math inline">\(N \times N\)</span> matrix to get the <strong>covariance matrix</strong> <span class="math inline">\(\mathbf{\Sigma} \equiv (\sigma_{ij})\)</span>. The diagonal entries of the covariance matrix correspond to the usual <em>variances</em> <span class="math inline">\(\sigma_i^2 = \sigma_{ii}\)</span>. The off diagonal terms are the <em>covariances</em>, capturing the dependence or <em>correlation</em> between <span class="math inline">\(x_i\)</span> and <span class="math inline">\(x_j\)</span>.</p>
+<p>We can use the same graphical trick to express joint cumulants in terms of joint moments. The only difference is we need to label each point by its index and bag them appropriately. We can use this to show that the covariance <span class="math inline">\(\sigma_{ij} \equiv \kappa_{ij}\)</span> can be written as <span class="math display">\[
+\sigma_{ij} = \langle x_i x_j \rangle - \langle x_i \rangle \langle x_j \rangle = \langle (x_i - \mu_i)(x_j - \mu_j) \rangle.
+\]</span> In matrix notation, the entire covariance matrix can be expressed using moments as <span class="math display">\[
+\mathbf{\Sigma} = \langle \mathbf{x}\mathbf{x}^\top \rangle - \langle \mathbf{x} \rangle \langle \mathbf{x} \rangle^\top = \langle (\mathbf{x}-\mathbf{\mu})(\mathbf{x}-\mathbf{\mu})^\top \rangle.
+\]</span> This implies the covariance matrix must in fact be a positive semi-definite matrix. That is, <span class="math display">\[
+\mathbf{\Sigma} = \mathbf{\Sigma}^\top, \quad \mathbf{v}^\top\mathbf{\Sigma}\mathbf{v} \geq 0 \quad \forall \mathbf{v} \neq \mathbf{0}.
+\]</span> We can get smaller joint probabilities by “summing out” the random variables we don’t need. These are called <strong>marginal probabilities</strong> or <strong>unconditional probabilities</strong>. For example, if we have two random variables <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>, the marginal PDF <span class="math inline">\(p(y)\)</span> is given by integrating <span class="math inline">\(x\)</span> out of the joint PDF <span class="math inline">\(p(x,y)\)</span>, <span class="math display">\[
+p(y) \equiv \int_\mathbb{R} dx \ p(x,y).
+\]</span> If we have <span class="math inline">\(N\)</span> random variables <span class="math inline">\(x_1,x_2,\cdots, x_s, x_{s+1},\cdots,x_N\)</span> and integrate out the last <span class="math inline">\(N-s\)</span> variables <span class="math inline">\(x_s, x_{s+1},\cdots,x_N\)</span>, then we get the marginal PDF <span class="math inline">\(p(x_1,x_2,\cdots, x_s)\)</span>, <span class="math display">\[
+p(x_1,x_2,\cdots, x_s) \equiv \int_{\mathbb{R}^{N-s}} dx_s, dx_{s+1},dx_N \ p(x_1,x_2,\cdots, x_s, x_s, x_{s+1},\cdots,x_N).
+\]</span> Similarly, we can define the <strong>conditional probabilities</strong>, which allow for random variables to depend on the outcome of other random variables directly. For example, for two random variables <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> with joint PDF <span class="math inline">\(p(x,y)\)</span>, we can define the <em>conditional probability</em> of <span class="math inline">\(y\)</span> given <span class="math inline">\(x\)</span> as <span class="math display">\[
+p(y|x) \equiv \frac{p(x,y)}{p(x)}.
+\]</span> We can think of <span class="math inline">\(p(x,y)\)</span> as a kind of <em>prior distribution</em> and <span class="math inline">\(p(x)\)</span> as a kind of normalization constant. Notice we can similarly write <span class="math inline">\(p(x,y) = p(x|y) p(y)\)</span>. If we plug this into the formula for <span class="math inline">\(p(y|x)\)</span> we get the well-known <strong>Bayes’ Rule</strong>, which says that <span class="math display">\[
+p(y|x) = \frac{p(x|y)p(y)}{p(x)}.
+\]</span> If we have <span class="math inline">\(N\)</span> random variables <span class="math inline">\(x_1,x_2,\cdots, x_s, x_{s+1},\cdots,x_N\)</span> and want to condition the first <span class="math inline">\(s\)</span> variables on the last <span class="math inline">\(N-s\)</span> variables, we’d similarly write <span class="math display">\[
+p(x_1,x_2,\cdots, x_s) \equiv \frac{p(x_1,x_2,\cdots, x_s, x_{s+1},\cdots,x_N)}{p(x_{s+1},\cdots,x_N)}.
+\]</span> We haven’t proven it, but it’s not hard to show that the marginal and conditional probabilities are indeed valid probabilities and PDFs.</p>
+<p>When conditioning a random variable <span class="math inline">\(y\)</span> on another random variable <span class="math inline">\(x\)</span> gives no information about <span class="math inline">\(y\)</span>, we say that <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> are <strong>independent</strong>, sometimes written <span class="math inline">\(x \perp y\)</span>. If <span class="math inline">\(x\)</span> gives no information about <span class="math inline">\(y\)</span>, that means we must have <span class="math inline">\(p(y|x) = p(y)\)</span>, which is equivalent to saying the joint PDF factors, <span class="math inline">\(p(x,y) = p(x) p(y)\)</span>. Clearly, if <span class="math inline">\(x\)</span> gives no information about <span class="math inline">\(y\)</span>, then <span class="math inline">\(y\)</span> gives no information about <span class="math inline">\(x\)</span> either. Independence is symmetric.</p>
+<p>More generally, we say <span class="math inline">\(N\)</span> random variables <span class="math inline">\(x_1,x_2,\cdots,x_N\)</span> are mutually independent provided <span class="math display">\[
+p(x_1,x_2,\cdots,x_N) = p_1(x_1) p_2(x_2) \cdots p_N(x_N).
+\]</span> In the special case where all <span class="math inline">\(N\)</span> variables also happen to come from the same distribution <span class="math inline">\(p(x)\)</span> we say they’re <strong>independent identically distributed</strong> or <strong>IID</strong>. In this simple case we just have <span class="math display">\[
+p(x_1,x_2,\cdots,x_N) = \big(p(x)\big)^N.
+\]</span> Independent random variables have the property that their <em>mixed cumulants</em> will always be zero. This is equivalent to saying that the joint expectation of any product of random variables value factors, <span class="math display">\[
+\langle F_1(x_1) F_2(x_2) \cdots F_N(x_N) \rangle = \langle F_1(x_1) \rangle \langle F_2(x_2) \rangle \cdots \langle F_N(x_N) \rangle.
+\]</span></p>
+<p>While there are many joint probability distributions, the most important one to be aware of is the <strong>multivariate Gaussian distribution</strong>. Suppose <span class="math inline">\(\mathbf{x} = (x_1, x_2, \cdots, x_N)\)</span> are independent, with each <span class="math inline">\(x_i\)</span> Gaussian distributed with mean <span class="math inline">\(\mu_i\)</span> and variance <span class="math inline">\(\sigma_i^2\)</span>. Then it’s easy to show their joint PDF is given by <span class="math display">\[
+p(x_1, x_2, \cdots, x_N) = \frac{1}{(2\pi\sigma_1^2\sigma_2^2\cdots\sigma_N^2)^{N/2}} \exp\bigg(-\frac{1}{2} \sum_{i=1}^N \frac{(x_i-\mu_i)^2}{\sigma_i^2} \bigg).
+\]</span> But what if <span class="math inline">\(\mathbf{x}\)</span> is <em>not</em> independent? All we have to do in that case is make a change of basis. Notice that joint PDF above is just the diagonalized form for the following joint PDF in vector form, <span class="math display">\[
+p(\mathbf{x}) = \frac{1}{(2\pi \det(\mathbf{\Sigma}))} \exp\bigg(-\frac{1}{2} (\mathbf{x} - \boldsymbol{\mu})^\top \mathbf{\Sigma}^{-1}(\mathbf{x} - \boldsymbol{\mu}) \bigg).
+\]</span> By making a change of basis or rotating <span class="math inline">\(\mathbf{\Sigma}\)</span>, this vectorized PDF gives the most general form of the Gaussian distribution for <span class="math inline">\(N\)</span> variables. This is the <em>multivariate Gaussian distribution</em>, denoted <span class="math inline">\(\mathbf{x} \sim \mathcal{N}(\boldsymbol{\mu},\mathbf{\Sigma})\)</span>.</p>
+<p>Using the same diagonalization trick, it’s just as easy to show that the joint characteristic function is <span class="math display">\[
+\tilde p(\mathbf{k}) = \exp(-i\mathbf{k} \cdot \boldsymbol{\mu} - \frac{1}{2} \mathbf{k}^\top \mathbf{\Sigma} \mathbf{k}),
+\]</span> and the joint cumulant is just <span class="math inline">\(\log \tilde p(\mathbf{k}) = -i\mathbf{k} \cdot \boldsymbol{\mu} - \frac{1}{2} \mathbf{k}^\top \mathbf{\Sigma} \mathbf{k}\)</span>. This again implies that only the first and second joint cumulants are non-zero for the multivariate Gaussian. All higher-order terms vanish. For this reason, multivariate Gaussian random variables satisfy a special condition known as <em>Wick’s Theorem</em>.</p>
+<p><strong>Wick’s Theorem:</strong> Suppose <span class="math inline">\(\mathbf{x} = (x_1, x_2, \cdots, x_N)\)</span> is a Gaussian random vector with mean <span class="math inline">\(\boldsymbol{\mu} = \mathbf{0}\)</span>. Then the <span class="math inline">\(n\)</span><sup>th</sup> joint moments are given by <span class="math display">\[
+\langle x_1^{n_1} x_2^{n_2} \cdots x_N^{n_N} \rangle =
+\begin{cases}
+0 &amp; n = \text{odd}, \\
+\text{sum of all pairwise contractions} &amp; n = \text{even}. \\
+\end{cases}
+\]</span> For example, suppose we wanted to calculate <span class="math inline">\(\langle x_1^2 x_2 x_3 \rangle\)</span>. In this case, the possible pairwise contractions are</p>
+<ul>
+<li><span class="math inline">\(x_1 x_1\)</span> and <span class="math inline">\(x_2 x_3\)</span> , which gives a term <span class="math inline">\(\sigma_{11} \sigma_{23}\)</span>,</li>
+<li><span class="math inline">\(x_1 x_2\)</span> and <span class="math inline">\(x_1 x_3\)</span> , which gives a term <span class="math inline">\(\sigma_{12} \sigma_{13}\)</span>,</li>
+<li><span class="math inline">\(x_1 x_3\)</span> and <span class="math inline">\(x_1 x_2\)</span> , which gives a term <span class="math inline">\(\sigma_{13} \sigma_{12}\)</span>.</li>
+</ul>
+<p>Summing each of these pairwise contractions together, we just have <span class="math display">\[
+\langle x_1^2 x_2 x_3 \rangle = \sigma_{11} \sigma_{23} + 2 \sigma_{12} \sigma_{13}.
+\]</span> ## Asymptotic Analysis</p>
+<p>In this section we’ll focus on important results that apply for <em>large</em> numbers of random variables <span class="math inline">\(N \gg 1\)</span>.</p>
+<p>It turns out that the <em>sum</em> of random variables will often by approximately Gaussian distributed provided some minor regularity assumptions are met. This important result is called the <em>central limit theorem</em>.</p>
+<p><strong>Central Limit Theorem:</strong> Suppose <span class="math inline">\(x = \sum_{i=1}^N x_i\)</span> is a sum of <span class="math inline">\(N\)</span> IID random variables with finite mean <span class="math inline">\(\mu\)</span> and variance <span class="math inline">\(\sigma^2\)</span>. Then when <span class="math inline">\(N \gg 1\)</span> we have <span class="math display">\[
+p\bigg(\frac{x-N\mu}{\sqrt{N\sigma^2}}\bigg) \approx \frac{1}{\sqrt{2 \pi}} \exp\bigg(-\frac{1}{2}\bigg(\frac{x-N\mu}{\sqrt{N\sigma^2}}\bigg)^2\bigg).
+\]</span> <strong>Proof:</strong> Suppose each <span class="math inline">\(x_i\)</span> is IID with distribution <span class="math inline">\(p_1(x_1)\)</span>. The characteristic function for <span class="math inline">\(p(x)\)</span> must then be <span class="math display">\[
+\tilde p(k) = \langle e^{-i kx} \rangle = \langle e^{-i k\sum_{i=1}^N x_i} \rangle = \prod_{i=1}^N \langle e^{-i k x_i} \rangle = \tilde p(k_1, k_2, \cdots, k_N) \bigg |_{k_1=k_2=\cdots=k_N=k}.
+\]</span> If we take the cumulant function <span class="math inline">\(\log \tilde p(k)\)</span> and expand it out directly, we have <span class="math display">\[
+\log \tilde p(k) = \sum_{n=1}^\infty \frac{(-ik)^n}{n!} \kappa_n(x) = -ik \kappa_1(x) + \frac{(-ik)^2}{2} \kappa_2(x) + \cdots
+\]</span> Expanding out the cumulant function <span class="math inline">\(\log \tilde p(k_1, k_2, \cdots, k_N)\)</span> and setting all <span class="math inline">\(k_i=k\)</span>, we have <span class="math display">\[
+\begin{align*}
+\log \tilde p(k_1, k_2, \cdots, k_N) &amp;= \sum_{n=0}^\infty \sum_{\sum n_j=n} \frac{(-ik_1)^{n_1} (-ik_2)^{n_2} \cdots (-ik_N)^{n_N}}{n!} \kappa_{n_1 n_2 \cdots n_N} \bigg |_{k_1=k_2=\cdots=k_N=k} \\
+&amp;= \sum_{n=0}^\infty \sum_{\sum n_j=n} \frac{(-ik)^n}{n!} \kappa_{n_1 n_2 \cdots n_N} \\
+&amp;= (-ik) \sum_{\sum n_j=1} \kappa_{n_1 n_2 \cdots n_N} + \frac{(-ik)^2}{2} \sum_{\sum n_j=2} \kappa_{n_1 n_2 \cdots n_N} + \cdots
+\end{align*}
+\]</span> Equating the two equations, we thus have <span class="math display">\[
+\kappa_n(x) = \sum_{\sum n_j=n} \kappa_{n_1 n_2 \cdots n_N}.
+\]</span> That is, the <span class="math inline">\(n\)</span><sup>th</sup> cumulant of the sum is the sum of all the joint <span class="math inline">\(n\)</span><sup>th</sup> cumulants. Now, suppose all the <span class="math inline">\(x_i\)</span> are independent. Then their joint PDF must factor as <span class="math display">\[
+p(x_1,x_2,\cdots,x_N) = p_1(x_1) p_2(x_2) \cdots p_N(x_N).
+\]</span> Moreover, since their mixed cumulants must be zero, the cumulants of the sum further reduce to <span class="math display">\[
+\kappa_n(x) = \sum_{i=1}^N \kappa_n(x_i),
+\]</span> Now suppose all the <span class="math inline">\(x_i\)</span> are identically distributed with the same PDF <span class="math inline">\(p_1(x_i)\)</span>. Then we further have just <span class="math display">\[
+\kappa_n = N \kappa_{n,i}.
+\]</span> Define another random variable <span class="math inline">\(y\)</span> by re-centering and rescaling <span class="math inline">\(x\)</span> as <span class="math display">\[
+z \equiv \frac{x - N\mu}{\sqrt{N\sigma^2}}.
+\]</span> Then the cumulants of <span class="math inline">\(z\)</span> are given by <span class="math display">\[
+\begin{align*}
+\kappa_1(z) &amp;= 0, \\
+\kappa_2(z) &amp;= 1, \\
+\kappa_n(z) &amp;= \frac{N\kappa_n(x_1)}{(N\sigma^2)^{n/2}} = O\big(N^{1-n/2}\big). \\
+\end{align*}
+\]</span> The higher order cumulants of <span class="math inline">\(z\)</span> evidently go to zero when <span class="math inline">\(N \gg 1\)</span>. But we already know the only distribution whose higher moments are zero is the Gaussian distribution. Thus, we’ve shown <span class="math display">\[
+p(z) \approx \frac{1}{\sqrt{2 \pi}} e^{-\frac{z^2}{2}}.
+\]</span> Note the central limit theorem is also true for non-IID random variables, provided the higher cumulants decay as <span class="math inline">\(\kappa_n(x) = O(N^{n/2})\)</span>. <span class="math inline">\(\text{Q.E.D.}\)</span></p>
+<p>In the proof of the CLT we implicitly assumed that the cumulants were all finite. What if that weren’t the case? This will happen if the PDF of each <span class="math inline">\(x_i\)</span> is heavy-tailed. Heavy-tailed distributions are commonly used to model <em>rare events</em>. It turns out then that the sum won’t in general converge to a Gaussian. In fact, if it does converge, it’ll converge to a <em>Levy distribution</em>, a general class of heavy-tailed distributions.</p>
+<p>TALK ABOUT SADDLEPOINT APPROX, FIRST DISCRETE CASE, THEN CONTINUOUS, THEN STIRLING</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation column-body">
+  <div class="nav-page nav-page-previous">
+      <a href="../statistical-mechanics/thermodynamics.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Thermodynamics</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>
