@@ -124,9 +124,9 @@ $$
 $$
 It's not obvious what this represents, but it turns out to represent the **skewness** of $x$. That is, the tendency for the distribution to *skew* left or right by some amount. A distribution symmetric about its mean will have zero skew since all of the odd moments will vanish, hence $\kappa_3 = 0$. Strictly speaking, the skewness is often normalized by dividing by $\sigma^3$.
 
-There's a useful graphical trick that can be used to quickly find the relationship between cumulants and moments. The idea is to represent the n<sup>th</sup> cumulant $\kappa_n$ is a *bag* of $n$ points. Then we can get the n<sup>th</sup> *moment* by summing over all possible ways of distributing $n$ points among all possible bags $1, 2, \cdots, n$. It's easiest to show this by example.
+There's a useful graphical trick that can be used to quickly find the relationship between cumulants and moments. The idea is to represent the n<sup>th</sup> cumulant $\kappa_n$ is a *bag* of $n$ points. Then we can get the n<sup>th</sup> *moment* by summing over all possible ways of distributing $n$ points among all possible bags $1, 2, \cdots, n$. It's easiest to show this by example. Here's how to get the first few moments from the first few cumulants:
 
-FILL THIS IN
+![](./resources/image-20230406152112380.png){fig-align=center width=450}
 
 Occasionally we'll want to make a change of variables from one random variable to another. To do that we need to figure out how the probabilities change under the change of variables. Suppose $F=F(X)$ is a random function of a random variable $X$. If $f = F(x)$, then probability that $X \in [x, x+dx]$ must be the same as the probability that $F \in [f, f+df]$. Provided $F(x)$ is single-valued, that means we'd have
 $$
@@ -169,7 +169,7 @@ Suppose $p(x) \propto e^{-\lambda |x|}$ where $\lambda > 0$ is some scale parame
    $$
    Note that this new PDF is only defined when $f \geq 0$ due to the square root.
 
-![](./resources/image-20230402072235128.png){fig-align=center width=400}
+![](./resources/image-20230402072235128.png){fig-align=center width=500}
 
 ---
 
@@ -450,6 +450,8 @@ Summing each of these pairwise contractions together, we just have
 $$
 \langle x_1^2 x_2 x_3 \rangle = \sigma_{11} \sigma_{23} + 2 \sigma_{12} \sigma_{13}.
 $$
+
+
 ## Asymptotic Analysis
 
 In this section we'll focus on important results that apply for *large* numbers of random variables $N \gg 1$.
@@ -506,12 +508,262 @@ $$
 $$
 The higher order cumulants of $z$ evidently go to zero when $N \gg 1$. But we already know the only distribution whose higher moments are zero is the Gaussian distribution. Thus, we've shown
 $$
-p(z) \approx \frac{1}{\sqrt{2 \pi}} e^{-\frac{z^2}{2}}.
+p(z) \approx \frac{1}{\sqrt{2 \pi}} e^{-\frac{z^2}{2}}. \qquad \text{Q.E.D.}
 $$
-Note the central limit theorem is also true for non-IID random variables, provided the higher cumulants decay as $\kappa_n(x) = O(N^{n/2})$. $\text{Q.E.D.}$
+Note the central limit theorem is also true for non-IID random variables, provided the higher cumulants decay as $\kappa_n(x) = O(N^{n/2})$.
 
 In the proof of the CLT we implicitly assumed that the cumulants were all finite. What if that weren't the case? This will happen if the PDF of each $x_i$ is heavy-tailed. Heavy-tailed distributions are commonly used to model *rare events*. It turns out then that the sum won't in general converge to a Gaussian. In fact, if it does converge, it'll converge to a *Levy distribution*, a general class of heavy-tailed distributions.
 
+In the section on thermodynamics, we saw both *intensive* variables and *extensive* variables. The intensive variables are ones that don't depend on particle number at all, i.e. they're $O(1)$ functions of $N$. The extensive variables are linear in particle number, i.e. they're $O(N)$. In principle we could imagine other functional dependences on $N$ as well. For example, a variable could be *polynomial* in $N$, i.e. $O(N^p)$ for some $p$. More importantly, a variable can be *exponential* in $N$, i.e. $O(e^{N\phi})$ for some $\phi$. For example, the *volume* of a gas would be a variable that can scale exponentially with $N$, since it often goes like $V^N$. 
+
+When $N \gg 1$, the sum of many exponential variables can be well approximated by the maximum term. Suppose we have $n$ non-negative variables $x_1,x_2,\cdots,x_n$ of the form $x_i \sim e^{N\phi_i}$ as $N \rightarrow \infty$. Then their sum $S = \sum x_i$ satisfies
+$$
+S \sim x_{max} = \max_{i=1,\cdots,n} x_i, \quad \text{when} \quad N \rightarrow \infty.
+$$
+When each $x_i = A_i e^{N\phi_i}$, this just says $S \approx A_{max} e^{N\phi_{max}}$ when $N \gg 1$. To see why this fact is true, note that since each $x_i \geq 0$, we must have $x_{max} \leq S \leq nx_{max}$. Since the logarithm is monotonic, if we take the log of each term and divide by $N$, we have
+$$
+\frac{\log x_{max}}{N} \leq \frac{\log S}{N} \leq \frac{\log x_{max}}{N} + \frac{\log n}{N}.
+$$
+If we take $N \rightarrow \infty$ while holding $n$ fixed, then the term $\frac{\log n}{N} \rightarrow 0$, which gives
+$$
+\frac{\log S}{N} \sim \frac{\log x_{max}}{N} = \phi_i.
+$$
+
+More useful for our purposes will be the *continuous* analog of this result, the *saddlepoint approximation*.
+
+**Saddlepoint Approximation:** Suppose we have a function of the form $f(x) = e^{N\phi(x)}$ where $\phi(x)$ grows polynomially. Then we have
+$$
+S = \int_\mathbb{R} dx \ e^{N\phi(x)} \sim \sqrt{\frac{2\pi}{N|\phi''(x_{max})|}} e^{N\phi_{max}}, \quad \text{as} \quad N \rightarrow \infty.
+$$
+**Proof:** To see why this is true let's first Taylor expand $\phi(x)$ around its global maximum $x_{max}$. Since $\phi'(x_{max}) = 0$ and $\phi''(x_{max}) \leq 0$, we have
+$$
+\phi(x) = \phi(x_{max}) - \frac{1}{2} |\phi''(x_{max})| (x-x_{max})^2 + O\big((x-x_{max})^3\big).
+$$
+Plugging this into the integral and simplifying then gives
+$$
+\begin{align*}
+S &= \int_\mathbb{R} dx \ \exp\bigg(N\phi_{max} - \frac{N}{2} |\phi''(x_{max})| (x-x_{max})^2 + \frac{N}{6} |\phi'''(x_{max})| (x-x_{max})^3 + \cdots\bigg) \\
+&= \int_\mathbb{R} dx \ \exp\bigg(N\phi_{max} - \frac{N}{2} |\phi''(x_{max})| (x-x_{max})^2\bigg) \exp\bigg(\frac{N}{6} |\phi'''(x_{max})| (x-x_{max})^3 + \cdots\bigg) \\
+&= e^{N\phi_{max}} \int_\mathbb{R} dx \ \exp\bigg(- \frac{N}{2} |\phi''(x_{max})| (x-x_{max})^2\bigg) \bigg(1 + \frac{N}{6}|\phi'''(x_{max})|(x-x_{max})^3 + \cdots\bigg) \\
+&= e^{N\phi_{max}} \sqrt{\frac{2\pi}{N|\phi''(x_{max})|}} \bigg(1 + O\bigg(\frac{1}{N}\bigg)\bigg).
+\end{align*}
+$$
+The last line follows from the fact that the integral with $(x-x_{max})^3$ vanishes since it's an odd function, which means the next term $(x-x_{max})^4$ has to be considered, which integrates to order $O\big(N^{-3/2}\big)$.
+
+Now, let's again look at $\frac{\log S}{N}$ as $N \rightarrow \infty$. We have
+$$
+\frac{\log S}{N} = \phi_{max} - \frac{1}{2N} \log \frac{N|\phi''(x_{max})|}{2\pi} + O\bigg(\frac{1}{N^2}\bigg).
+$$
+We can see that as $N \rightarrow \infty$, $\frac{\log S}{N} \rightarrow \phi_{max}$ with a correction of order $O\big(\frac{\log N}{N}\big)$.  $\text{Q.E.D.}$
+
+It's interesting to observe that only the global maximum appears in this approximation. What if $\phi(x)$ had some other local maximum $\phi(x_{max}')$? Strictly speaking we'd have to do the same approximation scheme about each of the maxima one-by-one. However, due to the presence of the exponential, if $\phi(x_{max}') < \phi(x_{max})$, then for large $N$ we'd have
+$$
+e^{N\phi(x_{max}')} \ll e^{N\phi(x_{max})}.
+$$
+In the limit where $N \rightarrow \infty$, the correction term $e^{-N\big(\phi(x_{max})-\phi(x_{max}')\big)} \rightarrow 0$. In this sense, we can indeed neglect the other local maxima as long as they're less than $\phi(x_{max})$ and $N \gg 1$.
+
+![](./resources/image-20230406152315205.png){fig-align=center width=400}
+
+By far the most useful corollary to this result for our purposes is the *Stirling Approximation*.
+
+**Stirling Approximation:** As $N \rightarrow \infty$, we have
+$$
+N! \sim N^N e^{-N} \sqrt{2\pi N}.
+$$
+**Proof:** Observe by induction that we can write $N!$ as the following integral,
+$$
+N! = \int_0^\infty dx \ x^N e^{-x} = \int_0^\infty dx \ \exp\bigg(N\bigg(\log x - \frac{x}{N}\bigg)\bigg).
+$$
+Take $\phi(x) = \log x - \frac{x}{N}$. This function is maximized when $x_{max} = N$, where $\phi_{max} = \log N - 1$. At this point we have $\phi''(x_{max}) = - \frac{1}{N^2}$. Plugging all this into the saddlepoint approximation, we have
+$$
+\begin{align*}
+N! &= e^{N(\log N - 1)} \sqrt{\frac{2\pi}{N|-N^{-2}|}} \bigg(1 + O\bigg(\frac{1}{N}\bigg)\bigg) \\
+&= N^N e^{-N} \sqrt{2\pi N} \bigg(1 + O\bigg(\frac{1}{N}\bigg)\bigg). \quad \text{Q.E.D.}
+\end{align*}
+$$
+Usually we'll be more interested in $\log N!$ rather than $N!$ itself. In that case we just have
+$$
+\log N! = N \log N - N + \frac{1}{2} \log 2\pi N + O\bigg(\frac{1}{N}\bigg).
+$$
+We'll typically imagine $N$ to be really big, like $N \sim 10^{23}$. In that case we can neglect the sublinear terms and safely write
+$$
+\log N! \approx N\log N - N.
+$$
+This will usually be the form of Stirling's approximation that we use in practice.
 
 
-TALK ABOUT SADDLEPOINT APPROX, FIRST DISCRETE CASE, THEN CONTINUOUS, THEN STIRLING
+
+## Information Theory
+
+We can think about probabilities in a completely different sense by thinking about the *information content* contained in a system and how uncertain we are about what that information content is. Suppose we wanted to transmit a message containing $N$ characters, where each character is sampled from some alphabet $\Sigma$ containing $M$ total characters. We'd like to ask the following question: How many bits of information does a *typical* message of $N$ characters from this alphabet contain?
+
+Suppose we had no information at all about how often any one particular character $x_m \in \Sigma$ occurs in a message. In this case, we'd have to assume that all message of length $N$ are typical. Since there are $M^N$ possible messages of length $N$, we'd say there are $g = M^N$ typical messages. Since $g$ contains $\log_2 g$ bits of information, this means a typical message would contain $\log g = N \log_2 M$ bits of information.
+
+Suppose now that we had an estimate of the frequency $p_m$ that each character $x_m \in \Sigma$ occurs in a message. That is, in a message of length $N$, we expect each character $x_m$ to occur $N_m \approx Np_m$ total times, or to be more precise $N_m = Np_m + O\big(\sqrt{N}\big)$ since each character is a Bernoulli random variable, hence a message of length $N$ is a binomial random variable. In this case, the number of *typical* messages is just the number of ways of placing $N$ random characters into $M$ bins of sizes $N_1, N_2, \cdots, N_M$, which is
+$$
+g = \frac{N!}{\prod_{m=1}^M N_m!}.
+$$
+The total number of bits contained in a typical message would then be $\log_2 g$. If we assume the message length $N$ is large compared to the alphabet size $M$, then we can apply the Stirling approximation to each term containing a factorial. Using the fact $N_m = Np_m$ and $\sum N_m = N$, we have
+$$
+\begin{align*}
+\log_2 g &= \log_2 N! - \sum_{m=1}^M \log_2 N_m! \\
+&\approx \big(N\log_2 N - N\big) - \sum_{m=1}^M \big(N_m \log_2 N_m - N_m \big) \\
+&\approx N \log_2 N - \sum N_m \log_2 N_m \\
+&\approx - N \sum_{m=1}^M p_m \log_2 p_m.
+\end{align*}
+$$
+The term $-\sum p_m \log_2 p_m$ is just a function of the underlying probability distribution of characters, not of the message length $N$ itself. It captures our uncertainty or surprise in what message we'd receive. We call this term the **information entropy** or **Shannon entropy**. Since the choice of base for the logarithm merely adds a constant to this sum, in physics we more typically use the *natural logarithm* instead of the base-2 logarithm, which expresses entropy in *nats* instead of *bits*. In this form, the information entropy can be defined as
+$$
+S \equiv \sum_{m=1}^M p_m \log p_m.
+$$
+We've thus answered the question sought: a typical message of length $N$ contains about $\log_2 g \approx NS$ bits of information, up to an additive constant that depends on the base of logarithm. Notice that if we *knew* exactly which message to expect, that would mean $g = 1$, which means $S = 0$. Since we already know the most number of messages possible is $g=M^N$, the information entropy must evidently satisfy
+$$
+0 \leq S \leq N \log M.
+$$
+In thermodynamics, the information entropy corresponds to the **mixing entropy** up to a factor of Boltzmann's constant $k_B$. One implication of this is that while information entropy is dimensionless, thermodynamic entropy has units, namely units of $k_B$, which is energy per degree. 
+
+The terms $I_m \equiv -\log p_m$ capture the **information content** contained in any one particular character $x_m$. If $p_m \approx 0$ then $I_m \approx \infty$, meaning $x_m$ contains an infinite number of bits of new information relative to what we already know. If $p_m \approx 1$ then $I_m \approx 0$, meaning $x_m$ contains no new bits of information. We can thus also think of the entropy as the *expected information content* of a message, since
+$$
+S = -\sum_{m=1}^M p_m \log p_m = -\langle \log p \rangle = \langle I \rangle.
+$$
+While information theory was built around the idea of transmitting messages, there's nothing inherently limiting these ideas to messages alone. We can apply the concept of entropy as defined to *any* discrete probability distribution, where each $x_m$ corresponds to some value taken on by a random variable.
+
+What about continuous distributions though? We can try to extend entropy to these as well, but we have to be careful. Since density functions needn't be positive, the entropy will no longer in general be positive either, meaning it doesn't make sense to think about it as a direct measure of information content. Nevertheless, we could *define* the information entropy of a continuous distribution as
+$$
+S \equiv -\int_{\mathbb{R}} dx \ p(x) \log p(x).
+$$
+From a physical perspective, a more troublesome problem with this definition is that in general $dx$ will have units, which means $p(x)$ will have units as well. But we can't have a function with units inside a logarithm. The *right* way to deal with this will be to convert $dx$ to some kind of dimensionless measure so that $p(x)$ will also be dimensionless. For example, in statistical mechanics we'll usually be looking at distributions over phase space, where the integration measure is $d\Gamma \propto d^3 x d^3 p$. In this case, we'd need to divide by a constant that has units of $[xp]$. We'll see from quantum mechanics that the correct constant is in fact Planck's constant $h$. That is, the right integration measure is
+$$
+d\Gamma = \frac{d^3 x d^3 p}{h^3}.
+$$
+We can use the idea of information entropy to finally answer the question regarding what the correct way is to define probabilities subjectively or theoretically. The idea is to use the *principle of maximum entropy*.
+
+**Principle of Maximum Entropy:** The unbiased assignment of probability is the one that maximizes the information entropy subject to known constraints. More formally, assign a probability distribution $p(x)$ that maximizes the constrained problem
+$$
+\begin{align*}
+&\max_{p(x)} S[p(x)] =  \max_{p(x)} \bigg(- \sum_x p(x) \log p(x) \bigg) \\
+&\text{subject to} \ \sum_x p(x) = 1, \ \text{and} \ g(x) = 0. \\
+\end{align*}
+$$
+where $g(x) = 0$ is any set of known constraints on the probability distribution. The first constraint that probabilities sum to one will always be there so that $p(x)$ yields a valid probability function.
+
+This is in essence just a generalization of the *principle of indifference*. If we don't have any information to go on, we should assume all outcomes have equal probability. The principle of maximum entropy extends this idea to general distributions where we might know some information, like what its mean or variance is, or what range it's bounded to.
+
+Using Lagrange multipliers, the principle of maximum entropy is equivalent to maximizing the Lagrange multiplier function
+$$
+L(p(x),\lambda) \equiv - \sum_x p(x) \log p(x) - \alpha \bigg(\sum_x p(x) - 1\bigg) - \beta \cdot g(x).
+$$
+subject to $p(x)$ and $\alpha$ and $\beta$.
+
+**Example:** Let's formally prove the principle of indifference using the principle of maximum entropy. That is, in the absence of no known information, the unbiased probabilities to assign are the ones where each outcome has an equal probability to occur. Suppose the random variable is discrete with $n$ outcomes of probabilities $p_1, p_2, \cdots, p_n$. In this case, the problem to solve is
+$$
+\begin{align*}
+&\max_{p} \bigg(- \sum_{i=1}^n p_i \log p_i \bigg) \\
+&\text{subject to} \ \sum_{i=1}^n p_i = 1.
+\end{align*}
+$$
+This is equivalent to maximizing the Lagrange multiplier function
+$$
+L(p,\alpha) \equiv - \sum_{i=1}^n p_i \log p_i - \alpha \bigg(\sum_{i=1}^n p_i - 1\bigg).
+$$
+Differentiating with respect to each $p_j$ and $\alpha$ and setting the derivatives to zero, we have
+$$
+\begin{align*}
+\frac{\partial L}{\partial p_j} &= -\log p_j - 1 - \alpha \equiv 0\\
+\frac{\partial L}{\partial \alpha} &= \sum_{i=1}^n p_i - 1 \equiv 0\\
+\end{align*}
+$$
+Solving this system of equations implies that
+$$
+\sum_{j=1}^n p_j = \sum_{j=1}^n e^{-(1+\alpha)} = 1 \quad \Longrightarrow \quad e^{1+\alpha} = n.
+$$
+Thus, the maximum entropy probabilities are just $p_j = \frac{1}{n}$ for all $j$, as expected. 
+
+The same method can be used in the continuous case as well by replacing the sums $\sum_{i=1}^n p_i$ by integrals $\int_a^b dx \ p(x)$. The main subtlety to be aware of in the continuous case is that we're no longer maximizing a function of $n$ probabilities, but a *functional* of the form $S[p(x)]$ over all possible functions $p(x)$. These can be solved for $p(x)$ by finding the choice of $p(x)$ that extremizes the functional $S[p(x)]$. In that case, the maximum entropy probabilities will turn out to be $p(x) = \frac{1}{b-a}$ as expected.
+
+**Example:** Here's an interesting example involving continuous distributions. Suppose we knew that a random variable $x$ on the real line had a given mean $\mu$ and variance $\sigma^2$. What is the maximum entropy distribution $p(x)$ such that these two cumulants are known? The problem to solve is now
+$$
+\begin{align*}
+&\max_{p(x)} \bigg(- \int dx \ p(x) \log p(x) \bigg) \\
+&\text{subject to} \ \int dx \ p(x) = 1, \\ 
+&\text{and} \int dx \ x p(x) = \mu, \ \ \int dx \ x^2 p(x) - \mu^2 = \sigma^2. \\
+\end{align*}
+$$
+The Lagrange multiplier function is then
+$$
+\begin{align*}
+L(p(x),\alpha,\beta,\gamma) = -&\bigg(\int dx \ p(x) \log p(x) \bigg) - \alpha\bigg(\int dx \ p(x) - 1\bigg) \\
+- \beta&\bigg(\int dx \ x p(x) - \mu\bigg) - \gamma \bigg(\int dx \ x^2 p(x) - \mu^2 - \sigma^2\bigg).
+\end{align*}
+$$
+To maximize this function, consider a functional perturbation $p + \delta p$. Notice every term is linear in $p$ except the first term, which is $p \log p$. In that term, we have
+$$
+\begin{align*}
+(p + \delta p) \log (p + \delta p) &= (p + \delta p) \log(1 + \frac{\delta p}{p}) \log p \\
+&= (p + \delta p) \bigg(1 + \frac{\delta p}{p}\bigg) \log p \\
+&= p \log p + \delta p (\log p + 1) + O(\delta p^2).
+\end{align*}
+$$
+If we ignore terms of order higher than $\delta p$, then solving for $\delta L$ and setting it to zero gives
+$$
+\begin{align*}
+\delta L &= L(p + \delta p,\alpha,\beta,\gamma) - L(p,\alpha,\beta,\gamma) \\
+&= -\int dx \delta p \ \bigg[\log p + 1 + \alpha + \beta x + \gamma(x^2 - 2\mu x) \bigg] \\
+&\equiv 0.
+\end{align*}
+$$
+Since this must be true for any perturbation $\delta p$, the integrand must be zero,
+$$
+\log p + 1 + \alpha + \beta x + \gamma(x^2 - 2\mu x) = 0.
+$$
+Solving then for $p(x)$ we have
+$$
+p(x) = \exp\big(-1 - \alpha - \beta x - \gamma(x^2 - 2\mu x)\big).
+$$
+The exponent is just a quadratic function of $x$, hence we can rewrite $p(x)$ in terms of new constants as
+$$
+p(x) = \mathcal{N} \exp\bigg(-\frac{(x-a\mu)^2}{2b\sigma^2}\bigg).
+$$
+Since this has the form of a Gaussian, integrating over the real line gives a normalization constant of the form $\mathcal{N} = (2\pi b \sigma^2)^{-1/2}$. Similarly, by shift invariance, integrating the mean function requires that $a=1$. Last, the variance constraint requires that $b=1$. We've thus shown that the continuous probability distribution whose mean and variance are known must be a Gaussian distribution.
+
+**Example:** Let's do one more example that's very relevant to statistical mechanics. Suppose we have a discrete random variable $x$ that can take on a possibly countably infinite number of values. Suppose we know that some positive function $E(x) \geq 0$ of $x$ has expectation $\langle E(x) \rangle = E$. Then the problem to solve is
+$$
+\begin{align*}
+&\max_p \bigg(- \sum_{i=0}^\infty p_i \log p_i \bigg) \\
+&\text{subject to} \ \sum_{i=0}^\infty p_i = 1, \ \text{and} \ \sum_{i=0}^\infty p_i E_i = E. \\
+\end{align*}
+$$
+The Lagrange multiplier function is then given by
+$$
+L(p,\alpha) \equiv - \sum_{i=0}^\infty p_i \log p_i - \alpha \bigg(\sum_{i=0}^\infty p_i - 1\bigg) - \beta \bigg(\sum_{i=0}^\infty p_i E_i - E\bigg).
+$$
+Differentiating with respect to each $p_j$, $\alpha$, and $\beta$ and setting all the derivatives to zero, we have
+$$
+\begin{align*}
+\frac{\partial L}{\partial p_j} &= -\log p_j - 1 - \alpha - \beta E_i \equiv 0, \\
+\frac{\partial L}{\partial \alpha} &= \sum_{i=0}^\infty p_i - 1 \equiv 0, \\
+\frac{\partial L}{\partial \alpha} &= \sum_{i=0}^\infty p_i E_i - E \equiv 0. \\
+\end{align*}
+$$
+Together, these imply that the probabilities must have the form
+$$
+p_j = e^{-(1+\alpha)} e^{-\beta E_j}.
+$$
+Again, the factor $e^{-(1+\alpha)}$ is just a normalization constant. If we redefine it to be $\frac{1}{Z}$, then we finally have
+$$
+p_j = \frac{1}{Z} e^{-\beta E_j},
+$$
+where $Z$ must satisfy the relation
+$$
+Z \equiv \sum_{i=0}^\infty e^{-\beta E_i}.
+$$
+We'll see later that $Z$ is very important to statistical mechanics. It's called the **partition function**. In that case, $E_j$ represents the energy of the system in the $j$<sup>th</sup> state and $E$ represents the average internal energy of the system, i.e. the energy that satisfies the first law of thermodynamics.
+
+More generally, we could imagine $E(x)$ being a vector-valued function, in which case we'd get
+$$
+p_j = \frac{1}{Z} e^{-\beta \cdot E_j},
+$$
+where each $\beta$ and $E_j$ is now a vector.  The partition function would similarly change to be
+$$
+Z \equiv \sum_{i=0}^\infty e^{-\beta \cdot E_i}.
+$$

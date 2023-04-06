@@ -287,19 +287,9 @@ ul.task-list li input[type="checkbox"] {
     </div>
 </nav>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">Table of contents</h2>
-   
-  <ul>
-  <li><a href="#random-variables" id="toc-random-variables" class="nav-link active" data-scroll-target="#random-variables">Random Variables</a></li>
-  <li><a href="#probability-distributions" id="toc-probability-distributions" class="nav-link" data-scroll-target="#probability-distributions">Probability Distributions</a></li>
-  <li><a href="#joint-random-variables" id="toc-joint-random-variables" class="nav-link" data-scroll-target="#joint-random-variables">Joint Random Variables</a></li>
-  </ul>
-</nav>
-    </div>
+    
 <!-- main -->
-<main class="content column-body" id="quarto-document-content">
+<main class="content column-page-right" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
@@ -398,8 +388,12 @@ p(x) = \int_{\mathbb{R}} \frac{dx}{2\pi} \ e^{ikx} \tilde p(k).
 <p>The third cumulant is evidently given by <span class="math display">\[
 \kappa_3 = \langle x^3 \rangle - 3\langle x^2 \rangle\langle x \rangle + 2 \langle x \rangle^3.
 \]</span> It’s not obvious what this represents, but it turns out to represent the <strong>skewness</strong> of <span class="math inline">\(x\)</span>. That is, the tendency for the distribution to <em>skew</em> left or right by some amount. A distribution symmetric about its mean will have zero skew since all of the odd moments will vanish, hence <span class="math inline">\(\kappa_3 = 0\)</span>. Strictly speaking, the skewness is often normalized by dividing by <span class="math inline">\(\sigma^3\)</span>.</p>
-<p>There’s a useful graphical trick that can be used to quickly find the relationship between cumulants and moments. The idea is to represent the n<sup>th</sup> cumulant <span class="math inline">\(\kappa_n\)</span> is a <em>bag</em> of <span class="math inline">\(n\)</span> points. Then we can get the n<sup>th</sup> <em>moment</em> by summing over all possible ways of distributing <span class="math inline">\(n\)</span> points among all possible bags <span class="math inline">\(1, 2, \cdots, n\)</span>. It’s easiest to show this by example.</p>
-<p>FILL THIS IN</p>
+<p>There’s a useful graphical trick that can be used to quickly find the relationship between cumulants and moments. The idea is to represent the n<sup>th</sup> cumulant <span class="math inline">\(\kappa_n\)</span> is a <em>bag</em> of <span class="math inline">\(n\)</span> points. Then we can get the n<sup>th</sup> <em>moment</em> by summing over all possible ways of distributing <span class="math inline">\(n\)</span> points among all possible bags <span class="math inline">\(1, 2, \cdots, n\)</span>. It’s easiest to show this by example. Here’s how to get the first few moments from the first few cumulants:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./resources/image-20230406152112380.png" class="img-fluid figure-img" width="450"></p>
+</figure>
+</div>
 <p>Occasionally we’ll want to make a change of variables from one random variable to another. To do that we need to figure out how the probabilities change under the change of variables. Suppose <span class="math inline">\(F=F(X)\)</span> is a random function of a random variable <span class="math inline">\(X\)</span>. If <span class="math inline">\(f = F(x)\)</span>, then probability that <span class="math inline">\(X \in [x, x+dx]\)</span> must be the same as the probability that <span class="math inline">\(F \in [f, f+df]\)</span>. Provided <span class="math inline">\(F(x)\)</span> is single-valued, that means we’d have <span class="math display">\[
 p_F(f) df = p_X(x) dx.
 \]</span> Dividing both sides by <span class="math inline">\(df\)</span> and noting that probabilities have to be positive, we have <span class="math display">\[
@@ -431,7 +425,7 @@ p_F(f) &amp;= p(\sqrt{f}) \bigg|\frac{d}{df} \sqrt{f}\bigg| + p(-\sqrt{f}) \bigg
 </ol>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="./resources/image-20230402072235128.png" class="img-fluid figure-img" width="400"></p>
+<p><img src="./resources/image-20230402072235128.png" class="img-fluid figure-img" width="500"></p>
 </figure>
 </div>
 <hr>
@@ -602,10 +596,13 @@ p(\mathbf{x}) = \frac{1}{(2\pi \det(\mathbf{\Sigma}))} \exp\bigg(-\frac{1}{2} (\
 </ul>
 <p>Summing each of these pairwise contractions together, we just have <span class="math display">\[
 \langle x_1^2 x_2 x_3 \rangle = \sigma_{11} \sigma_{23} + 2 \sigma_{12} \sigma_{13}.
-\]</span> ## Asymptotic Analysis</p>
+\]</span></p>
+</section>
+<section id="asymptotic-analysis" class="level2">
+<h2 class="anchored" data-anchor-id="asymptotic-analysis">Asymptotic Analysis</h2>
 <p>In this section we’ll focus on important results that apply for <em>large</em> numbers of random variables <span class="math inline">\(N \gg 1\)</span>.</p>
 <p>It turns out that the <em>sum</em> of random variables will often by approximately Gaussian distributed provided some minor regularity assumptions are met. This important result is called the <em>central limit theorem</em>.</p>
-<p><strong>Central Limit Theorem:</strong> Suppose <span class="math inline">\(x = \sum_{i=1}^N x_i\)</span> is a sum of <span class="math inline">\(N\)</span> IID random variables with finite mean <span class="math inline">\(\mu\)</span> and variance <span class="math inline">\(\sigma^2\)</span>. Then when <span class="math inline">\(N \gg 1\)</span> we have <span class="math display">\[
+<p><strong>Central Limit Theorem:</strong> Suppose <span class="math inline">\(x = \sum_{i=1}^N x_i\)</span> is a sum of <span class="math inline">\(N\)</span> IID random variables with finite mean <span class="math inline">\(\mu\)</span> and variance <span class="math inline">\(\sigma^2\)</span>. Then when <span class="math inline">\(N \gg 1\)</span> we have that <span class="math display">\[
 p\bigg(\frac{x-N\mu}{\sqrt{N\sigma^2}}\bigg) \approx \frac{1}{\sqrt{2 \pi}} \exp\bigg(-\frac{1}{2}\bigg(\frac{x-N\mu}{\sqrt{N\sigma^2}}\bigg)^2\bigg).
 \]</span> <strong>Proof:</strong> Suppose each <span class="math inline">\(x_i\)</span> is IID with distribution <span class="math inline">\(p_1(x_1)\)</span>. The characteristic function for <span class="math inline">\(p(x)\)</span> must then be <span class="math display">\[
 \tilde p(k) = \langle e^{-i kx} \rangle = \langle e^{-i k\sum_{i=1}^N x_i} \rangle = \prod_{i=1}^N \langle e^{-i k x_i} \rangle = \tilde p(k_1, k_2, \cdots, k_N) \bigg |_{k_1=k_2=\cdots=k_N=k}.
@@ -634,10 +631,164 @@ z \equiv \frac{x - N\mu}{\sqrt{N\sigma^2}}.
 \kappa_n(z) &amp;= \frac{N\kappa_n(x_1)}{(N\sigma^2)^{n/2}} = O\big(N^{1-n/2}\big). \\
 \end{align*}
 \]</span> The higher order cumulants of <span class="math inline">\(z\)</span> evidently go to zero when <span class="math inline">\(N \gg 1\)</span>. But we already know the only distribution whose higher moments are zero is the Gaussian distribution. Thus, we’ve shown <span class="math display">\[
-p(z) \approx \frac{1}{\sqrt{2 \pi}} e^{-\frac{z^2}{2}}.
-\]</span> Note the central limit theorem is also true for non-IID random variables, provided the higher cumulants decay as <span class="math inline">\(\kappa_n(x) = O(N^{n/2})\)</span>. <span class="math inline">\(\text{Q.E.D.}\)</span></p>
+p(z) \approx \frac{1}{\sqrt{2 \pi}} e^{-\frac{z^2}{2}}. \qquad \text{Q.E.D.}
+\]</span> Note the central limit theorem is also true for non-IID random variables, provided the higher cumulants decay as <span class="math inline">\(\kappa_n(x) = O(N^{n/2})\)</span>.</p>
 <p>In the proof of the CLT we implicitly assumed that the cumulants were all finite. What if that weren’t the case? This will happen if the PDF of each <span class="math inline">\(x_i\)</span> is heavy-tailed. Heavy-tailed distributions are commonly used to model <em>rare events</em>. It turns out then that the sum won’t in general converge to a Gaussian. In fact, if it does converge, it’ll converge to a <em>Levy distribution</em>, a general class of heavy-tailed distributions.</p>
-<p>TALK ABOUT SADDLEPOINT APPROX, FIRST DISCRETE CASE, THEN CONTINUOUS, THEN STIRLING</p>
+<p>In the section on thermodynamics, we saw both <em>intensive</em> variables and <em>extensive</em> variables. The intensive variables are ones that don’t depend on particle number at all, i.e.&nbsp;they’re <span class="math inline">\(O(1)\)</span> functions of <span class="math inline">\(N\)</span>. The extensive variables are linear in particle number, i.e.&nbsp;they’re <span class="math inline">\(O(N)\)</span>. In principle we could imagine other functional dependences on <span class="math inline">\(N\)</span> as well. For example, a variable could be <em>polynomial</em> in <span class="math inline">\(N\)</span>, i.e.&nbsp;<span class="math inline">\(O(N^p)\)</span> for some <span class="math inline">\(p\)</span>. More importantly, a variable can be <em>exponential</em> in <span class="math inline">\(N\)</span>, i.e.&nbsp;<span class="math inline">\(O(e^{N\phi})\)</span> for some <span class="math inline">\(\phi\)</span>. For example, the <em>volume</em> of a gas would be a variable that can scale exponentially with <span class="math inline">\(N\)</span>, since it often goes like <span class="math inline">\(V^N\)</span>.</p>
+<p>When <span class="math inline">\(N \gg 1\)</span>, the sum of many exponential variables can be well approximated by the maximum term. Suppose we have <span class="math inline">\(n\)</span> non-negative variables <span class="math inline">\(x_1,x_2,\cdots,x_n\)</span> of the form <span class="math inline">\(x_i \sim e^{N\phi_i}\)</span> as <span class="math inline">\(N \rightarrow \infty\)</span>. Then their sum <span class="math inline">\(S = \sum x_i\)</span> satisfies <span class="math display">\[
+S \sim x_{max} = \max_{i=1,\cdots,n} x_i, \quad \text{when} \quad N \rightarrow \infty.
+\]</span> When each <span class="math inline">\(x_i = A_i e^{N\phi_i}\)</span>, this just says <span class="math inline">\(S \approx A_{max} e^{N\phi_{max}}\)</span> when <span class="math inline">\(N \gg 1\)</span>. To see why this fact is true, note that since each <span class="math inline">\(x_i \geq 0\)</span>, we must have <span class="math inline">\(x_{max} \leq S \leq nx_{max}\)</span>. Since the logarithm is monotonic, if we take the log of each term and divide by <span class="math inline">\(N\)</span>, we have <span class="math display">\[
+\frac{\log x_{max}}{N} \leq \frac{\log S}{N} \leq \frac{\log x_{max}}{N} + \frac{\log n}{N}.
+\]</span> If we take <span class="math inline">\(N \rightarrow \infty\)</span> while holding <span class="math inline">\(n\)</span> fixed, then the term <span class="math inline">\(\frac{\log n}{N} \rightarrow 0\)</span>, which gives <span class="math display">\[
+\frac{\log S}{N} \sim \frac{\log x_{max}}{N} = \phi_i.
+\]</span></p>
+<p>More useful for our purposes will be the <em>continuous</em> analog of this result, the <em>saddlepoint approximation</em>.</p>
+<p><strong>Saddlepoint Approximation:</strong> Suppose we have a function of the form <span class="math inline">\(f(x) = e^{N\phi(x)}\)</span> where <span class="math inline">\(\phi(x)\)</span> grows polynomially. Then we have <span class="math display">\[
+S = \int_\mathbb{R} dx \ e^{N\phi(x)} \sim \sqrt{\frac{2\pi}{N|\phi''(x_{max})|}} e^{N\phi_{max}}, \quad \text{as} \quad N \rightarrow \infty.
+\]</span> <strong>Proof:</strong> To see why this is true let’s first Taylor expand <span class="math inline">\(\phi(x)\)</span> around its global maximum <span class="math inline">\(x_{max}\)</span>. Since <span class="math inline">\(\phi'(x_{max}) = 0\)</span> and <span class="math inline">\(\phi''(x_{max}) \leq 0\)</span>, we have <span class="math display">\[
+\phi(x) = \phi(x_{max}) - \frac{1}{2} |\phi''(x_{max})| (x-x_{max})^2 + O\big((x-x_{max})^3\big).
+\]</span> Plugging this into the integral and simplifying then gives <span class="math display">\[
+\begin{align*}
+S &amp;= \int_\mathbb{R} dx \ \exp\bigg(N\phi_{max} - \frac{N}{2} |\phi''(x_{max})| (x-x_{max})^2 + \frac{N}{6} |\phi'''(x_{max})| (x-x_{max})^3 + \cdots\bigg) \\
+&amp;= \int_\mathbb{R} dx \ \exp\bigg(N\phi_{max} - \frac{N}{2} |\phi''(x_{max})| (x-x_{max})^2\bigg) \exp\bigg(\frac{N}{6} |\phi'''(x_{max})| (x-x_{max})^3 + \cdots\bigg) \\
+&amp;= e^{N\phi_{max}} \int_\mathbb{R} dx \ \exp\bigg(- \frac{N}{2} |\phi''(x_{max})| (x-x_{max})^2\bigg) \bigg(1 + \frac{N}{6}|\phi'''(x_{max})|(x-x_{max})^3 + \cdots\bigg) \\
+&amp;= e^{N\phi_{max}} \sqrt{\frac{2\pi}{N|\phi''(x_{max})|}} \bigg(1 + O\bigg(\frac{1}{N}\bigg)\bigg).
+\end{align*}
+\]</span> The last line follows from the fact that the integral with <span class="math inline">\((x-x_{max})^3\)</span> vanishes since it’s an odd function, which means the next term <span class="math inline">\((x-x_{max})^4\)</span> has to be considered, which integrates to order <span class="math inline">\(O\big(N^{-3/2}\big)\)</span>.</p>
+<p>Now, let’s again look at <span class="math inline">\(\frac{\log S}{N}\)</span> as <span class="math inline">\(N \rightarrow \infty\)</span>. We have <span class="math display">\[
+\frac{\log S}{N} = \phi_{max} - \frac{1}{2N} \log \frac{N|\phi''(x_{max})|}{2\pi} + O\bigg(\frac{1}{N^2}\bigg).
+\]</span> We can see that as <span class="math inline">\(N \rightarrow \infty\)</span>, <span class="math inline">\(\frac{\log S}{N} \rightarrow \phi_{max}\)</span> with a correction of order <span class="math inline">\(O\big(\frac{\log N}{N}\big)\)</span>. <span class="math inline">\(\text{Q.E.D.}\)</span></p>
+<p>It’s interesting to observe that only the global maximum appears in this approximation. What if <span class="math inline">\(\phi(x)\)</span> had some other local maximum <span class="math inline">\(\phi(x_{max}')\)</span>? Strictly speaking we’d have to do the same approximation scheme about each of the maxima one-by-one. However, due to the presence of the exponential, if <span class="math inline">\(\phi(x_{max}') &lt; \phi(x_{max})\)</span>, then for large <span class="math inline">\(N\)</span> we’d have <span class="math display">\[
+e^{N\phi(x_{max}')} \ll e^{N\phi(x_{max})}.
+\]</span> In the limit where <span class="math inline">\(N \rightarrow \infty\)</span>, the correction term <span class="math inline">\(e^{-N\big(\phi(x_{max})-\phi(x_{max}')\big)} \rightarrow 0\)</span>. In this sense, we can indeed neglect the other local maxima as long as they’re less than <span class="math inline">\(\phi(x_{max})\)</span> and <span class="math inline">\(N \gg 1\)</span>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./resources/image-20230406152315205.png" class="img-fluid figure-img" width="400"></p>
+</figure>
+</div>
+<p>By far the most useful corollary to this result for our purposes is the <em>Stirling Approximation</em>.</p>
+<p><strong>Stirling Approximation:</strong> As <span class="math inline">\(N \rightarrow \infty\)</span>, we have <span class="math display">\[
+N! \sim N^N e^{-N} \sqrt{2\pi N}.
+\]</span> <strong>Proof:</strong> Observe by induction that we can write <span class="math inline">\(N!\)</span> as the following integral, <span class="math display">\[
+N! = \int_0^\infty dx \ x^N e^{-x} = \int_0^\infty dx \ \exp\bigg(N\bigg(\log x - \frac{x}{N}\bigg)\bigg).
+\]</span> Take <span class="math inline">\(\phi(x) = \log x - \frac{x}{N}\)</span>. This function is maximized when <span class="math inline">\(x_{max} = N\)</span>, where <span class="math inline">\(\phi_{max} = \log N - 1\)</span>. At this point we have <span class="math inline">\(\phi''(x_{max}) = - \frac{1}{N^2}\)</span>. Plugging all this into the saddlepoint approximation, we have <span class="math display">\[
+\begin{align*}
+N! &amp;= e^{N(\log N - 1)} \sqrt{\frac{2\pi}{N|-N^{-2}|}} \bigg(1 + O\bigg(\frac{1}{N}\bigg)\bigg) \\
+&amp;= N^N e^{-N} \sqrt{2\pi N} \bigg(1 + O\bigg(\frac{1}{N}\bigg)\bigg). \quad \text{Q.E.D.}
+\end{align*}
+\]</span> Usually we’ll be more interested in <span class="math inline">\(\log N!\)</span> rather than <span class="math inline">\(N!\)</span> itself. In that case we just have <span class="math display">\[
+\log N! = N \log N - N + \frac{1}{2} \log 2\pi N + O\bigg(\frac{1}{N}\bigg).
+\]</span> We’ll typically imagine <span class="math inline">\(N\)</span> to be really big, like <span class="math inline">\(N \sim 10^{23}\)</span>. In that case we can neglect the sublinear terms and safely write <span class="math display">\[
+\log N! \approx N\log N - N.
+\]</span> This will usually be the form of Stirling’s approximation that we use in practice.</p>
+</section>
+<section id="information-theory" class="level2">
+<h2 class="anchored" data-anchor-id="information-theory">Information Theory</h2>
+<p>We can think about probabilities in a completely different sense by thinking about the <em>information content</em> contained in a system and how uncertain we are about what that information content is. Suppose we wanted to transmit a message containing <span class="math inline">\(N\)</span> characters, where each character is sampled from some alphabet <span class="math inline">\(\Sigma\)</span> containing <span class="math inline">\(M\)</span> total characters. We’d like to ask the following question: How many bits of information does a <em>typical</em> message of <span class="math inline">\(N\)</span> characters from this alphabet contain?</p>
+<p>Suppose we had no information at all about how often any one particular character <span class="math inline">\(x_m \in \Sigma\)</span> occurs in a message. In this case, we’d have to assume that all message of length <span class="math inline">\(N\)</span> are typical. Since there are <span class="math inline">\(M^N\)</span> possible messages of length <span class="math inline">\(N\)</span>, we’d say there are <span class="math inline">\(g = M^N\)</span> typical messages. Since <span class="math inline">\(g\)</span> contains <span class="math inline">\(\log_2 g\)</span> bits of information, this means a typical message would contain <span class="math inline">\(\log g = N \log_2 M\)</span> bits of information.</p>
+<p>Suppose now that we had an estimate of the frequency <span class="math inline">\(p_m\)</span> that each character <span class="math inline">\(x_m \in \Sigma\)</span> occurs in a message. That is, in a message of length <span class="math inline">\(N\)</span>, we expect each character <span class="math inline">\(x_m\)</span> to occur <span class="math inline">\(N_m \approx Np_m\)</span> total times, or to be more precise <span class="math inline">\(N_m = Np_m + O\big(\sqrt{N}\big)\)</span> since each character is a Bernoulli random variable, hence a message of length <span class="math inline">\(N\)</span> is a binomial random variable. In this case, the number of <em>typical</em> messages is just the number of ways of placing <span class="math inline">\(N\)</span> random characters into <span class="math inline">\(M\)</span> bins of sizes <span class="math inline">\(N_1, N_2, \cdots, N_M\)</span>, which is <span class="math display">\[
+g = \frac{N!}{\prod_{m=1}^M N_m!}.
+\]</span> The total number of bits contained in a typical message would then be <span class="math inline">\(\log_2 g\)</span>. If we assume the message length <span class="math inline">\(N\)</span> is large compared to the alphabet size <span class="math inline">\(M\)</span>, then we can apply the Stirling approximation to each term containing a factorial. Using the fact <span class="math inline">\(N_m = Np_m\)</span> and <span class="math inline">\(\sum N_m = N\)</span>, we have <span class="math display">\[
+\begin{align*}
+\log_2 g &amp;= \log_2 N! - \sum_{m=1}^M \log_2 N_m! \\
+&amp;\approx \big(N\log_2 N - N\big) - \sum_{m=1}^M \big(N_m \log_2 N_m - N_m \big) \\
+&amp;\approx N \log_2 N - \sum N_m \log_2 N_m \\
+&amp;\approx - N \sum_{m=1}^M p_m \log_2 p_m.
+\end{align*}
+\]</span> The term <span class="math inline">\(-\sum p_m \log_2 p_m\)</span> is just a function of the underlying probability distribution of characters, not of the message length <span class="math inline">\(N\)</span> itself. It captures our uncertainty or surprise in what message we’d receive. We call this term the <strong>information entropy</strong> or <strong>Shannon entropy</strong>. Since the choice of base for the logarithm merely adds a constant to this sum, in physics we more typically use the <em>natural logarithm</em> instead of the base-2 logarithm, which expresses entropy in <em>nats</em> instead of <em>bits</em>. In this form, the information entropy can be defined as <span class="math display">\[
+S \equiv \sum_{m=1}^M p_m \log p_m.
+\]</span> We’ve thus answered the question sought: a typical message of length <span class="math inline">\(N\)</span> contains about <span class="math inline">\(\log_2 g \approx NS\)</span> bits of information, up to an additive constant that depends on the base of logarithm. Notice that if we <em>knew</em> exactly which message to expect, that would mean <span class="math inline">\(g = 1\)</span>, which means <span class="math inline">\(S = 0\)</span>. Since we already know the most number of messages possible is <span class="math inline">\(g=M^N\)</span>, the information entropy must evidently satisfy <span class="math display">\[
+0 \leq S \leq N \log M.
+\]</span> In thermodynamics, the information entropy corresponds to the <strong>mixing entropy</strong> up to a factor of Boltzmann’s constant <span class="math inline">\(k_B\)</span>. One implication of this is that while information entropy is dimensionless, thermodynamic entropy has units, namely units of <span class="math inline">\(k_B\)</span>, which is energy per degree.</p>
+<p>The terms <span class="math inline">\(I_m \equiv -\log p_m\)</span> capture the <strong>information content</strong> contained in any one particular character <span class="math inline">\(x_m\)</span>. If <span class="math inline">\(p_m \approx 0\)</span> then <span class="math inline">\(I_m \approx \infty\)</span>, meaning <span class="math inline">\(x_m\)</span> contains an infinite number of bits of new information relative to what we already know. If <span class="math inline">\(p_m \approx 1\)</span> then <span class="math inline">\(I_m \approx 0\)</span>, meaning <span class="math inline">\(x_m\)</span> contains no new bits of information. We can thus also think of the entropy as the <em>expected information content</em> of a message, since <span class="math display">\[
+S = -\sum_{m=1}^M p_m \log p_m = -\langle \log p \rangle = \langle I \rangle.
+\]</span> While information theory was built around the idea of transmitting messages, there’s nothing inherently limiting these ideas to messages alone. We can apply the concept of entropy as defined to <em>any</em> discrete probability distribution, where each <span class="math inline">\(x_m\)</span> corresponds to some value taken on by a random variable.</p>
+<p>What about continuous distributions though? We can try to extend entropy to these as well, but we have to be careful. Since density functions needn’t be positive, the entropy will no longer in general be positive either, meaning it doesn’t make sense to think about it as a direct measure of information content. Nevertheless, we could <em>define</em> the information entropy of a continuous distribution as <span class="math display">\[
+S \equiv -\int_{\mathbb{R}} dx \ p(x) \log p(x).
+\]</span> From a physical perspective, a more troublesome problem with this definition is that in general <span class="math inline">\(dx\)</span> will have units, which means <span class="math inline">\(p(x)\)</span> will have units as well. But we can’t have a function with units inside a logarithm. The <em>right</em> way to deal with this will be to convert <span class="math inline">\(dx\)</span> to some kind of dimensionless measure so that <span class="math inline">\(p(x)\)</span> will also be dimensionless. For example, in statistical mechanics we’ll usually be looking at distributions over phase space, where the integration measure is <span class="math inline">\(d\Gamma \propto d^3 x d^3 p\)</span>. In this case, we’d need to divide by a constant that has units of <span class="math inline">\([xp]\)</span>. We’ll see from quantum mechanics that the correct constant is in fact Planck’s constant <span class="math inline">\(h\)</span>. That is, the right integration measure is <span class="math display">\[
+d\Gamma = \frac{d^3 x d^3 p}{h^3}.
+\]</span> We can use the idea of information entropy to finally answer the question regarding what the correct way is to define probabilities subjectively or theoretically. The idea is to use the <em>principle of maximum entropy</em>.</p>
+<p><strong>Principle of Maximum Entropy:</strong> The unbiased assignment of probability is the one that maximizes the information entropy subject to known constraints. More formally, assign a probability distribution <span class="math inline">\(p(x)\)</span> that maximizes the constrained problem <span class="math display">\[
+\begin{align*}
+&amp;\max_{p(x)} S[p(x)] =  \max_{p(x)} \bigg(- \sum_x p(x) \log p(x) \bigg) \\
+&amp;\text{subject to} \ \sum_x p(x) = 1, \ \text{and} \ g(x) = 0. \\
+\end{align*}
+\]</span> where <span class="math inline">\(g(x) = 0\)</span> is any set of known constraints on the probability distribution. The first constraint that probabilities sum to one will always be there so that <span class="math inline">\(p(x)\)</span> yields a valid probability function.</p>
+<p>This is in essence just a generalization of the <em>principle of indifference</em>. If we don’t have any information to go on, we should assume all outcomes have equal probability. The principle of maximum entropy extends this idea to general distributions where we might know some information, like what its mean or variance is, or what range it’s bounded to.</p>
+<p>Using Lagrange multipliers, the principle of maximum entropy is equivalent to maximizing the Lagrange multiplier function <span class="math display">\[
+L(p(x),\lambda) \equiv - \sum_x p(x) \log p(x) - \alpha \bigg(\sum_x p(x) - 1\bigg) - \beta \cdot g(x).
+\]</span> subject to <span class="math inline">\(p(x)\)</span> and <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta\)</span>.</p>
+<p><strong>Example:</strong> Let’s formally prove the principle of indifference using the principle of maximum entropy. That is, in the absence of no known information, the unbiased probabilities to assign are the ones where each outcome has an equal probability to occur. Suppose the random variable is discrete with <span class="math inline">\(n\)</span> outcomes of probabilities <span class="math inline">\(p_1, p_2, \cdots, p_n\)</span>. In this case, the problem to solve is <span class="math display">\[
+\begin{align*}
+&amp;\max_{p} \bigg(- \sum_{i=1}^n p_i \log p_i \bigg) \\
+&amp;\text{subject to} \ \sum_{i=1}^n p_i = 1.
+\end{align*}
+\]</span> This is equivalent to maximizing the Lagrange multiplier function <span class="math display">\[
+L(p,\alpha) \equiv - \sum_{i=1}^n p_i \log p_i - \alpha \bigg(\sum_{i=1}^n p_i - 1\bigg).
+\]</span> Differentiating with respect to each <span class="math inline">\(p_j\)</span> and <span class="math inline">\(\alpha\)</span> and setting the derivatives to zero, we have <span class="math display">\[
+\begin{align*}
+\frac{\partial L}{\partial p_j} &amp;= -\log p_j - 1 - \alpha \equiv 0\\
+\frac{\partial L}{\partial \alpha} &amp;= \sum_{i=1}^n p_i - 1 \equiv 0\\
+\end{align*}
+\]</span> Solving this system of equations implies that <span class="math display">\[
+\sum_{j=1}^n p_j = \sum_{j=1}^n e^{-(1+\alpha)} = 1 \quad \Longrightarrow \quad e^{1+\alpha} = n.
+\]</span> Thus, the maximum entropy probabilities are just <span class="math inline">\(p_j = \frac{1}{n}\)</span> for all <span class="math inline">\(j\)</span>, as expected.</p>
+<p>The same method can be used in the continuous case as well by replacing the sums <span class="math inline">\(\sum_{i=1}^n p_i\)</span> by integrals <span class="math inline">\(\int_a^b dx \ p(x)\)</span>. The main subtlety to be aware of in the continuous case is that we’re no longer maximizing a function of <span class="math inline">\(n\)</span> probabilities, but a <em>functional</em> of the form <span class="math inline">\(S[p(x)]\)</span> over all possible functions <span class="math inline">\(p(x)\)</span>. These can be solved for <span class="math inline">\(p(x)\)</span> by finding the choice of <span class="math inline">\(p(x)\)</span> that extremizes the functional <span class="math inline">\(S[p(x)]\)</span>. In that case, the maximum entropy probabilities will turn out to be <span class="math inline">\(p(x) = \frac{1}{b-a}\)</span> as expected.</p>
+<p><strong>Example:</strong> Here’s an interesting example involving continuous distributions. Suppose we knew that a random variable <span class="math inline">\(x\)</span> on the real line had a given mean <span class="math inline">\(\mu\)</span> and variance <span class="math inline">\(\sigma^2\)</span>. What is the maximum entropy distribution <span class="math inline">\(p(x)\)</span> such that these two cumulants are known? The problem to solve is now <span class="math display">\[
+\begin{align*}
+&amp;\max_{p(x)} \bigg(- \int dx \ p(x) \log p(x) \bigg) \\
+&amp;\text{subject to} \ \int dx \ p(x) = 1, \\
+&amp;\text{and} \int dx \ x p(x) = \mu, \ \ \int dx \ x^2 p(x) - \mu^2 = \sigma^2. \\
+\end{align*}
+\]</span> The Lagrange multiplier function is then <span class="math display">\[
+\begin{align*}
+L(p(x),\alpha,\beta,\gamma) = -&amp;\bigg(\int dx \ p(x) \log p(x) \bigg) - \alpha\bigg(\int dx \ p(x) - 1\bigg) \\
+- \beta&amp;\bigg(\int dx \ x p(x) - \mu\bigg) - \gamma \bigg(\int dx \ x^2 p(x) - \mu^2 - \sigma^2\bigg).
+\end{align*}
+\]</span> To maximize this function, consider a functional perturbation <span class="math inline">\(p + \delta p\)</span>. Notice every term is linear in <span class="math inline">\(p\)</span> except the first term, which is <span class="math inline">\(p \log p\)</span>. In that term, we have <span class="math display">\[
+\begin{align*}
+(p + \delta p) \log (p + \delta p) &amp;= (p + \delta p) \log(1 + \frac{\delta p}{p}) \log p \\
+&amp;= (p + \delta p) \bigg(1 + \frac{\delta p}{p}\bigg) \log p \\
+&amp;= p \log p + \delta p (\log p + 1) + O(\delta p^2).
+\end{align*}
+\]</span> If we ignore terms of order higher than <span class="math inline">\(\delta p\)</span>, then solving for <span class="math inline">\(\delta L\)</span> and setting it to zero gives <span class="math display">\[
+\begin{align*}
+\delta L &amp;= L(p + \delta p,\alpha,\beta,\gamma) - L(p,\alpha,\beta,\gamma) \\
+&amp;= -\int dx \delta p \ \bigg[\log p + 1 + \alpha + \beta x + \gamma(x^2 - 2\mu x) \bigg] \\
+&amp;\equiv 0.
+\end{align*}
+\]</span> Since this must be true for any perturbation <span class="math inline">\(\delta p\)</span>, the integrand must be zero, <span class="math display">\[
+\log p + 1 + \alpha + \beta x + \gamma(x^2 - 2\mu x) = 0.
+\]</span> Solving then for <span class="math inline">\(p(x)\)</span> we have <span class="math display">\[
+p(x) = \exp\big(-1 - \alpha - \beta x - \gamma(x^2 - 2\mu x)\big).
+\]</span> The exponent is just a quadratic function of <span class="math inline">\(x\)</span>, hence we can rewrite <span class="math inline">\(p(x)\)</span> in terms of new constants as <span class="math display">\[
+p(x) = \mathcal{N} \exp\bigg(-\frac{(x-a\mu)^2}{2b\sigma^2}\bigg).
+\]</span> Since this has the form of a Gaussian, integrating over the real line gives a normalization constant of the form <span class="math inline">\(\mathcal{N} = (2\pi b \sigma^2)^{-1/2}\)</span>. Similarly, by shift invariance, integrating the mean function requires that <span class="math inline">\(a=1\)</span>. Last, the variance constraint requires that <span class="math inline">\(b=1\)</span>. We’ve thus shown that the continuous probability distribution whose mean and variance are known must be a Gaussian distribution.</p>
+<p><strong>Example:</strong> Let’s do one more example that’s very relevant to statistical mechanics. Suppose we have a discrete random variable <span class="math inline">\(x\)</span> that can take on a possibly countably infinite number of values. Suppose we know that some positive function <span class="math inline">\(E(x) \geq 0\)</span> of <span class="math inline">\(x\)</span> has expectation <span class="math inline">\(\langle E(x) \rangle = E\)</span>. Then the problem to solve is <span class="math display">\[
+\begin{align*}
+&amp;\max_p \bigg(- \sum_{i=0}^\infty p_i \log p_i \bigg) \\
+&amp;\text{subject to} \ \sum_{i=0}^\infty p_i = 1, \ \text{and} \ \sum_{i=0}^\infty p_i E_i = E. \\
+\end{align*}
+\]</span> The Lagrange multiplier function is then given by <span class="math display">\[
+L(p,\alpha) \equiv - \sum_{i=0}^\infty p_i \log p_i - \alpha \bigg(\sum_{i=0}^\infty p_i - 1\bigg) - \beta \bigg(\sum_{i=0}^\infty p_i E_i - E\bigg).
+\]</span> Differentiating with respect to each <span class="math inline">\(p_j\)</span>, <span class="math inline">\(\alpha\)</span>, and <span class="math inline">\(\beta\)</span> and setting all the derivatives to zero, we have <span class="math display">\[
+\begin{align*}
+\frac{\partial L}{\partial p_j} &amp;= -\log p_j - 1 - \alpha - \beta E_i \equiv 0, \\
+\frac{\partial L}{\partial \alpha} &amp;= \sum_{i=0}^\infty p_i - 1 \equiv 0, \\
+\frac{\partial L}{\partial \alpha} &amp;= \sum_{i=0}^\infty p_i E_i - E \equiv 0. \\
+\end{align*}
+\]</span> Together, these imply that the probabilities must have the form <span class="math display">\[
+p_j = e^{-(1+\alpha)} e^{-\beta E_j}.
+\]</span> Again, the factor <span class="math inline">\(e^{-(1+\alpha)}\)</span> is just a normalization constant. If we redefine it to be <span class="math inline">\(\frac{1}{Z}\)</span>, then we finally have <span class="math display">\[
+p_j = \frac{1}{Z} e^{-\beta E_j},
+\]</span> where <span class="math inline">\(Z\)</span> must satisfy the relation <span class="math display">\[
+Z \equiv \sum_{i=0}^\infty e^{-\beta E_i}.
+\]</span> We’ll see later that <span class="math inline">\(Z\)</span> is very important to statistical mechanics. It’s called the <strong>partition function</strong>. In that case, <span class="math inline">\(E_j\)</span> represents the energy of the system in the <span class="math inline">\(j\)</span><sup>th</sup> state and <span class="math inline">\(E\)</span> represents the average internal energy of the system, i.e.&nbsp;the energy that satisfies the first law of thermodynamics.</p>
+<p>More generally, we could imagine <span class="math inline">\(E(x)\)</span> being a vector-valued function, in which case we’d get <span class="math display">\[
+p_j = \frac{1}{Z} e^{-\beta \cdot E_j},
+\]</span> where each <span class="math inline">\(\beta\)</span> and <span class="math inline">\(E_j\)</span> is now a vector. The partition function would similarly change to be <span class="math display">\[
+Z \equiv \sum_{i=0}^\infty e^{-\beta \cdot E_i}.
+\]</span></p>
 
 
 </section>
@@ -776,7 +927,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
-<nav class="page-navigation column-body">
+<nav class="page-navigation column-page-right">
   <div class="nav-page nav-page-previous">
       <a href="../statistical-mechanics/thermodynamics.html" class="pagination-link">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Thermodynamics</span></span>
