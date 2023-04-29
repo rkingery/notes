@@ -4,13 +4,13 @@ The laws of thermodynamics are based on observations of *macroscopic* bodies. Th
 
 ## Random Variables
 
-At its root, probability is based on the study of *events* or *random variables*. Suppose $S$ is the set of all possible outcomes of an experiment, called the **sample space**. Any subset $E \subset S$ is called an **event**. A **probability measure** is a set function $\mathbb{Pr}(E)$ that maps events to numerical values between zero and one. It's meant to formalize the concept of *chance*. If an event has probability one, we think of that event as being 100% certain to occur. If it has probability zero, we think of the event as having 0% chance to occur. Any values in between mean we're uncertain whether the event will occur.
+At its root, probability is based on the study of *events* or *random variables*. Suppose $\mathcal{S}$ is the set of all possible outcomes of an experiment, called the **sample space**. Any subset $E \subset \mathcal{S}$ is called an **event**. A **probability measure** is a set function $\mathbb{Pr}(E)$ that maps events to numerical values between zero and one. It's meant to formalize the concept of *chance*. If an event has probability one, we think of that event as being 100% certain to occur. If it has probability zero, we think of the event as having 0% chance to occur. Any values in between mean we're uncertain whether the event will occur.
 
-Formally, a probability measure on a sample space $S$ satisfies the following properties:
+Formally, a probability measure on a sample space $\mathcal{S}$ satisfies the following properties:
 
-- Positivity: For any event $E \subset S$, $\mathbb{Pr}(E) \geq 0$.
-- Additivity: If $A \subset S$ and $B \subset S$ are distinct, disjoint events, then $\mathbb{Pr}(A \text{ or } B) = \mathbb{Pr}(A) + \mathbb{Pr}(B)$.
-- Normalization: For the entire set $S$, we must have $\mathbb{Pr}(S) = 1$.
+- Positivity: For any event $E \subset \mathcal{S}$, $\mathbb{Pr}(E) \geq 0$.
+- Additivity: If $A \subset \mathcal{S}$ and $B \subset \mathcal{S}$ are distinct, disjoint events, then $\mathbb{Pr}(A \text{ or } B) = \mathbb{Pr}(A) + \mathbb{Pr}(B)$.
+- Normalization: For the entire sample space $\mathcal{S}$, $\mathbb{Pr}(\mathcal{S}) = 1$.
 
 While this is a nice formal definition of probability, it's not practically useful for saying how we should design a probability measure in a practical setting. There are two common approaches for designing probability measures:
 
@@ -22,9 +22,9 @@ While this is a nice formal definition of probability, it's not practically usef
 
 2. The **subjective** approach: In this approach we take a more theoretical view by looking for a "maximally random" probability distribution that matches what we know to be true. That is, we seek to find the *maximum entropy* probability distribution that satisfies some given set of known constraints. We'll talk more about the principle of maximum entropy when we get to information theory. The subjective approach is the one used most heavily in statistical mechanics.
 
-A **random variable** is a variable $X$ that doesn't take on a fixed value, but rather a *random* value determined by a **probability distribution**. If $E$ is an event, a random variable encodes that event using a numerical variable $X=X(E)$. More formally, $X(E)$ is a function that maps events to a numerical value. It could be a real number, a complex number, or a real or complex vector, for example. 
+A **random variable** is a variable $X$ that doesn't take on a fixed value, but rather a *random* value determined by a **probability distribution**. If $E \subset \mathcal{S}$ is an event, a random variable encodes that event using a numerical variable $X=X(E)$. More formally, $X(E)$ is a function that maps events to a numerical value. It could be a real number, a complex number, or a real or complex vector, for example. 
 
-A one-dimensional random variable is a mapping $X(E)$ from events into the real numbers $\mathbb{R}$. In this case, we can define a **cumulative distribution function** or **CDF** as the function
+A one-dimensional random variable is a mapping $X(E)$ from events $E \subset \mathcal{S}$ into the real numbers $\mathbb{R}$. In this case, we can define a **cumulative distribution function** or **CDF** as the function
 $$
 P(x) \equiv \mathbb{Pr}\big(\{X \leq x\}\big).
 $$
@@ -36,13 +36,13 @@ That is, the CDF is the probability that the random variable $X \leq x$, where $
 
 If the set of all values $X$ can take on are discrete, we say $X$ is a **discrete random variable**. In this case, we can define a **probability mass function** or **PMF** as the function
 $$
-p(x) \equiv \mathbb{Pr}(X = k).
+p(x) \equiv \mathbb{Pr}(X = n).
 $$
 By the laws of probability the PMF must satisfy the following properties:
 
-- It's between zero and one: $0 \leq p(k) \leq 1$.
-- It sums to one over all values, i.e. $\sum_{k \in S} p(k) = 1$.
-- It's related to the CDF by $P(x) = \sum_{k \leq x} p(k)$.
+- It's between zero and one: $0 \leq p(n) \leq 1$.
+- It sums to one over all values, i.e. $\sum_{n \in \mathcal{S}} \ p(n) = 1$.
+- It's related to the CDF by $P(x) = \sum_{n \leq x} \ p(n)$.
 
 If the set of all values it can take on are continuous, we say $X$ is a **continuous random variable**. In this case, we can define a **probability density function** or **PDF** by the function
 $$
@@ -51,7 +51,7 @@ $$
 By the laws of probability, the PDF must satisfy the following properties:
 
 - It's a positive function $p(x) \geq 0$.
-- It integrates to one over all values, $\int_S p(x) dx = 1$.
+- It integrates to one over all values, $\int_\mathcal{S} p(x) dx = 1$.
 - It's related to the CDF by differentiation, $p(x) = \frac{d}{dx} P(x)$.
 
 Note that in physics the PDF has *units*. If $x$ has units of $[x]$, then evidently $p(x)$ must have units of $\frac{1}{[x]}$. This is why we think of the PDF as a *density*. It's a probability per unit $x$.
@@ -179,13 +179,13 @@ So far I've used the term *distribution* rather loosely. More formally, given a 
 
 **Uniform Distribution**
 
-The uniform distribution is perhaps the simplest distribution of all, with $p(x) = const$ on some set $x \in S$. As a shorthand we might write $x \sim U(S)$ to say $x$ is uniform on the set $S$. In the discrete case, $x$ takes on some number of values $N$ each with equal probability, for example if $S = \{1, 2, \cdots, n\}$ we have
+The uniform distribution is perhaps the simplest distribution of all, with $p(x) = const$ on some set $x \in \mathcal{S}$. As a shorthand we might write $x \sim U(\mathcal{S})$ to say $x$ is uniform on the set $\mathcal{S}$. In the discrete case, $x$ takes on some number of values $N$ each with equal probability, for example if $\mathcal{S} = \{1, 2, \cdots, n\}$ we have
 $$
 p(x) = \frac{1}{N}, \quad x = 1, 2, \cdots, N.
 $$
 We can easily calculate the moments of a uniform random variable directly. In the discrete case, we'd have
 $$
-\langle x^n \rangle = \sum_{j=1}^N j^n p(k) = \frac{1}{N} (1^n + 2^n + \cdots + N^n).
+\langle x^n \rangle = \sum_{x=1}^N \ x^n \ p(x) = \frac{1}{N} (1^n + 2^n + \cdots + N^n).
 $$
 This is just an arithmetic sum in powers of $n$. For example, the first two moments are
 $$
@@ -203,7 +203,7 @@ $$
 $$
 The characteristic function is just given by a geometric series in powers of $e^{-ik}$,
 $$
-\tilde p(k) = \sum_{j=1}^N p(j) e^{-ikj} = \sum_{j=1}^N \frac{1}{N} \big(e^{-ik}\big)^n = \frac{e^{-ik}-e^{-ik(N+1)}}{1-e^{-ik}}.
+\tilde p(k) = \sum_{x=1}^N p(x) e^{-ikx} = \sum_{x=1}^N \frac{1}{N} \big(e^{-ik}\big)^n = \frac{e^{-ik}-e^{-ik(N+1)}}{1-e^{-ik}}.
 $$
 We could in principle calculate the cumulant function $\log \tilde p(k)$ as well, though it's clearly not going to be as useful for finding the cumulants here. We'll see later that the uniform distribution is the *maximum entropy* distribution when the only known constraints are that $x$ lies in some set $S$.
 
@@ -365,7 +365,7 @@ Similarly, the $n_1, n_2, \cdots, n_N$ **joint cumulant** $\kappa_{n_1,n_2,\cdot
 $$
 \kappa_{n_1,n_2,\cdots,n_N} \equiv \frac{\partial^{n_1}}{\partial (-i k_1)^{n_1}} \frac{\partial^{n_2}}{\partial (-i k_2)^{n_2}} \cdots \frac{\partial^{n_N}}{\partial (-i k_N)^{n_N}} \log \tilde p(k_1, k_2, \cdots, k_N) \bigg |_{k_1=k_2=\cdots=k_N=0}.
 $$
-The sum $n \equiv n_1 + n_2 + \cdots n_N$ determines the order of the moment or cumulant. Of particular interest are the first and second cumulants. The first cumulants are the means $\mu_i \equiv \langle x_i \rangle$. We can think of these together by putting them all into a **mean vector** $\boldsymbol{\mu} \equiv \langle \mathbf{x} \rangle$. The second cumulants are the *covariances*, $\sigma_{ij} \equiv \kappa_{ij}$. We can put all these into an $N \times N$ matrix to get the **covariance matrix** $\mathbf{\Sigma} \equiv (\sigma_{ij})$. The diagonal entries of the covariance matrix correspond to the usual *variances* $\sigma_i^2 = \sigma_{ii}$. The off diagonal terms are the *covariances*, capturing the dependence or *correlation* between $x_i$ and $x_j$.
+The sum $n \equiv n_1 + n_2 + \cdots n_N$ determines the order of the moment or cumulant. Of particular interest are the first and second cumulants. The first cumulants are the means $\mu_i \equiv \langle x_i \rangle$. We can think of these together by putting them all into a **mean vector** $\boldsymbol{\mu} \equiv \langle \mathbf{x} \rangle \equiv \big(\mu_1, \mu_2, \cdots, \mu_N\big)$. The second cumulants are the *covariances*, $\sigma_{ij} \equiv \kappa_{ij}$. We can put all these into an $N \times N$ matrix to get the **covariance matrix** $\mathbf{\Sigma} \equiv \big(\sigma_{ij}\big)_{i,j=1,\cdots,N}$. The diagonal entries of the covariance matrix correspond to the usual *variances* $\sigma_i^2 = \sigma_{ii}$. The off diagonal terms are the *covariances*, capturing the dependence or *correlation* between $x_i$ and $x_j$.
 
 We can use the same graphical trick to express joint cumulants in terms of joint moments. The only difference is we need to label each point by its index and bag them appropriately. We can use this to show that the covariance $\sigma_{ij} \equiv \kappa_{ij}$ can be written as
 $$
@@ -373,7 +373,7 @@ $$
 $$
 In matrix notation, the entire covariance matrix can be expressed using moments as
 $$
-\mathbf{\Sigma} = \langle \mathbf{x}\mathbf{x}^\top \rangle - \langle \mathbf{x} \rangle \langle \mathbf{x} \rangle^\top = \langle (\mathbf{x}-\mathbf{\mu})(\mathbf{x}-\mathbf{\mu})^\top \rangle.
+\mathbf{\Sigma} = \langle \mathbf{x}\mathbf{x}^\top \rangle - \langle \mathbf{x} \rangle \langle \mathbf{x} \rangle^\top = \langle (\mathbf{x}-\boldsymbol{\mu})(\mathbf{x}-\boldsymbol{\mu})^\top \rangle.
 $$
 This implies the covariance matrix must in fact be a positive semi-definite matrix. That is,
 $$
@@ -597,7 +597,7 @@ This will usually be the form of Stirling's approximation that we use in practic
 
 We can think about probabilities in a completely different sense by thinking about the *information content* contained in a system and how uncertain we are about what that information content is. Suppose we wanted to transmit a message containing $N$ characters, where each character is sampled from some alphabet $\Sigma$ containing $M$ total characters. We'd like to ask the following question: How many bits of information does a *typical* message of $N$ characters from this alphabet contain?
 
-Suppose we had no information at all about how often any one particular character $x_m \in \Sigma$ occurs in a message. In this case, we'd have to assume that all message of length $N$ are typical. Since there are $M^N$ possible messages of length $N$, we'd say there are $g = M^N$ typical messages. Since $g$ contains $\log_2 g$ bits of information, this means a typical message would contain $\log g = N \log_2 M$ bits of information.
+Suppose we had no information at all about how often any one particular character $x_m \in \Sigma$ occurs in a message. In this case, we'd have to assume that all messages of length $N$ are typical. Since there are $M^N$ possible messages of length $N$, we'd say there are $g = M^N$ typical messages. Since $g$ contains $\log_2 g$ bits of information, this means a typical message would contain $\log g = N \log_2 M$ bits of information.
 
 Suppose now that we had an estimate of the frequency $p_m$ that each character $x_m \in \Sigma$ occurs in a message. That is, in a message of length $N$, we expect each character $x_m$ to occur $N_m \approx Np_m$ total times, or to be more precise $N_m = Np_m + O\big(\sqrt{N}\big)$ since each character is a Bernoulli random variable, hence a message of length $N$ is a binomial random variable. In this case, the number of *typical* messages is just the number of ways of placing $N$ random characters into $M$ bins of sizes $N_1, N_2, \cdots, N_M$, which is
 $$
@@ -614,7 +614,7 @@ $$
 $$
 The term $-\sum p_m \log_2 p_m$ is just a function of the underlying probability distribution of characters, not of the message length $N$ itself. It captures our uncertainty or surprise in what message we'd receive. We call this term the **information entropy** or **Shannon entropy**. Since the choice of base for the logarithm merely adds a constant to this sum, in physics we more typically use the *natural logarithm* instead of the base-2 logarithm, which expresses entropy in *nats* instead of *bits*. In this form, the information entropy can be defined as
 $$
-S \equiv \sum_{m=1}^M p_m \log p_m.
+S \equiv -\sum_{m=1}^M p_m \log p_m.
 $$
 We've thus answered the question sought: a typical message of length $N$ contains about $\log_2 g \approx NS$ bits of information, up to an additive constant that depends on the base of logarithm. Notice that if we *knew* exactly which message to expect, that would mean $g = 1$, which means $S = 0$. Since we already know the most number of messages possible is $g=M^N$, the information entropy must evidently satisfy
 $$
@@ -641,8 +641,8 @@ We can use the idea of information entropy to finally answer the question regard
 **Principle of Maximum Entropy:** The unbiased assignment of probability is the one that maximizes the information entropy subject to known constraints. More formally, assign a probability distribution $p(x)$ that maximizes the constrained problem
 $$
 \begin{align*}
-&\max_{p(x)} S[p(x)] =  \max_{p(x)} \bigg(- \sum_x p(x) \log p(x) \bigg) \\
-&\text{subject to} \ \sum_x p(x) = 1, \ \text{and} \ g(x) = 0. \\
+&\max_{p(x)} S[p(x)] =  \max_{p(x)} \bigg(- \sum_{x \in \mathcal{S}} p(x) \log p(x) \bigg) \\
+&\text{subject to} \ \sum_{x \in \mathcal{S}} p(x) = 1, \ \text{and} \ g(x) = 0. \\
 \end{align*}
 $$
 where $g(x) = 0$ is any set of known constraints on the probability distribution. The first constraint that probabilities sum to one will always be there so that $p(x)$ yields a valid probability function.
@@ -651,7 +651,7 @@ This is in essence just a generalization of the *principle of indifference*. If 
 
 Using Lagrange multipliers, the principle of maximum entropy is equivalent to maximizing the Lagrange multiplier function
 $$
-L(p(x),\lambda) \equiv - \sum_x p(x) \log p(x) - \alpha \bigg(\sum_x p(x) - 1\bigg) - \beta \cdot g(x).
+L(p(x),\lambda) \equiv - \sum_{x \in \mathcal{S}} p(x) \log p(x) - \alpha \bigg(\sum_{x \in \mathcal{S}} p(x) - 1\bigg) - \beta \cdot g(x).
 $$
 subject to $p(x)$ and $\alpha$ and $\beta$.
 
@@ -684,16 +684,16 @@ The same method can be used in the continuous case as well by replacing the sums
 **Example:** Here's an interesting example involving continuous distributions. Suppose we knew that a random variable $x$ on the real line had a given mean $\mu$ and variance $\sigma^2$. What is the maximum entropy distribution $p(x)$ such that these two cumulants are known? The problem to solve is now
 $$
 \begin{align*}
-&\max_{p(x)} \bigg(- \int dx \ p(x) \log p(x) \bigg) \\
-&\text{subject to} \ \int dx \ p(x) = 1, \\ 
-&\text{and} \int dx \ x p(x) = \mu, \ \ \int dx \ x^2 p(x) - \mu^2 = \sigma^2. \\
+&\max_{p(x)} \bigg(- \int_\mathbb{R} dx \ p(x) \log p(x) \bigg) \\
+&\text{subject to} \ \int_\mathbb{R} dx \ p(x) = 1, \\ 
+&\text{and} \int_\mathbb{R} dx \ x p(x) = \mu, \ \ \int_\mathbb{R} dx \ x^2 p(x) - \mu^2 = \sigma^2. \\
 \end{align*}
 $$
 The Lagrange multiplier function is then
 $$
 \begin{align*}
-L(p(x),\alpha,\beta,\gamma) = -&\bigg(\int dx \ p(x) \log p(x) \bigg) - \alpha\bigg(\int dx \ p(x) - 1\bigg) \\
-- \beta&\bigg(\int dx \ x p(x) - \mu\bigg) - \gamma \bigg(\int dx \ x^2 p(x) - \mu^2 - \sigma^2\bigg).
+L(p(x),\alpha,\beta,\gamma) = -&\bigg(\int_\mathbb{R} dx \ p(x) \log p(x) \bigg) - \alpha\bigg(\int_\mathbb{R} dx \ p(x) - 1\bigg) \\
+- \beta&\bigg(\int_\mathbb{R} dx \ x p(x) - \mu\bigg) - \gamma \bigg(\int_\mathbb{R} dx \ x^2 p(x) - \mu^2 - \sigma^2\bigg).
 \end{align*}
 $$
 To maximize this function, consider a functional perturbation $p + \delta p$. Notice every term is linear in $p$ except the first term, which is $p \log p$. In that term, we have
@@ -708,8 +708,7 @@ If we ignore terms of order higher than $\delta p$, then solving for $\delta L$ 
 $$
 \begin{align*}
 \delta L &= L(p + \delta p,\alpha,\beta,\gamma) - L(p,\alpha,\beta,\gamma) \\
-&= -\int dx \delta p \ \bigg[\log p + 1 + \alpha + \beta x + \gamma(x^2 - 2\mu x) \bigg] \\
-&\equiv 0.
+&= -\int_\mathbb{R} dx \delta p \ \bigg[\log p + 1 + \alpha + \beta x + \gamma(x^2 - 2\mu x) \bigg] \equiv 0.
 \end{align*}
 $$
 Since this must be true for any perturbation $\delta p$, the integrand must be zero,
@@ -753,17 +752,8 @@ Again, the factor $e^{-(1+\alpha)}$ is just a normalization constant. If we rede
 $$
 p_j = \frac{1}{Z} e^{-\beta E_j},
 $$
-where $Z$ must satisfy the relation
+where by normalization $Z$ must satisfy the relation
 $$
-Z \equiv \sum_{i=0}^\infty e^{-\beta E_i}.
+Z = \sum_{i=0}^\infty e^{-\beta E_i}.
 $$
-We'll see later that $Z$ is very important to statistical mechanics. It's called the **partition function**. In that case, $E_j$ represents the energy of the system in the $j$<sup>th</sup> state and $E$ represents the average internal energy of the system, i.e. the energy that satisfies the first law of thermodynamics.
-
-More generally, we could imagine $E(x)$ being a vector-valued function, in which case we'd get
-$$
-p_j = \frac{1}{Z} e^{-\beta \cdot E_j},
-$$
-where each $\beta$ and $E_j$ is now a vector.  The partition function would similarly change to be
-$$
-Z \equiv \sum_{i=0}^\infty e^{-\beta \cdot E_i}.
-$$
+More generally, we could imagine $\mathbf{E}(x)$ being a vector-valued function, in which case the same results apply just be replacing the scalars $\beta E_i$ with vectors $\boldsymbol{\beta} \cdot \mathbf{E}_i$. We'll see later that the normalization constant $Z$ is very important to statistical mechanics. It's called the **partition function**. In that case, $E_j$ represents the energy of the system in the $j$<sup>th</sup> state and $E$ represents the average internal energy of the system, i.e. the energy that satisfies the first law of thermodynamics.

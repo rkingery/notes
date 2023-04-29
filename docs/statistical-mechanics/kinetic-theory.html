@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.335">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Personal Notes - 28&nbsp; Kinetic Theory</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../statistical-mechanics/probability.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+</head>
+
+<body class="nav-sidebar docked">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-title">Kinetic Theory</span></h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">Personal Notes</a> 
+    </div>
+      </div>
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">Preface</a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false">Classical Mechanics</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../classical-mechanics/newtonian-mechanics.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Newtonian Mechanics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../classical-mechanics/simple-systems.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Simple Systems</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../classical-mechanics/reference-frames.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Reference Frames</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../classical-mechanics/lagrangian-mechanics.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Lagrangian Mechanics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../classical-mechanics/hamiltonian-mechanics.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Hamiltonian Mechanics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../classical-mechanics/central-forces.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Central Forces</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../classical-mechanics/coupled-oscillations.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Coupled Oscillations</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../classical-mechanics/rigid-bodies.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Rigid Bodies</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../classical-mechanics/canonical-transformations.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Canonical Transformations</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../classical-mechanics/integrability-and-chaos.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Integrability and Chaos</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../classical-mechanics/continuum-mechanics.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Continuum Mechanics</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">Electrodynamics</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../electrodynamics/introduction.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Introduction</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../electrodynamics/electrostatics.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Electrostatics</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">Circuit Analysis</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../circuits/circuit-abstraction.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">The Lumped Circuit Abstraction</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../circuits/analysis.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Analyzing Circuits</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../circuits/nonlinear-methods.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Nonlinear Methods</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../circuits/digital-abstraction.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">The Digital Abstraction</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../circuits/amplifiers.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Amplifiers</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../circuits/first-order-systems.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">First-Order Systems</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../circuits/second-order-systems.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Second-Order Systems</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../circuits/ac-analysis.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">AC Analysis</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../circuits/op-amps.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Operational Amplifiers</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../circuits/energy-power.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Energy and Power</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false">Quantum Mechanics</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../quantum-mechanics/identical-particles.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Identical Particles</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../quantum-mechanics/second-quantization.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Second Quantization</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">Statistical Mechanics</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../statistical-mechanics/thermodynamics.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Thermodynamics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../statistical-mechanics/probability.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Probability</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../statistical-mechanics/kinetic-theory.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">Kinetic Theory</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#hamiltonian-mechanics" id="toc-hamiltonian-mechanics" class="nav-link active" data-scroll-target="#hamiltonian-mechanics">Hamiltonian Mechanics</a></li>
+  <li><a href="#liouvilles-theorem" id="toc-liouvilles-theorem" class="nav-link" data-scroll-target="#liouvilles-theorem">Liouville’s Theorem</a></li>
+  <li><a href="#the-bbgky-hierarchy" id="toc-the-bbgky-hierarchy" class="nav-link" data-scroll-target="#the-bbgky-hierarchy">The BBGKY Hierarchy</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content column-body" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title d-none d-lg-block"><span class="chapter-title">Kinetic Theory</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<p>Kinetic theory is the study of the <em>macroscopic</em> properties of large numbers of particles, starting from their classical <em>equations of motion</em>. Kinetic theory seeks to understand not only equilibrium, but the approach to equilibrium. Since classical particles must obey Newton’s Laws, we should in theory be able to study their dynamics by following all of their trajectories. Of course, this isn’t feasible in practice for a large number of interacting particles. We thus need to figure out how to go from the classical dynamics of microscopic particles to the thermodynamics of macroscopic systems. We’ll want to ask how we can define equilibrium for a system of moving particles, whether all systems actually do evolve towards an equilibrium state, and what the time evolution is when the system isn’t yet in equilibrium.</p>
+<p>We’ll focus on studying the canonical system of thermodynamics, a box of fixed volume containing a gas of identical particles. We’ll imagine setting the particles free into the box from a fixed position, and studying their dynamics as they fill the box and come into equilibrium. Much of this discussion will exclude other forms of matter like solids and liquids. The microscopic dynamics of solids really requires a quantum mechanical treatment. The microscopic dynamics of liquids overlaps somewhat with the dynamics of gases, the difference being that the distance between particles is much closer than they are with a gas.</p>
+<section id="hamiltonian-mechanics" class="level2">
+<h2 class="anchored" data-anchor-id="hamiltonian-mechanics">Hamiltonian Mechanics</h2>
+<p>To start, we’ll review the classical mechanics of particles via the Hamiltonian formulation. Consider a system with <span class="math inline">\(3N\)</span> degrees of freedom and generalized position and momenta <span class="math inline">\((q_1,p_1), (q_N,p_N), \cdots, (q_N,p_N)\)</span>. For simplicity we’ll assume each <span class="math inline">\(q_i\)</span> and <span class="math inline">\(p_i\)</span> is a 3-dimensional vector. In that case, <span class="math inline">\(N\)</span> represents the number of particles in the system. Let <span class="math inline">\(q = (q_1,q_2,\cdots,q_N)\)</span> and <span class="math inline">\(p = (p_1,p_2,\cdots,p_N)\)</span>. The <span class="math inline">\(6N\)</span>-dimensional vector <span class="math inline">\((q,p)\)</span> characterizes the <strong>state</strong> of the system. The <span class="math inline">\(6N\)</span>-dimensional manifold all possible states the system can take on is called the <strong>phase space</strong> of the system.</p>
+<p>Assuming the system is conservative, the dynamics of the system are completely determined by the joint Hamiltonian <span class="math inline">\(H = H(q,p)\)</span>. We can then in principle solve for the microscopic equations of motion <span class="math inline">\(\big(q(t), p(t)\big)\)</span> by solving <em>Hamilton’s equations</em>, a system of <span class="math inline">\(6N\)</span> differential equations given by <span class="math display">\[
+\dot q = \frac{\partial H}{\partial p}, \quad \dot p = -\frac{\partial H}{\partial q}.
+\]</span> Said differently, the Hamiltonian induces a <em>flow</em> on the phase space, with the flow described by Hamilton’s equations. Each flow represents the time evolution of a particular state, determined by the initial conditions.</p>
+<p>For two functions <span class="math inline">\(F(q,p)\)</span> and <span class="math inline">\(G(q,p)\)</span> defined on phase space, define their <strong>Poisson bracket</strong> by <span class="math display">\[
+\{F, G\} \equiv \frac{\partial F}{\partial q} \cdot \frac{\partial G}{\partial p} - \frac{\partial G}{\partial q} \cdot \frac{\partial F}{\partial p}.
+\]</span> It’s easy to show that the Poisson bracket is anti-symmetric, i.e.&nbsp;<span class="math inline">\(\{F,G\} = -\{G,F\}\)</span>. It’s also bilinear, <span class="math display">\[
+\begin{align*}
+\{aF+bG,J\} &amp;= a\{F,J\} + b\{G,J\}, \\
+\{F, aG + bJ\} &amp;= a\{F,G\} + b\{F,J\}. \\
+\end{align*}
+\]</span> The Poisson bracket also satisfies the product rule, <span class="math display">\[
+\frac{d}{dt} \{F,G\} = \bigg\{\frac{dF}{dt}, G\bigg\} + \bigg\{F, \frac{dG}{dt}\bigg\}.
+\]</span> The total time derivative of any function <span class="math inline">\(F(q,p)\)</span> is given by its Poisson bracket with the Hamiltonian, <span class="math display">\[
+\frac{dF}{dt} = \{F, H\}.
+\]</span> Evidently, if <span class="math inline">\(F\)</span> is a conserved quantity, its Poisson bracket with <span class="math inline">\(H\)</span> must vanish, i.e.&nbsp;<span class="math inline">\(\{F,H\} = 0\)</span>. By Taylor expanding, it’s also possible to show that the Poisson bracket of any function of <span class="math inline">\(F\)</span> with <span class="math inline">\(H\)</span> must vanish, i.e.&nbsp;that <span class="math inline">\(\{f(F), H\} = 0\)</span> for any analytic function <span class="math inline">\(f(F)\)</span>.</p>
+<p>One result that we’ll frequently use is that the integral of a Poisson bracket with the Hamiltonian over all of phase space is zero provided the phase space isn’t bounded (and it generally isn’t, at least along the momenta axes). Denote the <span class="math inline">\(3N\)</span>-dimensional phase space volume element by <span class="math inline">\(d\Gamma \equiv d^{3N} q \ d^{3N} p\)</span>. Then we have <span class="math display">\[
+\int_\Gamma d\Gamma \ \{F,H\} = 0.
+\]</span> To see why this is true we just use the definition of the Poisson bracket and integration by parts, <span class="math display">\[
+\begin{align*}
+\int_\Gamma d\Gamma \ \{F,H\} &amp;= \int_\Gamma d\Gamma \ \bigg(\frac{\partial F}{\partial q} \cdot \frac{\partial H}{\partial p} - \frac{\partial H}{\partial q} \cdot \frac{\partial F}{\partial p}\bigg) \\
+&amp;= \int_\Gamma d\Gamma \ \frac{\partial H}{\partial p} \cdot \frac{\partial F}{\partial q} - \int_\Gamma d\Gamma \ \frac{\partial H}{\partial q} \cdot \frac{\partial F}{\partial p} \\
+&amp;= -\int_\Gamma d\Gamma \ \frac{\partial^2 H}{\partial q\partial p} F + \int_\Gamma d\Gamma \ \frac{\partial^2 H}{\partial p\partial q} F + (\text{boundary terms}). \\
+\end{align*}
+\]</span> Since second partials commute, the two integrals cancel each other. Since <span class="math inline">\(H\)</span> is a Hamiltonian describing a physical system, it must go to zero as <span class="math inline">\(p\)</span> or <span class="math inline">\(q\)</span> go to infinity, which means the boundary terms must also vanish as well.</p>
+<p>It’s important to note that the microscopic equations of motion are <em>time reversal invariant</em>. That is, if the momenta are reversed, <span class="math inline">\(p \rightarrow -p\)</span>, then the trajectories also reverse, <span class="math inline">\(q(t) \rightarrow q(-t)\)</span>. This is because the Hamiltonian <span class="math inline">\(H(q,p)\)</span> is invariant to time reversal transformations <span class="math inline">\((q,p) \rightarrow (q,-p)\)</span>. Why is this important to note? Because thermodynamics is <em>not</em> time reversal invariant. Once an isolated system is in equilibrium it will stay in equilibrium. We thus need to figure out how this time reversal invariance property gets lost in the thermodynamic limit.</p>
+</section>
+<section id="liouvilles-theorem" class="level2">
+<h2 class="anchored" data-anchor-id="liouvilles-theorem">Liouville’s Theorem</h2>
+<p>The starting point for kinetic theory is Liouville’s theorem, a statement about how phase space densities evolve in time. Suppose a system of <span class="math inline">\(N\)</span> particles has some given thermodynamic <em>macrostate</em> <span class="math inline">\(M\)</span>, which will in general be a function of the thermodynamic variables <span class="math inline">\(T, V, N\)</span>, etc. The system will also have some <em>microstate</em> <span class="math inline">\(\mu\)</span> that’s a function of all the positions <span class="math inline">\(q\)</span> and momenta <span class="math inline">\(p\)</span>. In general, there will be <em>many</em> possible microstates <span class="math inline">\(\mu\)</span> for any given macrostate <span class="math inline">\(M\)</span>. Each microstate corresponds to some point in the phase space, which evolves in time. Define a Gibbs <strong>ensemble</strong> as the set of all possible microstates <span class="math inline">\(\mu\)</span> that correspond to a given macrostate <span class="math inline">\(M\)</span>. An ensemble represents a <em>cloud</em> of points in phase space, with the cloud of points each evolving in time. Suppose there are <span class="math inline">\(\mathcal{N}\)</span> points in the ensemble. For a given infinitesimal phase space volume element <span class="math inline">\(d\Gamma\)</span>, we can define an ensemble density <span class="math inline">\(\rho\)</span> as the limiting ratio of ensemble points inside of a cube <span class="math inline">\(d\Gamma\)</span> with the total number of ensemble points <span class="math inline">\(\mathcal{N}\)</span>, <span class="math display">\[
+\rho(q, p, t) d\Gamma \equiv \lim_{\mathcal{N} \rightarrow \infty} \frac{d\mathcal{N}}{\mathcal{N}}.
+\]</span> The phase space density defines a proper probability density on the phase space since <span class="math inline">\(\rho \geq 0\)</span> and <span class="math display">\[
+\int_\Gamma d\Gamma \ \rho = \int_\Gamma \frac{d\mathcal{N}}{\mathcal{N}} = \frac{\mathcal{N}}{\mathcal{N}} = 1.
+\]</span> We can define an <strong>ensemble average</strong> for any function <span class="math inline">\(F(q,p,t)\)</span> on the phase space, <span class="math display">\[
+\langle F(q,p,t) \rangle \equiv \int_\Gamma d\Gamma \ \rho(q,p,t) F(q,p,t).
+\]</span> <strong>Liouville’s Theorem:</strong> Phase space volumes are preserved under time evolution. That is, for any two times <span class="math inline">\(t\)</span> and <span class="math inline">\(t'\)</span>, the differential volume element <span class="math inline">\(d\Gamma\)</span> must be the same, <span class="math display">\[
+d\Gamma(q',p',t') = d\Gamma(q,p,t).
+\]</span> <strong>Proof:</strong> Let <span class="math inline">\(d\Gamma \equiv d\Gamma(q,p,t)\)</span> and <span class="math inline">\(d\Gamma' \equiv d\Gamma(q',p',t+dt)\)</span>, where <span class="math inline">\(dt\)</span> is infinitesimal. Then we must have <span class="math display">\[
+\begin{align*}
+q' &amp;= q + \dot q dt, \\
+p' &amp;= p + \dot p dt. \\
+\end{align*}
+\]</span> The goal is to show that <span class="math inline">\(d\Gamma = d^{3N} q \ d^{3N} p\)</span> is the same as <span class="math inline">\(d\Gamma' = d^{3N} q' \ d^{3N} p'\)</span>. Let’s focus on a particular component <span class="math inline">\(\alpha\)</span> and show <span class="math inline">\(dq_\alpha dp_\alpha = dq'_{\alpha} dp'_{\alpha}\)</span>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./resources/image-20230429115140319.png" class="img-fluid figure-img" width="350"></p>
+</figure>
+</div>
+<p>Taking the differentials of <span class="math inline">\(q'_\alpha\)</span> and <span class="math inline">\(p'_\alpha\)</span>, we have <span class="math display">\[
+\begin{align*}
+dq'_\alpha &amp;= dq_\alpha + \frac{\partial \dot q_\alpha}{\partial q_\alpha} dt, \\
+dp'_\alpha &amp;= dp_\alpha + \frac{\partial \dot p_\alpha}{\partial p_\alpha} dt. \\
+\end{align*}
+\]</span> Then evidently <span class="math display">\[
+dq'_\alpha dp'_\alpha = dq_\alpha dp_\alpha \bigg[1 + \bigg(\frac{\partial \dot q_\alpha}{\partial q_\alpha} + \frac{\partial \dot p_\alpha}{\partial p_\alpha} \bigg)  \bigg].
+\]</span> Using Hamilton’s equations, however, we have that <span class="math display">\[
+\frac{\partial \dot q_\alpha}{\partial q_\alpha} + \frac{\partial \dot p_\alpha}{\partial p_\alpha} = \frac{\partial}{\partial q_\alpha} \frac{\partial H}{\partial p_\alpha} - \frac{\partial}{\partial p_\alpha} \frac{\partial H}{\partial q_\alpha} = 0.
+\]</span> Thus, to first order we have <span class="math inline">\(dq_\alpha dp_\alpha = dq'_{\alpha} dp'_{\alpha}\)</span> for each <span class="math inline">\(\alpha\)</span>. Multiplying them all together, we finally have <span class="math inline">\(d\Gamma' = d\Gamma\)</span>, as desired. <span class="math inline">\(\text{Q.E.D.}\)</span></p>
+<p>Liouville’s theorem as stated is equivalent to saying that the phase space density is an incompressible fluid. That is, the flow velocity on phase space has zero divergence. Indeed, we have <span class="math display">\[
+\nabla_{q,p} \cdot (\dot q, \dot p) = \frac{\partial \dot q}{\partial q} + \frac{\partial \dot p}{\partial p} = \frac{\partial}{\partial q} \frac{\partial H}{\partial p} - \frac{\partial}{\partial p} \frac{\partial H}{\partial q} = 0.
+\]</span> Define the <strong>stream derivative</strong> or the <strong>material derivative</strong> of a function <span class="math inline">\(f(q,p,t)\)</span> as the total time derivative, <span class="math display">\[
+\frac{Df}{Dt} \equiv \frac{df}{dt}.
+\]</span> The stream derivative represents how any given flow of <span class="math inline">\(f\)</span> changes in time. If you follow any given set of points in time, they’ll evolve according to the stream derivative. This contrasts with the <em>point derivative</em> <span class="math inline">\(\frac{\partial f}{\partial t}\)</span>, which represents how <span class="math inline">\(f\)</span> changes at a fixed point <span class="math inline">\(q,p\)</span> in time.</p>
+<p>The stream derivative of the phase space density can evidently be related to the point derivative by <span class="math display">\[
+\begin{align*}
+\frac{D\rho}{Dt} &amp;= (\dot q, \dot p) \cdot \nabla_{q,p} \ \rho \ + \frac{\partial \rho}{\partial t} \\
+&amp;= \dot q \frac{\partial \rho}{\partial q} + \dot p \frac{\partial \rho}{\partial p} + \frac{\partial \rho}{\partial t} \\
+&amp;= \frac{\partial \rho}{\partial q}\frac{\partial H}{\partial p} - \frac{\partial \rho}{\partial p} \frac{\partial H}{\partial q} \\
+&amp;= \{\rho, H\} + \frac{\partial \rho}{\partial t}.
+\end{align*}
+\]</span> Liouville’s theorem implies that the stream derivative of <span class="math inline">\(\rho\)</span> must vanish. Since <span class="math inline">\(d\Gamma' = d\Gamma\)</span>, we must have <span class="math inline">\(\rho' d\Gamma' = \rho d\Gamma\)</span>, or <span class="math inline">\((\rho'-\rho) d\Gamma = 0\)</span>, which implies <span class="math inline">\(\rho'=\rho\)</span>. We’ve thus derived <strong>Liouville’s equation</strong>, which says how the density at any given point in phase space evolves in time, <span class="math display">\[
+\frac{\partial \rho}{\partial t} = -\{\rho, H\} = \{H,\rho\}.
+\]</span> For convenience, it’s also common to define a <strong>Liouville operator</strong> <span class="math inline">\(\mathcal{L}\)</span> by <span class="math display">\[
+\mathcal{L}[\rho] \equiv \{\rho, H\} + \frac{\partial \rho}{\partial t}.
+\]</span> In this language, Liouville’s equation can also be written as <span class="math inline">\(\mathcal{L}[\rho] = 0\)</span>.</p>
+<p>We can use Liouville’s equation to find the time derivative of an ensemble average. If <span class="math inline">\(F(q,p)\)</span> is some time-independent function on phase space. Using integration by parts, we have <span class="math display">\[
+\frac{d}{dt} \langle F \rangle = \int_\Gamma d\Gamma \ F \frac{\partial \rho}{\partial t} = -\int_\Gamma d\Gamma \ F \ \{\rho, H\} = \int_\Gamma d\Gamma \ \rho \ \{F, H\} = \bigg\langle \frac{dF}{dt} \bigg\rangle.
+\]</span> That is, the time derivative of an ensemble average is the ensemble average of the time derivative.</p>
+<p>While all this is nice, our entire purpose is to figure out what happens at or near equilibrium. At equilibrium, the density can’t depend explicitly on time, i.e.&nbsp;<span class="math inline">\(\rho_{eq} = \rho(q,p)\)</span>. This evidently implies <span class="math display">\[
+\frac{\partial \rho_{eq}}{\partial t} = -\{\rho_{eq}, H\} = 0.
+\]</span> A sufficient condition for <span class="math inline">\(\{\rho_{eq}, H\}\)</span> to vanish is that <span class="math inline">\(\rho_{eq}\)</span> only be an explicit function of the conserved quantities in the system. This is called the <em>basic assumption of statistical mechanics</em>. In the simplest case where only energy is conserved, we’d have <span class="math display">\[
+\rho_{eq} = \rho(H(q,p)).
+\]</span> Recall that this requires the Poisson bracket to vanish since we can expand <span class="math inline">\(\rho\)</span> in powers of <span class="math inline">\(H\)</span>. Two common examples of equilibrium densities we’ll see in statistical mechanics are <span class="math inline">\(\rho_{eq} = \delta(H(q,p)-E)\)</span>, called the <em>microcanonical ensemble</em>, and <span class="math inline">\(\rho_{eq} \propto e^{-\beta H(q,p)}\)</span>, called the <em>canonical ensemble</em>.</p>
+<p>Note that we still haven’t shown that it’s even possible that <span class="math inline">\(\rho \rightarrow \rho_{eq}\)</span> as <span class="math inline">\(t \rightarrow \infty\)</span>. This must happen for the basic assumption of statistical mechanics to be true. However, convergence to a stationary distribution contradicts time reversal symmetry, which <span class="math inline">\(\rho\)</span> itself must in principle satisfy. In fact, <span class="math inline">\(\rho \nrightarrow \rho_{eq}\)</span> exactly since such a process is irreversible. In principle, if we could follow every point in the ensemble exactly, we could trace the density both forward and backward in time. In practice, however, we can’t do this, meaning we lose information over time. Only in a <em>coarse-grained</em> sense will it be true that <span class="math inline">\(\rho \rightarrow \rho_{eq}\)</span>.</p>
+<p>TALK ABOUT ERGODICITY HERE</p>
+</section>
+<section id="the-bbgky-hierarchy" class="level2">
+<h2 class="anchored" data-anchor-id="the-bbgky-hierarchy">The BBGKY Hierarchy</h2>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation column-body">
+  <div class="nav-page nav-page-previous">
+      <a href="../statistical-mechanics/probability.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Probability</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>

@@ -30,6 +30,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
+<link href="../statistical-mechanics/kinetic-theory.html" rel="next">
 <link href="../statistical-mechanics/thermodynamics.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -281,6 +282,11 @@ ul.task-list li input[type="checkbox"] {
   <a href="../statistical-mechanics/probability.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">Probability</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../statistical-mechanics/kinetic-theory.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Kinetic Theory</span></a>
+  </div>
+</li>
       </ul>
   </li>
     </ul>
@@ -323,12 +329,12 @@ ul.task-list li input[type="checkbox"] {
 <p>The laws of thermodynamics are based on observations of <em>macroscopic</em> bodies. They encapsulate the coarse-grained properties of a body like its temperature, pressure, or volume. On the other hand, matter is fundamentally composed of atoms and molecules whose motions are governed by the more fundamental laws of mechanics. In principle, we could describe macroscopic bodies the same way, by examining the motions of every particle inside the body. But this is largely impractical as we’ll see later. A more useful approach is to look at which states large numbers of particles are <em>likely</em> to be in and use that information to make macroscopic predictions. Statistical mechanics is an inherently probabilistic description of a system. As such, it requires an understanding of the mathematical theory of probability, which we’ll discuss here.</p>
 <section id="random-variables" class="level2">
 <h2 class="anchored" data-anchor-id="random-variables">Random Variables</h2>
-<p>At its root, probability is based on the study of <em>events</em> or <em>random variables</em>. Suppose <span class="math inline">\(S\)</span> is the set of all possible outcomes of an experiment, called the <strong>sample space</strong>. Any subset <span class="math inline">\(E \subset S\)</span> is called an <strong>event</strong>. A <strong>probability measure</strong> is a set function <span class="math inline">\(\mathbb{Pr}(E)\)</span> that maps events to numerical values between zero and one. It’s meant to formalize the concept of <em>chance</em>. If an event has probability one, we think of that event as being 100% certain to occur. If it has probability zero, we think of the event as having 0% chance to occur. Any values in between mean we’re uncertain whether the event will occur.</p>
-<p>Formally, a probability measure on a sample space <span class="math inline">\(S\)</span> satisfies the following properties:</p>
+<p>At its root, probability is based on the study of <em>events</em> or <em>random variables</em>. Suppose <span class="math inline">\(\mathcal{S}\)</span> is the set of all possible outcomes of an experiment, called the <strong>sample space</strong>. Any subset <span class="math inline">\(E \subset \mathcal{S}\)</span> is called an <strong>event</strong>. A <strong>probability measure</strong> is a set function <span class="math inline">\(\mathbb{Pr}(E)\)</span> that maps events to numerical values between zero and one. It’s meant to formalize the concept of <em>chance</em>. If an event has probability one, we think of that event as being 100% certain to occur. If it has probability zero, we think of the event as having 0% chance to occur. Any values in between mean we’re uncertain whether the event will occur.</p>
+<p>Formally, a probability measure on a sample space <span class="math inline">\(\mathcal{S}\)</span> satisfies the following properties:</p>
 <ul>
-<li>Positivity: For any event <span class="math inline">\(E \subset S\)</span>, <span class="math inline">\(\mathbb{Pr}(E) \geq 0\)</span>.</li>
-<li>Additivity: If <span class="math inline">\(A \subset S\)</span> and <span class="math inline">\(B \subset S\)</span> are distinct, disjoint events, then <span class="math inline">\(\mathbb{Pr}(A \text{ or } B) = \mathbb{Pr}(A) + \mathbb{Pr}(B)\)</span>.</li>
-<li>Normalization: For the entire set <span class="math inline">\(S\)</span>, we must have <span class="math inline">\(\mathbb{Pr}(S) = 1\)</span>.</li>
+<li>Positivity: For any event <span class="math inline">\(E \subset \mathcal{S}\)</span>, <span class="math inline">\(\mathbb{Pr}(E) \geq 0\)</span>.</li>
+<li>Additivity: If <span class="math inline">\(A \subset \mathcal{S}\)</span> and <span class="math inline">\(B \subset \mathcal{S}\)</span> are distinct, disjoint events, then <span class="math inline">\(\mathbb{Pr}(A \text{ or } B) = \mathbb{Pr}(A) + \mathbb{Pr}(B)\)</span>.</li>
+<li>Normalization: For the entire sample space <span class="math inline">\(\mathcal{S}\)</span>, <span class="math inline">\(\mathbb{Pr}(\mathcal{S}) = 1\)</span>.</li>
 </ul>
 <p>While this is a nice formal definition of probability, it’s not practically useful for saying how we should design a probability measure in a practical setting. There are two common approaches for designing probability measures:</p>
 <ol type="1">
@@ -337,8 +343,8 @@ ul.task-list li input[type="checkbox"] {
 \]</span> The fact that the ratio <span class="math inline">\(\frac{N_A}{N}\)</span> stabilizes to a fixed value as <span class="math inline">\(N\)</span> gets infinitely large follows from the <strong>law of large numbers</strong>, which we’ll take as a kind of experimental fact.</p></li>
 <li><p>The <strong>subjective</strong> approach: In this approach we take a more theoretical view by looking for a “maximally random” probability distribution that matches what we know to be true. That is, we seek to find the <em>maximum entropy</em> probability distribution that satisfies some given set of known constraints. We’ll talk more about the principle of maximum entropy when we get to information theory. The subjective approach is the one used most heavily in statistical mechanics.</p></li>
 </ol>
-<p>A <strong>random variable</strong> is a variable <span class="math inline">\(X\)</span> that doesn’t take on a fixed value, but rather a <em>random</em> value determined by a <strong>probability distribution</strong>. If <span class="math inline">\(E\)</span> is an event, a random variable encodes that event using a numerical variable <span class="math inline">\(X=X(E)\)</span>. More formally, <span class="math inline">\(X(E)\)</span> is a function that maps events to a numerical value. It could be a real number, a complex number, or a real or complex vector, for example.</p>
-<p>A one-dimensional random variable is a mapping <span class="math inline">\(X(E)\)</span> from events into the real numbers <span class="math inline">\(\mathbb{R}\)</span>. In this case, we can define a <strong>cumulative distribution function</strong> or <strong>CDF</strong> as the function <span class="math display">\[
+<p>A <strong>random variable</strong> is a variable <span class="math inline">\(X\)</span> that doesn’t take on a fixed value, but rather a <em>random</em> value determined by a <strong>probability distribution</strong>. If <span class="math inline">\(E \subset \mathcal{S}\)</span> is an event, a random variable encodes that event using a numerical variable <span class="math inline">\(X=X(E)\)</span>. More formally, <span class="math inline">\(X(E)\)</span> is a function that maps events to a numerical value. It could be a real number, a complex number, or a real or complex vector, for example.</p>
+<p>A one-dimensional random variable is a mapping <span class="math inline">\(X(E)\)</span> from events <span class="math inline">\(E \subset \mathcal{S}\)</span> into the real numbers <span class="math inline">\(\mathbb{R}\)</span>. In this case, we can define a <strong>cumulative distribution function</strong> or <strong>CDF</strong> as the function <span class="math display">\[
 P(x) \equiv \mathbb{Pr}\big(\{X \leq x\}\big).
 \]</span> That is, the CDF is the probability that the random variable <span class="math inline">\(X \leq x\)</span>, where <span class="math inline">\(x\)</span> is just some real number. To obey the laws of probability, the CDF must satisfy the following properties:</p>
 <ul>
@@ -347,19 +353,19 @@ P(x) \equiv \mathbb{Pr}\big(\{X \leq x\}\big).
 <li>It has probability one at <span class="math inline">\(x=\infty\)</span>. That is, <span class="math inline">\(\lim_{x \rightarrow \infty} P(x) = 1\)</span>.</li>
 </ul>
 <p>If the set of all values <span class="math inline">\(X\)</span> can take on are discrete, we say <span class="math inline">\(X\)</span> is a <strong>discrete random variable</strong>. In this case, we can define a <strong>probability mass function</strong> or <strong>PMF</strong> as the function <span class="math display">\[
-p(x) \equiv \mathbb{Pr}(X = k).
+p(x) \equiv \mathbb{Pr}(X = n).
 \]</span> By the laws of probability the PMF must satisfy the following properties:</p>
 <ul>
-<li>It’s between zero and one: <span class="math inline">\(0 \leq p(k) \leq 1\)</span>.</li>
-<li>It sums to one over all values, i.e.&nbsp;<span class="math inline">\(\sum_{k \in S} p(k) = 1\)</span>.</li>
-<li>It’s related to the CDF by <span class="math inline">\(P(x) = \sum_{k \leq x} p(k)\)</span>.</li>
+<li>It’s between zero and one: <span class="math inline">\(0 \leq p(n) \leq 1\)</span>.</li>
+<li>It sums to one over all values, i.e.&nbsp;<span class="math inline">\(\sum_{n \in \mathcal{S}} \ p(n) = 1\)</span>.</li>
+<li>It’s related to the CDF by <span class="math inline">\(P(x) = \sum_{n \leq x} \ p(n)\)</span>.</li>
 </ul>
 <p>If the set of all values it can take on are continuous, we say <span class="math inline">\(X\)</span> is a <strong>continuous random variable</strong>. In this case, we can define a <strong>probability density function</strong> or <strong>PDF</strong> by the function <span class="math display">\[
 p(x) = \mathbb{Pr}(x \leq X \leq x + dx).
 \]</span> By the laws of probability, the PDF must satisfy the following properties:</p>
 <ul>
 <li>It’s a positive function <span class="math inline">\(p(x) \geq 0\)</span>.</li>
-<li>It integrates to one over all values, <span class="math inline">\(\int_S p(x) dx = 1\)</span>.</li>
+<li>It integrates to one over all values, <span class="math inline">\(\int_\mathcal{S} p(x) dx = 1\)</span>.</li>
 <li>It’s related to the CDF by differentiation, <span class="math inline">\(p(x) = \frac{d}{dx} P(x)\)</span>.</li>
 </ul>
 <p>Note that in physics the PDF has <em>units</em>. If <span class="math inline">\(x\)</span> has units of <span class="math inline">\([x]\)</span>, then evidently <span class="math inline">\(p(x)\)</span> must have units of <span class="math inline">\(\frac{1}{[x]}\)</span>. This is why we think of the PDF as a <em>density</em>. It’s a probability per unit <span class="math inline">\(x\)</span>.</p>
@@ -446,10 +452,10 @@ p_F(f) &amp;= p(\sqrt{f}) \bigg|\frac{d}{df} \sqrt{f}\bigg| + p(-\sqrt{f}) \bigg
 <h2 class="anchored" data-anchor-id="probability-distributions">Probability Distributions</h2>
 <p>So far I’ve used the term <em>distribution</em> rather loosely. More formally, given a random variable <span class="math inline">\(x\)</span>, a <strong>probability distribution</strong> is a specific functional form for <span class="math inline">\(p(x)\)</span>. We’d write <span class="math inline">\(x \sim p(x)\)</span> to indicate that <span class="math inline">\(x\)</span> is distributed as <span class="math inline">\(p(x)\)</span>. Usually <span class="math inline">\(p(x)\)</span> will be <em>parametric</em>, meaning it will have external parameters that tune the shape of the distribution. Here are some common univariate distributions we’ll see in statistical mechanics:</p>
 <p><strong>Uniform Distribution</strong></p>
-<p>The uniform distribution is perhaps the simplest distribution of all, with <span class="math inline">\(p(x) = const\)</span> on some set <span class="math inline">\(x \in S\)</span>. As a shorthand we might write <span class="math inline">\(x \sim U(S)\)</span> to say <span class="math inline">\(x\)</span> is uniform on the set <span class="math inline">\(S\)</span>. In the discrete case, <span class="math inline">\(x\)</span> takes on some number of values <span class="math inline">\(N\)</span> each with equal probability, for example if <span class="math inline">\(S = \{1, 2, \cdots, n\}\)</span> we have <span class="math display">\[
+<p>The uniform distribution is perhaps the simplest distribution of all, with <span class="math inline">\(p(x) = const\)</span> on some set <span class="math inline">\(x \in \mathcal{S}\)</span>. As a shorthand we might write <span class="math inline">\(x \sim U(\mathcal{S})\)</span> to say <span class="math inline">\(x\)</span> is uniform on the set <span class="math inline">\(\mathcal{S}\)</span>. In the discrete case, <span class="math inline">\(x\)</span> takes on some number of values <span class="math inline">\(N\)</span> each with equal probability, for example if <span class="math inline">\(\mathcal{S} = \{1, 2, \cdots, n\}\)</span> we have <span class="math display">\[
 p(x) = \frac{1}{N}, \quad x = 1, 2, \cdots, N.
 \]</span> We can easily calculate the moments of a uniform random variable directly. In the discrete case, we’d have <span class="math display">\[
-\langle x^n \rangle = \sum_{j=1}^N j^n p(k) = \frac{1}{N} (1^n + 2^n + \cdots + N^n).
+\langle x^n \rangle = \sum_{x=1}^N \ x^n \ p(x) = \frac{1}{N} (1^n + 2^n + \cdots + N^n).
 \]</span> This is just an arithmetic sum in powers of <span class="math inline">\(n\)</span>. For example, the first two moments are <span class="math display">\[
 \begin{align*}
 \langle x \rangle &amp;= \frac{(N+1)}{2}, \\
@@ -461,7 +467,7 @@ p(x) = \frac{1}{N}, \quad x = 1, 2, \cdots, N.
 \sigma^2 &amp;= \langle x^2 \rangle - \langle x \rangle^2 = \frac{N^2-1}{12}. \\
 \end{align*}
 \]</span> The characteristic function is just given by a geometric series in powers of <span class="math inline">\(e^{-ik}\)</span>, <span class="math display">\[
-\tilde p(k) = \sum_{j=1}^N p(j) e^{-ikj} = \sum_{j=1}^N \frac{1}{N} \big(e^{-ik}\big)^n = \frac{e^{-ik}-e^{-ik(N+1)}}{1-e^{-ik}}.
+\tilde p(k) = \sum_{x=1}^N p(x) e^{-ikx} = \sum_{x=1}^N \frac{1}{N} \big(e^{-ik}\big)^n = \frac{e^{-ik}-e^{-ik(N+1)}}{1-e^{-ik}}.
 \]</span> We could in principle calculate the cumulant function <span class="math inline">\(\log \tilde p(k)\)</span> as well, though it’s clearly not going to be as useful for finding the cumulants here. We’ll see later that the uniform distribution is the <em>maximum entropy</em> distribution when the only known constraints are that <span class="math inline">\(x\)</span> lies in some set <span class="math inline">\(S\)</span>.</p>
 <p><strong>Gaussian Distribution</strong></p>
 <p>The Gaussian distribution is one of the most fundamental distributions in physics. In statistical mechanics, for example, it describes the velocity of gases in a box. Suppose <span class="math inline">\(x\)</span> is a continuous random variable defined on the whole real line. We say it’s Gaussian distributed if its PDF is given by <span class="math display">\[
@@ -560,11 +566,11 @@ p(\mathbf{x}) d^Nx \equiv \mathbb{Pr}(\{x_1 \leq X_1 \leq x_1 + dx_1, x_2 \leq X
 \langle x_1^{n_1} x_2^{n_2} \cdots x_N^{n_N} \rangle \equiv \frac{\partial^{n_1}}{\partial (-i k_1)^{n_1}} \frac{\partial^{n_2}}{\partial (-i k_2)^{n_2}} \cdots \frac{\partial^{n_N}}{\partial (-i k_N)^{n_N}} \tilde p(k_1, k_2, \cdots, k_N) \bigg |_{k_1=k_2=\cdots=k_N=0}.
 \]</span> Similarly, the <span class="math inline">\(n_1, n_2, \cdots, n_N\)</span> <strong>joint cumulant</strong> <span class="math inline">\(\kappa_{n_1,n_2,\cdots,n_N}\)</span> is given by taking partial derivatives of the joint cumulant function, <span class="math display">\[
 \kappa_{n_1,n_2,\cdots,n_N} \equiv \frac{\partial^{n_1}}{\partial (-i k_1)^{n_1}} \frac{\partial^{n_2}}{\partial (-i k_2)^{n_2}} \cdots \frac{\partial^{n_N}}{\partial (-i k_N)^{n_N}} \log \tilde p(k_1, k_2, \cdots, k_N) \bigg |_{k_1=k_2=\cdots=k_N=0}.
-\]</span> The sum <span class="math inline">\(n \equiv n_1 + n_2 + \cdots n_N\)</span> determines the order of the moment or cumulant. Of particular interest are the first and second cumulants. The first cumulants are the means <span class="math inline">\(\mu_i \equiv \langle x_i \rangle\)</span>. We can think of these together by putting them all into a <strong>mean vector</strong> <span class="math inline">\(\boldsymbol{\mu} \equiv \langle \mathbf{x} \rangle\)</span>. The second cumulants are the <em>covariances</em>, <span class="math inline">\(\sigma_{ij} \equiv \kappa_{ij}\)</span>. We can put all these into an <span class="math inline">\(N \times N\)</span> matrix to get the <strong>covariance matrix</strong> <span class="math inline">\(\mathbf{\Sigma} \equiv (\sigma_{ij})\)</span>. The diagonal entries of the covariance matrix correspond to the usual <em>variances</em> <span class="math inline">\(\sigma_i^2 = \sigma_{ii}\)</span>. The off diagonal terms are the <em>covariances</em>, capturing the dependence or <em>correlation</em> between <span class="math inline">\(x_i\)</span> and <span class="math inline">\(x_j\)</span>.</p>
+\]</span> The sum <span class="math inline">\(n \equiv n_1 + n_2 + \cdots n_N\)</span> determines the order of the moment or cumulant. Of particular interest are the first and second cumulants. The first cumulants are the means <span class="math inline">\(\mu_i \equiv \langle x_i \rangle\)</span>. We can think of these together by putting them all into a <strong>mean vector</strong> <span class="math inline">\(\boldsymbol{\mu} \equiv \langle \mathbf{x} \rangle \equiv \big(\mu_1, \mu_2, \cdots, \mu_N\big)\)</span>. The second cumulants are the <em>covariances</em>, <span class="math inline">\(\sigma_{ij} \equiv \kappa_{ij}\)</span>. We can put all these into an <span class="math inline">\(N \times N\)</span> matrix to get the <strong>covariance matrix</strong> <span class="math inline">\(\mathbf{\Sigma} \equiv \big(\sigma_{ij}\big)_{i,j=1,\cdots,N}\)</span>. The diagonal entries of the covariance matrix correspond to the usual <em>variances</em> <span class="math inline">\(\sigma_i^2 = \sigma_{ii}\)</span>. The off diagonal terms are the <em>covariances</em>, capturing the dependence or <em>correlation</em> between <span class="math inline">\(x_i\)</span> and <span class="math inline">\(x_j\)</span>.</p>
 <p>We can use the same graphical trick to express joint cumulants in terms of joint moments. The only difference is we need to label each point by its index and bag them appropriately. We can use this to show that the covariance <span class="math inline">\(\sigma_{ij} \equiv \kappa_{ij}\)</span> can be written as <span class="math display">\[
 \sigma_{ij} = \langle x_i x_j \rangle - \langle x_i \rangle \langle x_j \rangle = \langle (x_i - \mu_i)(x_j - \mu_j) \rangle.
 \]</span> In matrix notation, the entire covariance matrix can be expressed using moments as <span class="math display">\[
-\mathbf{\Sigma} = \langle \mathbf{x}\mathbf{x}^\top \rangle - \langle \mathbf{x} \rangle \langle \mathbf{x} \rangle^\top = \langle (\mathbf{x}-\mathbf{\mu})(\mathbf{x}-\mathbf{\mu})^\top \rangle.
+\mathbf{\Sigma} = \langle \mathbf{x}\mathbf{x}^\top \rangle - \langle \mathbf{x} \rangle \langle \mathbf{x} \rangle^\top = \langle (\mathbf{x}-\boldsymbol{\mu})(\mathbf{x}-\boldsymbol{\mu})^\top \rangle.
 \]</span> This implies the covariance matrix must in fact be a positive semi-definite matrix. That is, <span class="math display">\[
 \mathbf{\Sigma} = \mathbf{\Sigma}^\top, \quad \mathbf{v}^\top\mathbf{\Sigma}\mathbf{v} \geq 0 \quad \forall \mathbf{v} \neq \mathbf{0}.
 \]</span> We can get smaller joint probabilities by “summing out” the random variables we don’t need. These are called <strong>marginal probabilities</strong> or <strong>unconditional probabilities</strong>. For example, if we have two random variables <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>, the marginal PDF <span class="math inline">\(p(y)\)</span> is given by integrating <span class="math inline">\(x\)</span> out of the joint PDF <span class="math inline">\(p(x,y)\)</span>, <span class="math display">\[
@@ -697,7 +703,7 @@ N! &amp;= e^{N(\log N - 1)} \sqrt{\frac{2\pi}{N|-N^{-2}|}} \bigg(1 + O\bigg(\fra
 <section id="information-theory" class="level2">
 <h2 class="anchored" data-anchor-id="information-theory">Information Theory</h2>
 <p>We can think about probabilities in a completely different sense by thinking about the <em>information content</em> contained in a system and how uncertain we are about what that information content is. Suppose we wanted to transmit a message containing <span class="math inline">\(N\)</span> characters, where each character is sampled from some alphabet <span class="math inline">\(\Sigma\)</span> containing <span class="math inline">\(M\)</span> total characters. We’d like to ask the following question: How many bits of information does a <em>typical</em> message of <span class="math inline">\(N\)</span> characters from this alphabet contain?</p>
-<p>Suppose we had no information at all about how often any one particular character <span class="math inline">\(x_m \in \Sigma\)</span> occurs in a message. In this case, we’d have to assume that all message of length <span class="math inline">\(N\)</span> are typical. Since there are <span class="math inline">\(M^N\)</span> possible messages of length <span class="math inline">\(N\)</span>, we’d say there are <span class="math inline">\(g = M^N\)</span> typical messages. Since <span class="math inline">\(g\)</span> contains <span class="math inline">\(\log_2 g\)</span> bits of information, this means a typical message would contain <span class="math inline">\(\log g = N \log_2 M\)</span> bits of information.</p>
+<p>Suppose we had no information at all about how often any one particular character <span class="math inline">\(x_m \in \Sigma\)</span> occurs in a message. In this case, we’d have to assume that all messages of length <span class="math inline">\(N\)</span> are typical. Since there are <span class="math inline">\(M^N\)</span> possible messages of length <span class="math inline">\(N\)</span>, we’d say there are <span class="math inline">\(g = M^N\)</span> typical messages. Since <span class="math inline">\(g\)</span> contains <span class="math inline">\(\log_2 g\)</span> bits of information, this means a typical message would contain <span class="math inline">\(\log g = N \log_2 M\)</span> bits of information.</p>
 <p>Suppose now that we had an estimate of the frequency <span class="math inline">\(p_m\)</span> that each character <span class="math inline">\(x_m \in \Sigma\)</span> occurs in a message. That is, in a message of length <span class="math inline">\(N\)</span>, we expect each character <span class="math inline">\(x_m\)</span> to occur <span class="math inline">\(N_m \approx Np_m\)</span> total times, or to be more precise <span class="math inline">\(N_m = Np_m + O\big(\sqrt{N}\big)\)</span> since each character is a Bernoulli random variable, hence a message of length <span class="math inline">\(N\)</span> is a binomial random variable. In this case, the number of <em>typical</em> messages is just the number of ways of placing <span class="math inline">\(N\)</span> random characters into <span class="math inline">\(M\)</span> bins of sizes <span class="math inline">\(N_1, N_2, \cdots, N_M\)</span>, which is <span class="math display">\[
 g = \frac{N!}{\prod_{m=1}^M N_m!}.
 \]</span> The total number of bits contained in a typical message would then be <span class="math inline">\(\log_2 g\)</span>. If we assume the message length <span class="math inline">\(N\)</span> is large compared to the alphabet size <span class="math inline">\(M\)</span>, then we can apply the Stirling approximation to each term containing a factorial. Using the fact <span class="math inline">\(N_m = Np_m\)</span> and <span class="math inline">\(\sum N_m = N\)</span>, we have <span class="math display">\[
@@ -708,7 +714,7 @@ g = \frac{N!}{\prod_{m=1}^M N_m!}.
 &amp;\approx - N \sum_{m=1}^M p_m \log_2 p_m.
 \end{align*}
 \]</span> The term <span class="math inline">\(-\sum p_m \log_2 p_m\)</span> is just a function of the underlying probability distribution of characters, not of the message length <span class="math inline">\(N\)</span> itself. It captures our uncertainty or surprise in what message we’d receive. We call this term the <strong>information entropy</strong> or <strong>Shannon entropy</strong>. Since the choice of base for the logarithm merely adds a constant to this sum, in physics we more typically use the <em>natural logarithm</em> instead of the base-2 logarithm, which expresses entropy in <em>nats</em> instead of <em>bits</em>. In this form, the information entropy can be defined as <span class="math display">\[
-S \equiv \sum_{m=1}^M p_m \log p_m.
+S \equiv -\sum_{m=1}^M p_m \log p_m.
 \]</span> We’ve thus answered the question sought: a typical message of length <span class="math inline">\(N\)</span> contains about <span class="math inline">\(\log_2 g \approx NS\)</span> bits of information, up to an additive constant that depends on the base of logarithm. Notice that if we <em>knew</em> exactly which message to expect, that would mean <span class="math inline">\(g = 1\)</span>, which means <span class="math inline">\(S = 0\)</span>. Since we already know the most number of messages possible is <span class="math inline">\(g=M^N\)</span>, the information entropy must evidently satisfy <span class="math display">\[
 0 \leq S \leq N \log M.
 \]</span> In thermodynamics, the information entropy corresponds to the <strong>mixing entropy</strong> up to a factor of Boltzmann’s constant <span class="math inline">\(k_B\)</span>. One implication of this is that while information entropy is dimensionless, thermodynamic entropy has units, namely units of <span class="math inline">\(k_B\)</span>, which is energy per degree.</p>
@@ -722,13 +728,13 @@ d\Gamma = \frac{d^3 x d^3 p}{h^3}.
 \]</span> We can use the idea of information entropy to finally answer the question regarding what the correct way is to define probabilities subjectively or theoretically. The idea is to use the <em>principle of maximum entropy</em>.</p>
 <p><strong>Principle of Maximum Entropy:</strong> The unbiased assignment of probability is the one that maximizes the information entropy subject to known constraints. More formally, assign a probability distribution <span class="math inline">\(p(x)\)</span> that maximizes the constrained problem <span class="math display">\[
 \begin{align*}
-&amp;\max_{p(x)} S[p(x)] =  \max_{p(x)} \bigg(- \sum_x p(x) \log p(x) \bigg) \\
-&amp;\text{subject to} \ \sum_x p(x) = 1, \ \text{and} \ g(x) = 0. \\
+&amp;\max_{p(x)} S[p(x)] =  \max_{p(x)} \bigg(- \sum_{x \in \mathcal{S}} p(x) \log p(x) \bigg) \\
+&amp;\text{subject to} \ \sum_{x \in \mathcal{S}} p(x) = 1, \ \text{and} \ g(x) = 0. \\
 \end{align*}
 \]</span> where <span class="math inline">\(g(x) = 0\)</span> is any set of known constraints on the probability distribution. The first constraint that probabilities sum to one will always be there so that <span class="math inline">\(p(x)\)</span> yields a valid probability function.</p>
 <p>This is in essence just a generalization of the <em>principle of indifference</em>. If we don’t have any information to go on, we should assume all outcomes have equal probability. The principle of maximum entropy extends this idea to general distributions where we might know some information, like what its mean or variance is, or what range it’s bounded to.</p>
 <p>Using Lagrange multipliers, the principle of maximum entropy is equivalent to maximizing the Lagrange multiplier function <span class="math display">\[
-L(p(x),\lambda) \equiv - \sum_x p(x) \log p(x) - \alpha \bigg(\sum_x p(x) - 1\bigg) - \beta \cdot g(x).
+L(p(x),\lambda) \equiv - \sum_{x \in \mathcal{S}} p(x) \log p(x) - \alpha \bigg(\sum_{x \in \mathcal{S}} p(x) - 1\bigg) - \beta \cdot g(x).
 \]</span> subject to <span class="math inline">\(p(x)\)</span> and <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta\)</span>.</p>
 <p><strong>Example:</strong> Let’s formally prove the principle of indifference using the principle of maximum entropy. That is, in the absence of no known information, the unbiased probabilities to assign are the ones where each outcome has an equal probability to occur. Suppose the random variable is discrete with <span class="math inline">\(n\)</span> outcomes of probabilities <span class="math inline">\(p_1, p_2, \cdots, p_n\)</span>. In this case, the problem to solve is <span class="math display">\[
 \begin{align*}
@@ -748,14 +754,14 @@ L(p,\alpha) \equiv - \sum_{i=1}^n p_i \log p_i - \alpha \bigg(\sum_{i=1}^n p_i -
 <p>The same method can be used in the continuous case as well by replacing the sums <span class="math inline">\(\sum_{i=1}^n p_i\)</span> by integrals <span class="math inline">\(\int_a^b dx \ p(x)\)</span>. The main subtlety to be aware of in the continuous case is that we’re no longer maximizing a function of <span class="math inline">\(n\)</span> probabilities, but a <em>functional</em> of the form <span class="math inline">\(S[p(x)]\)</span> over all possible functions <span class="math inline">\(p(x)\)</span>. These can be solved for <span class="math inline">\(p(x)\)</span> by finding the choice of <span class="math inline">\(p(x)\)</span> that extremizes the functional <span class="math inline">\(S[p(x)]\)</span>. In that case, the maximum entropy probabilities will turn out to be <span class="math inline">\(p(x) = \frac{1}{b-a}\)</span> as expected.</p>
 <p><strong>Example:</strong> Here’s an interesting example involving continuous distributions. Suppose we knew that a random variable <span class="math inline">\(x\)</span> on the real line had a given mean <span class="math inline">\(\mu\)</span> and variance <span class="math inline">\(\sigma^2\)</span>. What is the maximum entropy distribution <span class="math inline">\(p(x)\)</span> such that these two cumulants are known? The problem to solve is now <span class="math display">\[
 \begin{align*}
-&amp;\max_{p(x)} \bigg(- \int dx \ p(x) \log p(x) \bigg) \\
-&amp;\text{subject to} \ \int dx \ p(x) = 1, \\
-&amp;\text{and} \int dx \ x p(x) = \mu, \ \ \int dx \ x^2 p(x) - \mu^2 = \sigma^2. \\
+&amp;\max_{p(x)} \bigg(- \int_\mathbb{R} dx \ p(x) \log p(x) \bigg) \\
+&amp;\text{subject to} \ \int_\mathbb{R} dx \ p(x) = 1, \\
+&amp;\text{and} \int_\mathbb{R} dx \ x p(x) = \mu, \ \ \int_\mathbb{R} dx \ x^2 p(x) - \mu^2 = \sigma^2. \\
 \end{align*}
 \]</span> The Lagrange multiplier function is then <span class="math display">\[
 \begin{align*}
-L(p(x),\alpha,\beta,\gamma) = -&amp;\bigg(\int dx \ p(x) \log p(x) \bigg) - \alpha\bigg(\int dx \ p(x) - 1\bigg) \\
-- \beta&amp;\bigg(\int dx \ x p(x) - \mu\bigg) - \gamma \bigg(\int dx \ x^2 p(x) - \mu^2 - \sigma^2\bigg).
+L(p(x),\alpha,\beta,\gamma) = -&amp;\bigg(\int_\mathbb{R} dx \ p(x) \log p(x) \bigg) - \alpha\bigg(\int_\mathbb{R} dx \ p(x) - 1\bigg) \\
+- \beta&amp;\bigg(\int_\mathbb{R} dx \ x p(x) - \mu\bigg) - \gamma \bigg(\int_\mathbb{R} dx \ x^2 p(x) - \mu^2 - \sigma^2\bigg).
 \end{align*}
 \]</span> To maximize this function, consider a functional perturbation <span class="math inline">\(p + \delta p\)</span>. Notice every term is linear in <span class="math inline">\(p\)</span> except the first term, which is <span class="math inline">\(p \log p\)</span>. In that term, we have <span class="math display">\[
 \begin{align*}
@@ -766,8 +772,7 @@ L(p(x),\alpha,\beta,\gamma) = -&amp;\bigg(\int dx \ p(x) \log p(x) \bigg) - \alp
 \]</span> If we ignore terms of order higher than <span class="math inline">\(\delta p\)</span>, then solving for <span class="math inline">\(\delta L\)</span> and setting it to zero gives <span class="math display">\[
 \begin{align*}
 \delta L &amp;= L(p + \delta p,\alpha,\beta,\gamma) - L(p,\alpha,\beta,\gamma) \\
-&amp;= -\int dx \delta p \ \bigg[\log p + 1 + \alpha + \beta x + \gamma(x^2 - 2\mu x) \bigg] \\
-&amp;\equiv 0.
+&amp;= -\int_\mathbb{R} dx \delta p \ \bigg[\log p + 1 + \alpha + \beta x + \gamma(x^2 - 2\mu x) \bigg] \equiv 0.
 \end{align*}
 \]</span> Since this must be true for any perturbation <span class="math inline">\(\delta p\)</span>, the integrand must be zero, <span class="math display">\[
 \log p + 1 + \alpha + \beta x + \gamma(x^2 - 2\mu x) = 0.
@@ -793,14 +798,9 @@ L(p,\alpha) \equiv - \sum_{i=0}^\infty p_i \log p_i - \alpha \bigg(\sum_{i=0}^\i
 p_j = e^{-(1+\alpha)} e^{-\beta E_j}.
 \]</span> Again, the factor <span class="math inline">\(e^{-(1+\alpha)}\)</span> is just a normalization constant. If we redefine it to be <span class="math inline">\(\frac{1}{Z}\)</span>, then we finally have <span class="math display">\[
 p_j = \frac{1}{Z} e^{-\beta E_j},
-\]</span> where <span class="math inline">\(Z\)</span> must satisfy the relation <span class="math display">\[
-Z \equiv \sum_{i=0}^\infty e^{-\beta E_i}.
-\]</span> We’ll see later that <span class="math inline">\(Z\)</span> is very important to statistical mechanics. It’s called the <strong>partition function</strong>. In that case, <span class="math inline">\(E_j\)</span> represents the energy of the system in the <span class="math inline">\(j\)</span><sup>th</sup> state and <span class="math inline">\(E\)</span> represents the average internal energy of the system, i.e.&nbsp;the energy that satisfies the first law of thermodynamics.</p>
-<p>More generally, we could imagine <span class="math inline">\(E(x)\)</span> being a vector-valued function, in which case we’d get <span class="math display">\[
-p_j = \frac{1}{Z} e^{-\beta \cdot E_j},
-\]</span> where each <span class="math inline">\(\beta\)</span> and <span class="math inline">\(E_j\)</span> is now a vector. The partition function would similarly change to be <span class="math display">\[
-Z \equiv \sum_{i=0}^\infty e^{-\beta \cdot E_i}.
-\]</span></p>
+\]</span> where by normalization <span class="math inline">\(Z\)</span> must satisfy the relation <span class="math display">\[
+Z = \sum_{i=0}^\infty e^{-\beta E_i}.
+\]</span> More generally, we could imagine <span class="math inline">\(\mathbf{E}(x)\)</span> being a vector-valued function, in which case the same results apply just be replacing the scalars <span class="math inline">\(\beta E_i\)</span> with vectors <span class="math inline">\(\boldsymbol{\beta} \cdot \mathbf{E}_i\)</span>. We’ll see later that the normalization constant <span class="math inline">\(Z\)</span> is very important to statistical mechanics. It’s called the <strong>partition function</strong>. In that case, <span class="math inline">\(E_j\)</span> represents the energy of the system in the <span class="math inline">\(j\)</span><sup>th</sup> state and <span class="math inline">\(E\)</span> represents the average internal energy of the system, i.e.&nbsp;the energy that satisfies the first law of thermodynamics.</p>
 
 
 </section>
@@ -946,6 +946,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="../statistical-mechanics/kinetic-theory.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-title">Kinetic Theory</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->
