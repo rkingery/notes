@@ -297,9 +297,43 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#hamiltonian-mechanics" id="toc-hamiltonian-mechanics" class="nav-link active" data-scroll-target="#hamiltonian-mechanics">Hamiltonian Mechanics</a></li>
+  <li><a href="#hamiltonian-mechanics" id="toc-hamiltonian-mechanics" class="nav-link active" data-scroll-target="#hamiltonian-mechanics">Hamiltonian Mechanics</a>
+  <ul class="collapse">
+  <li><a href="#hamiltons-equations" id="toc-hamiltons-equations" class="nav-link" data-scroll-target="#hamiltons-equations">Hamilton’s Equations</a></li>
+  <li><a href="#poisson-brackets" id="toc-poisson-brackets" class="nav-link" data-scroll-target="#poisson-brackets">Poisson Brackets</a></li>
+  </ul></li>
+  <li><a href="#liouvilles-equation" id="toc-liouvilles-equation" class="nav-link" data-scroll-target="#liouvilles-equation">Liouville’s Equation</a>
+  <ul class="collapse">
   <li><a href="#liouvilles-theorem" id="toc-liouvilles-theorem" class="nav-link" data-scroll-target="#liouvilles-theorem">Liouville’s Theorem</a></li>
-  <li><a href="#the-bbgky-hierarchy" id="toc-the-bbgky-hierarchy" class="nav-link" data-scroll-target="#the-bbgky-hierarchy">The BBGKY Hierarchy</a></li>
+  <li><a href="#deriving-liouvilles-equation" id="toc-deriving-liouvilles-equation" class="nav-link" data-scroll-target="#deriving-liouvilles-equation">Deriving Liouville’s Equation</a></li>
+  <li><a href="#equilibrium-conditions" id="toc-equilibrium-conditions" class="nav-link" data-scroll-target="#equilibrium-conditions">Equilibrium Conditions</a></li>
+  </ul></li>
+  <li><a href="#the-bbgky-hierarchy" id="toc-the-bbgky-hierarchy" class="nav-link" data-scroll-target="#the-bbgky-hierarchy">The BBGKY Hierarchy</a>
+  <ul class="collapse">
+  <li><a href="#s-particle-densities" id="toc-s-particle-densities" class="nav-link" data-scroll-target="#s-particle-densities"><span class="math inline">\(s\)</span>-Particle Densities</a></li>
+  </ul></li>
+  <li><a href="#the-boltzmann-equation" id="toc-the-boltzmann-equation" class="nav-link" data-scroll-target="#the-boltzmann-equation">The Boltzmann Equation</a>
+  <ul class="collapse">
+  <li><a href="#coarse-graining" id="toc-coarse-graining" class="nav-link" data-scroll-target="#coarse-graining">Coarse-Graining</a></li>
+  <li><a href="#deriving-the-boltzmann-equation" id="toc-deriving-the-boltzmann-equation" class="nav-link" data-scroll-target="#deriving-the-boltzmann-equation">Deriving the Boltzmann Equation</a></li>
+  <li><a href="#the-h-theorem" id="toc-the-h-theorem" class="nav-link" data-scroll-target="#the-h-theorem">The H-Theorem</a></li>
+  <li><a href="#aside-the-vlasov-equation" id="toc-aside-the-vlasov-equation" class="nav-link" data-scroll-target="#aside-the-vlasov-equation">Aside: The Vlasov Equation</a></li>
+  </ul></li>
+  <li><a href="#equilibrium" id="toc-equilibrium" class="nav-link" data-scroll-target="#equilibrium">Equilibrium</a>
+  <ul class="collapse">
+  <li><a href="#equilibrium-distributions" id="toc-equilibrium-distributions" class="nav-link" data-scroll-target="#equilibrium-distributions">Equilibrium Distributions</a></li>
+  <li><a href="#the-ideal-gas" id="toc-the-ideal-gas" class="nav-link" data-scroll-target="#the-ideal-gas">The Ideal Gas</a></li>
+  <li><a href="#the-maxwell-boltzmann-distribution" id="toc-the-maxwell-boltzmann-distribution" class="nav-link" data-scroll-target="#the-maxwell-boltzmann-distribution">The Maxwell-Boltzmann Distribution</a></li>
+  <li><a href="#collision-conserved-quantities" id="toc-collision-conserved-quantities" class="nav-link" data-scroll-target="#collision-conserved-quantities">Collision-Conserved Quantities</a></li>
+  <li><a href="#particle-number" id="toc-particle-number" class="nav-link" data-scroll-target="#particle-number">Particle Number</a></li>
+  <li><a href="#momentum" id="toc-momentum" class="nav-link" data-scroll-target="#momentum">Momentum</a></li>
+  <li><a href="#energy" id="toc-energy" class="nav-link" data-scroll-target="#energy">Energy</a></li>
+  </ul></li>
+  <li><a href="#approach-to-equilibrium" id="toc-approach-to-equilibrium" class="nav-link" data-scroll-target="#approach-to-equilibrium">Approach to Equilibrium</a>
+  <ul class="collapse">
+  <li><a href="#zeroth-order-solutions" id="toc-zeroth-order-solutions" class="nav-link" data-scroll-target="#zeroth-order-solutions">Zeroth-Order Solutions</a></li>
+  <li><a href="#first-order-solutions" id="toc-first-order-solutions" class="nav-link" data-scroll-target="#first-order-solutions">First-Order Solutions</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -327,12 +361,19 @@ ul.task-list li input[type="checkbox"] {
 <p>We’ll focus on studying the canonical system of thermodynamics, a box of fixed volume containing a gas of identical particles. We’ll imagine setting the particles free into the box from a fixed position, and studying their dynamics as they fill the box and come into equilibrium. Much of this discussion will exclude other forms of matter like solids and liquids. The microscopic dynamics of solids really requires a quantum mechanical treatment. The microscopic dynamics of liquids overlaps somewhat with the dynamics of gases, the difference being that the distance between particles is much closer than they are with a gas.</p>
 <section id="hamiltonian-mechanics" class="level2">
 <h2 class="anchored" data-anchor-id="hamiltonian-mechanics">Hamiltonian Mechanics</h2>
-<p>To start, we’ll review the classical mechanics of particles via the Hamiltonian formulation. Consider a system with <span class="math inline">\(3N\)</span> degrees of freedom and generalized position and momenta <span class="math inline">\((q_1,p_1), (q_N,p_N), \cdots, (q_N,p_N)\)</span>. For simplicity we’ll assume each <span class="math inline">\(q_i\)</span> and <span class="math inline">\(p_i\)</span> is a 3-dimensional vector. In that case, <span class="math inline">\(N\)</span> represents the number of particles in the system. Let <span class="math inline">\(q = (q_1,q_2,\cdots,q_N)\)</span> and <span class="math inline">\(p = (p_1,p_2,\cdots,p_N)\)</span>. The <span class="math inline">\(6N\)</span>-dimensional vector <span class="math inline">\((q,p)\)</span> characterizes the <strong>state</strong> of the system. The <span class="math inline">\(6N\)</span>-dimensional manifold all possible states the system can take on is called the <strong>phase space</strong> of the system.</p>
-<p>Assuming the system is conservative, the dynamics of the system are completely determined by the joint Hamiltonian <span class="math inline">\(H = H(q,p)\)</span>. We can then in principle solve for the microscopic equations of motion <span class="math inline">\(\big(q(t), p(t)\big)\)</span> by solving <em>Hamilton’s equations</em>, a system of <span class="math inline">\(6N\)</span> differential equations given by <span class="math display">\[
-\dot q = \frac{\partial H}{\partial p}, \quad \dot p = -\frac{\partial H}{\partial q}.
+<p>To start, we’ll review the classical mechanics of particles via the Hamiltonian formulation.</p>
+<section id="hamiltons-equations" class="level3">
+<h3 class="anchored" data-anchor-id="hamiltons-equations">Hamilton’s Equations</h3>
+<p>Consider a system with <span class="math inline">\(3N\)</span> degrees of freedom. For simplicity, we’ll assume the generalized coordinates are just the ordinary position vectors <span class="math inline">\(\mathbf{x}_i\)</span> and ordinary momentum vectors <span class="math inline">\(\mathbf{p}_i\)</span> for a given particle <span class="math inline">\(i\)</span>. In that case, <span class="math inline">\(N\)</span> represents the number of particles in the system. Let <span class="math inline">\(\mathbf{x} \equiv (\mathbf{x}_1,\mathbf{x}_2,\cdots,\mathbf{x}_N)\)</span> and <span class="math inline">\(\mathbf{p} \equiv (\mathbf{p}_1,\mathbf{p}_2,\cdots,\mathbf{p}_N)\)</span>. The <span class="math inline">\(6N\)</span>-dimensional vector <span class="math inline">\((\mathbf{x}, \mathbf{p})\)</span> characterizes the <strong>state</strong> of the system. The state is also a point in an abstract <span class="math inline">\(6N\)</span>-dimensional space, called the <strong>phase space</strong> of the system.</p>
+<p>Assuming the system is conservative, the dynamics of the system are completely determined by the joint Hamiltonian <span class="math inline">\(H = H(\mathbf{x}, \mathbf{p})\)</span>. We can then in principle solve for the microscopic equations of motion <span class="math inline">\(\big(\mathbf{x}(t), \mathbf{p}(t)\big)\)</span> by solving <em>Hamilton’s equations</em>, a system of <span class="math inline">\(6N\)</span> differential equations given by <span class="math display">\[
+\boxed{\mathbf{\dot x} = \frac{\partial H}{\partial \mathbf{p}}, \quad \mathbf{\dot p} = -\frac{\partial H}{\partial \mathbf{x}}} \ .
 \]</span> Said differently, the Hamiltonian induces a <em>flow</em> on the phase space, with the flow described by Hamilton’s equations. Each flow represents the time evolution of a particular state, determined by the initial conditions.</p>
-<p>For two functions <span class="math inline">\(F(q,p)\)</span> and <span class="math inline">\(G(q,p)\)</span> defined on phase space, define their <strong>Poisson bracket</strong> by <span class="math display">\[
-\{F, G\} \equiv \frac{\partial F}{\partial q} \cdot \frac{\partial G}{\partial p} - \frac{\partial G}{\partial q} \cdot \frac{\partial F}{\partial p}.
+<p>It’s important to note that the microscopic equations of motion are <em>time reversal invariant</em>. That is, if the momenta are reversed, <span class="math inline">\(\mathbf{p} \rightarrow -\mathbf{p}\)</span>, then the trajectories also reverse, <span class="math inline">\(\mathbf{x}(t) \rightarrow \mathbf{x}(-t)\)</span>. This is because the Hamiltonian <span class="math inline">\(H(\mathbf{x},\mathbf{p})\)</span> is invariant to time reversal transformations <span class="math inline">\((\mathbf{x}, \mathbf{p}) \rightarrow (\mathbf{x}, -\mathbf{p})\)</span>. Why is this important to note? Because thermodynamics is <em>not</em> time reversal invariant. Once an isolated system is in equilibrium it will stay in equilibrium. We thus need to figure out how this time reversal invariance property gets lost in the thermodynamic limit.</p>
+</section>
+<section id="poisson-brackets" class="level3">
+<h3 class="anchored" data-anchor-id="poisson-brackets">Poisson Brackets</h3>
+<p>For two functions <span class="math inline">\(F(\mathbf{x}, \mathbf{p})\)</span> and <span class="math inline">\(G(\mathbf{x}, \mathbf{p})\)</span> defined on phase space, define their <strong>Poisson bracket</strong> by <span class="math display">\[
+\boxed{\{F, G\} \equiv \frac{\partial F}{\partial \mathbf{x}} \cdot \frac{\partial G}{\partial \mathbf{p}} - \frac{\partial G}{\partial \mathbf{x}} \cdot \frac{\partial F}{\partial \mathbf{p}}} \ .
 \]</span> It’s easy to show that the Poisson bracket is anti-symmetric, i.e.&nbsp;<span class="math inline">\(\{F,G\} = -\{G,F\}\)</span>. It’s also bilinear, <span class="math display">\[
 \begin{align*}
 \{aF+bG,J\} &amp;= a\{F,J\} + b\{G,J\}, \\
@@ -340,83 +381,475 @@ ul.task-list li input[type="checkbox"] {
 \end{align*}
 \]</span> The Poisson bracket also satisfies the product rule, <span class="math display">\[
 \frac{d}{dt} \{F,G\} = \bigg\{\frac{dF}{dt}, G\bigg\} + \bigg\{F, \frac{dG}{dt}\bigg\}.
-\]</span> The total time derivative of any function <span class="math inline">\(F(q,p)\)</span> is given by its Poisson bracket with the Hamiltonian, <span class="math display">\[
+\]</span> The total time derivative of any function <span class="math inline">\(F(\mathbf{x}, \mathbf{p})\)</span> is given by its Poisson bracket with the Hamiltonian, <span class="math display">\[
 \frac{dF}{dt} = \{F, H\}.
 \]</span> Evidently, if <span class="math inline">\(F\)</span> is a conserved quantity, its Poisson bracket with <span class="math inline">\(H\)</span> must vanish, i.e.&nbsp;<span class="math inline">\(\{F,H\} = 0\)</span>. By Taylor expanding, it’s also possible to show that the Poisson bracket of any function of <span class="math inline">\(F\)</span> with <span class="math inline">\(H\)</span> must vanish, i.e.&nbsp;that <span class="math inline">\(\{f(F), H\} = 0\)</span> for any analytic function <span class="math inline">\(f(F)\)</span>.</p>
-<p>One result that we’ll frequently use is that the integral of a Poisson bracket with the Hamiltonian over all of phase space is zero provided the phase space isn’t bounded (and it generally isn’t, at least along the momenta axes). Denote the <span class="math inline">\(3N\)</span>-dimensional phase space volume element by <span class="math inline">\(d\Gamma \equiv d^{3N} q \ d^{3N} p\)</span>. Then we have <span class="math display">\[
-\int_\Gamma d\Gamma \ \{F,H\} = 0.
+<p>One result that we’ll frequently use is that the integral of a Poisson bracket <span class="math inline">\(\{F,H\}\)</span> vanishes when integrated over an unbounded region of phase space (which is almost always the case). Denote the <span class="math inline">\(3N\)</span>-dimensional phase space volume element by <span class="math inline">\(d\Gamma \equiv d^{3N} \mathbf{x} \ d^{3N} \mathbf{p}\)</span>. Then we have <span class="math display">\[
+\int d\Gamma \ \{F,H\} = 0.
 \]</span> To see why this is true we just use the definition of the Poisson bracket and integration by parts, <span class="math display">\[
 \begin{align*}
-\int_\Gamma d\Gamma \ \{F,H\} &amp;= \int_\Gamma d\Gamma \ \bigg(\frac{\partial F}{\partial q} \cdot \frac{\partial H}{\partial p} - \frac{\partial H}{\partial q} \cdot \frac{\partial F}{\partial p}\bigg) \\
-&amp;= \int_\Gamma d\Gamma \ \frac{\partial H}{\partial p} \cdot \frac{\partial F}{\partial q} - \int_\Gamma d\Gamma \ \frac{\partial H}{\partial q} \cdot \frac{\partial F}{\partial p} \\
-&amp;= -\int_\Gamma d\Gamma \ \frac{\partial^2 H}{\partial q\partial p} F + \int_\Gamma d\Gamma \ \frac{\partial^2 H}{\partial p\partial q} F + (\text{boundary terms}). \\
+\int d\Gamma \ \{F,H\} &amp;= \int d\Gamma \ \bigg(\frac{\partial F}{\partial \mathbf{x}} \cdot \frac{\partial H}{\partial \mathbf{p}} - \frac{\partial H}{\partial \mathbf{x}} \cdot \frac{\partial F}{\partial \mathbf{p}}\bigg) \\
+&amp;= \int d\Gamma \ \frac{\partial H}{\partial \mathbf{p}} \cdot \frac{\partial F}{\partial \mathbf{x}} - \int d\Gamma \ \frac{\partial H}{\partial \mathbf{x}} \cdot \frac{\partial F}{\partial \mathbf{p}} \\
+&amp;= -\int d\Gamma \ \frac{\partial^2 H}{\partial \mathbf{x}\partial \mathbf{p}} F + \int d\Gamma \ \frac{\partial^2 H}{\partial \mathbf{p}\partial \mathbf{x}} F + (\text{boundary terms}). \\
 \end{align*}
-\]</span> Since second partials commute, the two integrals cancel each other. Since <span class="math inline">\(H\)</span> is a Hamiltonian describing a physical system, it must go to zero as <span class="math inline">\(p\)</span> or <span class="math inline">\(q\)</span> go to infinity, which means the boundary terms must also vanish as well.</p>
-<p>It’s important to note that the microscopic equations of motion are <em>time reversal invariant</em>. That is, if the momenta are reversed, <span class="math inline">\(p \rightarrow -p\)</span>, then the trajectories also reverse, <span class="math inline">\(q(t) \rightarrow q(-t)\)</span>. This is because the Hamiltonian <span class="math inline">\(H(q,p)\)</span> is invariant to time reversal transformations <span class="math inline">\((q,p) \rightarrow (q,-p)\)</span>. Why is this important to note? Because thermodynamics is <em>not</em> time reversal invariant. Once an isolated system is in equilibrium it will stay in equilibrium. We thus need to figure out how this time reversal invariance property gets lost in the thermodynamic limit.</p>
+\]</span> Since second partials commute, the two integrals cancel each other. Since <span class="math inline">\(H\)</span> is a Hamiltonian describing a physical system, it must go to zero as <span class="math inline">\(\mathbf{p}\)</span> or <span class="math inline">\(\mathbf{x}\)</span> go to infinity, which means the boundary terms must also vanish as well. Note that for this to be true it’s also important that both <span class="math inline">\(F\)</span> and <span class="math inline">\(H\)</span> depend on all of the integration variables. If not then some of the terms can’t be exchanged. For example, if <span class="math inline">\(F\)</span> is constant, we can pull the entire integral inside the Poisson bracket to get <span class="math display">\[
+\int d\Gamma \ \{F,H\} = \bigg\{F, \int d\Gamma \ H\bigg\} \neq 0.
+\]</span></p>
 </section>
-<section id="liouvilles-theorem" class="level2">
-<h2 class="anchored" data-anchor-id="liouvilles-theorem">Liouville’s Theorem</h2>
-<p>The starting point for kinetic theory is Liouville’s theorem, a statement about how phase space densities evolve in time. Suppose a system of <span class="math inline">\(N\)</span> particles has some given thermodynamic <em>macrostate</em> <span class="math inline">\(M\)</span>, which will in general be a function of the thermodynamic variables <span class="math inline">\(T, V, N\)</span>, etc. The system will also have some <em>microstate</em> <span class="math inline">\(\mu\)</span> that’s a function of all the positions <span class="math inline">\(q\)</span> and momenta <span class="math inline">\(p\)</span>. In general, there will be <em>many</em> possible microstates <span class="math inline">\(\mu\)</span> for any given macrostate <span class="math inline">\(M\)</span>. Each microstate corresponds to some point in the phase space, which evolves in time. Define a Gibbs <strong>ensemble</strong> as the set of all possible microstates <span class="math inline">\(\mu\)</span> that correspond to a given macrostate <span class="math inline">\(M\)</span>. An ensemble represents a <em>cloud</em> of points in phase space, with the cloud of points each evolving in time. Suppose there are <span class="math inline">\(\mathcal{N}\)</span> points in the ensemble. For a given infinitesimal phase space volume element <span class="math inline">\(d\Gamma\)</span>, we can define an ensemble density <span class="math inline">\(\rho\)</span> as the limiting ratio of ensemble points inside of a cube <span class="math inline">\(d\Gamma\)</span> with the total number of ensemble points <span class="math inline">\(\mathcal{N}\)</span>, <span class="math display">\[
-\rho(q, p, t) d\Gamma \equiv \lim_{\mathcal{N} \rightarrow \infty} \frac{d\mathcal{N}}{\mathcal{N}}.
+</section>
+<section id="liouvilles-equation" class="level2">
+<h2 class="anchored" data-anchor-id="liouvilles-equation">Liouville’s Equation</h2>
+<p>The Hamiltonian formulation of classical mechanics implies an important result called <em>Liouville’s theorem</em>, a statement about how phase space densities evolve in time. From this theorem we can derived Liouville’s equation, our starting point for kinetic theory.</p>
+<section id="liouvilles-theorem" class="level3">
+<h3 class="anchored" data-anchor-id="liouvilles-theorem">Liouville’s Theorem</h3>
+<p>Suppose a system of <span class="math inline">\(N\)</span> particles has some given thermodynamic <em>macrostate</em> <span class="math inline">\(M\)</span>, which will in general be a function of the thermodynamic variables <span class="math inline">\(T, V, N\)</span>, etc. The system will also have some <em>microstate</em> <span class="math inline">\(\mu\)</span> that’s a function of all the positions <span class="math inline">\(\mathbf{x}\)</span> and momenta <span class="math inline">\(\mathbf{p}\)</span>. In general, there will be <em>many</em> possible microstates <span class="math inline">\(\mu\)</span> for any given macrostate <span class="math inline">\(M\)</span>. Each microstate corresponds to some point in the phase space, which evolves in time. Define a Gibbs <strong>ensemble</strong> as the set of all possible microstates <span class="math inline">\(\mu\)</span> that correspond to a given macrostate <span class="math inline">\(M\)</span>. An ensemble represents a <em>cloud</em> of points in phase space, with the cloud of points each evolving in time. Suppose there are <span class="math inline">\(\mathcal{N}\)</span> points in the ensemble. For a given infinitesimal phase space volume element <span class="math inline">\(d\Gamma\)</span>, we can define an ensemble density <span class="math inline">\(\rho\)</span> as the limiting ratio of ensemble points inside of a cube <span class="math inline">\(d\Gamma\)</span> with the total number of ensemble points <span class="math inline">\(\mathcal{N}\)</span>, <span class="math display">\[
+\boxed{\rho(\mathbf{x}, \mathbf{p}, t) d\Gamma \equiv \lim_{\mathcal{N} \rightarrow \infty} \frac{d\mathcal{N}}{\mathcal{N}}} \ .
 \]</span> The phase space density defines a proper probability density on the phase space since <span class="math inline">\(\rho \geq 0\)</span> and <span class="math display">\[
-\int_\Gamma d\Gamma \ \rho = \int_\Gamma \frac{d\mathcal{N}}{\mathcal{N}} = \frac{\mathcal{N}}{\mathcal{N}} = 1.
-\]</span> We can define an <strong>ensemble average</strong> for any function <span class="math inline">\(F(q,p,t)\)</span> on the phase space, <span class="math display">\[
-\langle F(q,p,t) \rangle \equiv \int_\Gamma d\Gamma \ \rho(q,p,t) F(q,p,t).
+\int d\Gamma \ \rho = \int \frac{d\mathcal{N}}{\mathcal{N}} = \frac{\mathcal{N}}{\mathcal{N}} = 1.
+\]</span> We can define an <strong>ensemble average</strong> for any function <span class="math inline">\(F(\mathbf{x}, \mathbf{p},t)\)</span> on the phase space, <span class="math display">\[
+\boxed{\langle F(\mathbf{x}, \mathbf{p},t) \rangle \equiv \int d\Gamma \ \rho(\mathbf{x}, \mathbf{p},t) F(\mathbf{x}, \mathbf{p},t)} \ .
 \]</span> <strong>Liouville’s Theorem:</strong> Phase space volumes are preserved under time evolution. That is, for any two times <span class="math inline">\(t\)</span> and <span class="math inline">\(t'\)</span>, the differential volume element <span class="math inline">\(d\Gamma\)</span> must be the same, <span class="math display">\[
-d\Gamma(q',p',t') = d\Gamma(q,p,t).
-\]</span> <strong>Proof:</strong> Let <span class="math inline">\(d\Gamma \equiv d\Gamma(q,p,t)\)</span> and <span class="math inline">\(d\Gamma' \equiv d\Gamma(q',p',t+dt)\)</span>, where <span class="math inline">\(dt\)</span> is infinitesimal. Then we must have <span class="math display">\[
+d\Gamma(\mathbf{x}', \mathbf{p}',t') = d\Gamma(\mathbf{x}, \mathbf{p},t).
+\]</span> <strong>Proof:</strong> Let <span class="math inline">\(d\Gamma \equiv d\Gamma(\mathbf{x}, \mathbf{p},t)\)</span> and <span class="math inline">\(d\Gamma' \equiv d\Gamma(\mathbf{x}', \mathbf{p}',t+dt)\)</span>, where <span class="math inline">\(dt\)</span> is infinitesimal. Then we must have <span class="math display">\[
 \begin{align*}
-q' &amp;= q + \dot q dt, \\
-p' &amp;= p + \dot p dt. \\
+\mathbf{x}' &amp;= \mathbf{x} + \mathbf{\dot x} dt, \\
+\mathbf{p}' &amp;= \mathbf{p} + \mathbf{\dot p} dt. \\
 \end{align*}
-\]</span> The goal is to show that <span class="math inline">\(d\Gamma = d^{3N} q \ d^{3N} p\)</span> is the same as <span class="math inline">\(d\Gamma' = d^{3N} q' \ d^{3N} p'\)</span>. Let’s focus on a particular component <span class="math inline">\(\alpha\)</span> and show <span class="math inline">\(dq_\alpha dp_\alpha = dq'_{\alpha} dp'_{\alpha}\)</span>.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="./resources/image-20230429115140319.png" class="img-fluid figure-img" width="350"></p>
-</figure>
-</div>
-<p>Taking the differentials of <span class="math inline">\(q'_\alpha\)</span> and <span class="math inline">\(p'_\alpha\)</span>, we have <span class="math display">\[
+\]</span> The goal is to show that <span class="math inline">\(d\Gamma = d^{3N} \mathbf{x} \ d^{3N} \mathbf{p}\)</span> is the same as <span class="math inline">\(d\Gamma' = d^{3N} \mathbf{x}' \ d^{3N} \mathbf{p}'\)</span>. Let’s focus on a particular component <span class="math inline">\(\alpha\)</span> and show <span class="math inline">\(dx_\alpha dp_\alpha = dx'_{\alpha} dp'_{\alpha}\)</span>. Taking the differentials of <span class="math inline">\(x'_\alpha\)</span> and <span class="math inline">\(p'_\alpha\)</span>, we have <span class="math display">\[
 \begin{align*}
-dq'_\alpha &amp;= dq_\alpha + \frac{\partial \dot q_\alpha}{\partial q_\alpha} dt, \\
+dx'_\alpha &amp;= dx_\alpha + \frac{\partial \dot x_\alpha}{\partial x_\alpha} dt, \\
 dp'_\alpha &amp;= dp_\alpha + \frac{\partial \dot p_\alpha}{\partial p_\alpha} dt. \\
 \end{align*}
 \]</span> Then evidently <span class="math display">\[
-dq'_\alpha dp'_\alpha = dq_\alpha dp_\alpha \bigg[1 + \bigg(\frac{\partial \dot q_\alpha}{\partial q_\alpha} + \frac{\partial \dot p_\alpha}{\partial p_\alpha} \bigg)  \bigg].
+dx'_\alpha dp'_\alpha = dx_\alpha dp_\alpha \bigg[1 + \bigg(\frac{\partial \dot x_\alpha}{\partial x_\alpha} + \frac{\partial \dot p_\alpha}{\partial p_\alpha} \bigg)  \bigg].
 \]</span> Using Hamilton’s equations, however, we have that <span class="math display">\[
-\frac{\partial \dot q_\alpha}{\partial q_\alpha} + \frac{\partial \dot p_\alpha}{\partial p_\alpha} = \frac{\partial}{\partial q_\alpha} \frac{\partial H}{\partial p_\alpha} - \frac{\partial}{\partial p_\alpha} \frac{\partial H}{\partial q_\alpha} = 0.
-\]</span> Thus, to first order we have <span class="math inline">\(dq_\alpha dp_\alpha = dq'_{\alpha} dp'_{\alpha}\)</span> for each <span class="math inline">\(\alpha\)</span>. Multiplying them all together, we finally have <span class="math inline">\(d\Gamma' = d\Gamma\)</span>, as desired. <span class="math inline">\(\text{Q.E.D.}\)</span></p>
+\frac{\partial \dot x_\alpha}{\partial x_\alpha} + \frac{\partial \dot p_\alpha}{\partial p_\alpha} = \frac{\partial}{\partial x_\alpha} \frac{\partial H}{\partial p_\alpha} - \frac{\partial}{\partial p_\alpha} \frac{\partial H}{\partial x_\alpha} = 0.
+\]</span> Thus, to first order we have <span class="math inline">\(dx_\alpha dp_\alpha = dx'_{\alpha} dp'_{\alpha}\)</span> for each <span class="math inline">\(\alpha\)</span>. Multiplying them all together, we finally have <span class="math inline">\(d\Gamma' = d\Gamma\)</span>, as desired. <span class="math inline">\(\text{Q.E.D.}\)</span></p>
+</section>
+<section id="deriving-liouvilles-equation" class="level3">
+<h3 class="anchored" data-anchor-id="deriving-liouvilles-equation">Deriving Liouville’s Equation</h3>
 <p>Liouville’s theorem as stated is equivalent to saying that the phase space density is an incompressible fluid. That is, the flow velocity on phase space has zero divergence. Indeed, we have <span class="math display">\[
-\nabla_{q,p} \cdot (\dot q, \dot p) = \frac{\partial \dot q}{\partial q} + \frac{\partial \dot p}{\partial p} = \frac{\partial}{\partial q} \frac{\partial H}{\partial p} - \frac{\partial}{\partial p} \frac{\partial H}{\partial q} = 0.
-\]</span> Define the <strong>stream derivative</strong> or the <strong>material derivative</strong> of a function <span class="math inline">\(f(q,p,t)\)</span> as the total time derivative, <span class="math display">\[
-\frac{Df}{Dt} \equiv \frac{df}{dt}.
-\]</span> The stream derivative represents how any given flow of <span class="math inline">\(f\)</span> changes in time. If you follow any given set of points in time, they’ll evolve according to the stream derivative. This contrasts with the <em>point derivative</em> <span class="math inline">\(\frac{\partial f}{\partial t}\)</span>, which represents how <span class="math inline">\(f\)</span> changes at a fixed point <span class="math inline">\(q,p\)</span> in time.</p>
+\nabla_{\mathbf{x}, \mathbf{p}} \cdot (\mathbf{\dot x}, \mathbf{\dot p}) = \frac{\partial \mathbf{\dot x}}{\partial \mathbf{x}} + \frac{\partial \mathbf{\dot p}}{\partial \mathbf{p}} = \frac{\partial}{\partial \mathbf{x}} \frac{\partial H}{\partial \mathbf{p}} - \frac{\partial}{\partial \mathbf{p}} \frac{\partial H}{\partial \mathbf{x}} = 0.
+\]</span> Define the <strong>stream derivative</strong> or the <strong>material derivative</strong> of a function <span class="math inline">\(f(\mathbf{x}, \mathbf{p},t)\)</span> as the total time derivative, <span class="math display">\[
+\boxed{\frac{Df}{Dt} \equiv \frac{df}{dt}} \ .
+\]</span> The stream derivative represents how any given flow of <span class="math inline">\(f\)</span> changes in time. If you follow any given set of points in time, they’ll evolve according to the stream derivative. This contrasts with the <em>point derivative</em> <span class="math inline">\(\frac{\partial f}{\partial t}\)</span>, which represents how <span class="math inline">\(f\)</span> changes at a fixed point <span class="math inline">\(\mathbf{x},\mathbf{p}\)</span> in time.</p>
 <p>The stream derivative of the phase space density can evidently be related to the point derivative by <span class="math display">\[
 \begin{align*}
-\frac{D\rho}{Dt} &amp;= (\dot q, \dot p) \cdot \nabla_{q,p} \ \rho \ + \frac{\partial \rho}{\partial t} \\
-&amp;= \dot q \frac{\partial \rho}{\partial q} + \dot p \frac{\partial \rho}{\partial p} + \frac{\partial \rho}{\partial t} \\
-&amp;= \frac{\partial \rho}{\partial q}\frac{\partial H}{\partial p} - \frac{\partial \rho}{\partial p} \frac{\partial H}{\partial q} \\
+\frac{D\rho}{Dt} &amp;= (\mathbf{\dot x}, \mathbf{\dot p}) \cdot \nabla_{\mathbf{x}, \mathbf{p}} \ \rho \ + \frac{\partial \rho}{\partial t} \\
+&amp;= \mathbf{\dot x} \cdot \frac{\partial \rho}{\partial \mathbf{x}} + \mathbf{\dot p} \cdot\frac{\partial \rho}{\partial \mathbf{p}} + \frac{\partial \rho}{\partial t} \\
+&amp;= \frac{\partial \rho}{\partial \mathbf{x}} \cdot \frac{\partial H}{\partial \mathbf{p}} - \frac{\partial \rho}{\partial \mathbf{p}} \cdot \frac{\partial H}{\partial \mathbf{x}} \\
 &amp;= \{\rho, H\} + \frac{\partial \rho}{\partial t}.
 \end{align*}
 \]</span> Liouville’s theorem implies that the stream derivative of <span class="math inline">\(\rho\)</span> must vanish. Since <span class="math inline">\(d\Gamma' = d\Gamma\)</span>, we must have <span class="math inline">\(\rho' d\Gamma' = \rho d\Gamma\)</span>, or <span class="math inline">\((\rho'-\rho) d\Gamma = 0\)</span>, which implies <span class="math inline">\(\rho'=\rho\)</span>. We’ve thus derived <strong>Liouville’s equation</strong>, which says how the density at any given point in phase space evolves in time, <span class="math display">\[
-\frac{\partial \rho}{\partial t} = -\{\rho, H\} = \{H,\rho\}.
+\boxed{\frac{\partial \rho}{\partial t} = -\{\rho, H\} = \{H,\rho\}} \ .
 \]</span> For convenience, it’s also common to define a <strong>Liouville operator</strong> <span class="math inline">\(\mathcal{L}\)</span> by <span class="math display">\[
-\mathcal{L}[\rho] \equiv \{\rho, H\} + \frac{\partial \rho}{\partial t}.
+\boxed{\mathcal{L}[\rho] \equiv \{\rho, H\} + \frac{\partial \rho}{\partial t}} \ .
 \]</span> In this language, Liouville’s equation can also be written as <span class="math inline">\(\mathcal{L}[\rho] = 0\)</span>.</p>
-<p>We can use Liouville’s equation to find the time derivative of an ensemble average. If <span class="math inline">\(F(q,p)\)</span> is some time-independent function on phase space. Using integration by parts, we have <span class="math display">\[
-\frac{d}{dt} \langle F \rangle = \int_\Gamma d\Gamma \ F \frac{\partial \rho}{\partial t} = -\int_\Gamma d\Gamma \ F \ \{\rho, H\} = \int_\Gamma d\Gamma \ \rho \ \{F, H\} = \bigg\langle \frac{dF}{dt} \bigg\rangle.
+<p>We can use Liouville’s equation to find the time derivative of an ensemble average. If <span class="math inline">\(F(\mathbf{x},\mathbf{p})\)</span> is some time-independent function on phase space. Using integration by parts, we have <span class="math display">\[
+\frac{d}{dt} \langle F \rangle = \int d\Gamma \ F \frac{\partial \rho}{\partial t} = -\int d\Gamma \ F \ \{\rho, H\} = \int d\Gamma \ \rho \ \{F, H\} = \bigg\langle \frac{dF}{dt} \bigg\rangle.
 \]</span> That is, the time derivative of an ensemble average is the ensemble average of the time derivative.</p>
-<p>While all this is nice, our entire purpose is to figure out what happens at or near equilibrium. At equilibrium, the density can’t depend explicitly on time, i.e.&nbsp;<span class="math inline">\(\rho_{eq} = \rho(q,p)\)</span>. This evidently implies <span class="math display">\[
+</section>
+<section id="equilibrium-conditions" class="level3">
+<h3 class="anchored" data-anchor-id="equilibrium-conditions">Equilibrium Conditions</h3>
+<p>While all this is nice, our entire purpose is to figure out what happens at or near equilibrium. At equilibrium, the density can’t depend explicitly on time, i.e.&nbsp;<span class="math inline">\(\rho_{eq} = \rho(\mathbf{x}, \mathbf{p})\)</span>. This evidently implies <span class="math display">\[
 \frac{\partial \rho_{eq}}{\partial t} = -\{\rho_{eq}, H\} = 0.
-\]</span> A sufficient condition for <span class="math inline">\(\{\rho_{eq}, H\}\)</span> to vanish is that <span class="math inline">\(\rho_{eq}\)</span> only be an explicit function of the conserved quantities in the system. This is called the <em>basic assumption of statistical mechanics</em>. In the simplest case where only energy is conserved, we’d have <span class="math display">\[
-\rho_{eq} = \rho(H(q,p)).
-\]</span> Recall that this requires the Poisson bracket to vanish since we can expand <span class="math inline">\(\rho\)</span> in powers of <span class="math inline">\(H\)</span>. Two common examples of equilibrium densities we’ll see in statistical mechanics are <span class="math inline">\(\rho_{eq} = \delta(H(q,p)-E)\)</span>, called the <em>microcanonical ensemble</em>, and <span class="math inline">\(\rho_{eq} \propto e^{-\beta H(q,p)}\)</span>, called the <em>canonical ensemble</em>.</p>
-<p>Note that we still haven’t shown that it’s even possible that <span class="math inline">\(\rho \rightarrow \rho_{eq}\)</span> as <span class="math inline">\(t \rightarrow \infty\)</span>. This must happen for the basic assumption of statistical mechanics to be true. However, convergence to a stationary distribution contradicts time reversal symmetry, which <span class="math inline">\(\rho\)</span> itself must in principle satisfy. In fact, <span class="math inline">\(\rho \nrightarrow \rho_{eq}\)</span> exactly since such a process is irreversible. In principle, if we could follow every point in the ensemble exactly, we could trace the density both forward and backward in time. In practice, however, we can’t do this, meaning we lose information over time. Only in a <em>coarse-grained</em> sense will it be true that <span class="math inline">\(\rho \rightarrow \rho_{eq}\)</span>.</p>
+\]</span> A sufficient condition for <span class="math inline">\(\{\rho_{eq}, H\}\)</span> to vanish is that <span class="math inline">\(\rho_{eq}\)</span> only be an explicit function of the conserved quantities in the system, since conserved quantities all have vanishing Poisson bracket with <span class="math inline">\(H\)</span>. This is called the <em>basic assumption of statistical mechanics</em>. If only energy is conserved, which is the typical case, we’d have <span class="math display">\[
+\rho_{eq} = \rho(H(\mathbf{x}, \mathbf{p})).
+\]</span> Recall that this requires the Poisson bracket to vanish since we can expand <span class="math inline">\(\rho\)</span> in powers of <span class="math inline">\(H\)</span>. The two most important equilibrium densities we’ll see in statistical mechanics are the <em>microcanonical ensemble</em> <span class="math inline">\(\rho_{eq} = \delta(H(\mathbf{x}, \mathbf{p})-E)\)</span>, and the <em>canonical ensemble</em> <span class="math inline">\(\rho_{eq} \propto e^{-\beta H(\mathbf{x}, \mathbf{p})}\)</span>.</p>
+<p>Note that we still haven’t shown that it’s even possible that <span class="math inline">\(\rho \rightarrow \rho_{eq}\)</span> as <span class="math inline">\(t \rightarrow \infty\)</span>. This must happen for the basic assumption of statistical mechanics to be true. However, convergence to a stationary distribution contradicts time reversal symmetry, which <span class="math inline">\(\rho\)</span> itself must in principle satisfy. In fact, <span class="math inline">\(\rho \nrightarrow \rho_{eq}\)</span> exactly since such a process is irreversible. In principle, if we could follow every point in the ensemble exactly, we could trace the density both forward and backward in time. In practice, however, we can’t do this, meaning we lose information over time. Only in a <em>coarse-grained</em> sense will it be true <span class="math inline">\(\rho \rightarrow \rho_{eq}\)</span>.</p>
 <p>TALK ABOUT ERGODICITY HERE</p>
+</section>
 </section>
 <section id="the-bbgky-hierarchy" class="level2">
 <h2 class="anchored" data-anchor-id="the-bbgky-hierarchy">The BBGKY Hierarchy</h2>
+<p>The full phase space density of all <span class="math inline">\(N\)</span> particles contains far more information than we need for thermodynamic purposes. In fact, we can often get away with looking at densities of a small number of particles in the background of all the other particles. We can derive a recursive expression for these densities that will be useful for making the approximations that will lead us into thermodynamics.</p>
+<section id="s-particle-densities" class="level3">
+<h3 class="anchored" data-anchor-id="s-particle-densities"><span class="math inline">\(s\)</span>-Particle Densities</h3>
+<p>Define the (un-normalized) density of a single particle as the expected number of particles <span class="math inline">\(f_1\)</span> that occur at some <span class="math inline">\(\mathbf{x},\mathbf{p},t\)</span>, i.e. <span class="math display">\[
+f_1(\mathbf{x}, \mathbf{p},t) \equiv \bigg\langle \sum_{i=1}^N \delta^3(\mathbf{x}_i-\mathbf{x}) \delta^3(\mathbf{p}_i-\mathbf{p}) \bigg\rangle.
+\]</span> Assuming each particle is identical, we can simplify the right-hand side by noting that the expected value of <span class="math inline">\(N\)</span> identical particles is just <span class="math inline">\(N\)</span> times the expectation of a single particle, <span class="math display">\[
+\begin{align*}
+f_1(\mathbf{x}, \mathbf{p},t) &amp;= N \big\langle \delta^3(\mathbf{x}_1-\mathbf{x}) \delta^3(\mathbf{p}_1-\mathbf{p}) \big\rangle \\
+&amp;= N \int d^3 \mathbf{x}_1 d^3 \mathbf{p}_1 \ \rho(\mathbf{x}_1=\mathbf{x}, \mathbf{x}_2, \cdots, \mathbf{x}_N, \mathbf{p}_1=\mathbf{p}, \mathbf{p}_2, \cdots, \mathbf{p}_N,t) \\
+&amp;= N \rho_1(\mathbf{x}, \mathbf{p}, t),
+\end{align*}
+\]</span> where <span class="math inline">\(\rho_1(\mathbf{x}, \mathbf{p}, t)\)</span> is just the one-particle marginal PDF of the full density <span class="math inline">\(\rho\)</span>. As expected, the expected number of particles at a point is just <span class="math inline">\(N\)</span> times the normalized one-particle density. We can similarly ask about the expected number of <em>tuples</em> of particles. The density <span class="math inline">\(f_s\)</span> of <span class="math inline">\(s\)</span> particles occurring at some given set of <span class="math inline">\(s\)</span> phase space points at some time <span class="math inline">\(t\)</span> is given by <span class="math display">\[
+\boxed{f_s(\mathbf{x}_1, \cdots, \mathbf{x}_s,\mathbf{p}_1, \cdots, \mathbf{p}_s,t) \equiv \frac{N!}{(N-s)!} \rho_s(\mathbf{x}_1, \cdots, \mathbf{x}_s,\mathbf{p}_1, \cdots, \mathbf{p}_s,t)} \ .
+\]</span> Clearly, <span class="math inline">\(f_N\)</span> is just the un-normalized full density of finding all <span class="math inline">\(N\)</span> particles at their given points, which is <span class="math display">\[
+f_N(\mathbf{x}_1, \cdots, \mathbf{x}_N,\mathbf{p}_1, \cdots, \mathbf{p}_N,t) = N! \ \rho(\mathbf{x}_1, \cdots, \mathbf{x}_N,\mathbf{p}_1, \cdots, \mathbf{p}_N,t).
+\]</span> ### Deriving the BBGKY Hierarchy</p>
+<p>What we’d like to try to do is to find a way of expressing <span class="math inline">\(f_N\)</span> as a <em>hierarchy</em> of lower-particle densities. If we can get that then we can start approximating the full density using the much simpler one or two particle densities. This hierarchy of densities is called the <em>BBGKY Hierarchy</em>, which we’ll now derive.</p>
+<p>To do that we need to make an assumption about the functional form of the full Hamiltonian <span class="math inline">\(H\)</span>. We’ll assume that it’s composed of the kinetic energy for each particle, where each particle has the same mass <span class="math inline">\(m\)</span>, some external potential energy <span class="math inline">\(V\)</span> acting on each particle (e.g.&nbsp;the force resulting from the walls of the box of a container), and some interaction potential energy <span class="math inline">\(\nu\)</span> between particles, which we’ll approximate as being some central potential between all pairs of distinct particles (an adequate approximate for a weakly interacting gas). All together, we thus have <span class="math display">\[
+H = \sum_{i=1}^N \bigg(\frac{\mathbf{p}_i^2}{2m} + V(\mathbf{x}_i)  + \sum_{j &lt; i} \nu\big(|\mathbf{x}_i-\mathbf{x}_j|\big)\bigg).
+\]</span> We need to figure out the time evolution of each <span class="math inline">\(s\)</span>-particle density <span class="math inline">\(f_s\)</span>. To do that it’s convenient to split the full Hamiltonian up into three pieces: One piece <span class="math inline">\(H_s\)</span> that only involves interactions between the <span class="math inline">\(s\)</span> particles themselves. One piece <span class="math inline">\(H_{N-s}\)</span> that only involves interactions between the remaining <span class="math inline">\(N-s\)</span> particles. And finally one piece <span class="math inline">\(H'\)</span> that completely specifies the interactions between the <span class="math inline">\(s\)</span> particles with the other <span class="math inline">\(N-s\)</span> particles. We can then write <span class="math display">\[
+H = H_s + H_{N-s} + H'.
+\]</span> The first two terms are just the full Hamiltonian, but with <span class="math inline">\(i\)</span> running from <span class="math inline">\(1\)</span> to <span class="math inline">\(s\)</span> or <span class="math inline">\(s+1\)</span> to <span class="math inline">\(N\)</span> respectively. The interaction term only involves the interaction potential energies between the two sets, <span class="math display">\[
+H' = \sum_{i=1}^s \sum_{j=s+1}^N \nu\big(|\mathbf{x}_i-\mathbf{x}_j|\big).
+\]</span> By Liouville’s equation, we have <span class="math inline">\(\frac{\partial \rho}{\partial t} = -\{\rho, H\}\)</span>. But this is only true for the full density. Let’s try to see what Liouville’s equation for the marginal density <span class="math inline">\(\rho_s\)</span> might look like. Then we have <span class="math display">\[
+\begin{align*}
+\frac{\partial \rho_s}{\partial t} &amp;= \int \prod_{i=s+1}^N d^3 \mathbf{x}_i d^3 \mathbf{p}_i \ \frac{\partial \rho}{\partial t} \\
+&amp;= -\int \prod_{i=s+1}^N d^3 \mathbf{x}_i d^3 \mathbf{p}_i \ \ \{\rho, H\} \\
+&amp;= -\int \prod_{i=s+1}^N d^3 \mathbf{x}_i d^3 \mathbf{p}_i \ \ \bigg(\{\rho, H_s\} + \{\rho, H_{N-s}\} + \{\rho, H'\} \bigg). \\
+\end{align*}
+\]</span> Starting with the first term, the Hamiltonian <span class="math inline">\(H_s\)</span> is constant with respect to the integration variables, so we just have <span class="math display">\[
+\int \prod_{i=s+1}^N d^3 \mathbf{x}_i d^3 \mathbf{p}_i \ \{\rho, H_s\} = \bigg\{ \int \prod_{i=s+1}^N d^3 \mathbf{x}_i d^3 \mathbf{p}_i \ \rho \ , \ H_s \bigg\} = \{\rho_s, H_s\}.
+\]</span> That is, the first term is just Liouville’s equation for the first <span class="math inline">\(s\)</span> particles. This makes sense, since we’re ignoring the presence of the other <span class="math inline">\(N-s\)</span> particles in the dynamics of <span class="math inline">\(\rho_s\)</span> via <span class="math inline">\(H_s\)</span>. The second term is an integral over two functions that depend on the integration variables, which means it vanishes as usual, <span class="math display">\[
+\int \prod_{i=s+1}^N d^3 \mathbf{x}_i d^3 \mathbf{p}_i \ \{\rho, H_{N-s}\} = 0.
+\]</span> Finally we have the integral of the interaction terms. If we split the Poisson bracket <span class="math inline">\(\{\rho, H'\}\)</span> into a sum of two terms, one over the <span class="math inline">\(s\)</span> variables and the other over the <span class="math inline">\(N-s\)</span> variables, we have <span class="math display">\[
+\{\rho, H'\} = \{\rho, H'\}_s + \{\rho, H'\}_{N-s.}
+\]</span> Integrating the second Poisson bracket again gives zero since it’s a bracket of the integration variables. The first bracket is more interesting. Noting that <span class="math inline">\(H'\)</span> depends only on the positions, we have <span class="math display">\[
+\begin{align*}
+\int \ \prod_{i=s+1}^N d^3 \mathbf{x}_i d^3 \mathbf{p}_i \ \{\rho, H'\}_s &amp;= \int \ \prod_{i=s+1}^N d^3 \mathbf{x}_i d^3 \mathbf{p}_i \ \sum_{j=1}^s \bigg(\frac{\partial \rho}{\partial \mathbf{x}_j} \cdot \frac{\partial H'}{\partial \mathbf{p}_j} - \frac{\partial H'}{\partial \mathbf{x}_j} \cdot \frac{\partial \rho}{\partial \mathbf{p}_j}\bigg) \\
+&amp;= - \sum_{j=1}^s \int \ \prod_{i=s+1}^N d^3 \mathbf{x}_i d^3 \mathbf{p}_i \ \frac{\partial H'}{\partial \mathbf{x}_j} \cdot \frac{\partial \rho}{\partial \mathbf{p}_j} \\
+&amp;= - \sum_{j=1}^s \int \ \prod_{i=s+1}^N d^3 \mathbf{x}_i d^3 \mathbf{p}_i \ \bigg(\sum_{k=s+1}^N \frac{\partial \nu}{\partial \mathbf{x}_j} \bigg) \cdot \frac{\partial \rho}{\partial \mathbf{p}_j} \\
+&amp;= (N-s) \sum_{j=1}^s \int \ d^3 \mathbf{x}_{s+1} d^3 \mathbf{p}_{s+1} \ \mathbf{F}_{j,s+1} \cdot \frac{\partial}{\partial \mathbf{p}_j} \bigg(\int \ \prod_{k=s+2}^N d^3 \mathbf{x}_k d^3 \mathbf{p}_k \ \rho \bigg) \\
+&amp;= (N-s) \sum_{j=1}^s \int \ d^3 \mathbf{x}_{s+1} d^3 \mathbf{p}_{s+1} \ \mathbf{F}_{j,s+1} \cdot \frac{\partial \rho_{s+1}}{\partial \mathbf{p}_j}. \\
+\end{align*}
+\]</span> The last equalities follow from the fact that the integral over the third line is just <span class="math inline">\(N-s\)</span> copies of the same integral over particle <span class="math inline">\(s+1\)</span>, except we have to be careful to still integrate <span class="math inline">\(\rho\)</span> over the remaining terms from <span class="math inline">\(s+2\)</span> to <span class="math inline">\(N\)</span>, which give the <span class="math inline">\(s+1\)</span> particle density <span class="math inline">\(\rho_{s+1}\)</span>. Since the negative gradient of a potential energy is a force, each term <span class="math inline">\(\mathbf{F}_{j,i} = -\nabla_j \nu(\mathbf{x}_j-\mathbf{x}_i)\)</span> represents the force on particle <span class="math inline">\(j\)</span> due to its interaction with particle <span class="math inline">\(s+1\)</span>, which by Newton’s Third Law is of course the negative of the opposite force <span class="math inline">\(\mathbf{F}_{i,j}\)</span>.</p>
+<p>We thus finally have a modified form of Liouville’s equation for <span class="math inline">\(\rho_s\)</span>, which adds a new term representing the collisions of the <span class="math inline">\(s\)</span> particles with the other <span class="math inline">\(N-s\)</span> particles. We have <span class="math display">\[
+\frac{\partial \rho_s}{\partial t} + \{\rho_s, H_s\} = (N-s) \sum_{j=1}^s \int \ d^3 \mathbf{x}_{s+1} d^3 \mathbf{p}_{s+1} \ \mathbf{F}_{s+1,j} \cdot \frac{\partial \rho_{s+1}}{\partial \mathbf{p}_j}.
+\]</span> It’s more common to express things in terms of the un-normalized densities <span class="math inline">\(f_s\)</span> instead. Doing this eliminates the <span class="math inline">\(N-s\)</span> factor in front of the collision term and replaces each <span class="math inline">\(\rho_s\)</span> with <span class="math inline">\(f_s\)</span>. We’ve thus finally arrived at the <strong>BBGKY Hierarchy</strong> we sought after, <span class="math display">\[
+\boxed{\frac{\partial f_s}{\partial t} + \{f_s, H_s\} = \sum_{j=1}^s \int \ d^3 \mathbf{x}_{s+1} d^3 \mathbf{p}_{s+1} \ \mathbf{F}_{s+1,j} \cdot \frac{\partial f_{s+1}}{\partial \mathbf{p}_j}} \ .
+\]</span> We can think of this as a kind of ladder of densities. The one-particle density <span class="math inline">\(f_1\)</span> depends via the collision integral on the two-particle density <span class="math inline">\(f_2\)</span>, which itself depends on <span class="math inline">\(f_3\)</span>, and so on until we get to the full density <span class="math inline">\(f_N\)</span>. It’s worth noting that the BBGKY Hierarchy is completely equivalent to Liouville’s equation for a box of <span class="math inline">\(N\)</span> particles obeying the Hamiltonian specified above.</p>
+<p>Of most use to use will be the equations for <span class="math inline">\(f_1\)</span> and <span class="math inline">\(f_2\)</span>. If we expand the Poisson brackets, they become <span class="math display">\[
+\begin{align*}
+\frac{\partial f_1}{\partial t} + &amp;\frac{\mathbf{p}_1}{m} \cdot \frac{\partial f_1}{\partial \mathbf{x}_1} + \mathbf{F}_1 \cdot \frac{\partial f_1}{\partial \mathbf{p}_1} = \int d^3 \mathbf{x}_2 d^3 \mathbf{p}_2 \ \mathbf{F}_{2,1} \cdot \frac{\partial f_2}{\partial \mathbf{p}_1}, \\
+\frac{\partial f_2}{\partial t} + \frac{\mathbf{p}_1}{m} \cdot \frac{\partial f_1}{\partial \mathbf{x}_1} + &amp;\mathbf{F}_1 \cdot \frac{\partial f_1}{\partial \mathbf{p}_1} + \frac{\mathbf{p}_2}{m} \cdot \frac{\partial f_1}{\partial \mathbf{x}_2} + \mathbf{F}_2 \cdot \frac{\partial f_1}{\partial \mathbf{p}_2} +\mathbf{F}_{1,2} \cdot \bigg(\frac{\partial f_1}{\partial \mathbf{p}_1} - \frac{\partial f_1}{\partial \mathbf{p}_2}\bigg) = \\ &amp;\int d^3 \mathbf{x}_3 d^3 \mathbf{p}_3 \ \bigg(\mathbf{F}_{3,1} \cdot \frac{\partial f_3}{\partial \mathbf{p}_1} + \mathbf{F}_{3,2} \cdot \frac{\partial f_3}{\partial \mathbf{p}_2}\bigg). \\
+\end{align*}
+\]</span></p>
+<p>Here <span class="math inline">\(\mathbf{F}_i = -\nabla V(\mathbf{x}_i)\)</span> represents the force on particle <span class="math inline">\(i\)</span> due to the external potential energy <span class="math inline">\(V\)</span>. The combination of derivatives in the <span class="math inline">\(\mathbf{F}_{1,2}\)</span> term is done by using Newton’s third law to get <span class="math inline">\(\mathbf{F}_{2,1} = -\mathbf{F}_{1,2}\)</span>. This is equivalent to assume that the interaction potential <span class="math inline">\(\nu\)</span> is symmetric in <span class="math inline">\(i\)</span> and <span class="math inline">\(j\)</span>, which is true of central forces.</p>
+</section>
+</section>
+<section id="the-boltzmann-equation" class="level2">
+<h2 class="anchored" data-anchor-id="the-boltzmann-equation">The Boltzmann Equation</h2>
+<p>Thus far we really haven’t made much progress in studying the approach to equilibrium. Both Liouville’s equation and the BBGKY hierarchy are fully reversible, describing the microscopic behavior of the system. To study equilibrium we need to coarse grain things more, giving up the ability to track the exact dynamics of any given particle. We’ll start by looking at the time scales involved in the BBGKY hierarchy to get an idea of which terms in the equations are most important.</p>
+<section id="coarse-graining" class="level3">
+<h3 class="anchored" data-anchor-id="coarse-graining">Coarse-Graining</h3>
+<p>Suppose the system involved is a box of gas whose sides are each of length of order <span class="math inline">\(L\)</span>. Suppose the particles in the box move with some average speed <span class="math inline">\(v\)</span>. Evidently then, it takes a given particle an average time <span class="math inline">\(\tau_{ext} \equiv \frac{L}{v}\)</span> to traverse the length of the box. This defines a time-scale for the external force terms, <span class="math display">\[
+\mathbf{F}_i \cdot \frac{\partial}{\partial \mathbf{p}_i} \sim \frac{v}{L} = \frac{1}{\tau_{ext}}.
+\]</span> In the box particles will collide with a certain frequency. Suppose interaction forces are felt when particles are within some distance <span class="math inline">\(d \ll L\)</span> of each other. The time that particles spend interacting in an interaction is then evidently on the order of <span class="math inline">\(\tau_{int} \equiv \frac{d}{v}\)</span>. This defines another time-scale for the interaction force terms, <span class="math display">\[
+\mathbf{F}_{i,j} \cdot \frac{\partial}{\partial \mathbf{p}_i} \sim \frac{v}{d} = \frac{1}{\tau_{int}}.
+\]</span> Since <span class="math inline">\(d \ll L\)</span>, we typically have <span class="math inline">\(\tau_{int} \ll \tau_{ext}\)</span>, which means the interaction terms should typically dominate the external force terms on the left-hand side of the equations. For example, for a gas we might have <span class="math inline">\(L \sim 1 \ \text{m}\)</span> while <span class="math inline">\(d \sim 10^{-10} \ \text{m}\)</span>, with <span class="math inline">\(v \sim 10^2 \ \text{m/s}\)</span> at room temperature. This gives time scales on the order of <span class="math inline">\(\tau_{ext} \sim 10^{-3} \ \text{s}\)</span> and <span class="math inline">\(\tau_{int} \sim 10^{-12} \ \text{s}\)</span>.</p>
+<p>On the right-hand side of these equations we have another set of time scales that say something about how long we have to wait for <span class="math inline">\(s+1\)</span> particles to all come together and collide with each other. Call that time scale <span class="math inline">\(\tau_X\)</span>. If we look at the ratio of <span class="math inline">\(\frac{f_{s+1}}{f_s}\)</span> as a ratio of densities, it goes roughly like the number density <span class="math inline">\(n \equiv \frac{N}{d^3}\)</span> of particles inside a unit volume <span class="math inline">\(d^3\)</span>. Since the collisions only happen inside a volume <span class="math inline">\(d^3\)</span>, essentially the entire integral falls off to zero outside this region. Thus, we’d have <span class="math display">\[
+\int \ d^3 \mathbf{x}_{s+1} \ d^3 \mathbf{p}_{s+1} \ \mathbf{F}_{s+1,j} \cdot \frac{\partial }{\partial \mathbf{p}_j} \frac{f_{s+1}}{f_s} \sim \frac{nd^3}{\tau_{int}} \equiv \frac{1}{\tau_X}.
+\]</span> This new time scale <span class="math inline">\(\tau_X = \frac{1}{nvd^2}\)</span> is called the <em>mean free time</em>. It represents the typical time a particle will spend between collisions. Its relative size with respect to <span class="math inline">\(\tau_{col}\)</span> depends on <span class="math inline">\(nd^3\)</span>. This reflects the fact we have to wait for <span class="math inline">\(s+1 \sim N\)</span> particles to all come together and collide. The range of interactions between particles determines two limiting regions of consideration. When interactions <em>short-range</em>, we’d say we’re in the <em>dilute limit</em> where <span class="math inline">\(nd^3 \ll 1\)</span>. This is the typical setting for gases, where we might have <span class="math inline">\(nd^3 \sim 10^{-4}\)</span>, and so <span class="math inline">\(\tau_X \sim 10^4 \ \tau_{int}\)</span>. Conversely, when interactions are <em>long-range</em>, we’d say we’re in the <em>dense limit</em> where <span class="math inline">\(nd^3 \gg 1\)</span>. This limit is the setting for studying <em>plasmas</em>, where <span class="math inline">\(\tau_X \ll \tau_{int}\)</span>. We’ll see that the <em>dilute limit</em> leads us to the <em>Boltzmann equation</em>, and hence to thermodynamics, while the <em>dense limit</em> leads us to the <em>Vlasov equation</em>, and hence to plasma physics.</p>
+<p>All the equations in the BBGKY hierarchy appear to look something like <span class="math display">\[
+\text{(external interactions)} + \text{(internal interactions)} = \text{(collision terms)}.
+\]</span> In this situation the time scale comparisons look something like <span class="math display">\[
+\frac{1}{\tau_{ext}} + \frac{1}{\tau_{int}} = \frac{nd^3}{\tau_{int}}.
+\]</span> In the dilute limit the right-hand side is much smaller than the left-hand side, so we can evidently ignore the collision terms at least to zeroth order. This appears to be a problem though, since it says that we shouldn’t look at the background interactions at all and just treat each <span class="math inline">\(f_s\)</span> as its own Liouvillian system. Fortunately, the equation for <span class="math inline">\(f_1\)</span> does <em>not</em> look like this. In that case there are no internal interaction terms on the left-hand side, which means we can’t say much about how the left and right-hand sides compare. We have to keep both terms, which preserves the dependence of <span class="math inline">\(f_1\)</span> on <span class="math inline">\(f_2\)</span>. But, we <em>can</em> treat <span class="math inline">\(f_2\)</span> as having a right-hand side of zero, so we can ignore the dependence on <span class="math inline">\(f_3\)</span> and higher terms and only focus on the relationship between <span class="math inline">\(f_1\)</span> and <span class="math inline">\(f_2\)</span>.</p>
+</section>
+<section id="deriving-the-boltzmann-equation" class="level3">
+<h3 class="anchored" data-anchor-id="deriving-the-boltzmann-equation">Deriving the Boltzmann Equation</h3>
+<p>Let’s try to find a way under this approximation to combine the equations for <span class="math inline">\(f_1\)</span> and <span class="math inline">\(f_2\)</span> into a single equation. To do that we need to figure out how to substitute the <span class="math inline">\(f_2\)</span> equation into the <span class="math inline">\(f_1\)</span> equation. If we assume the collision term for <span class="math inline">\(f_2\)</span> is zero, we have <span class="math display">\[
+\begin{align*}
+\frac{\partial f_1}{\partial t} + &amp;\frac{\mathbf{p}_1}{m} \cdot \frac{\partial f_1}{\partial \mathbf{x}_1} + \mathbf{F}_1 \cdot \frac{\partial f_1}{\partial \mathbf{p}_1} = \int d^3 \mathbf{x}_2 \ d^3 \mathbf{p}_2 \ \mathbf{F}_{2,1} \cdot \frac{\partial f_2}{\partial \mathbf{p}_1}, \\
+\frac{\partial f_2}{\partial t} + \frac{\mathbf{p}_1}{m} \cdot \frac{\partial f_1}{\partial \mathbf{x}_1} + &amp;\mathbf{F}_1 \cdot \frac{\partial f_1}{\partial \mathbf{p}_1} + \frac{\mathbf{p}_2}{m} \cdot \frac{\partial f_1}{\partial \mathbf{x}_2} + \mathbf{F}_2 \cdot \frac{\partial f_1}{\partial \mathbf{p}_2} +\mathbf{F}_{1,2} \cdot \bigg(\frac{\partial f_1}{\partial \mathbf{p}_1} - \frac{\partial f_1}{\partial \mathbf{p}_2}\bigg) = 0. \\
+\end{align*}
+\]</span> The second equation involves a density of two interaction particles. It’s convenient thus to express things in terms of center of mass and relative coordinates. Let <span class="math inline">\(\boldsymbol{\mathcal{x}} \equiv \mathbf{x}_2 - \mathbf{x}_1\)</span> represent coordinates between the two particles and <span class="math inline">\(\mathbf{X} \equiv \mathbf{x}_2 + \mathbf{x}_1\)</span> represent the center of mass coordinates. Typically the center of mass coordinates will vary much slower than the relative coordinates, making the center of mass frame a good approximation of the lab frame dynamics as well. In this situation, we’d have <span class="math inline">\(\boldsymbol{\mathcal{x}} = -\mathbf{x}_1 = \mathbf{x}_2\)</span>. Near equilibrium we’d expect <span class="math inline">\(\frac{\partial f_2}{\partial t} \approx 0\)</span>. Changing variables in and writing <span class="math inline">\(\mathbf{F}_{2,1} = -\mathbf{F}_{1,2}\)</span>, the second equation becomes <span class="math display">\[
+\frac{\mathbf{p}}{m} \cdot \frac{\partial f_2}{\partial \boldsymbol{\mathcal{x}}} - \mathbf{F}_{2,1} \cdot  \bigg(\frac{\partial f_2}{\partial \mathbf{p}_1} - \frac{\partial f_2}{\partial \mathbf{p}_2}\bigg) \approx 0.
+\]</span> Now, in the first equation, the right-hand side contains an integral over <span class="math inline">\(d^3 \mathbf{x}_2\)</span>. We can evidently add any total derivative that depends on <span class="math inline">\(\mathbf{x}_2\)</span> to the integrand since its integral will vanish. Let’s thus re-write <span class="math display">\[
+\int d^3 \mathbf{x}_2 d^3 \mathbf{p}_2 \ \mathbf{F}_{2,1} \cdot \frac{\partial f_2}{\partial \mathbf{p}_1} = \int d^3 \mathbf{x}_2 \ d^3 \mathbf{p}_2 \ \mathbf{F}_{2,1} \cdot \bigg(\frac{\partial f_2}{\partial \mathbf{p}_1} - \frac{\partial f_2}{\partial \mathbf{p}_2}\bigg).
+\]</span> Since <span class="math inline">\(\boldsymbol{\mathcal{x}} = \mathbf{x}_2\)</span> we also must have <span class="math inline">\(d^3 \boldsymbol{\mathcal{x}} = d^3 \mathbf{x}_2\)</span>. We can now see how to substitute in the second equation into the first. We have <span class="math display">\[
+\frac{\partial f_1}{\partial t} + \frac{\mathbf{p}_1}{m} \cdot \frac{\partial f_1}{\partial \mathbf{x}_1} + \mathbf{F}_1 \cdot \frac{\partial f_1}{\partial \mathbf{p}_1} = \int d^3 \boldsymbol{\mathcal{x}} \ d^3 \mathbf{p}_2 \ \frac{\mathbf{p}_2 - \mathbf{p}_1}{m} \cdot \frac{\partial f_2}{\partial \boldsymbol{\mathcal{x}}}.
+\]</span> Note this equation is only true when we’re near equilibrium since we neglected the time derivative <span class="math inline">\(\frac{\partial f_2}{\partial t}\)</span>. More correctly, this equation is valid when <span class="math inline">\(t\)</span> is much larger than the interaction time <span class="math inline">\(\tau_{int}\)</span>.</p>
+<p>At this point it’s helpful to re-express the integral in terms of collision coordinates. The collision forces are felt inside some sphere of interaction radius <span class="math inline">\(d\)</span>. In the center of mass frame, two particles collide along the same line. If two particles with momenta <span class="math inline">\(\mathbf{p}_1\)</span> and <span class="math inline">\(\mathbf{p}_2\)</span> come in and collide along some line, they’ll exit the collision with some new momenta <span class="math inline">\(\mathbf{p}'_1\)</span> and <span class="math inline">\(\mathbf{p}'_2\)</span> along some other line. In an elastic collision both kinetic energy and momentum must be conserved. Define a parameter <span class="math inline">\(a \equiv \frac{1}{m} |\mathbf{p}_2 - \mathbf{p}_1|\)</span> to represent the relative velocity between the two particles. Perpendicular to the <span class="math inline">\(a\)</span> is a plane that can be specified by another vector <span class="math inline">\(\mathbf{b} \equiv (b,\vartheta)\)</span>. This vector has a magnitude <span class="math inline">\(b\)</span>, called the <em>impact parameter</em>, equal to the perpendicular distance between the incoming trajectories in the center of mass frame. It also has an angle <span class="math inline">\(\vartheta\)</span> representing how the incoming momenta get rotated to the outgoing momenta in the collision.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./resources/image-20230519103809362.png" class="img-fluid figure-img" width="400"></p>
+</figure>
+</div>
+<p>Now, in collision coordinates we can write <span class="math inline">\(d^3 \boldsymbol{\mathcal{x}} = d^2 \mathbf{b} \ da\)</span>. It turns out that if momentum is conserved, the collision itself doesn’t depend on <span class="math inline">\(a\)</span>, only <span class="math inline">\(\mathbf{b}\)</span>. This means the integral <span class="math inline">\(\int da\)</span> just gives <span class="math inline">\(a\)</span>. If we further assume the collision happens almost at a single point, we can think of the gradient of <span class="math inline">\(f_2\)</span> as the instantaneous change if <span class="math inline">\(f_2\)</span> before and after the collision, i.e. <span class="math display">\[
+\Delta f_2 \equiv f_2(\mathbf{x}'_1, \mathbf{x}'_2, \mathbf{p}'_1, \mathbf{p}'_2,t) - f_2(\mathbf{x}_1, \mathbf{x}_2, \mathbf{p}_1, \mathbf{p}_2,t).
+\]</span> Plugging all this in, we thus have <span class="math display">\[
+\frac{\partial f_1}{\partial t} + \frac{\mathbf{p}_1}{m} \cdot \frac{\partial f_1}{\partial \mathbf{x}_1} + \mathbf{F}_1 \cdot \frac{\partial f_1}{\partial \mathbf{p}_1} = \int d^3 \mathbf{p}_2 \ d^2 \mathbf{b} \ \frac{|\mathbf{p}_2 - \mathbf{p}_1|}{m} \cdot \Delta f_2.
+\]</span> The last assumption we’ll make is perhaps the most important, since it’s the coarse-graining that leads to the second law of thermodynamics: the assumption of <em>molecular chaos</em>. For short-range interactions the density <span class="math inline">\(f_2\)</span> mixes coordinates only inside the interaction radius <span class="math inline">\(d\)</span>. For distances much greater than <span class="math inline">\(d\)</span> it’s a good assumption to say that <span class="math inline">\(f_2\)</span> is a product of two one-particle densities, i.e.&nbsp;that the two particles’ states are statistically independent of each other. The assumption of molecular chaos says we send <span class="math inline">\(d \rightarrow 0\)</span>, meaning we lose information about the nature of collisions and just assume particles collide at a single point. In this setting, we can globally assume that <span class="math inline">\(f_2\)</span> factors into a product of one-particle densities <span class="math display">\[
+f_2(\mathbf{x}_1, \mathbf{x}_2, \mathbf{p}_1, \mathbf{p}_2,t) = f_1(\mathbf{x}_1, \mathbf{p}_1, t) f_1(\mathbf{x}_2, \mathbf{p}_2, t).
+\]</span> This means we can factor <span class="math inline">\(\Delta f_2\)</span> as well to get <span class="math display">\[
+\Delta f_2 = f_1(\mathbf{x}_1, \mathbf{p}'_1, t) f_1(\mathbf{x}_2, \mathbf{p}'_2, t) - f_1(\mathbf{x}_1, \mathbf{p}_1, t) f_1(\mathbf{x}_2, \mathbf{p}_2, t).
+\]</span> Notice how the coordinates after collision are now assumed to be the same as the coordinates before collision. This is another consequence of course-graining away <span class="math inline">\(d \rightarrow 0\)</span>. Plugging this result into the previous equation for <span class="math inline">\(f_1\)</span> finally gives us the <strong>Boltzmann Equation</strong>, <span class="math display">\[
+\begin{align*}
+&amp;\frac{\partial f_1}{\partial t} + \frac{\mathbf{p}_1}{m} \cdot \frac{\partial f}{\partial \mathbf{x}_1} + \mathbf{F}_1 \cdot \frac{\partial f_1}{\partial \mathbf{p}_1} = \\
+\int d^3 \mathbf{p}_2 \ d^2 \mathbf{b} \ \frac{|\mathbf{p}_2 - \mathbf{p}_1|}{m} &amp;\big[f_1(\mathbf{x}_1, \mathbf{p}'_1, t) f_1(\mathbf{x}_2, \mathbf{p}'_2, t) - f_1(\mathbf{x}_1, \mathbf{p}_1, t) f_1(\mathbf{x}_2, \mathbf{p}_2, t)\big].
+\end{align*}
+\]</span> Since we no longer need the higher particle densities we’ll from now on just write <span class="math inline">\(f \equiv f_1\)</span> and assume we’re working with one particle at a time. In this simplified notation we’ll write <span class="math display">\[
+\boxed{\frac{\partial f}{\partial t} + \frac{\mathbf{p}}{m} \cdot \frac{\partial f}{\partial \mathbf{x}} + \mathbf{F} \cdot \frac{\partial f}{\partial \mathbf{p}} = \frac{\partial f}{\partial t} \bigg|_{\text{col}}} \ .
+\]</span> We can write the Boltzmann Equation even more succinctly by noting that the left-hand side is just a Liouville operator <span class="math inline">\(L[f]\)</span> and defining a <em>collision operator</em> <span class="math inline">\(C[f]\)</span> to represent the right-hand side. We then have <span class="math display">\[
+\boxed{L[f] = C[f]} \ .
+\]</span> Evidently, the Boltzmann equation looks like a modified Liouville equation with a non-zero right-hand side arising from a background of particles to collide with. The term <span class="math inline">\(L[f]\)</span> characterizes the dynamics of particles with respect to the external forces alone, while <span class="math inline">\(C[f]\)</span> characterizes the dynamics of particles due to their interactions with other particles.</p>
+</section>
+<section id="the-h-theorem" class="level3">
+<h3 class="anchored" data-anchor-id="the-h-theorem">The H-Theorem</h3>
+<p>Since we’re neglecting dynamics on the scale of the interaction radius we’re losing information on the system’s microscopic dynamics. This means the Boltzmann equation also comes with a notion of increasing entropy. This result is called the <strong>H-Theorem</strong> (pronounced “Eta Theorem”).</p>
+<p><strong>H-Theorem:</strong> Suppose <span class="math inline">\(f(\mathbf{x}, \mathbf{p}, t)\)</span> satisfies the Boltzmann equation <span class="math inline">\(L[f] = C[f]\)</span>. Then there exists a quantity <span class="math inline">\(\mathrm{H}(t)\)</span> defined by <span class="math display">\[
+\boxed{\Eta(t) \equiv \int d^3 \mathbf{x} \ d^3 \mathbf{p} \ f(\mathbf{x}, \mathbf{p}, t) \log f(\mathbf{x}, \mathbf{p}, t)}
+\]</span> such that <span class="math inline">\(\mathrm{H}(t)\)</span> is a decreasing function of time. That is, <span class="math inline">\(\frac{d\mathrm{H}}{dt} \leq 0\)</span>.</p>
+<p><strong>Proof:</strong> We need to do is take the time derivative of <span class="math inline">\(\mathrm{H}(t)\)</span> and show its time derivative is negative. Differentiating both sides, we have <span class="math display">\[
+\begin{align*}
+\frac{d\Eta}{dt} &amp;= \int d^3 \mathbf{x} \ d^3 \mathbf{p} \ \frac{\partial}{\partial t}(f \log f) \\
+&amp;= \int d^3 \mathbf{x} \ d^3 \mathbf{p} \ \big(1 + \log f \big) \frac{\partial f}{\partial t} \\
+&amp;= \int d^3 \mathbf{x} \ d^3 \mathbf{p} \ \big(1 + \log f \big) \big(C[f]-\{f,H\}\big).
+\end{align*}
+\]</span> The term involving <span class="math inline">\(\frac{\partial}{\partial t}(f \log f)\)</span> just integrate to <span class="math inline">\(N\)</span>, a constant, and hence vanishes. Both integrals involving <span class="math inline">\(\{f,H\}\)</span> vanish by the usual integration by parts argument. We’re thus left to calculate one term, <span class="math display">\[
+\begin{align*}
+\frac{d\Eta}{dt} &amp;= \int d^3 \mathbf{x} \ d^3 \mathbf{p} \ \log f \ C[f] \\
+&amp;= \int d^3 \mathbf{x}_1 \ d^3 \mathbf{p}_1 \ d^3 \mathbf{p}_2 d^2 \mathbf{b} \ \frac{|\mathbf{p}_2 - \mathbf{p}_1|}{m} \big[f(\mathbf{p}'_1) f(\mathbf{p}'_2) - f(\mathbf{p}_1) f(\mathbf{p}_2)\big] \log f(\mathbf{p}_1).
+\end{align*}
+\]</span> Here the dependence of <span class="math inline">\(f\)</span> on position and time are suppressed for convenience. Now we’re going to make use of a trick. Notice the integral is symmetric in the momenta of particles <span class="math inline">\(1\)</span> and <span class="math inline">\(2\)</span>. This means we can permute the indices and get the same answer. It also means we can <em>average</em> the two permutations. Though much less obvious, we can permute the primed and unprimed momenta as well since their Jacobian is <span class="math inline">\(1\)</span>. We can thus take the average of the primed and unprimed momenta as well. Using these facts, we have <span class="math display">\[
+\begin{align*}
+\frac{d\Eta}{dt} &amp;= \int d^3 \mathbf{x}_1 \ d^3 \mathbf{p}_1 d^3 \mathbf{p}_2 d^2 \mathbf{b} \ \frac{|\mathbf{p}_2 - \mathbf{p}_1|}{m} \big[f(\mathbf{p}'_1) f(\mathbf{p}'_2) - f(\mathbf{p}_1) f(\mathbf{p}_2)\big] \log f(\mathbf{p}_1) \\
+&amp;= \frac{1}{2}  \int d^3 \mathbf{x}_1 \ d^3 \mathbf{p}_1 d^3 \mathbf{p}_2 d^2 \mathbf{b} \ \frac{|\mathbf{p}_2 - \mathbf{p}_1|}{m} \big[f(\mathbf{p}'_1) f(\mathbf{p}'_2) - f(\mathbf{p}_1) f(\mathbf{p}_2)\big] \log \big(f(\mathbf{p}_1) f(\mathbf{p}_2)\big) \\
+&amp;= \frac{1}{4} \int d^3 \mathbf{x}_1 \ d^3 \mathbf{p}_1 d^3 \mathbf{p}_2 d^2 \mathbf{b} \ \frac{|\mathbf{p}_2 - \mathbf{p}_1|}{m} \big[f(\mathbf{p}'_1) f(\mathbf{p}'_2) - f(\mathbf{p}_1) f(\mathbf{p}_2)\big] \log \bigg(\frac{f(\mathbf{p}_1)f(\mathbf{p}_2)}{f(\mathbf{p}'_1)f(\mathbf{p}'_2)}\bigg). \\
+\end{align*}
+\]</span> Evidently, the integrand is proportional to a function of the form <span class="math display">\[
+-(f'_1 f'_2 - f_1 f_2) \log \bigg(\frac{f'_1 f'_2}{f_1 f_2}\bigg),
+\]</span> which is negative since the log is an increasing function of its arguments. This of course means the integral must be negative as well, i.e.&nbsp;<span class="math inline">\(\frac{d\mathrm{H}}{dt} \leq 0\)</span>. <span class="math inline">\(\text{Q.E.D.}\)</span></p>
+<p>The quantity <span class="math inline">\(\mathrm{H}(t)\)</span> looks similar to the differential entropy of a continuous density function. It’s actually just a negative affine shift of the entropy of the one-particle density <span class="math inline">\(f\)</span>. In fact, for an <span class="math inline">\(N\)</span>-particle system, we can relate the thermodynamic entropy of the system to <span class="math inline">\(\mathrm{H}\)</span> via <span class="math inline">\(S \equiv -k_B \mathrm{H}\)</span>. Thus, if <span class="math inline">\(\mathrm{H}\)</span> is a decreasing function, then <span class="math inline">\(S\)</span> must be an increasing function, and vice versa.</p>
+</section>
+<section id="aside-the-vlasov-equation" class="level3">
+<h3 class="anchored" data-anchor-id="aside-the-vlasov-equation">Aside: The Vlasov Equation</h3>
+<p>What happens in the dense limit where <span class="math inline">\(nd^3 \gg 1\)</span>? In that case we can only say <span class="math inline">\(\tau_{\text{int}} \gg \tau_X\)</span>, which means we can drop the collision terms from the left-hand side of each BBGKY hierarchy. If we again assume each density <span class="math inline">\(f_s\)</span> factors into a product of one-particle densities then it’ll turn out all the equations for <span class="math inline">\(f_s\)</span> are equivalent, leaving a single equation to be satisfied, <span class="math display">\[
+\boxed{\frac{\partial f}{\partial t} + \frac{\mathbf{p}}{m} \cdot \frac{\partial f}{\partial \mathbf{x}} + \mathbf{F}_{\text{eff}} \cdot \frac{\partial f}{\partial \mathbf{p}} = 0} \ ,
+\]</span> where <span class="math inline">\(\mathbf{F}_{\text{eff}}\)</span> represents a kind of averaged background force on <span class="math inline">\(f\)</span> given by <span class="math display">\[
+\mathbf{F}_{\text{eff}} \equiv - \frac{d}{d\mathbf{x}} \bigg(V(\mathbf{x}) + \int d^3\mathbf{x}' d^3\mathbf{p} \ \nu(\mathbf{x}-\mathbf{x}') f(\mathbf{x}', \mathbf{p}, t)\bigg).
+\]</span> This is the <strong>Vlasov Equation</strong>. We can write the equation more succinctly by assuming an affective Hamiltonian <span class="math inline">\(H_{\text{eff}}\)</span> gives rise to the above dynamics. Then we’re back to Liouville’s equation, <span class="math display">\[
+\frac{\partial f}{\partial t} + \{f, H_{\text{eff}}\} = 0.
+\]</span> In this setting there’s in general no relaxation towards equilibrium. In fact, <em>any</em> function <span class="math inline">\(f(\mathbf{x},\mathbf{p}) = g(\mathbf{p})\)</span> is a valid steady state solution to the Vlasov equation. The Vlasov equation is used to characterize the behavior of <em>plasmas</em>. Typically when studying plasmas, one assumes the background forces are electromagnetic fields, in which case <span class="math inline">\(\mathbf{F}_{\text{eff}}\)</span> just becomes the Lorentz force on each charged particle, <span class="math display">\[
+\mathbf{F}_{\text{eff}} = q\mathbf{E} +  q\frac{\mathbf{v}}{c} \times \mathbf{B}.
+\]</span></p>
+</section>
+</section>
+<section id="equilibrium" class="level2">
+<h2 class="anchored" data-anchor-id="equilibrium">Equilibrium</h2>
+<p>We’re now in a position to find what the density <span class="math inline">\(f\)</span> has to be at equilibrium. Recall that the equilibrium distribution <span class="math inline">\(f_{eq}\)</span> must satisfy the property that <span class="math display">\[
+\frac{\partial}{\partial t} f_{eq}(\mathbf{x}, \mathbf{p}) = 0.
+\]</span> Using the Boltzmann equation and the H-theorem we can figure out what <span class="math inline">\(f_{eq}\)</span> must be.</p>
+<section id="equilibrium-distributions" class="level3">
+<h3 class="anchored" data-anchor-id="equilibrium-distributions">Equilibrium Distributions</h3>
+<p>Suppose <span class="math inline">\(f\)</span> satisfies the Boltzmann equation. Let’s see if we can try to figure out what distribution <span class="math inline">\(f\)</span> must have at equilibrium. At equilibrium we said we must have <span class="math inline">\(\frac{\partial f}{\partial t} = 0\)</span>. As we saw, this is equivalent to requiring <span class="math inline">\(\frac{d\mathrm{H}}{dt} = 0\)</span>. For that to be true over <em>any</em> region of phase space as <span class="math inline">\(t \rightarrow \infty\)</span>, we must have the steady state requirement that <span class="math display">\[
+\log \bigg(\frac{f(\mathbf{x},\mathbf{p}_1)f(\mathbf{x},\mathbf{p}_2)}{f(\mathbf{x},\mathbf{p}'_1)f(\mathbf{x},\mathbf{p}'_2)}\bigg) = 0.
+\]</span> That is, for <em>any</em> position <span class="math inline">\(\mathbf{x}\)</span>, <span class="math display">\[
+\log f(\mathbf{x}, \mathbf{p}_1) + \log f(\mathbf{x},\mathbf{p}_2) = \log f(\mathbf{x},\mathbf{p}'_1) + \log f(\mathbf{x},\mathbf{p}'_2).
+\]</span> This rule is sometimes called the law of <em>detailed balance</em>. Detailed balance evidently says that the sum <span class="math inline">\(\log f(\mathbf{x}, \mathbf{p}_1) + \log f(\mathbf{x},\mathbf{p}_2)\)</span> must be conserved during collisions. In an elastic collision we require that particle number, momentum and kinetic energy be conserved, <span class="math display">\[
+\begin{align*}
+1 + 1 &amp;= 1' + 1',\\
+\mathbf{p}_1 + \mathbf{p}_2 &amp;= \mathbf{p}'_1 + \mathbf{p}'_2, \\ \frac{\mathbf{p}^2_1}{2m} + \frac{\mathbf{p}^2_2}{2m} &amp;= \frac{\mathbf{p}'^{2}_1}{2m} + \frac{\mathbf{p}'^{2}_2}{2m}.
+\end{align*}
+\]</span> It thus makes sense to suppose that in equilibrium each <span class="math inline">\(\log f(\mathbf{x}, \mathbf{p},t)\)</span> is only a quadratic function in <span class="math inline">\(\mathbf{p}\)</span>. Suppose then that <span class="math display">\[
+\log f(\mathbf{x},\mathbf{p}) \equiv \nu(\mathbf{x}) + \boldsymbol{\alpha}(\mathbf{x}) \cdot \mathbf{p} - \beta(\mathbf{x}) \frac{\mathbf{p}^2}{2m}.
+\]</span> By completing the square and exponentiating, we can write the density in the form <span class="math display">\[
+f(\mathbf{x}, \mathbf{p}) = \mathcal{N}(\mathbf{x}) \exp\bigg(-\frac{\beta(\mathbf{x})}{2m}(\mathbf{p}-\boldsymbol{\pi}(\mathbf{x}))^2\bigg).
+\]</span> However, this equation doesn’t solve the entire Boltzmann equation. It only solves the equation <span class="math inline">\(C[f] = 0\)</span>. We still need to impose that <span class="math inline">\(L[f] = 0\)</span> as well. If we like, we can add to the kinetic energy an external potential energy <span class="math inline">\(V(\mathbf{x})\)</span> that represents, for example, the walls of a box of fixed volume. Then <span class="math display">\[
+H(\mathbf{x},\mathbf{p}) = \frac{\mathbf{p}^2}{2m} + V(\mathbf{x}).
+\]</span> To satisfy <span class="math inline">\(L[f] = 0\)</span>, we saw that <span class="math inline">\(f\)</span> must be conserved under <span class="math inline">\(H\)</span>, i.e.&nbsp;<span class="math inline">\(\{f, H\} = 0\)</span>. This also must be true for any other quantity conserved under <span class="math inline">\(H\)</span>, in this case the momentum vector <span class="math inline">\(\mathbf{p}\)</span> and particle number <span class="math inline">\(1\)</span>. Enforcing that all these Poisson brackets vanish then forces <span class="math inline">\(\mathcal{N}\)</span>, <span class="math inline">\(\beta\)</span>, and <span class="math inline">\(\boldsymbol{\pi}\)</span> to all be constant. The final equilibrium one-particle density for a gas is thus just a Gaussian in the momentum <span class="math inline">\(\mathbf{p}\)</span>, <span class="math display">\[
+\boxed{f_{eq}(\mathbf{x}, \mathbf{p}) = n(\mathbf{x}, t) \bigg(\frac{\beta}{2\pi m}\bigg)^{3/2} \exp\bigg(-\frac{\beta}{2m}(\mathbf{p}-\boldsymbol{\pi})^2\bigg)} \ .
+\]</span> Here <span class="math inline">\(n\)</span> is just the number density <span class="math inline">\(n(\mathbf{x}, t)\)</span>, representing the fact that <span class="math inline">\(f\)</span> isn’t normalized over the volume of the box. This can also be written in the form <span class="math display">\[
+f_{eq}(\mathbf{x}, \mathbf{p}) \propto e^{-\beta H(\mathbf{x},\mathbf{p})}.
+\]</span> This is called the <strong>Boltzmann Distribution</strong>. We’ll see it derived again when we get to statistical mechanics. This distribution describes how the energy of a closed system is distributed in equilibrium.</p>
+</section>
+<section id="the-ideal-gas" class="level3">
+<h3 class="anchored" data-anchor-id="the-ideal-gas">The Ideal Gas</h3>
+<p>Suppose we’re dealing with a stationary gas of free particles, so <span class="math inline">\(\boldsymbol{\pi} = \mathbf{0}\)</span> and <span class="math inline">\(V(\mathbf{x}) = 0\)</span> inside the box. Then <span class="math display">\[
+\rho_{eq}(\mathbf{p}) = \bigg(\frac{\beta}{2\pi m}\bigg)^{3/2} \exp\bigg(-\frac{\beta}{2m}\mathbf{p}^2\bigg).
+\]</span> Since this is an uncorrelated Gaussian, we can read off that each component of <span class="math inline">\(\mathbf{p}\)</span> has variance <span class="math inline">\(\langle p_i^2 \rangle = \frac{m}{\beta}\)</span>. The variance of <span class="math inline">\(\mathbf{p}\)</span> is thus evidently just <span class="math display">\[
+\langle \mathbf{\mathbf{p}}^2 \rangle = \langle p_x^2 \rangle + \langle p_y^2 \rangle + \langle p_z^2 \rangle = \frac{3m}{\beta}.
+\]</span> Plugging this into the Hamiltonian we can find an expression for the average internal kinetic energy of a free gas at equilibrium. We have <span class="math display">\[
+E \equiv \langle H \rangle = \frac{\langle \mathbf{p}^2 \rangle}{2m} = \frac{3}{2\beta} = \frac{3}{2} k_B T.
+\]</span> Evidently, a gas of free particles in a box is just the ideal gas, with <span class="math inline">\(\beta = \frac{1}{k_B T}\)</span>.</p>
+<p>If we like we can also find the equation of state by calculating the force exerted on the walls of the box. To do that, let’s look at the force exerted on one of the walls of the box, say the wall on the positive x-axis. Evidently the number of particles <span class="math inline">\(\delta N_x\)</span> with momentum <span class="math inline">\(p_x = mv_x\)</span> that collide with the wall in a time <span class="math inline">\(\delta t\)</span> is given by density times volume, i.e. <span class="math display">\[
+\delta N_x = d^3 \mathbf{p} \ f(\mathbf{p}) \ A v_x \delta t.
+\]</span> Assuming each collision is elastic, the momentum change in colliding with the wall is <span class="math inline">\(\Delta p_x = 2p_x\)</span>. Then the force <span class="math inline">\(F\)</span> exerted on the wall is <span class="math display">\[
+F = \frac{1}{2\delta t} \int \delta N_x \ \Delta p_x = \int d^3 \mathbf{p} \ f(\mathbf{p}) \ A \frac{p_x^2}{m}.
+\]</span> Using this force on the wall we can calculate the pressure of the gas by dividing by the wall area <span class="math inline">\(A\)</span>. Plugging in the distribution for momenta, we have <span class="math display">\[
+P = \int d^3 \mathbf{p} \ f(\mathbf{p}) \ \frac{p_x^2}{m} = \int d^3 \mathbf{p} \ \frac{p_x^2}{m} n\bigg(\frac{\beta}{2\pi m}\bigg)^{3/2} \exp\bigg(-\frac{\beta}{2m}\mathbf{p}^2\bigg) = \frac{n}{\beta}.
+\]</span> Using the fact that <span class="math inline">\(n = \frac{N}{V}\)</span> and <span class="math inline">\(\beta = \frac{1}{k_B T}\)</span>, we’ve evidently derived the ideal gas law, <span class="math display">\[
+pV = N k_B T.
+\]</span> Insisting a free gas reduce to an ideal gas at equilibrium again supports that <span class="math inline">\(\beta = \frac{1}{k_B T}\)</span>.</p>
+<p>If desired, one can calculate the entropy too by using <span class="math inline">\(S \equiv -k_B \mathrm{H}\)</span> and doing the integral for <span class="math inline">\(\mathrm{H}\)</span>. The result will be the Sakur-Tetrode equation for a monoatomic ideal gas, up to an additive constant. In fact, we could calculate the entropy and use thermodynamic relations to get the energy and pressure more straightforwardly. This suggests a more statistical approach to calculating thermodynamic relations that we’ll make heavy use of in statistical mechanics.</p>
+</section>
+<section id="the-maxwell-boltzmann-distribution" class="level3">
+<h3 class="anchored" data-anchor-id="the-maxwell-boltzmann-distribution">The Maxwell-Boltzmann Distribution</h3>
+<p>We can also ask about the distribution for the <em>speed</em> <span class="math inline">\(v\)</span> of an ideal gas at equilibrium. Using the relation <span class="math inline">\(\mathbf{p} = m \mathbf{v}\)</span>, we then have <span class="math display">\[
+\rho_{eq}(\mathbf{v}) = \bigg(\frac{m}{2\pi k_B T}\bigg)^{3/2} \exp\bigg(-\frac{m\mathbf{v}^2}{2k_B T}\bigg).
+\]</span> This is the distribution for the <em>velocity</em> of a gas in the rest frame, not the speed. It’s evidently a mean-zero Gaussian distribution with variance <span class="math inline">\(\frac{k_B T}{m}\)</span>. The ratio <span class="math inline">\(v_{RMS}^2 \equiv \frac{k_B T}{m}\)</span> has dimensions of velocity squared. That velocity <span class="math inline">\(v_{RMS}\)</span> is amply referred to as the root mean square (RMS) velocity. We’ve actually seen it already. It’s the velocity one gets from setting the kinetic energy equal to the mean thermal energy <span class="math inline">\(k_B T\)</span>. Practically all velocities of interest in thermodynamics are on the order of the RMS velocity.</p>
+<p>Anyway, notice the distribution depends only on the <em>speed</em> since <span class="math inline">\(v^2 = \mathbf{v}^2\)</span>. It may seem like the distribution for <span class="math inline">\(v\)</span> should be a Gaussian, but it’s <em>not</em>. The reason is we have to integrate over the volume element, <span class="math display">\[
+1 = \int d^3 \mathbf{v} \ \rho_{eq}(\mathbf{v}) = \int v^2 dv d\Omega \ \rho_{eq}(|\mathbf{v}|) = \int dv \ 4\pi v^2\rho_{eq}(|\mathbf{v}|) \equiv \int dv \ \rho_{eq}(v).
+\]</span> This distribution for the particle speeds at equilibrium is called the <strong>Maxwell-Boltzmann Distribution</strong>, <span class="math display">\[
+\boxed{\rho_{eq}(v) = \bigg(\frac{m}{2\pi k_B T}\bigg)^{3/2} 4\pi v^2 \exp\bigg(-\frac{mv^2}{2k_B T}\bigg)} \ .
+\]</span> Since speeds are non-negative this is a rightward-skewed distribution. This means its mean won’t be zero like with the vector velocities. This makes sense, as a mean zero speed would imply the particles aren’t moving at all. In fact, the mean speed is proportional to the RMS velocity, <span class="math display">\[
+\langle v \rangle = 2\sqrt{\frac{2}{\pi}} \sqrt{\frac{k_B T}{m}} \approx 1.6 \ v_{RMS}.
+\]</span> ## Conservation Laws</p>
+<p>So far all we’ve done is derived the equilibrium distribution for a gas at equilibrium. But we don’t <em>need</em> kinetic theory to do this. As we’ll see, we can do that much more easily using statistical mechanics. What kinetic theory is really useful for is describing how the system approaches equilibrium. Specifically, what we really want to know is how the usual conserved quantities like particle number, energy, and momentum approach equilibrium. To do that we need to figure out what the dynamics are of conserved quantities.</p>
+</section>
+<section id="collision-conserved-quantities" class="level3">
+<h3 class="anchored" data-anchor-id="collision-conserved-quantities">Collision-Conserved Quantities</h3>
+<p>We’ll specifically want to focus on <em>collision conserved quantities</em>. The ones that satisfy detailed balance conditions. We say <span class="math inline">\(\chi\)</span> is a collision conserved quantity if for any two colliding particles we have <span class="math display">\[
+\chi_1 + \chi_2 = \chi'_1 + \chi'_2.
+\]</span> A collision conserved quantity satisfies the useful property that the quantity <span class="math inline">\(J(\mathbf{x},t)\)</span> defined by <span class="math display">\[
+J(\mathbf{x},t) \equiv \int d^3 \mathbf{p} \ \chi(\mathbf{x}, \mathbf{p},t) C[f]
+\]</span> vanishes. To see why, just substitute in the integral for <span class="math inline">\(C[f]\)</span> and perform the same steps used in the proof of the H-theorem. Doing those manipulations with <span class="math inline">\(\log f\)</span> replaced by <span class="math inline">\(\chi\)</span> will give an integral of the form <span class="math display">\[
+J(\mathbf{x},t) = \frac{1}{4} \int d^3 \mathbf{p}_1 \ d^3 \mathbf{p}_2 \ \frac{|\mathbf{p}_2 - \mathbf{p}_1|}{m} \big[f(\mathbf{p}_1)f(\mathbf{p}_2)-f(\mathbf{p}'_1)f(\mathbf{p}'_2)\big] \big[\chi(\mathbf{p}_1) + \chi(\mathbf{p}_2) - \chi(\mathbf{p}'_1) - \chi(\mathbf{p}'_2)\big].
+\]</span></p>
+<p>Provided <span class="math inline">\(\chi\)</span> is a collision-conserved quantity the last term is zero, hence we get <span class="math inline">\(J(\mathbf{x},t) = 0\)</span>.</p>
+<p>Now, notice if the system satisfies the Boltzmann equation we can replace <span class="math inline">\(C[f]\)</span> with <span class="math inline">\(L[f]\)</span> in the integral, <span class="math display">\[
+0 = \int d^3 \mathbf{p} \ \chi \ L[f] = \int d^3 \mathbf{p} \ \chi \ \bigg(\frac{\partial}{\partial t} + \frac{\mathbf{p}}{m} \cdot \frac{\partial }{\partial \mathbf{x}} + \mathbf{F} \cdot \frac{\partial}{\partial \mathbf{p}} \bigg) f.
+\]</span> We can manipulate this expression to get a useful differential equation for the field <span class="math inline">\(\chi(\mathbf{x},t)\)</span>. Since <span class="math inline">\(L\)</span> is an operator of first derivatives we can apply the product rule to write <span class="math display">\[
+\chi \cdot L[f] = L[f \cdot \chi] - f \cdot L[\chi].
+\]</span> Plugging this in, we get <span class="math display">\[
+0 = \int d^3 \mathbf{p} \ \bigg[\bigg(\frac{\partial (f \cdot \chi)}{\partial t} + \frac{\mathbf{p}}{m} \cdot \frac{\partial (f \cdot \chi)}{\partial \mathbf{x}} + \mathbf{F} \cdot \frac{\partial (f \cdot \chi)}{\partial \mathbf{p}} \bigg) - \bigg(\frac{\partial \chi}{\partial t} + \frac{\mathbf{p}}{m} \cdot \frac{\partial \chi}{\partial \mathbf{x}} + \mathbf{F} \cdot \frac{\partial \chi}{\partial \mathbf{p}} \bigg) f \bigg].
+\]</span> At this point it’s useful to define a <em>collision average</em>. Notice the number density can be given by marginalizing out the momentum, <span class="math display">\[
+n(\mathbf{x}, t) = \int d^3 \mathbf{p} \ f(\mathbf{x}, \mathbf{p}, t).
+\]</span> Using this fact, we can define a collision average on any phase space function <span class="math inline">\(\chi\)</span> by <span class="math display">\[
+\boxed{\big\langle \chi(\mathbf{x},t) \big\rangle_{\text{col}} \equiv \frac{1}{n(\mathbf{x}, t)} \int d^3 \mathbf{p} \ f(\mathbf{x}, \mathbf{p}, t) \ \chi(\mathbf{x}, \mathbf{p}, t)} \ .
+\]</span> Going back to our expression for <span class="math inline">\(J(\mathbf{x},t)\)</span>, notice we can pull any terms and derivatives that doesn’t depend on <span class="math inline">\(\mathbf{p}\)</span> out of the integral. The terms remaining under the integral can then be written as collision averages, <span class="math display">\[
+\boxed{\frac{\partial}{\partial t} n\big\langle \chi \big\rangle_{\text{col}} + \frac{\partial}{\partial \mathbf{x}} \cdot n\bigg\langle \frac{\mathbf{p}}{m} \chi \bigg\rangle_{\text{col}} - \ n \bigg\langle \frac{\partial \chi}{\partial t} \bigg\rangle_{\text{col}} - \ n \bigg\langle \frac{\mathbf{p}}{m} \cdot\frac{\partial \chi}{\partial \mathbf{x}}\bigg\rangle_{\text{col}} - n \mathbf{F} \cdot \bigg\langle \frac{\partial \chi}{\partial \mathbf{p}}\bigg\rangle_{\text{col}} = 0 } \ .
+\]</span> Note the integral over <span class="math inline">\(\mathbf{F} \cdot \frac{\partial (f \cdot \chi)}{\partial \mathbf{p}}\)</span> vanishes since it’s a total time derivative. The above equation is called the <strong>hydrodynamics equation</strong> or the <strong>conservation law</strong> for the field <span class="math inline">\(\chi(\mathbf{x},t)\)</span>. Unlike typical conservation laws in classical mechanics, these conservation laws are <em>local</em>.</p>
+</section>
+<section id="particle-number" class="level3">
+<h3 class="anchored" data-anchor-id="particle-number">Particle Number</h3>
+<p>The particular conservation laws we’ll focus on are the usual ones for a gas: particle number (or mass), momentum, and kinetic energy. To find the conservation law for particle number or mass, take <span class="math inline">\(\chi = 1\)</span>. In that case, all the derivatives of <span class="math inline">\(\chi\)</span> vanish, so we’re left with <span class="math display">\[
+\frac{\partial n}{\partial t} + \frac{\partial}{\partial \mathbf{x}} n\bigg\langle \frac{\mathbf{p}}{m} \bigg\rangle_{\text{col}} = 0.
+\]</span> The collision average of <span class="math inline">\(\frac{\mathbf{p}}{m}\)</span> gives some kind of velocity field <span class="math inline">\(\mathbf{u}(\mathbf{x},t)\)</span>. This is the <em>flow velocity</em> of the gas, treated as a kind of continuous fluid. We can thus write <span class="math display">\[
+\boxed{\frac{\partial n}{\partial t} + \nabla \cdot n \mathbf{u}  = 0} \ .
+\]</span> This is the well-known <strong>continuity equation</strong>, in this case for the particle number.</p>
+<p>This says that at any region of space, particle number must be conserved. To see why, if we integrate the equation with respect to volume and use the divergence theorem, we have <span class="math display">\[
+\frac{d}{dt} \int_\mathcal{V} d^3 \mathbf{x} \ n = \int_\mathcal{S} n \mathbf{u} \cdot d\mathbf{a}.
+\]</span> That is, the only way particle number inside a region <span class="math inline">\(\mathcal{V}\)</span> can change is by flowing out of its surface <span class="math inline">\(\mathcal{S}\)</span>. Over all space, the right-hand side must vanish for physical reasons, which just says total particle number is conserved, <span class="math display">\[
+\frac{dN}{dt} = 0.
+\]</span> The same equation holds for mass density <span class="math inline">\(\rho \equiv mn\)</span> by multiplying both sides of the continuity equation by the mass <span class="math inline">\(m\)</span>. In that language it expresses the conservation of mass for the gas. It’s sometimes useful to re-write the continuity equation in terms of the material derivative. To do that we need to factor out the <span class="math inline">\(\mathbf{u}\)</span> from the divergence using the product rule. We then get <span class="math display">\[
+\boxed{\frac{Dn}{Dt} = -n \nabla \cdot \mathbf{u}} \ .
+\]</span> This form is particularly useful when dealing with an <em>incompressible fluid</em>, since in that case <span class="math inline">\(\nabla \cdot \mathbf{u} = 0\)</span>, implying the fluid has uniform density. Incompressible fluids are more characteristic of liquids than gases, however, since we can practically always compress a gas by applying pressure to it.</p>
+</section>
+<section id="momentum" class="level3">
+<h3 class="anchored" data-anchor-id="momentum">Momentum</h3>
+<p>The next conservation law we’ll derive is <em>conservation of momentum</em>. Rather than take <span class="math inline">\(\chi\)</span> to be the momentum <span class="math inline">\(\mathbf{p}\)</span> directly, it’s more useful to take it to be the <em>relative particle velocity</em> <span class="math display">\[
+\mathbf{c} \equiv \frac{\mathbf{p}}{m} - \mathbf{u}.
+\]</span> Let’s apply the conservation law to one of the components of <span class="math inline">\(\mathbf{c}\)</span> by taking <span class="math inline">\(\chi = c_\alpha\)</span>. This definition has the advantage that <span class="math inline">\(\langle c_\alpha \rangle_{c}\)</span> vanishes, which simplifies calculations somewhat. Noting that <span class="math inline">\(\frac{\mathbf{p}}{m} = \mathbf{c} + \mathbf{u}\)</span>, and using the summation convention, we have $$ <span class="math display">\[\begin{align*}
+0 &amp;= \frac{\partial}{\partial x_\beta} n\bigg\langle \frac{p_\beta}{m} c_\alpha \bigg\rangle_c - \ n \bigg\langle \frac{\partial c_\alpha}{\partial t} \bigg\rangle_c - \ n \bigg\langle \frac{p_\beta}{m} \frac{\partial c_\alpha}{\partial x_\beta}\bigg\rangle_c - n F_\beta \cdot \bigg\langle \frac{\partial c_\alpha}{\partial p_\beta}\bigg\rangle_c \\
+
+&amp;= \frac{\partial}{\partial x_\beta} n\bigg\langle (c_\beta+u_\beta) c_\alpha \bigg\rangle_c - \ n \bigg\langle \frac{\partial c_\alpha}{\partial t} \bigg\rangle_c - \ n \bigg\langle (c_\beta+u_\beta) \frac{\partial c_\alpha}{\partial x_\beta}\bigg\rangle_c - n F_\beta \cdot \bigg\langle \frac{\partial c_\alpha}{\partial p_\beta}\bigg\rangle_c \\
+&amp;= \frac{\partial}{\partial x_\beta} n \big\langle c_\alpha c_\beta \big\rangle_c + n \frac{\partial u_\alpha}{\partial t} + n u_\beta \frac{\partial u_\alpha}{\partial x_\beta} - n F_\beta \frac{\delta_{\alpha\beta}}{m} \\
+&amp;= \frac{\partial}{\partial x_\beta} nm \big\langle c_\alpha c_\beta \big\rangle_c + nm \frac{\partial u_\alpha}{\partial t} + nm u_\beta \frac{\partial u_\alpha}{\partial x_\beta} - n F_\alpha.
+\end{align*}\]</span> <span class="math display">\[
+We evidently have a differential equation for the flow velocity $\mathbf{u}$. The only unfamiliar term is the first one, which is evidently the gradient of a symmetric rank-two tensor. This is the *pressure tensor*, defined by
+\]</span> P_{} nm c_c_<em>c. <span class="math display">\[
+Plugging the pressure tensor in and re-arranging, we see that each component of the flow velocity satisfies a conservation law of the form
+\]</span> + u</em> = - . <span class="math display">\[
+If we think of the velocity gradient as being done component-wise and the divergence on the right as a contraction over one of the indices, then we can write this conservation law in vector notation as
+\]</span> &nbsp;. $$ This is called the <strong>Cauchy momentum equation</strong>. Notice how this conservation law looks something like Newton’s second law. On the left is a kind of mass times acceleration term, while on the right are the two kinds of forces acting on each gas particle, the external forces and the internal pressure-driven forces.</p>
+</section>
+<section id="energy" class="level3">
+<h3 class="anchored" data-anchor-id="energy">Energy</h3>
+<p>The final conservation law we’ll consider is the one for kinetic energy. Again, it’s convenient to look instead at the <em>relative kinetic energy</em> <span class="math inline">\(\chi = \frac{1}{2} m \mathbf{c}^2\)</span>. Define the <em>energy density</em> or the <em>heat flux</em> <span class="math inline">\(\varepsilon\)</span> to be the collision average of the relative kinetic energy, <span class="math display">\[
+\varepsilon \equiv \frac{1}{2} m \big\langle \mathbf{c}^2 \big\rangle_c.
+\]</span> It’s also helpful to define a vector <span class="math inline">\(\mathbf{h}\)</span> called the <em>heat flux</em> given by <span class="math display">\[
+\mathbf{h} \equiv \frac{1}{2} nm \big\langle \mathbf{c}^2 \mathbf{c} \big\rangle_c.
+\]</span> Last, it’s helpful to define another symmetric rank-two tensor <span class="math inline">\(\mathbf{U}\)</span> called the <em>rate of strain tensor</em>. Its components are the symmetrized gradients of <span class="math inline">\(\mathbf{c}\)</span>, i.e. <span class="math display">\[
+U_{\alpha\beta} \equiv \frac{\partial u_\alpha}{\partial x_\beta} + \frac{\partial u_\beta}{\partial x_\alpha}.
+\]</span> With these definitions, after a lot of tedious work we can express the conservation law for kinetic energy in component form (again using the summation convention) as <span class="math display">\[
+\frac{\partial \varepsilon}{\partial t} + u_\alpha \frac{\partial \varepsilon}{\partial x_\alpha}  = -\frac{1}{n}\frac{\partial h_\alpha}{\partial x_\alpha} - \frac{1}{n}P_{\alpha\beta} U_{\alpha\beta} \ .
+\]</span> The first term on the right is the divergence of the heat flux. The second term is the trace over the matrix product of the pressure tensor with the rate of strain. With this in mind, we can express this equation in vector notation as <span class="math display">\[
+\boxed{n\frac{D\varepsilon}{Dt} = -\nabla \cdot \mathbf{h} - \text{tr}(\mathbf{P} \cdot \mathbf{U})} \ .
+\]</span> Roughly speaking, this conservation law expresses the first law of thermodynamics. The left-hand-side is the change in the total energy, while the right-hand side is the change in heat plus the change in work.</p>
+</section>
+</section>
+<section id="approach-to-equilibrium" class="level2">
+<h2 class="anchored" data-anchor-id="approach-to-equilibrium">Approach to Equilibrium</h2>
+<p>As was already mentioned, our whole purpose in deriving collision conserved quantities and conservation laws was to study how systems approach equilibrium. To do this we’ll want to study the solutions of the conservation laws as <span class="math inline">\(t \rightarrow \infty\)</span>. To approach equilibrium, each conserved quantity should approach a constant value, its equilibrium value.</p>
+<section id="zeroth-order-solutions" class="level3">
+<h3 class="anchored" data-anchor-id="zeroth-order-solutions">Zeroth-Order Solutions</h3>
+<p>While all these conservation equations are nice, we still don’t know how to solve them. To do that we’d need to know the pressure tensor and the heat flux, both of which require that we already know the density. Usually we don’t know the full density. What we’ll try to do instead is expand the density in terms of the parameter <span class="math inline">\(\frac{\tau_X}{\tau_{\text{ext}}}\)</span>, the characteristic inverse time scale of <span class="math inline">\(L[f]\)</span>. In the limit where external forces act on much larger time scales than the collision forces this parameter will be small.</p>
+<p>In the zeroth order case we’re assuming <span class="math inline">\(\tau_{\text{ext}} \rightarrow \infty\)</span>. Call that <em>zeroth order density</em> <span class="math inline">\(f^0\)</span>. Then we have <span class="math inline">\(C[f^0] = 0\)</span>. We already saw using detailed balance that such a distribution is just a Gaussian in terms of the momenta or velocity. If we write <span class="math display">\[
+\mathbf{c}(\mathbf{x}, t) = \mathbf{p} - m\mathbf{u}(\mathbf{x}, t) = \mathbf{p} - \boldsymbol{\pi}(\mathbf{x}, t),
+\]</span> and choose <span class="math inline">\(\beta = \frac{1}{k_B T}\)</span> as before, then the zeroth order distribution can be written as <span class="math display">\[
+f^0(\mathbf{x}, \mathbf{p}, t) \equiv n(\mathbf{x}, t)\bigg(\frac{m}{2\pi k_B T(\mathbf{x}, t)}\bigg)^{3/2} \exp\bigg(-\frac{m\mathbf{c}^2}{2k_B T(\mathbf{x}, t)}\bigg).
+\]</span> This is a mean-zero Gaussian distribution in <span class="math inline">\(\mathbf{c}\)</span> with variance <span class="math inline">\(\frac{k_B T}{m}\)</span>. Let’s assume this is the density and see what we can deduce about the conservation laws and how they approach equilibrium.</p>
+<p>Since we’re dealing with a Gaussian, we can use Wick’s theorem to conclude the odd-power moments are zero. This means that the heat flux vanishes, since <span class="math display">\[
+\mathbf{h} = \frac{1}{2} nm \big\langle \mathbf{c}^2 \mathbf{c} \big\rangle_c = \mathbf{0}.
+\]</span> The pressure tensor, however, is an even moment. Since the covariance of <span class="math inline">\(f^0\)</span> is diagonal, we just have <span class="math display">\[
+\mathbf{P} = nm \big\langle \mathbf{c} \otimes \mathbf{c} \big\rangle_c = nm \frac{k_B T}{m} \ \mathbf{I} = nk_B T \ \mathbf{I}.
+\]</span> Last, the energy density is just <span class="math display">\[
+\varepsilon = \frac{m}{2} \big\langle \mathbf{c}^2 \big\rangle_c = \frac{m}{2} \frac{3k_B T}{m} = \frac{3}{2} k_B T.
+\]</span></p>
+<p>Together, these mean that the three conservation laws can be written as <span class="math display">\[
+\begin{align*}
+\frac{Dn}{Dt} &amp;= -n \nabla \cdot \mathbf{u}  \\
+\frac{D\mathbf{u}}{Dt} &amp;= \frac{1}{m} \mathbf{F} -\frac{k_B}{nm} \nabla nT  \\
+\frac{DT}{Dt} &amp;= -\frac{2}{3} T \ \nabla \cdot \mathbf{u} \ \ . \\
+\end{align*}
+\]</span> Let’s try to combine the first and last equation and see what we get. Notice both terms contain a divergence <span class="math inline">\(\nabla \cdot \mathbf{u}\)</span>. If we solve for the divergence in the first equation and plug it into the third, we get <span class="math display">\[
+\begin{align*}
+&amp;\frac{DT}{Dt} = -\frac{2}{3} T \ \nabla \cdot \mathbf{u} = \frac{2T}{3n} \frac{Dn}{Dt} \\
+&amp;\Longrightarrow \quad \frac{3}{2} \frac{D}{Dt} \log T - \frac{D}{Dt} \log n = 0 \\
+&amp;\Longrightarrow \quad \frac{D}{Dt} \log n T^{-3/2} = 0.
+\end{align*}
+\]</span> That is, along any given streamline the quantity <span class="math inline">\(\log n T^{-3/2}\)</span> is constant. This quantity is a kind of local entropy since <span class="math inline">\(dS \sim \log n T^{-3/2} d^3 \mathbf{x}\)</span>. We’ve thus shown that the zeroth order solution implies <span class="math inline">\(dS=0\)</span>, i.e.&nbsp;the entire process is <em>adiabatic</em> for all time. This in particular means entropy can’t increase to a maximum, which implies that the system will <em>never</em> come to equilibrium unless it starts out in equilibrium. Evidently the zeroth order approximation isn’t enough to get equilibrium. We’ll need to go further.</p>
+<p>Let’s look at this more formally first. For the system to always converge to equilibrium the solutions need to be <em>stable</em>. That is, if any conserved quantity is nudged from equilibrium it should relax back to equilibrium. Suppose the system is initially in equilibrium. Suppose we make the following first-order perturbations, <span class="math display">\[
+\begin{align*}
+n(\mathbf{x}, t) &amp;= n_0 + \nu(\mathbf{x}, t) \\
+T(\mathbf{x}, t) &amp;= T_0 + \theta(\mathbf{x}, t) \ . \\
+\end{align*}
+\]</span> For simplicity, assume no external forces act inside the box and at equilibrium the box is at rest. In that case, to first order <span class="math inline">\(\frac{D}{Dt} \approx \frac{\partial}{\partial t}\)</span>. Plugging these into the conservation laws and keeping only terms to first order, we get <span class="math display">\[
+\begin{align*}
+\frac{\partial\nu}{\partial t} &amp;\approx -n_0 \nabla \cdot \mathbf{u}  \\
+\frac{\partial\mathbf{u}}{\partial t} &amp;\approx -\frac{k_B T_0}{mn_0} \nabla \nu - \frac{k_B}{m} \nabla \theta \\
+\frac{\partial\theta}{\partial t} &amp;\approx -\frac{2}{3} T_0 \ \nabla \cdot \mathbf{u} \ \ . \\
+\end{align*}
+\]</span></p>
+<p>Now let’s Fourier transform these first order quantities and look at their normal modes. The natural frequencies <span class="math inline">\(\omega(\mathbf{k})\)</span> and the normal modes are the solutions to the following eigenvalue equation, <span class="math display">\[
+\begin{pmatrix}
+0 &amp; n_0 \mathbf{k} &amp; 0 \\
+\frac{k_B T_0}{mn_0} \mathbf{k} &amp; 0 &amp; \frac{k_B}{m} \mathbf{k}  \\
+0 &amp; \frac{2}{3} T_0 \mathbf{k} &amp; 0 \\
+\end{pmatrix}
+\begin{pmatrix}
+\tilde \nu \\
+\mathbf{\tilde u} \\
+\tilde \theta \\
+\end{pmatrix} =
+\omega
+\begin{pmatrix}
+\tilde \nu \\
+\mathbf{\tilde u} \\
+\tilde \theta \\
+\end{pmatrix}.
+\]</span> Note the block notation being used. This is really a <span class="math inline">\(5 \times 5\)</span> matrix multiplying a size <span class="math inline">\(5\)</span> vector. There are thus <span class="math inline">\(5\)</span> distinct normal modes that satisfy this equation. The solutions are rather messy. Suffice it to say that:</p>
+<ul>
+<li>Two of the modes represent <em>shearing modes</em>, e.g.&nbsp;flows of the form <span class="math inline">\(\mathbf{u} = u_x(y,t) \mathbf{e}_x\)</span>. That is, the velocities vary perpendicularly to their direction of motion, creating a shearing effect. This means that the <em>transverse flows</em> can’t relax to equilibrium. They continue forever.</li>
+<li>One of the modes is a <em>zero mode</em>, i.e.&nbsp;<span class="math inline">\(\omega = 0\)</span>. This describes a ** with uniform pressure <span class="math inline">\(P = n k_B T\)</span>. This insures the product <span class="math inline">\(nT\)</span> is constant, which means the fluid can’t start moving due to pressure variations alone. The normal modes are <span class="math inline">\(\tilde\nu = n_0\)</span>, <span class="math inline">\(\tilde\theta = -T_0\)</span>, and <span class="math inline">\(\mathbf{\tilde u} = \mathbf{0}\)</span>, all constant.</li>
+<li>The final two modes are <em>sound modes</em>. These are normal modes of the form <span class="math inline">\(\tilde\nu = n_0 |\mathbf{k}|\)</span>, <span class="math inline">\(\tilde\theta = \frac{2}{3} T_0 |\mathbf{k}|\)</span>, and <span class="math inline">\(\mathbf{\tilde u} = \pm v_s |\mathbf{k}|\)</span>. Here <span class="math inline">\(v_s^2 \equiv \frac{5k_B T_0}{3m}\)</span> represents the <em>speed of sound</em> of the gas. All of these modes imply that the quantities all propagate out as an undamped wave in the <span class="math inline">\(\mathbf{k}\)</span> direction. Since both the density and temperature variations are adiabatic, these <em>longitudinal flows</em> won’t relax to equilibrium either.</li>
+</ul>
+<p>We thus find that none of the conserved quantities relax to equilibrium to zeroth-order. Shear flow and entropy modes persist forever, while the two sound modes have undamped oscillations. Since none of the normal modes in general relax to equilibrium, neither will any general solutions, which are themselves just superpositions of normal modes.</p>
+</section>
+<section id="first-order-solutions" class="level3">
+<h3 class="anchored" data-anchor-id="first-order-solutions">First-Order Solutions</h3>
+<p>We thus have to move onto first order solutions. Instead of assuming an <em>infinite</em> <span class="math inline">\(\tau_{\text{ext}}\)</span>, we’ll assume it’s small to first order compared to <span class="math inline">\(\tau_X\)</span>. This brings the left-hand side <span class="math inline">\(L[f]\)</span> of Boltzmann’s equation back into the game. We’ll assume a first-order density of the form <span class="math display">\[
+f^1(\mathbf{x}, \mathbf{p}, t) = f^0(\mathbf{x}, \mathbf{p}, t) \big(1 + g(\mathbf{x}, \mathbf{p}, t)\big),
+\]</span> where <span class="math inline">\(g(\mathbf{x}, \mathbf{p}, t)\)</span> is assumed to be related to the inverse time scale <span class="math inline">\(\frac{\tau_X}{\tau_{\text{ext}}} \ll 1\)</span>. To evaluate <span class="math inline">\(C[f^1]\)</span> we have to linearize the integral. To do so we’ll employ the <em>single collision time approximation</em>, which says that <span class="math display">\[
+C[f^1] \approx -f^0 \frac{g}{\tau_X}.
+\]</span> If we assume <span class="math inline">\(g\)</span> is in some sense small, then <span class="math inline">\(L[f^1] = L[f^0]+L[f^0g]] \approx L[f^0]\)</span>. We thus have that <span class="math display">\[
+L[f^0] \approx -f^0 \frac{g}{\tau_X},
+\]</span> Using the expression for <span class="math inline">\(f^0\)</span> found already, this means <span class="math display">\[
+g = - \tau_X L[\log f^0] = - \tau_X L\bigg[\log \bigg(n\bigg(\frac{m}{2\pi k_B T}\bigg)^{3/2} \exp\bigg(-\frac{m\mathbf{c}^2}{2k_B T}\bigg)\bigg)\bigg].
+\]</span> Now, observe we can re-write the Liouville operator in a more useful way in terms of <span class="math inline">\(\mathbf{u}\)</span> instead of <span class="math inline">\(\mathbf{p}\)</span> as <span class="math display">\[
+L[f] = \frac{Df}{Dt} + \mathbf{c} \cdot \frac{\partial f}{\partial \mathbf{x}} + \mathbf{F} \cdot \frac{\partial f}{\partial \mathbf{p}}.
+\]</span> Combining all of these facts together and using the zeroth-order conservation laws we already derived, we finally get <span class="math display">\[
+\begin{align*}
+g &amp;= -\tau_X \ L[\log f^0] \\
+&amp;= -\tau_X \ L\bigg[\log n - \frac{3}{2} \log \frac{2\pi k_B T}{m} - \frac{mc^2}{2 k_B T} \bigg] \\
+&amp;= -\tau_X \ \bigg(\frac{D}{Dt} + \mathbf{c} \cdot \frac{\partial}{\partial \mathbf{x}} + \mathbf{F} \cdot \frac{\partial}{\partial \mathbf{p}}\bigg)\bigg[\log n - \frac{3}{2} \log \frac{2\pi k_B T}{m} - \frac{mc^2}{2 k_B T} \bigg] \\
+&amp;= -\tau_X \bigg[\frac{m}{k_B T} U_{ij} \bigg(c_i c_j - \frac{c^2}{3} \delta_{ij}\bigg) + \bigg(\frac{m c^2}{2k_B T} - \frac{5}{2} \bigg) \frac{c_i}{T} \frac{\partial T}{\partial x_i}\bigg]. \\
+\end{align*}
+\]</span> This means the first-order density in full is given in vector notation as <span class="math display">\[
+\begin{align*}
+f^1(\mathbf{x}, \mathbf{p},t) = \ &amp;n\bigg(\frac{m}{2\pi k_B T}\bigg)^{3/2} \exp\bigg(-\frac{m\mathbf{c}^2}{2k_B T}\bigg) \ \times \\
+&amp;\bigg\{1 -\tau_X \bigg[\frac{m}{k_B T}\text{tr}\bigg( \mathbf{U} \cdot \bigg(\mathbf{c} \otimes \mathbf{c} - \frac{c^2}{3} \mathbf{I}\bigg)\bigg) + \bigg(\frac{m c^2}{2k_B T} - \frac{5}{2} \bigg) \mathbf{c} \cdot \frac{\nabla T}{T} \bigg]\bigg\}.
+\end{align*}
+\]</span> The term involving the trace of velocities represents the correlation of particle velocity with the rate of strain tensor. It describes how velocities vary due to fluid strain. The term involving the temperature gradient says something about how velocities depend on temperature gradients across the fluid. Together, these effects give the density an anisotropic, multimodal behavior.</p>
+<p>Also worth noticing is that the first-order piece contains terms proportional to both <span class="math inline">\(c\)</span> and <span class="math inline">\(c^3\)</span>, which means the first and third moments no longer vanish. Together, these will imply the existence of a non-zero heat flux vector and a non-diagonal pressure tensor. So</p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

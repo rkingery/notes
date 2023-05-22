@@ -339,13 +339,13 @@ ul.task-list li input[type="checkbox"] {
 <p>While this is a nice formal definition of probability, it’s not practically useful for saying how we should design a probability measure in a practical setting. There are two common approaches for designing probability measures:</p>
 <ol type="1">
 <li><p>The <strong>objective</strong> approach: In this approach, we imagine running a bunch of experiments and counting the frequency of occurrences of an event. That is, if we run a large number <span class="math inline">\(N\)</span> of experiments and observe an event <span class="math inline">\(A\)</span> occurs exactly <span class="math inline">\(N_A\)</span> times, then we define <span class="math inline">\(\mathbb{Pr}(A)\)</span> by the ratio <span class="math display">\[
-\mathbb{Pr}(A) = \lim_{N \rightarrow \infty} \frac{N_A}{N}.
+\boxed{\mathbb{Pr}(A) = \lim_{N \rightarrow \infty} \frac{N_A}{N}} \ .
 \]</span> The fact that the ratio <span class="math inline">\(\frac{N_A}{N}\)</span> stabilizes to a fixed value as <span class="math inline">\(N\)</span> gets infinitely large follows from the <strong>law of large numbers</strong>, which we’ll take as a kind of experimental fact.</p></li>
 <li><p>The <strong>subjective</strong> approach: In this approach we take a more theoretical view by looking for a “maximally random” probability distribution that matches what we know to be true. That is, we seek to find the <em>maximum entropy</em> probability distribution that satisfies some given set of known constraints. We’ll talk more about the principle of maximum entropy when we get to information theory. The subjective approach is the one used most heavily in statistical mechanics.</p></li>
 </ol>
 <p>A <strong>random variable</strong> is a variable <span class="math inline">\(X\)</span> that doesn’t take on a fixed value, but rather a <em>random</em> value determined by a <strong>probability distribution</strong>. If <span class="math inline">\(E \subset \mathcal{S}\)</span> is an event, a random variable encodes that event using a numerical variable <span class="math inline">\(X=X(E)\)</span>. More formally, <span class="math inline">\(X(E)\)</span> is a function that maps events to a numerical value. It could be a real number, a complex number, or a real or complex vector, for example.</p>
 <p>A one-dimensional random variable is a mapping <span class="math inline">\(X(E)\)</span> from events <span class="math inline">\(E \subset \mathcal{S}\)</span> into the real numbers <span class="math inline">\(\mathbb{R}\)</span>. In this case, we can define a <strong>cumulative distribution function</strong> or <strong>CDF</strong> as the function <span class="math display">\[
-P(x) \equiv \mathbb{Pr}\big(\{X \leq x\}\big).
+\boxed{P(x) \equiv \mathbb{Pr}\big(\{X \leq x\}\big)} \ .
 \]</span> That is, the CDF is the probability that the random variable <span class="math inline">\(X \leq x\)</span>, where <span class="math inline">\(x\)</span> is just some real number. To obey the laws of probability, the CDF must satisfy the following properties:</p>
 <ul>
 <li>It’s an increasing function of <span class="math inline">\(x\)</span>. That is, if <span class="math inline">\(x_1 \leq x_2\)</span> then <span class="math inline">\(P(x_1) \leq P(x_2)\)</span>.</li>
@@ -353,7 +353,7 @@ P(x) \equiv \mathbb{Pr}\big(\{X \leq x\}\big).
 <li>It has probability one at <span class="math inline">\(x=\infty\)</span>. That is, <span class="math inline">\(\lim_{x \rightarrow \infty} P(x) = 1\)</span>.</li>
 </ul>
 <p>If the set of all values <span class="math inline">\(X\)</span> can take on are discrete, we say <span class="math inline">\(X\)</span> is a <strong>discrete random variable</strong>. In this case, we can define a <strong>probability mass function</strong> or <strong>PMF</strong> as the function <span class="math display">\[
-p(x) \equiv \mathbb{Pr}(X = n).
+\boxed{p(x) \equiv \mathbb{Pr}(X = n)} \ .
 \]</span> By the laws of probability the PMF must satisfy the following properties:</p>
 <ul>
 <li>It’s between zero and one: <span class="math inline">\(0 \leq p(n) \leq 1\)</span>.</li>
@@ -361,7 +361,7 @@ p(x) \equiv \mathbb{Pr}(X = n).
 <li>It’s related to the CDF by <span class="math inline">\(P(x) = \sum_{n \leq x} \ p(n)\)</span>.</li>
 </ul>
 <p>If the set of all values it can take on are continuous, we say <span class="math inline">\(X\)</span> is a <strong>continuous random variable</strong>. In this case, we can define a <strong>probability density function</strong> or <strong>PDF</strong> by the function <span class="math display">\[
-p(x) = \mathbb{Pr}(x \leq X \leq x + dx).
+\boxed{p(x) = \mathbb{Pr}(x \leq X \leq x + dx)} \ .
 \]</span> By the laws of probability, the PDF must satisfy the following properties:</p>
 <ul>
 <li>It’s a positive function <span class="math inline">\(p(x) \geq 0\)</span>.</li>
@@ -373,7 +373,7 @@ p(x) = \mathbb{Pr}(x \leq X \leq x + dx).
 p(k) = p(x) \delta (x - k).
 \]</span> For this reason, we’ll generally state results in the form of a continuous random variable.</p>
 <p>For both discrete and continuous random variables we can define the <em>expected value</em> of a random function <span class="math inline">\(F(x)\)</span> by summing or integrating the function, weighted by the PMF or PDF. In the continuous case, we’d define the <strong>expected value</strong> <span class="math inline">\(\langle F(x) \rangle\)</span> by <span class="math display">\[
-\langle F(x) \rangle \equiv \int_{\mathbb{R}} dx \ F(x) p(x).
+\boxed{\langle F(x) \rangle \equiv \int_{\mathbb{R}} dx \ F(x) p(x)} \ .
 \]</span> Some of the functions <span class="math inline">\(F(x)\)</span> have special names:</p>
 <ul>
 <li>We call <span class="math inline">\(\mu \equiv \langle x \rangle\)</span> the <strong>mean</strong> of <span class="math inline">\(x\)</span>.</li>
@@ -401,7 +401,7 @@ p(x) = \int_{\mathbb{R}} \frac{dx}{2\pi} \ e^{ikx} \tilde p(k).
 <p>The <em>second cumulant</em> is evidently given by <span class="math display">\[
 \kappa_2 = \langle x^2 \rangle - \langle x \rangle^2.
 \]</span> This is called the <strong>variance</strong> of <span class="math inline">\(x\)</span>, usually denoted <span class="math inline">\(\sigma^2\)</span>. By rearranging the right-hand side a little bit we can also write the variance in the form <span class="math display">\[
-\sigma^2 \equiv \langle x^2 \rangle - \langle x \rangle^2 = \langle (x-\mu) \rangle^2.
+\boxed{\sigma^2 \equiv \langle x^2 \rangle - \langle x \rangle^2 = \langle (x-\mu) \rangle^2} \ .
 \]</span> This gives an intuitive interpretation of the variance. It’s the <em>mean squared</em> difference from the mean. It’s a squared measure of the spread of the distribution. For this reason we often prefer to take its square root to get a measure of the spread in units of <span class="math inline">\(x\)</span> itself. This is called the <strong>standard deviation</strong>, <span class="math inline">\(\sigma \equiv \sqrt{\sigma^2}\)</span>.</p>
 <p>The third cumulant is evidently given by <span class="math display">\[
 \kappa_3 = \langle x^3 \rangle - 3\langle x^2 \rangle\langle x \rangle + 2 \langle x \rangle^3.
@@ -417,7 +417,7 @@ p_F(f) df = p_X(x) dx.
 \]</span> Dividing both sides by <span class="math inline">\(df\)</span> and noting that probabilities have to be positive, we have <span class="math display">\[
 p_F(f) = p_X(x) \bigg|\frac{dx}{df}\bigg|.
 \]</span> In general <span class="math inline">\(F(x)\)</span> need not be single-valued. This means we have to sum over all possible values <span class="math inline">\(x_i\)</span> such that <span class="math inline">\(f=F(x_i)\)</span>. In this case, we’d instead have <span class="math display">\[
-p_F(f) = \sum p_X(x_i) \bigg|\bigg(\frac{dx}{df}\bigg)_{x=x_i}\bigg|.
+\boxed{p_F(f) = \sum p_X(x_i) \bigg|\bigg(\frac{dx}{df}\bigg)_{x=x_i}\bigg|} \ .
 \]</span></p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -453,7 +453,7 @@ p_F(f) &amp;= p(\sqrt{f}) \bigg|\frac{d}{df} \sqrt{f}\bigg| + p(-\sqrt{f}) \bigg
 <p>So far I’ve used the term <em>distribution</em> rather loosely. More formally, given a random variable <span class="math inline">\(x\)</span>, a <strong>probability distribution</strong> is a specific functional form for <span class="math inline">\(p(x)\)</span>. We’d write <span class="math inline">\(x \sim p(x)\)</span> to indicate that <span class="math inline">\(x\)</span> is distributed as <span class="math inline">\(p(x)\)</span>. Usually <span class="math inline">\(p(x)\)</span> will be <em>parametric</em>, meaning it will have external parameters that tune the shape of the distribution. Here are some common univariate distributions we’ll see in statistical mechanics:</p>
 <p><strong>Uniform Distribution</strong></p>
 <p>The uniform distribution is perhaps the simplest distribution of all, with <span class="math inline">\(p(x) = const\)</span> on some set <span class="math inline">\(x \in \mathcal{S}\)</span>. As a shorthand we might write <span class="math inline">\(x \sim U(\mathcal{S})\)</span> to say <span class="math inline">\(x\)</span> is uniform on the set <span class="math inline">\(\mathcal{S}\)</span>. In the discrete case, <span class="math inline">\(x\)</span> takes on some number of values <span class="math inline">\(N\)</span> each with equal probability, for example if <span class="math inline">\(\mathcal{S} = \{1, 2, \cdots, n\}\)</span> we have <span class="math display">\[
-p(x) = \frac{1}{N}, \quad x = 1, 2, \cdots, N.
+\boxed{p(x) = \frac{1}{N}} \ .
 \]</span> We can easily calculate the moments of a uniform random variable directly. In the discrete case, we’d have <span class="math display">\[
 \langle x^n \rangle = \sum_{x=1}^N \ x^n \ p(x) = \frac{1}{N} (1^n + 2^n + \cdots + N^n).
 \]</span> This is just an arithmetic sum in powers of <span class="math inline">\(n\)</span>. For example, the first two moments are <span class="math display">\[
@@ -471,7 +471,7 @@ p(x) = \frac{1}{N}, \quad x = 1, 2, \cdots, N.
 \]</span> We could in principle calculate the cumulant function <span class="math inline">\(\log \tilde p(k)\)</span> as well, though it’s clearly not going to be as useful for finding the cumulants here. We’ll see later that the uniform distribution is the <em>maximum entropy</em> distribution when the only known constraints are that <span class="math inline">\(x\)</span> lies in some set <span class="math inline">\(S\)</span>.</p>
 <p><strong>Gaussian Distribution</strong></p>
 <p>The Gaussian distribution is one of the most fundamental distributions in physics. In statistical mechanics, for example, it describes the velocity of gases in a box. Suppose <span class="math inline">\(x\)</span> is a continuous random variable defined on the whole real line. We say it’s Gaussian distributed if its PDF is given by <span class="math display">\[
-p(x) = \frac{1}{\sqrt{2\pi\sigma^2}} \exp\bigg(-\frac{(x-\mu)^2}{2\sigma^2}\bigg).
+\boxed{p(x) = \frac{1}{\sqrt{2\pi\sigma^2}} \exp\bigg(-\frac{(x-\mu)^2}{2\sigma^2}\bigg)} \ .
 \]</span> The Gaussian distribution has two parameters, a real number <span class="math inline">\(\mu\)</span> and a positive number <span class="math inline">\(\sigma^2\)</span>. As a shorthand we’ll sometimes say <span class="math inline">\(x\)</span> is Gaussian distributed by writing <span class="math inline">\(x \sim \mathcal{N}(\mu, \sigma^2)\)</span>. The PDF’s curve is the distinctive bell-shaped curve that falls off exponentially fast symmetrically around <span class="math inline">\(\mu\)</span>. For practical purposes, almost all of the probability mass lies in the range <span class="math inline">\(-3\sigma \leq x \leq 3\sigma\)</span>.</p>
 <p>We can calculate the characteristic function by taking the Fourier transform of <span class="math inline">\(p(x)\)</span>. By using a couple of changes of variables and completing the square inside the exponent, we have, <span class="math display">\[
 \begin{align*}
@@ -493,9 +493,9 @@ p(x) = \frac{1}{\sqrt{2\pi\sigma^2}} \exp\bigg(-\frac{(x-\mu)^2}{2\sigma^2}\bigg
 \end{align*}
 \]</span> <strong>Binomial Distribution</strong></p>
 <p>Suppose we have a binary random variable <span class="math inline">\(x = 0, 1\)</span> that takes on the value one with a fixed probability <span class="math inline">\(p\)</span>. We can express its PMF simply as <span class="math display">\[
-p(x) = p^x (1-p)^{1-x}, \quad x = 0, 1.
+p(x) = p^x (1-p)^{1-x}.
 \]</span> We’d call such an <span class="math inline">\(x\)</span> a <em>Bernoulli random variable</em>. A common example would be flipping a coin, where heads occurs with a fixed probability <span class="math inline">\(p=0.5\)</span>. Now suppose we allow the binary outcome to repeat <span class="math inline">\(n\)</span> times independently. It turns out that the <em>sum</em> of those <span class="math inline">\(n\)</span> outcomes is distributed in a similar way, except now <span class="math inline">\(x\)</span> can take on any value in the range <span class="math inline">\(x = 0, 1, \cdots, n\)</span>. Accounting for normalization, we have <span class="math display">\[
-p(x) = \binom{n}{x} p^x (1-p)^{n-x}, \quad x = 0, 1, \cdots, n.
+\boxed{p(x) = \binom{n}{x} p^x (1-p)^{n-x}} \ .
 \]</span> We’d say <span class="math inline">\(x\)</span> is <em>binomially distributed</em> with parameters <span class="math inline">\(p\)</span> and <span class="math inline">\(n\)</span>, sometimes written as <span class="math inline">\(x \sim \text{Bin}(n,p)\)</span>. The normalization constant is the <em>binomial coefficient</em>, <span class="math display">\[
 \binom{n}{x} \equiv \frac{n!}{x!(n-x)!}.
 \]</span> The binomial coefficient represents the number of ways to choose <span class="math inline">\(x\)</span> points from a total of <span class="math inline">\(n\)</span> points, assuming the order the points are chosen is irrelevant.</p>
@@ -541,7 +541,7 @@ p(x) &amp;= \int_{\mathbb{R}} \frac{dk}{2\pi} \ \tilde p(k) e^{ikx} \\
 &amp;= e^{-\lambda} \sum_{n=0}^\infty \frac{\lambda^n}{n!} \delta(x-n). \\
 \end{align*}
 \]</span> The delta function forces <span class="math inline">\(x\)</span> to be a positive integer for <span class="math inline">\(p(x)\)</span> to be non-zero. That is, <span class="math inline">\(p(x)\)</span> is actually a PMF <span class="math display">\[
-p(x) = e^{-\lambda} \frac{\lambda^x}{x!}, \quad x = 0, 1, 2, \cdots
+\boxed{p(x) = e^{-\lambda} \frac{\lambda^x}{x!}} \ .
 \]</span> This is called the <em>Poisson distribution</em>. The Poisson distribution is used to model <em>counts</em> of events, where each event is allowed to occur independently with some fixed rate <span class="math inline">\(\lambda = \alpha T\)</span>. We can denote that <span class="math inline">\(x\)</span> is Poisson distributed by writing <span class="math inline">\(x \sim \text{Poisson}(\lambda)\)</span>.</p>
 <p>This distribution has the unusual property that all its cumulants are equal. Indeed, observe we have <span class="math display">\[
 \log \tilde p(k) = \lambda (e^{-ik} - 1) = \sum_{n=1}^\infty \frac{(-ik)^n}{n!} \lambda.
@@ -553,15 +553,15 @@ p(x) = e^{-\lambda} \frac{\lambda^x}{x!}, \quad x = 0, 1, 2, \cdots
 P(\mathbf{x}) \equiv \mathbb{Pr}(\{\mathbf{X} \leq \mathbf{x}\}) = \mathbb{Pr}(\{X_1 \leq x_1, X_2 \leq x_2, \cdots, X_N \leq x_N\}).
 \]</span> The CDF must be an increasing function in each <span class="math inline">\(x_i\)</span>, go to <span class="math inline">\(0\)</span> as all <span class="math inline">\(x_i \rightarrow -\infty\)</span>, and go to <span class="math inline">\(1\)</span> as all the <span class="math inline">\(x_i \rightarrow \infty\)</span>.</p>
 <p>If <span class="math inline">\(\mathbf{X}\)</span> is discrete, we can assign a <strong>joint PMF</strong> to each value in the support <span class="math inline">\(S \in \mathbb{R}^N\)</span> by defining <span class="math display">\[
-p(\mathbf{n}) \equiv \mathbb{Pr}(\{\mathbf{X} = \mathbf{n}\}).
+\boxed{p(\mathbf{x}) \equiv \mathbb{Pr}(\{\mathbf{X} = \mathbf{x}\})} \ .
 \]</span> The joint PMF is a valid probability, meaning it must satisfy <span class="math inline">\(0 \leq p(\mathbf{n}) \leq 1\)</span> and <span class="math inline">\(\sum_{\mathbf{n} \in S} p(\mathbf{n}) = 1\)</span>.</p>
 <p>Similarly, if <span class="math inline">\(\mathbf{X}\)</span> is continuous, we can assign a <strong>joint PDF</strong> to each value in <span class="math inline">\(S \in \mathbb{R}^N\)</span> by defining <span class="math display">\[
 p(\mathbf{x}) d^Nx \equiv \mathbb{Pr}(\{x_1 \leq X_1 \leq x_1 + dx_1, x_2 \leq X_2 \leq x_2 + dx_2, \cdots, x_N \leq X_N \leq x_N + dx_N\}),
 \]</span> where <span class="math inline">\(d^N x = dx_1dx_2\cdots dx_N\)</span> is the <span class="math inline">\(N\)</span>-dimensional <em>volume element</em>. The joint PMF must satisfy both <span class="math inline">\(p(\mathbf{x}) \geq 0\)</span>, and <span class="math inline">\(\int_S d^N x \ p(\mathbf{x}) = 1\)</span>. Clearly the joint PMF is just a special case of the joint PDF, since we can always just use delta functions to express a PMF as a PDF.</p>
 <p>For any function <span class="math inline">\(F(\mathbf{x})\)</span> of a random vector <span class="math inline">\(\mathbf{x}\)</span> we can define its expectation value as <span class="math display">\[
-\langle \mathbf{x} \rangle \equiv \int_S d^N x \ F(\mathbf{x}) p(\mathbf{x}).
+\boxed{\langle \mathbf{x} \rangle \equiv \int_S d^N x \ F(\mathbf{x}) p(\mathbf{x})} \ .
 \]</span> For both discrete and continuous random vectors we can define the <strong>joint characteristic function</strong> <span class="math display">\[
-\tilde p(\mathbf{k}) \equiv \langle e^{-i\mathbf{k} \cdot \mathbf{x}} \rangle \equiv \int_{\mathbb{R}^N} d^Nx \ p(\mathbf{x}) e^{-i\mathbf{k} \cdot \mathbf{x}}.
+\boxed{\tilde p(\mathbf{k}) \equiv \langle e^{-i\mathbf{k} \cdot \mathbf{x}} \rangle \equiv \int_{\mathbb{R}^N} d^Nx \ p(\mathbf{x}) e^{-i\mathbf{k} \cdot \mathbf{x}}} \ .
 \]</span> By taking the logarithm of the joint CF, we can also define the <strong>joint cumulant function</strong> <span class="math inline">\(\log \tilde p(\mathbf{k})\)</span>. From these two functions we can extract the joint moments and cumulants. The <span class="math inline">\(n_1, n_2, \cdots, n_N\)</span> <strong>joint moment</strong> <span class="math inline">\(\mu_{n_1,n_2,\cdots,n_N} \equiv \langle x_1^{n_1} x_2^{n_2} \cdots x_N^{n_N} \rangle\)</span> of <span class="math inline">\(\mathbf{X}\)</span> is given by taking partial derivatives of the joint characteristic function, <span class="math display">\[
 \langle x_1^{n_1} x_2^{n_2} \cdots x_N^{n_N} \rangle \equiv \frac{\partial^{n_1}}{\partial (-i k_1)^{n_1}} \frac{\partial^{n_2}}{\partial (-i k_2)^{n_2}} \cdots \frac{\partial^{n_N}}{\partial (-i k_N)^{n_N}} \tilde p(k_1, k_2, \cdots, k_N) \bigg |_{k_1=k_2=\cdots=k_N=0}.
 \]</span> Similarly, the <span class="math inline">\(n_1, n_2, \cdots, n_N\)</span> <strong>joint cumulant</strong> <span class="math inline">\(\kappa_{n_1,n_2,\cdots,n_N}\)</span> is given by taking partial derivatives of the joint cumulant function, <span class="math display">\[
@@ -570,15 +570,15 @@ p(\mathbf{x}) d^Nx \equiv \mathbb{Pr}(\{x_1 \leq X_1 \leq x_1 + dx_1, x_2 \leq X
 <p>We can use the same graphical trick to express joint cumulants in terms of joint moments. The only difference is we need to label each point by its index and bag them appropriately. We can use this to show that the covariance <span class="math inline">\(\sigma_{ij} \equiv \kappa_{ij}\)</span> can be written as <span class="math display">\[
 \sigma_{ij} = \langle x_i x_j \rangle - \langle x_i \rangle \langle x_j \rangle = \langle (x_i - \mu_i)(x_j - \mu_j) \rangle.
 \]</span> In matrix notation, the entire covariance matrix can be expressed using moments as <span class="math display">\[
-\mathbf{\Sigma} = \langle \mathbf{x}\mathbf{x}^\top \rangle - \langle \mathbf{x} \rangle \langle \mathbf{x} \rangle^\top = \langle (\mathbf{x}-\boldsymbol{\mu})(\mathbf{x}-\boldsymbol{\mu})^\top \rangle.
+\boxed{\mathbf{\Sigma} = \langle \mathbf{x}\mathbf{x}^\top \rangle - \langle \mathbf{x} \rangle \langle \mathbf{x} \rangle^\top = \langle (\mathbf{x}-\boldsymbol{\mu})(\mathbf{x}-\boldsymbol{\mu})^\top \rangle} \ .
 \]</span> This implies the covariance matrix must in fact be a positive semi-definite matrix. That is, <span class="math display">\[
 \mathbf{\Sigma} = \mathbf{\Sigma}^\top, \quad \mathbf{v}^\top\mathbf{\Sigma}\mathbf{v} \geq 0 \quad \forall \mathbf{v} \neq \mathbf{0}.
 \]</span> We can get smaller joint probabilities by “summing out” the random variables we don’t need. These are called <strong>marginal probabilities</strong> or <strong>unconditional probabilities</strong>. For example, if we have two random variables <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>, the marginal PDF <span class="math inline">\(p(y)\)</span> is given by integrating <span class="math inline">\(x\)</span> out of the joint PDF <span class="math inline">\(p(x,y)\)</span>, <span class="math display">\[
-p(y) \equiv \int_\mathbb{R} dx \ p(x,y).
+\boxed{p(y) \equiv \int_\mathbb{R} dx \ p(x,y)} \ .
 \]</span> If we have <span class="math inline">\(N\)</span> random variables <span class="math inline">\(x_1,x_2,\cdots, x_s, x_{s+1},\cdots,x_N\)</span> and integrate out the last <span class="math inline">\(N-s\)</span> variables <span class="math inline">\(x_s, x_{s+1},\cdots,x_N\)</span>, then we get the marginal PDF <span class="math inline">\(p(x_1,x_2,\cdots, x_s)\)</span>, <span class="math display">\[
 p(x_1,x_2,\cdots, x_s) \equiv \int_{\mathbb{R}^{N-s}} dx_s, dx_{s+1},dx_N \ p(x_1,x_2,\cdots, x_s, x_s, x_{s+1},\cdots,x_N).
 \]</span> Similarly, we can define the <strong>conditional probabilities</strong>, which allow for random variables to depend on the outcome of other random variables directly. For example, for two random variables <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> with joint PDF <span class="math inline">\(p(x,y)\)</span>, we can define the <em>conditional probability</em> of <span class="math inline">\(y\)</span> given <span class="math inline">\(x\)</span> as <span class="math display">\[
-p(y|x) \equiv \frac{p(x,y)}{p(x)}.
+\boxed{p(y|x) \equiv \frac{p(x,y)}{p(x)}} \ .
 \]</span> We can think of <span class="math inline">\(p(x,y)\)</span> as a kind of <em>prior distribution</em> and <span class="math inline">\(p(x)\)</span> as a kind of normalization constant. Notice we can similarly write <span class="math inline">\(p(x,y) = p(x|y) p(y)\)</span>. If we plug this into the formula for <span class="math inline">\(p(y|x)\)</span> we get the well-known <strong>Bayes’ Rule</strong>, which says that <span class="math display">\[
 p(y|x) = \frac{p(x|y)p(y)}{p(x)}.
 \]</span> If we have <span class="math inline">\(N\)</span> random variables <span class="math inline">\(x_1,x_2,\cdots, x_s, x_{s+1},\cdots,x_N\)</span> and want to condition the first <span class="math inline">\(s\)</span> variables on the last <span class="math inline">\(N-s\)</span> variables, we’d similarly write <span class="math display">\[
@@ -586,26 +586,28 @@ p(x_1,x_2,\cdots, x_s) \equiv \frac{p(x_1,x_2,\cdots, x_s, x_{s+1},\cdots,x_N)}{
 \]</span> We haven’t proven it, but it’s not hard to show that the marginal and conditional probabilities are indeed valid probabilities and PDFs.</p>
 <p>When conditioning a random variable <span class="math inline">\(y\)</span> on another random variable <span class="math inline">\(x\)</span> gives no information about <span class="math inline">\(y\)</span>, we say that <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> are <strong>independent</strong>, sometimes written <span class="math inline">\(x \perp y\)</span>. If <span class="math inline">\(x\)</span> gives no information about <span class="math inline">\(y\)</span>, that means we must have <span class="math inline">\(p(y|x) = p(y)\)</span>, which is equivalent to saying the joint PDF factors, <span class="math inline">\(p(x,y) = p(x) p(y)\)</span>. Clearly, if <span class="math inline">\(x\)</span> gives no information about <span class="math inline">\(y\)</span>, then <span class="math inline">\(y\)</span> gives no information about <span class="math inline">\(x\)</span> either. Independence is symmetric.</p>
 <p>More generally, we say <span class="math inline">\(N\)</span> random variables <span class="math inline">\(x_1,x_2,\cdots,x_N\)</span> are mutually independent provided <span class="math display">\[
-p(x_1,x_2,\cdots,x_N) = p_1(x_1) p_2(x_2) \cdots p_N(x_N).
+\boxed{p(x_1,x_2,\cdots,x_N) = p_1(x_1) p_2(x_2) \cdots p_N(x_N)} \ .
 \]</span> In the special case where all <span class="math inline">\(N\)</span> variables also happen to come from the same distribution <span class="math inline">\(p(x)\)</span> we say they’re <strong>independent identically distributed</strong> or <strong>IID</strong>. In this simple case we just have <span class="math display">\[
 p(x_1,x_2,\cdots,x_N) = \big(p(x)\big)^N.
 \]</span> Independent random variables have the property that their <em>mixed cumulants</em> will always be zero. This is equivalent to saying that the joint expectation of any product of random variables value factors, <span class="math display">\[
 \langle F_1(x_1) F_2(x_2) \cdots F_N(x_N) \rangle = \langle F_1(x_1) \rangle \langle F_2(x_2) \rangle \cdots \langle F_N(x_N) \rangle.
 \]</span></p>
 <p>While there are many joint probability distributions, the most important one to be aware of is the <strong>multivariate Gaussian distribution</strong>. Suppose <span class="math inline">\(\mathbf{x} = (x_1, x_2, \cdots, x_N)\)</span> are independent, with each <span class="math inline">\(x_i\)</span> Gaussian distributed with mean <span class="math inline">\(\mu_i\)</span> and variance <span class="math inline">\(\sigma_i^2\)</span>. Then it’s easy to show their joint PDF is given by <span class="math display">\[
-p(x_1, x_2, \cdots, x_N) = \frac{1}{(2\pi\sigma_1^2\sigma_2^2\cdots\sigma_N^2)^{N/2}} \exp\bigg(-\frac{1}{2} \sum_{i=1}^N \frac{(x_i-\mu_i)^2}{\sigma_i^2} \bigg).
+p(x_1, x_2, \cdots, x_N) = \bigg(\frac{1}{(2\pi)^N\sigma_1^2\sigma_2^2\cdots\sigma_N^2}\bigg)^{1/2} \exp\bigg(-\frac{1}{2} \sum_{i=1}^N \frac{(x_i-\mu_i)^2}{\sigma_i^2} \bigg).
 \]</span> But what if <span class="math inline">\(\mathbf{x}\)</span> is <em>not</em> independent? All we have to do in that case is make a change of basis. Notice that joint PDF above is just the diagonalized form for the following joint PDF in vector form, <span class="math display">\[
-p(\mathbf{x}) = \frac{1}{(2\pi \det(\mathbf{\Sigma}))} \exp\bigg(-\frac{1}{2} (\mathbf{x} - \boldsymbol{\mu})^\top \mathbf{\Sigma}^{-1}(\mathbf{x} - \boldsymbol{\mu}) \bigg).
+\boxed{p(\mathbf{x}) = \bigg(\frac{1}{(2\pi)^N \det(\mathbf{\Sigma})}\bigg)^{1/2} \exp\bigg(-\frac{1}{2} (\mathbf{x} - \boldsymbol{\mu})^\top \mathbf{\Sigma}^{-1}(\mathbf{x} - \boldsymbol{\mu}) \bigg)} \ .
 \]</span> By making a change of basis or rotating <span class="math inline">\(\mathbf{\Sigma}\)</span>, this vectorized PDF gives the most general form of the Gaussian distribution for <span class="math inline">\(N\)</span> variables. This is the <em>multivariate Gaussian distribution</em>, denoted <span class="math inline">\(\mathbf{x} \sim \mathcal{N}(\boldsymbol{\mu},\mathbf{\Sigma})\)</span>.</p>
 <p>Using the same diagonalization trick, it’s just as easy to show that the joint characteristic function is <span class="math display">\[
-\tilde p(\mathbf{k}) = \exp(-i\mathbf{k} \cdot \boldsymbol{\mu} - \frac{1}{2} \mathbf{k}^\top \mathbf{\Sigma} \mathbf{k}),
+\boxed{\tilde p(\mathbf{k}) = \exp(-i\mathbf{k} \cdot \boldsymbol{\mu} - \frac{1}{2} \mathbf{k}^\top \mathbf{\Sigma} \mathbf{k})} \ ,
 \]</span> and the joint cumulant is just <span class="math inline">\(\log \tilde p(\mathbf{k}) = -i\mathbf{k} \cdot \boldsymbol{\mu} - \frac{1}{2} \mathbf{k}^\top \mathbf{\Sigma} \mathbf{k}\)</span>. This again implies that only the first and second joint cumulants are non-zero for the multivariate Gaussian. All higher-order terms vanish. For this reason, multivariate Gaussian random variables satisfy a special condition known as <em>Wick’s Theorem</em>.</p>
 <p><strong>Wick’s Theorem:</strong> Suppose <span class="math inline">\(\mathbf{x} = (x_1, x_2, \cdots, x_N)\)</span> is a Gaussian random vector with mean <span class="math inline">\(\boldsymbol{\mu} = \mathbf{0}\)</span>. Then the <span class="math inline">\(n\)</span><sup>th</sup> joint moments are given by <span class="math display">\[
+\boxed{
 \langle x_1^{n_1} x_2^{n_2} \cdots x_N^{n_N} \rangle =
 \begin{cases}
-0 &amp; n = \text{odd}, \\
-\text{sum of all pairwise contractions} &amp; n = \text{even}. \\
+0 &amp; n = \text{odd} \\
+\text{sum of all pairwise contractions} &amp; n = \text{even} \\
 \end{cases}
+} \ .
 \]</span> For example, suppose we wanted to calculate <span class="math inline">\(\langle x_1^2 x_2 x_3 \rangle\)</span>. In this case, the possible pairwise contractions are</p>
 <ul>
 <li><span class="math inline">\(x_1 x_1\)</span> and <span class="math inline">\(x_2 x_3\)</span> , which gives a term <span class="math inline">\(\sigma_{11} \sigma_{23}\)</span>,</li>
@@ -621,7 +623,7 @@ p(\mathbf{x}) = \frac{1}{(2\pi \det(\mathbf{\Sigma}))} \exp\bigg(-\frac{1}{2} (\
 <p>In this section we’ll focus on important results that apply for <em>large</em> numbers of random variables <span class="math inline">\(N \gg 1\)</span>.</p>
 <p>It turns out that the <em>sum</em> of random variables will often by approximately Gaussian distributed provided some minor regularity assumptions are met. This important result is called the <em>central limit theorem</em>.</p>
 <p><strong>Central Limit Theorem:</strong> Suppose <span class="math inline">\(x = \sum_{i=1}^N x_i\)</span> is a sum of <span class="math inline">\(N\)</span> IID random variables with finite mean <span class="math inline">\(\mu\)</span> and variance <span class="math inline">\(\sigma^2\)</span>. Then when <span class="math inline">\(N \gg 1\)</span> we have that <span class="math display">\[
-p\bigg(\frac{x-N\mu}{\sqrt{N\sigma^2}}\bigg) \approx \frac{1}{\sqrt{2 \pi}} \exp\bigg(-\frac{1}{2}\bigg(\frac{x-N\mu}{\sqrt{N\sigma^2}}\bigg)^2\bigg).
+\boxed{p\bigg(\frac{x-N\mu}{\sqrt{N\sigma^2}}\bigg) \approx \frac{1}{\sqrt{2 \pi}} \exp\bigg(-\frac{1}{2}\bigg(\frac{x-N\mu}{\sqrt{N\sigma^2}}\bigg)^2\bigg)} \ .
 \]</span> <strong>Proof:</strong> Suppose each <span class="math inline">\(x_i\)</span> is IID with distribution <span class="math inline">\(p_1(x_1)\)</span>. The characteristic function for <span class="math inline">\(p(x)\)</span> must then be <span class="math display">\[
 \tilde p(k) = \langle e^{-i kx} \rangle = \langle e^{-i k\sum_{i=1}^N x_i} \rangle = \prod_{i=1}^N \langle e^{-i k x_i} \rangle = \tilde p(k_1, k_2, \cdots, k_N) \bigg |_{k_1=k_2=\cdots=k_N=k}.
 \]</span> If we take the cumulant function <span class="math inline">\(\log \tilde p(k)\)</span> and expand it out directly, we have <span class="math display">\[
@@ -662,7 +664,7 @@ S \sim x_{max} = \max_{i=1,\cdots,n} x_i, \quad \text{when} \quad N \rightarrow 
 \]</span></p>
 <p>More useful for our purposes will be the <em>continuous</em> analog of this result, the <em>saddlepoint approximation</em>.</p>
 <p><strong>Saddlepoint Approximation:</strong> Suppose we have a function of the form <span class="math inline">\(f(x) = e^{N\phi(x)}\)</span> where <span class="math inline">\(\phi(x)\)</span> grows polynomially. Then we have <span class="math display">\[
-S = \int_\mathbb{R} dx \ e^{N\phi(x)} \sim \sqrt{\frac{2\pi}{N|\phi''(x_{max})|}} e^{N\phi_{max}}, \quad \text{as} \quad N \rightarrow \infty.
+\boxed{S = \int_\mathbb{R} dx \ e^{N\phi(x)} \sim \sqrt{\frac{2\pi}{N|\phi''(x_{max})|}} e^{N\phi_{max}}} \ , \quad \text{as} \ \ N \rightarrow \infty.
 \]</span> <strong>Proof:</strong> To see why this is true let’s first Taylor expand <span class="math inline">\(\phi(x)\)</span> around its global maximum <span class="math inline">\(x_{max}\)</span>. Since <span class="math inline">\(\phi'(x_{max}) = 0\)</span> and <span class="math inline">\(\phi''(x_{max}) \leq 0\)</span>, we have <span class="math display">\[
 \phi(x) = \phi(x_{max}) - \frac{1}{2} |\phi''(x_{max})| (x-x_{max})^2 + O\big((x-x_{max})^3\big).
 \]</span> Plugging this into the integral and simplifying then gives <span class="math display">\[
@@ -686,7 +688,7 @@ e^{N\phi(x_{max}')} \ll e^{N\phi(x_{max})}.
 </div>
 <p>By far the most useful corollary to this result for our purposes is the <em>Stirling Approximation</em>.</p>
 <p><strong>Stirling Approximation:</strong> As <span class="math inline">\(N \rightarrow \infty\)</span>, we have <span class="math display">\[
-N! \sim N^N e^{-N} \sqrt{2\pi N}.
+\boxed{N! \sim N^N e^{-N} \sqrt{2\pi N}} \ .
 \]</span> <strong>Proof:</strong> Observe by induction that we can write <span class="math inline">\(N!\)</span> as the following integral, <span class="math display">\[
 N! = \int_0^\infty dx \ x^N e^{-x} = \int_0^\infty dx \ \exp\bigg(N\bigg(\log x - \frac{x}{N}\bigg)\bigg).
 \]</span> Take <span class="math inline">\(\phi(x) = \log x - \frac{x}{N}\)</span>. This function is maximized when <span class="math inline">\(x_{max} = N\)</span>, where <span class="math inline">\(\phi_{max} = \log N - 1\)</span>. At this point we have <span class="math inline">\(\phi''(x_{max}) = - \frac{1}{N^2}\)</span>. Plugging all this into the saddlepoint approximation, we have <span class="math display">\[
@@ -697,7 +699,7 @@ N! &amp;= e^{N(\log N - 1)} \sqrt{\frac{2\pi}{N|-N^{-2}|}} \bigg(1 + O\bigg(\fra
 \]</span> Usually we’ll be more interested in <span class="math inline">\(\log N!\)</span> rather than <span class="math inline">\(N!\)</span> itself. In that case we just have <span class="math display">\[
 \log N! = N \log N - N + \frac{1}{2} \log 2\pi N + O\bigg(\frac{1}{N}\bigg).
 \]</span> We’ll typically imagine <span class="math inline">\(N\)</span> to be really big, like <span class="math inline">\(N \sim 10^{23}\)</span>. In that case we can neglect the sublinear terms and safely write <span class="math display">\[
-\log N! \approx N\log N - N.
+\boxed{\log N! \approx N\log N - N} \ .
 \]</span> This will usually be the form of Stirling’s approximation that we use in practice.</p>
 </section>
 <section id="information-theory" class="level2">
@@ -714,7 +716,7 @@ g = \frac{N!}{\prod_{m=1}^M N_m!}.
 &amp;\approx - N \sum_{m=1}^M p_m \log_2 p_m.
 \end{align*}
 \]</span> The term <span class="math inline">\(-\sum p_m \log_2 p_m\)</span> is just a function of the underlying probability distribution of characters, not of the message length <span class="math inline">\(N\)</span> itself. It captures our uncertainty or surprise in what message we’d receive. We call this term the <strong>information entropy</strong> or <strong>Shannon entropy</strong>. Since the choice of base for the logarithm merely adds a constant to this sum, in physics we more typically use the <em>natural logarithm</em> instead of the base-2 logarithm, which expresses entropy in <em>nats</em> instead of <em>bits</em>. In this form, the information entropy can be defined as <span class="math display">\[
-S \equiv -\sum_{m=1}^M p_m \log p_m.
+\boxed{S \equiv -\sum_{m=1}^M p_m \log p_m} \ .
 \]</span> We’ve thus answered the question sought: a typical message of length <span class="math inline">\(N\)</span> contains about <span class="math inline">\(\log_2 g \approx NS\)</span> bits of information, up to an additive constant that depends on the base of logarithm. Notice that if we <em>knew</em> exactly which message to expect, that would mean <span class="math inline">\(g = 1\)</span>, which means <span class="math inline">\(S = 0\)</span>. Since we already know the most number of messages possible is <span class="math inline">\(g=M^N\)</span>, the information entropy must evidently satisfy <span class="math display">\[
 0 \leq S \leq N \log M.
 \]</span> In thermodynamics, the information entropy corresponds to the <strong>mixing entropy</strong> up to a factor of Boltzmann’s constant <span class="math inline">\(k_B\)</span>. One implication of this is that while information entropy is dimensionless, thermodynamic entropy has units, namely units of <span class="math inline">\(k_B\)</span>, which is energy per degree.</p>
@@ -722,15 +724,17 @@ S \equiv -\sum_{m=1}^M p_m \log p_m.
 S = -\sum_{m=1}^M p_m \log p_m = -\langle \log p \rangle = \langle I \rangle.
 \]</span> While information theory was built around the idea of transmitting messages, there’s nothing inherently limiting these ideas to messages alone. We can apply the concept of entropy as defined to <em>any</em> discrete probability distribution, where each <span class="math inline">\(x_m\)</span> corresponds to some value taken on by a random variable.</p>
 <p>What about continuous distributions though? We can try to extend entropy to these as well, but we have to be careful. Since density functions needn’t be positive, the entropy will no longer in general be positive either, meaning it doesn’t make sense to think about it as a direct measure of information content. Nevertheless, we could <em>define</em> the information entropy of a continuous distribution as <span class="math display">\[
-S \equiv -\int_{\mathbb{R}} dx \ p(x) \log p(x).
+\boxed{S \equiv -\int_{\mathbb{R}} dx \ p(x) \log p(x)} \ .
 \]</span> From a physical perspective, a more troublesome problem with this definition is that in general <span class="math inline">\(dx\)</span> will have units, which means <span class="math inline">\(p(x)\)</span> will have units as well. But we can’t have a function with units inside a logarithm. The <em>right</em> way to deal with this will be to convert <span class="math inline">\(dx\)</span> to some kind of dimensionless measure so that <span class="math inline">\(p(x)\)</span> will also be dimensionless. For example, in statistical mechanics we’ll usually be looking at distributions over phase space, where the integration measure is <span class="math inline">\(d\Gamma \propto d^3 x d^3 p\)</span>. In this case, we’d need to divide by a constant that has units of <span class="math inline">\([xp]\)</span>. We’ll see from quantum mechanics that the correct constant is in fact Planck’s constant <span class="math inline">\(h\)</span>. That is, the right integration measure is <span class="math display">\[
 d\Gamma = \frac{d^3 x d^3 p}{h^3}.
 \]</span> We can use the idea of information entropy to finally answer the question regarding what the correct way is to define probabilities subjectively or theoretically. The idea is to use the <em>principle of maximum entropy</em>.</p>
 <p><strong>Principle of Maximum Entropy:</strong> The unbiased assignment of probability is the one that maximizes the information entropy subject to known constraints. More formally, assign a probability distribution <span class="math inline">\(p(x)\)</span> that maximizes the constrained problem <span class="math display">\[
+\boxed{
 \begin{align*}
 &amp;\max_{p(x)} S[p(x)] =  \max_{p(x)} \bigg(- \sum_{x \in \mathcal{S}} p(x) \log p(x) \bigg) \\
-&amp;\text{subject to} \ \sum_{x \in \mathcal{S}} p(x) = 1, \ \text{and} \ g(x) = 0. \\
+&amp;\text{subject to} \ \sum_{x \in \mathcal{S}} p(x) = 1 \ \text{and} \ g(x) = 0 \\
 \end{align*}
+} \ .
 \]</span> where <span class="math inline">\(g(x) = 0\)</span> is any set of known constraints on the probability distribution. The first constraint that probabilities sum to one will always be there so that <span class="math inline">\(p(x)\)</span> yields a valid probability function.</p>
 <p>This is in essence just a generalization of the <em>principle of indifference</em>. If we don’t have any information to go on, we should assume all outcomes have equal probability. The principle of maximum entropy extends this idea to general distributions where we might know some information, like what its mean or variance is, or what range it’s bounded to.</p>
 <p>Using Lagrange multipliers, the principle of maximum entropy is equivalent to maximizing the Lagrange multiplier function <span class="math display">\[

@@ -16,7 +16,7 @@ While this is a nice formal definition of probability, it's not practically usef
 
 1. The **objective** approach: In this approach, we imagine running a bunch of experiments and counting the frequency of occurrences of an event. That is, if we run a large number $N$ of experiments and observe an event $A$ occurs exactly $N_A$ times, then we define $\mathbb{Pr}(A)$ by the ratio
    $$
-   \mathbb{Pr}(A) = \lim_{N \rightarrow \infty} \frac{N_A}{N}.
+   \boxed{\mathbb{Pr}(A) = \lim_{N \rightarrow \infty} \frac{N_A}{N}} \ .
    $$
    The fact that the ratio $\frac{N_A}{N}$ stabilizes to a fixed value as $N$ gets infinitely large follows from the **law of large numbers**, which we'll take as a kind of experimental fact.
 
@@ -26,7 +26,7 @@ A **random variable** is a variable $X$ that doesn't take on a fixed value, but 
 
 A one-dimensional random variable is a mapping $X(E)$ from events $E \subset \mathcal{S}$ into the real numbers $\mathbb{R}$. In this case, we can define a **cumulative distribution function** or **CDF** as the function
 $$
-P(x) \equiv \mathbb{Pr}\big(\{X \leq x\}\big).
+\boxed{P(x) \equiv \mathbb{Pr}\big(\{X \leq x\}\big)} \ .
 $$
 That is, the CDF is the probability that the random variable $X \leq x$, where $x$ is just some real number. To obey the laws of probability, the CDF must satisfy the following properties:
 
@@ -36,7 +36,7 @@ That is, the CDF is the probability that the random variable $X \leq x$, where $
 
 If the set of all values $X$ can take on are discrete, we say $X$ is a **discrete random variable**. In this case, we can define a **probability mass function** or **PMF** as the function
 $$
-p(x) \equiv \mathbb{Pr}(X = n).
+\boxed{p(x) \equiv \mathbb{Pr}(X = n)} \ .
 $$
 By the laws of probability the PMF must satisfy the following properties:
 
@@ -46,7 +46,7 @@ By the laws of probability the PMF must satisfy the following properties:
 
 If the set of all values it can take on are continuous, we say $X$ is a **continuous random variable**. In this case, we can define a **probability density function** or **PDF** by the function
 $$
-p(x) = \mathbb{Pr}(x \leq X \leq x + dx).
+\boxed{p(x) = \mathbb{Pr}(x \leq X \leq x + dx)} \ .
 $$
 By the laws of probability, the PDF must satisfy the following properties:
 
@@ -64,7 +64,7 @@ For this reason, we'll generally state results in the form of a continuous rando
 
 For both discrete and continuous random variables we can define the *expected value* of a random function $F(x)$ by summing or integrating the function, weighted by the PMF or PDF. In the continuous case, we'd define the **expected value** $\langle F(x) \rangle$ by
 $$
-\langle F(x) \rangle \equiv \int_{\mathbb{R}} dx \ F(x) p(x).
+\boxed{\langle F(x) \rangle \equiv \int_{\mathbb{R}} dx \ F(x) p(x)} \ .
 $$
 Some of the functions $F(x)$ have special names:
 
@@ -114,7 +114,7 @@ $$
 $$
 This is called the **variance** of $x$, usually denoted $\sigma^2$. By rearranging the right-hand side a little bit we can also write the variance in the form
 $$
-\sigma^2 \equiv \langle x^2 \rangle - \langle x \rangle^2 = \langle (x-\mu) \rangle^2.
+\boxed{\sigma^2 \equiv \langle x^2 \rangle - \langle x \rangle^2 = \langle (x-\mu) \rangle^2} \ .
 $$
 This gives an intuitive interpretation of the variance. It's the *mean squared* difference from the mean. It's a squared measure of the spread of the distribution. For this reason we often prefer to take its square root to get a measure of the spread in units of $x$ itself. This is called the **standard deviation**, $\sigma \equiv \sqrt{\sigma^2}$.
 
@@ -138,7 +138,7 @@ p_F(f) = p_X(x) \bigg|\frac{dx}{df}\bigg|.
 $$
 In general $F(x)$ need not be single-valued. This means we have to sum over all possible values $x_i$ such that $f=F(x_i)$. In this case, we'd instead have
 $$
-p_F(f) = \sum p_X(x_i) \bigg|\bigg(\frac{dx}{df}\bigg)_{x=x_i}\bigg|.
+\boxed{p_F(f) = \sum p_X(x_i) \bigg|\bigg(\frac{dx}{df}\bigg)_{x=x_i}\bigg|} \ .
 $$
 
 ![](./resources/image-20230402072420947.png){fig-align=center width=350}
@@ -181,7 +181,7 @@ So far I've used the term *distribution* rather loosely. More formally, given a 
 
 The uniform distribution is perhaps the simplest distribution of all, with $p(x) = const$ on some set $x \in \mathcal{S}$. As a shorthand we might write $x \sim U(\mathcal{S})$ to say $x$ is uniform on the set $\mathcal{S}$. In the discrete case, $x$ takes on some number of values $N$ each with equal probability, for example if $\mathcal{S} = \{1, 2, \cdots, n\}$ we have
 $$
-p(x) = \frac{1}{N}, \quad x = 1, 2, \cdots, N.
+\boxed{p(x) = \frac{1}{N}} \ .
 $$
 We can easily calculate the moments of a uniform random variable directly. In the discrete case, we'd have
 $$
@@ -211,7 +211,7 @@ We could in principle calculate the cumulant function $\log \tilde p(k)$ as well
 
 The Gaussian distribution is one of the most fundamental distributions in physics. In statistical mechanics, for example, it describes the velocity of gases in a box. Suppose $x$ is a continuous random variable defined on the whole real line. We say it's Gaussian distributed if its PDF is given by
 $$
-p(x) = \frac{1}{\sqrt{2\pi\sigma^2}} \exp\bigg(-\frac{(x-\mu)^2}{2\sigma^2}\bigg).
+\boxed{p(x) = \frac{1}{\sqrt{2\pi\sigma^2}} \exp\bigg(-\frac{(x-\mu)^2}{2\sigma^2}\bigg)} \ .
 $$
 The Gaussian distribution has two parameters, a real number $\mu$ and a positive number $\sigma^2$. As a shorthand we'll sometimes say $x$ is Gaussian distributed by writing $x \sim \mathcal{N}(\mu, \sigma^2)$. The PDF's curve is the distinctive bell-shaped curve that falls off exponentially fast symmetrically around $\mu$. For practical purposes, almost all of the probability mass lies in the range $-3\sigma \leq x \leq 3\sigma$.
 
@@ -244,11 +244,11 @@ $$
 
 Suppose we have a binary random variable $x = 0, 1$ that takes on the value one with a fixed probability $p$. We can express its PMF simply as
 $$
-p(x) = p^x (1-p)^{1-x}, \quad x = 0, 1.
+p(x) = p^x (1-p)^{1-x}.
 $$
 We'd call such an $x$ a *Bernoulli random variable*. A common example would be flipping a coin, where heads occurs with a fixed probability $p=0.5$. Now suppose we allow the binary outcome to repeat $n$ times independently. It turns out that the *sum* of those $n$ outcomes is distributed in a similar way, except now $x$ can take on any value in the range $x = 0, 1, \cdots, n$. Accounting for normalization, we have
 $$
-p(x) = \binom{n}{x} p^x (1-p)^{n-x}, \quad x = 0, 1, \cdots, n.
+\boxed{p(x) = \binom{n}{x} p^x (1-p)^{n-x}} \ .
 $$
 We'd say $x$ is *binomially distributed* with parameters $p$ and $n$, sometimes written as $x \sim \text{Bin}(n,p)$. The normalization constant is the *binomial coefficient*,
 $$
@@ -319,7 +319,7 @@ p(x) &= \int_{\mathbb{R}} \frac{dk}{2\pi} \ \tilde p(k) e^{ikx} \\
 $$
 The delta function forces $x$ to be a positive integer for $p(x)$ to be non-zero. That is, $p(x)$ is actually a PMF
 $$
-p(x) = e^{-\lambda} \frac{\lambda^x}{x!}, \quad x = 0, 1, 2, \cdots
+\boxed{p(x) = e^{-\lambda} \frac{\lambda^x}{x!}} \ .
 $$
 This is called the *Poisson distribution*. The Poisson distribution is used to model *counts* of events, where each event is allowed to occur independently with some fixed rate $\lambda = \alpha T$. We can denote that $x$ is Poisson distributed by writing $x \sim \text{Poisson}(\lambda)$.
 
@@ -339,7 +339,7 @@ The CDF must be an increasing function in each $x_i$, go to $0$ as all $x_i \rig
 
 If $\mathbf{X}$ is discrete, we can assign a **joint PMF** to each value in the support $S \in \mathbb{R}^N$ by defining
 $$
-p(\mathbf{n}) \equiv \mathbb{Pr}(\{\mathbf{X} = \mathbf{n}\}).
+\boxed{p(\mathbf{x}) \equiv \mathbb{Pr}(\{\mathbf{X} = \mathbf{x}\})} \ .
 $$
 The joint PMF is a valid probability, meaning it must satisfy $0 \leq p(\mathbf{n}) \leq 1$ and $\sum_{\mathbf{n} \in S} p(\mathbf{n}) = 1$.
 
@@ -351,11 +351,11 @@ where $d^N x = dx_1dx_2\cdots dx_N$ is the $N$-dimensional *volume element*. The
 
 For any function $F(\mathbf{x})$ of a random vector $\mathbf{x}$ we can define its expectation value as
 $$
-\langle \mathbf{x} \rangle \equiv \int_S d^N x \ F(\mathbf{x}) p(\mathbf{x}).
+\boxed{\langle \mathbf{x} \rangle \equiv \int_S d^N x \ F(\mathbf{x}) p(\mathbf{x})} \ .
 $$
 For both discrete and continuous random vectors we can define the **joint characteristic function**
 $$
-\tilde p(\mathbf{k}) \equiv \langle e^{-i\mathbf{k} \cdot \mathbf{x}} \rangle \equiv \int_{\mathbb{R}^N} d^Nx \ p(\mathbf{x}) e^{-i\mathbf{k} \cdot \mathbf{x}}.
+\boxed{\tilde p(\mathbf{k}) \equiv \langle e^{-i\mathbf{k} \cdot \mathbf{x}} \rangle \equiv \int_{\mathbb{R}^N} d^Nx \ p(\mathbf{x}) e^{-i\mathbf{k} \cdot \mathbf{x}}} \ .
 $$
 By taking the logarithm of the joint CF, we can also define the **joint cumulant function** $\log \tilde p(\mathbf{k})$. From these two functions we can extract the joint moments and cumulants. The $n_1, n_2, \cdots, n_N$ **joint moment** $\mu_{n_1,n_2,\cdots,n_N} \equiv \langle x_1^{n_1} x_2^{n_2} \cdots x_N^{n_N} \rangle$ of $\mathbf{X}$ is given by taking partial derivatives of the joint characteristic function,
 $$
@@ -373,7 +373,7 @@ $$
 $$
 In matrix notation, the entire covariance matrix can be expressed using moments as
 $$
-\mathbf{\Sigma} = \langle \mathbf{x}\mathbf{x}^\top \rangle - \langle \mathbf{x} \rangle \langle \mathbf{x} \rangle^\top = \langle (\mathbf{x}-\boldsymbol{\mu})(\mathbf{x}-\boldsymbol{\mu})^\top \rangle.
+\boxed{\mathbf{\Sigma} = \langle \mathbf{x}\mathbf{x}^\top \rangle - \langle \mathbf{x} \rangle \langle \mathbf{x} \rangle^\top = \langle (\mathbf{x}-\boldsymbol{\mu})(\mathbf{x}-\boldsymbol{\mu})^\top \rangle} \ .
 $$
 This implies the covariance matrix must in fact be a positive semi-definite matrix. That is,
 $$
@@ -381,7 +381,7 @@ $$
 $$
 We can get smaller joint probabilities by "summing out" the random variables we don't need. These are called **marginal probabilities** or **unconditional probabilities**. For example, if we have two random variables $x$ and $y$, the marginal PDF $p(y)$ is given by integrating $x$ out of the joint PDF $p(x,y)$,
 $$
-p(y) \equiv \int_\mathbb{R} dx \ p(x,y).
+\boxed{p(y) \equiv \int_\mathbb{R} dx \ p(x,y)} \ .
 $$
 If we have $N$ random variables $x_1,x_2,\cdots, x_s, x_{s+1},\cdots,x_N$  and integrate out the last $N-s$ variables $x_s, x_{s+1},\cdots,x_N$, then we get the marginal PDF $p(x_1,x_2,\cdots, x_s)$,
 $$
@@ -389,7 +389,7 @@ p(x_1,x_2,\cdots, x_s) \equiv \int_{\mathbb{R}^{N-s}} dx_s, dx_{s+1},dx_N \ p(x_
 $$
 Similarly, we can define the **conditional probabilities**, which allow for random variables to depend on the outcome of other random variables directly. For example, for two random variables $x$ and $y$ with joint PDF $p(x,y)$, we can define the *conditional probability* of $y$ given $x$ as
 $$
-p(y|x) \equiv \frac{p(x,y)}{p(x)}.
+\boxed{p(y|x) \equiv \frac{p(x,y)}{p(x)}} \ .
 $$
 We can think of $p(x,y)$ as a kind of *prior distribution* and $p(x)$ as a kind of normalization constant. Notice we can similarly write $p(x,y) = p(x|y) p(y)$. If we plug this into the formula for $p(y|x)$ we get the well-known **Bayes' Rule**, which says that
 $$
@@ -405,7 +405,7 @@ When conditioning a random variable $y$ on another random variable $x$ gives no 
 
 More generally, we say $N$ random variables $x_1,x_2,\cdots,x_N$ are mutually independent provided
 $$
-p(x_1,x_2,\cdots,x_N) = p_1(x_1) p_2(x_2) \cdots p_N(x_N).
+\boxed{p(x_1,x_2,\cdots,x_N) = p_1(x_1) p_2(x_2) \cdots p_N(x_N)} \ .
 $$
 In the special case where all $N$ variables also happen to come from the same distribution $p(x)$ we say they're **independent identically distributed** or **IID**. In this simple case we just have
 $$
@@ -418,27 +418,29 @@ $$
 
 While there are many joint probability distributions, the most important one to be aware of is the **multivariate Gaussian distribution**. Suppose $\mathbf{x} = (x_1, x_2, \cdots, x_N)$ are independent, with each $x_i$ Gaussian distributed with mean $\mu_i$ and variance $\sigma_i^2$. Then it's easy to show their joint PDF is given by
 $$
-p(x_1, x_2, \cdots, x_N) = \frac{1}{(2\pi\sigma_1^2\sigma_2^2\cdots\sigma_N^2)^{N/2}} \exp\bigg(-\frac{1}{2} \sum_{i=1}^N \frac{(x_i-\mu_i)^2}{\sigma_i^2} \bigg).
+p(x_1, x_2, \cdots, x_N) = \bigg(\frac{1}{(2\pi)^N\sigma_1^2\sigma_2^2\cdots\sigma_N^2}\bigg)^{1/2} \exp\bigg(-\frac{1}{2} \sum_{i=1}^N \frac{(x_i-\mu_i)^2}{\sigma_i^2} \bigg).
 $$
 But what if $\mathbf{x}$ is *not* independent? All we have to do in that case is make a change of basis. Notice that joint PDF above is just the diagonalized form for the following joint PDF in vector form,
 $$
-p(\mathbf{x}) = \frac{1}{(2\pi \det(\mathbf{\Sigma}))} \exp\bigg(-\frac{1}{2} (\mathbf{x} - \boldsymbol{\mu})^\top \mathbf{\Sigma}^{-1}(\mathbf{x} - \boldsymbol{\mu}) \bigg).
+\boxed{p(\mathbf{x}) = \bigg(\frac{1}{(2\pi)^N \det(\mathbf{\Sigma})}\bigg)^{1/2} \exp\bigg(-\frac{1}{2} (\mathbf{x} - \boldsymbol{\mu})^\top \mathbf{\Sigma}^{-1}(\mathbf{x} - \boldsymbol{\mu}) \bigg)} \ .
 $$
 By making a change of basis or rotating $\mathbf{\Sigma}$, this vectorized PDF gives the most general form of the Gaussian distribution for $N$ variables. This is the *multivariate Gaussian distribution*, denoted $\mathbf{x} \sim \mathcal{N}(\boldsymbol{\mu},\mathbf{\Sigma})$.
 
 Using the same diagonalization trick, it's just as easy to show that the joint characteristic function is
 $$
-\tilde p(\mathbf{k}) = \exp(-i\mathbf{k} \cdot \boldsymbol{\mu} - \frac{1}{2} \mathbf{k}^\top \mathbf{\Sigma} \mathbf{k}),
+\boxed{\tilde p(\mathbf{k}) = \exp(-i\mathbf{k} \cdot \boldsymbol{\mu} - \frac{1}{2} \mathbf{k}^\top \mathbf{\Sigma} \mathbf{k})} \ ,
 $$
 and the joint cumulant is just $\log \tilde p(\mathbf{k}) = -i\mathbf{k} \cdot \boldsymbol{\mu} - \frac{1}{2} \mathbf{k}^\top \mathbf{\Sigma} \mathbf{k}$. This again implies that only the first and second joint cumulants are non-zero for the multivariate Gaussian. All higher-order terms vanish. For this reason, multivariate Gaussian random variables satisfy a special condition known as *Wick's Theorem*.
 
 **Wick's Theorem:** Suppose $\mathbf{x} = (x_1, x_2, \cdots, x_N)$ is a Gaussian random vector with mean $\boldsymbol{\mu} = \mathbf{0}$. Then the $n$<sup>th</sup> joint moments are given by
 $$
+\boxed{
 \langle x_1^{n_1} x_2^{n_2} \cdots x_N^{n_N} \rangle = 
 \begin{cases}
-0 & n = \text{odd}, \\
-\text{sum of all pairwise contractions} & n = \text{even}. \\
+0 & n = \text{odd} \\
+\text{sum of all pairwise contractions} & n = \text{even} \\
 \end{cases}
+} \ .
 $$
 For example, suppose we wanted to calculate $\langle x_1^2 x_2 x_3 \rangle$. In this case, the possible pairwise contractions are
 
@@ -460,7 +462,7 @@ It turns out that the *sum* of random variables will often by approximately Gaus
 
 **Central Limit Theorem:** Suppose $x = \sum_{i=1}^N x_i$ is a sum of $N$ IID random variables with finite mean $\mu$ and variance $\sigma^2$. Then when $N \gg 1$ we have that
 $$
-p\bigg(\frac{x-N\mu}{\sqrt{N\sigma^2}}\bigg) \approx \frac{1}{\sqrt{2 \pi}} \exp\bigg(-\frac{1}{2}\bigg(\frac{x-N\mu}{\sqrt{N\sigma^2}}\bigg)^2\bigg).
+\boxed{p\bigg(\frac{x-N\mu}{\sqrt{N\sigma^2}}\bigg) \approx \frac{1}{\sqrt{2 \pi}} \exp\bigg(-\frac{1}{2}\bigg(\frac{x-N\mu}{\sqrt{N\sigma^2}}\bigg)^2\bigg)} \ .
 $$
 **Proof:** Suppose each $x_i$ is IID with distribution $p_1(x_1)$. The characteristic function for $p(x)$ must then be
 $$
@@ -533,7 +535,7 @@ More useful for our purposes will be the *continuous* analog of this result, the
 
 **Saddlepoint Approximation:** Suppose we have a function of the form $f(x) = e^{N\phi(x)}$ where $\phi(x)$ grows polynomially. Then we have
 $$
-S = \int_\mathbb{R} dx \ e^{N\phi(x)} \sim \sqrt{\frac{2\pi}{N|\phi''(x_{max})|}} e^{N\phi_{max}}, \quad \text{as} \quad N \rightarrow \infty.
+\boxed{S = \int_\mathbb{R} dx \ e^{N\phi(x)} \sim \sqrt{\frac{2\pi}{N|\phi''(x_{max})|}} e^{N\phi_{max}}} \ , \quad \text{as} \ \ N \rightarrow \infty.
 $$
 **Proof:** To see why this is true let's first Taylor expand $\phi(x)$ around its global maximum $x_{max}$. Since $\phi'(x_{max}) = 0$ and $\phi''(x_{max}) \leq 0$, we have
 $$
@@ -568,7 +570,7 @@ By far the most useful corollary to this result for our purposes is the *Stirlin
 
 **Stirling Approximation:** As $N \rightarrow \infty$, we have
 $$
-N! \sim N^N e^{-N} \sqrt{2\pi N}.
+\boxed{N! \sim N^N e^{-N} \sqrt{2\pi N}} \ .
 $$
 **Proof:** Observe by induction that we can write $N!$ as the following integral,
 $$
@@ -587,7 +589,7 @@ $$
 $$
 We'll typically imagine $N$ to be really big, like $N \sim 10^{23}$. In that case we can neglect the sublinear terms and safely write
 $$
-\log N! \approx N\log N - N.
+\boxed{\log N! \approx N\log N - N} \ .
 $$
 This will usually be the form of Stirling's approximation that we use in practice.
 
@@ -614,7 +616,7 @@ $$
 $$
 The term $-\sum p_m \log_2 p_m$ is just a function of the underlying probability distribution of characters, not of the message length $N$ itself. It captures our uncertainty or surprise in what message we'd receive. We call this term the **information entropy** or **Shannon entropy**. Since the choice of base for the logarithm merely adds a constant to this sum, in physics we more typically use the *natural logarithm* instead of the base-2 logarithm, which expresses entropy in *nats* instead of *bits*. In this form, the information entropy can be defined as
 $$
-S \equiv -\sum_{m=1}^M p_m \log p_m.
+\boxed{S \equiv -\sum_{m=1}^M p_m \log p_m} \ .
 $$
 We've thus answered the question sought: a typical message of length $N$ contains about $\log_2 g \approx NS$ bits of information, up to an additive constant that depends on the base of logarithm. Notice that if we *knew* exactly which message to expect, that would mean $g = 1$, which means $S = 0$. Since we already know the most number of messages possible is $g=M^N$, the information entropy must evidently satisfy
 $$
@@ -630,7 +632,7 @@ While information theory was built around the idea of transmitting messages, the
 
 What about continuous distributions though? We can try to extend entropy to these as well, but we have to be careful. Since density functions needn't be positive, the entropy will no longer in general be positive either, meaning it doesn't make sense to think about it as a direct measure of information content. Nevertheless, we could *define* the information entropy of a continuous distribution as
 $$
-S \equiv -\int_{\mathbb{R}} dx \ p(x) \log p(x).
+\boxed{S \equiv -\int_{\mathbb{R}} dx \ p(x) \log p(x)} \ .
 $$
 From a physical perspective, a more troublesome problem with this definition is that in general $dx$ will have units, which means $p(x)$ will have units as well. But we can't have a function with units inside a logarithm. The *right* way to deal with this will be to convert $dx$ to some kind of dimensionless measure so that $p(x)$ will also be dimensionless. For example, in statistical mechanics we'll usually be looking at distributions over phase space, where the integration measure is $d\Gamma \propto d^3 x d^3 p$. In this case, we'd need to divide by a constant that has units of $[xp]$. We'll see from quantum mechanics that the correct constant is in fact Planck's constant $h$. That is, the right integration measure is
 $$
@@ -640,10 +642,12 @@ We can use the idea of information entropy to finally answer the question regard
 
 **Principle of Maximum Entropy:** The unbiased assignment of probability is the one that maximizes the information entropy subject to known constraints. More formally, assign a probability distribution $p(x)$ that maximizes the constrained problem
 $$
+\boxed{
 \begin{align*}
 &\max_{p(x)} S[p(x)] =  \max_{p(x)} \bigg(- \sum_{x \in \mathcal{S}} p(x) \log p(x) \bigg) \\
-&\text{subject to} \ \sum_{x \in \mathcal{S}} p(x) = 1, \ \text{and} \ g(x) = 0. \\
+&\text{subject to} \ \sum_{x \in \mathcal{S}} p(x) = 1 \ \text{and} \ g(x) = 0 \\
 \end{align*}
+} \ .
 $$
 where $g(x) = 0$ is any set of known constraints on the probability distribution. The first constraint that probabilities sum to one will always be there so that $p(x)$ yields a valid probability function.
 

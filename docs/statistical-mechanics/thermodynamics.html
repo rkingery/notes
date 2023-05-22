@@ -351,27 +351,26 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 <p><strong>Thermodynamics</strong> is a <em>phenomenological</em> description of the <em>equilibrium</em> properties of <em>macroscopic</em> systems. Historically, thermodynamics arose from attempts to build and understand the behavior of steam engines in the 19th century. Nowadays it’s applied all across the sciences, particularly in the understanding the behavior of materials, chemical compounds, and biological systems. Thermodynamics is still extensively used in engineering as well to design and build things like engines, heat pumps, and refrigerators.</p>
-<p><strong>Statistical Mechanics</strong> is a <em>probabilistic</em> approach to understanding the <em>equilibrium</em> properties of systems with <em>large numbers</em> of <em>degrees of freedom</em>. Statistical mechanics arose in the late 19th century in an effort to derive the laws of thermodynamics from the more fundamental laws of classical and later quantum mechanics.</p>
 <p>We’ll start in this lesson by studying the phenomenological description of thermodynamics. Later on we’ll derive the same description from first principle approaches, ultimately leading up to the ensemble methods of classical and then quantum statistical mechanics.</p>
 <p>Thermodynamics is a great example of a black box theory built entirely from empirical observations. It’s built from four empirically observed laws. The zeroth law establishes the existence of thermal equilibrium. The first law establishes conservation of energy. The second law establishes the existence of entropy and the arrow of time. The third law establishes the condition for a system to be at absolute zero temperature.</p>
 <section id="thermodynamic-systems" class="level2">
 <h2 class="anchored" data-anchor-id="thermodynamic-systems">Thermodynamic Systems</h2>
 <p>In thermodynamics we seek to describe the <em>macroscopic</em> properties of a <strong>thermodynamic system</strong>. Unlike in classical mechanics, we won’t think of a system as a particle or a collection of particles, but rather as an object describable by a set of macroscopic properties. By macroscopic we mean properties that describe the state of the entire system, like its temperature, pressure, volume, etc. These properties are called <strong>state variables</strong> or <strong>thermodynamic coordinates</strong>.</p>
-<p>We’ll think of two distinct types of thermodynamic systems:</p>
+<p>In thermodynamics we’re interested in studying a few different kinds of systems, depending on what is allowed to flow into and out of the system. We assume the system is submerged in some external environment, called a <strong>heat bath</strong>.</p>
 <ol type="1">
-<li>An <strong>adiabatic</strong> system: A system isolated by “walls” that don’t allow heat to flow in or out.</li>
-<li>A <strong>diathermic</strong> system: A system with “permeable walls”, where heat is allowed to flow in or out.
-<ul>
-<li>A diathermic system in which no particles are allowed to flow in or out is a <strong>closed system</strong>.</li>
-</ul></li>
+<li>An <strong>isolated system</strong> is a system in which no <em>energy</em> exchange is allowed with the heat bath, either through heat or work. Isolated systems have the property that total energy is conserved.</li>
+<li>An <strong>adiabatic system</strong> is a system in which no <em>heat</em> exchange is allowed with the heat bath. An exchange of work is still allowed, which means total energy isn’t conserved.</li>
+<li>A <strong>closed system</strong> is a system in which <em>energy</em> is allowed to be exchanged with the heat bath, either through heat or work. The total energy of the closed system plus the heat bath is conserved.</li>
+<li>A <strong>diathermic system</strong> is a system in which <em>heat</em> is allowed to be exchanged with the heat bath, but <em>work</em> may or may not be exchanged.</li>
 </ol>
-<p>We say an adiabatic system is in <strong>equilibrium</strong> when its macroscopic properties have had sufficient time to relax to constant steady state values. By “constant”, we mean the properties don’t change appreciably over some given observation time. The specific properties we seek to measure depend on the type of system under consideration. Here are some examples of <em>mechanical properties</em> that might depend on the system:</p>
+<p>We say a system is in <strong>equilibrium</strong> when its internal <em>temperature</em> has had sufficient time to relax to some steady state value. More precisely, the internal temperature doesn’t change appreciably over some given observation time. In a large sense, thermodynamics is <em>about</em> the study of equilibrium. We require that an equilibrium state exist for the system before we can even talk about thermodynamic variables. Of course, we haven’t even defined what temperature is, or shown that it must exist. We’ll do that in the next section.</p>
+<p>The specific variables we seek to measure depend on the type of system under consideration. Here are some examples of <em>mechanical variables</em> that might depend on the system:</p>
 <ul>
 <li>Gas in a container: We might be interested in its volume or the pressure it exerts on the container.</li>
 <li>A wire under tension: We might be interested in its length or the tension forces exerted on it.</li>
 <li>A magnet in a field: We might be interested in its magnetization or its external magnetic field.</li>
 </ul>
-<p>On top of these mechanical properties that vary by system, we also may be interested in a system’s <em>thermal properties</em>, i.e.&nbsp;properties that arise due to the system’s internal interactions. The macroscopic thermal properties might be temperature, entropy, or heat.</p>
+<p>On top of these mechanical variables that vary by system, we also may be interested in a system’s <em>thermal variables</em>, i.e.&nbsp;variables that arise due to the system’s internal interactions. The macroscopic thermal variables might be temperature, entropy, or heat.</p>
 </section>
 <section id="the-zeroth-law" class="level2">
 <h2 class="anchored" data-anchor-id="the-zeroth-law">The Zeroth Law</h2>
@@ -414,16 +413,16 @@ g_{AC}(A_1, A_2, \cdots, A_n, \text{const}) - g_{BC}(B_1, B_2, \cdots, B_k, \tex
 <h3 class="anchored" data-anchor-id="the-ideal-gas">The Ideal Gas</h3>
 <p>One practically useful way to define an empirical temperature scale uses the properties of the <em>ideal gas</em>. An <strong>ideal gas</strong> is a large number of dilute particles that satisfy the property that the product of the gas’s pressure <span class="math inline">\(p\)</span> and volume <span class="math inline">\(V\)</span> is proportional temperature in the dilute limit, i.e. <span class="math display">\[
 \lim_{V \rightarrow \infty} pV = \lim_{p \rightarrow 0} pV \propto \theta.
-\]</span> We’ll assume the gas is allowed to interact diathermally with its environment, called a <strong>heat bath</strong>. That is, the gas is allowed to exchange energy with its environment, but nothing else.</p>
+\]</span> We’ll assume the gas is allowed to interact diathermally with the heat bath. That is, the gas is allowed to exchange energy with its environment, but nothing else.</p>
 <p>Suppose now that we submerge the gas in one heat bath and record values for <span class="math inline">\(p, V, \theta\)</span> once the system has reached equilibrium. Then, we take the gas and submerge it again in a different <em>reference</em> heat bath. Once the system has again reached equilibrium, we again record the new values <span class="math inline">\(p_0, V_0, \theta_0\)</span>. Now, since the gas is ideal, we must have <span class="math display">\[
 \frac{\theta}{\theta_0} = \frac{pV}{p_0 V_0}.
 \]</span> Provided we’ve fixed a value for <span class="math inline">\(\theta_0\)</span>, we can thus <em>define</em> the temperature <span class="math inline">\(T\)</span> of the system by <span class="math display">\[
 T \equiv \theta \equiv \theta_0 \frac{pV}{p_0 V_0} = \frac{\theta_0}{p_0} \frac{pV}{V_0}.
 \]</span> In the Kelvin scale, <span class="math inline">\(\theta_0\)</span> and <span class="math inline">\(p_0\)</span> are again defined by the triple point of water. This means that to measure the temperature, we’d need to first measure the pressure and volume of the gas in the heat bath of interest, and then compare that with the volume the same gas would have at the triple point.</p>
 <p>For an ideal gas, we evidently have the relation then that <span class="math inline">\(pV \propto T\)</span>. It turns out that <span class="math inline">\(pV\)</span> is <em>also</em> proportional to the number of particles <span class="math inline">\(N\)</span> in the gas, <span class="math inline">\(pV \propto N\)</span>. We can write the full <strong>ideal gas law</strong> in the form <span class="math display">\[
-pV = Nk_B T,
+\boxed{pV = Nk_B T} \ ,
 \]</span> where <span class="math inline">\(k_B\)</span> is a proportionality constant, called the <strong>Boltzmann constant</strong>. Its value is measured to be <span class="math display">\[
-k_B = 1.381 \cdot 10^{-23} \frac{\text{J}}{\degree \text{K}} \approx \frac{1}{40} \frac{\text{eV}}{\degree \text{K}}.
+\boxed{k_B = 1.381 \cdot 10^{-23} \frac{\text{J}}{\degree \text{K}} \approx \frac{1}{40} \frac{\text{eV}}{\degree \text{K}}} \ .
 \]</span></p>
 </section>
 </section>
@@ -441,7 +440,7 @@ k_B = 1.381 \cdot 10^{-23} \frac{\text{J}}{\degree \text{K}} \approx \frac{1}{40
 <p><strong>Aside:</strong> Note the work <span class="math inline">\(\Delta W\)</span> is done <em>on</em> the system, not <em>by</em> the system. Many engineering texts adopt the opposite convention, where they like to think of work being done <em>by</em> the system (e.g.&nbsp;by an engine). In that case, the <span class="math inline">\(\Delta W\)</span> would change its sign, in which case we’d write <span class="math inline">\(\Delta E = \Delta Q - \Delta W\)</span>.</p>
 <p>Since thermodynamic state variables only make sense when a system is in equilibrium, if we want to think about the first law in differential form we have to imagine we can change the system differentially in such a way that it stays in equilibrium. Doing so is called a <strong>quasi-static process</strong>. We vary the system very slowly from its initial to its final state, allowing the system to come to equilibrium again at each point. This allows us to fill in the path continuously with points so we can then talk about differential changes.</p>
 <p>In differential form, the first law of thermodynamics has the form <span class="math display">\[
-dE = \delta Q + \delta W.
+\boxed{dE = \delta Q + \delta W} \ .
 \]</span> The notation <span class="math inline">\(\delta Q\)</span> and <span class="math inline">\(\delta W\)</span> is used to make it explicit that those variables are <em>path dependent</em>. That is, they’re not a function of only the initial and final states. This means we can’t integrate them directly to get the total heat or work done. However, the energy <em>is</em> a state variable, it is a function only of its end points, and so we can integrate <span class="math inline">\(dE\)</span> to get the total internal energy <span class="math inline">\(\Delta E\)</span>, <span class="math display">\[
 \Delta E = \int dE = \int (\delta Q + \delta W).
 \]</span></p>
@@ -498,16 +497,18 @@ dE = \delta Q + \delta W.
 </tbody>
 </table>
 <p>The generalized forces have the property that their values are <em>independent</em> of the size of the system. Doubling the size of the system doesn’t double the forces acting on it. These are called <strong>intensive variables</strong>. Conversely, the generalized displacements are directly proportional to the size of the system. If the system’s size is doubled, so too are the displacements. These are called <strong>extensive variables</strong>. Intensive and extensive variables always tend to occur in conjugate pairs like this.</p>
-<p>Using the new notation, we can re-write the first law in the form <span class="math display">\[
-dE = \delta Q + \sum_{i=1}^k J_i dq_i.
+<p>Using the new notation, we can re-write the work in the form <span class="math display">\[
+\delta W = \sum_{i=1}^k J_i dq_i.
 \]</span> For reasons we’ll get into soon, it’s also convenient to break up the work component into non-chemical and chemical work components. If we explicitly split off the chemical work terms, we’d instead write <span class="math display">\[
-dE = \delta Q + \sum_{i=1}^n J_i dq_i + \sum_{j=1}^m \mu_i dN_i.
-\]</span> Of course, we still don’t know how to simplify <span class="math inline">\(\delta Q\)</span> into a useful form. We’ll deal with that soon.</p>
+\delta W = \sum_{i=1}^n J_i dq_i + \sum_{j=1}^m \mu_i dN_i.
+\]</span> Of course, we still don’t know how to simplify <span class="math inline">\(\delta Q\)</span> into a useful form. We’ll deal with that soon. For simplicity, in the rest of this section we’ll express things in vector notation by letting <span class="math inline">\(J, dq, \mu, dN\)</span> represent the vectorized forms of their component terms. Then we can just write the total work as just <span class="math display">\[
+\delta W = J \cdot dq + \mu \cdot dN.
+\]</span></p>
 </section>
 <section id="heat-capacities" class="level3">
 <h3 class="anchored" data-anchor-id="heat-capacities">Heat Capacities</h3>
 <p>Suppose we pump some amount of heat <span class="math inline">\(\delta Q\)</span> into the system. Provided heat is a function of temperature, we’d have <span class="math inline">\(\Delta Q = C \Delta T\)</span>, where <span class="math inline">\(C = C(T)\)</span> is some function of temperature, called the <strong>heat capacity</strong>. The functional form of <span class="math inline">\(C\)</span> depends on the nature of the system. Evidently, the heat capacity is given by <span class="math display">\[
-C(T) \equiv \frac{\delta Q}{dT}.
+\boxed{C(T) \equiv \frac{\delta Q}{dT}} \ .
 \]</span> Since heat is path dependent, the heat capacity must be too. If <span class="math inline">\(\gamma\)</span> is some path taken to get from the initial to the final point in state space, then we might write <span class="math inline">\(C = C_\gamma\)</span> to be explicit about this. The most important case is when we’re dealing with a <em>gas</em>. If a gas is only has work done <span class="math inline">\(\delta W = -pdV\)</span>, then we can think of the gas as only being a function of two state variables, <span class="math inline">\(p\)</span> and <span class="math inline">\(V\)</span>. Two paths of interest in <span class="math inline">\(pV\)</span>-space are paths of constant <span class="math inline">\(p\)</span> or <span class="math inline">\(V\)</span>. Using the first law, the heat capacity <span class="math inline">\(C_V\)</span> at constant volume is evidently <span class="math display">\[
 C_V = \frac{\delta Q_V}{dT} = \frac{dE + pdV}{dT} \bigg |_V = \frac{\partial E}{\partial T}\bigg |_V.
 \]</span> Similarly, the heat capacity <span class="math inline">\(C_p\)</span> at constant pressure is evidently <span class="math display">\[
@@ -525,7 +526,7 @@ C_p - C_V = p \frac{\partial V}{\partial T} \bigg |_p.
 \]</span> Since <span class="math inline">\(V = \frac{Nk_B T}{p}\)</span>, this reduces to just <span class="math display">\[
 C_p - C_V = N k_B.
 \]</span> It turns out that in fact <span class="math inline">\(E \propto pV\)</span>. This result is called the <strong>equipartition theorem</strong>. It must be taken as an empirical <em>law</em> in thermodynamics, but it can be proven with statistical mechanics. The equipartition theorem says that an ideal gas whose individual particles each have <span class="math inline">\(n\)</span> degrees of freedom will have a total energy given by <span class="math display">\[
-E = \frac{n}{2} Nk_B T = \frac{n}{2} pV.
+\boxed{E = \frac{n}{2} Nk_B T = \frac{n}{2} pV} \ .
 \]</span> For example, a <strong>monoatomic gas</strong> is a gas whose particles only have <span class="math inline">\(n=3\)</span> translational degree of freedom. In that case, we’d have <span class="math inline">\(E = \frac{3}{2} pV\)</span>. A <strong>diatomic gas</strong> is a gas whose particles also have two rotational degrees of freedom, giving <span class="math inline">\(n=3+2=5\)</span> total degrees of freedom, and <span class="math inline">\(E = \frac{5}{2} pV\)</span>.</p>
 <p><strong>Aside:</strong> Suppose you wanted to know about how fast particles in a gas were moving. If the gas is roughly ideal, you can use the following rule of thumb: Since the kinetic energy per particle is <span class="math inline">\(\varepsilon=\frac{1}{2}mv^2\)</span>, the total energy is just <span class="math inline">\(E = N\varepsilon = \frac{N}{2}mv^2\)</span>. By the equipartition theorem, <span class="math inline">\(E = \frac{n}{2} Nk_B T\)</span>. Equating both terms and solving for the velocity <span class="math inline">\(v\)</span> gives <span class="math display">\[
 v = \sqrt{\frac{nk_B T}{m}}.
@@ -537,7 +538,7 @@ C_V = \frac{n}{2} Nk_B, \quad C_p = \bigg(\frac{n}{2}+1\bigg) Nk_B.
 \]</span> Notice that these heat capacities are <em>extensive</em> since they’re both proportional to <span class="math inline">\(N\)</span>. In practice we’re interested in an <em>intensive</em> measure of how responsive heat is to changes in temperature. We can achieve this by dividing by <span class="math inline">\(N\)</span> to get a <em>specific heat. More commonly, specific heats are measured per </em>unit mass<em>, not per </em>particle*. If the system has mass <span class="math inline">\(m\)</span>, its <strong>specific heat capacity</strong> is defined by <span class="math inline">\(c \equiv \frac{C}{m}\)</span>.</p>
 <p>Usually it’s the specific heats that are tabulated for various substances. We’d need to look them up to do any kind of numerical calculations. The most useful specific heat to remember is the specific heat of <em>water</em> at standard temperature and pressure or <strong>STP</strong>, i.e.&nbsp;<span class="math inline">\(p=1 \text{ atm}, T=298 \ \degree K\)</span>. In energy units of <em>calories</em>, the specific heat of water at STP is just <span class="math inline">\(c_p = 1 \ \frac{\mathrm{cal}}{\mathrm{g} \mathrm{\degree K}}\)</span>. Note that the specific heat does depend on the <em>phase</em> of a substance. For example, ice has a specific heat of <span class="math inline">\(c_p = 0.5 \ \frac{\mathrm{cal}}{\mathrm{g} \mathrm{\degree K}}\)</span>.</p>
 <p>Another important quantity that’s similar to the specific heat is the <strong>latent heat</strong>. It’s an intensive measure of how much <em>heat</em> is needed for a system to fully undergo a phase change, <span class="math display">\[
-L \equiv \frac{\Delta Q}{m}.
+\boxed{L \equiv \frac{\Delta Q}{m}} \ .
 \]</span> In general, latent heat values will be different than the specific heat values. They’ll also be different for different phase changes. For example, the latent heat of melting ice is <span class="math inline">\(L = 80 \ \frac{\text{cal}}{g}\)</span>, while the latent heat of boiling water is <span class="math inline">\(L = 540 \ \frac{\text{cal}}{g}\)</span>. Again, we’d look these up in tables when we need them.</p>
 </section>
 </section>
@@ -548,7 +549,7 @@ L \equiv \frac{\Delta Q}{m}.
 <h3 class="anchored" data-anchor-id="engines">Engines</h3>
 <p>The second law of thermodynamics arose historically out of an interest among engineers in converting back and forth between heat and mechanical work. A device that converts heat into mechanical work is called an <strong>engine</strong>. A device that converts mechanical work into heat is called a <strong>heat pump</strong> or a <strong>refrigerator</strong> (the difference between the two being whether we want to pump heat into or out of a system).</p>
 <p>Suppose an engine takes in heat <span class="math inline">\(Q_H\)</span> from a <em>heat reservoir</em>, outputs some amount of work <span class="math inline">\(W\)</span>, and dumps any remaining output heat <span class="math inline">\(Q_C\)</span> into a <em>cold reservoir</em>. By the first law, <span class="math inline">\(Q_H = Q_C + W\)</span>. Define the <strong>efficiency</strong> <span class="math inline">\(\eta\)</span> of the engine as the ratio of work extracted to the total amount of heat put in, <span class="math display">\[
-\eta \equiv \frac{W}{Q_H}.
+\boxed{\eta \equiv \frac{W}{Q_H}} \ .
 \]</span> Since <span class="math inline">\(W = Q_H - Q_C\)</span>, we can also write the efficiency as <span class="math display">\[
 \eta = 1 - \frac{Q_C}{Q_H}.
 \]</span> Since we must have <span class="math inline">\(Q_C \leq Q_H\)</span> by the first law, this means <span class="math inline">\(0 \leq \eta \leq 1\)</span> generally speaking. A perfectly efficient engine would convert all heat into work, in which case <span class="math inline">\(\eta = 1\)</span>.</p>
@@ -641,22 +642,22 @@ CE: Q_3 &amp;= Q_1 - W_{13} = Q_1(1 - \eta_{13}). \\
 1 - \eta_{12} = \frac{Q_2}{Q_1} = \frac{f(T_1)}{f(T_2)}.
 \]</span> The system must satisfy this constraint for <em>any</em> function <span class="math inline">\(f(T)\)</span> we choose. We might as well just choose <span class="math inline">\(f(T) \equiv T\)</span>, in which case we get <span class="math display">\[
 \eta_{12} = 1 - \frac{T_2}{T_1}.
-\]</span> That is, <em>any</em> Carnot engine between <span class="math inline">\(T_H\)</span> and <span class="math inline">\(T_C\)</span> must have an efficiency given by <span class="math display">\[
-\eta = 1 - \frac{T_C}{T_H}.
-\]</span> Notice that since <span class="math inline">\(T_C &lt; T_H\)</span>, the Carnot efficiency can never be <span class="math inline">\(1\)</span>. For reasonable temperature ranges, say from freezing to boiling at STP, we’d have <span class="math inline">\(\eta \approx 0.268\)</span>. That’s under 27% efficiency! In fact, the Carnot engine, while the best we can do efficiency-wise, it’s not practical for real engines. One major reason for this is that isothermal processes are <em>really</em> slow, meaning it takes too impractically long to complete a single cycle.</p>
-<p>Since the Carnot efficiency <span class="math inline">\(\eta\)</span> between two temperatures is fixed, we can use it to define a temperature scale provided we fix a base temperature <span class="math inline">\(T_0\)</span>. We can <em>define</em> the temperature <span class="math inline">\(T\)</span> as the value that gives a Carnot efficiency <span class="math inline">\(\eta\)</span> between <span class="math inline">\(T\)</span> and <span class="math inline">\(T_0\)</span>. That is, <span class="math display">\[
-T \equiv T_0 (1 - \eta).
+\]</span> That is, <em>any</em> Carnot engine between <span class="math inline">\(T_H\)</span> and <span class="math inline">\(T_C\)</span> must have a <strong>Carnot efficiency</strong> given by <span class="math display">\[
+\boxed{\eta_c \equiv 1 - \frac{T_C}{T_H}} \ .
+\]</span> Notice that since <span class="math inline">\(T_C &lt; T_H\)</span>, the Carnot efficiency can never be <span class="math inline">\(1\)</span>. For reasonable temperature ranges, say from freezing to boiling at STP, we’d have <span class="math inline">\(\eta_c \approx 0.268\)</span>. That’s under 27% efficiency! In fact, the Carnot engine, while the best we can do efficiency-wise, it’s not practical for real engines. One major reason for this is that isothermal processes are <em>really</em> slow, meaning it takes too impractically long to complete a single cycle.</p>
+<p>Since the Carnot efficiency <span class="math inline">\(\eta_c\)</span> between two temperatures is fixed, we can use it to define a temperature scale provided we fix a base temperature <span class="math inline">\(T_0\)</span>. We can <em>define</em> the temperature <span class="math inline">\(T\)</span> as the value that gives a Carnot efficiency <span class="math inline">\(\eta_c\)</span> between <span class="math inline">\(T\)</span> and <span class="math inline">\(T_0\)</span>. That is, <span class="math display">\[
+T \equiv T_0 (1 - \eta_c).
 \]</span> The thermodynamic definition also implies that temperature <span class="math inline">\(T\)</span> must be <em>positive</em>. If we had <span class="math inline">\(T &lt; 0\)</span>, then an engine operating between it and a positive temperature could extract heat from both reservoirs and convert the sum total to work, in violating of the second law.</p>
 </section>
 <section id="entropy" class="level3">
 <h3 class="anchored" data-anchor-id="entropy">Entropy</h3>
-<p>We’re finally ready to construct the state function that’s conjugate to temperature. Let’s look again at the previous theorem that said <span class="math inline">\(\eta \leq \eta_{carnot}\)</span> for any engine between <span class="math inline">\(T_H\)</span> and <span class="math inline">\(T_C\)</span>. We can rewrite this inequality in the form <span class="math display">\[
+<p>We’re finally ready to construct the state function that’s conjugate to temperature. Let’s look again at the previous theorem that said <span class="math inline">\(\eta \leq \eta_c\)</span> for any engine between <span class="math inline">\(T_H\)</span> and <span class="math inline">\(T_C\)</span>. We can rewrite this inequality in the form <span class="math display">\[
 \frac{W}{Q_H} = 1 - \frac{Q_C}{Q_H} \leq 1 - \frac{T_C}{T_H}.
 \]</span> Rearranging both sides, we get <span class="math display">\[
 \frac{Q_H}{T_H} - \frac{Q_C}{T_C} \leq 0.
 \]</span> What’s interesting to notice here is that the quantity <span class="math inline">\(\frac{Q}{T}\)</span>, whatever it is, depends <em>only</em> on the initial and final points. That is, it’s a state function. In fact, the above statement is extremely general.</p>
 <p><strong>Clausius’ Theorem:</strong> For <em>any</em> cyclic process (not necessarily quasi-static), if <span class="math inline">\(\delta Q\)</span> is an increment of heat delivered to a system at some temperature <span class="math inline">\(T\)</span>, then the sum total ratio of heat to temperature across the entire cycle is negative, i.e. <span class="math display">\[
-\oint \frac{\delta Q}{T} \leq 0.
+\boxed{\oint \frac{\delta Q}{T} \leq 0} \ .
 \]</span> <strong>Proof:</strong> What we’ll do is imagine pumping a heat increment <span class="math inline">\(\delta Q\)</span> into the system by hook a Carnot engine with hot reservoir temperature <span class="math inline">\(T_0\)</span> , which takes input heat <span class="math inline">\(\delta Q_0\)</span> and uses that to generate some amount of work <span class="math inline">\(\delta W\)</span>, expelling the remaining heat into the system as <span class="math inline">\(\delta Q\)</span> at a cold reservoir temperature <span class="math inline">\(T\)</span>.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -672,11 +673,11 @@ Q_0 = T_0 \oint \frac{\delta Q}{T} \leq 0 \quad \Longrightarrow \quad \oint \fra
 \]</span> <strong>Proof:</strong> This is easy to see. If we run the process forward we get <span class="math inline">\(\frac{\delta Q_{rev}}{T} \leq 0\)</span>. By reversibility though, we can also run the process backwards, in which case <span class="math inline">\(\delta Q_{rev} \rightarrow -\delta Q_{rev}\)</span>, and so <span class="math inline">\(\frac{\delta Q_{rev}}{T} \geq 0\)</span>. This implies the integral between any two points <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> must be path independent, since for any two paths <span class="math inline">\(\mathcal{C}\)</span> and <span class="math inline">\(\mathcal{C}'\)</span>, we have <span class="math display">\[
 \int_A^B \frac{\delta Q_{rev}^{{\mathcal{C}}}}{T_{{\mathcal{C}}}} + \int_B^A \frac{\delta Q_{rev}^{{\mathcal{C}'}}}{T_{{\mathcal{C}'}}} = 0 \quad \Longrightarrow \quad \oint \frac{\delta Q_{rev}}{T} = 0. \quad \text{Q.E.D.}
 \]</span> This corollary implies the existence a state function <span class="math inline">\(S\)</span>, defined by the path integral <span class="math display">\[
-\Delta S = \int_A^B \frac{\delta Q_{rev}}{T}.
-\]</span> This state function is called the <strong>entropy</strong> of the system. Since <span class="math inline">\(\delta Q_{rev} = TdS\)</span>, we’ve finally found the conjugate to temperature we were seeking. It’s just the entropy. Plugging this into the first law, we have that for any quasi-static, reversible process in equilibrium, <span class="math display">\[
-dE = TdS + \sum_{i=1}^n J_i dq_i + \sum_{j=1}^m \mu_i dN_i.
+\boxed{\Delta S \equiv \int_A^B \frac{\delta Q_{rev}}{T}} \ .
+\]</span> This state function is called the <strong>entropy</strong> of the system. Since <span class="math inline">\(\delta Q_{rev} = TdS\)</span>, we’ve finally found the conjugate variable to temperature . It’s just the entropy. Plugging this into the first law, we finally have that for any quasi-static, reversible process in equilibrium, <span class="math display">\[
+\boxed{dE = TdS + J \cdot dq + \mu \cdot dN} \ .
 \]</span> This formula is without doubt the most useful identity in thermodynamics. Notice that this implies that we only need <span class="math inline">\(n+m+1\)</span> total quantities to completely specify the state of the system. We can obtain the rest by partial differentiation. Assuming the mechanical displacements are independent, we have <span class="math display">\[
-T = \frac{\partial E}{\partial S} \bigg |_{\{q_i\}}, \quad J_i = \frac{\partial E}{\partial q_i} \bigg |_{S, \ \{q_k: \ k \neq i\}, \ \{N_j\}}, \quad \mu_j = \frac{\partial E}{\partial q_i} \bigg |_{S, \ \{q_i\}, \ \{N_k: \ k \neq j\}}.
+T = \frac{\partial E}{\partial S} \bigg |_q \ , \quad J_i = \frac{\partial E}{\partial q_i} \bigg |_{S, \ \{q_k: \ k \neq i\}, \ N} \ , \quad \mu_j = \frac{\partial E}{\partial q_i} \bigg |_{S, \ q, \ \{N_k: \ k \neq j\}} \ .
 \]</span></p>
 <hr>
 <p><strong>Example: Entropy of a Monatomic Ideal Gas</strong></p>
@@ -689,7 +690,7 @@ dS = \frac{1}{T}dE - \frac{p}{T} dV = Nk_B \bigg[\frac{3}{2} \frac{dT}{T} + \fra
 \Delta S = Nk_B \bigg[\frac{3}{2} \log \frac{T}{T_0} + \log \frac{V}{V_0} \bigg] = Nk_B \log\bigg[ \frac{V}{V_0} \bigg(\frac{T}{T_0}\bigg)^{3/2} \bigg].
 \]</span> It’s interesting to note from this formula that the entropy is extensive since it depends linearly on <span class="math inline">\(N\)</span>. It also seems to increase <em>logarithmically</em> with the volume and the temperature. Since <span class="math inline">\(k_B\)</span> has units of energy over temperature, so too does the entropy.</p>
 <p>Notice this formula only gives the <em>change</em> in entropy. It doesn’t give a function for the entropy itself. For that we’d need a zero-point for <span class="math inline">\(S\)</span>, which comes from the <em>third law</em> of thermodynamics. It turns out that for an ideal gas, the entropy function <span class="math inline">\(S\)</span> is given in exact form by the <strong>Sackur–Tetrode equation</strong>, <span class="math display">\[
-S = Nk_B \log\bigg[\frac{V}{N} \bigg(\frac{mE}{3\pi \hbar^2 N}\bigg)^{3/2} \bigg] + \frac{5}{2} Nk_B.
+\boxed{S = Nk_B \log\bigg[\frac{V}{N} \bigg(\frac{mE}{3\pi \hbar^2 N}\bigg)^{3/2} \bigg] + \frac{5}{2} Nk_B} \ .
 \]</span> We’ll be able to derive this equation when we get to statistical mechanics.</p>
 <hr>
 <p><strong>Corollary:</strong> For an <em>irreversible process</em>, we have the inequality <span class="math display">\[
@@ -703,7 +704,7 @@ S = Nk_B \log\bigg[\frac{V}{N} \bigg(\frac{mE}{3\pi \hbar^2 N}\bigg)^{3/2} \bigg
 </section>
 <section id="thermodynamic-potentials" class="level2">
 <h2 class="anchored" data-anchor-id="thermodynamic-potentials">Thermodynamic Potentials</h2>
-<p>Let’s look more closely again at the differential of the energy. To keep notation compact, we’ll use <span class="math inline">\(J, q, \mu, N\)</span> to denote the abstract vectors of these quantities. Then in general we can write <span class="math inline">\(dE\)</span> as <span class="math display">\[
+<p>Let’s look more closely again at the differential of the energy. We have <span class="math display">\[
 dE = TdS + J \cdot dq + \mu \cdot dN.
 \]</span> This differential implies that <span class="math inline">\(E = E(S, q, N)\)</span> explicitly, with <span class="math inline">\(T, J, \mu\)</span> determined implicitly by partial differentiation. Suppose, however, that we wanted the energy as an explicit function of other variables instead. For example, it may be easier to control the temperature or pressure of a gas in the lab than entropy or volume. We can go back and forth between conjugate pairs using <em>Legendre transformations</em>.</p>
 <p>Suppose we have some function <span class="math inline">\(f(x, y)\)</span>. Suppose <span class="math inline">\(x\)</span> is <em>conjugate</em> to another variable <span class="math inline">\(p\)</span> in the sense that <span class="math display">\[
@@ -717,7 +718,7 @@ dg \equiv d(f-px) = -xdp + vdy.
 <p>Suppose we wanted to swap <span class="math inline">\(J\)</span> with <span class="math inline">\(q\)</span> to express the energy as a function <span class="math inline">\(H = H(S, q, N)\)</span>. We can figure out the form of <span class="math inline">\(H\)</span> by doing a Legendre transformation between <span class="math inline">\(J\)</span> and <span class="math inline">\(q\)</span>. Adding <span class="math inline">\(q \cdot dJ\)</span> to both sides of the first law and rearranging gives <span class="math display">\[
 dH = d(E - J \cdot x) = TdS - q \cdot dJ + \mu \cdot dN.
 \]</span> That is, the equation for <span class="math inline">\(H\)</span> is evidently <span class="math display">\[
-H \equiv E - J \cdot x.
+\boxed{H \equiv E - J \cdot x} \ .
 \]</span> This function is called the <strong>enthalpy</strong>. We can think of it as a form of energy where the mechanical work gets subtracted out. When dealing with a gas, we’d have <span class="math inline">\(J \cdot dx = -pdV\)</span>, in which case the enthalpy would be <span class="math display">\[
 H = E + pV.
 \]</span> The enthalpy is perhaps most useful when dealing with <em>adiabatic</em> systems. In that case, <span class="math inline">\(\delta Q = 0\)</span> means the enthalpy is just the work done, i.e.&nbsp;<span class="math inline">\(dH = -q \cdot dJ + \mu \cdot dN\)</span>. Adiabatic processes tend to happen very quickly, like the combustion of gas in a cylinder.</p>
@@ -727,7 +728,7 @@ H = E + pV.
 <p>Suppose now we wanted to instead swap <span class="math inline">\(T\)</span> with <span class="math inline">\(S\)</span> to get a function <span class="math inline">\(F = F(T, q, N)\)</span>. If we add and subtract <span class="math inline">\(SdT\)</span> to both sides of <span class="math inline">\(dE\)</span> and rearrange, we get <span class="math display">\[
 dF = -SdT + J \cdot dq + \mu \cdot dN.
 \]</span> The function <span class="math inline">\(F\)</span> is called the <strong>Helmholtz free energy</strong>, evidently given by <span class="math display">\[
-F = E - TS.
+\boxed{F = E - TS} \ .
 \]</span> We can think of the Helmholtz free energy as a kind of energy in which the <em>heat</em> has been subtracted out of the system. The Helmholtz free energy is perhaps most useful when dealing with isothermal processes, in which case <span class="math inline">\(dF\)</span> reduces to just <span class="math inline">\(dF = J \cdot dq + \mu \cdot dN\)</span>. Isothermal processes happen very slowly, so slowly they’re impractical for real-world engines.</p>
 </section>
 <section id="gibbs-free-energy" class="level3">
@@ -735,7 +736,7 @@ F = E - TS.
 <p>Suppose now we wanted to swap <em>both</em> <span class="math inline">\(q\)</span> with <span class="math inline">\(J\)</span> as well as <span class="math inline">\(T\)</span> with <span class="math inline">\(S\)</span> to get a function <span class="math inline">\(G = G(T, J, N)\)</span>. If we start with the <em>enthalpy</em> <span class="math inline">\(dH\)</span> and add and subtract <span class="math inline">\(SdT\)</span> to both sides and rearrange, we get <span class="math display">\[
 dG = d(H - TS) = -SdT - q \cdot dJ + \mu \cdot dN.
 \]</span> The function <span class="math inline">\(G\)</span> is called the <strong>Gibbs free energy</strong>, evidently given by <span class="math display">\[
-G = H - TS = E - TS - J \cdot q.
+\boxed{G = H - TS = E - TS - J \cdot q} \ .
 \]</span> We can think of the Gibbs free energy as a kind of energy in which <em>both</em> the mechanical work done as well as the heat have been subtracted out of the system. When dealing with a gas, <span class="math inline">\(G\)</span> takes the form <span class="math display">\[
 G = E - TS + pV.
 \]</span> The Helmholtz free energy is perhaps most useful when dealing with processes that take place at fixed temperature and pressure, e.g.&nbsp;processes that take place at STP. These often include, for example, biological processes, like the thermodynamics in and around a cell.</p>
@@ -745,7 +746,7 @@ G = E - TS + pV.
 <p>So far we haven’t touched the chemical work terms at all. Suppose now though that we want a kind of Gibbs free energy that swaps <span class="math inline">\(\mu\)</span> with <span class="math inline">\(N\)</span> instead of <span class="math inline">\(J\)</span> with <span class="math inline">\(q\)</span> to get a function <span class="math inline">\(\mathcal{G} = \mathcal{G}(T,q,\mu)\)</span>. If we this time start with the Helmholtz free energy and add and subtract <span class="math inline">\(N \cdot d\mu\)</span> to both sides and re-arrange, we get <span class="math display">\[
 d\mathcal{G} = d(F - \mu \cdot N) = -SdT + J \cdot dq - N \cdot d\mu.
 \]</span> This function <span class="math inline">\(\mathcal{G}\)</span> is called the <strong>grand potential</strong>, evidently given by <span class="math display">\[
-\mathcal{G} = F - \mu \cdot N = E - TS - \mu \cdot N.
+\boxed{\mathcal{G} = F - \mu \cdot N = E - TS - \mu \cdot N} \ .
 \]</span> We can think of the grand potential as a kind of energy in which <em>both</em> the heat and the <em>chemical work</em> have been subtracted out of the system.</p>
 </section>
 <section id="extensivity" class="level3">
@@ -760,7 +761,7 @@ E(\lambda S, \lambda q, \lambda N) = \lambda E(S, q, N).
 \Longrightarrow E(S, q, N) &amp;= TS + J \cdot q + \mu \cdot N. \\
 \end{align*}
 \]</span> That is, for an extensive system, the energy is just given directly by <span class="math display">\[
-E = TS + J \cdot q + \mu \cdot N.
+\boxed{E = TS + J \cdot q + \mu \cdot N} \ .
 \]</span> If we take the differential of both sides and apply the first law, we get <span class="math display">\[
 \begin{align*}
 dE &amp;= d(TS) + d(J \cdot q) + d(\mu \cdot N) \\
@@ -768,7 +769,7 @@ dE &amp;= d(TS) + d(J \cdot q) + d(\mu \cdot N) \\
 &amp;= TdS + J \cdot dq + \mu \cdot dN. \\
 \end{align*}
 \]</span> This means the second term must be zero for an extensive system, <span class="math display">\[
-SdT + q \cdot dJ + N \cdot d\mu = 0.
+\boxed{SdT + q \cdot dJ + N \cdot d\mu = 0} \ .
 \]</span> This relation is called the <strong>Gibbs-Dunham relation</strong>. Notice it’s just the differential of a function <span class="math inline">\(L = L(T,J,\mu)\)</span> of the intensive variables. We’ve thus shown that no thermodynamic potential of the intensive variables alone can exist for an extensive system.</p>
 <p>Extensivity gives us a new constraint that we can often use to solve problems. Here’s an example.</p>
 <hr>
@@ -791,22 +792,26 @@ G = E - TS - J \cdot q = \mu N.
 <p>Recall from calculus that for any function with continuous second partial derivatives, the mixed second partial derivatives commute. For example, a function <span class="math inline">\(z = f(x,y)\)</span> would have <span class="math display">\[
 \frac{\partial^2 z}{\partial x \partial y} = \frac{\partial^2 z}{\partial y \partial x}.
 \]</span> We generally assume that the state functions in thermodynamics are sufficiently smooth enough that their mixed partial derivatives all commute like this. This condition imposes another set of constraints on the potentials, which we can use to find interesting, non-trivial relationships between various state variables. They’re called the <strong>Maxwell relations</strong>. If <span class="math inline">\(dE = TdS + J \cdot dq + \mu \cdot dN\)</span>, then there are in total 3 Maxwell relations per potential, which means there are <span class="math inline">\(3 \cdot 5 = 15\)</span> relations across all 5 potentials, though some of these are duplicates. Here are the differential forms of all 5 potentials again, <span class="math display">\[
+\boxed{
 \begin{align*}
-dE &amp;= \quad TdS + J \cdot dq + \mu \cdot dN, \\
-dH &amp;= \quad TdS - q \cdot dJ + \mu \cdot dN, \\
-dF &amp;= \;-SdT + J \cdot dq + \mu \cdot dN, \\
-dG &amp;= \;-SdT - q \cdot dJ + \mu \cdot dN, \\
-d\mathcal{G} &amp;= \;-SdT + J \cdot dq - N \cdot d\mu. \\
+dE &amp;= \quad TdS + J \cdot dq + \mu \cdot dN \\
+dH &amp;= \quad TdS - q \cdot dJ + \mu \cdot dN \\
+dF &amp;= \;-SdT + J \cdot dq + \mu \cdot dN \\
+dG &amp;= \;-SdT - q \cdot dJ + \mu \cdot dN \\
+d\mathcal{G} &amp;= \;-SdT + J \cdot dq - N \cdot d\mu \\
 \end{align*}
+} \ .
 \]</span></p>
 <p>In the simple case of a closed system, we’d have <span class="math inline">\(dN=0\)</span>, which reduces the total number of relations to <span class="math inline">\(1 \cdot 4 = 4\)</span>. Those 4 Maxwell relations are evidently <span class="math display">\[
+\boxed{
 \begin{align*}
 &amp;\frac{\partial^2 E}{\partial S \partial q}&amp; &amp;=&amp; &amp;\frac{\partial T}{\partial q} \bigg |_{S,N}&amp; &amp;=&amp; &amp;\frac{\partial J}{\partial S} \bigg |_{q,N}&amp; \\
 &amp;\frac{\partial^2 H}{\partial S \partial J}&amp; &amp;=&amp; -&amp;\frac{\partial T}{\partial J} \bigg |_{S,N}&amp; &amp;=&amp; &amp;\frac{\partial q}{\partial S} \bigg |_{J,N}&amp; \\
 &amp;\frac{\partial^2 F}{\partial T \partial q}&amp; &amp;=&amp; -&amp;\frac{\partial S}{\partial q} \bigg |_{T,N}&amp; &amp;=&amp; &amp;\frac{\partial J}{\partial T} \bigg |_{q,N}&amp; \\
-&amp;\frac{\partial^2 G}{\partial T \partial J}&amp; &amp;=&amp; &amp;\frac{\partial S}{\partial J} \bigg |_{T,N}&amp; &amp;=&amp; &amp;\frac{\partial q}{\partial T} \bigg |_{J,N}&amp;. \\
+&amp;\frac{\partial^2 G}{\partial T \partial J}&amp; &amp;=&amp; &amp;\frac{\partial S}{\partial J} \bigg |_{T,N}&amp; &amp;=&amp; &amp;\frac{\partial q}{\partial T} \bigg |_{J,N}&amp; \\
 \end{align*}
-\]</span> Though the relations themselves are non-intuitive, the process for deriving them is straight forward. Suppose for example you wanted to find a Maxwell relation for <span class="math display">\[
+} \ .
+\]</span> Though the relations themselves are non-intuitive, the process for deriving them is straight forward. Suppose for example we wanted to find a Maxwell relation for <span class="math display">\[
 \frac{\partial \mu}{\partial p} \bigg |_{T,N}.
 \]</span> To get a relation like this, we’d need a potential that’s an explicit function of <span class="math inline">\(p, T, N\)</span>. That’s of course the Gibbs free energy. In this case, we’d have <span class="math display">\[
 \frac{\partial \mu}{\partial p} \bigg |_{T,N} = \frac{\partial}{\partial p} \bigg |_{T,N} \frac{\partial G}{\partial N} \bigg |_{T,p} = \frac{\partial}{\partial N} \bigg |_{T,p} \frac{\partial G}{\partial p} \bigg |_{T,N} = \frac{\partial V}{\partial N} \bigg |_{T,p}.
@@ -826,7 +831,7 @@ d\mathcal{G} &amp;= \;-SdT + J \cdot dq - N \cdot d\mu. \\
 \delta \mathbf{F} \cdot \delta\mathbf{x} = \sum_{i=1}^3 \delta F_i \delta x_i &gt; 0.
 \]</span> We can extend this same idea to thermodynamical systems, except there we require that <em>all</em> equilibrium points be stable. That is, the stability condition is <em>required</em> to be in thermodynamic equilibrium.</p>
 <p><strong>Theorem:</strong> Any thermodynamic system in equilibrium must satisfy the stability condition <span class="math display">\[
-\delta T \delta S + \delta J \cdot \delta q + \delta \mu \cdot \delta N \geq 0.
+\boxed{\delta T \delta S + \delta J \cdot \delta q + \delta \mu \cdot \delta N \geq 0} \ .
 \]</span> <strong>Proof:</strong> Consider an <em>isolated</em> system in equilibrium. Then any two subsystems <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> must be in equilibrium with each other. It must be the case then that their intensive quantities are identical, i.e. <span class="math display">\[
 T \equiv T_A = T_B, \quad J \equiv J_A = J_B, \quad \mu \equiv \mu_A = \mu_B.
 \]</span> It must also be the case that their extensive quantities add to give the ones for the full system, <span class="math display">\[
@@ -891,10 +896,10 @@ C_q = \frac{\delta Q}{\partial T} \bigg |_{q,N} = T \frac{\partial S}{\partial T
 \Delta S = S_2 - S_1 = \int_{x_1}^{x_2} \frac{\delta Q_{rev}}{T}.
 \]</span> We can say this for any positive temperature <span class="math inline">\(T\)</span>. Now suppose we allow <span class="math inline">\(T \rightarrow 0\)</span>. What happens to <span class="math inline">\(\Delta S\)</span>? It turns out experimentally that <span class="math inline">\(\Delta S \rightarrow 0\)</span>. This is an independent fact due to Nernst, which gives us a narrow statement of the third law of thermodynamics.</p>
 <p><strong>Third Law (Nernst):</strong> The entropy of all systems at zero absolute temperature is a universal constant that can be taken to be zero. That is, between any two states we must have <span class="math display">\[
-\lim_{T \rightarrow 0} \Delta S = 0.
+\boxed{\lim_{T \rightarrow 0} \Delta S = 0} \ .
 \]</span> This statement turns out to be experimentally equivalent to an even stronger statement. Not only does <span class="math inline">\(\Delta S \rightarrow 0\)</span>, but in fact <span class="math inline">\(S \rightarrow 0\)</span> for any substance.</p>
 <p><strong>Third Law (General):</strong> The entropy of <em>all</em> substances at zero absolute temperature is the same universal constant, which can be defined to be zero. That is, for any system, <span class="math display">\[
-\lim_{T \rightarrow 0} S = S_0 \equiv 0.
+\boxed{\lim_{T \rightarrow 0} S = S_0 \equiv 0} \ .
 \]</span> This extended version of the third law can be experimentally tested by looking at the behavior of certain materials like sulfur or phosphine, which can exist near absolute zero in multiple crystalline structures called <em>allotropes</em>. Each allotrope has its own heat capacity <span class="math inline">\(C(T)\)</span>. It’s been shown that as <span class="math inline">\(T \rightarrow 0\)</span>, each of these paths sends <span class="math inline">\(C \rightarrow 0\)</span>, which implies <span class="math inline">\(S \rightarrow 0\)</span> as well.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
