@@ -82,25 +82,25 @@ The condition that $\theta = \theta_A$ says that in the space of coordinates of 
 
 ### The Ideal Gas
 
-One practically useful way to define an empirical temperature scale uses the properties of the *ideal gas*. An **ideal gas** is a large number of dilute particles that satisfy the property that the product of the gas's pressure $p$ and volume $V$ is proportional temperature in the dilute limit, i.e.
+One practically useful way to define an empirical temperature scale uses the properties of the *ideal gas*. An **ideal gas** is a large number of dilute particles that satisfy the property that the product of the gas's pressure $P$ and volume $V$ is proportional temperature in the dilute limit, i.e.
 $$
-\lim_{V \rightarrow \infty} pV = \lim_{p \rightarrow 0} pV \propto \theta.
+\lim_{V \rightarrow \infty} PV = \lim_{P \rightarrow 0} PV \propto \theta.
 $$
 We'll assume the gas is allowed to interact diathermally with the heat bath. That is, the gas is allowed to exchange energy with its environment, but nothing else. 
 
-Suppose now that we submerge the gas in one heat bath and record values for $p, V, \theta$ once the system has reached equilibrium. Then, we take the gas and submerge it again in a different *reference*  heat bath. Once the system has again reached equilibrium, we again record the new values $p_0, V_0, \theta_0$. Now, since the gas is ideal, we must have
+Suppose now that we submerge the gas in one heat bath and record values for $P, V, \theta$ once the system has reached equilibrium. Then, we take the gas and submerge it again in a different *reference*  heat bath. Once the system has again reached equilibrium, we again record the new values $P_0, V_0, \theta_0$. Now, since the gas is ideal, we must have
 $$
-\frac{\theta}{\theta_0} = \frac{pV}{p_0 V_0}.
+\frac{\theta}{\theta_0} = \frac{PV}{P_0 V_0}.
 $$
 Provided we've fixed a value for $\theta_0$, we can thus *define* the temperature $T$ of the system by
 $$
-T \equiv \theta \equiv \theta_0 \frac{pV}{p_0 V_0} = \frac{\theta_0}{p_0} \frac{pV}{V_0}.
+T \equiv \theta \equiv \theta_0 \frac{PV}{P_0 V_0} = \frac{\theta_0}{P_0} \frac{PV}{V_0}.
 $$
-In the Kelvin scale, $\theta_0$ and $p_0$ are again defined by the triple point of water. This means that to measure the temperature, we'd need to first measure the pressure and volume of the gas in the heat bath of interest, and then compare that with the volume the same gas would have at the triple point.
+In the Kelvin scale, $\theta_0$ and $P_0$ are again defined by the triple point of water. This means that to measure the temperature, we'd need to first measure the pressure and volume of the gas in the heat bath of interest, and then compare that with the volume the same gas would have at the triple point.
 
-For an ideal gas, we evidently have the relation then that $pV \propto T$. It turns out that $pV$ is *also* proportional to the number of particles $N$ in the gas, $pV \propto N$. We can write the full **ideal gas law** in the form
+For an ideal gas, we evidently have the relation then that $PV \propto T$. It turns out that $PV$ is *also* proportional to the number of particles $N$ in the gas, $PV \propto N$. We can write the full **ideal gas law** in the form
 $$
-\boxed{pV = Nk_B T} \ ,
+\boxed{PV = Nk_B T} \ ,
 $$
 where $k_B$ is a proportionality constant, called the **Boltzmann constant**. Its value is measured to be
 $$
@@ -143,15 +143,15 @@ $$
 
 The work done on the system is inherently *mechanical* in that it's a sum of forces times displacements. Since we want to imagine *generalized forces* and *generalized displacements*, we'll write it in the notation
 $$
-\delta W = \sum_i J_i d q_i,
+\delta W = \sum_i J_i d X_i,
 $$
-where $J_i$ is a generalized force conjugate to some generalized displacement variable $q_i$. Here are some of the most common conjugate force-displacement pairs:
+where $J_i$ is a generalized force conjugate to some generalized displacement variable $X_i$. Here are some of the most common conjugate force-displacement pairs:
 
-| System            | Generalized Force: $J$    | Generalized Displacement: $q$ |
+| System            | Generalized Force: $J$    | Generalized Displacement: $X$ |
 | ----------------- | ------------------------- | ----------------------------- |
 | Wire              | Tension: $F$              | Length: $L$                   |
 | Film              | Surface Tension: $\sigma$ | Area: $A$                     |
-| Fluid             | Pressure: $-p$            | Volume: $V$                   |
+| Fluid             | Pressure: $-P$            | Volume: $V$                   |
 | Magnet            | Magnetic Field: $B$       | Magnetization: $M$            |
 | Dielectric        | Electric Field: $E$       | Polarization: $P$             |
 | Chemical Reaction | Chemical Potential: $\mu$ | Particle Number: $N$          |
@@ -160,15 +160,15 @@ The generalized forces have the property that their values are *independent* of 
 
 Using the new notation, we can re-write the work in the form
 $$
-\delta W = \sum_{i=1}^k J_i dq_i.
+\delta W = \sum_{i=1}^k J_i dX_i.
 $$
 For reasons we'll get into soon, it's also convenient to break up the work component into non-chemical and chemical work components. If we explicitly split off the chemical work terms, we'd instead write
 $$
-\delta W = \sum_{i=1}^n J_i dq_i + \sum_{j=1}^m \mu_i dN_i.
+\delta W = \sum_{i=1}^n J_i dX_i + \sum_{j=1}^m \mu_i dN_i.
 $$
-Of course, we still don't know how to simplify $\delta Q$ into a useful form. We'll deal with that soon. For simplicity, in the rest of this section we'll express things in vector notation by letting $J, dq, \mu, dN$ represent the vectorized forms of their component terms. Then we can just write the total work as just
+Of course, we still don't know how to simplify $\delta Q$ into a useful form. We'll deal with that soon. For simplicity, in the rest of this section we'll express things in vector notation by letting $J, dX, \mu, dN$ represent the vectorized forms of their component terms. Then we can just write the total work as just
 $$
-\delta W = J \cdot dq + \mu \cdot dN.
+\delta W = J \cdot dX + \mu \cdot dN.
 $$
 
 
@@ -178,41 +178,35 @@ Suppose we pump some amount of heat $\delta Q$ into the system. Provided heat is
 $$
 \boxed{C(T) \equiv \frac{\delta Q}{dT}} \ .
 $$
-Since heat is path dependent, the heat capacity must be too. If $\gamma$ is some path taken to get from the initial to the final point in state space, then we might write $C = C_\gamma$ to be explicit about this. The most important case is when we're dealing with a *gas*. If a gas is only has work done $\delta W = -pdV$, then we can think of the gas as only being a function of two state variables, $p$ and $V$. Two paths of interest in $pV$-space are paths of constant $p$ or $V$. Using the first law, the heat capacity $C_V$ at constant volume is evidently
+Since heat is path dependent, the heat capacity must be too. If $\gamma$ is some path taken to get from the initial to the final point in state space, then we might write $C = C_\gamma$ to be explicit about this. The most important case is when we're dealing with a *gas*. If a gas is only has work done $\delta W = -PdV$, then we can think of the gas as only being a function of two state variables, $P$ and $V$. Two paths of interest in $pV$-space are paths of constant $P$ or $V$. Using the first law, the heat capacity $C_V$ at constant volume is evidently
 $$
-C_V = \frac{\delta Q_V}{dT} = \frac{dE + pdV}{dT} \bigg |_V = \frac{\partial E}{\partial T}\bigg |_V.
+C_V = \frac{\delta Q_V}{dT} = \frac{dE + PdV}{dT} \bigg |_V = \frac{\partial E}{\partial T}\bigg |_V.
 $$
-Similarly, the heat capacity $C_p$ at constant pressure is evidently
+Similarly, the heat capacity $C_P$ at constant pressure is evidently
 $$
-C_p = \frac{\delta Q_p}{dT} = \frac{dE + pdV}{dT} \bigg |_p =  \frac{\partial E}{\partial T}\bigg |_p + p \frac{\partial V}{\partial T} \bigg |_p.
+C_P = \frac{\delta Q_P}{dT} = \frac{dE + PdV}{dT} \bigg |_P =  \frac{\partial E}{\partial T}\bigg |_P + P \frac{\partial V}{\partial T} \bigg |_P.
 $$
-It turns out that the two $\frac{\partial E}{\partial T}$ derivatives are the same. This follows empirically from the *Joule Free Expansion Experiment*: Suppose we have two chambers connected by a thin hole that's initially closed. Initially, all the gas is in the left chamber at an equilibrium temperature $T$. Suppose the hole is then suddenly opened, allowing the gas to adiabatically expand into the right chamber. 
+It turns out that the two $\frac{\partial E}{\partial T}$ derivatives are the same. This follows empirically from the *Joule Free Expansion Experiment*. Suppose we have two chambers connected by a thin hole that's initially closed. Initially, all the gas is in the left chamber at an equilibrium temperature $T$. Suppose the hole is then suddenly opened, allowing the gas to adiabatically expand into the right chamber. 
 
 ![](./resources/image-20230316094535411.png){width=500 fig-align=center}
 
 Since the gas isn't pushing on anything, it can't do any work. Since the process is adiabatic, no heat is flowing either. This means the total energy isn't changing either. Once the system has settle down to equilibrium, the temperature in the two chambers must be the same. This evidently implies the energy must be a function of temperature alone, i.e.
 $$
-E = E(T) = E(pV).
+E = E(T) = E(PV).
 $$
 Using this fact, for an ideal gas we can evidently write
 $$
-C_p - C_V = p \frac{\partial V}{\partial T} \bigg |_p.
+C_p - C_V = P \frac{\partial V}{\partial T} \bigg |_P.
 $$
-Since $V = \frac{Nk_B T}{p}$, this reduces to just
+Since $V = \frac{Nk_B T}{P}$, this reduces to just
 $$
-C_p - C_V = N k_B.
+C_P - C_V = N k_B.
 $$
-It turns out that in fact $E \propto pV$. This result is called the **equipartition theorem**. It must be taken as an empirical *law* in thermodynamics, but it can be proven with statistical mechanics. The equipartition theorem says that an ideal gas whose individual particles each have $n$ degrees of freedom will have a total energy given by
+It turns out that in fact $E \propto PV$. This result is called the **equipartition theorem**. It must be taken as an empirical *law* in thermodynamics, but it can be proven with statistical mechanics. The equipartition theorem says that an ideal gas whose individual particles each have $n$ degrees of freedom will have a total energy given by
 $$
-\boxed{E = \frac{n}{2} Nk_B T = \frac{n}{2} pV} \ .
+\boxed{E = \frac{n}{2} Nk_B T = \frac{n}{2} PV} \ .
 $$
-For example, a **monoatomic gas** is a gas whose particles only have $n=3$ translational degree of freedom. In that case, we'd have $E = \frac{3}{2} pV$. A **diatomic gas** is a gas whose particles also have two rotational degrees of freedom, giving $n=3+2=5$ total degrees of freedom, and $E = \frac{5}{2} pV$.
-
-**Aside:** Suppose you wanted to know about how fast particles in a gas were moving. If the gas is roughly ideal, you can use the following rule of thumb: Since the kinetic energy per particle is $\varepsilon=\frac{1}{2}mv^2$,  the total energy is just $E = N\varepsilon = \frac{N}{2}mv^2$. By the equipartition theorem, $E = \frac{n}{2} Nk_B T$. Equating both terms and solving for the velocity $v$ gives
-$$
-v = \sqrt{\frac{nk_B T}{m}}.
-$$
-Note this formula is only approximately true, in that it actually gives an estimate of the *RMS* velocity.
+For example, a **monoatomic gas** is a gas whose particles only have $n=3$ translational degree of freedom. In that case, we'd have $E = \frac{3}{2} PV$. A **diatomic gas** is a gas whose particles also have two rotational degrees of freedom, giving $n=3+2=5$ total degrees of freedom, and $E = \frac{5}{2} PV$.
 
 Using the equipartition theorem, we can find the heat capacity of an ideal gas directly. Since
 $$
@@ -220,11 +214,11 @@ $$
 $$
 we evidently have
 $$
-C_V = \frac{n}{2} Nk_B, \quad C_p = \bigg(\frac{n}{2}+1\bigg) Nk_B.
+C_V = \frac{n}{2} Nk_B, \quad C_P = \bigg(\frac{n}{2}+1\bigg) Nk_B.
 $$
-Notice that these heat capacities are *extensive* since they're both proportional to $N$. In practice we're interested in an *intensive* measure of how responsive heat is to changes in temperature. We can achieve this by dividing by $N$ to get a *specific heat. More commonly, specific heats are measured per *unit mass*, not per *particle*. If the system has mass $m$, its **specific heat capacity** is defined by $c \equiv \frac{C}{m}$.
+Notice that these heat capacities are *extensive* since they're both proportional to $N$. In practice we're interested in an *intensive* measure of how responsive heat is to changes in temperature. We can achieve this by dividing by $N$ to get a specific heat. More commonly, specific heats are measured per *unit mass*, not per *particle*. If the system has mass $m$, its **specific heat capacity** is defined by $c \equiv \frac{C}{m}$.
 
-Usually it's the specific heats that are tabulated for various substances. We'd need to look them up to do any kind of numerical calculations. The most useful specific heat to remember is the specific heat of *water* at standard temperature and pressure or **STP**, i.e. $p=1 \text{ atm}, T=298 \ \degree K$. In energy units of *calories*, the specific heat of water at STP is just $c_p = 1 \ \frac{\mathrm{cal}}{\mathrm{g} \mathrm{\degree K}}$. Note that the specific heat does depend on the *phase* of a substance. For example, ice has a specific heat of $c_p = 0.5 \ \frac{\mathrm{cal}}{\mathrm{g} \mathrm{\degree K}}$.
+Usually it's the specific heats that are tabulated for various substances. We'd need to look them up to do any kind of numerical calculations. The most useful specific heat to remember is the specific heat of *water* at standard temperature and pressure or **STP**, i.e. $P=1 \text{ atm}, T=298 \ \degree K$. In energy units of *calories*, the specific heat of water at STP is just $c_P = 1 \ \frac{\mathrm{cal}}{\mathrm{g} \mathrm{\degree K}}$. Note that the specific heat does depend on the *phase* of a substance. For example, ice has a specific heat of $c_P = 0.5 \ \frac{\mathrm{cal}}{\mathrm{g} \mathrm{\degree K}}$.
 
 Another important quantity that's similar to the specific heat is the **latent heat**. It's an intensive measure of how much *heat* is needed for a system to fully undergo a phase change,
 $$
@@ -286,31 +280,31 @@ A thermodynamic process is called **reversible** if it can be run backward in ti
 
 **Example: Carnot Cycle of an Ideal Gas**
 
-To make the topic somewhat more concrete, suppose we have an ideal gas inside a piston, consisting of a single type of molecule with no exchange of particles taking place. Then the only work being done is the work done by the piston to change the volume $V$ and pressure $p$ of the gas. Then by the first law,
+To make the topic somewhat more concrete, suppose we have an ideal gas inside a piston, consisting of a single type of molecule with no exchange of particles taking place. Then the only work being done is the work done by the piston to change the volume $V$ and pressure $P$ of the gas. Then by the first law,
 $$
-dE = \delta Q + \delta W = \delta Q - pdV.
+dE = \delta Q + \delta W = \delta Q - PdV.
 $$
-This means the state variables are $(p, V)$. In $pV$-space, the Carnot engine will be a cycle consisting of two isotherms at $T_H$ and $T_C$ that are connected by curves where $\delta Q = 0$, called **adiabatics**. 
+This means the state variables are $(P, V)$. In $PV$-space, the Carnot engine will be a cycle consisting of two isotherms at $T_H$ and $T_C$ that are connected by curves where $\delta Q = 0$, called **adiabatics**. 
 
-Suppose a cycle starts on the upper left point, say $(p_A, V_A)$. It expands isothermally to $(p_B, V_B)$, then adiabatically expands to $(p_C, V_C)$, then isothermally compresses to $(p_D, V_D)$, before finally adiabatically compressing back to $(p_A, V_A)$.
+Suppose a cycle starts on the upper left point, say $(P_A, V_A)$. It expands isothermally to $(P_B, V_B)$, then adiabatically expands to $(P_C, V_C)$, then isothermally compresses to $(P_D, V_D)$, before finally adiabatically compressing back to $(P_A, V_A)$.
 
 ![](./resources/image-20230314031300597.png){width=400 fig-align=center}
 
 Along the isotherms, the ideal gas law says the curves must be hyperbolas,
 $$
-pV = N k_B T_H, \quad pV = N k_B T_C.
+PV = N k_B T_H, \quad PV = N k_B T_C.
 $$
 Along the adiabatics, the condition $\delta Q = 0$ along with the equipartition theorem implies
 $$
-dE = \frac{n}{2} d(pV) = -pdV \quad \Longrightarrow \quad \bigg(\frac{n}{2}+1\bigg) pdV = -\frac{n}{2} Vdp.
+dE = \frac{n}{2} d(PV) = -PdV \quad \Longrightarrow \quad \bigg(\frac{n}{2}+1\bigg) PdV = -\frac{n}{2} VdP.
 $$
-This is a differential equation for $p(V)$. Using separation of variables on both sides gives
+This is a differential equation for $P(V)$. Using separation of variables on both sides gives
 $$
-pV^\gamma = p_0 V_0^\gamma = const, \quad \text{where} \quad \gamma \equiv \frac{2}{n}\bigg(\frac{n}{2}+1\bigg).
+PV^\gamma = P_0 V_0^\gamma = const, \quad \text{where} \quad \gamma \equiv \frac{2}{n}\bigg(\frac{n}{2}+1\bigg).
 $$
-For example, with a monoatomic gas we'd have $\gamma = \frac{5}{3}$, so the adiabatics are $pV^{5/3} = const$. For the two adiabatic curves in the cycle, taking $(p_0, V_0)$ to be the two initial points along the curves gives
+For example, with a monoatomic gas we'd have $\gamma = \frac{5}{3}$, so the adiabatics are $PV^{5/3} = const$. For the two adiabatic curves in the cycle, taking $(P_0, V_0)$ to be the two initial points along the curves gives
 $$
-pV^\gamma = p_B V_B^\gamma, \quad pV^\gamma = p_D V_D^\gamma.
+PV^\gamma = P_B V_B^\gamma, \quad PV^\gamma = P_D V_D^\gamma.
 $$
 Note that since the Carnot cycle is *reversible*, the total work done during a full cycle is zero. 
 
@@ -410,37 +404,31 @@ $$
 $$
 This state function is called the **entropy** of the system. Since $\delta Q_{rev} = TdS$, we've finally found the conjugate variable to temperature . It's just the entropy. Plugging this into the first law, we finally have that for any quasi-static, reversible process in equilibrium,
 $$
-\boxed{dE = TdS + J \cdot dq + \mu \cdot dN} \ .
+\boxed{dE = TdS + J \cdot dX + \mu \cdot dN} \ .
 $$
 This formula is without doubt the most useful identity in thermodynamics. Notice that this implies that we only need $n+m+1$ total quantities to completely specify the state of the system. We can obtain the rest by partial differentiation. Assuming the mechanical displacements are independent, we have
 $$
-T = \frac{\partial E}{\partial S} \bigg |_q \ , \quad J_i = \frac{\partial E}{\partial q_i} \bigg |_{S, \ \{q_k: \ k \neq i\}, \ N} \ , \quad \mu_j = \frac{\partial E}{\partial q_i} \bigg |_{S, \ q, \ \{N_k: \ k \neq j\}} \ .
+T = \frac{\partial E}{\partial S} \bigg |_{X,N} \ , \quad J_i = \frac{\partial E}{\partial X_i} \bigg |_{S, \ \{X_k: \ k \neq i\}, \ N} \ , \quad \mu_j = \frac{\partial E}{\partial X_i} \bigg |_{S, \ X, \ \{N_k: \ k \neq j\}} \ .
 $$
 ---
 
 **Example: Entropy of a Monatomic Ideal Gas**
 
-Suppose we have a monatomic ideal gas in a closed system with work $\delta W = -pdV$. Then
+Suppose we have a monatomic ideal gas in a closed system with work $\delta W = -PdV$. Then
 $$
-dE = TdS - pdV.
+dE = TdS - PdV.
 $$
-What is the change $\Delta S$ in the entropy along any path in $pV$-space?
+What is the change $\Delta S$ in the entropy along any path in $PV$-space?
 
 Solving for $dS$ and using the fact that $dE = \frac{3}{2} Nk_B dT$ gives
 $$
-dS = \frac{1}{T}dE - \frac{p}{T} dV = Nk_B \bigg[\frac{3}{2} \frac{dT}{T} + \frac{dV}{V} \bigg].
+dS = \frac{1}{T}dE - \frac{P}{T} dV = Nk_B \bigg[\frac{3}{2} \frac{dT}{T} + \frac{dV}{V} \bigg].
 $$
 Integrating both sides and simplifying terms, we finally have
 $$
 \Delta S = Nk_B \bigg[\frac{3}{2} \log \frac{T}{T_0} + \log \frac{V}{V_0} \bigg] = Nk_B \log\bigg[ \frac{V}{V_0} \bigg(\frac{T}{T_0}\bigg)^{3/2} \bigg].
 $$
 It's interesting to note from this formula that the entropy is extensive since it depends linearly on $N$. It also seems to increase *logarithmically* with the volume and the temperature. Since $k_B$ has units of energy over temperature, so too does the entropy.
-
-Notice this formula only gives the *change* in entropy. It doesn't give a function for the entropy itself. For that we'd need a zero-point for $S$, which comes from the *third law* of thermodynamics. It turns out that for an ideal gas, the entropy function $S$ is given in exact form by the **Sackur–Tetrode equation**,
-$$
-\boxed{S = Nk_B \log\bigg[\frac{V}{N} \bigg(\frac{mE}{3\pi \hbar^2 N}\bigg)^{3/2} \bigg] + \frac{5}{2} Nk_B} \ .
-$$
-We'll be able to derive this equation when we get to statistical mechanics.
 
 ---
 
@@ -462,7 +450,7 @@ This result implies that the net adiabatic system attains its *maximum entropy* 
 
 Let's look more closely again at the differential of the energy. We have
 $$
-dE = TdS + J \cdot dq + \mu \cdot dN.
+dE = TdS + J \cdot dX + \mu \cdot dN.
 $$
 This differential implies that $E = E(S, q, N)$ explicitly, with $T, J, \mu$ determined implicitly by partial differentiation. Suppose, however, that we wanted the energy as an explicit function of other variables instead. For example, it may be easier to control the temperature or pressure of a gas in the lab than entropy or volume. We can go back and forth between conjugate pairs using *Legendre transformations*.
 
@@ -480,53 +468,53 @@ We can apply the Legendre transformation to the energy $E=E(S,J,N)$ to get the e
 
 ### Enthalpy
 
-Suppose we wanted to swap $J$ with $q$ to express the energy as a function $H = H(S, q, N)$. We can figure out the form of $H$ by doing a Legendre transformation between $J$ and $q$. Adding $q \cdot dJ$ to both sides of the first law and rearranging gives
+Suppose we wanted to swap $J$ with $X$ to express the energy as a function $H = H(S, X, N)$. We can figure out the form of $H$ by doing a Legendre transformation between $J$ and $X$. Adding $X \cdot dJ$ to both sides of the first law and rearranging gives
 $$
-dH = d(E - J \cdot x) = TdS - q \cdot dJ + \mu \cdot dN.
+dH = d(E - J \cdot X) = TdS - X \cdot dJ + \mu \cdot dN.
 $$
 That is, the equation for $H$ is evidently
 $$
-\boxed{H \equiv E - J \cdot x} \ .
+\boxed{H \equiv E - J \cdot X} \ .
 $$
-This function is called the **enthalpy**. We can think of it as a form of energy where the mechanical work gets subtracted out. When dealing with a gas, we'd have $J \cdot dx = -pdV$, in which case the enthalpy would be
+This function is called the **enthalpy**. We can think of it as a form of energy where the mechanical work gets subtracted out. When dealing with a gas, we'd have $J \cdot dX = -PdV$, in which case the enthalpy would be
 $$
 H = E + pV.
 $$
-The enthalpy is perhaps most useful when dealing with *adiabatic* systems. In that case, $\delta Q = 0$ means the enthalpy is just the work done, i.e. $dH = -q \cdot dJ + \mu \cdot dN$. Adiabatic processes tend to happen very quickly, like the combustion of gas in a cylinder.
+The enthalpy is perhaps most useful when dealing with *adiabatic* systems. In that case, $\delta Q = 0$ means the enthalpy is just the work done, i.e. $dH = -X \cdot dJ + \mu \cdot dN$. Adiabatic processes tend to happen very quickly, like the combustion of gas in a cylinder.
 
 ### Helmholtz Free Energy
 
-Suppose now we wanted to instead swap $T$ with $S$ to get a function $F = F(T, q, N)$. If we add and subtract $SdT$ to both sides of $dE$ and rearrange, we get
+Suppose now we wanted to instead swap $T$ with $S$ to get a function $F = F(T, X, N)$. If we add and subtract $SdT$ to both sides of $dE$ and rearrange, we get
 $$
-dF = -SdT + J \cdot dq + \mu \cdot dN.
+dF = -SdT + J \cdot dX + \mu \cdot dN.
 $$
 The function $F$ is called the **Helmholtz free energy**, evidently given by
 $$
 \boxed{F = E - TS} \ .
 $$
-We can think of the Helmholtz free energy as a kind of energy in which the *heat* has been subtracted out of the system. The Helmholtz free energy is perhaps most useful when dealing with isothermal processes, in which case $dF$ reduces to just $dF = J \cdot dq + \mu \cdot dN$. Isothermal processes happen very slowly, so slowly they're impractical for real-world engines.
+We can think of the Helmholtz free energy as a kind of energy in which the *heat* has been subtracted out of the system. The Helmholtz free energy is perhaps most useful when dealing with isothermal processes, in which case $dF$ reduces to just $dF = J \cdot dX + \mu \cdot dN$. Isothermal processes happen very slowly, so slowly they're impractical for real-world engines.
 
 ### Gibbs Free Energy
 
 Suppose now we wanted to swap *both* $q$ with $J$ as well as $T$ with $S$ to get a function $G = G(T, J, N)$. If we start with the *enthalpy* $dH$ and add and subtract $SdT$ to both sides and rearrange, we get
 $$
-dG = d(H - TS) = -SdT - q \cdot dJ + \mu \cdot dN.
+dG = d(H - TS) = -SdT - X \cdot dJ + \mu \cdot dN.
 $$
 The function $G$ is called the **Gibbs free energy**, evidently given by
 $$
-\boxed{G = H - TS = E - TS - J \cdot q} \ .
+\boxed{G = H - TS = E - TS - J \cdot X} \ .
 $$
 We can think of the Gibbs free energy as a kind of energy in which *both* the mechanical work done as well as the heat have been subtracted out of the system. When dealing with a gas, $G$ takes the form
 $$
-G = E - TS + pV.
+G = E - TS + PV.
 $$
 The Helmholtz free energy is perhaps most useful when dealing with processes that take place at fixed temperature and pressure, e.g. processes that take place at STP. These often include, for example, biological processes, like the thermodynamics in and around a cell.
 
 ### The Grand Potential
 
-So far we haven't touched the chemical work terms at all. Suppose now though that we want a kind of Gibbs free energy that swaps $\mu$ with $N$ instead of $J$ with $q$ to get a function $\mathcal{G} = \mathcal{G}(T,q,\mu)$. If we this time start with the Helmholtz free energy and add and subtract $N \cdot d\mu$ to both sides and re-arrange, we get
+So far we haven't touched the chemical work terms at all. Suppose now though that we want a kind of Gibbs free energy that swaps $\mu$ with $N$ instead of $J$ with $X$ to get a function $\mathcal{G} = \mathcal{G}(T,X,\mu)$. If we this time start with the Helmholtz free energy and add and subtract $N \cdot d\mu$ to both sides and re-arrange, we get
 $$
-d\mathcal{G} = d(F - \mu \cdot N) = -SdT + J \cdot dq - N \cdot d\mu.
+d\mathcal{G} = d(F - \mu \cdot N) = -SdT + J \cdot dX - N \cdot d\mu.
 $$
 This function $\mathcal{G}$ is called the **grand potential**, evidently given by
 $$
@@ -538,33 +526,33 @@ We can think of the grand potential as a kind of energy in which *both* the heat
 
 If you look carefully, you'll see that all of the thermodynamic potentials we defined are a function of at least one extensive variable. It's fair to ask why we didn't consider a potential function of all the intensive variables, i.e. some $L = L(T,J,\mu)$. The reason for this has to do with a mathematical relationship known as *extensivity*. We say a system is **extensive** if its energy satisfies the property of homogeneity. That is, for any scalar $\lambda$, we must have
 $$
-E(\lambda S, \lambda q, \lambda N) = \lambda E(S, q, N).
+E(\lambda S, \lambda X, \lambda N) = \lambda E(S, X, N).
 $$
 Note that extensivity is not a *required* property of every thermodynamic system. It doesn't follows from the laws of thermodynamics. It's in fact an *extra* constraint that's satisfied by most systems of real world interest. One example of a system that's *not* extensive is a star where gravitational work is being done.
 
 We can derive a useful relationship by differentiating both sides of this definition with respect to $\lambda$,
 $$
 \begin{align*}
-\frac{\partial}{\partial\lambda} \lambda E(S, q, N) &= \frac{\partial}{\partial\lambda} E(\lambda S, \lambda q, \lambda N), \\
-\Longrightarrow E(S, q, N) &= \frac{\partial E}{\partial S} \bigg |_{q,N} S + \frac{\partial E}{\partial q} \bigg |_{S,N} \cdot q + \frac{\partial E}{\partial N} \bigg |_{S,q} \cdot N, \\
-\Longrightarrow E(S, q, N) &= TS + J \cdot q + \mu \cdot N. \\
+\frac{\partial}{\partial\lambda} \lambda E(S, X, N) &= \frac{\partial}{\partial\lambda} E(\lambda S, \lambda X, \lambda N), \\
+\Longrightarrow E(S, X, N) &= \frac{\partial E}{\partial S} \bigg |_{X,N} S + \frac{\partial E}{\partial X} \bigg |_{S,N} \cdot X + \frac{\partial E}{\partial N} \bigg |_{S,X} \cdot N, \\
+\Longrightarrow E(S, X, N) &= TS + J \cdot X + \mu \cdot N. \\
 \end{align*}
 $$
 That is, for an extensive system, the energy is just given directly by
 $$
-\boxed{E = TS + J \cdot q + \mu \cdot N} \ .
+\boxed{E = TS + J \cdot X + \mu \cdot N} \ .
 $$
 If we take the differential of both sides and apply the first law, we get
 $$
 \begin{align*}
-dE &= d(TS) + d(J \cdot q) + d(\mu \cdot N) \\
-&= (TdS + J \cdot dq + \mu \cdot dN) + (SdT + q \cdot dJ + N \cdot d\mu) \\
-&= TdS + J \cdot dq + \mu \cdot dN. \\
+dE &= d(TS) + d(J \cdot X) + d(\mu \cdot N) \\
+&= (TdS + J \cdot dX + \mu \cdot dN) + (SdT + X \cdot dJ + N \cdot d\mu) \\
+&= TdS + J \cdot dX + \mu \cdot dN. \\
 \end{align*}
 $$
 This means the second term must be zero for an extensive system,
 $$
-\boxed{SdT + q \cdot dJ + N \cdot d\mu = 0} \ .
+\boxed{SdT + X \cdot dJ + N \cdot d\mu = 0} \ .
 $$
 This relation is called the **Gibbs-Dunham relation**. Notice it's just the differential of a function $L = L(T,J,\mu)$ of the intensive variables. We've thus shown that no thermodynamic potential of the intensive variables alone can exist for an extensive system.
 
@@ -576,15 +564,15 @@ Extensivity gives us a new constraint that we can often use to solve problems. H
 
 Suppose we wanted to find $\mu$ for an ideal gas consisting of a single molecule. Since an ideal gas is extensive, along an isotherm we must have the simplified constraint
 $$
--Vdp + N d\mu = 0.
+-VdP + N d\mu = 0.
 $$
-Now, by the ideal gas law, $\frac{V}{N} = \frac{k_B T}{p}$. We can thus re-write this expression as
+Now, by the ideal gas law, $\frac{V}{N} = \frac{k_B T}{P}$. We can thus re-write this expression as
 $$
-d\mu = \frac{k_B T}{p} dp.
+d\mu = \frac{k_B T}{P} dP.
 $$
 Integrating both sides and solve for $\mu$, we finally have that along an isotherm
 $$
-\mu = \mu_0 + k_B T \log \frac{p}{p_0}.
+\mu = \mu_0 + k_B T \log \frac{P}{P_0}.
 $$
 Evidently, the chemical potential is an increasing function of temperature, pressure, and volume.
 
@@ -592,7 +580,7 @@ Evidently, the chemical potential is an increasing function of temperature, pres
 
 The Gibbs free energy can be used to give a useful interpretation of the chemical potential $\mu$ of a gas. By extensivity, we must have
 $$
-G = E - TS - J \cdot q = \mu N.
+G = E - TS - J \cdot X = \mu N.
 $$
 That is, the chemical potential of a gas can be thought of as the Gibbs free energy per particle. If there is a *mixture* of $m$ types of particles in the gas, then $\mu_i$ is the Gibbs free energy per particle $i$.
 
@@ -602,15 +590,15 @@ Recall from calculus that for any function with continuous second partial deriva
 $$
 \frac{\partial^2 z}{\partial x \partial y} = \frac{\partial^2 z}{\partial y \partial x}.
 $$
-We generally assume that the state functions in thermodynamics are sufficiently smooth enough that their mixed partial derivatives all commute like this. This condition imposes another set of constraints on the potentials, which we can use to find interesting, non-trivial relationships between various state variables. They're called the **Maxwell relations**. If $dE = TdS + J \cdot dq + \mu \cdot dN$, then there are in total 3 Maxwell relations per potential, which means there are $3 \cdot 5 = 15$ relations across all 5 potentials, though some of these are duplicates. Here are the differential forms of all 5 potentials again,
+We generally assume that the state functions in thermodynamics are sufficiently smooth enough that their mixed partial derivatives all commute like this. This condition imposes another set of constraints on the potentials, which we can use to find interesting, non-trivial relationships between various state variables. They're called the **Maxwell relations**. If $dE = TdS + J \cdot dX + \mu \cdot dN$, then there are in total 3 Maxwell relations per potential, which means there are $3 \cdot 5 = 15$ relations across all 5 potentials, though some of these are duplicates. Here are the differential forms of all 5 potentials again,
 $$
 \boxed{
 \begin{align*}
-dE &= \quad TdS + J \cdot dq + \mu \cdot dN \\
-dH &= \quad TdS - q \cdot dJ + \mu \cdot dN \\
-dF &= \;-SdT + J \cdot dq + \mu \cdot dN \\
-dG &= \;-SdT - q \cdot dJ + \mu \cdot dN \\
-d\mathcal{G} &= \;-SdT + J \cdot dq - N \cdot d\mu \\
+dE &= \quad TdS + J \cdot dX + \mu \cdot dN \\
+dH &= \quad TdS - X \cdot dJ + \mu \cdot dN \\
+dF &= \;-SdT + J \cdot dX + \mu \cdot dN \\
+dG &= \;-SdT - X \cdot dJ + \mu \cdot dN \\
+d\mathcal{G} &= \;-SdT + J \cdot dX - N \cdot d\mu \\
 \end{align*}
 } \ .
 $$
@@ -619,25 +607,27 @@ In the simple case of a closed system, we'd have $dN=0$, which reduces the total
 $$
 \boxed{
 \begin{align*}
-&\frac{\partial^2 E}{\partial S \partial q}& &=& &\frac{\partial T}{\partial q} \bigg |_{S,N}& &=& &\frac{\partial J}{\partial S} \bigg |_{q,N}& \\
-&\frac{\partial^2 H}{\partial S \partial J}& &=& -&\frac{\partial T}{\partial J} \bigg |_{S,N}& &=& &\frac{\partial q}{\partial S} \bigg |_{J,N}& \\
-&\frac{\partial^2 F}{\partial T \partial q}& &=& -&\frac{\partial S}{\partial q} \bigg |_{T,N}& &=& &\frac{\partial J}{\partial T} \bigg |_{q,N}& \\
-&\frac{\partial^2 G}{\partial T \partial J}& &=& &\frac{\partial S}{\partial J} \bigg |_{T,N}& &=& &\frac{\partial q}{\partial T} \bigg |_{J,N}& \\
+&\frac{\partial^2 E}{\partial S \partial X}& &=& &\frac{\partial T}{\partial X} \bigg |_{S,N}& &=& &\frac{\partial J}{\partial S} \bigg |_{X,N}& \\
+&\frac{\partial^2 H}{\partial S \partial J}& &=& -&\frac{\partial T}{\partial J} \bigg |_{S,N}& &=& &\frac{\partial X}{\partial S} \bigg |_{J,N}& \\
+&\frac{\partial^2 F}{\partial T \partial X}& &=& -&\frac{\partial S}{\partial X} \bigg |_{T,N}& &=& &\frac{\partial J}{\partial T} \bigg |_{X,N}& \\
+&\frac{\partial^2 G}{\partial T \partial J}& &=& &\frac{\partial S}{\partial J} \bigg |_{T,N}& &=& &\frac{\partial X}{\partial T} \bigg |_{J,N}& \\
 \end{align*}
 } \ .
 $$
 Though the relations themselves are non-intuitive, the process for deriving them is straight forward. Suppose for example we wanted to find a Maxwell relation for
 $$
-\frac{\partial \mu}{\partial p} \bigg |_{T,N}.
+\frac{\partial \mu}{\partial P} \bigg |_{T,N}.
 $$
-To get a relation like this, we'd need a potential that's an explicit function of $p, T, N$. That's of course the Gibbs free energy. In this case, we'd have
+To get a relation like this, we'd need a potential that's an explicit function of $P, T, N$. That's of course the Gibbs free energy. In this case, we'd have
 $$
-\frac{\partial \mu}{\partial p} \bigg |_{T,N} = \frac{\partial}{\partial p} \bigg |_{T,N} \frac{\partial G}{\partial N} \bigg |_{T,p} = \frac{\partial}{\partial N} \bigg |_{T,p} \frac{\partial G}{\partial p} \bigg |_{T,N} = \frac{\partial V}{\partial N} \bigg |_{T,p}.
+\frac{\partial \mu}{\partial P} \bigg |_{T,N} = \frac{\partial}{\partial P} \bigg |_{T,N} \frac{\partial G}{\partial N} \bigg |_{T,P} = \frac{\partial}{\partial N} \bigg |_{T,P} \frac{\partial G}{\partial P} \bigg |_{T,N} = \frac{\partial V}{\partial N} \bigg |_{T,P}.
 $$
 Compare this relation with the one for an extensive system that we saw in a previous example,
 $$
-\frac{\partial \mu}{\partial p} \bigg |_{T,N} = \frac{V}{N}.
+\frac{\partial \mu}{\partial P} \bigg |_{T,N} = \frac{V}{N}.
 $$
+
+
 
 ## Thermodynamic Stability
 
@@ -661,7 +651,7 @@ We can extend this same idea to thermodynamical systems, except there we require
 
 **Theorem:** Any thermodynamic system in equilibrium must satisfy the stability condition
 $$
-\boxed{\delta T \delta S + \delta J \cdot \delta q + \delta \mu \cdot \delta N \geq 0} \ .
+\boxed{\delta T \delta S + \delta J \cdot \delta X + \delta \mu \cdot \delta N \geq 0} \ .
 $$
 **Proof:** Consider an *isolated* system in equilibrium. Then any two subsystems $A$ and $B$ must be in equilibrium with each other. It must be the case then that their intensive quantities are identical, i.e.
 $$
@@ -669,25 +659,25 @@ T \equiv T_A = T_B, \quad J \equiv J_A = J_B, \quad \mu \equiv \mu_A = \mu_B.
 $$
 It must also be the case that their extensive quantities add to give the ones for the full system,
 $$
-E \equiv E_A + E_B, \quad S \equiv S_A + S_B, \quad q \equiv q_A + q_B, \quad N \equiv N_A + N_B.
+E \equiv E_A + E_B, \quad S \equiv S_A + S_B, \quad X \equiv X_A + X_B, \quad N \equiv N_A + N_B.
 $$
 Suppose that $B$ spontaneously transfers energy to $A$ in the form of both heat and work. Let's look at the first order change in the system's total entropy. Evidently, we'd have
 $$
 \begin{align*}
 \delta S &= \delta S_A + \delta S_B \\
-&= \delta\bigg(\frac{E_A}{T_A} - \frac{J_A}{T_A} \cdot q_A - \frac{\mu_A}{T_A} \cdot N_A \bigg) + \delta\bigg(\frac{E_B}{T_B} - \frac{J_B}{T_B} \cdot q_B - \frac{\mu_B}{T_B} \cdot N_B \bigg) \\
-&= 2\bigg[\delta\bigg(\frac{1}{T_A}\bigg) \delta E_A - \delta\bigg(\frac{J_A}{T_A}\bigg)\cdot \delta q_A - \delta\bigg(\frac{\mu_A}{T_A}\bigg)\cdot \delta N_A \bigg] \\
-&= -\frac{2}{T_A}\bigg[\delta T_A \bigg(\frac{\delta E_A - J_A \cdot \delta q_A - \mu_A \cdot \delta N_A}{T_A}\bigg) + \delta J_A \cdot \delta q_A + \delta\mu_A \cdot \delta N_A\bigg] \\
-&= -\frac{2}{T_A}\big[\delta T_A \delta S_A + \delta J_A \cdot \delta q_A + \delta \mu_A \cdot \delta N_A\big].
+&= \delta\bigg(\frac{E_A}{T_A} - \frac{J_A}{T_A} \cdot X_A - \frac{\mu_A}{T_A} \cdot N_A \bigg) + \delta\bigg(\frac{E_B}{T_B} - \frac{J_B}{T_B} \cdot X_B - \frac{\mu_B}{T_B} \cdot N_B \bigg) \\
+&= 2\bigg[\delta\bigg(\frac{1}{T_A}\bigg) \delta E_A - \delta\bigg(\frac{J_A}{T_A}\bigg)\cdot \delta X_A - \delta\bigg(\frac{\mu_A}{T_A}\bigg)\cdot \delta N_A \bigg] \\
+&= -\frac{2}{T_A}\bigg[\delta T_A \bigg(\frac{\delta E_A - J_A \cdot \delta X_A - \mu_A \cdot \delta N_A}{T_A}\bigg) + \delta J_A \cdot \delta X_A + \delta\mu_A \cdot \delta N_A\bigg] \\
+&= -\frac{2}{T_A}\big[\delta T_A \delta S_A + \delta J_A \cdot \delta X_A + \delta \mu_A \cdot \delta N_A\big].
 \end{align*}
 $$
 To be in equilibrium, any change to the system should lead to a *decrease* in entropy since entropy is maximized at equilibrium. This implies that $\delta S \leq 0$, or equivalently that
 $$
-\delta T_A \delta S_A + \delta J_A \cdot \delta q_A + \delta \mu_A \cdot \delta N_A \geq 0.
+\delta T_A \delta S_A + \delta J_A \cdot \delta X_A + \delta \mu_A \cdot \delta N_A \geq 0.
 $$
 This condition should apply for any subsystem, which means it should apply to the whole system as well,
 $$
-\delta T \delta S + \delta J \cdot \delta q + \delta \mu \cdot \delta N \geq 0.
+\delta T \delta S + \delta J \cdot \delta X + \delta \mu \cdot \delta N \geq 0.
 $$
 The above condition was obtained assuming the system's extensive variables $E,q,N$ were held constant. In fact, since all coordinates appear symmetrically in the expression, the same result is obtained for any other set of constraints as well. $\text{Q.E.D.}$
 
@@ -699,62 +689,62 @@ Another way of expressing the stability condition is that any second order devia
 
 Suppose we have some gas that's kept a constant temperature $T$ and particle number $N$. If we apply the stability condition to a gas, in general we'd have
 $$
-\delta T \delta S - \delta p \delta V + \delta \mu \delta N \geq 0.
+\delta T \delta S - \delta P \delta V + \delta \mu \delta N \geq 0.
 $$
-Since $\delta T = \delta N = 0$, this simplifies to just $-\delta p \delta V \geq 0$, or equivalently
+Since $\delta T = \delta N = 0$, this simplifies to just $-\delta P \delta V \geq 0$, or equivalently
 $$
-\delta p = \frac{\partial p}{\partial V} \bigg |_{T,N} \delta V \leq 0.
+\delta P = \frac{\partial P}{\partial V} \bigg |_{T,N} \delta V \leq 0.
 $$
-This says that evidently $p$ must be a decreasing function of $V$. If we define the **compressibility** of a gas by
+This says that evidently $P$ must be a decreasing function of $V$. If we define the **compressibility** of a gas by
 $$
-\kappa_T \equiv -\frac{1}{V} \frac{\partial V}{\partial p} \bigg |_{T,N},
+\kappa_T \equiv -\frac{1}{V} \frac{\partial V}{\partial P} \bigg |_{T,N},
 $$
 then the stability condition evidently says that $\kappa_T \geq 0$ at equilibrium. That is, the gas must be *compressible*, i.e. *increasing* the pressure on the gas should *decrease* its volume.
 
-It's interesting to examine the special isotherm $T=T_c$ where $\frac{\partial p}{\partial V} \big |_{T,N} = 0$. Along this isotherm there's a flat spot near some critical point $(p_c,V_c)$. Around this point $\delta p = 0$, which means we need to look at the higher-order deviations in $p(V)$. If we expand to third order about $V_c$, we'd have
+It's interesting to examine the special isotherm $T=T_c$ where $\frac{\partial P}{\partial V} \big |_{T,N} = 0$. Along this isotherm there's a flat spot near some critical point $(P_c,V_c)$. Around this point $\delta P = 0$, which means we need to look at the higher-order deviations in $P(V)$. If we expand to third order about $V_c$, we'd have
 $$
-\delta p \approx \frac{\partial p}{\partial V} \bigg |_{T_c,N} \delta V + \frac{1}{2} \frac{\partial^2 p}{\partial V^2} \bigg |_{T_c,N} \delta V^2 + \frac{1}{6} \frac{\partial^3 p}{\partial V^3} \bigg |_{T_c,N} \delta V^3.
+\delta P \approx \frac{\partial P}{\partial V} \bigg |_{T_c,N} \delta V + \frac{1}{2} \frac{\partial^2 P}{\partial V^2} \bigg |_{T_c,N} \delta V^2 + \frac{1}{6} \frac{\partial^3 P}{\partial V^3} \bigg |_{T_c,N} \delta V^3.
 $$
-To satisfy the stability condition we can only keep terms with odd powers in $\delta V$, since otherwise $\delta p \delta V$ wouldn't be non-negative. Evidently then, to maintain stability, about the critical point we must have
+To satisfy the stability condition we can only keep terms with odd powers in $\delta V$, since otherwise $\delta P \delta V$ wouldn't be non-negative. Evidently then, to maintain stability, about the critical point we must have
 $$
-\delta p \approx \frac{1}{6} \frac{\partial^3 p}{\partial V^3} \bigg |_{T_c,N} \delta V^3, \quad \text{where} \quad \frac{\partial^3 p}{\partial V^3} \bigg |_{T_c,N} \geq 0.
+\delta P \approx \frac{1}{6} \frac{\partial^3 P}{\partial V^3} \bigg |_{T_c,N} \delta V^3, \quad \text{where} \quad \frac{\partial^3 P}{\partial V^3} \bigg |_{T_c,N} \geq 0.
 $$
-This means that the isotherm along $T=T_c$ must be a decreasing cubic with stationary point at $(V_c,p_c)$.
+This means that the isotherm along $T=T_c$ must be a decreasing cubic with stationary point at $(P_c,V_c)$.
 
-In reality, this condition requires that $p(V)$ be an analytic function around $T_c$. But it turns out that it's *not* analytic around this point. There's a *phase transition*. In fact, near $T_c$ it's the case that $\delta p \propto \delta V^\gamma$, where $\gamma \approx 4.7$ is an experimentally determined constant. To understand this better we'd need field theory.
+In reality, this condition requires that $P(V)$ be an analytic function around $T_c$. But it turns out that it's *not* analytic around this point. There's a *phase transition*. In fact, near $T_c$ it's the case that $\delta P \propto \delta V^\gamma$, where $\gamma \approx 4.7$ is an experimentally determined constant. To understand this better we'd need field theory.
 
 ![](./resources/image-20230320092332426.png){width=400 fig-align=center}
 
 ---
 
-Suppose a system is *closed*, so $dN = 0$. Then the first law says $dE = TdS + J \cdot dq$, and the stability condition says $\delta T \delta S + \delta J \cdot \delta q \geq 0$. We can always solve for any two variables in terms of the rest. For example, we can write
+Suppose a system is *closed*, so $dN = 0$. Then the first law says $dE = TdS + J \cdot dX$, and the stability condition says $\delta T \delta S + \delta J \cdot \delta X \geq 0$. We can always solve for any two variables in terms of the rest. For example, we can write
 $$
 \begin{align*}
-\delta S &= \frac{\partial S}{\partial T} \bigg |_{q,N} \delta T + \frac{\partial S}{\partial q} \bigg |_{T,N} \delta q, \\
-\delta J &= \frac{\partial J}{\partial T} \bigg |_{q,N} \delta T + \frac{\partial J}{\partial q} \bigg |_{T,N} \delta q. \\
+\delta S &= \frac{\partial S}{\partial T} \bigg |_{X,N} \delta T + \frac{\partial S}{\partial X} \bigg |_{T,N} \delta X, \\
+\delta J &= \frac{\partial J}{\partial T} \bigg |_{X,N} \delta T + \frac{\partial J}{\partial X} \bigg |_{T,N} \delta X. \\
 \end{align*}
 $$
 Substituting these into the stability condition, we can write
 $$
 \begin{align*}
-0 &\leq \delta T \bigg(\frac{\partial S}{\partial T} \bigg |_{q,N} \delta T + \frac{\partial S}{\partial q} \bigg |_{T,N} \delta q\bigg) + \bigg(\frac{\partial J}{\partial T} \bigg |_{q,N} \delta T + \frac{\partial J}{\partial q} \bigg |_{T,N} \delta q\bigg) \delta q \\
-&\leq \frac{\partial S}{\partial T} \bigg |_{q,N} \delta T^2 + \bigg(\frac{\partial S}{\partial q} \bigg |_{T,N} + \frac{\partial J}{\partial T} \bigg |_{q,N} \bigg) \delta T \delta q + \frac{\partial J}{\partial q} \bigg |_{T,N} \delta q^2 \\
-&\leq \frac{\partial S}{\partial T} \bigg |_{q,N} \delta T^2 + \frac{\partial J}{\partial q} \bigg |_{T,N} \delta q^2. \\
+0 &\leq \delta T \bigg(\frac{\partial S}{\partial T} \bigg |_{X,N} \delta T + \frac{\partial S}{\partial X} \bigg |_{T,N} \delta X\bigg) + \bigg(\frac{\partial J}{\partial T} \bigg |_{X,N} \delta T + \frac{\partial J}{\partial X} \bigg |_{T,N} \delta X\bigg) \delta X \\
+&\leq \frac{\partial S}{\partial T} \bigg |_{X,N} \delta T^2 + \bigg(\frac{\partial S}{\partial X} \bigg |_{T,N} + \frac{\partial J}{\partial T} \bigg |_{X,N} \bigg) \delta T \delta X + \frac{\partial J}{\partial X} \bigg |_{T,N} \delta X^2 \\
+&\leq \frac{\partial S}{\partial T} \bigg |_{X,N} \delta T^2 + \frac{\partial J}{\partial X} \bigg |_{T,N} \delta X^2. \\
 \end{align*}
 $$
-The last line follows from the fact that $\frac{\partial S}{\partial q} \big |_{T,N} = -\frac{\partial J}{\partial T} \big |_{q,N}$ via a Maxwell relation. Let's look at this in two cases, first when along curves of constant $q$, and then along curves of constant $T$. In the first case we'd have $\delta q = 0$, which says
+The last line follows from the fact that $\frac{\partial S}{\partial X} \big |_{T,N} = -\frac{\partial J}{\partial T} \big |_{X,N}$ via a Maxwell relation. Let's look at this in two cases, first when along curves of constant $X$, and then along curves of constant $T$. In the first case we'd have $\delta X = 0$, which says
 $$
-\frac{\partial S}{\partial T} \bigg |_{q,N} \delta T^2 \geq 0.
+\frac{\partial S}{\partial T} \bigg |_{X,N} \delta T^2 \geq 0.
 $$
-This says that along curves of constant $q$, the entropy must be an increasing function of temperature. This evidently implies that the heat capacity along constant $q$ must be non-negative, since
+This says that along curves of constant $X$, the entropy must be an increasing function of temperature. This evidently implies that the heat capacity along constant $X$ must be non-negative, since
 $$
-C_q = \frac{\delta Q}{\partial T} \bigg |_{q,N} = T \frac{\partial S}{\partial T} \bigg |_{q,N} \geq 0.
+C_q = \frac{\delta Q}{\partial T} \bigg |_{X,N} = T \frac{\partial S}{\partial T} \bigg |_{X,N} \geq 0.
 $$
 Let's now look at curves of constant $T$, i.e. the isotherms. In that case we'd have
 $$
-\frac{\partial J}{\partial q} \bigg |_{T,N} \delta q^2 \geq 0,
+\frac{\partial J}{\partial X} \bigg |_{T,N} \delta X^2 \geq 0,
 $$
-which evidently implies $J$ must be an increasing function of $q$ along the isotherms. In the case of a gas, this condition just says that pressure $p$ must be a decreasing function of $V$ along isotherms, which we've already seen.
+which evidently implies $J$ must be an increasing function of $X$ along the isotherms. In the case of a gas, this condition just says that pressure $p$ must be a decreasing function of $V$ along isotherms, which we've already seen.
 
 ## The Third Law
 
@@ -790,7 +780,7 @@ This integral would diverge as $T \rightarrow 0$ unless $C \rightarrow 0$ as wel
 
 The thermal expansion coefficients must also go to zero since by a Maxwell relation we have
 $$
-\alpha \equiv \frac{1}{q} \frac{\partial q}{\partial T} \bigg |_J = \frac{1}{q} \frac{\partial S}{\partial J} \bigg |_T \rightarrow 0.
+\alpha \equiv \frac{1}{X} \frac{\partial X}{\partial T} \bigg |_J = \frac{1}{X} \frac{\partial S}{\partial J} \bigg |_T \rightarrow 0.
 $$
 The last consequence of note is that it must be impossible to cool any system to absolute zero in a finite number of steps, which for practical purposes means it's impossible to cool a system to zero exactly. For example, suppose we tried to cool a gas by adiabatically reducing its pressure. Since all $S(T)$ curves must intersect at $0$, any successive step would involve progressively smaller changes in $S$ and $T$ as $T \rightarrow 0$.
 

@@ -311,6 +311,7 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#the-bbgky-hierarchy" id="toc-the-bbgky-hierarchy" class="nav-link" data-scroll-target="#the-bbgky-hierarchy">The BBGKY Hierarchy</a>
   <ul class="collapse">
   <li><a href="#s-particle-densities" id="toc-s-particle-densities" class="nav-link" data-scroll-target="#s-particle-densities"><span class="math inline">\(s\)</span>-Particle Densities</a></li>
+  <li><a href="#deriving-the-bbgky-hierarchy" id="toc-deriving-the-bbgky-hierarchy" class="nav-link" data-scroll-target="#deriving-the-bbgky-hierarchy">Deriving the BBGKY Hierarchy</a></li>
   </ul></li>
   <li><a href="#the-boltzmann-equation" id="toc-the-boltzmann-equation" class="nav-link" data-scroll-target="#the-boltzmann-equation">The Boltzmann Equation</a>
   <ul class="collapse">
@@ -324,6 +325,9 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#equilibrium-distributions" id="toc-equilibrium-distributions" class="nav-link" data-scroll-target="#equilibrium-distributions">Equilibrium Distributions</a></li>
   <li><a href="#the-ideal-gas" id="toc-the-ideal-gas" class="nav-link" data-scroll-target="#the-ideal-gas">The Ideal Gas</a></li>
   <li><a href="#the-maxwell-boltzmann-distribution" id="toc-the-maxwell-boltzmann-distribution" class="nav-link" data-scroll-target="#the-maxwell-boltzmann-distribution">The Maxwell-Boltzmann Distribution</a></li>
+  </ul></li>
+  <li><a href="#conservation-laws" id="toc-conservation-laws" class="nav-link" data-scroll-target="#conservation-laws">Conservation Laws</a>
+  <ul class="collapse">
   <li><a href="#collision-conserved-quantities" id="toc-collision-conserved-quantities" class="nav-link" data-scroll-target="#collision-conserved-quantities">Collision-Conserved Quantities</a></li>
   <li><a href="#particle-number" id="toc-particle-number" class="nav-link" data-scroll-target="#particle-number">Particle Number</a></li>
   <li><a href="#momentum" id="toc-momentum" class="nav-link" data-scroll-target="#momentum">Momentum</a></li>
@@ -357,8 +361,8 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<p>Kinetic theory is the study of the <em>macroscopic</em> properties of large numbers of particles, starting from their classical <em>equations of motion</em>. Kinetic theory seeks to understand not only equilibrium, but the approach to equilibrium. Since classical particles must obey Newton’s Laws, we should in theory be able to study their dynamics by following all of their trajectories. Of course, this isn’t feasible in practice for a large number of interacting particles. We thus need to figure out how to go from the classical dynamics of microscopic particles to the thermodynamics of macroscopic systems. We’ll want to ask how we can define equilibrium for a system of moving particles, whether all systems actually do evolve towards an equilibrium state, and what the time evolution is when the system isn’t yet in equilibrium.</p>
-<p>We’ll focus on studying the canonical system of thermodynamics, a box of fixed volume containing a gas of identical particles. We’ll imagine setting the particles free into the box from a fixed position, and studying their dynamics as they fill the box and come into equilibrium. Much of this discussion will exclude other forms of matter like solids and liquids. The microscopic dynamics of solids really requires a quantum mechanical treatment. The microscopic dynamics of liquids overlaps somewhat with the dynamics of gases, the difference being that the distance between particles is much closer than they are with a gas.</p>
+<p>Kinetic theory is the study of the <em>macroscopic</em> properties of large numbers of particles, starting from their classical <em>equations of motion</em>. Kinetic theory seeks to understand not only equilibrium, but the <em>approach</em> of systems towards equilibrium. Since classical particles must obey Newton’s Laws, we should in theory be able to study their dynamics by following all of their trajectories. Of course, this isn’t feasible in practice for a large number of interacting particles. We thus need to figure out how to go from the classical dynamics of microscopic particles to the thermodynamics of macroscopic systems. We’ll want to ask how we can define equilibrium for a system of moving particles, whether all systems actually do evolve towards an equilibrium state, and what the time evolution is when the system isn’t yet in equilibrium.</p>
+<p>Because it’s the simplest interesting system to study with kinetic theory, and indeed one of the few we can even get anywhere with, we’ll focus in this lesson on the kinetic theory of the <em>ideal gas</em>, a gas of identical particles in a fixed container whose particles only interact kinetically. While much of this discussion holds true for any gas with appropriate generalizations, it will often exclude other forms of matter like solids or liquids. The microscopic dynamics of solids really requires a quantum mechanical treatment. The microscopic dynamics of liquids overlaps somewhat with the dynamics of gases, except unlike with gases, liquids tend to be incompressible and often have long-range interactions.</p>
 <section id="hamiltonian-mechanics" class="level2">
 <h2 class="anchored" data-anchor-id="hamiltonian-mechanics">Hamiltonian Mechanics</h2>
 <p>To start, we’ll review the classical mechanics of particles via the Hamiltonian formulation.</p>
@@ -477,7 +481,10 @@ f_1(\mathbf{x}, \mathbf{p},t) &amp;= N \big\langle \delta^3(\mathbf{x}_1-\mathbf
 \boxed{f_s(\mathbf{x}_1, \cdots, \mathbf{x}_s,\mathbf{p}_1, \cdots, \mathbf{p}_s,t) \equiv \frac{N!}{(N-s)!} \rho_s(\mathbf{x}_1, \cdots, \mathbf{x}_s,\mathbf{p}_1, \cdots, \mathbf{p}_s,t)} \ .
 \]</span> Clearly, <span class="math inline">\(f_N\)</span> is just the un-normalized full density of finding all <span class="math inline">\(N\)</span> particles at their given points, which is <span class="math display">\[
 f_N(\mathbf{x}_1, \cdots, \mathbf{x}_N,\mathbf{p}_1, \cdots, \mathbf{p}_N,t) = N! \ \rho(\mathbf{x}_1, \cdots, \mathbf{x}_N,\mathbf{p}_1, \cdots, \mathbf{p}_N,t).
-\]</span> ### Deriving the BBGKY Hierarchy</p>
+\]</span></p>
+</section>
+<section id="deriving-the-bbgky-hierarchy" class="level3">
+<h3 class="anchored" data-anchor-id="deriving-the-bbgky-hierarchy">Deriving the BBGKY Hierarchy</h3>
 <p>What we’d like to try to do is to find a way of expressing <span class="math inline">\(f_N\)</span> as a <em>hierarchy</em> of lower-particle densities. If we can get that then we can start approximating the full density using the much simpler one or two particle densities. This hierarchy of densities is called the <em>BBGKY Hierarchy</em>, which we’ll now derive.</p>
 <p>To do that we need to make an assumption about the functional form of the full Hamiltonian <span class="math inline">\(H\)</span>. We’ll assume that it’s composed of the kinetic energy for each particle, where each particle has the same mass <span class="math inline">\(m\)</span>, some external potential energy <span class="math inline">\(V\)</span> acting on each particle (e.g.&nbsp;the force resulting from the walls of the box of a container), and some interaction potential energy <span class="math inline">\(\nu\)</span> between particles, which we’ll approximate as being some central potential between all pairs of distinct particles (an adequate approximate for a weakly interacting gas). All together, we thus have <span class="math display">\[
 H = \sum_{i=1}^N \bigg(\frac{\mathbf{p}_i^2}{2m} + V(\mathbf{x}_i)  + \sum_{j &lt; i} \nu\big(|\mathbf{x}_i-\mathbf{x}_j|\big)\bigg).
@@ -582,17 +589,17 @@ f_2(\mathbf{x}_1, \mathbf{x}_2, \mathbf{p}_1, \mathbf{p}_2,t) = f_1(\mathbf{x}_1
 <h3 class="anchored" data-anchor-id="the-h-theorem">The H-Theorem</h3>
 <p>Since we’re neglecting dynamics on the scale of the interaction radius we’re losing information on the system’s microscopic dynamics. This means the Boltzmann equation also comes with a notion of increasing entropy. This result is called the <strong>H-Theorem</strong> (pronounced “Eta Theorem”).</p>
 <p><strong>H-Theorem:</strong> Suppose <span class="math inline">\(f(\mathbf{x}, \mathbf{p}, t)\)</span> satisfies the Boltzmann equation <span class="math inline">\(L[f] = C[f]\)</span>. Then there exists a quantity <span class="math inline">\(\mathrm{H}(t)\)</span> defined by <span class="math display">\[
-\boxed{\Eta(t) \equiv \int d^3 \mathbf{x} \ d^3 \mathbf{p} \ f(\mathbf{x}, \mathbf{p}, t) \log f(\mathbf{x}, \mathbf{p}, t)}
+\boxed{\mathrm{H}(t) \equiv \int d^3 \mathbf{x} \ d^3 \mathbf{p} \ f(\mathbf{x}, \mathbf{p}, t) \log f(\mathbf{x}, \mathbf{p}, t)}
 \]</span> such that <span class="math inline">\(\mathrm{H}(t)\)</span> is a decreasing function of time. That is, <span class="math inline">\(\frac{d\mathrm{H}}{dt} \leq 0\)</span>.</p>
 <p><strong>Proof:</strong> We need to do is take the time derivative of <span class="math inline">\(\mathrm{H}(t)\)</span> and show its time derivative is negative. Differentiating both sides, we have <span class="math display">\[
 \begin{align*}
-\frac{d\Eta}{dt} &amp;= \int d^3 \mathbf{x} \ d^3 \mathbf{p} \ \frac{\partial}{\partial t}(f \log f) \\
+\frac{d\mathrm{H}}{dt} &amp;= \int d^3 \mathbf{x} \ d^3 \mathbf{p} \ \frac{\partial}{\partial t}(f \log f) \\
 &amp;= \int d^3 \mathbf{x} \ d^3 \mathbf{p} \ \big(1 + \log f \big) \frac{\partial f}{\partial t} \\
 &amp;= \int d^3 \mathbf{x} \ d^3 \mathbf{p} \ \big(1 + \log f \big) \big(C[f]-\{f,H\}\big).
 \end{align*}
 \]</span> The term involving <span class="math inline">\(\frac{\partial}{\partial t}(f \log f)\)</span> just integrate to <span class="math inline">\(N\)</span>, a constant, and hence vanishes. Both integrals involving <span class="math inline">\(\{f,H\}\)</span> vanish by the usual integration by parts argument. We’re thus left to calculate one term, <span class="math display">\[
 \begin{align*}
-\frac{d\Eta}{dt} &amp;= \int d^3 \mathbf{x} \ d^3 \mathbf{p} \ \log f \ C[f] \\
+\frac{d\mathrm{H}}{dt} &amp;= \int d^3 \mathbf{x} \ d^3 \mathbf{p} \ \log f \ C[f] \\
 &amp;= \int d^3 \mathbf{x}_1 \ d^3 \mathbf{p}_1 \ d^3 \mathbf{p}_2 d^2 \mathbf{b} \ \frac{|\mathbf{p}_2 - \mathbf{p}_1|}{m} \big[f(\mathbf{p}'_1) f(\mathbf{p}'_2) - f(\mathbf{p}_1) f(\mathbf{p}_2)\big] \log f(\mathbf{p}_1).
 \end{align*}
 \]</span> Here the dependence of <span class="math inline">\(f\)</span> on position and time are suppressed for convenience. Now we’re going to make use of a trick. Notice the integral is symmetric in the momenta of particles <span class="math inline">\(1\)</span> and <span class="math inline">\(2\)</span>. This means we can permute the indices and get the same answer. It also means we can <em>average</em> the two permutations. Though much less obvious, we can permute the primed and unprimed momenta as well since their Jacobian is <span class="math inline">\(1\)</span>. We can thus take the average of the primed and unprimed momenta as well. Using these facts, we have <span class="math display">\[
@@ -663,24 +670,29 @@ F = \frac{1}{2\delta t} \int \delta N_x \ \Delta p_x = \int d^3 \mathbf{p} \ f(\
 \]</span> Using this force on the wall we can calculate the pressure of the gas by dividing by the wall area <span class="math inline">\(A\)</span>. Plugging in the distribution for momenta, we have <span class="math display">\[
 P = \int d^3 \mathbf{p} \ f(\mathbf{p}) \ \frac{p_x^2}{m} = \int d^3 \mathbf{p} \ \frac{p_x^2}{m} n\bigg(\frac{\beta}{2\pi m}\bigg)^{3/2} \exp\bigg(-\frac{\beta}{2m}\mathbf{p}^2\bigg) = \frac{n}{\beta}.
 \]</span> Using the fact that <span class="math inline">\(n = \frac{N}{V}\)</span> and <span class="math inline">\(\beta = \frac{1}{k_B T}\)</span>, we’ve evidently derived the ideal gas law, <span class="math display">\[
-pV = N k_B T.
+PV = N k_B T.
 \]</span> Insisting a free gas reduce to an ideal gas at equilibrium again supports that <span class="math inline">\(\beta = \frac{1}{k_B T}\)</span>.</p>
-<p>If desired, one can calculate the entropy too by using <span class="math inline">\(S \equiv -k_B \mathrm{H}\)</span> and doing the integral for <span class="math inline">\(\mathrm{H}\)</span>. The result will be the Sakur-Tetrode equation for a monoatomic ideal gas, up to an additive constant. In fact, we could calculate the entropy and use thermodynamic relations to get the energy and pressure more straightforwardly. This suggests a more statistical approach to calculating thermodynamic relations that we’ll make heavy use of in statistical mechanics.</p>
+<p>If desired, one can calculate the entropy too by using <span class="math inline">\(S \equiv -k_B \mathrm{H}\)</span> and doing the integral for <span class="math inline">\(\mathrm{H}\)</span>. The result will be (up to an additive constant) the entropy for a monoatomic ideal gas. This is called the <strong>Sakur-Tetrode equation</strong>, <span class="math display">\[
+\boxed{S = Nk_B \log\bigg[\frac{V}{N} \bigg(\frac{mE}{3\pi \hbar^2 N}\bigg)^{3/2} \bigg] + \frac{5}{2} Nk_B} \ .
+\]</span> In fact, we could calculate the entropy and use thermodynamic relations to get the energy and pressure more straightforwardly.</p>
 </section>
 <section id="the-maxwell-boltzmann-distribution" class="level3">
 <h3 class="anchored" data-anchor-id="the-maxwell-boltzmann-distribution">The Maxwell-Boltzmann Distribution</h3>
 <p>We can also ask about the distribution for the <em>speed</em> <span class="math inline">\(v\)</span> of an ideal gas at equilibrium. Using the relation <span class="math inline">\(\mathbf{p} = m \mathbf{v}\)</span>, we then have <span class="math display">\[
 \rho_{eq}(\mathbf{v}) = \bigg(\frac{m}{2\pi k_B T}\bigg)^{3/2} \exp\bigg(-\frac{m\mathbf{v}^2}{2k_B T}\bigg).
-\]</span> This is the distribution for the <em>velocity</em> of a gas in the rest frame, not the speed. It’s evidently a mean-zero Gaussian distribution with variance <span class="math inline">\(\frac{k_B T}{m}\)</span>. The ratio <span class="math inline">\(v_{RMS}^2 \equiv \frac{k_B T}{m}\)</span> has dimensions of velocity squared. That velocity <span class="math inline">\(v_{RMS}\)</span> is amply referred to as the root mean square (RMS) velocity. We’ve actually seen it already. It’s the velocity one gets from setting the kinetic energy equal to the mean thermal energy <span class="math inline">\(k_B T\)</span>. Practically all velocities of interest in thermodynamics are on the order of the RMS velocity.</p>
+\]</span> This is the distribution for the <em>velocity</em> of a gas in the rest frame, not the speed. It’s evidently a mean-zero Gaussian distribution with variance <span class="math inline">\(\frac{k_B T}{m}\)</span>. The ratio <span class="math inline">\(v_{th}^2 \equiv \frac{k_B T}{m}\)</span> has dimensions of velocity squared. That velocity <span class="math inline">\(v_{th}\)</span> is amply referred to as the root mean square (RMS) velocity. We’ve actually seen it already. It’s the velocity one gets from setting the kinetic energy equal to the mean thermal energy <span class="math inline">\(k_B T\)</span>. Practically all velocities of interest in thermodynamics are on the order of the RMS velocity.</p>
 <p>Anyway, notice the distribution depends only on the <em>speed</em> since <span class="math inline">\(v^2 = \mathbf{v}^2\)</span>. It may seem like the distribution for <span class="math inline">\(v\)</span> should be a Gaussian, but it’s <em>not</em>. The reason is we have to integrate over the volume element, <span class="math display">\[
 1 = \int d^3 \mathbf{v} \ \rho_{eq}(\mathbf{v}) = \int v^2 dv d\Omega \ \rho_{eq}(|\mathbf{v}|) = \int dv \ 4\pi v^2\rho_{eq}(|\mathbf{v}|) \equiv \int dv \ \rho_{eq}(v).
 \]</span> This distribution for the particle speeds at equilibrium is called the <strong>Maxwell-Boltzmann Distribution</strong>, <span class="math display">\[
 \boxed{\rho_{eq}(v) = \bigg(\frac{m}{2\pi k_B T}\bigg)^{3/2} 4\pi v^2 \exp\bigg(-\frac{mv^2}{2k_B T}\bigg)} \ .
 \]</span> Since speeds are non-negative this is a rightward-skewed distribution. This means its mean won’t be zero like with the vector velocities. This makes sense, as a mean zero speed would imply the particles aren’t moving at all. In fact, the mean speed is proportional to the RMS velocity, <span class="math display">\[
-\langle v \rangle = 2\sqrt{\frac{2}{\pi}} \sqrt{\frac{k_B T}{m}} \approx 1.6 \ v_{RMS}.
-\]</span> ## Conservation Laws</p>
-<p>So far all we’ve done is derived the equilibrium distribution for a gas at equilibrium. But we don’t <em>need</em> kinetic theory to do this. As we’ll see, we can do that much more easily using statistical mechanics. What kinetic theory is really useful for is describing how the system approaches equilibrium. Specifically, what we really want to know is how the usual conserved quantities like particle number, energy, and momentum approach equilibrium. To do that we need to figure out what the dynamics are of conserved quantities.</p>
+\langle v \rangle = 2\sqrt{\frac{2}{\pi}} \sqrt{\frac{k_B T}{m}} \approx 1.6 \ v_{th}.
+\]</span></p>
 </section>
+</section>
+<section id="conservation-laws" class="level2">
+<h2 class="anchored" data-anchor-id="conservation-laws">Conservation Laws</h2>
+<p>So far all we’ve done is derived the equilibrium distribution for a gas at equilibrium. But we don’t <em>need</em> kinetic theory to do this. As we’ll see, we can do that much more easily using statistical mechanics. What kinetic theory is really useful for is describing how the system approaches equilibrium. Specifically, what we really want to know is how the usual conserved quantities like particle number, energy, and momentum approach equilibrium. To do that we need to figure out what the dynamics are of conserved quantities.</p>
 <section id="collision-conserved-quantities" class="level3">
 <h3 class="anchored" data-anchor-id="collision-conserved-quantities">Collision-Conserved Quantities</h3>
 <p>We’ll specifically want to focus on <em>collision conserved quantities</em>. The ones that satisfy detailed balance conditions. We say <span class="math inline">\(\chi\)</span> is a collision conserved quantity if for any two colliding particles we have <span class="math display">\[
@@ -700,15 +712,15 @@ J(\mathbf{x},t) = \frac{1}{4} \int d^3 \mathbf{p}_1 \ d^3 \mathbf{p}_2 \ \frac{|
 \]</span> At this point it’s useful to define a <em>collision average</em>. Notice the number density can be given by marginalizing out the momentum, <span class="math display">\[
 n(\mathbf{x}, t) = \int d^3 \mathbf{p} \ f(\mathbf{x}, \mathbf{p}, t).
 \]</span> Using this fact, we can define a collision average on any phase space function <span class="math inline">\(\chi\)</span> by <span class="math display">\[
-\boxed{\big\langle \chi(\mathbf{x},t) \big\rangle_{\text{col}} \equiv \frac{1}{n(\mathbf{x}, t)} \int d^3 \mathbf{p} \ f(\mathbf{x}, \mathbf{p}, t) \ \chi(\mathbf{x}, \mathbf{p}, t)} \ .
+\boxed{\big\langle \chi(\mathbf{x},t) \big\rangle_{c} \equiv \frac{1}{n(\mathbf{x}, t)} \int d^3 \mathbf{p} \ f(\mathbf{x}, \mathbf{p}, t) \ \chi(\mathbf{x}, \mathbf{p}, t)} \ .
 \]</span> Going back to our expression for <span class="math inline">\(J(\mathbf{x},t)\)</span>, notice we can pull any terms and derivatives that doesn’t depend on <span class="math inline">\(\mathbf{p}\)</span> out of the integral. The terms remaining under the integral can then be written as collision averages, <span class="math display">\[
-\boxed{\frac{\partial}{\partial t} n\big\langle \chi \big\rangle_{\text{col}} + \frac{\partial}{\partial \mathbf{x}} \cdot n\bigg\langle \frac{\mathbf{p}}{m} \chi \bigg\rangle_{\text{col}} - \ n \bigg\langle \frac{\partial \chi}{\partial t} \bigg\rangle_{\text{col}} - \ n \bigg\langle \frac{\mathbf{p}}{m} \cdot\frac{\partial \chi}{\partial \mathbf{x}}\bigg\rangle_{\text{col}} - n \mathbf{F} \cdot \bigg\langle \frac{\partial \chi}{\partial \mathbf{p}}\bigg\rangle_{\text{col}} = 0 } \ .
+\boxed{\frac{\partial}{\partial t} n\big\langle \chi \big\rangle_{c} + \frac{\partial}{\partial \mathbf{x}} \cdot n\bigg\langle \frac{\mathbf{p}}{m} \chi \bigg\rangle_{c} - \ n \bigg\langle \frac{\partial \chi}{\partial t} \bigg\rangle_{c} - \ n \bigg\langle \frac{\mathbf{p}}{m} \cdot\frac{\partial \chi}{\partial \mathbf{x}}\bigg\rangle_{c} - n \mathbf{F} \cdot \bigg\langle \frac{\partial \chi}{\partial \mathbf{p}}\bigg\rangle_{c} = 0 } \ .
 \]</span> Note the integral over <span class="math inline">\(\mathbf{F} \cdot \frac{\partial (f \cdot \chi)}{\partial \mathbf{p}}\)</span> vanishes since it’s a total time derivative. The above equation is called the <strong>hydrodynamics equation</strong> or the <strong>conservation law</strong> for the field <span class="math inline">\(\chi(\mathbf{x},t)\)</span>. Unlike typical conservation laws in classical mechanics, these conservation laws are <em>local</em>.</p>
 </section>
 <section id="particle-number" class="level3">
 <h3 class="anchored" data-anchor-id="particle-number">Particle Number</h3>
 <p>The particular conservation laws we’ll focus on are the usual ones for a gas: particle number (or mass), momentum, and kinetic energy. To find the conservation law for particle number or mass, take <span class="math inline">\(\chi = 1\)</span>. In that case, all the derivatives of <span class="math inline">\(\chi\)</span> vanish, so we’re left with <span class="math display">\[
-\frac{\partial n}{\partial t} + \frac{\partial}{\partial \mathbf{x}} n\bigg\langle \frac{\mathbf{p}}{m} \bigg\rangle_{\text{col}} = 0.
+\frac{\partial n}{\partial t} + \frac{\partial}{\partial \mathbf{x}} n\bigg\langle \frac{\mathbf{p}}{m} \bigg\rangle_{c} = 0.
 \]</span> The collision average of <span class="math inline">\(\frac{\mathbf{p}}{m}\)</span> gives some kind of velocity field <span class="math inline">\(\mathbf{u}(\mathbf{x},t)\)</span>. This is the <em>flow velocity</em> of the gas, treated as a kind of continuous fluid. We can thus write <span class="math display">\[
 \boxed{\frac{\partial n}{\partial t} + \nabla \cdot n \mathbf{u}  = 0} \ .
 \]</span> This is the well-known <strong>continuity equation</strong>, in this case for the particle number.</p>
@@ -730,13 +742,14 @@ n(\mathbf{x}, t) = \int d^3 \mathbf{p} \ f(\mathbf{x}, \mathbf{p}, t).
 &amp;= \frac{\partial}{\partial x_\beta} n\bigg\langle (c_\beta+u_\beta) c_\alpha \bigg\rangle_c - \ n \bigg\langle \frac{\partial c_\alpha}{\partial t} \bigg\rangle_c - \ n \bigg\langle (c_\beta+u_\beta) \frac{\partial c_\alpha}{\partial x_\beta}\bigg\rangle_c - n F_\beta \cdot \bigg\langle \frac{\partial c_\alpha}{\partial p_\beta}\bigg\rangle_c \\
 &amp;= \frac{\partial}{\partial x_\beta} n \big\langle c_\alpha c_\beta \big\rangle_c + n \frac{\partial u_\alpha}{\partial t} + n u_\beta \frac{\partial u_\alpha}{\partial x_\beta} - n F_\beta \frac{\delta_{\alpha\beta}}{m} \\
 &amp;= \frac{\partial}{\partial x_\beta} nm \big\langle c_\alpha c_\beta \big\rangle_c + nm \frac{\partial u_\alpha}{\partial t} + nm u_\beta \frac{\partial u_\alpha}{\partial x_\beta} - n F_\alpha.
-\end{align*}\]</span> <span class="math display">\[
-We evidently have a differential equation for the flow velocity $\mathbf{u}$. The only unfamiliar term is the first one, which is evidently the gradient of a symmetric rank-two tensor. This is the *pressure tensor*, defined by
-\]</span> P_{} nm c_c_<em>c. <span class="math display">\[
-Plugging the pressure tensor in and re-arranging, we see that each component of the flow velocity satisfies a conservation law of the form
-\]</span> + u</em> = - . <span class="math display">\[
-If we think of the velocity gradient as being done component-wise and the divergence on the right as a contraction over one of the indices, then we can write this conservation law in vector notation as
-\]</span> &nbsp;. $$ This is called the <strong>Cauchy momentum equation</strong>. Notice how this conservation law looks something like Newton’s second law. On the left is a kind of mass times acceleration term, while on the right are the two kinds of forces acting on each gas particle, the external forces and the internal pressure-driven forces.</p>
+\end{align*}\]</span> $$</p>
+<p>We evidently have a differential equation for the flow velocity <span class="math inline">\(\mathbf{u}\)</span>. The only unfamiliar term is the first one, which is evidently the gradient of a symmetric rank-two tensor. This is the <em>pressure tensor</em>, defined by <span class="math display">\[
+P_{\alpha\beta} \equiv nm \big\langle c_\alpha c_\beta \big\rangle_c.
+\]</span> Plugging the pressure tensor in and re-arranging, we see that each component of the flow velocity satisfies a conservation law of the form <span class="math display">\[
+\frac{\partial u_\alpha}{\partial t} + u_\beta \frac{\partial u_\alpha}{\partial x_\beta} = \frac{F_\alpha}{m} - \frac{1}{nm} \frac{\partial P_{\alpha\beta}}{\partial x_\beta}.
+\]</span> If we think of the velocity gradient as being done component-wise and the divergence on the right as a contraction over one of the indices, then we can write this conservation law in vector notation as <span class="math display">\[
+\boxed{nm \frac{D \mathbf{u}}{Dt} = n \mathbf{F} - \nabla \cdot \mathbf{P}} \ .
+\]</span> This is called the <strong>Cauchy momentum equation</strong>. Notice how this conservation law looks something like Newton’s second law. On the left is a kind of mass times acceleration term, while on the right are the two kinds of forces acting on each gas particle, the external forces and the internal pressure-driven forces.</p>
 </section>
 <section id="energy" class="level3">
 <h3 class="anchored" data-anchor-id="energy">Energy</h3>
@@ -846,7 +859,7 @@ f^1(\mathbf{x}, \mathbf{p},t) = \ &amp;n\bigg(\frac{m}{2\pi k_B T}\bigg)^{3/2} \
 &amp;\bigg\{1 -\tau_X \bigg[\frac{m}{k_B T}\text{tr}\bigg( \mathbf{U} \cdot \bigg(\mathbf{c} \otimes \mathbf{c} - \frac{c^2}{3} \mathbf{I}\bigg)\bigg) + \bigg(\frac{m c^2}{2k_B T} - \frac{5}{2} \bigg) \mathbf{c} \cdot \frac{\nabla T}{T} \bigg]\bigg\}.
 \end{align*}
 \]</span> The term involving the trace of velocities represents the correlation of particle velocity with the rate of strain tensor. It describes how velocities vary due to fluid strain. The term involving the temperature gradient says something about how velocities depend on temperature gradients across the fluid. Together, these effects give the density an anisotropic, multimodal behavior.</p>
-<p>Also worth noticing is that the first-order piece contains terms proportional to both <span class="math inline">\(c\)</span> and <span class="math inline">\(c^3\)</span>, which means the first and third moments no longer vanish. Together, these will imply the existence of a non-zero heat flux vector and a non-diagonal pressure tensor. So</p>
+<p>Also worth noticing is that the first-order correction now contains terms proportional to both <span class="math inline">\(c\)</span> and <span class="math inline">\(c^3\)</span>, which means the first and third moments no longer vanish. Together, these will imply the existence of a non-zero heat flux vector and a non-diagonal pressure tensor.</p>
 
 
 </section>
