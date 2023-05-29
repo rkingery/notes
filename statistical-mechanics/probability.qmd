@@ -2,7 +2,9 @@
 
 The laws of thermodynamics are based on observations of *macroscopic* bodies. They encapsulate the coarse-grained properties of a body like its temperature, pressure, or volume. On the other hand, matter is fundamentally composed of atoms and molecules whose motions are governed by the more fundamental laws of mechanics. In principle, we could describe macroscopic bodies the same way, by examining the motions of every particle inside the body. But this is largely impractical as we'll see later. A more useful approach is to look at which states large numbers of particles are *likely* to be in and use that information to make macroscopic predictions. Statistical mechanics is an inherently probabilistic description of a system. As such, it requires an understanding of the mathematical theory of probability, which we'll discuss here.
 
-## Random Variables
+## Univariate Probability
+
+### Probability Measures
 
 At its root, probability is based on the study of *events* or *random variables*. Suppose $\mathcal{S}$ is the set of all possible outcomes of an experiment, called the **sample space**. Any subset $E \subset \mathcal{S}$ is called an **event**. A **probability measure** is a set function $\mathbb{Pr}(E)$ that maps events to numerical values between zero and one. It's meant to formalize the concept of *chance*. If an event has probability one, we think of that event as being 100% certain to occur. If it has probability zero, we think of the event as having 0% chance to occur. Any values in between mean we're uncertain whether the event will occur.
 
@@ -16,11 +18,13 @@ While this is a nice formal definition of probability, it's not practically usef
 
 1. The **objective** approach: In this approach, we imagine running a bunch of experiments and counting the frequency of occurrences of an event. That is, if we run a large number $N$ of experiments and observe an event $A$ occurs exactly $N_A$ times, then we define $\mathbb{Pr}(A)$ by the ratio
    $$
-   \boxed{\mathbb{Pr}(A) = \lim_{N \rightarrow \infty} \frac{N_A}{N}} \ .
+   \boxed{\mathbb{Pr}(A) \equiv \lim_{N \rightarrow \infty} \frac{N_A}{N}} \ .
    $$
    The fact that the ratio $\frac{N_A}{N}$ stabilizes to a fixed value as $N$ gets infinitely large follows from the **law of large numbers**, which we'll take as a kind of experimental fact.
 
 2. The **subjective** approach: In this approach we take a more theoretical view by looking for a "maximally random" probability distribution that matches what we know to be true. That is, we seek to find the *maximum entropy* probability distribution that satisfies some given set of known constraints. We'll talk more about the principle of maximum entropy when we get to information theory. The subjective approach is the one used most heavily in statistical mechanics.
+
+### Random Variables
 
 A **random variable** is a variable $X$ that doesn't take on a fixed value, but rather a *random* value determined by a **probability distribution**. If $E \subset \mathcal{S}$ is an event, a random variable encodes that event using a numerical variable $X=X(E)$. More formally, $X(E)$ is a function that maps events to a numerical value. It could be a real number, a complex number, or a real or complex vector, for example. 
 
@@ -61,6 +65,10 @@ $$
 p(k) = p(x) \delta (x - k).
 $$
 For this reason, we'll generally state results in the form of a continuous random variable.
+
+Where there's no risk of confusion, we'll frequently abuse notation by using the lower case letter $x$ for both the random variable as well as the value it can take on.
+
+### Moments and Cumulants
 
 For both discrete and continuous random variables we can define the *expected value* of a random function $F(x)$ by summing or integrating the function, weighted by the PMF or PDF. In the continuous case, we'd define the **expected value** $\langle F(x) \rangle$ by
 $$
@@ -128,6 +136,8 @@ There's a useful graphical trick that can be used to quickly find the relationsh
 
 ![](./resources/image-20230406152112380.png){fig-align=center width=450}
 
+### Change of Variables
+
 Occasionally we'll want to make a change of variables from one random variable to another. To do that we need to figure out how the probabilities change under the change of variables. Suppose $F=F(X)$ is a random function of a random variable $X$. If $f = F(x)$, then probability that $X \in [x, x+dx]$ must be the same as the probability that $F \in [f, f+df]$. Provided $F(x)$ is single-valued, that means we'd have
 $$
 p_F(f) df = p_X(x) dx.
@@ -171,13 +181,11 @@ Suppose $p(x) \propto e^{-\lambda |x|}$ where $\lambda > 0$ is some scale parame
 
 ![](./resources/image-20230402072235128.png){fig-align=center width=500}
 
----
-
 ## Probability Distributions
 
 So far I've used the term *distribution* rather loosely. More formally, given a random variable $x$, a **probability distribution** is a specific functional form for $p(x)$. We'd write $x \sim p(x)$ to indicate that $x$ is distributed as $p(x)$. Usually $p(x)$ will be *parametric*, meaning it will have external parameters that tune the shape of the distribution. Here are some common univariate distributions we'll see in statistical mechanics:
 
-**Uniform Distribution**
+### Uniform Distribution
 
 The uniform distribution is perhaps the simplest distribution of all, with $p(x) = const$ on some set $x \in \mathcal{S}$. As a shorthand we might write $x \sim U(\mathcal{S})$ to say $x$ is uniform on the set $\mathcal{S}$. In the discrete case, $x$ takes on some number of values $N$ each with equal probability, for example if $\mathcal{S} = \{1, 2, \cdots, n\}$ we have
 $$
@@ -207,7 +215,7 @@ $$
 $$
 We could in principle calculate the cumulant function $\log \tilde p(k)$ as well, though it's clearly not going to be as useful for finding the cumulants here. We'll see later that the uniform distribution is the *maximum entropy* distribution when the only known constraints are that $x$ lies in some set $S$.
 
-**Gaussian Distribution**
+### Gaussian Distribution
 
 The Gaussian distribution is one of the most fundamental distributions in physics. In statistical mechanics, for example, it describes the velocity of gases in a box. Suppose $x$ is a continuous random variable defined on the whole real line. We say it's Gaussian distributed if its PDF is given by
 $$
@@ -240,7 +248,7 @@ $$
 \langle x^4 \rangle &= 3 \kappa_2^2 + 6 \kappa_2 \kappa_1^2 + \kappa_1^4 = 3\sigma^4 + 6 \sigma^2 \mu^2 + \mu^4.
 \end{align*}
 $$
-**Binomial Distribution**
+### Binomial Distribution
 
 Suppose we have a binary random variable $x = 0, 1$ that takes on the value one with a fixed probability $p$. We can express its PMF simply as
 $$
@@ -292,7 +300,7 @@ p(x) = \frac{n!}{n_1!n_2!\cdots n_k!} p_1^{n_1} p_2^{n_2} \cdots p_2^{n_2}.
 $$
 The coefficient $\frac{n!}{n_1!n_2!\cdots n_k!}$ is called a *multinomial coefficient*. It's a count of the number of ways to distribute $n$ points into $k$ bins such that each bin $j$ contains exactly $n_j$ points. We might say $x$ is multinomially distributed by writing $x \sim \text{Multinomial}(n_1,n_2,\cdots,n_k; p_1, p_2, \cdots, p_k)$.
 
-**Poisson Distribution**
+### Poisson Distribution
 
 Suppose we're interested in answering the following question: What is the probability that $x$ events occur inside a time interval $[0,T]$ provided each event is independent of the others, and that the probability of any one event occurring in an infinitesimal interval $[0,dt]$ is a constant $\alpha dt$. To figure out what $p(x)$ is, let's imagine subdividing $[0,T]$ up into $N = \frac{T}{dt}$ subintervals. In each subinterval, any single event is a Bernoulli random variable that either occurs with probability $\alpha dt$ or doesn't occur with probability $(1-\alpha)dt$. If we assume each subinterval is independent of the others, the characteristic function of $p(x)$ is just
 $$
@@ -329,7 +337,9 @@ $$
 $$
 That is, all the cumulants are just $\lambda$. In particular, $\mu = \sigma^2 = \lambda$.
 
-## Joint Random Variables
+## Multivariate Probability
+
+### Random Vectors
 
 Let's now look at the situation where we have $N$ random variables $X_1, X_2, \cdots, X_N$. The vector of all such random variables is called a **random vector**, i.e. a vector $\mathbf{X} = (X_1, X_2, \cdots, X_N)$. To each random vector we can assign a **joint CDF** of the form
 $$
@@ -348,6 +358,10 @@ $$
 p(\mathbf{x}) d^Nx \equiv \mathbb{Pr}(\{x_1 \leq X_1 \leq x_1 + dx_1, x_2 \leq X_2 \leq x_2 + dx_2, \cdots, x_N \leq X_N \leq x_N + dx_N\}),
 $$
 where $d^N x = dx_1dx_2\cdots dx_N$ is the $N$-dimensional *volume element*. The joint PMF must satisfy both $p(\mathbf{x}) \geq 0$, and $\int_S d^N x \ p(\mathbf{x}) = 1$. Clearly the joint PMF is just a special case of the joint PDF, since we can always just use delta functions to express a PMF as a PDF.
+
+As with ordinary random variables, we'll frequently abuse notation by using $\mathbf{x}$ for both the random vector itself as well as its value where there's no risk of confusion.
+
+### Joint Moments and Cumulants
 
 For any function $F(\mathbf{x})$ of a random vector $\mathbf{x}$ we can define its expectation value as
 $$
@@ -379,6 +393,10 @@ This implies the covariance matrix must in fact be a positive semi-definite matr
 $$
 \mathbf{\Sigma} = \mathbf{\Sigma}^\top, \quad \mathbf{v}^\top\mathbf{\Sigma}\mathbf{v} \geq 0 \quad \forall \mathbf{v} \neq \mathbf{0}.
 $$
+
+
+### Conditional and Marginal Probability
+
 We can get smaller joint probabilities by "summing out" the random variables we don't need. These are called **marginal probabilities** or **unconditional probabilities**. For example, if we have two random variables $x$ and $y$, the marginal PDF $p(y)$ is given by integrating $x$ out of the joint PDF $p(x,y)$,
 $$
 \boxed{p(y) \equiv \int_\mathbb{R} dx \ p(x,y)} \ .
@@ -415,6 +433,10 @@ Independent random variables have the property that their *mixed cumulants* will
 $$
 \langle F_1(x_1) F_2(x_2) \cdots F_N(x_N) \rangle = \langle F_1(x_1) \rangle \langle F_2(x_2) \rangle \cdots \langle F_N(x_N) \rangle.
 $$
+
+
+
+### The Multivariate Gaussian Distribution
 
 While there are many joint probability distributions, the most important one to be aware of is the **multivariate Gaussian distribution**. Suppose $\mathbf{x} = (x_1, x_2, \cdots, x_N)$ are independent, with each $x_i$ Gaussian distributed with mean $\mu_i$ and variance $\sigma_i^2$. Then it's easy to show their joint PDF is given by
 $$
@@ -454,13 +476,16 @@ $$
 $$
 
 
+
 ## Asymptotic Analysis
 
 In this section we'll focus on important results that apply for *large* numbers of random variables $N \gg 1$.
 
+### The Central Limit Theorem
+
 It turns out that the *sum* of random variables will often by approximately Gaussian distributed provided some minor regularity assumptions are met. This important result is called the *central limit theorem*.
 
-**Central Limit Theorem:** Suppose $x = \sum_{i=1}^N x_i$ is a sum of $N$ IID random variables with finite mean $\mu$ and variance $\sigma^2$. Then when $N \gg 1$ we have that
+**Central Limit Theorem:** Suppose $x = \sum_{i=1}^N x_i$ is a sum of $N$ IID random variables with finite mean $\mu$ and variance $\sigma^2$. Then when $N \gg 1$ the probability density satisfies
 $$
 \boxed{p\bigg(\frac{x-N\mu}{\sqrt{N\sigma^2}}\bigg) \approx \frac{1}{\sqrt{2 \pi}} \exp\bigg(-\frac{1}{2}\bigg(\frac{x-N\mu}{\sqrt{N\sigma^2}}\bigg)^2\bigg)} \ .
 $$
@@ -515,6 +540,8 @@ $$
 Note the central limit theorem is also true for non-IID random variables, provided the higher cumulants decay as $\kappa_n(x) = O(N^{n/2})$.
 
 In the proof of the CLT we implicitly assumed that the cumulants were all finite. What if that weren't the case? This will happen if the PDF of each $x_i$ is heavy-tailed. Heavy-tailed distributions are commonly used to model *rare events*. It turns out then that the sum won't in general converge to a Gaussian. In fact, if it does converge, it'll converge to a *Levy distribution*, a general class of heavy-tailed distributions.
+
+### The Saddlepoint Approximation
 
 In the section on thermodynamics, we saw both *intensive* variables and *extensive* variables. The intensive variables are ones that don't depend on particle number at all, i.e. they're $O(1)$ functions of $N$. The extensive variables are linear in particle number, i.e. they're $O(N)$. In principle we could imagine other functional dependences on $N$ as well. For example, a variable could be *polynomial* in $N$, i.e. $O(N^p)$ for some $p$. More importantly, a variable can be *exponential* in $N$, i.e. $O(e^{N\phi})$ for some $\phi$. For example, the *volume* of a gas would be a variable that can scale exponentially with $N$, since it often goes like $V^N$. 
 
@@ -597,6 +624,8 @@ This will usually be the form of Stirling's approximation that we use in practic
 
 ## Information Theory
 
+### Information and Entropy
+
 We can think about probabilities in a completely different sense by thinking about the *information content* contained in a system and how uncertain we are about what that information content is. Suppose we wanted to transmit a message containing $N$ characters, where each character is sampled from some alphabet $\Sigma$ containing $M$ total characters. We'd like to ask the following question: How many bits of information does a *typical* message of $N$ characters from this alphabet contain?
 
 Suppose we had no information at all about how often any one particular character $x_m \in \Sigma$ occurs in a message. In this case, we'd have to assume that all messages of length $N$ are typical. Since there are $M^N$ possible messages of length $N$, we'd say there are $g = M^N$ typical messages. Since $g$ contains $\log_2 g$ bits of information, this means a typical message would contain $\log g = N \log_2 M$ bits of information.
@@ -638,6 +667,8 @@ From a physical perspective, a more troublesome problem with this definition is 
 $$
 d\Gamma = \frac{d^3 x d^3 p}{h^3}.
 $$
+### The Principle of Maximum Entropy
+
 We can use the idea of information entropy to finally answer the question regarding what the correct way is to define probabilities subjectively or theoretically. The idea is to use the *principle of maximum entropy*.
 
 **Principle of Maximum Entropy:** The unbiased assignment of probability is the one that maximizes the information entropy subject to known constraints. More formally, assign a probability distribution $p(x)$ that maximizes the constrained problem

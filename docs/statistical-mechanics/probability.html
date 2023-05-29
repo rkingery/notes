@@ -298,11 +298,35 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#random-variables" id="toc-random-variables" class="nav-link active" data-scroll-target="#random-variables">Random Variables</a></li>
-  <li><a href="#probability-distributions" id="toc-probability-distributions" class="nav-link" data-scroll-target="#probability-distributions">Probability Distributions</a></li>
-  <li><a href="#joint-random-variables" id="toc-joint-random-variables" class="nav-link" data-scroll-target="#joint-random-variables">Joint Random Variables</a></li>
-  <li><a href="#asymptotic-analysis" id="toc-asymptotic-analysis" class="nav-link" data-scroll-target="#asymptotic-analysis">Asymptotic Analysis</a></li>
-  <li><a href="#information-theory" id="toc-information-theory" class="nav-link" data-scroll-target="#information-theory">Information Theory</a></li>
+  <li><a href="#univariate-probability" id="toc-univariate-probability" class="nav-link active" data-scroll-target="#univariate-probability">Univariate Probability</a>
+  <ul class="collapse">
+  <li><a href="#probability-measures" id="toc-probability-measures" class="nav-link" data-scroll-target="#probability-measures">Probability Measures</a></li>
+  <li><a href="#random-variables" id="toc-random-variables" class="nav-link" data-scroll-target="#random-variables">Random Variables</a></li>
+  <li><a href="#moments-and-cumulants" id="toc-moments-and-cumulants" class="nav-link" data-scroll-target="#moments-and-cumulants">Moments and Cumulants</a></li>
+  <li><a href="#change-of-variables" id="toc-change-of-variables" class="nav-link" data-scroll-target="#change-of-variables">Change of Variables</a></li>
+  </ul></li>
+  <li><a href="#probability-distributions" id="toc-probability-distributions" class="nav-link" data-scroll-target="#probability-distributions">Probability Distributions</a>
+  <ul class="collapse">
+  <li><a href="#uniform-distribution" id="toc-uniform-distribution" class="nav-link" data-scroll-target="#uniform-distribution">Uniform Distribution</a></li>
+  <li><a href="#gaussian-distribution" id="toc-gaussian-distribution" class="nav-link" data-scroll-target="#gaussian-distribution">Gaussian Distribution</a></li>
+  <li><a href="#poisson-distribution" id="toc-poisson-distribution" class="nav-link" data-scroll-target="#poisson-distribution">Poisson Distribution</a></li>
+  </ul></li>
+  <li><a href="#multivariate-probability" id="toc-multivariate-probability" class="nav-link" data-scroll-target="#multivariate-probability">Multivariate Probability</a>
+  <ul class="collapse">
+  <li><a href="#random-vectors" id="toc-random-vectors" class="nav-link" data-scroll-target="#random-vectors">Random Vectors</a></li>
+  <li><a href="#joint-moments-and-cumulants" id="toc-joint-moments-and-cumulants" class="nav-link" data-scroll-target="#joint-moments-and-cumulants">Joint Moments and Cumulants</a></li>
+  <li><a href="#conditional-and-marginal-probability" id="toc-conditional-and-marginal-probability" class="nav-link" data-scroll-target="#conditional-and-marginal-probability">Conditional and Marginal Probability</a></li>
+  <li><a href="#the-multivariate-gaussian-distribution" id="toc-the-multivariate-gaussian-distribution" class="nav-link" data-scroll-target="#the-multivariate-gaussian-distribution">The Multivariate Gaussian Distribution</a></li>
+  </ul></li>
+  <li><a href="#asymptotic-analysis" id="toc-asymptotic-analysis" class="nav-link" data-scroll-target="#asymptotic-analysis">Asymptotic Analysis</a>
+  <ul class="collapse">
+  <li><a href="#the-central-limit-theorem" id="toc-the-central-limit-theorem" class="nav-link" data-scroll-target="#the-central-limit-theorem">The Central Limit Theorem</a></li>
+  <li><a href="#the-saddlepoint-approximation" id="toc-the-saddlepoint-approximation" class="nav-link" data-scroll-target="#the-saddlepoint-approximation">The Saddlepoint Approximation</a></li>
+  </ul></li>
+  <li><a href="#information-theory" id="toc-information-theory" class="nav-link" data-scroll-target="#information-theory">Information Theory</a>
+  <ul class="collapse">
+  <li><a href="#information-and-entropy" id="toc-information-and-entropy" class="nav-link" data-scroll-target="#information-and-entropy">Information and Entropy</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -327,8 +351,10 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 <p>The laws of thermodynamics are based on observations of <em>macroscopic</em> bodies. They encapsulate the coarse-grained properties of a body like its temperature, pressure, or volume. On the other hand, matter is fundamentally composed of atoms and molecules whose motions are governed by the more fundamental laws of mechanics. In principle, we could describe macroscopic bodies the same way, by examining the motions of every particle inside the body. But this is largely impractical as we’ll see later. A more useful approach is to look at which states large numbers of particles are <em>likely</em> to be in and use that information to make macroscopic predictions. Statistical mechanics is an inherently probabilistic description of a system. As such, it requires an understanding of the mathematical theory of probability, which we’ll discuss here.</p>
-<section id="random-variables" class="level2">
-<h2 class="anchored" data-anchor-id="random-variables">Random Variables</h2>
+<section id="univariate-probability" class="level2">
+<h2 class="anchored" data-anchor-id="univariate-probability">Univariate Probability</h2>
+<section id="probability-measures" class="level3">
+<h3 class="anchored" data-anchor-id="probability-measures">Probability Measures</h3>
 <p>At its root, probability is based on the study of <em>events</em> or <em>random variables</em>. Suppose <span class="math inline">\(\mathcal{S}\)</span> is the set of all possible outcomes of an experiment, called the <strong>sample space</strong>. Any subset <span class="math inline">\(E \subset \mathcal{S}\)</span> is called an <strong>event</strong>. A <strong>probability measure</strong> is a set function <span class="math inline">\(\mathbb{Pr}(E)\)</span> that maps events to numerical values between zero and one. It’s meant to formalize the concept of <em>chance</em>. If an event has probability one, we think of that event as being 100% certain to occur. If it has probability zero, we think of the event as having 0% chance to occur. Any values in between mean we’re uncertain whether the event will occur.</p>
 <p>Formally, a probability measure on a sample space <span class="math inline">\(\mathcal{S}\)</span> satisfies the following properties:</p>
 <ul>
@@ -339,10 +365,13 @@ ul.task-list li input[type="checkbox"] {
 <p>While this is a nice formal definition of probability, it’s not practically useful for saying how we should design a probability measure in a practical setting. There are two common approaches for designing probability measures:</p>
 <ol type="1">
 <li><p>The <strong>objective</strong> approach: In this approach, we imagine running a bunch of experiments and counting the frequency of occurrences of an event. That is, if we run a large number <span class="math inline">\(N\)</span> of experiments and observe an event <span class="math inline">\(A\)</span> occurs exactly <span class="math inline">\(N_A\)</span> times, then we define <span class="math inline">\(\mathbb{Pr}(A)\)</span> by the ratio <span class="math display">\[
-\boxed{\mathbb{Pr}(A) = \lim_{N \rightarrow \infty} \frac{N_A}{N}} \ .
+\boxed{\mathbb{Pr}(A) \equiv \lim_{N \rightarrow \infty} \frac{N_A}{N}} \ .
 \]</span> The fact that the ratio <span class="math inline">\(\frac{N_A}{N}\)</span> stabilizes to a fixed value as <span class="math inline">\(N\)</span> gets infinitely large follows from the <strong>law of large numbers</strong>, which we’ll take as a kind of experimental fact.</p></li>
 <li><p>The <strong>subjective</strong> approach: In this approach we take a more theoretical view by looking for a “maximally random” probability distribution that matches what we know to be true. That is, we seek to find the <em>maximum entropy</em> probability distribution that satisfies some given set of known constraints. We’ll talk more about the principle of maximum entropy when we get to information theory. The subjective approach is the one used most heavily in statistical mechanics.</p></li>
 </ol>
+</section>
+<section id="random-variables" class="level3">
+<h3 class="anchored" data-anchor-id="random-variables">Random Variables</h3>
 <p>A <strong>random variable</strong> is a variable <span class="math inline">\(X\)</span> that doesn’t take on a fixed value, but rather a <em>random</em> value determined by a <strong>probability distribution</strong>. If <span class="math inline">\(E \subset \mathcal{S}\)</span> is an event, a random variable encodes that event using a numerical variable <span class="math inline">\(X=X(E)\)</span>. More formally, <span class="math inline">\(X(E)\)</span> is a function that maps events to a numerical value. It could be a real number, a complex number, or a real or complex vector, for example.</p>
 <p>A one-dimensional random variable is a mapping <span class="math inline">\(X(E)\)</span> from events <span class="math inline">\(E \subset \mathcal{S}\)</span> into the real numbers <span class="math inline">\(\mathbb{R}\)</span>. In this case, we can define a <strong>cumulative distribution function</strong> or <strong>CDF</strong> as the function <span class="math display">\[
 \boxed{P(x) \equiv \mathbb{Pr}\big(\{X \leq x\}\big)} \ .
@@ -372,6 +401,10 @@ ul.task-list li input[type="checkbox"] {
 <p>By convention, if <span class="math inline">\(S \subset \mathbb{R}\)</span> we’ll assume <span class="math inline">\(p(x) = 0\)</span> on values of <span class="math inline">\(x\)</span> outside of <span class="math inline">\(S\)</span>. This means we can treat the PMF as a PDF by using delta functions to indicate where each discrete value of <span class="math inline">\(x\)</span> has non-zero <span class="math inline">\(p(x)\)</span>. That is, <span class="math display">\[
 p(k) = p(x) \delta (x - k).
 \]</span> For this reason, we’ll generally state results in the form of a continuous random variable.</p>
+<p>Where there’s no risk of confusion, we’ll frequently abuse notation by using the lower case letter <span class="math inline">\(x\)</span> for both the random variable as well as the value it can take on.</p>
+</section>
+<section id="moments-and-cumulants" class="level3">
+<h3 class="anchored" data-anchor-id="moments-and-cumulants">Moments and Cumulants</h3>
 <p>For both discrete and continuous random variables we can define the <em>expected value</em> of a random function <span class="math inline">\(F(x)\)</span> by summing or integrating the function, weighted by the PMF or PDF. In the continuous case, we’d define the <strong>expected value</strong> <span class="math inline">\(\langle F(x) \rangle\)</span> by <span class="math display">\[
 \boxed{\langle F(x) \rangle \equiv \int_{\mathbb{R}} dx \ F(x) p(x)} \ .
 \]</span> Some of the functions <span class="math inline">\(F(x)\)</span> have special names:</p>
@@ -412,6 +445,9 @@ p(x) = \int_{\mathbb{R}} \frac{dx}{2\pi} \ e^{ikx} \tilde p(k).
 <p><img src="./resources/image-20230406152112380.png" class="img-fluid figure-img" width="450"></p>
 </figure>
 </div>
+</section>
+<section id="change-of-variables" class="level3">
+<h3 class="anchored" data-anchor-id="change-of-variables">Change of Variables</h3>
 <p>Occasionally we’ll want to make a change of variables from one random variable to another. To do that we need to figure out how the probabilities change under the change of variables. Suppose <span class="math inline">\(F=F(X)\)</span> is a random function of a random variable <span class="math inline">\(X\)</span>. If <span class="math inline">\(f = F(x)\)</span>, then probability that <span class="math inline">\(X \in [x, x+dx]\)</span> must be the same as the probability that <span class="math inline">\(F \in [f, f+df]\)</span>. Provided <span class="math inline">\(F(x)\)</span> is single-valued, that means we’d have <span class="math display">\[
 p_F(f) df = p_X(x) dx.
 \]</span> Dividing both sides by <span class="math inline">\(df\)</span> and noting that probabilities have to be positive, we have <span class="math display">\[
@@ -446,12 +482,13 @@ p_F(f) &amp;= p(\sqrt{f}) \bigg|\frac{d}{df} \sqrt{f}\bigg| + p(-\sqrt{f}) \bigg
 <p><img src="./resources/image-20230402072235128.png" class="img-fluid figure-img" width="500"></p>
 </figure>
 </div>
-<hr>
+</section>
 </section>
 <section id="probability-distributions" class="level2">
 <h2 class="anchored" data-anchor-id="probability-distributions">Probability Distributions</h2>
 <p>So far I’ve used the term <em>distribution</em> rather loosely. More formally, given a random variable <span class="math inline">\(x\)</span>, a <strong>probability distribution</strong> is a specific functional form for <span class="math inline">\(p(x)\)</span>. We’d write <span class="math inline">\(x \sim p(x)\)</span> to indicate that <span class="math inline">\(x\)</span> is distributed as <span class="math inline">\(p(x)\)</span>. Usually <span class="math inline">\(p(x)\)</span> will be <em>parametric</em>, meaning it will have external parameters that tune the shape of the distribution. Here are some common univariate distributions we’ll see in statistical mechanics:</p>
-<p><strong>Uniform Distribution</strong></p>
+<section id="uniform-distribution" class="level3">
+<h3 class="anchored" data-anchor-id="uniform-distribution">Uniform Distribution</h3>
 <p>The uniform distribution is perhaps the simplest distribution of all, with <span class="math inline">\(p(x) = const\)</span> on some set <span class="math inline">\(x \in \mathcal{S}\)</span>. As a shorthand we might write <span class="math inline">\(x \sim U(\mathcal{S})\)</span> to say <span class="math inline">\(x\)</span> is uniform on the set <span class="math inline">\(\mathcal{S}\)</span>. In the discrete case, <span class="math inline">\(x\)</span> takes on some number of values <span class="math inline">\(N\)</span> each with equal probability, for example if <span class="math inline">\(\mathcal{S} = \{1, 2, \cdots, n\}\)</span> we have <span class="math display">\[
 \boxed{p(x) = \frac{1}{N}} \ .
 \]</span> We can easily calculate the moments of a uniform random variable directly. In the discrete case, we’d have <span class="math display">\[
@@ -469,7 +506,9 @@ p_F(f) &amp;= p(\sqrt{f}) \bigg|\frac{d}{df} \sqrt{f}\bigg| + p(-\sqrt{f}) \bigg
 \]</span> The characteristic function is just given by a geometric series in powers of <span class="math inline">\(e^{-ik}\)</span>, <span class="math display">\[
 \tilde p(k) = \sum_{x=1}^N p(x) e^{-ikx} = \sum_{x=1}^N \frac{1}{N} \big(e^{-ik}\big)^n = \frac{e^{-ik}-e^{-ik(N+1)}}{1-e^{-ik}}.
 \]</span> We could in principle calculate the cumulant function <span class="math inline">\(\log \tilde p(k)\)</span> as well, though it’s clearly not going to be as useful for finding the cumulants here. We’ll see later that the uniform distribution is the <em>maximum entropy</em> distribution when the only known constraints are that <span class="math inline">\(x\)</span> lies in some set <span class="math inline">\(S\)</span>.</p>
-<p><strong>Gaussian Distribution</strong></p>
+</section>
+<section id="gaussian-distribution" class="level3">
+<h3 class="anchored" data-anchor-id="gaussian-distribution">Gaussian Distribution</h3>
 <p>The Gaussian distribution is one of the most fundamental distributions in physics. In statistical mechanics, for example, it describes the velocity of gases in a box. Suppose <span class="math inline">\(x\)</span> is a continuous random variable defined on the whole real line. We say it’s Gaussian distributed if its PDF is given by <span class="math display">\[
 \boxed{p(x) = \frac{1}{\sqrt{2\pi\sigma^2}} \exp\bigg(-\frac{(x-\mu)^2}{2\sigma^2}\bigg)} \ .
 \]</span> The Gaussian distribution has two parameters, a real number <span class="math inline">\(\mu\)</span> and a positive number <span class="math inline">\(\sigma^2\)</span>. As a shorthand we’ll sometimes say <span class="math inline">\(x\)</span> is Gaussian distributed by writing <span class="math inline">\(x \sim \mathcal{N}(\mu, \sigma^2)\)</span>. The PDF’s curve is the distinctive bell-shaped curve that falls off exponentially fast symmetrically around <span class="math inline">\(\mu\)</span>. For practical purposes, almost all of the probability mass lies in the range <span class="math inline">\(-3\sigma \leq x \leq 3\sigma\)</span>.</p>
@@ -491,7 +530,7 @@ p_F(f) &amp;= p(\sqrt{f}) \bigg|\frac{d}{df} \sqrt{f}\bigg| + p(-\sqrt{f}) \bigg
 \langle x^3 \rangle &amp;= 3 \kappa_2 \kappa_1 + \kappa_1^3 = 3\sigma^2 \mu + \mu^3, \\
 \langle x^4 \rangle &amp;= 3 \kappa_2^2 + 6 \kappa_2 \kappa_1^2 + \kappa_1^4 = 3\sigma^4 + 6 \sigma^2 \mu^2 + \mu^4.
 \end{align*}
-\]</span> <strong>Binomial Distribution</strong></p>
+\]</span> ### Binomial Distribution</p>
 <p>Suppose we have a binary random variable <span class="math inline">\(x = 0, 1\)</span> that takes on the value one with a fixed probability <span class="math inline">\(p\)</span>. We can express its PMF simply as <span class="math display">\[
 p(x) = p^x (1-p)^{1-x}.
 \]</span> We’d call such an <span class="math inline">\(x\)</span> a <em>Bernoulli random variable</em>. A common example would be flipping a coin, where heads occurs with a fixed probability <span class="math inline">\(p=0.5\)</span>. Now suppose we allow the binary outcome to repeat <span class="math inline">\(n\)</span> times independently. It turns out that the <em>sum</em> of those <span class="math inline">\(n\)</span> outcomes is distributed in a similar way, except now <span class="math inline">\(x\)</span> can take on any value in the range <span class="math inline">\(x = 0, 1, \cdots, n\)</span>. Accounting for normalization, we have <span class="math display">\[
@@ -522,7 +561,9 @@ p(x) = p_1^{\delta_{1x}} p_2^{\delta_{2x}} \cdots p_k^{\delta_{kx}}, \quad x = 1
 \]</span> The binomial distribution generalizes to the <em>multinomial distribution</em>, where <span class="math inline">\(x\)</span> is now a <em>vector</em> whose j<sup>th</sup> component is the number of times category <span class="math inline">\(j\)</span> occurred in <span class="math inline">\(n\)</span> total trials. Each <span class="math inline">\(x_j = 0, 1, \cdots, n_j\)</span> is essentially its own binomial distribution, except we require <span class="math inline">\(n = n_1 + n_2 + \cdots n_k\)</span>. The PMF is given by <span class="math display">\[
 p(x) = \frac{n!}{n_1!n_2!\cdots n_k!} p_1^{n_1} p_2^{n_2} \cdots p_2^{n_2}.
 \]</span> The coefficient <span class="math inline">\(\frac{n!}{n_1!n_2!\cdots n_k!}\)</span> is called a <em>multinomial coefficient</em>. It’s a count of the number of ways to distribute <span class="math inline">\(n\)</span> points into <span class="math inline">\(k\)</span> bins such that each bin <span class="math inline">\(j\)</span> contains exactly <span class="math inline">\(n_j\)</span> points. We might say <span class="math inline">\(x\)</span> is multinomially distributed by writing <span class="math inline">\(x \sim \text{Multinomial}(n_1,n_2,\cdots,n_k; p_1, p_2, \cdots, p_k)\)</span>.</p>
-<p><strong>Poisson Distribution</strong></p>
+</section>
+<section id="poisson-distribution" class="level3">
+<h3 class="anchored" data-anchor-id="poisson-distribution">Poisson Distribution</h3>
 <p>Suppose we’re interested in answering the following question: What is the probability that <span class="math inline">\(x\)</span> events occur inside a time interval <span class="math inline">\([0,T]\)</span> provided each event is independent of the others, and that the probability of any one event occurring in an infinitesimal interval <span class="math inline">\([0,dt]\)</span> is a constant <span class="math inline">\(\alpha dt\)</span>. To figure out what <span class="math inline">\(p(x)\)</span> is, let’s imagine subdividing <span class="math inline">\([0,T]\)</span> up into <span class="math inline">\(N = \frac{T}{dt}\)</span> subintervals. In each subinterval, any single event is a Bernoulli random variable that either occurs with probability <span class="math inline">\(\alpha dt\)</span> or doesn’t occur with probability <span class="math inline">\((1-\alpha)dt\)</span>. If we assume each subinterval is independent of the others, the characteristic function of <span class="math inline">\(p(x)\)</span> is just <span class="math display">\[
 \begin{align*}
 \tilde p(k) &amp;= (\tilde p_1(k))^N \\
@@ -547,8 +588,11 @@ p(x) &amp;= \int_{\mathbb{R}} \frac{dk}{2\pi} \ \tilde p(k) e^{ikx} \\
 \log \tilde p(k) = \lambda (e^{-ik} - 1) = \sum_{n=1}^\infty \frac{(-ik)^n}{n!} \lambda.
 \]</span> That is, all the cumulants are just <span class="math inline">\(\lambda\)</span>. In particular, <span class="math inline">\(\mu = \sigma^2 = \lambda\)</span>.</p>
 </section>
-<section id="joint-random-variables" class="level2">
-<h2 class="anchored" data-anchor-id="joint-random-variables">Joint Random Variables</h2>
+</section>
+<section id="multivariate-probability" class="level2">
+<h2 class="anchored" data-anchor-id="multivariate-probability">Multivariate Probability</h2>
+<section id="random-vectors" class="level3">
+<h3 class="anchored" data-anchor-id="random-vectors">Random Vectors</h3>
 <p>Let’s now look at the situation where we have <span class="math inline">\(N\)</span> random variables <span class="math inline">\(X_1, X_2, \cdots, X_N\)</span>. The vector of all such random variables is called a <strong>random vector</strong>, i.e.&nbsp;a vector <span class="math inline">\(\mathbf{X} = (X_1, X_2, \cdots, X_N)\)</span>. To each random vector we can assign a <strong>joint CDF</strong> of the form <span class="math display">\[
 P(\mathbf{x}) \equiv \mathbb{Pr}(\{\mathbf{X} \leq \mathbf{x}\}) = \mathbb{Pr}(\{X_1 \leq x_1, X_2 \leq x_2, \cdots, X_N \leq x_N\}).
 \]</span> The CDF must be an increasing function in each <span class="math inline">\(x_i\)</span>, go to <span class="math inline">\(0\)</span> as all <span class="math inline">\(x_i \rightarrow -\infty\)</span>, and go to <span class="math inline">\(1\)</span> as all the <span class="math inline">\(x_i \rightarrow \infty\)</span>.</p>
@@ -558,6 +602,10 @@ P(\mathbf{x}) \equiv \mathbb{Pr}(\{\mathbf{X} \leq \mathbf{x}\}) = \mathbb{Pr}(\
 <p>Similarly, if <span class="math inline">\(\mathbf{X}\)</span> is continuous, we can assign a <strong>joint PDF</strong> to each value in <span class="math inline">\(S \in \mathbb{R}^N\)</span> by defining <span class="math display">\[
 p(\mathbf{x}) d^Nx \equiv \mathbb{Pr}(\{x_1 \leq X_1 \leq x_1 + dx_1, x_2 \leq X_2 \leq x_2 + dx_2, \cdots, x_N \leq X_N \leq x_N + dx_N\}),
 \]</span> where <span class="math inline">\(d^N x = dx_1dx_2\cdots dx_N\)</span> is the <span class="math inline">\(N\)</span>-dimensional <em>volume element</em>. The joint PMF must satisfy both <span class="math inline">\(p(\mathbf{x}) \geq 0\)</span>, and <span class="math inline">\(\int_S d^N x \ p(\mathbf{x}) = 1\)</span>. Clearly the joint PMF is just a special case of the joint PDF, since we can always just use delta functions to express a PMF as a PDF.</p>
+<p>As with ordinary random variables, we’ll frequently abuse notation by using <span class="math inline">\(\mathbf{x}\)</span> for both the random vector itself as well as its value where there’s no risk of confusion.</p>
+</section>
+<section id="joint-moments-and-cumulants" class="level3">
+<h3 class="anchored" data-anchor-id="joint-moments-and-cumulants">Joint Moments and Cumulants</h3>
 <p>For any function <span class="math inline">\(F(\mathbf{x})\)</span> of a random vector <span class="math inline">\(\mathbf{x}\)</span> we can define its expectation value as <span class="math display">\[
 \boxed{\langle \mathbf{x} \rangle \equiv \int_S d^N x \ F(\mathbf{x}) p(\mathbf{x})} \ .
 \]</span> For both discrete and continuous random vectors we can define the <strong>joint characteristic function</strong> <span class="math display">\[
@@ -573,7 +621,11 @@ p(\mathbf{x}) d^Nx \equiv \mathbb{Pr}(\{x_1 \leq X_1 \leq x_1 + dx_1, x_2 \leq X
 \boxed{\mathbf{\Sigma} = \langle \mathbf{x}\mathbf{x}^\top \rangle - \langle \mathbf{x} \rangle \langle \mathbf{x} \rangle^\top = \langle (\mathbf{x}-\boldsymbol{\mu})(\mathbf{x}-\boldsymbol{\mu})^\top \rangle} \ .
 \]</span> This implies the covariance matrix must in fact be a positive semi-definite matrix. That is, <span class="math display">\[
 \mathbf{\Sigma} = \mathbf{\Sigma}^\top, \quad \mathbf{v}^\top\mathbf{\Sigma}\mathbf{v} \geq 0 \quad \forall \mathbf{v} \neq \mathbf{0}.
-\]</span> We can get smaller joint probabilities by “summing out” the random variables we don’t need. These are called <strong>marginal probabilities</strong> or <strong>unconditional probabilities</strong>. For example, if we have two random variables <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>, the marginal PDF <span class="math inline">\(p(y)\)</span> is given by integrating <span class="math inline">\(x\)</span> out of the joint PDF <span class="math inline">\(p(x,y)\)</span>, <span class="math display">\[
+\]</span></p>
+</section>
+<section id="conditional-and-marginal-probability" class="level3">
+<h3 class="anchored" data-anchor-id="conditional-and-marginal-probability">Conditional and Marginal Probability</h3>
+<p>We can get smaller joint probabilities by “summing out” the random variables we don’t need. These are called <strong>marginal probabilities</strong> or <strong>unconditional probabilities</strong>. For example, if we have two random variables <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>, the marginal PDF <span class="math inline">\(p(y)\)</span> is given by integrating <span class="math inline">\(x\)</span> out of the joint PDF <span class="math inline">\(p(x,y)\)</span>, <span class="math display">\[
 \boxed{p(y) \equiv \int_\mathbb{R} dx \ p(x,y)} \ .
 \]</span> If we have <span class="math inline">\(N\)</span> random variables <span class="math inline">\(x_1,x_2,\cdots, x_s, x_{s+1},\cdots,x_N\)</span> and integrate out the last <span class="math inline">\(N-s\)</span> variables <span class="math inline">\(x_s, x_{s+1},\cdots,x_N\)</span>, then we get the marginal PDF <span class="math inline">\(p(x_1,x_2,\cdots, x_s)\)</span>, <span class="math display">\[
 p(x_1,x_2,\cdots, x_s) \equiv \int_{\mathbb{R}^{N-s}} dx_s, dx_{s+1},dx_N \ p(x_1,x_2,\cdots, x_s, x_s, x_{s+1},\cdots,x_N).
@@ -592,6 +644,9 @@ p(x_1,x_2,\cdots,x_N) = \big(p(x)\big)^N.
 \]</span> Independent random variables have the property that their <em>mixed cumulants</em> will always be zero. This is equivalent to saying that the joint expectation of any product of random variables value factors, <span class="math display">\[
 \langle F_1(x_1) F_2(x_2) \cdots F_N(x_N) \rangle = \langle F_1(x_1) \rangle \langle F_2(x_2) \rangle \cdots \langle F_N(x_N) \rangle.
 \]</span></p>
+</section>
+<section id="the-multivariate-gaussian-distribution" class="level3">
+<h3 class="anchored" data-anchor-id="the-multivariate-gaussian-distribution">The Multivariate Gaussian Distribution</h3>
 <p>While there are many joint probability distributions, the most important one to be aware of is the <strong>multivariate Gaussian distribution</strong>. Suppose <span class="math inline">\(\mathbf{x} = (x_1, x_2, \cdots, x_N)\)</span> are independent, with each <span class="math inline">\(x_i\)</span> Gaussian distributed with mean <span class="math inline">\(\mu_i\)</span> and variance <span class="math inline">\(\sigma_i^2\)</span>. Then it’s easy to show their joint PDF is given by <span class="math display">\[
 p(x_1, x_2, \cdots, x_N) = \bigg(\frac{1}{(2\pi)^N\sigma_1^2\sigma_2^2\cdots\sigma_N^2}\bigg)^{1/2} \exp\bigg(-\frac{1}{2} \sum_{i=1}^N \frac{(x_i-\mu_i)^2}{\sigma_i^2} \bigg).
 \]</span> But what if <span class="math inline">\(\mathbf{x}\)</span> is <em>not</em> independent? All we have to do in that case is make a change of basis. Notice that joint PDF above is just the diagonalized form for the following joint PDF in vector form, <span class="math display">\[
@@ -618,11 +673,14 @@ p(x_1, x_2, \cdots, x_N) = \bigg(\frac{1}{(2\pi)^N\sigma_1^2\sigma_2^2\cdots\sig
 \langle x_1^2 x_2 x_3 \rangle = \sigma_{11} \sigma_{23} + 2 \sigma_{12} \sigma_{13}.
 \]</span></p>
 </section>
+</section>
 <section id="asymptotic-analysis" class="level2">
 <h2 class="anchored" data-anchor-id="asymptotic-analysis">Asymptotic Analysis</h2>
 <p>In this section we’ll focus on important results that apply for <em>large</em> numbers of random variables <span class="math inline">\(N \gg 1\)</span>.</p>
+<section id="the-central-limit-theorem" class="level3">
+<h3 class="anchored" data-anchor-id="the-central-limit-theorem">The Central Limit Theorem</h3>
 <p>It turns out that the <em>sum</em> of random variables will often by approximately Gaussian distributed provided some minor regularity assumptions are met. This important result is called the <em>central limit theorem</em>.</p>
-<p><strong>Central Limit Theorem:</strong> Suppose <span class="math inline">\(x = \sum_{i=1}^N x_i\)</span> is a sum of <span class="math inline">\(N\)</span> IID random variables with finite mean <span class="math inline">\(\mu\)</span> and variance <span class="math inline">\(\sigma^2\)</span>. Then when <span class="math inline">\(N \gg 1\)</span> we have that <span class="math display">\[
+<p><strong>Central Limit Theorem:</strong> Suppose <span class="math inline">\(x = \sum_{i=1}^N x_i\)</span> is a sum of <span class="math inline">\(N\)</span> IID random variables with finite mean <span class="math inline">\(\mu\)</span> and variance <span class="math inline">\(\sigma^2\)</span>. Then when <span class="math inline">\(N \gg 1\)</span> the probability density satisfies <span class="math display">\[
 \boxed{p\bigg(\frac{x-N\mu}{\sqrt{N\sigma^2}}\bigg) \approx \frac{1}{\sqrt{2 \pi}} \exp\bigg(-\frac{1}{2}\bigg(\frac{x-N\mu}{\sqrt{N\sigma^2}}\bigg)^2\bigg)} \ .
 \]</span> <strong>Proof:</strong> Suppose each <span class="math inline">\(x_i\)</span> is IID with distribution <span class="math inline">\(p_1(x_1)\)</span>. The characteristic function for <span class="math inline">\(p(x)\)</span> must then be <span class="math display">\[
 \tilde p(k) = \langle e^{-i kx} \rangle = \langle e^{-i k\sum_{i=1}^N x_i} \rangle = \prod_{i=1}^N \langle e^{-i k x_i} \rangle = \tilde p(k_1, k_2, \cdots, k_N) \bigg |_{k_1=k_2=\cdots=k_N=k}.
@@ -654,6 +712,9 @@ z \equiv \frac{x - N\mu}{\sqrt{N\sigma^2}}.
 p(z) \approx \frac{1}{\sqrt{2 \pi}} e^{-\frac{z^2}{2}}. \qquad \text{Q.E.D.}
 \]</span> Note the central limit theorem is also true for non-IID random variables, provided the higher cumulants decay as <span class="math inline">\(\kappa_n(x) = O(N^{n/2})\)</span>.</p>
 <p>In the proof of the CLT we implicitly assumed that the cumulants were all finite. What if that weren’t the case? This will happen if the PDF of each <span class="math inline">\(x_i\)</span> is heavy-tailed. Heavy-tailed distributions are commonly used to model <em>rare events</em>. It turns out then that the sum won’t in general converge to a Gaussian. In fact, if it does converge, it’ll converge to a <em>Levy distribution</em>, a general class of heavy-tailed distributions.</p>
+</section>
+<section id="the-saddlepoint-approximation" class="level3">
+<h3 class="anchored" data-anchor-id="the-saddlepoint-approximation">The Saddlepoint Approximation</h3>
 <p>In the section on thermodynamics, we saw both <em>intensive</em> variables and <em>extensive</em> variables. The intensive variables are ones that don’t depend on particle number at all, i.e.&nbsp;they’re <span class="math inline">\(O(1)\)</span> functions of <span class="math inline">\(N\)</span>. The extensive variables are linear in particle number, i.e.&nbsp;they’re <span class="math inline">\(O(N)\)</span>. In principle we could imagine other functional dependences on <span class="math inline">\(N\)</span> as well. For example, a variable could be <em>polynomial</em> in <span class="math inline">\(N\)</span>, i.e.&nbsp;<span class="math inline">\(O(N^p)\)</span> for some <span class="math inline">\(p\)</span>. More importantly, a variable can be <em>exponential</em> in <span class="math inline">\(N\)</span>, i.e.&nbsp;<span class="math inline">\(O(e^{N\phi})\)</span> for some <span class="math inline">\(\phi\)</span>. For example, the <em>volume</em> of a gas would be a variable that can scale exponentially with <span class="math inline">\(N\)</span>, since it often goes like <span class="math inline">\(V^N\)</span>.</p>
 <p>When <span class="math inline">\(N \gg 1\)</span>, the sum of many exponential variables can be well approximated by the maximum term. Suppose we have <span class="math inline">\(n\)</span> non-negative variables <span class="math inline">\(x_1,x_2,\cdots,x_n\)</span> of the form <span class="math inline">\(x_i \sim e^{N\phi_i}\)</span> as <span class="math inline">\(N \rightarrow \infty\)</span>. Then their sum <span class="math inline">\(S = \sum x_i\)</span> satisfies <span class="math display">\[
 S \sim x_{max} = \max_{i=1,\cdots,n} x_i, \quad \text{when} \quad N \rightarrow \infty.
@@ -702,8 +763,11 @@ N! &amp;= e^{N(\log N - 1)} \sqrt{\frac{2\pi}{N|-N^{-2}|}} \bigg(1 + O\bigg(\fra
 \boxed{\log N! \approx N\log N - N} \ .
 \]</span> This will usually be the form of Stirling’s approximation that we use in practice.</p>
 </section>
+</section>
 <section id="information-theory" class="level2">
 <h2 class="anchored" data-anchor-id="information-theory">Information Theory</h2>
+<section id="information-and-entropy" class="level3">
+<h3 class="anchored" data-anchor-id="information-and-entropy">Information and Entropy</h3>
 <p>We can think about probabilities in a completely different sense by thinking about the <em>information content</em> contained in a system and how uncertain we are about what that information content is. Suppose we wanted to transmit a message containing <span class="math inline">\(N\)</span> characters, where each character is sampled from some alphabet <span class="math inline">\(\Sigma\)</span> containing <span class="math inline">\(M\)</span> total characters. We’d like to ask the following question: How many bits of information does a <em>typical</em> message of <span class="math inline">\(N\)</span> characters from this alphabet contain?</p>
 <p>Suppose we had no information at all about how often any one particular character <span class="math inline">\(x_m \in \Sigma\)</span> occurs in a message. In this case, we’d have to assume that all messages of length <span class="math inline">\(N\)</span> are typical. Since there are <span class="math inline">\(M^N\)</span> possible messages of length <span class="math inline">\(N\)</span>, we’d say there are <span class="math inline">\(g = M^N\)</span> typical messages. Since <span class="math inline">\(g\)</span> contains <span class="math inline">\(\log_2 g\)</span> bits of information, this means a typical message would contain <span class="math inline">\(\log g = N \log_2 M\)</span> bits of information.</p>
 <p>Suppose now that we had an estimate of the frequency <span class="math inline">\(p_m\)</span> that each character <span class="math inline">\(x_m \in \Sigma\)</span> occurs in a message. That is, in a message of length <span class="math inline">\(N\)</span>, we expect each character <span class="math inline">\(x_m\)</span> to occur <span class="math inline">\(N_m \approx Np_m\)</span> total times, or to be more precise <span class="math inline">\(N_m = Np_m + O\big(\sqrt{N}\big)\)</span> since each character is a Bernoulli random variable, hence a message of length <span class="math inline">\(N\)</span> is a binomial random variable. In this case, the number of <em>typical</em> messages is just the number of ways of placing <span class="math inline">\(N\)</span> random characters into <span class="math inline">\(M\)</span> bins of sizes <span class="math inline">\(N_1, N_2, \cdots, N_M\)</span>, which is <span class="math display">\[
@@ -727,7 +791,8 @@ S = -\sum_{m=1}^M p_m \log p_m = -\langle \log p \rangle = \langle I \rangle.
 \boxed{S \equiv -\int_{\mathbb{R}} dx \ p(x) \log p(x)} \ .
 \]</span> From a physical perspective, a more troublesome problem with this definition is that in general <span class="math inline">\(dx\)</span> will have units, which means <span class="math inline">\(p(x)\)</span> will have units as well. But we can’t have a function with units inside a logarithm. The <em>right</em> way to deal with this will be to convert <span class="math inline">\(dx\)</span> to some kind of dimensionless measure so that <span class="math inline">\(p(x)\)</span> will also be dimensionless. For example, in statistical mechanics we’ll usually be looking at distributions over phase space, where the integration measure is <span class="math inline">\(d\Gamma \propto d^3 x d^3 p\)</span>. In this case, we’d need to divide by a constant that has units of <span class="math inline">\([xp]\)</span>. We’ll see from quantum mechanics that the correct constant is in fact Planck’s constant <span class="math inline">\(h\)</span>. That is, the right integration measure is <span class="math display">\[
 d\Gamma = \frac{d^3 x d^3 p}{h^3}.
-\]</span> We can use the idea of information entropy to finally answer the question regarding what the correct way is to define probabilities subjectively or theoretically. The idea is to use the <em>principle of maximum entropy</em>.</p>
+\]</span> ### The Principle of Maximum Entropy</p>
+<p>We can use the idea of information entropy to finally answer the question regarding what the correct way is to define probabilities subjectively or theoretically. The idea is to use the <em>principle of maximum entropy</em>.</p>
 <p><strong>Principle of Maximum Entropy:</strong> The unbiased assignment of probability is the one that maximizes the information entropy subject to known constraints. More formally, assign a probability distribution <span class="math inline">\(p(x)\)</span> that maximizes the constrained problem <span class="math display">\[
 \boxed{
 \begin{align*}
@@ -807,6 +872,7 @@ Z = \sum_{i=0}^\infty e^{-\beta E_i}.
 \]</span> More generally, we could imagine <span class="math inline">\(\mathbf{E}(x)\)</span> being a vector-valued function, in which case the same results apply just be replacing the scalars <span class="math inline">\(\beta E_i\)</span> with vectors <span class="math inline">\(\boldsymbol{\beta} \cdot \mathbf{E}_i\)</span>. We’ll see later that the normalization constant <span class="math inline">\(Z\)</span> is very important to statistical mechanics. It’s called the <strong>partition function</strong>. In that case, <span class="math inline">\(E_j\)</span> represents the energy of the system in the <span class="math inline">\(j\)</span><sup>th</sup> state and <span class="math inline">\(E\)</span> represents the average internal energy of the system, i.e.&nbsp;the energy that satisfies the first law of thermodynamics.</p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

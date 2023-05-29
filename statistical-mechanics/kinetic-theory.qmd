@@ -164,7 +164,7 @@ TALK ABOUT ERGODICITY HERE
 
 The full phase space density of all $N$ particles contains far more information than we need for thermodynamic purposes. In fact, we can often get away with looking at densities of a small number of particles in the background of all the other particles. We can derive a recursive expression for these densities that will be useful for making the approximations that will lead us into thermodynamics.
 
-### $s$-Particle Densities
+### Particle Densities
 
 Define the (un-normalized) density of a single particle as the expected number of particles $f_1$ that occur at some $\mathbf{x},\mathbf{p},t$, i.e.
 $$
@@ -405,7 +405,7 @@ $$
 $$
 In this setting there's in general no relaxation towards equilibrium. In fact, *any* function $f(\mathbf{x},\mathbf{p}) = g(\mathbf{p})$ is a valid steady state solution to the Vlasov equation. The Vlasov equation is used to characterize the behavior of *plasmas*. Typically when studying plasmas, one assumes the background forces are electromagnetic fields, in which case $\mathbf{F}_{\text{eff}}$ just becomes the Lorentz force on each charged particle,
 $$
-\mathbf{F}_{\text{eff}} = q\mathbf{E} +  q\frac{\mathbf{v}}{c} \times \mathbf{B}.
+\mathbf{F}_{\text{eff}} = e\mathbf{E} +  e\frac{\mathbf{v}}{c} \times \mathbf{B}.
 $$
 
 ## Equilibrium
@@ -426,7 +426,7 @@ That is, for *any* position $\mathbf{x}$,
 $$
 \log f(\mathbf{x}, \mathbf{p}_1) + \log f(\mathbf{x},\mathbf{p}_2) = \log f(\mathbf{x},\mathbf{p}'_1) + \log f(\mathbf{x},\mathbf{p}'_2).
 $$
-This rule is sometimes called the law of *detailed balance*. Detailed balance evidently says that the sum $\log f(\mathbf{x}, \mathbf{p}_1) + \log f(\mathbf{x},\mathbf{p}_2)$ must be conserved during collisions. In an elastic collision we require that particle number, momentum and kinetic energy be conserved,
+This is a law of *detailed balance*, in that it states that some quantity before a collision must equal the same quantity after collision. Detailed balance evidently implies that the sum $\log f(\mathbf{x}, \mathbf{p}_1) + \log f(\mathbf{x},\mathbf{p}_2)$ must be conserved during collisions. In an elastic collision we require that particle number, momentum and kinetic energy be conserved,
 $$
 \begin{align*}
 1 + 1 &= 1' + 1',\\
@@ -489,12 +489,7 @@ PV = N k_B T.
 $$
 Insisting a free gas reduce to an ideal gas at equilibrium again supports that $\beta = \frac{1}{k_B T}$. 
 
-If desired, one can calculate the entropy too by using $S \equiv -k_B \mathrm{H}$ and doing the integral for $\mathrm{H}$. The result will be (up to an additive constant) the entropy for a monoatomic ideal gas. This is called the **Sakur-Tetrode equation**,
-$$
-\boxed{S = Nk_B \log\bigg[\frac{V}{N} \bigg(\frac{mE}{3\pi \hbar^2 N}\bigg)^{3/2} \bigg] + \frac{5}{2} Nk_B} \ .
-$$
-In fact, we could calculate the entropy and use thermodynamic relations to get the energy and pressure more straightforwardly.
-
+If desired, one can calculate the entropy too by using $S \equiv -k_B \mathrm{H}$ and doing the integral for $\mathrm{H}$. The result will be (up to an additive constant) the entropy for a monoatomic ideal gas.
 ### The Maxwell-Boltzmann Distribution
 
 We can also ask about the distribution for the *speed* $v$ of an ideal gas at equilibrium. Using the relation $\mathbf{p} = m \mathbf{v}$, we then have
@@ -610,7 +605,7 @@ $$
 
 We evidently have a differential equation for the flow velocity $\mathbf{u}$. The only unfamiliar term is the first one, which is evidently the gradient of a symmetric rank-two tensor. This is the *pressure tensor*, defined by
 $$
-P_{\alpha\beta} \equiv nm \big\langle c_\alpha c_\beta \big\rangle_c.
+P_{\alpha\beta} \equiv nm \big\langle c_\alpha c_\beta \big\rangle_c \ , \quad \text{or} \quad \mathbf{P} \equiv nm\langle \mathbf{c} \otimes \mathbf{c} \rangle_c \ .
 $$
 Plugging the pressure tensor in and re-arranging, we see that each component of the flow velocity satisfies a conservation law of the form
 $$
@@ -654,7 +649,7 @@ As was already mentioned, our whole purpose in deriving collision conserved quan
 
 While all these conservation equations are nice, we still don't know how to solve them. To do that we'd need to know the pressure tensor and the heat flux, both of which require that we already know the density. Usually we don't know the full density. What we'll try to do instead is expand the density in terms of the parameter $\frac{\tau_X}{\tau_{\text{ext}}}$, the characteristic inverse time scale of $L[f]$. In the limit where external forces act on much larger time scales than the collision forces this parameter will be small. 
 
-In the zeroth order case we're assuming $\tau_{\text{ext}} \rightarrow \infty$. Call that *zeroth order density* $f^0$. Then we have $C[f^0] = 0$. We already saw using detailed balance that such a distribution is just a Gaussian in terms of the momenta or velocity. If we write
+Let's start by calculating the *zeroth order density* $f^0$. In the zeroth order case we're assuming $\tau_{\text{ext}} \rightarrow \infty$, hence $C[f^0] = 0$. We already saw using detailed balance that such a distribution is just a Gaussian in terms of the momenta or velocity. If we write
 $$
 \mathbf{c}(\mathbf{x}, t) = \mathbf{p} - m\mathbf{u}(\mathbf{x}, t) = \mathbf{p} - \boldsymbol{\pi}(\mathbf{x}, t),
 $$
@@ -666,11 +661,11 @@ This is a mean-zero Gaussian distribution in $\mathbf{c}$ with variance $\frac{k
 
 Since we're dealing with a Gaussian, we can use Wick's theorem to conclude the odd-power moments are zero. This means that the heat flux vanishes, since
 $$
-\mathbf{h} = \frac{1}{2} nm \big\langle \mathbf{c}^2 \mathbf{c} \big\rangle_c = \mathbf{0}.
+\mathbf{h} = \frac{1}{2} nm \big\langle \mathbf{c}^2 \mathbf{c} \big\rangle_c = \mathbf{0} .
 $$
 The pressure tensor, however, is an even moment. Since the covariance of $f^0$ is diagonal, we just have
 $$
-\mathbf{P} = nm \big\langle \mathbf{c} \otimes \mathbf{c} \big\rangle_c = nm \frac{k_B T}{m} \ \mathbf{I} = nk_B T \ \mathbf{I}.
+\mathbf{P} = nm \big\langle \mathbf{c} \otimes \mathbf{c} \big\rangle_c = nm \frac{k_B T}{m} \ \mathbf{1} = nk_B T \ \mathbf{1}.
 $$
 Last, the energy density is just
 $$
@@ -730,11 +725,31 @@ $$
 \tilde \theta \\
 \end{pmatrix}.
 $$
-Note the block notation being used. This is really a $5 \times 5$ matrix multiplying a size $5$ vector. There are thus $5$ distinct normal modes that satisfy this equation. The solutions are rather messy. Suffice it to say that:
+Note the block notation being used. This is really a $5 \times 5$ matrix multiplying a size $5$ vector. There are thus $5$ distinct normal modes that satisfy this equation. To get the modes we need to solve the characteristic equation, which turns out to be
+$$
+\text{det}(\mathbf{A} - \omega \mathbf{I}) = \omega^3\bigg(\omega^2 - \frac{5k_B T_0}{3m} \bigg) = 0.
+$$
 
-- Two of the modes represent *shearing modes*, e.g. flows of the form $\mathbf{u} = u_x(y,t) \mathbf{e}_x$. That is, the velocities vary perpendicularly to their direction of motion, creating a shearing effect. This means that the *transverse flows* can't relax to equilibrium. They continue forever.
-- One of the modes is a *zero mode*, i.e. $\omega = 0$. This describes a ** with uniform pressure $P = n k_B T$. This insures the product $nT$ is constant, which means the fluid can't start moving due to pressure variations alone. The normal modes are $\tilde\nu = n_0$, $\tilde\theta = -T_0$, and $\mathbf{\tilde u} = \mathbf{0}$, all constant.
-- The final two modes are *sound modes*. These are normal modes of the form $\tilde\nu = n_0 |\mathbf{k}|$, $\tilde\theta = \frac{2}{3} T_0 |\mathbf{k}|$, and $\mathbf{\tilde u} = \pm v_s |\mathbf{k}|$. Here $v_s^2 \equiv \frac{5k_B T_0}{3m}$ represents the *speed of sound* of the gas. All of these modes imply that the quantities all propagate out as an undamped wave in the $\mathbf{k}$ direction. Since both the density and temperature variations are adiabatic, these *longitudinal flows* won't relax to equilibrium either.
+- The first mode is a *stationary mode*, one of the zero modes with $\omega = 0$. The modes themselves are
+  $$
+  \tilde\nu = \text{const}, \quad \mathbf{\tilde u} = \mathbf{0}, \quad \tilde \theta = \text{const},
+  $$
+  meaning that the fluid is essentially stationary for all frequencies. This implies the fluid maintains uniform pressure $P = n k_B T_0$, which ensures that the fluid can't start moving due to pressure variations since $\Delta S \sim nT_0$ is constant.
+
+- The next two modes are *sound modes*, where $\omega = \pm v_s |\mathbf{k}|$. Here $v_s$ is the *speed of sound* of the fluid, given by
+  $$
+  v_s \equiv \sqrt{\frac{\gamma k_B T_0}{m}}, \quad \text{where} \quad \gamma = \frac{5}{3}
+  $$
+  is the *adiabatic constant* for a monoatomic ideal gas. Sound modes represent *pressure waves* propagating outward forever without damping. All of the conserved quantities propagate as *longitudinal* waves along the $\mathbf{k}$ direction, since
+  $$
+  \tilde\nu = n_0 |\mathbf{k}|, \quad \mathbf{\tilde u} = \pm v_s \mathbf{k}, \quad \tilde\theta = \frac{2}{3} T_0 |\mathbf{k}|.
+  $$
+
+- The last two modes are *shearing modes*. These are also zero modes with $\omega = 0$, but they correspond to motion in the *transverse directions* orthogonal to $\mathbf{k}$. This means we'd have
+  $$
+  \tilde \nu = \text{const}, \quad \mathbf{\tilde u} \cdot \mathbf{k} = 0, \quad \tilde \theta = \text{const}.
+  $$
+  Transverse motions in a fluid create a shearing effect. Since $\mathbf{\tilde u}$ stays constant for shearing modes, each quantity will just continue forever without damping.
 
 We thus find that none of the conserved quantities relax to equilibrium to zeroth-order. Shear flow and entropy modes persist forever, while the two sound modes have undamped oscillations. Since none of the normal modes in general relax to equilibrium, neither will any general solutions, which are themselves just superpositions of normal modes.
 
@@ -778,5 +793,87 @@ f^1(\mathbf{x}, \mathbf{p},t) = \ &n\bigg(\frac{m}{2\pi k_B T}\bigg)^{3/2} \exp\
 $$
 The term involving the trace of velocities represents the correlation of particle velocity with the rate of strain tensor. It describes how velocities vary due to fluid strain. The term involving the temperature gradient says something about how velocities depend on temperature gradients across the fluid. Together, these effects give the density an anisotropic, multimodal behavior.
 
-Also worth noticing is that the first-order correction now contains terms proportional to both $c$ and $c^3$, which means the first and third moments no longer vanish. Together, these will imply the existence of a non-zero heat flux vector and a non-diagonal pressure tensor. 
+After some work, it turns out that integrating $f^1$ again gives the particle density,
+$$
+n(\mathbf{x},t) = \int d^3 \mathbf{p} \ f^1(\mathbf{x}, \mathbf{p}, t).
+$$
+We can more quickly calculate the first-order collision averages in terms of the zeroth-order averages as
+$$
+\langle \chi(\mathbf{x},t) \rangle_c^1 = \frac{1}{n(\mathbf{x},t)} \int d^3 \mathbf{p} \ \chi(\mathbf{x},t) f^0(\mathbf{x}, \mathbf{p}, t)\big(1+g(\mathbf{x}, \mathbf{p}, t)\big) = \big\langle \chi(\mathbf{x},t) \big\rangle_c^0 + \big\langle g(\mathbf{x}, t) \chi(\mathbf{x},t) \big\rangle_c^0 \ .
+$$
+All quantities of interest involve calculating moments of $\mathbf{c}$. Notice that the first-order correction now contains terms proportional to both $c$ and $c^3$, which means the first and third moments no longer vanish. Together, these will imply the existence of a non-zero heat flux vector and a non-diagonal pressure tensor. We can use Wick's theorem to calculate these values to eventually get
+$$
+\begin{align*}
+\mathbf{P} &= nm \langle \mathbf{c}\otimes\mathbf{c} \rangle_c^1 = nk_B T \bigg[\mathbf{1} - 2 \tau_X \bigg(\mathbf{U} - \frac{u^2}{3} \mathbf{1}\bigg)\bigg], \\
+\varepsilon &= \frac{1}{2} m \langle c^2 \rangle_c^1 = \frac{3}{2} k_B T, \\
+\mathbf{h} &= \frac{1}{2} mn \langle c^2 \mathbf{c} \rangle_c^1 = -\frac{5 \tau_X nk_B^2 T}{2m} \nabla T.
+\end{align*}
+$$
+The coefficient $\mu \equiv nk_B T \tau_X$ in the off diagonals of the pressure tensor is the *viscosity coefficient*. The off-diagonals cause the fluid to shear against opposing viscous forces that go like $\mu \nabla^2 \mathbf{u}$. Similarly, the coefficient $K \equiv \frac{5 \tau_X nk_B^2 T}{2m}$ is the *thermal conductivity coefficient* of the gas. In particular, when the gas is at rest and the pressure is uniform, we get
+$$
+\frac{\partial T}{\partial t} = \alpha \nabla^2 T,
+$$
+which is a classic diffusion equation for the temperature, called the *Fourier equation*. Recall that solutions to diffusion equations will *always* settle down into an equilibrium state as $t \rightarrow \infty$. The diffusion coefficient
+$$
+\alpha(T) \equiv \frac{2K}{3nk_B} = \frac{5\tau_X k_B T}{3m}
+$$
+characterizes the inverse time scale over which the temperature relaxes to its equilibrium temperature. For variations on distance scales of $\lambda$, the heat equation relaxes on a time scale of
+$$
+\tau_{\text{diff}} \sim \frac{\lambda^2}{\alpha}.
+$$
+The fluid velocity relaxes according to a similar diffusion equation brought on by the shearing in the pressure tensor.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
