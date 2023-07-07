@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.335">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Personal Notes - 29&nbsp; Statistical Mechanics</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../statistical-mechanics/kinetic-theory.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+</head>
+
+<body class="nav-sidebar docked">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-title">Statistical Mechanics</span></h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">Personal Notes</a> 
+    </div>
+      </div>
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">Preface</a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false">Classical Mechanics</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../classical-mechanics/newtonian-mechanics.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Newtonian Mechanics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../classical-mechanics/simple-systems.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Simple Systems</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../classical-mechanics/reference-frames.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Reference Frames</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../classical-mechanics/lagrangian-mechanics.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Lagrangian Mechanics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../classical-mechanics/hamiltonian-mechanics.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Hamiltonian Mechanics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../classical-mechanics/central-forces.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Central Forces</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../classical-mechanics/coupled-oscillations.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Coupled Oscillations</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../classical-mechanics/rigid-bodies.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Rigid Bodies</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../classical-mechanics/canonical-transformations.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Canonical Transformations</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../classical-mechanics/integrability-and-chaos.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Integrability and Chaos</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../classical-mechanics/continuum-mechanics.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Continuum Mechanics</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">Electrodynamics</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../electrodynamics/introduction.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Introduction</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../electrodynamics/electrostatics.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Electrostatics</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">Circuit Analysis</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../circuits/circuit-abstraction.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">The Lumped Circuit Abstraction</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../circuits/analysis.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Analyzing Circuits</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../circuits/nonlinear-methods.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Nonlinear Methods</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../circuits/digital-abstraction.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">The Digital Abstraction</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../circuits/amplifiers.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Amplifiers</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../circuits/first-order-systems.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">First-Order Systems</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../circuits/second-order-systems.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Second-Order Systems</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../circuits/ac-analysis.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">AC Analysis</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../circuits/op-amps.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Operational Amplifiers</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../circuits/energy-power.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Energy and Power</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false">Quantum Mechanics</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../quantum-mechanics/identical-particles.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Identical Particles</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../quantum-mechanics/second-quantization.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Second Quantization</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">Statistical Mechanics</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../statistical-mechanics/thermodynamics.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Thermodynamics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../statistical-mechanics/probability.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Probability</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../statistical-mechanics/kinetic-theory.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Kinetic Theory</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../statistical-mechanics/classical-stat-mech.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">Statistical Mechanics</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#formal-definition" id="toc-formal-definition" class="nav-link active" data-scroll-target="#formal-definition">Formal Definition</a></li>
+  <li><a href="#microcanonical-ensemble" id="toc-microcanonical-ensemble" class="nav-link" data-scroll-target="#microcanonical-ensemble">Microcanonical Ensemble</a>
+  <ul class="collapse">
+  <li><a href="#two-state-systems" id="toc-two-state-systems" class="nav-link" data-scroll-target="#two-state-systems">Two-State Systems</a></li>
+  </ul></li>
+  <li><a href="#distinguishability" id="toc-distinguishability" class="nav-link" data-scroll-target="#distinguishability">Distinguishability</a>
+  <ul class="collapse">
+  <li><a href="#ideal-gas" id="toc-ideal-gas" class="nav-link" data-scroll-target="#ideal-gas">Ideal Gas</a></li>
+  <li><a href="#gibbs-paradox" id="toc-gibbs-paradox" class="nav-link" data-scroll-target="#gibbs-paradox">Gibbs’ Paradox</a></li>
+  <li><a href="#example-ultrarelativistic-ideal-gas" id="toc-example-ultrarelativistic-ideal-gas" class="nav-link" data-scroll-target="#example-ultrarelativistic-ideal-gas">Example: Ultrarelativistic Ideal Gas</a></li>
+  <li><a href="#example-ideal-gas-of-hard-spheres" id="toc-example-ideal-gas-of-hard-spheres" class="nav-link" data-scroll-target="#example-ideal-gas-of-hard-spheres">Example: Ideal Gas of Hard Spheres</a></li>
+  </ul></li>
+  <li><a href="#canonical-ensemble" id="toc-canonical-ensemble" class="nav-link" data-scroll-target="#canonical-ensemble">Canonical Ensemble</a>
+  <ul class="collapse">
+  <li><a href="#boltzmann-distribution" id="toc-boltzmann-distribution" class="nav-link" data-scroll-target="#boltzmann-distribution">Boltzmann Distribution</a></li>
+  <li><a href="#partition-function" id="toc-partition-function" class="nav-link" data-scroll-target="#partition-function">Partition Function</a></li>
+  <li><a href="#fluctuations" id="toc-fluctuations" class="nav-link" data-scroll-target="#fluctuations">Fluctuations</a></li>
+  <li><a href="#example-ideal-gas" id="toc-example-ideal-gas" class="nav-link" data-scroll-target="#example-ideal-gas">Example: Ideal Gas</a></li>
+  <li><a href="#equipartition-theorem" id="toc-equipartition-theorem" class="nav-link" data-scroll-target="#equipartition-theorem">Equipartition Theorem</a></li>
+  </ul></li>
+  <li><a href="#higher-ensembles" id="toc-higher-ensembles" class="nav-link" data-scroll-target="#higher-ensembles">Higher Ensembles</a>
+  <ul class="collapse">
+  <li><a href="#gibbs-canonical-ensemble" id="toc-gibbs-canonical-ensemble" class="nav-link" data-scroll-target="#gibbs-canonical-ensemble">Gibbs Canonical Ensemble</a></li>
+  <li><a href="#grand-canonical-ensemble" id="toc-grand-canonical-ensemble" class="nav-link" data-scroll-target="#grand-canonical-ensemble">Grand Canonical Ensemble</a></li>
+  <li><a href="#example-ideal-gas-1" id="toc-example-ideal-gas-1" class="nav-link" data-scroll-target="#example-ideal-gas-1">Example: Ideal Gas</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content column-body" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title d-none d-lg-block"><span class="chapter-title">Statistical Mechanics</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<p>Thus far we’ve seen the phenomenological description of thermodynamics, along with a derivation of the laws of thermodynamics for the ideal gas starting from the classical equations of motion. We’d like a more general way to relate classical mechanics to thermal equilibrium. Trying to derive equilibrium properties from the dynamical equations of motion for every system is practically impossible. We’ll thus now adopt a different approach. Rather than understand <em>how</em> it is that a system arrives at equilibrium, we’ll simply assume the system is <em>already</em> in equilibrium and try to study its properties using the rules of probability theory. This is the approach of statistical mechanics.</p>
+<section id="formal-definition" class="level2">
+<h2 class="anchored" data-anchor-id="formal-definition">Formal Definition</h2>
+<p>More formally, suppose we have a system of <span class="math inline">\(N\)</span> particles in equilibrium whose phase space configuration is described by a <em>microstate</em> <span class="math inline">\(\boldsymbol{\mu} \equiv \{\mathbf{x}_i, \mathbf{p}_i\}\)</span> . Suppose we’re interested in studying some set of macroscopic equilibrium properties described by a <em>macrostate</em> <span class="math inline">\(M=(E,X,N)\)</span>. For a given macrostate <span class="math inline">\(M\)</span>, suppose the equilibrium phase space density for the system to be in some microstate <span class="math inline">\(\boldsymbol{\mu}\)</span> is given by a probability distribution <span class="math inline">\(p_M(\boldsymbol{\mu})\)</span>. Let’s define <strong>statistical mechanics</strong> as the probabilistic study of the equilibrium macrostates <span class="math inline">\(M\)</span> of a system with a large number of degrees of freedom <span class="math inline">\(N \gg 1\)</span> using the equilibrium probability distribution <span class="math inline">\(p_M(\boldsymbol{\mu})\)</span>.</p>
+<p>Recall that to be in equilibrium the phase space density should be time independent. By Liouville’s equation, this means <span class="math display">\[
+\frac{\partial}{\partial t} p_M(\boldsymbol{\mu}) = -\{p_M(\boldsymbol{\mu}), H\} = 0.
+\]</span> In general this will be true so long as <span class="math inline">\(p_M(\boldsymbol{\mu})\)</span> is an explicit function only of the Hamiltonian <span class="math inline">\(H(\boldsymbol{\mu})\)</span> and possibly any other conserved quantities. If there are no other conserved quantities then the equilibrium distribution should be an explicit function of <span class="math inline">\(H(\boldsymbol{\mu})\)</span> alone, i.e. <span class="math display">\[
+p_M(\boldsymbol{\mu}) \equiv p_M(H(\boldsymbol{\mu})).
+\]</span> In statistical mechanics we’re primarily interested in probability distributions corresponding to specific classes of system constraints, or <em>ensembles</em>. We’ll focus on the following ensembles, each of which corresponds to a conserved free energy.</p>
+<ul>
+<li>The <em>microcanonical ensemble</em>: <span class="math inline">\(p_M(\boldsymbol{\mu}) \propto \delta(H(\boldsymbol{\mu}) - E)\)</span>. This corresponds to the energy <span class="math inline">\(E\)</span> being conserved.</li>
+<li>The <em>canonical ensemble</em>: <span class="math inline">\(p_M(\boldsymbol{\mu}) \propto e^{-\beta H(\boldsymbol{\mu})}\)</span>. This corresponds to the Hemlholtz free energy <span class="math inline">\(F\)</span> being conserved.</li>
+<li>The <em>Gibbs canonical ensemble</em>: <span class="math inline">\(p_M(\boldsymbol{\mu}) \propto e^{-\beta (H(\boldsymbol{\mu}) - J \cdot X)}\)</span>. This corresponds to the Gibbs free energy <span class="math inline">\(G\)</span> being conserved.</li>
+<li>The <em>grand canonical ensemble</em>: <span class="math inline">\(p_M(\boldsymbol{\mu}) \propto e^{-\beta (H(\boldsymbol{\mu}) - \mu \cdot N)}\)</span>. This corresponds to the grand potential <span class="math inline">\(\mathcal{G}\)</span> being conserved.</li>
+</ul>
+<p>All of these distributions arise from the principle of maximum entropy given certain known constraints, particularly the assumption that the expected values of zero or more quantities are given. We’ll study the implications of each ensemble one at a time and discuss when to use which for a given problem.</p>
+</section>
+<section id="microcanonical-ensemble" class="level2">
+<h2 class="anchored" data-anchor-id="microcanonical-ensemble">Microcanonical Ensemble</h2>
+<p>Suppose we have an <em>isolated system</em>, where the macrostate <span class="math inline">\(M=(E,X,N)\)</span> is assumed to be <em>constant</em>. This is called the <strong>microcanonical ensemble</strong>. The corresponding probability distribution is given by the assumption of a-priori probability. We assume all microstates are equally likely so long as <span class="math inline">\(M\)</span> stays fixed. More specifically, the probability distribution is assumed to be <em>uniform</em> on phase space manifolds of constant energy, <span class="math display">\[
+\boxed{
+p(\boldsymbol{\mu}) = \frac{1}{\Omega(M)} \delta\big(H(\boldsymbol{\mu}) - E\big)
+} \ ,
+\]</span> The variable <span class="math inline">\(\Omega(M)\)</span> is some normalization constant ensuring the probability integrates to one. In fact, it’s just a count of the total number of microstates corresponding to the macrostate <span class="math inline">\(M\)</span>. We’ll call it the <strong>multiplicity</strong>. The multiplicity also corresponds to the <em>surface area</em> of the phase space manifold of constant energy <span class="math inline">\(E\)</span>, <span class="math display">\[
+\boxed{\Omega(M) = \int_{H(\boldsymbol{\mu})=E} d \boldsymbol{\mu}} \ .
+\]</span> Given the probability distribution, we can calculate the thermodynamic entropy using the formula <span class="math inline">\(S = -k_B \langle \log p \rangle\)</span>, <span class="math display">\[
+\begin{align*}
+S(M) &amp;= -k_B \int d \boldsymbol{\mu} \ p(\boldsymbol{\mu}) \log p(\boldsymbol{\mu}) \\
+&amp;= k_B \int_{H(\mathbf{x},\mathbf{p})=E} d \boldsymbol{\mu} \ \frac{\log \Omega(M)}{\Omega(M)} \\
+&amp;= k_B \log \Omega(M). \\
+\end{align*}
+\]</span> That is, the entropy is simply proportional to the <em>logarithm</em> of the number of microstates, <span class="math display">\[
+\boxed{
+S = k_B \log \Omega
+} \ .
+\]</span> ### Laws of Thermodynamics</p>
+<p>With a probability distribution and a definition of entropy in hand, we can proceed to <em>derive</em> almost all of the laws of thermodynamics from the assumption of a microcanonical ensemble. Let’s start with the zeroth law.</p>
+<p><strong>Zeroth Law:</strong> Suppose two otherwise isolated systems <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are in thermal contact with each other and allowed to exchange energy. When they both reach equilibrium, there will be some <em>temperature</em> function such that <span class="math inline">\(T = T_A = T_B\)</span>.</p>
+<p><strong>Proof:</strong> Suppose system <span class="math inline">\(A\)</span> has energy <span class="math inline">\(E_A\)</span> and system <span class="math inline">\(B\)</span> has energy <span class="math inline">\(E_B\)</span>. The entire system <span class="math inline">\(A+B\)</span> is isolated, which means it has some constant energy that must be given by <span class="math inline">\(E = E_A + E_B\)</span>. The multiplicity of the full system is just the <em>product</em> of multiplicities of each subsystem, integrated over all energies that sum up to <span class="math inline">\(E\)</span>. That is, <span class="math display">\[
+\Omega(E) = \int_{E=E_A+E_B} dE \ \Omega(E_A) \Omega(E_B) = \int dE_A \ \Omega(E_A) \Omega(E-E_A).
+\]</span> We can write this in terms of entropies as well. We have <span class="math display">\[
+\Omega(E) = \int dE_A \ e^{\frac{1}{k_B} S_A} e^{\frac{1}{k_B} S-S_A} = \int dE_A \ e^{\frac{1}{k_B}(S_A+S_B)}
+\]</span> Now, entropy is an extensive quantity, meaning <span class="math inline">\(S \propto N\)</span>. Since <span class="math inline">\(N\)</span> is large we can employ the saddlepoint approximation, evaluating the integrand at the energies <span class="math inline">\(E_A^*\)</span> and <span class="math inline">\(E_B^*\)</span> that maximize the total entropy to get <span class="math display">\[
+\Omega(E) \approx e^{\frac{1}{k_B} \big(S(E_A^*) + S(E_B^*)\big)}.
+\]</span> This maximum must occur when the partial derivatives at the maximum energies vanish, i.e. <span class="math display">\[
+\frac{\partial }{\partial E_A} S(E_A^*) \bigg|_{X,N} - \frac{\partial }{\partial E_B} S(E_B^*) \bigg|_{X,N} = 0.
+\]</span> When <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are in equilibrium, the total entropy <span class="math inline">\(S\)</span> must be maximized, meaning the partial derivatives must be equal. This condition defines a function whose values must equal at equilibrium, which by convention is the <em>inverse temperature</em>, <span class="math display">\[
+\frac{1}{T} \equiv \frac{\partial S}{\partial E_A} \bigg|_{X,N} = \frac{\partial S}{\partial E_B} \bigg|_{X,N}. \quad \text{Q.E.D.}
+\]</span> Notice in the above proof that we paid <em>no</em> attention to <em>how</em> the system reached equilibrium, only that it <em>did</em> eventually reached equilibrium, meaning that it satisfies the microcanonical probability distribution. Let’s look now at the first law.</p>
+<p><strong>First Law:</strong> Consider a system having some form of mechanical work done on it by a force <span class="math inline">\(J\)</span>. It’s also allowed to exchange particles with the environment via a chemical potential <span class="math inline">\(\mu\)</span>. If the force causes a differential displacement <span class="math inline">\(dX\)</span> and <span class="math inline">\(dN\)</span> particles are exchanged, then the total change in energy is given in differential form by <span class="math display">\[
+dE = TdS + J \cdot dX + \mu \cdot dN.
+\]</span> <strong>Proof:</strong> Let’s calculate the change in the system’s entropy when a differential amount of work is done on the system. The amount of work done on a system in response to a displacement <span class="math inline">\(\delta X\)</span> and particle exchange <span class="math inline">\(\delta N\)</span> is given by <span class="math display">\[
+\delta E = J \cdot \delta X + \mu \cdot \delta N.
+\]</span> Suppose the system is initially at a constant energy <span class="math inline">\(E\)</span> and increased by <span class="math inline">\(\delta E\)</span>. Then to first order we have <span class="math display">\[
+\begin{align*}
+\delta S &amp;= S(E+\delta E, X+\delta X, N+\delta N) - S(E,X,N) \\
+&amp;= \frac{\partial S}{\partial E} \bigg|_{X,N} (J \cdot \delta X + \mu \cdot \delta N) + \frac{\partial S}{\partial X} \bigg|_{E,N} \delta X + \frac{\partial S}{\partial N} \bigg|_{E,X} \delta N \\
+&amp;= \bigg(\frac{J}{T} - \frac{\partial S}{\partial X} \bigg|_{E,N}\bigg)\delta X + \bigg(\frac{N}{T} - \frac{\partial S}{\partial N} \bigg|_{E,X}\bigg)\delta N. \\
+\end{align*}
+\]</span> Now, at equilibrium we must have <span class="math inline">\(\delta S = 0\)</span> for <em>any</em> <span class="math inline">\(\delta X\)</span> and <span class="math inline">\(\delta N\)</span>. This means each term must vanish, giving <span class="math display">\[
+\delta S = \frac{1}{T} \delta E - \frac{J}{T} \delta X - \frac{\mu}{T} \delta N. \quad \text{Q.E.D.}
+\]</span> Using the first law, we can now find any other thermodynamic quantity of interest once we have the entropy. We have <span class="math display">\[
+\begin{align*}
+\frac{1}{T} &amp;= \frac{\partial S}{\partial E} \bigg |_{X,N} \ , \\
+-\frac{J}{T} &amp;= \frac{\partial S}{\partial X} \bigg |_{E,N} \ , \\
+-\frac{\mu}{T} &amp;= \frac{\partial S}{\partial N} \bigg |_{E,X} \ . \\
+\end{align*}
+\]</span> This gives us a sort of recipe we can use to calculate equations of state for systems in the microcanonical ensemble:</p>
+<ol type="1">
+<li><p>Calculate <span class="math inline">\(\Omega(E,X,N)\)</span> and use that to get the entropy via <span class="math inline">\(S = k_B \log \Omega\)</span>.</p></li>
+<li><p>Use the first law to get other thermodynamic variables of interest via <span class="math display">\[
+dS =  \frac{1}{T} dE -  \frac{J}{T} \cdot dX - \frac{\mu}{T} \cdot dN.
+\]</span></p></li>
+</ol>
+<p>The second law is trivial. We’ve essentially already proved it.</p>
+<p><strong>Second Law:</strong> The entropy of a system is non-decreasing over time.</p>
+<p><strong>Proof:</strong> We’ve already shown this. For any two subsystems <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span>, suppose they start with energies <span class="math inline">\(E_A^0\)</span> and <span class="math inline">\(E_B^0\)</span>. Over time the system will move to equilibrium to reach a maximum entropy, with energies of <span class="math inline">\(E_A^*\)</span> and <span class="math inline">\(E_B^*\)</span>. It must be the case then that <span class="math display">\[
+S(E_A) + S(E_B) \leq S(E_A^*) + S(E_B^*). \quad \text{Q.E.D.}
+\]</span></p>
+<p>It turns out that we can’t derive the <em>third law</em> from classical statistical mechanics alone. For that we’ll need quantum statistical mechanics, a topic we’ll get to later. Let’s go ahead and also check the stability conditions though while we’re here. For entropy to be <em>maximized</em> at equilibrium, we require the entropy near equilibrium to be concave, i.e. <span class="math display">\[
+\frac{\partial^2}{\partial E_A^2} S(E_A^*) \bigg|_{X,N} - \frac{\partial^2}{\partial E_B^2} S(E_B^*) \bigg|_{X,N} \leq 0.
+\]</span> Using the same logic as we did in the thermodynamics lesson, we can then show this implies the heat capacity of the system be non-negative. Moreover, the requirement that any second-order perturbations be non-positive requires <span class="math inline">\(\frac{\partial^2 S}{\partial X_i \partial X_j}\)</span> to be positive-definite at any constant energy <span class="math inline">\(E\)</span>.</p>
+<section id="two-state-systems" class="level3">
+<h3 class="anchored" data-anchor-id="two-state-systems">Two-State Systems</h3>
+<p>TODO: TWO STATE SYSTEMS, EINSTEIN SOLID</p>
+</section>
+</section>
+<section id="distinguishability" class="level2">
+<h2 class="anchored" data-anchor-id="distinguishability">Distinguishability</h2>
+<p>We’d like to use the microcanonical ensemble to work out the relations for a more interesting system, like an ideal gas. It turns out however that there’s some subtly involved that we need to address in applying statistical mechanics to realistic systems.</p>
+<section id="ideal-gas" class="level3">
+<h3 class="anchored" data-anchor-id="ideal-gas">Ideal Gas</h3>
+<p>Let’s start by trying to derive the ideal gas expressions using only what we’ve covered so far and seeing where things go wrong. Suppose an isolated system of gas particles has the non-interacting Hamiltonian for an ideal gas, namely <span class="math display">\[
+H(\mathbf{x}_1,\cdots,\mathbf{x}_N,\mathbf{p}_1,\cdots,\mathbf{p}_N) = \sum_{i=1}^N \frac{\mathbf{p}_i^2}{2m} + V(\mathbf{x}_1,\cdots,\mathbf{x}_N),
+\]</span> where the potential energy <span class="math inline">\(V(\mathbf{x}_1,\cdots,\mathbf{x}_N)\)</span> is zero inside a container of volume <span class="math inline">\(V\)</span> and infinite otherwise. To calculate the equations of state we first need to find <span class="math inline">\(\Omega(E,V,N)\)</span>. Integrating over the volume of the box and all valid momenta, we get <span class="math display">\[
+\Omega(E,V,N) = \int_{\frac{\mathbf{p}^2}{2m} = E} d^{3N} \mathbf{x} \ d^{3N} \mathbf{p} = V^N  \int_{|\mathbf{p}| = \sqrt{2mE}} d^{3N} \mathbf{p} \equiv V^N \Sigma_{3N}.
+\]</span> The integral <span class="math inline">\(\Sigma_{3N}\)</span> is the surface area of a <span class="math inline">\(3N\)</span>-dimensional hypersphere in momentum space of radius <span class="math inline">\(R=\sqrt{2mE}\)</span>.</p>
+<p>To make anymore progress we need to figure out what the surface area of a <span class="math inline">\(d\)</span>-dimensional hypersphere is. Now, notice we can write the <span class="math inline">\(d\)</span>-dimensional volume element as <span class="math inline">\(d^d \mathbf{x} = R^{d-1} dR \ d\Omega_{d-1}\)</span>, where <span class="math inline">\(d\Omega_{d-1}\)</span> is the <span class="math inline">\(d-1\)</span> dimensional solid angle. For a hypersphere we can factor the integral. If <span class="math inline">\(S_d \equiv \int d\Omega_{d-1}\)</span>, then we have <span class="math inline">\(\Sigma_{d} = S_d R^{d-1}\)</span>. Here <span class="math inline">\(S_d\)</span> is a constant that depends only on the dimension <span class="math inline">\(d\)</span>. To find <span class="math inline">\(S_d\)</span>, the trick is to use the fact that the integral of a <span class="math inline">\(d\)</span>-dimensional Gaussian is just <span class="math display">\[
+I_d \equiv \int d^d \mathbf{x} \ e^{-\mathbf{x}^2} = \bigg(\int dx \ e^{-x^2}\bigg)^d = \pi^{d/2}.
+\]</span> By changing variables to spherical coordinates, it’s easy to show <span class="math display">\[
+I_d = \int R^{d-1} dR \ d\Omega_{d-1} \ e^{-R^2} = \frac{1}{2} \bigg(\frac{d}{2}-1\bigg)! \ S_d.
+\]</span> Equating the two expressions, we can solve for <span class="math inline">\(S_d\)</span> and finally get the surface area of a <span class="math inline">\(d\)</span>-dimensional hypersphere, <span class="math display">\[
+\Sigma_d = \frac{2\pi^{d/2}}{\big(\frac{d}{2}-1\big)!} R^{d-1}.
+\]</span> Back to the problem at hand. Plugging all this in, we finally get a multiplicity of <span class="math display">\[
+\Omega(E,V,N) = \frac{2\pi^{\frac{3N}{2}}}{\big(\frac{3N}{2}-1\big)!} V^N (2mE)^{\frac{3N-1}{2}} \approx 2 V^N \bigg(\frac{4\pi m E}{3N}\bigg)^{3N/2}.
+\]</span> The right–hand side is simplified using Stirling’s approximation <span class="math inline">\(N! \sim N^N e{-N}\)</span>. The entropy is then <span class="math inline">\(S = k_B \log \Omega\)</span>. If we ignore terms of order less than <span class="math inline">\(O(N)\)</span>, up to an added constant we get the same result we found using kinetic theory, namely <span class="math display">\[
+S = Nk_B \log V\bigg(\frac{4\pi emE}{3N}\bigg)^{3/2}.
+\]</span> <strong>Aside:</strong> Suppose we didn’t know the energy <span class="math inline">\(E\)</span> exactly, but only within some range <span class="math inline">\(E \pm \delta E\)</span>. In that case, the hypersphere radius would have an uncertainty <span class="math inline">\(\delta R = \sqrt{\frac{m}{2E}} \delta E\)</span>. The effect of this is that <span class="math inline">\(\Omega\)</span> now gains a multiplicative factor of <span class="math inline">\(\delta R\)</span>. This causes the entropy to then gain an additive factor of <span class="math inline">\(k_B \log \delta R \propto \log \frac{\delta E}{\sqrt{E}}\)</span>. Since energy is extensive, this new added factor will be <span class="math inline">\(O(\log N)\)</span>, which is small compared to the original terms of <span class="math inline">\(O(N)\)</span>, and can hence be neglected. The net effect of all this is that none of the thermodynamic variables get materially affected by the uncertainty. For this reason we’ll ignore it from now on.</p>
+<p>Using the entropy we can now proceed to calculate the temperature, pressure, and chemical potential. The equation for temperature gives the usual energy relation for a monoatomic ideal gas, <span class="math display">\[
+\frac{1}{T} = \frac{\partial S}{\partial E} \bigg |_{X,N} = \frac{3Nk_B}{2E} \quad \Longrightarrow \quad E = \frac{3}{2} Nk_B T.
+\]</span> The equation for the pressure gives the usual ideal gas law, <span class="math display">\[
+P = T \frac{\partial S}{\partial V} \bigg |_{E,N} = \frac{Nk_B T}{V} \quad \Longrightarrow \quad PV = Nk_B T.
+\]</span> Both of these seem perfectly fine. The problem, however, comes when we try to evaluate the chemical potential. We’d get <span class="math display">\[
+\mu = -T \frac{\partial S}{\partial N} \bigg |_{E,V} = - k_B T \bigg[\log V\bigg(\frac{4\pi mE}{3N}\bigg)^{3/2} - \frac{3}{2} \bigg].
+\]</span> Now, the problem here is that the chemical potential should be <em>intensive</em>, but it’s not. It’s proportional to <span class="math inline">\(\log V\)</span>. The same problem showed up in the entropy as well. The entropy should be <em>extensive</em>, yet it’s proportional to <span class="math inline">\(V\log N\)</span>. It seems like we should have to divide by something else extensive inside the logarithm to cancel the effect of the <span class="math inline">\(V\)</span>.</p>
+</section>
+<section id="gibbs-paradox" class="level3">
+<h3 class="anchored" data-anchor-id="gibbs-paradox">Gibbs’ Paradox</h3>
+<p>To resolve this issue let’s look at another toy problem. Consider the <em>mixing entropy</em> of a container containing two distinct ideal gases of different types. Suppose the container initially split into two components, the first a gas with configuration <span class="math inline">\((S_1,N_1,V_1)\)</span> and the second a gas with configuration <span class="math inline">\((S_2,N_2,V_2)\)</span>. Assume the system is at equilibrium, so both systems have the same temperature <span class="math inline">\(T\)</span>. An adiabatic wall is then removed, so the two gases are allowed to mix and come to a new equilibrium of the same temperature. The <em>initial</em> total entropy <span class="math inline">\(S_i\)</span> in the container is evidently given by <span class="math inline">\(S_i = S_1 + S_2\)</span>, i.e. <span class="math display">\[
+S_i = k_B \bigg( N_1 \log V_1 + \frac{3}{2} N_1 \log 2\pi e m_1 k_B T\bigg) + k_B \bigg(N_2 \log V_2 + \frac{3}{2} N_2 \log 2\pi e m_2 k_B T\bigg),
+\]</span> where we’ve used the fact that <span class="math inline">\(E = \frac{3}{2} N k_B T\)</span>. To find the <em>final</em> total entropy <span class="math inline">\(S_f\)</span>, observe that at the new equilibrium both gases should fill up the entire box uniformly, meaning <span class="math inline">\(V_1 = V_2 = V\)</span>, hence <span class="math display">\[
+S_f = k_B \bigg( N_1 \log V + \frac{3}{2} N_1 \log 2\pi e m_1 k_B T\bigg) + k_B \bigg(N_2 \log V + \frac{3}{2} N_2 \log 2\pi e m_2 k_B T\bigg).
+\]</span> All together, this means the <em>change</em> in total entropy is given by <span class="math display">\[
+\Delta S = S_f - S_i = k_B \bigg(N_1 \log \frac{V}{V_1} + N_2 \log \frac{V}{V_2}\bigg).
+\]</span> So what’s the problem here? Well, suppose the two gases were the <em>same</em>, and we opened the adiabatic wall and allowed them to mix? What should happen physically? Nothing. They’re the same gas, at the same temperature. The thermodynamic variables shouldn’t change at all, meaning we should have <span class="math inline">\(\Delta S = 0\)</span>. On the other hand, if the two gases were <em>distinct</em>, we <em>should</em> expect the total entropy of the system to increase like shown. This conundrum is known as the <strong>Gibbs Paradox</strong>.</p>
+<p>The solution to this paradox is to notice that we have to treat <em>identical</em> systems separately from <em>distinguishable</em> systems. If a system is distinguishable we’re fine as is. But if a system is identical we have to account for the fact that we’re <em>overcounting</em> <span class="math inline">\(\Omega\)</span> any time we count two identical systems as distinct. The way to fix this is pretty easy. Just divide <span class="math inline">\(\Omega\)</span> by the number of ways to permute the particles in each identical system.</p>
+<p>To resolve the above paradox and the issue with extensively, notice that if we have an ideal gas of <span class="math inline">\(N\)</span> particles then we’re overcounting <span class="math inline">\(\Omega\)</span> by a factor of <span class="math inline">\(N!\)</span>, the number of ways to permute a set of <span class="math inline">\(N\)</span> identical particles. Then <span class="math inline">\(\Omega\)</span> for an ideal gas becomes <span class="math display">\[
+\Omega(E,V,N) = \frac{V^N}{N!}\frac{2\pi^{\frac{3N}{2}}}{\big(\frac{3N}{2}-1\big)!} (2mE)^{\frac{3N-1}{2}} \approx 2\bigg(\frac{Ve}{N}\bigg)^N \bigg(\frac{4\pi m E}{3N}\bigg)^{3N/2}.
+\]</span> This means the entropy <span class="math inline">\(S\)</span> then becomes <span class="math display">\[
+S = Nk_B \bigg[\log \frac{V}{N}\bigg(\frac{4\pi mE}{3N}\bigg)^{3/2} + \frac{5}{2}\bigg],
+\]</span> and hence that the chemical potential <span class="math inline">\(\mu\)</span> becomes <span class="math display">\[
+\mu = - k_B T \log \frac{V}{N}\bigg(\frac{4\pi mE}{3N}\bigg)^{3/2}.
+\]</span> Now it appears that we’re dividing <span class="math inline">\(V\)</span> by <span class="math inline">\(\frac{N}{e}\)</span> inside the logarithm, which makes <span class="math inline">\(S\)</span> is properly extensive and <span class="math inline">\(\mu\)</span> properly intensive.</p>
+<p>To resolve the Gibbs paradox, notice that if the two gases are <em>distinct</em>, we have to divide <span class="math inline">\(\Omega\)</span> by <span class="math inline">\(N_1!N_2!\)</span>. This ultimately gives <span class="math display">\[
+\Delta S = k_B \bigg(N_1 \log \frac{V}{V_1} + N_2 \log \frac{V}{V_2}\bigg),
+\]</span> which is of course what we had before. If the two gases are <em>identical</em>, we instead have to divide <span class="math inline">\(\Omega\)</span> by <span class="math inline">\(N!\)</span>. This ultimately gives <span class="math display">\[
+\Delta S = k_B \bigg[(N_1+N_2) \log \frac{V}{N_1+N_2} - N_1 \log \frac{V_1}{N_1} - N_2 \log \frac{V_2}{N_2}\bigg] = 0
+\]</span> since at equilibrium (both initially and finally) we must have <span class="math inline">\(\frac{V}{N}=\frac{V_1}{N_1}=\frac{V_2}{N_2}\)</span>. The paradox is thus resolved.</p>
+<p>This resolves one of the problems we had with the expressions for an ideal gas, but there’s one more. If we look careful, we can see that the expression inside the logarithm isn’t dimensionless, as it should be. In fact, it has units of <em>action</em> to some power. Recall that action has units of position times momentum, or energy times time. The dimensionality issue ultimately arises from the fact that we’re working with a continuous system and integrating over phase space. But phase space has units. To fix this problem, all we have to do is divide the phase space measure <span class="math inline">\(d \mathbf{x} d\mathbf{p}\)</span> by some constant with units of action cubed. From quantum mechanics, it turns out the right constant to use is Planck’s constant <span class="math inline">\(h\)</span>. We thus need to make the substitution of measure <span class="math display">\[
+d^3 \mathbf{x} d^3 \mathbf{p} \rightarrow \frac{d^3 \mathbf{x} d^3 \mathbf{p}}{h^3}.
+\]</span> These two facts together resolve our problems. For <span class="math inline">\(N\)</span> particles all of the same type, we substitute the following measures <span class="math display">\[
+d^{3N} \mathbf{x} \ d^{3N} \mathbf{p} \rightarrow
+\begin{cases}
+\frac{d^{3N} \mathbf{x} \ d^{3N} \mathbf{p}}{h^{3N}} &amp; N \ \text{distinguishable particles}, \\
+\frac{d^{3N} \mathbf{x} \ d^{3N} \mathbf{p}}{N! \ h^{3N}} &amp; N \ \text{identical particles}. \\
+\end{cases}
+\]</span></p>
+<p>For an ideal gas, the right measure to use is the second one. Plugging this in, we finally get an entropy of <span class="math display">\[
+S = Nk_B \bigg[\log \frac{V}{N}\bigg(\frac{4\pi mE}{3Nh^2}\bigg)^{3/2} + \frac{5}{2}\bigg].
+\]</span> This result, the correct entropy of a classical ideal gas, is known as the <em>Sakur-Tetrode equation</em>. The chemical potential is then <span class="math display">\[
+\mu = - k_B T \log \frac{V}{N}\bigg(\frac{4\pi mE}{3Nh^2}\bigg)^{3/2}.
+\]</span> To finish up this section, it’s worth mentioning that statistical mechanics gives us even more information than thermodynamics gives us. Not only does it tell us what the variables are, but it can also tell us how variables are distributed. For example, we can derive the Maxwell-Boltzmann distribution for the momentum (or velocity) of a single gas particle. Indeed, we have <span class="math display">\[
+\begin{align*}
+p(\mathbf{p}) &amp;= \frac{V^N}{\Omega(E,V,N)} \int_{|\mathbf{p}| = \sqrt{2mE}} d^{3N-1} \mathbf{p} \\
+&amp;= V\frac{\Omega\big(E-\frac{\mathbf{p}^2}{2m},V,N-1\big)}{\Omega(E,V,N)} \\
+&amp;= \bigg(1 - \frac{\mathbf{p}^2}{2mE}\bigg)^{3N/2-2} \frac{1}{(2\pi m E)^{3/2}} \frac{(\frac{3N}{2}-1)!}{(\frac{3(N-1)}{2}-1)!} \\
+&amp;\approx \bigg(\frac{3N}{4\pi m E}\bigg)^{3/2} \exp\bigg(-\frac{3N\mathbf{p}^2}{4mE}\bigg). \\
+\end{align*}
+\]</span> The last line follows from the fact that <span class="math inline">\(E\)</span> is extensive and <span class="math inline">\(N \gg 1\)</span>, hence we can use the identity <span class="math inline">\(e^x \approx \big(1+\frac{x}{N}\big)^{N}\)</span>. Using the relation <span class="math inline">\(E = \frac{3}{2} N k_B T\)</span> then gives the usual form of the Maxwell-Boltzmann distribution.</p>
+</section>
+<section id="example-ultrarelativistic-ideal-gas" class="level3">
+<h3 class="anchored" data-anchor-id="example-ultrarelativistic-ideal-gas">Example: Ultrarelativistic Ideal Gas</h3>
+<p>A similar example is the ultrarelativistic ideal gas. Recall from special relativity that the kinetic energy of a particle is given by the relativistic energy formula <span class="math display">\[
+E^2 = m^2c^4 + \mathbf{p}^2 c^2.
+\]</span> In the limit where <span class="math inline">\(|\mathbf{p}| \ll mc\)</span> we recover the classical kinetic energy <span class="math inline">\(E=\frac{\mathbf{p}^2}{2m}\)</span>. We can also ask about the limit where <span class="math inline">\(|\mathbf{p}| \gg mc\)</span>. This is called the <em>ultrarelativistic</em> limit. This limit includes massless particles like photons or neutrinos that move at or near the speed of light. In this limit the kinetic energy is just <span class="math inline">\(E=|\mathbf{p}| c\)</span>.</p>
+<p>Let’s again suppose we have a gas of <span class="math inline">\(N\)</span> non-interacting particles, but that they’re ultrarelativistic. In that case, the Hamiltonian is <span class="math display">\[
+H(\mathbf{x}_1,\cdots,\mathbf{x}_N,\mathbf{p}_1,\cdots,\mathbf{p}_N) = \sum_{i=1}^N |\mathbf{p}_i| c + V(\mathbf{x}_1,\cdots,\mathbf{x}_N).
+\]</span> We’ll again assume the potential is zero inside a container of volume <span class="math inline">\(V\)</span> and infinite otherwise. We proceed as usual by trying to find <span class="math inline">\(\Omega(E,V,N)\)</span>. Supposing we’re dealing with a gas of <span class="math inline">\(N\)</span> identical particles, we have <span class="math display">\[
+\Omega(E,V,N) = \frac{1}{N!h^{3N}} \int_{E=|\mathbf{p}| c} d^{3N} \mathbf{x} \ d^{3N} \mathbf{p} = \frac{V^N}{N!h^{3N}} \int_{E=|\mathbf{p}| c} d^{3N} \mathbf{p}.
+\]</span> Again note that the momentum space integral is over a <span class="math inline">\(3N\)</span>-dimensional hypersphere, this time of radius <span class="math inline">\(R=\frac{E}{c}\)</span>. Thus, <span class="math display">\[
+\Omega(E,V,N) = \frac{V^N}{N!h^{3N}} \Sigma_{3N} \approx 2 \bigg[\frac{eV}{N} \bigg(\frac{2\pi e E^2}{3h^2c^2 N}\bigg)^{3/2}\bigg]^N.
+\]</span> Again keeping terms only to <span class="math inline">\(O(N)\)</span>, the entropy is thus given by <span class="math display">\[
+S = N k_B \bigg[\log \frac{V}{N} \bigg(\frac{2\pi E^2}{3h^2c^2 N}\bigg)^{3/2} + \frac{5}{2}\bigg].
+\]</span> It’s worth noting that the entropy in this case is no longer properly extensive, as it contains a term of order <span class="math inline">\(O(N \log N)\)</span> due to the presence of the <span class="math inline">\(E^2\)</span> in the logarithm. There’s no obvious way to fix this problem. In fact, an ultrarelativistic gas is <em>super-extensive</em>. It’s in a class of systems with so-called <em>anonomous scaling behaviors</em>. In practice this isn’t a huge deal.</p>
+<p>We can calculate the temperature the usual way. We have <span class="math display">\[
+\frac{1}{T} = \frac{\partial S}{\partial E} \bigg |_{V,N} = \frac{3Nk_B}{E} \quad \Longrightarrow \quad E = 3Nk_B T.
+\]</span> Notice the entropy depends on volume in the same way as it does for the classical ideal gas. Indeed, we have <span class="math display">\[
+\frac{P}{T} = \frac{\partial S}{\partial V} \bigg |_{E,N} = \frac{Nk_B}{V} \quad \Longrightarrow \quad PV = Nk_B T.
+\]</span> The chemical potential follows similarly. Following the same kind of calculation as before, we get <span class="math display">\[
+\mu = - k_B T \log \frac{V}{N}\bigg(\frac{2\pi E^2}{3c^2h^2N}\bigg)^{3/2}.
+\]</span> Since the entropy isn’t properly extensive, the chemical potential evidently isn’t properly intensive as we’d expect. It’s not hard to show that the distribution of momenta is now longer a Gaussian either. It’s in fact a Laplace distribution, with <span class="math display">\[
+p(\mathbf{p}) = \frac{3Nc}{2E} \exp\bigg(-\frac{3N|\mathbf{p}|c}{E}\bigg) = \frac{c}{2k_B T} \exp\bigg(-\frac{|\mathbf{p}| c}{k_B T}\bigg).
+\]</span></p>
+</section>
+<section id="example-ideal-gas-of-hard-spheres" class="level3">
+<h3 class="anchored" data-anchor-id="example-ideal-gas-of-hard-spheres">Example: Ideal Gas of Hard Spheres</h3>
+<p>To understand more about the subtleties involved in distinguishability, let’s look at another problem similar to the ideal gas. Suppose that we have a gas of <span class="math inline">\(N\)</span> non-interacting solid spheres each of some volume <span class="math inline">\(v \ll V\)</span>, where <span class="math inline">\(V\)</span> is again the volume of the container. The Hamiltonian otherwise remains the same as for the ordinary ideal gas. If we assume the spheres are indistinguishable, following the same logic as for the ordinary ideal gas we can write the multiplicity as <span class="math display">\[
+\Omega(E,V,N) = \frac{1}{N!}\frac{2\pi^{\frac{3N}{2}}}{\big(\frac{3N}{2}-1\big)!} (2mE)^{\frac{3N-1}{2}} \mathcal{V}_{N}.
+\]</span> Here <span class="math inline">\(\mathcal{V}_{N}\)</span> represents the volume integral over all <span class="math inline">\(N\)</span> particles. For the ordinary ideal gas we just had <span class="math inline">\(\mathcal{V}_{N} = V^N\)</span>. For hard spheres though we have to be more careful. Suppose, for example, that the spheres were <em>distinguishable</em>. Imagine putting the spheres into the container one at a time. The first one could occupy the volume <span class="math inline">\(V\)</span>. The second would be the full volume minus the volume of the first sphere, so <span class="math inline">\(V-v\)</span>. The third would be the full volume minus the volumes of the first two spheres, so <span class="math inline">\(V-2v\)</span>. And so on until the last sphere, which would have an available volume of <span class="math inline">\(V-(N-1)v\)</span>. Using that <span class="math inline">\(v \ll V\)</span>, we have <span class="math display">\[
+\begin{align*}
+\mathcal{V}_N &amp;= V\big(V-v\big)\big(V-2v\big)\cdots\big(V-(N-1)v\big) \\
+&amp;= V^N \prod_{j=1}^{N-1}\bigg(1-j\frac{v}{V}\bigg) \\
+&amp;\approx V^N \bigg(1-\frac{N(N-1)}{2}\frac{v}{V}\bigg) \\
+&amp;\approx V^N \bigg(1-\frac{N^2}{2}\frac{v}{V}\bigg) \\
+&amp;\approx \bigg(V-\frac{1}{2}Nv\bigg)^N. \\
+\end{align*}
+\]</span> Suppose instead though that the spheres were <em>indistinguishable</em>. In this case, we’re not allowed to imagine putting spheres into the container one at a time since we can’t distinguish any one sphere. We have to imagine placing a sphere in the container uniformly in the presence of the background volume of the other spheres. Since the other <span class="math inline">\(N-1\)</span> spheres take up an <em>excluded volume</em> of <span class="math inline">\((N-1)v \approx Nv\)</span>, we conclude that the <em>available volume</em> to the sphere being added must be the difference, i.e.&nbsp;<span class="math inline">\((V-Nv)\)</span>. This must be true independently for each sphere, so we conclude <span class="math inline">\(\mathcal{V}_N \approx (V-Nv)^N\)</span>. Notice the excluded volume in this case is <em>double</em> the excluded volume for the distinguishable case. Strange but true. The multiplicity is evidently then given by <span class="math display">\[
+\Omega(E,V,N) = \frac{(V-Nv)}{N!}\frac{2\pi^{\frac{3N}{2}}}{\big(\frac{3N}{2}-1\big)!} (2mE)^{\frac{3N-1}{2}} \approx 2\bigg(\frac{(V-Nv)e}{N}\bigg)^N \bigg(\frac{4\pi m E}{3N}\bigg)^{3N/2}.
+\]</span> This is exactly what we had for the ordinary ideal gas, except with <span class="math inline">\(V\)</span> replaced by <span class="math inline">\(V-Nv\)</span>. This means the entropy is just <span class="math display">\[
+S = Nk_B \bigg[\log \frac{V-Nv}{N}\bigg(\frac{4\pi mE}{3N}\bigg)^{3/2} + \frac{5}{2}\bigg].
+\]</span> Clearly the equation for temperature isn’t affected at all. We still have <span class="math inline">\(E = \frac{3}{2} N k_B T\)</span>. The equation for pressure though does change. Since we’re differentiating <span class="math inline">\(S\)</span> with respect to <span class="math inline">\(V\)</span> and not <span class="math inline">\(V-Nv\)</span>, we have <span class="math display">\[
+\frac{P}{T} = \frac{\partial S}{\partial V} \bigg |_{E,N} = \frac{Nk_B}{V-Nv} \quad \Longrightarrow \quad P(V-Nv) = Nk_B T.
+\]</span> The ideal gas law is thus slightly modified by reducing the volume from <span class="math inline">\(V\)</span> to an <em>effective volume</em> of <span class="math inline">\(V-Nv\)</span>. It’s worth asking if this is the <em>right</em> answer. Why not the distinguishable version? Fundamentally this boils down to quantum mechanics. At the quantum level it turns out that we <em>cannot</em> distinguish two particles of the same type, hence the indistinguishable case must be correct.</p>
+</section>
+</section>
+<section id="canonical-ensemble" class="level2">
+<h2 class="anchored" data-anchor-id="canonical-ensemble">Canonical Ensemble</h2>
+<p>While the microcanonical is easy to understand, it’s usually not the easiest ensemble to work with for most problems. Usually finding the multiplicity <span class="math inline">\(\Omega(M)\)</span> directly isn’t easy since it involves a high level of combinatorial insight. Another approach we can take is to not take <span class="math inline">\(M=(E,X,N)\)</span>, but to instead take <span class="math inline">\(M=(T,X,N)\)</span>. That is, we consider a system with a fixed <em>temperature</em>, not a fixed <em>energy</em>. Physically, this means considering not an <em>isolated system</em>, but a <em>closed system</em>. We assume our system of interest is placed in contact with a large environment, or <em>heat bath</em>, and allowed to come to equilibrium. The system inherits its temperature from the heat bath and is allowed to exchange heat with it.</p>
+<section id="boltzmann-distribution" class="level3">
+<h3 class="anchored" data-anchor-id="boltzmann-distribution">Boltzmann Distribution</h3>
+<p>To derive the probability distribution for a canonical system let’s first consider the combined system of our system of interest plus the heat bath. We’ll suppose the combined system is <em>isolated</em>, meaning it follows the microcanonical ensemble. Denote the system of interest as <span class="math inline">\(S\)</span>, the heat bath as <span class="math inline">\(R\)</span>, and the combined system as <span class="math inline">\(RS\)</span>. The total energy <span class="math inline">\(E\)</span> is just the sum of the Hamiltonians of <span class="math inline">\(S\)</span> and <span class="math inline">\(R\)</span> at a given point in their respective phase spaces, <span class="math display">\[
+E = H_R(\boldsymbol{\mu}_R) + H_S(\boldsymbol{\mu}_S).
+\]</span> In the microcanonical ensemble the probability of any given state <span class="math inline">\((\boldsymbol{\mu}_R,\boldsymbol{\mu}_S)\)</span> is then just <span class="math display">\[
+p_{RS}(\boldsymbol{\mu}_R,\boldsymbol{\mu}_S) = \frac{1}{\Omega_{RS}} \delta\big(E-H_R(\boldsymbol{\mu}_R)-H_S(\boldsymbol{\mu}_S)\big).
+\]</span> To get the probability we seek, the probability of <em>system</em> states we need to find <span class="math inline">\(p_S(\boldsymbol{\mu}_S)\)</span>. By marginalizing, we have <span class="math display">\[
+\begin{align*}
+p_S(\boldsymbol{\mu}_S) &amp;= \int d \boldsymbol{\mu}_R \ p_{RS}(\boldsymbol{\mu}_R,\boldsymbol{\mu}_S) \\
+&amp;= \frac{1}{\Omega_{RS}} \Omega_R\big(E-H_S(\boldsymbol{\mu}_S)\big) \\
+&amp;= \frac{1}{\Omega_{RS}}\exp\bigg(\frac{1}{k_B}S_R\big(E-H_S(\boldsymbol{\mu}_S)\big)\bigg).
+\end{align*}
+\]</span> Now, we assume the heat bath is much larger than the system of interest. This means the <span class="math inline">\(S_{RS} \approx S_R\)</span> and the total energy <span class="math inline">\(E \gg H_S\)</span>. If we Taylor expand <span class="math inline">\(S_R\)</span> about <span class="math inline">\(E\)</span>, to first order we thus have <span class="math display">\[
+S_R\big(E-H_S(\boldsymbol{\mu}_S)\big) \approx S_{RS}(E) - \frac{\partial S_{RS}}{\partial E} H_S(\boldsymbol{\mu}_S).
+\]</span> Since the heat bath is fixed at a temperature <span class="math inline">\(T\)</span>, we can write the partial derivative as <span class="math inline">\(\frac{\partial S_R}{\partial E} = \frac{1}{T}\)</span>. Plugging back in, we have <span class="math display">\[
+p_S(\boldsymbol{\mu}_S) \approx \frac{e^{\frac{1}{k_B} S_{RS}(E)}}{\Omega_{RS}}e^{-\frac{1}{k_B T} H_S(\boldsymbol{\mu}_S)}.
+\]</span> For convenience we’ll define <span class="math inline">\(\beta \equiv \frac{1}{k_B T}\)</span>. Notice the first term above is just some normalization constant that we’ll denote as <span class="math inline">\(\frac{1}{Z(\beta)}\)</span>. Dropping the explicit <span class="math inline">\(S\)</span> subscripts and ignoring the presence of the heat bath we finally have our canonical ensemble probability, called the <strong>Boltzmann distribution</strong>, <span class="math display">\[
+\boxed{p(\boldsymbol{\mu}) = \frac{1}{Z(\beta)}e^{-\beta H(\boldsymbol{\mu})}} \ .
+\]</span></p>
+</section>
+<section id="partition-function" class="level3">
+<h3 class="anchored" data-anchor-id="partition-function">Partition Function</h3>
+<p>By asserting that the probability density integrate to one we can find an explicit expression for <span class="math inline">\(Z(\beta)\)</span>, called the <strong>canonical partition function</strong>. Evidently we have <span class="math display">\[
+\boxed{Z(\beta) = \int d \boldsymbol{\mu} \ e^{-\beta H(\boldsymbol{\mu})}} \ .
+\]</span> Despite appearing to just be a normalization constant the partition function turns out to be very important to statistical mechanics. It essentially encodes all the statistical mechanical information contained in the system. To see why it’s helpful to re-write the partition function as an integral (or sum) over all possible system energies <span class="math inline">\(E\)</span>. To do that multiple microstates can have the same energy. That means we need to multiply the integrand by a multiplicity <span class="math inline">\(\Omega(E)\)</span>. We thus have <span class="math display">\[
+Z = \int dE \ \Omega(E) \ e^{-\beta E} = \int dE \ e^{\frac{1}{k_B} S} e^{-\frac{1}{k_B T} E} = \int dE \ e^{-\frac{1}{k_B T}(E-TS)}.
+\]</span> Recall from thermodynamics though that <span class="math inline">\(E-TS\)</span> is just the Helmholtz free energy <span class="math inline">\(F\)</span>. Now, since <span class="math inline">\(F\)</span> is extensive we can again employ the saddlepoint approximation about the maximum energy <span class="math inline">\(E^*\)</span> to get <span class="math display">\[
+Z = \int dE \ e^{-\beta F} \approx e^{-\beta F(E^*)} \sqrt{\frac{2\pi}{|F''(E^*)|}}.
+\]</span> Taking the logarithm of both sides and solving for <span class="math inline">\(F\)</span>, we evidently have <span class="math display">\[
+F = -k_B T \log Z + O\big(\log N\big).
+\]</span> Since <span class="math inline">\(N\)</span> is large, we can neglect the dependence on <span class="math inline">\(\log N\)</span>. We thus have a nice expression for the free energy as <span class="math display">\[
+\boxed{F = -k_B T \log Z} \ .
+\]</span> Why is this important? We already know <span class="math inline">\(F\)</span> encodes all of the thermodynamic information in the system because <span class="math display">\[
+dF = -S dT + J \cdot dX + \mu \cdot dN.
+\]</span> This formula gives a way to find the entropy, force, and chemical potential of the system just from <span class="math inline">\(\log Z\)</span>. For example, <span class="math display">\[
+\begin{align*}
+J &amp;= \frac{\partial F}{\partial X} \bigg |_{T,N} = -\frac{1}{\beta} \frac{\partial \log Z}{\partial X}, \\
+\mu &amp;= \frac{\partial F}{\partial N} \bigg |_{T,X} = -\frac{1}{\beta} \frac{\partial \log Z}{\partial N}. \\
+\end{align*}
+\]</span> We can also derive a convenient expression for the energy <span class="math inline">\(E\)</span> by looking at the expected value of the Hamiltonian. We have <span class="math display">\[
+\langle H \rangle = \int d \boldsymbol{\mu} \ H(\boldsymbol{\mu}) p(\boldsymbol{\mu}) = \int d \boldsymbol{\mu} \ H(\boldsymbol{\mu}) \frac{e^{-\beta H(\boldsymbol{\mu})}}{Z} = -\frac{1}{Z} \frac{\partial Z}{\partial \beta} = - \frac{\partial \log Z}{\partial \beta}.
+\]</span> Assuming we can equate the macrostate energy <span class="math inline">\(E\)</span> with <span class="math inline">\(\langle H \rangle\)</span>, an issue we’ll discuss in a moment, we can thus write <span class="math display">\[
+\boxed{E = \langle H \rangle = - \frac{\partial \log Z}{\partial \beta}} \ .
+\]</span> Using the formula <span class="math inline">\(F = E - TS\)</span> we can also get a convenient formula for the entropy. We have <span class="math display">\[
+S = \frac{E}{T} - \frac{F}{T} = k_B \big(\beta E + \log Z \big).
+\]</span></p>
+</section>
+<section id="fluctuations" class="level3">
+<h3 class="anchored" data-anchor-id="fluctuations">Fluctuations</h3>
+<p>It’s worth some explanation why we can assert that the thermodynamic energy <span class="math inline">\(E\)</span> is the same thing as the expected value of the Hamiltonian <span class="math inline">\(\langle H \rangle\)</span> in thermodynamics. The reason for this has to do almost entirely with the fact that <span class="math inline">\(N\)</span> is really large. To see why, let’s ask the following question: How much can we expect the energy to <em>fluctuate</em> about its mean <span class="math inline">\(\langle H \rangle\)</span>?</p>
+<p>To answer this, we just need to find the variance <span class="math inline">\(\sigma_E^2\)</span>. Using the same trick as before, the <span class="math inline">\(k\)</span><sup>th</sup> moment of <span class="math inline">\(H\)</span> is given by <span class="math display">\[
+\langle H^k \rangle = \int d \boldsymbol{\mu} \ H^k(\boldsymbol{\mu}) p(\boldsymbol{\mu}) = \int d \boldsymbol{\mu} \ H^k(\boldsymbol{\mu}) \frac{e^{-\beta H(\boldsymbol{\mu})}}{Z} = (-1)^k\frac{1}{Z} \frac{\partial^k Z}{\partial \beta^k}.
+\]</span> From this formula, it’s not hard to see the <em>cumulants</em> of <span class="math inline">\(H\)</span> are simply given by <span class="math display">\[
+\langle H^k \rangle_c = (-1)^k \frac{\partial^k \log Z}{\partial \beta^k}.
+\]</span> In particular, this means the variance is given by <span class="math display">\[
+\sigma_E^2 = \frac{\partial^2 \log Z}{\partial \beta^2} = - \frac{\partial \langle H \rangle}{\partial \beta} = k_B T^2 \frac{\partial \langle H \rangle}{\partial T} \bigg |_{X,N} \ .
+\]</span> To the extent we can write <span class="math inline">\(E \approx \langle H \rangle\)</span>, the right-hand derivative is just the heat capacity <span class="math inline">\(C_X\)</span>. The variance of <span class="math inline">\(H\)</span> is thus <span class="math display">\[
+\boxed{\sigma_E^2 = k_B T^2 C_X} \ .
+\]</span> Now, recall the heat capacity is in general <em>extensive</em>. This means the variance (and in fact all cumulants of <span class="math inline">\(H\)</span>) are extensive as well. Thus, roughly speaking, we expect the energy <span class="math inline">\(E\)</span> to fluctuation about the mean by an amount <span class="math display">\[
+\sigma_E = \sqrt{k_B T^2 C_X} = O(\sqrt{N}).
+\]</span> This means that the energy <span class="math inline">\(E\)</span> will with high probability lie within a few <span class="math inline">\(\sigma_E\)</span> of the mean, <span class="math display">\[
+E \approx \langle H \rangle \pm \sigma_E = \langle H \rangle \pm O(\sqrt{N}).
+\]</span> Since <span class="math inline">\(\langle H \rangle = O(N)\)</span> and <span class="math inline">\(N\)</span> is large, we can neglect the <span class="math inline">\(O(\sqrt{N})\)</span> fluctuations in the thermodynamic limit and just write <span class="math display">\[
+E \approx \langle H \rangle.
+\]</span> Note that the energy distribution can have pretty much any curve we like. All that matters is that it be extensive. It can even have multiple peaks. Due to extensivity, the global maximum <span class="math inline">\(E^*\)</span> will always be exponentially larger than the other maxima. Around that maximum we can fit a Gaussian with mean <span class="math inline">\(E^* \approx \langle H \rangle\)</span> and variance <span class="math inline">\(\sigma_E^2\)</span>. That Gaussian will be sharply peaked about <span class="math inline">\(E^*\)</span> with a negligible fluctuation, meaning we can safely write <span class="math inline">\(E \approx E^* \approx \langle H \rangle\)</span>.</p>
+<p>This is in essence the magic of thermodynamics. When <span class="math inline">\(N\)</span> is really really large, at equilibrium we can pretty much ignore the shape of the distribution and just assume <span class="math inline">\(E = E^* = \langle H \rangle\)</span>. This holds for other extensive variables as well, not just energy. For all practical purposes, thermodynamic variables are deterministic due to the character of the thermodynamic limit.</p>
+<p>As an example to see that fluctuations don’t really matter, if we looked at one mole of air at STP, we’d expect the energy to be about <span class="math inline">\(E \approx \frac{5}{2} RT \approx 6100 \ \text{J}\)</span>. On the other hand, the energy is expected to fluctuate as <span class="math inline">\(\sigma_E = \sqrt{k_B T^2 \frac{5}{2} R} \approx 3 \cdot 10^{-10} \ \text{J}\)</span>. That is, the fluctuations <span class="math inline">\(\sigma_E\)</span> are a full 13 orders of magnitude smaller than <span class="math inline">\(E\)</span>, hence completely negligible.</p>
+</section>
+<section id="example-ideal-gas" class="level3">
+<h3 class="anchored" data-anchor-id="example-ideal-gas">Example: Ideal Gas</h3>
+<p>Frequently, the canonical ensemble is much easier to work with than the microcanonical ensemble. Perhaps the best example of this is comparing both methods for solving the ideal gas problem. Consider again a gas with Hamiltonian <span class="math display">\[
+H(\mathbf{x}_1,\cdots,\mathbf{x}_N,\mathbf{p}_1,\cdots,\mathbf{p}_N) = \sum_{i=1}^N \frac{\mathbf{p}_i^2}{2m} + V(\mathbf{x}_1,\cdots,\mathbf{x}_N),
+\]</span> where <span class="math inline">\(V(\mathbf{x}_1,\cdots,\mathbf{x}_N)\)</span> is zero inside a container of volume <span class="math inline">\(V\)</span> and infinite otherwise. In the canonical ensemble our goal is to find the partition function and then use that to derive the equations of state. As with the microcanonical ensemble, we have to be careful to use the right measure of integration, dividing by <span class="math inline">\(N! h^{3N}\)</span>. The space integrals again reduce to <span class="math inline">\(V^N\)</span>. The momentum integrals reduce to a product of independent Gaussians. We thus have <span class="math display">\[
+\begin{align*}
+Z &amp;= \frac{1}{N! h^{3N}} \int d^{3N} \mathbf{x} \ d^{3N} \mathbf{p} \ \exp\bigg[-\beta \bigg(\sum_{i=1}^N \frac{\mathbf{p}_i^2}{2m} + V(\mathbf{x}_1,\cdots,\mathbf{x}_N)\bigg)\bigg] \\
+&amp;= \frac{V^N}{N! h^{3N}} \prod_{i=1}^N \int d^3 \mathbf{p}_i \ \exp\bigg[-\beta \bigg(\frac{\mathbf{p}_i^2}{2m}\bigg)\bigg] \\
+&amp;= \frac{V^N}{N! h^{3N}} \bigg(\frac{2\pi m}{\beta}\bigg)^{3N/2} \\
+&amp;\approx \bigg[\frac{Ve}{N} \bigg(\frac{2\pi m}{\beta h^2}\bigg)^{3/2}\bigg]^N.
+\end{align*}
+\]</span> We can get everything of interest by looking at the logarithm of the partition function, <span class="math display">\[
+\log Z = N \log \frac{Ve}{N} \bigg(\frac{2\pi m}{\beta h^2}\bigg)^{3/2}.
+\]</span> From here we can calculate every thermodynamic variable of interest. For example, the energy is given by <span class="math display">\[
+E = - \frac{\partial \log Z}{\partial \beta} = \frac{3N}{\beta} = \frac{3}{2} N k_B T,
+\]</span> and the pressure is given by <span class="math display">\[
+P = \frac{1}{\beta} \frac{\partial \log Z}{\partial V} = \frac{N}{\beta V} = \frac{Nk_B T}{V}.
+\]</span> Another way to see how much easier the canonical ensemble can be to use is to try to calculate the distribution of momentum in the gas. The Maxwell-Boltzmann distribution pretty much falls right out. For example, <span class="math display">\[
+\begin{align*}
+p(\mathbf{p}_1) &amp;= \frac{1}{N! h^{3N}} \int d^{3N} \mathbf{x} \ d^{3N-1} \mathbf{p} \ p(\mathbf{x}_1,\cdots,\mathbf{x}_N,\mathbf{p}_1,\cdots,\mathbf{p}_N)
+\\
+&amp;= \frac{1}{Z}\frac{V^N}{N! h^{3N}} \exp\bigg[-\beta \bigg(\frac{\mathbf{p}_1^2}{2m}\bigg)\bigg] \prod_{i=2}^N \int d^3 \mathbf{p}_i \ \exp\bigg[-\beta \bigg(\frac{\mathbf{p}_i^2}{2m}\bigg)\bigg] \\
+&amp;= \frac{1}{Z}\frac{V^N}{N! h^{3N}} \big(2\pi m k_B T\big)^{3(N-1)/2} \exp\bigg[-\bigg(\frac{\mathbf{p}_1^2}{2mk_B T}\bigg) \bigg] \\
+&amp;= \frac{1}{(2\pi m k_B T)^{3/2}} \exp\bigg[-\frac{1}{2}\bigg(\frac{\mathbf{p}_1^2}{mk_B T}\bigg) \bigg].
+\end{align*}
+\]</span> We’ll finish this example by mentioning that we can define a convenient characteristic length scale <span class="math inline">\(\lambda\)</span> called the <strong>thermal DeBroglie wavelength</strong>, given by <span class="math display">\[
+\lambda(T) \equiv \frac{h}{\sqrt{2\pi m k_B T}}.
+\]</span> Using this length scale we can more conveniently express the ideal gas partition function in the form <span class="math display">\[
+Z = \frac{1}{N!}\bigg(\frac{V}{\lambda^3}\bigg)^N \approx \bigg(\frac{Ve}{N\lambda^3}\bigg)^N.
+\]</span> We’ll see later that the size of <span class="math inline">\(\lambda(T)\)</span> essentially determines at what point quantum effects become important in statistical mechanics. For now it’s just a convenient simplification for the ideal gas partition function.</p>
+</section>
+<section id="equipartition-theorem" class="level3">
+<h3 class="anchored" data-anchor-id="equipartition-theorem">Equipartition Theorem</h3>
+<p>Recall from thermodynamics that we have a quick rule of thumb for finding the energy of certain gases. Look at the Hamiltonian of the gas and count number of quadratic degrees of freedom (both momenta plus positions). If the gas has <span class="math inline">\(d\)</span> quadratic degrees of freedom, then the energy of the gas is just <span class="math display">\[
+E = \frac{d}{2} N k_B T.
+\]</span> For example, a monoatomic ideal gas has just <span class="math inline">\(d=3\)</span> quadratic degrees of freedom per molecule, since each molecule has a total energy proportional to <span class="math inline">\(p_x^2 + p_y^2 + p_z^2\)</span>. This means the total energy is <span class="math inline">\(E=\frac{3}{2} Nk_B T\)</span>, as we’ve already derived multiple times. Let’s use the canonical ensemble to quickly prove the most general case of the equipartition theorem.</p>
+<p>Suppose a system of <span class="math inline">\(N\)</span> particles has a joint Hamiltonian <span class="math inline">\(H\)</span> consisting of the sum of single-particle Hamiltonians <span class="math inline">\(H_i\)</span>. Each single-particle contains <span class="math inline">\(d\)</span> degrees of freedom <span class="math inline">\(\boldsymbol{\xi}=(\xi_1,\xi_2,\cdots,\xi_d)\)</span>. Suppose each single-particle Hamiltonian has the same form <span class="math inline">\(H_i = \sum_{k=1}^d c_k |\boldsymbol{\xi}|^s\)</span> for some positive power <span class="math inline">\(s\)</span>. Then the joint Hamiltonian is given by <span class="math display">\[
+H = \sum_{i=1}^N \sum_{k=1}^d c_k |\boldsymbol{\xi}_{ik}|^s.
+\]</span> <strong>Equipartition Theorem:</strong> In equilibrium, the total thermodynamic energy <span class="math inline">\(E = \langle H \rangle\)</span> is given by <span class="math display">\[
+E = \frac{d}{s} N k_B T.
+\]</span> In particular, when <span class="math inline">\(s=2\)</span> we recover the usual equipartition theorem for quadratic degrees of freedom.</p>
+<p><strong>Proof:</strong> Without loss of generality, suppose the system has all its degrees of freedom in the momenta, so we can write <span class="math display">\[
+H = \sum_{i=1}^N \sum_{k=1}^{d} c_k |\mathbf{p}_{ik}|^s.
+\]</span> It’s convenient here to work in the canonical ensemble. Since all we’re interested in is the energy, for simplicity we’ll assume all particles are distinguishable and ignore factors of <span class="math inline">\(h\)</span>. The partition function is then <span class="math display">\[
+Z = \int d^{dN} \mathbf{x} \ d^{dN} \mathbf{p} \ \exp\bigg[-\beta \sum_{i=1}^N \sum_{k=1}^{d} c_k |\mathbf{p}_{ik}|^s\bigg].
+\]</span> Suppose the particles are confined to some <span class="math inline">\(d\)</span>-dimensional hypervolume <span class="math inline">\(V_d\)</span>. Factoring the exponentials by particle, we have <span class="math display">\[
+Z = V_d^N \bigg(\prod_{k=1}^d \int d^{d} \mathbf{p} \ e^{-\beta c_k |\mathbf{p}|^s}\bigg)^N.
+\]</span> We can write the <span class="math inline">\(d\)</span>-dimensional volume element <span class="math inline">\(d^d \mathbf{p}\)</span> as a product of the <span class="math inline">\(d\)</span>-dimensional solid angle <span class="math inline">\(d^d\Omega\)</span> and a radial term <span class="math inline">\(r^{d-1} dr\)</span>, <span class="math display">\[
+d^d \mathbf{p} = r^{d-1} dr d^d \Omega.
+\]</span> Since the integral for <span class="math inline">\(Z\)</span> is spherically symmetric, we can integrate each solid angle to just get the surface area of a <span class="math inline">\(d\)</span>-dimensional hypersphere, which we’ll recall is given by <span class="math inline">\(S_d\)</span>. What remains inside the integral is just the factorial function up to a change of variable. We thus have <span class="math display">\[
+\begin{align*}
+Z &amp;= V_d^N \bigg(\prod_{k=1}^d \int d^d\Omega \int_0^{\infty} dp \ p^{d-1} e^{-\beta c_k p^s}\bigg)^N \\
+&amp;= V_d^N \bigg(\prod_{k=1}^d S_d \int_0^{\infty} dp \ p^{d-1} e^{-\beta c_k p^s}\bigg)^N \\
+&amp;= V_d^N \bigg(\prod_{k=1}^d\frac{S_d\big(\frac{d}{s}-1\big)!}{s(\beta c_k)^{1/s}}\bigg)^N. \\
+\end{align*}
+\]</span> In particular, notice that <span class="math inline">\(Z\)</span> is proportional to <span class="math inline">\(\beta^{-Nd/s}\)</span>, which means <span class="math inline">\(\log Z \sim -\frac{Nd}{s} \log \beta\)</span>. The energy is thus just <span class="math display">\[
+E = -\frac{\partial \log Z}{\partial \beta} = \frac{Nd}{s\beta} = \frac{d}{s} N k_B T. \quad \text{Q.E.D.}
+\]</span> The equipartition theorem is a useful shortcut for quickly figuring out how the partition function depends on temperature since we can use it to avoid having to do any integration, provided the degrees of freedom are all of the same power. For example, we saw for an ultrarelativistic ideal gas that <span class="math inline">\(H = \sum_{i=1}^N |\mathbf{p}_i|c\)</span>. In this case <span class="math inline">\(s=1\)</span> and <span class="math inline">\(d=3\)</span>, so <span class="math inline">\(E=3Nk_B T\)</span>, which we’ve seen.</p>
+</section>
+</section>
+<section id="higher-ensembles" class="level2">
+<h2 class="anchored" data-anchor-id="higher-ensembles">Higher Ensembles</h2>
+<p>While the microcanonical ensemble is perhaps the most intuitive, and the canonical ensemble is perhaps the most useful, there are other ensembles we can imagine as well. In fact, each free energy has its own ensemble. We’ve already seen the ensembles corresponding to the energy <span class="math inline">\(E\)</span> and Helmholtz free energy <span class="math inline">\(F\)</span>. We’ll now look at two more ensembles corresponding to the last two free energies, the Gibbs free energy <span class="math inline">\(G\)</span> and the grand potential <span class="math inline">\(\mathcal{G}\)</span>. While all ensembles are in some sense equivalent, each ensemble has its advantages in certain situations. In particular, we’ll see the grand canonical ensemble arise in our treatment of quantum statistical mechanics.</p>
+<section id="gibbs-canonical-ensemble" class="level3">
+<h3 class="anchored" data-anchor-id="gibbs-canonical-ensemble">Gibbs Canonical Ensemble</h3>
+<p>Similar to the canonical ensemble, the Gibbs canonical ensemble arises from considering a system in equilibrium with a much larger heat bath, except now we also allow for the possibility that work is done on the system as well. That is, we now take <span class="math inline">\(M=(T,J,N)\)</span> and assume the total energy has the form <span class="math inline">\(E = H(\boldsymbol{\mu}) + J \cdot X\)</span>. Then the probability of achieving a given microstate <span class="math inline">\(\boldsymbol{\mu}\)</span> at a particular displacement <span class="math inline">\(X\)</span> is given by <span class="math display">\[
+p(\boldsymbol{\mu},X) = \frac{1}{Z(\beta,J)}e^{-\beta \big(H(\boldsymbol{\mu})-J \cdot X\big)},
+\]</span> where <span class="math inline">\(Z(\beta,J)\)</span> is again a normalization constant. It’s called the <strong>Gibbs partition function</strong>, and is given by integrating over all microstates <span class="math inline">\(\boldsymbol{\mu}\)</span> and displacements <span class="math inline">\(X\)</span>, <span class="math display">\[
+Z(\beta,J) \equiv \int dX \ d \boldsymbol{\mu} \ e^{-\beta \big(H(\boldsymbol{\mu})-J \cdot X\big)}.
+\]</span> By factoring the dependences on <span class="math inline">\(\boldsymbol{\mu}\)</span> and <span class="math inline">\(X\)</span> we can write the Gibbs partition function in terms of the canonical partition function <span class="math inline">\(Z(\beta)\)</span> as <span class="math display">\[
+Z(\beta,J) = \int dX \ e^{-\beta J \cdot X} \ Z(\beta).
+\]</span> Note the abuse of notation. We’re using <span class="math inline">\(Z\)</span> to refer to both partition functions, and letting the functional dependence specify which we’re talking about. When it’s obvious which partition function we’re referring to we’ll often drop the dependence and just write <span class="math inline">\(Z\)</span>.</p>
+<p>Since the displacement <span class="math inline">\(X\)</span> is now a random variable, we can ask how it varies about its mean <span class="math inline">\(\langle X \rangle\)</span>. Following the same logic as we did with the energy, it’s easy to see that <span class="math display">\[
+\langle X \rangle = \frac{\partial}{\partial (\beta J)} \log Z(\beta,J).
+\]</span> The cumulants of <span class="math inline">\(X\)</span> are similarly given by <span class="math display">\[
+\langle X^k \rangle_c = \frac{\partial^k}{\partial (\beta J)^k} \log Z(\beta,J) = \frac{\partial^{k-1} \langle X \rangle}{\partial (\beta J)^{k-1}}.
+\]</span> In particular, all cumulants of <span class="math inline">\(X\)</span> are extensive. This means the variance is proportional to <span class="math inline">\(\langle X \rangle\)</span>, which means the fluctuations in <span class="math inline">\(X\)</span> go like <span class="math inline">\(\delta X = \sqrt{\langle X \rangle}\)</span>. This means we can again assert that <span class="math inline">\(X = X^* = \langle X \rangle\)</span> when <span class="math inline">\(N\)</span> is really large.</p>
+<p>We can relate the partition function to the free energy by observing <span class="math display">\[
+Z(\beta, J) = \int dX \ dE \ e^{-\beta(E-J \cdot X)} \Omega(E,X) = \int dX \ dE \ e^{-\beta(E-TS-J \cdot X)}.
+\]</span> Here <span class="math inline">\(G \equiv E-TS-\mu \cdot N\)</span> is of course the Gibbs free energy. Using the saddlepoint approximation, in the thermodynamic limit we can write <span class="math display">\[
+Z(\beta,J) \approx e^{-\beta G(E^*, \ X^*)}.
+\]</span> Solving for <span class="math inline">\(G\)</span> we have the familiar expression <span class="math display">\[
+G = -k_B T \log Z(\beta,J).
+\]</span> From here all other thermodynamic variables we seek follow in the usual way using the identity <span class="math display">\[
+dG = -S dT - X \cdot dJ + \mu \cdot dN.
+\]</span> In this ensemble the canonical energy formula no longer applies. Instead that formula gives the <em>enthalpy</em> <span class="math inline">\(H = E - J \cdot X\)</span>, <span class="math display">\[
+H = -\frac{\partial}{\partial \beta} \log Z(\beta,J).
+\]</span></p>
+</section>
+<section id="grand-canonical-ensemble" class="level3">
+<h3 class="anchored" data-anchor-id="grand-canonical-ensemble">Grand Canonical Ensemble</h3>
+<p>The grand canonical ensemble follows exactly the same logic as the Gibbs ensemble did, except now we imagine the system is in equilibrium with a heat bath and allowed to exchange particles with it via chemical work. That is, <span class="math inline">\(M = (T,X,\mu)\)</span> and the energy has the form <span class="math inline">\(E = H(\boldsymbol{\mu}) + \mu \cdot N\)</span>. Then the probability of a given microstate <span class="math inline">\(\boldsymbol{\mu}\)</span> and a given particle number <span class="math inline">\(N\)</span> is given as <span class="math display">\[
+p(\boldsymbol{\mu},N) = \frac{1}{Z(\beta,\mu)}e^{-\beta \big(H(\boldsymbol{\mu})-\mu \cdot N\big)},
+\]</span> where <span class="math inline">\(Z(\beta,\mu)\)</span> is another normalization constant gotten by integrating over all possible <span class="math inline">\(\boldsymbol{\mu}\)</span> and summing over all possible <span class="math inline">\(N\)</span>. This is called the <strong>grand canonical partition function</strong>, given by <span class="math display">\[
+Z(\beta,\mu) \equiv \sum_{N=0}^\infty \int d \boldsymbol{\mu} \ e^{-\beta \big(H(\boldsymbol{\mu})-\mu \cdot N\big)}.
+\]</span> We can again factor the <span class="math inline">\(\boldsymbol{\mu}\)</span> and <span class="math inline">\(N\)</span> dependences apart and write just <span class="math display">\[
+Z(\beta,\mu) = \sum_{N=0}^\infty e^{\beta\mu \cdot N} Z(\beta).
+\]</span> The dimensionless variable <span class="math inline">\(f \equiv \beta\mu = \frac{\mu}{k_B T}\)</span> is called the <strong>fugacity</strong>. It will turn out to be important in quantum statistical mechanics since its size says something about the limiting behaviors of the energy and entropy.</p>
+<p>While not necessarily obvious, more mathematical care is needed to interpret the grand canonical ensemble due to the fact that <span class="math inline">\(N\)</span> is no longer fixed, but allowed to vary. This means we can’t a priori just assume that <span class="math inline">\(N\)</span> is large and the thermodynamic limit applies. Moreover, the phase spaces being integrated over aren’t even of the same dimensions since each <span class="math inline">\(d=6N\)</span>.</p>
+<p>Instead of interpreting things in terms of <span class="math inline">\(N\)</span>, a random variable, we instead need to interpret things in terms of <span class="math inline">\(\langle N \rangle\)</span>. Following the same logic as we did with the energy, it’s easy to see that <span class="math display">\[
+\langle N \rangle = \frac{\partial}{\partial (\beta\mu)} \log Z(\beta,\mu).
+\]</span> The cumulants of <span class="math inline">\(N\)</span> are similarly given by <span class="math display">\[
+\langle N^k \rangle_c = \frac{\partial^k}{\partial (\beta\mu)^k} \log Z(\beta,\mu) = \frac{\partial^{k-1} \langle N \rangle}{\partial (\beta\mu)^{k-1}}.
+\]</span> In particular, all cumulants of <span class="math inline">\(N\)</span> are proportional to <span class="math inline">\(\langle N \rangle\)</span>. In particular, this means the variance is proportional to <span class="math inline">\(\langle N \rangle\)</span>, which means the fluctuations in <span class="math inline">\(N\)</span> go like <span class="math inline">\(\delta N = \sqrt{\langle N \rangle}\)</span>. By the same usual logic, this means we can assert that <span class="math inline">\(N = N^* = \langle N \rangle\)</span> provided <span class="math inline">\(N^*\)</span> is large, which will typically be the case in thermodynamics.</p>
+<p>Again using the same logic as before, we can relate the partition function to the free energy by observing <span class="math display">\[
+Z(\beta, \mu) = \sum_{N=0}^\infty \int dE \ e^{-\beta(E-\mu \cdot N)} \Omega(E,N) = \sum_{N=0}^\infty \int dE \ e^{-\beta(E-TS-\mu \cdot N)}.
+\]</span> Here <span class="math inline">\(\mathcal{G} \equiv E-TS-\mu \cdot N\)</span> is of course the grand potential. Using the saddlepoint approximation, in the thermodynamic limit we can write <span class="math display">\[
+Z(\beta,\mu) \approx e^{-\beta\mathcal{G}(E^*,N^*)}.
+\]</span> Solving for <span class="math inline">\(\mathcal{G}\)</span> we again have the familiar expression <span class="math display">\[
+\mathcal{G} = -k_B T \log Z(\beta,\mu).
+\]</span> From here all other thermodynamic variables we seek follow in the usual way using the identity <span class="math display">\[
+d\mathcal{G} = -S dT + J \cdot dX - N \cdot d\mu.
+\]</span></p>
+</section>
+<section id="example-ideal-gas-1" class="level3">
+<h3 class="anchored" data-anchor-id="example-ideal-gas-1">Example: Ideal Gas</h3>
+<p>As an example, we’ll work out the equations of state again for the ideal gas, both in the Gibbs canonical and the grand canonical ensembles. Starting with the Gibbs canonical ensemble, the Gibbs partition function can be calculated by observing that the integral over <span class="math inline">\(V\)</span> is almost a factorial function. We have <span class="math display">\[
+\begin{align*}
+Z(\beta,P) &amp;= \int_0^\infty dV e^{-\beta PV} Z(\beta) \\
+&amp;= \frac{1}{N! h^{3N}} \bigg(\frac{2\pi m}{\beta}\bigg)^{3N/2} \int_0^\infty dV e^{-\beta PV} V^N \\
+&amp;= \frac{1}{N! h^{3N}} \bigg(\frac{2\pi m}{\beta}\bigg)^{3N/2} \frac{N!}{(\beta P)^{N+1}} \\
+&amp;= \bigg(\frac{2\pi m}{h^2 \beta}\bigg)^{3N/2} (\beta P)^{-(N+1)}. \\
+\end{align*}
+\]</span> Taking the logarithm of both sides, we have <span class="math display">\[
+\log Z(\beta,P) \approx \frac{3N}{2} \log \frac{2\pi m}{h^2 \beta} - N \log \beta P.
+\]</span> We can get the mean volume <span class="math inline">\(\langle V \rangle\)</span> by differentiating both sides with respect to <span class="math inline">\(-\beta P\)</span>, <span class="math display">\[
+\langle V \rangle = \frac{\partial}{\partial (-\beta P)} \log Z(\beta,P) = \frac{N}{\beta P} = \frac{Nk_B T}{P}.
+\]</span> This is of course the usual equation of state, with <span class="math inline">\(P\langle V \rangle = N k_B T\)</span>. We can easily find the enthalpy as well, <span class="math display">\[
+H = -\frac{\partial}{\partial \beta} \log Z(\beta,P) = \frac{3N}{2\beta} + \frac{N}{\beta} = \frac{5}{2} N k_B T.
+\]</span> Since <span class="math inline">\(H = E + P\langle V \rangle\)</span>, we can immediately read off the usual formula for energy, <span class="math inline">\(E = \frac{3}{2} N k_B T\)</span>.</p>
+<p>Moving onto the grand canonical ensemble, the grand partition function is given by noting that the sum over <span class="math inline">\(N\)</span> is just the Taylor series of an exponential function. We have <span class="math display">\[
+\begin{align*}
+Z(\beta,\mu) &amp;= \sum_{N=0}^\infty dV e^{\beta \mu N} Z(\beta) \\
+&amp;= \sum_{N=0}^\infty e^{\beta \mu N} \frac{V^N}{N! h^{3N}} \bigg(\frac{2\pi m}{\beta}\bigg)^{3N/2} \\
+&amp;= \sum_{N=0}^\infty \frac{1}{N!} \bigg[\frac{Ve^{\beta\mu}}{h^3} \bigg(\frac{2\pi m}{\beta}\bigg)^{3/2}\bigg]^N \\
+&amp;= \exp \bigg[\frac{Ve^{\beta\mu}}{h^3} \bigg(\frac{2\pi m}{\beta}\bigg)^{3/2}\bigg]. \\
+\end{align*}
+\]</span> This means <span class="math inline">\(\log Z(\beta,\mu)\)</span> is just <span class="math display">\[
+\log Z(\beta,\mu) = \frac{Ve^{\beta\mu}}{h^3} \bigg(\frac{2\pi m}{\beta}\bigg)^{3/2}.
+\]</span> It’s helpful to first find <span class="math inline">\(\langle N \rangle\)</span>. We have <span class="math display">\[
+\langle N \rangle = \frac{\partial}{\partial (\beta\mu)} \log Z(\beta,\mu) = \frac{Ve^{\beta\mu}}{h^3} \bigg(\frac{2\pi m}{\beta}\bigg)^{3/2} = \log Z(\beta,\mu).
+\]</span> This means all cumulants of <span class="math inline">\(N\)</span> will be <span class="math inline">\(\log Z(\beta,\mu)\)</span> as well. Recall this fact implies that <span class="math inline">\(N\)</span> must be Poisson distributed, with <span class="math display">\[
+p(N) = \frac{\langle N \rangle^N e^{-\langle N \rangle}}{N!}.
+\]</span> The grand potential is evidently just <span class="math inline">\(\mathcal{G} = -\langle N \rangle k_B T\)</span>. But by extensivity <span class="math inline">\(\mathcal{G} = -PV\)</span>. We thus again have the ideal gas law, <span class="math display">\[
+PV = \langle N \rangle k_B T.
+\]</span> Getting the energy is slightly trickier. It’s not too hard to show that <span class="math display">\[
+E - \mu \langle N \rangle = -\frac{\partial}{\partial \beta} \log Z(\beta,\mu) = \langle N \rangle \bigg(\frac{3}{2} k_B T - \mu\bigg).
+\]</span> Cancelling <span class="math inline">\(\mu \langle N \rangle\)</span> from both sides, we again get <span class="math inline">\(E = \frac{3}{2} \langle N \rangle k_B T\)</span>. Finally, if we like we can solve for the chemical potential by inverting the formula for <span class="math inline">\(\langle N \rangle\)</span>. As expected, we have <span class="math display">\[
+\mu = k_B T \log \frac{\langle N \rangle}{V} \bigg(\frac{2\pi m k_B T}{h^2}\bigg)^{3/2}.
+\]</span></p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation column-body">
+  <div class="nav-page nav-page-previous">
+      <a href="../statistical-mechanics/kinetic-theory.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Kinetic Theory</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>
