@@ -21,7 +21,7 @@ In statistical mechanics we're primarily interested in probability distributions
 - The *Gibbs canonical ensemble*: $p_M(\boldsymbol{\mu}) \propto e^{-\beta (H(\boldsymbol{\mu}) - J \cdot X)}$. This corresponds to the Gibbs free energy $G$ being conserved.
 - The *grand canonical ensemble*: $p_M(\boldsymbol{\mu}) \propto e^{-\beta (H(\boldsymbol{\mu}) - \mu \cdot N)}$. This corresponds to the grand potential $\mathcal{G}$ being conserved.
 
-All of these distributions arise from the principle of maximum entropy given certain known constraints, particularly the assumption that the *expected values* of zero or more quantities are given. We'll study the implications of each ensemble one at a time and discuss when to use which for a given problem.
+All of these distributions arise from the principle of maximum entropy given certain known constraints, particularly the assumption that the expected values of zero or more quantities are given. We'll study the implications of each ensemble one at a time and discuss when to use which for a given problem.
 
 ## Microcanonical Ensemble
 
@@ -131,7 +131,7 @@ Using the same logic as we did in the thermodynamics lesson, we can then show th
 
 ### Two-State Systems
 
-TWO STATE SYSTEMS, EINSTEIN SOLID
+TODO: TWO STATE SYSTEMS, EINSTEIN SOLID
 
 ## Distinguishability
 
@@ -334,7 +334,7 @@ The ideal gas law is thus slightly modified by reducing the volume from $V$ to a
 
 ## Canonical Ensemble
 
-While the microcanonical is easy to understand, it's usually not the easiest ensemble to work with for most problems. We already saw how much trickery it took just to solve the ideal gas problem. Usually finding the multiplicity $\Omega(M)$ directly isn't easy, and often impossible. Another approach we can take is to not take $M=(E,X,N)$, but to instead take $M=(T,X,N)$. That is, we consider a system with a fixed *temperature*, not a fixed *energy*. Physically, this means considering not an *isolated system*, but a *closed system*. We assume our system of interest is placed in contact with a large environment, or *heat bath*, and allowed to come to equilibrium. The system inherits its temperature from the heat bath and is allowed to exchange heat with it.
+While the microcanonical is easy to understand, it's usually not the easiest ensemble to work with for most problems. Usually finding the multiplicity $\Omega(M)$ directly isn't easy since it involves a high level of combinatorial insight. Another approach we can take is to not take $M=(E,X,N)$, but to instead take $M=(T,X,N)$. That is, we consider a system with a fixed *temperature*, not a fixed *energy*. Physically, this means considering not an *isolated system*, but a *closed system*. We assume our system of interest is placed in contact with a large environment, or *heat bath*, and allowed to come to equilibrium. The system inherits its temperature from the heat bath and is allowed to exchange heat with it.
 
 ### Boltzmann Distribution
 
@@ -374,17 +374,21 @@ By asserting that the probability density integrate to one we can find an explic
 $$
 \boxed{Z(\beta) = \int d \boldsymbol{\mu} \ e^{-\beta H(\boldsymbol{\mu})}} \ .
 $$
-Despite appearing to just be a normalization constant the partition function turns out to be very important to statistical mechanics. It essentially encodes all the statistical mechanical information contained in the system. To see why it's helpful to re-write the partition function as an integral (or sum) over all possible system energies $E$. To do that we have to account for the fact that microstates can take on any given energy, meaning we need to add a multiplicity $\Omega(E)$. We thus have
+Despite appearing to just be a normalization constant the partition function turns out to be very important to statistical mechanics. It essentially encodes all the statistical mechanical information contained in the system. To see why it's helpful to re-write the partition function as an integral (or sum) over all possible system energies $E$. To do that multiple microstates can have the same energy. That means we need to multiply the integrand by a multiplicity $\Omega(E)$. We thus have
 $$
 Z = \int dE \ \Omega(E) \ e^{-\beta E} = \int dE \ e^{\frac{1}{k_B} S} e^{-\frac{1}{k_B T} E} = \int dE \ e^{-\frac{1}{k_B T}(E-TS)}.
 $$
-Recall from thermodynamics though that $E-TS$ is just the Helmholtz free energy $F$. This implies that for a given energy $E$, its probability distribution is essentially exponentially distributed,
+Recall from thermodynamics though that $E-TS$ is just the Helmholtz free energy $F$. Now, since $F$ is extensive we can again employ the saddlepoint approximation about the maximum energy $E^*$ to get
 $$
-p(E) = \frac{1}{Z} e^{-\beta F(E).}
+Z = \int dE \ e^{-\beta F} \approx e^{-\beta F(E^*)} \sqrt{\frac{2\pi}{|F''(E^*)|}}.
 $$
-Taking the logarithm of both sides of the partition function, we've evidently shown that
+Taking the logarithm of both sides and solving for $F$, we evidently have
 $$
-F = -k_B T \log Z.
+F = -k_B T \log Z + O\big(\log N\big).
+$$
+Since $N$ is large, we can neglect the dependence on $\log N$. We thus have a nice expression for the free energy as
+$$
+\boxed{F = -k_B T \log Z} \ .
 $$
 Why is this important? We already know $F$ encodes all of the thermodynamic information in the system because
 $$
@@ -403,20 +407,54 @@ $$
 $$
 Assuming we can equate the macrostate energy $E$ with $\langle H \rangle$, an issue we'll discuss in a moment, we can thus write
 $$
-\boxed{E = - \frac{\partial \log Z}{\partial \beta}} \ .
+\boxed{E = \langle H \rangle = - \frac{\partial \log Z}{\partial \beta}} \ .
 $$
 Using the formula $F = E - TS$ we can also get a convenient formula for the entropy. We have
 $$
 S = \frac{E}{T} - \frac{F}{T} = k_B \big(\beta E + \log Z \big).
 $$
 
-### Thermodynamic Fluctuations
+### Fluctuations
 
-DISCUSS MOMENTS OF H, APPROX OF H BY E WITH NARROW GAUSSIAN, SAME FOR OTHER QUANTITIES
+It's worth some explanation why we can assert that the thermodynamic energy $E$ is the same thing as the expected value of the Hamiltonian $\langle H \rangle$ in thermodynamics. The reason for this has to do almost entirely with the fact that $N$ is really large. To see why, let's ask the following question: How much can we expect the energy to *fluctuate* about its mean $\langle H \rangle$? 
+
+To answer this, we just need to find the variance $\sigma_E^2$. Using the same trick as before, the $k$<sup>th</sup> moment of $H$ is given by
+$$
+\langle H^k \rangle = \int d \boldsymbol{\mu} \ H^k(\boldsymbol{\mu}) p(\boldsymbol{\mu}) = \int d \boldsymbol{\mu} \ H^k(\boldsymbol{\mu}) \frac{e^{-\beta H(\boldsymbol{\mu})}}{Z} = (-1)^k\frac{1}{Z} \frac{\partial^k Z}{\partial \beta^k}.
+$$
+From this formula, it's not hard to see the *cumulants* of $H$ are simply given by
+$$
+\langle H^k \rangle_c = (-1)^k \frac{\partial^k \log Z}{\partial \beta^k}.
+$$
+In particular, this means the variance is given by
+$$
+\sigma_E^2 = \frac{\partial^2 \log Z}{\partial \beta^2} = - \frac{\partial \langle H \rangle}{\partial \beta} = k_B T^2 \frac{\partial \langle H \rangle}{\partial T} \bigg |_{X,N} \ .
+$$
+To the extent we can write $E \approx \langle H \rangle$, the right-hand derivative is just the heat capacity $C_X$. The variance of $H$ is thus
+$$
+\boxed{\sigma_E^2 = k_B T^2 C_X} \ .
+$$
+Now, recall the heat capacity is in general *extensive*. This means the variance (and in fact all cumulants of $H$) are extensive as well. Thus, roughly speaking, we expect the energy $E$ to fluctuation about the mean by an amount
+$$
+\sigma_E = \sqrt{k_B T^2 C_X} = O(\sqrt{N}).
+$$
+This means that the energy $E$ will with high probability lie within a few $\sigma_E$ of the mean,
+$$
+E \approx \langle H \rangle \pm \sigma_E = \langle H \rangle \pm O(\sqrt{N}).
+$$
+Since $\langle H \rangle = O(N)$ and $N$ is large, we can neglect the $O(\sqrt{N})$ fluctuations in the thermodynamic limit and just write
+$$
+E \approx \langle H \rangle.
+$$
+Note that the energy distribution can have pretty much any curve we like. All that matters is that it be extensive. It can even have multiple peaks. Due to extensivity, the global maximum $E^*$ will always be exponentially larger than the other maxima. Around that maximum we can fit a Gaussian with mean $E^* \approx \langle H \rangle$ and variance $\sigma_E^2$. That Gaussian will be sharply peaked about $E^*$ with a negligible fluctuation, meaning we can safely write $E \approx E^* \approx \langle H \rangle$.
+
+This is in essence the magic of thermodynamics. When $N$ is really really large, at equilibrium we can pretty much ignore the shape of the distribution and just assume $E = E^* = \langle H \rangle$. This holds for other extensive variables as well, not just energy. For all practical purposes, thermodynamic variables are deterministic due to the character of the thermodynamic limit.
+
+As an example to see that fluctuations don't really matter, if we looked at one mole of air at STP, we'd expect the energy to be about $E \approx \frac{5}{2} RT \approx 6100 \ \text{J}$. On the other hand, the energy is expected to fluctuate as $\sigma_E = \sqrt{k_B T^2 \frac{5}{2} R} \approx 3 \cdot 10^{-10} \ \text{J}$. That is, the fluctuations $\sigma_E$ are a full 13 orders of magnitude smaller than $E$, hence completely negligible.
 
 ### Example: Ideal Gas
 
-Frequently, the canonical ensemble is much easier to work with than the microcanonical ensemble. Perhaps the best example of this is comparing both methods for solving the ideal gas problem. Consider again an ideal gas with Hamiltonian
+Frequently, the canonical ensemble is much easier to work with than the microcanonical ensemble. Perhaps the best example of this is comparing both methods for solving the ideal gas problem. Consider again a gas with Hamiltonian
 $$
 H(\mathbf{x}_1,\cdots,\mathbf{x}_N,\mathbf{p}_1,\cdots,\mathbf{p}_N) = \sum_{i=1}^N \frac{\mathbf{p}_i^2}{2m} + V(\mathbf{x}_1,\cdots,\mathbf{x}_N),
 $$
@@ -455,25 +493,25 @@ We'll finish this example by mentioning that we can define a convenient characte
 $$
 \lambda(T) \equiv \frac{h}{\sqrt{2\pi m k_B T}}.
 $$
-Using this length scale we can more conveniently express the partition function in the form
+Using this length scale we can more conveniently express the ideal gas partition function in the form
 $$
 Z = \frac{1}{N!}\bigg(\frac{V}{\lambda^3}\bigg)^N \approx \bigg(\frac{Ve}{N\lambda^3}\bigg)^N.
 $$
 We'll see later that the size of $\lambda(T)$ essentially determines at what point quantum effects become important in statistical mechanics. For now it's just a convenient simplification for the ideal gas partition function.
 
-### The Equipartition Theorem
+### Equipartition Theorem
 
-Recall from the thermodynamics lesson that we had a quick rule of thumb for finding the energy of a gas. Look at the Hamiltonian of the gas and count number of quadratic degrees of freedom (both momenta plus positions). If the gas has $d$ quadratic degrees of freedom, then the energy of the gas is just
+Recall from thermodynamics that we have a quick rule of thumb for finding the energy of certain gases. Look at the Hamiltonian of the gas and count number of quadratic degrees of freedom (both momenta plus positions). If the gas has $d$ quadratic degrees of freedom, then the energy of the gas is just
 $$
 E = \frac{d}{2} N k_B T.
 $$
 For example, a monoatomic ideal gas has just $d=3$ quadratic degrees of freedom per molecule, since each molecule has a total energy proportional to $p_x^2 + p_y^2 + p_z^2$. This means the total energy is $E=\frac{3}{2} Nk_B T$, as we've already derived multiple times. Let's use the canonical ensemble to quickly prove the most general case of the equipartition theorem.
 
-**Equipartition Theorem:** Suppose a system of $N$ particles has a Hamiltonian where each particle contains $d$ degrees of freedom $\boldsymbol{\xi}=(\xi_1,\xi_2,\cdots,\xi_d)$ that's raised to some power $s$,
+Suppose a system of $N$ particles has a joint Hamiltonian $H$ consisting of the sum of single-particle Hamiltonians $H_i$. Each single-particle contains $d$ degrees of freedom $\boldsymbol{\xi}=(\xi_1,\xi_2,\cdots,\xi_d)$. Suppose each single-particle Hamiltonian has the same form $H_i = \sum_{k=1}^d c_k |\boldsymbol{\xi}|^s$ for some positive power $s$. Then the joint Hamiltonian is given by
 $$
-H = \sum_{i=1}^N \sum_{k=1}^d c_k |\boldsymbol{\xi}|_k^s.
+H = \sum_{i=1}^N \sum_{k=1}^d c_k |\boldsymbol{\xi}_{ik}|^s.
 $$
-Then in equilibrium, the total thermodynamic energy $E$ is given by
+**Equipartition Theorem:** In equilibrium, the total thermodynamic energy $E = \langle H \rangle$ is given by
 $$
 E = \frac{d}{s} N k_B T.
 $$
@@ -481,39 +519,187 @@ In particular, when $s=2$ we recover the usual equipartition theorem for quadrat
 
 **Proof:** Without loss of generality, suppose the system has all its degrees of freedom in the momenta, so we can write
 $$
-H = \sum_{i=1}^N \sum_{k=1}^{d} c_k |\mathbf{p}_k|^s.
+H = \sum_{i=1}^N \sum_{k=1}^{d} c_k |\mathbf{p}_{ik}|^s.
 $$
 It's convenient here to work in the canonical ensemble. Since all we're interested in is the energy, for simplicity we'll assume all particles are distinguishable and ignore factors of $h$. The partition function is then
 $$
-Z = \int d^{dN} \mathbf{x} \ d^{dN} \mathbf{p} \ \exp\bigg[-\beta \sum_{i=1}^N \sum_{k=1}^{d} c_k |\mathbf{p}_k|^s\bigg].
+Z = \int d^{dN} \mathbf{x} \ d^{dN} \mathbf{p} \ \exp\bigg[-\beta \sum_{i=1}^N \sum_{k=1}^{d} c_k |\mathbf{p}_{ik}|^s\bigg].
 $$
 Suppose the particles are confined to some $d$-dimensional hypervolume $V_d$. Factoring the exponentials by particle, we have
 $$
-Z = V_d^N \bigg(\prod_{k=1}^d \int d^{d} \mathbf{p} \ e^{-\beta c_k |\mathbf{p}_k|^s}\bigg)^N.
+Z = V_d^N \bigg(\prod_{k=1}^d \int d^{d} \mathbf{p} \ e^{-\beta c_k |\mathbf{p}|^s}\bigg)^N.
 $$
-We can write the $d$-dimensional volume element as a product of the $d$-dimensional solid angle $d^d\Omega$ and a radial term $r^{d-1} dr$,
+We can write the $d$-dimensional volume element $d^d \mathbf{p}$ as a product of the $d$-dimensional solid angle $d^d\Omega$ and a radial term $r^{d-1} dr$,
 $$
-d^d \mathbf{x} = r^{d-1} dr d^d \Omega.
+d^d \mathbf{p} = r^{d-1} dr d^d \Omega.
 $$
 Since the integral for $Z$ is spherically symmetric, we can integrate each solid angle to just get the surface area of a $d$-dimensional hypersphere, which we'll recall is given by $S_d$. What remains inside the integral is just the factorial function up to a change of variable. We thus have
 $$
 \begin{align*}
-Z &= V_d^N \bigg(\prod_{k=1}^d \int d^d\Omega \int_0^{\infty} dp \ p^{d-1} e^{-\beta c_k |\mathbf{p}_k|^s}\bigg)^N \\
-&= V_d^N \bigg(\prod_{k=1}^d S_d \int_0^{\infty} dp \ p^{d-1} e^{-\beta c_k |\mathbf{p}_k|^s}\bigg)^N \\
+Z &= V_d^N \bigg(\prod_{k=1}^d \int d^d\Omega \int_0^{\infty} dp \ p^{d-1} e^{-\beta c_k p^s}\bigg)^N \\
+&= V_d^N \bigg(\prod_{k=1}^d S_d \int_0^{\infty} dp \ p^{d-1} e^{-\beta c_k p^s}\bigg)^N \\
 &= V_d^N \bigg(\prod_{k=1}^d\frac{S_d\big(\frac{d}{s}-1\big)!}{s(\beta c_k)^{1/s}}\bigg)^N. \\
 \end{align*}
 $$
-In particular, notice that $Z$ is proportional to $\beta^{-dN/s}$, which means $\log Z \sim -\frac{dN}{s} \log \beta$. The energy is thus just
+In particular, notice that $Z$ is proportional to $\beta^{-Nd/s}$, which means $\log Z \sim -\frac{Nd}{s} \log \beta$. The energy is thus just
 $$
-E = -\frac{\partial \log Z}{\partial \beta} = \frac{dN}{s\beta} = \frac{d}{s} N k_B T. \quad \text{Q.E.D.}
+E = -\frac{\partial \log Z}{\partial \beta} = \frac{Nd}{s\beta} = \frac{d}{s} N k_B T. \quad \text{Q.E.D.}
 $$
 The equipartition theorem is a useful shortcut for quickly figuring out how the partition function depends on temperature since we can use it to avoid having to do any integration, provided the degrees of freedom are all of the same power. For example, we saw for an ultrarelativistic ideal gas that $H = \sum_{i=1}^N |\mathbf{p}_i|c$. In this case $s=1$ and $d=3$, so $E=3Nk_B T$, which we've seen.
 
-
-
 ## Higher Ensembles
+
+While the microcanonical ensemble is perhaps the most intuitive, and the canonical ensemble is perhaps the most useful, there are other ensembles we can imagine as well. In fact, each free energy has its own ensemble. We've already seen the ensembles corresponding to the energy $E$ and Helmholtz free energy $F$. We'll now look at two more ensembles corresponding to the last two free energies, the Gibbs free energy $G$ and the grand potential $\mathcal{G}$. While all ensembles are in some sense equivalent, each ensemble has its advantages in certain situations. In particular, we'll see the grand canonical ensemble arise in our treatment of quantum statistical mechanics.
 
 ### Gibbs Canonical Ensemble
 
+Similar to the canonical ensemble, the Gibbs canonical ensemble arises from considering a system in equilibrium with a much larger heat bath, except now we also allow for the possibility that work is done on the system as well. That is, we now take $M=(T,J,N)$ and assume the total energy has the form $E = H(\boldsymbol{\mu}) + J \cdot X$. Then the probability of achieving a given microstate $\boldsymbol{\mu}$ at a particular displacement $X$ is given by
+$$
+p(\boldsymbol{\mu},X) = \frac{1}{Z(\beta,J)}e^{-\beta \big(H(\boldsymbol{\mu})-J \cdot X\big)},
+$$
+where $Z(\beta,J)$ is again a normalization constant. It's called the **Gibbs partition function**, and is given by integrating over all microstates $\boldsymbol{\mu}$ and displacements $X$,
+$$
+Z(\beta,J) \equiv \int dX \ d \boldsymbol{\mu} \ e^{-\beta \big(H(\boldsymbol{\mu})-J \cdot X\big)}.
+$$
+By factoring the dependences on $\boldsymbol{\mu}$ and $X$ we can write the Gibbs partition function in terms of the canonical partition function $Z(\beta)$ as
+$$
+Z(\beta,J) = \int dX \ e^{-\beta J \cdot X} \ Z(\beta).
+$$
+Note the abuse of notation. We're using $Z$ to refer to both partition functions, and letting the functional dependence specify which we're talking about. When it's obvious which partition function we're referring to we'll often drop the dependence and just write $Z$.
+
+Since the displacement $X$ is now a random variable, we can ask how it varies about its mean $\langle X \rangle$. Following the same logic as we did with the energy, it's easy to see that
+$$
+\langle X \rangle = \frac{\partial}{\partial (\beta J)} \log Z(\beta,J).
+$$
+The cumulants of $X$ are similarly given by
+$$
+\langle X^k \rangle_c = \frac{\partial^k}{\partial (\beta J)^k} \log Z(\beta,J) = \frac{\partial^{k-1} \langle X \rangle}{\partial (\beta J)^{k-1}}.
+$$
+In particular, all cumulants of $X$ are extensive. This means the variance is proportional to $\langle X \rangle$, which means the fluctuations in $X$ go like $\delta X = \sqrt{\langle X \rangle}$. This means we can again assert that $X = X^* = \langle X \rangle$ when $N$ is really large.
+
+We can relate the partition function to the free energy by observing
+$$
+Z(\beta, J) = \int dX \ dE \ e^{-\beta(E-J \cdot X)} \Omega(E,X) = \int dX \ dE \ e^{-\beta(E-TS-J \cdot X)}.
+$$
+Here $G \equiv E-TS-\mu \cdot N$ is of course the Gibbs free energy. Using the saddlepoint approximation, in the thermodynamic limit we can write
+$$
+Z(\beta,J) \approx e^{-\beta G(E^*, \ X^*)}.
+$$
+Solving for $G$ we have the familiar expression
+$$
+G = -k_B T \log Z(\beta,J).
+$$
+From here all other thermodynamic variables we seek follow in the usual way using the identity
+$$
+dG = -S dT - X \cdot dJ + \mu \cdot dN.
+$$
+In this ensemble the canonical energy formula no longer applies. Instead that formula gives the *enthalpy* $H = E - J \cdot X$,
+$$
+H = -\frac{\partial}{\partial \beta} \log Z(\beta,J).
+$$
+
+
 ### Grand Canonical Ensemble
 
+The grand canonical ensemble follows exactly the same logic as the Gibbs ensemble did, except now we imagine the system is in equilibrium with a heat bath and allowed to exchange particles with it via chemical work. That is, $M = (T,X,\mu)$ and the energy has the form $E = H(\boldsymbol{\mu}) + \mu \cdot N$. Then the probability of a given microstate $\boldsymbol{\mu}$ and a given particle number $N$ is given as
+$$
+p(\boldsymbol{\mu},N) = \frac{1}{Z(\beta,\mu)}e^{-\beta \big(H(\boldsymbol{\mu})-\mu \cdot N\big)},
+$$
+where $Z(\beta,\mu)$ is another normalization constant gotten by integrating over all possible $\boldsymbol{\mu}$ and summing over all possible $N$. This is called the **grand canonical partition function**, given by
+$$
+Z(\beta,\mu) \equiv \sum_{N=0}^\infty \int d \boldsymbol{\mu} \ e^{-\beta \big(H(\boldsymbol{\mu})-\mu \cdot N\big)}.
+$$
+We can again factor the $\boldsymbol{\mu}$ and $N$ dependences apart and write just
+$$
+Z(\beta,\mu) = \sum_{N=0}^\infty e^{\beta\mu \cdot N} Z(\beta).
+$$
+The dimensionless variable $f \equiv \beta\mu = \frac{\mu}{k_B T}$ is called the **fugacity**. It will turn out to be important in quantum statistical mechanics since its size says something about the limiting behaviors of the energy and entropy.
+
+While not necessarily obvious, more mathematical care is needed to interpret the grand canonical ensemble due to the fact that $N$ is no longer fixed, but allowed to vary. This means we can't a priori just assume that $N$ is large and the thermodynamic limit applies. Moreover, the phase spaces being integrated over aren't even of the same dimensions since each $d=6N$. 
+
+Instead of interpreting things in terms of $N$, a random variable, we instead need to interpret things in terms of $\langle N \rangle$. Following the same logic as we did with the energy, it's easy to see that
+$$
+\langle N \rangle = \frac{\partial}{\partial (\beta\mu)} \log Z(\beta,\mu).
+$$
+The cumulants of $N$ are similarly given by
+$$
+\langle N^k \rangle_c = \frac{\partial^k}{\partial (\beta\mu)^k} \log Z(\beta,\mu) = \frac{\partial^{k-1} \langle N \rangle}{\partial (\beta\mu)^{k-1}}.
+$$
+In particular, all cumulants of $N$ are proportional to $\langle N \rangle$. In particular, this means the variance is proportional to $\langle N \rangle$, which means the fluctuations in $N$ go like $\delta N = \sqrt{\langle N \rangle}$. By the same usual logic, this means we can assert that $N = N^* = \langle N \rangle$ provided $N^*$ is large, which will typically be the case in thermodynamics.
+
+Again using the same logic as before, we can relate the partition function to the free energy by observing
+$$
+Z(\beta, \mu) = \sum_{N=0}^\infty \int dE \ e^{-\beta(E-\mu \cdot N)} \Omega(E,N) = \sum_{N=0}^\infty \int dE \ e^{-\beta(E-TS-\mu \cdot N)}.
+$$
+Here $\mathcal{G} \equiv E-TS-\mu \cdot N$ is of course the grand potential. Using the saddlepoint approximation, in the thermodynamic limit we can write
+$$
+Z(\beta,\mu) \approx e^{-\beta\mathcal{G}(E^*,N^*)}.
+$$
+Solving for $\mathcal{G}$ we again have the familiar expression
+$$
+\mathcal{G} = -k_B T \log Z(\beta,\mu).
+$$
+From here all other thermodynamic variables we seek follow in the usual way using the identity
+$$
+d\mathcal{G} = -S dT + J \cdot dX - N \cdot d\mu.
+$$
+
+
+### Example: Ideal Gas
+
+As an example, we'll work out the equations of state again for the ideal gas, both in the Gibbs canonical and the grand canonical ensembles. Starting with the Gibbs canonical ensemble, the Gibbs partition function can be calculated by observing that the integral over $V$ is almost a factorial function. We have
+$$
+\begin{align*}
+Z(\beta,P) &= \int_0^\infty dV e^{-\beta PV} Z(\beta) \\
+&= \frac{1}{N! h^{3N}} \bigg(\frac{2\pi m}{\beta}\bigg)^{3N/2} \int_0^\infty dV e^{-\beta PV} V^N \\
+&= \frac{1}{N! h^{3N}} \bigg(\frac{2\pi m}{\beta}\bigg)^{3N/2} \frac{N!}{(\beta P)^{N+1}} \\
+&= \bigg(\frac{2\pi m}{h^2 \beta}\bigg)^{3N/2} (\beta P)^{-(N+1)}. \\
+\end{align*}
+$$
+Taking the logarithm of both sides, we have
+$$
+\log Z(\beta,P) \approx \frac{3N}{2} \log \frac{2\pi m}{h^2 \beta} - N \log \beta P.
+$$
+We can get the mean volume $\langle V \rangle$ by differentiating both sides with respect to $-\beta P$,
+$$
+\langle V \rangle = \frac{\partial}{\partial (-\beta P)} \log Z(\beta,P) = \frac{N}{\beta P} = \frac{Nk_B T}{P}.
+$$
+This is of course the usual equation of state, with $P\langle V \rangle = N k_B T$. We can easily find the enthalpy as well,
+$$
+H = -\frac{\partial}{\partial \beta} \log Z(\beta,P) = \frac{3N}{2\beta} + \frac{N}{\beta} = \frac{5}{2} N k_B T.
+$$
+Since $H = E + P\langle V \rangle$, we can immediately read off the usual formula for energy, $E = \frac{3}{2} N k_B T$.
+
+Moving onto the grand canonical ensemble, the grand partition function is given by noting that the sum over $N$ is just the Taylor series of an exponential function. We have
+$$
+\begin{align*}
+Z(\beta,\mu) &= \sum_{N=0}^\infty dV e^{\beta \mu N} Z(\beta) \\
+&= \sum_{N=0}^\infty e^{\beta \mu N} \frac{V^N}{N! h^{3N}} \bigg(\frac{2\pi m}{\beta}\bigg)^{3N/2} \\
+&= \sum_{N=0}^\infty \frac{1}{N!} \bigg[\frac{Ve^{\beta\mu}}{h^3} \bigg(\frac{2\pi m}{\beta}\bigg)^{3/2}\bigg]^N \\
+&= \exp \bigg[\frac{Ve^{\beta\mu}}{h^3} \bigg(\frac{2\pi m}{\beta}\bigg)^{3/2}\bigg]. \\
+\end{align*}
+$$
+This means $\log Z(\beta,\mu)$ is just
+$$
+\log Z(\beta,\mu) = \frac{Ve^{\beta\mu}}{h^3} \bigg(\frac{2\pi m}{\beta}\bigg)^{3/2}.
+$$
+It's helpful to first find $\langle N \rangle$. We have
+$$
+\langle N \rangle = \frac{\partial}{\partial (\beta\mu)} \log Z(\beta,\mu) = \frac{Ve^{\beta\mu}}{h^3} \bigg(\frac{2\pi m}{\beta}\bigg)^{3/2} = \log Z(\beta,\mu).
+$$
+This means all cumulants of $N$ will be $\log Z(\beta,\mu)$ as well. Recall this fact implies that $N$ must be Poisson distributed, with
+$$
+p(N) = \frac{\langle N \rangle^N e^{-\langle N \rangle}}{N!}.
+$$
+The grand potential is evidently just $\mathcal{G} = -\langle N \rangle k_B T$. But by extensivity $\mathcal{G} = -PV$. We thus again have the ideal gas law,
+$$
+PV = \langle N \rangle k_B T.
+$$
+Getting the energy is slightly trickier. It's not too hard to show that
+$$
+E - \mu \langle N \rangle = -\frac{\partial}{\partial \beta} \log Z(\beta,\mu) = \langle N \rangle \bigg(\frac{3}{2} k_B T - \mu\bigg).
+$$
+Cancelling $\mu \langle N \rangle$ from both sides, we again get $E = \frac{3}{2} \langle N \rangle k_B T$. Finally, if we like we can solve for the chemical potential by inverting the formula for $\langle N \rangle$. As expected, we have
+$$
+\mu = k_B T \log \frac{\langle N \rangle}{V} \bigg(\frac{2\pi m k_B T}{h^2}\bigg)^{3/2}.
+$$
