@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Personal Notes - 29&nbsp; Statistical Mechanics</title>
+<title>Personal Notes - 29&nbsp; Classical Statistical Mechanics</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -70,7 +70,7 @@ ul.task-list li input[type="checkbox"] {
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title"><span class="chapter-title">Statistical Mechanics</span></h1>
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-title">Classical Statistical Mechanics</span></h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -288,7 +288,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../statistical-mechanics/classical-stat-mech.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">Statistical Mechanics</span></a>
+  <a href="../statistical-mechanics/classical-stat-mech.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">Classical Statistical Mechanics</span></a>
   </div>
 </li>
       </ul>
@@ -305,6 +305,7 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#formal-definition" id="toc-formal-definition" class="nav-link active" data-scroll-target="#formal-definition">Formal Definition</a></li>
   <li><a href="#microcanonical-ensemble" id="toc-microcanonical-ensemble" class="nav-link" data-scroll-target="#microcanonical-ensemble">Microcanonical Ensemble</a>
   <ul class="collapse">
+  <li><a href="#laws-of-thermodynamics" id="toc-laws-of-thermodynamics" class="nav-link" data-scroll-target="#laws-of-thermodynamics">Laws of Thermodynamics</a></li>
   <li><a href="#two-state-systems" id="toc-two-state-systems" class="nav-link" data-scroll-target="#two-state-systems">Two-State Systems</a></li>
   </ul></li>
   <li><a href="#distinguishability" id="toc-distinguishability" class="nav-link" data-scroll-target="#distinguishability">Distinguishability</a>
@@ -336,7 +337,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block"><span class="chapter-title">Statistical Mechanics</span></h1>
+<h1 class="title d-none d-lg-block"><span class="chapter-title">Classical Statistical Mechanics</span></h1>
 </div>
 
 
@@ -386,7 +387,9 @@ S(M) &amp;= -k_B \int d \boldsymbol{\mu} \ p(\boldsymbol{\mu}) \log p(\boldsymbo
 \boxed{
 S = k_B \log \Omega
 } \ .
-\]</span> ### Laws of Thermodynamics</p>
+\]</span></p>
+<section id="laws-of-thermodynamics" class="level3">
+<h3 class="anchored" data-anchor-id="laws-of-thermodynamics">Laws of Thermodynamics</h3>
 <p>With a probability distribution and a definition of entropy in hand, we can proceed to <em>derive</em> almost all of the laws of thermodynamics from the assumption of a microcanonical ensemble. Let’s start with the zeroth law.</p>
 <p><strong>Zeroth Law:</strong> Suppose two otherwise isolated systems <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are in thermal contact with each other and allowed to exchange energy. When they both reach equilibrium, there will be some <em>temperature</em> function such that <span class="math inline">\(T = T_A = T_B\)</span>.</p>
 <p><strong>Proof:</strong> Suppose system <span class="math inline">\(A\)</span> has energy <span class="math inline">\(E_A\)</span> and system <span class="math inline">\(B\)</span> has energy <span class="math inline">\(E_B\)</span>. The entire system <span class="math inline">\(A+B\)</span> is isolated, which means it has some constant energy that must be given by <span class="math inline">\(E = E_A + E_B\)</span>. The multiplicity of the full system is just the <em>product</em> of multiplicities of each subsystem, integrated over all energies that sum up to <span class="math inline">\(E\)</span>. That is, <span class="math display">\[
@@ -433,6 +436,7 @@ S(E_A) + S(E_B) \leq S(E_A^*) + S(E_B^*). \quad \text{Q.E.D.}
 <p>It turns out that we can’t derive the <em>third law</em> from classical statistical mechanics alone. For that we’ll need quantum statistical mechanics, a topic we’ll get to later. Let’s go ahead and also check the stability conditions though while we’re here. For entropy to be <em>maximized</em> at equilibrium, we require the entropy near equilibrium to be concave, i.e. <span class="math display">\[
 \frac{\partial^2}{\partial E_A^2} S(E_A^*) \bigg|_{X,N} - \frac{\partial^2}{\partial E_B^2} S(E_B^*) \bigg|_{X,N} \leq 0.
 \]</span> Using the same logic as we did in the thermodynamics lesson, we can then show this implies the heat capacity of the system be non-negative. Moreover, the requirement that any second-order perturbations be non-positive requires <span class="math inline">\(\frac{\partial^2 S}{\partial X_i \partial X_j}\)</span> to be positive-definite at any constant energy <span class="math inline">\(E\)</span>.</p>
+</section>
 <section id="two-state-systems" class="level3">
 <h3 class="anchored" data-anchor-id="two-state-systems">Two-State Systems</h3>
 <p>TODO: TWO STATE SYSTEMS, EINSTEIN SOLID</p>
@@ -703,7 +707,7 @@ Z(\beta,J) = \int dX \ e^{-\beta J \cdot X} \ Z(\beta).
 \langle X \rangle = \frac{\partial}{\partial (\beta J)} \log Z(\beta,J).
 \]</span> The cumulants of <span class="math inline">\(X\)</span> are similarly given by <span class="math display">\[
 \langle X^k \rangle_c = \frac{\partial^k}{\partial (\beta J)^k} \log Z(\beta,J) = \frac{\partial^{k-1} \langle X \rangle}{\partial (\beta J)^{k-1}}.
-\]</span> In particular, all cumulants of <span class="math inline">\(X\)</span> are extensive. This means the variance is proportional to <span class="math inline">\(\langle X \rangle\)</span>, which means the fluctuations in <span class="math inline">\(X\)</span> go like <span class="math inline">\(\delta X = \sqrt{\langle X \rangle}\)</span>. This means we can again assert that <span class="math inline">\(X = X^* = \langle X \rangle\)</span> when <span class="math inline">\(N\)</span> is really large.</p>
+\]</span> In particular, all cumulants of <span class="math inline">\(X\)</span> are extensive. This means the variance is proportional to <span class="math inline">\(\langle X \rangle\)</span>, which means the fluctuations in <span class="math inline">\(X\)</span> go like <span class="math inline">\(\sigma_X = \sqrt{\langle X \rangle}\)</span>. This means we can again assert that <span class="math inline">\(X = X^* = \langle X \rangle\)</span> when <span class="math inline">\(N\)</span> is really large.</p>
 <p>We can relate the partition function to the free energy by observing <span class="math display">\[
 Z(\beta, J) = \int dX \ dE \ e^{-\beta(E-J \cdot X)} \Omega(E,X) = \int dX \ dE \ e^{-\beta(E-TS-J \cdot X)}.
 \]</span> Here <span class="math inline">\(G \equiv E-TS-\mu \cdot N\)</span> is of course the Gibbs free energy. Using the saddlepoint approximation, in the thermodynamic limit we can write <span class="math display">\[
@@ -730,7 +734,7 @@ Z(\beta,\mu) = \sum_{N=0}^\infty e^{\beta\mu \cdot N} Z(\beta).
 \langle N \rangle = \frac{\partial}{\partial (\beta\mu)} \log Z(\beta,\mu).
 \]</span> The cumulants of <span class="math inline">\(N\)</span> are similarly given by <span class="math display">\[
 \langle N^k \rangle_c = \frac{\partial^k}{\partial (\beta\mu)^k} \log Z(\beta,\mu) = \frac{\partial^{k-1} \langle N \rangle}{\partial (\beta\mu)^{k-1}}.
-\]</span> In particular, all cumulants of <span class="math inline">\(N\)</span> are proportional to <span class="math inline">\(\langle N \rangle\)</span>. In particular, this means the variance is proportional to <span class="math inline">\(\langle N \rangle\)</span>, which means the fluctuations in <span class="math inline">\(N\)</span> go like <span class="math inline">\(\delta N = \sqrt{\langle N \rangle}\)</span>. By the same usual logic, this means we can assert that <span class="math inline">\(N = N^* = \langle N \rangle\)</span> provided <span class="math inline">\(N^*\)</span> is large, which will typically be the case in thermodynamics.</p>
+\]</span> In particular, all cumulants of <span class="math inline">\(N\)</span> are proportional to <span class="math inline">\(\langle N \rangle\)</span>. In particular, this means the variance is proportional to <span class="math inline">\(\langle N \rangle\)</span>, which means the fluctuations in <span class="math inline">\(N\)</span> go like <span class="math inline">\(\sigma_N = \sqrt{\langle N \rangle}\)</span>. By the same usual logic, this means we can assert that <span class="math inline">\(N = N^* = \langle N \rangle\)</span> provided <span class="math inline">\(N^*\)</span> is large, which will typically be the case in thermodynamics.</p>
 <p>Again using the same logic as before, we can relate the partition function to the free energy by observing <span class="math display">\[
 Z(\beta, \mu) = \sum_{N=0}^\infty \int dE \ e^{-\beta(E-\mu \cdot N)} \Omega(E,N) = \sum_{N=0}^\infty \int dE \ e^{-\beta(E-TS-\mu \cdot N)}.
 \]</span> Here <span class="math inline">\(\mathcal{G} \equiv E-TS-\mu \cdot N\)</span> is of course the grand potential. Using the saddlepoint approximation, in the thermodynamic limit we can write <span class="math display">\[
