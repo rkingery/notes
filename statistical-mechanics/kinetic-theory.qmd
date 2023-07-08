@@ -61,6 +61,7 @@ $$
 $$
 
 
+
 ## Liouville's Equation
 
 The Hamiltonian formulation of classical mechanics implies an important result called *Liouville's theorem*, a statement about how phase space densities evolve in time. From this theorem we can derived Liouville's equation, our starting point for kinetic theory.
@@ -107,7 +108,9 @@ $$
 $$
 Thus, to first order we have $dx_\alpha dp_\alpha = dx'_{\alpha} dp'_{\alpha}$ for each $\alpha$. Multiplying them all together, we finally have $d\Gamma' = d\Gamma$, as desired. $\text{Q.E.D.}$
 
-### Deriving Liouville's Equation
+
+
+### Derivation
 
 Liouville's theorem as stated is equivalent to saying that the phase space density is an incompressible fluid. That is, the flow velocity on phase space has zero divergence. Indeed, we have
 $$
@@ -187,8 +190,7 @@ $$
 f_N(\mathbf{x}_1, \cdots, \mathbf{x}_N,\mathbf{p}_1, \cdots, \mathbf{p}_N,t) = N! \ \rho(\mathbf{x}_1, \cdots, \mathbf{x}_N,\mathbf{p}_1, \cdots, \mathbf{p}_N,t).
 $$
 
-
-### Deriving the BBGKY Hierarchy
+### Derivation
 
 What we'd like to try to do is to find a way of expressing $f_N$ as a *hierarchy* of lower-particle densities. If we can get that then we can start approximating the full density using the much simpler one or two particle densities. This hierarchy of densities is called the *BBGKY Hierarchy*, which we'll now derive.
 
@@ -288,7 +290,7 @@ $$
 $$
 In the dilute limit the right-hand side is much smaller than the left-hand side, so we can evidently ignore the collision terms at least to zeroth order. This appears to be a problem though, since it says that we shouldn't look at the background interactions at all and just treat each $f_s$ as its own Liouvillian system. Fortunately, the equation for $f_1$ does *not* look like this. In that case there are no internal interaction terms on the left-hand side, which means we can't say much about how the left and right-hand sides compare. We have to keep both terms, which preserves the dependence of $f_1$ on $f_2$. But, we *can* treat $f_2$ as having a right-hand side of zero, so we can ignore the dependence on $f_3$ and higher terms and only focus on the relationship between $f_1$ and $f_2$.
 
-### Deriving the Boltzmann Equation
+### Derivation
 
 Let's try to find a way under this approximation to combine the equations for $f_1$ and $f_2$ into a single equation. To do that we need to figure out how to substitute the $f_2$ equation into the $f_1$ equation. If we assume the collision term for $f_2$ is zero, we have
 $$
@@ -348,7 +350,7 @@ $$
 $$
 Evidently, the Boltzmann equation looks like a modified Liouville equation with a non-zero right-hand side arising from a background of particles to collide with. The term $L[f]$ characterizes the dynamics of particles with respect to the external forces alone, while $C[f]$ characterizes the dynamics of particles due to their interactions with other particles.
 
-### The H-Theorem
+### H-Theorem
 
 Since we're neglecting dynamics on the scale of the interaction radius we're losing information on the system's microscopic dynamics. This means the Boltzmann equation also comes with a notion of increasing entropy. This result is called the **H-Theorem** (pronounced "Eta Theorem").
 
@@ -389,7 +391,7 @@ which is negative since the log is an increasing function of its arguments. This
 
 The quantity $\mathrm{H}(t)$ looks similar to the differential entropy of a continuous density function. It's actually just a negative affine shift of the entropy of the one-particle density $f$. In fact, for an $N$-particle system, we can relate the thermodynamic entropy of the system to $\mathrm{H}$ via $S \equiv -k_B \mathrm{H}$. Thus, if $\mathrm{H}$ is a decreasing function, then $S$ must be an increasing function, and vice versa.
 
-### Aside: The Vlasov Equation
+### Aside: Vlasov Equation
 
 What happens in the dense limit where $nd^3 \gg 1$? In that case we can only say $\tau_{\text{int}} \gg \tau_X$, which means we can drop the collision terms from the left-hand side of each BBGKY hierarchy. If we again assume each density $f_s$ factors into a product of one-particle densities then it'll turn out all the equations for $f_s$ are equivalent, leaving a single equation to be satisfied,
 $$
@@ -455,7 +457,7 @@ f_{eq}(\mathbf{x}, \mathbf{p}) \propto e^{-\beta H(\mathbf{x},\mathbf{p})}.
 $$
 This is called the **Boltzmann Distribution**. We'll see it derived again when we get to statistical mechanics. This distribution describes how the energy of a closed system is distributed in equilibrium.
 
-### The Ideal Gas
+### Ideal Gas
 
 Suppose we're dealing with a stationary gas of free particles, so $\boldsymbol{\pi} = \mathbf{0}$ and $V(\mathbf{x}) = 0$ inside the box. Then
 $$
@@ -490,7 +492,7 @@ $$
 Insisting a free gas reduce to an ideal gas at equilibrium again supports that $\beta = \frac{1}{k_B T}$. 
 
 If desired, one can calculate the entropy too by using $S \equiv -k_B \mathrm{H}$ and doing the integral for $\mathrm{H}$. The result will be (up to an additive constant) the entropy for a monoatomic ideal gas.
-### The Maxwell-Boltzmann Distribution
+### Maxwell-Boltzmann Distribution
 
 We can also ask about the distribution for the *speed* $v$ of an ideal gas at equilibrium. Using the relation $\mathbf{p} = m \mathbf{v}$, we then have
 $$
@@ -510,6 +512,7 @@ Since speeds are non-negative this is a rightward-skewed distribution. This mean
 $$
 \langle v \rangle = 2\sqrt{\frac{2}{\pi}} \sqrt{\frac{k_B T}{m}} \approx 1.6 \ v_{th}.
 $$
+
 
 
 ## Conservation Laws
@@ -822,16 +825,6 @@ $$
 \tau_{\text{diff}} \sim \frac{\lambda^2}{\alpha}.
 $$
 The fluid velocity relaxes according to a similar diffusion equation brought on by the shearing in the pressure tensor.
-
-
-
-
-
-
-
-
-
-
 
 
 

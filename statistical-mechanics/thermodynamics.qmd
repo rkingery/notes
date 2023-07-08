@@ -27,7 +27,7 @@ The specific variables we seek to measure depend on the type of system under con
 
 On top of these mechanical variables that vary by system, we also may be interested in a system's *thermal variables*, i.e. variables that arise due to the system's internal interactions. The macroscopic thermal variables might be temperature, entropy, or heat.
 
-## The Zeroth Law
+## Zeroth Law
 
 Suppose we have three distinct systems $A$, $B$, and $C$. The **zeroth law of thermodynamics** states that if $A$ is in equilibrium with $B$, and $B$ is in equilibrium with $C$, then $A$ is in equilibrium with $C$. That is, the property of equilibrium is *transitive*.
 
@@ -80,7 +80,7 @@ The condition that $\theta = \theta_A$ says that in the space of coordinates of 
 
 **Analogy:** Think of defining temperature similarly to how one might empirically define mass by using a scale. You first establish a reference mass $C$, for example some standard block of metal in a vault, and then use that to talk about how much the masses $A$ and $B$ weigh in units of $C$.
 
-### The Ideal Gas
+### Ideal Gas
 
 One practically useful way to define an empirical temperature scale uses the properties of the *ideal gas*. An **ideal gas** is a large number of dilute particles that satisfy the property that the product of the gas's pressure $P$ and volume $V$ is proportional temperature in the dilute limit, i.e.
 $$
@@ -107,7 +107,9 @@ $$
 \boxed{k_B = 1.381 \cdot 10^{-23} \frac{\text{J}}{\degree \text{K}} \approx \frac{1}{40} \frac{\text{eV}}{\degree \text{K}}} \ .
 $$
 
-## The First Law
+
+
+## First Law
 
 In classical mechanics the conservation of energy is a fundamental principle of a microscopic system. We'd like to extend this idea to thermodynamics as well. Observations indicate that a similar principle operates at the level of macroscopic systems provided that the system is properly insulated, that is, when the only sources of energy are of mechanical origin. 
 
@@ -137,6 +139,7 @@ The notation $\delta Q$ and $\delta W$ is used to make it explicit that those va
 $$
 \Delta E = \int dE = \int (\delta Q + \delta W).
 $$
+
 
 
 ### Types of Work
@@ -170,6 +173,7 @@ Of course, we still don't know how to simplify $\delta Q$ into a useful form. We
 $$
 \delta W = J \cdot dX + \mu \cdot dN.
 $$
+
 
 
 ### Heat Capacities
@@ -226,7 +230,7 @@ $$
 $$
 In general, latent heat values will be different than the specific heat values. They'll also be different for different phase changes. For example, the latent heat of melting ice is $L = 80 \ \frac{\text{cal}}{g}$, while the latent heat of boiling water is $L = 540 \ \frac{\text{cal}}{g}$. Again, we'd look these up in tables when we need them.
 
-## The Second Law
+## Second Law
 
 We saw that were able to break the work $\delta W$ up into a sum of generalized force-displacement pairs as $\delta W = \sum J_i dX_i$. We'd like to be able to break up the heat $\delta Q$ somehow. It's reasonable to assume that $T$ is the generalized force for heat, but what is the generalized displacement? This leads us to the second law and the concept of *entropy*.
 
@@ -250,7 +254,9 @@ Here's a diagram showing the difference between an engine and a refrigerator. No
 
 ![](./resources/image-20230314012828232.png){width=600 fig-align=center}
 
-### The Second Law
+
+
+### Statement of Second Law
 
 The **second law of thermodynamics** can be stated in several ways that are all equivalent. I'll state it first using the definition given by Kelvin, and then use that to prove it's equivalent to a different statement made by Clausius.
 
@@ -268,47 +274,15 @@ The **second law of thermodynamics** can be stated in several ways that are all 
 
   ![](./resources/image-20230314023632274.png){width=600 fig-align=center}
 
-### The Carnot Engine
+
+
+### Carnot Engines
 
 If we can't have an engine with *perfect* efficiency, what's the highest possible efficiency we can possibly have? As we'll soon prove, the highest efficiency engine is a *Carnot engine*. A **Carnot engine** is defined to be any engine that's reversible, runs in a cycle, and whose reservoir temperatures are held fixed, with the hot reservoir at $T_H$ and the cold reservoir at $T_C$.
 
 ![](./resources/image-20230314025439698.png){width=400 fig-align=center}
 
 A thermodynamic process is called **reversible** if it can be run backward in time by simply reversing the inputs and outputs. It's the thermodynamic equivalent of *frictionless motion* in classical mechanics. Since reversibility implies the system stays in equilibrium, reversible processes must be quasi-static. However, not all quasi-static processes need be reversible. Any process that dissipates energy to its environment, even if done quasi-statically, is not reversible.
-
----
-
-**Example: Carnot Cycle of an Ideal Gas**
-
-To make the topic somewhat more concrete, suppose we have an ideal gas inside a piston, consisting of a single type of molecule with no exchange of particles taking place. Then the only work being done is the work done by the piston to change the volume $V$ and pressure $P$ of the gas. Then by the first law,
-$$
-dE = \delta Q + \delta W = \delta Q - PdV.
-$$
-This means the state variables are $(P, V)$. In $PV$-space, the Carnot engine will be a cycle consisting of two isotherms at $T_H$ and $T_C$ that are connected by curves where $\delta Q = 0$, called **adiabatics**. 
-
-Suppose a cycle starts on the upper left point, say $(P_A, V_A)$. It expands isothermally to $(P_B, V_B)$, then adiabatically expands to $(P_C, V_C)$, then isothermally compresses to $(P_D, V_D)$, before finally adiabatically compressing back to $(P_A, V_A)$.
-
-![](./resources/image-20230314031300597.png){width=400 fig-align=center}
-
-Along the isotherms, the ideal gas law says the curves must be hyperbolas,
-$$
-PV = N k_B T_H, \quad PV = N k_B T_C.
-$$
-Along the adiabatics, the condition $\delta Q = 0$ along with the equipartition theorem implies
-$$
-dE = \frac{n}{2} d(PV) = -PdV \quad \Longrightarrow \quad \bigg(\frac{n}{2}+1\bigg) PdV = -\frac{n}{2} VdP.
-$$
-This is a differential equation for $P(V)$. Using separation of variables on both sides gives
-$$
-PV^\gamma = P_0 V_0^\gamma = const, \quad \text{where} \quad \gamma \equiv \frac{2}{n}\bigg(\frac{n}{2}+1\bigg).
-$$
-For example, with a monoatomic gas we'd have $\gamma = \frac{5}{3}$, so the adiabatics are $PV^{5/3} = const$. For the two adiabatic curves in the cycle, taking $(P_0, V_0)$ to be the two initial points along the curves gives
-$$
-PV^\gamma = P_B V_B^\gamma, \quad PV^\gamma = P_D V_D^\gamma.
-$$
-Note that since the Carnot cycle is *reversible*, the total work done during a full cycle is zero. 
-
----
 
 **Theorem:** Of all engines operating between two reservoir temperatures $T_H$ and $T_C$, the Carnot engine is the most efficient.
 
@@ -362,6 +336,36 @@ T \equiv T_0 (1 - \eta_c).
 $$
 The thermodynamic definition also implies that temperature $T$ must be *positive*. If we had $T < 0$, then an engine operating between it and a positive temperature could extract heat from both reservoirs and convert the sum total to work, in violating of the second law.
 
+#### Example: Carnot Cycle of an Ideal Gas
+
+To make the topic somewhat more concrete, suppose we have an ideal gas inside a piston, consisting of a single type of molecule with no exchange of particles taking place. Then the only work being done is the work done by the piston to change the volume $V$ and pressure $P$ of the gas. Then by the first law,
+$$
+dE = \delta Q + \delta W = \delta Q - PdV.
+$$
+This means the state variables are $(P, V)$. In $PV$-space, the Carnot engine will be a cycle consisting of two isotherms at $T_H$ and $T_C$ that are connected by curves where $\delta Q = 0$, called **adiabatics**. 
+
+Suppose a cycle starts on the upper left point, say $(P_A, V_A)$. It expands isothermally to $(P_B, V_B)$, then adiabatically expands to $(P_C, V_C)$, then isothermally compresses to $(P_D, V_D)$, before finally adiabatically compressing back to $(P_A, V_A)$.
+
+![](./resources/image-20230314031300597.png){width=400 fig-align=center}
+
+Along the isotherms, the ideal gas law says the curves must be hyperbolas,
+$$
+PV = N k_B T_H, \quad PV = N k_B T_C.
+$$
+Along the adiabatics, the condition $\delta Q = 0$ along with the equipartition theorem implies
+$$
+dE = \frac{n}{2} d(PV) = -PdV \quad \Longrightarrow \quad \bigg(\frac{n}{2}+1\bigg) PdV = -\frac{n}{2} VdP.
+$$
+This is a differential equation for $P(V)$. Using separation of variables on both sides gives
+$$
+PV^\gamma = P_0 V_0^\gamma = const, \quad \text{where} \quad \gamma \equiv \frac{2}{n}\bigg(\frac{n}{2}+1\bigg).
+$$
+For example, with a monoatomic gas we'd have $\gamma = \frac{5}{3}$, so the adiabatics are $PV^{5/3} = const$. For the two adiabatic curves in the cycle, taking $(P_0, V_0)$ to be the two initial points along the curves gives
+$$
+PV^\gamma = P_B V_B^\gamma, \quad PV^\gamma = P_D V_D^\gamma.
+$$
+Note that since the Carnot cycle is *reversible*, the total work done during a full cycle is zero. 
+
 ### Entropy
 
 We're finally ready to construct the state function that's conjugate to temperature. Let's look again at the previous theorem that said $\eta \leq \eta_c$ for any engine between $T_H$ and $T_C$. We can rewrite this inequality in the form
@@ -410,9 +414,21 @@ This formula is without doubt the most useful identity in thermodynamics. Notice
 $$
 T = \frac{\partial E}{\partial S} \bigg |_{X,N} \ , \quad J_i = \frac{\partial E}{\partial X_i} \bigg |_{S, \ \{X_k: \ k \neq i\}, \ N} \ , \quad \mu_j = \frac{\partial E}{\partial X_i} \bigg |_{S, \ X, \ \{N_k: \ k \neq j\}} \ .
 $$
----
+**Corollary:** For an *irreversible process*, we have the inequality
+$$
+\int_A^B \frac{\delta Q}{T} \leq \Delta S.
+$$
+**Proof:** This proof is similar to the previous corollary. What we'll do is close the cycle by taking a *reversible* process backwards, which by Clausius' theorem gives
+$$
+\int_A^B \frac{\delta Q}{T} + \int_B^A \frac{\delta Q_{rev}}{T} \leq 0. \quad \text{Q.E.D.}
+$$
+In differential form, this corollary implies that $dS \geq \frac{\delta Q}{T}$ for *any* transformation. Suppose we take some number of adiabatically isolated systems each in equilibrium and bring them all together to thermally interact. Such a system is called a **closed system**, in that the subsystems are allowed to interact thermally, but not exchange matter. Once the joint system has settled down to equilibrium, the total heat must still be $\delta Q = 0$, which means that $\delta S \geq 0$. 
 
-**Example: Entropy of a Monatomic Ideal Gas**
+This result implies that the net adiabatic system attains its *maximum entropy* at equilibrium, since any spontaneous change can only act to further increase $S$. This implies that the second law is not time reversible. The direction of increasing entropy points out the **arrow of time** in its path to equilibrium.
+
+**Analogy:** Compare the statement that entropy increases up to thermal equilibrium with a mechanical statement. Suppose we drop an object some distance above the Earth's surface, allowing it to free fall under gravity. As the object falls, it will only settle down once it's reached its mechanical equilibrium, when the total forces are zero. This happens when the potential energy is minimized. In this sense, the statement that entropy increases is no more mysterious than the observation that objects tend to fall downwards under gravity so as to minimize their potential energy.
+
+#### Example: Entropy of a Monatomic Ideal Gas
 
 Suppose we have a monatomic ideal gas in a closed system with work $\delta W = -PdV$. Then
 $$
@@ -429,22 +445,6 @@ $$
 \Delta S = Nk_B \bigg[\frac{3}{2} \log \frac{T}{T_0} + \log \frac{V}{V_0} \bigg] = Nk_B \log\bigg[ \frac{V}{V_0} \bigg(\frac{T}{T_0}\bigg)^{3/2} \bigg].
 $$
 It's interesting to note from this formula that the entropy is extensive since it depends linearly on $N$. It also seems to increase *logarithmically* with the volume and the temperature. Since $k_B$ has units of energy over temperature, so too does the entropy.
-
----
-
-**Corollary:** For an *irreversible process*, we have the inequality
-$$
-\int_A^B \frac{\delta Q}{T} \leq \Delta S.
-$$
-**Proof:** This proof is similar to the previous corollary. What we'll do is close the cycle by taking a *reversible* process backwards, which by Clausius' theorem gives
-$$
-\int_A^B \frac{\delta Q}{T} + \int_B^A \frac{\delta Q_{rev}}{T} \leq 0. \quad \text{Q.E.D.}
-$$
-In differential form, this corollary implies that $dS \geq \frac{\delta Q}{T}$ for *any* transformation. Suppose we take some number of adiabatically isolated systems each in equilibrium and bring them all together to thermally interact. Such a system is called a **closed system**, in that the subsystems are allowed to interact thermally, but not exchange matter. Once the joint system has settled down to equilibrium, the total heat must still be $\delta Q = 0$, which means that $\delta S \geq 0$. 
-
-This result implies that the net adiabatic system attains its *maximum entropy* at equilibrium, since any spontaneous change can only act to further increase $S$. This implies that the second law is not time reversible. The direction of increasing entropy points out the **arrow of time** in its path to equilibrium.
-
-**Analogy:** Compare the statement that entropy increases up to thermal equilibrium with a mechanical statement. Suppose we drop an object some distance above the Earth's surface, allowing it to free fall under gravity. As the object falls, it will only settle down once it's reached its mechanical equilibrium, when the total forces are zero. This happens when the potential energy is minimized. In this sense, the statement that entropy increases is no more mysterious than the observation that objects tend to fall downwards under gravity so as to minimize their potential energy.
 
 ## Thermodynamic Potentials
 
@@ -510,7 +510,7 @@ G = E - TS + PV.
 $$
 The Helmholtz free energy is perhaps most useful when dealing with processes that take place at fixed temperature and pressure, e.g. processes that take place at STP. These often include, for example, biological processes, like the thermodynamics in and around a cell.
 
-### The Grand Potential
+### Grand Potential
 
 So far we haven't touched the chemical work terms at all. Suppose now though that we want a kind of Gibbs free energy that swaps $\mu$ with $N$ instead of $J$ with $X$ to get a function $\mathcal{G} = \mathcal{G}(T,X,\mu)$. If we this time start with the Helmholtz free energy and add and subtract $N \cdot d\mu$ to both sides and re-arrange, we get
 $$
@@ -558,9 +558,13 @@ This relation is called the **Gibbs-Dunham relation**. Notice it's just the diff
 
 Extensivity gives us a new constraint that we can often use to solve problems. Here's an example.
 
----
+The Gibbs free energy can be used to give a useful interpretation of the chemical potential $\mu$ of a gas. By extensivity, we must have
+$$
+G = E - TS - J \cdot X = \mu N.
+$$
+That is, the chemical potential of a gas can be thought of as the Gibbs free energy per particle. If there is a *mixture* of $m$ types of particles in the gas, then $\mu_i$ is the Gibbs free energy per particle $i$.
 
-**Example:** Chemical potential of an ideal gas along an isotherm
+#### Example: Chemical potential along isotherms
 
 Suppose we wanted to find $\mu$ for an ideal gas consisting of a single molecule. Since an ideal gas is extensive, along an isotherm we must have the simplified constraint
 $$
@@ -575,14 +579,6 @@ $$
 \mu = \mu_0 + k_B T \log \frac{P}{P_0}.
 $$
 Evidently, the chemical potential is an increasing function of temperature, pressure, and volume.
-
----
-
-The Gibbs free energy can be used to give a useful interpretation of the chemical potential $\mu$ of a gas. By extensivity, we must have
-$$
-G = E - TS - J \cdot X = \mu N.
-$$
-That is, the chemical potential of a gas can be thought of as the Gibbs free energy per particle. If there is a *mixture* of $m$ types of particles in the gas, then $\mu_i$ is the Gibbs free energy per particle $i$.
 
 ## Maxwell Relations
 
@@ -629,15 +625,21 @@ $$
 
 
 
-## Thermodynamic Stability
+## Stability Conditions
 
-Thermodynamics depends on systems being in equilibrium. We already know that systems at equilibrium with each other will have the same temperature, but what else can we say? Recall from classical mechanics what it means for a classical system to be in *mechanical* equilibrium. A classical system is said to be in mechanical equilibrium when the total forces acting on the system are zero, i.e. $\mathbf{F} = \mathbf{0}$. For conservative systems, that's equivalent to saying the potential $V=V(\mathbf{x})$ has gradient zero, i.e. $\nabla V(\mathbf{x}) = \mathbf{0}$.
+Thermodynamics depends on systems being in equilibrium. We already know that systems at equilibrium with each other will have the same temperature, but what else can we say? 
+
+### Mechanical Stability
+
+Recall from classical mechanics what it means for a classical system to be in *mechanical* equilibrium. A classical system is said to be in mechanical equilibrium when the total forces acting on the system are zero, i.e. $\mathbf{F} = \mathbf{0}$. For conservative systems, that's equivalent to saying the potential $V=V(\mathbf{x})$ has gradient zero, i.e. $\nabla V(\mathbf{x}) = \mathbf{0}$.
 
 The equilibrium point $\mathbf{x}^*$ is a *stable* equilibrium if $V(\mathbf{x}^* )$ is a local minimum. A sufficient condition for this to be true is that the second-order deviations around $V(\mathbf{x}^* )$ are positive, or equivalently that the *Hessian* of $V(\mathbf{x})$ is positive definite about $\mathbf{x}^*$, i.e.
 $$
 \delta^2 V \equiv \delta\mathbf{x} \cdot \frac{d^2}{d\mathbf{x}^2} V(\mathbf{x}^*) \cdot \delta\mathbf{x} = \sum_{i,j=1}^3\frac{\partial^2 V}{\partial x_i \partial x_j}\delta x_i \delta x_j > 0 \quad \forall\delta\mathbf{x} \neq \mathbf{0}.
 $$
 Intuitively, a stable equilibrium means that if the system is nudged by a small displacement it will experience a tension force pulling it back to equilibrium. Think of a spring as the canonical example.
+
+### Thermodynamic Stability
 
 We'd like to derive an analogue of this formula to characterize what it means for a thermodynamic system to be in a stable equilibrium. To do that, it's convenient to symmetrize the positive definite expression with respect to $\mathbf{F}$ and $\mathbf{x}$. Notice that if we let
 $$
@@ -683,39 +685,7 @@ The above condition was obtained assuming the system's extensive variables $E,q,
 
 Another way of expressing the stability condition is that any second order deviations in the energy around equilibrium must be positive, i.e. $\delta^2 E \geq 0$. This also means that the energy function should be *convex* about its equilibrium states.
 
----
-
-**Example: Stability of a Gas**
-
-Suppose we have some gas that's kept a constant temperature $T$ and particle number $N$. If we apply the stability condition to a gas, in general we'd have
-$$
-\delta T \delta S - \delta P \delta V + \delta \mu \delta N \geq 0.
-$$
-Since $\delta T = \delta N = 0$, this simplifies to just $-\delta P \delta V \geq 0$, or equivalently
-$$
-\delta P = \frac{\partial P}{\partial V} \bigg |_{T,N} \delta V \leq 0.
-$$
-This says that evidently $P$ must be a decreasing function of $V$. If we define the **compressibility** of a gas by
-$$
-\kappa_T \equiv -\frac{1}{V} \frac{\partial V}{\partial P} \bigg |_{T,N},
-$$
-then the stability condition evidently says that $\kappa_T \geq 0$ at equilibrium. That is, the gas must be *compressible*, i.e. *increasing* the pressure on the gas should *decrease* its volume.
-
-It's interesting to examine the special isotherm $T=T_c$ where $\frac{\partial P}{\partial V} \big |_{T,N} = 0$. Along this isotherm there's a flat spot near some critical point $(P_c,V_c)$. Around this point $\delta P = 0$, which means we need to look at the higher-order deviations in $P(V)$. If we expand to third order about $V_c$, we'd have
-$$
-\delta P \approx \frac{\partial P}{\partial V} \bigg |_{T_c,N} \delta V + \frac{1}{2} \frac{\partial^2 P}{\partial V^2} \bigg |_{T_c,N} \delta V^2 + \frac{1}{6} \frac{\partial^3 P}{\partial V^3} \bigg |_{T_c,N} \delta V^3.
-$$
-To satisfy the stability condition we can only keep terms with odd powers in $\delta V$, since otherwise $\delta P \delta V$ wouldn't be non-negative. Evidently then, to maintain stability, about the critical point we must have
-$$
-\delta P \approx \frac{1}{6} \frac{\partial^3 P}{\partial V^3} \bigg |_{T_c,N} \delta V^3, \quad \text{where} \quad \frac{\partial^3 P}{\partial V^3} \bigg |_{T_c,N} \geq 0.
-$$
-This means that the isotherm along $T=T_c$ must be a decreasing cubic with stationary point at $(P_c,V_c)$.
-
-In reality, this condition requires that $P(V)$ be an analytic function around $T_c$. But it turns out that it's *not* analytic around this point. There's a *phase transition*. In fact, near $T_c$ it's the case that $\delta P \propto \delta V^\gamma$, where $\gamma \approx 4.7$ is an experimentally determined constant. To understand this better we'd need field theory.
-
-![](./resources/image-20230320092332426.png){width=400 fig-align=center}
-
----
+### Closed Systems
 
 Suppose a system is *closed*, so $dN = 0$. Then the first law says $dE = TdS + J \cdot dX$, and the stability condition says $\delta T \delta S + \delta J \cdot \delta X \geq 0$. We can always solve for any two variables in terms of the rest. For example, we can write
 $$
@@ -746,7 +716,39 @@ $$
 $$
 which evidently implies $J$ must be an increasing function of $X$ along the isotherms. In the case of a gas, this condition just says that pressure $p$ must be a decreasing function of $V$ along isotherms, which we've already seen.
 
-## The Third Law
+#### Example: Stability of Gases
+
+Suppose we have some gas that's kept a constant temperature $T$ and particle number $N$. If we apply the stability condition to a gas, in general we'd have
+$$
+\delta T \delta S - \delta P \delta V + \delta \mu \delta N \geq 0.
+$$
+Since $\delta T = \delta N = 0$, this simplifies to just $-\delta P \delta V \geq 0$, or equivalently
+$$
+\delta P = \frac{\partial P}{\partial V} \bigg |_{T,N} \delta V \leq 0.
+$$
+This says that evidently $P$ must be a decreasing function of $V$. If we define the **compressibility** of a gas by
+$$
+\kappa_T \equiv -\frac{1}{V} \frac{\partial V}{\partial P} \bigg |_{T,N},
+$$
+then the stability condition evidently says that $\kappa_T \geq 0$ at equilibrium. That is, the gas must be *compressible*, i.e. *increasing* the pressure on the gas should *decrease* its volume.
+
+It's interesting to examine the special isotherm $T=T_c$ where $\frac{\partial P}{\partial V} \big |_{T,N} = 0$. Along this isotherm there's a flat spot near some critical point $(P_c,V_c)$. Around this point $\delta P = 0$, which means we need to look at the higher-order deviations in $P(V)$. If we expand to third order about $V_c$, we'd have
+$$
+\delta P \approx \frac{\partial P}{\partial V} \bigg |_{T_c,N} \delta V + \frac{1}{2} \frac{\partial^2 P}{\partial V^2} \bigg |_{T_c,N} \delta V^2 + \frac{1}{6} \frac{\partial^3 P}{\partial V^3} \bigg |_{T_c,N} \delta V^3.
+$$
+To satisfy the stability condition we can only keep terms with odd powers in $\delta V$, since otherwise $\delta P \delta V$ wouldn't be non-negative. Evidently then, to maintain stability, about the critical point we must have
+$$
+\delta P \approx \frac{1}{6} \frac{\partial^3 P}{\partial V^3} \bigg |_{T_c,N} \delta V^3, \quad \text{where} \quad \frac{\partial^3 P}{\partial V^3} \bigg |_{T_c,N} \geq 0.
+$$
+This means that the isotherm along $T=T_c$ must be a decreasing cubic with stationary point at $(P_c,V_c)$.
+
+In reality, this condition requires that $P(V)$ be an analytic function around $T_c$. But it turns out that it's *not* analytic around this point. There's a *phase transition*. In fact, near $T_c$ it's the case that $\delta P \propto \delta V^\gamma$, where $\gamma \approx 4.7$ is an experimentally determined constant. To understand this better we'd need field theory.
+
+![](./resources/image-20230320092332426.png){width=400 fig-align=center}
+
+
+
+## Third Law
 
 Suppose we take a reversible system and change its state from $x_1$ to $x_2$. Then its entropy changes by
 $$

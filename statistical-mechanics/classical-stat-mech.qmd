@@ -131,15 +131,79 @@ $$
 $$
 Using the same logic as we did in the thermodynamics lesson, we can then show this implies the heat capacity of the system be non-negative. Moreover, the requirement that any second-order perturbations be non-positive requires $\frac{\partial^2 S}{\partial X_i \partial X_j}$ to be positive-definite at any constant energy $E$.
 
-### Two-State Systems
+### Example: Two-State Systems
 
-TODO: TWO STATE SYSTEMS, EINSTEIN SOLID
+Let's consider a simple example of a system we can actually solve in the microcanonical ensemble, indeed one of the few we can solve. Suppose we have a collection of particles that can take on only one of two states. We can imagine only caring about the spin of an electron, for example, in which case the two states would be spin-up and spin-down for each electron. Since there are only two states we can't really think in terms of phase space in this case, so we have to cheat a bit. We'll just sum over all states instead of integrating over phase space.
+
+Suppose each particle can take on an energy of the form $\varepsilon n_i$ where $n_i=0,1$. That is, the particle has no energy if the state is down and a constant $\varepsilon$ energy if the spin is up. Then for $N$ particles the Hamiltonian will just be the sum of all these energies,
+$$
+H = \sum_{i=0}^N \varepsilon n_i \equiv \varepsilon N_1.
+$$
+On the right we just defined $N_1$ to be the total number of all states that are up. In the microcanonical we assert that $H$ is held to a constant energy $E$. This means we can also write $N_1 = \frac{E}{\varepsilon}$. 
+
+Now, to find $\Omega(E,N)$ observe the following fact: The number of total states with energy $E$ is equivalent to the number of ways of choosing exactly $N_1$ particles with state up out of a total of $N$ particles. Assuming both $N$ and $N_1$ are large, we have
+$$
+\Omega(E,N) = \binom{N}{N_1} = \frac{N_1!}{N_1!(N-N_1)!} \approx \frac{N^N}{N_1^{N_1}(N-N_1)^{N-N_1}} \ .
+$$
+The entropy of such a system is thus
+$$
+\begin{align*}
+S &= k_B \log \Omega(E) \\
+&= k_B \bigg[\log N - \frac{N_1}{N}\log N_1 - \frac{N-N_1}{N}\log (N-N_1) \bigg] \\
+&= -Nk_B \bigg[\frac{E}{N\varepsilon}\log\frac{E}{N\varepsilon} + \bigg(1-\frac{E}{N\varepsilon}\bigg) \log \bigg(1-\frac{E}{N\varepsilon}\bigg) \bigg].
+\end{align*}
+$$
+From this we can get the temperature in terms of the energy,
+$$
+\frac{1}{T} = \frac{\partial S}{\partial E} \bigg |_N = \frac{k_B}{\varepsilon} \log \frac{E}{N\varepsilon-E}.
+$$
+If we like, we can then solve for the energy in terms of the temperature to get
+$$
+E(T) = \frac{N\varepsilon}{1 + e^{\frac{\varepsilon}{k_B T}}}.
+$$
+One interesting property of the two-state system is that it can in principle take on negative temperatures. This comes from the fact that the energy $E$ can take on any value between $0$ (all states down) and $N\varepsilon$ (all states up). Having $E \leq \frac{1}{2} N\varepsilon$ corresponds to *positive* temperatures, while having $E \geq \frac{1}{2} N\varepsilon$ corresponds to *negative* temperatures. Negative temperatures are counter-intuitive since they implies that entropy increases when energy is taken out of the system, not put in. In practice this isn't an issue, since the system must always be in thermal contact with a heat bath, which forces it to have positive temperature.
+
+If we like we can use $E(T)$ to calculate the heat capacity by differentiating with respect to $T$,
+$$
+C(T) = \frac{\partial E}{\partial T} \bigg |_{N} = Nk_B \bigg(\frac{\varepsilon}{k_B T}\bigg)^2 \frac{e^{\frac{\varepsilon}{k_B T}}}{\big(1 + e^{\frac{\varepsilon}{k_B T}}\big)^2}.
+$$
+By looking at the limited cases where $\varepsilon \ll k_B T$ and $\varepsilon \gg k_B T$, it's easy to see that $C(T) \rightarrow 0$ both as $T \rightarrow 0$ and as $T \rightarrow \infty$. Vanishing at low temperatures has to do with the discrete energy gap for each particle, while vanishing at high temperatures has to do with energy saturation due to the finite number of states allowed.
+
+Notice that if we divide $E$ by $\varepsilon$ what's left is dimensionless. In fact, it's just the mean number of particles with state up, i.e.
+$$
+\langle n \rangle = \frac{N}{1 + e^{\frac{\varepsilon}{k_B T}}}.
+$$
+It's also worth asking what $p(n)$ is, the *probability* for a given particle to be up or down. Evidently that probability should be $p(0) = \frac{N-N_1}{N}$ and $p(1) = \frac{N_1}{N}$. Plugging in $N_1 = \frac{E(T)}{\varepsilon}$, we can write the expression as
+$$
+p(n) = \delta(n) \frac{1}{1 + e^{-\frac{\varepsilon}{k_B T}}} + \delta(n-1) \frac{e^{-\frac{\varepsilon}{k_B T}}}{1 + e^{-\frac{\varepsilon}{k_B T}}}.
+$$
+The shape of this curve depends on the temperature. At low temperatures $p(0) \approx 1$. At high temperatures $p(1) \approx 1$. And when $\varepsilon \approx k_B T$ we get $p(0) \approx p(1) \approx \frac{1}{2}$.
+
+### Example: Einstein Solids
+
+A similar example to the two-state system is the Einstein solid. An Einstein solid is a simple model of a solid that treats it as a lattice of $N$ particles, where each particle is treated as a collection of 3 discrete harmonic oscillators, one for each orthogonal direction of space. Each oscillator can take on energies in discrete units of $\varepsilon=\hbar \omega$. We'll assume each oscillator has the same frequency $\omega$.
+
+Since energies must be units of $\varepsilon$, for any fixed energy $E$ there must be $n=n(E)$ total states with that given energy, with $E=\varepsilon n$. We can ask how many states $\Omega(E,N)$ there are among $N$ particles in a lattice with a given energy $E$. Finding $\Omega(E,N)$ turns out to be equivalent to finding the number of ways to put $n$ pebbles into $3N$ containers, which turns out to be
+$$
+\Omega(E,N) = \binom{3N+n-1}{n} \approx \frac{(3N+n)^{3N+n}}{(3N)^{3N} n^n}.
+$$
+This looks similar to the two-state problem above, except with $N \rightarrow 3N+n-1$ and $N_1 \rightarrow n$. In this case though the energy as a function of temperature turns out to be given by
+$$
+E(T) = \frac{3N\varepsilon}{e^{\frac{\varepsilon}{k_B T}}-1}.
+$$
+In the low-temperature limit $E \rightarrow 0$.  In the high-temperature limit we get $E \approx 3Nk_B T$. This is in fact what the equipartition theorem would predict, since each particle has 6 quadratic degrees of freedom, 3 kinetic and 3 potential.
+
+The curve for the heat capacity changes somewhat as well. We get
+$$
+C(T) = \frac{\partial E}{\partial T} \bigg |_{N} = 3Nk_B \bigg(\frac{\varepsilon}{k_B T}\bigg)^2 \frac{e^{\frac{\varepsilon}{k_B T}}}{\big(e^{\frac{\varepsilon}{k_B T}} - 1\big)^2}.
+$$
+For high temperatures the heat capacity evidently levels off to $C(T) \approx 3Nk_B$. This fact turns out to agree well with experiment, yielding the so-called *Dulong-Petit Law*. However, while the heat capacity should go to zero as $T \rightarrow 0$, the exact curve itself deviates from experiment at low temperatures. This discrepancy can be rectified by using more accurate models of a solid like the Debye model.
 
 ## Distinguishability
 
 We'd like to use the microcanonical ensemble to work out the relations for a more interesting system, like an ideal gas. It turns out however that there's some subtly involved that we need to address in applying statistical mechanics to realistic systems.
 
-### Ideal Gas
+### Example: Ideal Gas
 
 Let's start by trying to derive the ideal gas expressions using only what we've covered so far and seeing where things go wrong. Suppose an isolated system of gas particles has the non-interacting Hamiltonian for an ideal gas, namely
 $$
@@ -450,6 +514,8 @@ E \approx \langle H \rangle.
 $$
 Note that the energy distribution can have pretty much any curve we like. All that matters is that it be extensive. It can even have multiple peaks. Due to extensivity, the global maximum $E^*$ will always be exponentially larger than the other maxima. Around that maximum we can fit a Gaussian with mean $E^* \approx \langle H \rangle$ and variance $\sigma_E^2$. That Gaussian will be sharply peaked about $E^*$ with a negligible fluctuation, meaning we can safely write $E \approx E^* \approx \langle H \rangle$.
 
+![](./resources/image-20230708092353295.png){width=350 fig-align=center}
+
 This is in essence the magic of thermodynamics. When $N$ is really really large, at equilibrium we can pretty much ignore the shape of the distribution and just assume $E = E^* = \langle H \rangle$. This holds for other extensive variables as well, not just energy. For all practical purposes, thermodynamic variables are deterministic due to the character of the thermodynamic limit.
 
 As an example to see that fluctuations don't really matter, if we looked at one mole of air at STP, we'd expect the energy to be about $E \approx \frac{5}{2} RT \approx 6100 \ \text{J}$. On the other hand, the energy is expected to fluctuate as $\sigma_E = \sqrt{k_B T^2 \frac{5}{2} R} \approx 3 \cdot 10^{-10} \ \text{J}$. That is, the fluctuations $\sigma_E$ are a full 13 orders of magnitude smaller than $E$, hence completely negligible.
@@ -689,11 +755,7 @@ It's helpful to first find $\langle N \rangle$. We have
 $$
 \langle N \rangle = \frac{\partial}{\partial (\beta\mu)} \log Z(\beta,\mu) = \frac{Ve^{\beta\mu}}{h^3} \bigg(\frac{2\pi m}{\beta}\bigg)^{3/2} = \log Z(\beta,\mu).
 $$
-This means all cumulants of $N$ will be $\log Z(\beta,\mu)$ as well. Recall this fact implies that $N$ must be Poisson distributed, with
-$$
-p(N) = \frac{\langle N \rangle^N e^{-\langle N \rangle}}{N!}.
-$$
-The grand potential is evidently just $\mathcal{G} = -\langle N \rangle k_B T$. But by extensivity $\mathcal{G} = -PV$. We thus again have the ideal gas law,
+This means all cumulants of $N$ will be $\log Z(\beta,\mu)$ as well. Recall all cumulants being equal implies that $N$ must be Poisson distributed. The grand potential is evidently just $\mathcal{G} = -\langle N \rangle k_B T$. But by extensivity $\mathcal{G} = -PV$. We thus get the ideal gas law,
 $$
 PV = \langle N \rangle k_B T.
 $$

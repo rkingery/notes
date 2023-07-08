@@ -306,11 +306,12 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#microcanonical-ensemble" id="toc-microcanonical-ensemble" class="nav-link" data-scroll-target="#microcanonical-ensemble">Microcanonical Ensemble</a>
   <ul class="collapse">
   <li><a href="#laws-of-thermodynamics" id="toc-laws-of-thermodynamics" class="nav-link" data-scroll-target="#laws-of-thermodynamics">Laws of Thermodynamics</a></li>
-  <li><a href="#two-state-systems" id="toc-two-state-systems" class="nav-link" data-scroll-target="#two-state-systems">Two-State Systems</a></li>
+  <li><a href="#example-two-state-systems" id="toc-example-two-state-systems" class="nav-link" data-scroll-target="#example-two-state-systems">Example: Two-State Systems</a></li>
+  <li><a href="#example-einstein-solids" id="toc-example-einstein-solids" class="nav-link" data-scroll-target="#example-einstein-solids">Example: Einstein Solids</a></li>
   </ul></li>
   <li><a href="#distinguishability" id="toc-distinguishability" class="nav-link" data-scroll-target="#distinguishability">Distinguishability</a>
   <ul class="collapse">
-  <li><a href="#ideal-gas" id="toc-ideal-gas" class="nav-link" data-scroll-target="#ideal-gas">Ideal Gas</a></li>
+  <li><a href="#example-ideal-gas" id="toc-example-ideal-gas" class="nav-link" data-scroll-target="#example-ideal-gas">Example: Ideal Gas</a></li>
   <li><a href="#gibbs-paradox" id="toc-gibbs-paradox" class="nav-link" data-scroll-target="#gibbs-paradox">Gibbs’ Paradox</a></li>
   <li><a href="#example-ultrarelativistic-ideal-gas" id="toc-example-ultrarelativistic-ideal-gas" class="nav-link" data-scroll-target="#example-ultrarelativistic-ideal-gas">Example: Ultrarelativistic Ideal Gas</a></li>
   <li><a href="#example-ideal-gas-of-hard-spheres" id="toc-example-ideal-gas-of-hard-spheres" class="nav-link" data-scroll-target="#example-ideal-gas-of-hard-spheres">Example: Ideal Gas of Hard Spheres</a></li>
@@ -320,14 +321,14 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#boltzmann-distribution" id="toc-boltzmann-distribution" class="nav-link" data-scroll-target="#boltzmann-distribution">Boltzmann Distribution</a></li>
   <li><a href="#partition-function" id="toc-partition-function" class="nav-link" data-scroll-target="#partition-function">Partition Function</a></li>
   <li><a href="#fluctuations" id="toc-fluctuations" class="nav-link" data-scroll-target="#fluctuations">Fluctuations</a></li>
-  <li><a href="#example-ideal-gas" id="toc-example-ideal-gas" class="nav-link" data-scroll-target="#example-ideal-gas">Example: Ideal Gas</a></li>
+  <li><a href="#example-ideal-gas-1" id="toc-example-ideal-gas-1" class="nav-link" data-scroll-target="#example-ideal-gas-1">Example: Ideal Gas</a></li>
   <li><a href="#equipartition-theorem" id="toc-equipartition-theorem" class="nav-link" data-scroll-target="#equipartition-theorem">Equipartition Theorem</a></li>
   </ul></li>
   <li><a href="#higher-ensembles" id="toc-higher-ensembles" class="nav-link" data-scroll-target="#higher-ensembles">Higher Ensembles</a>
   <ul class="collapse">
   <li><a href="#gibbs-canonical-ensemble" id="toc-gibbs-canonical-ensemble" class="nav-link" data-scroll-target="#gibbs-canonical-ensemble">Gibbs Canonical Ensemble</a></li>
   <li><a href="#grand-canonical-ensemble" id="toc-grand-canonical-ensemble" class="nav-link" data-scroll-target="#grand-canonical-ensemble">Grand Canonical Ensemble</a></li>
-  <li><a href="#example-ideal-gas-1" id="toc-example-ideal-gas-1" class="nav-link" data-scroll-target="#example-ideal-gas-1">Example: Ideal Gas</a></li>
+  <li><a href="#example-ideal-gas-2" id="toc-example-ideal-gas-2" class="nav-link" data-scroll-target="#example-ideal-gas-2">Example: Ideal Gas</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -437,16 +438,52 @@ S(E_A) + S(E_B) \leq S(E_A^*) + S(E_B^*). \quad \text{Q.E.D.}
 \frac{\partial^2}{\partial E_A^2} S(E_A^*) \bigg|_{X,N} - \frac{\partial^2}{\partial E_B^2} S(E_B^*) \bigg|_{X,N} \leq 0.
 \]</span> Using the same logic as we did in the thermodynamics lesson, we can then show this implies the heat capacity of the system be non-negative. Moreover, the requirement that any second-order perturbations be non-positive requires <span class="math inline">\(\frac{\partial^2 S}{\partial X_i \partial X_j}\)</span> to be positive-definite at any constant energy <span class="math inline">\(E\)</span>.</p>
 </section>
-<section id="two-state-systems" class="level3">
-<h3 class="anchored" data-anchor-id="two-state-systems">Two-State Systems</h3>
-<p>TODO: TWO STATE SYSTEMS, EINSTEIN SOLID</p>
+<section id="example-two-state-systems" class="level3">
+<h3 class="anchored" data-anchor-id="example-two-state-systems">Example: Two-State Systems</h3>
+<p>Let’s consider a simple example of a system we can actually solve in the microcanonical ensemble, indeed one of the few we can solve. Suppose we have a collection of particles that can take on only one of two states. We can imagine only caring about the spin of an electron, for example, in which case the two states would be spin-up and spin-down for each electron. Since there are only two states we can’t really think in terms of phase space in this case, so we have to cheat a bit. We’ll just sum over all states instead of integrating over phase space.</p>
+<p>Suppose each particle can take on an energy of the form <span class="math inline">\(\varepsilon n_i\)</span> where <span class="math inline">\(n_i=0,1\)</span>. That is, the particle has no energy if the state is down and a constant <span class="math inline">\(\varepsilon\)</span> energy if the spin is up. Then for <span class="math inline">\(N\)</span> particles the Hamiltonian will just be the sum of all these energies, <span class="math display">\[
+H = \sum_{i=0}^N \varepsilon n_i \equiv \varepsilon N_1.
+\]</span> On the right we just defined <span class="math inline">\(N_1\)</span> to be the total number of all states that are up. In the microcanonical we assert that <span class="math inline">\(H\)</span> is held to a constant energy <span class="math inline">\(E\)</span>. This means we can also write <span class="math inline">\(N_1 = \frac{E}{\varepsilon}\)</span>.</p>
+<p>Now, to find <span class="math inline">\(\Omega(E,N)\)</span> observe the following fact: The number of total states with energy <span class="math inline">\(E\)</span> is equivalent to the number of ways of choosing exactly <span class="math inline">\(N_1\)</span> particles with state up out of a total of <span class="math inline">\(N\)</span> particles. Assuming both <span class="math inline">\(N\)</span> and <span class="math inline">\(N_1\)</span> are large, we have <span class="math display">\[
+\Omega(E,N) = \binom{N}{N_1} = \frac{N_1!}{N_1!(N-N_1)!} \approx \frac{N^N}{N_1^{N_1}(N-N_1)^{N-N_1}} \ .
+\]</span> The entropy of such a system is thus <span class="math display">\[
+\begin{align*}
+S &amp;= k_B \log \Omega(E) \\
+&amp;= k_B \bigg[\log N - \frac{N_1}{N}\log N_1 - \frac{N-N_1}{N}\log (N-N_1) \bigg] \\
+&amp;= -Nk_B \bigg[\frac{E}{N\varepsilon}\log\frac{E}{N\varepsilon} + \bigg(1-\frac{E}{N\varepsilon}\bigg) \log \bigg(1-\frac{E}{N\varepsilon}\bigg) \bigg].
+\end{align*}
+\]</span> From this we can get the temperature in terms of the energy, <span class="math display">\[
+\frac{1}{T} = \frac{\partial S}{\partial E} \bigg |_N = \frac{k_B}{\varepsilon} \log \frac{E}{N\varepsilon-E}.
+\]</span> If we like, we can then solve for the energy in terms of the temperature to get <span class="math display">\[
+E(T) = \frac{N\varepsilon}{1 + e^{\frac{\varepsilon}{k_B T}}}.
+\]</span> One interesting property of the two-state system is that it can in principle take on negative temperatures. This comes from the fact that the energy <span class="math inline">\(E\)</span> can take on any value between <span class="math inline">\(0\)</span> (all states down) and <span class="math inline">\(N\varepsilon\)</span> (all states up). Having <span class="math inline">\(E \leq \frac{1}{2} N\varepsilon\)</span> corresponds to <em>positive</em> temperatures, while having <span class="math inline">\(E \geq \frac{1}{2} N\varepsilon\)</span> corresponds to <em>negative</em> temperatures. Negative temperatures are counter-intuitive since they implies that entropy increases when energy is taken out of the system, not put in. In practice this isn’t an issue, since the system must always be in thermal contact with a heat bath, which forces it to have positive temperature.</p>
+<p>If we like we can use <span class="math inline">\(E(T)\)</span> to calculate the heat capacity by differentiating with respect to <span class="math inline">\(T\)</span>, <span class="math display">\[
+C(T) = \frac{\partial E}{\partial T} \bigg |_{N} = Nk_B \bigg(\frac{\varepsilon}{k_B T}\bigg)^2 \frac{e^{\frac{\varepsilon}{k_B T}}}{\big(1 + e^{\frac{\varepsilon}{k_B T}}\big)^2}.
+\]</span> By looking at the limited cases where <span class="math inline">\(\varepsilon \ll k_B T\)</span> and <span class="math inline">\(\varepsilon \gg k_B T\)</span>, it’s easy to see that <span class="math inline">\(C(T) \rightarrow 0\)</span> both as <span class="math inline">\(T \rightarrow 0\)</span> and as <span class="math inline">\(T \rightarrow \infty\)</span>. Vanishing at low temperatures has to do with the discrete energy gap for each particle, while vanishing at high temperatures has to do with energy saturation due to the finite number of states allowed.</p>
+<p>Notice that if we divide <span class="math inline">\(E\)</span> by <span class="math inline">\(\varepsilon\)</span> what’s left is dimensionless. In fact, it’s just the mean number of particles with state up, i.e. <span class="math display">\[
+\langle n \rangle = \frac{N}{1 + e^{\frac{\varepsilon}{k_B T}}}.
+\]</span> It’s also worth asking what <span class="math inline">\(p(n)\)</span> is, the <em>probability</em> for a given particle to be up or down. Evidently that probability should be <span class="math inline">\(p(0) = \frac{N-N_1}{N}\)</span> and <span class="math inline">\(p(1) = \frac{N_1}{N}\)</span>. Plugging in <span class="math inline">\(N_1 = \frac{E(T)}{\varepsilon}\)</span>, we can write the expression as <span class="math display">\[
+p(n) = \delta(n) \frac{1}{1 + e^{-\frac{\varepsilon}{k_B T}}} + \delta(n-1) \frac{e^{-\frac{\varepsilon}{k_B T}}}{1 + e^{-\frac{\varepsilon}{k_B T}}}.
+\]</span> The shape of this curve depends on the temperature. At low temperatures <span class="math inline">\(p(0) \approx 1\)</span>. At high temperatures <span class="math inline">\(p(1) \approx 1\)</span>. And when <span class="math inline">\(\varepsilon \approx k_B T\)</span> we get <span class="math inline">\(p(0) \approx p(1) \approx \frac{1}{2}\)</span>.</p>
+</section>
+<section id="example-einstein-solids" class="level3">
+<h3 class="anchored" data-anchor-id="example-einstein-solids">Example: Einstein Solids</h3>
+<p>A similar example to the two-state system is the Einstein solid. An Einstein solid is a simple model of a solid that treats it as a lattice of <span class="math inline">\(N\)</span> particles, where each particle is treated as a collection of 3 discrete harmonic oscillators, one for each orthogonal direction of space. Each oscillator can take on energies in discrete units of <span class="math inline">\(\varepsilon=\hbar \omega\)</span>. We’ll assume each oscillator has the same frequency <span class="math inline">\(\omega\)</span>.</p>
+<p>Since energies must be units of <span class="math inline">\(\varepsilon\)</span>, for any fixed energy <span class="math inline">\(E\)</span> there must be <span class="math inline">\(n=n(E)\)</span> total states with that given energy, with <span class="math inline">\(E=\varepsilon n\)</span>. We can ask how many states <span class="math inline">\(\Omega(E,N)\)</span> there are among <span class="math inline">\(N\)</span> particles in a lattice with a given energy <span class="math inline">\(E\)</span>. Finding <span class="math inline">\(\Omega(E,N)\)</span> turns out to be equivalent to finding the number of ways to put <span class="math inline">\(n\)</span> pebbles into <span class="math inline">\(3N\)</span> containers, which turns out to be <span class="math display">\[
+\Omega(E,N) = \binom{3N+n-1}{n} \approx \frac{(3N+n)^{3N+n}}{(3N)^{3N} n^n}.
+\]</span> This looks similar to the two-state problem above, except with <span class="math inline">\(N \rightarrow 3N+n-1\)</span> and <span class="math inline">\(N_1 \rightarrow n\)</span>. In this case though the energy as a function of temperature turns out to be given by <span class="math display">\[
+E(T) = \frac{3N\varepsilon}{e^{\frac{\varepsilon}{k_B T}}-1}.
+\]</span> In the low-temperature limit <span class="math inline">\(E \rightarrow 0\)</span>. In the high-temperature limit we get <span class="math inline">\(E \approx 3Nk_B T\)</span>. This is in fact what the equipartition theorem would predict, since each particle has 6 quadratic degrees of freedom, 3 kinetic and 3 potential.</p>
+<p>The curve for the heat capacity changes somewhat as well. We get <span class="math display">\[
+C(T) = \frac{\partial E}{\partial T} \bigg |_{N} = 3Nk_B \bigg(\frac{\varepsilon}{k_B T}\bigg)^2 \frac{e^{\frac{\varepsilon}{k_B T}}}{\big(e^{\frac{\varepsilon}{k_B T}} - 1\big)^2}.
+\]</span> For high temperatures the heat capacity evidently levels off to <span class="math inline">\(C(T) \approx 3Nk_B\)</span>. This fact turns out to agree well with experiment, yielding the so-called <em>Dulong-Petit Law</em>. However, while the heat capacity should go to zero as <span class="math inline">\(T \rightarrow 0\)</span>, the exact curve itself deviates from experiment at low temperatures. This discrepancy can be rectified by using more accurate models of a solid like the Debye model.</p>
 </section>
 </section>
 <section id="distinguishability" class="level2">
 <h2 class="anchored" data-anchor-id="distinguishability">Distinguishability</h2>
 <p>We’d like to use the microcanonical ensemble to work out the relations for a more interesting system, like an ideal gas. It turns out however that there’s some subtly involved that we need to address in applying statistical mechanics to realistic systems.</p>
-<section id="ideal-gas" class="level3">
-<h3 class="anchored" data-anchor-id="ideal-gas">Ideal Gas</h3>
+<section id="example-ideal-gas" class="level3">
+<h3 class="anchored" data-anchor-id="example-ideal-gas">Example: Ideal Gas</h3>
 <p>Let’s start by trying to derive the ideal gas expressions using only what we’ve covered so far and seeing where things go wrong. Suppose an isolated system of gas particles has the non-interacting Hamiltonian for an ideal gas, namely <span class="math display">\[
 H(\mathbf{x}_1,\cdots,\mathbf{x}_N,\mathbf{p}_1,\cdots,\mathbf{p}_N) = \sum_{i=1}^N \frac{\mathbf{p}_i^2}{2m} + V(\mathbf{x}_1,\cdots,\mathbf{x}_N),
 \]</span> where the potential energy <span class="math inline">\(V(\mathbf{x}_1,\cdots,\mathbf{x}_N)\)</span> is zero inside a container of volume <span class="math inline">\(V\)</span> and infinite otherwise. To calculate the equations of state we first need to find <span class="math inline">\(\Omega(E,V,N)\)</span>. Integrating over the volume of the box and all valid momenta, we get <span class="math display">\[
@@ -628,11 +665,16 @@ E \approx \langle H \rangle \pm \sigma_E = \langle H \rangle \pm O(\sqrt{N}).
 \]</span> Since <span class="math inline">\(\langle H \rangle = O(N)\)</span> and <span class="math inline">\(N\)</span> is large, we can neglect the <span class="math inline">\(O(\sqrt{N})\)</span> fluctuations in the thermodynamic limit and just write <span class="math display">\[
 E \approx \langle H \rangle.
 \]</span> Note that the energy distribution can have pretty much any curve we like. All that matters is that it be extensive. It can even have multiple peaks. Due to extensivity, the global maximum <span class="math inline">\(E^*\)</span> will always be exponentially larger than the other maxima. Around that maximum we can fit a Gaussian with mean <span class="math inline">\(E^* \approx \langle H \rangle\)</span> and variance <span class="math inline">\(\sigma_E^2\)</span>. That Gaussian will be sharply peaked about <span class="math inline">\(E^*\)</span> with a negligible fluctuation, meaning we can safely write <span class="math inline">\(E \approx E^* \approx \langle H \rangle\)</span>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./resources/image-20230708092353295.png" class="img-fluid figure-img" width="350"></p>
+</figure>
+</div>
 <p>This is in essence the magic of thermodynamics. When <span class="math inline">\(N\)</span> is really really large, at equilibrium we can pretty much ignore the shape of the distribution and just assume <span class="math inline">\(E = E^* = \langle H \rangle\)</span>. This holds for other extensive variables as well, not just energy. For all practical purposes, thermodynamic variables are deterministic due to the character of the thermodynamic limit.</p>
 <p>As an example to see that fluctuations don’t really matter, if we looked at one mole of air at STP, we’d expect the energy to be about <span class="math inline">\(E \approx \frac{5}{2} RT \approx 6100 \ \text{J}\)</span>. On the other hand, the energy is expected to fluctuate as <span class="math inline">\(\sigma_E = \sqrt{k_B T^2 \frac{5}{2} R} \approx 3 \cdot 10^{-10} \ \text{J}\)</span>. That is, the fluctuations <span class="math inline">\(\sigma_E\)</span> are a full 13 orders of magnitude smaller than <span class="math inline">\(E\)</span>, hence completely negligible.</p>
 </section>
-<section id="example-ideal-gas" class="level3">
-<h3 class="anchored" data-anchor-id="example-ideal-gas">Example: Ideal Gas</h3>
+<section id="example-ideal-gas-1" class="level3">
+<h3 class="anchored" data-anchor-id="example-ideal-gas-1">Example: Ideal Gas</h3>
 <p>Frequently, the canonical ensemble is much easier to work with than the microcanonical ensemble. Perhaps the best example of this is comparing both methods for solving the ideal gas problem. Consider again a gas with Hamiltonian <span class="math display">\[
 H(\mathbf{x}_1,\cdots,\mathbf{x}_N,\mathbf{p}_1,\cdots,\mathbf{p}_N) = \sum_{i=1}^N \frac{\mathbf{p}_i^2}{2m} + V(\mathbf{x}_1,\cdots,\mathbf{x}_N),
 \]</span> where <span class="math inline">\(V(\mathbf{x}_1,\cdots,\mathbf{x}_N)\)</span> is zero inside a container of volume <span class="math inline">\(V\)</span> and infinite otherwise. In the canonical ensemble our goal is to find the partition function and then use that to derive the equations of state. As with the microcanonical ensemble, we have to be careful to use the right measure of integration, dividing by <span class="math inline">\(N! h^{3N}\)</span>. The space integrals again reduce to <span class="math inline">\(V^N\)</span>. The momentum integrals reduce to a product of independent Gaussians. We thus have <span class="math display">\[
@@ -745,8 +787,8 @@ Z(\beta,\mu) \approx e^{-\beta\mathcal{G}(E^*,N^*)}.
 d\mathcal{G} = -S dT + J \cdot dX - N \cdot d\mu.
 \]</span></p>
 </section>
-<section id="example-ideal-gas-1" class="level3">
-<h3 class="anchored" data-anchor-id="example-ideal-gas-1">Example: Ideal Gas</h3>
+<section id="example-ideal-gas-2" class="level3">
+<h3 class="anchored" data-anchor-id="example-ideal-gas-2">Example: Ideal Gas</h3>
 <p>As an example, we’ll work out the equations of state again for the ideal gas, both in the Gibbs canonical and the grand canonical ensembles. Starting with the Gibbs canonical ensemble, the Gibbs partition function can be calculated by observing that the integral over <span class="math inline">\(V\)</span> is almost a factorial function. We have <span class="math display">\[
 \begin{align*}
 Z(\beta,P) &amp;= \int_0^\infty dV e^{-\beta PV} Z(\beta) \\
@@ -772,9 +814,7 @@ Z(\beta,\mu) &amp;= \sum_{N=0}^\infty dV e^{\beta \mu N} Z(\beta) \\
 \log Z(\beta,\mu) = \frac{Ve^{\beta\mu}}{h^3} \bigg(\frac{2\pi m}{\beta}\bigg)^{3/2}.
 \]</span> It’s helpful to first find <span class="math inline">\(\langle N \rangle\)</span>. We have <span class="math display">\[
 \langle N \rangle = \frac{\partial}{\partial (\beta\mu)} \log Z(\beta,\mu) = \frac{Ve^{\beta\mu}}{h^3} \bigg(\frac{2\pi m}{\beta}\bigg)^{3/2} = \log Z(\beta,\mu).
-\]</span> This means all cumulants of <span class="math inline">\(N\)</span> will be <span class="math inline">\(\log Z(\beta,\mu)\)</span> as well. Recall this fact implies that <span class="math inline">\(N\)</span> must be Poisson distributed, with <span class="math display">\[
-p(N) = \frac{\langle N \rangle^N e^{-\langle N \rangle}}{N!}.
-\]</span> The grand potential is evidently just <span class="math inline">\(\mathcal{G} = -\langle N \rangle k_B T\)</span>. But by extensivity <span class="math inline">\(\mathcal{G} = -PV\)</span>. We thus again have the ideal gas law, <span class="math display">\[
+\]</span> This means all cumulants of <span class="math inline">\(N\)</span> will be <span class="math inline">\(\log Z(\beta,\mu)\)</span> as well. Recall all cumulants being equal implies that <span class="math inline">\(N\)</span> must be Poisson distributed. The grand potential is evidently just <span class="math inline">\(\mathcal{G} = -\langle N \rangle k_B T\)</span>. But by extensivity <span class="math inline">\(\mathcal{G} = -PV\)</span>. We thus get the ideal gas law, <span class="math display">\[
 PV = \langle N \rangle k_B T.
 \]</span> Getting the energy is slightly trickier. It’s not too hard to show that <span class="math display">\[
 E - \mu \langle N \rangle = -\frac{\partial}{\partial \beta} \log Z(\beta,\mu) = \langle N \rangle \bigg(\frac{3}{2} k_B T - \mu\bigg).
