@@ -314,7 +314,7 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#example-ideal-gas" id="toc-example-ideal-gas" class="nav-link" data-scroll-target="#example-ideal-gas">Example: Ideal Gas</a></li>
   <li><a href="#gibbs-paradox" id="toc-gibbs-paradox" class="nav-link" data-scroll-target="#gibbs-paradox">Gibbs’ Paradox</a></li>
   <li><a href="#example-ultrarelativistic-ideal-gas" id="toc-example-ultrarelativistic-ideal-gas" class="nav-link" data-scroll-target="#example-ultrarelativistic-ideal-gas">Example: Ultrarelativistic Ideal Gas</a></li>
-  <li><a href="#example-ideal-gas-of-hard-spheres" id="toc-example-ideal-gas-of-hard-spheres" class="nav-link" data-scroll-target="#example-ideal-gas-of-hard-spheres">Example: Ideal Gas of Hard Spheres</a></li>
+  <li><a href="#example-hard-sphere-gas" id="toc-example-hard-sphere-gas" class="nav-link" data-scroll-target="#example-hard-sphere-gas">Example: Hard Sphere Gas</a></li>
   </ul></li>
   <li><a href="#canonical-ensemble" id="toc-canonical-ensemble" class="nav-link" data-scroll-target="#canonical-ensemble">Canonical Ensemble</a>
   <ul class="collapse">
@@ -468,7 +468,7 @@ p(n) = \delta(n) \frac{1}{1 + e^{-\frac{\varepsilon}{k_B T}}} + \delta(n-1) \fra
 </section>
 <section id="example-einstein-solids" class="level3">
 <h3 class="anchored" data-anchor-id="example-einstein-solids">Example: Einstein Solids</h3>
-<p>A similar example to the two-state system is the Einstein solid. An Einstein solid is a simple model of a solid that treats it as a lattice of <span class="math inline">\(N\)</span> particles, where each particle is treated as a collection of 3 discrete harmonic oscillators, one for each orthogonal direction of space. Each oscillator can take on energies in discrete units of <span class="math inline">\(\varepsilon=\hbar \omega\)</span>. We’ll assume each oscillator has the same frequency <span class="math inline">\(\omega\)</span>.</p>
+<p>A similar example to the two-state system is the Einstein solid. An <em>Einstein solid</em> is a simple model of a solid that treats it as a lattice of <span class="math inline">\(N\)</span> particles, where each particle is treated as a collection of 3 discrete harmonic oscillators, one for each orthogonal direction of space. Each oscillator can take on energies in discrete units of <span class="math inline">\(\varepsilon=\hbar \omega\)</span>. We’ll assume each oscillator has the same frequency <span class="math inline">\(\omega\)</span>.</p>
 <p>Since energies must be units of <span class="math inline">\(\varepsilon\)</span>, for any fixed energy <span class="math inline">\(E\)</span> there must be <span class="math inline">\(n=n(E)\)</span> total states with that given energy, with <span class="math inline">\(E=\varepsilon n\)</span>. We can ask how many states <span class="math inline">\(\Omega(E,N)\)</span> there are among <span class="math inline">\(N\)</span> particles in a lattice with a given energy <span class="math inline">\(E\)</span>. Finding <span class="math inline">\(\Omega(E,N)\)</span> turns out to be equivalent to finding the number of ways to put <span class="math inline">\(n\)</span> pebbles into <span class="math inline">\(3N\)</span> containers, which turns out to be <span class="math display">\[
 \Omega(E,N) = \binom{3N+n-1}{n} \approx \frac{(3N+n)^{3N+n}}{(3N)^{3N} n^n}.
 \]</span> This looks similar to the two-state problem above, except with <span class="math inline">\(N \rightarrow 3N+n-1\)</span> and <span class="math inline">\(N_1 \rightarrow n\)</span>. In this case though the energy as a function of temperature turns out to be given by <span class="math display">\[
@@ -576,30 +576,31 @@ S = N k_B \bigg[\log \frac{V}{N} \bigg(\frac{2\pi E^2}{3h^2c^2 N}\bigg)^{3/2} + 
 p(\mathbf{p}) = \frac{3Nc}{2E} \exp\bigg(-\frac{3N|\mathbf{p}|c}{E}\bigg) = \frac{c}{2k_B T} \exp\bigg(-\frac{|\mathbf{p}| c}{k_B T}\bigg).
 \]</span></p>
 </section>
-<section id="example-ideal-gas-of-hard-spheres" class="level3">
-<h3 class="anchored" data-anchor-id="example-ideal-gas-of-hard-spheres">Example: Ideal Gas of Hard Spheres</h3>
-<p>To understand more about the subtleties involved in distinguishability, let’s look at another problem similar to the ideal gas. Suppose that we have a gas of <span class="math inline">\(N\)</span> non-interacting solid spheres each of some volume <span class="math inline">\(v \ll V\)</span>, where <span class="math inline">\(V\)</span> is again the volume of the container. The Hamiltonian otherwise remains the same as for the ordinary ideal gas. If we assume the spheres are indistinguishable, following the same logic as for the ordinary ideal gas we can write the multiplicity as <span class="math display">\[
+<section id="example-hard-sphere-gas" class="level3">
+<h3 class="anchored" data-anchor-id="example-hard-sphere-gas">Example: Hard Sphere Gas</h3>
+<p>Let’s look at another problem similar to the ideal gas. Suppose that we have a gas of <span class="math inline">\(N\)</span> non-interacting solid spheres each of volume <span class="math inline">\(\omega \ll V\)</span>, where <span class="math inline">\(V\)</span> is again the volume of the container. The Hamiltonian otherwise remains the same as for the ordinary ideal gas. If we assume the spheres are indistinguishable, following the same logic as for the ordinary ideal gas we can write the multiplicity as <span class="math display">\[
 \Omega(E,V,N) = \frac{1}{N!}\frac{2\pi^{\frac{3N}{2}}}{\big(\frac{3N}{2}-1\big)!} (2mE)^{\frac{3N-1}{2}} \mathcal{V}_{N}.
-\]</span> Here <span class="math inline">\(\mathcal{V}_{N}\)</span> represents the volume integral over all <span class="math inline">\(N\)</span> particles. For the ordinary ideal gas we just had <span class="math inline">\(\mathcal{V}_{N} = V^N\)</span>. For hard spheres though we have to be more careful. Suppose, for example, that the spheres were <em>distinguishable</em>. Imagine putting the spheres into the container one at a time. The first one could occupy the volume <span class="math inline">\(V\)</span>. The second would be the full volume minus the volume of the first sphere, so <span class="math inline">\(V-v\)</span>. The third would be the full volume minus the volumes of the first two spheres, so <span class="math inline">\(V-2v\)</span>. And so on until the last sphere, which would have an available volume of <span class="math inline">\(V-(N-1)v\)</span>. Using that <span class="math inline">\(v \ll V\)</span>, we have <span class="math display">\[
+\]</span> Here <span class="math inline">\(\mathcal{V}_{N}\)</span> represents the volume integral over all <span class="math inline">\(N\)</span> particles. For the ordinary ideal gas we just had <span class="math inline">\(\mathcal{V}_{N} = V^N\)</span>. Now, imagine putting the spheres into the container one at a time. The first one could occupy the volume <span class="math inline">\(V\)</span>. The second would be the full volume minus the volume of the first sphere, so <span class="math inline">\(V-\omega\)</span>. The third would be the full volume minus the volumes of the first two spheres, so <span class="math inline">\(V-2\omega\)</span>. And so on until the last sphere, which would have an available volume of <span class="math inline">\(V-(N-1)\omega\)</span>. Assuming <span class="math inline">\(\omega \ll V\)</span>, we can approximate <span class="math inline">\(\mathcal{V}_N\)</span> as <span class="math display">\[
 \begin{align*}
-\mathcal{V}_N &amp;= V\big(V-v\big)\big(V-2v\big)\cdots\big(V-(N-1)v\big) \\
-&amp;= V^N \prod_{j=1}^{N-1}\bigg(1-j\frac{v}{V}\bigg) \\
-&amp;\approx V^N \bigg(1-\frac{N(N-1)}{2}\frac{v}{V}\bigg) \\
-&amp;\approx V^N \bigg(1-\frac{N^2}{2}\frac{v}{V}\bigg) \\
-&amp;\approx \bigg(V-\frac{1}{2}Nv\bigg)^N. \\
+\mathcal{V}_N &amp;= V\big(V-\omega\big)\big(V-2\omega\big)\cdots\big(V-(N-1)\omega\big) \\
+&amp;= V^N \prod_{j=1}^{N-1}\bigg(1-j\frac{\omega}{V}\bigg) \\
+&amp;\approx V^N \bigg(1-\frac{N(N-1)}{2}\frac{\omega}{V}\bigg) \\
+&amp;\approx V^N \bigg(1-\frac{N^2}{2}\frac{\omega}{V}\bigg) \\
+&amp;\approx \bigg(V-\frac{N\omega}{2}\bigg)^N. \\
 \end{align*}
-\]</span> Suppose instead though that the spheres were <em>indistinguishable</em>. In this case, we’re not allowed to imagine putting spheres into the container one at a time since we can’t distinguish any one sphere. We have to imagine placing a sphere in the container uniformly in the presence of the background volume of the other spheres. Since the other <span class="math inline">\(N-1\)</span> spheres take up an <em>excluded volume</em> of <span class="math inline">\((N-1)v \approx Nv\)</span>, we conclude that the <em>available volume</em> to the sphere being added must be the difference, i.e.&nbsp;<span class="math inline">\((V-Nv)\)</span>. This must be true independently for each sphere, so we conclude <span class="math inline">\(\mathcal{V}_N \approx (V-Nv)^N\)</span>. Notice the excluded volume in this case is <em>double</em> the excluded volume for the distinguishable case. Strange but true. The multiplicity is evidently then given by <span class="math display">\[
-\Omega(E,V,N) = \frac{(V-Nv)}{N!}\frac{2\pi^{\frac{3N}{2}}}{\big(\frac{3N}{2}-1\big)!} (2mE)^{\frac{3N-1}{2}} \approx 2\bigg(\frac{(V-Nv)e}{N}\bigg)^N \bigg(\frac{4\pi m E}{3N}\bigg)^{3N/2}.
-\]</span> This is exactly what we had for the ordinary ideal gas, except with <span class="math inline">\(V\)</span> replaced by <span class="math inline">\(V-Nv\)</span>. This means the entropy is just <span class="math display">\[
-S = Nk_B \bigg[\log \frac{V-Nv}{N}\bigg(\frac{4\pi mE}{3N}\bigg)^{3/2} + \frac{5}{2}\bigg].
-\]</span> Clearly the equation for temperature isn’t affected at all. We still have <span class="math inline">\(E = \frac{3}{2} N k_B T\)</span>. The equation for pressure though does change. Since we’re differentiating <span class="math inline">\(S\)</span> with respect to <span class="math inline">\(V\)</span> and not <span class="math inline">\(V-Nv\)</span>, we have <span class="math display">\[
-\frac{P}{T} = \frac{\partial S}{\partial V} \bigg |_{E,N} = \frac{Nk_B}{V-Nv} \quad \Longrightarrow \quad P(V-Nv) = Nk_B T.
-\]</span> The ideal gas law is thus slightly modified by reducing the volume from <span class="math inline">\(V\)</span> to an <em>effective volume</em> of <span class="math inline">\(V-Nv\)</span>. It’s worth asking if this is the <em>right</em> answer. Why not the distinguishable version? Fundamentally this boils down to quantum mechanics. At the quantum level it turns out that we <em>cannot</em> distinguish two particles of the same type, hence the indistinguishable case must be correct.</p>
+\]</span> Effectively, this says the total <em>available</em> volume for each particle in the container to explore gets reduced from <span class="math inline">\(V\)</span> to <span class="math inline">\(V-\frac{N\omega}{2}\)</span>. The term <span class="math inline">\(\frac{N\omega}{2}\)</span> is called the <em>excluded volume</em>. The multiplicity is evidently then <span class="math display">\[
+\Omega(E,V,N) = \frac{\big(V-\frac{N\omega}{2}\big)}{N!}\frac{2\pi^{\frac{3N}{2}}}{\big(\frac{3N}{2}-1\big)!} (2mE)^{\frac{3N-1}{2}} \approx 2\bigg(\frac{\big(V-\frac{N\omega}{2}\big)e}{N}\bigg)^N \bigg(\frac{4\pi m E}{3N}\bigg)^{3N/2}.
+\]</span> This is exactly what we had for the ordinary ideal gas, except with <span class="math inline">\(V\)</span> replaced by <span class="math inline">\(V-\frac{1}{2}N\omega\)</span>. This means the entropy is just <span class="math display">\[
+S = Nk_B \bigg[\log \frac{V-\frac{N\omega}{2}}{N}\bigg(\frac{4\pi mE}{3N}\bigg)^{3/2} + \frac{5}{2}\bigg].
+\]</span> Clearly the equation for temperature isn’t affected at all. We still have <span class="math inline">\(E = \frac{3}{2} N k_B T\)</span>. The equation for pressure though does change though. Since we’re differentiating <span class="math inline">\(S\)</span> with respect to <span class="math inline">\(V\)</span> and not <span class="math inline">\(V-\frac{1}{2}N\omega\)</span>, we have <span class="math display">\[
+\frac{P}{T} = \frac{\partial S}{\partial V} \bigg |_{E,N} = \frac{Nk_B}{V-\frac{N\omega}{2}} \quad \Longrightarrow \quad P\bigg(V-\frac{N\omega}{2}\bigg) = Nk_B T.
+\]</span> The ideal gas law is thus slightly modified by reducing the volume from <span class="math inline">\(V\)</span> to the available volume <span class="math inline">\(V-\frac{N\omega}{2}\)</span>.</p>
+<p>Incidentally, the hard sphere gas is <em>almost</em> a good model of a real interacting gas away from the dense limit. One change that can make it even more accurate is to reduce not just the <em>volume</em>, but also the <em>pressure</em>, to account for the fact that interactions tend to make particles slightly less likely to be near the walls of the container instead of around the center. This slight generalization will give us the <em>van der Waals</em> equation, which we’ll derive when we get to interacting particles.</p>
 </section>
 </section>
 <section id="canonical-ensemble" class="level2">
 <h2 class="anchored" data-anchor-id="canonical-ensemble">Canonical Ensemble</h2>
-<p>While the microcanonical is easy to understand, it’s usually not the easiest ensemble to work with for most problems. Usually finding the multiplicity <span class="math inline">\(\Omega(M)\)</span> directly isn’t easy since it involves a high level of combinatorial insight. Another approach we can take is to not take <span class="math inline">\(M=(E,X,N)\)</span>, but to instead take <span class="math inline">\(M=(T,X,N)\)</span>. That is, we consider a system with a fixed <em>temperature</em>, not a fixed <em>energy</em>. Physically, this means considering not an <em>isolated system</em>, but a <em>closed system</em>. We assume our system of interest is placed in contact with a large environment, or <em>heat bath</em>, and allowed to come to equilibrium. The system inherits its temperature from the heat bath and is allowed to exchange heat with it.</p>
+<p>While the microcanonical ensemble is easy to understand, it’s usually not the easiest ensemble to work with for most problems. Usually finding the multiplicity <span class="math inline">\(\Omega(M)\)</span> directly isn’t easy since it involves a high level of combinatorial insight. Another approach we can take is to not take <span class="math inline">\(M=(E,X,N)\)</span>, but to instead take <span class="math inline">\(M=(T,X,N)\)</span>. That is, we consider a system with a fixed <em>temperature</em>, not a fixed <em>energy</em>. Physically, this means considering not an <em>isolated system</em>, but a <em>closed system</em>. We assume our system of interest is placed in contact with a large environment, or <em>heat bath</em>, and allowed to come to equilibrium. The system inherits its temperature from the heat bath and is allowed to exchange heat with it.</p>
 <section id="boltzmann-distribution" class="level3">
 <h3 class="anchored" data-anchor-id="boltzmann-distribution">Boltzmann Distribution</h3>
 <p>To derive the probability distribution for a canonical system let’s first consider the combined system of our system of interest plus the heat bath. We’ll suppose the combined system is <em>isolated</em>, meaning it follows the microcanonical ensemble. Denote the system of interest as <span class="math inline">\(S\)</span>, the heat bath as <span class="math inline">\(R\)</span>, and the combined system as <span class="math inline">\(RS\)</span>. The total energy <span class="math inline">\(E\)</span> is just the sum of the Hamiltonians of <span class="math inline">\(S\)</span> and <span class="math inline">\(R\)</span> at a given point in their respective phase spaces, <span class="math display">\[
@@ -617,14 +618,14 @@ S_R\big(E-H_S(\boldsymbol{\mu}_S)\big) \approx S_{RS}(E) - \frac{\partial S_{RS}
 \]</span> Since the heat bath is fixed at a temperature <span class="math inline">\(T\)</span>, we can write the partial derivative as <span class="math inline">\(\frac{\partial S_R}{\partial E} = \frac{1}{T}\)</span>. Plugging back in, we have <span class="math display">\[
 p_S(\boldsymbol{\mu}_S) \approx \frac{e^{\frac{1}{k_B} S_{RS}(E)}}{\Omega_{RS}}e^{-\frac{1}{k_B T} H_S(\boldsymbol{\mu}_S)}.
 \]</span> For convenience we’ll define <span class="math inline">\(\beta \equiv \frac{1}{k_B T}\)</span>. Notice the first term above is just some normalization constant that we’ll denote as <span class="math inline">\(\frac{1}{Z(\beta)}\)</span>. Dropping the explicit <span class="math inline">\(S\)</span> subscripts and ignoring the presence of the heat bath we finally have our canonical ensemble probability, called the <strong>Boltzmann distribution</strong>, <span class="math display">\[
-\boxed{p(\boldsymbol{\mu}) = \frac{1}{Z(\beta)}e^{-\beta H(\boldsymbol{\mu})}} \ .
+\boxed{p(\boldsymbol{\mu}) = \frac{1}{Z(T,X,N)}e^{-\beta H(\boldsymbol{\mu})}} \ .
 \]</span></p>
 </section>
 <section id="partition-function" class="level3">
 <h3 class="anchored" data-anchor-id="partition-function">Partition Function</h3>
-<p>By asserting that the probability density integrate to one we can find an explicit expression for <span class="math inline">\(Z(\beta)\)</span>, called the <strong>canonical partition function</strong>. Evidently we have <span class="math display">\[
-\boxed{Z(\beta) = \int d \boldsymbol{\mu} \ e^{-\beta H(\boldsymbol{\mu})}} \ .
-\]</span> Despite appearing to just be a normalization constant the partition function turns out to be very important to statistical mechanics. It essentially encodes all the statistical mechanical information contained in the system. To see why it’s helpful to re-write the partition function as an integral (or sum) over all possible system energies <span class="math inline">\(E\)</span>. To do that multiple microstates can have the same energy. That means we need to multiply the integrand by a multiplicity <span class="math inline">\(\Omega(E)\)</span>. We thus have <span class="math display">\[
+<p>The normalization constant <span class="math inline">\(Z(T,X,N)\)</span> is so important it has a special name. It’s called the canonical <strong>partition function</strong>. We can find an expression for it by asserting that the probability density integrate to one. Evidently, we get <span class="math display">\[
+\boxed{Z(T,X,N) = \int d \boldsymbol{\mu} \ e^{-\beta H(\boldsymbol{\mu})}} \ .
+\]</span> The partition function turns out to be very important to statistical mechanics, as it essentially encodes all the statistical mechanical information contained in the system. To see why it’s helpful to re-write the partition function as an integral (or sum) over all possible system energies <span class="math inline">\(E\)</span>. To do that multiple microstates can have the same energy. That means we need to multiply the integrand by a multiplicity <span class="math inline">\(\Omega(E)\)</span>. We thus have <span class="math display">\[
 Z = \int dE \ \Omega(E) \ e^{-\beta E} = \int dE \ e^{\frac{1}{k_B} S} e^{-\frac{1}{k_B T} E} = \int dE \ e^{-\frac{1}{k_B T}(E-TS)}.
 \]</span> Recall from thermodynamics though that <span class="math inline">\(E-TS\)</span> is just the Helmholtz free energy <span class="math inline">\(F\)</span>. Now, since <span class="math inline">\(F\)</span> is extensive we can again employ the saddlepoint approximation about the maximum energy <span class="math inline">\(E^*\)</span> to get <span class="math display">\[
 Z = \int dE \ e^{-\beta F} \approx e^{-\beta F(E^*)} \sqrt{\frac{2\pi}{|F''(E^*)|}}.
@@ -649,7 +650,7 @@ S = \frac{E}{T} - \frac{F}{T} = k_B \big(\beta E + \log Z \big).
 </section>
 <section id="fluctuations" class="level3">
 <h3 class="anchored" data-anchor-id="fluctuations">Fluctuations</h3>
-<p>It’s worth some explanation why we can assert that the thermodynamic energy <span class="math inline">\(E\)</span> is the same thing as the expected value of the Hamiltonian <span class="math inline">\(\langle H \rangle\)</span> in thermodynamics. The reason for this has to do almost entirely with the fact that <span class="math inline">\(N\)</span> is really large. To see why, let’s ask the following question: How much can we expect the energy to <em>fluctuate</em> about its mean <span class="math inline">\(\langle H \rangle\)</span>?</p>
+<p>But why can we assert that the thermodynamic energy <span class="math inline">\(E\)</span> is the same thing as the expected value of the Hamiltonian <span class="math inline">\(\langle H \rangle\)</span>? The reason for this has to do almost entirely with the fact that <span class="math inline">\(N\)</span> is really large. To see why, let’s ask the following question: How much can we expect the energy to <em>fluctuate</em> about its mean <span class="math inline">\(\langle H \rangle\)</span>?</p>
 <p>To answer this, we just need to find the variance <span class="math inline">\(\sigma_E^2\)</span>. Using the same trick as before, the <span class="math inline">\(k\)</span><sup>th</sup> moment of <span class="math inline">\(H\)</span> is given by <span class="math display">\[
 \langle H^k \rangle = \int d \boldsymbol{\mu} \ H^k(\boldsymbol{\mu}) p(\boldsymbol{\mu}) = \int d \boldsymbol{\mu} \ H^k(\boldsymbol{\mu}) \frac{e^{-\beta H(\boldsymbol{\mu})}}{Z} = (-1)^k\frac{1}{Z} \frac{\partial^k Z}{\partial \beta^k}.
 \]</span> From this formula, it’s not hard to see the <em>cumulants</em> of <span class="math inline">\(H\)</span> are simply given by <span class="math display">\[
@@ -739,50 +740,49 @@ E = -\frac{\partial \log Z}{\partial \beta} = \frac{Nd}{s\beta} = \frac{d}{s} N 
 <section id="gibbs-canonical-ensemble" class="level3">
 <h3 class="anchored" data-anchor-id="gibbs-canonical-ensemble">Gibbs Canonical Ensemble</h3>
 <p>Similar to the canonical ensemble, the Gibbs canonical ensemble arises from considering a system in equilibrium with a much larger heat bath, except now we also allow for the possibility that work is done on the system as well. That is, we now take <span class="math inline">\(M=(T,J,N)\)</span> and assume the total energy has the form <span class="math inline">\(E = H(\boldsymbol{\mu}) + J \cdot X\)</span>. Then the probability of achieving a given microstate <span class="math inline">\(\boldsymbol{\mu}\)</span> at a particular displacement <span class="math inline">\(X\)</span> is given by <span class="math display">\[
-p(\boldsymbol{\mu},X) = \frac{1}{Z(\beta,J)}e^{-\beta \big(H(\boldsymbol{\mu})-J \cdot X\big)},
-\]</span> where <span class="math inline">\(Z(\beta,J)\)</span> is again a normalization constant. It’s called the <strong>Gibbs partition function</strong>, and is given by integrating over all microstates <span class="math inline">\(\boldsymbol{\mu}\)</span> and displacements <span class="math inline">\(X\)</span>, <span class="math display">\[
-Z(\beta,J) \equiv \int dX \ d \boldsymbol{\mu} \ e^{-\beta \big(H(\boldsymbol{\mu})-J \cdot X\big)}.
-\]</span> By factoring the dependences on <span class="math inline">\(\boldsymbol{\mu}\)</span> and <span class="math inline">\(X\)</span> we can write the Gibbs partition function in terms of the canonical partition function <span class="math inline">\(Z(\beta)\)</span> as <span class="math display">\[
-Z(\beta,J) = \int dX \ e^{-\beta J \cdot X} \ Z(\beta).
-\]</span> Note the abuse of notation. We’re using <span class="math inline">\(Z\)</span> to refer to both partition functions, and letting the functional dependence specify which we’re talking about. When it’s obvious which partition function we’re referring to we’ll often drop the dependence and just write <span class="math inline">\(Z\)</span>.</p>
-<p>Since the displacement <span class="math inline">\(X\)</span> is now a random variable, we can ask how it varies about its mean <span class="math inline">\(\langle X \rangle\)</span>. Following the same logic as we did with the energy, it’s easy to see that <span class="math display">\[
-\langle X \rangle = \frac{\partial}{\partial (\beta J)} \log Z(\beta,J).
+p(\boldsymbol{\mu},X) = \frac{1}{Z_G(T,J,N)}e^{-\beta \big(H(\boldsymbol{\mu})-J \cdot X\big)},
+\]</span> where <span class="math inline">\(Z_G=Z_G(T,J,N)\)</span> is again a normalization constant, this time called the <strong>Gibbs partition function</strong>. It’s given by integrating over all microstates <span class="math inline">\(\boldsymbol{\mu}\)</span> and displacements <span class="math inline">\(X\)</span>, <span class="math display">\[
+Z_G(T,J,N) \equiv \int dX \ d \boldsymbol{\mu} \ e^{-\beta \big(H(\boldsymbol{\mu})-J \cdot X\big)}.
+\]</span> By factoring the dependences on <span class="math inline">\(\boldsymbol{\mu}\)</span> and <span class="math inline">\(X\)</span> we can write the Gibbs partition function in terms of the canonical partition function <span class="math inline">\(Z(T,X,N)\)</span> as <span class="math display">\[
+Z_G(T,J,N) = \int dX \ e^{-\beta J \cdot X} \ Z(T,X,N).
+\]</span> Since the displacement <span class="math inline">\(X\)</span> is now a random variable, we can ask how it varies about its mean <span class="math inline">\(\langle X \rangle\)</span>. Following the same logic as we did with the energy, it’s easy to see that <span class="math display">\[
+\langle X \rangle = \frac{\partial}{\partial (\beta J)} \log Z_G.
 \]</span> The cumulants of <span class="math inline">\(X\)</span> are similarly given by <span class="math display">\[
-\langle X^k \rangle_c = \frac{\partial^k}{\partial (\beta J)^k} \log Z(\beta,J) = \frac{\partial^{k-1} \langle X \rangle}{\partial (\beta J)^{k-1}}.
+\langle X^k \rangle_c = \frac{\partial^k \log Z_G}{\partial (\beta J)^k} = \frac{\partial^{k-1} \langle X \rangle}{\partial (\beta J)^{k-1}}.
 \]</span> In particular, all cumulants of <span class="math inline">\(X\)</span> are extensive. This means the variance is proportional to <span class="math inline">\(\langle X \rangle\)</span>, which means the fluctuations in <span class="math inline">\(X\)</span> go like <span class="math inline">\(\sigma_X = \sqrt{\langle X \rangle}\)</span>. This means we can again assert that <span class="math inline">\(X = X^* = \langle X \rangle\)</span> when <span class="math inline">\(N\)</span> is really large.</p>
-<p>We can relate the partition function to the free energy by observing <span class="math display">\[
-Z(\beta, J) = \int dX \ dE \ e^{-\beta(E-J \cdot X)} \Omega(E,X) = \int dX \ dE \ e^{-\beta(E-TS-J \cdot X)}.
+<p>We can relate the partition function to the <em>Gibbs</em> free energy by observing <span class="math display">\[
+Z_G = \int dX \ dE \ e^{-\beta(E-J \cdot X)} \Omega(E,X) = \int dX \ dE \ e^{-\beta(E-TS-J \cdot X)}.
 \]</span> Here <span class="math inline">\(G \equiv E-TS-\mu \cdot N\)</span> is of course the Gibbs free energy. Using the saddlepoint approximation, in the thermodynamic limit we can write <span class="math display">\[
-Z(\beta,J) \approx e^{-\beta G(E^*, \ X^*)}.
+Z_G \approx e^{-\beta G(E^*, \ X^*)}.
 \]</span> Solving for <span class="math inline">\(G\)</span> we have the familiar expression <span class="math display">\[
-G = -k_B T \log Z(\beta,J).
+G = -k_B T \log Z_G.
 \]</span> From here all other thermodynamic variables we seek follow in the usual way using the identity <span class="math display">\[
 dG = -S dT - X \cdot dJ + \mu \cdot dN.
 \]</span> In this ensemble the canonical energy formula no longer applies. Instead that formula gives the <em>enthalpy</em> <span class="math inline">\(H = E - J \cdot X\)</span>, <span class="math display">\[
-H = -\frac{\partial}{\partial \beta} \log Z(\beta,J).
+H = -\frac{\partial \log Z_G}{\partial \beta}.
 \]</span></p>
 </section>
 <section id="grand-canonical-ensemble" class="level3">
 <h3 class="anchored" data-anchor-id="grand-canonical-ensemble">Grand Canonical Ensemble</h3>
 <p>The grand canonical ensemble follows exactly the same logic as the Gibbs ensemble did, except now we imagine the system is in equilibrium with a heat bath and allowed to exchange particles with it via chemical work. That is, <span class="math inline">\(M = (T,X,\mu)\)</span> and the energy has the form <span class="math inline">\(E = H(\boldsymbol{\mu}) + \mu \cdot N\)</span>. Then the probability of a given microstate <span class="math inline">\(\boldsymbol{\mu}\)</span> and a given particle number <span class="math inline">\(N\)</span> is given as <span class="math display">\[
-p(\boldsymbol{\mu},N) = \frac{1}{Z(\beta,\mu)}e^{-\beta \big(H(\boldsymbol{\mu})-\mu \cdot N\big)},
-\]</span> where <span class="math inline">\(Z(\beta,\mu)\)</span> is another normalization constant gotten by integrating over all possible <span class="math inline">\(\boldsymbol{\mu}\)</span> and summing over all possible <span class="math inline">\(N\)</span>. This is called the <strong>grand canonical partition function</strong>, given by <span class="math display">\[
-Z(\beta,\mu) \equiv \sum_{N=0}^\infty \int d \boldsymbol{\mu} \ e^{-\beta \big(H(\boldsymbol{\mu})-\mu \cdot N\big)}.
+p(\boldsymbol{\mu},N) = \frac{1}{\mathcal{Z}(T,X,\mu)}e^{-\beta \big(H(\boldsymbol{\mu})-\mu \cdot N\big)},
+\]</span> where <span class="math inline">\(\mathcal{Z}(T,X,\mu)\)</span> is another normalization constant gotten by integrating over all possible <span class="math inline">\(\boldsymbol{\mu}\)</span> and summing over all possible <span class="math inline">\(N\)</span>. This is called the <strong>grand canonical partition function</strong>, given by <span class="math display">\[
+\mathcal{Z}(T,X,\mu) \equiv \sum_{N=0}^\infty \int d \boldsymbol{\mu} \ e^{-\beta \big(H(\boldsymbol{\mu})-\mu \cdot N\big)}.
 \]</span> We can again factor the <span class="math inline">\(\boldsymbol{\mu}\)</span> and <span class="math inline">\(N\)</span> dependences apart and write just <span class="math display">\[
-Z(\beta,\mu) = \sum_{N=0}^\infty e^{\beta\mu \cdot N} Z(\beta).
-\]</span> The dimensionless variable <span class="math inline">\(f \equiv \beta\mu = \frac{\mu}{k_B T}\)</span> is called the <strong>fugacity</strong>. It will turn out to be important in quantum statistical mechanics since its size says something about the limiting behaviors of the energy and entropy.</p>
+\mathcal{Z}(T,X,\mu) = \sum_{N=0}^\infty e^{\beta\mu \cdot N} Z(T,X,N).
+\]</span> The dimensionless variable <span class="math inline">\(\log z \equiv \beta\mu = \frac{\mu}{k_B T}\)</span> is sometimes called the <em>log fugacity</em>, where <span class="math inline">\(z \equiv e^{\beta\mu}\)</span> is the <strong>fugacity</strong>. The fugacity turns out to be important in quantum statistical mechanics since its size says something about the limiting behaviors of the equations of state at low temperatures.</p>
 <p>While not necessarily obvious, more mathematical care is needed to interpret the grand canonical ensemble due to the fact that <span class="math inline">\(N\)</span> is no longer fixed, but allowed to vary. This means we can’t a priori just assume that <span class="math inline">\(N\)</span> is large and the thermodynamic limit applies. Moreover, the phase spaces being integrated over aren’t even of the same dimensions since each <span class="math inline">\(d=6N\)</span>.</p>
 <p>Instead of interpreting things in terms of <span class="math inline">\(N\)</span>, a random variable, we instead need to interpret things in terms of <span class="math inline">\(\langle N \rangle\)</span>. Following the same logic as we did with the energy, it’s easy to see that <span class="math display">\[
-\langle N \rangle = \frac{\partial}{\partial (\beta\mu)} \log Z(\beta,\mu).
+\langle N \rangle = \frac{\partial}{\partial (\beta\mu)} \log \mathcal{Z}.
 \]</span> The cumulants of <span class="math inline">\(N\)</span> are similarly given by <span class="math display">\[
-\langle N^k \rangle_c = \frac{\partial^k}{\partial (\beta\mu)^k} \log Z(\beta,\mu) = \frac{\partial^{k-1} \langle N \rangle}{\partial (\beta\mu)^{k-1}}.
-\]</span> In particular, all cumulants of <span class="math inline">\(N\)</span> are proportional to <span class="math inline">\(\langle N \rangle\)</span>. In particular, this means the variance is proportional to <span class="math inline">\(\langle N \rangle\)</span>, which means the fluctuations in <span class="math inline">\(N\)</span> go like <span class="math inline">\(\sigma_N = \sqrt{\langle N \rangle}\)</span>. By the same usual logic, this means we can assert that <span class="math inline">\(N = N^* = \langle N \rangle\)</span> provided <span class="math inline">\(N^*\)</span> is large, which will typically be the case in thermodynamics.</p>
+\langle N^k \rangle_c = \frac{\partial^k \log \mathcal{Z}}{\partial (\beta\mu)^k} = \frac{\partial^{k-1} \langle N \rangle}{\partial (\beta\mu)^{k-1}}.
+\]</span> In particular, all cumulants of <span class="math inline">\(N\)</span> are proportional to <span class="math inline">\(\langle N \rangle\)</span>. In particular, this means the variance is proportional to <span class="math inline">\(\langle N \rangle\)</span>, which means the fluctuations in <span class="math inline">\(N\)</span> go like <span class="math inline">\(\sigma_N = \sqrt{\langle N \rangle}\)</span>. By the same usual logic, this means we can assert that <span class="math inline">\(N = N^* = \langle N \rangle\)</span> provided <span class="math inline">\(N^*\)</span> is very large, which will typically be the case in thermodynamics.</p>
 <p>Again using the same logic as before, we can relate the partition function to the free energy by observing <span class="math display">\[
-Z(\beta, \mu) = \sum_{N=0}^\infty \int dE \ e^{-\beta(E-\mu \cdot N)} \Omega(E,N) = \sum_{N=0}^\infty \int dE \ e^{-\beta(E-TS-\mu \cdot N)}.
+\mathcal{Z} = \sum_{N=0}^\infty \int dE \ e^{-\beta(E-\mu \cdot N)} \Omega(E,N) = \sum_{N=0}^\infty \int dE \ e^{-\beta(E-TS-\mu \cdot N)}.
 \]</span> Here <span class="math inline">\(\mathcal{G} \equiv E-TS-\mu \cdot N\)</span> is of course the grand potential. Using the saddlepoint approximation, in the thermodynamic limit we can write <span class="math display">\[
-Z(\beta,\mu) \approx e^{-\beta\mathcal{G}(E^*,N^*)}.
+\mathcal{Z} \approx e^{-\beta\mathcal{G}(E^*,N^*)}.
 \]</span> Solving for <span class="math inline">\(\mathcal{G}\)</span> we again have the familiar expression <span class="math display">\[
-\mathcal{G} = -k_B T \log Z(\beta,\mu).
+\mathcal{G} = -k_B T \log \mathcal{Z}.
 \]</span> From here all other thermodynamic variables we seek follow in the usual way using the identity <span class="math display">\[
 d\mathcal{G} = -S dT + J \cdot dX - N \cdot d\mu.
 \]</span></p>
@@ -791,35 +791,35 @@ d\mathcal{G} = -S dT + J \cdot dX - N \cdot d\mu.
 <h3 class="anchored" data-anchor-id="example-ideal-gas-2">Example: Ideal Gas</h3>
 <p>As an example, we’ll work out the equations of state again for the ideal gas, both in the Gibbs canonical and the grand canonical ensembles. Starting with the Gibbs canonical ensemble, the Gibbs partition function can be calculated by observing that the integral over <span class="math inline">\(V\)</span> is almost a factorial function. We have <span class="math display">\[
 \begin{align*}
-Z(\beta,P) &amp;= \int_0^\infty dV e^{-\beta PV} Z(\beta) \\
+Z_G &amp;= \int_0^\infty dV e^{-\beta PV} Z \\
 &amp;= \frac{1}{N! h^{3N}} \bigg(\frac{2\pi m}{\beta}\bigg)^{3N/2} \int_0^\infty dV e^{-\beta PV} V^N \\
 &amp;= \frac{1}{N! h^{3N}} \bigg(\frac{2\pi m}{\beta}\bigg)^{3N/2} \frac{N!}{(\beta P)^{N+1}} \\
 &amp;= \bigg(\frac{2\pi m}{h^2 \beta}\bigg)^{3N/2} (\beta P)^{-(N+1)}. \\
 \end{align*}
 \]</span> Taking the logarithm of both sides, we have <span class="math display">\[
-\log Z(\beta,P) \approx \frac{3N}{2} \log \frac{2\pi m}{h^2 \beta} - N \log \beta P.
-\]</span> We can get the mean volume <span class="math inline">\(\langle V \rangle\)</span> by differentiating both sides with respect to <span class="math inline">\(-\beta P\)</span>, <span class="math display">\[
-\langle V \rangle = \frac{\partial}{\partial (-\beta P)} \log Z(\beta,P) = \frac{N}{\beta P} = \frac{Nk_B T}{P}.
-\]</span> This is of course the usual equation of state, with <span class="math inline">\(P\langle V \rangle = N k_B T\)</span>. We can easily find the enthalpy as well, <span class="math display">\[
-H = -\frac{\partial}{\partial \beta} \log Z(\beta,P) = \frac{3N}{2\beta} + \frac{N}{\beta} = \frac{5}{2} N k_B T.
-\]</span> Since <span class="math inline">\(H = E + P\langle V \rangle\)</span>, we can immediately read off the usual formula for energy, <span class="math inline">\(E = \frac{3}{2} N k_B T\)</span>.</p>
+\log Z_G \approx \frac{3N}{2} \log \frac{2\pi m}{h^2 \beta} - N \log \beta P.
+\]</span> We can get the mean volume <span class="math inline">\(V \approx \langle V \rangle\)</span> by differentiating both sides with respect to <span class="math inline">\(-\beta P\)</span>, <span class="math display">\[
+V \approx \frac{\partial \log Z_G}{\partial (-\beta P)} = \frac{N}{\beta P} = \frac{Nk_B T}{P}.
+\]</span> This is of course the usual equation of state, with <span class="math inline">\(PV = N k_B T\)</span>. We can easily find the enthalpy as well, <span class="math display">\[
+H = -\frac{\partial \log Z_G}{\partial \beta} = \frac{3N}{2\beta} + \frac{N}{\beta} = \frac{5}{2} N k_B T.
+\]</span> Since <span class="math inline">\(H = E + PV\)</span>, we can immediately read off the usual formula for energy, <span class="math inline">\(E = \frac{3}{2} N k_B T\)</span>.</p>
 <p>Moving onto the grand canonical ensemble, the grand partition function is given by noting that the sum over <span class="math inline">\(N\)</span> is just the Taylor series of an exponential function. We have <span class="math display">\[
 \begin{align*}
-Z(\beta,\mu) &amp;= \sum_{N=0}^\infty dV e^{\beta \mu N} Z(\beta) \\
+\mathcal{Z} &amp;= \sum_{N=0}^\infty dV e^{\beta \mu N} Z(\beta) \\
 &amp;= \sum_{N=0}^\infty e^{\beta \mu N} \frac{V^N}{N! h^{3N}} \bigg(\frac{2\pi m}{\beta}\bigg)^{3N/2} \\
 &amp;= \sum_{N=0}^\infty \frac{1}{N!} \bigg[\frac{Ve^{\beta\mu}}{h^3} \bigg(\frac{2\pi m}{\beta}\bigg)^{3/2}\bigg]^N \\
 &amp;= \exp \bigg[\frac{Ve^{\beta\mu}}{h^3} \bigg(\frac{2\pi m}{\beta}\bigg)^{3/2}\bigg]. \\
 \end{align*}
-\]</span> This means <span class="math inline">\(\log Z(\beta,\mu)\)</span> is just <span class="math display">\[
-\log Z(\beta,\mu) = \frac{Ve^{\beta\mu}}{h^3} \bigg(\frac{2\pi m}{\beta}\bigg)^{3/2}.
-\]</span> It’s helpful to first find <span class="math inline">\(\langle N \rangle\)</span>. We have <span class="math display">\[
-\langle N \rangle = \frac{\partial}{\partial (\beta\mu)} \log Z(\beta,\mu) = \frac{Ve^{\beta\mu}}{h^3} \bigg(\frac{2\pi m}{\beta}\bigg)^{3/2} = \log Z(\beta,\mu).
-\]</span> This means all cumulants of <span class="math inline">\(N\)</span> will be <span class="math inline">\(\log Z(\beta,\mu)\)</span> as well. Recall all cumulants being equal implies that <span class="math inline">\(N\)</span> must be Poisson distributed. The grand potential is evidently just <span class="math inline">\(\mathcal{G} = -\langle N \rangle k_B T\)</span>. But by extensivity <span class="math inline">\(\mathcal{G} = -PV\)</span>. We thus get the ideal gas law, <span class="math display">\[
-PV = \langle N \rangle k_B T.
+\]</span> This means <span class="math inline">\(\log \mathcal{Z}\)</span> is just <span class="math display">\[
+\log \mathcal{Z} = \frac{Ve^{\beta\mu}}{h^3} \bigg(\frac{2\pi m}{\beta}\bigg)^{3/2}.
+\]</span> It’s helpful to first find <span class="math inline">\(N \approx \langle N \rangle\)</span>. We have <span class="math display">\[
+N \approx \frac{\partial \log \mathcal{Z}}{\partial (\beta\mu)} = \frac{Ve^{\beta\mu}}{h^3} \bigg(\frac{2\pi m}{\beta}\bigg)^{3/2} = \log \mathcal{Z}.
+\]</span> This means all cumulants of <span class="math inline">\(N\)</span> will be <span class="math inline">\(\log \mathcal{Z}\)</span> as well. Recall all cumulants being equal implies that <span class="math inline">\(N\)</span> must be Poisson distributed. The grand potential is evidently just <span class="math inline">\(\mathcal{G} = -N k_B T\)</span>. But by extensivity <span class="math inline">\(\mathcal{G} = -PV\)</span>. We thus get the ideal gas law, <span class="math display">\[
+PV = N k_B T.
 \]</span> Getting the energy is slightly trickier. It’s not too hard to show that <span class="math display">\[
-E - \mu \langle N \rangle = -\frac{\partial}{\partial \beta} \log Z(\beta,\mu) = \langle N \rangle \bigg(\frac{3}{2} k_B T - \mu\bigg).
-\]</span> Cancelling <span class="math inline">\(\mu \langle N \rangle\)</span> from both sides, we again get <span class="math inline">\(E = \frac{3}{2} \langle N \rangle k_B T\)</span>. Finally, if we like we can solve for the chemical potential by inverting the formula for <span class="math inline">\(\langle N \rangle\)</span>. As expected, we have <span class="math display">\[
-\mu = k_B T \log \frac{\langle N \rangle}{V} \bigg(\frac{2\pi m k_B T}{h^2}\bigg)^{3/2}.
+E - \mu N = -\frac{\partial \log \mathcal{Z}}{\partial \beta} = N \bigg(\frac{3}{2} k_B T - \mu\bigg).
+\]</span> Cancelling <span class="math inline">\(\mu N\)</span> from both sides, we again get <span class="math inline">\(E = \frac{3}{2} N k_B T\)</span>. Finally, if we like we can solve for the chemical potential by inverting the formula for <span class="math inline">\(N\)</span>. As expected, we have <span class="math display">\[
+\mu = k_B T \log \frac{N}{V} \bigg(\frac{2\pi m k_B T}{h^2}\bigg)^{3/2}.
 \]</span></p>
 
 
