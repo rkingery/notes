@@ -4,7 +4,7 @@ Thus far we've seen the phenomenological description of thermodynamics, along wi
 
 ## Formal Definition
 
-More formally, suppose we have a system of $N$ particles in equilibrium whose phase space configuration is described by a *microstate* $\boldsymbol{\mu} \equiv \{\mathbf{x}_i, \mathbf{p}_i\}$ . Suppose we're interested in studying some set of macroscopic equilibrium properties described by a *macrostate* $M=(E,X,N)$. For a given macrostate $M$, suppose the equilibrium phase space density for the system to be in some microstate $\boldsymbol{\mu}$ is given by a probability distribution $p_M(\boldsymbol{\mu})$. Let's define **statistical mechanics** as the probabilistic study of the equilibrium macrostates $M$ of a system with a large number of degrees of freedom $N \gg 1$ using the equilibrium probability distribution $p_M(\boldsymbol{\mu})$.
+Suppose we have a system of $N$ particles in equilibrium whose phase space configuration is described by a *microstate* $\boldsymbol{\mu} \equiv \{\mathbf{x}_i, \mathbf{p}_i\}$ . Suppose we're interested in studying some set of macroscopic equilibrium properties described by a *macrostate* $M=(E,X,N)$. For a given macrostate $M$, suppose the equilibrium phase space density for the system to be in some microstate $\boldsymbol{\mu}$ is given by a probability distribution $p_M(\boldsymbol{\mu})$. Let's define **statistical mechanics** as the probabilistic study of the equilibrium macrostates $M$ of a system with a large number of degrees of freedom $N \gg 1$ using the equilibrium probability distribution $p_M(\boldsymbol{\mu})$.
 
 Recall that to be in equilibrium the phase space density should be time independent. By Liouville's equation, this means
 $$
@@ -179,26 +179,6 @@ p(n) = \delta(n) \frac{1}{1 + e^{-\frac{\varepsilon}{k_B T}}} + \delta(n-1) \fra
 $$
 The shape of this curve depends on the temperature. At low temperatures $p(0) \approx 1$. At high temperatures $p(1) \approx 1$. And when $\varepsilon \approx k_B T$ we get $p(0) \approx p(1) \approx \frac{1}{2}$.
 
-### Example: Einstein Solids
-
-A similar example to the two-state system is the Einstein solid. An *Einstein solid* is a simple model of a solid that treats it as a lattice of $N$ particles, where each particle is treated as a collection of 3 discrete harmonic oscillators, one for each orthogonal direction of space. Each oscillator can take on energies in discrete units of $\varepsilon=\hbar \omega$. We'll assume each oscillator has the same frequency $\omega$.
-
-Since energies must be units of $\varepsilon$, for any fixed energy $E$ there must be $n=n(E)$ total states with that given energy, with $E=\varepsilon n$. We can ask how many states $\Omega(E,N)$ there are among $N$ particles in a lattice with a given energy $E$. Finding $\Omega(E,N)$ turns out to be equivalent to finding the number of ways to put $n$ pebbles into $3N$ containers, which turns out to be
-$$
-\Omega(E,N) = \binom{3N+n-1}{n} \approx \frac{(3N+n)^{3N+n}}{(3N)^{3N} n^n}.
-$$
-This looks similar to the two-state problem above, except with $N \rightarrow 3N+n-1$ and $N_1 \rightarrow n$. In this case though the energy as a function of temperature turns out to be given by
-$$
-E(T) = \frac{3N\varepsilon}{e^{\frac{\varepsilon}{k_B T}}-1}.
-$$
-In the low-temperature limit $E \rightarrow 0$.  In the high-temperature limit we get $E \approx 3Nk_B T$. This is in fact what the equipartition theorem would predict, since each particle has 6 quadratic degrees of freedom, 3 kinetic and 3 potential.
-
-The curve for the heat capacity changes somewhat as well. We get
-$$
-C(T) = \frac{\partial E}{\partial T} \bigg |_{N} = 3Nk_B \bigg(\frac{\varepsilon}{k_B T}\bigg)^2 \frac{e^{\frac{\varepsilon}{k_B T}}}{\big(e^{\frac{\varepsilon}{k_B T}} - 1\big)^2}.
-$$
-For high temperatures the heat capacity evidently levels off to $C(T) \approx 3Nk_B$. This fact turns out to agree well with experiment, yielding the so-called *Dulong-Petit Law*. However, while the heat capacity should go to zero as $T \rightarrow 0$, the exact curve itself deviates from experiment at low temperatures. This discrepancy can be rectified by using more accurate models of a solid like the Debye model.
-
 ## Distinguishability
 
 We'd like to use the microcanonical ensemble to work out the relations for a more interesting system, like an ideal gas. It turns out however that there's some subtly involved that we need to address in applying statistical mechanics to realistic systems.
@@ -293,7 +273,7 @@ $$
 $$
 since at equilibrium (both initially and finally) we must have $\frac{V}{N}=\frac{V_1}{N_1}=\frac{V_2}{N_2}$. The paradox is thus resolved.
 
-This resolves one of the problems we had with the expressions for an ideal gas, but there's one more. If we look careful, we can see that the expression inside the logarithm isn't dimensionless, as it should be. In fact, it has units of *action* to some power. Recall that action has units of position times momentum, or energy times time. The dimensionality issue ultimately arises from the fact that we're working with a continuous system and integrating over phase space. But phase space has units. To fix this problem, all we have to do is divide the phase space measure $d \mathbf{x} d\mathbf{p}$ by some constant with units of action cubed. From quantum mechanics, it turns out the right constant to use is Planck's constant $h$. We thus need to make the substitution of measure
+This resolves one of the problems we had with the expressions for an ideal gas, but there's one more. If we look careful, we can see that the expression inside the logarithm isn't dimensionless, as it should be. In fact, it has units of *action* to some power. Recall that action has units of position times momentum, or energy times time. The dimensionality issue ultimately arises from the fact that we're working with a continuous system and integrating over phase space. But phase space has units. To fix this problem, all we have to do is divide the phase space measure $d \mathbf{x} d\mathbf{p}$ by some constant with units of action cubed. We'll call this constant $h$. Its value turns out to be largely immaterial for classical purposes. We'll see what it is when we get to quantum statistical mechanics. At any rate, to fix the measure we just need to make the substitution
 $$
 d^3 \mathbf{x} d^3 \mathbf{p} \rightarrow \frac{d^3 \mathbf{x} d^3 \mathbf{p}}{h^3}.
 $$
@@ -314,7 +294,7 @@ This result, the correct entropy of a classical ideal gas, is known as the *Saku
 $$
 \mu = - k_B T \log \frac{V}{N}\bigg(\frac{4\pi mE}{3Nh^2}\bigg)^{3/2}.
 $$
-To finish up this section, it's worth mentioning that statistical mechanics gives us even more information than thermodynamics gives us. Not only does it tell us what the variables are, but it can also tell us how variables are distributed. For example, we can derive the Maxwell-Boltzmann distribution for the momentum (or velocity) of a single gas particle. Indeed, we have
+To finish up this section, it's worth mentioning that statistical mechanics gives us even more information than thermodynamics gives us. Not only does it tell us what the variables are, but it can also tell us how variables are distributed. For example, we can derive the distribution for the momentum of a single ideal gas particle. We have
 $$
 \begin{align*}
 p(\mathbf{p}) &= \frac{V^N}{\Omega(E,V,N)} \int_{|\mathbf{p}| = \sqrt{2mE}} d^{3N-1} \mathbf{p} \\
@@ -323,7 +303,7 @@ p(\mathbf{p}) &= \frac{V^N}{\Omega(E,V,N)} \int_{|\mathbf{p}| = \sqrt{2mE}} d^{3
 &\approx \bigg(\frac{3N}{4\pi m E}\bigg)^{3/2} \exp\bigg(-\frac{3N\mathbf{p}^2}{4mE}\bigg). \\
 \end{align*}
 $$
-The last line follows from the fact that $E$ is extensive and $N \gg 1$, hence we can use the identity $e^x \approx \big(1+\frac{x}{N}\big)^{N}$. Using the relation $E = \frac{3}{2} N k_B T$ then gives the usual form of the Maxwell-Boltzmann distribution.
+The last line follows from the fact that $E$ is extensive and $N \gg 1$, hence we can use the identity $e^x \approx \big(1+\frac{x}{N}\big)^{N}$. Using the relation $E = \frac{3}{2} N k_B T$ then gives the usual form of this distribution, known as the **Maxwell-Boltzmann distribution**.
 
 ### Example: Ultrarelativistic Ideal Gas
 
@@ -370,7 +350,7 @@ $$
 
 ### Example: Hard Sphere Gas
 
-Let's look at another problem similar to the ideal gas. Suppose that we have a gas of $N$ non-interacting solid spheres each of volume $\omega \ll V$, where $V$ is again the volume of the container. The Hamiltonian otherwise remains the same as for the ordinary ideal gas. If we assume the spheres are indistinguishable, following the same logic as for the ordinary ideal gas we can write the multiplicity as
+Let's look at another problem similar to the ideal gas. Suppose that we have a gas of $N$ non-interacting solid spheres each of volume $\omega \ll V$, where $V$ is again the volume of the container. The Hamiltonian otherwise remains the same as for the ordinary ideal gas. If we assume the spheres are identical, following the same logic as for the ordinary ideal gas we can write the multiplicity as
 $$
 \Omega(E,V,N) = \frac{1}{N!}\frac{2\pi^{\frac{3N}{2}}}{\big(\frac{3N}{2}-1\big)!} (2mE)^{\frac{3N-1}{2}} \mathcal{V}_{N}.
 $$
@@ -482,6 +462,8 @@ $$
 S = \frac{E}{T} - \frac{F}{T} = k_B \big(\beta E + \log Z \big).
 $$
 
+For systems of $N$ non-interacting particles, it's generally the case that the partition function can be factored into a product of single-particle partition functions. That is, $Z = Z_1^N$. If the particles are identical we have to be sure to divide by $N!$ as well. This trick will be useful in solving for equations of state in many examples.
+
 ### Fluctuations
 
 But why can we assert that the thermodynamic energy $E$ is the same thing as the expected value of the Hamiltonian $\langle H \rangle$? The reason for this has to do almost entirely with the fact that $N$ is really large. To see why, let's ask the following question: How much can we expect the energy to *fluctuate* about its mean $\langle H \rangle$? 
@@ -526,22 +508,28 @@ As an example to see that fluctuations don't really matter, if we looked at one 
 
 Frequently, the canonical ensemble is much easier to work with than the microcanonical ensemble. Perhaps the best example of this is comparing both methods for solving the ideal gas problem. Consider again a gas with Hamiltonian
 $$
-H(\mathbf{x}_1,\cdots,\mathbf{x}_N,\mathbf{p}_1,\cdots,\mathbf{p}_N) = \sum_{i=1}^N \frac{\mathbf{p}_i^2}{2m} + V(\mathbf{x}_1,\cdots,\mathbf{x}_N),
+H(\mathbf{x}_1,\cdots,\mathbf{x}_N,\mathbf{p}_1,\cdots,\mathbf{p}_N) = \sum_{i=1}^N \bigg(\frac{\mathbf{p}_i^2}{2m} + V(\mathbf{x}_i)\bigg),
 $$
-where $V(\mathbf{x}_1,\cdots,\mathbf{x}_N)$ is zero inside a container of volume $V$ and infinite otherwise. In the canonical ensemble our goal is to find the partition function and then use that to derive the equations of state. As with the microcanonical ensemble, we have to be careful to use the right measure of integration, dividing by $N! h^{3N}$. The space integrals again reduce to $V^N$. The momentum integrals reduce to a product of independent Gaussians. We thus have
+where $V(\mathbf{x}_i)$ is zero inside a container of volume $V$ and infinite otherwise. Since this Hamiltonian factors into a product of single-particle terms, we can most easily calculate $Z$ by first calculating the single particle partition function $Z_1$. We have
 $$
 \begin{align*}
-Z &= \frac{1}{N! h^{3N}} \int d^{3N} \mathbf{x} \ d^{3N} \mathbf{p} \ \exp\bigg[-\beta \bigg(\sum_{i=1}^N \frac{\mathbf{p}_i^2}{2m} + V(\mathbf{x}_1,\cdots,\mathbf{x}_N)\bigg)\bigg] \\
-&= \frac{V^N}{N! h^{3N}} \prod_{i=1}^N \int d^3 \mathbf{p}_i \ \exp\bigg[-\beta \bigg(\frac{\mathbf{p}_i^2}{2m}\bigg)\bigg] \\
-&= \frac{V^N}{N! h^{3N}} \bigg(\frac{2\pi m}{\beta}\bigg)^{3N/2} \\
-&\approx \bigg[\frac{Ve}{N} \bigg(\frac{2\pi m}{\beta h^2}\bigg)^{3/2}\bigg]^N.
+Z_1 &= \frac{1}{h^3} \int d^{3} \mathbf{x} \ d^{3} \mathbf{p} \ \exp\bigg[-\beta \bigg(\frac{\mathbf{p}^2}{2m} + V(\mathbf{x})\bigg)\bigg] \\
+&= \frac{V}{h^3} \int d^3 \mathbf{p} \ \exp\bigg[-\beta \bigg(\frac{\mathbf{p}^2}{2m}\bigg)\bigg] \\
+&= \frac{V}{h^{3}} \bigg(\frac{2\pi m}{\beta}\bigg)^{3/2} \\
+&= \frac{V}{\lambda_T^3}.
 \end{align*}
 $$
-We can get everything of interest by looking at the logarithm of the partition function,
+Here we've defined a useful quantity $\lambda_T \equiv \frac{h}{\sqrt{2\pi m k_B T}}$ known as the *thermal DeBroglie wavelength*. For now this is just a convenience, but we'll see in quantum statistical mechanics that this wavelength has physical meaning. It says something about how tightly packed particles in a gas need to be for quantum effects to become important. In classical statistical mechanics it won't matter, since temperatures are assumed to be so large that particles are well-approximated as point particles.
+
+Now that we have $Z_1$, we can find the full partition function by multiplying them together $N$ times and dividing by $N!$,
+$$
+Z = \frac{1}{N!} Z_1^N = \frac{V^N}{N! \lambda_T^{3N}} = \frac{V^N}{N! h^{3N}} \bigg(\frac{2\pi m}{\beta}\bigg)^{3N/2} \ .
+$$
+We can now get everything of interest from here by looking at the logarithm of the partition function,
 $$
 \log Z = N \log \frac{Ve}{N} \bigg(\frac{2\pi m}{\beta h^2}\bigg)^{3/2}.
 $$
-From here we can calculate every thermodynamic variable of interest. For example, the energy is given by
+For example, the energy is given by
 $$
 E = - \frac{\partial \log Z}{\partial \beta} = \frac{3N}{\beta} = \frac{3}{2} N k_B T,
 $$
@@ -549,25 +537,15 @@ and the pressure is given by
 $$
 P = \frac{1}{\beta} \frac{\partial \log Z}{\partial V} = \frac{N}{\beta V} = \frac{Nk_B T}{V}.
 $$
-Another way to see how much easier the canonical ensemble can be to use is to try to calculate the distribution of momentum in the gas. The Maxwell-Boltzmann distribution pretty much falls right out. For example,
+One way to see how useful the canonical ensemble can be is by calculating the distribution of momentum in the gas. The Maxwell-Boltzmann distribution pretty much falls right out of the Boltzmann factor. Indeed, we have
 $$
 \begin{align*}
-p(\mathbf{p}_1) &= \frac{1}{N! h^{3N}} \int d^{3N} \mathbf{x} \ d^{3N-1} \mathbf{p} \ p(\mathbf{x}_1,\cdots,\mathbf{x}_N,\mathbf{p}_1,\cdots,\mathbf{p}_N) 
+p(\mathbf{p}_1) &= \frac{1}{N! Z} \frac{1}{h^{3N}} \int d^{3N} \mathbf{x} \ d^{3N-1} \mathbf{p} \ p(\mathbf{x}_1,\cdots,\mathbf{x}_N,\mathbf{p}_1,\cdots,\mathbf{p}_N) 
 \\
-&= \frac{1}{Z}\frac{V^N}{N! h^{3N}} \exp\bigg[-\beta \bigg(\frac{\mathbf{p}_1^2}{2m}\bigg)\bigg] \prod_{i=2}^N \int d^3 \mathbf{p}_i \ \exp\bigg[-\beta \bigg(\frac{\mathbf{p}_i^2}{2m}\bigg)\bigg] \\
-&= \frac{1}{Z}\frac{V^N}{N! h^{3N}} \big(2\pi m k_B T\big)^{3(N-1)/2} \exp\bigg[-\bigg(\frac{\mathbf{p}_1^2}{2mk_B T}\bigg) \bigg] \\
+&= \bigg(\frac{\lambda_T^{3}}{V}\bigg)^N \bigg(\frac{V}{\lambda_T^{3}}\bigg)^{N-1} \frac{V}{h} \exp\bigg[-\beta \bigg(\frac{\mathbf{p}_1^2}{2m}\bigg)\bigg] \\
 &= \frac{1}{(2\pi m k_B T)^{3/2}} \exp\bigg[-\frac{1}{2}\bigg(\frac{\mathbf{p}_1^2}{mk_B T}\bigg) \bigg].
 \end{align*}
 $$
-We'll finish this example by mentioning that we can define a convenient characteristic length scale $\lambda$ called the **thermal DeBroglie wavelength**, given by
-$$
-\lambda(T) \equiv \frac{h}{\sqrt{2\pi m k_B T}}.
-$$
-Using this length scale we can more conveniently express the ideal gas partition function in the form
-$$
-Z = \frac{1}{N!}\bigg(\frac{V}{\lambda^3}\bigg)^N \approx \bigg(\frac{Ve}{N\lambda^3}\bigg)^N.
-$$
-We'll see later that the size of $\lambda(T)$ essentially determines at what point quantum effects become important in statistical mechanics. For now it's just a convenient simplification for the ideal gas partition function.
 
 ### Equipartition Theorem
 
@@ -616,6 +594,41 @@ $$
 E = -\frac{\partial \log Z}{\partial \beta} = \frac{Nd}{s\beta} = \frac{d}{s} N k_B T. \quad \text{Q.E.D.}
 $$
 The equipartition theorem is a useful shortcut for quickly figuring out how the partition function depends on temperature since we can use it to avoid having to do any integration, provided the degrees of freedom are all of the same power. For example, we saw for an ultrarelativistic ideal gas that $H = \sum_{i=1}^N |\mathbf{p}_i|c$. In this case $s=1$ and $d=3$, so $E=3Nk_B T$, which we've seen.
+
+### Example: Diatomic Gas
+
+Let's now consider a slightly more interesting variant of the ideal gas, namely one where the particles in question aren't point particles anymore, but rather *diatomic*. That is, each particle consists of two masses that strongly interact with each other. Think of these particles as dumbbells with masses at each end. Except when these dumbbells are heated up enough, the bar holding them together becomes a spring that can oscillate at some frequency. While this may seem academic, diatomic molecules are actually very common in nature. Many atoms, like hydrogen, oxygen, nitrogen, etc only exist in nature in diatomic form because they're more chemically stable. For example, each "particle" of hydrogen gas is actually a *pair* of interacting hydrogen atoms.
+
+We'll assume each diatomic gas particle does not interact with other particles, so there's no external potential energy associated with each dumbbell. We'll assume the two masses inside interact via some radial potential energy $u$ undergoing small oscillations near some minimum energy. We can describe the Hamiltonian for each individual particle by
+$$
+H_1 = \frac{\mathbf{p}_1^2}{2m_1} + \frac{\mathbf{p}_2^2}{2m_2} + u(|\mathbf{x}_1-\mathbf{x}_2|).
+$$
+As usual when working with pairs of masses, it's helpful to re-express the Hamiltonian in center of mass and relative coordinates. We'll also assume the potential is approximately harmonic at some distance $d$, with $u(r) \approx \frac{1}{2}\mu\omega^2 r^2 + u(d)$ to get
+$$
+H_1 = \frac{\mathbf{P}^2}{2M} + \frac{\mathbf{p}^2}{2\mu} + \frac{1}{2}\mu\omega^2 r^2 + u(d).
+$$
+Now, before turning the crank, it's worth stopping to take a look at what we're doing. We've assumed that the two masses only undergo oscillations about some equilibrium distance $d$. We've also assumed each particle oscillates at the same constant frequency $\omega$, not a horrible assumption for a large number of particles in equilibrium at sufficiently high temperatures. Since we're assuming harmonic oscillations around this distance $d$ there will be an added constant $u(d)$ that we can ignore.
+
+Notice that each term in the Hamiltonian contributes quadratic degrees of freedom. This means we should be able to use the equipartition theorem to predict what the energy should be. Since each particle has $3+3+1=7$ quadratic degrees of freedom, with no work we can predict the energy of this system to be $E=\frac{7}{2} k_B T$. Now we'll verify this the hard way.
+
+Assuming the particles don't interact, the partition function $Z$ factors into a product of one-particle partition functions $Z_1$. For indistinguishable particles, we'd thus have $Z = \frac{1}{N!} Z_1^N$. Writing out $Z_1$ and integrating each term, we have
+$$
+\begin{align*}
+Z_1 &= \frac{1}{h^6} \int d^3 \mathbf{X} \ d^3 \mathbf{P} \ d^3 \mathbf{x} \ d^3 \mathbf{p} \ e^{-\beta H_1} \\
+&= \frac{1}{h^6} \int d^3 \mathbf{X} \int d^3 \mathbf{P} \ e^{-\beta \frac{\mathbf{P}^2}{2M}} \int 4\pi r^2 dr \ e^{-\frac{\beta\mu\omega^2}{2} r^2} \int d^3 \mathbf{p} \ e^{-\beta \frac{\mathbf{p}^2}{2\mu}} \\
+&= \frac{4\pi V}{h^6} \bigg(\frac{2\pi M}{\beta}\bigg)^{3/2} \bigg(\frac{2\pi \mu}{\beta}\bigg)^{3/2} \bigg(\frac{2\pi}{\mu\omega^2\beta}\bigg)^{1/2} \\
+&= \frac{16\pi^4 M^{3/2}}{h^6} \frac{V}{\beta^{7/2}} \ .
+\end{align*}
+$$
+From this expression we can easily read off the energy and pressure. As predicted by the equipartition theorem, we indeed have
+$$
+E=\frac{7}{2} Nk_B T.
+$$
+We can also easily see that the non-interacting diatomic gas has the same ideal gas law $PV=Nk_B T$. If we like, we can also calculate the heat capacity $C$, which turns out to be
+$$
+C = \frac{\partial E}{\partial T} \bigg |_{V,N} = \frac{7}{2} N k_B \ .
+$$
+This value for heat capacity is a precise prediction of classical statistical mechanics that we can test in the lab for any diatomic gas. In fact, at room temperature the measured heat capacity of most gases tends to be about $C = \frac{5}{2} Nk_B$. Essentially what's going on is that at room temperature the vibrational mode gets *frozen out*, leaving only the translational and rotational modes to contribute to the energy. The reason for this behavior we'll only be able to answer later with quantum statistical mechanics.
 
 ## Higher Ensembles
 

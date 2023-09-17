@@ -1,10 +1,10 @@
-# Interacting Particles
+# Classical Gases
 
-Now that we've covered the fundamentals of classical statistical mechanics we'll turn ourselves toward an important application of interest: the behavior of real gases, where particles are allowed to interact with each other. Recall the ideal gas assumes only non-interacting particles. We can extend the validity of the ideal gas by finding a virial expansion of the pressure in powers of density. We'll then use simplified potentials and mean field approximations to derive the important van der Waals equation of state and study its implications. This will then lead to a discussion of liquid-gas phase transitions and critical point behavior.
+Now that we've covered the fundamentals of classical statistical mechanics we'll turn ourselves toward an important application of interest: the classical behavior of real gases. In this section, when we say something is a *gas*, what we mean is any large collection of particles that interact in some way. The particles may not necessarily be far apart from each other. They may be in the liquid phase, even. We'll extend the validity of the ideal gas law, which applies exactly only for non-interacting gases, by finding a virial expansion of the pressure in powers of density. We'll then use simplified potentials and mean field approximations to derive the important van der Waals equation of state and study its implications. This will then lead to a discussion of phase transitions and critical phenomena, an advanced subject we'll only be able to touch on for now.
 
 ## Cumulant Expansion
 
-We'll start by formulating the statistical mechanics problem for a gas with an arbitrary interaction potential. Consider a gas of $N$ indistinguishable particles in a fixed container $\mathcal{B}$ of volume $V$. Suppose the gas has a Hamiltonian of the form
+We'll start by formulating the partition function for a gas with an arbitrary interaction potential $U$. Consider a gas of $N$ indistinguishable particles in a fixed container $\mathcal{B}$ of volume $V$. Suppose the gas has a Hamiltonian of the form
 $$
 H = \sum_{i=1}^N \bigg(\frac{\mathbf{p}_i}{2m} + V(\mathbf{x}_i)\bigg) + U(\mathbf{x}_1, \mathbf{x}_2, \cdots, \mathbf{x}_N),
 $$
@@ -13,10 +13,10 @@ $$
 \begin{align*}
 Z &= \frac{1}{N! h^{3N}} \int d^{3N} \mathbf{x} \ d^{3N} \mathbf{p} \ e^{-\beta H} \\
 &= \frac{1}{N! h^{3N}}\int_\mathcal{B} d^{3N} \mathbf{x} \ e^{-\beta U} \int d^{3N} \mathbf{p} \ e^{-\beta\sum \frac{\mathbf{p}_i}{2m}} \\
-&= \frac{1}{N!} \bigg(\frac{V}{\lambda^3}\bigg)^N \int_\mathcal{B} \frac{d^{3N} \mathbf{x}}{V^N} \ e^{-\beta U},
+&= \frac{1}{N!} \bigg(\frac{V}{\lambda_T^3}\bigg)^N \int_\mathcal{B} \frac{d^{3N} \mathbf{x}}{V^N} \ e^{-\beta U},
 \end{align*}
 $$
-where $\lambda = \frac{h}{\sqrt{2\pi m k_B T}}$ is the Thermal DeBroglie wavelength defined previously. In this form, we recognize that the terms outside the integral are just the partition function of the ideal gas, which we'll denote by $Z_0$. If we think of $\frac{1}{V^N}$ is some kind of uniform probability density over the container $\mathcal{B}$ then we can imagine the above integral being some kind of expected value $\langle e^{-\beta U} \rangle$. We can thus write the partition function in the simple form
+where $\lambda_T = \frac{h}{\sqrt{2\pi m k_B T}}$ is the Thermal DeBroglie wavelength defined previously. In this form, we recognize that the terms outside the integral are just the partition function of the ideal gas, which we'll denote by $Z_0$. If we think of $\frac{1}{V^N}$ is some kind of uniform probability density over the container $\mathcal{B}$ then we can imagine the above integral being some kind of expected value $\langle e^{-\beta U} \rangle$. We can thus write the partition function in the simple form
 $$
 Z = Z_0 \langle e^{-\beta U} \rangle.
 $$
@@ -38,9 +38,6 @@ In this form, the full potential $U$ breaks up into a sum of potentials $u$ over
 $$
 U(\mathbf{x}_1, \mathbf{x}_2, \cdots, \mathbf{x}_N) = \sum_{i=1}^N \sum_{j=i+1}^N u(|\mathbf{x}_i - \mathbf{x}_j|) \equiv \sum_{i < j} u_{ij} \ .
 $$
-
-
-### Quadratic Expansion
 
 With this functional form we can proceed to simplify the cumulants one by one. Let's start with the mean. Notice that since all integrals are over the same potential over the same region, we can think of them as a multiple of a single pairwise integral. There are $\binom{N}{2}$ such integrals. Each integral is only over two coordinates. The rest yield a factor of $V^{N-2}$. We thus have
 $$
@@ -94,7 +91,7 @@ $$
 $$
 In the most dilute limit we recover the ordinary ideal gas law. The first correction subtracts a term proportional to $n^2$. And so on.
 
-### Mayer Function
+### Mayer F-Function
 
 While it's nice to have an expansion in terms of the density, what we have isn't actually practical to work with. In particular, the second virial coefficient is a series of integrals that are not at all obvious to compute. We can attempt to sum it up though by using the expansion of the exponential function to write write
 $$
@@ -103,13 +100,13 @@ $$
 &= \int d^3\mathbf{x} \ \bigg[\exp\big(-\beta u(r)\big) - 1\bigg] . \\
 \end{align*}
 $$
-If we define the integrand to be $f(r) \equiv \exp\big(-\beta u(r)\big) - 1$, what we've done is found an expansion in terms of various integrals of $f(r)$, usually called the **Mayer function**. The integral of this function will converge as long as the potential itself decays sufficiently rapidly, e.g. as the van der Waals interaction would. In terms of this function, we can re-write the virial expansion as
+If we define the integrand to be $f(r) \equiv \exp\big(-\beta u(r)\big) - 1$, what we've done is found an expansion in terms of various integrals of $f(r)$, called the **Mayer f-function**. The integral of this function will converge as long as the potential itself decays sufficiently rapidly, e.g. as the van der Waals interaction would. In terms of this function, we can re-write the virial expansion as
 $$
 \beta P = n - \frac{n^2}{2} \int d^3\mathbf{x} \ f(r) + O(n^3).
 $$
-Provided we can integrate this Mayer function for some given interaction potential, we can find an expansion for the pressure at least up to second order in the density. It's worth noting, however, that this is only a good expansion in the *dilute limit* when densities are small. In the opposite situation we'd have the *dense limit*, which describes the behavior of plasmas. In that scenario we'd want to use a completely different type of expansion, e.g. *ring diagrams*.
+Provided we can integrate the Mayer f-function for some given interaction potential, we can find an expansion for the pressure at least up to second order in the density. It's worth noting, however, that this is only a good expansion in the *dilute limit* when densities are small. In the opposite situation we'd have the *dense limit*, which describes the behavior of plasmas. In that scenario we'd want to use a completely different type of expansion, e.g. *ring diagrams*.
 
-Of course, we'd like to be able to look at all the higher virial coefficients as well, not just the second order term. Continuing to do so with cumulants will be cumbersome since we're always stuck summing these kinds of series. The fact that things come out so cleanly in terms of the Mayer function suggests that we should instead consider expanding things in terms of it rather than the cumulants. This leads to the cluster expansion.
+Of course, we'd like to be able to look at all the higher virial coefficients as well, not just the second order term. Continuing to do so with cumulants will be cumbersome since we're always stuck summing these kinds of series. The fact that things come out so cleanly in terms of the Mayer f-function suggests that we should instead consider expanding things in terms of it rather than the cumulants. This leads to the cluster expansion.
 
 ## Cluster Expansion
 
@@ -178,13 +175,14 @@ $$
 $$
 
 
+
 ### Virial Expansion
 
 As with the cumulant expansion, what we're mainly interested in here is getting a formula for the *pressure*. The easiest way to do that here is to use extensivity. Using the fact $\mathcal{G} = -k_B T \log \mathcal{Z} = -PV$ for an extensive system, we can express the pressure as
 $$
 \beta P = \frac{1}{V} \log \mathcal{Z} = \sum_{\ell=1}^\infty \frac{1}{\ell!} \frac{b_\ell}{V} \bigg(\frac{e^{\beta\mu}}{\lambda^3}\bigg)^{\ell}.
 $$
-Notice that this quantity must be intensive since $\log \mathcal{Z}$ must be extensive and we're dividing by the volume $V$. To make this clear, let's conveniently define $\textblank_\ell \equiv \frac{b_\ell}{V}$. Let's also define $x \equiv \frac{e^{\beta\mu}}{\lambda^3}$. Noting that $b_1 = V$ implies $\textblank_1 = 1$, we can thus write
+Notice that this quantity must be intensive since $\log \mathcal{Z}$ must be extensive and we're dividing by the volume $V$. To make this clear, let's conveniently define $\textblank_\ell \equiv \frac{b_\ell}{V}$. Let's also define $x \equiv \frac{e^{\beta\mu}}{\lambda_T^3}$. Noting that $b_1 = V$ implies $\textblank_1 = 1$, we can thus write
 $$
 \beta P = \sum_{\ell=1}^\infty \frac{\textblank_\ell}{\ell!} x^{\ell} = x + \frac{\textblank_2}{2} x^2 + \frac{\textblank_3}{6} x^3 + \cdots \ .
 $$
@@ -251,19 +249,19 @@ Of course, we still have no way to actually *calculate* what the virial coeffici
 
 ## Van der Waals Interactions
 
-The true interaction forces in real gases can be quite complicated. Typically gases will be electrically neutral, so Coulomb forces don't tend to play a role. What's left are much shorter-range forces arising from the permanent or induced dipole interactions between particles. These short-range forces are called **van der Waals forces**. Typically, such forces fall off very rapidly with particle separation due to the background of other molecules, and rapidly increase as the two particles get too close together due to the Pauli exclusion principle forbidding their ability to be on top of each other.
+The true interaction forces in real gases can be quite complicated. Typically gases will be electrically neutral, so Coulomb forces don't tend to play a role. What's left are much shorter-range forces arising from the permanent or induced dipole interactions between particles. These short-range forces are called **van der Waals forces**. Typically, such forces fall off very rapidly with the particle separation distance, and rapidly increase as the two particles get too close together. To understand exactly why these forces occur and how they really behave we'd need fairly advanced quantum mechanics. But for our purposes it suffices to adopt a highly simplified crude model, which will lead us to the *van der Waals equation* of state.
 
 ### Simple Model
 
-A very crude model of the van der Waals force that's decent enough for statistical mechanical purposes is to assume the forces arise from a radially symmetric potential of the form
+A very crude model of the van der Waals force is to assume the forces arise from a radially symmetric potential of the form
 $$
 u(r) = 
 \begin{cases}
--u_0 \bigg(\frac{r_0}{r}\bigg)^6 & r \geq r_0 \ , \\
+-u_0 \big(\frac{r_0}{r}\big)^6 & r \geq r_0 \ , \\
 \infty & r < r_0 \ . \\
 \end{cases}
 $$
-At close distances we'll assume the force is infinitely repulsive when $r < r_0$. This *hard wall* idea approximates the effect that particles will bounce off each other if they get too close, with $r_0$ usually on the order of Angstroms for atoms or molecules. When $r \gg r_0$ the force becomes weakly attractive due to screening, with the potential falling off like $r^{-6}$. The other constant $u_0$ characterizes the strength of the interaction, with $u_0$ usually something like room temperature in temperature units.
+At close distances we'll assume the force is infinitely repulsive when $r < r_0$. This *hard wall* idea approximates the effect that particles will bounce off each other if they get too close, within some distance $r_0$ that's usually on the order of Angstroms for atoms or molecules. When $r \gg r_0$ the force becomes weakly attractive, with the potential falling off like $r^{-6}$. The remaining positive constant $u_0$ characterizes the strength of the interaction, usually around room temperature in temperature units.
 
 ![](./resources/image-20230817091608554.png){fig-align=center width=400}
 
@@ -309,9 +307,9 @@ Before proceeding, it's worth stepping back and asking whether the virial expans
 
 1. High densities: Clearly if $n$ is large we can't truncate the virial expansion to second order like we did. We'd need to deal with all the higher order terms as well. Fortunately for a gas this isn't really an issue. Notice that the series grows like the ratio of the first two terms, which goes like
    $$
-   \frac{B_2n^2}{B_1n} = \frac{\frac{\omega}{2} (1-\beta u_0)n^2}{n} \sim \frac{N\omega}{V}.
+   \frac{B_2n^2}{B_1n} = \frac{\frac{\omega}{2} (1-\beta u_0)n^2}{n} \sim n\omega.
    $$
-   Roughly speaking, $\frac{N\omega}{V}$ is the density of the gas divided by its density when liquified. For air at STP, we already saw that ratio of densities is about $10^{-3}$, clearly small enough that we can justify neglecting higher order terms in the expansion. Of course, while this is true for *gases*, it's not always true. For example, it's not true for liquids or plasmas.
+   Roughly speaking, $n\omega$ is the density of the gas divided by its density when liquified. For air at STP, we already saw that ratio of densities is about $10^{-3}$, clearly small enough that we can justify neglecting higher order terms in the expansion. Of course, while this is true for *gases*, it's not always true. For example, it's not true for liquids or plasmas.
 
 2. Low temperatures: In deriving the virial coefficient $B_2$ we made the crucial assumption that $k_B T \gg u_0$. That is, we assumed that temperatures are large compared to the molecular interaction strengths. For gases at room temperatures this is fine, but as temperatures go towards absolute zero things break down and this approximation no longer holds.
 
@@ -328,13 +326,13 @@ In typical conditions the pressure correction will often be much larger than the
 
 ## Phase Transitions
 
-The fact that the van der Waals equation only seems to become important as a gas starts to liquify suggests that we should study this transition region from gas to liquid. This is one of many examples of a **phase transition**, an apparently discontinuous change in the properties of a system. When dealing with gases, phase transitions often manifest as sharp lines in the *phase diagram*, i.e. a diagram of pressure vs temperature. Such a diagram often looks something like the following.
+The fact that the van der Waals equation only seems to become important as a gas starts to liquify suggests that we should study this transition region from gas to liquid. This is one of many examples of a **phase transition**, a discontinuous change in the properties of a system as a state variable changes. When dealing with gases, phase transitions often manifest as sharp lines in the *phase diagram*, i.e. the diagram of pressure vs temperature. Recall such a diagram looks very roughly like the following.
 
 ![](./resources/image-20230812012625268.png){fig-align=center width=400}
 
-Phase diagrams often show similar patterns. At low $T$ the gas is in its *solid phase*. All the particles are aligned in something like a crystal lattice. At higher $T$ the gas moves into its *liquid phase*. In this phase, the particles are still close together, but they're no longer locked into a lattice anymore. They're allowed to move around on top of each other. As $T$ increases further the gas moves into its *gas phase*. In this phase the particles start to move apart from each other, behaving more and more like an ideal gas where $P \propto T$. 
+Phase diagrams often show similar patterns. At low $T$ and $P$ the gas is in its *solid phase*. All the particles are aligned in something like a crystal lattice. As $T$ increases the gas moves into its *liquid phase*. In this phase, the particles are still close together, but they're no longer locked into a lattice anymore. They're allowed to move around on top of each other. As $T$ increases further the gas moves into its *gas phase*. In this phase the particles start to move apart from each other, behaving more like an ideal gas.
 
-What's more interesting are the sharp lines separating the phases. Suppose we fixed $T$ relatively high and started increasing $P$. The gas starts in its gas phase, but at some pressure $P=P(T)$ the gas undergoes a phase transition, turning sharply into a liquid as it crosses the gas-liquid phase line. What's more interesting, however, is that this is only true for temperatures below some **critical temperature** $T_c$. If $T > T_c$ no phase transition happens at all. Something strange evidently happens at this point.
+What's more interesting are the sharp lines separating the phases, called *coexistence curves*. Suppose we fixed $T$ relatively high and started increasing $P$. The gas starts in its gas phase, but at some pressure $P=P(T)$ the gas undergoes a phase transition, turning sharply into a liquid as it crosses the gas-liquid coexistence curve. What's more interesting though is that this fact is only true for temperatures below some **critical temperature** $T_c$. If $T > T_c$ no phase transition happens at all. The gas stays in the same phase and just gets continuously more dense. Something strange evidently happens at this critical point.
 
 ### Critical Points
 
@@ -342,7 +340,7 @@ To understand this in more depth let's consider again the van der Waals interact
 $$
 P = \frac{Nk_B T}{V-Nb} - a \frac{N^2}{V^2}.
 $$
-If we plot the isotherms of this equation for different values of $T$, we get something like the following.
+If we plot the isotherms of this equation for different values of $T$, we get something roughly like the following.
 
 ![](./resources/image-20230812014318099.png){fig-align=center width=400}
 
@@ -398,7 +396,7 @@ Now, recall the variance of a random variable must always be non-negative. This 
 
 ### Maxwell Construction
 
-So what's going on in the subcritical region where $T < T_c$? In fact a *phase transition* is happening. Imagine varying the pressure on the gas and seeing how the volume (and hence the density) of the gas changes, e.g. by applying a force to a piston. 
+So what's going on in the *subcritical* regime where $T < T_c$? In fact a *phase transition* is happening. Imagine varying the pressure on the gas and seeing how the volume (and hence the density) of the gas changes, e.g. by applying a force to a piston. 
 
 1. At low pressures the allowed states are on the far right of the subcritical isotherms. In this region the ideal gas law more or less holds, perhaps with minor corrections. Any small changes in pressure will cause proportionally small changes in the volume of the gas. That is, the gas behaves like a gas. It's in its *gas phase*.
 2. At high pressures the allowed states are instead on the far left of the isotherms, asymptotically approaching the barrier at the excluded volume $Nb$. In this region, to get a small change in volume we'd need to apply a huge change in pressure. The gas is almost incompressible. In fact, the gas is in its *liquid phase*, since $V \approx Nb$ implies the particles are densely packed together.
@@ -440,7 +438,7 @@ Recall by extensivity the chemical potential is just the Gibbs free energy per p
 $$
 dG = -SdT + VdP.
 $$
-Dividing both sides by $N$ and asserting the chemical equilibrium condition $\mu_{liq}=\mu_{gas}$, we have
+Dividing both sides by $N$ and asserting the chemical equilibrium condition $d\mu_{liq}=d\mu_{gas}$, we have
 $$
 d\mu_{liq} = -s_{liq} dT + v_{liq} dP = -s_{gas} dT + v_{gas} dP = d\mu_{gas},
 $$
@@ -460,9 +458,9 @@ In principle this can be a difficult formula to solve since we need to calculate
 $$
 \frac{dP}{dT} \approx \frac{LP}{k_B T^2} \qquad \Longrightarrow \qquad P(T) \approx P_0 \exp\bigg[-\frac{L}{k_B} \bigg(\frac{1}{T}-\frac{1}{T_0}\bigg)\bigg] \ .
 $$
-Such a curve has the interesting behavior of being convex near $T \approx T_0$ before eventually turning over like $P \sim -\frac{1}{T}$. Typically $T_0$ is some reference temperature like room temperature or the triple point. Of course, the curve completely stops at the critical temperature $T_c$ anyway, so the high-temperature behavior of the curve is often unimportant.
+Such a curve has the interesting behavior of being convex near $T \approx T_0$ before eventually turning over like $P \sim -\frac{1}{T}$. Typically $T_0$ is some reference temperature like the triple point of the gas. Of course, the curve completely stops at the critical temperature $T_c$ anyway, so the high-temperature behavior of the curve is often unimportant.
 
-![](./resources/image-20230815105906749.png){fig-align=center width=400}
+![](./resources/image-20230827155744011.png){fig-align=center width=400}
 
 Note that this formula can also be used just as well for gas-solid phase transitions, except with $L$ taking on a different value due to the different type of chemical equilibrium in that case. The solid-liquid transition is a different story. There we can't use these approximations at all. These coexistence curves can take on very different shapes. For example, the coexistence curve between water and ice is *negatively-sloped*. This means ice is *less* dense than water, which is why ice floats on water.
 

@@ -1,0 +1,957 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.335">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Personal Notes - 31&nbsp; Quantum Statistical Mechanics</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../statistical-mechanics/quantum-gases.html" rel="next">
+<link href="../statistical-mechanics/classical-gases.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+</head>
+
+<body class="nav-sidebar docked">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-title">Quantum Statistical Mechanics</span></h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">Personal Notes</a> 
+    </div>
+      </div>
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">Preface</a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false">Classical Mechanics</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../classical-mechanics/newtonian-mechanics.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Newtonian Mechanics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../classical-mechanics/simple-systems.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Simple Systems</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../classical-mechanics/reference-frames.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Reference Frames</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../classical-mechanics/lagrangian-mechanics.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Lagrangian Mechanics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../classical-mechanics/hamiltonian-mechanics.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Hamiltonian Mechanics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../classical-mechanics/central-forces.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Central Forces</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../classical-mechanics/coupled-oscillations.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Coupled Oscillations</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../classical-mechanics/rigid-bodies.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Rigid Bodies</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../classical-mechanics/canonical-transformations.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Canonical Transformations</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../classical-mechanics/integrability-and-chaos.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Integrability and Chaos</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../classical-mechanics/continuum-mechanics.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Continuum Mechanics</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">Electrodynamics</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../electrodynamics/introduction.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Introduction</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../electrodynamics/electrostatics.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Electrostatics</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">Circuit Analysis</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../circuits/circuit-abstraction.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">The Lumped Circuit Abstraction</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../circuits/analysis.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Analyzing Circuits</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../circuits/nonlinear-methods.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Nonlinear Methods</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../circuits/digital-abstraction.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">The Digital Abstraction</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../circuits/amplifiers.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Amplifiers</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../circuits/first-order-systems.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">First-Order Systems</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../circuits/second-order-systems.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Second-Order Systems</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../circuits/ac-analysis.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">AC Analysis</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../circuits/op-amps.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Operational Amplifiers</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../circuits/energy-power.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Energy and Power</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false">Quantum Mechanics</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../quantum-mechanics/identical-particles.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Identical Particles</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../quantum-mechanics/second-quantization.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Second Quantization</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">Statistical Mechanics</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../statistical-mechanics/thermodynamics.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Thermodynamics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../statistical-mechanics/probability.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Probability</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../statistical-mechanics/kinetic-theory.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Kinetic Theory</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../statistical-mechanics/classical-stat-mech.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Classical Statistical Mechanics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../statistical-mechanics/classical-gases.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Classical Gases</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../statistical-mechanics/quantum-stat-mech.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">Quantum Statistical Mechanics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../statistical-mechanics/quantum-gases.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Quantum Gases</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#quantum-mechanics" id="toc-quantum-mechanics" class="nav-link active" data-scroll-target="#quantum-mechanics">Quantum Mechanics</a>
+  <ul class="collapse">
+  <li><a href="#quantum-microstates" id="toc-quantum-microstates" class="nav-link" data-scroll-target="#quantum-microstates">Quantum Microstates</a></li>
+  <li><a href="#example-free-particle" id="toc-example-free-particle" class="nav-link" data-scroll-target="#example-free-particle">Example: Free Particle</a></li>
+  <li><a href="#example-particle-in-a-box" id="toc-example-particle-in-a-box" class="nav-link" data-scroll-target="#example-particle-in-a-box">Example: Particle in a Box</a></li>
+  </ul></li>
+  <li><a href="#density-operator" id="toc-density-operator" class="nav-link" data-scroll-target="#density-operator">Density Operator</a></li>
+  <li><a href="#statistical-mechanics" id="toc-statistical-mechanics" class="nav-link" data-scroll-target="#statistical-mechanics">Statistical Mechanics</a>
+  <ul class="collapse">
+  <li><a href="#microcanonical-ensemble" id="toc-microcanonical-ensemble" class="nav-link" data-scroll-target="#microcanonical-ensemble">Microcanonical Ensemble</a></li>
+  <li><a href="#canonical-ensemble" id="toc-canonical-ensemble" class="nav-link" data-scroll-target="#canonical-ensemble">Canonical Ensemble</a></li>
+  <li><a href="#higher-ensembles" id="toc-higher-ensembles" class="nav-link" data-scroll-target="#higher-ensembles">Higher Ensembles</a></li>
+  <li><a href="#classical-limit" id="toc-classical-limit" class="nav-link" data-scroll-target="#classical-limit">Classical Limit</a></li>
+  <li><a href="#example-particle-in-a-box-1" id="toc-example-particle-in-a-box-1" class="nav-link" data-scroll-target="#example-particle-in-a-box-1">Example: Particle in a Box</a></li>
+  <li><a href="#density-of-states" id="toc-density-of-states" class="nav-link" data-scroll-target="#density-of-states">Density of States</a></li>
+  <li><a href="#example-harmonic-oscillator" id="toc-example-harmonic-oscillator" class="nav-link" data-scroll-target="#example-harmonic-oscillator">Example: Harmonic Oscillator</a></li>
+  </ul></li>
+  <li><a href="#three-classic-problems" id="toc-three-classic-problems" class="nav-link" data-scroll-target="#three-classic-problems">Three Classic Problems</a>
+  <ul class="collapse">
+  <li><a href="#diatomic-gases" id="toc-diatomic-gases" class="nav-link" data-scroll-target="#diatomic-gases">Diatomic Gases</a></li>
+  <li><a href="#heat-capacity-of-solids" id="toc-heat-capacity-of-solids" class="nav-link" data-scroll-target="#heat-capacity-of-solids">Heat Capacity of Solids</a></li>
+  <li><a href="#blackbody-radiation" id="toc-blackbody-radiation" class="nav-link" data-scroll-target="#blackbody-radiation">Blackbody Radiation</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content column-body" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title d-none d-lg-block"><span class="chapter-title">Quantum Statistical Mechanics</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<p>Just as classical mechanics has its limitations in its ability to explain the behavior of particles at or below the atomic level, classical statistical mechanics has its limitations as well. In particular, it tends to break down at low temperatures. For example, we weren’t able to derive the third law of thermodynamics, the statement that both entropy and heat capacity should go to zero at absolute zero, from classical statistical mechanics.</p>
+<p>There are several problems that arose in the late 19th century that highlighted the limitations of classical statistical mechanics. We’ll use quantum statistical mechanics to resolve three of these important problems at the end of this chapter. These deal with the heat capacity of diatomic gases, the heat capacity of solids, and the problem of blackbody radiation. Before we cover these problems we’ll start by reviewing the theory of quantum mechanics, and from there proceed to formulate the quantum version of statistical mechanics, <em>quantum statistical mechanics</em>.</p>
+<section id="quantum-mechanics" class="level2">
+<h2 class="anchored" data-anchor-id="quantum-mechanics">Quantum Mechanics</h2>
+<p>Let’s briefly recall how we initiated the theory of classical statistical mechanics. We started by supposing a system had some huge number of <em>microstates</em> <span class="math inline">\(\mu = \{\mathbf{x}_i, \mathbf{p}_i\}\)</span>. We then wanted to figure out how many of these microstates corresponded to any one individual <em>macrostate</em> <span class="math inline">\(M=(E,X,N)\)</span>. This led us to a definition of the of the equilibrium probability density as the phase space density under the macroscopic constraints. From this we were then able to specify the various statistical ensembles and derive the laws of thermodynamics.</p>
+<p>We can do something similar in the quantum version, except we need to rethink what exactly it is we mean by a microstate. In classical mechanics we define a state as a point <span class="math inline">\((\mathbf{x},\mathbf{p})\)</span> in the phase space. In quantum mechanics, however, we have to contend with the uncertainty principle, which forbids knowing both <span class="math inline">\(\mathbf{x}\)</span> and <span class="math inline">\(\mathbf{p}\)</span> simultaneously too precisely. More correctly, for each component we have the uncertainty relation <span class="math display">\[
+\Delta x_i \Delta p_j \geq \frac{\hbar}{2} \delta_{ij} \ ,
+\]</span> where <span class="math inline">\(\hbar \approx 10^{-34} \text{ J s}\)</span> is the <strong>reduced Planck constant</strong>. This really tiny number limits how closely we can resolve points in phase space, since we’re disallowed by the uncertainty principle from localizing points at finer scales than <span class="math inline">\(\hbar\)</span>. We can really only imagine defining smooth functions on phase space at scales much larger than <span class="math inline">\(\hbar\)</span>. Below that we have to transition to quantum mechanics.</p>
+<section id="quantum-microstates" class="level3">
+<h3 class="anchored" data-anchor-id="quantum-microstates">Quantum Microstates</h3>
+<p>In quantum mechanics, a microstate <span class="math inline">\(\mu\)</span> is specified by an abstract <strong>ket</strong> vector <span class="math inline">\(| \psi\rangle\)</span> that lives in a complex <strong>Hilbert space</strong> which can be of any dimension, finite or infinite. We assume all the rules of the linear algebra for complex vectors applies to Hilbert spaces. For example, we assume we can decompose any ket in the Hilbert space into a linear combination of basis kets, e.g. <span class="math display">\[
+|\psi\rangle = \sum_{n} \langle n | \psi\rangle |n \rangle \equiv \sum_{n} \psi_n |n \rangle \ .
+\]</span> Here <span class="math inline">\(\psi_n \equiv \langle n | \psi\rangle\)</span> is the complex-valued inner product between the kets <span class="math inline">\(|n\rangle\)</span> and <span class="math inline">\(|\psi \rangle\)</span>. Notice the ket <span class="math inline">\(|n\rangle\)</span> gets converted first into a <strong>bra</strong> vector <span class="math inline">\(\langle n |\)</span>, which can be thought of as the conjugate transpose of the ket <span class="math inline">\(|n\rangle\)</span>. This implies we can write the inner product between any two vectors by applying the bra of one to the ket of the other, <span class="math display">\[
+\langle \phi | \psi \rangle = \sum_n \phi_n^* \psi_n \ .
+\]</span> We typically require that kets in the Hilbert space be normalized, i.e.&nbsp;<span class="math inline">\(\langle \psi | \psi \rangle = 1\)</span> for any <span class="math inline">\(|\psi \rangle\)</span>. This means that the <em>length</em> of a vector in quantum mechanics contains no physical information. The reason we normalize them to one is so we can use them to represent probability densities, or <em>amplitudes</em>. This is done using the <em>Born rule</em>, which says that the norm of a vector represents the probability of that state being observed. For example, the inner product <span class="math inline">\(|\psi_n|^2 = \langle n|\psi \rangle^2\)</span> represents the probability amplitude that <span class="math inline">\(|\psi\rangle\)</span> is found exactly in the state <span class="math inline">\(|n\rangle\)</span>. If <span class="math inline">\(|n\rangle\)</span> represents a state with energy <span class="math inline">\(E_n\)</span>, then <span class="math inline">\(|\psi_n|^2\)</span> represents the probability density of <span class="math inline">\(|\psi\rangle\)</span> having energy <span class="math inline">\(E_n\)</span>. That is, <span class="math inline">\(p_\psi(E=E_n) = |\psi_n|^2\)</span>.</p>
+<p>It’s important to note that this is a fundamentally different kind of probability than that of statistical mechanics. It’s an <em>irreducible</em> probability, not one arising from our ignorance about the system. No matter how much knowledge we have of the system, or how well we can measure it, we still have to contend with these sorts of quantum probabilities.</p>
+<p>In practice, it’s often useful to think of states using <strong>wavefunctions</strong>, which are the components <span class="math inline">\(\psi(\mathbf{x})\)</span> of kets in the position basis, <span class="math display">\[
+|\psi \rangle = \int d^3 \mathbf{x} \ \langle \mathbf{x} | \psi\rangle |\mathbf{x} \rangle \equiv \int d^3 \mathbf{x} \  \psi(\mathbf{x}) |\mathbf{x} \rangle \ .
+\]</span> By the Born rule, if <span class="math inline">\(|\psi\rangle\)</span> represents the state of some particle, we can think of the amplitude <span class="math inline">\(|\psi(\mathbf{x})|^2\)</span> as the probability density of observing that particle in space near the point <span class="math inline">\(\mathbf{x}\)</span>. We can imagine wavefunctions in other bases as well. For example, the momentum space wavefunction is defined in a similar way by <span class="math inline">\(\psi(\mathbf{p}) \equiv \langle \mathbf{p}|\psi \rangle\)</span>.</p>
+<p>In classical mechanics, we can think of <em>observables</em> like energy, momentum, etc. as functions <span class="math inline">\(Q(\mathbf{x},\mathbf{p})\)</span> on the phase space. We could then proceed to study the dynamics of those observables by looking at their Poisson bracket with the Hamiltonian, <span class="math display">\[
+\frac{dQ}{dt} = \{Q, H\} \ .
+\]</span> By the uncertainty principle this is again disallowed in quantum mechanics. Instead, we think of observables as <strong>operators</strong> <span class="math inline">\(Q\)</span> that map kets to other kets in the Hilbert space, e.g.&nbsp;<span class="math inline">\(Q|\psi\rangle = |\psi\rangle\)</span>. We also require that observables be <strong>Hermitian</strong>, meaning <span class="math inline">\(Q\)</span> must equal its conjugate transpose <span class="math inline">\(Q^\dagger\)</span>. This ensures the spectrum of eigenvalues of <span class="math inline">\(Q\)</span> are all real-valued and the eigenvectors are all orthogonal, or can be chosen to be orthogonal.</p>
+<p>In classical mechanics we can imagine measuring some observable <span class="math inline">\(Q\)</span> to as high a precision as we like by tuning the apparatus to make better and better measurements. In quantum mechanics this is again disallowed by the uncertainty principle. Instead, attempts to measure <span class="math inline">\(Q\)</span> will force it to randomly take on one of a set of fixed values, its <em>spectrum</em> of eigenvalues. Mathematically, if <span class="math inline">\(Q\)</span> is some observable and we attempt to measure it in some state <span class="math inline">\(|\psi\rangle\)</span>, we imagine measurement as sampling some <span class="math inline">\(q\)</span> from the distribution defined by the density <span class="math inline">\(p_\psi(q)=|\psi_q|^2\)</span>. This also means we can define an expected value for <span class="math inline">\(Q\)</span> in the usual way, <span class="math display">\[
+\langle Q \rangle_\psi \equiv \sum_q q \ p_\psi(q) = \langle \psi | Q | \psi \rangle \ .
+\]</span> Notice the probability density and expected value both depend on the state <span class="math inline">\(|\psi\rangle\)</span>. If the state changes, so will these functions. Again, there is nothing <em>statistical</em> about this probability. Even with a single particle we’d still have to worry about it.</p>
+<p>To study the dynamics of observables in quantum mechanics we should replace the Poisson bracket with the <strong>commutator</strong> <span class="math display">\[
+[A,B] \equiv AB - BA,
+\]</span> a measure of how much the operators <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> fail to commute with each other. If two observables commute we can in principle measure them simultaneously with no uncertainty. Otherwise they obey an uncertainty principle. For example, we already know the position operator <span class="math inline">\(\mathbf{x}\)</span> doesn’t commute with the momentum operator <span class="math inline">\(\mathbf{p}\)</span> since they have an uncertainty principle. In fact, their components satisfy the commutation relation <span class="math display">\[
+[x_i, p_j] = i\hbar\delta_{ij} \ .
+\]</span> Comparing this with the Poisson bracket relation <span class="math inline">\(\{x_i, p_j\} = \delta_{ij}\)</span> we can establish a crude identification between the two brackets, <span class="math display">\[
+[A,B] \quad \longleftrightarrow \quad -\frac{i}{\hbar} \{A,B\} \ .
+\]</span> This suggests that the time evolution of any observable <span class="math inline">\(Q\)</span> in quantum mechanics is given by <span class="math display">\[
+\frac{dQ}{dt} = -\frac{i}{\hbar} [Q, H] \ ,
+\]</span> where the Hamiltonian is now thought of as an operator. This relation is indeed true, at least in the <em>Heisenberg picture</em> of quantum mechanics, where operators are allowed to evolve in time. In the more elementary <em>Schrödinger picture</em> it’s the <em>states</em> that are allowed to evolve, not the operators. In this picture it’s the <em>expectation</em> of the operators that are allowed to time evolve this way. The time evolution of states can be found by using the requirement that the time evolution of kets must be given by a <em>unitary</em> operator <span class="math inline">\(U(t) \equiv e^{-\frac{i}{\hbar} Ht}\)</span>, where <span class="math inline">\(H\)</span> is the Hamiltonian, <span class="math display">\[
+|\psi(t)\rangle = U(t) |\psi(0)\rangle \ .
+\]</span> A unitary operator satisfies the condition that <span class="math inline">\(U U^\dagger = 1\)</span>. This implies that unitary operations conserve quantum probabilities, since <span class="math inline">\(U|\psi\rangle\)</span> will have the same probability amplitude as <span class="math inline">\(|\psi\rangle\)</span>. Requiring that time evolution be unitary in this way leads us to the time-dependent <strong>Schrödinger equation</strong>. If we assume <span class="math inline">\(t\)</span> is infinitesimal we can write <span class="math inline">\(U(t) \approx I - \frac{i}{\hbar} Ht\)</span>. Plugging this in and rearranging then gives the more familiar result for the time evolution of states, <span class="math display">\[
+H |\psi(t)\rangle = i\hbar \frac{\partial}{\partial t} |\psi(t) \rangle \ .
+\]</span> The eigenvalues of the Hamiltonian are the allowed energies the system can take on. If <span class="math inline">\(E_n\)</span> is an eigenvalue of <span class="math inline">\(H\)</span> with eigenvector <span class="math inline">\(|n\rangle\)</span>, we can trivially write <span class="math inline">\(H|n\rangle = E_n |n\rangle\)</span>. This is often called the <em>time-independent</em> Schrödinger equation.</p>
+<p>An important set of relationships to be aware of in quantum mechanics is that between position and momentum. We already saw that the position and momentum operators satisfy the commutation relation <span class="math inline">\([x_i, p_j] = i\hbar\delta_{ij}\)</span>. This means that it’s impossible to simultaneously diagonalize the two operators and get product states like <span class="math inline">\(|\mathbf{x},\mathbf{p}\rangle\)</span>. If we could do that we could just use the classical theory of Hamiltonian dynamics. Instead, we have to think about the position basis and momentum basis as being distinct representations. It’s possible to show, however, that the two representations are Fourier transforms of each other, <span class="math display">\[
+|\mathbf{p} \rangle = \int \frac{d^3 \mathbf{x}}{(2\pi\hbar)^{3/2}} \ e^{\frac{i}{\hbar} \mathbf{x} \cdot \mathbf{p}} |\mathbf{x}\rangle \ .
+\]</span> This relation essentially encodes the uncertainty principle. For example, if <span class="math inline">\(|\mathbf{x}\rangle\)</span> were known exactly in position space, then its wavefunction would be a delta function. But the Fourier transform of a delta function is a constant, which means that in momentum space we’d have to allow for the system to have any possible momentum with equal probability.</p>
+<p>The Fourier relation above is particularly useful when solving the Schrödinger equation for a free particle. For these kinds of problems it’s more convenient to work rescale units to get rid of factors of <span class="math inline">\(\hbar\)</span>. We can do that by using the <em>DeBroglie relation</em> <span class="math inline">\(\mathbf{p} = \hbar \mathbf{k}\)</span>, where <span class="math inline">\(\mathbf{k}\)</span> is the <em>wavevector</em> defined by <span class="math inline">\(|\mathbf{k}| = \frac{2\pi}{\lambda}\)</span>. Here <span class="math inline">\(\lambda\)</span> is the <em>wavelength</em> of a wavefunction moving with momentum <span class="math inline">\(\mathbf{p}\)</span>. In this slight rescaling of units the factors of <span class="math inline">\(\hbar\)</span> disappear and the Fourier transform becomes <span class="math display">\[
+|\mathbf{k} \rangle = \int \frac{d^3 \mathbf{x}}{(2\pi)^{3/2}} \ e^{i \mathbf{x} \cdot \mathbf{k}} |\mathbf{x}\rangle \ .
+\]</span> Since we’ll end up using it later, let’s go ahead and work it out the quantum dynamics of the free particle.</p>
+</section>
+<section id="example-free-particle" class="level3">
+<h3 class="anchored" data-anchor-id="example-free-particle">Example: Free Particle</h3>
+<p>Consider a particle moving in free space. We’ve seen many times such a particle has Hamiltonian <span class="math inline">\(H = \frac{\mathbf{p}^2}{2m}\)</span>, except in this case we should think of <span class="math inline">\(H\)</span> as an operator that depends solely on the momentum operator <span class="math inline">\(\mathbf{p}\)</span>. For convenience we’ll rescale and work in units of the wavevector <span class="math inline">\(\mathbf{k}\)</span>. This means that the eigenvectors of <span class="math inline">\(H\)</span> are also the eigenvectors of <span class="math inline">\(\mathbf{k}\)</span>, hence <span class="math display">\[
+H | \mathbf{k} \rangle = E(\mathbf{k}) | \mathbf{k} \rangle = \frac{\hbar^2 \mathbf{k}^2}{2m} |\mathbf{k} \rangle \ .
+\]</span> We thus have an expression for the energy in terms of the wavevector as <span class="math inline">\(E(\mathbf{k}) = \frac{\hbar^2 \mathbf{k}^2}{2m}\)</span>. Suppose we’re interested in the energy wavefunctions <span class="math inline">\(\psi_\mathbf{k}(\mathbf{x}) = \langle \mathbf{x} |\mathbf{k} \rangle\)</span> as well. These are just the wavefunctions associated with the Fourier transform for <span class="math inline">\(|\mathbf{k}\rangle\)</span>, <span class="math display">\[
+\begin{align*}
+\psi_\mathbf{k}(\mathbf{x}) &amp;= \langle \mathbf{x} |\mathbf{k} \rangle \\
+&amp;= \int \frac{d^3 \mathbf{x}'}{(2\pi)^{3/2}} \ e^{i \mathbf{x}' \cdot \mathbf{k}} \langle \mathbf{x}|\mathbf{x}'\rangle \\
+&amp;= \int \frac{d^3 \mathbf{x}'}{(2\pi)^{3/2}} \ e^{i \mathbf{x}' \cdot \mathbf{k}} \delta(\mathbf{x} - \mathbf{x}') \\
+&amp;= \frac{1}{(2\pi)^{3/2}} e^{i \mathbf{x} \cdot \mathbf{k}} \ .
+\end{align*}
+\]</span> Thus, the energy eigenfunctions are just complex plane waves in position space. In fact, they’re plane waves in both position in time, since the time-dependent energy eigenfunctions are just the static wavefunctions multiplied by <span class="math inline">\(e^{-i\omega t}\)</span> where <span class="math inline">\(E=\hbar \omega\)</span>, <span class="math display">\[
+\psi_\mathbf{k}(\mathbf{x}, t) = \frac{1}{(2\pi)^{3/2}} e^{i (\mathbf{x} \cdot \mathbf{k}-\omega t)} \ .
+\]</span> The true wavefunction <span class="math inline">\(\psi(\mathbf{x}, t)\)</span> of the particle can be found by superimposing all the energy eigenfunctions together, <span class="math display">\[
+\psi(\mathbf{x},t) = \langle \mathbf{x} | \psi \rangle
+= \int d^3 \mathbf{k} \langle \mathbf{x} | \mathbf{k} \rangle \langle \mathbf{k} | \psi \rangle
+= \int d^3 \mathbf{k} \ \psi_\mathbf{k}(\mathbf{x}, t) \phi(\mathbf{k}) \ .
+\]</span> Here the coefficients <span class="math inline">\(\phi(\mathbf{k}) = \langle \mathbf{k} | \psi \rangle\)</span> are determined by the initial conditions. If the particle is reasonably well localized, <span class="math inline">\(\phi(\mathbf{k})\)</span> will tend to have a reasonably narrow peak around some particular <span class="math inline">\(\mathbf{k}\)</span>. This will tend to result in <span class="math inline">\(\psi(\mathbf{x},t)\)</span> having a shape where the waves are confined inside of a larger <em>wave packet</em>, whose <em>group velocity</em> is given from the dispersion relation <span class="math inline">\(\omega(\mathbf{k}) = \frac{\hbar \mathbf{k}^2}{2m}\)</span> as <span class="math display">\[
+\mathbf{v}_g \equiv \frac{d\omega}{d\mathbf{k}} = \frac{\hbar \mathbf{k}}{m} = \frac{\mathbf{p}}{m} \ .
+\]</span> The group velocity of the wave packet can be thought of as the quantum origin of the velocity of a classical particle, <span class="math inline">\(\mathbf{v} = \frac{\mathbf{p}}{m}\)</span>. Note that since <span class="math inline">\(\omega(\mathbf{k})\)</span> isn’t linear in <span class="math inline">\(\mathbf{k}\)</span> the wave will also be <em>dispersive</em>, with a <em>phase velocity</em> <span class="math inline">\(v_p \equiv \frac{\omega}{|\mathbf{k}|}\)</span> that’s <em>half</em> the group velocity.</p>
+</section>
+<section id="example-particle-in-a-box" class="level3">
+<h3 class="anchored" data-anchor-id="example-particle-in-a-box">Example: Particle in a Box</h3>
+<p>What if now we impose the requirement that the particle be confined to a box of dimensions <span class="math inline">\(L_x \times L_y \times L_z\)</span> with volume <span class="math inline">\(V\)</span>? In this case we have to be careful to impose the correct boundary conditions on the wavefunctions. We’ll assume that the wavefunction is <em>periodic</em> at the walls of the box. That is, <span class="math display">\[
+\begin{align*}
+\psi(x,y,z,t) &amp;= \psi(x+L_x,y,z,t), \\
+\quad \psi(x,y,z,t) &amp;= \psi(x,y+L_y,z,t), \\
+\quad \psi(x,y,z,t) &amp;= \psi(x,y,z+L_z,t) \ .
+\end{align*}
+\]</span> We should expect the energy eigenfunctions to have the same form as for a free particle, with <span class="math inline">\(\psi_\mathbf{k}(\mathbf{x}, t) \propto e^{i (\mathbf{x} \cdot \mathbf{k}-\omega t)}\)</span>, except that now the boundary conditions will impose constraints on the wavevector <span class="math inline">\(\mathbf{k}\)</span>. Periodicity of the boundary conditions require <span class="math display">\[
+A e^{i (xk_x + yk_y + zk_z-\omega t)} = A e^{i \big((x+L_x)k_x + yk_y + zk_z-\omega t\big)} \quad \Longrightarrow \quad e^{ik_x L_x} = 1 \ ,
+\]</span> and similarly for the <span class="math inline">\(y\)</span> and <span class="math inline">\(z\)</span> components. This condition requires that each component of <span class="math inline">\(\mathbf{k}\)</span> be discrete, with <span class="math display">\[
+k_x = \frac{2\pi n_x}{L_x}, \quad k_y = \frac{2\pi n_y}{L_y}, \quad k_z = \frac{2\pi n_z}{L_z} \ ,
+\]</span> where each of <span class="math inline">\(n_x, n_y, n_z\)</span> are independent positive integers. This also forces the energy eigenvalues to be discrete, with <span class="math display">\[
+E_\mathbf{n} = \frac{\hbar^2}{2m} \bigg(\frac{n_x^2}{L_x^2} + \frac{n_y^2}{L_y^2} + \frac{n_y^2}{L_y^2}\bigg) \ .
+\]</span> That is, <span class="math inline">\(H|\mathbf{n}\rangle = E_\mathbf{n} |\mathbf{n}\rangle\)</span>. The energy eigenfunctions can be found by plugging in the expressions for <span class="math inline">\(\mathbf{k}_\mathbf{n}\)</span> and renormalizing, <span class="math display">\[
+\psi_\mathbf{n}(\mathbf{x}, t) = \frac{1}{\sqrt{V}} e^{i \big(\mathbf{k}_\mathbf{n} \cdot \mathbf{x} - \omega_\mathbf{n} t\big)} \ .
+\]</span> As we might expect, rather than plane waves in space and time, the bounded solutions represent standing waves inside the box, where each <span class="math inline">\(\mathbf{n}\)</span> represents some specific configuration of harmonics. The full wavefunction <span class="math inline">\(\psi(\mathbf{x},t)\)</span> is again given by a superposition of these standing waves, except this time a discrete sum of them, <span class="math display">\[
+\psi(\mathbf{x},t) = \langle \mathbf{x} | \psi \rangle = \sum_{\mathbf{n}} \langle\mathbf{n} | \psi \rangle \langle \mathbf{x} | \mathbf{n} \rangle = \sum_{\mathbf{n}} c_\mathbf{n}\psi_\mathbf{n}(\mathbf{x}, t) \ .
+\]</span> Here, <span class="math inline">\(c_\mathbf{n} = \langle \mathbf{n} | \psi \rangle\)</span> are just the usual complex Fourier series coefficients, which are determined by the initial conditions.</p>
+</section>
+</section>
+<section id="density-operator" class="level2">
+<h2 class="anchored" data-anchor-id="density-operator">Density Operator</h2>
+<p>Now that we’ve reviewed the essentials of quantum mechanics we can proceed to setup the apparatus of quantum statistical mechanics. We’ve setup the framework for thinking of the microstates as kets in a Hilbert space, <span class="math inline">\(\mu = \{|\psi\rangle\}\)</span>. The macrostates remain the same, <span class="math inline">\(M = (E,X,N)\)</span>. We now just need to find a way to connect the two via some sort of probability density. It’s not clear though how to think about what a density is in quantum mechanics. We can’t define a density on phase space since we can’t have diagonalizable functions of both position and momentum.</p>
+<p>To do that we need to think more carefully about what we mean by a quantum mechanical state. Strictly speaking when we say a state is a ket <span class="math inline">\(|\psi\rangle\)</span>, what we really mean is that <span class="math inline">\(|\psi\rangle\)</span> is the state of the system in the idealized situation where we have exact knowledge of the system. These are called <em>pure states</em>. We can think of pure states not only as kets, but as outer products <span class="math display">\[
+\rho \equiv |\psi\rangle \langle \psi| \ .
+\]</span> In this form pure states are no longer <em>kets</em> but <em>operators</em>. When operating on their ket equivalent they give back the ket, <span class="math display">\[
+\rho |\psi \rangle = |\psi\rangle \langle \psi| \psi \rangle = |\psi \rangle \ .
+\]</span> In practice we usually don’t observe exact knowledge of the system. Instead we have to look at the system as an <em>ensemble</em> of states, e.g.&nbsp;by looking at a large number of particles instead of a single particle. In this situation we have to think of a state as a statistical mixture of pure states, <span class="math display">\[
+\rho \equiv \sum_\alpha p_\alpha |\psi_\alpha\rangle \langle \psi_\alpha| \ .
+\]</span> Here <span class="math inline">\(p_\alpha\)</span> is a classical probability weight indicating our lack of knowledge about the system. It’s statistical in nature, not quantum mechanical. States like this are called <em>mixed</em> state, because they’re a statistical mixture of pure states. Unlike pure states, we can’t think of mixed states as a ket in Hilbert space. We have to think of them as operators.</p>
+<p>What’s most important for our purposes is the nature of this operator <span class="math inline">\(\rho\)</span>, called the <strong>density operator</strong>. As the notation and name suggests, this is our likely candidate for the quantum mechanical version of the phase space density. To verify this, we first need to show that <span class="math inline">\(\rho\)</span> represents the operator equivalent of a probability density. It should be:</p>
+<ul>
+<li><p>Positive semi-definite: That is, <span class="math inline">\(\langle \psi | \rho | \psi \rangle \geq 0\)</span> for any ket <span class="math inline">\(|\psi\rangle\)</span>. To verify this, observe <span class="math display">\[
+\langle \psi | \rho | \psi \rangle = \sum_\alpha p_\alpha \langle \psi|\psi_\alpha\rangle \langle \psi_\alpha|\psi\rangle = \sum_\alpha p_\alpha |\langle \psi|\psi_\alpha\rangle|^2 \geq 0 \ .
+\]</span></p></li>
+<li><p>Hermitian: The probability density should be observable, which means <span class="math inline">\(\rho = \rho^\dagger\)</span>. This is easy to verify, <span class="math display">\[
+\rho^\dagger = \sum_\alpha p_\alpha \bigg(|\psi_\alpha\rangle \langle \psi_\alpha|\bigg)^\dagger = \sum_\alpha p_\alpha |\psi_\alpha\rangle \langle \psi_\alpha| = \rho \ .
+\]</span></p></li>
+<li><p>Unit Trace: That is, <span class="math inline">\(\tr \rho = 1\)</span>. This is the generalization of probabilities summing to one. To verify we’ll pick a basis and sum, <span class="math display">\[
+\tr \rho = \sum_n \langle n | \rho | n \rangle = \sum_\alpha p_\alpha \sum_n \langle n | \psi_\alpha \rangle \langle \psi_\alpha | n \rangle = \sum_\alpha p_\alpha = 1 \ .
+\]</span> Here we used the fact that <span class="math inline">\(p_\alpha\)</span> is a valid classical probability that sums to one, and that each <span class="math inline">\(|\psi_\alpha\rangle\)</span> must be normalized.</p></li>
+</ul>
+<p>We’ve thus shown that the density operator is a valid operator generalization of the probability density. Given this fact we can also proceed to define what we mean by an expected value in quantum statistical mechanics. Now we’re taking not just an average, but a <em>classical</em> ensemble average of a <em>quantum</em> average. It’s not hard to show that we can indeed naturally define <span class="math display">\[
+\langle Q \rangle \equiv \sum_\alpha p_\alpha \langle Q \rangle_{\psi_\alpha} = \tr \rho Q \ .
+\]</span> We still need to show that it has the same dynamical character as the phase space density. Recall the classical density must satisfy Liouville’s equation <span class="math inline">\(\frac{\partial\rho}{\partial t} = -\{\rho, H\}\)</span>. According to the replacement rules between Poisson brackets and commutators, we should expect something similar here. Using the definition of the density operator and the Schrödinger equation, we have <span class="math display">\[
+\begin{align*}
+\frac{\partial\rho}{\partial t} &amp;= \frac{\partial}{\partial t} \sum_\alpha p_\alpha |\psi_\alpha\rangle \langle \psi_\alpha| \\
+&amp;= \sum_\alpha p_\alpha \bigg(|\psi_\alpha\rangle\frac{\partial \langle \psi_\alpha|}{\partial t} + \frac{\partial|\psi_\alpha\rangle}{\partial t}\langle \psi_\alpha|\bigg) \\
+&amp;= \sum_\alpha p_\alpha \bigg(\frac{i}{\hbar}|\psi_\alpha\rangle \langle \psi_\alpha| H - \frac{i}{\hbar}H|\psi_\alpha\rangle \langle \psi_\alpha|  \bigg) \\
+&amp;= \frac{i}{\hbar} \bigg[\bigg(\sum_\alpha p_\alpha |\psi_\alpha\rangle \langle \psi_\alpha| \bigg) H - H \bigg(\sum_\alpha p_\alpha |\psi_\alpha\rangle \langle \psi_\alpha| \bigg)\bigg] \\
+&amp;= \frac{i}{\hbar} [\rho, H] \ .
+\end{align*}
+\]</span> We’ve thus proved the quantum mechanical equivalent of Liouville’s equation, known as the <strong>von-Neumann equation</strong>, <span class="math display">\[
+\boxed{
+\frac{\partial\rho}{\partial t} = \frac{i}{\hbar} [\rho, H]
+} \ .
+\]</span></p>
+<p>For an ensemble in equilibrium, we require the density be time-independent, i.e. <span class="math display">\[
+\frac{\partial\rho}{\partial t} = \frac{i}{\hbar} [\rho, H] = 0 \ .
+\]</span> This means that in equilibrium <span class="math inline">\(\rho\)</span> must commute with <span class="math inline">\(H\)</span> and any other conserved quantities that also commute with <span class="math inline">\(H\)</span>. In the simplest case where only energy is conserved, this means in equilibrium we must again have <span class="math inline">\(\rho = \rho(H)\)</span>.</p>
+</section>
+<section id="statistical-mechanics" class="level2">
+<h2 class="anchored" data-anchor-id="statistical-mechanics">Statistical Mechanics</h2>
+<p>We can now proceed as usual to define all of the statistical ensembles, except with the caveat that we have to think in terms of operators. We typically think of the density operator as a mixture of energy states, <span class="math display">\[
+\rho = \sum_n p_n |n\rangle \langle n | \ .
+\]</span> This choice of states is convenient because we want <span class="math inline">\(\rho\)</span> to be time-independent at equilibrium, and we know that in the energy basis the pure states will remain time-independent. To get the probability of the system being in a particular energy eigenstate we just need to pick out one of these elements to get <span class="math display">\[
+p_n = \langle n | \rho | n \rangle \ .
+\]</span> Since it’s easy, we’ll typically work in this energy basis when solving problems in quantum statistical mechanics.</p>
+<section id="microcanonical-ensemble" class="level3">
+<h3 class="anchored" data-anchor-id="microcanonical-ensemble">Microcanonical Ensemble</h3>
+<p>We started the classical theory by looking at the <em>microcanonical ensemble</em> where <span class="math inline">\(M = (E,X,N)\)</span>. In that setting we have <span class="math display">\[
+\rho = \frac{\delta(H-E)}{\Omega} \ .
+\]</span> In the energy basis, this says <span class="math display">\[
+p_n = \langle n|\rho |n \rangle = \frac{1}{\Omega} \delta(E-E_n) \ .
+\]</span> This is a reflection of the usual assumption of equal a priori probabilities, where each microstate with energy <span class="math inline">\(E\)</span> can occur with the same uniform probability <span class="math inline">\(p_n = \frac{1}{\Omega}\)</span>. It’s also illuminating to look at the off-diagonal elements of the density operator. Observe <span class="math display">\[
+\langle m | \rho | n  \rangle = \frac{\delta(E-E_n)}{\Omega} \delta_{mn} \ .
+\]</span> These terms are non-zero only when <em>both</em> <span class="math inline">\(E=E_n\)</span> and <span class="math inline">\(m=n\)</span>. That is, only the diagonal elements are non-zero. The fact that the off-diagonal elements are zero is often called the assumption of <em>random phases</em>. Essentially, it means the system has had time to fully mix with its environment, leading to quantum <em>decoherence</em>.</p>
+<p>We can also find an explicit expression for the multiplicity <span class="math inline">\(\Omega\)</span> by tracing over <span class="math inline">\(\rho\)</span> and solving to get <span class="math display">\[
+\Omega = \text{tr} \ \delta(H-E) = \sum_n \delta(E-E_n) \ .
+\]</span> This factor again represents the number of microstates with energy <span class="math inline">\(E\)</span>. From this expression we can again derive the entropy and write it in the familiar form <span class="math display">\[
+S = -\sum_n p_n \log p_n = k_B \log \Omega \ .
+\]</span> With the entropy in hand we can proceed to derive all the thermodynamic variables of interest as usual. For example, we can find the temperature by solving the equation <span class="math display">\[
+\frac{1}{T} = \frac{\partial S}{\partial E} \bigg |_{X,N} \ .
+\]</span> Just as in the classical theory, the microcanonical is often not the most convenient ensemble to work with, so we should cover the more convenient ones too.</p>
+</section>
+<section id="canonical-ensemble" class="level3">
+<h3 class="anchored" data-anchor-id="canonical-ensemble">Canonical Ensemble</h3>
+<p>We can similarly look at the <em>canonical ensemble</em> where <span class="math inline">\(M=(T,X,N)\)</span>. In that setting we have <span class="math display">\[
+\rho = \frac{1}{Z} e^{-\beta H} \ ,
+\]</span> where <span class="math inline">\(Z\)</span> is the quantum canonical partition function. In the energy basis this means the probability of any given eigenstate is <span class="math display">\[
+p_n = \frac{1}{Z} e^{-\beta E_n} \ .
+\]</span> By tracing over <span class="math inline">\(\rho\)</span> we can express <span class="math inline">\(Z\)</span> using the useful formula <span class="math display">\[
+\boxed{
+Z = \text{tr} \ e^{-\beta H}
+} \ .
+\]</span> In terms of the energy basis this just says <span class="math display">\[
+Z = \sum_n e^{-\beta E_n} \ .
+\]</span> From the partition function we can again proceed to find all thermodynamic variables of interest. For example, the average energy <span class="math inline">\(E\)</span> of the system is given by <span class="math display">\[
+E = \langle H \rangle = \text{tr} \ \rho H = -\frac{\partial \log Z}{\partial \beta} \ .
+\]</span></p>
+</section>
+<section id="higher-ensembles" class="level3">
+<h3 class="anchored" data-anchor-id="higher-ensembles">Higher Ensembles</h3>
+<p>In a similar fashion of course we can also look at the two higher ensembles. In the <em>Gibbs canonical ensemble</em> we take as macrostates <span class="math inline">\(M = (T,J,N)\)</span>. The density operator becomes <span class="math display">\[
+\rho = \frac{1}{Z_G} e^{-\beta (H-J \cdot X)} \ ,
+\]</span> where the Gibbs canonical partition function <span class="math inline">\(Z_G\)</span> is given by <span class="math display">\[
+Z_G = \int dX \ \tr e^{-\beta (H-J \cdot X)} = \int dX \  e^{\beta J \cdot X} Z \ .
+\]</span> Notice that while <span class="math inline">\(H\)</span> is thought of as an operator, the displacement <span class="math inline">\(X\)</span> and force <span class="math inline">\(J\)</span> are not. They’re just ordinary vectors. We can find the mean displacement <span class="math inline">\(\langle X \rangle\)</span> in the usual way by <span class="math display">\[
+\langle X \rangle = \frac{\partial \log Z_G}{\partial (\beta J)} \ .
+\]</span> Similarly, in the <em>grand canonical ensemble</em> we take as macrostates <span class="math inline">\(M=(T,X,\mu)\)</span> where <span class="math inline">\(\mu\)</span> is the chemical potential. Then <span class="math display">\[
+\rho = \frac{1}{\mathcal{Z}} e^{-\beta (H-\mu \cdot N)} \ ,
+\]</span> where the Grand canonical partition function <span class="math inline">\(\mathcal{Z}\)</span> can be found by the formula <span class="math display">\[
+\mathcal{Z} = \sum_{N=0}^\infty \text{tr} \ e^{-\beta (H-\mu \cdot N)} = \sum_{N=0}^\infty  e^{\beta \mu \cdot N} Z \ .
+\]</span> Again, here we should think of <span class="math inline">\(\mu\)</span> and <span class="math inline">\(N\)</span> as ordinary vectors, not operators. We can find the mean particle number <span class="math inline">\(\langle N \rangle\)</span> in the usual way as well by <span class="math display">\[
+\langle N \rangle = \frac{\partial \log\mathcal{Z}}{\partial (\beta \mu)} \ .
+\]</span> Both formulations reduce to their obvious form when working in the energy basis.</p>
+</section>
+<section id="classical-limit" class="level3">
+<h3 class="anchored" data-anchor-id="classical-limit">Classical Limit</h3>
+<p>It’s worth briefly mentioning here in what sense classical statistical mechanics is a limit of quantum statistical mechanics. Clearly in the classical world of large energies the laws of classical statistical mechanics are perfectly valid, yet we know that quantum statistical mechanics should be the <em>true</em> theory in all cases. To see how the classical limit arises let’s look at the canonical partition function <span class="math inline">\(Z\)</span> and see how we can go from the quantum to the classical version via some kind of limiting procedure.</p>
+<p>Let’s suppose for simplicity we want to find <span class="math inline">\(Z\)</span> for a single particle with a Hamiltonian operator given by <span class="math display">\[
+H = \frac{\mathbf{p}^2}{2m} + V(\mathbf{x}) \ .
+\]</span> In the position basis, this means the single-particle partition function can be written <span class="math display">\[
+Z = \text{tr} \ e^{-\beta H} = \int d^3 \mathbf{x} \ \big\langle \mathbf{x} \big| e^{-\beta \big(\frac{\mathbf{p}^2}{2m} + V(\mathbf{x})\big)} \big| \mathbf{x} \big\rangle \ .
+\]</span> Now, we’d like to factor the exponential, except we have to be careful because the exponents here are operators. For two arbitrary operators <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> we can’t generally say <span class="math inline">\(e^{A+B} = e^A e^B\)</span>. This is only true if <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> commute. We already know position and momentum don’t commute. The more general result requires a series in terms of the iterated commutators of <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span>. To first few terms written out look like <span class="math display">\[
+e^{A} e^{B} = e^{A + B + \frac{1}{2} [A,B] + \cdots} \ .
+\]</span> Since <span class="math inline">\([x_i, p_j] = i\hbar\delta_{ij}\)</span> the first order correction to the classical result is of order <span class="math inline">\(\hbar\)</span>, which means we can rearrange and write <span class="math display">\[
+e^{-\beta \big(\frac{\mathbf{p}^2}{2m} + V(\mathbf{x})\big)} = e^{-\beta \frac{\mathbf{p}^2}{2m}} e^{-\beta V(\mathbf{x})}\big(1 + \beta O(\hbar)\big) \ .
+\]</span> In the classical limit we typically imagine sending <span class="math inline">\(\hbar \rightarrow 0\)</span>, in which case the classical factorization becomes exact.</p>
+<p>Let’s now plug this result into the partition function traced over the position states. We have <span class="math display">\[
+\begin{align*}
+Z &amp;= \text{tr} \ e^{-\beta H} \\
+&amp;\approx \int d^3 \mathbf{x} \ \big\langle \mathbf{x} \big| e^{-\beta \frac{\mathbf{p}^2}{2m}} e^{-\beta V(\mathbf{x})} \big| \mathbf{x} \big\rangle \\
+&amp;\approx \int d^3 \mathbf{x} \ d^3 \mathbf{p} \ \big\langle \mathbf{x} \big| e^{-\beta \frac{\mathbf{p}^2}{2m}} \big| \mathbf{p} \big\rangle \big\langle \mathbf{p} \big| e^{-\beta V(\mathbf{x})} \big| \mathbf{x} \big\rangle \\
+&amp;\approx \int d^3 \mathbf{x} \ d^3 \mathbf{p} \ e^{-\beta \big(\frac{\mathbf{p}^2}{2m} + V(\mathbf{x})\big)} \big| \langle \mathbf{x} | \mathbf{p} \rangle \big|^2 \\
+&amp;\approx \int \frac{d^3 \mathbf{x} \ d^3 \mathbf{p}}{(2\pi\hbar)^3} \ e^{-\beta H(\mathbf{x},\mathbf{p})} \ .
+\end{align*}
+\]</span> In the third line we inserted a resolution of the identity over the momentum states. In the fourth line we used the fact that for any operator <span class="math inline">\(Q\)</span> we have <span class="math inline">\(f(Q) |q\rangle = f(q)|q\rangle\)</span>. This allows us to pull the exponentials out and combine them to get the classical Boltzmann scalar factor <span class="math inline">\(e^{-\beta H(\mathbf{x},\mathbf{p})}\)</span>. Last, we used the fact that <span class="math inline">\(\big| \langle \mathbf{x} | \mathbf{p} \rangle \big|^2 = (2\pi\hbar)^{-3}\)</span>.</p>
+<p>Now, recall that in the classical partition function we had to insert a factor of <span class="math inline">\(h\)</span> that had units of action. We didn’t know what it was, and it turned out not to affect any of the classical results. But now we know exactly what it is. As the notation always suggested, it’s the classical Planck’s constant <span class="math inline">\(h = 2\pi\hbar\)</span>. Inserting this identity we’ve shown how the classical limit arises.</p>
+<p>Notice our derivation of the classical limit just assumed that we could send <span class="math inline">\(\hbar \rightarrow 0\)</span>. But <span class="math inline">\(\hbar\)</span> is constant, so what do we really mean when we say something like this? In the case of statistical mechanics, what we <em>really</em> mean is that we’re in the <em>high temperature limit</em>. As <span class="math inline">\(T \rightarrow \infty\)</span>, <span class="math inline">\(\beta \rightarrow 0\)</span>. This means that even ignoring <span class="math inline">\(\hbar\)</span> we still can factorize <span class="math inline">\(e^{-\beta H}\)</span> in the high temperature limit as <span class="math display">\[
+e^{-\beta H} = e^{-\beta \frac{\mathbf{p}^2}{2m}} e^{-\beta V(\mathbf{x})}\big(1 + \beta O(\hbar)\big) \approx e^{-\beta \frac{\mathbf{p}^2}{2m}} e^{-\beta V(\mathbf{x})} \ .
+\]</span> We’ll see this tendency towards the classical limit at high temperatures again and again as we work examples.</p>
+</section>
+<section id="example-particle-in-a-box-1" class="level3">
+<h3 class="anchored" data-anchor-id="example-particle-in-a-box-1">Example: Particle in a Box</h3>
+<p>Let’s go ahead and calculate the partition function and equation of state for the particle in a box. For now we’ll assume the particles are distinguishable. The reason for this has to do with a subtlety with identical particles in quantum mechanics that we’ll come to later on. We already saw that in the energy basis states are discrete with energy eigenvalues <span class="math display">\[
+E_\mathbf{n} = \frac{\hbar^2}{2m} \bigg(\frac{n_x^2}{L_x^2} + \frac{n_y^2}{L_y^2} + \frac{n_y^2}{L_y^2}\bigg) \ , \quad n_x, n_y, n_z = 1, 2, \cdots \ .
+\]</span> For convenience we’ll assume <span class="math inline">\(L \equiv L_x = L_y = L_z\)</span>. Defining the energy constant <span class="math inline">\(\varepsilon \equiv \frac{\hbar^2 \pi^2}{2mL^2}\)</span>, we can then write <span class="math display">\[
+E_{\mathbf{n}} = \varepsilon (n_x^2 + n_y^2 + n_z^2) \ .
+\]</span> In the energy basis the partition function for a single particle is given by <span class="math display">\[
+Z_1 = \sum_{n_x,n_y,n_z=1}^\infty e^{-\beta \varepsilon (n_x^2 + n_y^2 + n_z^2)} = \bigg(\sum_{n=1}^\infty e^{-\beta \varepsilon n^2} \bigg)^3 \ .
+\]</span> Functions of this form are related to a type of special function known as a <em>theta function</em>. Specifically they’re related to the <span class="math inline">\(\theta_3\)</span> functions defined by <span class="math display">\[
+\theta_3(x) \equiv 1 + 2\sum_{n=1}^\infty x^{n^2} = 1 + 2x + 2x^4 + 2x^9 + \cdots \ .
+\]</span> Substituting this in for each component using <span class="math inline">\(x=e^{-\beta\varepsilon}\)</span>, the exact partition function for a single particle is then <span class="math display">\[
+Z_1 = \frac{1}{8} \bigg(\theta_3\big(e^{-\beta\varepsilon}\big) - 1\bigg)^3 \ .
+\]</span> As will usually be the case in quantum statistical mechanics, having the <em>exact</em> partition function rarely helps us understand the physics. They’ll often be expressed in terms of arcane special functions like this. Instead, what we’ll usually do in practice is look at two limits: the <em>high</em> temperature limit where we should recover the classical result, and the <em>low</em> temperature limit where we should see the limiting quantum mechanical behavior near absolute zero.</p>
+<p>Starting with the high temperature limit, we’re looking at what happens as <span class="math inline">\(\beta \rightarrow 0\)</span>. In that case each <span class="math inline">\(e^{-\beta\varepsilon}\)</span> is roughly flat and we can replace the sums by integrals. It’s not hard to see that for a flat function, a sum from <span class="math inline">\(1\)</span> to <span class="math inline">\(N\)</span> is approximately the same as its integral from <span class="math inline">\(0\)</span> to <span class="math inline">\(N\)</span>. We can thus to high accuracy write <span class="math display">\[
+\sum_{n=1}^\infty e^{-\beta \varepsilon n^2} \approx \int_0^\infty dn \ e^{-\beta \varepsilon n^2} = \frac{1}{2} \sqrt{\frac{\pi}{\beta \varepsilon}} = \frac{L}{\lambda_{T}} \ ,
+\]</span> where <span class="math inline">\(\lambda_T = \frac{h}{\sqrt{2\pi m k_B T}}\)</span> is the thermal DeBroglie wavelength. Plugging these into the partition function gives exactly what we’d expect for a non-interacting classical particle in a container, <span class="math display">\[
+Z_1 \approx \frac{L^3}{\lambda_T^3} = \frac{V}{\lambda_T^3} \ .
+\]</span> From this we can immediately read off the equations of state as the ones for an ideal gas. Nothing new here though. What about the low temperature limit? In that region we can no longer approximate the sum with an integral since it’s nowhere near flat anymore, but instead rapidly decaying. Instead we can approximate each series with its first few terms, <span class="math display">\[
+\sum_{n=1}^\infty e^{-\beta \varepsilon n^2} = e^{-\beta \varepsilon} + \big(e^{-\beta \varepsilon}\big)^4 + \big(e^{-\beta \varepsilon}\big)^9 + \cdots \ .
+\]</span> For temperatures <em>very</em> close to zero it’s easy to see that we can keep only the first term. Then the partition function is just <span class="math display">\[
+Z_1 \approx e^{-3\beta\varepsilon} = \exp\bigg[-3\beta\frac{\hbar^2\pi^2}{2mL^2}\bigg] \ .
+\]</span> Notice this is just the energy we get when <span class="math inline">\(n_x=n_y=n_z=1\)</span>. That is, it’s the <em>ground state</em> energy <span class="math inline">\(E_0=3\varepsilon\)</span>. This makes sense. We’d expect that at the lowest temperatures the particle would fall down into its ground state, with mean energy <span class="math inline">\(E \approx E_0\)</span>.</p>
+<p>If we like we can attempt to fit a curve between the high and low temperature regions by calculating the next correction to the partition function. The partition function with the next term in the series included would be <span class="math display">\[
+Z_1 \approx \bigg(e^{-\beta \varepsilon} + \big(e^{-\beta \varepsilon}\big)^4\bigg)^3 \approx e^{-\beta E_0} \big(1 + 3e^{-\beta E_0}\big) \ .
+\]</span> Here we used the fact that if <span class="math inline">\(\beta\)</span> is large then <span class="math inline">\(e^{-\beta E_0}\)</span> must be small. Using the same fact again we get <span class="math display">\[
+\log Z_1 = -\beta E_0 + \log(1+3e^{-\beta E_0}) \approx -\beta E_0 + 3e^{-\beta E_0} \ .
+\]</span> We can then calculate the energy per particle to this correction as <span class="math display">\[
+E_1 = -\frac{\partial \log Z_1}{\partial\beta} \approx E_0 (1 + e^{-E_0/k_B T}) \ .
+\]</span> Typically we’re more interested in the curve of the <em>heat capacity</em> as a function of temperature. To get that we need to calculate the heat capacity <span class="math inline">\(C\)</span> from the energy. We have <span class="math display">\[
+C_1 \approx \frac{\partial E_1}{\partial T} = k_B \bigg(\frac{E_0}{k_B T}\bigg)^2 e^{-E_0/k_B T} \ .
+\]</span> If we join this with the classical heat capacity line <span class="math inline">\(C_1 = \frac{3}{2}\)</span> at high temperatures we get a plot something like the one below. Notice that <span class="math inline">\(C_1 \rightarrow 0\)</span> as <span class="math inline">\(T \rightarrow 0\)</span> in agreement with the third law of thermodynamics. In fact, it goes to zero <em>exponentially</em>. The interpolation region seems to occur around a characteristic temperature <span class="math inline">\(\theta\)</span> given by <span class="math inline">\(k_B \theta \equiv E_0\)</span>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./resources/image-20230907032630658.png" class="img-fluid figure-img" width="500"></p>
+</figure>
+</div>
+</section>
+<section id="density-of-states" class="level3">
+<h3 class="anchored" data-anchor-id="density-of-states">Density of States</h3>
+<p>Let’s go ahead and mention an important concept we’ll need in our study of quantum statistical mechanics, the idea of the density of states. In the previous example we used the idea that in the high temperature limit we could do the substitution <span class="math display">\[
+\sum_{n=1}^\infty \quad \longrightarrow \quad \int_0^\infty dn \ .
+\]</span> A more systematic way of making this transition is via a change of measure. What we want to do is replace the sum over states <span class="math inline">\(\mathbf{n}\)</span> with an integral over some weighted measure <span class="math inline">\(g(\chi)d\chi\)</span>. The weight <span class="math inline">\(g(\chi)\)</span> is called a <strong>density of states</strong>. The density of states is basically a count of the number of states in the range <span class="math inline">\(\chi\)</span> to <span class="math inline">\(\chi + d\chi\)</span>. The hardest part is actually calculating what <span class="math inline">\(g(\chi)\)</span> should be.</p>
+<p>For most quantities <span class="math inline">\(\chi\)</span> of interest the density of states will depend on the problem itself. But there’s one that’s pretty general, namely when <span class="math inline">\(\chi = \mathbf{k}\)</span>. In that case we imagine an enclosed system with periodic boundary conditions, so that we can write <span class="math display">\[
+\mathbf{k} \approx \frac{2\pi}{V^{1/3}} \mathbf{n} \ .
+\]</span> If we assume the number of states per unit area is extremely dense we can write <span class="math inline">\(\sum_{\mathbf{n}} \approx \int d^3 \mathbf{n}\)</span>. Then using the multivariate change of variables formula, we have <span class="math display">\[
+d^3 \mathbf{n} = d \bigg(\frac{V^{1/3} k_x}{2\pi}\bigg) d \bigg(\frac{V^{1/3} k_y}{2\pi}\bigg) d \bigg(\frac{V^{1/3} k_z}{2\pi}\bigg)  = \frac{V}{(2\pi)^3} d^3 \mathbf{k} \ .
+\]</span> The function out front of the differential is then the density of states, namely <span class="math inline">\(g(\mathbf{k}) = \frac{V}{(2\pi)^3}\)</span>. This relation will be useful all across statistical mechanics, where we assume <span class="math inline">\(\lambda = \frac{2\pi}{|\mathbf{k}|} \ll V^{1/3}\)</span>, meaning that each <span class="math inline">\(d^3 \mathbf{k}\)</span> of volume contains a huge number of states.</p>
+<p>Two other densities of states we’ll be interested in are the ones for energy <span class="math inline">\(E\)</span> and frequency <span class="math inline">\(\omega\)</span>. To calculate these we just need to use whatever dispersion relation <span class="math inline">\(\omega(\mathbf{k})\)</span> a given system has to calculate <span class="math inline">\(g(\omega)\)</span>, and then use <span class="math inline">\(E=\hbar\omega\)</span> to calculate <span class="math inline">\(g(E)\)</span>. Anytime we calculate densities, we need to be careful to do so using the full measures, not just the densities themselves. For example, for the particle in the box we saw that the energy had the form <span class="math inline">\(E = \frac{\hbar^2 |\mathbf{k}|^2}{2m}\)</span>, or equivalently that <span class="math inline">\(\omega = \frac{\hbar |\mathbf{k}|^2}{2m}\)</span>. We’d thus have <span class="math display">\[
+g(\mathbf{k}) d^3 \mathbf{k} = \frac{V}{(2\pi)^3} 4\pi d\bigg(\sqrt{\frac{2m\omega}{\hbar}}\bigg) = \frac{V}{4\pi^2} \bigg(\frac{2m}{\hbar}\bigg)^{3/2} \sqrt{\omega} d\omega = g(\omega) d\omega \ .
+\]</span> That is, for the particle in a box, the density of states for frequency is <span class="math inline">\(g(\omega) = \frac{V}{4\pi^2} \big(\frac{2m}{\hbar}\big)^{3/2} \sqrt{\omega}\)</span>. The density of states for energy can then be found by using the relation <span class="math inline">\(E=\hbar\omega\)</span> in the previous change of variables formula.</p>
+<p>The energy density of states has the curious property of also being the Laplace transform of the partition function, since <span class="math display">\[
+Z(\beta) = \int_0^\infty dE \ g(E) e^{-\beta E} \ .
+\]</span> It’s also possible to show that <span class="math inline">\(g(E)\)</span> can be related to the multiplicity <span class="math inline">\(\Omega\)</span> via the relation <span class="math inline">\(g(E) = \frac{1}{V} \frac{\partial \Omega}{\partial E}\)</span>.</p>
+</section>
+<section id="example-harmonic-oscillator" class="level3">
+<h3 class="anchored" data-anchor-id="example-harmonic-oscillator">Example: Harmonic Oscillator</h3>
+<p>The next example we’ll consider is the quantum harmonic oscillator. Suppose we have a one-particle Hamiltonian given by <span class="math display">\[
+H_1 = \frac{p^2}{2m} + \frac{1}{2} m \omega^2 x^2 \ .
+\]</span> This represents a particle connected to a one-dimensional spring with spring constant <span class="math inline">\(k = m\omega^2\)</span>. In quantum mechanics we have to treat this as an operator. It turns out we can factor this Hamiltonian in the form <span class="math inline">\(H_1 = \hbar\omega(N+\frac{1}{2})\)</span>, where <span class="math inline">\(N\)</span> is a <em>number operator</em>. When acted on the energy eigenstates it gives <span class="math inline">\(N|n\rangle = n|n\rangle\)</span>. From this, we conclude the energy eigenvalues are <span class="math display">\[
+E_n = \hbar \omega \bigg(n + \frac{1}{2}\bigg) \ , \quad n = 0,1,\cdots \ .
+\]</span> From here we can calculate the single-particle partition function, and in this case actually get a closed form for it. We have <span class="math display">\[
+\begin{align*}
+Z_1 &amp;= \sum_{n=0}^\infty e^{-\beta\hbar\omega\big(n+\frac{1}{2}\big)} \\
+&amp;= e^{-\frac{\beta\hbar\omega}{2}} \sum_{n=0}^\infty \big(e^{-\beta\hbar\omega}\big)^n \\
+&amp;= \frac{e^{-\frac{\beta\hbar\omega}{2}}}{1 - e^{-\beta\hbar\omega}} \ .
+\end{align*}
+\]</span> The logarithm of <span class="math inline">\(Z_1\)</span> is then given by <span class="math display">\[
+\log Z_1 = -\frac{\beta\hbar\omega}{2} - \log\big(1 - e^{-\beta\hbar\omega}\big) \ .
+\]</span> From here we can calculate the energy per particle to get <span class="math display">\[
+E_1 = \frac{\hbar\omega}{2} + \frac{\hbar\omega}{e^{\hbar\omega/k_B T}-1} \ .
+\]</span> Again, let’s investigate the behavior of the energy in the high and low temperature limits. In the high temperature limit we can approximate the exponential by <span class="math inline">\(e^{\hbar\omega/k_B T} \approx 1 + \frac{\hbar\omega}{k_B T}\)</span> to get the classical result we’d expect from the equipartition theorem, <span class="math display">\[
+E_1 \approx \frac{\hbar\omega}{2} + k_B T \approx k_B T \ .
+\]</span> Here we used the fact that at high temperatures <span class="math inline">\(k_B T \gg \hbar\omega\)</span>. At zero temperature we can see the energy is just the ground state energy exactly, <span class="math inline">\(E_1 = \frac{1}{2} \hbar\omega\)</span>, which is again what we’d expect.</p>
+<p>Since we’ll need it later, let’s go ahead and look at the heat capacity per particle too. We have <span class="math display">\[
+C_1 = k_B \bigg(\frac{\hbar\omega}{k_B T}\bigg)^2 \frac{e^{\hbar\omega/k_B T}}{\big(e^{\hbar\omega/k_B T}-1\big)^2} \ .
+\]</span> At high temperatures we again use the Taylor expansion of <span class="math inline">\(e^{\hbar\omega/k_B T}\)</span> to get <span class="math display">\[
+C_1 \approx k_B \bigg(\frac{\hbar\omega}{k_B T}\bigg)^2 \frac{1-\frac{\hbar\omega}{k_B T}}{\big(\frac{\hbar\omega}{k_B T}\big)^2} \approx k_B \bigg(1-\frac{\hbar\omega}{k_B T}\bigg) \ .
+\]</span> For temperatures where <span class="math inline">\(k_B T \gg \hbar\omega\)</span> we can neglect the last term to get <span class="math inline">\(C_1 \approx k_B\)</span>, which is what we’d expect classically. At low temperatures we can use the fact that <span class="math inline">\(e^{\hbar\omega/k_B T} \ll 1\)</span> along with the binomial expansion <span class="math inline">\((1-x)^{-2} \approx 1+2x\)</span> to write <span class="math display">\[
+C_1 \approx k_B \bigg(\frac{\hbar\omega}{k_B T}\bigg)^2 \frac{e^{-\hbar\omega/k_B T}}{\big(1-e^{-\hbar\omega/k_B T}\big)^2} \approx k_B \bigg(\frac{\hbar\omega}{k_B T}\bigg)^2 e^{-\hbar\omega/k_B T} \big(1 + 2e^{-\hbar\omega/k_B T}\big) \ .
+\]</span> Again, we can see that the heat capacity goes to zero exponentially in accordance with the third law. Connecting the two limits, we get a similar curve to the particle in the box heat capacity, except with a characteristic temperature given by <span class="math inline">\(k_B \theta = \hbar\omega\)</span>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./resources/image-20230907042555442.png" class="img-fluid figure-img" width="500"></p>
+</figure>
+</div>
+</section>
+</section>
+<section id="three-classic-problems" class="level2">
+<h2 class="anchored" data-anchor-id="three-classic-problems">Three Classic Problems</h2>
+<p>We’ll now turn our attention to addressing the three problems mentioned at the start of this chapter. Namely the resolution of the heat capacity of diatomic gases, the heat capacity of solids, and blackbody radiation. We’ll show that for each of these problems classical statistical mechanics gave results that disagreed with experiments of the time, and then we’ll show precisely how it is that quantum statistical mechanics was able to resolve all of these problems.</p>
+<section id="diatomic-gases" class="level3">
+<h3 class="anchored" data-anchor-id="diatomic-gases">Diatomic Gases</h3>
+<p>Recall that a diatomic gas is a gas in which each particle can be thought of as two masses connected to a spring. Such particles are not only allowed to <em>translate</em> in space like point particles. They’re also allowed to <em>rotate</em> and <em>vibrate</em>, essentially giving them new degrees of freedom. We saw previously that the Hamiltonian for a single diatomic particle can be written <span class="math display">\[
+\begin{align*}
+H_1 &amp;= \frac{\mathbf{p}_1^2}{2m} + \frac{\mathbf{p}_2^2}{2m} + u(|\mathbf{x}_1-\mathbf{x}_2|) \\
+&amp;= \frac{\mathbf{P}^2}{2M} + \frac{\mathbf{p}^2}{2\mu} + \frac{1}{2}\mu\omega^2r^2 + u(d) \ ,
+\end{align*}
+\]</span> where in the last line we switched to center of mass and relative coordinates and approximated the interaction potential between the two masses by a harmonic oscillator with equilibrium distance <span class="math inline">\(d\)</span>, i.e.&nbsp;<span class="math inline">\(u(r) \approx \frac{1}{2}\mu\omega^2r^2 + u(d)\)</span>. By integrating over each coordinate, we were able to show the classical single particle partition function had the form <span class="math display">\[
+Z_1 = \frac{16\pi^4 M^{3/2}}{h^6} \frac{V}{\beta^{7/2}} \ .
+\]</span> From here, we were able to show the diatomic gas had average energy <span class="math inline">\(E=\frac{7}{2} Nk_B T\)</span> and heat capacity <span class="math inline">\(C = \frac{7}{2}Nk_B\)</span>.</p>
+<p>Great, so what’s the problem? It turns out that if we were to go out and actually <em>measure</em> the ratio <span class="math inline">\(\frac{C}{k_B}\)</span> for a gas of some given diatomic molecule, most of the time we won’t get <span class="math inline">\(\frac{7}{2}\)</span>. In fact, around room temperature we’ll usually get something closer to <span class="math inline">\(\frac{5}{2}\)</span>. If we reduce the temperature to around <span class="math inline">\(10 \ ^\circ \text{K}\)</span> and measure again, we instead get something close to <span class="math inline">\(\frac{3}{2}\)</span>. If we increase the temperature to around <span class="math inline">\(1000 \ ^\circ \text{K}\)</span> and measure again, we get the <span class="math inline">\(\frac{7}{2}\)</span> factor that the classical theory predicts. It’s almost as if degrees of freedom are <em>frozen out</em> at lower temperatures, and only activate one by one as the temperature increases. This gives heat capacity curves that looks something like the following.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./resources/image-20230827161631218.png" class="img-fluid figure-img" width="500"></p>
+</figure>
+</div>
+<p>Clearly the classical theory isn’t able to account for such a strange heat capacity curve. It’s not able to predict this freezing out of degrees of freedom. We’ll show that the quantum theory can by looking at each mode one by one. Let’s first rewrite the diatomic gas Hamiltonian in a slightly different form. We’ll ignore the added constant <span class="math inline">\(u(d)\)</span> from now on since it contributes nothing to the dynamics. We can explicitly split off the rotational contribution to the relative coordinates by factoring the <span class="math inline">\(\mathbf{p}^2\)</span> to get <span class="math display">\[
+H_1 = \frac{\mathbf{P}^2}{2M} + \frac{\mathbf{L}^2}{2I} + \frac{p^2}{2\mu} + \frac{1}{2}\mu\omega^2r^2 \equiv H_{\text{trans}} + H_{\text{rot}} + H_{\text{vib}} \ ,
+\]</span> where <span class="math inline">\(\mathbf{L}\)</span> is the angular momentum and <span class="math inline">\(I=\mu r^2\)</span> is the scalar moment of inertia. Note that even though <span class="math inline">\(\mathbf{L}\)</span> is a vector it only contributes two degrees of freedom. In this form, we can think of the Hamiltonian as composed of three distinct pieces, a <em>translational</em> piece <span class="math inline">\(H_{\text{trans}}\)</span> depending only on the center of mass coordinates, a <em>rotational</em> piece <span class="math inline">\(H_{\text{rot}}\)</span> depending only on the angular coordinates, and the <em>vibrational</em> piece <span class="math inline">\(H_{\text{vib}}\)</span> depending only on the radial coordinates. Let’s look at the heat capacity curves for each of these pieces one-by-one.</p>
+<p>First we have the translational piece <span class="math inline">\(H_{\text{trans}} = \frac{\mathbf{P}^2}{2M}\)</span>. But this is just the Hamiltonian for the free particle. We already know what its solutions look like. At high temperatures we recover the classical result for the ideal gas, <span class="math inline">\(C \approx \frac{3}{2} N k_B\)</span>. At low temperatures we get a curve that goes to zero exponentially fast, <span class="math display">\[
+C \approx Nk_B \bigg(\frac{E_0}{k_B T}\bigg)^2 e^{-E_0/k_B T} \ .
+\]</span> The transition region between the low and high temperature regions occurs when <span class="math inline">\(k_B T \approx E_0\)</span>. For a <span class="math inline">\(1 \ \text{m}^3\)</span> box of diatomic oxygen, this occurs at a temperature of around <span class="math inline">\(\theta \approx 10^{-20} \ ^\circ\text{K}\)</span>. In fact this isn’t exactly right due to the fact that we’re not treating identical particles in quantum mechanics correctly yet. But the rough idea is right. The heat capacity goes to zero in accordance with the third law, and translational modes indeed activate very quickly at non-zero temperatures. This resolves the first part of the plot.</p>
+<p>Second, we have the rotational piece <span class="math inline">\(H_{\text{rot}} = \frac{\mathbf{L}^2}{2I}\)</span>. On its face this one looks the same as the translational piece, but there’s an important subtlety here. Angular momentum is <em>also</em> quantized separately from the energy. In quantum mechanics we can think about angular momentum states as two combined states <span class="math inline">\(|\ell m\rangle\)</span>, one representing the eigenvalues of <span class="math inline">\(\mathbf{L}^2\)</span> and the other representing the eigenvalues of the <span class="math inline">\(z\)</span>-component <span class="math inline">\(\mathbf{L}_z\)</span>. It turns out that both <span class="math inline">\(\mathbf{L}^2\)</span> and <span class="math inline">\(\mathbf{L}_z\)</span> commute, which means they’re simultaneously diagonalizable, and hence their eigenvectors can be chosen to be identical, namely <span class="math inline">\(|\ell m\rangle\)</span>, where <span class="math display">\[
+\begin{align*}
+\mathbf{L}^2 |\ell m\rangle &amp;= \hbar^2 \ell(\ell+1)|\ell m\rangle \\
+\mathbf{L}_z |\ell m\rangle &amp;= \hbar m|\ell m\rangle \ .
+\end{align*}
+\]</span> Here <span class="math inline">\(\ell = 0,1,2, \cdots\)</span> and <span class="math inline">\(m = -\ell, \cdots, \ell\)</span> are both integers. Notice that for each given <span class="math inline">\(\ell\)</span> there are <span class="math inline">\(2m+1\)</span> eigenstates due to degeneracy in <span class="math inline">\(\mathbf{L}_z\)</span>. Using these relations, in the <span class="math inline">\(|\ell m\rangle\)</span> basis we can easily see that <span class="math inline">\(H_{\text{rot}}\)</span> diagonalizes too. Thus, we have <span class="math display">\[
+H_{\text{rot}} |\ell m\rangle = \frac{\hbar^2\ell(\ell+1)}{2I} |\ell m\rangle \quad \Longrightarrow \quad E_\ell = \frac{\hbar^2\ell(\ell+1)}{2I} \ .
+\]</span> From here we can proceed to calculate the partition function in the <span class="math inline">\(|\ell m \rangle\)</span> basis. We have <span class="math display">\[
+\begin{align*}
+Z_{\text{rot}} &amp;= \text{tr} \ e^{-\beta H_{\text{rot}}} \\
+&amp;= \sum_{\ell=0}^\infty \sum_{m=-\ell}^\ell \exp\bigg(-\frac{\beta\hbar^2\ell(\ell+1)}{2I}\bigg) \\
+&amp;= \sum_{\ell=0}^\infty (2\ell+1) \exp\bigg(-\frac{\beta\hbar^2\ell(\ell+1)}{2I}\bigg) \ .
+\end{align*}
+\]</span> As sort of expected, we yet again have a partition function with no obvious closed form solution. Instead we’ll proceed as we have been by looking at things in the high and low temperature limits. In the high temperature limit the states are so close together that we can approximate the sum with an integral. Using the substitution <span class="math inline">\(x=\ell(\ell+1)\)</span> we get <span class="math display">\[
+\begin{align*}
+Z_{\text{rot}} &amp;\approx \int_0^\infty d\ell \ (2\ell+1) \exp\bigg(-\frac{\beta\hbar^2\ell(\ell+1)}{2I}\bigg) \\
+&amp;\approx \int_0^\infty dx \ \exp\bigg(-\frac{\beta\hbar^2}{2I}x\bigg) \\
+&amp;\approx \frac{2I}{\hbar^2\beta} \ .
+\end{align*}
+\]</span> From here we can read off that <span class="math inline">\(E_{\text{rot}} \approx Nk_B T\)</span>, which means <span class="math inline">\(C\approx Nk_B\)</span>. That is, the rotational modes contribute exactly two degree of freedom, just as we’d expect from the equipartition theorem.</p>
+<p>In the low temperature limit we’ll instead approximate the partition function with its first two terms as <span class="math display">\[
+Z_{\text{rot}} \approx 1 + 3 e^{-\frac{\beta\hbar^2}{I}} \ .
+\]</span> From here we can see the energy is given by <span class="math inline">\(E_{\text{rot}} \approx 6Nk_B \big(\frac{\hbar^2}{2Ik_B}\big) e^{-\hbar^2/Ik_BT}\)</span>, and thus <span class="math display">\[
+C \approx 3Nk_B \bigg(\frac{\hbar^2}{Ik_BT}\bigg)^2 e^{-\hbar^2/Ik_BT} \ .
+\]</span> Again, we see the heat capacity levels off at temperatures above some temperature <span class="math inline">\(\theta = \frac{\hbar^2}{2Ik_B}\)</span> and goes to zero at temperatures below <span class="math inline">\(\theta\)</span>. For diatomic oxygen this temperature turns out to be about <span class="math inline">\(\theta \approx 2 \ ^\circ \text{K}\)</span>. This means that for all but temperatures very near zero the rotational modes of oxygen and most substances are also activated. This explains the second part of the plot.</p>
+<p>Last, we have to look at the vibrational modes <span class="math inline">\(H_{\text{vib}} \equiv \frac{p^2}{2\mu} + \frac{1}{2}\mu\omega^2r^2\)</span>. We can quickly recognize this Hamiltonian as the quantum harmonic oscillator, which we already know has discrete energy eigenvalues of the form <span class="math inline">\(E_n = \hbar\omega \big(n + \frac{1}{2}\big)\)</span>. The partition function for a single particle is given by <span class="math display">\[
+Z_1 = \frac{e^{-\frac{\beta\hbar\omega}{2}}}{1 - e^{-\beta\hbar\omega}} \ .
+\]</span> From this, we read off the energy as <span class="math inline">\(E = \frac{N\hbar\omega}{2} + \frac{N\hbar\omega}{e^{\hbar\omega/k_B T}-1}\)</span>, and from there calculate the heat capacity as <span class="math display">\[
+C = Nk_B \bigg(\frac{\hbar\omega}{k_B T}\bigg)^2 \frac{e^{\hbar\omega/k_B T}}{\big(e^{\hbar\omega/k_B T}-1\big)^2} \ .
+\]</span> We’ve already seen that this heat capacity also goes to zero exponentially at low temperatures, and levels off to <span class="math inline">\(C \approx Nk_B\)</span> at high temperatures. The transition region is at a temperature <span class="math inline">\(\theta = \frac{\hbar\omega}{k_B}\)</span>. For diatomic oxygen this is about <span class="math inline">\(\theta \approx 2256 \ ^\circ \text{K}\)</span>. This covers the last part of the plot. We’ve been able to explain each of the three transition regions by finding the heat capacity for each of the three types of modes and identifying their characteristic temperatures.</p>
+</section>
+<section id="heat-capacity-of-solids" class="level3">
+<h3 class="anchored" data-anchor-id="heat-capacity-of-solids">Heat Capacity of Solids</h3>
+<p>We’ve thus far pretty much completely ignored solids in this course. The main reason for this is that understanding the behavior of solids tends to require a lot more quantum mechanics. Nevertheless, we can at least address one relatively simply but historically important problem dealing with solids, which is the behavior of their heat capacities. Unlike most properties of solids, we can understand their heat capacities by assuming little more than that solids are a set of particles locked in a lattice. We’ll assume in this section that a solid is merely a cubic lattice of <span class="math inline">\(N\)</span> identical particles, each interacting with its nearest neighbors.</p>
+<p>The first attempt to understand heat capacity of solids is to model the lattice of particles as a coupled spring system. This is known as the <em>Boltzmann model</em> of a solid. We suppose each particle is attached to its nearest neighbors with a spring and allowed to oscillate at the same constant frequency <span class="math inline">\(\omega\)</span>. From classical mechanics, we know we can always diagonalize a system of coupled harmonic oscillators into their fundamental modes and write the Hamiltonian in decoupled form as <span class="math display">\[
+H = \sum_{i=1}^{3N} \frac{p_i^2}{2m} + \frac{1}{2} m\omega^2 x_i^2 \ .
+\]</span> Here strictly speaking, each <span class="math inline">\(x_i\)</span> and <span class="math inline">\(p_i\)</span> should be thought of as generalized coordinates, but for our purposes that won’t matter. Since this Hamiltonian decouples into <span class="math inline">\(3N\)</span> degrees of freedom, we can use the equipartition theorem to state the average energy in the solid is <span class="math inline">\(E = 3Nk_B T\)</span>. From this, we can infer the heat capacity of a solid is just <span class="math display">\[
+C = 3Nk_B \ .
+\]</span> This is classically known as the <em>law of Dulong-Petit</em>. This law says the heat capacity of a solid should be constant for all <span class="math inline">\(T\)</span>. Indeed, it turns out to hold well at high <span class="math inline">\(T\)</span>. But, of course, we shouldn’t expect this to <em>really</em> be true at all temperatures, since the third law requires <span class="math inline">\(C \rightarrow 0\)</span> as <span class="math inline">\(T \rightarrow 0\)</span>. But maybe we can fix this by again trying to quantize the harmonic oscillators.</p>
+<p>We’ll now model a solid not as <span class="math inline">\(3N\)</span> <em>classical</em> harmonic oscillators, but with <span class="math inline">\(3N\)</span> <em>quantum</em> harmonic oscillators again all oscillating at the same constant frequency <span class="math inline">\(\omega\)</span>. This is known as the <em>Einstein model</em> of a solid. The heat capacity is given by <span class="math display">\[
+C = 3Nk_B \bigg(\frac{\hbar\omega}{k_B T}\bigg)^2 \frac{e^{\hbar\omega/k_B T}}{\big(e^{\hbar\omega/k_B T}-1\big)^2} \ .
+\]</span> This is the same heat capacity we saw for the vibrational modes of a diatomic gas, except with <span class="math inline">\(3N\)</span> degrees of freedom instead of <span class="math inline">\(N\)</span> degrees of freedom. This means in the high temperature limit <span class="math inline">\(C \approx 3Nk_B T\)</span> in accordance with the law of Dulong-Petit, while in the low temperature limit <span class="math inline">\(C \sim e^{-\hbar\omega / T}\)</span>. So now <span class="math inline">\(C \rightarrow 0\)</span> like we’d expect. But is this <em>right</em>? It turns out not. Experimentally it turns out the heat capacity of a solid goes to zero like <span class="math inline">\(C \sim T^3\)</span>, not like an exponential. This is illustrated in the figure below.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./resources/image-20230827162956919.png" class="img-fluid figure-img" width="500"></p>
+</figure>
+</div>
+<p>How can we change our model of a solid to get this cubic heat capacity behavior? We’re already using quantum mechanics. We need something more. In fact, the main thing we’re missing is that solids have <em>sound modes</em>. When you bang on a solid, each particle in the lattice jiggles in a wave pattern, creating sound waves that propagate through the solid at some speed. This modification of the Einstein model produces what’s known as the <em>Debye model</em> of a solid.</p>
+<p>We can allow for sound modes by assuming the frequency <span class="math inline">\(\omega\)</span> is no longer constant, but instead has a linear dispersion relation <span class="math display">\[
+\omega(\mathbf{k}) = v |\mathbf{k}| \ .
+\]</span> Here we assume for simplicity all frequencies have the same speed of sound <span class="math inline">\(v\)</span>, though each direction along the lattice could have a different speed and the main results of this section won’t really change. If we again model each particle as a quantum harmonic oscillator, at each frequency we have an energy of the form <span class="math display">\[
+E(\omega) = 3 \bigg(\frac{\hbar\omega}{2} + \frac{\hbar\omega}{e^{\hbar\omega/k_B T}-1}\bigg) \ .
+\]</span> The factor of <span class="math inline">\(3\)</span> can be thought of as belonging here for multiple reasons. One reason is that we’re effectively considering <span class="math inline">\(3N\)</span> decoupled harmonic oscillators. Another reason is that a solid has three polarizations, two for the transverse directions of each wave and one for the longitudinal direction. To get the total energy <span class="math inline">\(E\)</span> over all frequencies we can integrate over all frequencies weighted by the density of states. Rather than rewrite everything in terms of <span class="math inline">\(\mathbf{k}\)</span> let’s find an expression for <span class="math inline">\(g(\omega)\)</span>. Using the dispersion relation <span class="math inline">\(\omega=vk\)</span> we can write <span class="math display">\[
+g(\mathbf{k}) d^3 \mathbf{k} = \frac{Vn^3}{4\pi^2} \omega^2 d\omega \equiv g(\omega) d\omega \ .
+\]</span> Note we can define a natural frequency from this expression via <span class="math inline">\(\omega_D^3 \equiv 6\pi^2 v^3 n\)</span> and rewrite <span class="math inline">\(g(\omega) = \frac{3N\omega^2}{\omega_D^3}\)</span>. This special frequency <span class="math inline">\(\omega_D\)</span> is called the <em>Debye frequency</em>. It turns out to be important for reasons we’ll see shortly. The total energy is thus <span class="math display">\[
+E = \int d\omega \ g(\omega) E(\omega) = \frac{9N}{\omega_D^3} \int d\omega \ \bigg(\frac{\hbar\omega^3}{2} + \frac{\hbar\omega^3}{e^{\hbar \omega/k_B T}-1}\bigg) \ .
+\]</span> There’s still the question of what frequencies we’re allowed to integrate over. For sound waves we could in principle have wavelengths <span class="math inline">\(\lambda\)</span> as high as we like. But having small wavelengths is limited by the atomic spacing inside the lattice. Suppose each particle in the lattice is a distance <span class="math inline">\(a\)</span> from its nearest neighbors, meaning <span class="math inline">\(V=Na^3\)</span> or <span class="math inline">\(na^3=1\)</span>. Then we should expect <span class="math inline">\(\lambda \sim a\)</span> to be about the smallest allowed wavelength for sound waves to propagate through the solid. This implies there should be some highest frequency that’s roughly around <span class="math inline">\(\omega^* \sim \frac{2\pi v}{a}\)</span>. In fact <span class="math inline">\(\omega^* = \omega_D\)</span> exactly. This gives us a new interpretation of the Debye frequency. It’s the smallest allowed frequency for sound waves to propagate in the Debye model.</p>
+<p>Rather than evaluate the above integral exactly, let’s look at the two limits. First, in the high temperature limit, we can again use the Taylor expansion <span class="math inline">\(e^{\hbar\omega / k_B T} - 1 \approx \frac{\hbar\omega}{k_B T}\)</span> to write <span class="math display">\[
+E \approx \frac{9N}{\omega_D^3} \int_0^{\omega_D} d\omega \ \bigg(\frac{\hbar\omega^3}{2} + \frac{\hbar\omega^3}{\hbar \omega/k_B T}\bigg) \approx E_0 + 3 N k_B T \ .
+\]</span> The first term <span class="math inline">\(E_0 = \frac{9N}{8} \hbar\omega_D\)</span> is just a constant. For all practical purposes we can ignore it. The second term we recognize. If we differentiate with respect to energy we just get the Dulong-Petit law again as expected, <span class="math inline">\(C \approx 3 N k_B\)</span>.</p>
+<p>What about the low temperature limit? After all, that’s the whole reason we’re still here. In this limit we can use the fact that the integrand of the second term is a negative exponential, and hence a rapidly decaying function of <span class="math inline">\(\omega\)</span>. This means for all practical purposes we can allow the upper limit to go to infinity. If we make the substitution <span class="math inline">\(x = \hbar \omega / k_B T\)</span>, we can write <span class="math display">\[
+E \approx E_0 + \frac{9N}{\omega_D^3} \bigg(\frac{k_B T}{\hbar}\bigg)^4 \int_0^\infty dx \ \frac{x^3}{e^{x} - 1} \ .
+\]</span> Now we make use of the fact that this integral over <span class="math inline">\(x\)</span> is a well-known integral with value <span class="math inline">\(\pi^4 / 15\)</span>. Plugging this in, we have <span class="math display">\[
+E \approx E_0 + \frac{9\pi^4 N}{15\omega_D^3} \bigg(\frac{k_B T}{\hbar}\bigg)^4 \ .
+\]</span> What’s important here is that <span class="math inline">\(E \sim T^4\)</span>. This means when we differentiate we get <span class="math inline">\(C \sim T^3\)</span>, which is what we wanted to show. The transition region between high and low temperature behaviors seems to occur when <span class="math inline">\(\hbar \omega_D \sim k_B T\)</span>. This defines a characteristic temperature <span class="math inline">\(T_D \equiv \frac{\hbar \omega_D}{k_B}\)</span> known as the <em>Debye temperature</em> that separates the behavior of the two regimes.</p>
+<p>As a brief aside, it’s natural to ask if this heat capacity relationship truly holds for all solids. The answer is <em>almost</em>. For insulating materials this law holds just fine, but for <em>metals</em> it turns out the low temperature limit needs to be slightly modified to <span class="math display">\[
+C \sim \alpha T^3 + \gamma T \ .
+\]</span> That is, the heat capacity of metals goes to zero <em>linearly</em>, not cubically. The reason for this is beyond the scope of this course, but it essentially comes from the fact that in metals the electrons are allowed to move around freely throughout the solid.</p>
+</section>
+<section id="blackbody-radiation" class="level3">
+<h3 class="anchored" data-anchor-id="blackbody-radiation">Blackbody Radiation</h3>
+<p>Pretty much all of our applications so far have been of <em>matter</em>. We’ve seen applications involving solids, liquids, and gases of particles that have definite mass. We’ve yet to really study the thermodynamics of <em>light</em>, or electromagnetic radiation. We saw that we could model the thermodynamics of light classically as an ultra-relativistic gas. Let’s now study a more interesting and historically important application to light, the problem of blackbody radiation.</p>
+<p>Suppose some amount of light is allowed to be emitted and absorbed inside some cavity. The particles in the walls of the cavity undergo small oscillations in the presence of the light. In equilibrium the oscillation frequencies of these particles are the same as the frequencies of radiation. Said differently, the walls glow at the same <em>color</em> as the light itself, where the color depends on the temperature. Our goal is to understand the behavior of the color spectrum of this light, like which colors are most likely to be emitted or absorbed at a given temperature.</p>
+<p>Let’s first look at the problem classically. We’ll suppose for simplicity that the cavity is a hollow cube with side lengths <span class="math inline">\(L\)</span> and volume <span class="math inline">\(V=L^3\)</span>, though it turns out the <em>shape</em> of the cavity doesn’t impact the results. We’ll also assume the interior of the cavity can be treated as a vacuum with periodic boundary conditions, so we can treat the electromagnetic waves as periodic plane waves. This means the wavevector <span class="math inline">\(\mathbf{k}\)</span> is again periodic with only allowed discrete values <span class="math inline">\(\mathbf{k} = \frac{2\pi}{L} \mathbf{n}\)</span>. Since the particles in the wall undergo small oscillations, we can model them as harmonic oscillators with average energy <span class="math inline">\(k_B T\)</span> per oscillator, and then use the condition that the walls and light are in equilibrium to state the same formulas hold for the light in the cavity as well.</p>
+<p>Using the fact that each photon has an energy <span class="math inline">\(E = \hbar \omega\)</span> we get <span class="math display">\[
+g(E) dE = \frac{VE^2}{\pi^2\hbar^3 c^3} dE =  \frac{V\omega^2}{\pi^2 c^3} d\omega \equiv g(\omega) d\omega \ .
+\]</span> At equilibrium we now use our oscillator assumption to write <span class="math inline">\(E(\omega) d\omega = k_B T g(\omega)d\omega\)</span>. What we’re really interested in though is the energy as a function of wavelength <span class="math inline">\(\lambda\)</span>. To get this, we use the fact that <span class="math inline">\(\lambda = \frac{2\pi c}{\omega}\)</span> for light to write <span class="math display">\[
+E(\omega) d\omega = \frac{Vk_B T}{\pi^2 c^3} \omega^2d\omega = \frac{2Vk_B T}{\pi^2 c^3} \bigg(\frac{2\pi c}{\lambda}\bigg)^2 \bigg |-\frac{2\pi cd\lambda}{\lambda^2} \bigg | = E(\lambda) d\lambda \ .
+\]</span> The spectrum light is typically understood by plotting wavelength against the spectral <em>radiance</em> <span class="math inline">\(I(\lambda)\)</span>, which is defined as the amount of energy flux per unit time per given wavelength. For light, it’s possible to show <span class="math inline">\(I(\lambda) = \frac{c}{4} \varepsilon(\lambda)\)</span>, where <span class="math inline">\(\varepsilon(\lambda) \equiv \frac{E(\lambda)}{V}\)</span> is the energy density. We’ve thus derived the classical formula for the radiance of blackbody radiation, called the <em>Rayleigh-Jeans law</em>, <span class="math display">\[
+I(\lambda) = \frac{2\pi c k_B T}{\lambda^4} \ .
+\]</span> Let’s take a look at this expression. Remember, it’s a plot of the color spectrum of light. We should thus expect it to behave kind of like a probability density. The conservation of energy requires there to be a finite area under the curve. But if we attempt to integrate the Rayleigh-Jeans law what do we get for the total radiance? Infinity! The integral diverges as <span class="math inline">\(\lambda \rightarrow 0\)</span>. Since lower wavelengths fall on the <em>ultraviolet</em> side of visible light, this blowing up of the spectrum is called the <em>ultraviolet catastrophe</em>. Simply put, there’s no physical reason it can happen for a system with finite energy. It was already known in the 19th century via spectral measurements that the actual blackbody spectrum turns over and goes to zero as <span class="math inline">\(\lambda \rightarrow 0\)</span> like the solid line in the figure below.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./resources/image-20230827164841925.png" class="img-fluid figure-img" width="500"></p>
+</figure>
+</div>
+<p>It was Planck who realized originally that we could get the correct blackbody spectrum by making use of the fact that energy be quantized in units of <span class="math inline">\(E = \hbar\omega\)</span>. As we’ve seen over and over, the way to fix things is to treat the classical harmonic oscillators quantum mechanically. Instead of assuming each particle has an average energy <span class="math inline">\(k_B T\)</span>, we assume each has the average energy given by a quantum harmonic oscillator, i.e.&nbsp;<span class="math inline">\(\frac{\hbar \omega}{2} + \frac{\hbar \omega}{e^{\hbar \omega / k_B T} - 1}\)</span>. Since the first term doesn’t depend on temperature it can be thought of as an added constant to the energy. If we ignore this term and focus only on the temperature dependent part, we can write <span class="math display">\[
+E(\omega) d\omega = \frac{V\hbar \omega^3 / \pi^2 c^3}{e^{\hbar \omega / k_B T} - 1} d\omega = \frac{V\hbar / \pi^2 c^3}{e^{2\pi\hbar / k_B T \lambda} - 1} \bigg(\frac{2\pi c}{\lambda}\bigg)^3  \bigg |-\frac{2\pi cd\lambda}{\lambda^2} \bigg | = E(\lambda) d\lambda \ .
+\]</span> Plugging this expression for <span class="math inline">\(E(\lambda)\)</span> into the radiance <span class="math inline">\(I(\lambda) = \frac{c}{4} \varepsilon(\lambda)\)</span> and using the relation <span class="math inline">\(h=2\pi\hbar\)</span>, we finally have <span class="math display">\[
+\boxed{
+I(\lambda) = \frac{2\pi hc^2}{\lambda^5} \frac{1}{e^{hc/k_B T \lambda} - 1}
+} \ .
+\]</span> It’s easy to see that this spectrum indeed vanishes at both limits. At small wavelengths the spectrum exponentially decays like <span class="math inline">\(I(\lambda) \sim e^{-hc/k_B T\lambda}\)</span>, while at large wavelengths the spectrum decays like <span class="math inline">\(I(\lambda) \sim \lambda^{-4}\)</span> in accordance with the Rayleigh-Jeans law.</p>
+<p>The spectrum evidently seems to peak at a wavelength <span class="math inline">\(\lambda_W\)</span> satisfying <span class="math inline">\(\frac{dI}{d\lambda} \big |_{\lambda_W} = 0\)</span>. This can be solved to give <span class="math inline">\(\lambda_W = \frac{b}{T}\)</span>, where <span class="math inline">\(b \approx 3 \cdot 10^{-3} \ ^\circ \text{K m}\)</span> in SI units. This relationship between peak wavelength and temperature is known as <strong>Wien’s displacement law</strong>. It’s this simple law that tells us which color we’re most likely to see a cavity full of radiation glow at at a given temperature.</p>
+<p>If we like, we can integrate <span class="math inline">\(E(\omega)\)</span> over all frequencies and find the total energy inside the cavity. Since light can in principle take on all frequencies, we have to integrate to infinity. There is no logical frequency cutoff anymore. Lumping the non-temperature dependent piece into one integral we’ll call <span class="math inline">\(E_0\)</span> and again using the substitution <span class="math inline">\(x = \frac{\hbar\omega}{k_B T}\)</span> and integrating, we have <span class="math display">\[
+\begin{align*}
+E &amp;= E_0 + \frac{V\hbar}{\pi^2 c^3} \int_0^\infty d\omega \ \frac{\omega^3}{e^{\hbar \omega / k_B T} - 1} \\
+&amp;= E_0 + \frac{V\hbar}{\pi^2 c^3} \bigg(\frac{k_B T}{\hbar}\bigg)^4 \int_0^\infty dx \ \frac{x^3}{e^{x} - 1} \\
+&amp;= V\bigg[\varepsilon_0 + \frac{\hbar \pi^2}{15 c^3} \bigg(\frac{k_B T}{\hbar}\bigg)^4\bigg] \ .
+\end{align*}
+\]</span> Here we pulled out a factor of volume at the end so we can express things in terms of the total energy density <span class="math inline">\(\varepsilon\)</span>, which is more commonly done when dealing with light. It’s worth taking a minute to address the constant term <span class="math inline">\(\varepsilon_0\)</span>. Had we actually done this integral, we’d realize that in fact <span class="math inline">\(\varepsilon_0\)</span> is infinite. We can hand-wave and argue that since <span class="math inline">\(\varepsilon_0\)</span> constant, and physics only cares about energy differences, we can ignore <span class="math inline">\(\varepsilon_0\)</span> and only focus on the temperature dependent part. At a deeper level, it’s fair to speculate whether this infinite energy arises from some deeper physics, e.g.&nbsp;the vacuum energy or cosmological constant, but at present this is a topic of ongoing research.</p>
+<p>It’s typical to lump most of the constants in the second term into a single constant <span class="math inline">\(\sigma\)</span>, known as the <em>Stefan-Boltzmann constant</em>, <span class="math display">\[
+\sigma \equiv \frac{\pi^2 k_B^4}{60c^2 \hbar^3} \ ,
+\]</span> which turns out to have a value of <span class="math inline">\(\sigma \approx 5.67 \cdot 10^{-8} \ \frac{\text{W}}{\text{m}^2 \ ^\circ \text{K}^4}\)</span> in SI units. Then we have <span class="math display">\[
+\varepsilon = \varepsilon_0 + \frac{4 \sigma}{c} T^4 \ .
+\]</span> The most important thing to notice for our purposes though is that the energy density relates to temperature as <span class="math inline">\(\varepsilon \propto T^4\)</span>. Since energy density and energy flux are proportional, we have <span class="math display">\[
+I = \sigma T^4 \ .
+\]</span> This statement that the total radiance, i.e.&nbsp;the total power radiated by the blackbody, is proportional to <span class="math inline">\(T^4\)</span> is known as the <strong>Stefan-Boltzmann law</strong>. Last, it’s possible to use the partition function for this system to show that the radiation inside the cavity also creates a <em>pressure</em>. In fact, that radiation pressure is simply given by <span class="math display">\[
+P = P_0 + \frac{1}{3} \varepsilon \ .
+\]</span> Here, the pressure <span class="math inline">\(P_0\)</span> arises from the constant energy density <span class="math inline">\(\varepsilon_0\)</span>. This means <span class="math inline">\(P_0\)</span> will also be infinite. However, it turns out <span class="math inline">\(P_0\)</span> indeed has an understood interpretation. It’s the cause of the <em>Casimir force</em> that arises when two conducting plates are put very close together, resulting in an attraction due to the pressure differences inside and outside the plates. The temperature dependent part of the pressure depends only on the energy density, which implies pressure is proportional to <span class="math inline">\(T^4\)</span> as well, <span class="math display">\[
+P = P_0 + \frac{4\sigma}{c} T^4 \ .
+\]</span> As academic as the problem of blackbody radiation may sound, these results turn out to be extremely useful in astrophysics. Typically in astronomy we’re very limited in what we can directly measure about a far away star or galaxy. In particular, we’re limited to observing the spectra of light being emitted by those stars. However, to an excellent approximation, it turns out stars can be well modeled as blackbodies. This means we can use measured information about their spectra to deduce other physical facts, like what their energies or pressures are.</p>
+<p>As a simple example of this, it’s observed that the sun has a spectrum that peaks in the green part of the visible spectrum. Since green light occurs at wavelengths around <span class="math inline">\(\lambda \approx 5.2 \ \mu\text{m}\)</span>, using Wien’s displacement law we find that the temperature at the surface of the Sun must be about <span class="math inline">\(T \approx 5800 \ ^\circ \text{K}\)</span>. Given the surface temperature, we can immediately find the total energy flux as well, and from that the total power radiated by the sun, which turns out to be about <span class="math inline">\(\mathcal{P} \approx 3 \cdot 10^{26} \ \text{W}\)</span>. However, the predicted pressure is much lower than the true pressure observed, which is about <span class="math inline">\(P \approx 0.1 \ \text{atm}\)</span>. This discrepancy arises from the fact that we’re ignoring other more significant contributions to the pressure, particularly the hydrostatic pressure.</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation column-body">
+  <div class="nav-page nav-page-previous">
+      <a href="../statistical-mechanics/classical-gases.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Classical Gases</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../statistical-mechanics/quantum-gases.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-title">Quantum Gases</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>
