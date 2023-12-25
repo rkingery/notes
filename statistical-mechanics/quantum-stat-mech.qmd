@@ -236,7 +236,7 @@ This is a reflection of the usual assumption of equal a priori probabilities, wh
 $$
 \langle m | \rho | n  \rangle = \frac{\delta(E-E_n)}{\Omega} \delta_{mn} \ .
 $$
-These terms are non-zero only when *both* $E=E_n$ and $m=n$. That is, only the diagonal elements are non-zero. The fact that the off-diagonal elements are zero is often called the assumption of *random phases*. Essentially, it means the system has had time to fully mix with its environment, leading to quantum *decoherence*.
+These terms are non-zero only when *both* $E=E_n$ and $m=n$. That is, only the diagonal elements are non-zero. The fact that the off-diagonal elements are zero is often called the assumption of *random phases*. Essentially, it means the system has had time to fully mix with its environment, leading to quantum *decoherence*. When a quantum system has fully decohered, its wave packets have become very well localized, its density operator is diagonal, and it becomes well approximated by classical dynamics.
 
 We can also find an explicit expression for the multiplicity $\Omega$ by tracing over $\rho$ and solving to get
 $$
@@ -349,6 +349,32 @@ e^{-\beta H} = e^{-\beta \frac{\mathbf{p}^2}{2m}} e^{-\beta V(\mathbf{x})}\big(1
 $$
 We'll see this tendency towards the classical limit at high temperatures again and again as we work examples.
 
+### Density of States
+
+Let's go ahead and mention an important concept we'll need in our study of quantum statistical mechanics, the idea of the density of states. We'll frequently find that we want to do is replace a discrete sum over states with an integral over some weighted measure $g(\chi)d\chi$. The weight $g(\chi)$ is called a **density of states**. The density of states is basically a count of the number of states in the range $\chi$ to $\chi + d\chi$. The hardest part is actually calculating what $g(\chi)$ should be.
+
+For most quantities $\chi$ of interest the density of states will depend on the problem itself. But there's one that's pretty general, namely when $\chi = \mathbf{k}$. In that case we imagine an enclosed system with periodic boundary conditions, so that we can write
+$$
+\mathbf{k} \approx \frac{2\pi}{V^{1/3}} \mathbf{n} \ .
+$$
+If we assume the number of states per unit area is extremely dense we can write $\sum_{\mathbf{n}} \approx \int d^3 \mathbf{n}$. Then using the multivariate change of variables formula, we have
+$$
+d^3 \mathbf{n} = d \bigg(\frac{V^{1/3} k_x}{2\pi}\bigg) d \bigg(\frac{V^{1/3} k_y}{2\pi}\bigg) d \bigg(\frac{V^{1/3} k_z}{2\pi}\bigg)  = \frac{V}{(2\pi)^3} d^3 \mathbf{k} \ .
+$$
+The function out front of the differential is then the density of states, namely $g(\mathbf{k}) = \frac{V}{(2\pi)^3}$. This relation will be useful all across statistical mechanics, where we assume $\lambda = \frac{2\pi}{|\mathbf{k}|} \ll V^{1/3}$, meaning that each $d^3 \mathbf{k}$ of volume contains a huge number of states.
+
+Two other densities of states we'll be interested in are the ones for energy $E$ and frequency $\omega$. To calculate these we just need to use whatever dispersion relation $\omega(\mathbf{k})$ a given system has to calculate $g(\omega)$, and then use $E=\hbar\omega$ to calculate $g(E)$. Anytime we calculate densities, we need to be careful to do so using the full measures, not just the densities themselves. For example, for the particle in the box we saw that the energy had the form $E = \frac{\hbar^2 |\mathbf{k}|^2}{2m}$, or equivalently that $\omega = \frac{\hbar |\mathbf{k}|^2}{2m}$. We'd thus have
+$$
+g(\mathbf{k}) d^3 \mathbf{k} = \frac{V}{(2\pi)^3} 4\pi d\bigg(\sqrt{\frac{2m\omega}{\hbar}}\bigg) = \frac{V}{4\pi^2} \bigg(\frac{2m}{\hbar}\bigg)^{3/2} \sqrt{\omega} d\omega = g(\omega) d\omega \ .
+$$
+That is, for the particle in a box, the density of states for frequency is $g(\omega) = \frac{V}{4\pi^2} \big(\frac{2m}{\hbar}\big)^{3/2} \sqrt{\omega}$. The density of states for energy can then be found by using the relation $E=\hbar\omega$ in the previous change of variables formula.
+
+The energy density of states has the curious property of also being the Laplace transform of the partition function, since
+$$
+Z(\beta) = \int_0^\infty dE \ g(E) e^{-\beta E} \ .
+$$
+It's also possible to show that $g(E)$ can be related to the multiplicity $\Omega$ via the relation $g(E) = \frac{1}{V} \frac{\partial \Omega}{\partial E}$.
+
 ### Example: Particle in a Box
 
 Let's go ahead and calculate the partition function and equation of state for the particle in a box. For now we'll assume the particles are distinguishable. The reason for this has to do with a subtlety with identical particles in quantum mechanics that we'll come to later on. We already saw that in the energy basis states are discrete with energy eigenvalues
@@ -411,35 +437,20 @@ If we join this with the classical heat capacity line $C_1 = \frac{3}{2}$ at hig
 
 ![](./resources/image-20230907032630658.png){fig-align=center width=500}
 
-### Density of States
+We can also calculate the density operator in some basis. Let's look at the diagonal and off diagonal elements of $\rho$ in the position basis. We'll assume we're at temperatures $T \gg \theta$ so that we can approximate $Z_1 \approx \frac{V}{\lambda_T^3}$. In that case, we have
+$$
+\begin{align*}
+\langle \mathbf{x} | \rho | \mathbf{x}' \rangle &= \frac{1}{Z_1} \langle \mathbf{x} | e^{-\beta H} | \mathbf{x}' \rangle \\
+&= \frac{1}{Z_1} \sum_{\mathbf{n},\mathbf{n}'} \langle \mathbf{x} | \mathbf{n} \rangle \langle \mathbf{n} | e^{-\beta \frac{\hbar^2}{2m} \mathbf{k}^2} | \mathbf{n}' \rangle \langle \mathbf{n}' | \mathbf{x}' \rangle  \\
+&= \frac{1}{Z_1} \sum_{\mathbf{n}} e^{-\beta \frac{\hbar^2}{2m} \mathbf{k}_\mathbf{n}^2} \langle \mathbf{x} | \mathbf{n} \rangle \langle \mathbf{n} | \mathbf{x}' \rangle  \\
+&\approx \frac{1}{Z_1} \frac{V}{(2\pi)^3} \int \frac{d^3 \mathbf{k}}{V} \ e^{i \mathbf{k} \cdot (\mathbf{x} - \mathbf{x}')} e^{-\beta \frac{\hbar^2}{2m} \mathbf{k}^2} \\
+&\approx \frac{\lambda_T^3}{V} \frac{1}{\lambda_T^3} \exp\bigg(-\frac{(\mathbf{x}-\mathbf{x}')^2}{2m/ \beta\hbar^2}\bigg) \\
+&\approx \frac{1}{V} \exp\bigg(-\frac{(\mathbf{x}-\mathbf{x}')^2}{\lambda_T^2 / \pi} \bigg) \ .
+\end{align*}
+$$
+So what is this saying? First, let's look at the diagonal elements by setting $\mathbf{x}=\mathbf{x}'$. In that case we get $p(\mathbf{x}) = \frac{1}{V}$. This just says that the particle is uniformly likely to be anywhere in the box. But what about when $\mathbf{x}\neq\mathbf{x}'$? In this case, the density operator is telling us how much the presence of a particle at $\mathbf{x}$ quantum mechanically interferes with the presence of another particle at $\mathbf{x}'$. The two particle's wavefunctions would overlap inside a Gaussian envelope with a spread proportional to $\lambda_T$.  At higher temperatures, $\lambda_T$ will be smaller, meaning it's less likely two nearby particles interfere with each other. At high temperatures the system has effectively decohered, in which case it's usually a good approximation to treat the system classically.
 
-Let's go ahead and mention an important concept we'll need in our study of quantum statistical mechanics, the idea of the density of states. In the previous example  we used the idea that in the high temperature limit we could do the substitution
-$$
-\sum_{n=1}^\infty \quad \longrightarrow \quad \int_0^\infty dn \ .
-$$
-A more systematic way of making this transition is via a change of measure. What we want to do is replace the sum over states $\mathbf{n}$ with an integral over some weighted measure $g(\chi)d\chi$. The weight $g(\chi)$ is called a **density of states**. The density of states is basically a count of the number of states in the range $\chi$ to $\chi + d\chi$. The hardest part is actually calculating what $g(\chi)$ should be.
-
-For most quantities $\chi$ of interest the density of states will depend on the problem itself. But there's one that's pretty general, namely when $\chi = \mathbf{k}$. In that case we imagine an enclosed system with periodic boundary conditions, so that we can write
-$$
-\mathbf{k} \approx \frac{2\pi}{V^{1/3}} \mathbf{n} \ .
-$$
-If we assume the number of states per unit area is extremely dense we can write $\sum_{\mathbf{n}} \approx \int d^3 \mathbf{n}$. Then using the multivariate change of variables formula, we have
-$$
-d^3 \mathbf{n} = d \bigg(\frac{V^{1/3} k_x}{2\pi}\bigg) d \bigg(\frac{V^{1/3} k_y}{2\pi}\bigg) d \bigg(\frac{V^{1/3} k_z}{2\pi}\bigg)  = \frac{V}{(2\pi)^3} d^3 \mathbf{k} \ .
-$$
-The function out front of the differential is then the density of states, namely $g(\mathbf{k}) = \frac{V}{(2\pi)^3}$. This relation will be useful all across statistical mechanics, where we assume $\lambda = \frac{2\pi}{|\mathbf{k}|} \ll V^{1/3}$, meaning that each $d^3 \mathbf{k}$ of volume contains a huge number of states.
-
-Two other densities of states we'll be interested in are the ones for energy $E$ and frequency $\omega$. To calculate these we just need to use whatever dispersion relation $\omega(\mathbf{k})$ a given system has to calculate $g(\omega)$, and then use $E=\hbar\omega$ to calculate $g(E)$. Anytime we calculate densities, we need to be careful to do so using the full measures, not just the densities themselves. For example, for the particle in the box we saw that the energy had the form $E = \frac{\hbar^2 |\mathbf{k}|^2}{2m}$, or equivalently that $\omega = \frac{\hbar |\mathbf{k}|^2}{2m}$. We'd thus have
-$$
-g(\mathbf{k}) d^3 \mathbf{k} = \frac{V}{(2\pi)^3} 4\pi d\bigg(\sqrt{\frac{2m\omega}{\hbar}}\bigg) = \frac{V}{4\pi^2} \bigg(\frac{2m}{\hbar}\bigg)^{3/2} \sqrt{\omega} d\omega = g(\omega) d\omega \ .
-$$
-That is, for the particle in a box, the density of states for frequency is $g(\omega) = \frac{V}{4\pi^2} \big(\frac{2m}{\hbar}\big)^{3/2} \sqrt{\omega}$. The density of states for energy can then be found by using the relation $E=\hbar\omega$ in the previous change of variables formula.
-
-The energy density of states has the curious property of also being the Laplace transform of the partition function, since
-$$
-Z(\beta) = \int_0^\infty dE \ g(E) e^{-\beta E} \ .
-$$
-It's also possible to show that $g(E)$ can be related to the multiplicity $\Omega$ via the relation $g(E) = \frac{1}{V} \frac{\partial \Omega}{\partial E}$.
+Evidently, it's when $v \sim \lambda_T^3$ that quantum effects start to become important at a given temperature. For most particles at typical temperatures, $\lambda_T$ will be on the order of a few Angstroms, which is roughly the atomic spacing. This means quantum effects will tend to be far more important for liquids and solids than for dilute gases, except at temperatures very near absolute zero.
 
 ### Example: Harmonic Oscillator
 

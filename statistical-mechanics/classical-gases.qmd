@@ -196,33 +196,24 @@ n = \frac{1}{V} \frac{\partial \log \mathcal{Z}}{\partial (\beta\mu)} = \sum_{\e
 $$
 We've managed to express both $\beta P$ and $n$ each as a series expansion in $x$. To find $\beta P$ as a function of $n$ we need to eliminate $x$. To do that we need to *invert* the series $n=n(x)$ to get $x=x(n)$. In general, there's no way to invert a series like this and get a closed form solution for $x=x(n)$. However, we *can* get a series for $x$ in powers of $n$. This method will suffice for us, as we're only interested in the first few terms in the virial expansion anyway. 
 
-We'll proceed as follows:
-
-1. Naively solve for $x$ by moving all the non-linear powers to the other side and asserting they must be $O(n^2)$,
-   $$
-   x = n - \textblank_2 x^2 - \frac{\textblank_3}{2} x^3 - \cdots = n + O(n^2).
-   $$
-   To first order this makes sense, as for small densities the ideal gas expression $\beta P = n$ should be satisfied.
-
-2. Substitute $x=n+O(n^2)$ back into the original equation and keep terms up to $O(n^3)$,
-   $$
-   \begin{align*}
-   x &= n - \textblank_2 x^2 - \frac{\textblank_3}{2} x^3 - \cdots \\
-   &= n - \textblank_2 \big(n+O(n^2)\big)^2 - \frac{\textblank_3}{2} \big(n+O(n^2)\big)^3 - \cdots \\
-   &= n - \textblank_2 n^2 + O(n^3). \\
-   \end{align*}
-   $$
-
-3. Substitute $x = n - \textblank_2 n^2 + O(n^3)$ back into the original equation and keep terms up to $O(n^4)$,
-   $$
-   \begin{align*}
-   x &= n - \textblank_2 x^2 - \frac{\textblank_3}{2} x^3 - \cdots \\
-   &= n - \textblank_2 \big(n - \textblank_2 n^2 + O(n^3)\big)^2 - \frac{\textblank_3}{2} \big(n - \textblank_2 n^2 + O(n^3)\big)^3 - \cdots \\
-   &= n - \textblank_2 n^2 + \bigg(2\textblank_2^2 - \frac{\textblank_3}{2}\bigg) n^3 + O(n^4). \\
-   \end{align*}
-   $$
-
-We can continue on like this, using the previous result for $x$ to get the expression for $x$ up to the next highest power in $n$. We'll stop here though and plug in this third-order approximation of $x$ into the formula for $\beta P$. We have
+To invert a power series we start by supposing that the inverse $x=x(n)$ itself can be expanded as a power series in $n$ with coefficients that need to be determined,
+$$
+x = a_1 n + a_2 n^2 + a_3 n^3 + O(n^4) \ .
+$$
+To find the coefficients we substitute this expression back into the expression for $n=n(x)$ and match terms by powers. We can find $a_1$ immediately be noting that when $x$ is infinitesimal we must have $n \approx x$, meaning $a_1 = 1$. We'll then proceed by finding coefficients up to $O(n^3)$. Substituting $x$ back into $n(x)$ and keeping terms only up to $O(n^3)$, we have
+$$
+\begin{align*}
+n &= x + \textblank_2 x^2 + \frac{\textblank_3}{2} x^3 + O(x^4) \\
+&= (n + a_2 n^2 + a_3 n^3) + \textblank_2 (n + a_2 n^2 + a_3 n^3)^2 + \frac{\textblank_3}{2} (n + a_2 n^2 + a_3 n^3)^3 + O(n^4) \\
+&= (n + a_2 n^2 + a_3 n^3) + \textblank_2 (n^2 + 2 a_2 n^3) + \frac{\textblank_3}{2} n^3 + O(n^4) \\
+&= n + \big(a_2 + \textblank_2\big) n^2 + \bigg(a_3 + 2 \textblank_2 a_2 + \frac{\textblank_3}{2}\bigg) n^3 + O(n^4) \ .
+\end{align*}
+$$
+Now, for the left side to equal the right-hand side the coefficients for each higher power of $n$ must be zero. Starting with $n^2$ we have $a_2 = -\textblank_2$. Plugging this into the coefficient for $n^3$, we then get $a_3 = \big(2\textblank_2^2 - \frac{\textblank_3}{2}\big)$. We can continue onto as many powers as we like by working in this way, but we'll stop here. We've evidently found that
+$$
+x = n - \textblank_2 n^2 + \bigg(2\textblank_2^2 - \frac{\textblank_3}{2}\bigg) n^3 + O(n^4) \ .
+$$
+Now we can substitute this into $\beta P$ to get an expansion in powers of the density $n$. We have
 $$
 \begin{align*}
 \beta P &= x + \frac{\textblank_2}{2} x^2 + \frac{\textblank_3}{6} x^3 + \cdots \\
@@ -238,9 +229,9 @@ $$
 We now have a systematic way to get a virial expansion up to any arbitrary power of $n$. After some simplification, the first few virial coefficients turn out to be given by
 $$
 \begin{align*}
-B_1 &= 1 \ , \\
-B_2 &= -\frac{\textblank_2}{2} = -\frac{1}{2} \int_{\mathcal{B}} d^3 \mathbf{x} \ f(\mathbf{x}) \ , \\
-B_3 &= \bigg(\textblank_2^2-\frac{\textblank_3}{3}\bigg) = -\frac{1}{3} \int_{\mathcal{B}} d^3 \mathbf{x} \ d^3 \mathbf{x}' \ f(\mathbf{x}) f(\mathbf{x}') f(\mathbf{x}-\mathbf{x}') \ . \\
+B_1(T) &= 1 \ , \\
+B_2(T) &= -\frac{\textblank_2}{2} = -\frac{1}{2} \int_{\mathcal{B}} d^3 \mathbf{x} \ f(\mathbf{x}) \ , \\
+B_3(T) &= \bigg(\textblank_2^2-\frac{\textblank_3}{3}\bigg) = -\frac{1}{3} \int_{\mathcal{B}} d^3 \mathbf{x} \ d^3 \mathbf{x}' \ f(\mathbf{x}) f(\mathbf{x}') f(\mathbf{x}-\mathbf{x}') \ . \\
 \end{align*}
 $$
 Notice the first two virial coefficients agree with what we calculated from the cumulant expression. The $B_3$ term is new, as we had no easy way to calculate it before. In principle we could keep going to higher order coefficients if we like, but we won't.
@@ -253,7 +244,7 @@ The true interaction forces in real gases can be quite complicated. Typically ga
 
 ### Simple Model
 
-A very crude model of the van der Waals force is to assume the forces arise from a radially symmetric potential of the form
+A very crude model of the van der Waals force is to assume interactions arise from a radially symmetric potential of the form
 $$
 u(r) = 
 \begin{cases}
@@ -279,11 +270,11 @@ $$
 $$
 Notice both terms include the term $\omega \equiv \frac{4\pi}{3} r_0^3$. This is just the volume of a sphere of radius $r_0$, called the **excluded volume**. It's the volume of each particle's electron cloud in a sense. In terms of the excluded volume, we can thus write $B_2$ simply as
 $$
-B_2 = -\frac{1}{2} \int_{\mathcal{B}} d^3 \mathbf{x} \ f(r) = \frac{\omega}{2} (1-\beta u_0).
+B_2(T) = -\frac{1}{2} \int_{\mathcal{B}} d^3 \mathbf{x} \ f(r) = \frac{\omega}{2} (1-\beta u_0).
 $$
 In principle, we could also then proceed to calculate the third virial coefficient $B_3$. However, this turns out to be much harder, as now we have to integrate over three-particle interactions. We can eliminate one of the coordinates and write
 $$
-B_3 = -\frac{1}{3} \int_{\mathcal{B}} d^3 \mathbf{x} \ d^3 \mathbf{x}' \ f(\mathbf{x}) f(\mathbf{x}') f(\mathbf{x}-\mathbf{x}'),
+B_3(T) = -\frac{1}{3} \int_{\mathcal{B}} d^3 \mathbf{x} \ d^3 \mathbf{x}' \ f(\mathbf{x}) f(\mathbf{x}') f(\mathbf{x}-\mathbf{x}'),
 $$
 but actually *evaluating* this integral analytically is an onerous task. Of course, it can often be found numerically. And on the story goes for the higher virial coefficients as well. We're thus left with the approximation
 $$
@@ -299,7 +290,7 @@ $$
 \bigg(P + a\frac{N^2}{V^2}\bigg)(V-Nb) = Nk_B T.
 }
 $$
-This well-known equation of state is called the **van der Waals equation**. 
+In this form, the equation of state gives the well-known **van der Waals equation** of chemistry.
 
 ### Validity of van der Waals
 
@@ -544,15 +535,15 @@ Note that by extensivity we can also write $Z_G \approx e^{-\beta \mu N}$. This 
 
 ## Ising Model
 
-We can look at phase transitions yet another way using a very different type of model called an **Ising model**. Ising models were originally created to understand the phase transitions in ferromagnets, where an external magnetic field can flip the spins of particles inside the magnet, causing it to change its polarization. It turns out, though, that such simplified models can be used to understand many other types of phase transitions as well. We'll focus on models for the liquid-gas transition here.
+We can look at phase transitions yet another way using a very different type of model, the **Ising model**. Ising models were originally created to understand the phase transitions in ferromagnets, where an external magnetic field can flip the spins of particles inside the magnet, causing it to change its polarization. It turns out, though, that such simplified models can be used to understand many other types of phase transitions as well. We'll focus on an Ising model for the liquid-gas transition here.
 
 ### Model
 
-Suppose we again have $N$ particles that for simplicity are laid out in a $d$-dimensional grid. Of course, in the real world $d=3$ and particles need not be locked into a grid, but we want to keep things simple for now. We'll suppose each particle can only interact with its nearest neighbors. It's not hard to show by induction that a particle in $d$ dimensions has exactly $2d$ neighbors assuming diagonals are excluded. We'll assume a Hamiltonian of the form
+Suppose we again have $N$ particles that for simplicity are laid out in a $d$-dimensional grid. Of course, in the real world $d=3$ and particles need not be locked into a grid, but we'll be general for now. We'll suppose each particle can only interact with its nearest neighbors. It's not hard to show by induction that a particle in $d$ dimensions has exactly $2d$ neighbors, assuming diagonals are excluded. We'll assume a Hamiltonian of the form
 $$
 H = -J \sum_{\langle i,j \rangle} \sigma_i \sigma_j - h \sum_{i=1}^N \sigma_i.
 $$
-Here the symbol $\langle i,j \rangle$ means to sum over all $i,j$ nearest neighbor pairs. Each $\sigma_i=-1,1$ is a binary value representing whether particle $i$ is in its gas state ($\sigma_i=1$) or liquid state ($\sigma_i=-1$). We'll call these *spins* for historical reasons. The parameter $J$ is a measure of the strength of interaction between nearest neighbor pairs. We'll assume each pair has the same interaction strength. Last, the parameter $h$ is some sort of external field we imagine being allowed to vary. For magnets, $h$ might represent an applied external magnetic field. For gases, $h$ would typically represent the chemical potential relative to equilibrium.
+Here the symbol $\langle i,j \rangle$ means to sum over all $i,j$ nearest neighbor pairs. Each $\sigma_i=-1,1$ is a binary value representing whether particle $i$ is in its gas state ($\sigma_i=1$) or liquid state ($\sigma_i=-1$). We'll call these states *spins* for historical reasons. The parameter $J$ is a measure of the strength of interaction between nearest neighbor pairs. We'll assume each pair has the same interaction strength. Last, the parameter $h$ is some sort of external field we imagine being allowed to vary. For ferromagnets, $h$ would represent an applied external magnetic field. For gases, $h$ would typically represent the chemical potential of the gas relative to its equilibrium chemical potential.
 
 Given this Hamiltonian, we can again find its partition function and study its thermodynamic behavior. Since this is a discrete system the integral over phase space gets replaced by a sum over all possible states, which in this case are all possible configurations of $\sigma_1, \cdots, \sigma_N$. Working in the canonical ensemble and assuming particles are identical, we have
 $$
@@ -562,7 +553,7 @@ $$
 
 ### Mean Field Approximation
 
-Trying to sum over all nearest-neighbor pairs is highly non-trivial. To proceed we'll again invoke the mean field approximation. Provided $d$ is sufficiently large, it's reasonable to assume the spin each particle feels from one of its neighbors is roughly the average spin it feels from all its neighbors. Calling that average spin $m \equiv \frac{1}{N} \sum_i \langle \sigma \rangle$, we can re-write each pair as
+Trying to sum over all nearest-neighbor pairs is highly non-trivial. To proceed we'll again invoke the mean field approximation. Provided $d$ is sufficiently large (more on this soon), it's reasonable to assume the spin each particle feels from one of its neighbors is roughly the average spin it feels from all its neighbors. We'll denote the average spin by  $m \equiv \frac{1}{N} \sum_i \langle \sigma \rangle$, called the *magnetization* for historical purposes. Then we can re-write each pair as
 $$
 \sigma_i \sigma_j = (\sigma_i-m)(\sigma_j-m) + m(\sigma_i + \sigma_j) - m^2 \ .
 $$
@@ -586,7 +577,7 @@ Z &= \frac{1}{N!} \sum_{\{\sigma_i\}} \exp\bigg[-\beta\bigg(dJNm^2 - (2dJm + h) 
 &= \frac{1}{N!} e^{-\beta dJNm^2} \cosh^N\big(2dJm\beta + h\beta\big) \ .
 \end{align*}
 $$
-Of course, we still don't know $m$. To get $m$ we need to impose the self consistency constraint that it equals the average spin,
+Of course, we still don't know $m$. To get $m$ we need to impose the self consistency constraint that it equals the magnetization,
 $$
 m = \frac{1}{N} \sum_{i=1}^N \langle \sigma \rangle = \frac{1}{N\beta} \frac{\partial \log Z}{\partial h}.
 $$
@@ -602,19 +593,19 @@ There's no way to exactly solve this equation, but we don't need to. We just wan
 $$
 \frac{k_B T}{2dJ} x = \tanh\bigg(x + \frac{h}{k_B T}\bigg).
 $$
-Let's start with the simplest case where there's no external field, so $h=0$. In this case we seek the points of intersection between the line $y=\frac{k_B T}{2dJ}x$ and the curve $y=\tanh(x)$. The $\tanh$ function looks like a sigmoid function. Near the origin it's basically linear, with $\tanh x \approx x$. As $x$ gets larger the function turns over and asymptotes to $\tanh x \approx \pm 1$ depending on the sign. This means that the *slope* of the line determines how many points of intersection there are. In fact, the slope of the line defines a *critical temperature* $T_c \equiv \frac{2dJ}{k_B}$. As with the van der Waals equation there are three different possibilities:
+Let's start with the simplest case where there's no external field, so $h=0$. In this case we seek the points of intersection between the line $y=\frac{k_B T}{2dJ}x$ and the curve $y=\tanh(x)$. The $\tanh$ function looks like a sigmoid function. Near the origin it's basically linear, with $\tanh x \approx x$. As $x$ gets larger the function turns over and asymptotes to $\tanh x \approx \pm 1$ depending on the sign. This means that the *slope* of the line determines how many points of intersection there are. How many points there are depend on how $T$ compares to the *critical temperature* $T_c \equiv \frac{2dJ}{k_B}$. As with the van der Waals equation there are three different possibilities:
 
-- When $T > T_c$ the two curves intersect only at the origin. This corresponds to $m=0$. The temperature is high enough in this case that average spin $m$ is completely randomized. The entropy associated with the random temperature fluctuations wins over the energetically preferred state in which the spins align. This is analogous to the supercritical isotherms we saw.
-- When $T < T_c$ the two curves still intersect at $m=0$, except now they also intersect at two other symmetric points $m = \pm m_0$. The solution at the origin turns out to be unstable, leaving only the two points $\pm m_0$. Here we see the effects of the interactions between the spins begin to win over temperature. As $T \rightarrow 0$ it seems $m_0 \approx \pm 1$. That is, at zero temperature all the spins are aligned in the same direction, either all up or all down. This is analogous to the subcritical isotherms we saw.
+- When $T > T_c$ the two curves intersect only at the origin. This corresponds to $m=0$. The temperature is high enough in this case that the magnetization $m$ is completely randomized. The entropy associated with the random temperature fluctuations wins over the energetically preferred state in which the spins align. This is analogous to the supercritical isotherms we saw.
+- When $T < T_c$ the two curves still intersect at $m=0$, except now they intersect at two other symmetric points $m = \pm m_0$. The solution at the origin turns out to be unstable, leaving only the two points $\pm m_0$. Here we see the effects of the interactions between the spins begin to win over temperature. As $T \rightarrow 0$ it seems $m_0 \approx \pm 1$. That is, at zero temperature all the spins are aligned in the same direction, either all up or all down. This is analogous to the subcritical isotherms we saw.
 - When $T = T_c$ the two curves are basically the exact same line near the origin, but not exactly due to second order error. This means the curves only intersect at $m=0$, but if $T$ decreases any infinitesimal amount the two other solutions will appear. This is analogous to the critical isotherm we saw.
 
-![](./resources/image-20230822162537490.png){fig-align=center width=500}
+![](./resources/image-20231030021029738.png){fig-align=center width=500}
 
 The results described above are perhaps rather surprising. Based on the intuition that things in physics always happen smoothly, one might have thought that $m$ would decrease slowly to zero as $T \rightarrow \infty$. But that's not what happens. Instead $m$ turns off abruptly at some finite temperature $T_c$. This is the characteristic behavior of a phase transition. Because it arises from the first derivative of the free energy it's by convention called a *first-order phase transition*. This contrasts with higher-order phase transitions, which arise from discontinuities in higher derivatives of the free energy.
 
-What happens now if we turn on an external field, allowing $h \neq 0$? If we look at the above equation, we can see that the presence of $h$ seems to shift the zero point of the $\tanh$ function left or right depending on the sign of $h$. Meanwhile the left-hand line doesn't shift at all. What does this do to the system? It breaks the symmetry. For *any* $T < \infty$ it's impossible to get $m=0$. Moreover, since the shift $\frac{h}{k_B T} \rightarrow 0$ as $T \rightarrow \infty$, $m$ will now go smoothly to zero. There's no longer a phase transition. In fact, it's possible to show that when $T < T_c$ only one of the intersection endpoints will be stable, which means the spins will always prefer one state over the other. This sort of phenomenon is called *spontaneous symmetry breaking*. Even the slightest stray external field is enough to ruin the ability of a phase transition to occur.
+What happens now if we turn on an external field, allowing $h \neq 0$? If we look at the above equation, we can see that the presence of $h$ seems to shift the zero point of the $\tanh$ function left or right depending on the sign of $h$. Meanwhile the left-hand line doesn't shift at all. What does this do to the system? It breaks the symmetry. For *any* $T < \infty$ it's impossible to get $m=0$. Moreover, since the shift $\frac{h}{k_B T} \rightarrow 0$ as $T \rightarrow \infty$, $m$ will now go smoothly to zero, meaning there is no longer a phase transition. In fact, it's possible to show that when $T < T_c$ only one of the intersection endpoints will be stable, which means the spins will always prefer one state over the other. This sort of phenomenon is called *spontaneous symmetry breaking*. Even the slightest stray external field is enough to ruin the ability of a phase transition to occur.
 
-![](./resources/image-20230822162614511.png){fig-align=center width=500}
+![](./resources/image-20231030021001401.png){fig-align=center width=500}
 
 It's worth mentioning that strictly speaking the mean field approximation only holds as $d \rightarrow \infty$ due to the law of large numbers. In fact, the mean field approximation doesn't work *at all* when $d=1$. It can even be shown that phase transitions cannot exist in one-dimension. Yet, for $d \geq 2$ it's perhaps surprising that the approximation is okay, at least qualitatively. Even by $d=2$ and $d=3$ phase transitions already start to occur in the Ising model. Proving phase transitions indeed occur in these lower dimensions is somewhat more difficult and beyond the scope of this lesson.
 
@@ -626,7 +617,7 @@ For gases it's more insightful to re-write spins in terms of particle densities.
 $$
 H = -4J \sum_{\langle i,j \rangle} n_i n_j - (\mu-\mu_{eq}) \sum_{i=1}^N n_i \ .
 $$
-It's not hard to show that the density equivalent of magnetization, call it $\nu$, transforms the same way as the spin, $m = 2\nu - 1$. This means the qualitative behavior of the liquid-gas phase transition is the same in this model except with the values slightly rescaled. For example, the $\tanh$ function converts into a *sigmoid* function scaled between $0$ and $1$. When $\mu=\mu_{eq}$ the gas is at chemical equilibrium, which is precisely when phase transitions can occur. As $\mu$ deviates ever so slightly from $\mu_{eq}$ the phase transition phenomenon disappears as the gas stays in either its gas or liquid phase depending on the sign of $\mu-\mu_{eq}$.
+It's not hard to show that the density equivalent of magnetization, call it $\nu$, is related to $m$ by $m = 2\nu - 1$. This means the qualitative behavior of the liquid-gas phase transition is the same in this model except with the values shifted and rescaled. For example, the $\tanh$ function becomes instead a *sigmoid* function scaled between $0$ and $1$. When $\mu=\mu_{eq}$ the gas is at chemical equilibrium, which is precisely when phase transitions can occur. As $\mu$ deviates ever so slightly from $\mu_{eq}$ the phase transition phenomenon disappears, with the gas staying in either its gas or liquid phase depending on the sign of $\mu-\mu_{eq}$.
 
 ## Critical Behavior
 
@@ -695,9 +686,9 @@ $$
 $$
 Again, this dependence is apparently independent of the gas. And again, it's fair to ask if this dependence is truly correct for real gases. As we'd expect by now, it's not exactly correct. The true relationship is $\kappa \sim (T-T_c)^{-\gamma}$ where $\gamma \approx 1.2$.
 
-These interesting exponent relationships seem to apply to all gases, at least near the critical point. The exponents themselves are called **critical exponents**. They're *universal*. In fact, they apply to even more than gases. The results obtained even apply to the Ising Model when $d=3$. In that case we'd just replace the volume $v$ with the average spin $m$, the pressure $P$ with the external field $h$, and the compressibility $\kappa$ with the *susceptibility* $\chi \equiv N\frac{\partial m}{\partial h} \big |_T$. All of the previous results can be obtained in an analogous manner to give the critical relations
+These interesting exponent relationships seem to apply to all gases, at least near the critical point. The exponents themselves are called **critical exponents**. They're *universal*. In fact, they apply to even more than gases. The results obtained even apply to the Ising Model when $d=3$. In that case we'd just replace the volume $v$ with the magnetization $m$, the pressure $P$ with the external field $h$, and the compressibility $\kappa$ with the *susceptibility* $\chi \equiv N\frac{\partial m}{\partial h} \big |_T$. All of the previous results can be obtained in an analogous manner to give the critical relations
 $$
 h \sim m^3, \qquad m_0 \sim \pm (T-T_c)^{1/2}, \qquad \chi \sim (T-T_c)^{-1} \ .
 $$
-But why aren't these results exact? After all the real critical exponents are slightly off in all cases. Fundamentally, the issue is that we're trying to do an analytic expansion of an equation of state about the critical point. But we can't really do that since there's a discontinuity at the critical point, which is what leads to phase transitions. To get more accurate estimates of the critical exponents we should approach the problem in a very different way, using more advanced techniques like group renormalization. This gets into the more modern topic of *critical phenomena*, something we'll see more in future lessons.
+But why aren't these results exact? After all the real critical exponents are slightly off in all cases. Fundamentally, the issue is that we're trying to do an analytic expansion of an equation of state about the critical point. But we can't really do that since there's a discontinuity at the critical point, which is why we even get phase transitions at all. To get more accurate estimates of the critical exponents we should approach the problem in a very differently, using more advanced techniques like group renormalization. This gets into the more modern topic of *critical phenomena*, something we'll see more in a future lesson.
 

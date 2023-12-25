@@ -60,6 +60,7 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 </head>
 
@@ -317,8 +318,20 @@ ul.task-list li input[type="checkbox"] {
    
   <ul>
   <li><a href="#identical-particles" id="toc-identical-particles" class="nav-link active" data-scroll-target="#identical-particles">Identical Particles</a></li>
-  <li><a href="#fermi-gases" id="toc-fermi-gases" class="nav-link" data-scroll-target="#fermi-gases">Fermi Gases</a></li>
-  <li><a href="#bose-gases" id="toc-bose-gases" class="nav-link" data-scroll-target="#bose-gases">Bose Gases</a></li>
+  <li><a href="#quantum-ideal-gas" id="toc-quantum-ideal-gas" class="nav-link" data-scroll-target="#quantum-ideal-gas">Quantum Ideal Gas</a>
+  <ul class="collapse">
+  <li><a href="#position-representation" id="toc-position-representation" class="nav-link" data-scroll-target="#position-representation">Position Representation</a></li>
+  <li><a href="#energy-representation" id="toc-energy-representation" class="nav-link" data-scroll-target="#energy-representation">Energy Representation</a></li>
+  <li><a href="#quantum-distributions" id="toc-quantum-distributions" class="nav-link" data-scroll-target="#quantum-distributions">Quantum Distributions</a></li>
+  <li><a href="#equations-of-state" id="toc-equations-of-state" class="nav-link" data-scroll-target="#equations-of-state">Equations of State</a></li>
+  <li><a href="#special-functions" id="toc-special-functions" class="nav-link" data-scroll-target="#special-functions">Special Functions</a></li>
+  </ul></li>
+  <li><a href="#degenerate-gases" id="toc-degenerate-gases" class="nav-link" data-scroll-target="#degenerate-gases">Degenerate Gases</a>
+  <ul class="collapse">
+  <li><a href="#degenerate-fermi-gas" id="toc-degenerate-fermi-gas" class="nav-link" data-scroll-target="#degenerate-fermi-gas">Degenerate Fermi Gas</a></li>
+  <li><a href="#sommerfeld-expansion" id="toc-sommerfeld-expansion" class="nav-link" data-scroll-target="#sommerfeld-expansion">Sommerfeld Expansion</a></li>
+  <li><a href="#degenerate-bose-gas" id="toc-degenerate-bose-gas" class="nav-link" data-scroll-target="#degenerate-bose-gas">Degenerate Bose Gas</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -342,16 +355,327 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
+<p>In this chapter we’ll apply the theory of quantum statistical mechanics to the study of real gases. Particularly, we’ll study the behavior of gases of identical particles in both the high and low temperature limits. In the high temperature limit we’ll see we recover classical gas behavior. But in the low temperature limit interesting quantum effects happen. The behavior of a low temperature gas will depend primarily on whether the gas is composed of fermions of bosons. The theory of Fermi gases leads to behaviors like Fermi pressure and the Curie point, while the theory of Bose gases leads to behaviors like Bose-Einstein condensation.</p>
 <section id="identical-particles" class="level2">
 <h2 class="anchored" data-anchor-id="identical-particles">Identical Particles</h2>
+<p>Recall the distinction we made in classical statistical mechanics between <em>distinguishable particles</em> and <em>identical particles</em>. A collection of particles was distinguishable if we could label each particle and in principle tell them apart. They were identical if this wasn’t true, if there was no way even in principle to tell apart one particle from another. We found it was very easy to account for this fact in classical statistical mechanics. If <span class="math inline">\(N\)</span> particles were identical, we just needed to be sure to divide the partition function by <span class="math inline">\(N!\)</span> to account for all possible permutations of those particles.</p>
+<p>In quantum mechanics, the nature of identical particles is baked deep into the theory itself. There’s nothing arbitrary about them, since in quantum mechanics there really is no way even in principle to label a tiny particle without changing its state. Every fundamental particle is identical. From a theoretical perspective, identical particles arise due to the <em>exchange postulate</em>. Consider two particles. Suppose <span class="math inline">\(|\psi \rangle\)</span> is the state of particle one, and <span class="math inline">\(|\phi \rangle\)</span> is the state of particle two. Then we should expect the joint state where both of these occur is given by the <em>tensor product</em> of the two, namely <span class="math inline">\(|\psi \rangle |\phi \rangle \equiv |\psi \rangle \otimes |\phi \rangle\)</span>. The exchange postulate states that the only tensor product states allowed for real particles are those that are eigenvectors of the <em>exchange operator</em> <span class="math inline">\(P_\sigma\)</span> defined by the relation <span class="math display">\[
+P_\sigma |\psi \rangle |\phi \rangle \equiv |\phi \rangle |\psi \rangle \ .
+\]</span> Since exchange two particles twice gives the original state back, we must have <span class="math inline">\(P_\sigma^2 = 1\)</span>, meaning its eigenvalues must be <span class="math inline">\(\eta \equiv \pm 1\)</span>. Calling these eigenvectors <span class="math inline">\(|\Psi\rangle_\eta\)</span>, this means <span class="math display">\[
+P_\sigma |\Psi\rangle_\eta = \eta |\Psi\rangle_\eta \ .
+\]</span> Any tensor product state of two particles must be one of these two eigenstates. It’s easy to see that these eigenstates are just the symmetric and antisymmetric parts of the tensor product state, <span class="math display">\[
+\begin{align*}
+|\Psi\rangle_{+} &amp;= \frac{1}{\sqrt{2}} \big(|\psi \rangle |\phi \rangle + |\phi \rangle |\psi \rangle \big) \ , \\
+|\Psi\rangle_{-} &amp;= \frac{1}{\sqrt{2}} \big(|\psi \rangle |\phi \rangle - |\phi \rangle |\psi \rangle \big) \ .
+\end{align*}
+\]</span> Particles whose exchange eigenstates are <span class="math inline">\(|\Psi\rangle_{+}\)</span> are called <strong>bosons</strong>, while particles whose exchange eigenstates are <span class="math inline">\(|\Psi\rangle_{-}\)</span> are called <strong>fermions</strong>. Notice that fermions satisfy the important condition that both particles can never been in the same state, since then we’d have <span class="math inline">\(|\Psi\rangle_{-} = 0\)</span>, a non-normalizable state. This is a general reflection of the <em>Pauli exclusion principle</em>, which states that no two fermions can occupy the same state. They must always be distinct. Bosons, however, don’t have to satisfy the exclusion principle. This one distinction makes the behavior of bosons and fermions very different from each other.</p>
+<p>But how do we know which of the two eigenstates a given pair of particles should have? It turns out this comes down to their <em>spin</em>. If each particle has <em>integer</em> total spin, then that particle is a <em>boson</em>. If each particle instead has <em>half-integer</em> total spin, then that particle is a <em>fermion</em>. This fact is consequence of the <em>spin-statistics theorem</em>, an important theorem of relativistic quantum field theory. We won’t bother to prove it here. Electrons are the canonical example of fermions, with spin <span class="math inline">\(1/2\)</span>. Photons are the canonical example of bosons, with spin <span class="math inline">\(1\)</span>. There are many more of each of course. In fact all particles in nature can be broken down into these two classes depending on whether they have integer or half-integer total spin.</p>
+<p>This is all true for two particle systems, but in statistical mechanics we’re interested in <span class="math inline">\(N\)</span>-particle systems, where <span class="math inline">\(N\)</span> is typically a huge number. We’ll just state the result for <span class="math inline">\(N\)</span>-particle systems of bosons or fermions without proving anything.</p>
+<p>Let <span class="math inline">\(P_\sigma\)</span> be the permutation operator that permutes the indexes <span class="math inline">\(1, 2, \cdots, N\)</span> to some permutation <span class="math inline">\(\sigma(1), \sigma(2), \cdots, \sigma(N)\)</span>. There will generally be <span class="math inline">\(N!\)</span> such permutations. For a set of <span class="math inline">\(N\)</span> <em>bosons</em>, we have <span class="math display">\[
+|\Psi\rangle_{+} = \frac{1}{\sqrt{N_{+}}} \sum_\sigma P_\sigma | \psi_1 \rangle | \psi_2 \rangle \cdots | \psi_N \rangle = \frac{1}{\sqrt{N_{+}}} \sum_\sigma | \psi_{\sigma(1)} \rangle | \psi_{\sigma(2)} \rangle \cdots | \psi_{\sigma(N)} \rangle \ .
+\]</span> For a set of <span class="math inline">\(N\)</span> <em>fermions</em>, we have <span class="math display">\[
+|\Psi\rangle_{-} = \frac{1}{\sqrt{N_{-}}} \sum_\sigma (-1)^{p(\sigma)} P_\sigma | \psi_1 \rangle | \psi_2 \rangle \cdots | \psi_N \rangle = \frac{1}{\sqrt{N_{-}}} \sum_\sigma (-1)^{p(\sigma)} | \psi_{\sigma(1)} \rangle | \psi_{\sigma(2)} \rangle \cdots | \psi_{\sigma(N)} \rangle \ .
+\]</span> Here <span class="math inline">\(p(\sigma)\)</span> denotes the <em>parity</em> of the permutation <span class="math inline">\(\sigma\)</span>. For <em>even</em> permutations <span class="math inline">\(p(\sigma)\)</span> is some even number, meaning <span class="math inline">\((-1)^{p(\sigma)} = 1\)</span>. For <em>odd</em> permutations <span class="math inline">\(p(\sigma)\)</span> is some odd number, meaning <span class="math inline">\((-1)^\sigma = -1\)</span>.</p>
+<p>It’s easy to see that we can combine both equations into one by using <span class="math inline">\(\eta = \pm 1\)</span> to write <span class="math display">\[
+\boxed{
+|\Psi\rangle_\eta = \frac{1}{\sqrt{N_\eta}} \sum_\sigma \eta^{p(\sigma)} P_\sigma | \psi_1 \rangle | \psi_2 \rangle \cdots | \psi_N \rangle
+} \ .
+\]</span> The factors <span class="math inline">\(N_\eta\)</span> are whatever normalization factors are needed so that <span class="math inline">\(\langle\Psi|\Psi\rangle_\eta=1\)</span>. Intuitively, we’d expect that <span class="math inline">\(N_\eta = N!\)</span> given there are <span class="math inline">\(N!\)</span> permutations. This is true for <em>fermions</em> provided we insist all states <span class="math inline">\(\psi_k\)</span> be unique to satisfy the exclusion principle. That is, <span class="math inline">\(N_{-} = N!\)</span> for fermions, provided the sum is over distinct states only.</p>
+<p>However, for bosons taking <span class="math inline">\(N_{+} = N!\)</span> would mean we’re overcounting due to the fact that some of the states in the sum are equivalent. To correct for this, we also have to divide by <span class="math inline">\(\prod_k n_k!\)</span>, where <span class="math inline">\(n_k\)</span> is the number of particles in state <span class="math inline">\(\psi_k\)</span>. To see why this is true, take the case of 3 bosons. Symmetrizing we’d have <span class="math display">\[
+|\psi_1 \psi_2 \psi_3 \rangle_{+} = \mathcal{N} \big(|\psi_1 \psi_2 \psi_3 \rangle + |\psi_2 \psi_3 \psi_1 \rangle + |\psi_1 \psi_3 \psi_2 \rangle + |\psi_2 \psi_1 \psi_3 \rangle + |\psi_3 \psi_2 \psi_1 \rangle + |\psi_3 \psi_1 \psi_2 \rangle\big) \ ,
+\]</span> where <span class="math inline">\(\mathcal{N}\)</span> is whatever normalization constant is needed so that <span class="math inline">\(\langle \psi_1 \psi_2 \psi_3 | \psi_1 \psi_2 \psi_3 \rangle_{+} = 1\)</span>. In this case, it’s clear we have <span class="math inline">\(\mathcal{N}=\frac{1}{\sqrt{6}}\)</span>. Now suppose two of the states are the same, say <span class="math inline">\(\psi_1=\psi_2\)</span>. Then the above sum reduces to <span class="math display">\[
+\begin{align*}
+|\psi_1 \psi_1 \psi_3 \rangle_{+} &amp;= \mathcal{N} \big(|\psi_1 \psi_1 \psi_3 \rangle + |\psi_1 \psi_3 \psi_1 \rangle + |\psi_1 \psi_3 \psi_1 \rangle + |\psi_1 \psi_1 \psi_3 \rangle + |\psi_3 \psi_1 \psi_1 \rangle + |\psi_3 \psi_1 \psi_1 \rangle\big) \\
+&amp;= 2\mathcal{N} \big(|\psi_1 \psi_1 \psi_3 \rangle + |\psi_1 \psi_3 \psi_1 \rangle + |\psi_3 \psi_1 \psi_1 \rangle\big) \\
+&amp;= \frac{1}{\sqrt{3}} \big(|\psi_1 \psi_1 \psi_3 \rangle + |\psi_1 \psi_3 \psi_1 \rangle + |\psi_3 \psi_1 \psi_1 \rangle\big) \ .
+\end{align*}
+\]</span> For this sum to normalize properly, we’d instead need to take <span class="math inline">\(\mathcal{N} = \frac{1}{\sqrt{12}} = \frac{1}{\sqrt{3!2!1!}}\)</span>, which means <span class="math inline">\(N_{+} = N! \prod n_k!\)</span>. The set <span class="math inline">\(\{n_k\}\)</span> of all such <span class="math inline">\(n_k\)</span> are called <em>occupation numbers</em> since they represent the number of particles that occupy a given state.</p>
+<p>For bosons, each particle can occupy whichever states it likes. All we require is that the total number of bosons stay conserved. This means bosons should satisfy the constraint <span class="math inline">\(\sum_k n_k = N\)</span>. We can think of occupation numbers as applying to fermions too. In that case, the exclusion principle requires each <span class="math inline">\(n_k=0,1\)</span> only. They should still satisfy the constraint <span class="math inline">\(\sum_k n_k = N\)</span>. This means we can streamline notation if we like and express the normalization constant in both cases by <span class="math display">\[
+N_\eta \equiv N! \prod_k n_k! \ .
+\]</span> It turns out we can even use occupation numbers to characterize the <em>states</em> of identical particles as well. Instead of representing <span class="math inline">\(|\Psi\rangle_\eta\)</span> as a combination of product states <span class="math inline">\(| \psi_1 \rangle | \psi_2 \rangle \cdots | \psi_N \rangle\)</span>, we could represent the state <span class="math inline">\(|\Psi\rangle_\eta\)</span> by indicating what the occupation numbers are for each state <span class="math inline">\(\psi_k\)</span>. That is, <span class="math inline">\(|\Psi\rangle_\eta = \big|\{n_k\} \big\rangle\)</span>.</p>
+<p>For example, if all states are distinct we could represent <span class="math inline">\(|\psi_1 \psi_2 \psi_3 \rangle_{+}\)</span> by the ket <span class="math inline">\(|1,1,1 \rangle\)</span>. If exactly two of the three states are equal, say <span class="math inline">\(\psi_1=\psi_2 \neq \psi_3\)</span> then we could represent the state by <span class="math inline">\(|\psi_1 \psi_2 \psi_3 \rangle_{+} \equiv |2,1 \rangle\)</span>. In both cases each ket sums to the total particle number. This representation of a joint state is called a <em>Fock space</em> representation. Fock space representations of identical particles are often nice since we avoid the need to explicitly sum over all valid permutations.</p>
 </section>
-<section id="fermi-gases" class="level2">
-<h2 class="anchored" data-anchor-id="fermi-gases">Fermi Gases</h2>
+<section id="quantum-ideal-gas" class="level2">
+<h2 class="anchored" data-anchor-id="quantum-ideal-gas">Quantum Ideal Gas</h2>
+<p>With a discussion of identical particles out of the way we can now attempt to give a proper treatment to the quantum ideal gas. Recall in our prior treatment of the quantum ideal gas we had to assume all particles were distinguishable. In quantum mechanics this is generally forbidden, since even in principle we can’t imagine labeling any small particles without violating the uncertainty principle. We’ll now attempt to find the partition function for the quantum mechanical gas of identical particles. Since there is more subtlety involved in the quantum case than in the classical case, we’ll derive the partition function in two different representations, starting with the position representation.</p>
+<section id="position-representation" class="level3">
+<h3 class="anchored" data-anchor-id="position-representation">Position Representation</h3>
+<p>Rather than calculate the partition function <span class="math inline">\(Z\)</span> directly, we’ll start by finding the density matrix in the position representation. Recall for a single non-interacting particle in a box of volume <span class="math inline">\(V \gg \lambda_T^3\)</span> we derived the formula <span class="math display">\[
+\langle \mathbf{x} | \rho_1 | \mathbf{x}' \rangle = \frac{1}{V} \exp\bigg(-\frac{(\mathbf{x}-\mathbf{x}')^2}{\lambda_T^2 / \pi} \bigg) \ .
+\]</span> We’ll now attempt to derive a formula for the density matrix <span class="math inline">\(\big\langle \{\mathbf{x}\} | \rho_1 | \{\mathbf{x}'\} \big\rangle_\eta\)</span> of <span class="math inline">\(N\)</span> non-interacting particles in a box. The Hamiltonian is then <span class="math inline">\(H = \sum \frac{\mathbf{p}_i^2}{2m}\)</span>, which again means the basis of wavevector kets <span class="math inline">\(\big|\{\mathbf{k}\} \big\rangle\)</span> diagonalizes the <span class="math inline">\(H\)</span>, with <span class="math display">\[
+H \big|\{\mathbf{k}\} \big\rangle = \sum_{i=1}^N \frac{\hbar^2 \mathbf{k}_i^2}{2m} \big|\{\mathbf{k}\} \big\rangle \ .
+\]</span> Inserting two resolutions of the identity over both <span class="math inline">\(\{\mathbf{k}\}\)</span> and <span class="math inline">\(\{\mathbf{k}'\}\)</span> and simplifying, we have <span class="math display">\[
+\begin{align*}
+\big\langle \{\mathbf{x}\} | \rho | \{\mathbf{x}'\} \big\rangle_\eta &amp;= \sideset{}{'}\sum_{\{\mathbf{k}\}} \sideset{}{'}\sum_{\{\mathbf{k}'\}} \big\langle \{\mathbf{x}\} | \{\mathbf{k}\} \big\rangle_\eta \ \big\langle\{\mathbf{k}\} |\rho| \{\mathbf{k}'\} \big\rangle \ \big\langle\{\mathbf{k}'\} | \{\mathbf{x}'\} \big\rangle_\eta \\
+&amp;= \frac{1}{Z}\sideset{}{'}\sum_{\{\mathbf{k}\}} \sideset{}{'}\sum_{\{\mathbf{k}'\}} \exp\bigg(-\frac{\beta\hbar^2}{2m} \sum_{j=1}^N \mathbf{k}_j^2 \bigg) \big\langle \{\mathbf{x}\} | \{\mathbf{k}\} \big\rangle_\eta \ \big\langle\{\mathbf{k}\} | \{\mathbf{k}'\} \big\rangle \ \big\langle\{\mathbf{k}'\} | \{\mathbf{x}'\} \big\rangle_\eta \\
+&amp;= \frac{1}{Z}\sideset{}{'}\sum_{\{\mathbf{k}\}} \exp\bigg(-\frac{\beta\hbar^2}{2m} \sum_{j=1}^N \mathbf{k}_j^2 \bigg) \big\langle \{\mathbf{x}\} | \{\mathbf{k}\} \big\rangle_\eta \ \big\langle\{\mathbf{k}\} | \{\mathbf{x}'\} \big\rangle_\eta  \ .\\
+\end{align*}
+\]</span> Note the use of the restricted sum here. We’re constrained by the fact that there must be exactly <span class="math inline">\(N\)</span> particles in the box, whether for fermions or bosons. To get rid of the constraint we just need to figure out how much we’re overcounting by in the sum. It turns out that overcounting factor is just <span class="math inline">\(\prod_{\mathbf{k}} n_{\mathbf{k}}! / N!\)</span>, so we can just do the substitution <span class="math display">\[
+\sideset{}{'}\sum_{\{\mathbf{k}\}} \rightarrow \sum_{\{\mathbf{k}\}} \frac{\prod_{\mathbf{k}} n_{\mathbf{k}}!}{N!} \ .
+\]</span> We also need to make sure to sum over all permutations for each term <span class="math inline">\(\big\langle \{\mathbf{x}\} | \{\mathbf{k}\} \big\rangle_\eta\)</span> and <span class="math inline">\(\big\langle\{\mathbf{k}\} | \{\mathbf{x}'\} \big\rangle_\eta\)</span>. This will give a double sum over permutations with different parities <span class="math inline">\(p\)</span> and <span class="math inline">\(p'\)</span>, contributing a normalization factor <span class="math inline">\(N_\eta = N! \prod_{\mathbf{k}} n_{\mathbf{k}}!\)</span> that fortunately happens to cancel the <span class="math inline">\(\prod_{\mathbf{k}} n_{\mathbf{k}}!\)</span> prefactor from the constrained sum, <span class="math display">\[
+\begin{align*}
+\big\langle \{\mathbf{x}\} | \rho | \{\mathbf{x}'\} \big\rangle_\eta &amp;= \frac{1}{Z}\sum_{\{\mathbf{k}\}} \frac{\prod_{\mathbf{k}} n_{\mathbf{k}}!}{N!} \exp\bigg(-\frac{\beta\hbar^2}{2m} \sum_{j=1}^N \mathbf{k}_j^2 \bigg) \big\langle \{\mathbf{x}\} | \{\mathbf{k}\} \big\rangle_\eta \ \big\langle\{\mathbf{k}\} | \{\mathbf{x}'\} \big\rangle_\eta \\
+&amp;= \frac{1}{Z}\sum_{\{\mathbf{k}\}} \frac{\prod_{\mathbf{k}} n_{\mathbf{k}}!}{N!} \exp\bigg(-\frac{\beta\hbar^2}{2m} \sum_{j=1}^N \mathbf{k}_j^2 \bigg) \sum_{\sigma,\sigma'} \frac{\eta^p \eta^{p'}}{N! \prod_{\mathbf{k}} n_{\mathbf{k}}!} \big\langle \{\mathbf{x}\} | P_\sigma \{\mathbf{k}\} \big\rangle \ \big\langle P_{\sigma'} \{\mathbf{k}\} | \{\mathbf{x}'\} \big\rangle \\
+&amp;= \frac{1}{Z(N!)^2} \sum_{\sigma,\sigma'} \eta^p \eta^{p'} \sum_{\{\mathbf{k}\}} \exp\bigg(-\frac{\beta\hbar^2}{2m} \sum_{j=1}^N \mathbf{k}_j^2 \bigg) \big\langle \{\mathbf{x}\} | P_\sigma \{\mathbf{k}\} \big\rangle \ \big\langle P_{\sigma'} \{\mathbf{k}\} | \{\mathbf{x}'\} \big\rangle \ .\\
+\end{align*}
+\]</span> We’ll now use the usual density of states approximation for the sums over all <span class="math inline">\(\{\mathbf{k}\}\)</span>. This of course assumes <span class="math inline">\(V \gg \lambda_T^3\)</span> so that particle quantum interactions are relatively weak. Replacing the sum by an integral, and using the fact that <span class="math inline">\(\big\langle \{\mathbf{x}\} | P_\sigma \{\mathbf{k}\} \big\rangle\)</span> is just the Fourier transform weighting factor in <span class="math inline">\(3N\)</span> dimensions, we have <span class="math display">\[
+\big\langle \{\mathbf{x}\} | \rho | \{\mathbf{x}'\} \big\rangle_\eta
+\approx \frac{1}{Z(N!)^2} \sum_{\sigma,\sigma'} \eta^p \eta^{p'} \int \frac{d^{3N}\mathbf{k}}{(2\pi)^{3N}} \exp\bigg[\sum_{j=1}^N \bigg(-\frac{\beta\hbar^2}{2m}\mathbf{k}_j^2 + i\big(\mathbf{k}_{\sigma(j)} \cdot \mathbf{x}_j - \mathbf{k}_{\sigma'(j)} \cdot \mathbf{x}'_j\big) \bigg)\bigg] \ .
+\]</span> This integral seems like another Gaussian integral, but we have to be careful here since the integration variables are over <span class="math inline">\(\{\mathbf{k}\}\)</span> and not <span class="math inline">\(P_\sigma \{\mathbf{k}\}\)</span> or <span class="math inline">\(P_{\sigma'} \{\mathbf{k}\}\)</span>. We can move the permutations onto the position vectors instead by simply inverting them to get <span class="math display">\[
+\begin{align*}
+\big\langle \{\mathbf{x}\} | \rho | \{\mathbf{x}'\} \big\rangle_\eta
+&amp;= \frac{1}{Z(N!)^2} \sum_{\sigma,\sigma'} \eta^p \eta^{p'} \int \frac{d^{3N}\mathbf{k}}{(2\pi)^{3N}} \ \exp\bigg[\sum_{j=1}^N \bigg(-\frac{\beta\hbar^2}{2m}\mathbf{k}_j^2 + i\big(\mathbf{k}_j \cdot \mathbf{x}_{\sigma^{-1}(j)} - \mathbf{k}_j \cdot \mathbf{x}'_{\sigma'^{-1}(j)}\big) \bigg)\bigg] \\
+&amp;= \frac{1}{Z(N!)^2} \sum_{\sigma,\sigma'} \eta^p \eta^{p'} \prod_{j=1}^N \int \frac{d^{3}\mathbf{k}_j}{(2\pi)^{3N}} \ \exp\bigg[-\frac{\beta\hbar^2}{2m}\mathbf{k}_j^2 + i \mathbf{k}_j \cdot \big(\mathbf{x}_{\sigma^{-1}(j)} - \mathbf{x}'_{\sigma'^{-1}(j)}\big)\bigg] \\
+&amp;= \frac{1}{Z(N!)^2} \sum_{\sigma,\sigma'} \eta^p \eta^{p'} \prod_{j=1}^N \bigg(\frac{1}{\lambda_T^3} \exp\bigg[-\frac{(\mathbf{x}_{\sigma^{-1}(j)} - \mathbf{x}'_{\sigma'^{-1}(j)})^2}{\lambda_T^2/\pi}\bigg] \bigg) \ .
+\end{align*}
+\]</span> Now, we can use the fact that the two permutations are now redundant by rewriting the double sum as a free sum over all <span class="math inline">\(N!\)</span> permutations plus a sum over the relative permutations <span class="math inline">\(Q \equiv P'^{-1}P\)</span> to get <span class="math display">\[
+\big\langle \{\mathbf{x}\} | \rho | \{\mathbf{x}'\} \big\rangle_\eta = \frac{1}{ZN!\lambda_T^{3N}} \sum_\tau \eta^q \exp\bigg[-\sum_{j=1}^N\frac{(\mathbf{x}_j - \mathbf{x}'_{\tau(j)})^2}{\lambda_T^2/\pi}\bigg] \ .
+\]</span> Finally, to get the partition function, we can use the relation <span class="math inline">\(\text{tr } \rho = 1\)</span> and solve for <span class="math inline">\(Z\)</span> by integrating over all <span class="math inline">\(\{\mathbf{x}\}\)</span> to get <span class="math display">\[
+\boxed{
+Z = \frac{1}{N!\lambda_T^{3N}} \int d^{3N} \mathbf{x} \ \sum_\tau \eta^q \exp\bigg[-\sum_{j=1}^N\frac{(\mathbf{x}_j - \mathbf{x}_{\tau(j)})^2}{\lambda_T^2/\pi}\bigg]
+} \ .
+\]</span> It’s hard to parse what this is saying as is. To make it easier to analyze let’s write out the permutations in order of increasing parity. The zero-parity term involves no permutations at all, that is <span class="math inline">\(Q=1\)</span>. In that case the exponential vanishes to give <span class="math inline">\(V^N\)</span>, which implies <span class="math inline">\(Z \approx \frac{1}{N!} \big(\frac{V}{\lambda_T^3})^N\)</span>. This is just the partition function for the classical ideal gas. We can also see right off where that <span class="math inline">\(N!\)</span> term for identical particles came from in classical statistical mechanics. It falls right out of the quantum theory.</p>
+<p>The next permutations involve one-parity terms of pairwise swaps. In this case, all but two of the exponentials vanish, giving a factor of <span class="math inline">\(V^{N-2}\)</span>. The remaining two terms we can convert to relative coordinates and integrate out another factor of <span class="math inline">\(V\)</span>. Since there are <span class="math inline">\(\binom{N}{2} = \frac{N(N-1)}{2}\)</span> such terms, we get <span class="math display">\[
+Z \approx \frac{V^N}{N!\lambda_T^{3N}} \bigg(1 + \frac{N^2}{2V} \int d^3 \boldsymbol{x} \ \eta e^{- 2\pi r^2 / \lambda_T^2} \bigg) \approx \frac{V^N}{N!\lambda_T^{3N}} \bigg[1 + \frac{\eta N^2}{2V} \bigg(\frac{\lambda_T^2}{2}\bigg)^{3/2} + O\bigg(\frac{N^3}{V^2}\bigg)\bigg] \ .
+\]</span> To see what’s going on let’s calculate the pressure. Letting <span class="math inline">\(n=\frac{N}{V}\)</span> be the density, the expression for <span class="math inline">\(\beta P\)</span> is evidently <span class="math display">\[
+\beta P = \frac{\partial \log Z}{\partial V} = n - \frac{\eta}{2} \bigg(\frac{\lambda_T^2}{2}\bigg)^{3/2} n^2 + O(n^3) \ .
+\]</span> This is clearly a virial expansion in terms of some kind of interaction potential <span class="math inline">\(u(r)\)</span>. The second virial coefficient in this case is <span class="math display">\[
+B_2(T) = -\frac{\eta}{2} \bigg(\frac{\lambda_T^2}{2}\bigg)^{3/2} \ .
+\]</span> For bosons this coefficient is negative, meaning the pressure is <em>reduced</em> from that of the classical ideal gas due to bosonic attraction. For fermions the opposite is true, meaning the pressure is <em>increased</em> due to fermionic repulsion. As <span class="math inline">\(T\)</span> increases these effects become less and less important since <span class="math inline">\(\lambda_T \rightarrow 0\)</span>, becoming essentially negligible in the classical limit.</p>
+<p>Now, recall from our discussion of classically interacting gases that virial expansions can be thought of as arising from a cluster expansion in terms of powers of the Mayer f-function <span class="math inline">\(f(r) \equiv e^{-\beta u(r)}-1\)</span>. This means we can think of the above expansion as arising from the presence of an effective potential <span class="math inline">\(u(r) = -k_B T \log (1 + f(r))\)</span>. In our case we can read off from the expansion for <span class="math inline">\(Z\)</span> that <span class="math inline">\(f(r) = e^{-2\pi r^2 / \lambda_T^2}\)</span>, hence we have <span class="math display">\[
+u(r) \approx - k_B T \log\big( 1 + \eta e^{-2\pi r^2 / \lambda_T^2}\big) \ .
+\]</span> This effective potential <span class="math inline">\(u(r)\)</span> arises purely from the quantum mechanical behavior of identical particles, even if we assume they’re completely non-interacting as we would for the ideal gas. If we plot <span class="math inline">\(u(r)\)</span> for <span class="math inline">\(\eta = \pm 1\)</span> we get two potential curves like the ones shown in the following figure.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./resources/image-20231014133317922.png" class="img-fluid figure-img" width="400"></p>
+</figure>
+</div>
+<p>For fermions, <span class="math inline">\(u(r)\)</span> goes to zero exponentially fast as <span class="math inline">\(r \rightarrow \infty\)</span> and blows up as <span class="math inline">\(r \rightarrow 0\)</span>. This reflects the exclusion principle, which essentially forbids fermions from getting too close to each other. As the particles get farther apart this fermionic repulsion dies off exponentially fast.</p>
+<p>For bosons, <span class="math inline">\(u(r)\)</span> still dies off exponentially fast as <span class="math inline">\(r \rightarrow \infty\)</span>, except now from below due to the attractive nature of bosons. Instead of blowing up as <span class="math inline">\(r \rightarrow 0\)</span> we instead get a finite value of <span class="math inline">\(u(0) \approx -k_B T \log 2\)</span>. The shape of this curve represents the fact that bosons prefer to be in the same state, yet they only feel this effect when very close to each other.</p>
+<p>Of course, this only a valid potential when the density is sufficiently small. For denser gases we’d need to include higher order corrections arising from multi-body quantum exchange interactions. This further complicates what the potential for identical particles looks like, but the rough idea is basically the same. Qualitatively speaking, bosons attract, while fermions repel.</p>
 </section>
-<section id="bose-gases" class="level2">
-<h2 class="anchored" data-anchor-id="bose-gases">Bose Gases</h2>
+<section id="energy-representation" class="level3">
+<h3 class="anchored" data-anchor-id="energy-representation">Energy Representation</h3>
+<p>While insightful, it’s pretty clear that the position representation is an unnatural way to compute the partition function for an ideal gas. We’ve already seen that the natural basis for this is the basis of wavevector states <span class="math inline">\(|\{\mathbf{k}\}\rangle\)</span>. In this basis, we have</p>
+<p><span class="math display">\[
+Z = \text{tr} \ e^{-\beta H} = \sideset{}{'}\sum_{\{\mathbf{k}\}} \langle \{\mathbf{k}\} | e^{-\beta \sum_{i=1}^N \varepsilon_{\mathbf{k}_i}} | \{\mathbf{k}\} \rangle_\eta \ ,
+\]</span></p>
+<p>where we’ve introduced the shorthand <span class="math inline">\(\varepsilon_\mathbf{k}\)</span> to refer to the energy eigenvalue of a given particle with wavevector <span class="math inline">\(\mathbf{k}\)</span>. In the usual case of an ideal non-relativistic particle in a box, we’d have <span class="math inline">\(\varepsilon_\mathbf{k} = \frac{\hbar^2 \mathbf{k}^2}{2m}\)</span>. But in other cases it may differ. For example, we could also be describing a gas of <em>ultra-relativistic</em> particles in a box, where we’d have <span class="math inline">\(\varepsilon_\mathbf{k} = \hbar c |\mathbf{k}|\)</span>.</p>
+<p>Again we’re dealing with a constrained sum due to the requirement that <span class="math inline">\(N = \sum n_\mathbf{k}\)</span>. Rather than write out the permutations explicitly as we did before, let’s instead work in Fock space this time by setting <span class="math inline">\(| \{\mathbf{k}\} \rangle_\eta = | \{n_\mathbf{k}\} \rangle\)</span>. We then have <span class="math display">\[
+Z = \sideset{}{'}\sum_{\{n_\mathbf{k}\}} \langle \{n_\mathbf{k}\} | e^{-\beta \sum_\mathbf{k} n_\mathbf{k} \varepsilon_\mathbf{k}} | \{n_\mathbf{k}\} \rangle = \sideset{}{'}\sum_{\{n_\mathbf{k}\}} e^{-\beta \sum_\mathbf{k} n_\mathbf{k} \varepsilon_\mathbf{k}} \ .
+\]</span> Of course, we still haven’t removed the constraint. To do that we’ll use a trick we’ve seen before. Namely, we’ll switch to the grand canonical formulation where <span class="math inline">\(N\)</span> is allowed to take on any positive integer. Doing that removes the constraint, giving <span class="math display">\[
+\mathcal{Z} = \sum_{N=0}^\infty e^{\beta\mu N} Z = \sum_{\{n_\mathbf{k}\}} e^{\beta\mu \sum_\mathbf{k} n_\mathbf{k}} e^{-\beta \sum_\mathbf{k} n_\mathbf{k} \varepsilon_\mathbf{k}} = \prod_\mathbf{k} \sum_{n_\mathbf{k}} e^{-\beta n_\mathbf{k}\big(\varepsilon_\mathbf{k} - \mu\big)} \ .
+\]</span> Now, to do the sum over <span class="math inline">\(n_\mathbf{k}\)</span> we have to distinguish between the case for bosons and fermions. For fermions <span class="math inline">\(n_\mathbf{k}=0,1\)</span>, which means we’re just summing two terms. For bosons <span class="math inline">\(n_\mathbf{k}=0,1,\cdots\)</span>, which gives a geometric series. We can combine both expressions into one by writing <span class="math display">\[
+\mathcal{Z}_\eta = \prod_\mathbf{k} \bigg(1 + \eta e^{-\beta \big(\varepsilon_\mathbf{k} - \mu\big)}\bigg)^{-\eta} \ .
+\]</span> This means the log grand partition function is given by <span class="math display">\[
+\log\mathcal{Z}_\eta = -\eta \sum_{\mathbf{k}} \log \bigg(1 + \eta e^{-\beta \big(\varepsilon_\mathbf{k} - \mu\big)}\bigg) \ .
+\]</span></p>
+</section>
+<section id="quantum-distributions" class="level3">
+<h3 class="anchored" data-anchor-id="quantum-distributions">Quantum Distributions</h3>
+<p>As is typical with the grand canonical formulation, one of the first things we want to do is calculate <span class="math inline">\(N\)</span>. Since the sum over all occupation numbers must equal <span class="math inline">\(N\)</span>, we have <span class="math display">\[
+N = \frac{\partial \log\mathcal{Z}_\eta}{\partial (\beta\mu)} = -\eta \sum_{\mathbf{k}} \frac{\partial}{\partial(\beta\mu)} \log \bigg(1 + \eta e^{-\beta \big(\varepsilon_\mathbf{k} - \mu\big)}\bigg)  = \sum_{\mathbf{k}} \frac{1}{e^{\beta(\varepsilon_\mathbf{k}-\mu)} - \eta} = \sum_{\mathbf{k}} \langle n_\mathbf{k} \rangle \ .
+\]</span> Evidently then, the mean occupation numbers are given by the formula <span class="math display">\[
+\boxed{
+\langle n_\mathbf{k} \rangle = \frac{1}{e^{\beta(\varepsilon_\mathbf{k}-\mu)} - \eta}
+} \ .
+\]</span> This formula defines two distributions describing how many particles we can expect to occupy a given state when those particles are identical. For <em>bosons</em> this distribution is called the <strong>Bose-Einstein distribution</strong>, given by <span class="math display">\[
+\langle n_\mathbf{k} \rangle = \frac{1}{e^{\beta(\varepsilon_\mathbf{k}-\mu)} - 1} \ ,
+\]</span> while for <em>fermions</em> the distribution is called the <strong>Fermi-Dirac distribution</strong>, given by <span class="math display">\[
+\langle n_\mathbf{k} \rangle = \frac{1}{e^{\beta(\varepsilon_\mathbf{k}-\mu)} + 1} \ .
+\]</span> In the dilute limit we expect each <span class="math inline">\(\langle n \rangle \ll 1\)</span>, which means <span class="math inline">\(e^{\beta(\varepsilon-\mu)} \gg 1\)</span>. In that limit, both distributions reduce to the classical distribution we expect for a particle of energy <span class="math inline">\(\varepsilon\)</span>, namely the <strong>Maxwell-Boltzmann distribution</strong> given by <span class="math display">\[
+\langle n_\mathbf{k} \rangle = e^{-\beta(\varepsilon_\mathbf{k}-\mu)} \ .
+\]</span> We have seen how the Maxwell-Boltzmann distribution behaves already when we studied classical statistical mechanics. In the next few sections we’ll focus on the study of the Fermi-Dirac and Bose-Einstein distributions and their implications.</p>
+</section>
+<section id="equations-of-state" class="level3">
+<h3 class="anchored" data-anchor-id="equations-of-state">Equations of State</h3>
+<p>Now that we have the partition function we can proceed to calculate the equations of state for the quantum ideal gas. We’ll again assume that <span class="math inline">\(V \gg \lambda_T^3\)</span> so that we can use the density of states to rewrite the log partition function as <span class="math display">\[
+\log\mathcal{Z}_\eta \approx -\eta\frac{g V}{(2\pi)^3} \int d^3 \mathbf{k} \  \log \bigg(1 + \eta e^{-\beta \big(\varepsilon_\mathbf{k} - \mu\big)}\bigg) \ .
+\]</span></p>
+<p>Notice we’ve now introduced a factor <span class="math inline">\(g\)</span> in the density of state conversion. This constant is there to reflect the fact that at the quantum level particles also contain a <em>spin</em> state <span class="math inline">\(s\)</span>, which gives an extra <span class="math inline">\(g=s(s+1)\)</span> degeneracy to each state. For example, for spin-half fermions like electrons we’d have <span class="math inline">\(s=\frac{1}{2}\)</span> and hence <span class="math inline">\(g=2\)</span>.</p>
+<p>From here on we’ll again assume the energy states <span class="math inline">\(\varepsilon_\mathbf{k}\)</span> are those for the particle in the box, <span class="math inline">\(\varepsilon_\mathbf{k} = \frac{\hbar^2\mathbf{k}^2}{2m}\)</span>. Let’s first calculate the expected particle number <span class="math inline">\(N\)</span>, or more conveniently the number density <span class="math inline">\(n \approx \frac{N}{V}\)</span>. Plugging in this choice of <span class="math inline">\(\varepsilon_\mathbf{k}\)</span> and using the density of states conversion along with the fact that the integral is spherically symmetric, we have <span class="math display">\[
+n = \frac{1}{V} \sum_{\mathbf{k}} \langle n_\mathbf{k} \rangle
+\approx \frac{g}{(2\pi)^3} \int_0^\infty 4\pi k^2 dk \ \frac{1}{e^{-\beta\mu} e^{\beta\frac{\hbar^2 k^2}{2m}} - \eta} \ .
+\]</span> Here it benefits to perform a change of variables. First we’ll reintroduce the <strong>fugacity</strong> <span class="math inline">\(z \equiv e^{\beta\mu}\)</span> to provide a more convenient variable to tune than the chemical potential <span class="math inline">\(\mu\)</span>. Next we’ll use thermal deBroglie wavelength <span class="math inline">\(\lambda_T = \frac{h}{(2\pi m k_B T)^{1/2}}\)</span> to rewrite the expression <span class="math inline">\(\frac{\beta\hbar^2}{m} = \frac{\lambda_T^2}{2\pi}\)</span>. Last, we’ll define a change of variable from <span class="math inline">\(k\)</span> to a new variable <span class="math inline">\(x\)</span> defined by <span class="math display">\[
+x \equiv \frac{\beta\hbar^2}{2m} k^2 = \frac{\lambda_T^2}{4\pi} k^2 \quad \Longrightarrow \quad
+\begin{cases}
+k = \frac{2\pi^{1/2}}{\lambda_T} x^{1/2} \\
+dk = \frac{\pi^{1/2}}{\lambda_T} x^{-1/2} dx \\
+\end{cases} \ .
+\]</span> Plugging each of these expressions back into the integral and simplifying, we get <span class="math display">\[
+n = \frac{g}{(2\pi)^3} \frac{(2\pi^{1/2})^5}{2\lambda_T^3} \int_0^\infty dx \ \frac{x^{1/2}}{z^{-1} e^{x} - \eta} = \frac{g}{\lambda_T^3} \frac{1}{(1/2)!} \int_0^\infty dx \ \frac{x^{1/2}}{z^{-1} e^{x} - \eta} \ .
+\]</span> Here we used the fact that <span class="math inline">\((1/2)! = \sqrt{\pi}/2\)</span> for reasons we’ll understand shortly. Let’s now calculate the energy <span class="math inline">\(E\)</span>, or more conveniently <span class="math inline">\(\beta\varepsilon\)</span>, where the <em>energy density</em> <span class="math inline">\(\varepsilon \equiv \frac{E}{V}\)</span>, using a similar method. Using the same definitions, we have $$ <span class="math display">\[\begin{align*}
+\beta\varepsilon &amp;= \frac{\beta}{V} \sum_{\mathbf{k}} \varepsilon_\mathbf{k} \langle n_\mathbf{k} \rangle \\
+&amp;\approx \beta\frac{g}{(2\pi)^3} \int_0^\infty 4\pi k^2 dk \ \frac{\frac{\hbar^2 k^2}{2m}}{e^{-\beta\mu} e^{\beta\frac{\hbar^2 k^2}{2m}} - \eta} \\
+&amp;= \frac{g}{(2\pi)^3} \frac{(2\pi^{1/2})^3}{2\lambda_T^3} \int_0^\infty dx \ \frac{x^{3/2}}{z^{-1} e^{x} - \eta} \\
+&amp;= \frac{3}{2} \frac{g}{\lambda_T^3} \frac{1}{(3/2)!} \int_0^\infty dx \ \frac{x^{3/2}}{z^{-1} e^{x} - \eta} \ .
+
+\end{align*}\]</span> <span class="math display">\[
+Finally, let's calculate the pressure, or really $\beta P$ again for simplicity. Recall by extensivity that we can write $\log \mathcal{Z} = \beta P V$. Thus,
+\]</span> <span class="math display">\[\begin{align*}
+\beta P &amp;= \frac{1}{V} \log\mathcal{Z} \\
+&amp;\approx \frac{-\eta g}{(2\pi)^3} \int d^3 \mathbf{k} \  \log \bigg(1 + \eta e^{-\beta \big(\varepsilon_\mathbf{k} - \mu\big)}\bigg) \\
+&amp;= \frac{-\eta g}{(2\pi)^3} \int_0^\infty 4\pi k^2 dk \  \log \bigg(1 + \eta z e^{-\frac{\beta\hbar^2 k^2}{2m}}\bigg) \\
+&amp;= \frac{-\eta g}{(2\pi)^3} \frac{(2\pi^{1/2})^5}{2\lambda_T^3} \int_0^\infty dx \ x^{1/2} \log \bigg(1 + \eta z e^{-x}\bigg) \\
+&amp;= \frac{g}{\lambda_T^3} \frac{1}{(3/2)!} \int_0^\infty dx \ \frac{x^{3/2}}{z^{-1} e^x - \eta} \ .
+\end{align*}\]</span> <span class="math display">\[
+In the last line we used integration by parts to move the derivative from $\log \big(1 + \eta z e^{-x}\big)$ to $x^{1/2}$ and made use of the fact that the boundary terms vanish. The reason we did this was to show how all of the above expressions involve an integral that more or less looks alike apart from some parameter. Let's give this class of integrals a name by defining
+\]</span> &nbsp;. <span class="math display">\[
+We'll study the properties of these functions in the next section. For now just observe that if we make this substitution, we can simplify the above expressions by writing
+\]</span> &nbsp;. $$ We can immediately read off the important relation <span class="math inline">\(\varepsilon = \frac{3}{2} P\)</span>, which just says <span class="math inline">\(E = \frac{3}{2} PV\)</span>. We’ve seen this before for the classical ideal gas. Evidently the relationship holds for the quantum ideal gas as well, both for fermions and bosons. However, the relation between <span class="math inline">\(P\)</span> and <span class="math inline">\(n\)</span> is no longer as straightforward as it was in the classical case. To figure that relationship out we’ll need to get a series expansion for <span class="math inline">\(f_s^\eta(z)\)</span> so we can express <span class="math inline">\(z\)</span> as a function of <span class="math inline">\(n\)</span> and hence get a virial expansion of <span class="math inline">\(P\)</span> as a function of <span class="math inline">\(n\)</span>.</p>
+</section>
+<section id="special-functions" class="level3">
+<h3 class="anchored" data-anchor-id="special-functions">Special Functions</h3>
+<p>Given these special functions <span class="math inline">\(f_s^\eta(z)\)</span> seem to occur so frequently in quantum statistics, perhaps we should study their properties a little bit before proceeding to a more detailed study of the quantum ideal gas. These special functions are a well-known class of mathematical functions known as <em>polylogarithms</em>. They’re a generalization of yet another class of special functions called <em>zeta functions</em>. Zeta functions, denoted <span class="math inline">\(\zeta(s)\)</span> are defined by the arithmetic series expression <span class="math display">\[
+\zeta(s) \equiv \sum_{n=1}^\infty \frac{1}{n^s} = 1 + \frac{1}{2^s} + \frac{1}{3^s} + \cdots \ .
+\]</span> For real-valued <span class="math inline">\(s\)</span>, zeta functions converge whenever <span class="math inline">\(s &gt; 1\)</span> and diverge otherwise. However, even when these functions do converge we can’t generally find <span class="math inline">\(\zeta(s)\)</span> in closed form for most values of <span class="math inline">\(s\)</span>. In fact we only have closed-form expressions for <em>even</em> integer values of <span class="math inline">\(s\)</span>. For example, it’s known that <span class="math inline">\(\zeta(2) = \frac{\pi^2}{6}\)</span> and <span class="math inline">\(\zeta(4) = \frac{\pi^4}{90}\)</span>. Even <span class="math inline">\(\zeta(3) \approx 1.202\)</span> doesn’t have a closed-form expression and has to be found numerically. It’s evidently a new irrational number now known as <em>Apery’s constant</em>.</p>
+<p>Polylogarithms, usually denoted <span class="math inline">\(\text{Li}_s(z)\)</span>, generalize zeta functions by turning them into a power series in some variable <span class="math inline">\(z\)</span>, <span class="math display">\[
+\text{Li}_s(z) \equiv \sum_{n=1}^\infty \frac{z^n}{n^s} = z + \frac{z^2}{2^s} + \frac{z^3}{3^s} + \cdots \ .
+\]</span> Evidently when <span class="math inline">\(z=1\)</span> we just get back the zeta functions, i.e.&nbsp;<span class="math inline">\(\text{Li}_s(1) = \zeta(s)\)</span>. Polylogarithms are <em>strictly speaking</em> only well-defined in the interval <span class="math inline">\(|z| &lt; 1\)</span>. However, the functions can be analytically continued to cover the whole real line except when <span class="math inline">\(z=1\)</span> and <span class="math inline">\(s &lt; 1\)</span>, in which case there will generally be an asymptote at <span class="math inline">\(z=1\)</span>. Here’s a plot of the principle branch of <span class="math inline">\(\text{Li}_s(z)\)</span> for a few values different of <span class="math inline">\(s\)</span>. We can see when <span class="math inline">\(s &lt; 1\)</span> the curves asymptote at <span class="math inline">\(z=1\)</span>, otherwise they just continue on.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./resources/tmp-3208225.png" class="img-fluid figure-img" width="400"></p>
+</figure>
+</div>
+<p>Since there’s no constant term in the series it evidently must be the case that <span class="math inline">\(\text{Li}_s(0)=0\)</span>. Moreover, when <span class="math inline">\(z\)</span> is small we must have <span class="math inline">\(\text{Li}_s(z) \approx z\)</span>, which as we’ll soon see turns out to be important to us.</p>
+<p>The name “polylogarithm” comes from the fact that the functions satisfy the differentiation ladder relationship <span class="math display">\[
+\frac{d}{dz} \text{Li}_s(z) = \frac{\text{Li}_{s-1}(z)}{z} \ ,
+\]</span> which combined with the fact that <span class="math inline">\(\text{Li}_1(z) = -\log (1-z)\)</span> implies that when <span class="math inline">\(s\)</span> is an integer these functions are just successive derivatives of logarithms. This ladder relation gives us an easy way to find other values of <span class="math inline">\(\text{Li}_s(z)\)</span> provided we know the functional form for some <span class="math inline">\(s\)</span>, though it only works for finding integer steps of <span class="math inline">\(s\)</span>.</p>
+<p>Perhaps most importantly for our purposes, polylogarithms can be re-expressed in an integral form that we’ll recognize. Observe that by using the expression for a geometric series plus the integral representation of the factorial function that we can rewrite the polylogarithm as <span class="math display">\[
+\begin{align*}
+\text{Li}_s(z) &amp;= \sum_{n=1}^\infty \frac{z^n}{n^s} \\
+&amp;= \sum_{n=1}^\infty \frac{z^n}{(s-1)!} \frac{(s-1)!}{n^s}\\
+&amp;= \sum_{n=1}^\infty \frac{z^n}{(s-1)!} \int_0^{\infty} dx \ x^{s-1} e^{-nx} \\
+&amp;= \frac{1}{(s-1)!} \int_0^{\infty} dx \ x^{s-1} \sum_{n=1}^\infty \big(z e^{-x}\big)^n \\
+&amp;= \frac{1}{(s-1)!} \int_0^{\infty} dx \ \frac{x^{s-1}}{z^{-1} e^x - 1} \ .
+\end{align*}
+\]</span> Evidently this is just the expression for <span class="math inline">\(f_s^\eta(z)\)</span> that we saw before when <span class="math inline">\(\eta = 1\)</span>! That is, <span class="math inline">\(f_s^{+}(s) = \text{Li}_s(z)\)</span> exactly. What about when <span class="math inline">\(\eta = -1\)</span> though? We can get a similar relationship by just replacing <span class="math inline">\(z\)</span> with <span class="math inline">\(-z\)</span> in the series to get <span class="math inline">\(\text{Li}_s(z)=-\text{Li}_s(-z)\)</span>. We can combine the two expressions into one by writing <span class="math display">\[
+f_s^\eta(z) = \eta \text{Li}_s(\eta z) = \sum_{n=1}^\infty \frac{\eta^{n+1} z^n}{n^s} = z + \frac{\eta z^2}{2^s} + \frac{z^3}{3^s} + \frac{\eta z^4}{4^s} + \cdots \ .
+\]</span> That is, the functions <span class="math inline">\(f_s^\eta(z)\)</span> we’re seeing fall out of quantum statistics are just polylogarithms, with the caveat that when <span class="math inline">\(\eta=-1\)</span> the series is alternating on even powers. In either case, we can see that <span class="math inline">\(f_s^\eta(z) \approx z\)</span> when <span class="math inline">\(z\)</span> is small. Treating <span class="math inline">\(z\)</span> as the fugacity, <span class="math inline">\(z\)</span> will be small at high temperatures, meaning in the high temperature limit our equation of state becomes <span class="math inline">\(\beta P \approx n\)</span>. This expression is of course none other the classical ideal gas law <span class="math inline">\(PV = N k_B T\)</span>. Evidently the quantum ideal gases reduces to the classical ideal gas in the high temperature limit, as we’d expect, both for fermions as well as bosons. The distinction between the two types of particles washes out in a sense with higher temperatures.</p>
+<p>But what about at lower temperatures? First let’s define <span class="math inline">\(d \equiv \frac{n \lambda_T^3}{g}\)</span>, which we’ll call the <em>degeneracy factor</em> for reasons we’ll see later. If we again want pressure as a function of density we’d need to invert the power series for <span class="math inline">\(d = d(z)\)</span> to find <span class="math inline">\(z = z(d)\)</span>. We’ve seen before how to systematically do this. Starting with the power series for <span class="math inline">\(d = f_{3/2}^\eta (z)\)</span> we have <span class="math display">\[
+d = z + \frac{\eta z^2}{2^{3/2}} + \frac{z^3}{3^{3/2}} + O(z^4) \ .
+\]</span> Now suppose <span class="math inline">\(z\)</span> can be expanded in a power series in <span class="math inline">\(d\)</span> as <span class="math display">\[
+z = a_1 d + a_2 d^2 + a_3 d^3 + O(d^4)
+\]</span> When <span class="math inline">\(z\)</span> is infinitesimal we see <span class="math inline">\(d \approx z\)</span>, which means <span class="math inline">\(a_1 = 1\)</span>. To get the higher order coefficients we’ll substitute this expression into the formula for <span class="math inline">\(d=d(z)\)</span> and match powers. We have <span class="math display">\[
+\begin{align*}
+d &amp;= \big(d + a_2 d^2 + a_3 d^3\big) + \frac{\eta}{2^{3/2}} \big(d + a_2 d^2 + a_3 d^3\big)^2 + \frac{1}{3^{3/2}} \big(d + a_2 d^2 + a_3 d^3\big)^3 + O(d^4) \\
+&amp;= \big(d + a_2 d^2 + a_3 d^3\big) + \frac{\eta}{2^{3/2}} (d^2 + 2 a_2 d^3) + \frac{1}{3^{3/2}} d^3 + O(d^4) \\
+&amp;= d + \bigg(a_2 + \frac{\eta}{2^{3/2}}\bigg) d^2 + \bigg(a_3 + 2 \frac{\eta}{2^{3/2}} a_2 + \frac{1}{3^{3/2}}\bigg) d^3 + O(d^4) \ .
+\end{align*}
+\]</span> Setting the higher-order coefficients to zero, we get <span class="math inline">\(a_2 = - \frac{\eta}{2^{3/2}}\)</span> and <span class="math inline">\(a_3 = \frac{1}{4} -\frac{1}{3^{3/2}}\)</span>. Thus, up to <span class="math inline">\(O(d^3)\)</span> we have <span class="math display">\[
+z = d - \frac{\eta}{2^{3/2}} d^2 + \bigg(\frac{1}{4}  -\frac{1}{3^{3/2}}\bigg) d^3 + O(d^4) \ .
+\]</span> Plugging this expression back into <span class="math inline">\(\beta P\)</span> to get an expansion in powers of <span class="math inline">\(n\)</span> by substituting <span class="math inline">\(d = \frac{n \lambda_T^3}{g}\)</span>, we have <span class="math display">\[
+\begin{align*}
+\beta P &amp;= \frac{g}{\lambda_T^3} \bigg(z + \frac{\eta}{2^{5/2}} z^2 + \frac{1}{3^{5/2}} z^3 + O(z^4)\bigg) \\
+&amp;= \frac{g}{\lambda_T^3} \bigg\{\bigg[d - \frac{\eta}{2^{3/2}} d^2 + \bigg(\frac{1}{4}  -\frac{1}{3^{3/2}}\bigg) d^3\bigg] + \frac{\eta}{2^{5/2}} \bigg[d - \frac{\eta}{2^{3/2}} d^2 + \bigg(\frac{1}{4}  -\frac{1}{3^{3/2}}\bigg) d^3\bigg]^2 \\
+&amp;+ \frac{1}{3^{5/2}} \bigg[d - \frac{\eta}{2^{3/2}} d^2 + \bigg(\frac{1}{4}  -\frac{1}{3^{3/2}}\bigg) d^3\bigg]^3 + O(d^4)\bigg\} \\
+&amp;=
+\end{align*}
+\]</span> Up to <span class="math inline">\(O(n^3)\)</span> we finally have a virial expansion of the form <span class="math display">\[
+\beta P = n - \frac{\eta \lambda_T^3}{g} n^2 + \frac{\lambda_T^6}{g^2} \bigg(\frac{1}{8} - \frac{2}{3^{5/2}}\bigg) n^3 + O(n^4) \ .
+\]</span> Notice how even with no interactions present in the quantum ideal gas we still get a virial expansion. In particular, notice the second virial coefficient <span class="math inline">\(B_2(T) = -\frac{\eta \lambda_T^3}{g}\)</span>. For <em>bosons</em> <span class="math inline">\(B_2\)</span> is <em>negative</em>, meaning the pressure is <em>reduced</em> from that of the classical ideal gas. On the other hand, for <em>fermions</em> <span class="math inline">\(B_2\)</span> is <em>positive</em>, meaning the pressure is <em>increased</em> from that of the classical ideal gas. It’s <em>as if</em> there are interactions present arising from quantum statistics, which we also saw more explicitly in the position representation.</p>
+</section>
+</section>
+<section id="degenerate-gases" class="level2">
+<h2 class="anchored" data-anchor-id="degenerate-gases">Degenerate Gases</h2>
+<p>We’ve largely gone as far as we can by treating bosons and fermions together. We’ve shown that in the classical limit of <span class="math inline">\(d \ll 1\)</span> the quantum ideal gas becomes the classical ideal gas, both for fermions and bosons. We’ve also shown how we can add in quantum corrections to the pressure at lower temperatures via a kind of virial expansion.</p>
+<p>But what about in the other limit, the <em>low temperature limit</em> where <span class="math inline">\(d \gg 1\)</span>? In this <em>degenerate</em> limit expansions in powers of <span class="math inline">\(z\)</span> no longer hold and we need to approach things differently. We’ll start by examining the degenerate limit for fermions, the so-called <em>degenerate fermi gas</em>. Afterwards we’ll separately look at the degenerate limit for bosons, the <em>degenerate boson gas</em>.</p>
+<section id="degenerate-fermi-gas" class="level3">
+<h3 class="anchored" data-anchor-id="degenerate-fermi-gas">Degenerate Fermi Gas</h3>
+<p>To understand the behavior of fermions at low temperatures we need a different kind of representation for the polylogarithm, namely an <em>asymptotic series</em> that’s valid when <span class="math inline">\(z\)</span> becomes infinitely large. We’ll need to derive an <em>asymptotic series</em> for <span class="math inline">\(f_s^{-}(z)\)</span>. We’ll derive a full expansion later. But for now we’ll focus on the extreme low temperature limit where <span class="math inline">\(T \approx 0\)</span>, meaning <span class="math inline">\(\log z \gg 1\)</span>. Recall that by definition we have <span class="math display">\[
+f_s^{-}(z) = \frac{1}{(s-1)!} \int_0^{\infty} dx \ \frac{x^{s-1}}{z^{-1} e^x + 1} \ .
+\]</span> Now, observe that the integrand has the form <span class="math inline">\(x^{s-1} \langle n \rangle\)</span> where <span class="math inline">\(\langle n \rangle = (z^{-1} e^x + 1)^{-1}\)</span> is the expected occupation number. We know that for fermions the occupation number should change abruptly from one to zero especially at low temperatures. If we plot <span class="math inline">\(\langle n \rangle\)</span>as a function of <span class="math inline">\(x\)</span> we get something like the figure shown below. As <span class="math inline">\(z\)</span> gets larger the curve of <span class="math inline">\(\langle n \rangle\)</span> approaches more and more of a step function that goes rapidly to zero around <span class="math inline">\(x \approx \log z\)</span>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./resources/image-20231224204858169.png" class="img-fluid figure-img" width="400"></p>
+</figure>
+</div>
+<p>This means that to a crude approximation we can treat <span class="math inline">\(\langle n \rangle\)</span> as a step function that jumps from one to zero at <span class="math inline">\(x = \log z\)</span>. This means near zero temperature we can approximately write <span class="math display">\[
+f_s^{-}(z) = \frac{1}{(s-1)!} \int_0^{\infty} dx \ \frac{x^{s-1}}{z^{-1} e^x + 1} \approx \frac{1}{(s-1)!} \int_0^{\log z} dx \ x^{s-1} = \frac{(\log z)^s}{s!} \ .
+\]</span> Using the identity <span class="math inline">\(\log z = \beta\mu\)</span>, we then get <span class="math display">\[
+\begin{align*}
+N &amp;= \frac{gV}{\lambda_T^3} \frac{(\beta\mu)^{3/2}}{(3/2)!} \ , \\
+E &amp;= \frac{3}{2 \beta} \frac{gV}{\lambda_T^3} \frac{(\beta\mu)^{5/2}}{(5/2)!} \ .
+\end{align*}
+\]</span> Note the chemical potential <span class="math inline">\(\mu\)</span> here should be thought of as a function of temperature <span class="math inline">\(T\)</span>. Near <span class="math inline">\(T=0\)</span> the chemical potential should be some constant value. This value <span class="math inline">\(\varepsilon_F \equiv \mu_0\)</span> is a constant with units of energy. It’s called the <strong>Fermi energy</strong>, which in terms of the density <span class="math inline">\(n\)</span> is apparently given by <span class="math display">\[
+\varepsilon_F = \frac{2\pi\hbar^2}{m} \bigg(\frac{3\sqrt{\pi}n}{4g}\bigg)^{2/3} = \frac{\hbar^2}{2m} \bigg(\frac{6\pi^2 n}{g}\bigg)^{2/3} \ .
+\]</span> From this equation it makes sense to go ahead and define a <strong>Fermi temperature</strong> <span class="math inline">\(T_F\)</span> using the relation <span class="math inline">\(\varepsilon_F \equiv k_B T_F\)</span>. We’ll see why later. Notice the right-hand side of the previous formula looks like the energy eigenvalue <span class="math inline">\(\frac{\hbar^2}{2m} \mathbf{k}^2\)</span>. This means it makes sense to also define a <strong>Fermi momentum</strong> whose wavevector <span class="math inline">\(\mathbf{k}_F\)</span> is given by the relation <span class="math display">\[
+\varepsilon_F \equiv \frac{\hbar^2}{2m} \mathbf{k}_F^2 \ .
+\]</span> Curiously, we can derive the Fermi energy in a slightly different way without relying on all the machinery we’ve developed, as is typically done in solid state or quantum physics. The idea is to note that in <span class="math inline">\(k\)</span>-space all particles must lie inside the sphere whose radius is <span class="math inline">\(k_F\)</span>. If we assume each particle can take on only their spin degrees of freedom <span class="math inline">\(g=2s+1\)</span>, this means we’d have <span class="math display">\[
+N = \sum_{k \leq k_F} (2s+1) \approx \frac{gV}{(2\pi)^3} \int_0^{k_F} 4\pi k^2 dk = \frac{gVk_F^3}{6\pi^2} \ .
+\]</span> Substituting in <span class="math inline">\(\varepsilon_F = \frac{\hbar^2}{2m} k_F^2\)</span> into this formula and solving for <span class="math inline">\(\varepsilon_F\)</span> in terms of <span class="math inline">\(n = \frac{N}{V}\)</span> gives an identical result, with less work.</p>
+<p>Anyway, if we now take the ratio <span class="math inline">\(\frac{E}{N}\)</span> to get the energy in terms of particle number like we’re used to, we get <span class="math display">\[
+E = \frac{3}{5} N \varepsilon_F = \frac{3}{5} N k_B T_F \ .
+\]</span> Interestingly, it seems the energy of a Fermi gas doesn’t go to zero at zero temperature. It tends to a positive constant. A Fermi gas <em>always</em> has energy due to the exclusion principle preventing the particles from falling into lower energy states. Similarly, a Fermi gas must have non-zero pressure at zero temperature as well since <span class="math inline">\(E = \frac{3}{2} PV\)</span> implies <span class="math display">\[
+P V = \frac{2}{5} N \varepsilon_F = \frac{2}{5} N k_B T_F \ .
+\]</span> This defines a kind of pressure <span class="math inline">\(P_F \equiv \frac{2}{5} n \varepsilon_F\)</span> called the <strong>Fermi pressure</strong>. It again arises from the exclusion principle due to the fact that we can’t squeeze the fermions arbitrarily close together.</p>
+</section>
+<section id="sommerfeld-expansion" class="level3">
+<h3 class="anchored" data-anchor-id="sommerfeld-expansion">Sommerfeld Expansion</h3>
+<p>These expressions tell us what to expect exactly at zero temperature. But what about <em>near</em> zero temperature? How do the equations of state interpolate between these values and the expected classical ones? To investigate this we’ll need to consider more than just the first term in the asymptotic expansion. We need the full asymptotic series now, which we derive below.</p>
+<p>Let’s consider again the integral definition of <span class="math inline">\(f_s^{-}(z)\)</span> and perform integration by parts by moving one of the derivatives from <span class="math inline">\(x^{s-1}\)</span> to <span class="math inline">\(\langle n \rangle = \big(z^{-1} e^x + 1\big)^{-1}\)</span>. Then we have <span class="math display">\[
+\begin{align*}
+f_s^{-}(z) &amp;= \frac{1}{(s-1)!} \int_0^{\infty} dx \ \frac{x^{s-1}}{z^{-1} e^x + 1} \\
+&amp;= \frac{1}{s!} \int_0^{\infty} dx \ x^s \frac{d}{dx} \frac{-1}{z^{-1} e^x + 1} \\
+&amp;\approx \frac{1}{s!} \int_{-\infty}^{\infty} dx \ x^s \frac{d}{dx} \frac{-1}{z^{-1} e^x + 1} \ .
+\end{align*}
+\]</span> The last step requires some justification. Since <span class="math inline">\(\langle n \rangle\)</span> is approximately a step function when <span class="math inline">\(z \gg 1\)</span> its derivative must be approximately a delta function. This means the integrand will be sharply peaked around <span class="math inline">\(\log z\)</span> and so extending the limits of integration to the whole real line is essentially immaterial, though convenient.</p>
+<p>We’ll now make a change of variable. Let <span class="math inline">\(u = x - \log z\)</span>, meaning <span class="math inline">\(x = \log z + u\)</span> and <span class="math inline">\(dx = du\)</span>. Substituting, doing a binomial expansion on <span class="math inline">\(x^s = (\log z + u)^s\)</span>, and then reversing the integration by parts, we get <span class="math display">\[
+\begin{align*}
+f_s^{-}(z) &amp;\approx \frac{1}{s!} \int_{-\infty}^{\infty} du \ (\log z + u)^s \frac{d}{du} \frac{-1}{e^u + 1} \\
+&amp;= \frac{1}{s!} \int_{-\infty}^{\infty} du \sum_{\alpha=0}^\infty \binom{s}{\alpha} u^\alpha (\log z)^{s-\alpha} \frac{d}{du} \frac{-1}{e^u + 1} \\
+&amp;= \frac{(\log z)^s}{s!} \sum_{\alpha=0}^\infty \frac{s!}{\alpha!(s-\alpha)!} (\log z)^{-\alpha} \int_{-\infty}^{\infty} du \ u^\alpha \frac{d}{du} \frac{-1}{e^u + 1} \\
+&amp;= \frac{(\log z)^s}{s!} \sum_{\alpha=0}^\infty \frac{s!}{\alpha!(s-\alpha)!} (\log z)^{-\alpha} \alpha \int_{-\infty}^{\infty} du \ \frac{u^{\alpha-1}}{e^u + 1} \ .
+\end{align*}
+\]</span> Now, the integrand in the last line, call it <span class="math inline">\(g(u)\)</span>, is always either an odd or even function depending on <span class="math inline">\(\alpha\)</span>. When <span class="math inline">\(\alpha\)</span> is <em>odd</em> the integral must be zero, and when <span class="math inline">\(\alpha\)</span> is <em>even</em> the integral must be twice the positive part, both by symmetry. Moreover, the positive part of the integral is just <span class="math inline">\((2\alpha-1)! f_{2\alpha}^{-}(1)\)</span> since <span class="math inline">\(u\)</span> is a dummy variable and <span class="math inline">\(z=1\)</span>. This means we have</p>
+<p><span class="math display">\[
+\begin{align*}
+f_s^{-}(z) &amp;= \frac{(\log z)^s}{s!} \sum_{\alpha=0}^\infty \frac{s!}{(s-\alpha)!} (\log z)^{-\alpha} \frac{1}{(\alpha-1)!} \int_{-\infty}^{\infty} du \ \frac{u^{\alpha-1}}{e^u + 1} \\
+&amp;= \frac{(\log z)^s}{s!} \sum_{\alpha=0}^\infty \frac{s!}{(s-2\alpha)!} (\log z)^{-2\alpha} \frac{2}{(2\alpha-1)!} \int_0^{\infty} du \ \frac{u^{2\alpha-1}}{e^u + 1} \\
+&amp;= \frac{(\log z)^s}{s!} \sum_{\alpha=0}^\infty \frac{s!}{(s-2\alpha)!} (\log z)^{-2\alpha} 2f_{2\alpha}^{-}(1) \\
+\end{align*}
+\]</span> Now, notice that <span class="math inline">\(f_{2\alpha}^{-}(1)\)</span> is kind of like a zeta function since <span class="math display">\[
+f_s^{-}(1) = -\text{Li}_s (-1) = \sum_{n=1}^\infty \frac{(-1)^n}{n^s} = 1 - \frac{1}{2^s} + \frac{1}{3^s} - \cdots \ .
+\]</span> In fact these functions, called <em>eta functions</em> and denoted <span class="math inline">\(\eta(s)\)</span>, are related to zeta functions by <span class="math inline">\(\eta(s) = \big(1-2^{1-s}\big) \zeta(s)\)</span>. This can be seen by separating the odd and even parts of the series and doing some factoring. Using this relationship along with the fact that zeta function values for even integers <span class="math inline">\(s=2\alpha\)</span> have closed form solutions, we finally have <span class="math display">\[
+\begin{align*}
+f_s^{-}(z) &amp;= \frac{(\log z)^s}{s!} \sum_{\alpha=0}^\infty \frac{s!}{(s-2\alpha)!} (\log z)^{-2\alpha} 2\big(1-2^{1-2\alpha}\big) \zeta(2\alpha) \\
+&amp;= \frac{(\log z)^s}{s!} \bigg[1 + \zeta(2) \frac{s(s-1)}{(\log z)^2} + \frac{7\zeta(4)}{4}\frac{s(s-1)(s-2)(s-3)}{(\log z)^4} + O\big((\log z)^{-6}\big) \bigg] \\
+&amp;= \frac{(\log z)^s}{s!} \bigg[1 + \frac{\pi^2}{6} \frac{s(s-1)}{(\log z)^2} + \frac{7\pi^4}{360}\frac{s(s-1)(s-2)(s-3)}{(\log z)^4} + O\big((\log z)^{-6}\big) \bigg] \ .
+\end{align*}
+\]</span> This final series is known as the <strong>Sommerfeld expansion</strong>. Notice the leading term in the series is just <span class="math inline">\(f_s^{-}(z) \approx \frac{(\log z)^s}{s!}\)</span>, which we already expect. This leads to the Fermi values derived before. The higher order terms in the expansion involve reciprocal powers of <span class="math inline">\(\log z\)</span>, which act to give small corrections to the asymptotic expansion at large <span class="math inline">\(z\)</span>.</p>
+<p>We can now use the Sommerfeld expansion to finally calculate the first few corrections to the equations of state at zero temperature. To do that we need to get the series for <span class="math inline">\(s=\frac{3}{2}\)</span> and <span class="math inline">\(s=\frac{5}{2}\)</span>. Working only to the first correction, we have <span class="math display">\[
+\begin{align*}
+f_{3/2}^{-}(z) &amp;= \frac{(\log z)^{3/2}}{(3/2)!} \bigg[1 + \frac{\pi^2/8}{(\log z)^2} + O\big((\log z)^{-4}\big) \bigg] \ , \\
+f_{5/2}^{-}(z) &amp;= \frac{(\log z)^{5/2}}{(5/2)!} \bigg[1 + \frac{5\pi^2/8}{(\log z)^2} + O\big((\log z)^{-4}\big) \bigg] \ .
+\end{align*}
+\]</span> Again using the fact that <span class="math inline">\(\log z = \beta\mu\)</span> we can read off the corrections to the equations of state. First, we have <span class="math display">\[
+N = \frac{gV}{\lambda_T^3} f_{3/2}^\eta(z) = \frac{gV}{\lambda_T^3} \frac{(\beta\mu)^{3/2}}{(3/2)!} \bigg[1 + \frac{\pi^2}{8} \bigg(\frac{k_B T}{\varepsilon_F}\bigg)^2 + O(T^4) \bigg] \ .
+\]</span> We can use this formula to solve for the chemical potential <span class="math inline">\(\mu\)</span> by rearranging terms to get <span class="math display">\[
+\mu = \frac{\hbar^2}{2m} \bigg(\frac{6\pi^2 N}{gV}\bigg)^{2/3} \bigg[1 + \frac{\pi^2}{8} \bigg(\frac{k_B T}{\varepsilon_F}\bigg)^2 + O(T^4) \bigg]^{-2/3} = \varepsilon_F \bigg[1 - \frac{\pi^2}{12}\bigg(\frac{T}{T_F}\bigg)^2 + O(T^4) \bigg] \ .
+\]</span> This means the chemical potential is evidently a downward-sloping parabola at low temperatures with a vertex at the Fermi energy <span class="math inline">\(\varepsilon_F\)</span>. We also expect classically that <span class="math inline">\(\mu \sim -T \log T\)</span> at high temperatures, so the two curves should smoothly interpolate somehow, as shown in the figure below. The transition regime occurs somewhere around the Fermi temperature <span class="math inline">\(T_F\)</span>.</p>
+<p>FIGURE</p>
+<p>Next up, we can find the pressure by using the above expansion for <span class="math inline">\(\mu\)</span> to get $$ <span class="math display">\[\begin{align*}
+P &amp;= \frac{g}{\beta\lambda_T^3} f_{5/2}^\eta(z) \\
+&amp;= \frac{g}{\beta\lambda_T^3} \frac{(\beta\mu)^{5/2}}{(5/2)!} \bigg[1 + \frac{5\pi^2}{8} \bigg(\frac{k_B T}{\varepsilon_F}\bigg)^2 + O(T^4) \bigg] \\
+&amp;= \frac{g}{\beta\lambda_T^3} \frac{(\beta\varepsilon_F)^{5/2}}{(5/2)!} \bigg[1 - \frac{\pi^2}{12}\bigg(\frac{T}{T_F}\bigg)^2 + O(T^4) \bigg]^{5/2} \bigg[1 + \frac{5\pi^2}{8} \bigg(\frac{T}{T_F}\bigg)^2 + O(T^4) \bigg] \\
+&amp;= P_F \bigg[1 + \frac{5\pi^2}{12}\bigg(\frac{T}{T_F}\bigg)^2 + O(T^4) \bigg] \ .
+
+\end{align*}\]</span> $$ Evidently the correction to the pressure is also quadratic, but this time the parabola is <em>upward sloping</em>, causing pressure to increase with temperature. In the classical limit of course we expect pressure to become linear <span class="math inline">\(P \sim T\)</span>, with a turning point occurring again around the Fermi temperature <span class="math inline">\(T_F\)</span>. This is shown in the figure below.</p>
+<p>FIGURE</p>
+<p>With the pressure in hand we can now proceed to calculate the average internal energy using the formula <span class="math inline">\(E = \frac{3}{2} PV\)</span>. We get <span class="math display">\[
+E = \frac{3}{5} N k_B T_F \bigg[1 + \frac{5\pi^2}{12}\bigg(\frac{T}{T_F}\bigg)^2 + O(T^4) \bigg] \ .
+\]</span> Clearly the energy will also be an upward-sloping parabola at low temperatures and have <span class="math inline">\(E \sim T\)</span> at high temperatures. Having energy as a function of temperature we can proceed to calculate the heat capacity for the Fermi gas at low temperatures. Differentiating with respect to <span class="math inline">\(T\)</span> we get <span class="math display">\[
+C = \frac{\partial E}{\partial T} = \frac{\pi^2}{2} N k_B \bigg(\frac{T}{T_F}\bigg) + O(T^3) \ .
+\]</span> Importantly, notice that at low temperatures the heat capacity of a Fermi gas is <em>linear</em> with a cubic correction. As <span class="math inline">\(T\)</span> approaches the Fermi temperature <span class="math inline">\(T_F\)</span> the heat capacity turns over and starts to behave classically, as shown in the figure below.</p>
+<p>FIGURE</p>
+<p>We’ve actually seen this behavior before when we studied the heat capacity of solids. Recall that for a typical solid <span class="math inline">\(C \sim T^3\)</span> at low temperatures. However, we mentioned that for <em>metals</em> the heat capacity actually goes more like <span class="math inline">\(C \sim \alpha T + \beta T^3\)</span> without explaining why this was the case. Now we can. Metals differentiate themselves from other solids in that electrons can move around. They’re not bound to atoms as would typically be the case for a solid. We can think of these freely flowing electrons as a Fermi gas, which gives the heat capacity of metals a linear contribution. They also contribute an added cubic contribution to the usual solid heat capacity. Note for typical metals like iron the Fermi temperature tends to be around <span class="math inline">\(T_F \sim 1000 \ ^\circ \text{K}\)</span>, meaning these affects can often be observed in metals even at room temperature.</p>
+<p>MAYBE WORK AN EXAMPLE TO DERIVE CURIE’S LAW FOR MAGNETIC SUSCEPTIBILITY. SEE BOOK.</p>
+</section>
+<section id="degenerate-bose-gas" class="level3">
+<h3 class="anchored" data-anchor-id="degenerate-bose-gas">Degenerate Bose Gas</h3>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
