@@ -640,13 +640,15 @@ Now we make use of the fact that this integral over $x$ is a well-known integral
 $$
 E \approx E_0 + \frac{9\pi^4 N}{15\omega_D^3} \bigg(\frac{k_B T}{\hbar}\bigg)^4 \ .
 $$
-What's important here is that $E \sim T^4$. This means when we differentiate we get $C \sim T^3$, which is what we wanted to show. The transition region between high and low temperature behaviors seems to occur when $\hbar \omega_D \sim k_B T$. This defines a characteristic temperature $T_D \equiv \frac{\hbar \omega_D}{k_B}$ known as the *Debye temperature* that separates the behavior of the two regimes.
-
+What's important here is that $E \sim T^4$, meaning when we differentiate we get $C \sim T^3$. The transition region between high and low temperature behaviors seems to occur when $\hbar \omega_D \sim k_B T$. This defines a characteristic temperature $T_D \equiv \frac{\hbar \omega_D}{k_B}$ known as the *Debye temperature* that separates the behavior of the two regimes. We can then write the heat capacity at low temperatures as
+$$
+C = N k_B \frac{12\pi^4}{5} \bigg(\frac{T}{T_D}\bigg)^3 + O(T^4) \ .
+$$
 As a brief aside, it's natural to ask if this heat capacity relationship truly holds for all solids. The answer is *almost*. For insulating materials this law holds just fine, but for *metals* it turns out the low temperature limit needs to be slightly modified to
 $$
-C \sim \alpha T^3 + \gamma T \ .
+C \sim \gamma T + \alpha T^3 \ ,
 $$
-That is, the heat capacity of metals goes to zero *linearly*, not cubically. The reason for this is beyond the scope of this course, but it essentially comes from the fact that in metals the electrons are allowed to move around freely throughout the solid.
+where $\alpha$ and $\gamma$ are constant with temperature. That is, the heat capacity of metals goes to zero *linearly*, not cubically. The reason for this essentially comes from the fact that in metals the electrons are allowed to move around freely throughout the solid, creating a composite of a solid and a *Fermi gas* of electrons. We'll study this more in the next chapter on quantum gases.
 
 ### Blackbody Radiation
 
@@ -696,11 +698,13 @@ E &= E_0 + \frac{V\hbar}{\pi^2 c^3} \int_0^\infty d\omega \ \frac{\omega^3}{e^{\
 $$
 Here we pulled out a factor of volume at the end so we can express things in terms of the total energy density $\varepsilon$, which is more commonly done when dealing with light. It's worth taking a minute to address the constant term $\varepsilon_0$. Had we actually done this integral, we'd realize that in fact $\varepsilon_0$ is infinite. We can hand-wave and argue that since $\varepsilon_0$ constant, and physics only cares about energy differences, we can ignore $\varepsilon_0$ and only focus on the temperature dependent part. At a deeper level, it's fair to speculate whether this infinite energy arises from some deeper physics, e.g. the vacuum energy or cosmological constant, but at present this is a topic of ongoing research.
 
-It's typical to lump most of the constants in the second term into a single constant $\sigma$, known as the *Stefan-Boltzmann constant*,
+It's typical to lump most of the constants in the second term of the previous equation into a single constant $\sigma$. This is known as the *Stefan-Boltzmann constant*, defined by
 $$
-\sigma \equiv \frac{\pi^2 k_B^4}{60c^2 \hbar^3} \ ,
+\boxed{
+\sigma \equiv \frac{\pi^2 k_B^4}{60c^2 \hbar^3} \approx 5.67 \cdot 10^{-8} \ \frac{\text{W}}{\text{m}^2 \ ^\circ \text{K}^4} 
+} \ .
 $$
-which turns out to have a value of $\sigma \approx 5.67 \cdot 10^{-8} \ \frac{\text{W}}{\text{m}^2 \ ^\circ \text{K}^4}$ in SI units. Then we have
+In terms of this new constant $\sigma$ we can then write
 $$
 \varepsilon = \varepsilon_0 + \frac{4 \sigma}{c} T^4 \ .
 $$
@@ -710,12 +714,10 @@ I = \sigma T^4 \ .
 $$
 This statement that the total radiance, i.e. the total power radiated by the blackbody, is proportional to $T^4$ is known as the **Stefan-Boltzmann law**. Last, it's possible to use the partition function for this system to show that the radiation inside the cavity also creates a *pressure*. In fact, that radiation pressure is simply given by
 $$
-P = P_0 + \frac{1}{3} \varepsilon \ .
+P = P_0 + \frac{1}{3} \varepsilon = P_0 + \frac{4\sigma}{c} T^4 \ .
 $$
-Here, the pressure $P_0$ arises from the constant energy density $\varepsilon_0$. This means $P_0$ will also be infinite. However, it turns out $P_0$ indeed has an understood interpretation. It's the cause of the *Casimir force* that arises when two conducting plates are put very close together, resulting in an attraction due to the pressure differences inside and outside the plates. The temperature dependent part of the pressure depends only on the energy density, which implies pressure is proportional to $T^4$ as well,
-$$
-P = P_0 + \frac{4\sigma}{c} T^4 \ .
-$$
+Here, the pressure $P_0$ arises from the constant energy density $\varepsilon_0$. This means $P_0$ will also be infinite. However, it turns out $P_0$ does have a potential physical interpretation. It's believed to result from the *Casimir force*, which arises when two conducting plates are put very close together, resulting in an attraction due to the pressure differences inside and outside the plates.
+
 As academic as the problem of blackbody radiation may sound, these results turn out to be extremely useful in astrophysics. Typically in astronomy we're very limited in what we can directly measure about a far away star or galaxy. In particular, we're limited to observing the spectra of light being emitted by those stars. However, to an excellent approximation, it turns out stars can be well modeled as blackbodies. This means we can use measured information about their spectra to deduce other physical facts, like what their energies or pressures are.
 
 As a simple example of this, it's observed that the sun has a spectrum that peaks in the green part of the visible spectrum. Since green light occurs at wavelengths around $\lambda \approx 5.2 \ \mu\text{m}$, using Wien's displacement law we find that the temperature at the surface of the Sun must be about $T \approx 5800 \ ^\circ \text{K}$. Given the surface temperature, we can immediately find the total energy flux as well, and from that the total power radiated by the sun, which turns out to be about $\mathcal{P} \approx 3 \cdot 10^{26} \ \text{W}$. However, the predicted pressure is much lower than the true pressure observed, which is about $P \approx 0.1 \ \text{atm}$. This discrepancy arises from the fact that we're ignoring other more significant contributions to the pressure, particularly the hydrostatic pressure.

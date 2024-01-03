@@ -276,19 +276,19 @@ We can immediately read off the important relation $\varepsilon = \frac{3}{2} P$
 
 ### Special Functions
 
-Given these special functions $f_s^\eta(z)$ seem to occur so frequently in quantum statistics, perhaps we should study their properties a little bit before proceeding to a more detailed study of the quantum ideal gas. These special functions are a well-known class of mathematical functions known as *polylogarithms*. They're a generalization of yet another class of special functions called *zeta functions*. Zeta functions, denoted $\zeta(s)$ are defined by the arithmetic series expression
+Given these special functions $f_s^\eta(z)$ seem to occur so frequently in quantum statistics, perhaps we should study their properties a little bit before proceeding to a more detailed study of the quantum ideal gas. These special functions are a well-known class of mathematical functions known as *polylogarithms*. They're a generalization of yet another class of special functions called *zeta functions*. Zeta functions, denoted $\zeta_s$ are defined by the arithmetic series expression
 $$
-\zeta(s) \equiv \sum_{n=1}^\infty \frac{1}{n^s} = 1 + \frac{1}{2^s} + \frac{1}{3^s} + \cdots \ .
+\zeta_s \equiv \sum_{n=1}^\infty \frac{1}{n^s} = 1 + \frac{1}{2^s} + \frac{1}{3^s} + \cdots \ .
 $$
-For real-valued $s$, zeta functions converge whenever $s > 1$ and diverge otherwise.  However, even when these functions do converge we can't generally find $\zeta(s)$ in closed form for most values of $s$. In fact we only have closed-form expressions for *even* integer values of $s$. For example, it's known that $\zeta(2) = \frac{\pi^2}{6}$ and $\zeta(4) = \frac{\pi^4}{90}$. Even $\zeta(3) \approx 1.202$ doesn't have a closed-form expression and has to be found numerically. It's evidently a new irrational number now known as *Apery's constant*.
+For real-valued $s$, zeta functions converge whenever $s > 1$ and diverge otherwise.  However, even when these functions do converge we can't generally find $\zeta_s$ in closed form for most values of $s$. In fact we only have closed-form expressions for *even* integer values of $s$. For example, it's known that $\zeta_2 = \frac{\pi^2}{6}$ and $\zeta_4 = \frac{\pi^4}{90}$. Even $\zeta_3 \approx 1.202$ doesn't have a closed-form expression and has to be found numerically. It's evidently a new irrational number now known as *Apery's constant*.
 
 Polylogarithms, usually denoted $\text{Li}_s(z)$, generalize zeta functions by turning them into a power series in some variable $z$,
 $$
 \text{Li}_s(z) \equiv \sum_{n=1}^\infty \frac{z^n}{n^s} = z + \frac{z^2}{2^s} + \frac{z^3}{3^s} + \cdots \ .
 $$
-Evidently when $z=1$ we just get back the zeta functions, i.e. $\text{Li}_s(1) = \zeta(s)$. Polylogarithms are *strictly speaking* only well-defined in the interval $|z| < 1$. However, the functions can be analytically continued to cover the whole real line except when $z=1$ and $s < 1$, in which case there will generally be an asymptote at $z=1$. Here's a plot of the principle branch of $\text{Li}_s(z)$ for a few values different of $s$. We can see when $s < 1$ the curves asymptote at $z=1$, otherwise they just continue on.
+Evidently when $z=1$ we just get back the zeta functions, i.e. $\text{Li}_s(1) = \zeta_s$. Polylogarithms only converge in general when $|z| < 1$, though they can be analytically continued to cover almost all of real $z$. When $z > 0$ the functions asymptote at $z=1$ when $s \leq 1$, otherwise they meet the $z=1$ line at some finite value, which is of course $\zeta_s$. Here's a plot of the polylogarithms for a few different values of $s$. The curves for $s=0,\frac{1}{2},1$ go to infinity at $z=1$, while those for $s=\frac{3}{2},2,\frac{5}{2}$ are finite-valued at $z=1$.
 
-![](./resources/tmp-3208225.png){fig-align=center width=400}
+![](./resources/image-20231231093336020.png){fig-align=center width=400}
 
 Since there's no constant term in the series it evidently must be the case that $\text{Li}_s(0)=0$. Moreover, when $z$ is small we must have $\text{Li}_s(z) \approx z$, which as we'll soon see turns out to be important to us.
 
@@ -308,11 +308,19 @@ $$
 &= \frac{1}{(s-1)!} \int_0^{\infty} dx \ \frac{x^{s-1}}{z^{-1} e^x - 1} \ .
 \end{align*}
 $$
-Evidently this is just the expression for $f_s^\eta(z)$ that we saw before when $\eta = 1$! That is, $f_s^{+}(s) = \text{Li}_s(z)$ exactly. What about when $\eta = -1$ though? We can get a similar relationship by just replacing $z$ with $-z$ in the series to get $\text{Li}_s(z)=-\text{Li}_s(-z)$. We can combine the two expressions into one by writing
+Note this also means we instantly have an integral expression for the zeta function as well by setting $z=1$,
+$$
+\zeta_s = \frac{1}{(s-1)!} \int_0^{\infty} dx \ \frac{x^{s-1}}{e^x - 1} \ .
+$$
+Evidently the integral form for $\text{Li}_s(z)$ is just the expression for $f_s^\eta(z)$ that we saw before when $\eta = 1$! That is, $f_s^{+}(s) = \text{Li}_s(z)$ exactly. What about when $\eta = -1$ though? We can get a similar relationship by just replacing $z$ with $-z$ in the series to get $\text{Li}_s(z)=-\text{Li}_s(-z)$. We can combine the two expressions into one by writing
 $$
 f_s^\eta(z) = \eta \text{Li}_s(\eta z) = \sum_{n=1}^\infty \frac{\eta^{n+1} z^n}{n^s} = z + \frac{\eta z^2}{2^s} + \frac{z^3}{3^s} + \frac{\eta z^4}{4^s} + \cdots \ .
 $$
-That is, the functions $f_s^\eta(z)$ we're seeing fall out of quantum statistics are just polylogarithms, with the caveat that when $\eta=-1$ the series is alternating on even powers. In either case, we can see that $f_s^\eta(z) \approx z$ when $z$ is small. Treating $z$ as the fugacity, $z$ will be small at high temperatures, meaning in the high temperature limit our equation of state becomes $\beta P \approx n$. This expression is of course none other the classical ideal gas law $PV = N k_B T$. Evidently the quantum ideal gases reduces to the classical ideal gas in the high temperature limit, as we'd expect, both for fermions as well as bosons. The distinction between the two types of particles washes out in a sense with higher temperatures.
+That is, the functions $f_s^\eta(z)$ we're seeing fall out of quantum statistics are just polylogarithms, with the caveat that when $\eta=-1$ the series is alternating on even powers. This alternating behavior for $\eta=-1$ means that those functions turn out to be defined for all $z$, not just when $|z| < 1$. In fact, we'll see later that $f_s^{-}(z) \sim \frac{1}{s!} (\log z)^s$ when $z$ is really large.
+
+![](./resources/image-20231231094231897.png){fig-align=center width=400}
+
+In either case, we can see that $f_s^\eta(z) \approx z$ when $z$ is small. Treating $z$ as the fugacity, $z$ will be small at high temperatures, meaning in the high temperature limit our equation of state becomes $\beta P \approx n$. This expression is of course none other the classical ideal gas law $PV = N k_B T$. Evidently the quantum ideal gases reduces to the classical ideal gas in the high temperature limit, as we'd expect, both for fermions as well as bosons. The distinction between the two types of particles washes out in a sense with higher temperatures.
 
 But what about at lower temperatures? First let's define $d \equiv \frac{n \lambda_T^3}{g}$, which we'll call the *degeneracy factor* for reasons we'll see later. If we again want pressure as a function of density we'd need to invert the power series for $d = d(z)$ to find $z = z(d)$. We've seen before how to systematically do this. Starting with the power series for $d = f_{3/2}^\eta (z)$ we have
 $$
@@ -320,7 +328,7 @@ d = z + \frac{\eta z^2}{2^{3/2}} + \frac{z^3}{3^{3/2}} + O(z^4) \ .
 $$
 Now suppose $z$ can be expanded in a power series in $d$ as
 $$
-z = a_1 d + a_2 d^2 + a_3 d^3 + O(d^4)
+z = a_1 d + a_2 d^2 + a_3 d^3 + O(d^4) \ .
 $$
 When $z$ is infinitesimal we see $d \approx z$, which means $a_1 = 1$. To get the higher order coefficients we'll substitute this expression into the formula for $d=d(z)$ and match powers. We have
 $$
@@ -334,20 +342,20 @@ Setting the higher-order coefficients to zero, we get $a_2 = - \frac{\eta}{2^{3/
 $$
 z = d - \frac{\eta}{2^{3/2}} d^2 + \bigg(\frac{1}{4}  -\frac{1}{3^{3/2}}\bigg) d^3 + O(d^4) \ .
 $$
-Plugging this expression back into $\beta P$ to get an expansion in powers of $n$ by substituting $d = \frac{n \lambda_T^3}{g}$, we have
+Plugging this expression back into $\beta P$ and simplifying, we get
 $$
 \begin{align*}
 \beta P &= \frac{g}{\lambda_T^3} \bigg(z + \frac{\eta}{2^{5/2}} z^2 + \frac{1}{3^{5/2}} z^3 + O(z^4)\bigg) \\
 &= \frac{g}{\lambda_T^3} \bigg\{\bigg[d - \frac{\eta}{2^{3/2}} d^2 + \bigg(\frac{1}{4}  -\frac{1}{3^{3/2}}\bigg) d^3\bigg] + \frac{\eta}{2^{5/2}} \bigg[d - \frac{\eta}{2^{3/2}} d^2 + \bigg(\frac{1}{4}  -\frac{1}{3^{3/2}}\bigg) d^3\bigg]^2 \\
 &+ \frac{1}{3^{5/2}} \bigg[d - \frac{\eta}{2^{3/2}} d^2 + \bigg(\frac{1}{4}  -\frac{1}{3^{3/2}}\bigg) d^3\bigg]^3 + O(d^4)\bigg\} \\
-&= 
+&= \frac{g}{\lambda_T^3} \bigg[d - \frac{\eta}{2^{5/2}} d^2 + \bigg(\frac{1}{8} - \frac{2}{3^{5/2}}\bigg) d^3 + O(d^4) \bigg] \ .
 \end{align*}
 $$
-Up to $O(n^3)$ we finally have a virial expansion of the form
+Finally, to get a virial expansion up to $O(n^3)$ we substitute $d = \frac{n \lambda_T^3}{g}$ to get
 $$
-\beta P = n - \frac{\eta \lambda_T^3}{g} n^2 + \frac{\lambda_T^6}{g^2} \bigg(\frac{1}{8} - \frac{2}{3^{5/2}}\bigg) n^3 + O(n^4) \ .
+\beta P = n - \frac{\lambda_T^3}{g} \frac{\eta}{2^{5/2}} n^2 + \frac{\lambda_T^6}{g^2} \bigg(\frac{1}{8} - \frac{2}{3^{5/2}}\bigg) n^3 + O(n^4) \ .
 $$
-Notice how even with no interactions present in the quantum ideal gas we still get a virial expansion. In particular, notice the second virial coefficient $B_2(T) = -\frac{\eta \lambda_T^3}{g}$. For *bosons* $B_2$ is *negative*, meaning the pressure is *reduced* from that of the classical ideal gas. On the other hand, for *fermions* $B_2$ is *positive*, meaning the pressure is *increased* from that of the classical ideal gas. It's *as if* there are interactions present arising from quantum statistics, which we also saw more explicitly in the position representation.
+Notice how even with no interactions present in the quantum ideal gas we still get a virial expansion. In particular, notice the second virial coefficient $B_2(T) = -\frac{\lambda_T^3}{g} \frac{\eta}{2^{5/2}}$. For *bosons* $B_2$ is *negative*, meaning the pressure is *reduced* from that of the classical ideal gas. On the other hand, for *fermions* $B_2$ is *positive*, meaning the pressure is *increased* from that of the classical ideal gas. It's *as if* there are interactions present arising from quantum statistics, which we also saw more explicitly before using the position representation. In either case, since $\lambda_T \rightarrow 0$ in the high temperature limit, $\beta P \rightarrow n$ as we'd expect.
 
 ## Degenerate Gases
 
@@ -361,11 +369,11 @@ To understand the behavior of fermions at low temperatures we need a different k
 $$
 f_s^{-}(z) = \frac{1}{(s-1)!} \int_0^{\infty} dx \ \frac{x^{s-1}}{z^{-1} e^x + 1} \ .
 $$
-Now, observe that the integrand has the form $x^{s-1} \langle n \rangle$ where $\langle n \rangle = (z^{-1} e^x + 1)^{-1}$ is the expected occupation number. We know that for fermions the occupation number should change abruptly from one to zero especially at low temperatures. If we plot $\langle n \rangle$as a function of $x$ we get something like the figure shown below. As $z$ gets larger the curve of $\langle n \rangle$ approaches more and more of a step function that goes rapidly to zero around $x \approx \log z$.
+Now, observe that the integrand has the form $x^{s-1} \langle n \rangle$ where $\langle n \rangle = (z^{-1} e^x + 1)^{-1}$ is the expected occupation number. We know that for fermions the occupation number should change abruptly from one to zero at low temperatures. If we plot $\langle n \rangle$as a function of $x$ we get something like the figure shown below. As $z$ gets larger the curve of $\langle n \rangle$ approaches more and more of a step function that goes rapidly to zero around $x \approx \log z$.
 
 ![](./resources/image-20231224204858169.png){fig-align=center width=400}
 
-This means that to a crude approximation we can treat $\langle n \rangle$ as a step function that jumps from one to zero at $x = \log z$. This means near zero temperature we can approximately write
+This means that to a crude approximation we can treat $\langle n \rangle$ as a step function that jumps from one to zero at $x = \log z$, which means near zero temperature we can approximately say
 $$
 f_s^{-}(z) = \frac{1}{(s-1)!} \int_0^{\infty} dx \ \frac{x^{s-1}}{z^{-1} e^x + 1} \approx \frac{1}{(s-1)!} \int_0^{\log z} dx \ x^{s-1} = \frac{(\log z)^s}{s!} \ .
 $$
@@ -380,17 +388,17 @@ Note the chemical potential $\mu$ here should be thought of as a function of tem
 $$
 \varepsilon_F = \frac{2\pi\hbar^2}{m} \bigg(\frac{3\sqrt{\pi}n}{4g}\bigg)^{2/3} = \frac{\hbar^2}{2m} \bigg(\frac{6\pi^2 n}{g}\bigg)^{2/3} \ .
 $$
-From this equation it makes sense to go ahead and define a **Fermi temperature** $T_F$ using the relation $\varepsilon_F \equiv k_B T_F$. We'll see why later. Notice the right-hand side of the previous formula looks like the energy eigenvalue $\frac{\hbar^2}{2m} \mathbf{k}^2$. This means it makes sense to also define a **Fermi momentum** whose wavevector $\mathbf{k}_F$ is given by the relation
+Physically, we can think of the Fermi energy as the energy of the *last occupied state* in the Fermi gas. In a Fermi gas, at low temperatures the states will fill up from smallest to largest momentum in successive order. The state occupied by the *final* particle in the gas will have the highest momentum, which we call the **Fermi momentum**, given by
 $$
 \varepsilon_F \equiv \frac{\hbar^2}{2m} \mathbf{k}_F^2 \ .
 $$
-Curiously, we can derive the Fermi energy in a slightly different way without relying on all the machinery we've developed, as is typically done in solid state or quantum physics. The idea is to note that in $k$-space all particles must lie inside the sphere whose radius is $k_F$. If we assume each particle can take on only their spin degrees of freedom $g=2s+1$, this means we'd have
+Curiously, we can derive the expression for the Fermi energy directly from its definition as the last occupied state. If this is indeed the highest momentum state, this means in $k$-space all other particles must lie in or on the sphere whose radius is $k_F=|\mathbf{k}_F|$. If we assume each particle can take on only their spin degrees of freedom $g=2s+1$, this means we'd have
 $$
-N = \sum_{k \leq k_F} (2s+1) \approx \frac{gV}{(2\pi)^3} \int_0^{k_F} 4\pi k^2 dk = \frac{gVk_F^3}{6\pi^2} \ .
+N = \sum_{k \leq k_F} g \approx \frac{gV}{(2\pi)^3} \int_0^{k_F} 4\pi k^2 dk = \frac{gVk_F^3}{6\pi^2} \ .
 $$
-Substituting in $\varepsilon_F = \frac{\hbar^2}{2m} k_F^2$ into this formula and solving for $\varepsilon_F$ in terms of $n = \frac{N}{V}$ gives an identical result, with less work.
+Substituting in $\varepsilon_F = \frac{\hbar^2}{2m} k_F^2$ into this formula and solving for $\varepsilon_F$ in terms of $n = \frac{N}{V}$ gives the expected result for $\varepsilon_F$.
 
-Anyway, if we now take the ratio $\frac{E}{N}$ to get the energy in terms of particle number like we're used to, we get
+Since it's useful we'll go ahead and also define a **Fermi temperature** $T_F$ using the relation $\varepsilon_F \equiv k_B T_F$. If we now take the ratio $\frac{E}{N}$ to get the energy in terms of particle number like we're used to, we get
 $$
 E = \frac{3}{5} N \varepsilon_F = \frac{3}{5} N k_B T_F \ .
 $$
@@ -398,7 +406,7 @@ Interestingly, it seems the energy of a Fermi gas doesn't go to zero at zero tem
 $$
 P V = \frac{2}{5} N \varepsilon_F = \frac{2}{5} N k_B T_F \ .
 $$
-This defines a kind of pressure $P_F \equiv \frac{2}{5} n \varepsilon_F$ called the **Fermi pressure**. It again arises from the exclusion principle due to the fact that we can't squeeze the fermions arbitrarily close together.
+This defines a Fermi pressure $P_F \equiv \frac{2}{5} n \varepsilon_F$, usually called **degeneracy pressure**. It again arises from the exclusion principle due to the fact that we can't squeeze the fermions arbitrarily close together.
 
 ### Sommerfeld Expansion
 
@@ -432,15 +440,15 @@ f_s^{-}(z) &= \frac{(\log z)^s}{s!} \sum_{\alpha=0}^\infty \frac{s!}{(s-\alpha)!
 &= \frac{(\log z)^s}{s!} \sum_{\alpha=0}^\infty \frac{s!}{(s-2\alpha)!} (\log z)^{-2\alpha} 2f_{2\alpha}^{-}(1) \\
 \end{align*}
 $$
-Now, notice that $f_{2\alpha}^{-}(1)$ is kind of like a zeta function since
+Now, the terms $f_{2\alpha}^{-}(1)$ are kind of like zeta functions since
 $$
 f_s^{-}(1) = -\text{Li}_s (-1) = \sum_{n=1}^\infty \frac{(-1)^n}{n^s} = 1 - \frac{1}{2^s} + \frac{1}{3^s} - \cdots \ .
 $$
-In fact these functions, called *eta functions* and denoted $\eta(s)$, are related to zeta functions by $\eta(s) = \big(1-2^{1-s}\big) \zeta(s)$. This can be seen by separating the odd and even parts of the series and doing some factoring. Using this relationship along with the fact that zeta function values for even integers $s=2\alpha$ have closed form solutions, we finally have
+These functions are called *eta functions*, denoted $\eta_s$, and are related to zeta functions via $\eta_s = \big(1-2^{1-s}\big) \zeta_s$. This can be seen by separating the odd and even parts of the series and doing some factoring. Using this relationship along with the fact that zeta function values for even integers $s=2\alpha$ have closed form solutions, we finally have
 $$
 \begin{align*}
-f_s^{-}(z) &= \frac{(\log z)^s}{s!} \sum_{\alpha=0}^\infty \frac{s!}{(s-2\alpha)!} (\log z)^{-2\alpha} 2\big(1-2^{1-2\alpha}\big) \zeta(2\alpha) \\
-&= \frac{(\log z)^s}{s!} \bigg[1 + \zeta(2) \frac{s(s-1)}{(\log z)^2} + \frac{7\zeta(4)}{4}\frac{s(s-1)(s-2)(s-3)}{(\log z)^4} + O\big((\log z)^{-6}\big) \bigg] \\
+f_s^{-}(z) &= \frac{(\log z)^s}{s!} \sum_{\alpha=0}^\infty \frac{s!}{(s-2\alpha)!} (\log z)^{-2\alpha} 2\big(1-2^{1-2\alpha}\big) \zeta_{2\alpha} \\
+&= \frac{(\log z)^s}{s!} \bigg[1 + \zeta_2 \frac{s(s-1)}{(\log z)^2} + \frac{7\zeta(4)}{4}\frac{s(s-1)(s-2)(s-3)}{(\log z)^4} + O\big((\log z)^{-6}\big) \bigg] \\
 &= \frac{(\log z)^s}{s!} \bigg[1 + \frac{\pi^2}{6} \frac{s(s-1)}{(\log z)^2} + \frac{7\pi^4}{360}\frac{s(s-1)(s-2)(s-3)}{(\log z)^4} + O\big((\log z)^{-6}\big) \bigg] \ .
 \end{align*}
 $$
@@ -463,7 +471,7 @@ $$
 $$
 This means the chemical potential is evidently a downward-sloping parabola at low temperatures with a vertex at the Fermi energy $\varepsilon_F$. We also expect classically that $\mu \sim -T \log T$ at high temperatures, so the two curves should smoothly interpolate somehow, as shown in the figure below. The transition regime occurs somewhere around the Fermi temperature $T_F$.
 
-FIGURE
+![](./resources/image-20231227185844239.png){fig-align=center width=400}
 
 Next up, we can find the pressure by using the above expansion for $\mu$ to get
 $$
@@ -477,7 +485,7 @@ P &= \frac{g}{\beta\lambda_T^3} f_{5/2}^\eta(z) \\
 $$
 Evidently the correction to the pressure is also quadratic, but this time the parabola is *upward sloping*, causing pressure to increase with temperature. In the classical limit of course we expect pressure to become linear $P \sim T$, with a turning point occurring again around the Fermi temperature $T_F$. This is shown in the figure below.
 
-FIGURE
+![](./resources/image-20231227185927048.png){fig-align=center width=400}
 
 With the pressure in hand we can now proceed to calculate the average internal energy using the formula $E = \frac{3}{2} PV$. We get
 $$
@@ -485,19 +493,111 @@ E = \frac{3}{5} N k_B T_F \bigg[1 + \frac{5\pi^2}{12}\bigg(\frac{T}{T_F}\bigg)^2
 $$
 Clearly the energy will also be an upward-sloping parabola at low temperatures and have $E \sim T$ at high temperatures. Having energy as a function of temperature we can proceed to calculate the heat capacity for the Fermi gas at low temperatures. Differentiating with respect to $T$ we get
 $$
-C = \frac{\partial E}{\partial T} = \frac{\pi^2}{2} N k_B \bigg(\frac{T}{T_F}\bigg) + O(T^3) \ .
+C = \frac{\partial E}{\partial T} = N k_B \frac{\pi^2}{2} \bigg(\frac{T}{T_F}\bigg) + O(T^3) \ .
 $$
 Importantly, notice that at low temperatures the heat capacity of a Fermi gas is *linear* with a cubic correction. As $T$ approaches the Fermi temperature $T_F$ the heat capacity turns over and starts to behave classically, as shown in the figure below.
 
-FIGURE
+![](./resources/image-20231227190008267.png){fig-align=center width=400}
 
-We've actually seen this behavior before when we studied the heat capacity of solids. Recall that for a typical solid $C \sim T^3$ at low temperatures. However, we mentioned that for *metals* the heat capacity actually goes more like $C \sim \alpha T + \beta T^3$ without explaining why this was the case. Now we can. Metals differentiate themselves from other solids in that electrons can move around. They're not bound to atoms as would typically be the case for a solid. We can think of these freely flowing electrons as a Fermi gas, which gives the heat capacity of metals a linear contribution. They also contribute an added cubic contribution to the usual solid heat capacity. Note for typical metals like iron the Fermi temperature tends to be around $T_F \sim 1000 \ ^\circ \text{K}$, meaning these affects can often be observed in metals even at room temperature.
+Perhaps the most important application of this result is to *metals*. Metals can be thought of as solids where internal electrons are allowed to move freely as an interacting Fermi gas. We already saw in a previous chapter that typical non-conducting solids are dominated by *phonon* effects at low temperatures, causing $C \sim T^3$ when $T \ll T_D$, where $T_D$ is the solid's *Debeye temperature*. Metals slightly modify this result by having
+$$
+C \sim \gamma T + \alpha T^3
+$$
+at low temperatures. We can imagine the linear term arising from the Fermi gas effects of the free electrons. In fact this isn't *exactly* true since electrons *do* interact with each other via Coulomb forces. They're not free particles, hence not ideal. Nevertheless, if we imagine the Coulomb interactions as being *adiabatic* in the sense of being "turned on slowly", then their energy at low temperatures turns out to be the same as if the gas were ideal. Since the heat capacity of a metal at low temperatures would go something like
+$$
+C \sim N k_B \bigg[\frac{\pi^2}{2} \bigg(\frac{T}{T_F}\bigg) + \frac{12\pi^4}{5} \bigg(\frac{T}{T_D}\bigg)^3 \bigg] \ ,
+$$
+we can see at what temperature the Fermi and phonon effects become comparable by equating terms and solving for $T$ to get
+$$
+T \sim \sqrt{\frac{5T_D^3}{24\pi T_F}} \ .
+$$
+For a typical metal we'd have something like $T_D \sim 10^2 \ ^\circ \text{K}$ and $T_F \sim 10^4 \ ^\circ \text{K}$, meaning the linear term would become important only when temperatures get down to around $T \sim 1 \ ^\circ \text{K}$.
+
+####  Example: Paramagnetism
+
+As another interesting application of the theory of Fermi gases, let's consider the case of paramagnetism. A *paramagnet* is any material whose electron spins tend to align themselves *parallel* to an applied external magnetic field. Typically paramagnetic behavior is observed in materials whose atoms have an *odd* number of electrons so that some of them are left unpaired. Only these unpaired electrons contribute anything significant to the magnetization. Atoms with an *even* number of electrons experience a different and much weaker effect known as *diamagnetism*, where the electron spins tend to align themselves *antiparallel* to the external field. Both effects are significantly weaker than *ferromagnetism*, often by a factor of $10^4$ or more.
+
+The tendency of a material to respond to an external magnetic field $\mathbf{B}$ is captured via its *magnetization* vector $\mathbf{M}$. Its magnitude $M$ is roughly speaking the average magnetic dipole moment per unit volume, which can be more usefully related to the difference between densities of up-spin to down-spin unpaired electrons by
+$$
+M \equiv \frac{\partial \mu}{\partial V} = \mu_B \frac{N_+ - N_-}{V} \ ,
+$$
+where $\mu_B \equiv \frac{e\hbar}{2m_ec} \approx 5.8 \cdot 10^{-9} \ \text{eV} \cdot \text{G}^{-1}$ is a constant known as the *Bohr magneton*. The magnetization depends on the strength of the external field. If $\mathbf{B} = \mathbf{0}$ then $\mathbf{M} = \mathbf{0}$ as well. We can relate the two via a constituency relation whose form depends both on the material as well as the strength of the external field. In the simplest case where the material is *isotropic* and $\mathbf{B}$ is sufficiently weak, $\mathbf{M}$ will be approximately linear in the auxiliary field $\mathbf{H} \equiv \mathbf{B} - 4\pi\mathbf{M}$, with
+$$
+\mathbf{M} \approx \chi \mathbf{H} \ ,
+$$
+where $\chi$ is a proportionality constant known as the *magnetic susceptibility*. Taking the differential of both sides and using the weak field assumption, we can also express $\chi$ more conveniently for our purposes via the formula
+$$
+\chi = \frac{\partial M}{\partial H} \approx \frac{\partial M}{\partial B} \bigg |_{B=0} \ .
+$$
+We also used the fact that for paramagnetic materials $\chi \ll 1$, so we can write $\frac{\chi}{1+4\pi\chi} \approx \chi$. The susceptibility $\chi$ expresses essentially all of the material-specific properties that contribute to the magnetization. It's thus useful to study its properties, for instance its dependence on thermodynamic variables like temperature or density. 
+
+For paramagnetic materials, the energy per electron can be expressed by the single-particle Hamiltonian
+$$
+H_1 = \frac{(\mathbf{p}-\frac{e}{c}\mathbf{A})^2}{2m} + \boldsymbol{\mu} \cdot \mathbf{B} \approx \frac{\mathbf{p}^2}{2m} + \mu_B \boldsymbol{\sigma} \cdot \mathbf{B} \ ,
+$$
+where $m=m_e$ is the mass of the electron. Provided the external field is sufficiently weak and slowly varying we can make the approximation $\mathbf{p}-\frac{e}{c}\mathbf{A} \approx \mathbf{p}$ and recover the classical kinetic energy term. It's not too hard to see that the eigenstates of the $\boldsymbol{\sigma} \cdot \mathbf{B}$ operator alone are two states $|n_{\pm}\rangle$ with energies $\varepsilon_{\pm} = \pm B$. However, we need to be careful that we diagonalize the *joint* states $|n_{\mathbf{k}, \pm}\rangle$. In terms of these joint states, the energy eigenvalues would just be
+$$
+\varepsilon_{\mathbf{k}, \pm} = \frac{\hbar^2 \mathbf{k}^2}{2m} \pm \mu_B B \ .
+$$
+Since electrons are fermions, if we're interested in low temperature behaviors we'll need to treat the problem as a Fermi gas. This means we'll need to proceed from here by again calculating the *grand* partition function $\mathcal{Z}$ and going from there. We have
+$$
+\begin{align*}
+\mathcal{Z} &= \sum_{N=0}^\infty e^{\beta\mu N} \text{ tr } e^{-\beta H} \\
+&= \prod_\mathbf{k} \sum_{n_{\mathbf{k}, \pm}} e^{-\beta n_{\mathbf{k}, \pm}\big(\varepsilon_{\mathbf{k}, \pm} - \mu\big)} \\
+&= \prod_\mathbf{k} \bigg(1 + e^{-\beta \big(\varepsilon_{\mathbf{k}, +} - \mu\big)}\bigg) \bigg(1 + e^{-\beta \big(\varepsilon_{\mathbf{k}, -} - \mu\big)}\bigg) \\
+&= \prod_\mathbf{k} \bigg(1 + e^{-\beta \big(\varepsilon_{\mathbf{k}} - \mu + \mu_B B\big)}\bigg) \prod_\mathbf{k} \bigg(1 + e^{-\beta \big(\varepsilon_{\mathbf{k}} - \mu - \mu_B B\big)}\bigg) \\
+&\equiv \mathcal{Z}_0(\mu_+) \mathcal{Z}_0(\mu_-) \ .
+\end{align*}
+$$
+
+Here we've for convenience defined $\mathcal{Z}_0(\mu)$ to be the grand partition function for the free Fermi gas from before. We'll also define $\mu_\pm \equiv \mu \mp \mu_B B$ to be a sort of effective chemical potential, and $z_\pm \equiv e^{\beta\mu_\pm}$ to be an effective fugacity. From here, we can take the logarithm and simplify by again using the density of states and the same substitutions to get
+$$
+\begin{align*}
+\log \mathcal{Z} &= \log \mathcal{Z}_0(\mu_+) + \log \mathcal{Z}_0(\mu_-) \\
+&\approx \frac{gV}{(2\pi)^3} \int d^3 \mathbf{k} \ \bigg[\log \bigg(1 + z e^{-\frac{\beta\hbar^2}{2m} \mathbf{k}^2} e^{-\beta \mu_B B}\bigg) + \log \bigg(1 + z e^{-\frac{\beta\hbar^2}{2m} \mathbf{k}^2} e^{\beta \mu_B B}\bigg)\bigg] \\
+&= \frac{gV}{\lambda_T^3} \frac{1}{(3/2)!} \int_0^\infty dx \ \bigg[\frac{x^{3/2}}{z_{+}^{-1} e^x + 1} + \frac{x^{3/2}}{z_{-}^{-1} e^x + 1}\bigg] \\
+&= \frac{gV}{\lambda_T^3} \big[f_{5/2}^{-}\big(z_+\big) + f_{5/2}^{-}\big(z_-\big)\big] \ .
+\end{align*}
+$$
+From here we can proceed to calculate the mean up-spin and down-spin densities $n_\pm = \frac{N_\pm}{V}$. Using the differentiation ladder relation for polylogarithms, we just have
+$$
+n_\pm = \frac{1}{V} \frac{\partial \log\mathcal{Z}}{\partial (\beta\mu_\pm)} = \frac{z_\pm}{V} \frac{\partial \log\mathcal{Z}}{\partial z_\pm} = \frac{g}{\lambda_T^3} f_{3/2}^{-}\big(z_\pm\big) \ .
+$$
+This means the magnetization $M$ is just given by
+$$
+M = \frac{g}{\lambda_T^3} \big[f_{3/2}^{-}\big(z_+\big) + f_{3/2}^{-}\big(z_-\big)\big] \ ,
+$$
+from which we can conclude the susceptibility $\chi$ is given by
+$$
+\chi = \frac{\partial M}{\partial B} \bigg |_{B=0} = \frac{2g\beta\mu_B^2}{\lambda_T^3} f_{1/2}^{-}(z) \ .
+$$
+Since this expression isn't all that informative as is let's analyze the behavior of $\chi(T)$ in the high and low temperature limits. It'll be useful to write things in terms of $N$, which we can get from the relation
+$$
+N = N_+ + N_- = \frac{gV}{\lambda_T^3} \big[f_{3/2}^{-}\big(z_+\big) + f_{3/2}^{-}\big(z_-\big)\big] \ .
+$$
+At high temperatures we can use the fact that $f_{1/2}^{-}(z) \approx z$ to get $N \approx \frac{2gV}{\lambda_T^3} z$ and hence
+$$
+\chi(T) \approx \frac{n\mu_B^2}{k_B T} \equiv \frac{C}{T} \ .
+$$
+This is a well-known result for paramagnetic materials, known as *Curie's Law*. As the temperature of the material increases its susceptibility decreases in constant proportion. Of course, this law fails in the low temperature limit.
+
+In the low temperature limit we use the Sommerfeld expansion in the weak field limit to write $f_s^{-}(z_\pm) \approx \frac{\beta^s\mu^s}{s!}$. From here, we can express $N \approx \frac{2gV}{(3/2)!} \frac{\beta^{3/2}}{\lambda_T^3} \varepsilon_F^{3/2}$ and plug this back into $\chi$ to get the following relation near zero temperature,
+$$
+\chi(T) \approx \frac{3\mu_B^2 n}{2k_B T_F} \bigg[1 - \frac{\pi^2}{12} \bigg(\frac{T}{T_F}\bigg)^2 + O(T^4) \bigg] \ .
+$$
+As we'd expect, the susceptibility goes to a positive constant $\chi_F$ in the low temperature limit. The first quadratic correction is negative, meaning $\chi(T)$ will decrease and eventually go like $\chi(T) \sim \frac{C}{T}$ in the high temperature limit, as shown below.
+
+![](./resources/image-20240102161803194.png){fig-align=center width=400}
 
 
-
-
-
-MAYBE WORK AN EXAMPLE TO DERIVE CURIE'S LAW FOR MAGNETIC SUSCEPTIBILITY. SEE BOOK.
 
 ### Degenerate Bose Gas
+
+We'll now consider the case of the degenerate Bose gas at low temperatures. As we'll see, bosons at low temperatures behave quite differently from fermions. The difference between the two gases comes down entirely to the mathematical differences between the functions $f_s^{+}(z)$ and $f_s^{-}(z)$. For fermions $f_s^{-}(z)$ is defined for all positive $z$, meaning $n, E, P$ are well-defined for all $z$ as well. For bosons though, $f_s^{+}(z)$ is only well-defined when $|z| < 1$. This means we have to think more carefully about what we mean by the variables $n, E, P$ at low temperatures.
+
+Since $T=0$ corresponds to $z=1$ and we know $f_s^{+}(1) = \zeta_s$, we expect at zero temperature to have
+$$
+n = \frac{N}{V} = \frac{g}{\lambda_T^3} \zeta_{3/2} \approx 2.61 \frac{g}{\lambda_T^3} \ .
+$$
+But there's a problem with this.
 
