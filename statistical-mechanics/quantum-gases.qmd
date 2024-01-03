@@ -243,9 +243,10 @@ $$
 &\approx \beta\frac{g}{(2\pi)^3} \int_0^\infty 4\pi k^2 dk \ \frac{\frac{\hbar^2 k^2}{2m}}{e^{-\beta\mu} e^{\beta\frac{\hbar^2 k^2}{2m}} - \eta} \\
 &= \frac{g}{(2\pi)^3} \frac{(2\pi^{1/2})^3}{2\lambda_T^3} \int_0^\infty dx \ \frac{x^{3/2}}{z^{-1} e^{x} - \eta} \\
 &= \frac{3}{2} \frac{g}{\lambda_T^3} \frac{1}{(3/2)!} \int_0^\infty dx \ \frac{x^{3/2}}{z^{-1} e^{x} - \eta} \ .
-
 \end{align*}
 $$
+
+
 Finally, let's calculate the pressure, or really $\beta P$ again for simplicity. Recall by extensivity that we can write $\log \mathcal{Z} = \beta P V$. Thus,
 $$
 \begin{align*}
@@ -521,7 +522,7 @@ The tendency of a material to respond to an external magnetic field $\mathbf{B}$
 $$
 M \equiv \frac{\partial \mu}{\partial V} = \mu_B \frac{N_+ - N_-}{V} \ ,
 $$
-where $\mu_B \equiv \frac{e\hbar}{2m_ec} \approx 5.8 \cdot 10^{-9} \ \text{eV} \cdot \text{G}^{-1}$ is a constant known as the *Bohr magneton*. The magnetization depends on the strength of the external field. If $\mathbf{B} = \mathbf{0}$ then $\mathbf{M} = \mathbf{0}$ as well. We can relate the two via a constituency relation whose form depends both on the material as well as the strength of the external field. In the simplest case where the material is *isotropic* and $\mathbf{B}$ is sufficiently weak, $\mathbf{M}$ will be approximately linear in the auxiliary field $\mathbf{H} \equiv \mathbf{B} - 4\pi\mathbf{M}$, with
+where $\mu_B \equiv \frac{e\hbar}{2m_ec} \approx 5.8 \cdot 10^{-9} \ \text{eV} \cdot \text{G}^{-1}$ is a constant known as the *Bohr magneton*. The magnetization depends on the strength of the external field. We can relate the two via a constituency relation whose form depends both on the material as well as the strength of the external field. In the simplest case where the material is *isotropic* and $\mathbf{B}$ is sufficiently weak, $\mathbf{M}$ will be approximately linear in the auxiliary field $\mathbf{H} \equiv \mathbf{B} - 4\pi\mathbf{M}$, with
 $$
 \mathbf{M} \approx \chi \mathbf{H} \ ,
 $$
@@ -533,9 +534,9 @@ We also used the fact that for paramagnetic materials $\chi \ll 1$, so we can wr
 
 For paramagnetic materials, the energy per electron can be expressed by the single-particle Hamiltonian
 $$
-H_1 = \frac{(\mathbf{p}-\frac{e}{c}\mathbf{A})^2}{2m} + \boldsymbol{\mu} \cdot \mathbf{B} \approx \frac{\mathbf{p}^2}{2m} + \mu_B \boldsymbol{\sigma} \cdot \mathbf{B} \ ,
+H_1 = \frac{(\mathbf{p}-\frac{e}{c}\mathbf{A})^2}{2m} + \boldsymbol{\mu} \cdot \mathbf{B} \approx \frac{\mathbf{p}^2}{2m} + \boldsymbol{\mu} \cdot \mathbf{B} \ ,
 $$
-where $m=m_e$ is the mass of the electron. Provided the external field is sufficiently weak and slowly varying we can make the approximation $\mathbf{p}-\frac{e}{c}\mathbf{A} \approx \mathbf{p}$ and recover the classical kinetic energy term. It's not too hard to see that the eigenstates of the $\boldsymbol{\sigma} \cdot \mathbf{B}$ operator alone are two states $|n_{\pm}\rangle$ with energies $\varepsilon_{\pm} = \pm B$. However, we need to be careful that we diagonalize the *joint* states $|n_{\mathbf{k}, \pm}\rangle$. In terms of these joint states, the energy eigenvalues would just be
+where $m=m_e$ is the mass of the electron and $\boldsymbol{\mu} = \mu_B \boldsymbol{\sigma}$ is the magnetic dipole moment. Provided the external field is sufficiently weak and slowly varying we can make the approximation $\mathbf{p}-\frac{e}{c}\mathbf{A} \approx \mathbf{p}$ and recover the classical kinetic energy term. It's not too hard to see that the eigenstates of the $\boldsymbol{\mu} \cdot \mathbf{B}$ operator alone are two states $|\pm\rangle$ with energies $\varepsilon_{\pm} = \pm \mu_B B$. To get the full energy eigenvalues we instead need to use the *joint* states $|\mathbf{k}, \pm\rangle$. In terms of the joint states, the energy eigenvalues are given by
 $$
 \varepsilon_{\mathbf{k}, \pm} = \frac{\hbar^2 \mathbf{k}^2}{2m} \pm \mu_B B \ .
 $$
@@ -544,17 +545,15 @@ $$
 \begin{align*}
 \mathcal{Z} &= \sum_{N=0}^\infty e^{\beta\mu N} \text{ tr } e^{-\beta H} \\
 &= \prod_\mathbf{k} \sum_{n_{\mathbf{k}, \pm}} e^{-\beta n_{\mathbf{k}, \pm}\big(\varepsilon_{\mathbf{k}, \pm} - \mu\big)} \\
-&= \prod_\mathbf{k} \bigg(1 + e^{-\beta \big(\varepsilon_{\mathbf{k}, +} - \mu\big)}\bigg) \bigg(1 + e^{-\beta \big(\varepsilon_{\mathbf{k}, -} - \mu\big)}\bigg) \\
-&= \prod_\mathbf{k} \bigg(1 + e^{-\beta \big(\varepsilon_{\mathbf{k}} - \mu + \mu_B B\big)}\bigg) \prod_\mathbf{k} \bigg(1 + e^{-\beta \big(\varepsilon_{\mathbf{k}} - \mu - \mu_B B\big)}\bigg) \\
-&\equiv \mathcal{Z}_0(\mu_+) \mathcal{Z}_0(\mu_-) \ .
+&= \prod_\mathbf{k} \bigg(1 + e^{-\beta \big(\varepsilon_{\mathbf{k}} - \mu + \mu_B B\big)}\bigg) \bigg(1 + e^{-\beta \big(\varepsilon_{\mathbf{k}} - \mu - \mu_B B\big)}\bigg) \\
+&= \prod_\mathbf{k} \bigg(1 + e^{-\beta \big(\varepsilon_{\mathbf{k}} - \mu_+\big)}\bigg) \bigg(1 + e^{-\beta \big(\varepsilon_{\mathbf{k}} - \mu_-\big)}\bigg) \\
 \end{align*}
 $$
 
-Here we've for convenience defined $\mathcal{Z}_0(\mu)$ to be the grand partition function for the free Fermi gas from before. We'll also define $\mu_\pm \equiv \mu \mp \mu_B B$ to be a sort of effective chemical potential, and $z_\pm \equiv e^{\beta\mu_\pm}$ to be an effective fugacity. From here, we can take the logarithm and simplify by again using the density of states and the same substitutions to get
+Here we've define $\mu_\pm \equiv \mu \mp \mu_B B$ to be effective chemical potentials and $z_\pm \equiv e^{\beta\mu_\pm}$ to be the effective fugacities. From here, we can take the logarithm and simplify by again using the density of states and the same substitutions to get
 $$
 \begin{align*}
-\log \mathcal{Z} &= \log \mathcal{Z}_0(\mu_+) + \log \mathcal{Z}_0(\mu_-) \\
-&\approx \frac{gV}{(2\pi)^3} \int d^3 \mathbf{k} \ \bigg[\log \bigg(1 + z e^{-\frac{\beta\hbar^2}{2m} \mathbf{k}^2} e^{-\beta \mu_B B}\bigg) + \log \bigg(1 + z e^{-\frac{\beta\hbar^2}{2m} \mathbf{k}^2} e^{\beta \mu_B B}\bigg)\bigg] \\
+\log \mathcal{Z} &\approx \frac{gV}{(2\pi)^3} \int d^3 \mathbf{k} \ \bigg[\log \bigg(1 + z e^{-\frac{\beta\hbar^2}{2m} \mathbf{k}^2} e^{-\beta \mu_B B}\bigg) + \log \bigg(1 + z e^{-\frac{\beta\hbar^2}{2m} \mathbf{k}^2} e^{\beta \mu_B B}\bigg)\bigg] \\
 &= \frac{gV}{\lambda_T^3} \frac{1}{(3/2)!} \int_0^\infty dx \ \bigg[\frac{x^{3/2}}{z_{+}^{-1} e^x + 1} + \frac{x^{3/2}}{z_{-}^{-1} e^x + 1}\bigg] \\
 &= \frac{gV}{\lambda_T^3} \big[f_{5/2}^{-}\big(z_+\big) + f_{5/2}^{-}\big(z_-\big)\big] \ .
 \end{align*}
@@ -581,7 +580,7 @@ $$
 $$
 This is a well-known result for paramagnetic materials, known as *Curie's Law*. As the temperature of the material increases its susceptibility decreases in constant proportion. Of course, this law fails in the low temperature limit.
 
-In the low temperature limit we use the Sommerfeld expansion in the weak field limit to write $f_s^{-}(z_\pm) \approx \frac{\beta^s\mu^s}{s!}$. From here, we can express $N \approx \frac{2gV}{(3/2)!} \frac{\beta^{3/2}}{\lambda_T^3} \varepsilon_F^{3/2}$ and plug this back into $\chi$ to get the following relation near zero temperature,
+In the low temperature limit we can use the Sommerfeld expansion in the weak field limit to write $f_s^{-}(z_\pm) \approx \frac{\beta^s\mu^s}{s!}$. From here, we can express $N \approx \frac{2gV}{(3/2)!} \frac{\beta^{3/2}}{\lambda_T^3} \varepsilon_F^{3/2}$ and plug this back into $\chi$ to get the following relation in the low temperature limit,
 $$
 \chi(T) \approx \frac{3\mu_B^2 n}{2k_B T_F} \bigg[1 - \frac{\pi^2}{12} \bigg(\frac{T}{T_F}\bigg)^2 + O(T^4) \bigg] \ .
 $$
