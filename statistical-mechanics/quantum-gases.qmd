@@ -204,7 +204,7 @@ while for *fermions* the distribution is called the **Fermi-Dirac distribution**
 $$
 \langle n_\mathbf{k} \rangle = \frac{1}{e^{\beta(\varepsilon_\mathbf{k}-\mu)} + 1} \ .
 $$
-In the dilute limit we expect each $\langle n \rangle \ll 1$, which means $e^{\beta(\varepsilon-\mu)} \gg 1$. In that limit, both distributions reduce to the classical distribution we expect for a particle of energy $\varepsilon$, namely the **Maxwell-Boltzmann distribution** given by
+In the dilute limit we expect each $\langle n \rangle \ll 1$, which means $e^{\beta(\varepsilon_\mathbf{k}-\mu)} \gg 1$. In that limit, both distributions reduce to the classical distribution we expect for a particle of energy $\varepsilon_\mathbf{k}$, namely the **Maxwell-Boltzmann distribution** given by
 $$
 \langle n_\mathbf{k} \rangle = e^{-\beta(\varepsilon_\mathbf{k}-\mu)} \ .
 $$
@@ -360,9 +360,9 @@ Notice how even with no interactions present in the quantum ideal gas we still g
 
 ## Degenerate Gases
 
-We've largely gone as far as we can by treating bosons and fermions together. We've shown that in the classical limit of $d \ll 1$ the quantum ideal gas becomes the classical ideal gas, both for fermions and bosons. We've also shown how we can add in quantum corrections to the pressure at lower temperatures via a kind of virial expansion. 
+We've largely gone as far as we can by treating bosons and fermions together. We've shown that in the classical limit of $d=f_{3/2}^\eta (z) \ll 1$ the quantum ideal gas becomes the classical ideal gas, both for fermions and bosons. We've also shown how we can add in quantum corrections to the pressure at lower temperatures via a kind of virial expansion. 
 
-But what about in the other limit, the *low temperature limit* where $d \gg 1$? In this *degenerate* limit expansions in powers of $z$ no longer hold and we need to approach things differently. We'll start by examining the degenerate limit for fermions, the so-called *degenerate fermi gas*. Afterwards we'll separately look at the degenerate limit for bosons, the *degenerate boson gas*.
+But what about in the other limit, the *low temperature limit* where $d=f_{3/2}^\eta (z) \gg 1$? In this *degenerate* limit expansions in powers of $z$ no longer hold and we need to approach things differently. We'll start by examining the degenerate limit for fermions, the so-called *degenerate fermi gas*. Afterwards we'll separately look at the degenerate limit for bosons, the *degenerate boson gas*.
 
 ### Degenerate Fermi Gas
 
@@ -449,7 +449,7 @@ These functions are called *eta functions*, denoted $\eta_s$, and are related to
 $$
 \begin{align*}
 f_s^{-}(z) &= \frac{(\log z)^s}{s!} \sum_{\alpha=0}^\infty \frac{s!}{(s-2\alpha)!} (\log z)^{-2\alpha} 2\big(1-2^{1-2\alpha}\big) \zeta_{2\alpha} \\
-&= \frac{(\log z)^s}{s!} \bigg[1 + \zeta_2 \frac{s(s-1)}{(\log z)^2} + \frac{7\zeta(4)}{4}\frac{s(s-1)(s-2)(s-3)}{(\log z)^4} + O\big((\log z)^{-6}\big) \bigg] \\
+&= \frac{(\log z)^s}{s!} \bigg[1 + \zeta_2 \frac{s(s-1)}{(\log z)^2} + \frac{7\zeta_4}{4}\frac{s(s-1)(s-2)(s-3)}{(\log z)^4} + O\big((\log z)^{-6}\big) \bigg] \\
 &= \frac{(\log z)^s}{s!} \bigg[1 + \frac{\pi^2}{6} \frac{s(s-1)}{(\log z)^2} + \frac{7\pi^4}{360}\frac{s(s-1)(s-2)(s-3)}{(\log z)^4} + O\big((\log z)^{-6}\big) \bigg] \ .
 \end{align*}
 $$
@@ -518,25 +518,21 @@ For a typical metal we'd have something like $T_D \sim 10^2 \ ^\circ \text{K}$ a
 
 As another interesting application of the theory of Fermi gases, let's consider the case of paramagnetism. A *paramagnet* is any material whose electron spins tend to align themselves *parallel* to an applied external magnetic field. Typically paramagnetic behavior is observed in materials whose atoms have an *odd* number of electrons so that some of them are left unpaired. Only these unpaired electrons contribute anything significant to the magnetization. Atoms with an *even* number of electrons experience a different and much weaker effect known as *diamagnetism*, where the electron spins tend to align themselves *antiparallel* to the external field. Both effects are significantly weaker than *ferromagnetism*, often by a factor of $10^4$ or more.
 
-The tendency of a material to respond to an external magnetic field $\mathbf{B}$ is captured via its *magnetization* vector $\mathbf{M}$. Its magnitude $M$ is roughly speaking the average magnetic dipole moment per unit volume, which can be more usefully related to the difference between densities of up-spin to down-spin unpaired electrons by
+The tendency of a material to respond to an external magnetic field $\mathbf{B}$ is captured via its *magnetization* vector $\mathbf{M}$. Its magnitude $M$ is the average magnetic dipole moment per unit volume, which can be more usefully related to the difference between densities of up-spin to down-spin unpaired electrons by
 $$
-M \equiv \frac{\partial \mu}{\partial V} = \mu_B \frac{N_+ - N_-}{V} \ ,
+M \equiv \frac{\langle m \rangle}{V} = \mu_B \frac{N_+ - N_-}{V} \ ,
 $$
-where $\mu_B \equiv \frac{e\hbar}{2m_ec} \approx 5.8 \cdot 10^{-9} \ \text{eV} \cdot \text{G}^{-1}$ is a constant known as the *Bohr magneton*. The magnetization depends on the strength of the external field. We can relate the two via a constituency relation whose form depends both on the material as well as the strength of the external field. In the simplest case where the material is *isotropic* and $\mathbf{B}$ is sufficiently weak, $\mathbf{M}$ will be approximately linear in the auxiliary field $\mathbf{H} \equiv \mathbf{B} - 4\pi\mathbf{M}$, with
+where $\mu_B \equiv \frac{e\hbar}{2m_ec} \approx 5.8 \cdot 10^{-9} \ \text{eV} \cdot \text{G}^{-1}$ is a constant known as the *Bohr magneton*. The magnetization depends on the strength of the external field. We can relate the two via a constituency relation whose form depends both on the material as well as the strength of the external field. In the simplest case where the material is *isotropic* and $\mathbf{B}$ is sufficiently weak, $\mathbf{M}$ will be approximately linear in the auxiliary field $\mathbf{H} \equiv \mathbf{B} - 4\pi\mathbf{M}$, with $\mathbf{M} \approx \chi \mathbf{H}$, where $\chi$ is a proportionality constant known as the *magnetic susceptibility*. In the limit of a weak field we can approximate $\mathbf{H} \approx \mathbf{B}$ and hence write $\mathbf{M} \approx \chi \mathbf{B}$. Taking the derivative of the magnitude of both sides and reminding ourselves we're in the weak field limit of $B \rightarrow 0$, we evidently thus have
 $$
-\mathbf{M} \approx \chi \mathbf{H} \ ,
+\chi = \frac{\partial M}{\partial B} \bigg |_{B=0} \ .
 $$
-where $\chi$ is a proportionality constant known as the *magnetic susceptibility*. Taking the differential of both sides and using the weak field assumption, we can also express $\chi$ more conveniently for our purposes via the formula
-$$
-\chi = \frac{\partial M}{\partial H} \approx \frac{\partial M}{\partial B} \bigg |_{B=0} \ .
-$$
-We also used the fact that for paramagnetic materials $\chi \ll 1$, so we can write $\frac{\chi}{1+4\pi\chi} \approx \chi$. The susceptibility $\chi$ expresses essentially all of the material-specific properties that contribute to the magnetization. It's thus useful to study its properties, for instance its dependence on thermodynamic variables like temperature or density. 
+The susceptibility $\chi$ expresses essentially all of the material-specific properties that contribute to the magnetization. It's thus useful to study its properties, for instance its dependence on thermodynamic variables like temperature or density. 
 
-For paramagnetic materials, the energy per electron can be expressed by the single-particle Hamiltonian
+For paramagnetic materials, we can express the Hamiltonian for a single electron to a decent approximation by
 $$
-H_1 = \frac{(\mathbf{p}-\frac{e}{c}\mathbf{A})^2}{2m} + \boldsymbol{\mu} \cdot \mathbf{B} \approx \frac{\mathbf{p}^2}{2m} + \boldsymbol{\mu} \cdot \mathbf{B} \ ,
+H_1 = \frac{\mathbf{p}^2}{2m} + \mu_B \boldsymbol{\sigma} \cdot \mathbf{B} \ ,
 $$
-where $m=m_e$ is the mass of the electron and $\boldsymbol{\mu} = \mu_B \boldsymbol{\sigma}$ is the magnetic dipole moment. Provided the external field is sufficiently weak and slowly varying we can make the approximation $\mathbf{p}-\frac{e}{c}\mathbf{A} \approx \mathbf{p}$ and recover the classical kinetic energy term. It's not too hard to see that the eigenstates of the $\boldsymbol{\mu} \cdot \mathbf{B}$ operator alone are two states $|\pm\rangle$ with energies $\varepsilon_{\pm} = \pm \mu_B B$. To get the full energy eigenvalues we instead need to use the *joint* states $|\mathbf{k}, \pm\rangle$. In terms of the joint states, the energy eigenvalues are given by
+where $m=m_e$ is the mass of the electron and $\boldsymbol{\sigma}$ is the Pauli operator. It's not too hard to see that the eigenstates of the $\boldsymbol{\sigma} \cdot \mathbf{B}$ operator alone are two states $|\pm\rangle$ with energies $\varepsilon_{\pm} = \pm B$. To get the full energy eigenvalues we instead need to use the *joint* states $|\mathbf{k}, \pm\rangle$. In terms of the joint states, the energy eigenvalues are given by
 $$
 \varepsilon_{\mathbf{k}, \pm} = \frac{\hbar^2 \mathbf{k}^2}{2m} \pm \mu_B B \ .
 $$
@@ -553,34 +549,34 @@ $$
 Here we've define $\mu_\pm \equiv \mu \mp \mu_B B$ to be effective chemical potentials and $z_\pm \equiv e^{\beta\mu_\pm}$ to be the effective fugacities. From here, we can take the logarithm and simplify by again using the density of states and the same substitutions to get
 $$
 \begin{align*}
-\log \mathcal{Z} &\approx \frac{gV}{(2\pi)^3} \int d^3 \mathbf{k} \ \bigg[\log \bigg(1 + z e^{-\frac{\beta\hbar^2}{2m} \mathbf{k}^2} e^{-\beta \mu_B B}\bigg) + \log \bigg(1 + z e^{-\frac{\beta\hbar^2}{2m} \mathbf{k}^2} e^{\beta \mu_B B}\bigg)\bigg] \\
-&= \frac{gV}{\lambda_T^3} \frac{1}{(3/2)!} \int_0^\infty dx \ \bigg[\frac{x^{3/2}}{z_{+}^{-1} e^x + 1} + \frac{x^{3/2}}{z_{-}^{-1} e^x + 1}\bigg] \\
-&= \frac{gV}{\lambda_T^3} \big[f_{5/2}^{-}\big(z_+\big) + f_{5/2}^{-}\big(z_-\big)\big] \ .
+\log \mathcal{Z} &\approx \frac{2V}{(2\pi)^3} \int d^3 \mathbf{k} \ \bigg[\log \bigg(1 + z e^{-\frac{\beta\hbar^2}{2m} \mathbf{k}^2} e^{-\beta \mu_B B}\bigg) + \log \bigg(1 + z e^{-\frac{\beta\hbar^2}{2m} \mathbf{k}^2} e^{\beta \mu_B B}\bigg)\bigg] \\
+&= \frac{2V}{\lambda_T^3} \frac{1}{(3/2)!} \int_0^\infty dx \ \bigg[\frac{x^{3/2}}{z_{+}^{-1} e^x + 1} + \frac{x^{3/2}}{z_{-}^{-1} e^x + 1}\bigg] \\
+&= \frac{2V}{\lambda_T^3} \big[f_{5/2}^{-}\big(z_+\big) + f_{5/2}^{-}\big(z_-\big)\big] \ .
 \end{align*}
 $$
-From here we can proceed to calculate the mean up-spin and down-spin densities $n_\pm = \frac{N_\pm}{V}$. Using the differentiation ladder relation for polylogarithms, we just have
+Note we used the fact that the spin degeneracy for an electron is $g=2$. From here we can proceed to calculate the mean up-spin and down-spin densities $n_\pm = \frac{N_\pm}{V}$. Using the differentiation ladder relation for polylogarithms, we just have
 $$
-n_\pm = \frac{1}{V} \frac{\partial \log\mathcal{Z}}{\partial (\beta\mu_\pm)} = \frac{z_\pm}{V} \frac{\partial \log\mathcal{Z}}{\partial z_\pm} = \frac{g}{\lambda_T^3} f_{3/2}^{-}\big(z_\pm\big) \ .
+n_\pm = \frac{1}{V} \frac{\partial \log\mathcal{Z}}{\partial (\beta\mu_\pm)} = \frac{z_\pm}{V} \frac{\partial \log\mathcal{Z}}{\partial z_\pm} = \frac{2}{\lambda_T^3} f_{3/2}^{-}\big(z_\pm\big) \ .
 $$
 This means the magnetization $M$ is just given by
 $$
-M = \frac{g}{\lambda_T^3} \big[f_{3/2}^{-}\big(z_+\big) + f_{3/2}^{-}\big(z_-\big)\big] \ ,
+M = \frac{2}{\lambda_T^3} \big[f_{3/2}^{-}\big(z_+\big) + f_{3/2}^{-}\big(z_-\big)\big] \ ,
 $$
 from which we can conclude the susceptibility $\chi$ is given by
 $$
-\chi = \frac{\partial M}{\partial B} \bigg |_{B=0} = \frac{2g\beta\mu_B^2}{\lambda_T^3} f_{1/2}^{-}(z) \ .
+\chi = \frac{\partial M}{\partial B} \bigg |_{B=0} = \frac{4\beta\mu_B^2}{\lambda_T^3} f_{1/2}^{-}(z) \ .
 $$
 Since this expression isn't all that informative as is let's analyze the behavior of $\chi(T)$ in the high and low temperature limits. It'll be useful to write things in terms of $N$, which we can get from the relation
 $$
-N = N_+ + N_- = \frac{gV}{\lambda_T^3} \big[f_{3/2}^{-}\big(z_+\big) + f_{3/2}^{-}\big(z_-\big)\big] \ .
+N = N_+ + N_- = \frac{2V}{\lambda_T^3} \big[f_{3/2}^{-}\big(z_+\big) + f_{3/2}^{-}\big(z_-\big)\big] \ .
 $$
-At high temperatures we can use the fact that $f_{1/2}^{-}(z) \approx z$ to get $N \approx \frac{2gV}{\lambda_T^3} z$ and hence
+At high temperatures we can use the fact that $f_{1/2}^{-}(z) \approx z$ to get $N \approx \frac{4V}{\lambda_T^3} z$ and hence
 $$
 \chi(T) \approx \frac{n\mu_B^2}{k_B T} \equiv \frac{C}{T} \ .
 $$
 This is a well-known result for paramagnetic materials, known as *Curie's Law*. As the temperature of the material increases its susceptibility decreases in constant proportion. Of course, this law fails in the low temperature limit.
 
-In the low temperature limit we can use the Sommerfeld expansion in the weak field limit to write $f_s^{-}(z_\pm) \approx \frac{\beta^s\mu^s}{s!}$. From here, we can express $N \approx \frac{2gV}{(3/2)!} \frac{\beta^{3/2}}{\lambda_T^3} \varepsilon_F^{3/2}$ and plug this back into $\chi$ to get the following relation in the low temperature limit,
+In the low temperature limit we can use the Sommerfeld expansion in the weak field limit to write $f_s^{-}(z_\pm) \approx \frac{\beta^s\mu^s}{s!}$. From here, we can express $N \approx \frac{4V}{(3/2)!} \frac{\beta^{3/2}}{\lambda_T^3} \varepsilon_F^{3/2}$ and plug this back into $\chi$ to get the following relation in the low temperature limit,
 $$
 \chi(T) \approx \frac{3\mu_B^2 n}{2k_B T_F} \bigg[1 - \frac{\pi^2}{12} \bigg(\frac{T}{T_F}\bigg)^2 + O(T^4) \bigg] \ .
 $$
@@ -592,11 +588,86 @@ As we'd expect, the susceptibility goes to a positive constant $\chi_F$ in the l
 
 ### Degenerate Bose Gas
 
-We'll now consider the case of the degenerate Bose gas at low temperatures. As we'll see, bosons at low temperatures behave quite differently from fermions. The difference between the two gases comes down entirely to the mathematical differences between the functions $f_s^{+}(z)$ and $f_s^{-}(z)$. For fermions $f_s^{-}(z)$ is defined for all positive $z$, meaning $n, E, P$ are well-defined for all $z$ as well. For bosons though, $f_s^{+}(z)$ is only well-defined when $|z| < 1$. This means we have to think more carefully about what we mean by the variables $n, E, P$ at low temperatures.
+We'll now consider the case of the degenerate Bose gas at low temperatures. Bosons at low temperatures behave quite differently from fermions. While fermions form a Fermi sphere of states of ever-increasing momentum, bosons instead eventually all pile into their ground state in a phenomenon known as *Bose-Einstein Condensation*.
 
-Since $T=0$ corresponds to $z=1$ and we know $f_s^{+}(1) = \zeta_s$, we expect at zero temperature to have
+Unlike with the fermi function $f_s^{-}(z)$ which is well-defined for all $z$, the boson function $f_s^{+}(z)$ is only well-defined when $|z| \leq 1$. To see why this is the case physically and not just mathematically, consider again the Bose-Einstein distribution
 $$
-n = \frac{N}{V} = \frac{g}{\lambda_T^3} \zeta_{3/2} \approx 2.61 \frac{g}{\lambda_T^3} \ .
+\langle n_\mathbf{k} \rangle = \frac{1}{e^{\beta(\varepsilon_\mathbf{k}-\mu)} - 1} \ .
 $$
-But there's a problem with this.
+Since $\langle n_\mathbf{k} \rangle$ is an occupation number it must be non-negative. This can only happen if $\mu \leq \varepsilon_\mathbf{k}$ for any value of $\varepsilon_\mathbf{k}$. Since $\min \varepsilon_\mathbf{k} = 0$ is the smallest energy possible, this means we must have $\mu \leq 0$. Since we expect $\mu$ to increase as $T$ decreases, it's reasonable to expect that $\mu \rightarrow 0$ as $T \rightarrow 0$. And since $\mu$ goes to zero like $\mu \sim k_B T \log \frac{n\lambda_T^3}{g}$, this means we must have $z \rightarrow 1$ as $T \rightarrow 0$. Thus, studying the low temperature limit for bosons is essentially equivalent to studying the behavior of $f_s^{+}(z)$ as $z \rightarrow 1$ from below.
+
+As we saw before, the polylogarithm increases monotonically with $z$, hitting the finite value of $\zeta_s = f_s^{+}(1)$ at $z=1$ provided $s > 1$, or blowing up to infinity at $z=1$ otherwise. Together these imply we should have
+$$
+\frac{n\lambda_T^3}{g} = f_{3/2}^{+}(z) \leq \zeta_{3/2} \approx 2.61 \ .
+$$
+But physically this doesn't quite make sense at low temperatures. We generally think of $n=\frac{N}{V}$ as being fixed, reflecting in essence the conservation of mass. But the only way $n$ can stay fixed as $T \rightarrow 0$ is for $f_{3/2}^{+}(z) \rightarrow \infty$ as $\lambda_T \rightarrow \infty$. But this isn't happening here since $f_{3/2}^{+}(z) \rightarrow \zeta_{3/2}$ instead. So what's going on?
+
+If we step back and think about the quantum mechanics of the situation, we should realize that the lowest energy state each particle can occupy is its ground state. It would thus make sense at the lowest temperatures for particles to start to move into their ground states. Though non-obvious, our formulas aren't keeping track of the particles in the ground state at all due to the subtleties in the density of states approximation, which expressed in terms of the energy is given by
+$$
+\sum_{\mathbf{k}} \approx \frac{(2m)^{3/2} V}{4\pi^2\hbar^3} \int dE \ \sqrt{E} \ .
+$$
+Because of the $\sqrt{E}$ weight inside the integrand, the ground state energy $E=0$ doesn't contribute at all to the integral. When temperatures are away from zero this isn't a major issue since comparatively few particles are in their ground states. But very near zero temperature it becomes a much bigger deal.
+
+We can attempt to correct for this efficiency by counting the ground state contributions separately from the excited states. For the excited states we'll continue to use the density of states approximations, which gives the results we saw before. For the ground states, all we have to do is observe that the Bose-Einstein distribution says the expected number of particles in the ground state at a given fugacity $z$ is just
+$$
+N_0 \approx \langle n_0 \rangle = \frac{1}{z^{-1} - 1} = \frac{z}{1-z} \ .
+$$
+All we have to do is break the density up into two pieces, the ground state density $n_0$ and the excited state density $n_>$,
+$$
+N = N_0 + N_> = \frac{z}{1-z} + \frac{gV}{\lambda_T^3} f_{3/2}^{+}(z) \ .
+$$
+We can define a useful *critical temperature* $T_c$ by seeing at what temperature $\frac{N\lambda_T^3}{gV} = \zeta_{3/2}$, which turns out to be 
+$$
+T_c \equiv \frac{2\pi\hbar^2}{mk_B} \bigg(\frac{N}{\zeta_{3/2} gV}\bigg)^{2/3} \ .
+$$
+The critical temperature evidently tells us something about how many particles occupy the ground state. The fraction of total particles in the ground state or excited states at a given temperature is evidently
+$$
+\frac{N_0}{N} = 1 - \frac{gV}{N\lambda_T^3} \zeta_{3/2} = 1 - \bigg(\frac{T}{T_c}\bigg)^{3/2} \quad , \quad \frac{N_>}{N} = \frac{gV}{N\lambda_T^3} \zeta_{3/2} = \bigg(\frac{T}{T_c}\bigg)^{3/2} \ .
+$$
+Notice $N_> \approx N$ when $T \geq T_c$, so we need only worry about the excited states. But when $T \approx 0$ the opposite is true, with all particles crowding into the ground state to give $N \approx N_0$. We can see this tradeoff between occupied states in the figure below.
+
+![](./resources/image-20240108183024966.png){fig-align=center width=400}
+
+This phenomenon where bosons all pile into their ground state below some temperature is called **Bose-Einstein Condensation** or **BEC**. Note that critical temperatures are generally very close to zero, for example water has a critical temperature of about $T_c \approx 0.06 \ ^\circ\text{K}$. This means for BEC to be seen at all a gas needs to be cooled to almost exactly $T=0$.
+
+In a similar vein, we can find formulas for the pressure and energy at low temperatures. In these cases, the contribution from the ground state is negligible in the thermodynamic limit since they're a factor of $N$ less than the excited state contributions. This means for all $T$ we can safely write
+$$
+P \approx k_B T \frac{g}{\lambda_T^3} f_{5/2}^{+}(z) \quad , \quad E \approx \frac{3}{2} k_B T\frac{gV}{\lambda_T^3} f_{5/2}^{+}(z) \ .
+$$
+When $T < T_c$ we just need to replace $f_{5/2}^{+}(z)$ by $\zeta_{5/2} \approx 1.41$ to get the correct results near $T=0$,
+$$
+P \approx k_B T \frac{g}{\lambda_T^3} \zeta_{5/2} \quad , \quad E \approx \frac{3}{2} k_B T \frac{gV}{\lambda_T^3} \zeta_{5/2} \ .
+$$
+In particular, notice that when $T < T_c$ both the pressure and energy go like $T^{5/2}$, while perhaps strangely the pressure doesn't depend at all on the density $n=\frac{N}{V}$ anymore since the ground state particles no longer contribute to the pressure. This means that even though $P = n k_B T$ in the high temperature limit, at low temperatures it always follows the same curve as shown below.
+
+FIGURE
+
+As is pretty much custom by now, we'll differentiate energy with respect to temperature to get the heat capacity. To do this we need to keep the $f_{5/2}^{+}(z)$ in the formula even below $T_c$ since $z$ itself depends implicitly on temperature. One can then show using the relation $N = \frac{gV}{\lambda_T^3} f_{3/2}^{+}(z)$ and the ladder relationship $\frac{d}{dz} f_s^{+}(z) = \frac{1}{z} f_{s-1}^{+}(z)$ that
+$$
+\begin{align*}
+C = \frac{\partial E}{\partial T} &= \frac{15}{4} \frac{gV}{\lambda_T^3} k_B f_{5/2}^{+}(z) + \frac{3}{2} \frac{gV}{\lambda_T^3} k_B T \frac{df_{5/2}^{+}(z)}{dz} \frac{\partial z}{\partial T} \\
+&= \frac{3}{2} k_B \frac{gV}{\lambda_T^3} \bigg[\frac{5}{2} f_{5/2}^{+}(z) - \frac{3}{2} \frac{\big(f_{3/2}^{+}(z)\big)^2}{f_{1/2}^{+}(z)}\bigg] \ .
+\end{align*}
+$$
+When $T \gg T_c$ we can use the approximation $f_s^{+}(z) \approx z$ to recover the classical result of $C = \frac{3}{2} N k_B$. When $T < T_c$ the second term goes to zero since $f_{1/2}^{+}(z) \rightarrow \infty$ as $z \rightarrow 1$. In that limit we evidently have
+$$
+C = \frac{15}{4} k_B \frac{gV}{\lambda_T^3} \zeta_{5/2} = \frac{15}{4} \frac{\zeta_{5/2}}{\zeta_{3/2}} \bigg(\frac{T}{T_c}\bigg)^{3/2} \ .
+$$
+Evidently near zero temperature the heat capacity of a boson goes like $T^{3/2}$, which is very different from fermions. The way the two limits join in this case though is particularly interesting. It turns out they join at a kink above $\frac{3}{2} Nk_B$ as shown below.
+
+![](./resources/image-20240108182053102.png){fig-align=center width=400}
+
+To see why this is true we need to study the behavior when $T > T_c$ but $T \approx T_c$. This can be seen by expanding the heat capacity when $T > T_c$ and observing that the corrections increase the heat capacity from $\frac{3}{2} N k_B$. This expansion turns out to be
+$$
+C = \frac{3}{2} N k_B \bigg[1 + \frac{\lambda_T^3}{2^{7/2}} n + O(n^2) \bigg] \ .
+$$
+This lack of smoothness in the heat capacity can be thought of as a phase transition at $T=T_c$. Bosons below the critical temperature can be thought of as a distinct state of matter. We can further see this by looking at the compressibility $\kappa_T$.
+
+LEFTOVERS: PRESSURE CURVE, COMPRESSIBILITY DIVERGES, SUPERFLUID HELIUM
+
+
+
+
+
+
 
