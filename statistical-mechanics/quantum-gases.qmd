@@ -409,7 +409,7 @@ P V = \frac{2}{5} N \varepsilon_F = \frac{2}{5} N k_B T_F \ .
 $$
 This defines a Fermi pressure $P_F \equiv \frac{2}{5} n \varepsilon_F$, usually called **degeneracy pressure**. It again arises from the exclusion principle due to the fact that we can't squeeze the fermions arbitrarily close together.
 
-### Sommerfeld Expansion
+#### Sommerfeld Expansion
 
 These expressions tell us what to expect exactly at zero temperature. But what about *near* zero temperature? How do the equations of state interpolate between these values and the expected classical ones? To investigate this we'll need to consider more than just the first term in the asymptotic expansion. We need the full asymptotic series now, which we derive below. 
 
@@ -632,15 +632,15 @@ This phenomenon where bosons all pile into their ground state below some tempera
 
 In a similar vein, we can find formulas for the pressure and energy at low temperatures. In these cases, the contribution from the ground state is negligible in the thermodynamic limit since they're a factor of $N$ less than the excited state contributions. This means for all $T$ we can safely write
 $$
-P \approx k_B T \frac{g}{\lambda_T^3} f_{5/2}^{+}(z) \quad , \quad E \approx \frac{3}{2} k_B T\frac{gV}{\lambda_T^3} f_{5/2}^{+}(z) \ .
+P = k_B T \frac{g}{\lambda_T^3} f_{5/2}^{+}(z) \quad , \quad E = \frac{3}{2} k_B T\frac{gV}{\lambda_T^3} f_{5/2}^{+}(z) \ .
 $$
 When $T < T_c$ we just need to replace $f_{5/2}^{+}(z)$ by $\zeta_{5/2} \approx 1.41$ to get the correct results near $T=0$,
 $$
-P \approx k_B T \frac{g}{\lambda_T^3} \zeta_{5/2} \quad , \quad E \approx \frac{3}{2} k_B T \frac{gV}{\lambda_T^3} \zeta_{5/2} \ .
+P = k_B T \frac{g}{\lambda_T^3} \zeta_{5/2} \quad , \quad E = \frac{3}{2} k_B T \frac{gV}{\lambda_T^3} \zeta_{5/2} \ .
 $$
-In particular, notice that when $T < T_c$ both the pressure and energy go like $T^{5/2}$, while perhaps strangely the pressure doesn't depend at all on the density $n=\frac{N}{V}$ anymore since the ground state particles no longer contribute to the pressure. This means that even though $P = n k_B T$ in the high temperature limit, at low temperatures it always follows the same curve as shown below.
+In particular, notice that when $T < T_c$ both the pressure and energy go like $T^{5/2}$, while perhaps strangely the pressure doesn't depend at all on the density $n=\frac{N}{V}$ anymore since the ground state particles no longer contribute to the pressure. This means even though $P = n k_B T$ in the high temperature limit, at low temperatures it always follows the same curve, as shown below.
 
-FIGURE
+![](./resources/image-20240111193827524.png){fig-align=center width=400}
 
 As is pretty much custom by now, we'll differentiate energy with respect to temperature to get the heat capacity. To do this we need to keep the $f_{5/2}^{+}(z)$ in the formula even below $T_c$ since $z$ itself depends implicitly on temperature. One can then show using the relation $N = \frac{gV}{\lambda_T^3} f_{3/2}^{+}(z)$ and the ladder relationship $\frac{d}{dz} f_s^{+}(z) = \frac{1}{z} f_{s-1}^{+}(z)$ that
 $$
@@ -661,9 +661,13 @@ To see why this is true we need to study the behavior when $T > T_c$ but $T \app
 $$
 C = \frac{3}{2} N k_B \bigg[1 + \frac{\lambda_T^3}{2^{7/2}} n + O(n^2) \bigg] \ .
 $$
-This lack of smoothness in the heat capacity can be thought of as a phase transition at $T=T_c$. Bosons below the critical temperature can be thought of as a distinct state of matter. We can further see this by looking at the compressibility $\kappa_T$.
+This lack of smoothness in the heat capacity can be thought of as a phase transition at $T=T_c$. Bosons below the critical temperature can be thought of as a distinct state of matter. We can further see this by looking at the compressibility $\kappa_T$,
+$$
+\kappa_T = \frac{1}{V} \frac{\partial V}{\partial P} \bigg |_{T,N} = \frac{1}{n} \frac{\partial n / \partial z}{\partial P / \partial z} \bigg |_{T,N} = \frac{1}{nk_BT} \frac{f_{1/2}^{+}(z)}{f_{3/2}^{+}(z)} \ .
+$$
+Notice as $z \rightarrow 1$ at the critical temperature that $f_{1/2}^{+}(z) \rightarrow \infty$ and so $\kappa_T \rightarrow \infty$ as well. This means the isotherms of the $PV$-diagram become flat when $T<T_c$ similar to the way they do for the van der Waals interaction, indicating coexistence.
 
-LEFTOVERS: PRESSURE CURVE, COMPRESSIBILITY DIVERGES, SUPERFLUID HELIUM
+Another example of a low-temperature phase transition for bosons is a different phenomenon known as *superfluidity*. For example, helium is known to come in two common isotopes, helium-3 and helium-4. Helium-3 is a fermion since it contains 2 protons, 2 electrons, and a single neutron. Meanwhile, helium-4 is a boson since it contains 2 protons, 2 electrons, and 2 neutrons. At typical pressures helium never forms a solid at low temperatures. It instead forms a *superfluid*, which is a liquid with many similar properties to BEC. Superfluids have the interesting property that they have *zero viscosity*, meaning they can seep through whatever container they're in when the temperature gets below some critical temperature $T_c$. For helium-4 this temperature is known to be about $T_c \approx 2.2 \ ^\circ\text{K}$ at standard pressure.
 
 
 

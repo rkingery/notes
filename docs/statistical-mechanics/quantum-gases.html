@@ -329,7 +329,6 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#degenerate-gases" id="toc-degenerate-gases" class="nav-link" data-scroll-target="#degenerate-gases">Degenerate Gases</a>
   <ul class="collapse">
   <li><a href="#degenerate-fermi-gas" id="toc-degenerate-fermi-gas" class="nav-link" data-scroll-target="#degenerate-fermi-gas">Degenerate Fermi Gas</a></li>
-  <li><a href="#sommerfeld-expansion" id="toc-sommerfeld-expansion" class="nav-link" data-scroll-target="#sommerfeld-expansion">Sommerfeld Expansion</a></li>
   <li><a href="#degenerate-bose-gas" id="toc-degenerate-bose-gas" class="nav-link" data-scroll-target="#degenerate-bose-gas">Degenerate Bose Gas</a></li>
   </ul></li>
   </ul>
@@ -627,9 +626,8 @@ E = \frac{3}{5} N \varepsilon_F = \frac{3}{5} N k_B T_F \ .
 \]</span> Interestingly, it seems the energy of a Fermi gas doesn’t go to zero at zero temperature. It tends to a positive constant. A Fermi gas <em>always</em> has energy due to the exclusion principle preventing the particles from falling into lower energy states. Similarly, a Fermi gas must have non-zero pressure at zero temperature as well since <span class="math inline">\(E = \frac{3}{2} PV\)</span> implies <span class="math display">\[
 P V = \frac{2}{5} N \varepsilon_F = \frac{2}{5} N k_B T_F \ .
 \]</span> This defines a Fermi pressure <span class="math inline">\(P_F \equiv \frac{2}{5} n \varepsilon_F\)</span>, usually called <strong>degeneracy pressure</strong>. It again arises from the exclusion principle due to the fact that we can’t squeeze the fermions arbitrarily close together.</p>
-</section>
-<section id="sommerfeld-expansion" class="level3">
-<h3 class="anchored" data-anchor-id="sommerfeld-expansion">Sommerfeld Expansion</h3>
+<section id="sommerfeld-expansion" class="level4">
+<h4 class="anchored" data-anchor-id="sommerfeld-expansion">Sommerfeld Expansion</h4>
 <p>These expressions tell us what to expect exactly at zero temperature. But what about <em>near</em> zero temperature? How do the equations of state interpolate between these values and the expected classical ones? To investigate this we’ll need to consider more than just the first term in the asymptotic expansion. We need the full asymptotic series now, which we derive below.</p>
 <p>Let’s consider again the integral definition of <span class="math inline">\(f_s^{-}(z)\)</span> and perform integration by parts by moving one of the derivatives from <span class="math inline">\(x^{s-1}\)</span> to <span class="math inline">\(\langle n \rangle = \big(z^{-1} e^x + 1\big)^{-1}\)</span>. Then we have <span class="math display">\[
 \begin{align*}
@@ -705,6 +703,7 @@ C \sim N k_B \bigg[\frac{\pi^2}{2} \bigg(\frac{T}{T_F}\bigg) + \frac{12\pi^4}{5}
 \]</span> we can see at what temperature the Fermi and phonon effects become comparable by equating terms and solving for <span class="math inline">\(T\)</span> to get <span class="math display">\[
 T \sim \sqrt{\frac{5T_D^3}{24\pi T_F}} \ .
 \]</span> For a typical metal we’d have something like <span class="math inline">\(T_D \sim 10^2 \ ^\circ \text{K}\)</span> and <span class="math inline">\(T_F \sim 10^4 \ ^\circ \text{K}\)</span>, meaning the linear term would become important only when temperatures get down to around <span class="math inline">\(T \sim 1 \ ^\circ \text{K}\)</span>.</p>
+</section>
 <section id="example-paramagnetism" class="level4">
 <h4 class="anchored" data-anchor-id="example-paramagnetism">Example: Paramagnetism</h4>
 <p>As another interesting application of the theory of Fermi gases, let’s consider the case of paramagnetism. A <em>paramagnet</em> is any material whose electron spins tend to align themselves <em>parallel</em> to an applied external magnetic field. Typically paramagnetic behavior is observed in materials whose atoms have an <em>odd</em> number of electrons so that some of them are left unpaired. Only these unpaired electrons contribute anything significant to the magnetization. Atoms with an <em>even</em> number of electrons experience a different and much weaker effect known as <em>diamagnetism</em>, where the electron spins tend to align themselves <em>antiparallel</em> to the external field. Both effects are significantly weaker than <em>ferromagnetism</em>, often by a factor of <span class="math inline">\(10^4\)</span> or more.</p>
@@ -780,11 +779,15 @@ T_c \equiv \frac{2\pi\hbar^2}{mk_B} \bigg(\frac{N}{\zeta_{3/2} gV}\bigg)^{2/3} \
 </div>
 <p>This phenomenon where bosons all pile into their ground state below some temperature is called <strong>Bose-Einstein Condensation</strong> or <strong>BEC</strong>. Note that critical temperatures are generally very close to zero, for example water has a critical temperature of about <span class="math inline">\(T_c \approx 0.06 \ ^\circ\text{K}\)</span>. This means for BEC to be seen at all a gas needs to be cooled to almost exactly <span class="math inline">\(T=0\)</span>.</p>
 <p>In a similar vein, we can find formulas for the pressure and energy at low temperatures. In these cases, the contribution from the ground state is negligible in the thermodynamic limit since they’re a factor of <span class="math inline">\(N\)</span> less than the excited state contributions. This means for all <span class="math inline">\(T\)</span> we can safely write <span class="math display">\[
-P \approx k_B T \frac{g}{\lambda_T^3} f_{5/2}^{+}(z) \quad , \quad E \approx \frac{3}{2} k_B T\frac{gV}{\lambda_T^3} f_{5/2}^{+}(z) \ .
+P = k_B T \frac{g}{\lambda_T^3} f_{5/2}^{+}(z) \quad , \quad E = \frac{3}{2} k_B T\frac{gV}{\lambda_T^3} f_{5/2}^{+}(z) \ .
 \]</span> When <span class="math inline">\(T &lt; T_c\)</span> we just need to replace <span class="math inline">\(f_{5/2}^{+}(z)\)</span> by <span class="math inline">\(\zeta_{5/2} \approx 1.41\)</span> to get the correct results near <span class="math inline">\(T=0\)</span>, <span class="math display">\[
-P \approx k_B T \frac{g}{\lambda_T^3} \zeta_{5/2} \quad , \quad E \approx \frac{3}{2} k_B T \frac{gV}{\lambda_T^3} \zeta_{5/2} \ .
-\]</span> In particular, notice that when <span class="math inline">\(T &lt; T_c\)</span> both the pressure and energy go like <span class="math inline">\(T^{5/2}\)</span>, while perhaps strangely the pressure doesn’t depend at all on the density <span class="math inline">\(n=\frac{N}{V}\)</span> anymore since the ground state particles no longer contribute to the pressure. This means that even though <span class="math inline">\(P = n k_B T\)</span> in the high temperature limit, at low temperatures it always follows the same curve as shown below.</p>
-<p>FIGURE</p>
+P = k_B T \frac{g}{\lambda_T^3} \zeta_{5/2} \quad , \quad E = \frac{3}{2} k_B T \frac{gV}{\lambda_T^3} \zeta_{5/2} \ .
+\]</span> In particular, notice that when <span class="math inline">\(T &lt; T_c\)</span> both the pressure and energy go like <span class="math inline">\(T^{5/2}\)</span>, while perhaps strangely the pressure doesn’t depend at all on the density <span class="math inline">\(n=\frac{N}{V}\)</span> anymore since the ground state particles no longer contribute to the pressure. This means even though <span class="math inline">\(P = n k_B T\)</span> in the high temperature limit, at low temperatures it always follows the same curve, as shown below.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./resources/image-20240111193827524.png" class="img-fluid figure-img" width="400"></p>
+</figure>
+</div>
 <p>As is pretty much custom by now, we’ll differentiate energy with respect to temperature to get the heat capacity. To do this we need to keep the <span class="math inline">\(f_{5/2}^{+}(z)\)</span> in the formula even below <span class="math inline">\(T_c\)</span> since <span class="math inline">\(z\)</span> itself depends implicitly on temperature. One can then show using the relation <span class="math inline">\(N = \frac{gV}{\lambda_T^3} f_{3/2}^{+}(z)\)</span> and the ladder relationship <span class="math inline">\(\frac{d}{dz} f_s^{+}(z) = \frac{1}{z} f_{s-1}^{+}(z)\)</span> that <span class="math display">\[
 \begin{align*}
 C = \frac{\partial E}{\partial T} &amp;= \frac{15}{4} \frac{gV}{\lambda_T^3} k_B f_{5/2}^{+}(z) + \frac{3}{2} \frac{gV}{\lambda_T^3} k_B T \frac{df_{5/2}^{+}(z)}{dz} \frac{\partial z}{\partial T} \\
@@ -800,8 +803,10 @@ C = \frac{15}{4} k_B \frac{gV}{\lambda_T^3} \zeta_{5/2} = \frac{15}{4} \frac{\ze
 </div>
 <p>To see why this is true we need to study the behavior when <span class="math inline">\(T &gt; T_c\)</span> but <span class="math inline">\(T \approx T_c\)</span>. This can be seen by expanding the heat capacity when <span class="math inline">\(T &gt; T_c\)</span> and observing that the corrections increase the heat capacity from <span class="math inline">\(\frac{3}{2} N k_B\)</span>. This expansion turns out to be <span class="math display">\[
 C = \frac{3}{2} N k_B \bigg[1 + \frac{\lambda_T^3}{2^{7/2}} n + O(n^2) \bigg] \ .
-\]</span> This lack of smoothness in the heat capacity can be thought of as a phase transition at <span class="math inline">\(T=T_c\)</span>. Bosons below the critical temperature can be thought of as a distinct state of matter. We can further see this by looking at the compressibility <span class="math inline">\(\kappa_T\)</span>.</p>
-<p>LEFTOVERS: PRESSURE CURVE, COMPRESSIBILITY DIVERGES, SUPERFLUID HELIUM</p>
+\]</span> This lack of smoothness in the heat capacity can be thought of as a phase transition at <span class="math inline">\(T=T_c\)</span>. Bosons below the critical temperature can be thought of as a distinct state of matter. We can further see this by looking at the compressibility <span class="math inline">\(\kappa_T\)</span>, <span class="math display">\[
+\kappa_T = \frac{1}{V} \frac{\partial V}{\partial P} \bigg |_{T,N} = \frac{1}{n} \frac{\partial n / \partial z}{\partial P / \partial z} \bigg |_{T,N} = \frac{1}{nk_BT} \frac{f_{1/2}^{+}(z)}{f_{3/2}^{+}(z)} \ .
+\]</span> Notice as <span class="math inline">\(z \rightarrow 1\)</span> at the critical temperature that <span class="math inline">\(f_{1/2}^{+}(z) \rightarrow \infty\)</span> and so <span class="math inline">\(\kappa_T \rightarrow \infty\)</span> as well. This means the isotherms of the <span class="math inline">\(PV\)</span>-diagram become flat when <span class="math inline">\(T&lt;T_c\)</span> similar to the way they do for the van der Waals interaction, indicating coexistence.</p>
+<p>Another example of a low-temperature phase transition for bosons is a different phenomenon known as <em>superfluidity</em>. For example, helium is known to come in two common isotopes, helium-3 and helium-4. Helium-3 is a fermion since it contains 2 protons, 2 electrons, and a single neutron. Meanwhile, helium-4 is a boson since it contains 2 protons, 2 electrons, and 2 neutrons. At typical pressures helium never forms a solid at low temperatures. It instead forms a <em>superfluid</em>, which is a liquid with many similar properties to BEC. Superfluids have the interesting property that they have <em>zero viscosity</em>, meaning they can seep through whatever container they’re in when the temperature gets below some critical temperature <span class="math inline">\(T_c\)</span>. For helium-4 this temperature is known to be about <span class="math inline">\(T_c \approx 2.2 \ ^\circ\text{K}\)</span> at standard pressure.</p>
 
 
 </section>
