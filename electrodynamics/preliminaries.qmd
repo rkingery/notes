@@ -1,0 +1,321 @@
+# Preliminaries
+
+In this course we'll study the physical phenomena known as *electromagnetism*. At one level, electromagnetism can be thought of as the study of two types of closely-related forces, the *electrical force*, and the *magnetic force*. Originally, the electrical force was proposed to explain the fact that objects have a property known as *electric charge* which causes certain objects to repel each other and other objects to attract each other according to a particular force law, *Coulomb's Law*. 
+
+The magnetic force arose from two different phenomena that later had to be unified. The first was the study of *ferromagnetic materials*, which were materials that tended to point in a particular direction, for example the needle of a compass which tends to point northward. The second was the behavior of *currents*, or charges moving through wires. Michael Faraday observed that a current moving through two wires causes them to attract or repel each other depending on the directions of the currents. This led to another force law, known as the *Biot-Savart Law*. It was later found that ferromagnets can also be thought of as tiny currents inside a material, thus unifying the two types of magnetism. 
+
+The fact that magnetism arises from moving electric charges also provided a way to unify the dynamics of electricity and magnetism. A few years later it was discovered that electromagnetism explains a completely different phenomenon as well, *light*. Light can be thought of purely as electromagnetic radiation that varies mainly by its frequency.  The unification of these three phenomena (electricity, magnetism, and optics) into one theory was finally done by Maxwell with his well-known field equations. These equations are believed to fully describe all electromagnetic phenomena, at least at the macroscopic level. 
+
+It was eventually realized with the advent of quantum mechanics that even Maxwell's Equations needed to be modified at the microscopic level to account for quantum effects, like the discoveries that light is in fact made of photons and most materials are made of other fundamental particles like electrons and quarks. This more advanced topic is known as *quantum electrodynamics*.
+
+In this course we'll stick to the study of *classical electrodynamics*, which is the study of the macroscopic properties of electromagnetism explainable through Maxwell's equations. This course will run quite deep, focusing on a graduate-level understanding of electromagnetism, both its theory and some of its most important applications.
+
+## Units
+
+We'll start by saying a word about *units*. Typically in physics we need not think much about units. Abstractly the formulas look the same, whether the quantities involved are measured in meters, feet, or lightyears. However, electromagnetism has the unusual quirk that different unit systems lead to slightly different looking formulas. The reasons for this are largely historical, and very little if any physics is involved in the way these formulas look in different systems of units. An important implication of this frustrating quirk is that we have to be much more careful at the outset to specify which units we're using since it will affect the formulas involved in derivations and calculations. To start, we'll very briefly look at several different systems of units before committing to one for the rest of the course.
+
+The foundation of systems of units in electromagnetism are forces on and due to the presence of charges and currents. It was found early on that there are two types of electric charge, positive and negative. Two like charges repel, while two opposite charges attract. The force between those charges also depends on the distance between them in a specific way. Suppose two charges $q_1$ and $q_2$ are separated from each other by a distance $r$. The magnitude of the force felt by the two charges is given by an inverse square law known as *Coulomb's Law*,
+$$
+F = k_e \frac{q_1 q_2}{r^2} \ .
+$$
+The proportionality constant $k_e$ is known as the *electric constant* whose dimension and value depends on choice of units. The quantity $k_e q_1 q_2$ can be measured in the lab by measuring the strength of the force and the distance between the two charges.
+
+A little while later people figured out how to run moving charges, or *currents*, through wires. In studying the behavior of current flowing through two nearby parallel wires, it was found that the wires repel each other when the currents move in the same direction, and repel each other when the currents move in the opposite direction. The force also seemed to depend on the distance between the wires. Suppose two parallel wires a distance $r$ apart are carrying currents $I_1$ and $I_2$. Suppose each wire has the same fixed length $\ell$. Then the force experienced by the two wires due to the currents is given by *Ampere's Force Law*,
+
+$$
+\frac{dF}{d\ell} = 2k_m \frac{I_1 I_2}{r} \ .
+$$
+The proportionality constant $k_m$ is yet another constant that depends on units. The quantity $k_m I_1 I_2$ can be measured in the lab by measuring the strength of the force per unit length and the distance of separation between the two wires.
+
+It was further realized later that these two phenomena can be generalized using the notion of *fields*. The force felt by a charge due to other charges can also be thought of as a force on a charge felt by an *electric field* $\mathbf{E}(\mathbf{x},t)$ that sums of the effects of all the other background charges. The force felt on a charge $q$ is evidently proportional to this electric field, $\mathbf{F} \propto q \mathbf{E}$. A similar description can be made for the forces felt on a moving charge, i.e. a current, due to the presence of a *magnetic field* $\mathbf{B}(\mathbf{x},t)$ that sums up the effects of all other background currents. This force felt on a moving charge $q$ is proportional to both its velocity $\mathbf{v}$ and the magnetic field, with $\mathbf{F} \propto q\mathbf{v} \times \mathbf{B}$. If we try to sum these two forces together to get the combined force on the moving charge we have to establish how the electric and magnetic fields dimensionally relate to each other. This combined force law is known as the *Lorentz Force Law*, given generally by
+$$
+\mathbf{F} = q \bigg(\mathbf{E} + \frac{\mathbf{v}}{\alpha} \times \mathbf{B}\bigg) \ .
+$$
+Here we introduce a new constant $\alpha$ to control the dimensional relationship between $\mathbf{E}$ and $\mathbf{B}$. Initially this was ignored and $\alpha=1$ was chosen without people really thinking about it. But later on it was realized that the two fields should actually be thought of as essentially the same object and should thus have the same dimensions. For this to be true, $\alpha$ must be chosen to be some constant with dimensions of velocity.
+
+The three parameters $k_e, k_m, \alpha$ are not completely independent though. Most importantly, dimensional analysis and experiment force $k_e$ and $k_m$ to be related in a very specific way, namely by
+$$
+c^2 = \frac{k_e}{k_m} \ ,
+$$
+where $c$ is the *speed of light* in vacuum, a fundamental constant empirically measured to be $c \approx 3 \cdot 10^{10} \ \frac{\text{cm}}{\text{s}}$. Several experiments already concluded that $c$ was indeed a universal constant with no dependence on choice of reference frame. This ratio evidently thus gives us a natural velocity scale, which coincidentally is what we'd need to fix $\alpha$ to make $\mathbf{E}$ and $\mathbf{B}$ to have the same units.
+
+In the early days of electromagnetism the centimeter-gram-second or *CGS* system was already being widely used to measure mechanical quantities like length, mass, time, force, and energy. The unit of force was called the *dyne*, which comes out to $1 \ \text{dyne} = 10^{-5} \ \text{N}$, while the unit of energy was called the *erg*, which comes out to $1 \ \text{erg} = 10^{-7} \ \text{J}$. When electromagnetism came along it was realized these mechanical units needed to somehow be extended to cover electromagnetic phenomena as well, but that there were different all self consistent ways this could be done based on how $k_e, k_m, \alpha$ were specified.
+
+Early on two unit systems arose to cover electromagnetism, one being used to measure electric quantities, and a completely different one used to measure magnetic quantities. The early system of units for electricity was called *electrostatic units* or the *ESU* system. This system defined $k_e\equiv\alpha\equiv1$, which then forced $k_m \equiv \frac{1}{c^2}$. This defined a natural unit of charge, later called the *electrostatic unit* or *esu*, with $1 \ \text{esu} \approx 3.3 \cdot 10^{-10} \ \text{C}$. An analogous system arose to study magnetism, called *electromagnetic units* or the *EMU* system. This system defined $k_m \equiv \alpha \equiv 1$, which then forced $k_e = c^2$. This defined a natural unit of current, later called the *absolute amp* or *abamp*, with $1 \ \text{abamp} = 10^{7} \ \text{A}$ exactly.
+
+It was found to be cumbersome to go back and forth between the two subjects since one had to change units to compare results. It was also eventually realized that having the electric and magnetic fields be different dimensions didn't make sense, as Einstein showed the two fields were really just the same field expressed in different reference frames. The two unit systems were then combined into yet a third system called the *Gaussian system*. The Gaussian system also uses CGS mechanical units, but takes
+$$
+k_e \equiv 1 \quad , \quad k_m \equiv \frac{1}{c^2} \quad , \quad \alpha \equiv c \ .
+$$
+This system had the benefit that the unit of charge was still the esu, but now the electric and magnetic fields have the same units. The unit of current is no longer the abamp, but instead the esu per second. The Gaussian system became popular among physicists, especially among theorists due to the fact that electricity and magnetism were treated on the same footing.
+
+However, things played out differently on the engineering side. While physicists were studying electromagnetism in the lab, engineers were starting to use these ideas to build practical things like wires, motors, transformers, circuits, and radios. Engineers at the time didn't like the fact that when that CGS units were poorly scaled to measure everyday things like the current through a telegraph wire or the voltage across a resistor. They instead chose to use a different system based on the meter, kilogram, and second, called the *MKS* system. Since the abamp was way too small, they took a larger unit they called an *amp* or *Ampere* defined to be $1 \ \text{A} = 10^7 \ \text{abamp}$. The factor of $10^7$ was only chosen for practical reasons.
+
+Later on, MKS units were extended to the rest of electromagnetism, but in a kind of quirky way. It was decided to take
+$$
+k_e \equiv \frac{1}{4\pi\varepsilon_0} \quad , \quad k_m \equiv \frac{\mu_0}{4\pi} \quad , \quad \alpha \equiv 1 \ .
+$$
+The division by $4\pi$ was done to *rationalize* out the factors of $4\pi$ from Maxwell's equations, an arbitrary decision likely made for convenience in hand calculations. Having the electric and magnetic fields be of the same units wasn't seen as a high priority, so there was no scaling by the speed of light. The constants $\varepsilon_0$ and $\mu_0$ were added so they could tune the size of the units so that current would be measured in amps. These decisions together force
+$$
+\mu_0 = 4\pi \cdot 10^{-7} \ \frac{\text{N}}{\text{A}^2} \quad , \quad \varepsilon_0 = \frac{1}{c^2 \mu_0} \approx 8.84 \cdot 10^{-14} \ \frac{\text{A}^2 \ \text{s}^4}{\text{kg} \ \text{m}^3} \ .
+$$
+
+This extended MKS system adds a fourth independent unit, the *amp* or *Ampere*. All other electromagnetic quantities are then naturally defined in terms of the values of the meter, kilogram, second, and amp. It's this system, sometimes called the *MKSA* system, that later become the *SI system* used widely today in science and engineering.
+
+On top of all these systems yet another system of units for electromagnetism was defined that closely relates to the Gaussian system. This system of units is called the *Heaviside-Lorentz* system. It also uses the CGS system and takes $\alpha=c$, but it follows the MKSA system in choosing to rationalize out the factors of $4\pi$ from Maxwell's equations. It thus chooses
+$$
+k_e \equiv \frac{1}{4\pi} \quad , \quad k_m \equiv \frac{1}{4\pi c^2} \quad , \quad \alpha \equiv c \ .
+$$
+As with the Gaussian system, in the Heaviside-Lorentz the electric and magnetic fields again have the same units. The only real difference is that the measured units change by a factor of $4\pi$, and the factors of $4\pi$ are removed from Maxwell's equations.
+
+Nowadays, the ESU and EMU systems are rarely if ever used. The SI system is of course widely used, particularly among experimentalists and engineers, as well as in essentially all modern undergraduate electromagnetism textbooks. The Heaviside-Lorentz system is favored by the particle physics community, perhaps because they often set $c=1$ which makes the formulas look similar to those in the SI system. The Gaussian system remains popular particularly among theoretical physicists due to its symmetric treatment of the electric and magnetic fields and its use of a single constant in formulas, the speed of light $c$.
+
+While each choice of units has its benefits depending on the field of study and the application, in this course we will largely stick to the *Gaussian* system of units, which is well-suited to a theoretical study of electromagnetism. To go back and forth between Gaussian and SI units in various formulas, a useful trick that often (but not always) works is to make the identification
+$$
+\varepsilon_0 \leftrightarrow \frac{1}{4\pi} \quad , \quad \mu_0 \leftrightarrow \frac{4\pi}{c} \ .
+$$
+
+
+
+## Math Review
+
+Here we give a very brief review of some important mathematical results that will be important in our study of electrodynamics. We will not prove anything here nor provide many if any examples, as this is all assumed to be review.
+
+### Vectors
+
+As in mechanics, in electrodynamics we generally assume that physical objects live in a 3-dimensional real space, which is often denoted by the set $\mathbb{R}^3$. Recall from linear algebra that we can classify objects by the number of indices they have. An object with *zero* indices is just a single number, called an *algebraic scalar*. An object with *one* index consists of a tuple of $3$ numbers in $3$ dimensions, called a *vector*. An object with *two* indices consists of a table with $3$ rows and $3$ columns, called a *matrix*.
+
+It's a general principle of physics that real physical quantities should not depend on the coordinate system used to describe them. This means that *geometrically* we want to think of scalars, vectors, etc as being physical objects, not objects that depend on whatever coordinate system we happen to be in. For this to be true we have to add in a restriction to what things we consider valid objects for physical study. We do this by requiring those objects transform a specific way under coordinate transformations, which are special one-to-one mappings from one set of coordinates $S$ to another set of coordinates $S'$. 
+
+In classical, non-relativistic physics we mainly care about special coordinate transformations called *orthogonal transformations*. In three dimensions these are $3 \times 3$ matrices $\mathbf{R}$ satisfying the property that their transpose is their own inverse, i.e. $\mathbf{R}^\top \mathbf{R} = \mathbf{I}$. This implies that $\det \mathbf{R} = \pm 1$. Geometrically, an orthogonal transformation $\mathbf{R}$ corresponds to a rotation, or *proper rotation*, when $\det \mathbf{R} = 1$ and a rotation plus a reflection, or *improper rotation*, when $\det \mathbf{R}= -1$.
+
+Using this idea, we will first define a geometric scalar as an object with zero indices that stays invariant under an orthogonal transformation. That is, if $\alpha$ is a real number, we say it's a *geometric scalar* if $\alpha' = \alpha$ for any orthogonal transformation from one coordinate system $S$ to another coordinate system $S'$. In electrodynamics, scalars include quantities like charge or distance.
+
+To make our notion of a *vector* physically valid we need to do something slightly different. Instead of requiring that they remain invariant under an orthogonal transformation, we require that they transform as a matrix-vector equation under $\mathbf{R}$. That is, if $\mathbf{x}$ is an algebraic column vector represented in system $S$, and $\mathbf{x}'$ is the same algebraic column vector represented in system $S'$, for $\mathbf{x}$ to be a valid *geometric vector* we must have $\mathbf{x}' = \mathbf{R} \mathbf{x}$. Note this equation describes how the *components* of the vector transform, not the physical vector itself. Geometrically we mandate that $\mathbf{x}' \equiv \mathbf{x}$. Their components differ, but in a very specific way. In physics we call these geometric vectors just *vectors*, or *3-vectors* if we want to specify we're talking about three dimensions.
+
+We'll frequently find it useful to go back and forth between *vector notation* where we manipulate objects algebraically, and *index notation* where we manipulate objects component-by-component. When using index notation we have to be mindful that components depend on the coordinate system even though their geometric objects do not. For example, if $\mathbf{x} = (x_1, x_2, x_3)$ in one coordinate system and $\mathbf{x} = (x_1', x_2', x_3')$ in another coordinate system, the components must transform according to
+$$
+x_i = \sum_{k=1}^3 R_{ij} x_{j} \equiv R_{ij} x_{j} \ ,
+$$
+where $R_{ij}$ are the components of *some* orthogonal transformation matrix. Here and in the rest of this course we employ the *Einstein summation convention*, where a sum over components is omitted when the summation index is repeated exactly twice in a term. In this case $j$ occurs twice in the expression $R_{ij} x_j$, which implies a sum over all $j$. We'll also use the convention that $x,y,z$ and $1,2,3$ are equivalent ways to label the same components in three dimensions.
+
+Geometric vectors follow all the usual rules of linear algebra. We can form new vectors by taking their *linear combinations* or *superpositions*. For example, $\mathbf{z} = \alpha \mathbf{x} + \beta \mathbf{y}$ is a new vector formed by scaling $\mathbf{x}$ by $\alpha$, scaling $\mathbf{y}$ by $\beta$, and then summing those together component by component to get
+$$
+\mathbf{z} = (\alpha x_1 + \beta y_1, \alpha x_2 + \beta y_2, \alpha x_3 + \beta y_3) \ .
+$$
+We can define a special type of product between two vectors that outputs a scalar, called the *dot product* or *inner product*, by
+$$
+\mathbf{x} \cdot \mathbf{y} \equiv x_i y_i = x_1 y_1 + x_2 y_2 + x_3 y_3 \ .
+$$
+Note again we're summing over the repeated index, in this case $i$. A useful fact about the dot product is that it's indeed a valid geometric scalar, invariant under coordinate transformations. Indeed, if $\mathbf{R}$ is an orthogonal transformation from one coordinate system $S$ to another coordinate system $S'$, then for any two algebraic vectors we have
+$$
+\mathbf{x} \cdot \mathbf{y} = \mathbf{x}^\top \mathbf{I} \mathbf{y} = \mathbf{x}^\top (\mathbf{R}^\top \mathbf{R}) \mathbf{y} = (\mathbf{R} \mathbf{x})^\top (\mathbf{R} \mathbf{y}) = \mathbf{x}' \cdot \mathbf{y}' \ .
+$$
+Being a scalar, the dot product always *commutes*, i.e. $\mathbf{x} \cdot \mathbf{y} = \mathbf{y} \cdot \mathbf{x}$. It's also clearly *associative* and *distributive*.
+
+We can relate the given definition of the dot product to the geometric given in introductory physics courses as well.
+$$
+\mathbf{x} \cdot \mathbf{y} = |\mathbf{x}| |\mathbf{y}| \cos\theta \ .
+$$
+This result can be shown using the Law of Cosines. From this formula we see $\mathbf{x} \cdot \mathbf{y} = 0$ only when the two vectors are perpendicular, or *orthogonal*. When the two vectors are parallel or antiparallel their dot product is evidently $\pm 1$. 
+
+We can also use the pythagorean theorem to find the *magnitude* or *norm* of a vector, which turns out to be related to the dot product as well by the formula
+$$
+|\mathbf{x}| \equiv \sqrt{\mathbf{x} \cdot \mathbf{x}} = \sqrt{x_1^2 + x_2^2 + x_3^2} \ .
+$$
+Vectors with norm one are called *unit vectors*. If we think of a vector $\mathbf{v}$ as an arrow in space, the unit vector will point along the same line but with unit length. We'll usually denote this unit vector as $\mathbf{e}_v$ or $\mathbf{\hat v}$. This means we always have $\mathbf{v} = |\mathbf{v}| \mathbf{e}_v$.
+
+Any set of three linearly independent vectors in $\mathbb{R}^3$ forms a *basis*, which means we can express any vector in the space as a linear combination of those three vectors. In practice we only care about an *orthonormal basis*, which is a basis where the basis vectors are all unit vectors and mutually orthogonal. This means for some set $\mathbf{e}_1, \mathbf{e}_2, \mathbf{e}_3$ to form an orthonormal basis they must satisfy
+$$
+\mathbf{e}_i \cdot \mathbf{e}_j = \delta_{ij} \ ,
+$$
+where $\delta_{ij}$ is the *Kronecker delta* defined to be $+1$ if $i=j$ and $0$ if $i \neq j$. The nice thing about an orthonormal basis is that for any vector $\mathbf{x}$ its component along an axis parallel to $\mathbf{e}_i$ is just $x_i = \mathbf{x} \cdot \mathbf{e}_i$. This means we can always write
+$$
+\mathbf{x} = x_1 \mathbf{e}_1 + x_2 \mathbf{e}_2 + x_3 \mathbf{e}_3 \ .
+$$
+Most often we find ourselves working with the basis vectors corresponding to a defined Cartesian coordinate system. In that case there are several different notations in physics used to express the same basis vectors,
+$$
+\begin{align*}
+\mathbf{e}_1 &= \mathbf{e}_x = \mathbf{\hat x} = \mathbf{\hat i} \ , \\
+\mathbf{e}_2 &= \mathbf{e}_y = \mathbf{\hat y} = \mathbf{\hat j} \ , \\
+\mathbf{e}_3 &= \mathbf{e}_z = \mathbf{\hat z} = \mathbf{\hat k} \ .
+\end{align*}
+$$
+In this course we'll try to use the first two notations for the most, sometimes the third, and never the last.
+
+Vectors in three dimensions have the unique property that we can define yet another product that outputs another vector instead of a scalar. This product is called the *cross product*, defined component-wise by
+$$
+(\mathbf{x} \times \mathbf{y})_i \equiv \varepsilon_{ijk} x_j y_k \ .
+$$
+Here $\varepsilon_{ijk}$ is the *Levi-Civita symbol*, defined to be $+1$ for even permutations of $ijk$, $-1$ for odd permutations of $ijk$, and $0$ when any of the indices are repeated. Written out component by component, it's not too hard to show that
+$$
+\mathbf{x} \times \mathbf{y} = (x_2 y_3 - x_3 y_2, x_3 y_1 - x_1 y_3, x_1 y_2 - x_2 y_1) \ .
+$$
+One obvious fact to see from the definition is that the cross product is *anti-commutative*, i.e. $\mathbf{x} \times \mathbf{y} = - \mathbf{y} \times \mathbf{x}$. This also implies the cross product of a vector with itself is zero, $\mathbf{x} \times \mathbf{x} = \mathbf{0}$. It's also not too hard to see that unlike the dot product and most forms of multiplication we work with, the cross product is not *associative*, i.e. $\mathbf{x} \times (\mathbf{y} \times \mathbf{z}) \neq (\mathbf{x} \times \mathbf{y}) \times \mathbf{z}$.
+
+The Levi-Civita symbol $\varepsilon_{ijk}$ has several useful identities that make deriving many obscure vector identities trivial to derive:
+
+- $\det [\mathbf{u}, \mathbf{v}, \mathbf{w}] = \varepsilon_{ijk} u_i v_j w_k$
+- $\varepsilon_{ijk} = \varepsilon_{jki} = \varepsilon_{kij}$
+- $\varepsilon_{ijk} = -\varepsilon_{ikj} = -\varepsilon_{kji} = -\varepsilon_{jik}$
+- $\varepsilon_{ijk} \varepsilon_{k\ell m} = \delta_{i\ell} \delta_{jm} - \delta_{im} \delta_{j\ell}$
+
+We can use these identities to show that the cross product of two vectors is always *perpendicular* to the plane spanned by those two vectors. We'll prove this by showing $\mathbf{x} \cdot (\mathbf{x} \times \mathbf{y}) = \mathbf{0}$, which implies $\mathbf{x}$ is orthogonal to $\mathbf{x} \times \mathbf{y}$. We have
+$$
+\mathbf{x} \cdot (\mathbf{x} \times \mathbf{y}) = \varepsilon_{ijk} x_j y_k (\mathbf{x} \cdot \mathbf{e}_i) = x_i \varepsilon_{ijk} x_j y_k = -x_i \varepsilon_{jik} x_j y_k = -x_j \varepsilon_{ijk} x_i y_k \ .
+$$
+Here we used the identity $\varepsilon_{jik} = -\varepsilon_{ijk}$ plus our freedom to relabel dummy indices to swap $i \leftrightarrow j$. Notice we have $\varepsilon_{ijk} x_i x_j y_k = -\varepsilon_{ijk} x_i x_j y_k$, which can only be true of both are zero, as we wanted to show.
+
+Another useful property we'll quickly prove is that cross products permute basis vectors, $\mathbf{e}_i \times \mathbf{e}_j = \varepsilon_{ijk} \mathbf{e}_k$. Indeed, we have
+$$
+\mathbf{e}_i \times \mathbf{e}_j = \varepsilon_{i'j'k} (\mathbf{e}_i)_{i'} (\mathbf{e}_j)_{j'} \mathbf{e}_k = \varepsilon_{i'j'k} \delta_{ii'} \delta_{jj'} \mathbf{e}_k = \varepsilon_{ijk} \mathbf{e}_k \ .
+$$
+This gives us many of the basis vector relations we've seen in the past, like $\mathbf{e}_z = \mathbf{e}_x \times \mathbf{e}_y$, $\mathbf{e}_x = \mathbf{e}_y \times \mathbf{e}_z$, and so on.
+
+We can use these two facts to recover the usual geometric interpretation of the cross product commonly given in introductory physics courses. We'll also use the fact that we can decompose a vector $\mathbf{x}$ into its component along the line spanned by another vector $\mathbf{y}$ plus its remaining components orthogonal to $\mathbf{y}$ to get
+$$
+|\mathbf{x} \times \mathbf{y}| = |(\mathbf{x}^\parallel + \mathbf{x}^\perp) \times \mathbf{y}| = |\mathbf{x}^\perp \times \mathbf{y}| = |\mathbf{x}| |\mathbf{y}| \sin \theta \ ,
+$$
+where $\theta$ is the angle between $\mathbf{x}$ and $\mathbf{y}$. Note the magnitude of the orthogonal component is $|\mathbf{x}|\sin\theta$. The *direction* of $\mathbf{x} \times \mathbf{y}$ follows the usual *right-hand rule*, which is just a different way of saying the basis vectors permute under cross products.
+
+As a more complicated example, we'll prove the so-called *BAC-CAB* rule for double cross products, which says
+$$
+\mathbf{a} \times (\mathbf{b} \times \mathbf{c}) = \mathbf{b} (\mathbf{a} \cdot \mathbf{c}) - \mathbf{c} (\mathbf{a} \cdot \mathbf{b}) \ .
+$$
+Let $\mathbf{d} \equiv \mathbf{a} \times (\mathbf{b} \times \mathbf{c})$ for convenience. Then using index notation and a few of the identities above, we have
+$$
+\begin{align*}
+d_i &= [\mathbf{a} \times (\mathbf{b} \times \mathbf{c})]_i \\
+&= \varepsilon_{ijk} a_j (\mathbf{b} \times \mathbf{c})_k \\
+&= \varepsilon_{ijk} \varepsilon_{k\ell m} a_j b_\ell c_m \\
+&= (\delta_{i\ell} \delta_{jm} - \delta_{im} \delta_{j\ell}) a_j b_\ell c_m \\
+&= \delta_{i\ell} \delta_{jm} a_j b_\ell c_m - \delta_{im} \delta_{j\ell} a_j b_\ell c_m \\
+&= a_j b_i c_j - a_j b_j c_i \\
+&= (\mathbf{a} \cdot \mathbf{c}) b_i - (\mathbf{a} \cdot \mathbf{b}) c_i \ ,
+\end{align*}
+$$
+which is what we wanted to show. A whole host of obscure vector identities can be proven in this way.
+
+### Tensors
+
+REFACTOR: FOCUS FROM BEGINNING ON RANK-2, MENTION RANK-K AT END. DEVELOP ABSTRACT NOTATION MORE FOR RANK-2, BUT REMEMBER INDEX NOTATION IS STILL IMPORTANT, CROSS PRODUCT BEFORE TENSOR DECOMPOSITION, CONTRACTING OUTER PRODUCTS ALSO SUM OF DOT PRODUCTS
+
+Scalars and vectors aren't the only geometric objects that are defined by how they transform under coordinate transformations. We can have geometric objects with *any* number of indices, not just zero or one component. These general objects are called *tensors*. A *rank* $k$ tensor is an object $\mathbf{T}$ with $k$ indices whose components transform under an orthogonal transformation as
+$$
+T_{i_1' i_2' \cdots i_k'} = R_{i_1' i_1} R_{i_2' i_2} \cdots R_{i_2' i_2} T_{i_1 i_2 \cdots i_k} \ .
+$$
+Hidden in this complicated expression is just the intuitive statement that to have a proper tensor, each dimension of the tensor has to transform as a proper vector, one-by-one, via the same orthogonal transformation matrix $\mathbf{R}$. Note the use of the summation convention here. We're summing over *all* $i,i'$ pairs on the right-hand side. We're also implicitly assuming here that each index runs over the same number of dimensions. For $d$ dimensions we should expect a rank $k$ tensor to have $d^k$ independent components in general.
+
+Just like with vectors, tensors obey the same laws of linear combination from linear algebra. That is, we can add and scale any rank-$k$ tensor with any other rank $k$ tensor to get yet another rank-$k$ tensor,
+$$
+\mathbf{T} = \alpha \mathbf{S} + \beta \mathbf{R}  \quad , \ \text{or} \quad T_{ij} = \alpha S_{ij} + \beta R_{ij} \ .
+$$
+The generalization of the dot product to tensors is called *tensor contraction*. It's an operation defined on a single tensor where one or more of its indices get summed over, reducing the rank of the output tensor. For example, if we set $i_1=i_2$ in a rank $k$ tensor $\mathbf{T}$ and sum over that index, we get a new tensor $\mathbf{S}$ of rank $k-2$ since the first two dimensions get summed out,
+$$
+S_{i_3, i_4, \cdots, i_k} = T_{i_1, i_1, i_2, i_3, \cdots, i_k} \ .
+$$
+Tensors also has a different product operation that creates higher rank tensors from two lower rank tensors, called the *tensor product* or *outer product*. It's defined component-wise simply by concatenation of all pairs of components. That is, if $\mathbf{T}$ is a rank-$k$ tensor and $\mathbf{S}$ is a rank-$\ell$ tensor, their tensor product is a new tensor $\mathbf{U}$ of rank $k+\ell$ defined component-wise by
+$$
+U_{i_1 i_2 \cdots i_k \ j_1 j_2 \cdots j_\ell} \equiv T_{i_1 i_2 \cdots i_k} S_{j_1 j_2 \cdots j_\ell} \ .
+$$
+Unlike contraction, which is pretty much always written in index notation, the tensor product is often written abstractly using the $\otimes$ symbol or sometimes no symbol at all, $\mathbf{U} \equiv \mathbf{T} \otimes \mathbf{S} \equiv \mathbf{T} \mathbf{S}$. This means exactly the same thing except without explicit reference to the components. In general the tensor product is associative and distributive, but *not* commutative.
+
+The most useful tensor product is the tensor product of *vectors*, sometimes called a *dyad*. The tensor product of $k$ vectors will create a rank $k$ tensor. The most useful tensor products are the ones formed from orthonormal basis vectors, which we can use these to create basis tensors. A rank $k$ basis tensor of this type has the form
+$$
+\mathbf{e}_{i_1 i_2 \cdots i_k} \equiv \mathbf{e}_{i_1} \otimes \mathbf{e}_{i_2} \otimes \cdots \otimes \mathbf{e}_{i_k} \ .
+$$
+This is just a fancy way of saying such a tensor is zero at every slot except $i_1 i_2 \cdots i_k$, where it's one. We can use these basis tensors to write any rank $k$ tensor $\mathbf{T}$ as a linear combination of basis tensors, providing a way to go back and forth between abstract notation and index notation as we do for vectors,
+$$
+\mathbf{T} = T_{i_1, i_2, \cdots, i_k} \mathbf{e}_{i_1 i_2 \cdots i_k} \ .
+$$
+In physics the tensors we deal with are pretty much always of small rank. A rank 0 tensor is just a scalar. A rank 1 tensor is just a vector. The next highest rank is a *rank 2 tensor*, which is just a matrix that also obeys the tensor transformation law, namely
+$$
+T_{i'j'} = R_{i'i} R_{j'j} T_{ij} \ .
+$$
+Rank 2 tensors are especially easy to analyze. A tensor $T_{ij}$ can only contract in one way, by setting $i=j$ to get the pure scalar $T_{ii}$. Thought of as a matrix, this kind of contraction is evidently just the trace operation. In analogy with the dot product we'll sometimes express this contraction over a rank 2 tensor using the usual dot product notation,
+$$
+\mathbf{T} \cdot \mathbf{T} \equiv \text{tr} \mathbf{T} \equiv T_{ii} \ .
+$$
+The tensor product of two vectors will always give a rank 2 tensor which corresponds to the matrix outer product of the two vectors. In both cases the components are just $T_{ij} = x_i y_j$. Not every rank 2 tensor can be formed from an outer product of two vectors. Only special ones, called *product tensors*. However, general rank 2 tensors can always be formed from a linear combination of outer products. These are *mixed tensors*.
+
+We'll often come across tensors with special structure. The two most common we'll come across are *symmetric tensors* and *antisymmetric tensors*. A *symmetric tensor* is a tensor whose indices can be permuted or transposed without changing the tensor. An *antisymmetric tensor* is a tensor that takes on a minus sign when any two indices are permuted. For rank 2 tensors, these tensors just correspond to their respective matrices. A rank 2 symmetric tensor $\mathbf{S}$ is a tensor equal to its transpose, i.e. $S_{ij} = S_{ji}$. A rank 2 antisymmetric tensor $\mathbf{A}$ is a tensor equal to minus its transpose, i.e. $A_{ij} = -A_{ji}$. One important implication of this definition is that antisymmetric tensors *must* be zero along their diagonals, i.e. $A_{ii} = 0$. That is, they are *traceless*.
+
+In $d$ dimensions, a general rank 2 tensor will have $d^2$ independent components, but for (anti) symmetric matrices symmetry requirements reduce this number by approximately half. For *symmetric tensors* of rank 2 there will be $\frac{1}{2} d(d+1)$ independent components, which for 3 dimensions gives 6 independent components. For *antisymmetric tensors* there will instead be $\frac{1}{2}d(d-1)$ independent components, which for 3 dimensions gives 3 independent components. The difference between the two has to do with the fact that antisymmetric tensors are zero along the diagonal while symmetric tensors can take on anything there.
+
+As with matrices, any rank 2 tensor can be decomposed into a sum of a symmetric tensor and an antisymmetric tensor. For reasons we'll see later on, in electrodynamics it's useful to modify this decomposition slightly by extracting the trace explicitly and forcing the symmetric part of the tensor to be traceless,
+$$
+\mathbf{T} = \frac{\text{tr} \mathbf{T}}{3} \mathbf{1} + \mathbf{A} + \mathbf{S} \quad , \ \text{or} \quad T_{ij} = \frac{T_{kk}}{3} \delta_{ij} + A_{ij} + S_{ij} \ .
+$$
+where $\mathbf{A} \equiv \frac{1}{2} (\mathbf{T} - \mathbf{T}^\top)$ is the antisymmetric part and $\mathbf{S} \equiv \frac{1}{2} (\mathbf{T} + \mathbf{T}^\top) - \frac{\text{tr} \mathbf{T}}{3} \mathbf{1}$ is the traceless symmetric part. Here $\mathbf{1}$ is the rank 2 *identity tensor* whose components are $\delta_{ij}$. The division by 3 in the first term is done so its trace is still $\text{tr}\mathbf{T}$. With this decomposition, the trace part has a single independent component, the antisymmetric part has 3, and the symmetric part has 5. This means we can in some sense think of this as a decomposition of a rank 2 tensor into the sum of a scalar, a vector, and a traceless rank 2 symmetric tensor.
+
+It's not too hard to show that in the special case when $T_{ij} = x_i y_j$ this decomposition simplifies to components of the form
+$$
+T_{ij} = \frac{\mathbf{x} \cdot \mathbf{y}}{3} \delta_{ij} + \frac{1}{2} \varepsilon_{ijk} (\mathbf{x} \times \mathbf{y})_k + \bigg(\frac{1}{2} (x_i y_j - x_j y_i) - \frac{\mathbf{x} \cdot \mathbf{y}}{3} \delta_{ij}\bigg) \ .
+$$
+In fact there's a more general decomposition that extends this result to higher rank tensors, but we won't need it here. Such decompositions do however become very useful in the quantum mechanical theory of angular momentum.
+
+The fact that the antisymmetric part of a rank 2 product tensor involves the cross product turns out to be no accident. In fact a cross product of two vectors isn't *really* even a vector. We kind of saw this in classical mechanics, where the way cross products behaved under reflection led us to label them as *pseudovectors*. Despite having three components, the cross product is in fact *really* a rank 2 antisymmetric tensor disguised as a vector. To see why, consider the antisymmetric tensor
+$$
+\mathbf{C} \equiv
+\begin{pmatrix}
+0 & -x_3 & x_2 \\
+x_3 & 0 & -x_1 \\
+-x_2 & x_1 & 0 \\
+\end{pmatrix} \ .
+$$
+If we matrix multiply $\mathbf{C}$ by another 3-vector $\mathbf{y}$ we evidently get
+$$
+\mathbf{C} \mathbf{y} = (x_2 y_3 - x_3 y_2, x_3 y_1 - x_1 y_3, x_1 y_2 - x_2 y_1) = \mathbf{x} \times \mathbf{y} \ .
+$$
+It seems $\mathbf{C}$ is really just the operator $\mathbf{x} \times \cdot$, which when applied to another vector gives their cross product. We can thus think of the independent components of $\mathbf{C}$ as representing a kind of vector $\mathbf{x}$ that multiplies in a specific way.
+
+That an antisymmetric rank 2 tensor happens to yield something that can be treated as a vector is an accident of working in 3 dimensions. In fact, this is *only* true in 3 dimensions. A $d$-dimensional rank 2 antisymmetric tensor will have $\frac{1}{2}d(d-1)$ independent components, and this equals $d$ only when $d=3$. In 4 dimensions there are now 6 independent components, hence we can no longer treat antisymmetric tensors as vectors in 4-dimensional space. We can, however, always write the cross product of two vectors as the antisymmetric part of their tensor products,
+$$
+C_{ij} = \varepsilon_{ijk} (\mathbf{x} \times \mathbf{y})_k = x_i y_j - x_j y_i \ .
+$$
+This more general form of the cross product is often called the *wedge product* and denoted $\mathbf{x} \wedge \mathbf{y}$. If two vectors have $d$ total components, then their wedge product will be an antisymmetric rank 2 tensor with $\frac{1}{2}d(d-1)$ independent components.
+
+### Vector Calculus
+
+blah blah
+
+### Coordinate Systems
+
+It will be frequently useful in electrodynamics to work in other coordinate systems. Other than Cartesian coordinates, the three most important coordinate systems in practice are *curvilinear*, meaning their basis vectors depend on position. These are the polar, cylindrical, and spherical coordinate systems. A table of the relationships between these systems is given below.
+
+|  | Cartesian $(x,y,z)$ | Cylindrical $(\rho,\phi,z)$ | Spherical $(r,\theta,\varphi)$ |
+| ------ | ------ | ------ | ------ |
+| **Coordinates** | $\begin{align*} x&=x \\ y&=y \\ z&=z \end{align*}$ | $\begin{align*} x&=\rho\cos\varphi \\ y&=\rho\sin\varphi \\ z&=z \end{align*}$ | $\begin{align*} x&=r\sin\theta\cos\phi \\ y&=r\sin\theta\sin\phi \\ z&=r\cos\theta \end{align*}$ |
+| **Basis Vectors** | $\begin{align*} \mathbf{e}_x&=\mathbf{e}_x \\ \mathbf{e}_y&=\mathbf{e}_y \\ \mathbf{e}_z&=\mathbf{e}_z \end{align*}$ | $\begin{align*} \mathbf{e}_\rho &= \cos\varphi \mathbf{e}_x + \sin\varphi \mathbf{e}_y \\ \mathbf{e}_\varphi &= -\sin \varphi \mathbf{e}_x + \cos \varphi \mathbf{e}_y \\ \mathbf{e}_z&=\mathbf{e}_z \end{align*}$ | $\begin{align*} \mathbf{e}_r &= \sin \theta \cos \phi \mathbf{e}_x + \sin \theta \sin \phi \mathbf{e}_y + \cos \theta \mathbf{e}_z \\ \mathbf{e}_\theta &= \cos \theta \cos \phi \mathbf{e}_x + \cos \theta \sin \phi \mathbf{e}_y - \sin \theta \mathbf{e}_z  \\ \mathbf{e}_\varphi &= -\sin \phi \mathbf{e}_x + \cos \varphi \mathbf{e}_y  \end{align*}$ |
+| **Differential** | $d \mathbf{x} = dx \mathbf{e}_x + dy \mathbf{e}_y + dz \mathbf{e}_z$ | $d \mathbf{x} = d\rho \mathbf{e}_\rho + \rho d\varphi \mathbf{e}_\varphi + dz \mathbf{e}_z$ | $d \mathbf{x} = dr \mathbf{e}_r + r d\theta \mathbf{e}_\theta + r \sin \theta d\varphi \mathbf{e}_\varphi$ |
+| **Line Element** | $ds^2=dx^2 + dy^2 + dz^2$ | $ds^2=d\rho^2 + \rho^2 d\phi^2 + dz^2$ | $ds^2=dr^2 + r^2 d\theta^2 + r^2 \sin^2 \theta d\phi^2$ |
+| **Volume Element** | $d^3 \mathbf{x} = dx dy dz$ | $d^3 \mathbf{x} = \rho d\rho d\phi dz$ | $d^3 \mathbf{x} = r^2 \sin \theta dr d\theta d\phi$ |
+| **Gradient** | $\nabla f = \frac{\partial f}{\partial x} \mathbf{e}_x + \frac{\partial f}{\partial y} \mathbf{e}_y + \frac{\partial f}{\partial z} \mathbf{e}_z$ | $\nabla f = \frac{\partial f}{\partial \rho} \mathbf{e}_\rho + \frac{1}{\rho} \frac{\partial f}{\partial \varphi} \mathbf{e}_\varphi + \frac{\partial f}{\partial z} \mathbf{e}_z$ | $\nabla f = \frac{\partial f}{\partial r} \mathbf{e}_r + \frac{1}{r} \frac{\partial f}{\partial \theta} \mathbf{e}_\theta + \frac{1}{r \sin \theta} \frac{\partial f}{\partial \varphi} \mathbf{e}_\varphi$ |
+| **Divergence** | $\nabla \cdot \mathbf{F} = \frac{\partial F_x}{\partial x} + \frac{\partial F_y}{\partial y} + \frac{\partial F_z}{\partial z}$ | $\nabla \cdot \mathbf{F} = \frac{1}{\rho} \frac{\partial}{\partial \rho}(\rho F_\rho) + \frac{1}{\rho} \frac{\partial F_\varphi}{\partial \varphi} + \frac{\partial F_z}{\partial z}$ | $\nabla \cdot \mathbf{F} = \frac{1}{r^2} \frac{\partial}{\partial r}(r^2 F_r) + \frac{1}{r \sin \theta} \frac{\partial}{\partial \theta}(F_\theta \sin \theta) + \frac{1}{r \sin \theta} \frac{\partial F_\varphi}{\partial \varphi}$ |
+| **Curl** | $\begin{align*}\nabla \times \mathbf{F} &= \left( \frac{\partial F_z}{\partial y} - \frac{\partial F_y}{\partial z} \right) \mathbf{e}_x \\ &+ \left( \frac{\partial F_x}{\partial z} - \frac{\partial F_z}{\partial x} \right) \mathbf{e}_y \\ &+ \left( \frac{\partial F_y}{\partial x} - \frac{\partial F_x}{\partial y} \right) \mathbf{e}_z \end{align*}$ | $\begin{align*} \nabla \times \mathbf{F} &= \left( \frac{1}{\rho} \frac{\partial F_z}{\partial \varphi} - \frac{\partial F_\varphi}{\partial z} \right) \mathbf{e}_\rho \\ &+ \left( \frac{\partial F_\rho}{\partial z} - \frac{\partial F_z}{\partial \rho} \right) \mathbf{e}_\varphi \\ &+ \frac{1}{\rho} \left( \frac{\partial}{\partial \rho}(\rho F_\varphi) - \frac{\partial F_\rho}{\partial \varphi} \right) \mathbf{e}_z \end{align*}$ | $\begin{align*} \nabla \times \mathbf{F} &= \frac{1}{r \sin \theta} \left( \frac{\partial}{\partial \theta}(F_\varphi \sin \theta) - \frac{\partial F_\theta}{\partial \varphi} \right) \mathbf{e}_r \\ &+ \frac{1}{r} \left( \frac{1}{\sin \theta} \frac{\partial F_r}{\partial \varphi} - \frac{\partial}{\partial r}(r F_\varphi) \right) \mathbf{e}_\theta \\ &+ \frac{1}{r} \left( \frac{\partial}{\partial r}(r F_\theta) - \frac{\partial F_r}{\partial \theta} \right) \mathbf{e}_\varphi \end{align*}$ |
+| **Laplacian** | $\nabla^2 f = \frac{\partial^2 f}{\partial x^2} + \frac{\partial^2 f}{\partial y^2} + \frac{\partial^2 f}{\partial z^2}$ | $\nabla^2 f = \frac{1}{\rho} \frac{\partial}{\partial \rho} \left( \rho \frac{\partial f}{\partial \rho} \right) + \frac{1}{\rho^2} \frac{\partial^2 f}{\partial \varphi^2} + \frac{\partial^2 f}{\partial z^2}$ | $\nabla^2 f = \frac{1}{r^2} \frac{\partial}{\partial r} \left( r^2 \frac{\partial f}{\partial r} \right) + \frac{1}{r^2 \sin \theta} \frac{\partial}{\partial \theta} \left( \sin \theta \frac{\partial f}{\partial \theta} \right) + \frac{1}{r^2 \sin^2 \theta} \frac{\partial^2 f}{\partial \varphi^2}$ |
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
