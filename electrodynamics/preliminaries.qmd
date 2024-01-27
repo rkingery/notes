@@ -435,7 +435,32 @@ The function $f(\omega)$, which in general will be complex-valued, is thought of
 - Time Shifting: $\mathcal{F}[f(t-t_0)](\omega) = e^{i\omega t_0} f\big(\omega)$​.
 - Time Reversal: $\mathcal{F}[f(-t)](\omega) = f(-\omega)$.
 - Complex Conjugation: $\mathcal{F}[f^*(t)](\omega) = f^*(\omega)$​.
-- Differentiation: $\mathcal{F}\big[\frac{d}{dt} f(t)\big](\omega) = i\omega f(\omega)$.
+- Differentiation: $\mathcal{F}\big[\frac{d}{dt} f(t)\big](\omega) = i\omega f(\omega)$​.
+- Convolution: $\mathcal{F}[f \ast g](\omega) = f(\omega) g(\omega)$.
+
+As an example of using these properties let's calculate the Fourier transform of the Gaussian probability density
+$$
+f(t) = \frac{1}{\sqrt{2\pi\sigma^2}} \exp\bigg(-\frac{1}{2} \frac{(t-t_0)^2}{\sigma^2}\bigg)
+$$
+First, using the linear, time scaling, and shifting properties together we must have
+$$
+f(\omega) = \frac{e^{i\omega t_0}}{\sqrt{2\pi\sigma^2}} \mathcal{F}\bigg[\exp\bigg(-\frac{1}{2} \frac{t^2}{\sigma^2}\bigg)\bigg] = \frac{1}{\pi} e^{i\omega t_0} \mathcal{F}\big[e^{-t^2}\big](\sqrt{2}\sigma\omega) \ .
+$$
+All that remains then is to find the transform of $g(t) \equiv e^{-t^2}$. We can do this by completing the square and using the translational invariance of the Gaussian integral to get
+$$
+\begin{align*}
+g(\omega) &= \int_{-\infty}^\infty dt \ g(\omega) e^{-i\omega t} \\
+&= \int_{-\infty}^\infty dt \ e^{-t^2} e^{-i\omega t} \\
+&= \int_{-\infty}^\infty dt \ \exp(-\bigg(t-\frac{i\omega}{2}\bigg)^2) \\
+&= \sqrt{\pi} \exp(-\frac{\omega^2}{4}) \ .
+
+\end{align*}
+$$
+Thus, putting it all together, we have
+$$
+\mathcal{F}\bigg[\frac{1}{\sqrt{2\pi\sigma^2}} \exp\bigg(-\frac{1}{2} \frac{(t-t_0)^2}{\sigma^2}\bigg)\bigg](\omega) = \exp(i\omega t_0 - \frac{\sigma^2\omega^2}{2}) \ .
+$$
+Evidently then, the Fourier transform of a Gaussian is another Gaussian. In a sense, the Gaussian is the unique class of functions whose Fourier transforms are also of the same class.
 
 An important fact about the Fourier transform is that it's *invertible*, meaning we can define an *inverse Fourier transform operator* $\mathcal{F}^{-1}$ such that $\mathcal{F} \mathcal{F}^{-1} = 1$. The inverse Fourier transform of $f(t)$ turns out to be given by the dual integral
 $$
@@ -459,7 +484,9 @@ This function evidently then has the defining property that
 $$
 f(t) = \int_{-\infty}^\infty dt' \ f(t') \delta(t-t') \ .
 $$
-In a sense, the delta function can be thought of as a sort of density function for a single point. When $t \neq t'$ the delta function must be zero. But to be a proper density this means when $t=t'$ the delta function must be infinitely high. It's a spike. Indeed, we can imagine defining the delta function differently as a sort of limiting case of a Gaussian whose variance $\sigma^2$ goes to zero,
+In a sense, the delta function can be thought of as a sort of density function for a single point. When $t \neq t'$ the delta function must be zero. But to be a proper density this means that when $t=t'$ the delta function must be infinitely high so its area under the curve remains constant.
+
+In one sense, the delta function is just the Fourier transform of the constant $f(t)=1$. In another sense it's an infinite spike. Indeed, we can imagine defining the delta function differently as a limiting case of a Gaussian whose variance $\sigma^2$ goes to zero,
 $$
 \delta(t-t') = \lim_{\sigma \rightarrow 0} \frac{1}{\sqrt{2\pi\sigma^2}} e^{-\frac{(t-t')^2}{2\sigma^2}} \ .
 $$
@@ -499,7 +526,7 @@ $$
 $$
 Since $\mathbf{F}$ is spherically symmetric and we're integrating over a sphere, we can write $\mathbf{F} \cdot d\mathbf{a} = |\mathbf{F}| dA$ and integrate over the surface area of the sphere to get
 $$
-\int_S \mathbf{F} \cdot d\mathbf{a} = \int 4\pi r^2 \bigg(\frac{1}{r^2}\bigg) \ dr = 4\pi \ .
+\int_S \mathbf{F} \cdot d\mathbf{a} = \int r^2 \bigg(\frac{1}{r^2}\bigg) \ d\Omega = 4\pi \ .
 $$
 This is in fact true for *any* surface of arbitrary radius so long as it contains the origin. This means the divergence of $\mathbf{F}$ can't be zero, otherwise the surface integral would be zero. Moreover, it means the only contribution from the divergence can come at the point $r=0$ where the function blows up. We thus conclude that there must be a delta function multiplying $4\pi$ whose value is non-zero only when $r=0$. That is, we have
 $$

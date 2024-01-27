@@ -101,12 +101,12 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false">Classical Mechanics</a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">Classical Mechanics</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../classical-mechanics/newtonian-mechanics.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Newtonian Mechanics</span></a>
@@ -181,12 +181,12 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">Circuit Analysis</a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">Circuit Analysis</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../circuits/circuit-abstraction.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">The Lumped Circuit Abstraction</span></a>
@@ -241,12 +241,12 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false">Quantum Mechanics</a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">Quantum Mechanics</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../quantum-mechanics/identical-particles.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Identical Particles</span></a>
@@ -261,12 +261,12 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="false">Statistical Mechanics</a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">Statistical Mechanics</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../statistical-mechanics/thermodynamics.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Thermodynamics</span></a>
@@ -762,8 +762,22 @@ f(\omega) \equiv \mathcal{F}[f(t)](\omega) \equiv \int_{-\infty}^\infty dt \ f(t
 <li>Time Shifting: <span class="math inline">\(\mathcal{F}[f(t-t_0)](\omega) = e^{i\omega t_0} f\big(\omega)\)</span>​.</li>
 <li>Time Reversal: <span class="math inline">\(\mathcal{F}[f(-t)](\omega) = f(-\omega)\)</span>.</li>
 <li>Complex Conjugation: <span class="math inline">\(\mathcal{F}[f^*(t)](\omega) = f^*(\omega)\)</span>​.</li>
-<li>Differentiation: <span class="math inline">\(\mathcal{F}\big[\frac{d}{dt} f(t)\big](\omega) = i\omega f(\omega)\)</span>.</li>
+<li>Differentiation: <span class="math inline">\(\mathcal{F}\big[\frac{d}{dt} f(t)\big](\omega) = i\omega f(\omega)\)</span>​.</li>
+<li>Convolution: <span class="math inline">\(\mathcal{F}[f \ast g](\omega) = f(\omega) g(\omega)\)</span>.</li>
 </ul>
+<p>As an example of using these properties let’s calculate the Fourier transform of the Gaussian probability density <span class="math display">\[
+f(t) = \frac{1}{\sqrt{2\pi\sigma^2}} \exp\bigg(-\frac{1}{2} \frac{(t-t_0)^2}{\sigma^2}\bigg)
+\]</span> First, using the linear, time scaling, and shifting properties together we must have <span class="math display">\[
+f(\omega) = \frac{e^{i\omega t_0}}{\sqrt{2\pi\sigma^2}} \mathcal{F}\bigg[\exp\bigg(-\frac{1}{2} \frac{t^2}{\sigma^2}\bigg)\bigg] = \frac{1}{\pi} e^{i\omega t_0} \mathcal{F}\big[e^{-t^2}\big](\sqrt{2}\sigma\omega) \ .
+\]</span> All that remains then is to find the transform of <span class="math inline">\(g(t) \equiv e^{-t^2}\)</span>. We can do this by completing the square and using the translational invariance of the Gaussian integral to get $$ <span class="math display">\[\begin{align*}
+g(\omega) &amp;= \int_{-\infty}^\infty dt \ g(\omega) e^{-i\omega t} \\
+&amp;= \int_{-\infty}^\infty dt \ e^{-t^2} e^{-i\omega t} \\
+&amp;= \int_{-\infty}^\infty dt \ \exp(-\bigg(t-\frac{i\omega}{2}\bigg)^2) \\
+&amp;= \sqrt{\pi} \exp(-\frac{\omega^2}{4}) \ .
+
+\end{align*}\]</span> <span class="math display">\[
+Thus, putting it all together, we have
+\]</span> () = (it_0 - ) &nbsp;. $$ Evidently then, the Fourier transform of a Gaussian is another Gaussian. In a sense, the Gaussian is the unique class of functions whose Fourier transforms are also of the same class.</p>
 <p>An important fact about the Fourier transform is that it’s <em>invertible</em>, meaning we can define an <em>inverse Fourier transform operator</em> <span class="math inline">\(\mathcal{F}^{-1}\)</span> such that <span class="math inline">\(\mathcal{F} \mathcal{F}^{-1} = 1\)</span>. The inverse Fourier transform of <span class="math inline">\(f(t)\)</span> turns out to be given by the dual integral <span class="math display">\[
 f(t) = \mathcal{F}^{-1}[f(\omega)](t) = \int_{-\infty}^\infty \frac{d\omega}{2\pi} \ f(\omega) e^{i\omega t} \ .
 \]</span> Notice that unlike the Fourier transform, its inverse transform comes has a rescaled measure of <span class="math inline">\(\frac{d\omega}{2\pi}\)</span>. There’s nothing deep about this fact. It’s just a relic of the way we defined the Fourier transform above. We could define it in ways that remove the <span class="math inline">\(2\pi\)</span> as well. In fact, there are many different conventions used to define the Fourier transform, which makes it annoying to look up formulas.</p>
@@ -777,7 +791,8 @@ f(t) &amp;= \mathcal{F}^{-1} \mathcal{F} [f(t')](t) \\
 \delta(t-t') \equiv \int_{-\infty}^\infty \frac{d\omega}{2\pi} \ e^{i\omega(t-t')} \ .
 \]</span> This function evidently then has the defining property that <span class="math display">\[
 f(t) = \int_{-\infty}^\infty dt' \ f(t') \delta(t-t') \ .
-\]</span> In a sense, the delta function can be thought of as a sort of density function for a single point. When <span class="math inline">\(t \neq t'\)</span> the delta function must be zero. But to be a proper density this means when <span class="math inline">\(t=t'\)</span> the delta function must be infinitely high. It’s a spike. Indeed, we can imagine defining the delta function differently as a sort of limiting case of a Gaussian whose variance <span class="math inline">\(\sigma^2\)</span> goes to zero, <span class="math display">\[
+\]</span> In a sense, the delta function can be thought of as a sort of density function for a single point. When <span class="math inline">\(t \neq t'\)</span> the delta function must be zero. But to be a proper density this means that when <span class="math inline">\(t=t'\)</span> the delta function must be infinitely high so its area under the curve remains constant.</p>
+<p>In one sense, the delta function is just the Fourier transform of the constant <span class="math inline">\(f(t)=1\)</span>. In another sense it’s an infinite spike. Indeed, we can imagine defining the delta function differently as a limiting case of a Gaussian whose variance <span class="math inline">\(\sigma^2\)</span> goes to zero, <span class="math display">\[
 \delta(t-t') = \lim_{\sigma \rightarrow 0} \frac{1}{\sqrt{2\pi\sigma^2}} e^{-\frac{(t-t')^2}{2\sigma^2}} \ .
 \]</span> Strictly speaking the delta function isn’t a proper function at all since it’s undefined when <span class="math inline">\(t=t'\)</span>​. It’s a so-called <em>generalized function</em>, meaning it’s a function that has meaning only when inside an integral. As physicists rarely do, we won’t really bother with these mathematical details in this course. Whatever it is, the delta function is a convenient mathematical object for us.</p>
 <p>One fact worth remembering and easy to prove is how the delta function transforms under a time rescaling, <span class="math display">\[
@@ -797,7 +812,7 @@ f(\mathbf{x}) = \mathcal{F}^{-1}[f(\mathbf{k})](\mathbf{x}) = \int_{\mathbb{R}^3
 \]</span> It’s tempting to cancel out the factors of <span class="math inline">\(r^2\)</span> and conclude <span class="math inline">\(\nabla \cdot \mathbf{F} = 0\)</span>, but we have to be a little more careful than that. To see why let’s use the divergence theorem to express the same problem as an integral over some closed volume. We can pick any volume we like. To make things easy let’s suppose we’re integrating inside a sphere of radius <span class="math inline">\(R\)</span>. Then we have <span class="math display">\[
 \int_S \mathbf{F} \cdot d\mathbf{a} = \int_\mathcal{V} \nabla \cdot \mathbf{F} \ d^3\mathbf{x} \ .
 \]</span> Since <span class="math inline">\(\mathbf{F}\)</span> is spherically symmetric and we’re integrating over a sphere, we can write <span class="math inline">\(\mathbf{F} \cdot d\mathbf{a} = |\mathbf{F}| dA\)</span> and integrate over the surface area of the sphere to get <span class="math display">\[
-\int_S \mathbf{F} \cdot d\mathbf{a} = \int 4\pi r^2 \bigg(\frac{1}{r^2}\bigg) \ dr = 4\pi \ .
+\int_S \mathbf{F} \cdot d\mathbf{a} = \int r^2 \bigg(\frac{1}{r^2}\bigg) \ d\Omega = 4\pi \ .
 \]</span> This is in fact true for <em>any</em> surface of arbitrary radius so long as it contains the origin. This means the divergence of <span class="math inline">\(\mathbf{F}\)</span> can’t be zero, otherwise the surface integral would be zero. Moreover, it means the only contribution from the divergence can come at the point <span class="math inline">\(r=0\)</span> where the function blows up. We thus conclude that there must be a delta function multiplying <span class="math inline">\(4\pi\)</span> whose value is non-zero only when <span class="math inline">\(r=0\)</span>. That is, we have <span class="math display">\[
 \nabla \cdot \bigg(\frac{\mathbf{e}_r}{r^2}\bigg) = 4\pi \delta(\mathbf{x}) \ .
 \]</span> Note that since <span class="math inline">\(\nabla \frac{1}{r} = -\frac{\mathbf{e}_r}{r^2}\)</span> we’ve shown another useful fact, that <span class="math display">\[
