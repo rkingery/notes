@@ -4,11 +4,11 @@ In this course we'll study the physical phenomena known as *electromagnetism*. A
 
 The magnetic force arose from two different phenomena that later had to be unified. The first was the study of *ferromagnetic materials*, which were materials that tended to point in a particular direction, for example the needle of a compass which tends to point northward. The second was the behavior of *currents*, or charges moving through wires. Michael Faraday observed that a current moving through two wires causes them to attract or repel each other depending on the directions of the currents. This led to another force law, known as the *Biot-Savart Law*. It was later found that ferromagnets can also be thought of as tiny currents inside a material, thus unifying the two types of magnetism. 
 
-The fact that magnetism arises from moving electric charges also provided a way to unify the dynamics of electricity and magnetism. A few years later it was discovered that electromagnetism explains a completely different phenomenon as well, *light*. Light can be thought of purely as electromagnetic radiation that varies mainly by its frequency.  The unification of these three phenomena (electricity, magnetism, and optics) into one theory was finally done by Maxwell with his well-known field equations. These equations are believed to fully describe all electromagnetic phenomena, at least at the macroscopic level. 
+The fact that magnetism arises from moving electric charges also provided a way to unify the dynamics of electricity and magnetism. A few years later it was discovered that electromagnetism explains a completely different phenomenon as well, *light*. Light was found to be a form of electromagnetic radiation at a particular range of frequencies.  The unification of these three phenomena (electricity, magnetism, and optics) into one theory was finally done by Maxwell with his well-known field equations. These equations are believed to fully describe all electromagnetic phenomena at the macroscopic level. 
 
 It was eventually realized with the advent of quantum mechanics that even Maxwell's Equations needed to be modified at the microscopic level to account for quantum effects, like the discoveries that light is in fact made of photons and most materials are made of other fundamental particles like electrons and quarks. This more advanced topic is known as *quantum electrodynamics*.
 
-In this course we'll stick to the study of *classical electrodynamics*, which is the study of the macroscopic properties of electromagnetism explainable through Maxwell's equations. This course will run quite deep, focusing on a graduate-level understanding of electromagnetism, both its theory and some of its most important applications.
+In this course we'll study the theory of *classical electrodynamics*. We will conver the subject at the graduate level, meaning we will go give a more advanced treatment to many subjects in the field than is perhaps typical in most electrodynamics texts.
 
 ## Units
 
@@ -37,11 +37,11 @@ The three parameters $k_e, k_m, \alpha$ are not completely independent though. M
 $$
 c^2 = \frac{k_e}{k_m} \ ,
 $$
-where $c$ is the *speed of light* in vacuum, a fundamental constant empirically measured to be $c \approx 3 \cdot 10^{10} \ \frac{\text{cm}}{\text{s}}$. Several experiments already concluded that $c$ was indeed a universal constant with no dependence on choice of reference frame. This ratio evidently thus gives us a natural velocity scale, which coincidentally is what we'd need to fix $\alpha$ to make $\mathbf{E}$ and $\mathbf{B}$ to have the same units.
+where $c$ is the *speed of light* in vacuum, a fundamental constant measured to be $c \approx 3 \cdot 10^{10} \ \frac{\text{cm}}{\text{s}}$. Several experiments already concluded that $c$ was indeed a universal constant with no dependence on choice of reference frame. This ratio evidently thus gives us a natural velocity scale, which coincidentally is what we'd need to fix $\alpha$ to make $\mathbf{E}$ and $\mathbf{B}$ to have the same units.
 
 In the early days of electromagnetism the centimeter-gram-second or *CGS* system was already being widely used to measure mechanical quantities like length, mass, time, force, and energy. The unit of force was called the *dyne*, which comes out to $1 \ \text{dyne} = 10^{-5} \ \text{N}$, while the unit of energy was called the *erg*, which comes out to $1 \ \text{erg} = 10^{-7} \ \text{J}$. When electromagnetism came along it was realized these mechanical units needed to somehow be extended to cover electromagnetic phenomena as well, but that there were different all self consistent ways this could be done based on how $k_e, k_m, \alpha$ were specified.
 
-Early on two unit systems arose to cover electromagnetism, one being used to measure electric quantities, and a completely different one used to measure magnetic quantities. The early system of units for electricity was called *electrostatic units* or the *ESU* system. This system defined $k_e\equiv\alpha\equiv1$, which then forced $k_m \equiv \frac{1}{c^2}$. This defined a natural unit of charge, later called the *electrostatic unit* or *esu*, with $1 \ \text{esu} \approx 3.3 \cdot 10^{-10} \ \text{C}$. An analogous system arose to study magnetism, called *electromagnetic units* or the *EMU* system. This system defined $k_m \equiv \alpha \equiv 1$, which then forced $k_e = c^2$. This defined a natural unit of current, later called the *absolute amp* or *abamp*, with $1 \ \text{abamp} = 10^{7} \ \text{A}$ exactly.
+Early on two unit systems arose to cover electromagnetism, one being used to measure electric quantities, and a completely different one used to measure magnetic quantities. The early system of units for electricity was called *electrostatic units* or the *ESU* system. This system defined $k_e\equiv\alpha\equiv1$, which then forced $k_m \equiv \frac{1}{c^2}$. This defined a natural unit of charge, later called the *electrostatic unit* or *esu*, with $1 \ \text{esu} \approx 3.3 \cdot 10^{-10} \ \text{C}$. An analogous system arose to study magnetism, called *electromagnetic units* or the *EMU* system. This system defined $k_m \equiv \alpha \equiv 1$, which then forced $k_e = c^2$. This defined a natural unit of current, later called the *absolute amp* or *abamp*, with $1 \ \text{abamp} = 10 \ \text{A}$ exactly.
 
 It was found to be cumbersome to go back and forth between the two subjects since one had to change units to compare results. It was also eventually realized that having the electric and magnetic fields be different dimensions didn't make sense, as Einstein showed the two fields were really just the same field expressed in different reference frames. The two unit systems were then combined into yet a third system called the *Gaussian system*. The Gaussian system also uses CGS mechanical units, but takes
 $$
@@ -49,18 +49,20 @@ k_e \equiv 1 \quad , \quad k_m \equiv \frac{1}{c^2} \quad , \quad \alpha \equiv 
 $$
 This system had the benefit that the unit of charge was still the esu, but now the electric and magnetic fields have the same units. The unit of current is no longer the abamp, but instead the esu per second. The Gaussian system became popular among physicists, especially among theorists due to the fact that electricity and magnetism were treated on the same footing.
 
-However, things played out differently on the engineering side. While physicists were studying electromagnetism in the lab, engineers were starting to use these ideas to build practical things like wires, motors, transformers, circuits, and radios. Engineers at the time didn't like the fact that when that CGS units were poorly scaled to measure everyday things like the current through a telegraph wire or the voltage across a resistor. They instead chose to use a different system based on the meter, kilogram, and second, called the *MKS* system. Since the abamp was way too small, they took a larger unit they called an *amp* or *Ampere* defined to be $1 \ \text{A} = 10^7 \ \text{abamp}$. The factor of $10^7$ was only chosen for practical reasons.
+However, things played out differently on the engineering side. While physicists were studying electromagnetism in the lab, engineers were starting to use these ideas to build practical things like wires, motors, transformers, circuits, and radios. Engineers at the time didn't like the fact that when that CGS units were poorly scaled to measure everyday things like the current through a telegraph wire or the voltage across a resistor. They instead chose to use a different system based on the meter, kilogram, and second, called the *MKS* system. The abamp was seen as too big for electrical applications of the time, so they defined a smaller unit of current called the *amp* or *Ampere*, defined by $1 \ \text{A} \equiv 0.1 \ \text{abamp}$.
 
-Later on, MKS units were extended to the rest of electromagnetism, but in a kind of quirky way. It was decided to take
+Later on, MKS units were extended to the rest of electromagnetism, but in a kind of quirky way. It was decided to define
 $$
-k_e \equiv \frac{1}{4\pi\varepsilon_0} \quad , \quad k_m \equiv \frac{\mu_0}{4\pi} \quad , \quad \alpha \equiv 1 \ .
+k_e \equiv \frac{1}{4\pi\varepsilon_0} \quad , \quad k_m \equiv \frac{\mu_0}{2\pi} \quad , \quad \alpha \equiv 1 \ .
 $$
-The division by $4\pi$ was done to *rationalize* out the factors of $4\pi$ from Maxwell's equations, an arbitrary decision likely made for convenience in hand calculations. Having the electric and magnetic fields be of the same units wasn't seen as a high priority, so there was no scaling by the speed of light. The constants $\varepsilon_0$ and $\mu_0$ were chosen as the more fundamental constants due to a misbelief that the vacuum was made of an electromagnetic fluid known as the *ether*, which was later falsified by experiment. These constants were tuned in the MKSA system specifically so that current would be measured in amps, with
+This odd definition was chosen out of the prevelant belief at the time that electromagnetic phenomena permuated in a fluid known as the *ether*, which they believed had a natural permittivity and permeability like any other material. This idea was later invalided through experiments, but the notation persists unfortunately. The division by $4\pi$ was arbitrary, done to *rationalize* out any factors of $\pi$ from Maxwell's equations. As with the ESU and EMU systems, the electric and magnetic fields be of the same units wasn't seen as an imperative, so no scaling by the speed of light was done either.
+
+The constants $\varepsilon_0$ and $\mu_0$ were chosen as the more fundamental constants due to a misbelief that the vacuum was made of an electromagnetic fluid known as the *ether*, which was later falsified by experiment. These constants were tuned in the MKSA system specifically so that unit of current would come out to be exactly a tenth of an abamp. For this to work out consistently, they defined
 $$
 \mu_0 \equiv 4\pi \cdot 10^{-7} \ \frac{\text{N}}{\text{A}^2} \quad , \quad \varepsilon_0 \equiv \frac{10^7}{4\pi c^2} \approx 8.84 \cdot 10^{-14} \ \frac{\text{A}^2 \ \text{s}^4}{\text{kg} \ \text{m}^3} \ .
 $$
 
-This extended MKS system adds a fourth independent unit, the *amp* or *Ampere*. All other electromagnetic quantities are then naturally defined in terms of the values of the meter, kilogram, second, and the Ampere. It's this system, sometimes called the *MKSA* system, that later become the *SI system* used widely today in science and engineering.
+This extended MKS system adds a fourth independent unit, the *Ampere*. All other electromagnetic quantities are then naturally defined in terms of the values of the meter, kilogram, second, and the Ampere. It's this system, sometimes called the *MKSA* system, that later become the *SI system* used widely today in science and engineering.
 
 On top of all these systems yet another system of units for electromagnetism was defined that closely relates to the Gaussian system. This system of units is called the *Heaviside-Lorentz* system. It also uses the CGS system and takes $\alpha=c$, but it follows the MKSA system in choosing to rationalize out the factors of $4\pi$ from Maxwell's equations. It thus chooses
 $$
@@ -68,9 +70,9 @@ k_e \equiv \frac{1}{4\pi} \quad , \quad k_m \equiv \frac{1}{4\pi c^2} \quad , \q
 $$
 As with the Gaussian system, in the Heaviside-Lorentz the electric and magnetic fields again have the same units. The only real difference is that the measured units change by a factor of $4\pi$, and the factors of $4\pi$ are removed from Maxwell's equations.
 
-Nowadays, the ESU and EMU systems are rarely if ever used. The SI system is of course widely used, particularly among experimentalists and engineers, as well as in essentially all modern undergraduate electromagnetism textbooks. The Heaviside-Lorentz system is favored by the particle physics community, perhaps because they often set $c=1$ which makes the formulas look similar to those in the SI system. The Gaussian system remains popular particularly among theoretical physicists due to its symmetric treatment of the electric and magnetic fields and its use of a single constant in formulas, the speed of light $c$.
+Nowadays, the ESU and EMU systems are rarely if ever used. The SI system is of course widely used, particularly among experimentalists and engineers, as well as in essentially all modern undergraduate electromagnetism textbooks. The Heaviside-Lorentz system is favored by the particle physics community, perhaps because they often set $c=1$, which makes the formulas look similar to those in the SI system. The Gaussian system remains popular particularly among theoretical physicists due to its symmetric treatment of the electric and magnetic fields and its use of a single constant in formulas, the speed of light $c$.
 
-While each choice of units has its benefits depending on the field of study and the application, in this course we will largely stick to the *Gaussian* system of units, which is well-suited to a theoretical study of electromagnetism. To go back and forth between Gaussian and SI units in various formulas, a useful trick that often works (but not always) is to make the identification
+While each choice of units has its benefits depending on the field of study and the application, in this course we will stick primarily with the *Gaussian* system of units, which is well-suited to a theoretical study of electromagnetism. To go back and forth between Gaussian and SI units in various formulas, a useful trick that often works (but not always) is to make the identification
 $$
 \varepsilon_0 \leftrightarrow \frac{1}{4\pi} \quad , \quad \mu_0 \leftrightarrow \frac{4\pi}{c} \ .
 $$
@@ -223,7 +225,7 @@ v_3 w_1 - v_1 w_3 &  & 0 \\
 \end{pmatrix}
 \ .
 $$
-Here $\mathbf{A}$ is a rank-2 tensor that evidently satisfies the *antisymmetric* property $A_{ij} = -A_{ji}$. Unlike with the regular cross product, this generalization of the cross product can be defined for any number of dimensions. To see why we can't extend the usual cross product this way, notice that the components $\mathbf{v} \times \mathbf{w}$ lie in the upper diagonal of $\mathbf{A}$. The diagonals are always zero, and the lower diagonal is just minus the upper diagonal, meaning there are only 3 independent components. For a general antisymmetric tensor in $d$ dimensions there will be $\frac{1}{2}d(d-1)$ such independent components in the upper diagonal. When $d=3$ this gives 3, but when $d=4$ it gives 6. In fact, solving $d=\frac{1}{2}d(d-1)$ forces $d=0,3$. Thus, the cross product can only be a vector in 3 dimensions. Otherwise it's just the upper diagonal of an antisymmetric rank-2 tensor.
+Here $\mathbf{A}$ is a rank-2 tensor that evidently satisfies the *antisymmetric* property $A_{ij} = -A_{ji}$. Unlike with the regular cross product, this generalization of the cross product can be defined for any number of dimensions. To see why we can't extend the usual cross product this way, notice that the components $\mathbf{v} \times \mathbf{w}$ lie in the upper diagonal of $\mathbf{A}$. The diagonals are always zero, and the lower diagonal is just minus the upper diagonal, meaning there are only 3 independent components. For a general antisymmetric tensor in $d$ dimensions there will be $\frac{1}{2}d(d-1)$ such independent components in the upper diagonal. Insisteng that such a tensor be a vector is equivalent to requiring $d=\frac{1}{2}d(d-1)$, which evidently can only be true when $d=3$. Thus, the cross product can only be a vector in 3 dimensions.
 
 One useful operation that we can do with tensors is *contraction*. Contraction is the tensor generalization of the inner product, obtained by setting two indices in a tensor equal and summing over them. Since rank-2 tensors only have 2 indices, contracting a rank-2 tensor will always give a scalar, which is of course just *trace* of $\mathbf{T}$, i.e. $T_{ii} = \text{tr} \ \mathbf{T}$. Just as the dot product of a vector with itself says something about its size (in fact it's just its squared norm), the trace of a rank-2 tensor says something about its size. Since the trace has no free indices, it must be a rank-0 object, hence a proper scalar like the dot product.
 
@@ -255,11 +257,11 @@ In this course we won't generally work much with tensors of higher rank than 2, 
 
 Calculus extends naturally to higher dimensions, but often in subtle ways. Most importantly, there are different types of derivatives and integrals defined in higher dimensions with different meaning and applications. Due to complications involved in using curvilinear coordinates in vector calculus we'll state results in Cartesian coordinates and address the curvilinear situation later.
 
-The fundamental object of vector calculus is the *differential* of a field. This says how much the field changes if its inputs are nudged in some direction by an infinitesimal amount. In Cartesian coordinates, it turns out the differential is nothing more than a sum of partial differentials along each coordinate. For a scalar field $f(\mathbf{x})$ we have
+The fundamental object of vector calculus is the *differential* of a field. This says how much the field changes if its inputs are nudged in some direction by an infinitesimal amount. In Cartesian coordinates, it turns out the differential of a scalar field $f(\mathbf{x})$ is nothing more than a sum of partial differentials along each coordinate. That is,
 $$
 df = \frac{\partial f}{\partial x} dx + \frac{\partial f}{\partial y} dy + \frac{\partial f}{\partial z} dz \ .
 $$
-The right-hand side looks like a sort of dot product between the partial derivatives of $f$ and a differential displacement vector $d\mathbf{x}$, defined in Cartesian coordinates by
+The right-hand side looks like a sort of dot product between the partial derivatives of $f$ and a differential displacement vector $d\mathbf{x}$, or *vector line element*, defined in Cartesian coordinates by
 $$
 d\mathbf{x} \equiv dx \mathbf{e}_x + dy \mathbf{e}_y + dz \mathbf{e}_z \ .
 $$
@@ -271,15 +273,19 @@ $$
 $$
 \nabla f \equiv \partial_i f \ \mathbf{e}_i \equiv \frac{\partial f}{\partial x} \mathbf{e}_x + \frac{\partial f}{\partial y} \mathbf{e}_y + \frac{\partial f}{\partial z} \mathbf{e}_z \ .
 $$
-This quantity is evidently some kind of vector derivative, called the *gradient* of the field $f$. Since $f$ is a scalar field, $\nabla f$ will be a vector field. Its components are the partial derivatives of $f$ in the $x_i$ direction at each $\mathbf{x}$. The gradient always points perpendicular to the *level curves* where $f=\text{const}$. To see why, notice we can express the change in $f$ with respect to $\mathbf{x}$ by $\delta f = \nabla f \cdot \delta \mathbf{x}$. Along any level curve we must have $\delta f = 0$, meaning $\nabla f$ must be perpendicular to those curves.
+This quantity is evidently some kind of vector derivative, called the *gradient* of the field $f$. Since $f$ is a scalar field, $\nabla f$ will be a vector field. Its components are the partial derivatives of $f$ in the $x_i$ direction at each $\mathbf{x}$. The gradient always points perpendicular to the *level curves* where $f=\text{const}$. To see why we can use the geometric formula for the dot product to express any change in the function along a level curve as
+$$
+\delta f = \nabla f \cdot \delta \mathbf{x} = |\nabla f| |\delta \mathbf{x}| \cos\theta \ .
+$$
+Since $\delta f = 0$ along the level curve by definition, it must be the case that $\theta = \pm 90^\circ$ along such curves, meaning that the gradient must always be orthogonal to the level curve.
 
-Using the gradient, we can finally express the differential $df$ as a dot product of the gradient with the line element,
+Using the gradient, we can finally express the differential $df$ as a dot product of the gradient with the vector line element,
 $$
 df = \nabla f \cdot d\mathbf{x} \ .
 $$
-What's interesting about vector calculus is there isn't just one kind of derivative. There are multiple, each related to a different way of applying del to some field. The gradient can be thought of as the result of scalar multiplying the field $f$ to the right of the "vector" $\nabla$ to get some kind of new vector field $\nabla f$.
+Unlike in ordinary calculus, however, in vector calculus this isn't the only kind of derivative we can take. We can see this by looking at the definition of $\nabla$. We can think of $\nabla f$ as multiplying a vector by a scalar. But we also know that we can take both the dot product and the cross product of two vectors, which along with $\nabla$ suggests there are two more derivative operations we can perform on vector fields.
 
-There are also two derivative operations we can apply to vector fields. If $\mathbf{F}(\mathbf{x})$ is a vector field, we can take its dot product of $\nabla$ with $\mathbf{F}$ to get a scalar field known as the *divergence*, defined in Cartesian coordinates by
+If $\mathbf{F}(\mathbf{x})$ is a vector field, we can take its dot product of $\nabla$ with $\mathbf{F}$ to get a new scalar field known as the *divergence*, which is evidently defined in Cartesian coordinates by
 $$
 \nabla \cdot \mathbf{F} \equiv \partial_i F_i \equiv \frac{\partial f}{\partial x} + \frac{\partial f}{\partial y} + \frac{\partial f}{\partial z} \ .
 $$
@@ -320,33 +326,39 @@ $$
 $$
 We can integrate a vector field over a volume too. In this case the integral is done component-wise, so little new is added.
 
-Sometimes we'll also need to integrate a field over a *surface* in space as well. Suppose we wish to integrate over some smooth, orientable surface $\mathcal{S}$ in space. We can define an *area element* $d\mathbf{a}$ on this surface by considering an infinitesimal patch of area $dA$ on the surface and attaching an outward unit normal $\mathbf{n}$ to it to get
+Sometimes we'll also need to integrate a field over a *surface* in space as well. Suppose we wish to integrate over some smooth, orientable surface $\mathcal{S}$ in space. We can define an *area element* $d\mathbf{a}$ on this surface by considering an infinitesimal patch of area $da$ on the surface and attaching an outward unit normal $\mathbf{n}$ to it to get
 $$
-d\mathbf{a} \equiv \mathbf{n} \ dA \ .
+d\mathbf{a} \equiv \mathbf{n} \ da \ .
 $$
-It's fair to ask how $dA$ itself is determined. When the surface is the $xy$-plane it's clear we can say $dA = dxdy$. But for more general surfaces we'd need to parametrize $\mathcal{S}$ with two relative coordinates and express $dA$ in terms of those. Evidently the area element $d\mathbf{a}$ is a kind of vector. We can thus also think of it as the cross product of two infinitesimal vectors on the surface. Importantly, this means $d\mathbf{a}$ will have both a magnitude and a direction that depend on where we are along the surface. When we require the surface be orientable, we mean that we can always use the right-hand rule to find the direction of $\mathbf{n}$.
+It's fair to ask how $da$ itself is determined. When the surface is the $xy$-plane it's clear $da = dxdy$. But for more general surfaces we'd need to parametrize $\mathcal{S}$ with two relative coordinates and express $da$ in terms of those. Evidently the area element $d\mathbf{a}$ is a kind of vector. We can thus also think of it as the cross product of two infinitesimal vectors on the surface. Importantly, this means $d\mathbf{a}$ will have both a magnitude and a direction that depend on where we are along the surface. When we require the surface be orientable, we mean that we can always use the right-hand rule to find the direction of $\mathbf{n}$.
 
 ![](./resources/image-20240126183636267.png){fig-align=center width=300}
 
 To get the *surface integral* of a vector field $\mathbf{F}$ along the surface $\mathcal{S}$ we'd typically write
 $$
-\int_\mathcal{S} \mathbf{F} \cdot d\mathbf{a} = \int_\mathcal{S} \mathbf{F} \cdot \mathbf{n} \ dA \ .
+\int_\mathcal{S} \mathbf{F} \cdot d\mathbf{a} = \int_\mathcal{S} \mathbf{F} \cdot \mathbf{n} \ da \ .
 $$
-Last, we'll also sometimes find ourselves needing to integrate a field over a *curve* or *path* in space. We can parametrize a path differentially in terms of the displacements $d\mathbf{x}$ along the path. To integrate a field over the whole path we just need to multiply the field by the displacement and add up each infinitesimal chunk along the path. For a vector field, this *line integral* is then
+The last form of vector integration we'll find ourselves using frequently is *path integration*, which is the integration of a field along some arbitrary curve in space. This form of integration is done by considering the contribution of the field along each vector line element $d\boldsymbol{\ell}$ along some path $\mathcal{C}$. For a vector field $\mathbf{F}$ each infinitesimal contribution is found by taking the dot product $\mathbf{F} \cdot d\boldsymbol{\ell}$, which we can add up, or integrate, along the entire path to get a scalar-valued path integral,
 $$
-\int_\mathcal{C} \mathbf{F} \cdot d\mathbf{x} = \int_\mathcal{C} dx \ F_x + \int_\mathcal{C} dy \ F_y + \int_\mathcal{C} dz \ F_z \ .
+\int_\mathcal{C} \mathbf{F} \cdot d\boldsymbol{\ell} \ .
 $$
-If we're not interested in the direction of the contour but only its length, we can integrate over its norm instead. This norm is called the *line element* and defined by $ds \equiv |d\mathbf{x}|$. Integrating over $ds$ alone gives the *arc length* of the contour in space. Interestingly the line element is very important in studying the geometry of a space. In general it depends on the metric $\mathbf{g}$ by
+To actually evaluate a path integral one needs to parametrize the line element somehow. For example, if we use Cartesian coordinates to parametrize the line element, we can find the path integral by
+$$
+\int_\mathcal{C} \mathbf{F} \cdot d\boldsymbol{\ell} = \int_{\mathcal{C}_x} dx \ F_x + \int_{\mathcal{C}_y} dy \ F_y + \int_{\mathcal{C}_z} dz \ F_z \ ,
+$$
+where $\mathcal{C}_i$ is the projection of the path onto the $x_i$ axis.
+
+If we're not interested in the direction of the contour but only its length, we can integrate over its norm instead. This norm is called the *scalar line element* and defined by $ds \equiv |d\boldsymbol{\ell}|$. Integrating over $ds$ alone gives the *arc length* of the contour in space. Interestingly the scalar line element is very important in studying the geometry of a space. In general it depends on the metric $\mathbf{g}$ by
 $$
 ds^2 = dx_i g_{ij} dx_j \ .
 $$
-For Euclidean space the metric is always the identity, so we just have $ds^2 = dx_i dx_i$. This is all we'll need for most of this course, but in relativity (especially general relativity) the line element becomes fundamental.
+For Euclidean space the metric is always the identity, so we just have $ds^2 = dx_i dx_i$. This is all we'll need for most of this course, but in relativity (especially general relativity) this line element becomes fundamental.
 
-Usually a line integral between two endpoints will depend on the exact path of the contour $\mathcal{C}$. For some special fields though the line integral depends only on the endpoints, not on the path between them. When this is true we say the field is *conservative*. An implication of this is that if we integrate a conservative field around any *closed contour* the line integral vanishes,
+Usually a path integral between two endpoints will depend on the exact path of the contour $\mathcal{C}$. For some special fields though the path integral depends only on the endpoints, not on the path between them. When this is true we say the field is *conservative*. An implication of this is that if we integrate a conservative field around any *closed contour* the path integral vanishes,
 $$
 \oint \mathbf{F} \cdot d\mathbf{x} = 0 \ .
 $$
-It's easy to see why this must be true. For any closed contour we can break it into two pieces. The line integral of each piece must be path independent, which means their sum, and hence the closed contour integral, must vanish for conservative fields.
+It's easy to see why this must be true. For any closed contour we can break it into two pieces. The line integral of each piece must be path independent, which means their sum, and hence the closed path integral, must vanish for conservative fields.
 
 In vector calculus, each version of vector derivative has its own fundamental theorem of calculus that relates it to one or more of the integrals defined above. The fundamental theorem for gradients says the line integral of the gradient of a scalar field depends only on the endpoints,
 $$
@@ -356,20 +368,20 @@ Said differently, the gradient of a scalar field is always *conservative*. Conve
 $$
 \mathbf{F} = -\nabla \phi \ .
 $$
-This fact we use extensively in electromagnetism. The minus sign is merely a physics convention and adds no content. Since the curl of a gradient must vanish, this statement also says $\mathbf{F}$ must be irrotational, i.e. $\nabla \times \mathbf{F} = \mathbf{0}$.
+This fact we use extensively in electromagnetism. The minus sign is merely a physics convention. Since the curl of a gradient must vanish, this statement also says $\mathbf{F}$ must be irrotational, i.e. $\nabla \times \mathbf{F} = \mathbf{0}$.
 
-A useful extension of this fact is the *Helmholtz theorem*. It says *any* smooth vector field $\mathbf{F}(\mathbf{x})$, conservative or not, can be expressed as a gradient of some scalar field $\phi(\mathbf{x})$ plus the curl of some other vector field $\mathbf{A}(\mathbf{x})$,
+A more general extension of this special case is called the *Helmholtz theorem*. It says *any* smooth vector field $\mathbf{F}(\mathbf{x})$, conservative or not, can be expressed as the *gradient* of some *scalar field* $\phi(\mathbf{x})$ plus the *curl* of some other *vector field* $\mathbf{A}(\mathbf{x})$, i.e.
 $$
 \mathbf{F} = -\nabla \phi + \nabla \times \mathbf{A} \ .
 $$
-Though not obvious at this stage, this formula can be inverted to find formulas for $\phi$ and $\mathbf{A}$ in terms of derivatives of $\mathbf{F}$,
+Though not obvious at this stage, this formula in fact can be inverted to find formulas for $\phi$ and $\mathbf{A}$ in terms of derivatives of $\mathbf{F}$,
 $$
 \begin{align*}
 \phi(\mathbf{x}) &= \frac{1}{4\pi} \int_{\mathbb{R}^3} d^3 \mathbf{x}' \ \frac{\nabla' \cdot \mathbf{F}(\mathbf{x}')}{|\mathbf{x} - \mathbf{x}'|} \ , \\
 \mathbf{A}(\mathbf{x}) &= \frac{1}{4\pi} \int_{\mathbb{R}^3} d^3 \mathbf{x}' \ \frac{\nabla' \times \mathbf{F}(\mathbf{x}')}{|\mathbf{x} - \mathbf{x}'|} \ .
 \end{align*}
 $$
-Here it's implicitly assumed that $\mathbf{F}$ vanishes faster than $\frac{1}{r}$ at infinity. If not we have to include extra boundary terms. The symbol $\nabla'$ means to differentiate with respect to the integration variable $\mathbf{x}'$. We'll see later that when combined with Maxwell's equations, these expressions essentially define the important and useful scalar and vector potentials of electrodynamics.
+Here it's implicitly assumed that $\mathbf{F}$ vanishes faster than $\frac{1}{r}$ at infinity. If not we have to include extra boundary terms. The symbol $\nabla'$ means to differentiate with respect to the integration variable $\mathbf{x}'$.
 
 The fundamental theorem for divergences is called the *divergence theorem*. It says that the divergence of a vector field is nothing more than the flow or *flux* of the field through the surface of a closed volume,
 $$
@@ -383,26 +395,28 @@ Though perhaps not obvious at this stage, the divergence and Stokes' theorems ar
 
 It's interesting to note that all of these versions of the fundamental theorem of calculus say essentially the same thing: The integral of the derivative of a field over some space equals the value of that field along the boundary of that space. For gradients, the boundary of a contour is just two endpoints. For divergences, the boundary over a volume is a closed surface. For curls, the boundary of a surface is a closed contour.
 
-Many of the usual derivative and integral rules extend to vector calculus as well. For example, the product rule for the dot product of two vector fields says that
+Many of the usual derivative and integral rules extend to vector calculus as well using index notation. For example, the product rule for the product of a vector field $\mathbf{F}$ with a scalar field $g$ is
 $$
-d(\mathbf{F} \cdot \mathbf{G}) = \mathbf{F} \cdot d\mathbf{G} + d\mathbf{F} \cdot \mathbf{G} \ .
+d(\mathbf{F} g) = \mathbf{F} \ dg + g \ d\mathbf{F} \ .
 $$
-Dividing both sides by $d\mathbf{x}$ and integrating gives us one vector version of integration by parts,
+Dividing both sides by $d\mathbf{x}$ and integrating gives us one generalized version of integration by parts. Indeed, integrating both sides over a volume $\mathcal{V}$, we get
 $$
-\int_\mathcal{V} \mathbf{F} \cdot \nabla \mathbf{G} \ d^3 \mathbf{x} = \oint_S \nabla(\mathbf{F} \cdot \mathbf{G}) \cdot d\mathbf{a} - \int_\mathcal{V} \nabla \mathbf{F} \cdot \mathbf{G} \ d^3 \mathbf{x} \ .
+\int_\mathcal{V} \nabla(\mathbf{F} g) \cdot d^3\mathbf{x} = \int_\mathcal{V} \mathbf{F} \cdot \nabla g \ d^3 \mathbf{x} + \int_\mathcal{V} g \ \nabla \mathbf{F} \ d^3 \mathbf{x} \ .
 $$
-The surface integral term is essentially an average value of $\mathbf{F} \cdot \mathbf{G}$ along the closed surface $S$ that bounds of the volume $\mathcal{V}$. Similar versions exist for the product of two scalar fields, a scalar field with a vector field, and an integral over areas or contours.
+Rearranging terms and using the divergence theorem to express the left-hand integral as an integral over the bounding surface $\mathcal{S}$, we get
+$$
+\int_\mathcal{V} \mathbf{F} \cdot \nabla g \ d^3 \mathbf{x} = \oint_\mathcal{S} \nabla(\mathbf{F} g) \cdot d\mathbf{a} - \int_\mathcal{V} g \ \nabla \mathbf{F} \ d^3 \mathbf{x} \ .
+$$
+Similar versions of integration by parts exist for the product of two scalar fields or two vector fields as well, both of which can be derived just as easily as the formula above.
 
 We can define similar vector calculus operations for tensors as well, not just vectors. For example, if we have a rank-2 tensor $\mathbf{T}$ we can still imagine taking gradients $\partial_k T_{ij}$ to get a rank-3 tensor. By contracting the derivative with the tensor we get a different divergence for each index, $\partial_i T_{ij}$ and $\partial_j T_{ij}$. Evidently the divergence of a rank-2 tensor gives a vector, not a scalar. 
 
-Strictly speaking we can't speak of *the divergence* of a tensor since each index has its own divergence. We can though in two cases. One is when the tensor is *symmetric*. If $T_{ij} = T_{ji}$ we can define a unique divergence by
+Strictly speaking we can't speak of *the divergence* of a tensor since each index has its own divergence. We can though when the tensor is *symmetric*. If $T_{ij} = T_{ji}$ we can define a unique divergence operation by
 $$
 \nabla \cdot \mathbf{T} \equiv \partial_i T_{ij} = \partial_j T_{ij} \ .
 $$
 
-The other, less interesting, case is an *antisymmetric* tensor. If $T_{ij} = -T_{ji}$, each term in the sum $\partial_i T_{ij}$ cancels pairwise with its opposite diagonal term, which implies $\nabla \cdot \mathbf{T} = 0$  when $\mathbf{T}$ is antisymmetric.
-
-We could imagine taking the curl of a tensor as well. As with the gradient, the curl of a rank-2 tensor will give a rank-3 tensor. We can even define tensor integrals as well using index notation. In practice though, the only tensor calculus we'll find useful in this course are the divergences and gradients of symmetric or antisymmetric rank-2 tensors.
+We could imagine taking the curl of a tensor as well. From index notation it's clear that the curl of a rank-2 tensor will give another rank-2 tensor. We can even imagine defining tensor integrals as well in similar ways. In practice though we'll only care about divergences and gradients of rank-2 tensors in this course, so we won't go into any detail here.
 
 ### Coordinate Systems
 
@@ -428,17 +442,27 @@ We will at times find it convenient in this course to go back and forth between 
 $$
 f(\omega) \equiv \mathcal{F}[f(t)](\omega) \equiv \int_{-\infty}^\infty dt \ f(t) e^{-i\omega t} \ .
 $$
-The function $f(\omega)$, which in general will be complex-valued, is thought of as a function of *frequency* $\omega$. We can express the same thing using transformation using the Fourier operator $\mathcal{F}$. Since the $\mathcal{F}$ is an integral transform it inherits many of the properties of the integral plus a few other convenient properties that are easy to prove from the definition:
+The function $f(\omega)$, which in general will be complex-valued, is thought of as a function of *frequency* $\omega$. We can express the same thing using the *Fourier operator* $\mathcal{F}$. Since the $\mathcal{F}$ is an integral transform it inherits many of the properties of the integral plus a few other convenient properties that are easy to prove from the definition. Here the $\leftrightarrow$ symbol means that right-hand side is the Fourier transform, or *Fourier dual*, of the left-hand side. That is, $f(t) \leftrightarrow f(\omega)$, a very convenient simplification of notation.
 
-- Linearity: $\mathcal{F}[\alpha f(t) + \beta g(t)](\omega) = \alpha f(\omega) + \beta g(\omega)$.
-- Time Scaling: $\mathcal{F}[f(\alpha t)](\omega) = \frac{1}{|\alpha|} f\big(\frac{\omega}{\alpha}\big)$.
-- Time Shifting: $\mathcal{F}[f(t-t_0)](\omega) = e^{i\omega t_0} f\big(\omega)$​.
-- Time Reversal: $\mathcal{F}[f(-t)](\omega) = f(-\omega)$.
-- Complex Conjugation: $\mathcal{F}[f^*(t)](\omega) = f^*(\omega)$​.
-- Differentiation: $\mathcal{F}\big[\frac{d}{dt} f(t)\big](\omega) = i\omega f(\omega)$​.
-- Convolution: $\mathcal{F}[f \ast g](\omega) = f(\omega) g(\omega)$.
+- Linearity: $\alpha f(t) + \beta g(t) \leftrightarrow \alpha f(\omega) + \beta g(\omega)$.
+- Time Scaling: $f(\alpha t) \leftrightarrow \frac{1}{|\alpha|} f\big(\frac{\omega}{\alpha}\big)$.
+- Time Shifting: $f(t-t_0) \leftrightarrow e^{i\omega t_0} f\big(\omega)$.
+- Time Reversal: $f(-t) \leftrightarrow f(-\omega)$.
+- Complex Conjugation: $f^*(t) \leftrightarrow f^*(\omega)$.
+- Differentiation: $\frac{d}{dt} f(t) \leftrightarrow i\omega f(\omega)$.
+- Convolution: $f \ast g \leftrightarrow f(\omega) g(\omega)$.
 
-As an example of using these properties let's calculate the Fourier transform of the Gaussian probability density
+The last operation is a very common integral transform known as *convolution*, defined by
+$$
+(f \ast g)(t) \equiv \int_{-\infty}^\infty dt' \ f(t') g(t-t') \ .
+$$
+The convolution operation shows up surprisingly often, particularly in the theory of Green's functions, which we'll work with later in this course. Convolutions act like a form of function multiplication in that the operation is both commutative and associative.
+
+---
+
+**Example: Fourier Transform of a Gaussian**
+
+As an example of using these Fourier transform properties let's calculate the Fourier transform of the Gaussian probability density
 $$
 f(t) = \frac{1}{\sqrt{2\pi\sigma^2}} \exp\bigg(-\frac{1}{2} \frac{(t-t_0)^2}{\sigma^2}\bigg)
 $$
@@ -462,11 +486,13 @@ $$
 $$
 Evidently then, the Fourier transform of a Gaussian is another Gaussian. In a sense, the Gaussian is the unique class of functions whose Fourier transforms are also of the same class.
 
+---
+
 An important fact about the Fourier transform is that it's *invertible*, meaning we can define an *inverse Fourier transform operator* $\mathcal{F}^{-1}$ such that $\mathcal{F} \mathcal{F}^{-1} = 1$. The inverse Fourier transform of $f(t)$ turns out to be given by the dual integral
 $$
 f(t) = \mathcal{F}^{-1}[f(\omega)](t) = \int_{-\infty}^\infty \frac{d\omega}{2\pi} \ f(\omega) e^{i\omega t} \ .
 $$
-Notice that unlike the Fourier transform, its inverse transform comes has a rescaled measure of $\frac{d\omega}{2\pi}$. There's nothing deep about this fact. It's just a relic of the way we defined the Fourier transform above. We could define it in ways that remove the $2\pi$ as well. In fact, there are many different conventions used to define the Fourier transform, which makes it annoying to look up formulas.
+Notice that unlike the Fourier transform, its inverse transform comes has a rescaled measure of $\frac{d\omega}{2\pi}$. There's nothing deep about this fact. It's just a relic of the way we defined the Fourier transform above. We could define it in ways that remove the $2\pi$ as well. In fact, there are many different conventions used to define the Fourier transform, which can make it a bit annoying to look up these formulas in tables.
 
 Evidently, to for the Fourier transform to be invertible we must have that $f(t) = \mathcal{F}^{-1} \mathcal{F} [f(t')](t)$. Let's see what this says by manipulating the formula a little bit. We have
 $$
@@ -482,25 +508,35 @@ $$
 $$
 This function evidently then has the defining property that
 $$
-f(t) = \int_{-\infty}^\infty dt' \ f(t') \delta(t-t') \ .
+\boxed{
+f(t) = \int_{-\infty}^\infty dt' \ f(t') \delta(t-t')
+}\ .
 $$
-In a sense, the delta function can be thought of as a sort of density function for a single point. When $t \neq t'$ the delta function must be zero. But to be a proper density this means that when $t=t'$ the delta function must be infinitely high so its area under the curve remains constant.
+In a sense, the delta function can be thought of as a sort of density function for a single point. When $t \neq t'$ the delta function must be zero. But to be a proper density this means that when $t=t'$​ the delta function must be infinitely high so its area under the curve remains constant.
 
-In one sense, the delta function is just the Fourier transform of the constant $f(t)=1$. In another sense it's an infinite spike. Indeed, we can imagine defining the delta function differently as a limiting case of a Gaussian whose variance $\sigma^2$ goes to zero,
+Notice that based on this definition the delta function must have units to cancel out the units of the differential $dt'$. If $dt'$ has units of time, evidently $\delta(t-t')$ must have units of *frequency*.
+
+In one sense, the delta function is just the Fourier transform of the constant $f(t)=1$. In a more visual sense it's an infinite spike. Indeed, we can imagine defining the delta function differently as a limiting case of a normalized Gaussian whose variance $\sigma^2$ goes to zero,
 $$
 \delta(t-t') = \lim_{\sigma \rightarrow 0} \frac{1}{\sqrt{2\pi\sigma^2}} e^{-\frac{(t-t')^2}{2\sigma^2}} \ .
 $$
+This can be illustrated in the figure below.
+
+![](../../../Library/Application Support/typora-user-images/image-20240309160905585.png){fig-align=center width=300}
+
 Strictly speaking the delta function isn't a proper function at all since it's undefined when $t=t'$​. It's a so-called *generalized function*, meaning it's a function that has meaning only when inside an integral. As physicists rarely do, we won't really bother with these mathematical details in this course. Whatever it is, the delta function is a convenient mathematical object for us.
 
 One fact worth remembering and easy to prove is how the delta function transforms under a time rescaling,
 $$
 \delta(at) = \frac{1}{|a|} \delta(t) \ .
 $$
+Another useful fact to remember is that the delta function is the identity of the convolution operation. That is, $f \ast \delta = f$. This can easily be seen from the definition, which is just a special convolution operation.
+
 Thus far we've talked about the Fourier transform in time. We can define a Fourier transform for a scalar field $f(\mathbf{x})$ as well by multiplying the transform of each component together. For a well-behaved scalar field $f(\mathbf{x})$, we have
 $$
 f(\mathbf{k}) \equiv \mathcal{F}[f(\mathbf{x})](\mathbf{k}) \equiv \int_{\mathbb{R}^3} d^3 \mathbf{x} \ f(\mathbf{x}) e^{i \mathbf{k} \cdot \mathbf{x}} \ .
 $$
-Here $\mathbf{k}$ is the *wavevector*, a proper vector of three components. Note the subtle change in sign in this definition of the Fourier transform. This is a physics convention that makes the application of the Fourier transform easier to scalar fields $f(\mathbf{x},t)$​ in space and time. We'll come back to this point later. Indeed, this sign difference is a defining feature of special relativity.
+Here $\mathbf{k}$ is the *wavevector*, a proper vector of three components. Note the subtle change in sign in this definition of the Fourier transform. This is a physics convention that makes the application of the Fourier transform easier to scalar fields $f(\mathbf{x},t)$​ in space and time.
 
 The inverse Fourier transform for a scalar field is defined in a similar way, by
 $$
@@ -510,11 +546,17 @@ The scalar field version of the Fourier transform satisfies essentially the same
 $$
 \delta(\mathbf{x}-\mathbf{x}') \equiv \delta(x-x') \delta(y-y') \delta(z-z') \ .
 $$
+This definition evidently means $\delta(\mathbf{x}-\mathbf{x}')$ must have units of inverse volume.
+
 In the case of fields, the delta function $\delta(\mathbf{x}-\mathbf{x}')$ picks out points in 3-dimensional space, activating only when $\mathbf{x}=\mathbf{x}'$. It's worth noting that since the delta function is really a density rather than an ordinary function, under a change of coordinates it transforms as a density, meaning we have to include the Jacobian factor in the definition. For example, in a change of coordinates of the form $\mathbf{u}=\mathbf{u}(\mathbf{x})$, we have
 $$
 \delta(\mathbf{x}-\mathbf{x}') = \frac{1}{|\det \mathbf{J}|} \delta(u-u') \delta(v-v') \delta(w-w') \ .
 $$
-Here $\mathbf{J} = \frac{d\mathbf{u}}{d\mathbf{x}}$ is the Jacobian of the transformation from $u$-coordinates to Cartesian $x$​-coordinates.
+Here $\mathbf{J} = \frac{d\mathbf{u}}{d\mathbf{x}}$ is the Jacobian of the transformation from $u$-coordinates to Cartesian $x$​​-coordinates.
+
+---
+
+**Example: Divergence of Inverse Square Fields**
 
 As an exercise in much of what we've learned so far, let's calculate the divergence of the vector field $\mathbf{F}(\mathbf{x}) = \frac{\mathbf{e}_r}{r^2}$. We could proceed in one of two ways. One way would be to use Cartesian coordinates and index notation to churn it out the hard way. The other way would be to recognize this scalar field is spherically symmetric, so we should work in spherical coordinates. Adopting the second approach since it's easier, we have
 $$
@@ -524,7 +566,7 @@ It's tempting to cancel out the factors of $r^2$ and conclude $\nabla \cdot \mat
 $$
 \int_S \mathbf{F} \cdot d\mathbf{a} = \int_\mathcal{V} \nabla \cdot \mathbf{F} \ d^3\mathbf{x} \ .
 $$
-Since $\mathbf{F}$ is spherically symmetric and we're integrating over a sphere, we can write $\mathbf{F} \cdot d\mathbf{a} = |\mathbf{F}| dA$ and integrate over the surface area of the sphere to get
+Since $\mathbf{F}$ is spherically symmetric and we're integrating over a sphere, we can write $\mathbf{F} \cdot d\mathbf{a} = |\mathbf{F}| da$ and integrate over the surface area of the sphere to get
 $$
 \int_S \mathbf{F} \cdot d\mathbf{a} = \int r^2 \bigg(\frac{1}{r^2}\bigg) \ d\Omega = 4\pi \ .
 $$
@@ -536,7 +578,7 @@ Note that since $\nabla \frac{1}{r} = -\frac{\mathbf{e}_r}{r^2}$ we've shown ano
 $$
 \nabla^2 \bigg(\frac{1}{r}\bigg) = -4\pi \delta(\mathbf{x}) \ .
 $$
-We will make extensive use of these formulas in later lessons.
+We will make good use of these two formulas in the rest of this course.
 
 
 

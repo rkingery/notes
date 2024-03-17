@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.335">
+<meta name="generator" content="quarto-1.4.551">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Personal Notes - 29&nbsp; Classical Gases</title>
+<title>Personal Notes - Classical Gases</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -17,7 +17,7 @@ div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
   width: 0.8em;
-  margin: 0 0.8em 0.2em -1.6em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
 </style>
@@ -47,7 +47,13 @@ ul.task-list li input[type="checkbox"] {
   "collapse-after": 3,
   "panel-placement": "start",
   "type": "textbox",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -56,12 +62,42 @@ ul.task-list li input[type="checkbox"] {
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit"
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
   }
 }</script>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -69,11 +105,16 @@ ul.task-list li input[type="checkbox"] {
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-    <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title"><span class="chapter-title">Classical Gases</span></h1>
-      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
-        <i class="bi bi-chevron-right"></i>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../statistical-mechanics/thermodynamics.html">Statistical Mechanics</a></li><li class="breadcrumb-item"><a href="../statistical-mechanics/classical-gases.html"><span class="chapter-title">Classical Gases</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
       </button>
     </div>
   </nav>
@@ -81,28 +122,30 @@ ul.task-list li input[type="checkbox"] {
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation docked overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="../">Personal Notes</a> 
     </div>
       </div>
-      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
         <div id="quarto-search" class="" title="Search"></div>
         </div>
-      </div>
+        </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../index.html" class="sidebar-item-text sidebar-link">Preface</a>
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">Classical Mechanics</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">Classical Mechanics</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -166,8 +209,9 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">Electrodynamics</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text">Electrodynamics</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -181,8 +225,9 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">Circuit Analysis</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+ <span class="menu-text">Circuit Analysis</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -241,8 +286,9 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">Quantum Mechanics</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+ <span class="menu-text">Quantum Mechanics</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -261,8 +307,9 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">Statistical Mechanics</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
+ <span class="menu-text">Statistical Mechanics</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -352,20 +399,21 @@ ul.task-list li input[type="checkbox"] {
   </ul>
 </nav>
 </nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
     </div>
 <!-- main -->
 <main class="content column-page-right" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../statistical-mechanics/thermodynamics.html">Statistical Mechanics</a></li><li class="breadcrumb-item"><a href="../statistical-mechanics/classical-gases.html"><span class="chapter-title">Classical Gases</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block"><span class="chapter-title">Classical Gases</span></h1>
+<h1 class="title"><span class="chapter-title">Classical Gases</span></h1>
 </div>
 
 
 
-<div class="quarto-title-meta">
+<div class="quarto-title-meta column-page-right">
 
     
   
@@ -373,7 +421,9 @@ ul.task-list li input[type="checkbox"] {
   </div>
   
 
+
 </header>
+
 
 <p>Now that we’ve covered the fundamentals of classical statistical mechanics we’ll turn ourselves toward an important application of interest: the classical behavior of real gases. In this section, when we say something is a <em>gas</em>, what we mean is any large collection of particles that interact in some way. The particles may not necessarily be far apart from each other. They may be in the liquid phase, even. We’ll extend the validity of the ideal gas law, which applies exactly only for non-interacting gases, by finding a virial expansion of the pressure in powers of density. We’ll then use simplified potentials and mean field approximations to derive the important van der Waals equation of state and study its implications. This will then lead to a discussion of phase transitions and critical phenomena, an advanced subject we’ll only be able to touch on for now.</p>
 <section id="cumulant-expansion" class="level2">
@@ -467,7 +517,7 @@ Q &amp;= \int_\mathcal{B} d^{3N} \mathbf{x} \prod_{i &lt; j} (1 + f_{ij}) \\
 \]</span> Now, define <span class="math inline">\(b_\ell\)</span> to be the sum of all connected components connecting exactly <span class="math inline">\(\ell\)</span> points. That is, <span class="math inline">\(b_1\)</span> is the sum over all completely disconnected clusters, <span class="math inline">\(b_2\)</span> is the sum over all pairs of connected edges, <span class="math inline">\(b_3\)</span> is the sum over all triplets of connected points, and so on. Diagrammatically these might look as follows.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="./resources/image-20230718004825738.png" class="img-fluid figure-img" width="500"></p>
+<p><img src="./resources/image-20230718004825738.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="500"></p>
 </figure>
 </div>
 <p>Note how the number of terms in the sum blows up with increasing <span class="math inline">\(\ell\)</span>. For example, <span class="math inline">\(b_1\)</span> and <span class="math inline">\(b_2\)</span> each contain one configuration, <span class="math inline">\(b_3\)</span> contains <span class="math inline">\(4\)</span> configurations. It turns out that <span class="math inline">\(b_4\)</span> contains <span class="math inline">\(24\)</span> different terms. That is, there are <span class="math inline">\(24\)</span> ways to connect <span class="math inline">\(4\)</span> points with all possible configurations of edges. Etc.</p>
@@ -546,7 +596,7 @@ u(r) =
 \]</span> At close distances we’ll assume the force is infinitely repulsive when <span class="math inline">\(r &lt; r_0\)</span>. This <em>hard wall</em> idea approximates the effect that particles will bounce off each other if they get too close, within some distance <span class="math inline">\(r_0\)</span> that’s usually on the order of Angstroms for atoms or molecules. When <span class="math inline">\(r \gg r_0\)</span> the force becomes weakly attractive, with the potential falling off like <span class="math inline">\(r^{-6}\)</span>. The remaining positive constant <span class="math inline">\(u_0\)</span> characterizes the strength of the interaction, usually around room temperature in temperature units.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="./resources/image-20230817091608554.png" class="img-fluid figure-img" width="400"></p>
+<p><img src="./resources/image-20230817091608554.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="400"></p>
 </figure>
 </div>
 <p>We can now proceed to calculate the virial coefficients for such an interaction. We already know <span class="math inline">\(B_1 = 1\)</span>, so there’s nothing to do there. We’ll recover the ideal gas law at low densities as expected. For <span class="math inline">\(B_2\)</span>, we need to find the integral of <span class="math inline">\(f(r)\)</span>, which is <span class="math display">\[
@@ -595,7 +645,7 @@ B_3(T) = -\frac{1}{3} \int_{\mathcal{B}} d^3 \mathbf{x} \ d^3 \mathbf{x}' \ f(\m
 <p>The fact that the van der Waals equation only seems to become important as a gas starts to liquify suggests that we should study this transition region from gas to liquid. This is one of many examples of a <strong>phase transition</strong>, a discontinuous change in the properties of a system as a state variable changes. When dealing with gases, phase transitions often manifest as sharp lines in the <em>phase diagram</em>, i.e.&nbsp;the diagram of pressure vs temperature. Recall such a diagram looks very roughly like the following.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="./resources/image-20230812012625268.png" class="img-fluid figure-img" width="400"></p>
+<p><img src="./resources/image-20230812012625268.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="400"></p>
 </figure>
 </div>
 <p>Phase diagrams often show similar patterns. At low <span class="math inline">\(T\)</span> and <span class="math inline">\(P\)</span> the gas is in its <em>solid phase</em>. All the particles are aligned in something like a crystal lattice. As <span class="math inline">\(T\)</span> increases the gas moves into its <em>liquid phase</em>. In this phase, the particles are still close together, but they’re no longer locked into a lattice anymore. They’re allowed to move around on top of each other. As <span class="math inline">\(T\)</span> increases further the gas moves into its <em>gas phase</em>. In this phase the particles start to move apart from each other, behaving more like an ideal gas.</p>
@@ -607,7 +657,7 @@ P = \frac{Nk_B T}{V-Nb} - a \frac{N^2}{V^2}.
 \]</span> If we plot the isotherms of this equation for different values of <span class="math inline">\(T\)</span>, we get something roughly like the following.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="./resources/image-20230812014318099.png" class="img-fluid figure-img" width="400"></p>
+<p><img src="./resources/image-20230812014318099.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="400"></p>
 </figure>
 </div>
 <p>First, notice that all the isotherms asymptotically approach the reduced volume <span class="math inline">\(Nb=\frac{N\omega}{2}\)</span> as <span class="math inline">\(V \rightarrow 0\)</span>. This is a consequence of the physical fact that the gas becomes incompressible once it reaches its liquid phase. The isotherms separate into three distinct regimes depending on whether <span class="math inline">\(T\)</span> is greater than some special <strong>critical temperature</strong> <span class="math inline">\(T_c\)</span>,</p>
@@ -664,7 +714,7 @@ N = V\frac{\partial P}{\partial \mu} \bigg |_T.
 \]</span> Let’s stop and think about what this integration is doing. It’s summing up horizontal slices under the isotherm from <span class="math inline">\(P_0\)</span> to <span class="math inline">\(P\)</span>. As long as <span class="math inline">\(V(P)\)</span> is single-valued this is perfectly fine. But inside the coexistence region <span class="math inline">\(V(P)\)</span> is <em>not</em> single-valued, which means the integral will be <em>path-dependent</em>. For example, consider the following situation. Suppose we wanted to find the chemical potential from the point <span class="math inline">\(A\)</span> to the point <span class="math inline">\(F\)</span> along the isotherm shown below.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="./resources/image-20230809010422210.png" class="img-fluid figure-img" width="600"></p>
+<p><img src="./resources/image-20230809010422210.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="600"></p>
 </figure>
 </div>
 <p>Along the path <span class="math inline">\(ABC\)</span> the chemical potential <span class="math inline">\(\mu\)</span> keeps increasing since <span class="math inline">\(dP\)</span> is positive. Along <span class="math inline">\(CD\)</span> though <span class="math inline">\(dP\)</span> is negative, which means <span class="math inline">\(\mu\)</span> goes back down. Then, along <span class="math inline">\(DF\)</span>, <span class="math inline">\(dP\)</span> is positive again, causing <span class="math inline">\(\mu\)</span> to again start increasing. The trajectory <span class="math inline">\(\mu(P)\)</span> will cross at the points <span class="math inline">\(B\)</span> and <span class="math inline">\(E\)</span>, causing the chemical potential to seemingly be multiple-valued in the region between <span class="math inline">\(C\)</span> and <span class="math inline">\(D\)</span>. This crossing point occurs at the coexistence pressure <span class="math inline">\(P_{co}=P_E=P_B\)</span>.</p>
@@ -694,7 +744,7 @@ d\mu_{liq} = -s_{liq} dT + v_{liq} dP = -s_{gas} dT + v_{gas} dP = d\mu_{gas},
 \]</span> Such a curve has the interesting behavior of being convex near <span class="math inline">\(T \approx T_0\)</span> before eventually turning over like <span class="math inline">\(P \sim -\frac{1}{T}\)</span>. Typically <span class="math inline">\(T_0\)</span> is some reference temperature like the triple point of the gas. Of course, the curve completely stops at the critical temperature <span class="math inline">\(T_c\)</span> anyway, so the high-temperature behavior of the curve is often unimportant.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="./resources/image-20230827155744011.png" class="img-fluid figure-img" width="400"></p>
+<p><img src="./resources/image-20230827155744011.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="400"></p>
 </figure>
 </div>
 <p>Note that this formula can also be used just as well for gas-solid phase transitions, except with <span class="math inline">\(L\)</span> taking on a different value due to the different type of chemical equilibrium in that case. The solid-liquid transition is a different story. There we can’t use these approximations at all. These coexistence curves can take on very different shapes. For example, the coexistence curve between water and ice is <em>negatively-sloped</em>. This means ice is <em>less</em> dense than water, which is why ice floats on water.</p>
@@ -745,7 +795,7 @@ Z_G \sim e^{\psi(V_{liq})} + e^{\psi(V_{gas})} \ .
 \]</span> Typically one of these peaks will be exponentially larger than the other for a given pressure, but as the pressure changes the two peaks may flip, corresponding to a phase transition. What about the third extremum? In fact it’s a <em>minimum</em> on the <span class="math inline">\(Z_G\)</span> curve, which is why we can think of it as a non-physical (i.e.&nbsp;highly improbable) state.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="./resources/image-20230817092202783.png" class="img-fluid figure-img" width="700"></p>
+<p><img src="./resources/image-20230817092202783.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="700"></p>
 </figure>
 </div>
 <p>Note that by extensivity we can also write <span class="math inline">\(Z_G \approx e^{-\beta \mu N}\)</span>. This means that maximizing <span class="math inline">\(Z_G\)</span> is equivalent to <em>minimizing</em> the chemical potential <span class="math inline">\(\mu\)</span>. This is in a sense the statistical justification behind the Maxwell construction, which we got by picking the part of the integration path of <span class="math inline">\(\mu(P,T)\)</span> with the lowest chemical potential.</p>
@@ -799,14 +849,14 @@ m = \tanh(2dJm\beta + h\beta) \ .
 </ul>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="./resources/image-20231030021029738.png" class="img-fluid figure-img" width="500"></p>
+<p><img src="./resources/image-20231030021029738.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="500"></p>
 </figure>
 </div>
 <p>The results described above are perhaps rather surprising. Based on the intuition that things in physics always happen smoothly, one might have thought that <span class="math inline">\(m\)</span> would decrease slowly to zero as <span class="math inline">\(T \rightarrow \infty\)</span>. But that’s not what happens. Instead <span class="math inline">\(m\)</span> turns off abruptly at some finite temperature <span class="math inline">\(T_c\)</span>. This is the characteristic behavior of a phase transition. Because it arises from the first derivative of the free energy it’s by convention called a <em>first-order phase transition</em>. This contrasts with higher-order phase transitions, which arise from discontinuities in higher derivatives of the free energy.</p>
 <p>What happens now if we turn on an external field, allowing <span class="math inline">\(h \neq 0\)</span>? If we look at the above equation, we can see that the presence of <span class="math inline">\(h\)</span> seems to shift the zero point of the <span class="math inline">\(\tanh\)</span> function left or right depending on the sign of <span class="math inline">\(h\)</span>. Meanwhile the left-hand line doesn’t shift at all. What does this do to the system? It breaks the symmetry. For <em>any</em> <span class="math inline">\(T &lt; \infty\)</span> it’s impossible to get <span class="math inline">\(m=0\)</span>. Moreover, since the shift <span class="math inline">\(\frac{h}{k_B T} \rightarrow 0\)</span> as <span class="math inline">\(T \rightarrow \infty\)</span>, <span class="math inline">\(m\)</span> will now go smoothly to zero, meaning there is no longer a phase transition. In fact, it’s possible to show that when <span class="math inline">\(T &lt; T_c\)</span> only one of the intersection endpoints will be stable, which means the spins will always prefer one state over the other. This sort of phenomenon is called <em>spontaneous symmetry breaking</em>. Even the slightest stray external field is enough to ruin the ability of a phase transition to occur.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="./resources/image-20231030021001401.png" class="img-fluid figure-img" width="500"></p>
+<p><img src="./resources/image-20231030021001401.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="500"></p>
 </figure>
 </div>
 <p>It’s worth mentioning that strictly speaking the mean field approximation only holds as <span class="math inline">\(d \rightarrow \infty\)</span> due to the law of large numbers. In fact, the mean field approximation doesn’t work <em>at all</em> when <span class="math inline">\(d=1\)</span>. It can even be shown that phase transitions cannot exist in one-dimension. Yet, for <span class="math inline">\(d \geq 2\)</span> it’s perhaps surprising that the approximation is okay, at least qualitatively. Even by <span class="math inline">\(d=2\)</span> and <span class="math inline">\(d=3\)</span> phase transitions already start to occur in the Ising model. Proving phase transitions indeed occur in these lower dimensions is somewhat more difficult and beyond the scope of this lesson.</p>
@@ -896,9 +946,23 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     icon: icon
   };
   anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
   const clipboard = new window.ClipboardJS('.code-copy-button', {
-    target: function(trigger) {
-      return trigger.previousElementSibling;
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
     }
   });
   clipboard.on('success', function(e) {
@@ -934,10 +998,27 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
-  function tippyHover(el, contentFn) {
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -947,8 +1028,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -960,9 +1050,245 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
     });
   }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
   const findCites = (el) => {
     const parentEl = el.parentElement;
     if (parentEl) {
@@ -1004,17 +1330,18 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation column-page-right">
   <div class="nav-page nav-page-previous">
-      <a href="../statistical-mechanics/classical-stat-mech.html" class="pagination-link">
+      <a href="../statistical-mechanics/classical-stat-mech.html" class="pagination-link" aria-label="Classical Statistical Mechanics">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Classical Statistical Mechanics</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../statistical-mechanics/quantum-stat-mech.html" class="pagination-link">
+      <a href="../statistical-mechanics/quantum-stat-mech.html" class="pagination-link" aria-label="Quantum Statistical Mechanics">
         <span class="nav-page-text"><span class="chapter-title">Quantum Statistical Mechanics</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
 </div> <!-- /content -->
+
 
 
 

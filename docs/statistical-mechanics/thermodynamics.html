@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.335">
+<meta name="generator" content="quarto-1.4.551">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Personal Notes - 25&nbsp; Thermodynamics</title>
+<title>Personal Notes - Thermodynamics</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -17,7 +17,7 @@ div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
   width: 0.8em;
-  margin: 0 0.8em 0.2em -1.6em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
 </style>
@@ -47,7 +47,13 @@ ul.task-list li input[type="checkbox"] {
   "collapse-after": 3,
   "panel-placement": "start",
   "type": "textbox",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -56,12 +62,42 @@ ul.task-list li input[type="checkbox"] {
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit"
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
   }
 }</script>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -69,11 +105,16 @@ ul.task-list li input[type="checkbox"] {
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-    <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title"><span class="chapter-title">Thermodynamics</span></h1>
-      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
-        <i class="bi bi-chevron-right"></i>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../statistical-mechanics/thermodynamics.html">Statistical Mechanics</a></li><li class="breadcrumb-item"><a href="../statistical-mechanics/thermodynamics.html"><span class="chapter-title">Thermodynamics</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
       </button>
     </div>
   </nav>
@@ -81,28 +122,30 @@ ul.task-list li input[type="checkbox"] {
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation docked overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="../">Personal Notes</a> 
     </div>
       </div>
-      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
         <div id="quarto-search" class="" title="Search"></div>
         </div>
-      </div>
+        </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../index.html" class="sidebar-item-text sidebar-link">Preface</a>
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">Classical Mechanics</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">Classical Mechanics</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -166,8 +209,9 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">Electrodynamics</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text">Electrodynamics</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -181,8 +225,9 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">Circuit Analysis</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+ <span class="menu-text">Circuit Analysis</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -241,8 +286,9 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">Quantum Mechanics</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+ <span class="menu-text">Quantum Mechanics</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -261,8 +307,9 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">Statistical Mechanics</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
+ <span class="menu-text">Statistical Mechanics</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -347,20 +394,21 @@ ul.task-list li input[type="checkbox"] {
   </ul>
 </nav>
 </nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
     </div>
 <!-- main -->
 <main class="content column-page-right" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../statistical-mechanics/thermodynamics.html">Statistical Mechanics</a></li><li class="breadcrumb-item"><a href="../statistical-mechanics/thermodynamics.html"><span class="chapter-title">Thermodynamics</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block"><span class="chapter-title">Thermodynamics</span></h1>
+<h1 class="title"><span class="chapter-title">Thermodynamics</span></h1>
 </div>
 
 
 
-<div class="quarto-title-meta">
+<div class="quarto-title-meta column-page-right">
 
     
   
@@ -368,7 +416,9 @@ ul.task-list li input[type="checkbox"] {
   </div>
   
 
+
 </header>
+
 
 <p><strong>Thermodynamics</strong> is a <em>phenomenological</em> description of the <em>equilibrium</em> properties of <em>macroscopic</em> systems. Historically, thermodynamics arose from attempts to build and understand the behavior of steam engines in the 19th century. Nowadays it’s applied all across the sciences, particularly in the understanding the behavior of materials, chemical compounds, and biological systems. Thermodynamics is still extensively used in engineering as well to design and build things like engines, heat pumps, and refrigerators.</p>
 <p>We’ll start in this lesson by studying the phenomenological description of thermodynamics. Later on we’ll derive the same description from first principle approaches, ultimately leading up to the ensemble methods of classical and then quantum statistical mechanics.</p>
@@ -397,7 +447,7 @@ ul.task-list li input[type="checkbox"] {
 <p>Suppose we have three distinct systems <span class="math inline">\(A\)</span>, <span class="math inline">\(B\)</span>, and <span class="math inline">\(C\)</span>. The <strong>zeroth law of thermodynamics</strong> states that if <span class="math inline">\(A\)</span> is in equilibrium with <span class="math inline">\(B\)</span>, and <span class="math inline">\(B\)</span> is in equilibrium with <span class="math inline">\(C\)</span>, then <span class="math inline">\(A\)</span> is in equilibrium with <span class="math inline">\(C\)</span>. That is, the property of equilibrium is <em>transitive</em>.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="./resources/image-20230312001728072.png" class="img-fluid figure-img" width="600"></p>
+<p><img src="./resources/image-20230312001728072.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="600"></p>
 </figure>
 </div>
 <p>Notice that for any two systems to be in equilibrium with each other they must be allowed to exchange heat. If they were isolated, even the smallest change to one system wouldn’t affect the other. The zeroth law evidently implies that this holds for any number of systems in equilibrium. You can’t isolate any one from the other, since heat can always flow through any two pairs of systems in equilibrium with each other.</p>
@@ -424,7 +474,7 @@ g_{AC}(A_1, A_2, \cdots, A_n, \text{const}) - g_{BC}(B_1, B_2, \cdots, B_k, \tex
 \]</span> The empirical temperature is evidently reference dependent since we had to fix values for some third system <span class="math inline">\(C\)</span> just to properly define it. We can choose <span class="math inline">\(C\)</span> to be anything we like as long as we agree on a convention. The most common is the <strong>triple point</strong> of water, the state where water coexists in its gas, liquid, and solid forms simultaneously. This occurs at a temperature of about <span class="math inline">\(T = 273.16 \ \degree \text{K}\)</span> and pressure of about <span class="math inline">\(p = 0.006 \text{ atm}\)</span>.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="./resources/image-20230312003203087.png" class="img-fluid figure-img" width="300"></p>
+<p><img src="./resources/image-20230312003203087.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="300"></p>
 </figure>
 </div>
 <p>The condition that <span class="math inline">\(\theta = \theta_A\)</span> says that in the space of coordinates of <span class="math inline">\(A\)</span>, in thermal equilibrium the system must be constrained to a surface of constant <span class="math inline">\(\theta_A = \theta\)</span>. This surface is called an <strong>isotherm</strong>, a surface of constant temperature. Similarly for <span class="math inline">\(B\)</span>.</p>
@@ -536,7 +586,7 @@ C_P = \frac{\delta Q_P}{dT} = \frac{dE + PdV}{dT} \bigg |_P =  \frac{\partial E}
 \]</span> It turns out that the two <span class="math inline">\(\frac{\partial E}{\partial T}\)</span> derivatives are the same. This follows empirically from the <em>Joule Free Expansion Experiment</em>. Suppose we have two chambers connected by a thin hole that’s initially closed. Initially, all the gas is in the left chamber at an equilibrium temperature <span class="math inline">\(T\)</span>. Suppose the hole is then suddenly opened, allowing the gas to adiabatically expand into the right chamber.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="./resources/image-20230316094535411.png" class="img-fluid figure-img" width="500"></p>
+<p><img src="./resources/image-20230316094535411.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="500"></p>
 </figure>
 </div>
 <p>Since the gas isn’t pushing on anything, it can’t do any work. Since the process is adiabatic, no heat is flowing either. This means the total energy isn’t changing either. Once the system has settle down to equilibrium, the temperature in the two chambers must be the same. This evidently implies the energy must be a function of temperature alone, i.e. <span class="math display">\[
@@ -574,7 +624,7 @@ C_V = \frac{n}{2} Nk_B, \quad C_P = \bigg(\frac{n}{2}+1\bigg) Nk_B.
 <p>Here’s a diagram showing the difference between an engine and a refrigerator. Notice that the refrigerator is just an engine with the arrows reversed. We’ll exploit this fact a good bit shortly.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="./resources/image-20230314012828232.png" class="img-fluid figure-img" width="600"></p>
+<p><img src="./resources/image-20230314012828232.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="600"></p>
 </figure>
 </div>
 </section>
@@ -588,13 +638,13 @@ C_V = \frac{n}{2} Nk_B, \quad C_P = \bigg(\frac{n}{2}+1\bigg) Nk_B.
 <li><p>If Kelvin is false, so is Clausius: If Kelvin is false, then there exists an engine with that outputs heat <span class="math inline">\(Q\)</span> to work <span class="math inline">\(W\)</span> with 100% efficiency. We can use this <span class="math inline">\(W\)</span> to then power a refrigerator. Suppose the refrigerator pumps heat <span class="math inline">\(Q_C\)</span> from a cold reservoir to a new heat <span class="math inline">\(Q_H\)</span> that dumps into the same hot reservoir as the engine. Then on net we have a system that pumps in a heat <span class="math inline">\(Q_C\)</span> and pumps out a heat <span class="math inline">\(Q_H-Q\)</span>. That is, we’ve built a refrigerator that pumps heat from a cold body to a warm body, violating Clausius. <span class="math inline">\(\text{Q.E.D.}\)</span></p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="./resources/image-20230314020457391.png" class="img-fluid figure-img" width="600"></p>
+<p><img src="./resources/image-20230314020457391.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="600"></p>
 </figure>
 </div></li>
 <li><p>If Clausius is false, so is Kelvin: If Clausius is false, then it’s possible to build a heat pump to pump heat from a cold reservoir to a hot reservoir with no input work required. Let’s hook an engine up to the same reservoir, taking an input heat <span class="math inline">\(Q_H\)</span> from the hot reservoir and converting it to some combination of work <span class="math inline">\(W\)</span> and output heat <span class="math inline">\(Q_C\)</span>. Then on net we have a system that takes in heat <span class="math inline">\(Q_H-Q\)</span> and converts it purely into work, i.e.&nbsp;<span class="math inline">\(W = Q_H - Q\)</span>, which violates Kelvin. <span class="math inline">\(\text{Q.E.D.}\)</span></p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="./resources/image-20230314023632274.png" class="img-fluid figure-img" width="600"></p>
+<p><img src="./resources/image-20230314023632274.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="600"></p>
 </figure>
 </div></li>
 </ul>
@@ -604,7 +654,7 @@ C_V = \frac{n}{2} Nk_B, \quad C_P = \bigg(\frac{n}{2}+1\bigg) Nk_B.
 <p>If we can’t have an engine with <em>perfect</em> efficiency, what’s the highest possible efficiency we can possibly have? As we’ll soon prove, the highest efficiency engine is a <em>Carnot engine</em>. A <strong>Carnot engine</strong> is defined to be any engine that’s reversible, runs in a cycle, and whose reservoir temperatures are held fixed, with the hot reservoir at <span class="math inline">\(T_H\)</span> and the cold reservoir at <span class="math inline">\(T_C\)</span>.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="./resources/image-20230314025439698.png" class="img-fluid figure-img" width="400"></p>
+<p><img src="./resources/image-20230314025439698.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="400"></p>
 </figure>
 </div>
 <p>A thermodynamic process is called <strong>reversible</strong> if it can be run backward in time by simply reversing the inputs and outputs. It’s the thermodynamic equivalent of <em>frictionless motion</em> in classical mechanics. Since reversibility implies the system stays in equilibrium, reversible processes must be quasi-static. However, not all quasi-static processes need be reversible. Any process that dissipates energy to its environment, even if done quasi-statically, is not reversible.</p>
@@ -612,7 +662,7 @@ C_V = \frac{n}{2} Nk_B, \quad C_P = \bigg(\frac{n}{2}+1\bigg) Nk_B.
 <p><strong>Proof:</strong> Suppose we had some arbitrary non-Carnot engine with efficiency <span class="math inline">\(\eta\)</span> that takes in heat <span class="math inline">\(Q_H'\)</span> from the hot reservoir, generates work <span class="math inline">\(W\)</span>, and dumps the remaining heat <span class="math inline">\(Q_C'\)</span> into the cold reservoir. Using the same trick, hook a <em>reversed</em> Carnot engine (i.e.&nbsp;a Carnot refrigerator) up to take in the output work <span class="math inline">\(W\)</span> and use it to pump heat <span class="math inline">\(Q_C\)</span> from the cold reservoir to a heat <span class="math inline">\(Q_H\)</span> in the hot reservoir. On net, this gives a cycle that takes in heat <span class="math inline">\(Q_H'-Q_H\)</span> and converts it to heat <span class="math inline">\(Q_C'-Q_C\)</span> .</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="./resources/image-20230315095640033.png" class="img-fluid figure-img" width="600"></p>
+<p><img src="./resources/image-20230315095640033.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="600"></p>
 </figure>
 </div>
 <p>But by the second law, we must have <span class="math inline">\(Q_H'-Q_H \geq Q_C'-Q_C\)</span>. Dividing both sides by <span class="math inline">\(W\)</span> and reorganizing, we get <span class="math display">\[
@@ -623,7 +673,7 @@ C_V = \frac{n}{2} Nk_B, \quad C_P = \bigg(\frac{n}{2}+1\bigg) Nk_B.
 <p>We can use the Carnot engine to construct yet another temperature scale, except this time we can do it without reference to any material properties at all. This is called the <strong>thermodynamic temperature scale</strong>. What we can do is hook two Carnot engines up in series as follows. Suppose a Carnot engine <span class="math inline">\(CE_1\)</span> takes heat from <span class="math inline">\(T_1\)</span> to <span class="math inline">\(T_2\)</span>, and Carnot engine <span class="math inline">\(CE_2\)</span> takes heat from <span class="math inline">\(T_2\)</span> to <span class="math inline">\(T_3\)</span>. We can also think of the whole thing as a single Carnot engine <span class="math inline">\(CE\)</span> that takes heat from <span class="math inline">\(T_1\)</span> to <span class="math inline">\(T_3\)</span>.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="./resources/image-20230315101344143.png" class="img-fluid figure-img" width="600"></p>
+<p><img src="./resources/image-20230315101344143.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="600"></p>
 </figure>
 </div>
 <p>Now, if we look at the heat output for each engine, we have <span class="math display">\[
@@ -652,7 +702,7 @@ dE = \delta Q + \delta W = \delta Q - PdV.
 <p>Suppose a cycle starts on the upper left point, say <span class="math inline">\((P_A, V_A)\)</span>. It expands isothermally to <span class="math inline">\((P_B, V_B)\)</span>, then adiabatically expands to <span class="math inline">\((P_C, V_C)\)</span>, then isothermally compresses to <span class="math inline">\((P_D, V_D)\)</span>, before finally adiabatically compressing back to <span class="math inline">\((P_A, V_A)\)</span>.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="./resources/image-20230314031300597.png" class="img-fluid figure-img" width="400"></p>
+<p><img src="./resources/image-20230314031300597.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="400"></p>
 </figure>
 </div>
 <p>Along the isotherms, the ideal gas law says the curves must be hyperbolas, <span class="math display">\[
@@ -678,7 +728,7 @@ PV^\gamma = P_B V_B^\gamma, \quad PV^\gamma = P_D V_D^\gamma.
 \]</span> <strong>Proof:</strong> What we’ll do is imagine pumping a heat increment <span class="math inline">\(\delta Q\)</span> into the system by hook a Carnot engine with hot reservoir temperature <span class="math inline">\(T_0\)</span> , which takes input heat <span class="math inline">\(\delta Q_0\)</span> and uses that to generate some amount of work <span class="math inline">\(\delta W\)</span>, expelling the remaining heat into the system as <span class="math inline">\(\delta Q\)</span> at a cold reservoir temperature <span class="math inline">\(T\)</span>.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="./resources/image-20230315105950462.png" class="img-fluid figure-img" width="500"></p>
+<p><img src="./resources/image-20230315105950462.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="500"></p>
 </figure>
 </div>
 <p>Now, since the engine is a Carnot engine, we have <span class="math display">\[
@@ -907,7 +957,7 @@ C_q = \frac{\delta Q}{\partial T} \bigg |_{X,N} = T \frac{\partial S}{\partial T
 <p>In reality, this condition requires that <span class="math inline">\(P(V)\)</span> be an analytic function around <span class="math inline">\(T_c\)</span>. But it turns out that it’s <em>not</em> analytic around this point. There’s a <em>phase transition</em>. In fact, near <span class="math inline">\(T_c\)</span> it’s the case that <span class="math inline">\(\delta P \propto \delta V^\gamma\)</span>, where <span class="math inline">\(\gamma \approx 4.7\)</span> is an experimentally determined constant. To understand this better we’d need field theory.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="./resources/image-20230320092332426.png" class="img-fluid figure-img" width="400"></p>
+<p><img src="./resources/image-20230320092332426.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="400"></p>
 </figure>
 </div>
 </section>
@@ -926,7 +976,7 @@ C_q = \frac{\delta Q}{\partial T} \bigg |_{X,N} = T \frac{\partial S}{\partial T
 \]</span> This extended version of the third law can be experimentally tested by looking at the behavior of certain materials like sulfur or phosphine, which can exist near absolute zero in multiple crystalline structures called <em>allotropes</em>. Each allotrope has its own heat capacity <span class="math inline">\(C(T)\)</span>. It’s been shown that as <span class="math inline">\(T \rightarrow 0\)</span>, each of these paths sends <span class="math inline">\(C \rightarrow 0\)</span>, which implies <span class="math inline">\(S \rightarrow 0\)</span> as well.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="./resources/image-20230320105229046.png" class="img-fluid figure-img" width="400"></p>
+<p><img src="./resources/image-20230320105229046.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="400"></p>
 </figure>
 </div>
 <p>Here are a few notable consequences that follow from the third law. First, since <span class="math inline">\(S \rightarrow 0\)</span> as <span class="math inline">\(T \rightarrow 0\)</span>, it must also be true that any partial derivative of <span class="math inline">\(S\)</span> must go to zero as well, <span class="math display">\[
@@ -939,7 +989,7 @@ C_q = \frac{\delta Q}{\partial T} \bigg |_{X,N} = T \frac{\partial S}{\partial T
 \]</span> The last consequence of note is that it must be impossible to cool any system to absolute zero in a finite number of steps, which for practical purposes means it’s impossible to cool a system to zero exactly. For example, suppose we tried to cool a gas by adiabatically reducing its pressure. Since all <span class="math inline">\(S(T)\)</span> curves must intersect at <span class="math inline">\(0\)</span>, any successive step would involve progressively smaller changes in <span class="math inline">\(S\)</span> and <span class="math inline">\(T\)</span> as <span class="math inline">\(T \rightarrow 0\)</span>.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="./resources/image-20230320110721727.png" class="img-fluid figure-img" width="400"></p>
+<p><img src="./resources/image-20230320110721727.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="400"></p>
 </figure>
 </div>
 <p>It’s worth mentioning that in a certain sense the third law is less reliable than the other laws of thermodynamics since at its root its validity rests entirely on quantum mechanics, and the quantum mechanical behavior of different systems can vary wildly near absolute zero. This contrasts with the other laws, which at a microscopic level only depend on things like the conservation of energy, or the emergent effect of a large number of degrees of freedom. We’ll see a microscopic derivation of each of these laws in future chapters.</p>
@@ -975,9 +1025,23 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     icon: icon
   };
   anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
   const clipboard = new window.ClipboardJS('.code-copy-button', {
-    target: function(trigger) {
-      return trigger.previousElementSibling;
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
     }
   });
   clipboard.on('success', function(e) {
@@ -1013,10 +1077,27 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
-  function tippyHover(el, contentFn) {
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -1026,8 +1107,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -1039,9 +1129,245 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
     });
   }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
   const findCites = (el) => {
     const parentEl = el.parentElement;
     if (parentEl) {
@@ -1083,17 +1409,18 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation column-page-right">
   <div class="nav-page nav-page-previous">
-      <a href="../quantum-mechanics/second-quantization.html" class="pagination-link">
+      <a href="../quantum-mechanics/second-quantization.html" class="pagination-link" aria-label="Second Quantization">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Second Quantization</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../statistical-mechanics/probability.html" class="pagination-link">
+      <a href="../statistical-mechanics/probability.html" class="pagination-link" aria-label="Probability">
         <span class="nav-page-text"><span class="chapter-title">Probability</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
 </div> <!-- /content -->
+
 
 
 

@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.335">
+<meta name="generator" content="quarto-1.4.551">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Personal Notes - 2&nbsp; Simple Systems</title>
+<title>Personal Notes - Simple Systems</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -17,7 +17,7 @@ div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
   width: 0.8em;
-  margin: 0 0.8em 0.2em -1.6em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
 </style>
@@ -47,7 +47,13 @@ ul.task-list li input[type="checkbox"] {
   "collapse-after": 3,
   "panel-placement": "start",
   "type": "textbox",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -56,12 +62,42 @@ ul.task-list li input[type="checkbox"] {
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit"
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
   }
 }</script>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -69,11 +105,16 @@ ul.task-list li input[type="checkbox"] {
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-    <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title"><span class="chapter-title">Simple Systems</span></h1>
-      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
-        <i class="bi bi-chevron-right"></i>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../classical-mechanics/newtonian-mechanics.html">Classical Mechanics</a></li><li class="breadcrumb-item"><a href="../classical-mechanics/simple-systems.html"><span class="chapter-title">Simple Systems</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
       </button>
     </div>
   </nav>
@@ -81,28 +122,30 @@ ul.task-list li input[type="checkbox"] {
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation docked overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="../">Personal Notes</a> 
     </div>
       </div>
-      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
         <div id="quarto-search" class="" title="Search"></div>
         </div>
-      </div>
+        </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../index.html" class="sidebar-item-text sidebar-link">Preface</a>
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">Classical Mechanics</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">Classical Mechanics</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -166,8 +209,9 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">Electrodynamics</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text">Electrodynamics</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -181,8 +225,9 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">Circuit Analysis</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+ <span class="menu-text">Circuit Analysis</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -241,8 +286,9 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">Quantum Mechanics</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+ <span class="menu-text">Quantum Mechanics</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -261,8 +307,9 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">Statistical Mechanics</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
+ <span class="menu-text">Statistical Mechanics</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -330,20 +377,21 @@ ul.task-list li input[type="checkbox"] {
   </ul>
 </nav>
 </nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
     </div>
 <!-- main -->
 <main class="content column-page-right" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../classical-mechanics/newtonian-mechanics.html">Classical Mechanics</a></li><li class="breadcrumb-item"><a href="../classical-mechanics/simple-systems.html"><span class="chapter-title">Simple Systems</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block"><span class="chapter-title">Simple Systems</span></h1>
+<h1 class="title"><span class="chapter-title">Simple Systems</span></h1>
 </div>
 
 
 
-<div class="quarto-title-meta">
+<div class="quarto-title-meta column-page-right">
 
     
   
@@ -351,7 +399,9 @@ ul.task-list li input[type="checkbox"] {
   </div>
   
 
+
 </header>
+
 
 <p>Even if we can easily find the equations of motion of a system, very few are simple enough to solve exactly using analytical methods. In this lesson we’ll consider some of the most common such systems. We’ll focus on (possibly non-conservative) forces acting on a single-particle particle of mass <span class="math inline">\(m\)</span> that take the form, <span class="math display">\[
 \mathbf{F} = \mathbf{F}(\mathbf{x}, \mathbf{v}, t).
@@ -400,7 +450,7 @@ y(x) = v_{0}\frac{x}{v_0 \cos \theta}\sin \theta - \frac{1}{2} g\bigg(\frac{x}{v
 \]</span> which is of course a downward-sloping parabola centered at the vertex <span class="math inline">\(\big(\frac{v_0^2 \sin 2\theta}{2g}, \frac{v_0^2 \sin^2 \theta}{g}\big)\)</span>.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="./resources/image-20230214035909918.png" class="img-fluid figure-img" width="200"></p>
+<p><img src="./resources/image-20230214035909918.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="200"></p>
 </figure>
 </div>
 <hr>
@@ -438,7 +488,7 @@ x(t) = x_0 + \int_0^t v_0 e^{-\frac{b}{m} t'} dt' = x_0 + \frac{mv_0}{b}\big(1 -
 \]</span> Evidently, such forces cause a moving particle to slowly come to rest, since <span class="math inline">\(v \rightarrow 0\)</span> as <span class="math inline">\(t \rightarrow \infty\)</span>. The position where the particle comes to rest is evidently <span class="math inline">\(x_f = x_0 + \frac{mv_0}{b}\)</span>. The <span class="math inline">\(\frac{1}{e}\)</span> decay time is <span class="math inline">\(\tau = \frac{m}{b}\)</span>. This suggests that <span class="math inline">\(b\)</span> functions as a sort of <em>drag coefficient</em>, since a large <span class="math inline">\(b\)</span> causes the system to dissipate faster.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="./resources/image-20230214033729125.png" class="img-fluid figure-img" width="500"></p>
+<p><img src="./resources/image-20230214033729125.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="500"></p>
 </figure>
 </div>
 <p>Linear drag is frequently used to model objects moving through a viscous medium at low speeds. Suppose a spherical object of radius <span class="math inline">\(R\)</span> is moving slowly in a viscous medium with viscosity <span class="math inline">\(\eta\)</span>. Then the drag force on the object is given by <strong>Stokes’ Law</strong>,</p>
@@ -454,7 +504,7 @@ b = 6\pi\eta R.
 <p>Suppose a ball of radius <span class="math inline">\(R\)</span> and mass <span class="math inline">\(m\)</span> is dropped in a viscous syrup from rest at <span class="math inline">\(x=0\)</span>. Find the velocity and position of the ball as it moves through the fluid.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="./resources/image-20230214034514241.png" class="img-fluid figure-img" width="150"></p>
+<p><img src="./resources/image-20230214034514241.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="150"></p>
 </figure>
 </div>
 <p>This is a 1-dimensional motion problem since the ball is dropped from rest under gravity, with <span class="math inline">\(F=F_d + mg\)</span>. Here Stoke’s law applies, so the drag force is <span class="math inline">\(F_d = -bv = -b\dot x\)</span>. Plugging into Newton’s Second Law, we have <span class="math display">\[
@@ -472,7 +522,7 @@ x(t) = v_t\bigg(t - \frac{b}{m}(1 - e^{-\frac{b}{m}t})\bigg).
 \]</span> Notice that drag causes the ball to fall much slower than it would in free-fall. Instead of being a quadratic function of time, <span class="math inline">\(x(t)\)</span> is now approximately a linear function of time, with <span class="math inline">\(x(t) \sim v_t t\)</span> for large <span class="math inline">\(t\)</span>.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="./resources/image-20230214043325681.png" class="img-fluid figure-img" width="400"></p>
+<p><img src="./resources/image-20230214043325681.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="400"></p>
 </figure>
 </div>
 <hr>
@@ -493,7 +543,7 @@ x(t) = x_0 + \int_0^t \frac{dt}{\frac{1}{v_0} + \frac{c}{m}t} = x_0 + \frac{m}{c
 \]</span> In this case, <span class="math inline">\(v \rightarrow 0\)</span>, but <span class="math inline">\(x \rightarrow \infty\)</span> as <span class="math inline">\(t \rightarrow \infty\)</span>. Evidently, while linear drag is strong enough to slow a moving particle back down to rest, quadratic drag is not.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="./resources/image-20230214045706509.png" class="img-fluid figure-img" width="400"></p>
+<p><img src="./resources/image-20230214045706509.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="400"></p>
 </figure>
 </div>
 <p>Quadratic drag is often used to model the drag experienced by objects moving through air or other media where pressure is more important than viscosity. For an object moving through air, drag is well-modeled by the <strong>drag equation</strong>, <span class="math display">\[
@@ -536,7 +586,7 @@ x(t) = c_1 \cos \omega t + c_2 \sin \omega t.
 \]</span> This trajectory is oscillatory and stable since it only involves sines and cosines, both of which are bounded periodic functions. It’s custom to re-write this equation in a more useful form using trig identities,</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="./resources/image-20230214055348215.png" class="img-fluid figure-img" width="150"></p>
+<p><img src="./resources/image-20230214055348215.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="150"></p>
 </figure>
 </div>
 <p><span class="math display">\[
@@ -551,7 +601,7 @@ x(t) &amp;= c_1 \cos \omega t + c_2 \sin \omega t \\
 \]</span></p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="./resources/image-20230214060424511.png" class="img-fluid figure-img" width="300"></p>
+<p><img src="./resources/image-20230214060424511.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="300"></p>
 </figure>
 </div>
 <p>It’s usually convenient when dealing with harmonic oscillators to work in the complex plane. Consider the complex form of SHO, given by the differential equation <span class="math display">\[
@@ -572,7 +622,7 @@ z(t) = A e^{i(\omega t - \delta)}
 \]</span> Evidently then, SHO is just a CCW circular rotation in the complex plane with radius <span class="math inline">\(A\)</span>.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="./resources/image-20230215084009899.png" class="img-fluid figure-img" width="200"></p>
+<p><img src="./resources/image-20230215084009899.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="200"></p>
 </figure>
 </div>
 <hr>
@@ -581,7 +631,7 @@ z(t) = A e^{i(\omega t - \delta)}
 <p>Suppose a bottle of mass <span class="math inline">\(m\)</span> floats calmly in a bucket of water of density <span class="math inline">\(\rho\)</span> at some equilibrium depth of <span class="math inline">\(d=d_0\)</span>. Suppose we push down slightly on the bottle, perturbing its depth to <span class="math inline">\(d = d_0 + x\)</span>. The bottle will begin to oscillate. Find its period of oscillation <span class="math inline">\(\tau\)</span>.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="./resources/image-20230215084145892.png" class="img-fluid figure-img" width="200"></p>
+<p><img src="./resources/image-20230215084145892.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="200"></p>
 </figure>
 </div>
 <p>The forces on the bottle are gravity downward and an opposing buoyant force upward, <span class="math display">\[
@@ -611,7 +661,7 @@ y(t) &amp;= A_y \cos(\omega_y t - \delta_y).
 <p>The motion will only be periodic if <span class="math inline">\(\frac{\omega_x}{\omega_y}\)</span> is <em>rational</em>, i.e.&nbsp;if the frequencies are integer multiples of each other. The curves traced out by <span class="math inline">\((x(t), y(t))\)</span> when <span class="math inline">\(\frac{\omega_x}{\omega_y}\)</span> is rational are called <strong>Lissajous curves</strong>. They can get quite complicated, but they’ll always be periodic. Here’s what a few of them look like for different<span class="math inline">\(\frac{\omega_x}{\omega_y}\)</span> and <span class="math inline">\(\delta\)</span>.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://upload.wikimedia.org/wikipedia/commons/4/47/Lissajous_relaciones.png" class="img-fluid figure-img" width="400"></p>
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/4/47/Lissajous_relaciones.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="400"></p>
 </figure>
 </div>
 <hr>
@@ -620,7 +670,7 @@ y(t) &amp;= A_y \cos(\omega_y t - \delta_y).
 <p>Suppose a particle with charge <span class="math inline">\(q\)</span> and mass <span class="math inline">\(m\)</span> is moving in the presence of a constant magnetic field <span class="math inline">\(\mathbf{B}\)</span>. Find its equations of motion, solve for the trajectory, and describe what it looks like.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="./resources/image-20230215094609106.png" class="img-fluid figure-img" width="200"></p>
+<p><img src="./resources/image-20230215094609106.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="200"></p>
 </figure>
 </div>
 <p>If <span class="math inline">\(\mathbf{v}\)</span> is the velocity of the particle, the magnetic force is given by <span class="math inline">\(\mathbf{F} = \frac{q}{c} \mathbf{v} \times \mathbf{B}\)</span>. Suppose <span class="math inline">\(\mathbf{B} = B \mathbf{e}_z\)</span>. Then <span class="math display">\[
@@ -662,7 +712,7 @@ R = \frac{mcv_\perp}{qB}.
 \]</span></p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="./resources/image-20230215095809160.png" class="img-fluid figure-img" width="200"></p>
+<p><img src="./resources/image-20230215095809160.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="200"></p>
 </figure>
 </div>
 <hr>
@@ -692,7 +742,7 @@ x(t) = A e^{-\beta t} \cos(\omega't - \delta).
 \]</span> This is an exponentially damped sinusoidal oscillation, where <span class="math inline">\(x \rightarrow 0\)</span> with time constant <span class="math inline">\(\tau = \frac{1}{\beta}\)</span>. Notice <span class="math inline">\(\omega' &lt; \omega_0\)</span>, which means the <em>actual</em> frequency of the oscillation is <em>less</em> than the natural frequency. When <span class="math inline">\(Q \gg 1\)</span> this distinction disappears, since <span class="math inline">\(\omega' \approx \omega_0\)</span>. In practice this occurs frequently for underdamped solutions, and <span class="math inline">\(Q\)</span> need not even be large for <span class="math inline">\(\omega' \approx \omega_0\)</span>.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="./resources/image-20230215123127416.png" class="img-fluid figure-img" width="200"></p>
+<p><img src="./resources/image-20230215123127416.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="200"></p>
 </figure>
 </div></li>
 <li><p>Overdamping (<span class="math inline">\(\omega' &lt; 0\)</span> or <span class="math inline">\(Q &gt; \frac{1}{2}\)</span>): In this case, <span class="math inline">\(\omega'\)</span> is complex. Define <span class="math inline">\(\kappa \equiv i\omega'\)</span>, which is real-valued. Then we have a solution of the form <span class="math display">\[
@@ -700,7 +750,7 @@ x(t) = e^{-\beta t}(c_1 e^{\kappa t} + c_2 e^{-\kappa t}).
 \]</span> Since <span class="math inline">\(\kappa &lt; \beta\)</span>, <span class="math inline">\(x \rightarrow 0\)</span> monotonically, with time constant <span class="math inline">\(\tau = \frac{1}{\beta - \kappa}\)</span>.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="./resources/image-20230215123205612.png" class="img-fluid figure-img" width="200"></p>
+<p><img src="./resources/image-20230215123205612.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="200"></p>
 </figure>
 </div></li>
 <li><p>Critical damping (<span class="math inline">\(\omega' = 0\)</span> or <span class="math inline">\(Q = \frac{1}{2}\)</span>): This is the edge case where <span class="math inline">\(\omega_0 = \beta\)</span> exactly. Here the solution is degenerate, with <span class="math display">\[
@@ -708,7 +758,7 @@ x(t) = (c_1 + c_2 t) e^{-\beta t}.
 \]</span> Again, <span class="math inline">\(x \rightarrow 0\)</span>, but with time constant <span class="math inline">\(\tau = \frac{1}{\beta}\)</span>. Evidently, the critically damped solution decays faster than the overdamped solution.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="./resources/image-20230215123225987.png" class="img-fluid figure-img" width="200"></p>
+<p><img src="./resources/image-20230215123225987.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="200"></p>
 </figure>
 </div></li>
 </ol>
@@ -731,7 +781,7 @@ m \ddot x + b \dot x + kx = F_0(t).
 <p>Suppose a spring is suspended vertically from a ceiling under the presence of gravity. Find the position <span class="math inline">\(x=x(t)\)</span>. Also, find the amount that gravity changes the spring’s equilibrium length.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="./resources/image-20230215134622171.png" class="img-fluid figure-img" width="200"></p>
+<p><img src="./resources/image-20230215134622171.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="200"></p>
 </figure>
 </div>
 <p>The forces in this problem are gravity, linear drag, and a spring force, so if <span class="math inline">\(x\)</span> points downward, <span class="math display">\[
@@ -759,7 +809,7 @@ x(t) = Ae^{-\beta t} \cos(\omega' t - \delta) + \frac{gm}{k}.
 \]</span> With the help of little trig, we can decompose this solution to get the real amplitude and phase,</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="./resources/image-20230215141606559.png" class="img-fluid figure-img" width="150"></p>
+<p><img src="./resources/image-20230215141606559.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="150"></p>
 </figure>
 </div>
 <p><span class="math display">\[
@@ -768,7 +818,7 @@ A = \frac{f_0}{\sqrt{(\omega_0^2-\omega^2)^2 + 4\beta^2\omega^2}}, \quad \delta 
 <p>With these, the real particular solution is given by <span class="math inline">\(x_p(t) = A \cos(\omega t - \delta)\)</span>. Since the homogenous solution decays to zero exponentially, <span class="math inline">\(x \rightarrow x_p\)</span> as <span class="math inline">\(t \rightarrow \infty\)</span>. That is, <span class="math inline">\(x_p(t)\)</span> describes the <em>steady state solution</em> of the DDHO. In this sense, the system evidently “forgets” its own natural frequency and starts to oscillate at the driving frequency as time goes on and the transient state dies off.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="./resources/image-20230215142723690.png" class="img-fluid figure-img" width="300"></p>
+<p><img src="./resources/image-20230215142723690.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="300"></p>
 </figure>
 </div>
 <p>Interestingly, the memory of the transient dynamics <em>is</em> preserved in the amplitude and phase. As a rule of thumb, the number of oscillations <span class="math inline">\(N\)</span> until <span class="math inline">\(x \approx x_p\)</span> is basically just the Q-factor, <span class="math display">\[
@@ -781,7 +831,7 @@ N \approx \frac{Q}{\pi}.
 </ul>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="./resources/image-20230215145247903.png" class="img-fluid figure-img" width="500"></p>
+<p><img src="./resources/image-20230215145247903.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="500"></p>
 </figure>
 </div>
 <p>Evidently, <span class="math inline">\(A\)</span> is maximized at <span class="math inline">\(\omega_R = \sqrt{\omega_0^2-2\beta^2} = \omega_0 \sqrt{1-\frac{1}{2Q^2}}\)</span>. When <span class="math inline">\(Q&gt;1\)</span>, <span class="math inline">\(\omega_R \approx \omega_0\)</span>, so this distinction doesn’t really matter. This frequency <span class="math inline">\(\omega_R \approx \omega_0\)</span> is called the <strong>resonance frequency</strong> of the system. When the driver is operating near the resonance frequency, the system responds extremely well to the driving force. It turns out that when a spectrum of frequencies is dumped on an oscillating system, the system tends to pick out the resonance frequencies and respond to those. This fact makes resonance a very important topic in physics and engineering.</p>
@@ -801,7 +851,7 @@ FWHM \equiv \Delta \omega \equiv \omega_R - \omega_L, \quad \text{where} \quad A
 \]</span> Evidently then, <span class="math inline">\(Q\)</span> represents the resolving power of the resonance curve. The higher the Q-factor is, the more sharply peaked the resonance curve is, and the easier we can pinpoint the resonance frequency exactly. Indeed, this is why <span class="math inline">\(Q\)</span> is called a <em>quality factor</em>.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="./resources/image-20230215154645401.png" class="img-fluid figure-img" width="300"></p>
+<p><img src="./resources/image-20230215154645401.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="300"></p>
 </figure>
 </div>
 <p>One very important system where we want a high-Q is a <em>clock</em>. To keep precise time, we need to make sure that it’s oscillating pretty much <em>exactly</em> at its resonance frequencies. This is because we need to keep a regular period, so <span class="math inline">\(\tau = \frac{2\pi}{\omega}\)</span> can’t be allowed to vary very much from the true period <span class="math inline">\(\tau_0 = \frac{2\pi}{\omega_0}\)</span>. There’s a tradeoff though. Since the decay time of the transient behavior is <span class="math inline">\(N\tau_0 \equiv \frac{1}{\beta}\)</span>, it takes about <span class="math inline">\(N=\frac{Q}{\pi}\)</span> cycles of <em>ringing</em> for the system to come to steady state. So the better precision we want, the longer we’ll have to wait for the system to come to steady state.</p>
@@ -810,7 +860,7 @@ FWHM \equiv \Delta \omega \equiv \omega_R - \omega_L, \quad \text{where} \quad A
 \]</span> Evidently as <span class="math inline">\(Q\)</span> increases, the system becomes more responsive to sudden changes in phase around <span class="math inline">\(\omega_0\)</span>.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="./resources/image-20230215160032343.png" class="img-fluid figure-img" width="300"></p>
+<p><img src="./resources/image-20230215160032343.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="300"></p>
 </figure>
 </div>
 </section>
@@ -829,7 +879,7 @@ A^2 = \langle x^2(t) \rangle = \frac{1}{2} \sum_{n=0}^\infty A_n^2.
 \]</span> The peaks evidently go to zero as <span class="math inline">\(n \rightarrow \infty\)</span> since each <span class="math inline">\(A_n^2 \propto f_n^2\)</span> and each <span class="math inline">\(f_n \rightarrow 0\)</span> by the Riemann–Lebesgue lemma.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="./resources/image-20230215160201364.png" class="img-fluid figure-img" width="250"></p>
+<p><img src="./resources/image-20230215160201364.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="250"></p>
 </figure>
 </div>
 <p>What if the driving force isn’t periodic? In this case we have a few options. One would be to decompose it into its <em>Fourier transform</em>, <span class="math display">\[
@@ -874,9 +924,23 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     icon: icon
   };
   anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
   const clipboard = new window.ClipboardJS('.code-copy-button', {
-    target: function(trigger) {
-      return trigger.previousElementSibling;
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
     }
   });
   clipboard.on('success', function(e) {
@@ -912,10 +976,27 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
-  function tippyHover(el, contentFn) {
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -925,8 +1006,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -938,9 +1028,245 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
     });
   }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
   const findCites = (el) => {
     const parentEl = el.parentElement;
     if (parentEl) {
@@ -982,17 +1308,18 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation column-page-right">
   <div class="nav-page nav-page-previous">
-      <a href="../classical-mechanics/newtonian-mechanics.html" class="pagination-link">
+      <a href="../classical-mechanics/newtonian-mechanics.html" class="pagination-link" aria-label="Newtonian Mechanics">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Newtonian Mechanics</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../classical-mechanics/reference-frames.html" class="pagination-link">
+      <a href="../classical-mechanics/reference-frames.html" class="pagination-link" aria-label="Reference Frames">
         <span class="nav-page-text"><span class="chapter-title">Reference Frames</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
 </div> <!-- /content -->
+
 
 
 
