@@ -28,7 +28,7 @@ where it's assumed that forces are measured in *dynes* and distances in *centime
 
 ### Electric Fields
 
-While we could proceed to study this force between charges perfectly well, it's more useful to make another abstraction, the *field abstraction*. Suppose we again have two charged bodies $q$ and $q'$ located in space at positions $\mathbf{x}$ and $\mathbf{x}'$ respectively. Due to Coulomb's Law, charge $q$ will feel a force $\mathbf{F}$ due to charge $q'$. If we look at the quantity $\mathbf{E} \equiv \mathbf{F}/q$ in the limit that $q$ becomes infinitesimally small, it's empirically found that this stabilizes out to a constant, well-defined value. This quantity $\mathbf{E}$ is called the *electric field* due to the presence of $q'$. It's evidently a vector field satisfying
+While we could proceed to study this force between charges perfectly well, it's more useful to make another abstraction, the *field abstraction*. Suppose we again have two charged bodies $q$ and $q'$ located in space at positions $\mathbf{x}$ and $\mathbf{x}'$ respectively. Due to Coulomb's Law, charge $q$ will feel a force $\mathbf{F}$ due to charge $q'$. If we look at the quantity $\mathbf{E} \equiv \mathbf{F}/q$ in the limit that $q$ becomes infinitesimally small, it's empirically found that this stabilizes out to a constant, well-defined value. This quantity $\mathbf{E}$ is called the *electric field* due to the presence of $q'$. It's a vector field satisfying the equation
 $$
 \mathbf{F} = q \mathbf{E}(\mathbf{x}) \ .
 $$
@@ -62,19 +62,19 @@ As a good rule of thumb for drawing field lines, they should always *start* at p
 
 ### Coulomb vs Gravitational Forces
 
-Given that Coulomb's Law looks so similar to Newton's Law of Gravitation, it's fair to ask how the forces compare to each other. Let's suppose we have two particles separated by a distance $r_{12}$ with masses $m_1, m_2$ and charges $q_1, q_2$ respectively. Those two particles will feel both a graviational force $\mathbf{F}_g$ and a Coulomb force $\mathbf{F}_e$. We can look at their relative interaction strengths by taking their ratio,
+Given that Coulomb's Law looks so similar to Newton's Law of Gravitation, it's fair to ask how the forces compare to each other. Let's suppose we have two particles separated by a distance $r_{12}$ with masses $m_1, m_2$ and charges $q_1, q_2$ respectively. The two particles will feel both a graviational force $\mathbf{F}_g$ and a Coulomb force $\mathbf{F}_e$. We can get an idea of their relative strengths by looking at their ratio,
 $$
 \frac{|\mathbf{F}_e|}{|\mathbf{F}_g|} = k_e \frac{q_1 q_2}{r_{12}} \bigg / G \frac{m_1 m_2}{r_{12}} = \frac{k_e q_1 q_2}{G m_1 m_2} \ .
 $$
-We can get a feel for this ratio by picking a representative particle. Let's suppose both particles are *electrons* with masses $m_1 = m_2 = m_e$ and charges $q_1 = q_2 = e$. In CGS units, we have
+To get a feel for these values let's pick a representative particle, the *electrons*. Then we'd have masses $m_1 = m_2 = m_e$ and charges $q_1 = q_2 = e$. In CGS units, these values are
 $$
 k_e = 1 \ , \ G \approx 6.7 \cdot 10^{-8} \ , \ m_e \approx 9 \cdot 10^{-28} \ , \ e \approx -5 \cdot 10^{-10} \ .
 $$
 Plugging these numbers in, we have
 $$
-\frac{|\mathbf{F}_e|}{|\mathbf{F}_g|} = \frac{e^2}{G m_e^2} \approx 10^{42} \ .
+\frac{|\mathbf{F}_e|}{|\mathbf{F}_g|} = \frac{e^2}{G m_e^2} \approx 4 \cdot 10^{42} \ .
 $$
-Evidently, for electrons the Coulomb force is 42 orders of magnitude stronger than the gravitational force. This is so stark that we can for all practical purposes neglect the effects of gravity when studying the interactions between electrons. Indeed, this is one reason why in quantum mechanics we rarely consider gravity. On the other hand, larger objects like people, planets, or galaxies tend to be electrically neutral or close to it. This means in those cases gravity is all there is, and for large masses gravity can be quite substantial.
+Evidently, for two electrons the Coulomb force is 42 orders of magnitude stronger than the gravitational force. The difference between the two forces is so stark we can practically speaking neglect the effects of gravity when studying the interactions between electrons, or indeed any fundamental particle. Indeed, this is one reason why in quantum mechanics we rarely consider gravity. On the other hand, larger objects like people, planets, or galaxies tend to be electrically neutral or very close to it. This means in those cases gravity is all there is, and for large masses gravity can obviously be quite substantial.
 
 ### Charge Distributions
 
@@ -94,17 +94,35 @@ This idea can be seen in the figure below. The gray blog is the macroscopic mate
 
 ![](../../../Library/Application Support/typora-user-images/image-20240308151931197.png){fig-align=center width=300}
 
-This gives a more useful definition of the electric field than the previous definition in terms of point charges. Indeed, we can completely recover the point charge definition from this one. The charge distribution of a point charge $q'$​ located at $\mathbf{x}'$ is just proportional to a delta function, with
+Note that since we can always just define the charge density outside the material to be zero, we don't have to integrate only over $\mathcal{V}$. We can integrate over all space, so long as we're mindful of where the charge density is non-zero.
+
+Before working a few examples to find the electric field from various charge distributions, it's worth noting that in many cases we won't always be interested in 3-dimensional charge distributions like we've defined. Sometimes we'll be interested in lower-dimensional distributions as well. In these cases it'll be convenient to slightly modify our equation for the electric field by using different kinds of charge densities. 
+
+We already saw one example of this, the point charge. While we derived the equation for the electric field point charge without the use of charge densities, we can express those equations naturally using charge densities as well. The density of a point is just a delta function. If we have a point charge $q'$ located at $\mathbf{x}'$, its charge distribution at an arbitrary point $\mathbf{x}''$ can be expressed as
 $$
 \rho(\mathbf{x}'') = q' \delta(\mathbf{x}''-\mathbf{x}') \ .
 $$
-Integrating the electric field over all space and using the sifting property of delta functions gives us our original definition for the electric field of a point charge. However, the fact that the density of a point charge is an infinite point spike will create occasional paradoxes that we'll need to address later on.
+Integrating the electric field over all space and using the sifting property of delta functions gives us our original equation for the electric field of a point charge,
+$$
+\mathbf{E}(\mathbf{x}) = \int_\mathcal{V} d^3 \mathbf{x}'' \ q' \delta(\mathbf{x}''-\mathbf{x}') \frac{\mathbf{x}-\mathbf{x}''}{|\mathbf{x}-\mathbf{x}''|^3} = q' \frac{\mathbf{x}-\mathbf{x}'}{|\mathbf{x}-\mathbf{x}'|^3} \ .
+$$
+If we instead suppose a distribution of charge is concentrated along some curve $\mathcal{C}$ in space, it's more convenient to define a 1-dimensional charge density, or *line density*, $\lambda(\mathbf{x}')$ via the relation $dq' = \lambda(\mathbf{x}') d\ell'$, where we imagine $d\ell'$ being an infinitesimal segment along the curve of charge. Then the electric field would be
+$$
+\mathbf{E}(\mathbf{x}) = \int_\mathcal{C} d \ell' \ \lambda(\mathbf{x}') \frac{\mathbf{x}-\mathbf{x}'}{|\mathbf{x}-\mathbf{x}'|^3} \ .
+$$
+This is an abstraction to be sure, but often a convenient one, for example if we're interested in the electric field due to a wire of charge. For wires we imagine the thickness being negligible compared to the lengths, meaning treating them as 1-dimensional curves of charge is convenient and useful.
 
+FIGURE
 
+Similarly, we can imagine a distribution of charge concentrated along some *surface* $\mathcal{S}$ in space. In this case, it's convenient to define a 2-dimensional charge density, or *surface density*, $\sigma(\mathbf{x}')$ via $dq' = \sigma(\mathbf{x}') da'$, where $da'$ is an infinitesimal patch of area inside the surface of charge. Then the electric field would be
+$$
+\mathbf{E}(\mathbf{x}) = \int_\mathcal{S} da' \ \sigma(\mathbf{x}') \frac{\mathbf{x}-\mathbf{x}'}{|\mathbf{x}-\mathbf{x}'|^3} \ .
+$$
+Again, this is only an abstraction, but a convenient one. We'll often imagine sheets of charge where the length and width of the sheet are much larger than its thickness. In such cases it's convenient to treet the sheet as 2-dimensional.
 
-- Define charge density and the continuous definition of electric field
-- Mention line and surface densities and their modifications
-- Mention how point charges can be expressed as densities using delta functions
+FIGURE
+
+- Varify line/surface density equations, especially the differentials….
 - Work examples: electric field of line of charge, disk of charge, hollow sphere of charge
 
 
@@ -123,23 +141,129 @@ Integrating the electric field over all space and using the sifting property of 
 
 ## Gauss's Law
 
-- Define the electric flux through a given area
-- Figure out what the flux through a sphere is for a point charge
-- Use superposition to figure out what flux will be for a charge distribution
-- Generalize to arbitrary closed surfaces to define Gauss's law in integral form
-- Use divergence theorem to express Gauss's Law in differential form
+While Coulomb's Law is perhaps the most intuitive way to find the electric field, it's usually not the best way, nor is it the most illuminating. Typically in physics we find it useful to express equations for fields in terms of *field equations*, which are differential equations that can be solved to find the field of interest. Electrostatics turns out to have *two* field equations, one involving the divergence of the electric field, and one involving its curl. Here we'll derive the equation for the divergence, known as *Gauss's Law*.
+
+The idea is to go back to thinking about the electric field in terms of field lines. Recall that we could think of the electric field as the *flux density* of electric field lines generated by the source charge distribution. This suggest it's useful to define what we mean by flux, or more correctly the flux through a surface.
+
+ Suppose $\mathcal{S}$ is some surface of interest, closed or not. The *electrostatic flux* through $\mathcal{S}$​ is defined to be
+$$
+\Phi_\mathbf{E}(\mathbf{x}) \equiv \int_\mathcal{S} \mathbf{E} \cdot d\mathbf{a} \ .
+$$
+Intuitively, this just says we can think of electrostatic flux as the *net* number of field lines passing through the surface area of $\mathcal{S}$​. The more net field lines passing through the surface, the higher the flux. This is why we can think of the electric field as the electrostatic flux density, since it's in a sense just the flux per unit area through some given surface.
+
+Note the use of the phrase *net* number of field lines here is important because flux is actually a *signed* quantity since each field line can pass through the surface on either side, which flips the sign of $\mathbf{E} \cdot d\mathbf{a}$​​. If a field line passes through the surface and back out the other direction, it contributes nothing to the flux.
+
+Also note that the definition of flux as given depends entirely on which surface $\mathcal{S}$ we choose. We should expect that in general $\Phi_\mathbf{E}(\mathbf{x})$ will be different for different surfaces in space. However, as we'll soon see the flux is indeed unique for *closed* surfaces that enclose the same charge distribution.
+
+What we'd like to do is find a way to relate the flux to the source charge density $\rho$ in some way, since we're in practice usually trying to find $\mathbf{E}$ given some known distribution of source charges. To do that let's start by trying to find the flux of a point charge $q$ located at the origin. For the flux surface we'll choose a sphere of radius $r$ enclosing the point charge. For a point charge centered at the origin, we must have
+$$
+\mathbf{E}(\mathbf{x}) = q \frac{\mathbf{x}}{|\mathbf{x}|^3} = \frac{q}{r^2} \mathbf{e}_r \ ,
+$$
+where we employ the usual convention that $r = |\mathbf{x}|$ is the distance to the field point. For a sphere of radius $r$ the area element is $d\mathbf{a} = r^2 d\Omega \mathbf{e}_r$. Integrating over all $\mathbf{E} \cdot d\mathbf{a}$ to get the flux, we then have
+$$
+\oint_\mathcal{S} \mathbf{E} \cdot d\mathbf{a} = \int d\Omega \ r^2 \frac{q}{r^2} \mathbf{e}_r \cdot \mathbf{e}_r = 4\pi q \ .
+$$
+Thus, for a point charge, the flux through a sphere enclosing the charge is just $4\pi q$. This is in fact true for *any* closed surface enclosing the charge, not just a sphere. 
+
+To see why, suppose $\mathcal{S}$ is some general closed surface, shaped like a potato let's say. Then
+$$
+\mathbf{E} \cdot d\mathbf{a} = |\mathbf{E}| |\mathbf{n}| \cos\alpha da = \frac{q}{r^2} \cos\alpha da \ ,
+$$
+where $\alpha$ is the outward angle between $\mathbf{E}$ and the surface normal $\mathbf{n}$ at the field point $\mathbf{x}$. But, we also must have a new area element of $da = \frac{r^2}{\cos\alpha} d\Omega$ since the surface is no longer spherical. All together, this means the non-spherical behavior of the surface becomes immaterial to the flux, and we again get
+$$
+\oint_\mathcal{S} \mathbf{E} \cdot d\mathbf{a} = \int d\Omega \ \frac{r^2}{\cos\alpha} \frac{q}{r^2} \cos\alpha = 4\pi q \ .
+$$
+What about if the charge is outside the closed surface though? What happens then? Intuitively we should expect the flux to be zero, since any field line flowing into the surface must also flow out at some point. Indeed this is what happens. Any flux of $\mathbf{E} \cdot d\mathbf{a}$ passing into the surface will have a corresponding flux $-\mathbf{E} \cdot d\mathbf{a}$ on the opposite side where the field line passes back out of the surface. This can most easly be shown from the figure below.
+
+![](../../../Library/Application Support/typora-user-images/image-20240318185941679.png){fig-align=center width=300}
+
+Thus, the flux for a point charge through any closed surface is $4\pi q$ if the point charge is inside the surface, and zero if the point charge is outside the closed surface.
+
+From here we can easily use the principle of superposition to find the flux of any charge distribution through a closed surface. If $Q_{\text{enc}}$ is the total charge enclosed by a closed surface $\mathcal{S}$, then we have
+$$
+\boxed{
+\oint_\mathcal{S} \mathbf{E} \cdot d\mathbf{a} = 4\pi Q_{\text{enc}}
+} \ .
+$$
+In this we've defined one version of Gauss's Law, the *integral form*. This says how the total flux of the electric field through a closed surface depends on the charges contained inside it.
+
+Before using this formula to solve several important electrostatics problems let's quickly get what we originally sought in this section: a differential equation for the electric field in terms of the charge distribution. To do that we'll express the enclosed charge as a volume integral of the charge density,
+$$
+Q_{\text{enc}} = \int_\mathcal{V} d^3\mathbf{x} \ \rho(\mathbf{x}) \ ,
+$$
+where $\mathcal{V}$ is the volume enclosed by the closed surface $\mathcal{S}$. Next, we'll use the divergence theorem to rewrite the flux integral as a volume integral of the divergence of $\mathbf{E}$,
+$$
+\oint_\mathcal{S} \mathbf{E} \cdot d\mathbf{a} = \int_\mathcal{V} d^3\mathbf{x} \ \nabla \cdot \mathbf{E} \ .
+$$
+Plugging these two into the integral form of Gauss's Law and moving everything to one side, we then have
+$$
+\int_\mathcal{V} d^3\mathbf{x} \ \big[\nabla \cdot \mathbf{E} - 4\pi\rho\big] = 0 \ .
+$$
+The only way this integral can be zero for all values is for the integrand to be be zero as well. That is, if
+$$
+\boxed{
+\nabla \cdot \mathbf{E} = 4\pi\rho
+} \ .
+$$
+This is the *differential form* of Gauss's Law. It gives us a differential equation to find $\mathbf{E}$ if $\rho$ is known. Of course, actually solving this equation is easier said than done. We'll come back to that later.
+
+For now let's show how we can use the integral form of Gauss's Law to solve a few convenient problems. Gauss's Law is most useful when a problem has certain symmetries we can recognize. 
+
+
+
 - Work the three common examples: line charge, sheet, sphere
 
 ## Electric Potential
 
-- Use the fact that Coulomb's law is conservative to define a potential energy
-- Alternatively, try to take the curl of the electric field (seems this is more typical?)
-- Use potential energy and electric field to define the electric potential via a gradient
-- Invert the gradient to get the integral expression for the electric potential
-- Mention that field lines become equipotentials
+We mentioned in the previous section that we need two differential equations to fully specify a vector field. We derived Gauss's Law, which gives us one equation in terms of the divergence. Now we need one more. From the Helmholtz theorem, we know that any vector field can be fully determined by knowing both its divergence and its curl. We should thus figure out what the curl of the electric field is, completing the picture.
+
+There are a few ways we can proceed. One way is to just directly take the curl of the integral expression for the electric field and grind out an answer. This works fine, but we'll be slicker about it. Recall from classical mechanics that a force $\mathbf{F}$ is *conservative* if and only if its curl vanishes, $\nabla \times \mathbf{F} = \mathbf{0}$. We also know that any central force, a force that depends only on the relative distance between particles, is conservative. Since the Coulomb force is clearly a central force, this means it must automatically be conservative. In particular, this means we automatically must have that the curl of the electric field vanishes in electrostatics,
+$$
+\boxed{
+\nabla \times \mathbf{E} = \mathbf{0}
+} \ .
+$$
+This completes our picture of field equations we need to fully determine the electric field in electrostatics. All that remains at this point is analyzing the equations to see what they're telling us.
+
+Let's look at this curl equation and see what it implies. We know from vector calculus that any vector field whose curl vanishes must have a scalar potential whose gradient fully determines the vector field. The potential for the electric field is called the *electrostatic potential* $\phi(\mathbf{x})$, with
+$$
+\mathbf{E} = -\nabla \phi \ .
+$$
+Since the force exerted by the field on a point charge $q$ is given by $\mathbf{F} = q\mathbf{E}$ and $\mathbf{F}$ is conservative, we know that it has a potential energy $U(\mathbf{x})$ that must evidently be proportional to $\phi(\mathbf{x})$,
+$$
+U(\mathbf{x}) = q\phi(\mathbf{x}) \ .
+$$
+This means we can interpret the elecrostatic potential as the potential energy per unit charge exerted on a test particle placed in the electric field. The units for the potential are evidently then energy per unit charge. In SI units this means the potential has units of Joules per Coulomb, which is called the *Volt*. In Gaussian units the potential has units of ergs per ESU, sometimes called the *stat-volt*, with $1 \ \frac{\text{erg}}{\text{esu}} \approx 300 \ \text{V}$.
+
+Using the electrostatic potential we can in fact combine the two field equations for the electric field into one field equation for the potential. Since the existence of the potential already satisfies the curl constraint, we just need to plug it into Gauss's Law to satisfy the divergence constraint. Using $\mathbf{E} = -\nabla \phi$, we have
+$$
+\nabla \cdot \mathbf{E} = \nabla \cdot (-\nabla \phi) = 4\pi\rho \ .
+$$
+Recognizing that this is just the Laplacian for the potential, we thus have
+$$
+\boxed{
+\nabla^2 \phi = -4\pi\rho
+} \ .
+$$
+This is called *Poisson's Equation*. It gives us a second order PDE we can use to find the potential if the source charge distribution is known. Once we have the potential, we can recover the electric field by taking the gradient of the potential. The tradeoff, however, is that we're now dealing with a *second-order* PDEs, whereas before we had two *first-order* PDEs for the electric field. This is a good tradeoff though as we'll see later. In fact, Poisson's equation could easily be called the most important equation in electrostatics.
+
+Perhaps the most important reason the potential is nice is that instead of solving for 3 equations, the 3 components of the electric field, with the potential we only need solve a single equation. In this sense, the electric field is evidently redundant, since each of its components are obtained from the same scalar field.
+
+If we like, we can also invert the equation $\mathbf{E} = -\nabla \phi$ to get an equation for $\phi$ in terms of $\mathbf{E}$,
+$$
+\phi(\mathbf{x}) = -\int_{\mathbf{x}_g}^{\mathbf{x}} \mathbf{E}(\mathbf{x}') \cdot d\boldsymbol{\ell}' \ ,
+$$
+where $\mathbf{x}_g$ is some chosen *ground point* where we've defined $\phi(\mathbf{x}_g) \equiv 0$. This can be any point we like, but for our purposes it'll usually be most convenient to choose the ground point at infinity. 
+
+Note that in more practical applications the ground point is often chosen differently. For example, when dealing with *electric circuits* the ground point is usually taken to be the negative terminal point. Such a *potential difference* is often called a *voltage* in electronics. Voltages are frequently among the most important electricity-related quantities measured in the lab, along with *currents*, which we'll get to later.
+
+Since the electric field is the gradient of the potential, and gradients always point normal to their contour surfaces, the potential must evidently be contour surfaces for the electric field. These surface of constant potential are called *equipotentials*. They'll always be surfaces perpendicular to the electric field lines. For example, for a point charge the equipotentials would be spheres of constant radius centered at the charge.
+
+
+
+
+
 - Work the previous examples again, using electric fields to find the potentials
-- Mention Poisson's equation, the most important equation in electrostatics. Will solve BVPs later.
-- Mention voltage as the difference of potential from arbitrary ground point (often infinity for us)
 
 ## Electrostatic Energy
 
