@@ -2,7 +2,7 @@
 
 As is typically custom in electromagnetism, we'll begin our study of the subject by focusing on the simple case of *electrostatics*. Electrostatics is the behavior of static distributions of charges and the forces they exert on other charged objects. Historically the subject was developed to study *macroscopic* phenomena. For this reason, certain abstractions we'll make in the subject should be viewed as idealizations that are convenient for the study of macroscopic phenomena, but fail to have any real meaning at the *microscopic* level, where quantum mechanical descriptions are needed.
 
-## Coulomb's law
+## Electric Field
 
 We can start the subject in fact any number of ways, for example by just stating Maxwell's equations and studying their implications. We'll instead stick to the more usual convention, where we start by assuming the force laws of classical mechanics along with some empirical facts about electric charges and the forces between them.
 
@@ -14,6 +14,8 @@ In the 18th century, it was discovered that aside from mass, every physical body
 - The force obeys an inverse square law nature similar to gravity. That is, the strength of the force between the two charges varies with the inverse square of the distance between them.
 - As with gravity, the force is directed along the line of force joining the two charges.
 - The force is *attractive* if the two bodies have charges of *opposite* sign, and *repulsive* if the two bodies have charges of the *same* sign. If either body has zero charge there is no force between them.
+
+### Coulomb's law
 
 We can state this more mathematically via *Coulomb's Law*. Suppose one body has a charge $q_1$ and is located at a position $\mathbf{x}_1$, while a second body has a charge $q_2$ and is located at a position $\mathbf{x}_2$. Let $\mathbf{r}_{12} \equiv \mathbf{x}_1 - \mathbf{x}_2$ by the separation vector between the two bodies. Then the force on charge $q_1$ due to charge $q_2$ is given by
 $$
@@ -60,7 +62,7 @@ As a good rule of thumb for drawing field lines, they should always *start* at p
 
 - Work example: finding electric field of discrete charges (cube maybe?)
 
-### Coulomb vs Gravitational Forces
+### Coulomb vs Gravity
 
 Given that Coulomb's Law looks so similar to Newton's Law of Gravitation, it's fair to ask how the forces compare to each other. Let's suppose we have two particles separated by a distance $r_{12}$ with masses $m_1, m_2$ and charges $q_1, q_2$ respectively. The two particles will feel both a graviational force $\mathbf{F}_g$ and a Coulomb force $\mathbf{F}_e$. We can get an idea of their relative strengths by looking at their ratio,
 $$
@@ -96,7 +98,7 @@ This idea can be seen in the figure below. The gray blog is the macroscopic mate
 
 Since we can always just define the charge density outside the material to be zero, we don't have to integrate only over $\mathcal{V}'$. We can integrate over all space, so long as we're mindful of where the charge density is non-zero.
 
-### Lower Dimensional Charge Densities
+### Lower Dimensions
 
 In a sense, the name of the game in electrostatics is to find the electric field of some charge distribution. Before showing how to do that though, it's worth noting that in many cases we won't always be interested in 3-dimensional charge distributions like we've defined. Sometimes we'll be interested in lower-dimensional charge distributions as well, like the charge distribution of a line of charge or a two-dimensional surface of charge. In these cases it'll be convenient to slightly modify our equation for the electric field by using different kinds of charge densities. 
 
@@ -201,7 +203,7 @@ Plugging these two into the integral form of Gauss's Law and moving everything t
 $$
 \int_\mathcal{V} d^3\mathbf{x} \ \big[\nabla \cdot \mathbf{E} - 4\pi\rho\big] = 0 \ .
 $$
-The only way this integral can be zero for all values is for the integrand to be be zero as well. That is, if
+Now, the only way this integral can be zero is for the integrand to be be zero as well. This then implies
 $$
 \boxed{
 \nabla \cdot \mathbf{E} = 4\pi\rho
@@ -210,8 +212,6 @@ $$
 This is the *differential form* of Gauss's Law. It gives us a differential equation to find $\mathbf{E}$ if $\rho$ is known. Of course, actually solving this equation is easier said than done. We'll come back to that later.
 
 For now let's show how we can use the integral form of Gauss's Law to solve a few convenient problems. Gauss's Law is most useful when a problem has certain symmetries we can recognize. 
-
-
 
 - Work the three common examples: line charge, sheet, sphere
 
@@ -299,6 +299,8 @@ We've now placed charges $q_1$ and $q_2$. Let's now bring in charge $q_3$ and pl
 $$
 W_3 = q_3 \frac{q_1}{|\mathbf{x}_3 - \mathbf{x}_1|} + q_3 \frac{q_2}{|\mathbf{x}_3 - \mathbf{x}_2|} \ .
 $$
+FIGURE
+
 Hopefully by now we can spot the pattern. Suppose we want to place the $j$<sup>th</sup>  charge $q_j$ in place at $\mathbf{x}_j$. By superposition,
 $$
 W_j = q_j \sum_{i<j} \frac{q_i}{|\mathbf{x}_j - \mathbf{x}_i|} = \frac{1}{2} q_j \sum_{i \neq j} \frac{q_i}{|\mathbf{x}_j - \mathbf{x}_i|} \ .
