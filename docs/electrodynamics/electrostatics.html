@@ -1,0 +1,1086 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.551">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Personal Notes - Electrostatics</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../circuits/circuit-abstraction.html" rel="next">
+<link href="../electrodynamics/preliminaries.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar docked">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../electrodynamics/preliminaries.html">Electrodynamics</a></li><li class="breadcrumb-item"><a href="../electrodynamics/electrostatics.html"><span class="chapter-title">Electrostatics</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">Personal Notes</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">Classical Mechanics</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../classical-mechanics/newtonian-mechanics.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Newtonian Mechanics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../classical-mechanics/simple-systems.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Simple Systems</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../classical-mechanics/reference-frames.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Reference Frames</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../classical-mechanics/lagrangian-mechanics.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Lagrangian Mechanics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../classical-mechanics/hamiltonian-mechanics.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Hamiltonian Mechanics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../classical-mechanics/central-forces.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Central Forces</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../classical-mechanics/coupled-oscillations.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Coupled Oscillations</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../classical-mechanics/rigid-bodies.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Rigid Bodies</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../classical-mechanics/canonical-transformations.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Canonical Transformations</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../classical-mechanics/integrability-and-chaos.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Integrability and Chaos</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../classical-mechanics/continuum-mechanics.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Continuum Mechanics</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text">Electrodynamics</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../electrodynamics/preliminaries.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Preliminaries</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../electrodynamics/electrostatics.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">Electrostatics</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+ <span class="menu-text">Circuit Analysis</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../circuits/circuit-abstraction.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">The Lumped Circuit Abstraction</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../circuits/analysis.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Analyzing Circuits</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../circuits/nonlinear-methods.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Nonlinear Methods</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../circuits/digital-abstraction.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">The Digital Abstraction</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../circuits/amplifiers.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Amplifiers</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../circuits/first-order-systems.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">First-Order Systems</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../circuits/second-order-systems.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Second-Order Systems</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../circuits/ac-analysis.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">AC Analysis</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../circuits/op-amps.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Operational Amplifiers</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../circuits/energy-power.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Energy and Power</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+ <span class="menu-text">Quantum Mechanics</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../quantum-mechanics/identical-particles.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Identical Particles</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../quantum-mechanics/second-quantization.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Second Quantization</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
+ <span class="menu-text">Statistical Mechanics</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../statistical-mechanics/thermodynamics.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Thermodynamics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../statistical-mechanics/probability.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Probability</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../statistical-mechanics/kinetic-theory.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Kinetic Theory</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../statistical-mechanics/classical-stat-mech.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Classical Statistical Mechanics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../statistical-mechanics/classical-gases.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Classical Gases</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../statistical-mechanics/quantum-stat-mech.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Quantum Statistical Mechanics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../statistical-mechanics/quantum-gases.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Quantum Gases</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+    <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#electric-field" id="toc-electric-field" class="nav-link active" data-scroll-target="#electric-field">Electric Field</a>
+  <ul class="collapse">
+  <li><a href="#coulombs-law" id="toc-coulombs-law" class="nav-link" data-scroll-target="#coulombs-law">Coulomb’s law</a></li>
+  <li><a href="#electric-fields" id="toc-electric-fields" class="nav-link" data-scroll-target="#electric-fields">Electric Fields</a></li>
+  <li><a href="#coulomb-vs-gravity" id="toc-coulomb-vs-gravity" class="nav-link" data-scroll-target="#coulomb-vs-gravity">Coulomb vs Gravity</a></li>
+  <li><a href="#charge-distributions" id="toc-charge-distributions" class="nav-link" data-scroll-target="#charge-distributions">Charge Distributions</a></li>
+  <li><a href="#lower-dimensions" id="toc-lower-dimensions" class="nav-link" data-scroll-target="#lower-dimensions">Lower Dimensions</a></li>
+  </ul></li>
+  <li><a href="#gausss-law" id="toc-gausss-law" class="nav-link" data-scroll-target="#gausss-law">Gauss’s Law</a></li>
+  <li><a href="#electric-potential" id="toc-electric-potential" class="nav-link" data-scroll-target="#electric-potential">Electric Potential</a>
+  <ul class="collapse">
+  <li><a href="#integral-form" id="toc-integral-form" class="nav-link" data-scroll-target="#integral-form">Integral Form</a></li>
+  <li><a href="#poissons-equation" id="toc-poissons-equation" class="nav-link" data-scroll-target="#poissons-equation">Poisson’s Equation</a></li>
+  </ul></li>
+  <li><a href="#electrostatic-energy" id="toc-electrostatic-energy" class="nav-link" data-scroll-target="#electrostatic-energy">Electrostatic Energy</a></li>
+  </ul>
+</nav>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+    </div>
+<!-- main -->
+<main class="content column-page-right" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../electrodynamics/preliminaries.html">Electrodynamics</a></li><li class="breadcrumb-item"><a href="../electrodynamics/electrostatics.html"><span class="chapter-title">Electrostatics</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-title">Electrostatics</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta column-page-right">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>As is typically custom in electromagnetism, we’ll begin our study of the subject by focusing on the simple case of <em>electrostatics</em>. Electrostatics is the behavior of static distributions of charges and the forces they exert on other charged objects. Historically the subject was developed to study <em>macroscopic</em> phenomena. For this reason, certain abstractions we’ll make in the subject should be viewed as idealizations that are convenient for the study of macroscopic phenomena, but fail to have any real meaning at the <em>microscopic</em> level, where quantum mechanical descriptions are needed.</p>
+<section id="electric-field" class="level2">
+<h2 class="anchored" data-anchor-id="electric-field">Electric Field</h2>
+<p>We can start the subject in fact any number of ways, for example by just stating Maxwell’s equations and studying their implications. We’ll instead stick to the more usual convention, where we start by assuming the force laws of classical mechanics along with some empirical facts about electric charges and the forces between them.</p>
+<p>We’ll assume that forces are <em>vectors</em>, meaning they have magnitude and direction. Being vectors, forces obey the principle of <em>superposition</em>, meaning the combined effect of two forces exerted on a body is given by their vector sum.</p>
+<p>In the 18th century, it was discovered that aside from mass, every physical body has associated to it another scalar quantity called <em>electric charge</em>, which can take on any real value, positive, negative, or zero. From these facts and other experiments, Coulomb discovered that the force between two static, charged bodies satisfies the following properties:</p>
+<ul>
+<li>The force between the two charges depends on the magnitude of each charge. The larger the magnitude, the stronger the force between them.</li>
+<li>The force obeys an inverse square law nature similar to gravity. That is, the strength of the force between the two charges varies with the inverse square of the distance between them.</li>
+<li>As with gravity, the force is directed along the line of force joining the two charges.</li>
+<li>The force is <em>attractive</em> if the two bodies have charges of <em>opposite</em> sign, and <em>repulsive</em> if the two bodies have charges of the <em>same</em> sign. If either body has zero charge there is no force between them.</li>
+</ul>
+<section id="coulombs-law" class="level3">
+<h3 class="anchored" data-anchor-id="coulombs-law">Coulomb’s law</h3>
+<p>We can state this more mathematically via <em>Coulomb’s Law</em>. Suppose one body has a charge <span class="math inline">\(q_1\)</span> and is located at a position <span class="math inline">\(\mathbf{x}_1\)</span>, while a second body has a charge <span class="math inline">\(q_2\)</span> and is located at a position <span class="math inline">\(\mathbf{x}_2\)</span>. Let <span class="math inline">\(\mathbf{r}_{12} \equiv \mathbf{x}_1 - \mathbf{x}_2\)</span> by the separation vector between the two bodies. Then the force on charge <span class="math inline">\(q_1\)</span> due to charge <span class="math inline">\(q_2\)</span> is given by <span class="math display">\[
+\mathbf{F}_{12} = k_e \frac{q_1 q_2}{|\mathbf{r}_{12}|^2} \mathbf{e}_{12} \ .
+\]</span> Here <span class="math inline">\(k_e\)</span> is a proportionality constant that depends on the choice of units used. In this course we’ll use the <em>Gaussian</em> systems of units, where <span class="math inline">\(k_e \equiv 1\)</span> and CGS units are used to measure force and distance. This means in Gaussian units Coulomb’s Law can be written simply as <span class="math display">\[
+\boxed{\mathbf{F}_{12} = \frac{q_1 q_2}{|\mathbf{r}_{12}|^2} \mathbf{e}_{12}
+} \ ,
+\]</span> where it’s assumed that forces are measured in <em>dynes</em> and distances in <em>centimeters</em>. This means that in the Gaussian system charge evidently must inherit units of <span class="math inline">\(\sqrt{\text{dyne} \cdot \text{cm}^2}\)</span>. This derived unit of charge is called the <em>electrostatic unit</em> or <em>esu</em>, where <span class="math inline">\(1 \ \text{esu} \approx 3.3 \cdot 10^{-10} \ \text{C}\)</span>​ in SI units.</p>
+</section>
+<section id="electric-fields" class="level3">
+<h3 class="anchored" data-anchor-id="electric-fields">Electric Fields</h3>
+<p>While we could proceed to study this force between charges perfectly well, it’s more useful to make another abstraction, the <em>field abstraction</em>. Suppose we again have two charged bodies <span class="math inline">\(q\)</span> and <span class="math inline">\(q'\)</span> located in space at positions <span class="math inline">\(\mathbf{x}\)</span> and <span class="math inline">\(\mathbf{x}'\)</span> respectively. Due to Coulomb’s Law, charge <span class="math inline">\(q\)</span> will feel a force <span class="math inline">\(\mathbf{F}\)</span> due to charge <span class="math inline">\(q'\)</span>. If we look at the quantity <span class="math inline">\(\mathbf{E} \equiv \mathbf{F}/q\)</span> in the limit that <span class="math inline">\(q\)</span> becomes infinitesimally small, it’s empirically found that this stabilizes out to a constant, well-defined value. This quantity <span class="math inline">\(\mathbf{E}\)</span> we call the <em>electric field</em> due to the presence of <span class="math inline">\(q'\)</span>. It’s a vector field satisfying the equation <span class="math display">\[
+\mathbf{F} = q \mathbf{E}(\mathbf{x}) \ .
+\]</span> Notice that by definition the electric field as defined depends <em>only</em> on <span class="math inline">\(q'\)</span>, not on <span class="math inline">\(q\)</span>. We can think of the presence of <span class="math inline">\(q'\)</span> giving rise to an electric field that takes on a vector value at any point <span class="math inline">\(\mathbf{x}\)</span> in space. If a charge <span class="math inline">\(q\)</span> is located at <span class="math inline">\(\mathbf{x}\)</span> it will feel a force of <span class="math inline">\(\mathbf{F} = q\mathbf{E}\)</span>​ due to the presence of this field. Strictly speaking, for this definition to make sense we require that <span class="math inline">\(q\)</span> be an infinitesimal charge, since otherwise its presence would alter the behavior of the electric field. Such an infintesimal charge is called a <em>test charge</em>.</p>
+<p>Matching the expression <span class="math inline">\(\mathbf{F} = q\mathbf{E}\)</span> with Coulomb’s Law, the electric field at <span class="math inline">\(\mathbf{x}\)</span> due to <span class="math inline">\(q'\)</span> can evidently be expressed as <span class="math display">\[
+\mathbf{E}(\mathbf{x}) = \frac{q'}{|\boldsymbol{\xi}|^2} \mathbf{e}_\xi \ ,
+\]</span> where we’ve defined <span class="math inline">\(\boldsymbol{\xi} \equiv \mathbf{x} - \mathbf{x'}\)</span> to be the <em>separation vector</em> between a <em>field point</em> of interest <span class="math inline">\(\mathbf{x}\)</span> and the charge’s <em>source point</em> <span class="math inline">\(\mathbf{x}'\)</span>.</p>
+<p>Before continuing, it’s worth taking the time to be careful what we mean by the notation we’re using since we’ll use it for the rest of this course. We will almost always assume the <em>source point</em> <span class="math inline">\(\mathbf{x}'\)</span> is the position vector of the <em>source charge</em> <span class="math inline">\(q'\)</span> giving rise to the electric field <span class="math inline">\(\mathbf{E}\)</span>. We’ll assume the <em>field point</em> <span class="math inline">\(\mathbf{x}\)</span> is the position vector at which the electric field takes on its given value. The separation vector <span class="math inline">\(\boldsymbol{\xi}\)</span> will always be the vector pointing from the source point <span class="math inline">\(\mathbf{x}'\)</span> to the field point <span class="math inline">\(\mathbf{x}\)</span>. This is most easily shown in the figure below.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../../../Library/Application Support/typora-user-images/image-20240308151912715.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="300"></p>
+</figure>
+</div>
+<p>We’ll often find it more useful to express the electric field equivalently but slightly differently way. Using the fact that the separation vector can be written as <span class="math inline">\(\boldsymbol{\xi} = |\mathbf{x}-\mathbf{x}'| \mathbf{e}_\xi\)</span>, we can write the electric field due to <span class="math inline">\(q'\)</span> as <span class="math display">\[
+\mathbf{E}(\mathbf{x}) = q' \frac{\mathbf{x}-\mathbf{x}'}{|\mathbf{x}-\mathbf{x}'|^3} \ .
+\]</span> Since forces obey the principle of superposition and electric field is proportional to force, the electric field must evidently obey the principle of superposition as well. Suppose that instead of a single source charge <span class="math inline">\(q'\)</span> we have <span class="math inline">\(N\)</span> source charges <span class="math inline">\(q_1, q_2, \cdots, q_N\)</span> located at positions <span class="math inline">\(\mathbf{x}_1, \mathbf{x}_2, \cdots, \mathbf{x}_N\)</span> respectively. Then the combined electric field due to all source charges must be given by the sum of their individual electric fields, <span class="math display">\[
+\mathbf{E}(\mathbf{x}) = \sum_{i=1}^N \mathbf{E}_i(\mathbf{x}) = \sum_{i=1}^N q_i \frac{\mathbf{x}-\mathbf{x}_i}{|\mathbf{x}-\mathbf{x}_i|^3} \ .
+\]</span> In this case the idea is still the same. If we place an infinitesimal test charge <span class="math inline">\(q\)</span> at a field point <span class="math inline">\(\mathbf{x}\)</span>, the force it feels due to all of the <em>combined</em> source charges is <span class="math inline">\(\mathbf{F} = q\mathbf{E}\)</span>.</p>
+<p>Given that the electric field is a mathematical vector field, we can always visualize it as a vector-valued function of position. Each point <span class="math inline">\(\mathbf{x}\)</span> in space has associated to it an output vector <span class="math inline">\(\mathbf{E}(\mathbf{x})\)</span>. It’s traditional though, and very convenient, to visualize electric fields using <em>field lines</em>. The idea is to imagine placing vector field arrows at each point in space and then connecting them together with lines running along the directions of the arrows.</p>
+<p>As a good rule of thumb for drawing field lines, they should always <em>start</em> at positive charges and <em>end</em> at negative charges, or go to infinity. Field lines should never cross each other. The density of the field lines at a point indicates the strength of the field at that point. In this way, we could loosely speaking <em>define</em> the electric field at a point as the <em>flux density</em> of field lines, or number of field lines per unit area, passing near that point.</p>
+<ul>
+<li>Work example: finding electric field of discrete charges (cube maybe?)</li>
+</ul>
+</section>
+<section id="coulomb-vs-gravity" class="level3">
+<h3 class="anchored" data-anchor-id="coulomb-vs-gravity">Coulomb vs Gravity</h3>
+<p>Given that Coulomb’s Law looks so similar to Newton’s Law of Gravitation, it’s fair to ask how the forces compare to each other. Let’s suppose we have two particles separated by a distance <span class="math inline">\(r_{12}\)</span> with masses <span class="math inline">\(m_1, m_2\)</span> and charges <span class="math inline">\(q_1, q_2\)</span> respectively. The two particles will feel both a graviational force <span class="math inline">\(\mathbf{F}_g\)</span> and a Coulomb force <span class="math inline">\(\mathbf{F}_e\)</span>. We can get an idea of their relative strengths by looking at their ratio, <span class="math display">\[
+\frac{|\mathbf{F}_e|}{|\mathbf{F}_g|} = k_e \frac{q_1 q_2}{r_{12}} \bigg / G \frac{m_1 m_2}{r_{12}} = \frac{k_e q_1 q_2}{G m_1 m_2} \ .
+\]</span> To get a feel for these values let’s pick a representative particle, the <em>electrons</em>. Then we’d have masses <span class="math inline">\(m_1 = m_2 = m_e\)</span> and charges <span class="math inline">\(q_1 = q_2 = e\)</span>. In CGS units, these values are <span class="math display">\[
+k_e = 1 \ , \ G \approx 6.7 \cdot 10^{-8} \ , \ m_e \approx 9 \cdot 10^{-28} \ , \ e \approx -5 \cdot 10^{-10} \ .
+\]</span> Plugging these numbers in, we have <span class="math display">\[
+\frac{|\mathbf{F}_e|}{|\mathbf{F}_g|} = \frac{e^2}{G m_e^2} \approx 4 \cdot 10^{42} \ .
+\]</span> Evidently, for two electrons the Coulomb force is 42 orders of magnitude stronger than the gravitational force. The difference between the two forces is so stark we can practically speaking neglect the effects of gravity when studying the interactions between electrons, or indeed any fundamental particle. Indeed, this is one reason why in quantum mechanics we rarely consider gravity. On the other hand, larger objects like people, planets, or galaxies tend to be electrically neutral or very close to it. This means in those cases gravity is all there is, and for large masses gravity can obviously be quite substantial.</p>
+</section>
+<section id="charge-distributions" class="level3">
+<h3 class="anchored" data-anchor-id="charge-distributions">Charge Distributions</h3>
+<p>In classical electromagnetism we rarely find ourselves dealing with point charges. We’re generally dealing with <em>macroscopic</em> materials containing many charged particles packed densely together. In such cases it’s more convenient to treat those charges not as a sum over all the point charges, but instead as a continuous <em>distribution</em> of charge characterized by some <em>charge density</em> <span class="math inline">\(\rho\)</span>.</p>
+<p>Suppose we have some macroscopic material sitting in space with a charge density <span class="math inline">\(\rho\)</span>. That is, <span class="math inline">\(\rho(\mathbf{x}')\)</span> is a function that says how much charge per unit volume is in the region of space near a source point <span class="math inline">\(\mathbf{x}'\)</span>. This density will give rise to an infinitesimal charge <span class="math inline">\(dq' = \rho(\mathbf{x}') d^3 \mathbf{x}'\)</span> at that point. By Coulomb’s Law, this charge will then give rise to an infinitesimal electric field <span class="math inline">\(d\mathbf{E}\)</span> given by <span class="math display">\[
+d\mathbf{E}(\mathbf{x}) = dq' \frac{\mathbf{x}-\mathbf{x}'}{|\mathbf{x}-\mathbf{x}'|^3} = d^3 \mathbf{x}' \ \rho(\mathbf{x}') \frac{\mathbf{x}-\mathbf{x}'}{|\mathbf{x}-\mathbf{x}'|^3} \ .
+\]</span> To get the electric field generated by the <em>entire</em> material, we need only use the superposition and integrate over the entire volume <span class="math inline">\(\mathcal{V}'\)</span>​ of the material to get <span class="math display">\[
+\boxed{
+\mathbf{E}(\mathbf{x}) = \int_{\mathcal{V}'} d^3 \mathbf{x}' \ \rho(\mathbf{x}') \frac{\mathbf{x}-\mathbf{x}'}{|\mathbf{x}-\mathbf{x}'|^3}
+}\ .
+\]</span> This idea can be seen in the figure below. The gray blog is the macroscopic material. Inside this material is an infinitesimal charge <span class="math inline">\(dq'\)</span> located at the source point <span class="math inline">\(\mathbf{x}'\)</span> which defines an electric field. At any given field point <span class="math inline">\(\mathbf{x}\)</span> the field value due to <span class="math inline">\(dq'\)</span> is <span class="math inline">\(d\mathbf{E}(\mathbf{x})\)</span>. The combined effect of all of these charges gives the full field.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../../../Library/Application Support/typora-user-images/image-20240308151931197.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="300"></p>
+</figure>
+</div>
+<p>Since we can always just define the charge density outside the material to be zero, we don’t have to integrate only over <span class="math inline">\(\mathcal{V}'\)</span>. We can integrate over all space, so long as we’re mindful of where the charge density is non-zero.</p>
+</section>
+<section id="lower-dimensions" class="level3">
+<h3 class="anchored" data-anchor-id="lower-dimensions">Lower Dimensions</h3>
+<p>In a sense, the name of the game in electrostatics is to find the electric field of some charge distribution. Before showing how to do that though, it’s worth noting that in many cases we won’t always be interested in 3-dimensional charge distributions like we’ve defined. Sometimes we’ll be interested in lower-dimensional charge distributions as well, like the charge distribution of a line of charge or a two-dimensional surface of charge. In these cases it’ll be convenient to slightly modify our equation for the electric field by using different kinds of charge densities.</p>
+<p>We already saw one example of this, the point charge. While we derived the equation for the electric field point charge without the use of charge densities, we can express those equations naturally using charge densities as well. The charge density of a point is proportional to a delta function. If we have a point charge <span class="math inline">\(q'\)</span> located at <span class="math inline">\(\mathbf{x}'\)</span>, its charge distribution at an arbitrary point <span class="math inline">\(\mathbf{x}''\)</span> can be expressed as <span class="math display">\[
+\rho(\mathbf{x}'') = q' \delta(\mathbf{x}''-\mathbf{x}') \ .
+\]</span> Integrating the electric field over all space and using the sifting property of delta functions gives us our original equation for the electric field of a point charge, <span class="math display">\[
+\mathbf{E}(\mathbf{x}) = \int_{\mathcal{V}'} d^3 \mathbf{x}'' \ q' \delta(\mathbf{x}''-\mathbf{x}') \frac{\mathbf{x}-\mathbf{x}''}{|\mathbf{x}-\mathbf{x}''|^3} = q' \frac{\mathbf{x}-\mathbf{x}'}{|\mathbf{x}-\mathbf{x}'|^3} \ .
+\]</span> If we instead suppose a distribution of charge is concentrated along some curve <span class="math inline">\(\mathcal{C}'\)</span> in space, it’s more convenient to define a 1-dimensional charge density, or <em>line density</em>, <span class="math inline">\(\lambda(\mathbf{x}')\)</span> via the relation <span class="math inline">\(dq' = \lambda(\mathbf{x}') d\ell'\)</span>, where we imagine <span class="math inline">\(d\ell'\)</span> being an infinitesimal segment along the curve of charge. Then the electric field would be <span class="math display">\[
+\mathbf{E}(\mathbf{x}) = \int_{\mathcal{C}'} d \ell' \ \lambda(\mathbf{x}') \frac{\mathbf{x}-\mathbf{x}'}{|\mathbf{x}-\mathbf{x}'|^3} \ .
+\]</span> This is an abstraction to be sure, but often a convenient one, for example if we’re interested in the electric field due to a wire of charge. For wires we imagine the thickness being negligible compared to the lengths, meaning treating them as 1-dimensional curves of charge is convenient and useful.</p>
+<p>FIGURE</p>
+<p>Similarly, we can imagine a distribution of charge concentrated along some <em>surface</em> <span class="math inline">\(\mathcal{S}'\)</span> in space. In this case, it’s convenient to define a 2-dimensional charge density, or <em>surface density</em>, <span class="math inline">\(\sigma(\mathbf{x}')\)</span> via <span class="math inline">\(dq' = \sigma(\mathbf{x}') da'\)</span>, where <span class="math inline">\(da'\)</span> is an infinitesimal patch of area inside the surface of charge. Then the electric field would be <span class="math display">\[
+\mathbf{E}(\mathbf{x}) = \int_{\mathcal{S}'} da' \ \sigma(\mathbf{x}') \frac{\mathbf{x}-\mathbf{x}'}{|\mathbf{x}-\mathbf{x}'|^3} \ .
+\]</span> Again, this is only an abstraction, but a convenient one. We’ll often imagine sheets of charge where the length and width of the sheet are much larger than its thickness. In such cases it’s convenient to treet the sheet as 2-dimensional.</p>
+<p>FIGURE</p>
+<ul>
+<li>Verify line/surface density equations, especially the differentials….</li>
+<li>Work examples: electric field of line of charge, disk of charge, hollow sphere of charge</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../../../Library/Application Support/typora-user-images/image-20240308152000873.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="300"></p>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../../../Library/Application Support/typora-user-images/image-20240308152108598.png" class="img-fluid figure-img" width="300"></p>
+<figcaption>image-20240308152108598</figcaption>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../../../Library/Application Support/typora-user-images/image-20240308152038464.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="300"></p>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../../../Library/Application Support/typora-user-images/image-20240308152224236.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="300"></p>
+</figure>
+</div>
+</section>
+</section>
+<section id="gausss-law" class="level2">
+<h2 class="anchored" data-anchor-id="gausss-law">Gauss’s Law</h2>
+<p>While Coulomb’s Law is perhaps the most intuitive way to find the electric field of some charge distribution, it’s usually not the best way, nor is it the most illuminating. Typically in physics we find it useful to express equations for fields in terms of <em>field equations</em>, which are differential equations that can be solved to find the field of interest. Electrostatics turns out to have <em>two</em> field equations, one involving the divergence of the electric field, and one involving its curl. Here we’ll derive the equation for the divergence, known as <em>Gauss’s Law</em>. We’ll come back to the equation for the curl shortly.</p>
+<p>The idea is to go back to thinking about the electric field in terms of field lines. Recall that we could think of the electric field as the <em>flux density</em> of electric field lines generated by the source charge distribution. This suggest it’s useful to define what we mean by the flux of a vector field, or more correctly the flux through a surface.</p>
+<p>Suppose <span class="math inline">\(\mathcal{S}\)</span> is some surface of interest, closed or not. The <em>electrostatic flux</em> through <span class="math inline">\(\mathcal{S}\)</span>​ is defined to be <span class="math display">\[
+\Phi_\mathbf{E}(\mathbf{x}) \equiv \int_\mathcal{S} \mathbf{E} \cdot d\mathbf{a} \ .
+\]</span> Intuitively, this just says we can think of electrostatic flux as the <em>net</em> number of field lines passing through the surface area of <span class="math inline">\(\mathcal{S}\)</span>​. The more net field lines passing through the surface, the higher the flux. This is why we can think of the electric field as the electrostatic flux density, since it’s in a sense just the flux per unit area through some given surface.</p>
+<p>Note the use of the phrase <em>net</em> number of field lines here is important because flux is actually a <em>signed</em> quantity since each field line can pass through the surface on either side, which flips the sign of <span class="math inline">\(\mathbf{E} \cdot d\mathbf{a}\)</span>​​. If a field line passes through the surface and back out the other direction, it contributes nothing to the flux.</p>
+<p>Also note that the definition of flux as given depends entirely on which surface <span class="math inline">\(\mathcal{S}\)</span> we choose. We should expect that in general <span class="math inline">\(\Phi_\mathbf{E}(\mathbf{x})\)</span> will be different for different surfaces in space. However, as we’ll soon see the flux is indeed unique for <em>closed</em> surfaces that enclose the same charge distribution.</p>
+<p>What we’d like to do is find a way to relate the flux to the source charge density <span class="math inline">\(\rho\)</span> in some way, since we’re in practice usually trying to find <span class="math inline">\(\mathbf{E}\)</span> given some known distribution of source charges. To do that let’s start by trying to find the flux of a point charge <span class="math inline">\(q\)</span> located at the origin. For the flux surface we’ll choose a sphere of radius <span class="math inline">\(r\)</span> enclosing the point charge. For a point charge centered at the origin, we must have <span class="math display">\[
+\mathbf{E}(\mathbf{x}) = q \frac{\mathbf{x}}{|\mathbf{x}|^3} = \frac{q}{r^2} \mathbf{e}_r \ .
+\]</span> Here we employ the usual convention that <span class="math inline">\(r = |\mathbf{x}|\)</span> is the Euclidean distance to the field point <span class="math inline">\(\mathbf{x}\)</span>. For a sphere of radius <span class="math inline">\(r\)</span> the area element is <span class="math inline">\(d\mathbf{a} = r^2 d\Omega \mathbf{e}_r\)</span>. Integrating over all <span class="math inline">\(\mathbf{E} \cdot d\mathbf{a}\)</span> to get the flux, we then have <span class="math display">\[
+\oint_\mathcal{S} \mathbf{E} \cdot d\mathbf{a} = \int d\Omega \ r^2 \frac{q}{r^2} \mathbf{e}_r \cdot \mathbf{e}_r = 4\pi q \ .
+\]</span> Thus, for a point charge, the flux through a sphere enclosing the charge is just <span class="math inline">\(4\pi q\)</span>. This is in fact true for <em>any</em> closed surface enclosing the charge, not just a sphere.</p>
+<p>To see why, suppose <span class="math inline">\(\mathcal{S}\)</span> is some general closed surface, shaped like a potato let’s say. Then <span class="math display">\[
+\mathbf{E} \cdot d\mathbf{a} = |\mathbf{E}| |\mathbf{n}| \cos\alpha da = \frac{q}{r^2} \cos\alpha da \ ,
+\]</span> where <span class="math inline">\(\alpha\)</span> is the outward angle between <span class="math inline">\(\mathbf{E}\)</span> and the surface normal <span class="math inline">\(\mathbf{n}\)</span> at the field point <span class="math inline">\(\mathbf{x}\)</span>. But, we also must have a new area element of <span class="math inline">\(da = \frac{r^2}{\cos\alpha} d\Omega\)</span> since the surface is no longer spherical. All together, this means the non-spherical behavior of the surface becomes immaterial to the flux, and we again get <span class="math display">\[
+\oint_\mathcal{S} \mathbf{E} \cdot d\mathbf{a} = \int d\Omega \ \frac{r^2}{\cos\alpha} \frac{q}{r^2} \cos\alpha = 4\pi q \ .
+\]</span> What about if the charge is outside the closed surface though? What happens then? Intuitively we should expect the flux to be zero, since any field line flowing into the surface must also flow out at some point. Indeed this is what happens. Any flux of <span class="math inline">\(\mathbf{E} \cdot d\mathbf{a}\)</span> passing into the surface will have a corresponding flux <span class="math inline">\(-\mathbf{E} \cdot d\mathbf{a}\)</span> on the opposite side where the field line passes back out of the surface. This can most easly be shown from the figure below.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../../../Library/Application Support/typora-user-images/image-20240318185941679.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="300"></p>
+</figure>
+</div>
+<p>Thus, the flux for a point charge through any closed surface is <span class="math inline">\(4\pi q\)</span> if the point charge is inside the surface, and zero if the point charge is outside the closed surface.</p>
+<p>From here we can easily use the principle of superposition to find the flux of any charge distribution through a closed surface. If <span class="math inline">\(Q_{\text{enc}}\)</span> is the total charge enclosed by a closed surface <span class="math inline">\(\mathcal{S}\)</span>, then we have <span class="math display">\[
+\boxed{
+\oint_\mathcal{S} \mathbf{E} \cdot d\mathbf{a} = 4\pi Q_{\text{enc}}
+} \ .
+\]</span> In this we’ve defined one version of Gauss’s Law, the <em>integral form</em>. This says how the total flux of the electric field through a closed surface depends on the charges contained inside it.</p>
+<p>Before using this formula to solve several important electrostatics problems let’s quickly get what we originally sought in this section: a differential equation for the electric field in terms of the charge distribution. To do that we’ll express the enclosed charge as a volume integral of the charge density, <span class="math display">\[
+Q_{\text{enc}} = \int_\mathcal{V} d^3\mathbf{x} \ \rho(\mathbf{x}) \ ,
+\]</span> where <span class="math inline">\(\mathcal{V}\)</span> is the volume enclosed by the closed surface <span class="math inline">\(\mathcal{S}\)</span>. Next, we’ll use the divergence theorem to rewrite the flux integral as a volume integral of the divergence of <span class="math inline">\(\mathbf{E}\)</span>, <span class="math display">\[
+\oint_\mathcal{S} \mathbf{E} \cdot d\mathbf{a} = \int_\mathcal{V} d^3\mathbf{x} \ \nabla \cdot \mathbf{E} \ .
+\]</span> Plugging these two into the integral form of Gauss’s Law and moving everything to one side, we then have <span class="math display">\[
+\int_\mathcal{V} d^3\mathbf{x} \ \big[\nabla \cdot \mathbf{E} - 4\pi\rho\big] = 0 \ .
+\]</span> Now, the only way this integral can be zero is for the integrand to be be zero as well. This then implies <span class="math display">\[
+\boxed{
+\nabla \cdot \mathbf{E} = 4\pi\rho
+} \ .
+\]</span> This is the <em>differential form</em> of Gauss’s Law. It gives us a differential equation to find <span class="math inline">\(\mathbf{E}\)</span> if <span class="math inline">\(\rho\)</span> is known. Of course, actually solving this equation is easier said than done. We’ll come back to that later.</p>
+<p>For now let’s show how we can use the integral form of Gauss’s Law to solve a few convenient problems. Gauss’s Law is most useful when a problem has certain symmetries we can recognize.</p>
+<ul>
+<li>Work the three common examples: line charge, sheet, sphere</li>
+</ul>
+</section>
+<section id="electric-potential" class="level2">
+<h2 class="anchored" data-anchor-id="electric-potential">Electric Potential</h2>
+<p>Let’s now look at the field equation for the curl of the electric field. From the Helmholtz theorem, we know that any vector field can be fully determined by knowing both its divergence and its curl. This means that once we figure out what the curl of the electric field is we’ve fully specified what the electric field must be from two partial differential equations.</p>
+<p>There are a few ways we can proceed. One way is to just directly take the curl of the integral expression for the electric field and grind out an answer. This works fine, but we’ll take an easier approach. Recall from classical mechanics that a force <span class="math inline">\(\mathbf{F}\)</span> is <em>conservative</em> if and only if its curl vanishes, <span class="math inline">\(\nabla \times \mathbf{F} = \mathbf{0}\)</span>. We also know that any central force, a force that depends only on the relative distance between particles, is conservative. The Coulomb force is clearly a central force since it only depends on the relative distance between charges. In particular, this means we automatically must have that the curl of the electric field vanishes in electrostatics, <span class="math display">\[
+\boxed{
+\nabla \times \mathbf{E} = \mathbf{0}
+} \ .
+\]</span> This completes our picture of field equations we need to fully determine the electric field in electrostatics. All that remains at this point is analyzing the two field equations to see what they’re telling us. We’ve already done that with the divergence, deriving Gauss’s Law. Let’s now look into the curl equation to see what it implies.</p>
+<p>We know from vector calculus that any vector field whose curl vanishes must have a scalar potential whose gradient fully determines the vector field. The potential for the electric field is called the <em>electrostatic potential</em> <span class="math inline">\(\phi(\mathbf{x})\)</span>, with <span class="math display">\[
+\mathbf{E} = -\nabla \phi \ .
+\]</span> Since the force exerted by the field on a point charge <span class="math inline">\(q\)</span> is given by <span class="math inline">\(\mathbf{F} = q\mathbf{E}\)</span> and <span class="math inline">\(\mathbf{F}\)</span> is conservative, we know that it has a potential energy <span class="math inline">\(U(\mathbf{x})\)</span> that must evidently be proportional to <span class="math inline">\(\phi(\mathbf{x})\)</span>, <span class="math display">\[
+U(\mathbf{x}) = q\phi(\mathbf{x}) \ .
+\]</span> This means we can interpret the elecrostatic potential as the potential energy per unit charge exerted on a test particle placed in the electric field. The units for the electric potential are evidently energy per unit charge. In SI units this means the potential has units of Joules per Coulomb, which is called the <em>Volt</em>. In Gaussian units the potential has units of ergs per ESU, sometimes called the <em>stat-volt</em>, with <span class="math inline">\(1 \ \frac{\text{erg}}{\text{esu}} \approx 300 \ \text{V}\)</span>​​.</p>
+<section id="integral-form" class="level3">
+<h3 class="anchored" data-anchor-id="integral-form">Integral Form</h3>
+<p>In the simplest place where the charge distribution is just a single point charge <span class="math inline">\(q'\)</span> we already know what <span class="math inline">\(\mathbf{E}\)</span> is from Coulomb’s Law. We can use that to figure out what the electric potential for a point charge is. Observe if we can recover <span class="math inline">\(\mathbf{E}\)</span> by taking <span class="math display">\[
+\phi(\mathbf{x}) = \frac{q'}{|\mathbf{x}-\mathbf{x}'|} \ .
+\]</span> Using the same logic as we did did for the electric field, this means that the electric potential due to a charge distribution <span class="math inline">\(\rho\)</span> is just <span class="math display">\[
+\boxed{
+\phi(\mathbf{x}) = \int_{\mathcal{V}'} d^3 \mathbf{x}' \ \frac{\rho(\mathbf{x}')}{|\mathbf{x}-\mathbf{x}'|}
+}\ .
+\]</span> Unlike the integral for the electric field, for the electric potential we now only have one scalar integral to evaluate instead of 3. Obviously, this greatly simplifies the problem we need to solve. Let’s work a few examples to see that. But first let’s say a word about what the “field lines” look like for the electric potential.</p>
+<p>Since the electric field is the gradient of the potential, and gradients always point normal to their contour surfaces, the potential must evidently be contour surfaces for the electric field. These surface of constant potential are called <em>equipotentials</em>. They’ll always be surfaces perpendicular to the electric field lines.</p>
+<ul>
+<li>Work the previous examples again, using electric fields to find the potentials</li>
+</ul>
+</section>
+<section id="poissons-equation" class="level3">
+<h3 class="anchored" data-anchor-id="poissons-equation">Poisson’s Equation</h3>
+<p>Using the electrostatic potential we can combine the two field equations for the electric field into one field equation for the potential. Since the existence of the potential already satisfies the curl constraint, we just need to plug it into Gauss’s Law to satisfy the divergence constraint. Using <span class="math inline">\(\mathbf{E} = -\nabla \phi\)</span>, we have <span class="math display">\[
+\nabla \cdot \mathbf{E} = \nabla \cdot (-\nabla \phi) = 4\pi\rho \ .
+\]</span> Recognizing that this is just the Laplacian for the potential, we thus have <span class="math display">\[
+\boxed{
+\nabla^2 \phi = -4\pi\rho
+} \ .
+\]</span> This is called <em>Poisson’s Equation</em>. It gives us a second order PDE we can use to find the potential if the source charge distribution is known. In deriving Poisson’s Equation, we’ve converted two first order differential equations for the vector field <span class="math inline">\(\mathbf{E}\)</span> into a single second order differential equation for the scalar field <span class="math inline">\(\phi\)</span>. This means that solving Poisson’s Equation given some set of boundary conditions will fully give us all of the information we need to determine <span class="math inline">\(\phi\)</span>, and hence <span class="math inline">\(\mathbf{E}\)</span> as well. For this reason, Poisson’s Equation could easily be considered the single most important equation in electrostatics.</p>
+<p>Perhaps the most important reason the potential is nice is that instead of solving for 3 equations, the 3 components of the electric field, with the potential we only need solve a single equation. In this sense, the electric field is evidently redundant, since each of its components are obtained from the same scalar field.</p>
+<p>If we like, we can also invert the equation <span class="math inline">\(\mathbf{E} = -\nabla \phi\)</span> to get an equation for <span class="math inline">\(\phi\)</span> in terms of <span class="math inline">\(\mathbf{E}\)</span>. Suppose <span class="math inline">\(\mathbf{x}_g\)</span> is some chosen fixed reference point, called the <em>ground point</em>. Then by the fundamental theorem of calculus we have <span class="math display">\[
+\phi(\mathbf{x}) = -\int_{\mathbf{x}_g}^{\mathbf{x}} \mathbf{E}(\mathbf{x}') \cdot d\boldsymbol{\ell}' \ .
+\]</span> Usually we’ll choose the <em>ground point</em> such that <span class="math inline">\(\phi(\mathbf{x}_g) \equiv 0\)</span>. This can be any point we like, but for our purposes it’ll usually be most convenient to choose the ground point at infinity. But in many practical applications the ground point may be chosen arbitrarily to simplify the problem.</p>
+<p>For example, when dealing with <em>electric circuits</em> the ground point is usually taken to be the negative terminal point. Such a <em>potential difference</em> is often called a <em>voltage</em> in electronics. Voltages are frequently among the most important electricity-related quantities measured in the lab, along with <em>currents</em>, which we’ll get to later.</p>
+</section>
+</section>
+<section id="electrostatic-energy" class="level2">
+<h2 class="anchored" data-anchor-id="electrostatic-energy">Electrostatic Energy</h2>
+<p>When talking about energy in electrostatics we have to be a bit careful which energy we’re talking about. We’ve already seen one form of energy: The potential energy arising due to the work done in moving a charge <span class="math inline">\(q\)</span> through an external electric field. This is just <span class="math inline">\(U = q\phi\)</span>, where <span class="math inline">\(\phi\)</span> is the electric potential associated to the external electric field <span class="math inline">\(\mathbf{E}\)</span>​​. Note this field is assumed to be due to all the other source charges in space, ignoring <span class="math inline">\(q\)</span>. In the continuum limit we can express this as an integral over the charge density, <span class="math display">\[
+U = \int d^3\mathbf{x} \ \rho(\mathbf{x}) \phi(\mathbf{x}) \ .
+\]</span> This isn’t the only form of potential energy we can think about though. In fact, it’s often more useful to ask a different question: What is the work done to assemble the source charge distribution that gives rise to <span class="math inline">\(\mathbf{E}\)</span> in the first place? To answer this question it helps to imagine bringing each source charge in from space one-by-one and placing it at its source point. Each placement will give rise to its own potential energy. Adding all of these energies together will give us what we seek.</p>
+<p>Suppose we have some set of source charges <span class="math inline">\(q_1, q_2, \cdots, q_N\)</span> giving rise to the source charge distribution. Suppose initially that all of these source charges are placed at infinity, where we’ll define the potential energy to be zero.</p>
+<p>Now suppose we bringing in only the first charge <span class="math inline">\(q_1\)</span> and place it at position <span class="math inline">\(\mathbf{x}_1\)</span>. Since there’s no electric potential initially, the work done to place this first charge must evidently be zero, <span class="math inline">\(W_1 = 0\)</span>​.</p>
+<p>Now suppose we’ve placed charge <span class="math inline">\(q_1\)</span> and now bring in the second charge <span class="math inline">\(q_2\)</span> and place it at <span class="math inline">\(\mathbf{x}_2\)</span>. In this case there’s now an electric potential due to <span class="math inline">\(q_1\)</span> that we have to overcome in order to place <span class="math inline">\(q_2\)</span>. Thus, the work done to place <span class="math inline">\(q_2\)</span> is <span class="math display">\[
+W_2 = q_2 \frac{q_1}{|\mathbf{x}_2 - \mathbf{x}_1|} \ .
+\]</span> We’ve now placed charges <span class="math inline">\(q_1\)</span> and <span class="math inline">\(q_2\)</span>. Let’s now bring in charge <span class="math inline">\(q_3\)</span> and place it at <span class="math inline">\(\mathbf{x}_3\)</span>. By superposition, the work done to place <span class="math inline">\(q_3\)</span> is just the sum of the potential energies due to the point charges <span class="math inline">\(q_1\)</span> and <span class="math inline">\(q_2\)</span> already placed. That is, <span class="math display">\[
+W_3 = q_3 \frac{q_1}{|\mathbf{x}_3 - \mathbf{x}_1|} + q_3 \frac{q_2}{|\mathbf{x}_3 - \mathbf{x}_2|} \ .
+\]</span> FIGURE</p>
+<p>Hopefully by now we can spot the pattern. Suppose we want to place the <span class="math inline">\(j\)</span><sup>th</sup> charge <span class="math inline">\(q_j\)</span> in place at <span class="math inline">\(\mathbf{x}_j\)</span>. By superposition, <span class="math display">\[
+W_j = q_j \sum_{i&lt;j} \frac{q_i}{|\mathbf{x}_j - \mathbf{x}_i|} = \frac{1}{2} q_j \sum_{i \neq j} \frac{q_i}{|\mathbf{x}_j - \mathbf{x}_i|} \ .
+\]</span> In the last equation we used the fact that we can always write <span class="math inline">\(\sum_{i &lt; j} = \frac{1}{2} \sum_{i \neq j}\)</span> to simplify the summation somewhat. This can easily be seen, for example, by placing the summation elements inside a matrix and observing that the condition <span class="math inline">\(i &lt; j\)</span> means to sum only the entries in the upper triangle, and since <span class="math inline">\(i,j\)</span> are symmetric in this case, that’s just half the sum of the upper and lower triangles (excluding the diagonal) since the matrix will be symmetric as well.</p>
+<p>Now, the work done to place <em>all</em> of these charges in place is just the sum of all these contributions, <span class="math display">\[
+W = \sum_{j=1}^N U_j = \frac{1}{2} \sum_{j=1}^N q_j \sum_{i \neq j} \frac{q_i}{|\mathbf{x}_j - \mathbf{x}_i|} = \frac{1}{2} \sum_{j=1}^N q_j \phi_i(\mathbf{x}_j) \ .
+\]</span> This work done we can think of as the potential energy <span class="math inline">\(U\)</span> stored in all of the source charges. In the continuum limit we can replace the sum over the source charges with an integral over the source charge distribution to get <span class="math display">\[
+U = \frac{1}{2} \int d^3\mathbf{x} \ \rho(\mathbf{x}) \phi(\mathbf{x}) \ .
+\]</span> It’s worth stopping for a moment to ask how <em>this</em> potential energy differs from our first definition of potential energy as the work required to move a test charge in the presence of the external electric field. Evidently the first definition of potential energy is essentially just half the second, even though they mean very different things.</p>
+<p>It’s useful to write the potential energy to place the source charges it in a more illuminating way. From Gauss’s Law, we know that <span class="math inline">\(\nabla \cdot \mathbf{E} = 4\pi \rho\)</span>. Solving for <span class="math inline">\(\rho\)</span> and using integration by parts, we can evidently rewrite <span class="math inline">\(U\)</span> as <span class="math display">\[
+\begin{align*}
+U &amp;= \frac{1}{2} \int d^3\mathbf{x} \ \rho(\mathbf{x}) \phi(\mathbf{x}) \\
+&amp;= \frac{1}{2} \int d^3\mathbf{x} \ \frac{\nabla \cdot \mathbf{E}(\mathbf{x})}{4\pi} \phi(\mathbf{x}) \\
+&amp;= \frac{1}{8\pi} \int d^3\mathbf{x} \ \mathbf{E}(\mathbf{x}) \cdot \big(-\nabla \phi(\mathbf{x})\big) \\
+&amp;= \frac{1}{8\pi} \int d^3\mathbf{x} \ \mathbf{E}(\mathbf{x}) \cdot \mathbf{E}(\mathbf{x}) \ .
+\end{align*}
+\]</span> Here we assume the surface term from the integration by parts vanishes as we integrate over all space. This will be true so long as <span class="math inline">\(\phi \mathbf{E}\)</span> goes to zero faster than <span class="math inline">\(\frac{1}{r^2}\)</span>, which is a realistic assumption for well-localized charge distributions. In the end, we evidently get that the potential energy to assemble all of the source charges is proportional to the square of the electric field, <span class="math display">\[
+U = \int d^3\mathbf{x} \ \frac{1}{8\pi} |\mathbf{E}(\mathbf{x})|^2 \ .
+\]</span> This result is interesting in that it gives us another way to interpret this form of potential energy. We can think of the work done to assemble all of the source charges equivalently as the potential energy stored in the electric field itself. It’s useful to define the integrand as an <em>energy density</em> <span class="math inline">\(u(\mathbf{x})\)</span>, in which case we can write <span class="math display">\[
+\boxed{
+u(\mathbf{x}) \equiv \frac{1}{8\pi} |\mathbf{E}(\mathbf{x})|^2
+} \ .
+\]</span> At this point it’s worth stopping to more closely analyze a few of the assumptions we made in deriving this second form of the potential energy stored in the electric field. We made two important assumptions:</p>
+<ol type="1">
+<li><p>The surface term in the integration by parts will vanish. This will be true so long as we integrate to infinity and the term <span class="math inline">\(\phi \mathbf{E}\)</span> goes to zero faster than <span class="math inline">\(\frac{1}{r^2}\)</span>. As long as the source charge distribution is well-localized this is realistic, since we’d then expect that <span class="math inline">\(\phi \mathbf{E} \sim \frac{1}{r^3}\)</span> at infinity. This isn’t true, however, for infinite charge distributions like the infinite line charge or the infinite sheet. In cases like that we must either include the surface integral term, or use the first integral form to find <span class="math inline">\(U\)</span>​.</p></li>
+<li><p>Self energies are ignorable. Notice in our transition from the finite sum to the integral form we “smeared out” the requirement that <span class="math inline">\(i \neq j\)</span> in the sum for the electric potential. As long as we imagine only integrating over field points away from the source charge distribution this is fine. If we don’t though the potential energy will actually be infinite! To see why, observe if we attempt to find the potential energy for a point charge at the origin using the second form we get <span class="math display">\[
+U = \int d^3\mathbf{x} \ \frac{1}{8\pi} |\mathbf{E}(\mathbf{x})|^2 = \int_0^\infty 4\pi r^2 dr \ \frac{1}{8\pi} \bigg(\frac{q}{r^2}\bigg)^2 = \infty \ .
+\]</span> However, if we use the first integral form for the potential energy we’d get <span class="math display">\[
+U = \frac{1}{2} \int d^3\mathbf{x} \ \rho(\mathbf{x}) \phi(\mathbf{x}) = \frac{1}{2} \int_0^\infty 4\pi r^2 dr \ q \delta(\mathbf{x}) \frac{q}{r} = 0 \ ,
+\]</span> as we’d expect. Clearly then there’s a problem arising from the inclusion of the self energies in the second form of the integral. So what’s going on? One way to think about it is that the self energy terms include the energy necessary to introduce each charge from the vaccuum. In this sense, self energies are tied up with vacuum energies, the energy stored in the vacuum of space itself. Understanding the vacuum energy requires quantum field theory, and is still an active area of research to this day.</p></li>
+</ol>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation column-page-right">
+  <div class="nav-page nav-page-previous">
+      <a href="../electrodynamics/preliminaries.html" class="pagination-link" aria-label="Preliminaries">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Preliminaries</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../circuits/circuit-abstraction.html" class="pagination-link" aria-label="The Lumped Circuit Abstraction">
+        <span class="nav-page-text"><span class="chapter-title">The Lumped Circuit Abstraction</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
