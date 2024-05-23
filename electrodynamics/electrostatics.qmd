@@ -4,18 +4,20 @@ As is typically custom in electromagnetism, we'll begin our study of the subject
 
 ## Electric Field
 
-We can start the subject in fact any number of ways, for example by just stating Maxwell's equations and studying their implications. We'll instead stick to the more usual convention, where we start by assuming the force laws of classical mechanics along with some empirical facts about electric charges and the forces between them.
+We can start the subject in any number of ways, for example by just stating Maxwell's equations and studying their implications. We'll instead stick to the more usual convention, where we start by assuming the force laws of classical mechanics along with some empirical facts about electric charges and the forces between them.
 
 We'll assume that forces are *vectors*, meaning they have magnitude and direction. Being vectors, forces obey the principle of *superposition*, meaning the combined effect of two forces exerted on a body is given by their vector sum.
 
 In the 18th century, it was discovered that aside from mass, every physical body has associated to it another scalar quantity called *electric charge*, which can take on any real value, positive, negative, or zero. From these facts and other experiments, Coulomb discovered that the force between two static, charged bodies satisfies the following properties:
 
-- The force between the two charges depends on the magnitude of each charge. The larger the magnitude, the stronger the force between them.
+- The force between the two charges depends linearly on the magnitude of each charge. The larger the magnitude, the stronger the force between them.
 - The force obeys an inverse square law nature similar to gravity. That is, the strength of the force between the two charges varies with the inverse square of the distance between them.
 - As with gravity, the force is directed along the line of force joining the two charges.
 - The force is *attractive* if the two bodies have charges of *opposite* sign, and *repulsive* if the two bodies have charges of the *same* sign. If either body has zero charge there is no force between them.
 
 ### Coulomb's law
+
+ONLY TRUE FOR POINT CHARGES
 
 We can state this more mathematically via *Coulomb's Law*. Suppose one body has a charge $q_1$ and is located at a position $\mathbf{x}_1$, while a second body has a charge $q_2$ and is located at a position $\mathbf{x}_2$. Let $\mathbf{r}_{12} \equiv \mathbf{x}_1 - \mathbf{x}_2$ by the separation vector between the two bodies. Then the force on charge $q_1$ due to charge $q_2$ is given by
 $$
@@ -46,15 +48,15 @@ Before continuing, it's worth taking the time to be careful what we mean by the 
 
 ![](./resources/image-20240308151912715.png){fig-align=center width=300}
 
-We'll often find it more useful to express the electric field equivalently but slightly differently way. Using the fact that the separation vector can be written as $\boldsymbol{\xi} = |\mathbf{x}-\mathbf{x}'| \mathbf{e}_\xi$, we can write the electric field due to $q'$ as
+We'll often find it more useful to express the electric field equivalently but slightly differently way. Using the fact that the separation vector can be written as $\boldsymbol{\xi} = |\mathbf{x}-\mathbf{x}'| \mathbf{e}_\xi$, we can write the electric field due to $q$ as
 $$
-\mathbf{E}(\mathbf{x}) = q' \frac{\mathbf{x}-\mathbf{x}'}{|\mathbf{x}-\mathbf{x}'|^3} \ .
+\mathbf{E}(\mathbf{x}) = q \frac{\mathbf{x}-\mathbf{x}'}{|\mathbf{x}-\mathbf{x}'|^3} \ .
 $$
-Since forces obey the principle of superposition and electric field is proportional to force, the electric field must evidently obey the principle of superposition as well. Suppose that instead of a single source charge $q'$ we have $N$ source charges $q_1, q_2, \cdots, q_N$ located at positions $\mathbf{x}_1, \mathbf{x}_2, \cdots, \mathbf{x}_N$ respectively. Then the combined electric field due to all source charges must be given by the sum of their individual electric fields,
+Since forces obey the principle of superposition and electric field is proportional to force, the electric field must evidently obey the principle of superposition as well. Suppose that instead of a single source charge $q$ we have $N$ source charges $q_1, q_2, \cdots, q_N$ located at positions $\mathbf{x}_1, \mathbf{x}_2, \cdots, \mathbf{x}_N$ respectively. Then the combined electric field due to all source charges must be given by the sum of their individual electric fields,
 $$
 \mathbf{E}(\mathbf{x}) = \sum_{i=1}^N \mathbf{E}_i(\mathbf{x}) = \sum_{i=1}^N q_i \frac{\mathbf{x}-\mathbf{x}_i}{|\mathbf{x}-\mathbf{x}_i|^3} \ .
 $$
-In this case the idea is still the same. If we place an infinitesimal test charge $q$ at a field point $\mathbf{x}$, the force it feels due to all of the *combined* source charges is $\mathbf{F} = q\mathbf{E}$.
+In this case the idea is still the same. If we place an infinitesimal test charge $\delta q$ at a field point $\mathbf{x}$, the force it feels due to all of the *combined* source charges is $\mathbf{F} = \delta q\mathbf{E}$.
 
 Given that the electric field is a mathematical vector field, we can always visualize it as a vector-valued function of position. Each point $\mathbf{x}$ in space has associated to it an output vector $\mathbf{E}(\mathbf{x})$. It's traditional though, and very convenient, to visualize electric fields using *field lines*. The idea is to imagine placing vector field arrows at each point in space and then connecting them together with lines running along the directions of the arrows.
 
@@ -82,33 +84,33 @@ Evidently, for two electrons the Coulomb force is 42 orders of magnitude stronge
 
 In classical electromagnetism we rarely find ourselves dealing with point charges. We're generally dealing with *macroscopic* materials containing many charged particles packed densely together. In such cases it's more convenient to treat those charges not as a sum over all the point charges, but instead as a continuous *distribution* of charge characterized by some *charge density* $\rho$.
 
-Suppose we have some macroscopic material sitting in space with a charge density $\rho$. That is, $\rho(\mathbf{x}')$ is a function that says how much charge per unit volume is in the region of space near a source point $\mathbf{x}'$. This density will give rise to an infinitesimal charge $dq' = \rho(\mathbf{x}') d^3 \mathbf{x}'$ at that point. By Coulomb's Law, this charge will then give rise to an infinitesimal electric field $d\mathbf{E}$ given by
+Suppose we have some macroscopic material sitting in space with a charge density $\rho$. That is, $\rho(\mathbf{x}')$ is a function that says how much charge per unit volume is in the region of space near a source point $\mathbf{x}'$. This density will give rise to an infinitesimal charge $dq = \rho(\mathbf{x}') d^3 \mathbf{x}'$ at that point. By Coulomb's Law, this charge will then give rise to an infinitesimal electric field $d\mathbf{E}$ given by
 $$
-d\mathbf{E}(\mathbf{x}) = dq' \frac{\mathbf{x}-\mathbf{x}'}{|\mathbf{x}-\mathbf{x}'|^3} = d^3 \mathbf{x}' \ \rho(\mathbf{x}') \frac{\mathbf{x}-\mathbf{x}'}{|\mathbf{x}-\mathbf{x}'|^3} \ .
+d\mathbf{E}(\mathbf{x}) = dq \frac{\mathbf{x}-\mathbf{x}'}{|\mathbf{x}-\mathbf{x}'|^3} = d^3 \mathbf{x}' \ \rho(\mathbf{x}') \frac{\mathbf{x}-\mathbf{x}'}{|\mathbf{x}-\mathbf{x}'|^3} \ .
 $$
 To get the electric field generated by the *entire* material, we need only use the superposition and integrate over the entire volume $\mathcal{V}'$​ of the material to get
 $$
 \boxed{
-\mathbf{E}(\mathbf{x}) = \int_{\mathcal{V}'} d^3 \mathbf{x}' \ \rho(\mathbf{x}') \frac{\mathbf{x}-\mathbf{x}'}{|\mathbf{x}-\mathbf{x}'|^3} 
+\mathbf{E}(\mathbf{x}) = \int_{\mathcal{V}} d^3 \mathbf{x}' \ \rho(\mathbf{x}') \frac{\mathbf{x}-\mathbf{x}'}{|\mathbf{x}-\mathbf{x}'|^3} 
 }\ .
 $$
-This idea can be seen in the figure below. The gray blog is the macroscopic material. Inside this material is an infinitesimal charge $dq'$ located at the source point $\mathbf{x}'$ which defines an electric field. At any given field point $\mathbf{x}$ the field value due to $dq'$ is $d\mathbf{E}(\mathbf{x})$. The combined effect of all of these charges gives the full field.
+This idea can be seen in the figure below. The gray blog is the macroscopic material. Inside this material is an infinitesimal charge $dq$ located at the source point $\mathbf{x}'$ which defines an electric field. At any given field point $\mathbf{x}$ the field value due to $dq$ is $d\mathbf{E}(\mathbf{x})$. The combined effect of all of these charges gives the full field.
 
 ![](./resources/image-20240308151931197.png){fig-align=center width=300}
 
-Since we can always just define the charge density outside the material to be zero, we don't have to integrate only over $\mathcal{V}'$. We can integrate over all space, so long as we're mindful of where the charge density is non-zero.
+Since we can always just define the charge density outside the material to be zero, we don't have to integrate only over $\mathcal{V}$. We can integrate over all space, so long as we're mindful of where the charge density is non-zero.
 
 ### Lower Dimensions
 
 In a sense, the name of the game in electrostatics is to find the electric field of some charge distribution. Before showing how to do that though, it's worth noting that in many cases we won't always be interested in 3-dimensional charge distributions like we've defined. Sometimes we'll be interested in lower-dimensional charge distributions as well, like the charge distribution of a line of charge or a two-dimensional surface of charge. In these cases it'll be convenient to slightly modify our equation for the electric field by using different kinds of charge densities. 
 
-We already saw one example of this, the point charge. While we derived the equation for the electric field point charge without the use of charge densities, we can express those equations naturally using charge densities as well. The charge density of a point is proportional to a delta function. If we have a point charge $q'$ located at $\mathbf{x}'$, its charge distribution at an arbitrary point $\mathbf{x}''$ can be expressed as
+We already saw one example of this, the point charge. While we derived the equation for the electric field point charge without the use of charge densities, we can express those equations naturally using charge densities as well. The charge density of a point is proportional to a delta function. If we have a point charge $q$ located at $\mathbf{x}'$, its charge distribution at an arbitrary point $\mathbf{x}$ can be expressed as
 $$
-\rho(\mathbf{x}'') = q' \delta(\mathbf{x}''-\mathbf{x}') \ .
+\rho(\mathbf{x}) = q \delta(\mathbf{x}-\mathbf{x}') \ .
 $$
 Integrating the electric field over all space and using the sifting property of delta functions gives us our original equation for the electric field of a point charge,
 $$
-\mathbf{E}(\mathbf{x}) = \int_{\mathcal{V}'} d^3 \mathbf{x}'' \ q' \delta(\mathbf{x}''-\mathbf{x}') \frac{\mathbf{x}-\mathbf{x}''}{|\mathbf{x}-\mathbf{x}''|^3} = q' \frac{\mathbf{x}-\mathbf{x}'}{|\mathbf{x}-\mathbf{x}'|^3} \ .
+\mathbf{E}(\mathbf{x}) = \int_{\mathcal{V}'} d^3 \mathbf{x}'' \ q \delta(\mathbf{x}''-\mathbf{x}') \frac{\mathbf{x}-\mathbf{x}''}{|\mathbf{x}-\mathbf{x}''|^3} = q \frac{\mathbf{x}-\mathbf{x}'}{|\mathbf{x}-\mathbf{x}'|^3} \ .
 $$
 If we instead suppose a distribution of charge is concentrated along some curve $\mathcal{C}'$ in space, it's more convenient to define a 1-dimensional charge density, or *line density*, $\lambda(\mathbf{x}')$ via the relation $dq' = \lambda(\mathbf{x}') d\ell'$, where we imagine $d\ell'$ being an infinitesimal segment along the curve of charge. Then the electric field would be
 $$
@@ -349,3 +351,8 @@ At this point it's worth stopping to more closely analyze a few of the assumptio
    U = \frac{1}{2} \int d^3\mathbf{x} \ \rho(\mathbf{x}) \phi(\mathbf{x}) = \frac{1}{2} \int_0^\infty 4\pi r^2 dr \ q \delta(\mathbf{x}) \frac{q}{r} = 0 \ ,
    $$
    as we'd expect. Clearly then there's a problem arising from the inclusion of the self energies in the second form of the integral. So what's going on? One way to think about it is that the self energy terms include the energy necessary to introduce each charge from the vaccuum. In this sense, self energies are tied up with vacuum energies, the energy stored in the vacuum of space itself. Understanding the vacuum energy requires quantum field theory, and is still an active area of research to this day.
+
+
+$$
+\boldsymbol{\mathcal{R}} = \mathcal{R} \mathbf{e}_\mathcal{R} \\ \boldsymbol{\Delta} \mathbf{x} = \Delta x \mathbf{e}_{\Delta \mathbf{x}}
+$$
