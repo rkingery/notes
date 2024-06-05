@@ -31,13 +31,13 @@ Note that as defined Coulomb's law really only holds for *point charges*. That i
 
 ### What is Charge Really?
 
-Before moving on, it's worth stopping to ask what exactly it is we mean when we say a body has charge. Mathematically, we can think of charge similar to how we think of mass. It's a scalar quantity associated with a body, except unlike mass it can take on any real value, positive or negative. More fundamentally though, the charge of a body is really an aggregate of charge due to more fundamental particles inside the body like electrons and protons. 
+Before moving on, it's worth stopping to ask what exactly it is we mean when we say a body has charge. Mathematically, we can think of charge similar to how we think of mass. It's a scalar quantity associated with a body, except unlike mass it can take on any real value, positive or negative. More fundamentally though, the charge of a body is really an aggregate of charge due to more atomic particles inside the body like electrons and protons. 
 
-A body is really a collection of atoms held together in some way, each with some number of protons and electrons. The protons are held together inside nuclei that generally stay fixed unless the body is deformed, while the electrons move around according to the rules of quantum mechanics. What we think of as charge is really how the electrons and protons are distributed inside the body. If the number of electrons and protons are equal, we say that the body is charge neutral. If there are more electrons than protons the body has negative charge. If there are fewer electrons than protons the body has positive charge. 
+A body is really a collection of atoms held together in some way, each with some number of protons and electrons.  What we think of as charge is really how the electrons and protons are distributed inside the body. Electrons and protons carry the same charge but with opposite sign. In practice most bodies are at least approximately charge neutral, meaning it contains the same number of protons and electrons. If there are more electrons than protons the body has negative charge. If there are fewer electrons than protons the body has positive charge.
 
-In practice, it's the movement of electrons that control how a body is charged. In some bodies, called *conductors* these electrons move freely around the body, while for other bodies, called *dielectrics* or *insulators*, these electrons stay locked into their respective atoms and only move small amounts. In either case, if the body is charged it implies some deficit or surplus of electrons.
+In practice, it's the movement of electrons that control how a body is charged. In some bodies, called *conductors* these electrons move freely around the body, while for other bodies, called *dielectrics* or *insulators*, these electrons stay locked into their respective atoms and only move inside their confined electron clouds. In either case, if the body is charged it implies some deficit or surplus of electrons.
 
-One would think that we should think of charge in terms of electrons and define charge in units of the number of surplus electrons present in the body. However, this wasn't known at the time the theory of electromagnetism was first formulated. It was only known that there was a scalar quantity called charge associated to the body, with no understanding of what gives rise to it. It's for these largely historical reasons that we continue to think of positive charge as moving around inside a body, even though it's really negatively charged electrons that move around.
+One would think that we should think of charge in terms of electrons and define charge in units of the number of surplus electrons present in the body. However, atomic structure wasn't known at the time the theory of electromagnetism was first formulated. It was only known that there was a scalar quantity called charge associated to the body, with no understanding of what gives rise to it. It's for these largely historical reasons that we continue to think of positive charge as moving around inside a body, even though it's really negatively charged electrons that move around.
 
 ### Coulomb vs Gravity
 
@@ -155,31 +155,31 @@ This idea can be seen in the figure below. Here the gray blob is some charge dis
 
 We'll often be interested in charge distributions of lower dimension as well, for example lines of charge and sheets of charge. For this reason it's useful to define charge densities in these dimensions as well. The simplest case is the point charge, which we can think of as a zero-dimensional density. If $q'$ is some point charge located at $\mathbf{x}'$, we can use the delta function to write
 $$
-dq = d^3 \mathbf{x}'' \ q \delta(\mathbf{x} - \mathbf{x}') \ .
+dq = d^3 \mathbf{x} \ q \delta(\mathbf{x} - \mathbf{x}') \ .
 $$
 Indeed, we get
 $$
-\mathbf{E}(\mathbf{x}) = \int d^3 \mathbf{x}'' \ q \delta(\mathbf{x} - \mathbf{x}') \frac{\mathbf{x}-\mathbf{x}''}{|\mathbf{x}-\mathbf{x}''|^3} = q \frac{\mathbf{x}-\mathbf{x}'}{|\mathbf{x}-\mathbf{x}'|^3} \ ,
+\mathbf{E}(\mathbf{x}) = \int d^3 \mathbf{x}'' \ q \delta(\mathbf{x}'' - \mathbf{x}') \frac{\mathbf{x}-\mathbf{x}''}{|\mathbf{x}-\mathbf{x}''|^3} = q \frac{\mathbf{x}-\mathbf{x}'}{|\mathbf{x}-\mathbf{x}'|^3} \ ,
 $$
 which agrees with our original formula for the electric field of a point charge.
 
-Stepping up to one-dimension, we can imagine a line of charge in space, for example a long, thin charged wire. If $d\boldsymbol{\ell}'$ is an infinitesimal segment of this line of charge, we can define a *line charge density* $\lambda(\mathbf{x}')$ by the formula
+Stepping up to one-dimension, we can imagine a line of charge in space, for example a long, thin charged wire. If $d\ell'$ is an infinitesimal line element of this line of charge, we can define a *line charge density* $\lambda(\mathbf{x}')$ by the formula
 $$
-dq = d\boldsymbol{\ell}' \ \lambda(\mathbf{x}') \ .
+dq = d\ell' \ \lambda(\mathbf{x}') \ .
 $$
 Then the formula for the electric field becomes
 $$
-\mathbf{E}(\mathbf{x}) = \int d\boldsymbol{\ell}' \ \lambda(\mathbf{x}') \frac{\mathbf{x}-\mathbf{x}'}{|\mathbf{x}-\mathbf{x}'|^3} \ .
+\mathbf{E}(\mathbf{x}) = \int d\ell' \ \lambda(\mathbf{x}') \frac{\mathbf{x}-\mathbf{x}'}{|\mathbf{x}-\mathbf{x}'|^3} \ .
 $$
 Here it's again understood that we're integrating over the line of charge $\mathcal{C}$, but we'll again usually omit this dependency.
 
-Last, we can imagine a two-dimensional *surface of charge* in space, for example a thin sheet of charge. If $d\mathbf{a}'$ is the area element along this surface of charge, we can define a *surface charge density* $\sigma(\mathbf{x}')$ by the formula
+Last, we can imagine a two-dimensional *surface of charge* in space, for example a thin sheet of charge. If $da'$ is the area element along this surface of charge, we can define a *surface charge density* $\sigma(\mathbf{x}')$ by the formula
 $$
 dq = d\mathcal{a}' \ \sigma(\mathbf{x}') \ .
 $$
 Then the formula for the electric field becomes
 $$
-\mathbf{E}(\mathbf{x}) = \int d\mathbf{a}' \ \sigma(\mathbf{x}') \frac{\mathbf{x}-\mathbf{x}'}{|\mathbf{x}-\mathbf{x}'|^3} \ .
+\mathbf{E}(\mathbf{x}) = \int da' \ \sigma(\mathbf{x}') \frac{\mathbf{x}-\mathbf{x}'}{|\mathbf{x}-\mathbf{x}'|^3} \ .
 $$
 Again, it's understood we're integrating over the whole surface of charge $\mathcal{S}$, which we will usually omit.
 
@@ -197,11 +197,11 @@ $$
 $$
 To find $E(r)$ we need to take the inner product of $\mathbf{E}$ with $\mathbf{e}_r$. In terms of the separation vector $\boldsymbol{\xi} = \mathbf{x} - \mathbf{x}'$, we have
 $$
-E(r) = \int d\mathbf{a}' \ \frac{\sigma}{\xi^3} \boldsymbol{\xi} \cdot \mathbf{e}_r \ .
+E(r) = \int da' \ \frac{\sigma}{\xi^3} \boldsymbol{\xi} \cdot \mathbf{e}_r \ .
 $$
-To make headway we need to find the area element $d\mathbf{a}'$, the relative distance $\xi = |\boldsymbol{\xi}|$, and the dot product $\boldsymbol{\xi} \cdot \mathbf{e}_r$. Starting with the area element, for a sphere it's simply the volume element in spherical coordinates with $r=R$ and without the $dr$ integral,
+To make headway we need to find the area element $da'$, the relative distance $\xi = |\boldsymbol{\xi}|$, and the dot product $\boldsymbol{\xi} \cdot \mathbf{e}_r$. Starting with the area element, for a sphere it's simply the volume element in spherical coordinates with $r=R$ and without the $dr$ integral,
 $$
-d\mathbf{a}' = R^2 \sin\theta' d\theta' d\phi' \ .
+da' = R^2 \sin\theta' d\theta' d\phi' \ .
 $$
 Now we need to find $\xi \equiv |\mathbf{x} - \mathbf{x}'|$, which is somewhat trickier. Without loss of generality we can assume that the field point lies on the $z$-axis, so that $\mathbf{x} = r \mathbf{e}_z$. Then an arbitrary source point $\mathbf{x}' = R \mathbf{e}_r$ on the sphere will subtend a polar angle $\theta'$ with the $z$-axis. Using the law of cosines on the triangle shown in the figure below, we can see that
 $$
@@ -216,7 +216,7 @@ $$
 We can now plug all of these values into the electric field integral and just plug away. We'll integrate over the whole sphere,
 $$
 \begin{align*}
-E(r) &= \int d\mathbf{a}' \ \frac{\sigma}{\xi^3} \boldsymbol{\xi} \cdot \mathbf{e}_r \\
+E(r) &= \int da' \ \frac{\sigma}{\xi^3} \boldsymbol{\xi} \cdot \mathbf{e}_r \\
 &= \int \sigma R^2 \sin\theta' d\phi' d\theta' \frac{r - R\cos\theta'}{\xi^3} \\
 &= R^2 \sigma \int_0^{2\pi} \sin\theta' d\phi' \int_0^{\pi} d\theta' \frac{r - R\cos\theta'}{(r^2 + R^2 - 2Rr \cos\theta')^{3/2}} \\
 &= 2\pi R^2 \sigma \int_0^{\pi} \sin\theta' d\theta' \frac{r - R\cos\theta'}{(r^2 + R^2 - 2Rr \cos\theta')^{3/2}} \ .
