@@ -365,13 +365,21 @@ window.Quarto = {
   <li><a href="#electric-field" id="toc-electric-field" class="nav-link active" data-scroll-target="#electric-field">Electric Field</a>
   <ul class="collapse">
   <li><a href="#coulombs-law" id="toc-coulombs-law" class="nav-link" data-scroll-target="#coulombs-law">Coulomb’s law</a></li>
-  <li><a href="#electric-fields" id="toc-electric-fields" class="nav-link" data-scroll-target="#electric-fields">Electric Fields</a></li>
+  <li><a href="#what-is-charge-really" id="toc-what-is-charge-really" class="nav-link" data-scroll-target="#what-is-charge-really">What is Charge Really?</a></li>
   <li><a href="#coulomb-vs-gravity" id="toc-coulomb-vs-gravity" class="nav-link" data-scroll-target="#coulomb-vs-gravity">Coulomb vs Gravity</a></li>
-  <li><a href="#charge-distributions" id="toc-charge-distributions" class="nav-link" data-scroll-target="#charge-distributions">Charge Distributions</a></li>
-  <li><a href="#lower-dimensions" id="toc-lower-dimensions" class="nav-link" data-scroll-target="#lower-dimensions">Lower Dimensions</a></li>
+  <li><a href="#electric-fields" id="toc-electric-fields" class="nav-link" data-scroll-target="#electric-fields">Electric Fields</a></li>
+  <li><a href="#continuous-charge-distributions" id="toc-continuous-charge-distributions" class="nav-link" data-scroll-target="#continuous-charge-distributions">Continuous Charge Distributions</a></li>
+  <li><a href="#example-uniformly-charged-sphere" id="toc-example-uniformly-charged-sphere" class="nav-link" data-scroll-target="#example-uniformly-charged-sphere">Example: Uniformly Charged Sphere</a></li>
   </ul></li>
-  <li><a href="#gausss-law" id="toc-gausss-law" class="nav-link" data-scroll-target="#gausss-law">Gauss’s Law</a></li>
-  <li><a href="#electric-potential" id="toc-electric-potential" class="nav-link" data-scroll-target="#electric-potential">Electric Potential</a>
+  <li><a href="#gausss-law" id="toc-gausss-law" class="nav-link" data-scroll-target="#gausss-law">Gauss’s Law</a>
+  <ul class="collapse">
+  <li><a href="#flux" id="toc-flux" class="nav-link" data-scroll-target="#flux">Flux</a></li>
+  <li><a href="#integral-form-of-gausss-law" id="toc-integral-form-of-gausss-law" class="nav-link" data-scroll-target="#integral-form-of-gausss-law">Integral Form of Gauss’s Law</a></li>
+  <li><a href="#differential-form-of-gausss-law" id="toc-differential-form-of-gausss-law" class="nav-link" data-scroll-target="#differential-form-of-gausss-law">Differential Form of Gauss’s Law</a></li>
+  <li><a href="#examples" id="toc-examples" class="nav-link" data-scroll-target="#examples">Examples</a></li>
+  <li><a href="#surfaces-of-charge" id="toc-surfaces-of-charge" class="nav-link" data-scroll-target="#surfaces-of-charge">Surfaces of Charge</a></li>
+  </ul></li>
+  <li><a href="#scalar-potential" id="toc-scalar-potential" class="nav-link" data-scroll-target="#scalar-potential">Scalar Potential</a>
   <ul class="collapse">
   <li><a href="#integral-form" id="toc-integral-form" class="nav-link" data-scroll-target="#integral-form">Integral Form</a></li>
   <li><a href="#poissons-equation" id="toc-poissons-equation" class="nav-link" data-scroll-target="#poissons-equation">Poisson’s Equation</a></li>
@@ -406,169 +414,313 @@ window.Quarto = {
 </header>
 
 
-<p>As is typically custom in electromagnetism, we’ll begin our study of the subject by focusing on the simple case of <em>electrostatics</em>. Electrostatics is the behavior of static distributions of charges and the forces they exert on other charged objects. Historically the subject was developed to study <em>macroscopic</em> phenomena. For this reason, certain abstractions we’ll make in the subject should be viewed as idealizations that are convenient for the study of macroscopic phenomena, but fail to have any real meaning at the <em>microscopic</em> level, where quantum mechanical descriptions are needed.</p>
+<p>As is custom in electromagnetism, we’ll begin our study of the subject by focusing on the simple case of <em>electrostatics</em>. Electrostatics is the behavior of static distributions of charges and the forces they exert on other charged objects. Historically the subject was developed to study <em>macroscopic</em> phenomena. For this reason, certain abstractions we’ll make in the subject should be viewed as idealizations that are convenient for the study of macroscopic phenomena, but fail to have any real meaning at the <em>microscopic</em> level, where quantum mechanical descriptions are needed.</p>
 <section id="electric-field" class="level2">
 <h2 class="anchored" data-anchor-id="electric-field">Electric Field</h2>
-<p>We can start the subject in fact any number of ways, for example by just stating Maxwell’s equations and studying their implications. We’ll instead stick to the more usual convention, where we start by assuming the force laws of classical mechanics along with some empirical facts about electric charges and the forces between them.</p>
+<p>We can start the subject in any number of ways, for example by just stating Maxwell’s equations and studying their implications. We’ll instead stick to the more usual convention, where we start by assuming the force laws of classical mechanics along with some empirical facts about electric charges and the forces between them.</p>
 <p>We’ll assume that forces are <em>vectors</em>, meaning they have magnitude and direction. Being vectors, forces obey the principle of <em>superposition</em>, meaning the combined effect of two forces exerted on a body is given by their vector sum.</p>
 <p>In the 18th century, it was discovered that aside from mass, every physical body has associated to it another scalar quantity called <em>electric charge</em>, which can take on any real value, positive, negative, or zero. From these facts and other experiments, Coulomb discovered that the force between two static, charged bodies satisfies the following properties:</p>
 <ul>
-<li>The force between the two charges depends on the magnitude of each charge. The larger the magnitude, the stronger the force between them.</li>
+<li>The force between the two charges depends linearly on the magnitude of each charge. The larger the magnitude, the stronger the force between them.</li>
 <li>The force obeys an inverse square law nature similar to gravity. That is, the strength of the force between the two charges varies with the inverse square of the distance between them.</li>
 <li>As with gravity, the force is directed along the line of force joining the two charges.</li>
 <li>The force is <em>attractive</em> if the two bodies have charges of <em>opposite</em> sign, and <em>repulsive</em> if the two bodies have charges of the <em>same</em> sign. If either body has zero charge there is no force between them.</li>
 </ul>
 <section id="coulombs-law" class="level3">
 <h3 class="anchored" data-anchor-id="coulombs-law">Coulomb’s law</h3>
-<p>We can state this more mathematically via <em>Coulomb’s Law</em>. Suppose one body has a charge <span class="math inline">\(q_1\)</span> and is located at a position <span class="math inline">\(\mathbf{x}_1\)</span>, while a second body has a charge <span class="math inline">\(q_2\)</span> and is located at a position <span class="math inline">\(\mathbf{x}_2\)</span>. Let <span class="math inline">\(\mathbf{r}_{12} \equiv \mathbf{x}_1 - \mathbf{x}_2\)</span> by the separation vector between the two bodies. Then the force on charge <span class="math inline">\(q_1\)</span> due to charge <span class="math inline">\(q_2\)</span> is given by <span class="math display">\[
-\mathbf{F}_{12} = k_e \frac{q_1 q_2}{|\mathbf{r}_{12}|^2} \mathbf{e}_{12} \ .
-\]</span> Here <span class="math inline">\(k_e\)</span> is a proportionality constant that depends on the choice of units used. In this course we’ll use the <em>Gaussian</em> systems of units, where <span class="math inline">\(k_e \equiv 1\)</span> and CGS units are used to measure force and distance. This means in Gaussian units Coulomb’s Law can be written simply as <span class="math display">\[
-\boxed{\mathbf{F}_{12} = \frac{q_1 q_2}{|\mathbf{r}_{12}|^2} \mathbf{e}_{12}
-} \ ,
-\]</span> where it’s assumed that forces are measured in <em>dynes</em> and distances in <em>centimeters</em>. This means that in the Gaussian system charge evidently must inherit units of <span class="math inline">\(\sqrt{\text{dyne} \cdot \text{cm}^2}\)</span>. This derived unit of charge is called the <em>electrostatic unit</em> or <em>esu</em>, where <span class="math inline">\(1 \ \text{esu} \approx 3.3 \cdot 10^{-10} \ \text{C}\)</span>​ in SI units.</p>
+<p>Putting all of these properties together we get <em>Coulomb’s law</em>. Suppose we have two point particles with charges <span class="math inline">\(q_1\)</span> and <span class="math inline">\(q_2\)</span> located at positions <span class="math inline">\(\mathbf{x}_1\)</span> and <span class="math inline">\(\mathbf{x}_2\)</span> respectively. Then according to Coulomb’s law, the force charge <span class="math inline">\(q_1\)</span> experiences due to charge <span class="math inline">\(q_2\)</span> is given by <span class="math display">\[
+\mathbf{F}_{12} = k_e \frac{q_1 q_2}{|\mathbf{x}_1 - \mathbf{x}_2|^2} \mathbf{e}_{12} \ .
+\]</span> Here <span class="math inline">\(\mathbf{e}_{12}\)</span> is the unit vector pointing from <span class="math inline">\(q_2\)</span> to <span class="math inline">\(q_1\)</span>. By Newton’s third law, the force <span class="math inline">\(q_2\)</span> experiences due to <span class="math inline">\(q_1\)</span> is equal and opposite, with <span class="math inline">\(\mathbf{F}_{21} = -\mathbf{F}_{12}\)</span>. Since this force depends only on the distance between the two point charges it’s a <em>central force</em>, which implies that energy is conserved in electrostatics. We’ll say more about elecrostatic energy later.</p>
+<p>The proportionality constant <span class="math inline">\(k_e\)</span> has value and dimensions that depend on the choice of units used. In this course we’ll mostly use the <em>Gaussian</em> system of units, where <span class="math inline">\(k_e \equiv 1\)</span> and the mechanical units are measured in CGS units. This means force is measured in <em>dynes</em> and distance in <em>centimeters</em>. Evidently then, in the Gaussian system of units charge must have units of <span class="math inline">\(\sqrt{\text{dyne} \cdot \text{cm}^2}\)</span>. We give this unit of charge a name, called the <em>electrostatic unit</em> or <em>esu</em>, where <span class="math inline">\(1 \ \text{esu} \approx 3.3 \cdot 10^{-10} \ \text{C}\)</span> in SI units. In Gaussian units, Coulomb’s law thus simplifies to <span class="math display">\[
+\mathbf{F}_{12} = \frac{q_1 q_2}{|\mathbf{x}_1 - \mathbf{x}_2|^2} \mathbf{e}_{12} \ .
+\]</span> Note that as defined Coulomb’s law really only holds for <em>point charges</em>. That is, for point particles where all charge is localized at a single point. This is of course an abstraction. In reality we deal with larger bodies where the charge may be distributed across the body in some way. We’ll see how to modify Coulomb’s law the work with more arbitrary distributions of charge below.</p>
 </section>
-<section id="electric-fields" class="level3">
-<h3 class="anchored" data-anchor-id="electric-fields">Electric Fields</h3>
-<p>While we could proceed to study this force between charges perfectly well, it’s more useful to make another abstraction, the <em>field abstraction</em>. Suppose we again have two charged bodies <span class="math inline">\(q\)</span> and <span class="math inline">\(q'\)</span> located in space at positions <span class="math inline">\(\mathbf{x}\)</span> and <span class="math inline">\(\mathbf{x}'\)</span> respectively. Due to Coulomb’s Law, charge <span class="math inline">\(q\)</span> will feel a force <span class="math inline">\(\mathbf{F}\)</span> due to charge <span class="math inline">\(q'\)</span>. If we look at the quantity <span class="math inline">\(\mathbf{E} \equiv \mathbf{F}/q\)</span> in the limit that <span class="math inline">\(q\)</span> becomes infinitesimally small, it’s empirically found that this stabilizes out to a constant, well-defined value. This quantity <span class="math inline">\(\mathbf{E}\)</span> we call the <em>electric field</em> due to the presence of <span class="math inline">\(q'\)</span>. It’s a vector field satisfying the equation <span class="math display">\[
-\mathbf{F} = q \mathbf{E}(\mathbf{x}) \ .
-\]</span> Notice that by definition the electric field as defined depends <em>only</em> on <span class="math inline">\(q'\)</span>, not on <span class="math inline">\(q\)</span>. We can think of the presence of <span class="math inline">\(q'\)</span> giving rise to an electric field that takes on a vector value at any point <span class="math inline">\(\mathbf{x}\)</span> in space. If a charge <span class="math inline">\(q\)</span> is located at <span class="math inline">\(\mathbf{x}\)</span> it will feel a force of <span class="math inline">\(\mathbf{F} = q\mathbf{E}\)</span>​ due to the presence of this field. Strictly speaking, for this definition to make sense we require that <span class="math inline">\(q\)</span> be an infinitesimal charge, since otherwise its presence would alter the behavior of the electric field. Such an infintesimal charge is called a <em>test charge</em>.</p>
-<p>Matching the expression <span class="math inline">\(\mathbf{F} = q\mathbf{E}\)</span> with Coulomb’s Law, the electric field at <span class="math inline">\(\mathbf{x}\)</span> due to <span class="math inline">\(q'\)</span> can evidently be expressed as <span class="math display">\[
-\mathbf{E}(\mathbf{x}) = \frac{q'}{|\boldsymbol{\xi}|^2} \mathbf{e}_\xi \ ,
-\]</span> where we’ve defined <span class="math inline">\(\boldsymbol{\xi} \equiv \mathbf{x} - \mathbf{x'}\)</span> to be the <em>separation vector</em> between a <em>field point</em> of interest <span class="math inline">\(\mathbf{x}\)</span> and the charge’s <em>source point</em> <span class="math inline">\(\mathbf{x}'\)</span>.</p>
-<p>Before continuing, it’s worth taking the time to be careful what we mean by the notation we’re using since we’ll use it for the rest of this course. We will almost always assume the <em>source point</em> <span class="math inline">\(\mathbf{x}'\)</span> is the position vector of the <em>source charge</em> <span class="math inline">\(q'\)</span> giving rise to the electric field <span class="math inline">\(\mathbf{E}\)</span>. We’ll assume the <em>field point</em> <span class="math inline">\(\mathbf{x}\)</span> is the position vector at which the electric field takes on its given value. The separation vector <span class="math inline">\(\boldsymbol{\xi}\)</span> will always be the vector pointing from the source point <span class="math inline">\(\mathbf{x}'\)</span> to the field point <span class="math inline">\(\mathbf{x}\)</span>. This is most easily shown in the figure below.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="../../../Library/Application Support/typora-user-images/image-20240308151912715.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="300"></p>
-</figure>
-</div>
-<p>We’ll often find it more useful to express the electric field equivalently but slightly differently way. Using the fact that the separation vector can be written as <span class="math inline">\(\boldsymbol{\xi} = |\mathbf{x}-\mathbf{x}'| \mathbf{e}_\xi\)</span>, we can write the electric field due to <span class="math inline">\(q'\)</span> as <span class="math display">\[
-\mathbf{E}(\mathbf{x}) = q' \frac{\mathbf{x}-\mathbf{x}'}{|\mathbf{x}-\mathbf{x}'|^3} \ .
-\]</span> Since forces obey the principle of superposition and electric field is proportional to force, the electric field must evidently obey the principle of superposition as well. Suppose that instead of a single source charge <span class="math inline">\(q'\)</span> we have <span class="math inline">\(N\)</span> source charges <span class="math inline">\(q_1, q_2, \cdots, q_N\)</span> located at positions <span class="math inline">\(\mathbf{x}_1, \mathbf{x}_2, \cdots, \mathbf{x}_N\)</span> respectively. Then the combined electric field due to all source charges must be given by the sum of their individual electric fields, <span class="math display">\[
-\mathbf{E}(\mathbf{x}) = \sum_{i=1}^N \mathbf{E}_i(\mathbf{x}) = \sum_{i=1}^N q_i \frac{\mathbf{x}-\mathbf{x}_i}{|\mathbf{x}-\mathbf{x}_i|^3} \ .
-\]</span> In this case the idea is still the same. If we place an infinitesimal test charge <span class="math inline">\(q\)</span> at a field point <span class="math inline">\(\mathbf{x}\)</span>, the force it feels due to all of the <em>combined</em> source charges is <span class="math inline">\(\mathbf{F} = q\mathbf{E}\)</span>.</p>
-<p>Given that the electric field is a mathematical vector field, we can always visualize it as a vector-valued function of position. Each point <span class="math inline">\(\mathbf{x}\)</span> in space has associated to it an output vector <span class="math inline">\(\mathbf{E}(\mathbf{x})\)</span>. It’s traditional though, and very convenient, to visualize electric fields using <em>field lines</em>. The idea is to imagine placing vector field arrows at each point in space and then connecting them together with lines running along the directions of the arrows.</p>
-<p>As a good rule of thumb for drawing field lines, they should always <em>start</em> at positive charges and <em>end</em> at negative charges, or go to infinity. Field lines should never cross each other. The density of the field lines at a point indicates the strength of the field at that point. In this way, we could loosely speaking <em>define</em> the electric field at a point as the <em>flux density</em> of field lines, or number of field lines per unit area, passing near that point.</p>
-<ul>
-<li>Work example: finding electric field of discrete charges (cube maybe?)</li>
-</ul>
+<section id="what-is-charge-really" class="level3">
+<h3 class="anchored" data-anchor-id="what-is-charge-really">What is Charge Really?</h3>
+<p>Before moving on, it’s worth stopping to ask what exactly it is we mean when we say a body has charge. Mathematically, we can think of charge similar to how we think of mass. It’s a scalar quantity associated with a body, except unlike mass it can take on any real value, positive or negative. More fundamentally though, the charge of a body is really an aggregate of charge due to more atomic particles inside the body like electrons and protons.</p>
+<p>A body is really a collection of atoms held together in some way, each with some number of protons and electrons. What we think of as charge is really how the electrons and protons are distributed inside the body. Electrons and protons carry the same charge but with opposite sign. In practice most bodies are at least approximately charge neutral, meaning it contains the same number of protons and electrons. If there are more electrons than protons the body has negative charge. If there are fewer electrons than protons the body has positive charge.</p>
+<p>In practice, it’s the movement of electrons that control how a body is charged. In some bodies, called <em>conductors</em> these electrons move freely around the body, while for other bodies, called <em>dielectrics</em> or <em>insulators</em>, these electrons stay locked into their respective atoms and only move inside their confined electron clouds. In either case, if the body is charged it implies some deficit or surplus of electrons.</p>
+<p>One would think that we should think of charge in terms of electrons and define charge in units of the number of surplus electrons present in the body. However, atomic structure wasn’t known at the time the theory of electromagnetism was first formulated. It was only known that there was a scalar quantity called charge associated to the body, with no understanding of what gives rise to it. It’s for these largely historical reasons that we continue to think of positive charge as moving around inside a body, even though it’s really negatively charged electrons that move around.</p>
 </section>
 <section id="coulomb-vs-gravity" class="level3">
 <h3 class="anchored" data-anchor-id="coulomb-vs-gravity">Coulomb vs Gravity</h3>
-<p>Given that Coulomb’s Law looks so similar to Newton’s Law of Gravitation, it’s fair to ask how the forces compare to each other. Let’s suppose we have two particles separated by a distance <span class="math inline">\(r_{12}\)</span> with masses <span class="math inline">\(m_1, m_2\)</span> and charges <span class="math inline">\(q_1, q_2\)</span> respectively. The two particles will feel both a graviational force <span class="math inline">\(\mathbf{F}_g\)</span> and a Coulomb force <span class="math inline">\(\mathbf{F}_e\)</span>. We can get an idea of their relative strengths by looking at their ratio, <span class="math display">\[
-\frac{|\mathbf{F}_e|}{|\mathbf{F}_g|} = k_e \frac{q_1 q_2}{r_{12}} \bigg / G \frac{m_1 m_2}{r_{12}} = \frac{k_e q_1 q_2}{G m_1 m_2} \ .
-\]</span> To get a feel for these values let’s pick a representative particle, the <em>electrons</em>. Then we’d have masses <span class="math inline">\(m_1 = m_2 = m_e\)</span> and charges <span class="math inline">\(q_1 = q_2 = e\)</span>. In CGS units, these values are <span class="math display">\[
-k_e = 1 \ , \ G \approx 6.7 \cdot 10^{-8} \ , \ m_e \approx 9 \cdot 10^{-28} \ , \ e \approx -5 \cdot 10^{-10} \ .
-\]</span> Plugging these numbers in, we have <span class="math display">\[
+<p>Given that Coulomb’s law looks so similar to Newton’s law of gravitation, it’s fair to ask how the forces compare to each other. Let’s suppose we have two particles separated by a distance <span class="math inline">\(r\)</span> with masses <span class="math inline">\(m_1, m_2\)</span> and charges <span class="math inline">\(q_1, q_2\)</span> respectively. Since the particles have both mass and charge they’ll feel both a gravitational force <span class="math inline">\(\mathbf{F}_g\)</span> and a Coulomb force <span class="math inline">\(\mathbf{F}_e\)</span>. We can get an idea of the relative strengths of these two forces by looking at their ratio. In Gaussian units, this is given by <span class="math display">\[
+\frac{|\mathbf{F}_e|}{|\mathbf{F}_g|} = \frac{q_1 q_2}{r} \bigg / G \frac{m_1 m_2}{r} = \frac{q_1 q_2}{G m_1 m_2} \ .
+\]</span> To get a feel for these values let’s pick a representative particle, the <em>electrons</em>. Then we’d have masses <span class="math inline">\(m_1 = m_2 = m_e\)</span> and charges <span class="math inline">\(q_1 = q_2 = e\)</span>. In Gaussian units, these values are <span class="math display">\[
+\ G \approx 6.7 \cdot 10^{-8} \ , \ m_e \approx 9 \cdot 10^{-28} \ , \ e \approx -5 \cdot 10^{-10} \ .
+\]</span> Plugging these numbers in, we get <span class="math display">\[
 \frac{|\mathbf{F}_e|}{|\mathbf{F}_g|} = \frac{e^2}{G m_e^2} \approx 4 \cdot 10^{42} \ .
-\]</span> Evidently, for two electrons the Coulomb force is 42 orders of magnitude stronger than the gravitational force. The difference between the two forces is so stark we can practically speaking neglect the effects of gravity when studying the interactions between electrons, or indeed any fundamental particle. Indeed, this is one reason why in quantum mechanics we rarely consider gravity. On the other hand, larger objects like people, planets, or galaxies tend to be electrically neutral or very close to it. This means in those cases gravity is all there is, and for large masses gravity can obviously be quite substantial.</p>
+\]</span> That is, for two electrons the Coulomb force is 42 orders of magnitude stronger than the gravitational force. The difference between the two forces is so stark we can practically speaking neglect the effects of gravity when studying the interactions between electrons, or indeed any small particles. Indeed, this is one reason why in quantum mechanics we rarely consider gravity. On the other hand, larger objects like people, planets, or galaxies tend to be electrically neutral or very close to it. This means in those cases gravity is all there is, and for large masses gravity can obviously be quite substantial.</p>
 </section>
-<section id="charge-distributions" class="level3">
-<h3 class="anchored" data-anchor-id="charge-distributions">Charge Distributions</h3>
-<p>In classical electromagnetism we rarely find ourselves dealing with point charges. We’re generally dealing with <em>macroscopic</em> materials containing many charged particles packed densely together. In such cases it’s more convenient to treat those charges not as a sum over all the point charges, but instead as a continuous <em>distribution</em> of charge characterized by some <em>charge density</em> <span class="math inline">\(\rho\)</span>.</p>
-<p>Suppose we have some macroscopic material sitting in space with a charge density <span class="math inline">\(\rho\)</span>. That is, <span class="math inline">\(\rho(\mathbf{x}')\)</span> is a function that says how much charge per unit volume is in the region of space near a source point <span class="math inline">\(\mathbf{x}'\)</span>. This density will give rise to an infinitesimal charge <span class="math inline">\(dq' = \rho(\mathbf{x}') d^3 \mathbf{x}'\)</span> at that point. By Coulomb’s Law, this charge will then give rise to an infinitesimal electric field <span class="math inline">\(d\mathbf{E}\)</span> given by <span class="math display">\[
-d\mathbf{E}(\mathbf{x}) = dq' \frac{\mathbf{x}-\mathbf{x}'}{|\mathbf{x}-\mathbf{x}'|^3} = d^3 \mathbf{x}' \ \rho(\mathbf{x}') \frac{\mathbf{x}-\mathbf{x}'}{|\mathbf{x}-\mathbf{x}'|^3} \ .
-\]</span> To get the electric field generated by the <em>entire</em> material, we need only use the superposition and integrate over the entire volume <span class="math inline">\(\mathcal{V}'\)</span>​ of the material to get <span class="math display">\[
+<section id="electric-fields" class="level3">
+<h3 class="anchored" data-anchor-id="electric-fields">Electric Fields</h3>
+<p>While we could proceed to study this force between charges just as we did in with gravity in classical mechanics, we’ll find it’s useful in electromagnetism to make a further abstraction, the <em>field abstraction</em>. The reason for this is that we want to think of all interactions as <em>local</em>. That is, a particle should only feel the presence of things near by, not things far away. If we think in terms of forces we have to give locality up, since two charges will feel a force no matter how far away they are, so-called “action at a distance”.</p>
+<p>Instead what we’ll do is imagine that particles interact due to the presence of background fields, and think of these fields as giving rise to forces. Suppose we have a charge <span class="math inline">\(q'\)</span> sitting in space at some position <span class="math inline">\(\mathbf{x}'\)</span>. Suppose we place an infinitesimal <em>test charge</em> <span class="math inline">\(q\)</span> at position <span class="math inline">\(\mathbf{x}\)</span>. By Coulomb’s law, the test charge will feel a force <span class="math inline">\(\mathbf{F}\)</span> due to <span class="math inline">\(q'\)</span>. We’ll define a vector-valued function of position known as the <em>electric field</em> by the ratio <span class="math display">\[
+\mathbf{E}(\mathbf{x}) \equiv \frac{\mathbf{F}}{q} \ .
+\]</span> Empirically this ratio is found to be well-defined and independent of the value of <span class="math inline">\(q\)</span> so long as <span class="math inline">\(q\)</span> is infinitesimal, with <span class="math display">\[
+\mathbf{E}(\mathbf{x}) = \frac{q'}{|\mathbf{x} - \mathbf{x}'|^2} \mathbf{e}_\xi \ .
+\]</span> Here for convenience we define the separation vector <span class="math inline">\(\boldsymbol{\xi} \equiv \mathbf{x} - \mathbf{x}'\)</span>, so that the field always points from the location <span class="math inline">\(\mathbf{x}'\)</span> of the <em>source charge</em> <span class="math inline">\(q'\)</span> to the <em>field point</em> <span class="math inline">\(\mathbf{x}\)</span> where we imagine placing the test charge <span class="math inline">\(q\)</span>. The relationship between all these points is shown in the figure below.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./resources/image-20240308151912715.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="300"></p>
+</figure>
+</div>
+<p>Notice that the electric field doesn’t depend on <span class="math inline">\(q\)</span> at all. It has a value at every point in space. When a test charge <span class="math inline">\(q\)</span> is brought in and placed at a position <span class="math inline">\(\mathbf{x}\)</span> it feels a force <span class="math display">\[
+\mathbf{F} = q \mathbf{E}(\mathbf{x}) \ .
+\]</span> Note that the requirement that <span class="math inline">\(q\)</span> be infinitesimal in this definition is important. If it’s not its presence will distort the value of the background field, in effect making <em>both</em> charges source charges for the field.</p>
+<p>Since <span class="math inline">\(\mathbf{E}\)</span> is just a vector field we can visualize it as such. At each field point <span class="math inline">\(\mathbf{x}\)</span> in space, we can imagine plotting <span class="math inline">\(\mathbf{E}\)</span> as a vector located at <span class="math inline">\(\mathbf{x}\)</span> and pointing outward. It’s traditional though, and very convenient, to visualize electric fields using <em>field lines</em>. The idea is to imagine placing vector field arrows at each point in space and then connecting them together with lines running along the directions of the arrows. Both of these visualizations are shown in the figure below for a single <em>positive</em> point source charge <span class="math inline">\(q'\)</span>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./resources/image-20240602115754745.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="400"></p>
+</figure>
+</div>
+<p>As a good rule of thumb for drawing field lines, they should always <em>start</em> at positive charges and <em>end</em> at negative charges, or go to infinity. Field lines should never cross each other. The density of the field lines at a point indicates the strength of the field at that point. In this way, we could loosely speaking <em>define</em> the electric field at a point as the <em>flux density</em> of field lines, or number of field lines per unit area, passing near that point.</p>
+<p>We’ll often find it more useful to express the electric field formula in a slightly different way by getting rid of the unit vector. Using the fact that the separation vector can be written <span class="math inline">\(\boldsymbol{\xi} = |\mathbf{x}-\mathbf{x}'| \mathbf{e}_\xi\)</span> we can write the same electric field in the equivalent form <span class="math display">\[
+\mathbf{E}(\mathbf{x}) = q' \frac{\mathbf{x}-\mathbf{x}'}{|\mathbf{x}-\mathbf{x}'|^3} \ .
+\]</span> This only defines the electric field due to a single point charge <span class="math inline">\(q'\)</span>. What if instead we have multiple source charges spread out in space. Suppose we instead have <span class="math inline">\(N\)</span> point source charges <span class="math inline">\(q_1, q_2, \cdots, q_N\)</span> located at positions <span class="math inline">\(\mathbf{x}_1, \mathbf{x}_2, \cdots, \mathbf{x}_N\)</span> respectively. Since forces obey the principle of superposition, we know we can add the force due to each source charge to get the total force, <span class="math display">\[
+\mathbf{F} = \mathbf{F}_1 + \mathbf{F}_2 + \cdots + \mathbf{F}_N \ .
+\]</span> Since the electric field is proportional to the force it must evidently obey the superposition principle as well. Then the combined electric field due to the presence of all of these charges must be given by the sum of each individual field, <span class="math display">\[
+\mathbf{E}(\mathbf{x}) = \sum_{i=1}^N \mathbf{E}_i(\mathbf{x}) = \sum_{i=1}^N q_i \frac{\mathbf{x}-\mathbf{x}_i}{|\mathbf{x}-\mathbf{x}_i|^3} \ .
+\]</span> Again, the combined electric field does not depend on the test charge, only the source charges. If we imagine placing an infinitesimal test charge <span class="math inline">\(q\)</span> at <span class="math inline">\(\mathbf{x}\)</span> it will still feel the combined force <span class="math inline">\(\mathbf{F} = q \mathbf{E}\)</span>.</p>
+<section id="example-the-electric-dipole" class="level4">
+<h4 class="anchored" data-anchor-id="example-the-electric-dipole">Example: The Electric Dipole</h4>
+<p>Let’s try to find the electric field of perhaps the simplest non-trivial example, the <em>electric dipole</em>. Suppose we have two like charges of opposite sign separated by a fixed distance along some axis. More formally, suppose we have a positive charge <span class="math inline">\(+q\)</span> located at a point <span class="math inline">\(\mathbf{x}_+ = \frac{d}{2} \mathbf{e}_z\)</span>, and a negative charge <span class="math inline">\(-q\)</span> located at the opposite point <span class="math inline">\(\mathbf{x}_- = -\frac{d}{2} \mathbf{e}_z\)</span>. Our goal will be to find the electric field for any field point <span class="math inline">\(\mathbf{x}\)</span> in the <span class="math inline">\(xy\)</span>-plane.</p>
+<p>FIGURE</p>
+<p>By the superposition principle, the electric field is given by <span class="math display">\[
+\mathbf{E} = \mathbf{E}_+ + \mathbf{E}_- = q\frac{\mathbf{x} - \mathbf{x}_+}{|\mathbf{x} - \mathbf{x}_+|^3} - q\frac{\mathbf{x} - \mathbf{x}_-}{|\mathbf{x} - \mathbf{x}_-|^3} \ .
+\]</span> To proceed further we first need to find the separation vectors for each charge. We have <span class="math display">\[
+\mathbf{x} - \mathbf{x}_\pm = r \mathbf{e}_r \mp \frac{d}{2} \mathbf{e}_z \ ,
+\]</span> Plugging this in and simplifying, we get <span class="math display">\[
+\begin{align*}
+\mathbf{E} &amp;= q \frac{r \mathbf{e}_r - \frac{d}{2} \mathbf{e}_z}{|r \mathbf{e}_r - \frac{d}{2} \mathbf{e}_z|^3} - q \frac{r \mathbf{e}_r + \frac{d}{2} \mathbf{e}_z}{|r \mathbf{e}_r + \frac{d}{2} \mathbf{e}_z|^3} \\
+&amp;= q \frac{r \mathbf{e}_r - \frac{d}{2} \mathbf{e}_z}{\bigg[r^2 + \big(\frac{d}{2}\big)^2\bigg]^{3/2}} - q \frac{r \mathbf{e}_r + \frac{d}{2} \mathbf{e}_z}{\bigg[r^2 + \big(-\frac{d}{2}\big)^2\bigg]^{3/2}} \\
+&amp;= \frac{-qd}{\bigg[r^2 + \big(\frac{d}{2}\big)^2\bigg]^{3/2}} \mathbf{e}_z \ .
+\end{align*}
+\]</span> We can immediately see that the electric field for any point in the <span class="math inline">\(xy\)</span>-plane must point along the negative <span class="math inline">\(z\)</span>-axis. This can be understood intuitively just by vector subtracting the separation vectors in the figure above and noting that the magnitude of the field for each charge must be the same by symmetry.</p>
+<p>This is as far as we can go as is, but we can make one useful simplification. Let’s suppose <span class="math inline">\(r \gg d\)</span>. This is the <em>far field limit</em> where the field point is far away from both charges. In this limit we can ignore the <span class="math inline">\(\frac{d}{2}\)</span> term in the denominator and write <span class="math display">\[
+\mathbf{E} \approx -\frac{qd}{r^3} \mathbf{e}_z \ .
+\]</span> This result tells us something interesting. Even far away from the source charges, the dipole doesn’t seem to follow Coulomb’s law since the field doesn’t fall off as <span class="math inline">\(\mathbf{E} \sim \frac{1}{r^2}\)</span>, but rather as <span class="math inline">\(\mathbf{E} \sim \frac{1}{r^3}\)</span>. The reason for this is the two charges screen each other, canceling out the monopole field that would usually give rise to a <span class="math inline">\(\frac{1}{r^2}\)</span> term in the field. This causes the field to be weaker than we’d expect for a point charge in the far field limit.</p>
+<p>The term <span class="math inline">\(qd \mathbf{e}_z\)</span> has a name. It’s called the <em>dipole moment</em>, denoted by the vector <span class="math inline">\(\mathbf{p}\)</span>. The dipole moment is a vector of magnitude <span class="math inline">\(qd\)</span> that points from the negative to the positive charge in a dipole. Using the dipole moment it’s possible to show that for a general field point, not just in the <span class="math inline">\(xy\)</span>-plane, we can express the electric field of a dipole in the far field limit as <span class="math display">\[
+\mathbf{E} = \frac{3(\mathbf{p} \cdot \mathbf{e}_r) \mathbf{e}_r}{r^3} - \frac{\mathbf{p}}{r^3} \ .
+\]</span> Notice the first term is just the projection of the dipole onto the field point direction, which is zero when the two vectors are perpendicular. The dipole turns out to be very important to the theory of electrostatics. We’ll talk about it in more detail in the next chapter when we discuss the multipole expansion.</p>
+</section>
+</section>
+<section id="continuous-charge-distributions" class="level3">
+<h3 class="anchored" data-anchor-id="continuous-charge-distributions">Continuous Charge Distributions</h3>
+<p>In classical electromagnetism we rarely find ourselves dealing with point charges. We’re generally dealing with <em>macroscopic</em> bodies containing many charged particles packed densely together. In such cases it’s more convenient to treat those charges not as a sum over all the point charges, but instead as a continuous <em>charge distribution</em>.</p>
+<p>A charge distribution can be thought of as a large number of charged point particles packed densely together. Provided the charges are dense enough that we can treat them as continuous, we can define a <em>charge density</em> <span class="math inline">\(\rho(\mathbf{x}')\)</span> by <span class="math display">\[
+dq = d^3 \mathbf{x}' \ \rho(\mathbf{x}') \ .
+\]</span> Each <span class="math inline">\(dq\)</span> will give rise to an infinitesimal electric field <span class="math inline">\(d\mathbf{E}\)</span> defined by Coulomb’s law. Using the principle of superposition, we can then integrate over all these charges over all space to get the electric field of the distribution, <span class="math display">\[
 \boxed{
-\mathbf{E}(\mathbf{x}) = \int_{\mathcal{V}'} d^3 \mathbf{x}' \ \rho(\mathbf{x}') \frac{\mathbf{x}-\mathbf{x}'}{|\mathbf{x}-\mathbf{x}'|^3}
+\mathbf{E}(\mathbf{x}) = \int d^3 \mathbf{x}' \ \rho(\mathbf{x}') \frac{\mathbf{x}-\mathbf{x}'}{|\mathbf{x}-\mathbf{x}'|^3}
 }\ .
-\]</span> This idea can be seen in the figure below. The gray blog is the macroscopic material. Inside this material is an infinitesimal charge <span class="math inline">\(dq'\)</span> located at the source point <span class="math inline">\(\mathbf{x}'\)</span> which defines an electric field. At any given field point <span class="math inline">\(\mathbf{x}\)</span> the field value due to <span class="math inline">\(dq'\)</span> is <span class="math inline">\(d\mathbf{E}(\mathbf{x})\)</span>. The combined effect of all of these charges gives the full field.</p>
+\]</span> Strictly speaking we should only integrate over the volume <span class="math inline">\(\mathcal{V}\)</span> of the distribution, but since we can freely define the density to be zero outside the distribution we’ll usually omit this from the formula and assume we’re integrating over all space.</p>
+<p>This idea can be seen in the figure below. Here the gray blob is some charge distribution, and <span class="math inline">\(dq\)</span> some infinitesimal element of it. Adding up, or integrating, over all these charges will give the full electric field <span class="math inline">\(\mathbf{E}(\mathbf{x})\)</span>.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="../../../Library/Application Support/typora-user-images/image-20240308151931197.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="300"></p>
+<p><img src="./resources/image-20240308151931197.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="300"></p>
 </figure>
 </div>
-<p>Since we can always just define the charge density outside the material to be zero, we don’t have to integrate only over <span class="math inline">\(\mathcal{V}'\)</span>. We can integrate over all space, so long as we’re mindful of where the charge density is non-zero.</p>
+<p>We’ll often be interested in charge distributions of lower dimension as well, for example lines of charge and sheets of charge. For this reason it’s useful to define charge densities in these dimensions as well. The simplest case is the point charge, which we can think of as a zero-dimensional density. If <span class="math inline">\(q'\)</span> is some point charge located at <span class="math inline">\(\mathbf{x}'\)</span>, we can use the delta function to write <span class="math display">\[
+dq = d^3 \mathbf{x} \ q \delta(\mathbf{x} - \mathbf{x}') \ .
+\]</span> Indeed, we get <span class="math display">\[
+\mathbf{E}(\mathbf{x}) = \int d^3 \mathbf{x}'' \ q \delta(\mathbf{x}'' - \mathbf{x}') \frac{\mathbf{x}-\mathbf{x}''}{|\mathbf{x}-\mathbf{x}''|^3} = q \frac{\mathbf{x}-\mathbf{x}'}{|\mathbf{x}-\mathbf{x}'|^3} \ ,
+\]</span> which agrees with our original formula for the electric field of a point charge.</p>
+<p>Stepping up to one-dimension, we can imagine a line of charge in space, for example a long, thin charged wire. If <span class="math inline">\(d\ell'\)</span> is an infinitesimal line element of this line of charge, we can define a <em>line charge density</em> <span class="math inline">\(\lambda(\mathbf{x}')\)</span> by the formula <span class="math display">\[
+dq = d\ell' \ \lambda(\mathbf{x}') \ .
+\]</span> Then the formula for the electric field becomes <span class="math display">\[
+\mathbf{E}(\mathbf{x}) = \int d\ell' \ \lambda(\mathbf{x}') \frac{\mathbf{x}-\mathbf{x}'}{|\mathbf{x}-\mathbf{x}'|^3} \ .
+\]</span> Here it’s again understood that we’re integrating over the line of charge <span class="math inline">\(\mathcal{C}\)</span>, but we’ll again usually omit this dependency.</p>
+<p>Last, we can imagine a two-dimensional <em>surface of charge</em> in space, for example a thin sheet of charge. If <span class="math inline">\(da'\)</span> is the area element along this surface of charge, we can define a <em>surface charge density</em> <span class="math inline">\(\sigma(\mathbf{x}')\)</span> by the formula <span class="math display">\[
+dq = d\mathcal{a}' \ \sigma(\mathbf{x}') \ .
+\]</span> Then the formula for the electric field becomes <span class="math display">\[
+\mathbf{E}(\mathbf{x}) = \int da' \ \sigma(\mathbf{x}') \frac{\mathbf{x}-\mathbf{x}'}{|\mathbf{x}-\mathbf{x}'|^3} \ .
+\]</span> Again, it’s understood we’re integrating over the whole surface of charge <span class="math inline">\(\mathcal{S}\)</span>, which we will usually omit.</p>
+<p>We could in principle define charge densities in higher dimensions as well, though we won’t since we won’t need them. Each of the cases we discussed can be visualized using the figure below.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./resources/image-20240602122819510.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="300"></p>
+</figure>
+</div>
 </section>
-<section id="lower-dimensions" class="level3">
-<h3 class="anchored" data-anchor-id="lower-dimensions">Lower Dimensions</h3>
-<p>In a sense, the name of the game in electrostatics is to find the electric field of some charge distribution. Before showing how to do that though, it’s worth noting that in many cases we won’t always be interested in 3-dimensional charge distributions like we’ve defined. Sometimes we’ll be interested in lower-dimensional charge distributions as well, like the charge distribution of a line of charge or a two-dimensional surface of charge. In these cases it’ll be convenient to slightly modify our equation for the electric field by using different kinds of charge densities.</p>
-<p>We already saw one example of this, the point charge. While we derived the equation for the electric field point charge without the use of charge densities, we can express those equations naturally using charge densities as well. The charge density of a point is proportional to a delta function. If we have a point charge <span class="math inline">\(q'\)</span> located at <span class="math inline">\(\mathbf{x}'\)</span>, its charge distribution at an arbitrary point <span class="math inline">\(\mathbf{x}''\)</span> can be expressed as <span class="math display">\[
-\rho(\mathbf{x}'') = q' \delta(\mathbf{x}''-\mathbf{x}') \ .
-\]</span> Integrating the electric field over all space and using the sifting property of delta functions gives us our original equation for the electric field of a point charge, <span class="math display">\[
-\mathbf{E}(\mathbf{x}) = \int_{\mathcal{V}'} d^3 \mathbf{x}'' \ q' \delta(\mathbf{x}''-\mathbf{x}') \frac{\mathbf{x}-\mathbf{x}''}{|\mathbf{x}-\mathbf{x}''|^3} = q' \frac{\mathbf{x}-\mathbf{x}'}{|\mathbf{x}-\mathbf{x}'|^3} \ .
-\]</span> If we instead suppose a distribution of charge is concentrated along some curve <span class="math inline">\(\mathcal{C}'\)</span> in space, it’s more convenient to define a 1-dimensional charge density, or <em>line density</em>, <span class="math inline">\(\lambda(\mathbf{x}')\)</span> via the relation <span class="math inline">\(dq' = \lambda(\mathbf{x}') d\ell'\)</span>, where we imagine <span class="math inline">\(d\ell'\)</span> being an infinitesimal segment along the curve of charge. Then the electric field would be <span class="math display">\[
-\mathbf{E}(\mathbf{x}) = \int_{\mathcal{C}'} d \ell' \ \lambda(\mathbf{x}') \frac{\mathbf{x}-\mathbf{x}'}{|\mathbf{x}-\mathbf{x}'|^3} \ .
-\]</span> This is an abstraction to be sure, but often a convenient one, for example if we’re interested in the electric field due to a wire of charge. For wires we imagine the thickness being negligible compared to the lengths, meaning treating them as 1-dimensional curves of charge is convenient and useful.</p>
+<section id="example-uniformly-charged-sphere" class="level3">
+<h3 class="anchored" data-anchor-id="example-uniformly-charged-sphere">Example: Uniformly Charged Sphere</h3>
+<p>As a useful example of how to calculate the electric field of a charge distribution, let’s consider the case of a uniformly charged sphere. We’ll first suppose the sphere is <em>hollow</em> with a radius <span class="math inline">\(R\)</span> and a uniform charge <span class="math inline">\(Q = 4\pi R^2 \sigma\)</span> where <span class="math inline">\(\sigma\)</span> is a constant surface density.</p>
+<p>Given the symmetry of the problem it’s natural to work in spherical coordinates. By symmetry, it’s not hard to see that the electric field for the hollow sphere must <em>always</em> point in the radial direction. To see why, notice that any source point we pick on the sphere will have an opposite point <span class="math inline">\(180^\circ\)</span> away at the same altitude. Since the charge is uniform both source points will cancel all but the radial component of the field when added together. We thus just need to find the single scalar <span class="math inline">\(E(r)\)</span>, where <span class="math display">\[
+\mathbf{E}(\mathbf{x}) = E(r) \mathbf{e}_r \ .
+\]</span> To find <span class="math inline">\(E(r)\)</span> we need to take the inner product of <span class="math inline">\(\mathbf{E}\)</span> with <span class="math inline">\(\mathbf{e}_r\)</span>. In terms of the separation vector <span class="math inline">\(\boldsymbol{\xi} = \mathbf{x} - \mathbf{x}'\)</span>, we have <span class="math display">\[
+E(r) = \int da' \ \frac{\sigma}{\xi^3} \boldsymbol{\xi} \cdot \mathbf{e}_r \ .
+\]</span> To make headway we need to find the area element <span class="math inline">\(da'\)</span>, the relative distance <span class="math inline">\(\xi = |\boldsymbol{\xi}|\)</span>, and the dot product <span class="math inline">\(\boldsymbol{\xi} \cdot \mathbf{e}_r\)</span>. Starting with the area element, for a sphere it’s simply the volume element in spherical coordinates with <span class="math inline">\(r=R\)</span> and without the <span class="math inline">\(dr\)</span> integral, <span class="math display">\[
+da' = R^2 \sin\theta' d\theta' d\phi' \ .
+\]</span> Now we need to find <span class="math inline">\(\xi \equiv |\mathbf{x} - \mathbf{x}'|\)</span>, which is somewhat trickier. Without loss of generality we can assume that the field point lies on the <span class="math inline">\(z\)</span>-axis, so that <span class="math inline">\(\mathbf{x} = r \mathbf{e}_z\)</span>. Then an arbitrary source point <span class="math inline">\(\mathbf{x}' = R \mathbf{e}_r\)</span> on the sphere will subtend a polar angle <span class="math inline">\(\theta'\)</span> with the <span class="math inline">\(z\)</span>-axis. Using the law of cosines on the triangle shown in the figure below, we can see that <span class="math display">\[
+\xi^2 = r^2 + R^2 - 2Rr \cos\theta' \ .
+\]</span> <img src="./resources/image-20240602122925138.png" class="img-fluid quarto-figure quarto-figure-center" width="300"></p>
+<p>Next we need to calculate the dot product <span class="math inline">\(\boldsymbol{\xi} \cdot \mathbf{e}_r\)</span>. Using the geometric formula for the dot product and the above triangle, we see <span class="math display">\[
+\boldsymbol{\xi} \cdot \mathbf{e}_r = \xi \cos\alpha = \frac{r - R\cos\theta'}{\xi} \ .
+\]</span> We can now plug all of these values into the electric field integral and just plug away. We’ll integrate over the whole sphere, <span class="math display">\[
+\begin{align*}
+E(r) &amp;= \int da' \ \frac{\sigma}{\xi^3} \boldsymbol{\xi} \cdot \mathbf{e}_r \\
+&amp;= \int \sigma R^2 \sin\theta' d\phi' d\theta' \frac{r - R\cos\theta'}{\xi^3} \\
+&amp;= R^2 \sigma \int_0^{2\pi} \sin\theta' d\phi' \int_0^{\pi} d\theta' \frac{r - R\cos\theta'}{(r^2 + R^2 - 2Rr \cos\theta')^{3/2}} \\
+&amp;= 2\pi R^2 \sigma \int_0^{\pi} \sin\theta' d\theta' \frac{r - R\cos\theta'}{(r^2 + R^2 - 2Rr \cos\theta')^{3/2}} \ .
+\end{align*}
+\]</span> To evaluate the remaining integral we make use of a very common substitution in electrostatics. Supposing <span class="math inline">\(f(\cos\theta)\)</span> is some function we’d like to integrate in spherical coordinates, we can always let <span class="math inline">\(\mu = \cos\theta'\)</span> and <span class="math inline">\(d\mu = -\sin\theta' d\theta'\)</span>. Then we have <span class="math display">\[
+\int_0^\pi \sin\theta d\theta \ f(\cos\theta) = \int_{-1}^1 d\mu \ f(\mu) \ .
+\]</span> Using this useful trick, the integral for the field simplifies slightly to <span class="math display">\[
+E(r) = 2\pi R^2 \sigma \int_{-1}^1 d\mu \ \frac{r - R\mu}{(r^2 + R^2 - 2Rr \mu)^{3/2}} \ .
+\]</span> The remaining integral can be done by breaking up the numerator and doing another substitution. In the end we get $$ <span class="math display">\[\begin{align*}
+E(r) &amp;= \frac{2\pi R^2 \sigma}{r^2} \bigg[\frac{r\mu - R}{\sqrt{r^2 + R^2 - 2R\mu}} \bigg]_{\mu=-1}^1 \\
+&amp;= \frac{2\pi R^2 \sigma}{r^2} \bigg[\frac{r-R}{|r-R|} + 1 \bigg] \ .
+
+\end{align*}\]</span> $$ Now, notice that the first term in the brackets will always be <span class="math inline">\(\pm 1\)</span> depending on the sign of <span class="math inline">\(r-R\)</span>. When we’re inside the sphere <span class="math inline">\(r &lt; R\)</span>, and so this term is <span class="math inline">\(-1\)</span>. This means that inside the sphere the electric field must vanish, with <span class="math inline">\(E(r) = 0\)</span>.</p>
+<p>Outside the sphere <span class="math inline">\(r &gt; R\)</span>, and so the first term is <span class="math inline">\(+1\)</span>​. In this case we have <span class="math display">\[
+E(r) = \frac{4\pi R^2 \sigma}{r^2} = \frac{Q}{r^2} \ .
+\]</span> Notice that this looks identical to Coulomb’s law for the electric field. Evidently, a hollow sphere behaves as a point charge <span class="math inline">\(Q\)</span>​ for any field points outside the sphere.</p>
+<p>Using the result we have for the hollow sphere, let’s quickly figure out what the electric field should be for a <em>solid sphere</em> of uniform charge. The only difference now is that the sphere is 3-dimensional. We can work directly from our previous solution. We just have to replace <span class="math inline">\(\sigma\)</span> with <span class="math inline">\(\rho\)</span> and <span class="math inline">\(R\)</span> by an integration variable <span class="math inline">\(r'\)</span>. However we do have to be slightly careful, since the charge density is only nonzero inside the sphere. This means we integrate up to <span class="math inline">\(R\)</span> for field points outside the sphere, and up to <span class="math inline">\(r\)</span> otherwise. We can take care of both cases by integrating up to <span class="math inline">\(r_{\min} \equiv \min(r, R)\)</span>. Then we have <span class="math display">\[
+E(r) = \frac{4\pi\rho}{r^2} \int_0^{r_{\min}} dr' \ r'^2 = \frac{4\pi\rho}{3} \frac{r_{\min}^3}{r^2} \ .
+\]</span> Now, if <span class="math inline">\(r &gt; R\)</span> we’re outside the sphere, and <span class="math inline">\(r_{\min} = R\)</span>. In that case we have <span class="math display">\[
+E(r) = \frac{4\pi R^3 \rho}{3r^2} = \frac{Q}{r^2} \ .
+\]</span> Here we used the fact that in 3 dimensions the total charge of the sphere becomes <span class="math inline">\(Q = \frac{4\pi}{3} R^3 \rho\)</span>​. Notice that we get the same result we got in the hollow sphere. The electric field is again that of a point charge outside the sphere.</p>
+<p>Inside the sphere, however, things change. When <span class="math inline">\(r \leq R\)</span> we have <span class="math inline">\(r_{\min} = r\)</span>, in which case <span class="math display">\[
+E(r) = \frac{4\pi\rho}{3} r \ .
+\]</span> Now the electric field inside the sphere is apparently linear in <span class="math inline">\(r\)</span>, not zero. It’s easy to check that the two results match at the boundary of the sphere where <span class="math inline">\(r=R\)</span>. Note that in either case the electric field is still just the enclosed charge <span class="math inline">\(Q_{\text{enc}} = \frac{4\pi}{3} r_{\min}^3 \rho\)</span> divided by <span class="math inline">\(r^2\)</span>. This means any charge outside the enclosed sphere contributes nothing to the field. In the figure below we plot the field strengths <span class="math inline">\(E(r)\)</span> for both the hollow and solid spheres to show the difference between the two.</p>
 <p>FIGURE</p>
-<p>Similarly, we can imagine a distribution of charge concentrated along some <em>surface</em> <span class="math inline">\(\mathcal{S}'\)</span> in space. In this case, it’s convenient to define a 2-dimensional charge density, or <em>surface density</em>, <span class="math inline">\(\sigma(\mathbf{x}')\)</span> via <span class="math inline">\(dq' = \sigma(\mathbf{x}') da'\)</span>, where <span class="math inline">\(da'\)</span> is an infinitesimal patch of area inside the surface of charge. Then the electric field would be <span class="math display">\[
-\mathbf{E}(\mathbf{x}) = \int_{\mathcal{S}'} da' \ \sigma(\mathbf{x}') \frac{\mathbf{x}-\mathbf{x}'}{|\mathbf{x}-\mathbf{x}'|^3} \ .
-\]</span> Again, this is only an abstraction, but a convenient one. We’ll often imagine sheets of charge where the length and width of the sheet are much larger than its thickness. In such cases it’s convenient to treet the sheet as 2-dimensional.</p>
-<p>FIGURE</p>
-<ul>
-<li>Verify line/surface density equations, especially the differentials….</li>
-<li>Work examples: electric field of line of charge, disk of charge, hollow sphere of charge</li>
-</ul>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="../../../Library/Application Support/typora-user-images/image-20240308152000873.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="300"></p>
-</figure>
-</div>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="../../../Library/Application Support/typora-user-images/image-20240308152108598.png" class="img-fluid figure-img" width="300"></p>
-<figcaption>image-20240308152108598</figcaption>
-</figure>
-</div>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="../../../Library/Application Support/typora-user-images/image-20240308152038464.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="300"></p>
-</figure>
-</div>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="../../../Library/Application Support/typora-user-images/image-20240308152224236.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="300"></p>
-</figure>
-</div>
+<p>This was clearly a difficult integration problem. We’ll see a <em>much</em> easier way to find the electric field of a sphere shortly. For now, just be aware that in practice calculating the electric field of a charge distribution straight from the definition is almost always very challenging, and often impossible. Indeed, much of the rest of our study of electrostatics from here on will be about finding simpler ways to calculate the electric field of an arbitrary charge distribution.</p>
 </section>
 </section>
 <section id="gausss-law" class="level2">
 <h2 class="anchored" data-anchor-id="gausss-law">Gauss’s Law</h2>
-<p>While Coulomb’s Law is perhaps the most intuitive way to find the electric field of some charge distribution, it’s usually not the best way, nor is it the most illuminating. Typically in physics we find it useful to express equations for fields in terms of <em>field equations</em>, which are differential equations that can be solved to find the field of interest. Electrostatics turns out to have <em>two</em> field equations, one involving the divergence of the electric field, and one involving its curl. Here we’ll derive the equation for the divergence, known as <em>Gauss’s Law</em>. We’ll come back to the equation for the curl shortly.</p>
-<p>The idea is to go back to thinking about the electric field in terms of field lines. Recall that we could think of the electric field as the <em>flux density</em> of electric field lines generated by the source charge distribution. This suggest it’s useful to define what we mean by the flux of a vector field, or more correctly the flux through a surface.</p>
-<p>Suppose <span class="math inline">\(\mathcal{S}\)</span> is some surface of interest, closed or not. The <em>electrostatic flux</em> through <span class="math inline">\(\mathcal{S}\)</span>​ is defined to be <span class="math display">\[
-\Phi_\mathbf{E}(\mathbf{x}) \equiv \int_\mathcal{S} \mathbf{E} \cdot d\mathbf{a} \ .
-\]</span> Intuitively, this just says we can think of electrostatic flux as the <em>net</em> number of field lines passing through the surface area of <span class="math inline">\(\mathcal{S}\)</span>​. The more net field lines passing through the surface, the higher the flux. This is why we can think of the electric field as the electrostatic flux density, since it’s in a sense just the flux per unit area through some given surface.</p>
-<p>Note the use of the phrase <em>net</em> number of field lines here is important because flux is actually a <em>signed</em> quantity since each field line can pass through the surface on either side, which flips the sign of <span class="math inline">\(\mathbf{E} \cdot d\mathbf{a}\)</span>​​. If a field line passes through the surface and back out the other direction, it contributes nothing to the flux.</p>
-<p>Also note that the definition of flux as given depends entirely on which surface <span class="math inline">\(\mathcal{S}\)</span> we choose. We should expect that in general <span class="math inline">\(\Phi_\mathbf{E}(\mathbf{x})\)</span> will be different for different surfaces in space. However, as we’ll soon see the flux is indeed unique for <em>closed</em> surfaces that enclose the same charge distribution.</p>
-<p>What we’d like to do is find a way to relate the flux to the source charge density <span class="math inline">\(\rho\)</span> in some way, since we’re in practice usually trying to find <span class="math inline">\(\mathbf{E}\)</span> given some known distribution of source charges. To do that let’s start by trying to find the flux of a point charge <span class="math inline">\(q\)</span> located at the origin. For the flux surface we’ll choose a sphere of radius <span class="math inline">\(r\)</span> enclosing the point charge. For a point charge centered at the origin, we must have <span class="math display">\[
+<p>While Coulomb’s law is perhaps more directly connected to experiment and the historical progression of electromagnetism, it’s usually not the most illuminating nor useful way to understand and calculate electric fields. Just as in classical mechanics we found it useful to express Newton’s law as an ordinary differential equation for the trajectory of a particle, in electromagnetism we’ll find it more useful to express Coulomb’s law as a set of <em>partial differential equations</em> for the electric field.</p>
+<section id="flux" class="level3">
+<h3 class="anchored" data-anchor-id="flux">Flux</h3>
+<p>We know from the Helmholtz theorem that any well behaving vector field can be fully characterized by its divergence and its curl. This means if we can find the divergence and curl of the electric field we have an equivalent characterization for the field in terms of two linear partial differential equations. We’ll derive the divergence of the electric field in this section, saving the curl of the electric field for the next section before discovering a neat way to combine them both together.</p>
+<p>To make a start we need to define the idea of the <em>flux</em> of a vector field. Suppose <span class="math inline">\(\mathcal{S}\)</span> is some surface of interest. The <em>flux</em> <span class="math inline">\(\Phi\)</span> through <span class="math inline">\(\mathcal{S}\)</span> due to the field <span class="math inline">\(\mathbf{E}\)</span> is defined by the integral <span class="math display">\[
+\Phi \equiv \int_\mathcal{S} \mathbf{E} \cdot d\mathbf{a} \ .
+\]</span> Note when we need to specify which field we’re calculating the flux of, we’ll write <span class="math inline">\(\Phi_\mathbf{E}\)</span> to be more specific.</p>
+<p>Informally, we can think of the flux as the total number of <em>signed</em> field lines passing through some specified surface of interest. By signed, we mean that the field lines passing through the positively oriented side of the surface contribute positive flux, while those passing through the negatively oriented side of the surface contribute negative flux. This means that flux itself will be a signed quantity indicating the net tendency of a field to flow into or out of a given surface. In particular, this means if the same field line passes in and out of the same surface it contributes nothing to the flux.</p>
+<p>FIGURE</p>
+<p>As defined, the flux depends entirely on the surface <span class="math inline">\(\mathcal{S}\)</span> we choose. Different surfaces will have a different flux. However, in practice we’ll usually be interested in <em>closed surfaces</em>. In that case, we’ll show that the flux depends only on the charge distribution enclosed by the surface, not on the geometric properties of the surface itself. To do that we need to find a way to relate the flux of an electric field to the charge distribution in some way.</p>
+</section>
+<section id="integral-form-of-gausss-law" class="level3">
+<h3 class="anchored" data-anchor-id="integral-form-of-gausss-law">Integral Form of Gauss’s Law</h3>
+<p>Let’s start by trying to find the flux through a sphere of radius <span class="math inline">\(r\)</span> centered on a point charge <span class="math inline">\(q\)</span> located at the origin. Since <span class="math inline">\(q\)</span> is located at the origin we have <span class="math inline">\(\mathbf{x}' = \mathbf{0}\)</span>, meaning the electric field is simply <span class="math display">\[
 \mathbf{E}(\mathbf{x}) = q \frac{\mathbf{x}}{|\mathbf{x}|^3} = \frac{q}{r^2} \mathbf{e}_r \ .
-\]</span> Here we employ the usual convention that <span class="math inline">\(r = |\mathbf{x}|\)</span> is the Euclidean distance to the field point <span class="math inline">\(\mathbf{x}\)</span>. For a sphere of radius <span class="math inline">\(r\)</span> the area element is <span class="math inline">\(d\mathbf{a} = r^2 d\Omega \mathbf{e}_r\)</span>. Integrating over all <span class="math inline">\(\mathbf{E} \cdot d\mathbf{a}\)</span> to get the flux, we then have <span class="math display">\[
-\oint_\mathcal{S} \mathbf{E} \cdot d\mathbf{a} = \int d\Omega \ r^2 \frac{q}{r^2} \mathbf{e}_r \cdot \mathbf{e}_r = 4\pi q \ .
-\]</span> Thus, for a point charge, the flux through a sphere enclosing the charge is just <span class="math inline">\(4\pi q\)</span>. This is in fact true for <em>any</em> closed surface enclosing the charge, not just a sphere.</p>
-<p>To see why, suppose <span class="math inline">\(\mathcal{S}\)</span> is some general closed surface, shaped like a potato let’s say. Then <span class="math display">\[
-\mathbf{E} \cdot d\mathbf{a} = |\mathbf{E}| |\mathbf{n}| \cos\alpha da = \frac{q}{r^2} \cos\alpha da \ ,
-\]</span> where <span class="math inline">\(\alpha\)</span> is the outward angle between <span class="math inline">\(\mathbf{E}\)</span> and the surface normal <span class="math inline">\(\mathbf{n}\)</span> at the field point <span class="math inline">\(\mathbf{x}\)</span>. But, we also must have a new area element of <span class="math inline">\(da = \frac{r^2}{\cos\alpha} d\Omega\)</span> since the surface is no longer spherical. All together, this means the non-spherical behavior of the surface becomes immaterial to the flux, and we again get <span class="math display">\[
-\oint_\mathcal{S} \mathbf{E} \cdot d\mathbf{a} = \int d\Omega \ \frac{r^2}{\cos\alpha} \frac{q}{r^2} \cos\alpha = 4\pi q \ .
-\]</span> What about if the charge is outside the closed surface though? What happens then? Intuitively we should expect the flux to be zero, since any field line flowing into the surface must also flow out at some point. Indeed this is what happens. Any flux of <span class="math inline">\(\mathbf{E} \cdot d\mathbf{a}\)</span> passing into the surface will have a corresponding flux <span class="math inline">\(-\mathbf{E} \cdot d\mathbf{a}\)</span> on the opposite side where the field line passes back out of the surface. This can most easly be shown from the figure below.</p>
+\]</span> For a sphere of radius <span class="math inline">\(r\)</span> the area element is given by <span class="math inline">\(d\mathbf{a} = r^2 d\Omega \mathbf{e}_r\)</span>. Here <span class="math inline">\(d\Omega\)</span> is the differential <em>solid angle</em>, which is just a useful shorthand for angular components of the area element, <span class="math inline">\(d\Omega \equiv \sin\theta d\theta d\phi\)</span>. To find the flux, we need only now integrate to get <span class="math display">\[
+\Phi = \oint_\mathcal{S} \mathbf{E} \cdot d\mathbf{a} = \int d\Omega \ r^2 \frac{q}{r^2} \mathbf{e}_r \cdot \mathbf{e}_r = 4\pi q \ .
+\]</span> We’ve thus shown that the flux of a point charge through a sphere is just proportional to the charge. Notice in this result that the radius of the flux surface didn’t enter into the picture at all. No matter what it cancels out. This fact is unique to inverse square fields, like electricity or gravity. Any field of this type will have the property that its flux is proportional to its source “charge”.</p>
+<p>But thus far we’ve only shown this holds for the flux through a sphere. What about an arbitrary closed surface? In fact the result is the same. To see why, suppose <span class="math inline">\(\mathcal{S}\)</span> is some arbitrary closed surface containing <span class="math inline">\(q\)</span>. Suppose <span class="math inline">\(\alpha\)</span> is the outward angle between <span class="math inline">\(\mathbf{E}\)</span> and the surface normal <span class="math inline">\(\mathbf{n}\)</span>. Then we evidently have <span class="math display">\[
+\mathbf{E} \cdot d\mathbf{a} = |\mathbf{E}| |\mathbf{n}| \cos\alpha da = \frac{q}{r^2} \cos\alpha da \ .
+\]</span> It now seems like we should get a different flux. However, we have to look closer at the area element <span class="math inline">\(da\)</span> first. Since the surface is no longer spherical we have to divide by another factor of <span class="math inline">\(\cos\alpha\)</span> to account for the fact that we’re only interested in the flux through the outward normal component of the surface, <span class="math display">\[
+da = \frac{r^2}{\cos\alpha} d\Omega \ .
+\]</span> Putting these together we get exactly what we claimed, <span class="math display">\[
+\Phi = \oint_\mathcal{S} \mathbf{E} \cdot d\mathbf{a} = \int d\Omega \ \frac{r^2}{\cos\alpha} \frac{q}{r^2} \cos\alpha = 4\pi q \ .
+\]</span> This is only true though when the charge is contained <em>inside</em> the surface. What if it’s <em>outside</em> the surface? We already said informally the flux in that case should be zero, since any field lines going into the surface also comes out, offsetting the flux. Indeed, if <span class="math inline">\(\mathbf{E} \cdot d\mathbf{a}\)</span> is some contribution to the flux, there will be a corresponding contribution <span class="math inline">\(-\mathbf{E} \cdot d\mathbf{a}\)</span> on some other part of the flux surface that will cancel out the first contribution. This can be seen geometrically in the figure below.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="../../../Library/Application Support/typora-user-images/image-20240318185941679.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="300"></p>
+<p><img src="./resources/image-20240504023749549.png" class="img-fluid figure-img" width="300"></p>
+<figcaption>image-20240504023749549</figcaption>
 </figure>
 </div>
-<p>Thus, the flux for a point charge through any closed surface is <span class="math inline">\(4\pi q\)</span> if the point charge is inside the surface, and zero if the point charge is outside the closed surface.</p>
-<p>From here we can easily use the principle of superposition to find the flux of any charge distribution through a closed surface. If <span class="math inline">\(Q_{\text{enc}}\)</span> is the total charge enclosed by a closed surface <span class="math inline">\(\mathcal{S}\)</span>, then we have <span class="math display">\[
+<p>Putting these two results together, we’ve shown that if <span class="math inline">\(q\)</span> is a point charge and <span class="math inline">\(\mathcal{S}\)</span> is some closed surface, then <span class="math display">\[
+\Phi =
+\begin{cases}
+4\pi q, &amp; q \ \text{inside} \ \mathcal{S} \\
+0, &amp; q \ \text{outside} \ \mathcal{S} \ .
+\end{cases}
+\]</span> By the principle of superposition, we thus must have that for some arbitrary distribution of charge, the flux through a closed surface depends <em>only</em> on the charge <span class="math inline">\(Q_{\text{enc}}\)</span> enclosed inside the surface, <span class="math display">\[
 \boxed{
 \oint_\mathcal{S} \mathbf{E} \cdot d\mathbf{a} = 4\pi Q_{\text{enc}}
 } \ .
-\]</span> In this we’ve defined one version of Gauss’s Law, the <em>integral form</em>. This says how the total flux of the electric field through a closed surface depends on the charges contained inside it.</p>
-<p>Before using this formula to solve several important electrostatics problems let’s quickly get what we originally sought in this section: a differential equation for the electric field in terms of the charge distribution. To do that we’ll express the enclosed charge as a volume integral of the charge density, <span class="math display">\[
-Q_{\text{enc}} = \int_\mathcal{V} d^3\mathbf{x} \ \rho(\mathbf{x}) \ ,
-\]</span> where <span class="math inline">\(\mathcal{V}\)</span> is the volume enclosed by the closed surface <span class="math inline">\(\mathcal{S}\)</span>. Next, we’ll use the divergence theorem to rewrite the flux integral as a volume integral of the divergence of <span class="math inline">\(\mathbf{E}\)</span>, <span class="math display">\[
+\]</span> This important result is called the <em>integral form</em> of <em>Gauss’s law</em>. It says that the total flux of the electric field through a closed surface is proportional to the enclosed charge inside the surface.</p>
+</section>
+<section id="differential-form-of-gausss-law" class="level3">
+<h3 class="anchored" data-anchor-id="differential-form-of-gausss-law">Differential Form of Gauss’s Law</h3>
+<p>The enclosed charge can be found by integrating the charge density over the volume <span class="math inline">\(\mathcal{V}\)</span> of the closed surface, <span class="math display">\[
+Q_{\text{enc}} = \int_\mathcal{V} d^3\mathbf{x} \ \rho(\mathbf{x}) \ .
+\]</span> Indeed, if we plug this into Gauss’s Law we get <span class="math display">\[
+\oint_\mathcal{S} \mathbf{E} \cdot d\mathbf{a} = 4\pi \int_\mathcal{V} d^3\mathbf{x} \ \rho(\mathbf{x}) \ .
+\]</span> Also, notice we can use of the divergence theorem to convert the flux integral into a volume integral, <span class="math display">\[
 \oint_\mathcal{S} \mathbf{E} \cdot d\mathbf{a} = \int_\mathcal{V} d^3\mathbf{x} \ \nabla \cdot \mathbf{E} \ .
-\]</span> Plugging these two into the integral form of Gauss’s Law and moving everything to one side, we then have <span class="math display">\[
+\]</span> Putting the two integrals together and moving everything to one side, we have <span class="math display">\[
 \int_\mathcal{V} d^3\mathbf{x} \ \big[\nabla \cdot \mathbf{E} - 4\pi\rho\big] = 0 \ .
-\]</span> Now, the only way this integral can be zero is for the integrand to be be zero as well. This then implies <span class="math display">\[
+\]</span> Since this integral must vanish for any valid integrand we must have <span class="math display">\[
 \boxed{
 \nabla \cdot \mathbf{E} = 4\pi\rho
 } \ .
-\]</span> This is the <em>differential form</em> of Gauss’s Law. It gives us a differential equation to find <span class="math inline">\(\mathbf{E}\)</span> if <span class="math inline">\(\rho\)</span> is known. Of course, actually solving this equation is easier said than done. We’ll come back to that later.</p>
-<p>For now let’s show how we can use the integral form of Gauss’s Law to solve a few convenient problems. Gauss’s Law is most useful when a problem has certain symmetries we can recognize.</p>
+\]</span> This result is known as the <em>differential form</em> of Gauss’s law. It’s the main thing we sought to derive in this section. It gives us an expression for the divergence of the electric field in terms of the source charge distribution.</p>
+</section>
+<section id="examples" class="level3">
+<h3 class="anchored" data-anchor-id="examples">Examples</h3>
+<p>Gauss’s law can sometimes be very convenient to directly find the electric field in situations where the charge distribution has a high level of symmetry. As we’ve shown, as long as two closed surfaces contain the same charge distribution they will also have the same flux. What we can thus do is use this freedom to choose a flux surface that simplifies the problem. The simplest thing we could imagine doing is to choose a flux surface such that <span class="math inline">\(|\mathbf{E}|\)</span> is constant along the surface. In that case, we’d have <span class="math display">\[
+\oint_\mathcal{S} \mathbf{E} \cdot d\mathbf{a} = |\mathbf{E}| A \ ,
+\]</span> where <span class="math inline">\(A\)</span> is the total surface area of <span class="math inline">\(\mathcal{S}\)</span>. Then the integral form of Gauss’s law simplifies greatly to <span class="math display">\[
+|\mathbf{E}| = \frac{4\pi Q_{\text{enc}}}{A} \ .
+\]</span> For this to work though the charge distribution really needs to have a high level of symmetry. There are essentially three situations where we can do this: for infinite lines of charge, infinite sheets of charged, and charged spheres. Let’s look at each.</p>
+<section id="example-infinite-line-of-uniform-charge" class="level4">
+<h4 class="anchored" data-anchor-id="example-infinite-line-of-uniform-charge">Example: Infinite Line of Uniform Charge</h4>
+<p>Consider a line of charge of infinite length and infinitesimal width, so we can treat the line as one-dimensional. We’ll suppose the line is oriented along the <span class="math inline">\(z\)</span>-axis and carries a constant charge per unit length of <span class="math inline">\(\lambda\)</span>. Our goal is to find its electric field. We could do this the hard way as before, but in this case we can do it much more easily using Gauss’s law, so that’s what we’ll do.</p>
+<p>By symmetry, the electric field should depend only on the cylindrical radius <span class="math inline">\(r\)</span>. To see why, pick a random field point in the <span class="math inline">\(xy\)</span>-plane. Now pick a random source point at a height <span class="math inline">\(z'\)</span> along the wire. Then there must also be an opposite source point at a height <span class="math inline">\(-z'\)</span>. If we add the two separation vectors together, their <span class="math inline">\(z\)</span>-components will cancel, leaving only a contribution in the <span class="math inline">\(r\)</span>-direction. We thus must conclude that the electric field has the property that <span class="math display">\[
+\mathbf{E}(\mathbf{x}) = E(r) \mathbf{e}_r \ .
+\]</span> All that remains thus is to find <span class="math inline">\(E(r)\)</span>. Now, the electric field must be constant along cylinders of constant <span class="math inline">\(r\)</span>. This means we have a natural Gaussian surface on which to apply Gauss’s Law. We’ll choose cylinders of radius <span class="math inline">\(r\)</span> and length <span class="math inline">\(z\)</span>​ centered on the wire. Since only the sides of the cylinder contribute to the flux, we need only consider the area of the sides of the cylinder, ignoring the two caps. This means the flux of the field is <span class="math display">\[
+\oint_\mathcal{S} \mathbf{E} \cdot d\mathbf{a} = |\mathbf{E}| A = E(r) \cdot 2\pi r z
+\]</span> Inside this cylinder, the enclosed charge is <span class="math inline">\(Q_{\text{enc}} = \lambda z\)</span>. Applying Gauss’s Law, we thus have <span class="math display">\[
+E(r) \cdot 2\pi r z = 4\pi \lambda z \ .
+\]</span> Solving for <span class="math inline">\(E(r)\)</span>, we finally have <span class="math display">\[
+E(r) = \frac{2\lambda}{r} \ .
+\]</span> Thus, the electric field of an infinitely long wire of uniform charge is inversely proportional to its distance from the wire. Notice that this seems to contradicts Coulomb’s Law, which predicts that far away from the wire the electric field should go like the inverse square of the distance. Why the contradiction? This comes from our assumption that the wire was infinitely long. If the wire had only a finite length, we would indeed recover Coulomb’s Law in the far field limit.</p>
+</section>
+<section id="example-infinite-sheet-of-uniform-charge" class="level4">
+<h4 class="anchored" data-anchor-id="example-infinite-sheet-of-uniform-charge">Example: Infinite Sheet of Uniform Charge</h4>
+<p>We’ll now consider not an infinite <em>line</em> of uniform charge, but an infinite <em>flat sheet</em> of uniform charge. We’ll suppose this sheet is oriented in the <span class="math inline">\(xy\)</span>-plane and has infinitesimal thickness, so we can treat the sheet as 2-dimensional with a constant surface charge density <span class="math inline">\(\sigma\)</span>.</p>
+<p>By symmetry, we’ll argue that the electric field must always point away from the sheet in the <span class="math inline">\(z\)</span> direction. To see why, pick a random field point at a height <span class="math inline">\(z\)</span> above (or below) the sheet, centered at the origin. Pick a random source point <span class="math inline">\((r',\phi')\)</span> along the sheet. Now, there must be an opposite source point at <span class="math inline">\((r',\phi'+\pi)\)</span> for which the two separation vectors will cancel in all but the <span class="math inline">\(z\)</span>-direction. This means <span class="math display">\[
+\mathbf{E}(\mathbf{x}) = \pm E(z) \mathbf{e}_z \ .
+\]</span> All that thus remains is to find <span class="math inline">\(E(z)\)</span>. Clearly this field is constant along surfaces of constant <span class="math inline">\(z\)</span>. This means that any Gaussian surface with a flat top and bottom will do, since only the field through the top and bottom of the surface contribute anything to the flux. Such a surface is historically called a <em>pillbox</em>. Examples of pillboxes include prisms and cylinders. All that matters is that the top and bottom are flat, and the sides are perpendicular to the sheet. We’ll thus choose any pillbox with equal top and bottom areas <span class="math inline">\(A\)</span> and whose height is <span class="math inline">\(2z\)</span>, as shown in the figure.</p>
+<p>Since the field is constant on the top and bottom of the Gaussian surface and only points in the <span class="math inline">\(z\)</span>-direction, the flux is given by <span class="math display">\[
+\oint_\mathcal{S} \mathbf{E} \cdot d\mathbf{a} = |\mathbf{E}| \cdot 2A = E(z) \cdot 2 A \ .
+\]</span> The prism encloses a charge given by <span class="math inline">\(Q_{\text{enc}} = \sigma A\)</span>. Plugging these into Gauss’s Law and solving for <span class="math inline">\(E(z)\)</span>, we finally have <span class="math display">\[
+E(z) = 2\pi\sigma \ .
+\]</span> That is, the electric field strength of an infinite sheet of uniform charge is constant, no matter how far away from the surface we are, with the only difference being the direction (pointing above or below the surface). Yet again this seems to contradict Coulomb’s Law, since the field would still be constant infinitely far from the sheet. This can be rectified, however, by noting that the sheet chosen is infinite in extent. For a finite sheet, Coulomb’s Law would still hold in the far field limit.</p>
+</section>
+<section id="example-uniformly-charged-sphere-1" class="level4">
+<h4 class="anchored" data-anchor-id="example-uniformly-charged-sphere-1">Example: Uniformly Charged Sphere</h4>
+<p>As our final example in this section we’ll consider an example we’ve already seen, the uniformly charged sphere. In a previous section we worked out its electric field with great pain. Here we’ll show that Gauss’s Law gives a much simpler way. We’ll again suppose that the charge lies on a hollow sphere of radius <span class="math inline">\(R\)</span> centered at the origin.</p>
+<p>As argued before, symmetry requires that the electric field point in the radial <span class="math inline">\(r\)</span>-direction, with <span class="math display">\[
+\mathbf{E}(\mathbf{x}) = E(r) \mathbf{e}_r \ .
+\]</span> All that thus remains is to find <span class="math inline">\(E(r)\)</span>. Since the field is constant along spheres of radius <span class="math inline">\(r\)</span>, the natural choice is of Gaussian surface is to choose spheres of radius <span class="math inline">\(r\)</span> centered at the origin. We’ll first suppose <span class="math inline">\(r \geq R\)</span>​. In that case, the flux is given by <span class="math display">\[
+\oint_\mathcal{S} \mathbf{E} \cdot d\mathbf{a} = E(r) \cdot 4\pi r^2 \ .
+\]</span> The enclosed charge <span class="math inline">\(Q_{\text{enc}}\)</span> is just the total charge of the sphere, <span class="math inline">\(Q = \frac{4}{3} \pi R^3 \sigma\)</span>. Plugging these into Gauss’s Law, we have <span class="math display">\[
+E(r) = \frac{Q}{r^2} \ .
+\]</span> This of course is exactly what we expected. The electric field of a uniformly charged sphere behaves as a point charge outside the sphere. What does Gauss’s Law say when we’re inside the sphere though? In that case there’s no enclosed charge, so <span class="math inline">\(Q_{\text{enc}} = 0\)</span>. This means Gauss’s Law just gives exactly what we’ve already shown, that there’s no electric field inside the sphere, <span class="math display">\[
+E(r) = 0 \ .
+\]</span> What if the sphere is now solid instead of hollow, with a constant charge density <span class="math inline">\(\rho\)</span>? Outside the sphere the result is the same. Inside the sphere though the enclosed charge will be the volume of the Gaussian surface times the charge density, which is just <span class="math inline">\(Q(r) = \frac{4}{3} \pi r^3 \rho\)</span>. Plugging this into Gauss’s Law, we have <span class="math display">\[
+E(r) = \frac{Q(r)}{r^2} = \frac{4\pi\rho}{3} r \ .
+\]</span> That is, inside of a uniformly charged solid sphere the electric field is <em>linear</em> in the radius. When <span class="math inline">\(r=R\)</span>​ of course this will equal the equation for the field outside the sphere, where the field will start to decrease as an inverse square law.</p>
+</section>
+</section>
+<section id="surfaces-of-charge" class="level3">
+<h3 class="anchored" data-anchor-id="surfaces-of-charge">Surfaces of Charge</h3>
+<p>The previous examples pose an interesting question: How is it that the electric field can change discontinuously when crossing a surface of charge? With the hollow sphere the field is zero inside but non-zero outside the sphere. With the infinite sheet, the field is <span class="math inline">\(-2\pi\sigma\)</span> below the surface and <span class="math inline">\(+2\pi\sigma\)</span> above the surface.</p>
+<p>To better understand what’s going on, let’s look at how the electric field changes when crossing a surface of charge. Let’s suppose we have a have a smooth charged surface <span class="math inline">\(\mathcal{S}\)</span> of charge with surface charge density <span class="math inline">\(\sigma\)</span>. In general, the field across this surface can point in any direction. We’ll decompose it into components parallel to and perpendicular to the surface, <span class="math display">\[
+\mathbf{E} = \mathbf{E}^\parallel + \mathbf{E}^\perp \ .
+\]</span> Now, as with the infinite sheet example, let’s choose our Gaussian surface to be a pillbox centered on the surface at some point with top and bottom area <span class="math inline">\(\delta A\)</span> and infinitesimal height <span class="math inline">\(\varepsilon\)</span>. Focusing first on the perpendicular component of the field <span class="math inline">\(\mathbf{E}^\perp\)</span>, we see that the field lines must point away from the sheet in the direction of the surface normal <span class="math inline">\(\mathbf{n}\)</span>. If we assume the surface normal points upward from the sheet, the flux of <span class="math inline">\(\mathbf{E}^\perp\)</span> will be given by <span class="math display">\[
+\oint_\mathcal{S} \mathbf{E}^\perp \cdot d\mathbf{a} = (E_+^\perp - E_-^\perp) \delta A \ ,
+\]</span> where <span class="math inline">\(E_+^\perp\)</span> is the field above the surface and <span class="math inline">\(E_-^\parallel\)</span> is the field below the surface. Since <span class="math inline">\(Q_{\text{enc}} = \sigma \delta A\)</span>, Gauss’s Law gives <span class="math display">\[
+E_+^\perp - E_-^\perp = 4\pi\sigma \ .
+\]</span> That is, in crossing the surface, the perpendicular component of the field changes discontinuously by <span class="math inline">\(4\pi\sigma\)</span>.</p>
+<p>What about the parallel component of the field <span class="math inline">\(\mathbf{E}^\parallel\)</span> though? In this case we can apply the integral form for the curl, <span class="math display">\[
+\oint_\mathcal{C} \mathbf{E} \cdot d\boldsymbol{\ell} = 0 \ ,
+\]</span> over any square loop of length <span class="math inline">\(\delta L\)</span> to get <span class="math display">\[
+\oint_\mathcal{C} \mathbf{E}^\parallel \cdot d\boldsymbol{\ell} = E^\parallel \cdot 4\delta L = 0 \ .
+\]</span> The only way this can be true is if <span class="math inline">\(\mathbf{E}^\parallel\)</span>​</p>
 <ul>
-<li>Work the three common examples: line charge, sheet, sphere</li>
+<li>This is harder than you thought. Requires covering the curl formula and potential first. Textbooks typically pose this section as a statement about boundary conditions that must hold at a surface of charge.</li>
 </ul>
 </section>
-<section id="electric-potential" class="level2">
-<h2 class="anchored" data-anchor-id="electric-potential">Electric Potential</h2>
+</section>
+<section id="scalar-potential" class="level2">
+<h2 class="anchored" data-anchor-id="scalar-potential">Scalar Potential</h2>
+<p>Recall that we’re trying to find a way to fully characterize the electric field with a set of field equations, which we said we could do by finding formulas for the divergence and curl of the field in terms of the source charges. We found a formula for the divergence, namely Gauss’s law. We’ll now see what the curl of the electric field should be and see what that implies.</p>
+<p>To find the curl</p>
 <p>Let’s now look at the field equation for the curl of the electric field. From the Helmholtz theorem, we know that any vector field can be fully determined by knowing both its divergence and its curl. This means that once we figure out what the curl of the electric field is we’ve fully specified what the electric field must be from two partial differential equations.</p>
 <p>There are a few ways we can proceed. One way is to just directly take the curl of the integral expression for the electric field and grind out an answer. This works fine, but we’ll take an easier approach. Recall from classical mechanics that a force <span class="math inline">\(\mathbf{F}\)</span> is <em>conservative</em> if and only if its curl vanishes, <span class="math inline">\(\nabla \times \mathbf{F} = \mathbf{0}\)</span>. We also know that any central force, a force that depends only on the relative distance between particles, is conservative. The Coulomb force is clearly a central force since it only depends on the relative distance between charges. In particular, this means we automatically must have that the curl of the electric field vanishes in electrostatics, <span class="math display">\[
 \boxed{
@@ -652,6 +804,9 @@ U = \int d^3\mathbf{x} \ \frac{1}{8\pi} |\mathbf{E}(\mathbf{x})|^2 = \int_0^\inf
 U = \frac{1}{2} \int d^3\mathbf{x} \ \rho(\mathbf{x}) \phi(\mathbf{x}) = \frac{1}{2} \int_0^\infty 4\pi r^2 dr \ q \delta(\mathbf{x}) \frac{q}{r} = 0 \ ,
 \]</span> as we’d expect. Clearly then there’s a problem arising from the inclusion of the self energies in the second form of the integral. So what’s going on? One way to think about it is that the self energy terms include the energy necessary to introduce each charge from the vaccuum. In this sense, self energies are tied up with vacuum energies, the energy stored in the vacuum of space itself. Understanding the vacuum energy requires quantum field theory, and is still an active area of research to this day.</p></li>
 </ol>
+<p><span class="math display">\[
+\boldsymbol{\mathcal{R}} = \mathcal{R} \mathbf{e}_\mathcal{R} \\ \boldsymbol{\Delta} \mathbf{x} = \Delta x \mathbf{e}_{\Delta \mathbf{x}}
+\]</span></p>
 
 
 </section>
