@@ -395,20 +395,6 @@ Though perhaps not obvious at this stage, the divergence and Stokes' theorems ar
 
 It's interesting to note that all of these versions of the fundamental theorem of calculus say essentially the same thing: The integral of the derivative of a field over some space equals the value of that field along the boundary of that space. For gradients, the boundary of a contour is just two endpoints. For divergences, the boundary over a volume is a closed surface. For curls, the boundary of a surface is a closed contour.
 
-Many of the usual derivative and integral rules extend to vector calculus as well using index notation. For example, the product rule for the product of a vector field $\mathbf{F}$ with a scalar field $g$ is
-$$
-d(\mathbf{F} g) = \mathbf{F} \ dg + g \ d\mathbf{F} \ .
-$$
-Dividing both sides by $d\mathbf{x}$ and integrating gives us one generalized version of integration by parts. Indeed, integrating both sides over a volume $\mathcal{V}$, we get
-$$
-\int_\mathcal{V} \nabla(\mathbf{F} g) \cdot d^3\mathbf{x} = \int_\mathcal{V} \mathbf{F} \cdot \nabla g \ d^3 \mathbf{x} + \int_\mathcal{V} g \ \nabla \mathbf{F} \ d^3 \mathbf{x} \ .
-$$
-Rearranging terms and using the divergence theorem to express the left-hand integral as an integral over the bounding surface $\mathcal{S}$, we get
-$$
-\int_\mathcal{V} \mathbf{F} \cdot \nabla g \ d^3 \mathbf{x} = \oint_\mathcal{S} \nabla(\mathbf{F} g) \cdot d\mathbf{a} - \int_\mathcal{V} g \ \nabla \mathbf{F} \ d^3 \mathbf{x} \ .
-$$
-Similar versions of integration by parts exist for the product of two scalar fields or two vector fields as well, both of which can be derived just as easily as the formula above.
-
 We can define similar vector calculus operations for tensors as well, not just vectors. For example, if we have a rank-2 tensor $\mathbf{T}$ we can still imagine taking gradients $\partial_k T_{ij}$ to get a rank-3 tensor. By contracting the derivative with the tensor we get a different divergence for each index, $\partial_i T_{ij}$ and $\partial_j T_{ij}$. Evidently the divergence of a rank-2 tensor gives a vector, not a scalar. 
 
 Strictly speaking we can't speak of *the divergence* of a tensor since each index has its own divergence. We can though when the tensor is *symmetric*. If $T_{ij} = T_{ji}$ we can define a unique divergence operation by
@@ -578,7 +564,7 @@ Note that using the spherical coordinate version of the gradient we have $\nabla
 $$
 \nabla^2 \bigg(\frac{1}{r}\bigg) = -4\pi \delta(\mathbf{x}) \ .
 $$
-We will make good use of these two formulas in the rest of this course.
+We will make good use of these formulas in the rest of this course.
 
 
 

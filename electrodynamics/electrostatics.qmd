@@ -2,7 +2,7 @@
 
 As is custom in electromagnetism, we'll begin our study of the subject by focusing on the simple case of *electrostatics*. Electrostatics is the behavior of static distributions of charges and the forces they exert on other charged objects. Historically the subject was developed to study *macroscopic* phenomena. For this reason, certain abstractions we'll make in the subject should be viewed as idealizations that are convenient for the study of macroscopic phenomena, but fail to have any real meaning at the *microscopic* level, where quantum mechanical descriptions are needed.
 
-## Electric Field
+## Coulomb's Law
 
 We can start the subject in any number of ways, for example by just stating Maxwell's equations and studying their implications. We'll instead stick to the more usual convention, where we start by assuming the force laws of classical mechanics along with some empirical facts about electric charges and the forces between them.
 
@@ -15,19 +15,19 @@ In the 18th century, it was discovered that aside from mass, every physical body
 - As with gravity, the force is directed along the line of force joining the two charges.
 - The force is *attractive* if the two bodies have charges of *opposite* sign, and *repulsive* if the two bodies have charges of the *same* sign. If either body has zero charge there is no force between them.
 
-### Coulomb's law
+### Coulomb's Law
 
-Putting all of these properties together we get *Coulomb's law*. Suppose we have two point particles with charges $q_1$ and $q_2$ located at positions $\mathbf{x}_1$ and $\mathbf{x}_2$ respectively. Then according to Coulomb's law, the force charge $q_1$ experiences due to charge $q_2$ is given by
+Putting all of these properties together we get *Coulomb's Law*. Suppose we have two point particles with charges $q_1$ and $q_2$ located at positions $\mathbf{x}_1$ and $\mathbf{x}_2$ respectively. Then according to Coulomb's Law, the force charge $q_1$ experiences due to charge $q_2$ is given by
 $$
 \mathbf{F}_{12} = k_e \frac{q_1 q_2}{|\mathbf{x}_1 - \mathbf{x}_2|^2} \mathbf{e}_{12} \ .
 $$
 Here $\mathbf{e}_{12}$ is the unit vector pointing from $q_2$ to $q_1$. By Newton's third law, the force $q_2$ experiences due to $q_1$ is equal and opposite, with $\mathbf{F}_{21} = -\mathbf{F}_{12}$. Since this force depends only on the distance between the two point charges it's a *central force*, which implies that energy is conserved in electrostatics. We'll say more about elecrostatic energy later.
 
-The proportionality constant $k_e$ has value and dimensions that depend on the choice of units used. In this course we'll mostly use the *Gaussian* system of units, where $k_e \equiv 1$ and the mechanical units are measured in CGS units. This means force is measured in *dynes* and distance in *centimeters*. Evidently then, in the Gaussian system of units charge must have units of $\sqrt{\text{dyne} \cdot \text{cm}^2}$. We give this unit of charge a name, called the *electrostatic unit* or *esu*, where $1 \ \text{esu} \approx 3.3 \cdot 10^{-10} \ \text{C}$ in SI units. In Gaussian units, Coulomb's law thus simplifies to
+The proportionality constant $k_e$ has value and dimensions that depend on the choice of units used. In this course we'll mostly use the *Gaussian* system of units, where $k_e \equiv 1$ and the mechanical units are measured in CGS units. This means force is measured in *dynes* and distance in *centimeters*. Evidently then, in the Gaussian system of units charge must have units of $\sqrt{\text{dyne} \cdot \text{cm}^2}$. We give this unit of charge a name, called the *electrostatic unit* or *esu*, where $1 \ \text{esu} \approx 3.3 \cdot 10^{-10} \ \text{C}$ in SI units. In Gaussian units, Coulomb's Law thus simplifies to
 $$
 \mathbf{F}_{12} = \frac{q_1 q_2}{|\mathbf{x}_1 - \mathbf{x}_2|^2} \mathbf{e}_{12} \ .
 $$
-Note that as defined Coulomb's law really only holds for *point charges*. That is, for point particles where all charge is localized at a single point. This is of course an abstraction. In reality we deal with larger bodies where the charge may be distributed across the body in some way. We'll see how to modify Coulomb's law the work with more arbitrary distributions of charge below.
+Note that as defined Coulomb's Law really only holds for *point charges*. That is, for point particles where all charge is localized at a single point. This is of course an abstraction. In reality we deal with larger bodies where the charge may be distributed across the body in some way. We'll see how to modify Coulomb's Law the work with more arbitrary distributions of charge below.
 
 ### What is Charge Really?
 
@@ -41,7 +41,7 @@ One would think that we should think of charge in terms of electrons and define 
 
 ### Coulomb vs Gravity
 
-Given that Coulomb's law looks so similar to Newton's law of gravitation, it's fair to ask how the forces compare to each other. Let's suppose we have two particles separated by a distance $r$ with masses $m_1, m_2$ and charges $q_1, q_2$ respectively. Since the particles have both mass and charge they'll feel both a gravitational force $\mathbf{F}_g$ and a Coulomb force $\mathbf{F}_e$. We can get an idea of the relative strengths of these two forces by looking at their ratio. In Gaussian units, this is given by
+Given that Coulomb's Law looks so similar to Newton's law of gravitation, it's fair to ask how the forces compare to each other. Let's suppose we have two particles separated by a distance $r$ with masses $m_1, m_2$ and charges $q_1, q_2$ respectively. Since the particles have both mass and charge they'll feel both a gravitational force $\mathbf{F}_g$ and a Coulomb force $\mathbf{F}_e$. We can get an idea of the relative strengths of these two forces by looking at their ratio. In Gaussian units, this is given by
 $$
 \frac{|\mathbf{F}_e|}{|\mathbf{F}_g|} = \frac{q_1 q_2}{r} \bigg / G \frac{m_1 m_2}{r} = \frac{q_1 q_2}{G m_1 m_2} \ .
 $$
@@ -55,11 +55,13 @@ $$
 $$
 That is, for two electrons the Coulomb force is 42 orders of magnitude stronger than the gravitational force. The difference between the two forces is so stark we can practically speaking neglect the effects of gravity when studying the interactions between electrons, or indeed any small particles. Indeed, this is one reason why in quantum mechanics we rarely consider gravity. On the other hand, larger objects like people, planets, or galaxies tend to be electrically neutral or very close to it. This means in those cases gravity is all there is, and for large masses gravity can obviously be quite substantial.
 
-### Electric Fields
+## Electric Fields
 
 While we could proceed to study this force between charges just as we did in with gravity in classical mechanics, we'll find it's useful in electromagnetism to make a further abstraction, the *field abstraction*. The reason for this is that we want to think of all interactions as *local*. That is, a particle should only feel the presence of things near by, not things far away. If we think in terms of forces we have to give locality up, since two charges will feel a force no matter how far away they are, so-called "action at a distance".
 
-Instead what we'll do is imagine that particles interact due to the presence of background fields, and think of these fields as giving rise to forces. Suppose we have a charge $q'$ sitting in space at some position $\mathbf{x}'$. Suppose we place an infinitesimal *test charge* $q$ at position $\mathbf{x}$. By Coulomb's law, the test charge will feel a force $\mathbf{F}$ due to $q'$. We'll define a vector-valued function of position known as the *electric field* by the ratio
+### Electric Field
+
+Instead what we'll do is imagine that particles interact due to the presence of background fields, and think of these fields as giving rise to forces. Suppose we have a charge $q'$ sitting in space at some position $\mathbf{x}'$. Suppose we place an infinitesimal *test charge* $q$ at position $\mathbf{x}$. By Coulomb's Law, the test charge will feel a force $\mathbf{F}$ due to $q'$. We'll define a vector-valued function of position known as the *electric field* by the ratio
 $$
 \mathbf{E}(\mathbf{x}) \equiv \frac{\mathbf{F}}{q} \ .
 $$
@@ -69,7 +71,9 @@ $$
 $$
 Here for convenience we define the separation vector $\boldsymbol{\xi} \equiv \mathbf{x} - \mathbf{x}'$, so that the field always points from the location $\mathbf{x}'$ of the *source charge* $q'$ to the *field point* $\mathbf{x}$ where we imagine placing the test charge $q$. The relationship between all these points is shown in the figure below.
 
-![](./resources/image-20240308151912715.png){fig-align=center width=300}
+
+
+![](../statistical-mechanics/resources/image-20240616171528590.png){fig-align=center width=400}
 
 Notice that the electric field doesn't depend on $q$ at all. It has a value at every point in space. When a test charge $q$ is brought in and placed at a position $\mathbf{x}$ it feels a force
 $$
@@ -79,7 +83,9 @@ Note that the requirement that $q$ be infinitesimal in this definition is import
 
 Since $\mathbf{E}$ is just a vector field we can visualize it as such. At each field point $\mathbf{x}$ in space, we can imagine plotting $\mathbf{E}$ as a vector located at $\mathbf{x}$ and pointing outward. It's traditional though, and very convenient, to visualize electric fields using *field lines*. The idea is to imagine placing vector field arrows at each point in space and then connecting them together with lines running along the directions of the arrows. Both of these visualizations are shown in the figure below for a single *positive* point source charge $q'$.
 
-![](./resources/image-20240602115754745.png){fig-align=center width=400}
+
+
+![](./resources/image-20240602115754745.png){fig-align=center width=500}
 
 As a good rule of thumb for drawing field lines, they should always *start* at positive charges and *end* at negative charges, or go to infinity. Field lines should never cross each other. The density of the field lines at a point indicates the strength of the field at that point. In this way, we could loosely speaking *define* the electric field at a point as the *flux density* of field lines, or number of field lines per unit area, passing near that point.
 
@@ -125,7 +131,7 @@ This is as far as we can go as is, but we can make one useful simplification. Le
 $$
 \mathbf{E} \approx -\frac{qd}{r^3} \mathbf{e}_z \ .
 $$
-This result tells us something interesting. Even far away from the source charges, the dipole doesn't seem to follow Coulomb's law since the field doesn't fall off as $\mathbf{E} \sim \frac{1}{r^2}$, but rather as $\mathbf{E} \sim \frac{1}{r^3}$. The reason for this is the two charges screen each other, canceling out the monopole field that would usually give rise to a $\frac{1}{r^2}$ term in the field. This causes the field to be weaker than we'd expect for a point charge in the far field limit.
+This result tells us something interesting. Even far away from the source charges, the dipole doesn't seem to follow Coulomb's Law since the field doesn't fall off as $\mathbf{E} \sim \frac{1}{r^2}$, but rather as $\mathbf{E} \sim \frac{1}{r^3}$. The reason for this is the two charges screen each other, canceling out the monopole field that would usually give rise to a $\frac{1}{r^2}$ term in the field. This causes the field to be weaker than we'd expect for a point charge in the far field limit.
 
 The term $qd \mathbf{e}_z$ has a name. It's called the *dipole moment*, denoted by the vector $\mathbf{p}$. The dipole moment is a vector of magnitude $qd$ that points from the negative to the positive charge in a dipole. Using the dipole moment it's possible to show that for a general field point, not just in the $xy$-plane, we can express the electric field of a dipole in the far field limit as
 $$
@@ -141,7 +147,7 @@ A charge distribution can be thought of as a large number of charged point parti
 $$
 dq = d^3 \mathbf{x}' \ \rho(\mathbf{x}') \ .
 $$
-Each $dq$ will give rise to an infinitesimal electric field $d\mathbf{E}$ defined by Coulomb's law. Using the principle of superposition, we can then integrate over all these charges over all space to get the electric field of the distribution,
+Each $dq$ will give rise to an infinitesimal electric field $d\mathbf{E}$ defined by Coulomb's Law. Using the principle of superposition, we can then integrate over all these charges over all space to get the electric field of the distribution,
 $$
 \boxed{
 \mathbf{E}(\mathbf{x}) = \int d^3 \mathbf{x}' \ \rho(\mathbf{x}') \frac{\mathbf{x}-\mathbf{x}'}{|\mathbf{x}-\mathbf{x}'|^3} 
@@ -151,7 +157,9 @@ Strictly speaking we should only integrate over the volume $\mathcal{V}$ of the 
 
 This idea can be seen in the figure below. Here the gray blob is some charge distribution, and $dq$ some infinitesimal element of it. Adding up, or integrating, over all these charges will give the full electric field $\mathbf{E}(\mathbf{x})$.
 
-![](./resources/image-20240308151931197.png){fig-align=center width=300}
+
+
+![](./resources/image-20240308151931197.png){fig-align=center width=400}
 
 We'll often be interested in charge distributions of lower dimension as well, for example lines of charge and sheets of charge. For this reason it's useful to define charge densities in these dimensions as well. The simplest case is the point charge, which we can think of as a zero-dimensional density. If $q'$ is some point charge located at $\mathbf{x}'$, we can use the delta function to write
 $$
@@ -185,9 +193,11 @@ Again, it's understood we're integrating over the whole surface of charge $\math
 
 We could in principle define charge densities in higher dimensions as well, though we won't since we won't need them. Each of the cases we discussed can be visualized using the figure below.
 
-![](./resources/image-20240602122819510.png){fig-align=center width=300}
 
-### Example: Uniformly Charged Sphere
+
+![](../statistical-mechanics/resources/image-20240616171649819.png){fig-align=center width=500}
+
+#### Example: Uniformly Charged Sphere
 
 As a useful example of how to calculate the electric field of a charge distribution, let's consider the case of a uniformly charged sphere. We'll first suppose the sphere is *hollow* with a radius $R$ and a uniform charge $Q = 4\pi R^2 \sigma$ where $\sigma$ is a constant surface density.
 
@@ -207,7 +217,9 @@ Now we need to find $\xi \equiv |\mathbf{x} - \mathbf{x}'|$, which is somewhat t
 $$
 \xi^2 = r^2 + R^2 - 2Rr \cos\theta' \ .
 $$
-![](./resources/image-20240602122925138.png){fig-align=center width=300}
+
+
+![](./resources/image-20240602122925138.png){fig-align=center width=400}
 
 Next we need to calculate the dot product $\boldsymbol{\xi} \cdot \mathbf{e}_r$. Using the geometric formula for the dot product and the above triangle, we see
 $$
@@ -244,7 +256,7 @@ Outside the sphere $r > R$, and so the first term is $+1$​. In this case we ha
 $$
 E(r) = \frac{4\pi R^2 \sigma}{r^2} = \frac{Q}{r^2} \ .
 $$
-Notice that this looks identical to Coulomb's law for the electric field. Evidently, a hollow sphere behaves as a point charge $Q$​ for any field points outside the sphere.
+Notice that this looks identical to Coulomb's Law for the electric field. Evidently, a hollow sphere behaves as a point charge $Q$​ for any field points outside the sphere.
 
 Using the result we have for the hollow sphere, let's quickly figure out what the electric field should be for a *solid sphere* of uniform charge. The only difference now is that the sphere is 3-dimensional. We can work directly from our previous solution. We just have to replace $\sigma$ with $\rho$ and $R$ by an integration variable $r'$. However we do have to be slightly careful, since the charge density is only nonzero inside the sphere. This means we integrate up to $R$ for field points outside the sphere, and up to $r$ otherwise. We can take care of both cases by integrating up to $r_{\min} \equiv \min(r, R)$. Then we have
 $$
@@ -258,7 +270,7 @@ Here we used the fact that in 3 dimensions the total charge of the sphere become
 
 Inside the sphere, however, things change. When $r \leq R$ we have $r_{\min} = r$, in which case
 $$
-E(r) = \frac{4\pi\rho}{3} r \ .
+E(r) = \frac{4\pi\rho}{3} r = \frac{Qr}{R^3} \ .
 $$
 Now the electric field inside the sphere is apparently linear in $r$, not zero. It's easy to check that the two results match at the boundary of the sphere where $r=R$. Note that in either case the electric field is still just the enclosed charge $Q_{\text{enc}} = \frac{4\pi}{3} r_{\min}^3 \rho$ divided by $r^2$. This means any charge outside the enclosed sphere contributes nothing to the field. In the figure below we plot the field strengths $E(r)$ for both the hollow and solid spheres to show the difference between the two.
 
@@ -268,13 +280,13 @@ This was clearly a difficult integration problem. We'll see a *much* easier way 
 
 ## Gauss's Law
 
-While Coulomb's law is perhaps more directly connected to experiment and the historical progression of electromagnetism, it's usually not the most illuminating nor useful way to understand and calculate electric fields. Just as in classical mechanics we found it useful to express Newton's law as an ordinary differential equation for the trajectory of a particle, in electromagnetism we'll find it more useful to express Coulomb's law as a set of *partial differential equations* for the electric field.
+While Coulomb's Law is perhaps more directly connected to experiment and the historical progression of electromagnetism, it's usually not the most illuminating nor useful way to understand and calculate electric fields. Just as in classical mechanics we found it useful to express Newton's law as an ordinary differential equation for the trajectory of a particle, in electromagnetism we'll find it more useful to express Coulomb's Law as a set of *partial differential equations* for the electric field.
 
 ### Flux
 
 We know from the Helmholtz theorem that any well behaving vector field can be fully characterized by its divergence and its curl. This means if we can find the divergence and curl of the electric field we have an equivalent characterization for the field in terms of two linear partial differential equations. We'll derive the divergence of the electric field in this section, saving the curl of the electric field for the next section before discovering a neat way to combine them both together.
 
-To make a start we need to define the idea of the *flux* of a vector field. Suppose $\mathcal{S}$ is some surface of interest. The *flux* $\Phi$ through $\mathcal{S}$ due to the field $\mathbf{E}$ is defined by the integral
+To make a start we need to define the idea of the *flux* of a vector field. Suppose $\mathcal{S}$ is some surface of interest we'd like to calculate the flux through. In electromagnetism we call this surface a *Gaussian surface*. The *flux* $\Phi$ through $\mathcal{S}$ due to the field $\mathbf{E}$ is defined by the integral
 $$
 \Phi \equiv \int_\mathcal{S} \mathbf{E} \cdot d\mathbf{a} \ .
 $$
@@ -296,7 +308,7 @@ For a sphere of radius $r$ the area element is given by $d\mathbf{a} = r^2 d\Ome
 $$
 \Phi = \oint_\mathcal{S} \mathbf{E} \cdot d\mathbf{a} = \int d\Omega \ r^2 \frac{q}{r^2} \mathbf{e}_r \cdot \mathbf{e}_r = 4\pi q \ .
 $$
-We've thus shown that the flux of a point charge through a sphere is just proportional to the charge. Notice in this result that the radius of the flux surface didn't enter into the picture at all. No matter what it cancels out. This fact is unique to inverse square fields, like electricity or gravity. Any field of this type will have the property that its flux is proportional to its source "charge".
+We've thus shown that the flux of a point charge through a sphere is just proportional to the charge. Notice in this result that the radius of the Gaussian surface didn't enter into the picture at all. No matter what it cancels out. This fact is unique to inverse square fields, like electricity or gravity. Any field of this type will have the property that its flux is proportional to its source "charge".
 
 But thus far we've only shown this holds for the flux through a sphere. What about an arbitrary closed surface? In fact the result is the same. To see why, suppose $\mathcal{S}$ is some arbitrary closed surface containing $q$. Suppose $\alpha$ is the outward angle between $\mathbf{E}$ and the surface normal $\mathbf{n}$. Then we evidently have
 $$
@@ -308,27 +320,29 @@ da = \frac{r^2}{\cos\alpha} d\Omega \ .
 $$
 Putting these together we get exactly what we claimed,
 $$
-\Phi = \oint_\mathcal{S} \mathbf{E} \cdot d\mathbf{a} = \int d\Omega \ \frac{r^2}{\cos\alpha} \frac{q}{r^2} \cos\alpha = 4\pi q \ .
+\oint_\mathcal{S} \mathbf{E} \cdot d\mathbf{a} = \int d\Omega \ \frac{r^2}{\cos\alpha} \frac{q}{r^2} \cos\alpha = 4\pi q \ .
 $$
-This is only true though when the charge is contained *inside* the surface. What if it's *outside* the surface? We already said informally the flux in that case should be zero, since any field lines going into the surface also comes out, offsetting the flux. Indeed, if $\mathbf{E} \cdot d\mathbf{a}$ is some contribution to the flux, there will be a corresponding contribution $-\mathbf{E} \cdot d\mathbf{a}$ on some other part of the flux surface that will cancel out the first contribution. This can be seen geometrically in the figure below.
+This is only true though when the charge is contained *inside* the surface. What if it's *outside* the surface? We already said informally the flux in that case should be zero, since any field lines going into the surface also comes out, offsetting the flux. Indeed, if $\mathbf{E} \cdot d\mathbf{a}$ is some contribution to the flux, there will be a corresponding contribution $-\mathbf{E} \cdot d\mathbf{a}$ on some other part of the Gaussian surface that will cancel out the first contribution. This can be seen geometrically in the figure below.
 
-![image-20240504023749549](./resources/image-20240504023749549.png){fig-align=center width=300}
+
+
+![](../statistical-mechanics/resources/image-20240616173508660.png){fig-align=center width=400}
 
 Putting these two results together, we've shown that if $q$ is a point charge and $\mathcal{S}$ is some closed surface, then
 $$
-\Phi =
+\oint_\mathcal{S} \mathbf{E} \cdot d\mathbf{a} =
 \begin{cases}
 4\pi q, & q \ \text{inside} \ \mathcal{S} \\
 0, & q \ \text{outside} \ \mathcal{S} \ .
 \end{cases}
 $$
-By the principle of superposition, we thus must have that for some arbitrary distribution of charge, the flux through a closed surface depends *only* on the charge $Q_{\text{enc}}$ enclosed inside the surface,
+By the principle of superposition, this result must also hold for some arbitrary distribution of charge, the flux through a closed surface depends *only* on the charge $Q_{\text{enc}}$ enclosed inside the surface,
 $$
 \boxed{
 \oint_\mathcal{S} \mathbf{E} \cdot d\mathbf{a} = 4\pi Q_{\text{enc}}
 } \ .
 $$
-This important result is called the *integral form* of *Gauss's law*. It says that the total flux of the electric field through a closed surface is proportional to the enclosed charge inside the surface. 
+This important result is called the *integral form* of *Gauss's Law*. It says that the total flux of the electric field through a closed surface is proportional to the enclosed charge inside the surface. 
 
 ### Differential Form of Gauss's Law
 
@@ -354,15 +368,15 @@ $$
 \nabla \cdot \mathbf{E} = 4\pi\rho
 } \ .
 $$
-This result is known as the *differential form* of Gauss's law. It's the main thing we sought to derive in this section. It gives us an expression for the divergence of the electric field in terms of the source charge distribution.
+This result is known as the *differential form* of Gauss's Law. It's the main thing we sought to derive in this section. It gives us an expression for the divergence of the electric field in terms of the source charge distribution.
 
 ### Examples
 
-Gauss's law can sometimes be very convenient to directly find the electric field in situations where the charge distribution has a high level of symmetry. As we've shown, as long as two closed surfaces contain the same charge distribution they will also have the same flux. What we can thus do is use this freedom to choose a flux surface that simplifies the problem. The simplest thing we could imagine doing is to choose a flux surface such that $|\mathbf{E}|$ is constant along the surface. In that case, we'd have
+Gauss's Law can sometimes be very convenient to directly find the electric field in situations where the charge distribution has a high level of symmetry. As we've shown, as long as two closed surfaces contain the same charge distribution they will also have the same flux. What we can thus do is use this freedom to choose a Gaussian surface that simplifies the problem. The simplest thing we could imagine doing is to choose a Gaussian surface such that $|\mathbf{E}|$ is constant along the surface. In that case, we'd have
 $$
 \oint_\mathcal{S} \mathbf{E} \cdot d\mathbf{a} = |\mathbf{E}| A \ ,
 $$
-where $A$ is the total surface area of $\mathcal{S}$. Then the integral form of Gauss's law simplifies greatly to
+where $A$ is the total surface area of $\mathcal{S}$. Then the integral form of Gauss's Law simplifies greatly to
 $$
 |\mathbf{E}| = \frac{4\pi Q_{\text{enc}}}{A} \ .
 $$
@@ -370,9 +384,11 @@ For this to work though the charge distribution really needs to have a high leve
 
 #### Example: Infinite Line of Uniform Charge
 
-Consider a line of charge of infinite length and infinitesimal width, so we can treat the line as one-dimensional. We'll suppose the line is oriented along the $z$-axis and carries a constant charge per unit length of $\lambda$. Our goal is to find its electric field. We could do this the hard way as before, but in this case we can do it much more easily using Gauss's law, so that's what we'll do.
+Consider a line of charge of infinite length and infinitesimal width, so we can treat the line as one-dimensional. We'll suppose the line is oriented along the $z$-axis and carries a constant charge per unit length of $\lambda$​. Our goal is to find its electric field. We could do this the hard way as before, but in this case we can do it much more easily using Gauss's Law, so that's what we'll do.
 
-By symmetry, the electric field should depend only on the cylindrical radius $r$. To see why, pick a random field point in the $xy$-plane. Now pick a random source point at a height $z'$ along the wire. Then there must also be an opposite source point at a height $-z'$. If we add the two separation vectors together, their $z$-components will cancel, leaving only a contribution in the $r$-direction. We thus must conclude that the electric field has the property that
+![](../statistical-mechanics/resources/image-20240616180813782.png){fig-align=center width=300}
+
+By symmetry, the electric field should depend only on the cylindrical radius $r$. To see why, pick a random field point in the $xy$-plane. Now pick a random source point at a height $z'$ along the wire. Then there must also be an opposite source point at a height $-z'$. If we add the two field vectors together, their $z$-components will cancel, leaving only a contribution in the $r$-direction. We thus must conclude that the electric field has the property that
 $$
 \mathbf{E}(\mathbf{x}) = E(r) \mathbf{e}_r \ .
 $$
@@ -392,19 +408,21 @@ Thus, the electric field of an infinitely long wire of uniform charge is inverse
 
 #### Example: Infinite Sheet of Uniform Charge
 
-We'll now consider not an infinite *line* of uniform charge, but an infinite *flat sheet* of uniform charge. We'll suppose this sheet is oriented in the $xy$-plane and has infinitesimal thickness, so we can treat the sheet as 2-dimensional with a constant surface charge density $\sigma$.
+We'll now consider not an infinite *line* of uniform charge, but an infinite *flat sheet* of uniform charge. We'll suppose this sheet is oriented in the $xy$-plane and has infinitesimal thickness, so we can treat the sheet as 2-dimensional with a constant surface charge density $\sigma$​.
 
-By symmetry, we'll argue that the electric field must always point away from the sheet in the $z$ direction. To see why, pick a random field point at a height $z$ above (or below) the sheet, centered at the origin. Pick a random source point $(r',\phi')$ along the sheet. Now, there must be an opposite source point at $(r',\phi'+\pi)$ for which the two separation vectors will cancel in all but the $z$-direction. This means
+![](../statistical-mechanics/resources/image-20240616180900393.png){fig-align=center width=400}
+
+By symmetry, we'll argue that the electric field must always point away from the sheet in the $z$ direction. To see why, pick a random field point at a height $z$ above (or below) the sheet, centered at the origin. Pick a random source point $(r',\varphi')$ along the sheet. Now, there must be an opposite source point at $(r',\varphi'+\pi)$ for which the two field vectors will cancel in all but the $z$-direction. This means
 $$
 \mathbf{E}(\mathbf{x}) = \pm E(z) \mathbf{e}_z \ .
 $$
-All that thus remains is to find $E(z)$. Clearly this field is constant along surfaces of constant $z$. This means that any Gaussian surface with a flat top and bottom will do, since only the field through the top and bottom of the surface contribute anything to the flux. Such a surface is historically called a *pillbox*. Examples of pillboxes include prisms and cylinders. All that matters is that the top and bottom are flat, and the sides are perpendicular to the sheet. We'll thus choose any pillbox with equal top and bottom areas $A$ and whose height is $2z$, as shown in the figure.
+All that thus remains is to find $E(z)$. Clearly this field is constant along surfaces of constant $z$. This means that any Gaussian surface with a flat top and bottom will do, since only the field through the top and bottom of the surface contribute anything to the flux. Such a surface is historically called a *pillbox*. Examples of pillboxes include prisms and cylinders. All that matters is that the top and bottom are flat, and the sides are perpendicular to the sheet. We'll thus choose any pillbox with equal top and bottom areas $A$ and some arbitrary height, as shown in the figure.
 
 Since the field is constant on the top and bottom of the Gaussian surface and only points in the $z$-direction, the flux is given by
 $$
 \oint_\mathcal{S} \mathbf{E} \cdot d\mathbf{a} = |\mathbf{E}| \cdot 2A = E(z) \cdot 2 A \ .
 $$
-The prism encloses a charge given by $Q_{\text{enc}} = \sigma A$. Plugging these into Gauss's Law and solving for $E(z)$, we finally have
+The pillbox encloses a charge given by $Q_{\text{enc}} = \sigma A$. Plugging these into Gauss's Law and solving for $E(z)$, we finally have
 $$
 E(z) = 2\pi\sigma \ .
 $$
@@ -412,7 +430,9 @@ That is, the electric field strength of an infinite sheet of uniform charge is c
 
 #### Example: Uniformly Charged Sphere
 
-As our final example in this section we'll consider an example we've already seen, the uniformly charged sphere. In a previous section we worked out its electric field with great pain. Here we'll show that Gauss's Law gives a much simpler way. We'll again suppose that the charge lies on a hollow sphere of radius $R$ centered at the origin.
+As our final example in this section we'll consider an example we've already seen, the uniformly charged sphere. In a previous section we worked out its electric field with great pain. Here we'll show that Gauss's Law gives a much simpler way. We'll again suppose that the charge lies on a hollow sphere of radius $R$​ centered at the origin.
+
+![](../statistical-mechanics/resources/image-20240616180936896.png){fig-align=center width=400}
 
 As argued before, symmetry requires that the electric field point in the radial $r$-direction, with
 $$
@@ -436,184 +456,430 @@ E(r) = \frac{Q(r)}{r^2} = \frac{4\pi\rho}{3} r \ .
 $$
 That is, inside of a uniformly charged solid sphere the electric field is *linear* in the radius. When $r=R$​ of course this will equal the equation for the field outside the sphere, where the field will start to decrease as an inverse square law.
 
-### Surfaces of Charge
-
-The previous examples pose an interesting question: How is it that the electric field can change discontinuously when crossing a surface of charge? With the hollow sphere the field is zero inside but non-zero outside the sphere. With the infinite sheet, the field is $-2\pi\sigma$ below the surface and $+2\pi\sigma$ above the surface.
-
-To better understand what's going on, let's look at how the electric field changes when crossing a surface of charge. Let's suppose we have a have a smooth charged surface $\mathcal{S}$ of charge with surface charge density $\sigma$. In general, the field across this surface can point in any direction. We'll decompose it into components parallel to and perpendicular to the surface,
-$$
-\mathbf{E} = \mathbf{E}^\parallel + \mathbf{E}^\perp \ .
-$$
-Now, as with the infinite sheet example, let's choose our Gaussian surface to be a pillbox centered on the surface at some point with top and bottom area $\delta A$ and infinitesimal height $\varepsilon$. Focusing first on the perpendicular component of the field $\mathbf{E}^\perp$, we see that the field lines must point away from the sheet in the direction of the surface normal $\mathbf{n}$. If we assume the surface normal points upward from the sheet, the flux of $\mathbf{E}^\perp$ will be given by
-$$
-\oint_\mathcal{S} \mathbf{E}^\perp \cdot d\mathbf{a} = (E_+^\perp - E_-^\perp) \delta A \ ,
-$$
-where $E_+^\perp$ is the field above the surface and $E_-^\parallel$ is the field below the surface. Since $Q_{\text{enc}} = \sigma \delta A$, Gauss's Law gives
-$$
-E_+^\perp - E_-^\perp = 4\pi\sigma \ .
-$$
-That is, in crossing the surface, the perpendicular component of the field changes discontinuously by $4\pi\sigma$.
-
-What about the parallel component of the field $\mathbf{E}^\parallel$ though? In this case we can apply the integral form for the curl,
-$$
-\oint_\mathcal{C} \mathbf{E} \cdot d\boldsymbol{\ell} = 0 \ ,
-$$
-over any square loop of length $\delta L$ to get
-$$
-\oint_\mathcal{C} \mathbf{E}^\parallel \cdot d\boldsymbol{\ell} = E^\parallel \cdot 4\delta L = 0 \ .
-$$
-The only way this can be true is if $\mathbf{E}^\parallel$​
-
-- This is harder than you thought. Requires covering the curl formula and potential first. Textbooks typically pose this section as a statement about boundary conditions that must hold at a surface of charge.
-
 ## Scalar Potential
 
-Recall that we're trying to find a way to fully characterize the electric field with a set of field equations, which we said we could do by finding formulas for the divergence and curl of the field in terms of the source charges. We found a formula for the divergence, namely Gauss's law. We'll now see what the curl of the electric field should be and see what that implies.
+Recall that we're trying to find a way to fully characterize the electric field with a set of field equations. We know it's sufficient for this purpose to find formulas for the divergence and curl of the field in terms of the source charges. We just found a formula for the divergence, which gave us Gauss's Law. We'll now see what the curl of the electric field should be and see what that implies.
 
-To find the curl
+### Curl of Electric Field
 
+From vector calculus, we know that finding the curl of a vector field is in some sense equivalent to finding the line integral of the field around a closed path. More formally, Stoke's theorem says that if $\mathcal{C}$ is some closed loop with interior surface $\mathcal{S}$, we have
+$$
+\oint_\mathcal{C} \mathbf{E} \cdot d\boldsymbol{\ell} =  \int_\mathcal{S} (\nabla \times \mathbf{E}) \cdot d\mathbf{a} \ .
+$$
+What we'll thus do is first find the line integral and from that get the curl. As we did with Gauss's Law, we'll start with the simplest case of a point charge $q$ centered at the origin. This means we have
+$$
+\mathbf{E} \cdot d\boldsymbol{\ell} = \frac{q}{r^2} \mathbf{e}_r \cdot d\boldsymbol{\ell} = \frac{q}{r^2} dr \ .
+$$
+Here we used the fact that in spherical coordinates the line element is $d\boldsymbol{\ell} = dr \mathbf{e}_r + rd\theta \mathbf{e}_\theta + r \sin\theta d\varphi \mathbf{e}_\varphi$. This means that between any two points on the line $\mathbf{a}$ and $\mathbf{b}$ we have
+$$
+\int_\mathbf{a}^\mathbf{b} \mathbf{E} \cdot d\boldsymbol{\ell} = \frac{q}{|\mathbf{a}|} - \frac{q}{|\mathbf{b}|} \ .
+$$
+In particular, if we integrate around a closed loop $\mathcal{C}$ we must conclude that the line integral vanishes. The line integral over a closed loop is often called the *circulation integral*. It represents the total contribution of the field in moving around the closed loop, or equivalently the work per unit charge done in moving around the closed loop. Evidently for a point charge this circulation integral must be zero.
 
-
-
-
-
-
-
-
-Let's now look at the field equation for the curl of the electric field. From the Helmholtz theorem, we know that any vector field can be fully determined by knowing both its divergence and its curl. This means that once we figure out what the curl of the electric field is we've fully specified what the electric field must be from two partial differential equations.
-
-There are a few ways we can proceed. One way is to just directly take the curl of the integral expression for the electric field and grind out an answer. This works fine, but we'll take an easier approach. Recall from classical mechanics that a force $\mathbf{F}$ is *conservative* if and only if its curl vanishes, $\nabla \times \mathbf{F} = \mathbf{0}$. We also know that any central force, a force that depends only on the relative distance between particles, is conservative. The Coulomb force is clearly a central force since it only depends on the relative distance between charges. In particular, this means we automatically must have that the curl of the electric field vanishes in electrostatics,
+Of course, there is nothing special about a point charge. By the principle of superposition we can consider any arbitrary distribution of charges as well by summing the contribution of each of the point charges inside. We thus conclude that for *any* distribution of charge giving rise to a total electric field $\mathbf{E}$ the circulation integral must vanish in electrostatics,
+$$
+\boxed{
+\oint_\mathcal{C} \mathbf{E} \cdot d\boldsymbol{\ell} = 0
+} \ .
+$$
+We can recover the curl of the field by apply Stoke's theorem, from which we immediately see that the curl vanishes as well,
 $$
 \boxed{
 \nabla \times \mathbf{E} = \mathbf{0}
 } \ .
 $$
-This completes our picture of field equations we need to fully determine the electric field in electrostatics. All that remains at this point is analyzing the two field equations to see what they're telling us. We've already done that with the divergence, deriving Gauss's Law. Let's now look into the curl equation to see what it implies.
+Note that this was perhaps a long-winded way of saying something that should already be obvious to us: We know from classical mechanics that any *conservative force* has the property that its curl vanishes. Since the Coulomb force is a central force we know it must be conservative, and hence its curl must vanish, but since the electric field is just force per unit charge, its curl must vanish as well, which is what we just proved.
 
-We know from vector calculus that any vector field whose curl vanishes must have a scalar potential whose gradient fully determines the vector field. The potential for the electric field is called the *electrostatic potential* $\phi(\mathbf{x})$, with
-$$
-\mathbf{E} = -\nabla \phi \ .
-$$
-Since the force exerted by the field on a point charge $q$ is given by $\mathbf{F} = q\mathbf{E}$ and $\mathbf{F}$ is conservative, we know that it has a potential energy $U(\mathbf{x})$ that must evidently be proportional to $\phi(\mathbf{x})$,
-$$
-U(\mathbf{x}) = q\phi(\mathbf{x}) \ .
-$$
-This means we can interpret the elecrostatic potential as the potential energy per unit charge exerted on a test particle placed in the electric field. The units for the electric potential are evidently energy per unit charge. In SI units this means the potential has units of Joules per Coulomb, which is called the *Volt*. In Gaussian units the potential has units of ergs per ESU, sometimes called the *stat-volt*, with $1 \ \frac{\text{erg}}{\text{esu}} \approx 300 \ \text{V}$​​.
+### Scalar Potential
 
-### Integral Form
-
-In the simplest place where the charge distribution is just a single point charge $q'$ we already know what $\mathbf{E}$ is from Coulomb's Law. We can use that to figure out what the electric potential for a point charge is. Observe if we can recover $\mathbf{E}$ by taking
-$$
-\phi(\mathbf{x}) = \frac{q'}{|\mathbf{x}-\mathbf{x}'|} \ .
-$$
-Using the same logic as we did did for the electric field, this means that the electric potential due to a charge distribution $\rho$ is just
+From vector calculus, we know that any vector field whose curl vanishes must be the gradient of some scalar field. This follows from the fact that the circulation integral vanishes, and hence the line integral between any two points must be path independent and hence a well defined function of the two endpoints. If we call this scalar field $\phi$, this means we have
 $$
 \boxed{
-\phi(\mathbf{x}) = \int_{\mathcal{V}'} d^3 \mathbf{x}' \ \frac{\rho(\mathbf{x}')}{|\mathbf{x}-\mathbf{x}'|} 
+\mathbf{E} = - \nabla \phi
 }\ .
 $$
-Unlike the integral for the electric field, for the electric potential we now only have one scalar integral to evaluate instead of 3. Obviously, this greatly simplifies the problem we need to solve. Let's work a few examples to see that. But first let's say a word about what the "field lines" look like for the electric potential.
+Note the minus sign is merely a convention. We'll see why we include this in a moment. In electromagnetism we call $\phi$ the *scalar potential*, or more simply the *potential* depending on the context. The units of scalar potential are evidently energy per unit charge. In SI units the scalar potential has units of *volts*, or Joules per Coulomb. In Gaussian units the potential has units of ergs per ESU, sometimes called the *statvolt*, with $1 \ \frac{\text{erg}}{\text{esu}} \approx 300 \ \text{V}$.
 
-Since the electric field is the gradient of the potential, and gradients always point normal to their contour surfaces, the potential must evidently be contour surfaces for the electric field. These surface of constant potential are called *equipotentials*. They'll always be surfaces perpendicular to the electric field lines.
+Using the fundamental theorem of calculus we can invert the previous formula to get the potential in terms of the field. If $\mathbf{x}$ is the field point of interest and $\mathbf{g}$ is some fixed reference point, often called the *ground point*, we have
+$$
+\phi(\mathbf{x}) = -\int_\mathbf{g}^\mathbf{x} \mathbf{E} \cdot d\boldsymbol{\ell} \ .
+$$
+In much of theoretical electromagnetism we choose the ground point to be at infinity, where we insist the scalar potential must vanish for localized charge distributions. In this scenario, we then have
+$$
+\phi(\mathbf{x}) = \int_\mathbf{x}^\infty \mathbf{E} \cdot d\boldsymbol{\ell} \ .
+$$
+If $\mathbf{a}$ and $\mathbf{b}$ are two points in space, the potential between them, or *potential difference*, is given by
+$$
+\phi(\mathbf{b}) - \phi(\mathbf{a}) = -\int_\mathbf{a}^\mathbf{b} \mathbf{E} \cdot d\boldsymbol{\ell} \ .
+$$
+The potential difference is often called the *voltage* in more applied fields since it's measured in volts, often denoted by $V$ or $\Delta V$ when the context is clear. The voltage is what is typically measured in the lab, for example by differencing the potential between the positive and negative terminals of some power source.
 
-- Work the previous examples again, using electric fields to find the potentials
+Notice that the integral formula for the scalar potential looks an awful lot like the formula for work in terms of force. Recall that the work done in moving a particle from a point $\mathbf{a}$ to a point $\mathbf{b}$ via an exerted force $\mathbf{F}_{\text{ex}}$ is given by
+$$
+W = \int_\mathbf{a}^\mathbf{b} \mathbf{F}_{\text{ex}} \cdot d\boldsymbol{\ell} \ .
+$$
+Since the force one must exert to move against the field is just minus the force generated by the field itself, we must evidently have $\mathbf{F}_{\text{ex}} = -q\mathbf{E}$. Plugging this in and factoring out the charge from both sides, we can see that the work done is proportional to the potential difference between the two points,
+$$
+W = -q \int_\mathbf{a}^\mathbf{b} \mathbf{E} \cdot d\boldsymbol{\ell} = q \big(\phi(\mathbf{b}) - \phi(\mathbf{a})\big) \ .
+$$
+This means we can think of the scalar potential as the work done in moving a unit charge from infinity to its current location in the presence of an external electric field $\mathbf{E}$. Indeed, this is why we include the minus sign in the definition of the scalar potential as $\mathbf{E} = - \nabla \phi$​, to ensure that the potential has the same sign as the work done on the charge.
+
+Provided we set the ground point at infinity, the work done in moving the charge from infinity to some location $\mathbf{x}$ must evidently be $W = q\phi(\mathbf{x})$. This is of course just the potential energy $U$, provided we define $U(\infty)\equiv 0$. Thus, for a point charge moving in the presence of an external field, its potential energy is just $U = q\phi$. For a general charge distribution we need only use the superposition principle to replace the charge $q$ by a volume integral over the charge density $\rho(\mathbf{x})$, in which case we have
+$$
+\boxed{
+U = \int d^3 \mathbf{x} \ \rho(\mathbf{x}) \phi(\mathbf{x})
+} \ .
+$$
+Remember, this is only true for charges moving in the presence of an external electric field. This is *not* true for the charges used to assemble the distribution giving rise to the field itself. We'll see what that potential energy must be momentarily.
+
+#### Example: Hollow Sphere
+
+Let's now try to calculate the scalar potential for the uniformly charged hollow sphere. Since we already know what the electric field should be, all we need to do is calculate the line integral. Recall the electric field for a uniformly charged hollow sphere of radius $R$ and charge $Q$ centered at the origin is given by
+$$
+\mathbf{E}(\mathbf{x}) = 
+\begin{cases}
+\mathbf{0} \ , & r < R \ , \\
+\frac{Q}{r^2} \mathbf{e}_r \ , & r \geq R \ . \\
+\end{cases}
+$$
+To find the potential at a given field point $\mathbf{x}$ we need to integrate from $\mathbf{x}$ to infinity. Since the field is radially symmetric, we can write $\mathbf{E} \cdot d\boldsymbol{\ell} = E(r) dr$. When the field point lies outside the sphere $r \geq R$, and we get
+$$
+\begin{align*}
+\phi(\mathbf{x}) &= \int_\mathbf{x}^\infty \mathbf{E} \cdot d\boldsymbol{\ell} \\
+&= Q \int_r^\infty \frac{dr}{r^2} \\
+&= \frac{Q}{r} \ .
+\end{align*}
+$$
+For field points inside the sphere we have to integrate the field inside the sphere as well. When $r > R$ we get
+$$
+\begin{align*}
+\phi(\mathbf{x}) &= \int_\mathbf{x}^\infty \mathbf{E} \cdot d\boldsymbol{\ell} \\
+&= \int_r^R dr \ 0 + Q \int_R^\infty \frac{dr}{r^2} \\
+&= \frac{Q}{R} \ .
+\end{align*}
+$$
+Thus, the potential for a solid sphere is evidently given by
+$$
+\phi(\mathbf{x}) = 
+\begin{cases}
+\frac{Q}{R} \ , & r < R \ , \\
+\frac{Q}{r} \ , & r \geq R \ . \\
+\end{cases}
+$$
+We can verify we got the correct answer if we wish by taking the gradient to recover the field. For example, outside the sphere we have
+$$
+\mathbf{E}(\mathbf{x}) = -\nabla \phi(\mathbf{x}) = - \frac{d}{dr} \frac{Q}{r} \mathbf{e}_r = \frac{Q}{r^2} \mathbf{e}_r \ .
+$$
+Notice that while the electric field is zero inside the sphere, the potential is not. It's a constant value throughout. Also notice that the two sides match at $r=R$, meaning the potential is continuous even though the field is not at $r=R$.
+
+#### Example: Solid Sphere
+
+We can also calculate the potential of the solid sphere if we wish. Outside the sphere the result is the same. Inside the sphere we have to use the fact that the field is no longer zero, but linear in $r$, with $\mathbf{E}(\mathbf{x}) = \frac{Qr}{R^3} \mathbf{e}_r$. When $r < R$ we thus have
+$$
+\begin{align*}
+\phi(\mathbf{x}) &= \int_\mathbf{x}^\infty \mathbf{E} \cdot d\boldsymbol{\ell} \\
+&= \frac{Q}{R^3} \int_r^R dr \ r + Q \int_R^\infty \frac{dr}{r^2} \\
+&=  \frac{Q}{R^3} \bigg(\frac{R^2}{2} - \frac{r^2}{2}\bigg) + \frac{Q}{R} \\
+&= \frac{Q}{2R} \bigg(3 - \frac{r^2}{R^2}\bigg) \ .
+\end{align*}
+$$
+Thus, for a solid sphere the potential is evidently given by
+$$
+\phi(\mathbf{x}) = 
+\begin{cases}
+\frac{Q}{2R}\bigg(3 - \frac{r^2}{R^2}\bigg) \ &, & r < R \ , \\
+\frac{Q}{r} \ &, & r \geq R \ . \\
+\end{cases}
+$$
+Again, the potential is continuous at $r=R$. In fact so is its gradient since the field is also continuous at $r=R$.
+
+#### Example: Infinite Sheet
+
+Let's briefly work an example involving an infinite charge distribution. We'll choose the uniformly charged infinite sheet. In this case we can no longer take infinity as the ground point. Instead we'll choose $\mathbf{g} = \mathbf{0}$ as the ground point. Recall for the infinite sheet the electric field for $z \geq 0$ is given by $\mathbf{E}(\mathbf{x}) = 2\pi\sigma \mathbf{e}_z$. This means $\mathbf{E} \cdot d\boldsymbol{\ell} = E(z) dz$, and so we have
+$$
+\phi(\mathbf{x}) = -\int_\mathbf{0}^\mathbf{x} \mathbf{E} \cdot d\boldsymbol{\ell} = -2\pi\sigma \int_0^z dz = -2\pi\sigma z \ 
+$$
+One can quickly check that we'd get the same result when $z < 0$. Thus, the potential for the infinite sheet is just
+$$
+\phi(\mathbf{x}) = -2\pi\sigma z \ ,
+$$
+which is what we'd expect since its gradient must be constant.
+
+### Integral Formula
+
+We'll now see what Coulomb's Law looks like in terms of the scalar potential. In the previous chapter we proved the identity
+$$
+\nabla \frac{1}{r} = -\frac{\mathbf{e}_r}{r^2} = -\frac{\mathbf{x}}{r^3} \ .
+$$
+Replacing $\mathbf{x}$ with $|\mathbf{x} - \mathbf{x}'|$ and noting that we're differentiating with respect to the field point $\mathbf{x}$, we have
+$$
+\nabla \frac{1}{|\mathbf{x} - \mathbf{x}'|} = -\frac{\mathbf{x} - \mathbf{x}'}{|\mathbf{x} - \mathbf{x}'|^3} \ .
+$$
+Multiplying both sides by the charge density $-\rho(\mathbf{x}')$ and integrating over $\mathbf{x}'$, we have
+$$
+-\nabla \int d^3 \mathbf{x}' \ \frac{\rho(\mathbf{x}')}{|\mathbf{x} - \mathbf{x}'|} = \int d^3 \mathbf{x}' \ \rho(\mathbf{x}') \frac{\mathbf{x} - \mathbf{x}'}{|\mathbf{x} - \mathbf{x}'|^3} \ .
+$$
+Recognizing that the righthand side is just the electric field and matching with the formula $\mathbf{E} = - \nabla \phi$, we thus have
+$$
+\boxed{
+\phi(\mathbf{x}) = \int d^3 \mathbf{x}' \ \frac{\rho(\mathbf{x}')}{|\mathbf{x}-\mathbf{x}'|} 
+}\ .
+$$
+This is the generalized form of Coulomb's Law expressed for the scalar potential. Note by replacing $d^3 \mathbf{x}' \ \rho(\mathbf{x}')$ with $da \ \sigma(\mathbf{x}')$ or $d\ell \ \lambda(\mathbf{x}')$ we can get the equivalent integrals for the potential of surface or line charge distributions. Do be advised, however, that these formulas *only* hold for *localized* charge distributions. For charge distributions that extend to infinity we may need to modify these equations, for example by choosing a different ground point than infinity for our calculations.
+
+We can use this formula to calculate the potential directly from the charge density itself rather than having to first calculate the electric field. Indeed this is extremely useful. Recall for the electric field we needed to calculate *three* integrals, one for each component. Since the potential is a scalar we only need to calculate a single integral without needing to worry about the vector $\mathbf{x} - \mathbf{x}'$ at all. Once we have the potential, we can easily calculate the electric field.
+
+Before working a few examples, let's try to get a visual understanding of what the potential of a charge distribution looks like. We already have an idea how to visualize the electric field of a distribution using field lines. Since the field is just the gradient of the potential, we know from vector calculus that the field must always point perpendicular to surfaces of constant potential. These constant potential surfaces are called *equipotentials*. Indeed, it's just as easy to draw equipotentials as it is to draw field lines. For example, the equipotential surfaces of a point charge are shown in the figure below.
+
+FIGURE
+
+Let's now work some examples to show how much nicer this integral formula is to use than the one for the electric field.
+
+#### Example:
+
+- Work examples calculating the potential directly from the charge distribution. Potential difference of a cone maybe?
 
 ### Poisson's Equation
 
-Using the electrostatic potential we can combine the two field equations for the electric field into one field equation for the potential. Since the existence of the potential already satisfies the curl constraint, we just need to plug it into Gauss's Law to satisfy the divergence constraint. Using $\mathbf{E} = -\nabla \phi$, we have
+We've now found the following two field equations for the electric field of electrostatics,
+$$
+\begin{align*}
+\nabla \cdot \mathbf{E} &= 4\pi\rho \ , \\
+\nabla \times \mathbf{E} &= \mathbf{0} \ .
+\end{align*}
+$$
+We can use the scalar potential to combine these two first-order field equations into a single second-order equation for the scalar potential. We've already shown the curl equation is equivalent to the formula $\mathbf{E} = -\nabla \phi$. Plugging this into Gauss's Law, we get
 $$
 \nabla \cdot \mathbf{E} = \nabla \cdot (-\nabla \phi) = 4\pi\rho \ .
 $$
-Recognizing that this is just the Laplacian for the potential, we thus have
+Recognizing that this is just the Laplacian of the scalar potential, we thus have
 $$
 \boxed{
 \nabla^2 \phi = -4\pi\rho
 } \ .
 $$
-This is called *Poisson's Equation*. It gives us a second order PDE we can use to find the potential if the source charge distribution is known. In deriving Poisson's Equation, we've converted two first order differential equations for the vector field $\mathbf{E}$ into a single second order differential equation for the scalar field $\phi$. This means that solving Poisson's Equation given some set of boundary conditions will fully give us all of the information we need to determine $\phi$, and hence $\mathbf{E}$ as well. For this reason, Poisson's Equation could easily be considered the single most important equation in electrostatics.
+This second-order differential equation is called *Poisson's Equation*. It's fully equivalent to the two field equations we derived before. This means that instead of solving two vector first order differential equations to find the electric field, we need only solve Poisson's equation subject to any boundary conditions and then take the gradient to get the electric field. Indeed, for this reason Poisson's equation is perhaps the most important equation in electrostatics. It's the most generally useful way to find the electric field of a charge distribution. We'll  spend considerable time analyzing and solving this equation in the next chapter.
 
-Perhaps the most important reason the potential is nice is that instead of solving for 3 equations, the 3 components of the electric field, with the potential we only need solve a single equation. In this sense, the electric field is evidently redundant, since each of its components are obtained from the same scalar field.
-
-If we like, we can also invert the equation $\mathbf{E} = -\nabla \phi$ to get an equation for $\phi$ in terms of $\mathbf{E}$. Suppose $\mathbf{x}_g$ is some chosen fixed reference point, called the *ground point*. Then by the fundamental theorem of calculus we have
+For now, just observe that Coulomb's Law is indeed a solution of Poisson's equation. To see why we can use the following formula derived in the last chapter:
 $$
-\phi(\mathbf{x}) = -\int_{\mathbf{x}_g}^{\mathbf{x}} \mathbf{E}(\mathbf{x}') \cdot d\boldsymbol{\ell}' \ .
+\nabla \cdot \frac{\mathbf{e}_r}{r^2} = 4\pi\delta(\mathbf{x}) \ .
 $$
-Usually we'll choose the *ground point* such that $\phi(\mathbf{x}_g) \equiv 0$. This can be any point we like, but for our purposes it'll usually be most convenient to choose the ground point at infinity. But in many practical applications the ground point may be chosen arbitrarily to simplify the problem.
-
-For example, when dealing with *electric circuits* the ground point is usually taken to be the negative terminal point. Such a *potential difference* is often called a *voltage* in electronics. Voltages are frequently among the most important electricity-related quantities measured in the lab, along with *currents*, which we'll get to later.
-
-## Electrostatic Energy
-
-When talking about energy in electrostatics we have to be a bit careful which energy we're talking about. We've already seen one form of energy: The potential energy arising due to the work done in moving a charge $q$ through an external electric field. This is just $U = q\phi$, where $\phi$ is the electric potential associated to the external electric field $\mathbf{E}$​​. Note this field is assumed to be due to all the other source charges in space, ignoring $q$. In the continuum limit we can express this as an integral over the charge density,
-$$
-U = \int d^3\mathbf{x} \ \rho(\mathbf{x}) \phi(\mathbf{x}) \ .
-$$
-This isn't the only form of potential energy we can think about though. In fact, it's often more useful to ask a different question: What is the work done to assemble the source charge distribution that gives rise to $\mathbf{E}$ in the first place? To answer this question it helps to imagine bringing each source charge in from space one-by-one and placing it at its source point. Each placement will give rise to its own potential energy. Adding all of these energies together will give us what we seek.
-
-Suppose we have some set of source charges $q_1, q_2, \cdots, q_N$ giving rise to the source charge distribution. Suppose initially that all of these source charges are placed at infinity, where we'll define the potential energy to be zero. 
-
-Now suppose we bringing in only the first charge $q_1$ and place it at position $\mathbf{x}_1$. Since there's no electric potential initially, the work done to place this first charge must evidently be zero, $W_1 = 0$​.
-
-Now suppose we've placed charge $q_1$ and now bring in the second charge $q_2$ and place it at $\mathbf{x}_2$. In this case there's now an electric potential due to $q_1$ that we have to overcome in order to place $q_2$. Thus, the work done to place $q_2$ is
-$$
-W_2 = q_2 \frac{q_1}{|\mathbf{x}_2 - \mathbf{x}_1|} \ .
-$$
-We've now placed charges $q_1$ and $q_2$. Let's now bring in charge $q_3$ and place it at $\mathbf{x}_3$. By superposition, the work done to place $q_3$ is just the sum of the potential energies due to the point charges $q_1$ and $q_2$ already placed. That is,
-$$
-W_3 = q_3 \frac{q_1}{|\mathbf{x}_3 - \mathbf{x}_1|} + q_3 \frac{q_2}{|\mathbf{x}_3 - \mathbf{x}_2|} \ .
-$$
-FIGURE
-
-Hopefully by now we can spot the pattern. Suppose we want to place the $j$<sup>th</sup>  charge $q_j$ in place at $\mathbf{x}_j$. By superposition,
-$$
-W_j = q_j \sum_{i<j} \frac{q_i}{|\mathbf{x}_j - \mathbf{x}_i|} = \frac{1}{2} q_j \sum_{i \neq j} \frac{q_i}{|\mathbf{x}_j - \mathbf{x}_i|} \ .
-$$
-In the last equation we used the fact that we can always write $\sum_{i < j} = \frac{1}{2} \sum_{i \neq j}$ to simplify the summation somewhat. This can easily be seen, for example, by placing the summation elements inside a matrix and observing that the condition $i < j$ means to sum only the entries in the upper triangle, and since $i,j$ are symmetric in this case, that's just half the sum of the upper and lower triangles (excluding the diagonal) since the matrix will be symmetric as well.
-
-Now, the work done to place *all* of these charges in place is just the sum of all these contributions,
-$$
-W = \sum_{j=1}^N U_j = \frac{1}{2} \sum_{j=1}^N q_j \sum_{i \neq j} \frac{q_i}{|\mathbf{x}_j - \mathbf{x}_i|} = \frac{1}{2} \sum_{j=1}^N q_j \phi_i(\mathbf{x}_j) \ .
-$$
-This work done we can think of as the potential energy $U$ stored in all of the source charges. In the continuum limit we can replace the sum over the source charges with an integral over the source charge distribution to get
-$$
-U = \frac{1}{2} \int d^3\mathbf{x} \ \rho(\mathbf{x}) \phi(\mathbf{x}) \ .
-$$
-It's worth stopping for a moment to ask how *this* potential energy differs from our first definition of potential energy as the work required to move a test charge in the presence of the external electric field. Evidently the first definition of potential energy is essentially just half the second, even though they mean very different things.
-
-It's useful to write the potential energy to place the source charges it in a more illuminating way. From Gauss's Law, we know that $\nabla \cdot \mathbf{E} = 4\pi \rho$. Solving for $\rho$ and using integration by parts, we can evidently rewrite $U$ as
+Replacing $\mathbf{x}$ with $\mathbf{x} - \mathbf{x}'$ and differentiating only with respect to $\mathbf{x}$, we have
 $$
 \begin{align*}
-U &= \frac{1}{2} \int d^3\mathbf{x} \ \rho(\mathbf{x}) \phi(\mathbf{x}) \\
-&= \frac{1}{2} \int d^3\mathbf{x} \ \frac{\nabla \cdot \mathbf{E}(\mathbf{x})}{4\pi} \phi(\mathbf{x}) \\
-&= \frac{1}{8\pi} \int d^3\mathbf{x} \ \mathbf{E}(\mathbf{x}) \cdot \big(-\nabla \phi(\mathbf{x})\big) \\
-&= \frac{1}{8\pi} \int d^3\mathbf{x} \ \mathbf{E}(\mathbf{x}) \cdot \mathbf{E}(\mathbf{x}) \ .
+\nabla^2 \phi(\mathbf{x}) &= -\nabla \cdot \mathbf{E}(\mathbf{x}) \\
+&= -\nabla \cdot \int d^3 \mathbf{x}' \ \rho(\mathbf{x}') \frac{\mathbf{x} - \mathbf{x}'}{|\mathbf{x} - \mathbf{x}'|^3} \\
+&= -\int d^3 \mathbf{x}' \ \rho(\mathbf{x}') \nabla \cdot \frac{\mathbf{x} - \mathbf{x}'}{|\mathbf{x} - \mathbf{x}'|^3} \\
+&= -\int d^3 \mathbf{x}' \ \rho(\mathbf{x}') 4\pi \delta(\mathbf{x} - \mathbf{x}') \\
+&= -4\pi \rho(\mathbf{x}) \ .
 \end{align*}
 $$
-Here we assume the surface term from the integration by parts vanishes as we integrate over all space. This will be true so long as $\phi \mathbf{E}$ goes to zero faster than $\frac{1}{r^2}$, which is a realistic assumption for well-localized charge distributions. In the end, we evidently get that the potential energy to assemble all of the source charges is proportional to the square of the electric field,
+We'll see another proof that Coulomb's Law satisfies Poisson's equation in the next chapter via the use of Green's functions. For now, just note that this is only a *particular* solution, not a general solution. The *general* solution will also depend on the boundary conditions in the problem as well. Indeed, we can add to $\phi$ any function $f$ satisfying $\nabla^2 f = 0$ and their sum will also satisfy Poisson's Equation. An equation of the form $\nabla^2 f = 0$ is called *Laplace's Equation*. We'll say more on this in the next chapter.
+
+### Surfaces of Charge
+
+Recall from our discussion of Gauss's Law that we saw something seemingly peculiar: The electric field of an infinite sheet of uniform charge  is discontinuous at the surface. Below the surface the field is $\mathbf{E} = -2\pi\sigma \mathbf{e}_z$, while above the surface the field is $\mathbf{E} = +2\pi\sigma \mathbf{e}_z$. Evidently, crossing the surface causes the field to change discontinuously by an amount $4\pi\sigma$.
+
+In fact this is generally true for surfaces of charge. To see why, suppose $\mathcal{S}$ is some smooth surface of arbitrary shape carrying a surface charge density $\sigma$. Pick a point $\mathbf{x}$ on this surface. Since the field for a general surface can point in any direction, what we can do is decompose it into two components, one perpendicular to $\mathcal{S}$ and one parallel to $\mathcal{S}$​,
 $$
-U = \int d^3\mathbf{x} \ \frac{1}{8\pi} |\mathbf{E}(\mathbf{x})|^2 \ .
+\mathbf{E} = \mathbf{E}^\perp + \mathbf{E}^\parallel \ .
 $$
-This result is interesting in that it gives us another way to interpret this form of potential energy. We can think of the work done to assemble all of the source charges equivalently as the potential energy stored in the electric field itself. It's useful to define the integrand as an *energy density* $u(\mathbf{x})$, in which case we can write
+To deal with the perpendicular component, what we can do is apply Gauss's Law just like we did with the infinite sheet. We'll choose an infinitesimally high and very thin pillbox with top and bottom areas $\delta A$ as the Gaussian surface, where $\delta A$ is so small that any deviations in the curvature of the surface $\mathcal{S}$ are negligible inside the Gaussian surface. If $E_+$ is the value of the field above the surface and $E_-$ is the value of the field below the surface, by Gauss's Law we must have
+$$
+4\pi\sigma \delta A = \int \mathbf{E} \cdot d\mathbf{a} \approx (E_+^\perp - E_-^\perp) \delta A \ .
+$$
+That is, the perpendicular component of the field again undergoes a discontinuous change of $4\pi\sigma$ crossing the surface,
+$$
+E_+^\perp - E_-^\perp = 4\pi\sigma \ .
+$$
+What about the parallel component? Suppose $\mathcal{C}$ is some small closed loop around the point $\mathbf{x}$ on the surface, so small the curvature of $\mathcal{S}$ is negligible. We've already seen that the circulation integral must be vanish. This means we have
+$$
+0 = \oint_\mathcal{C} \mathbf{E} \cdot d\boldsymbol{\ell} \approx (E_+^\parallel - E_-^\parallel) \ell \ .
+$$
+From this we must conclude that the parallel component is indeed continuous on the surface, with $\mathbf{E}_+^\parallel = \mathbf{E}_-^\parallel$. We can put these two results together by using the normal vector $\mathbf{n}$​ to write
+$$
+\mathbf{E}_+ - \mathbf{E}_- = 4\pi\sigma \mathbf{n} \ .
+$$
+What about the scalar potential? In fact the potential *is* continuous across the surface of charge. To see why, suppose $\mathbf{x}_-$ is some point infinitesimally below the surface and $\mathbf{x}_+$ some other point infinitesimally above the surface. If the two points are separated by a distance $\delta\ell$, the potential difference between these two points must be given by
+$$
+\phi_+ - \phi_- = -\int_{\mathbf{x}_-}^{\mathbf{x}_+} \mathbf{E} \cdot d\boldsymbol{\ell} \approx -(E_+  + E_-) \delta\ell \ .
+$$
+Since the right-hand side is infinitesimal, we can conclude that the potential difference crossing the surface must be zero,
+$$
+\phi_+ = \phi_- \ .
+$$
+Since we'll be solving Poisson's equation in the next chapter, let's go ahead and formulate these conditions as a set of boundary conditions for the potential and its gradient. For that purpose it'll be convenient to express the condition for the electric field as a *normal derivative* of the potential. If we define the normal derivative by
+$$
+\frac{\partial \phi}{\partial n} \equiv \nabla \phi \cdot \mathbf{n} \ ,
+$$
+we can write the two boundary conditions for the potential across a surface of charge as
+$$
+\begin{align*}
+\phi_+ - \phi_- &= 0 \ , \\
+\frac{\partial \phi_+}{\partial n} - \frac{\partial \phi_-}{\partial n} &= -4\pi\sigma \ .
+\end{align*}
+$$
+Here it's of course understood that $\phi_+$ and $\phi_-$ refer to points infinitesimally above and below the surface, respectively.
+
+## Conductors and Capacitance
+
+When solving problems in electrostatics we frequently must make use of the material and geometric properties of the charge distribution. Electromagnetic materials can often be thought of one of two types: *conductors* and *insulators*. Conductors are materials where free electrons are allowed to move around the material freely. Insulators are materials where all the electrons are bound to local orbitals, meaning they can only respond to an external field by distorting their electron clouds.
+
+### Conductors
+
+We'll talk more about insulators in a future chapter. For now we'll just focus on conductors, which are easier to understand. Suppose we have a conductor with some charge distribution. We place that conductor in the presence of an external electric field and allow the system to come to electrostatic equilibrium. When this happens, the free charges will move in the direction of the external field, creating an internal field in the of the same strength in opposite direction. The net result is that in equilibrium there is no electric field inside the conductor.
+
+Now, if there is no electric field inside the conductor it must be the case that all free charges will reside on the surface in electrostatic equilibrium. This follows from Gauss's Law. If there is no field then any Gaussian surface chosen inside the conductor must have $\rho = 0$​. Thus, the only place left for the charge to go is on the surface, where it will distribute itself such that the internal field vanishes.
+
+This also implies that the surface of a conductor must be an *equipotential surface*. Since the internal field is zero, we must have
+$$
+\phi(\mathbf{b}) - \phi(\mathbf{a}) = -\int_\mathbf{a}^\mathbf{b} \mathbf{E} \cdot d\boldsymbol{\ell} = 0
+$$
+for any two points $\mathbf{a}$ and $\mathbf{b}$ on the surface of the conductor, meaning $\phi(\mathbf{a}) = \phi(\mathbf{b})$ is constant on the surface. Since the surface of the conductor is an equipotential, this also means that the field lines at the surface must be perpendicular to the surface, since $\mathbf{E} = -\nabla \phi$​ and we know that gradients are perpendicular to their equipotential surfaces.
+
+![](../statistical-mechanics/resources/image-20240703155651920.png){fig-align=center width=400}
+
+We'll find it convenient in the next chapter to express these results as a set of boundary conditions for conductors. Surface boundary conditions require that $\mathbf{E}_+ - \mathbf{E}_- = 4\pi\sigma \mathbf{n}$. Since the field inside the conductor is zero, $\mathbf{E}_- = \mathbf{0}$. Thus, just outside the surface we must have
+$$
+\mathbf{E}_+ = 4\pi\sigma \mathbf{n} \ .
+$$
+In terms of the normal derivative, this says that the potential at the surface of the conductor must satisfy
+$$
+\frac{\partial\phi}{\partial n} = -4\pi\sigma \ .
+$$
+This gives us a way to find the surface charge on a conductor if we know the potential.
+
+
+
+### Capacitance
+
+
+
+## Field Energy
+
+We've already discussed the idea of potential energy in electrostatics. In particular, for a point charge $q$ moving in the presence of an external electric field $\mathbf{E}$ that's generated by some charge distribution $\rho$, its potential energy $U$ is given by
+$$
+U = \int d^3 \mathbf{x} \ \rho(\mathbf{x}) \phi(\mathbf{x}) \ .
+$$
+This is not the only form of potential energy we can ask about however when it comes to a field. We can also ask a slightly different question: What is the work done required to assemble the source charge distribution to begin with, or equivalently, what is the potential energy stored in the source charge distribution?
+
+To make a start at answering this question we'll suppose the charge distribution is discrete, so that the total charge $Q$ is just a sum of $N$​ point charges,
+$$
+Q = \int d^3 \mathbf{x} \ \rho(\mathbf{x}) \approx q_1 + q_2 + \cdots + q_N \ .
+$$
+We'll suppose that initially all point charges are at infinity, separated from each other by an infinite distance. This means that initially there is no potential present in space. What we'll now do is bring the point charges in from infinity one at a time and place them at their respective locations in space and calculate the work done, hence the potential energy, to assemble each charge in the presence of the charges already in place.
+
+First, suppose we bring in charge $q_1$ from infinity and place it at its source point $\mathbf{x}_1$. Since there is no potential present initially, the work done to move this charge to $\mathbf{x}_1$ must evidently be zero. The work done is evidently thus $U_1 = 0$.
+
+Now, with $q_1$ in position we'll bring in $q_2$. Suppose we bring in $q_2$ from infinity and place it at $\mathbf{x}_2$. This time, however, there is a potential generated by the presence of $q_1$,
+$$
+\phi_1(\mathbf{x}_2) = \frac{q_1}{|\mathbf{x}_2 - \mathbf{x}_1|} \ .
+$$
+This means the work done to bring in charge $q_2$ in the presence of $q_1$ is
+$$
+U_2 = q_2 \phi_1(\mathbf{x}_2) = q_2 \frac{q_1}{|\mathbf{x}_2 - \mathbf{x}_1|} \ .
+$$
+With $q_1$ and $q_2$ in place we'll now bring in $q_3$ and place it at $\mathbf{x}_3$. This time there are now two potentials we need to deal with, the potentials of both $q_1$ and $q_2$. By superposition, the work done to bring in charge $q_3$ must be
+$$
+U_3 = q_3 \phi_1(\mathbf{x}_3) + q_3 \phi_2(\mathbf{x}_3) = q_3 \bigg(\frac{q_1}{|\mathbf{x}_3 - \mathbf{x}_1|} + \frac{q_2}{|\mathbf{x}_3 - \mathbf{x}_1|}\bigg) \ .
+$$
+Hopefully by now we can spot the pattern. If the first $i-1$ charges $q_1, q_2, \cdots, q_{i-1}$ are already in place and we then bring in charge $q_i$ from infinity and place it at position $\mathbf{x}_i$, the work done must be
+$$
+U_i = q_i \sum_{j<i} \phi_j(\mathbf{x}_i) = q_i \sum_{j=1}^{i-1} \frac{q_j}{|\mathbf{x}_i - \mathbf{x}_j|} \ .
+$$
+Here the sum over $j < i$ means to sum from $j=1$ to $j=i-1$. This is to make sure we only sum over the point charges already in place, not the ones we haven't brought in yet. 
+
+Now, the *total* potential energy $\mathcal{U}$ to assemble *all* of these charges into place is just the sum of each of these contributions,
+$$
+\mathcal{U} = \sum_{i=1}^N U_i = \sum_{i=1}^N q_i \sum_{j<i} \phi_j(\mathbf{x}_i) \ .
+$$
+It'll be useful to rewrite the sum over all $j < i$ in a slightly different way by observing that the potential is symmetric in $i$ and $j$, so that $\phi_j(\mathbf{x}_i) = \phi_i(\mathbf{x}_j)$. This means we can write the same sum by summing over all $j \neq i$ and dividing by two to avoid double counting,
+$$
+\mathcal{U} = \frac{1}{2} \sum_{i=1}^N q_i \bigg(\sum_{\substack{j=1 \\ j \neq i}}^{N} \phi_j(\mathbf{x}_i)\bigg) \ .
+$$
+Observe next that the interior sum is just the *total* potential exerted on charge $q_i$ due to all other charges $q_j$. Call this potential $\phi(\mathbf{x}_i)$. We can now transition back to the continuum by making the replacement $\sum q_i \rightarrow \int d^3 \mathbf{x} \ \rho(\mathbf{x})$​ to get
 $$
 \boxed{
-u(\mathbf{x}) \equiv \frac{1}{8\pi} |\mathbf{E}(\mathbf{x})|^2
-} \ .
+\mathcal{U} = \frac{1}{2} \int d^3 \mathbf{x} \ \rho(\mathbf{x}) \phi(\mathbf{x})
+}\ .
 $$
-At this point it's worth stopping to more closely analyze a few of the assumptions we made in deriving this second form of the potential energy stored in the electric field. We made two important assumptions:
+This is the potential energy stored in the entire charge distribution. Notice how similar it looks to the potential energy we derived before for a charge distribution in the presence of an external electric field, $U = \int d^3 \mathbf{x} \ \rho(\mathbf{x}) \phi(\mathbf{x})$. On the surface, the only difference between the two evidently is the factor of $\frac{1}{2}$. However, we must keep in mind that the $\rho$ used to find $\mathcal{U}$ is the *source* charge distribution, not an external charge distribution like the one used to find $U$​.
 
-1. The surface term in the integration by parts will vanish. This will be true so long as we integrate to infinity and the term $\phi \mathbf{E}$ goes to zero faster than $\frac{1}{r^2}$. As long as the source charge distribution is well-localized this is realistic, since we'd then expect that $\phi \mathbf{E} \sim \frac{1}{r^3}$ at infinity. This isn't true, however, for infinite charge distributions like the infinite line charge or the infinite sheet. In cases like that we must either include the surface integral term, or use the first integral form to find $U$​.
-
-2. Self energies are ignorable. Notice in our transition from the finite sum to the integral form we "smeared out" the requirement that $i \neq j$ in the sum for the electric potential. As long as we imagine only integrating over field points away from the source charge distribution this is fine. If we don't though the potential energy will actually be infinite! To see why, observe if we attempt to find the potential energy for a point charge at the origin using the second form we get
-   $$
-   U = \int d^3\mathbf{x} \ \frac{1}{8\pi} |\mathbf{E}(\mathbf{x})|^2 = \int_0^\infty 4\pi r^2 dr \ \frac{1}{8\pi} \bigg(\frac{q}{r^2}\bigg)^2 = \infty \ .
-   $$
-   However, if we use the first integral form for the potential energy we'd get
-   $$
-   U = \frac{1}{2} \int d^3\mathbf{x} \ \rho(\mathbf{x}) \phi(\mathbf{x}) = \frac{1}{2} \int_0^\infty 4\pi r^2 dr \ q \delta(\mathbf{x}) \frac{q}{r} = 0 \ ,
-   $$
-   as we'd expect. Clearly then there's a problem arising from the inclusion of the self energies in the second form of the integral. So what's going on? One way to think about it is that the self energy terms include the energy necessary to introduce each charge from the vaccuum. In this sense, self energies are tied up with vacuum energies, the energy stored in the vacuum of space itself. Understanding the vacuum energy requires quantum field theory, and is still an active area of research to this day.
-
-
+We can think of $\mathcal{U}$ as the potential energy stored in the source charge distribution, but we can also think of it equivalently as the potential energy stored in the electric field itself. To see why it's helpful to rewrite the integral in a slightly different way. From Gauss's Law, we know that $\nabla \cdot \mathbf{E} = 4\pi \rho$. Plugging this into the formula for $\mathcal{U}$ we have
 $$
-\boldsymbol{\mathcal{R}} = \mathcal{R} \mathbf{e}_\mathcal{R} \\ \boldsymbol{\Delta} \mathbf{x} = \Delta x \mathbf{e}_{\Delta \mathbf{x}}
+\mathcal{U} = \frac{1}{8\pi} \int d^3\mathbf{x} \ \phi \nabla \cdot \mathbf{E} \ .
 $$
+Now, as a brief aside, let's recall the following vector calculus identity between a scalar field $f$ and a vector field $\mathbf{F}$,
+$$
+\nabla (f \mathbf{F}) = \nabla f \cdot \mathbf{F} + f \nabla \cdot \mathbf{F} \ .
+$$
+Rearranging terms and integrating over some volume $\mathcal{V}$, we have
+$$
+\begin{align*}
+\int_\mathcal{V} d^3\mathbf{x} \ f \nabla \cdot \mathbf{F} &= \int_\mathcal{V} d^3\mathbf{x} \ \nabla (f \mathbf{F}) - \int_\mathcal{V} d^3\mathbf{x} \ \nabla f \cdot \mathbf{F} \\
+&= \oint_\mathcal{S} f \mathbf{F} \cdot d\mathbf{a} - \int_\mathcal{V} d^3\mathbf{x} \ \nabla f \cdot \mathbf{F} \ .
+\end{align*}
+$$
+In the last line we used the fundamental theorem of vector calculus to rewrite the volume integral over $\nabla (f \mathbf{F})$ as an integral over $f \mathbf{F}$ evaluated at the volume's surface $\mathcal{S}$. Now, if we send the volume to infinity, we can neglect the surface term so long as $f\mathbf{F}$ vanishes at infinity faster than $\frac{1}{r^2}$. This means if integrating over all space we'd simply have
+$$
+\int d^3\mathbf{x} \ f \nabla \cdot \mathbf{F} = - \int d^3\mathbf{x} \ \nabla f \cdot \mathbf{F} \ .
+$$
+Let's now apply this result to our integral form for the potential energy $\mathcal{U}$. Using the fact that $\mathbf{E} = -\nabla\phi$ we have
+$$
+\mathcal{U} = - \frac{1}{8\pi} \int d^3\mathbf{x} \ \nabla \phi \cdot \mathbf{E} = \frac{1}{8\pi} \int d^3\mathbf{x} \ \mathbf{E} \cdot \mathbf{E} \ .
+$$
+Note that this will only be true if the boundary term vanishes. We can be sure this is true so long as the charge distribution is localized, since in that case we expect $\phi \mathbf{E} \sim \frac{1}{r^3}$. It may *not* be true, however, for charge distributions that extend to infinity, in which case we'd have to be more careful with ignoring boundary term. Of course, such cases aren't *really* physical anyway.
+
+At any rate, we've derived the following interesting result, which says the potential energy stored in the source charge distribution depends only on the square of the electric field,
+$$
+\boxed{
+\mathcal{U} = \frac{1}{8\pi} \int d^3\mathbf{x} \ |\mathbf{E}|^2
+}\ .
+$$
+This is why we can think of the potential energy $\mathcal{U}$ as the energy stored in the field. That's all it depends on. It'll be useful to give the integrand a name. It's called the *energy density* $u(\mathbf{x})$. It's the potential energy per unit volume stored in the electric field,
+$$
+u(\mathbf{x}) \equiv \frac{1}{8\pi} |\mathbf{E}(\mathbf{x})|^2 \ .
+$$
+We'll find the idea of energy density perhaps most useful in electrodynamics, where we'll need to modify the above result to also account for magnetic field effects as well.
+
+Note that neither the field energy nor the energy density satisfy the principle of superposition since they're quadratic in the field, not linear. For example, the energy density due to two fields $\mathbf{E}$ and $\mathbf{E}'$ would be given by
+$$
+u = \frac{1}{8\pi} |\mathbf{E} + \mathbf{E}'|^2 = \frac{1}{8\pi}|\mathbf{E}|^2 + \frac{1}{8\pi}|\mathbf{E}'|^2 + \frac{1}{8\pi}\mathbf{E} \cdot \mathbf{E}' \ .
+$$
+Last, it's worth pointing out a very important but subtle issue that arises in going from
+$$
+\mathcal{U} = \frac{1}{2} \int d^3 \mathbf{x} \ \rho(\mathbf{x}) \phi(\mathbf{x}) \ \rightarrow \ \frac{1}{8\pi} \int d^3\mathbf{x} \ |\mathbf{E}|^2 \ .
+$$
+The problem is that of *self energy*. According to Coulomb's Law, a charge does not exert a force on itself. It only exerts a force on other charges. However, the second formula includes forces that a charge exerts on itself. To see why, consider the example of a point charge $q$ centered at the origin. According to the second formula, we have
+$$
+\mathcal{U} = \int d^3\mathbf{x} \ \frac{1}{8\pi} |\mathbf{E}(\mathbf{x})|^2 = \int_0^\infty 4\pi r^2 dr \ \frac{1}{8\pi} \bigg(\frac{q}{r^2}\bigg)^2 = \infty \ .
+$$
+However, if we use the first formula we get
+$$
+\mathcal{U} = \frac{1}{2} \int d^3\mathbf{x} \ \rho(\mathbf{x}) \phi(\mathbf{x}) = \frac{1}{2} \int_0^\infty 4\pi r^2 dr \ q \delta(\mathbf{x}) \frac{q}{r} = 0 \ .
+$$
+As we've defined the potential energy it's the latter that should be correct. There's no potential energy stored in a single point charge since no work was required to bring it in from infinity and place it at the origin. So what's going on?
+
+We made a subtle error of sorts when we transitioned from a sum over discrete charges to an integral over a charge distribution. Recall that in the sum version we used $j \neq i$ to enforce the requirement that a charge couldn't affect itself. When we moved to the integral form though this distinction got lost. It turns out that this issue only affects the second formula though. In fact, it only affects distributions of *point charges*. For continuous distributions the formulas will generally agree.
+
+This doesn't necessarily mean, however, that the second formula is not *correct*. It's just counting something that the first formula isn't. Namely, it's also counting the energy required to *create* the charges, not just assemble them in place. The first formula only counts the energy to assemble the charges, not create them. In this sense they're both correct, they just mean slightly different things. Indeed, the second formula ties in with the question of whether empty space has energy, the so-called *vacuum energy*. This topic is a major issue in quantum electrodynamics. In classical dynamics we ignore this distinction, but we do occasionally have to be careful when subtleties like this arise.
+
+#### Example: Field Energy of a Holow Sphere
+
+Recall that the uniformly charged hollow sphere with radius $R$ has an electric field given by
+$$
+\mathbf{E}(\mathbf{x}) = \frac{Q}{r^2} \ \mathbf{e}_r \ ,
+$$
+where $Q = 4\pi R^2 \sigma$ when $r \geq R$ and zero otherwise. Thus, according to the second formula for the field energy we have
+$$
+\mathcal{U} = \frac{1}{8\pi}\int d^3\mathbf{x} \ |\mathbf{E}(\mathbf{x})|^2 = \frac{1}{8\pi}\int_R^\infty 4\pi r^2 dr \ \bigg(\frac{Q}{r^2}\bigg)^2 = \frac{Q^2}{2R} \ .
+$$
+Since this isn't a point charge, we should expect to get the same result with the first formula as well. Since this is a 2-dimensional distribution we need to replace $\int d^3\mathbf{x} \ \rho(\mathbf{x})$ with $\int \sigma(\mathbf{x}) \ da$. At the surface of the sphere we have 
+$$
+\phi(\mathbf{x}) = \frac{Q}{R} \ .
+$$
+Thus, integrating over the surface of the sphere we have
+$$
+\mathcal{U} = \frac{1}{2} \int \sigma(\mathbf{x}) \phi(\mathbf{x}) \ da = \frac{1}{2} \int \sigma \frac{Q}{R} \ da = \frac{Q}{2R} 4\pi R^2 \sigma = \frac{Q^2}{2R} \ .
+$$
+As we can see, the two results agree as expected.
