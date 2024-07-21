@@ -635,9 +635,59 @@ FIGURE
 
 Let's now work some examples to show how much nicer this integral formula is to use than the one for the electric field.
 
-#### Example:
+#### Example: Finite Wire
 
-- Work examples calculating the potential directly from the charge distribution. Potential difference of a cone maybe?
+Let's find the potential of a uniformly charged wire of finite length. Suppose a wire of length $L$ has a uniform charge $Q = \lambda L$. We'll assume that it is oriented along the $z$-axis with its center at the origin, as shown in the figure below.
+
+FIGURE
+
+Assuming the wire has negligible thickness we can use the $1$-dimensional version of the integral formula for the potential,
+$$
+\phi(\mathbf{x}) = \int d\ell' \ \frac{\lambda(\mathbf{x}')}{|\mathbf{x} - \mathbf{x}'|} \ .
+$$
+Since $\lambda$ is constant along the wire and the wire is centered on the $z$-axis we can set $d\ell' = dz'$ and write the integral as
+$$
+\phi(\mathbf{x}) = \lambda \int_{-L/2}^{L/2} \frac{dz'}{|\mathbf{x} - \mathbf{x}'|} \ .
+$$
+All that remains now is to find $\xi = |\mathbf{x} - \mathbf{x}'|$. We'll work in cylindrical coordinates. Since each source point is along the $z$-axis we can write $\mathbf{x}' = z' \mathbf{e}_z$. For the field point we'll write $\mathbf{x} = r \mathbf{e}_r + z \mathbf{e}_z$, where $r$ is the radial cylindrical coordinate. This means we have
+$$
+\xi^2 = r^2 + (z - z')^2 \ .
+$$
+Plugging this into the integral for the potential, we're left to evaluate the following integral,
+$$
+\phi(\mathbf{x}) = \lambda \int_{-L/2}^{L/2} \frac{dz}{\sqrt{r^2 + (z - z')^2}} \ .
+$$
+We can evaluate this integral by making the substitution $u = \frac{z - z'}{r}$ and $du = -\frac{z'}{r}$ to get
+$$
+\phi(\mathbf{x}) = -\lambda \int_{\frac{z+L/2}{r}}^{\frac{z-L/2}{r}} \frac{du}{\sqrt{1 + u^2}} = -\lambda \log(1 + u + \sqrt{1 + u^2}) \bigg |_{u=\frac{z+L/2}{r}}^{\frac{z-L/2}{r}} \ .
+$$
+Evaluating the endpoints and simplifying a bit, we finally get
+$$
+\phi(\mathbf{x}) = \lambda \log\bigg[\frac{z + L/2 + \sqrt{r^2 + (z + L/2)^2}}{z - L/2 + \sqrt{r^2 + (z - L/2)^2}}\bigg] \ .
+$$
+This is the full potential in terms of a general field point $\mathbf{x}$ in cylindrical coordinates. We can verify the correctness of this result by considering two limits: the infinite wire limit where $|\mathbf{x}| \ll L$, and the far field limit where $|\mathbf{x}| \gg L$.
+
+In the infinite wire limit we have $r, z \ll L$. In that limit we can neglect $z$ and use the binomial approximation then to write
+$$
+\phi(\mathbf{x}) \approx \lambda \log\bigg[\frac{L/2 + \sqrt{r^2 + (L/2)^2}}{-L/2 + \sqrt{r^2 + (L/2)^2}}\bigg] \approx \lambda \log\bigg[\frac{L/2 + L/2}{-L/2 + L/2 + 2r^2/L}\bigg] \approx \lambda \log \frac{L^2}{2r^2} \ .
+$$
+Simplifying this expression a bit, we get
+$$
+\phi(\mathbf{x}) \approx -2\lambda \log \frac{r}{L} - \lambda \log 2 \ .
+$$
+To verify whether this is correct we can take its gradient to recover the electric field, in which case we get
+$$
+\mathbf{E}(\mathbf{x}) \approx - \frac{\partial \phi}{\partial r} \mathbf{e}_r \approx \frac{2\lambda}{r} \mathbf{e}_r \ . 
+$$
+This is of course exactly what we should expect for an infinite wire of uniform charge, as we've derived before.
+
+In the far field limit we have $r, z \gg L$. For convenience let's suppose $z=0$. In that case, we can neglect the $L/2$ terms inside the roots and use the Taylor series approximation $\log(1+x) \approx x$ when $x$ is small to write
+$$
+\phi(\mathbf{x}) \approx \lambda \log\bigg[\frac{L/2 + \sqrt{r^2 + (L/2)^2}}{-L/2 + \sqrt{r^2 + (L/2)^2}}\bigg] \approx \lambda \log\bigg[\frac{L/2 + r}{-L/2 + r}\bigg] \approx \lambda \log\bigg[1 + \frac{L}{r}\bigg] \approx \frac{\lambda L}{r} \ .
+$$
+Since $Q = \lambda L$ is just the total charge of the wire, we get the Coulomb potential $\phi(\mathbf{x}) = \frac{Q}{r}$ in the far field limit, as we'd expect.
+
+- notes: consider using elliptical coordinates to look at the equipotentials and draw a plot
 
 ### Poisson's Equation
 
