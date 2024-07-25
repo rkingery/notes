@@ -175,6 +175,10 @@ Another surprisingly useful identity of the Levi-Civita symbol is gotten by *con
 $$
 \varepsilon_{ijk} \varepsilon_{k\ell m} = \delta_{i\ell} \delta_{jm} - \delta_{im} \delta_{j\ell} \ .
 $$
+
+
+#### Example: BAC-CAB Rule
+
 As an application of this surprising identity, we'll use it to prove the well-known *BAC-CAB* rule for triple products,
 $$
 \mathbf{a} \times (\mathbf{b} \times \mathbf{c}) = \mathbf{b} (\mathbf{a} \cdot \mathbf{c}) - \mathbf{c} (\mathbf{a} \cdot \mathbf{b}) \ .
@@ -192,6 +196,8 @@ d_i &= [\mathbf{a} \times (\mathbf{b} \times \mathbf{c})]_i \\
 \end{align*}
 $$
 Written back out in vector notation this gives exactly what we wanted to show.
+
+---
 
 The last curious fact of the Levi-Civita symbol that we'll mention but not really use is that we can use it to write out the determinant of a $3 \times 3$ matrix. If a matrix $\mathbf{A}$ has column vectors $\mathbf{a}, \mathbf{b}, \mathbf{c}$, then we have
 $$
@@ -251,7 +257,7 @@ We can also take the tensor product of a rank-2 tensor with a vector, which woul
 $$
 T_{i_1' i_2' \cdots i_k'} = R_{i_1' i_1} R_{i_2' i_2} \cdots R_{i_2' i_2} T_{i_1 i_2 \cdots i_k} \ .
 $$
-In this course we won't generally work much with tensors of higher rank than 2, but they do show up, for example in the multipole expansions of the scalar and vector potentials. Tensor contraction can be defined naturally on these higher-rank tensors as well. Contracting two indices in a tensor will always reduce its rank by 2.
+In this course we won't generally work much with tensors of higher rank than 2, but they do occasionally show up in electromagnetism, for example in the multipole expansions of the scalar and vector potentials. Tensor contraction can be defined naturally on these higher-rank tensors as well. Contracting two indices in a tensor will always reduce its rank by 2.
 
 ### Vector Calculus
 
@@ -374,7 +380,7 @@ A more general extension of this special case is called the *Helmholtz theorem*.
 $$
 \mathbf{F} = -\nabla \phi + \nabla \times \mathbf{A} \ .
 $$
-Though not obvious at this stage, this formula in fact can be inverted to find formulas for $\phi$ and $\mathbf{A}$ in terms of derivatives of $\mathbf{F}$,
+Though not obvious, this formula in fact can be inverted to find formulas for $\phi$ and $\mathbf{A}$ in terms of derivatives of $\mathbf{F}$,
 $$
 \begin{align*}
 \phi(\mathbf{x}) &= \frac{1}{4\pi} \int_{\mathbb{R}^3} d^3 \mathbf{x}' \ \frac{\nabla' \cdot \mathbf{F}(\mathbf{x}')}{|\mathbf{x} - \mathbf{x}'|} \ , \\
@@ -428,7 +434,7 @@ We will at times find it convenient in this course to go back and forth between 
 $$
 f(\omega) \equiv \mathcal{F}[f(t)](\omega) \equiv \int_{-\infty}^\infty dt \ f(t) e^{-i\omega t} \ .
 $$
-The function $f(\omega)$, which in general will be complex-valued, is thought of as a function of *frequency* $\omega$. We can express the same thing using the *Fourier operator* $\mathcal{F}$. Since the $\mathcal{F}$ is an integral transform it inherits many of the properties of the integral plus a few other convenient properties that are easy to prove from the definition. Here the $\leftrightarrow$ symbol means that right-hand side is the Fourier transform, or *Fourier dual*, of the left-hand side. That is, $f(t) \leftrightarrow f(\omega)$, a very convenient simplification of notation.
+The function $f(\omega)$, which in general will be complex-valued, is thought of as a function of *angular frequency* $\omega$. We can express the same thing using the *Fourier operator* $\mathcal{F}$. Since the $\mathcal{F}$ is an integral transform it inherits many of the properties of the integral plus a few other convenient properties that are easy to prove from the definition. Here the $\leftrightarrow$ symbol means that right-hand side is the Fourier transform, or *Fourier dual*, of the left-hand side. That is, $f(t) \leftrightarrow f(\omega)$, a very convenient simplification of notation.
 
 - Linearity: $\alpha f(t) + \beta g(t) \leftrightarrow \alpha f(\omega) + \beta g(\omega)$.
 - Time Scaling: $f(\alpha t) \leftrightarrow \frac{1}{|\alpha|} f\big(\frac{\omega}{\alpha}\big)$.
@@ -444,9 +450,7 @@ $$
 $$
 The convolution operation shows up surprisingly often, particularly in the theory of Green's functions, which we'll work with later in this course. Convolutions act like a form of function multiplication in that the operation is both commutative and associative.
 
----
-
-**Example: Fourier Transform of a Gaussian**
+#### Example: Fourier Transform of a Gaussian
 
 As an example of using these Fourier transform properties let's calculate the Fourier transform of the Gaussian probability density
 $$
@@ -488,11 +492,11 @@ f(t) &= \mathcal{F}^{-1} \mathcal{F} [f(t')](t) \\
 &= \int_{-\infty}^\infty dt' \ f(t') \int_{-\infty}^\infty \frac{d\omega}{2\pi} \ e^{i\omega(t-t')} \ .
 \end{align*}
 $$
-Evidently, the inner integral acts as some kind of kernel function that picks out the value $f(t)$ from the integrand function $f(t')$. Let's give this kernel function a name, the *Dirac delta function*,
+Evidently, the inner integral acts as some kind of kernel function that picks out the value $f(t)$ from the integrand function $f(t')$. Let's give this kernel function a name, the *Dirac delta function* $\delta(t-t')$,
 $$
 \delta(t-t') \equiv \int_{-\infty}^\infty \frac{d\omega}{2\pi} \ e^{i\omega(t-t')} \ .
 $$
-This function evidently then has the defining property that
+The delta function evidently then has the defining property that
 $$
 \boxed{
 f(t) = \int_{-\infty}^\infty dt' \ f(t') \delta(t-t')
@@ -500,7 +504,7 @@ f(t) = \int_{-\infty}^\infty dt' \ f(t') \delta(t-t')
 $$
 In a sense, the delta function can be thought of as a sort of density function for a single point. When $t \neq t'$ the delta function must be zero. But to be a proper density this means that when $t=t'$​ the delta function must be infinitely high so its area under the curve remains constant.
 
-Notice that based on this definition the delta function must have units to cancel out the units of the differential $dt'$. If $dt'$ has units of time, evidently $\delta(t-t')$ must have units of *frequency*.
+Notice that based on this definition the delta function must have units to cancel out the units of the differential $dt'$. If $dt'$ has units of time, evidently $\delta(t-t')$ must have units of *frequency* or *inverse time*.
 
 In one sense, the delta function is just the Fourier transform of the constant $f(t)=1$. In a more visual sense it's an infinite spike. Indeed, we can imagine defining the delta function differently as a limiting case of a normalized Gaussian whose variance $\sigma^2$ goes to zero,
 $$
@@ -510,9 +514,9 @@ This can be illustrated in the figure below.
 
 ![](../../../Library/Application Support/typora-user-images/image-20240309160905585.png){fig-align=center width=300}
 
-Strictly speaking the delta function isn't a proper function at all since it's undefined when $t=t'$​. It's a so-called *generalized function*, meaning it's a function that has meaning only when inside an integral. As physicists rarely do, we won't really bother with these mathematical details in this course. Whatever it is, the delta function is a convenient mathematical object for us.
+Strictly speaking the delta function isn't a proper function at all since it's undefined when $t=t'$​. It's a so-called *generalized function*, meaning it's a function that has meaning only when inside an integral. As physicists rarely do, we won't really bother with these mathematical details in this course. Whatever it is, the delta function is a convenient mathematical object.
 
-One fact worth remembering and easy to prove is how the delta function transforms under a time rescaling,
+One fact that's worth remembering and easy to prove is how the delta function transforms under a time rescaling,
 $$
 \delta(at) = \frac{1}{|a|} \delta(t) \ .
 $$
@@ -540,9 +544,7 @@ $$
 $$
 Here $\mathbf{J} = \frac{d\mathbf{u}}{d\mathbf{x}}$ is the Jacobian of the transformation from $u$-coordinates to Cartesian $x$​​-coordinates.
 
----
-
-**Example: Divergence of Inverse Square Fields**
+#### Example: Divergence of Inverse Square Fields**
 
 As an exercise in much of what we've learned so far, let's calculate the divergence of the vector field $\mathbf{F}(\mathbf{x}) = \frac{\mathbf{e}_r}{r^2}$. We could proceed in one of two ways. One way would be to use Cartesian coordinates and index notation to churn it out the hard way. The other way would be to recognize this scalar field is spherically symmetric, so we should work in spherical coordinates. Adopting the second approach since it's easier, we have
 $$
@@ -556,7 +558,9 @@ Since $\mathbf{F}$ is spherically symmetric and we're integrating over a sphere,
 $$
 \int_S \mathbf{F} \cdot d\mathbf{a} = \int r^2 \bigg(\frac{1}{r^2}\bigg) \ d\Omega = 4\pi \ .
 $$
-This is in fact true for *any* surface of arbitrary radius so long as it contains the origin. This means the divergence of $\mathbf{F}$ can't be zero, otherwise the surface integral would be zero. Moreover, it means the only contribution from the divergence can come at the point $r=0$ where the function blows up. We thus conclude that there must be a delta function multiplying $4\pi$ whose value is non-zero only when $r=0$. That is, we have
+Here the notation $d\Omega \equiv \sin\theta d\theta d\varphi$ is called the *solid angle*. It's just an infinitesimal 2-dimensional angle element. By convention the solid angle has units of *steradians*, a dimensionless angle unit similar to the radian.
+
+At any rate, the result we just derived true for *any* surface of arbitrary radius so long as it contains the origin. This means the divergence of $\mathbf{F}$ can't be zero, otherwise the surface integral would be zero. Moreover, it means the only contribution from the divergence can come at the point $r=0$ where the function blows up. We thus conclude that there must be a delta function multiplying $4\pi$ whose value is non-zero only when $r=0$. That is, we have
 $$
 \nabla \cdot \bigg(\frac{\mathbf{e}_r}{r^2}\bigg) = 4\pi \delta(\mathbf{x}) \ .
 $$

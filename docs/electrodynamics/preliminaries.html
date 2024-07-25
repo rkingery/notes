@@ -595,7 +595,10 @@ v_i' w_i' = J_{ij} J_{ik} v_i w_k = \delta_{jk} v_i w_k = v_j w_j  \ .
 \]</span> Notice we have <span class="math inline">\(\varepsilon_{ijk} x_i x_j y_k = -\varepsilon_{ijk} x_i x_j y_k\)</span>, which can only be true of both are zero, as we wanted to show.</p>
 <p>Another surprisingly useful identity of the Levi-Civita symbol is gotten by <em>contracting</em> their product to get <span class="math display">\[
 \varepsilon_{ijk} \varepsilon_{k\ell m} = \delta_{i\ell} \delta_{jm} - \delta_{im} \delta_{j\ell} \ .
-\]</span> As an application of this surprising identity, we’ll use it to prove the well-known <em>BAC-CAB</em> rule for triple products, <span class="math display">\[
+\]</span></p>
+<section id="example-bac-cab-rule" class="level4">
+<h4 class="anchored" data-anchor-id="example-bac-cab-rule">Example: BAC-CAB Rule</h4>
+<p>As an application of this surprising identity, we’ll use it to prove the well-known <em>BAC-CAB</em> rule for triple products, <span class="math display">\[
 \mathbf{a} \times (\mathbf{b} \times \mathbf{c}) = \mathbf{b} (\mathbf{a} \cdot \mathbf{c}) - \mathbf{c} (\mathbf{a} \cdot \mathbf{b}) \ .
 \]</span> Let <span class="math inline">\(\mathbf{d} = \mathbf{a} \times (\mathbf{b} \times \mathbf{c})\)</span> for convenience. Writing this out in index notation and applying the previous identity, we have <span class="math display">\[
 \begin{align*}
@@ -608,9 +611,11 @@ d_i &amp;= [\mathbf{a} \times (\mathbf{b} \times \mathbf{c})]_i \\
 &amp;= (\mathbf{a} \cdot \mathbf{c}) b_i - (\mathbf{a} \cdot \mathbf{b}) c_i \ .
 \end{align*}
 \]</span> Written back out in vector notation this gives exactly what we wanted to show.</p>
+<hr>
 <p>The last curious fact of the Levi-Civita symbol that we’ll mention but not really use is that we can use it to write out the determinant of a <span class="math inline">\(3 \times 3\)</span> matrix. If a matrix <span class="math inline">\(\mathbf{A}\)</span> has column vectors <span class="math inline">\(\mathbf{a}, \mathbf{b}, \mathbf{c}\)</span>, then we have <span class="math display">\[
 \det \mathbf{A} = \varepsilon_{ijk} a_i b_j c_k \ .
 \]</span> While cute, this formula only works in 3 dimensions. In other dimensions we’d have to use generalizations of the Levi-Civita symbol to get a formula like this, and even then they’re not actually useful for <em>calculating</em> the determinant.</p>
+</section>
 </section>
 <section id="tensors" class="level3">
 <h3 class="anchored" data-anchor-id="tensors">Tensors</h3>
@@ -642,7 +647,7 @@ T_{ij} \equiv x_i x_j \ .
 \mathbf{T} = T_{ij} \mathbf{e}_i \mathbf{e}_j \ .
 \]</span> We can also take the tensor product of a rank-2 tensor with a vector, which would give a three-index object, or a <em>rank-3 tensor</em>. Taking the tensor product of two rank-2 tensors would give a <em>rank-4 tensor</em>. And so on. In fact we can define a tensor of any rank. A <em>rank-k</em> tensor is an object with <span class="math inline">\(k\)</span> indices that tranforms component-wise according to the law <span class="math display">\[
 T_{i_1' i_2' \cdots i_k'} = R_{i_1' i_1} R_{i_2' i_2} \cdots R_{i_2' i_2} T_{i_1 i_2 \cdots i_k} \ .
-\]</span> In this course we won’t generally work much with tensors of higher rank than 2, but they do show up, for example in the multipole expansions of the scalar and vector potentials. Tensor contraction can be defined naturally on these higher-rank tensors as well. Contracting two indices in a tensor will always reduce its rank by 2.</p>
+\]</span> In this course we won’t generally work much with tensors of higher rank than 2, but they do occasionally show up in electromagnetism, for example in the multipole expansions of the scalar and vector potentials. Tensor contraction can be defined naturally on these higher-rank tensors as well. Contracting two indices in a tensor will always reduce its rank by 2.</p>
 </section>
 <section id="vector-calculus" class="level3">
 <h3 class="anchored" data-anchor-id="vector-calculus">Vector Calculus</h3>
@@ -712,7 +717,7 @@ ds^2 = dx_i g_{ij} dx_j \ .
 \]</span> This fact we use extensively in electromagnetism. The minus sign is merely a physics convention. Since the curl of a gradient must vanish, this statement also says <span class="math inline">\(\mathbf{F}\)</span> must be irrotational, i.e.&nbsp;<span class="math inline">\(\nabla \times \mathbf{F} = \mathbf{0}\)</span>.</p>
 <p>A more general extension of this special case is called the <em>Helmholtz theorem</em>. It says <em>any</em> smooth vector field <span class="math inline">\(\mathbf{F}(\mathbf{x})\)</span>, conservative or not, can be expressed as the <em>gradient</em> of some <em>scalar field</em> <span class="math inline">\(\phi(\mathbf{x})\)</span> plus the <em>curl</em> of some other <em>vector field</em> <span class="math inline">\(\mathbf{A}(\mathbf{x})\)</span>, i.e. <span class="math display">\[
 \mathbf{F} = -\nabla \phi + \nabla \times \mathbf{A} \ .
-\]</span> Though not obvious at this stage, this formula in fact can be inverted to find formulas for <span class="math inline">\(\phi\)</span> and <span class="math inline">\(\mathbf{A}\)</span> in terms of derivatives of <span class="math inline">\(\mathbf{F}\)</span>, <span class="math display">\[
+\]</span> Though not obvious, this formula in fact can be inverted to find formulas for <span class="math inline">\(\phi\)</span> and <span class="math inline">\(\mathbf{A}\)</span> in terms of derivatives of <span class="math inline">\(\mathbf{F}\)</span>, <span class="math display">\[
 \begin{align*}
 \phi(\mathbf{x}) &amp;= \frac{1}{4\pi} \int_{\mathbb{R}^3} d^3 \mathbf{x}' \ \frac{\nabla' \cdot \mathbf{F}(\mathbf{x}')}{|\mathbf{x} - \mathbf{x}'|} \ , \\
 \mathbf{A}(\mathbf{x}) &amp;= \frac{1}{4\pi} \int_{\mathbb{R}^3} d^3 \mathbf{x}' \ \frac{\nabla' \times \mathbf{F}(\mathbf{x}')}{|\mathbf{x} - \mathbf{x}'|} \ .
@@ -724,13 +729,6 @@ ds^2 = dx_i g_{ij} dx_j \ .
 \int_\mathcal{S} (\nabla \times \mathbf{F}) \cdot \ d\mathbf{a} = \int_C \mathbf{F} \cdot d\mathbf{x} \ .
 \]</span> Though perhaps not obvious at this stage, the divergence and Stokes’ theorems are precisely what we use to go back and forth between the integral and differential forms of Maxwell’s equations.</p>
 <p>It’s interesting to note that all of these versions of the fundamental theorem of calculus say essentially the same thing: The integral of the derivative of a field over some space equals the value of that field along the boundary of that space. For gradients, the boundary of a contour is just two endpoints. For divergences, the boundary over a volume is a closed surface. For curls, the boundary of a surface is a closed contour.</p>
-<p>Many of the usual derivative and integral rules extend to vector calculus as well using index notation. For example, the product rule for the product of a vector field <span class="math inline">\(\mathbf{F}\)</span> with a scalar field <span class="math inline">\(g\)</span> is <span class="math display">\[
-d(\mathbf{F} g) = \mathbf{F} \ dg + g \ d\mathbf{F} \ .
-\]</span> Dividing both sides by <span class="math inline">\(d\mathbf{x}\)</span> and integrating gives us one generalized version of integration by parts. Indeed, integrating both sides over a volume <span class="math inline">\(\mathcal{V}\)</span>, we get <span class="math display">\[
-\int_\mathcal{V} \nabla(\mathbf{F} g) \cdot d^3\mathbf{x} = \int_\mathcal{V} \mathbf{F} \cdot \nabla g \ d^3 \mathbf{x} + \int_\mathcal{V} g \ \nabla \mathbf{F} \ d^3 \mathbf{x} \ .
-\]</span> Rearranging terms and using the divergence theorem to express the left-hand integral as an integral over the bounding surface <span class="math inline">\(\mathcal{S}\)</span>, we get <span class="math display">\[
-\int_\mathcal{V} \mathbf{F} \cdot \nabla g \ d^3 \mathbf{x} = \oint_\mathcal{S} \nabla(\mathbf{F} g) \cdot d\mathbf{a} - \int_\mathcal{V} g \ \nabla \mathbf{F} \ d^3 \mathbf{x} \ .
-\]</span> Similar versions of integration by parts exist for the product of two scalar fields or two vector fields as well, both of which can be derived just as easily as the formula above.</p>
 <p>We can define similar vector calculus operations for tensors as well, not just vectors. For example, if we have a rank-2 tensor <span class="math inline">\(\mathbf{T}\)</span> we can still imagine taking gradients <span class="math inline">\(\partial_k T_{ij}\)</span> to get a rank-3 tensor. By contracting the derivative with the tensor we get a different divergence for each index, <span class="math inline">\(\partial_i T_{ij}\)</span> and <span class="math inline">\(\partial_j T_{ij}\)</span>. Evidently the divergence of a rank-2 tensor gives a vector, not a scalar.</p>
 <p>Strictly speaking we can’t speak of <em>the divergence</em> of a tensor since each index has its own divergence. We can though when the tensor is <em>symmetric</em>. If <span class="math inline">\(T_{ij} = T_{ji}\)</span> we can define a unique divergence operation by <span class="math display">\[
 \nabla \cdot \mathbf{T} \equiv \partial_i T_{ij} = \partial_j T_{ij} \ .
@@ -817,7 +815,7 @@ d(\mathbf{F} g) = \mathbf{F} \ dg + g \ d\mathbf{F} \ .
 <h3 class="anchored" data-anchor-id="fourier-analysis">Fourier Analysis</h3>
 <p>We will at times find it convenient in this course to go back and forth between the time domain and the frequency domain. To express a continuous function of time as a function of frequency we can use the <em>Fourier transform</em>. For a sufficiently well-behaved time-dependent function <span class="math inline">\(f(t)\)</span>, we can define its Fourier transform <span class="math inline">\(f(\omega)\)</span> by <span class="math display">\[
 f(\omega) \equiv \mathcal{F}[f(t)](\omega) \equiv \int_{-\infty}^\infty dt \ f(t) e^{-i\omega t} \ .
-\]</span> The function <span class="math inline">\(f(\omega)\)</span>, which in general will be complex-valued, is thought of as a function of <em>frequency</em> <span class="math inline">\(\omega\)</span>. We can express the same thing using the <em>Fourier operator</em> <span class="math inline">\(\mathcal{F}\)</span>. Since the <span class="math inline">\(\mathcal{F}\)</span> is an integral transform it inherits many of the properties of the integral plus a few other convenient properties that are easy to prove from the definition. Here the <span class="math inline">\(\leftrightarrow\)</span> symbol means that right-hand side is the Fourier transform, or <em>Fourier dual</em>, of the left-hand side. That is, <span class="math inline">\(f(t) \leftrightarrow f(\omega)\)</span>, a very convenient simplification of notation.</p>
+\]</span> The function <span class="math inline">\(f(\omega)\)</span>, which in general will be complex-valued, is thought of as a function of <em>angular frequency</em> <span class="math inline">\(\omega\)</span>. We can express the same thing using the <em>Fourier operator</em> <span class="math inline">\(\mathcal{F}\)</span>. Since the <span class="math inline">\(\mathcal{F}\)</span> is an integral transform it inherits many of the properties of the integral plus a few other convenient properties that are easy to prove from the definition. Here the <span class="math inline">\(\leftrightarrow\)</span> symbol means that right-hand side is the Fourier transform, or <em>Fourier dual</em>, of the left-hand side. That is, <span class="math inline">\(f(t) \leftrightarrow f(\omega)\)</span>, a very convenient simplification of notation.</p>
 <ul>
 <li>Linearity: <span class="math inline">\(\alpha f(t) + \beta g(t) \leftrightarrow \alpha f(\omega) + \beta g(\omega)\)</span>.</li>
 <li>Time Scaling: <span class="math inline">\(f(\alpha t) \leftrightarrow \frac{1}{|\alpha|} f\big(\frac{\omega}{\alpha}\big)\)</span>.</li>
@@ -830,8 +828,8 @@ f(\omega) \equiv \mathcal{F}[f(t)](\omega) \equiv \int_{-\infty}^\infty dt \ f(t
 <p>The last operation is a very common integral transform known as <em>convolution</em>, defined by <span class="math display">\[
 (f \ast g)(t) \equiv \int_{-\infty}^\infty dt' \ f(t') g(t-t') \ .
 \]</span> The convolution operation shows up surprisingly often, particularly in the theory of Green’s functions, which we’ll work with later in this course. Convolutions act like a form of function multiplication in that the operation is both commutative and associative.</p>
-<hr>
-<p><strong>Example: Fourier Transform of a Gaussian</strong></p>
+<section id="example-fourier-transform-of-a-gaussian" class="level4">
+<h4 class="anchored" data-anchor-id="example-fourier-transform-of-a-gaussian">Example: Fourier Transform of a Gaussian</h4>
 <p>As an example of using these Fourier transform properties let’s calculate the Fourier transform of the Gaussian probability density <span class="math display">\[
 f(t) = \frac{1}{\sqrt{2\pi\sigma^2}} \exp\bigg(-\frac{1}{2} \frac{(t-t_0)^2}{\sigma^2}\bigg)
 \]</span> First, using the linear, time scaling, and shifting properties together we must have <span class="math display">\[
@@ -855,14 +853,14 @@ f(t) &amp;= \mathcal{F}^{-1} \mathcal{F} [f(t')](t) \\
 &amp;= \int_{-\infty}^\infty \frac{d\omega}{2\pi} \ \int_{-\infty}^\infty dt' \ f(t') e^{-i\omega t'} e^{i\omega t} \\
 &amp;= \int_{-\infty}^\infty dt' \ f(t') \int_{-\infty}^\infty \frac{d\omega}{2\pi} \ e^{i\omega(t-t')} \ .
 \end{align*}
-\]</span> Evidently, the inner integral acts as some kind of kernel function that picks out the value <span class="math inline">\(f(t)\)</span> from the integrand function <span class="math inline">\(f(t')\)</span>. Let’s give this kernel function a name, the <em>Dirac delta function</em>, <span class="math display">\[
+\]</span> Evidently, the inner integral acts as some kind of kernel function that picks out the value <span class="math inline">\(f(t)\)</span> from the integrand function <span class="math inline">\(f(t')\)</span>. Let’s give this kernel function a name, the <em>Dirac delta function</em> <span class="math inline">\(\delta(t-t')\)</span>, <span class="math display">\[
 \delta(t-t') \equiv \int_{-\infty}^\infty \frac{d\omega}{2\pi} \ e^{i\omega(t-t')} \ .
-\]</span> This function evidently then has the defining property that <span class="math display">\[
+\]</span> The delta function evidently then has the defining property that <span class="math display">\[
 \boxed{
 f(t) = \int_{-\infty}^\infty dt' \ f(t') \delta(t-t')
 }\ .
 \]</span> In a sense, the delta function can be thought of as a sort of density function for a single point. When <span class="math inline">\(t \neq t'\)</span> the delta function must be zero. But to be a proper density this means that when <span class="math inline">\(t=t'\)</span>​ the delta function must be infinitely high so its area under the curve remains constant.</p>
-<p>Notice that based on this definition the delta function must have units to cancel out the units of the differential <span class="math inline">\(dt'\)</span>. If <span class="math inline">\(dt'\)</span> has units of time, evidently <span class="math inline">\(\delta(t-t')\)</span> must have units of <em>frequency</em>.</p>
+<p>Notice that based on this definition the delta function must have units to cancel out the units of the differential <span class="math inline">\(dt'\)</span>. If <span class="math inline">\(dt'\)</span> has units of time, evidently <span class="math inline">\(\delta(t-t')\)</span> must have units of <em>frequency</em> or <em>inverse time</em>.</p>
 <p>In one sense, the delta function is just the Fourier transform of the constant <span class="math inline">\(f(t)=1\)</span>. In a more visual sense it’s an infinite spike. Indeed, we can imagine defining the delta function differently as a limiting case of a normalized Gaussian whose variance <span class="math inline">\(\sigma^2\)</span> goes to zero, <span class="math display">\[
 \delta(t-t') = \lim_{\sigma \rightarrow 0} \frac{1}{\sqrt{2\pi\sigma^2}} e^{-\frac{(t-t')^2}{2\sigma^2}} \ .
 \]</span> This can be illustrated in the figure below.</p>
@@ -871,8 +869,8 @@ f(t) = \int_{-\infty}^\infty dt' \ f(t') \delta(t-t')
 <p><img src="../../../Library/Application Support/typora-user-images/image-20240309160905585.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="300"></p>
 </figure>
 </div>
-<p>Strictly speaking the delta function isn’t a proper function at all since it’s undefined when <span class="math inline">\(t=t'\)</span>​. It’s a so-called <em>generalized function</em>, meaning it’s a function that has meaning only when inside an integral. As physicists rarely do, we won’t really bother with these mathematical details in this course. Whatever it is, the delta function is a convenient mathematical object for us.</p>
-<p>One fact worth remembering and easy to prove is how the delta function transforms under a time rescaling, <span class="math display">\[
+<p>Strictly speaking the delta function isn’t a proper function at all since it’s undefined when <span class="math inline">\(t=t'\)</span>​. It’s a so-called <em>generalized function</em>, meaning it’s a function that has meaning only when inside an integral. As physicists rarely do, we won’t really bother with these mathematical details in this course. Whatever it is, the delta function is a convenient mathematical object.</p>
+<p>One fact that’s worth remembering and easy to prove is how the delta function transforms under a time rescaling, <span class="math display">\[
 \delta(at) = \frac{1}{|a|} \delta(t) \ .
 \]</span> Another useful fact to remember is that the delta function is the identity of the convolution operation. That is, <span class="math inline">\(f \ast \delta = f\)</span>. This can easily be seen from the definition, which is just a special convolution operation.</p>
 <p>Thus far we’ve talked about the Fourier transform in time. We can define a Fourier transform for a scalar field <span class="math inline">\(f(\mathbf{x})\)</span> as well by multiplying the transform of each component together. For a well-behaved scalar field <span class="math inline">\(f(\mathbf{x})\)</span>, we have <span class="math display">\[
@@ -886,21 +884,24 @@ f(\mathbf{x}) = \mathcal{F}^{-1}[f(\mathbf{k})](\mathbf{x}) = \int_{\mathbb{R}^3
 <p>In the case of fields, the delta function <span class="math inline">\(\delta(\mathbf{x}-\mathbf{x}')\)</span> picks out points in 3-dimensional space, activating only when <span class="math inline">\(\mathbf{x}=\mathbf{x}'\)</span>. It’s worth noting that since the delta function is really a density rather than an ordinary function, under a change of coordinates it transforms as a density, meaning we have to include the Jacobian factor in the definition. For example, in a change of coordinates of the form <span class="math inline">\(\mathbf{u}=\mathbf{u}(\mathbf{x})\)</span>, we have <span class="math display">\[
 \delta(\mathbf{x}-\mathbf{x}') = \frac{1}{|\det \mathbf{J}|} \delta(u-u') \delta(v-v') \delta(w-w') \ .
 \]</span> Here <span class="math inline">\(\mathbf{J} = \frac{d\mathbf{u}}{d\mathbf{x}}\)</span> is the Jacobian of the transformation from <span class="math inline">\(u\)</span>-coordinates to Cartesian <span class="math inline">\(x\)</span>​​-coordinates.</p>
-<hr>
-<p><strong>Example: Divergence of Inverse Square Fields</strong></p>
+</section>
+<section id="example-divergence-of-inverse-square-fields" class="level4">
+<h4 class="anchored" data-anchor-id="example-divergence-of-inverse-square-fields">Example: Divergence of Inverse Square Fields**</h4>
 <p>As an exercise in much of what we’ve learned so far, let’s calculate the divergence of the vector field <span class="math inline">\(\mathbf{F}(\mathbf{x}) = \frac{\mathbf{e}_r}{r^2}\)</span>. We could proceed in one of two ways. One way would be to use Cartesian coordinates and index notation to churn it out the hard way. The other way would be to recognize this scalar field is spherically symmetric, so we should work in spherical coordinates. Adopting the second approach since it’s easier, we have <span class="math display">\[
 \nabla \cdot \mathbf{F} = \frac{1}{r} \frac{\partial}{\partial r} \bigg(r^2 \frac{1}{r^2}\bigg) \ .
 \]</span> It’s tempting to cancel out the factors of <span class="math inline">\(r^2\)</span> and conclude <span class="math inline">\(\nabla \cdot \mathbf{F} = 0\)</span>, but we have to be a little more careful than that. To see why let’s use the divergence theorem to express the same problem as an integral over some closed volume. We can pick any volume we like. To make things easy let’s suppose we’re integrating inside a sphere of radius <span class="math inline">\(R\)</span>. Then we have <span class="math display">\[
 \int_S \mathbf{F} \cdot d\mathbf{a} = \int_\mathcal{V} \nabla \cdot \mathbf{F} \ d^3\mathbf{x} \ .
 \]</span> Since <span class="math inline">\(\mathbf{F}\)</span> is spherically symmetric and we’re integrating over a sphere, we can write <span class="math inline">\(\mathbf{F} \cdot d\mathbf{a} = |\mathbf{F}| da\)</span> and integrate over the surface area of the sphere to get <span class="math display">\[
 \int_S \mathbf{F} \cdot d\mathbf{a} = \int r^2 \bigg(\frac{1}{r^2}\bigg) \ d\Omega = 4\pi \ .
-\]</span> This is in fact true for <em>any</em> surface of arbitrary radius so long as it contains the origin. This means the divergence of <span class="math inline">\(\mathbf{F}\)</span> can’t be zero, otherwise the surface integral would be zero. Moreover, it means the only contribution from the divergence can come at the point <span class="math inline">\(r=0\)</span> where the function blows up. We thus conclude that there must be a delta function multiplying <span class="math inline">\(4\pi\)</span> whose value is non-zero only when <span class="math inline">\(r=0\)</span>. That is, we have <span class="math display">\[
+\]</span> Here the notation <span class="math inline">\(d\Omega \equiv \sin\theta d\theta d\varphi\)</span> is called the <em>solid angle</em>. It’s just an infinitesimal 2-dimensional angle element. By convention the solid angle has units of <em>steradians</em>, a dimensionless angle unit similar to the radian.</p>
+<p>At any rate, the result we just derived true for <em>any</em> surface of arbitrary radius so long as it contains the origin. This means the divergence of <span class="math inline">\(\mathbf{F}\)</span> can’t be zero, otherwise the surface integral would be zero. Moreover, it means the only contribution from the divergence can come at the point <span class="math inline">\(r=0\)</span> where the function blows up. We thus conclude that there must be a delta function multiplying <span class="math inline">\(4\pi\)</span> whose value is non-zero only when <span class="math inline">\(r=0\)</span>. That is, we have <span class="math display">\[
 \nabla \cdot \bigg(\frac{\mathbf{e}_r}{r^2}\bigg) = 4\pi \delta(\mathbf{x}) \ .
 \]</span> Note that using the spherical coordinate version of the gradient we have <span class="math inline">\(\nabla \frac{1}{r} = -\frac{\mathbf{e}_r}{r^2}\)</span>. We’ve thus shown another useful fact, that <span class="math display">\[
 \nabla^2 \bigg(\frac{1}{r}\bigg) = -4\pi \delta(\mathbf{x}) \ .
-\]</span> We will make good use of these two formulas in the rest of this course.</p>
+\]</span> We will make good use of these formulas in the rest of this course.</p>
 
 
+</section>
 </section>
 </section>
 

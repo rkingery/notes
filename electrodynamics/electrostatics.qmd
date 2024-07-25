@@ -657,19 +657,32 @@ Plugging this into the integral for the potential, we're left to evaluate the fo
 $$
 \phi(\mathbf{x}) = \lambda \int_{-L/2}^{L/2} \frac{dz}{\sqrt{r^2 + (z - z')^2}} \ .
 $$
-We can evaluate this integral by making the substitution $u = \frac{z - z'}{r}$ and $du = -\frac{z'}{r}$ to get
+We can evaluate this integral by making the substitution $x = \frac{z - z'}{r}$ and $dx = -\frac{z'}{r}$ to get
 $$
-\phi(\mathbf{x}) = -\lambda \int_{\frac{z+L/2}{r}}^{\frac{z-L/2}{r}} \frac{du}{\sqrt{1 + u^2}} = -\lambda \log(1 + u + \sqrt{1 + u^2}) \bigg |_{u=\frac{z+L/2}{r}}^{\frac{z-L/2}{r}} \ .
+\phi(\mathbf{x}) = -\lambda \int_{\frac{z+L/2}{r}}^{\frac{z-L/2}{r}} \frac{dx}{\sqrt{1 + x^2}} = -\lambda \log(\sqrt{1 + x^2} + x) \bigg |_{x=\frac{z+L/2}{r}}^{\frac{z-L/2}{r}} \ .
 $$
-Evaluating the endpoints and simplifying a bit, we finally get
+Evaluating the endpoints and simplifying a bit, we get
 $$
-\phi(\mathbf{x}) = \lambda \log\bigg[\frac{z + L/2 + \sqrt{r^2 + (z + L/2)^2}}{z - L/2 + \sqrt{r^2 + (z - L/2)^2}}\bigg] \ .
+\phi(\mathbf{x}) = \lambda \log\bigg[\frac{\sqrt{r^2 + (z + L/2)^2} - (z - L/2)}{\sqrt{r^2 + (z - L/2)^2} - (z + L/2)}\bigg] \ .
 $$
-This is the full potential in terms of a general field point $\mathbf{x}$ in cylindrical coordinates. We can verify the correctness of this result by considering two limits: the infinite wire limit where $|\mathbf{x}| \ll L$, and the far field limit where $|\mathbf{x}| \gg L$.
+This is the full potential in terms of a general field point $\mathbf{x}$ in cylindrical coordinates. We still don't easily have an idea what this potential looks like. Let's try to find its equipotentials. To do that we'll need to introduce *elliptical coordinates*. Define
+$$
+\begin{align*}
+u &= \frac{1}{2} \bigg( \sqrt{r^2 + (z + L/2)^2} + \sqrt{r^2 + (z - L/2)^2}\bigg)  \ , \\
+v &= \frac{1}{2} \bigg( \sqrt{r^2 + (z + L/2)^2} - \sqrt{r^2 + (z - L/2)^2}\bigg) \ .\\
+\end{align*}
+$$
+If we plug these new coordinates into the potential and simplify, a little tedious algebra will show that the potential is given by
+$$
+\phi(\mathbf{x}) = \lambda \log\bigg[\frac{u + L/2}{u - L/2}\bigg] \ .
+$$
+Now, we can immediately see from this result that the equipotentials will be the curves such that $u$ is constant. Though perhaps not obvious, the constant surfaces of $u$ are ellipsoids of revolution about the $z$-axis. This means that the equipotentials are just ellipsoids. This should be intuitively obvious. Since the wire has a uniform charge, its equipotentials should be surfaces of constant distance from the wire, which would be ellipsoids. These equipotentials are shown in the figure below.
 
-In the infinite wire limit we have $r, z \ll L$. In that limit we can neglect $z$ and use the binomial approximation then to write
+FIGURE
+
+We can further verify the correctness of this result by considering two limits: the infinite wire limit where $|\mathbf{x}| \ll L$, and the far field limit where $|\mathbf{x}| \gg L$. In the infinite wire limit we have $r, z \ll L$. In that limit we can neglect $z$ and use the binomial approximation then to write
 $$
-\phi(\mathbf{x}) \approx \lambda \log\bigg[\frac{L/2 + \sqrt{r^2 + (L/2)^2}}{-L/2 + \sqrt{r^2 + (L/2)^2}}\bigg] \approx \lambda \log\bigg[\frac{L/2 + L/2}{-L/2 + L/2 + 2r^2/L}\bigg] \approx \lambda \log \frac{L^2}{2r^2} \ .
+\phi(\mathbf{x}) \approx \lambda \log\bigg[\frac{\sqrt{r^2 + (L/2)^2} + L/2}{\sqrt{r^2 + (L/2)^2} - L/2}\bigg] \approx \lambda \log\bigg[\frac{L/2 + L/2}{L/2 - L/2 + 2r^2/L}\bigg] \approx \lambda \log \frac{L^2}{2r^2} \ .
 $$
 Simplifying this expression a bit, we get
 $$
@@ -683,11 +696,9 @@ This is of course exactly what we should expect for an infinite wire of uniform 
 
 In the far field limit we have $r, z \gg L$. For convenience let's suppose $z=0$. In that case, we can neglect the $L/2$ terms inside the roots and use the Taylor series approximation $\log(1+x) \approx x$ when $x$ is small to write
 $$
-\phi(\mathbf{x}) \approx \lambda \log\bigg[\frac{L/2 + \sqrt{r^2 + (L/2)^2}}{-L/2 + \sqrt{r^2 + (L/2)^2}}\bigg] \approx \lambda \log\bigg[\frac{L/2 + r}{-L/2 + r}\bigg] \approx \lambda \log\bigg[1 + \frac{L}{r}\bigg] \approx \frac{\lambda L}{r} \ .
+\phi(\mathbf{x}) \approx \lambda \log\bigg[\frac{\sqrt{r^2 + (L/2)^2} + L/2}{\sqrt{r^2 + (L/2)^2} - L/2}\bigg] \approx \lambda \log\bigg[\frac{r + L/2}{r - L/2}\bigg] \approx \lambda \log\bigg[1 + \frac{L}{r}\bigg] \approx \frac{\lambda L}{r} \ .
 $$
 Since $Q = \lambda L$ is just the total charge of the wire, we get the Coulomb potential $\phi(\mathbf{x}) = \frac{Q}{r}$ in the far field limit, as we'd expect.
-
-- notes: consider using elliptical coordinates to look at the equipotentials and draw a plot
 
 ### Poisson's Equation
 
@@ -728,7 +739,7 @@ We'll see another proof that Coulomb's Law satisfies Poisson's equation in the n
 
 ### Surfaces of Charge
 
-Recall from our discussion of Gauss's Law that we saw something seemingly peculiar: The electric field of an infinite sheet of uniform charge  is discontinuous at the surface. Below the surface the field is $\mathbf{E} = -2\pi\sigma \mathbf{e}_z$, while above the surface the field is $\mathbf{E} = +2\pi\sigma \mathbf{e}_z$. Evidently, crossing the surface causes the field to change discontinuously by an amount $4\pi\sigma$.
+Recall from our discussion of Gauss's Law that we saw something seemingly peculiar: The electric field of an infinite sheet of uniform charge  is discontinuous at the surface. Below the surface the field is $\mathbf{E} = -2\pi\sigma \mathbf{e}_z$, while above the surface the field is $\mathbf{E} = +2\pi\sigma \mathbf{e}_z$. Evidently, crossing the surface causes the field to change discontinuously by an amount $\Delta |\mathbf{E}| = 4\pi\sigma$.
 
 In fact this is generally true for surfaces of charge. To see why, suppose $\mathcal{S}$ is some smooth surface of arbitrary shape carrying a surface charge density $\sigma$. Pick a point $\mathbf{x}$ on this surface. Since the field for a general surface can point in any direction, what we can do is decompose it into two components, one perpendicular to $\mathcal{S}$ and one parallel to $\mathcal{S}$​,
 $$
@@ -770,40 +781,6 @@ $$
 \end{align*}
 $$
 Here it's of course understood that $\phi_+$ and $\phi_-$ refer to points infinitesimally above and below the surface, respectively.
-
-## Conductors and Capacitance
-
-When solving problems in electrostatics we frequently must make use of the material and geometric properties of the charge distribution. Electromagnetic materials can often be thought of one of two types: *conductors* and *insulators*. Conductors are materials where free electrons are allowed to move around the material freely. Insulators are materials where all the electrons are bound to local orbitals, meaning they can only respond to an external field by distorting their electron clouds.
-
-### Conductors
-
-We'll talk more about insulators in a future chapter. For now we'll just focus on conductors, which are easier to understand. Suppose we have a conductor with some charge distribution. We place that conductor in the presence of an external electric field and allow the system to come to electrostatic equilibrium. When this happens, the free charges will move in the direction of the external field, creating an internal field in the of the same strength in opposite direction. The net result is that in equilibrium there is no electric field inside the conductor.
-
-Now, if there is no electric field inside the conductor it must be the case that all free charges will reside on the surface in electrostatic equilibrium. This follows from Gauss's Law. If there is no field then any Gaussian surface chosen inside the conductor must have $\rho = 0$​. Thus, the only place left for the charge to go is on the surface, where it will distribute itself such that the internal field vanishes.
-
-This also implies that the surface of a conductor must be an *equipotential surface*. Since the internal field is zero, we must have
-$$
-\phi(\mathbf{b}) - \phi(\mathbf{a}) = -\int_\mathbf{a}^\mathbf{b} \mathbf{E} \cdot d\boldsymbol{\ell} = 0
-$$
-for any two points $\mathbf{a}$ and $\mathbf{b}$ on the surface of the conductor, meaning $\phi(\mathbf{a}) = \phi(\mathbf{b})$ is constant on the surface. Since the surface of the conductor is an equipotential, this also means that the field lines at the surface must be perpendicular to the surface, since $\mathbf{E} = -\nabla \phi$​ and we know that gradients are perpendicular to their equipotential surfaces.
-
-![](../statistical-mechanics/resources/image-20240703155651920.png){fig-align=center width=400}
-
-We'll find it convenient in the next chapter to express these results as a set of boundary conditions for conductors. Surface boundary conditions require that $\mathbf{E}_+ - \mathbf{E}_- = 4\pi\sigma \mathbf{n}$. Since the field inside the conductor is zero, $\mathbf{E}_- = \mathbf{0}$. Thus, just outside the surface we must have
-$$
-\mathbf{E}_+ = 4\pi\sigma \mathbf{n} \ .
-$$
-In terms of the normal derivative, this says that the potential at the surface of the conductor must satisfy
-$$
-\frac{\partial\phi}{\partial n} = -4\pi\sigma \ .
-$$
-This gives us a way to find the surface charge on a conductor if we know the potential.
-
-
-
-### Capacitance
-
-
 
 ## Field Energy
 
@@ -933,3 +910,85 @@ $$
 \mathcal{U} = \frac{1}{2} \int \sigma(\mathbf{x}) \phi(\mathbf{x}) \ da = \frac{1}{2} \int \sigma \frac{Q}{R} \ da = \frac{Q}{2R} 4\pi R^2 \sigma = \frac{Q^2}{2R} \ .
 $$
 As we can see, the two results agree as expected.
+
+## Conductors and Capacitance
+
+Electromagnetic materials can often be thought of one of two types: *conductors* and *insulators*. Conductors are materials where free electrons are allowed to move around the material freely. Insulators are materials where all the electrons are bound to local orbitals, meaning they can only respond to an external field by distorting their electron clouds. We'll talk more about insulators in a future chapter. For now we'll just focus on conductors, which are easier to understand.
+
+### Conductors
+
+Suppose we have a conductor with some charge distribution. We place that conductor in the presence of an external electric field and allow the system to come to electrostatic equilibrium, meaning the field is time independent. When this happens, the free charges will move in the direction of the external field, creating an internal field in the of the same strength in opposite direction. The net result is that in equilibrium there is no electric field inside the conductor.
+
+Now, if there is no electric field inside the conductor it must be the case that all free charges will reside on the surface in electrostatic equilibrium. This follows from Gauss's Law. If there is no field then any Gaussian surface chosen inside the conductor must have $\rho = 0$​. Thus, the only place left for the charge to go is on the surface, where it will distribute itself such that the internal field vanishes.
+
+This also implies that the surface of a conductor must be an *equipotential surface*. Since the internal field is zero, we must have
+$$
+\phi(\mathbf{b}) - \phi(\mathbf{a}) = -\int_\mathbf{a}^\mathbf{b} \mathbf{E} \cdot d\boldsymbol{\ell} = 0
+$$
+for any two points $\mathbf{a}$ and $\mathbf{b}$ on the surface of the conductor, meaning $\phi(\mathbf{a}) = \phi(\mathbf{b})$ is constant on the surface. Since the surface of the conductor is an equipotential, this also means that the field lines at the surface must be perpendicular to the surface, since $\mathbf{E} = -\nabla \phi$​ and we know that gradients are perpendicular to their equipotential surfaces.
+
+![](../statistical-mechanics/resources/image-20240703155651920.png){fig-align=center width=400}
+
+We'll find it convenient in the next chapter to express these results as a set of boundary conditions for conductors. Surface boundary conditions require that $\mathbf{E}_+ - \mathbf{E}_- = 4\pi\sigma \mathbf{n}$. Since the field inside the conductor is zero, $\mathbf{E}_- = \mathbf{0}$. Thus, just outside the surface we must have
+$$
+\mathbf{E}_+ = 4\pi\sigma \mathbf{n} \ .
+$$
+In terms of the normal derivative, this says that the potential at the surface of the conductor must satisfy
+$$
+\frac{\partial\phi}{\partial n} = -4\pi\sigma \ .
+$$
+This gives us a way to find the surface charge on a conductor if we know the potential.
+
+### Capacitance
+
+When discussing conductors it's typical to also discuss the their *capacitance*, or ability to store charge. A conductor with this property is often called a *capacitor*. Suppose we have some conductor with charge $Q$ and potential $V$ relative to some ground point. Since its electric field must be proportional to $Q$, so must the potential. This means we can write
+$$
+\boxed{
+Q = CV
+} \ ,
+$$
+where $C$ is some proportionality constant, called the *capacitance* or *self capacitance*. This means we can also think of the capacitance as the amount of charge stored in a conductor held at unit potential.
+
+The capacitance turns out to incapsulate all the geometric information encoded in the conductor needed to relate its charge to its potential. In Gaussian units this is obvious, since by dimensional analysis the capacitance must evidently carry units of *length*, or *centimeters*. In SI units, capacitance has units of Volts per Coulomb, called the *Farad*, with $1 \ \text{F} \approx 9 \cdot 10^{11} \ \text{cm}$. An implication of this is that a Farad is a very large unit of capacitance. In laboratory settings, most capacitors have capacitances in the range of $10^{-12}$ to $10^{-6}$ Farads.
+
+As a quick example, let's consider a conducting sphere of radius $R$ and total charge $Q$. Since the potential inside the sphere is $\frac{Q}{R}$, we can easily see that $C = R$, meaning the capacitance of a conducting sphere is just its radius.
+
+In practice, it's more common to talk about the capacitance between multiple conductors, usually two conductors. The combined set of conductors becomes the capacitor in this case. Suppose we have two conductors of opposite charge $Q$ and $-Q$ with a potential difference $V$ between them. We again define the capacitance, or *mutual capacitance*, by the formula $Q = CV$.
+
+The classic example of a capacitor involving two conductors is two parallel conducting plates with area $A$ and opposite charges $Q$ and $-Q$ separated by a distance $d$. If we neglect the boundary of the plates by assuming $A \gg d^2$, their electric field strengths are approximately $|\mathbf{E}| \approx 2\pi\sigma$. By superposition, the combined field will have a strength of $|\mathbf{E}| = 4\pi\sigma$ between the plates and zero outside the plates. This means the potential difference between the plates must be $V = 4\pi\sigma d$. 
+
+FIGURE
+
+Since the charges themselves must relate to $\sigma$ via the formula $Q = \sigma A$, we must have
+$$
+Q = \sigma A = 4\pi\sigma d C = CV \ ,
+$$
+which means the capacitance between the two plates is given by
+$$
+C = \frac{A}{4\pi d} \ .
+$$
+Notice how the capacitance again captures the geometric properties of the conductors, namely the area of the sheets and the distance between them.
+
+Capacitors like the previous example are popular ways to store charge inside of electric circuits. The higher the capacitance, the more charge we say a capacitor can store at a given voltage. The capacitors used in practice usually aren't parallel plates, but more complex designs like overlapping cylinders, but the same idea holds.
+
+Though less common, we can define the mutual capacitance between any number of conductors, not just two. Suppose we have $n$ conductors with charges $Q_i$ and potentials $V_i$ relative to some ground. We can then write
+$$
+Q_i = \sum_{i=1}^n C_{i j} V_j \ .
+$$
+Here each coefficient $C_{ij}$ is called the *mutual capacitance* between conductor $i$ and conductor $j$.
+
+We can relate the capacitance defined between two oppositely charged conductors with the previous definition by setting $Q_1 = Q$,  $Q_2 = -Q$, and $V = V_2 - V_1$ to relate $C$ with the coefficients $C_{ij}$. It's not hard to see that we get
+$$
+C = \frac{C_{11} V_1 + C_{12} V_2}{V_2 - V_1} = -\frac{C_{12} V_1 + C_{22} V_2}{V_2 - V_1} \ .
+$$
+We'll close this chapter by deriving a formula for the energy stored in a capacitor. We'll focus on a single conductor, though the same results easily carry over to multiple conductors as well. Consider again a single conductor with total charge $Q$ and potential $V$. We've already shown that the energy stored in this conductor must be $\mathcal{U} = \frac{1}{2} QV$. Using the fact that $Q = CV$, we get
+$$
+\boxed{
+\mathcal{U} = \frac{1}{2} C V^2
+}\ .
+$$
+Thus, the energy stored in a capacitor is proportional to the capacitance and the square of the potential. A capacitor that can store more charge also stores more energy. Unlike, say batteries, however, capacitors can only store energy while they're actively charged. If the capacitor discharges, for example by turning off its voltage source, it almost instantly dissipates all its energy.
+
+NOTES:
+
+- Maybe work example of capacitance between two cylinders?
