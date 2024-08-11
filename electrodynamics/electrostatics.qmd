@@ -29,7 +29,7 @@ $$
 $$
 Note that as defined Coulomb's Law really only holds for *point charges*. That is, for point particles where all charge is localized at a single point. This is of course an abstraction. In reality we deal with larger bodies where the charge may be distributed across the body in some way. We'll see how to modify Coulomb's Law the work with more arbitrary distributions of charge below.
 
-### What is Charge Really?
+### What is Charge?
 
 Before moving on, it's worth stopping to ask what exactly it is we mean when we say a body has charge. Mathematically, we can think of charge similar to how we think of mass. It's a scalar quantity associated with a body, except unlike mass it can take on any real value, positive or negative. More fundamentally though, the charge of a body is really an aggregate of charge due to more atomic particles inside the body like electrons and protons. 
 
@@ -87,7 +87,7 @@ Since $\mathbf{E}$ is just a vector field we can visualize it as such. At each f
 
 ![](./resources/image-20240602115754745.png){fig-align=center width=500}
 
-As a good rule of thumb for drawing field lines, they should always *start* at positive charges and *end* at negative charges, or go to infinity. Field lines should never cross each other. The density of the field lines at a point indicates the strength of the field at that point. In this way, we could loosely speaking *define* the electric field at a point as the *flux density* of field lines, or number of field lines per unit area, passing near that point.
+As a good rule of thumb for drawing field lines, they should always *start* at positive charges and *end* either at negative charges or go to infinity. Field lines should never cross each other. The density of the field lines at a point indicates the strength of the field at that point. In this way, we could loosely speaking *define* the electric field at a point as the *flux density* of field lines, or number of field lines per unit area, passing near that point.
 
 We'll often find it more useful to express the electric field formula in a slightly different way by getting rid of the unit vector. Using the fact that the separation vector can be written $\boldsymbol{\xi} = |\mathbf{x}-\mathbf{x}'| \mathbf{e}_\xi$ we can write the same electric field in the equivalent form
 $$
@@ -103,11 +103,11 @@ $$
 $$
 Again, the combined electric field does not depend on the test charge, only the source charges. If we imagine placing an infinitesimal test charge $q$ at $\mathbf{x}$ it will still feel the combined force $\mathbf{F} = q \mathbf{E}$.
 
-#### Example: The Electric Dipole
+#### Example: Simple dipole
 
 Let's try to find the electric field of perhaps the simplest non-trivial example, the *electric dipole*. Suppose we have two like charges of opposite sign separated by a fixed distance along some axis. More formally, suppose we have a positive charge $+q$ located at a point $\mathbf{x}_+ = \frac{d}{2} \mathbf{e}_z$, and a negative charge $-q$ located at the opposite point $\mathbf{x}_- = -\frac{d}{2} \mathbf{e}_z$. Our goal will be to find the electric field for any field point $\mathbf{x}$ in the $xy$-plane. 
 
-FIGURE
+![](../statistical-mechanics/resources/image-20240811130607078.png){fig-align=center width=300}
 
 By the superposition principle, the electric field is given by
 $$
@@ -197,7 +197,7 @@ We could in principle define charge densities in higher dimensions as well, thou
 
 ![](../statistical-mechanics/resources/image-20240616171649819.png){fig-align=center width=500}
 
-#### Example: Uniformly Charged Sphere
+#### Example: Sphere with uniform charge
 
 As a useful example of how to calculate the electric field of a charge distribution, let's consider the case of a uniformly charged sphere. We'll first suppose the sphere is *hollow* with a radius $R$ and a uniform charge $Q = 4\pi R^2 \sigma$ where $\sigma$ is a constant surface density.
 
@@ -382,31 +382,31 @@ $$
 $$
 For this to work though the charge distribution really needs to have a high level of symmetry. There are essentially three situations where we can do this: for infinite lines of charge, infinite sheets of charged, and charged spheres. Let's look at each.
 
-#### Example: Infinite Line of Uniform Charge
+#### Example: Infinite line of Uniform Charge
 
 Consider a line of charge of infinite length and infinitesimal width, so we can treat the line as one-dimensional. We'll suppose the line is oriented along the $z$-axis and carries a constant charge per unit length of $\lambda$​. Our goal is to find its electric field. We could do this the hard way as before, but in this case we can do it much more easily using Gauss's Law, so that's what we'll do.
 
 ![](../statistical-mechanics/resources/image-20240616180813782.png){fig-align=center width=300}
 
-By symmetry, the electric field should depend only on the cylindrical radius $r$. To see why, pick a random field point in the $xy$-plane. Now pick a random source point at a height $z'$ along the wire. Then there must also be an opposite source point at a height $-z'$. If we add the two field vectors together, their $z$-components will cancel, leaving only a contribution in the $r$-direction. We thus must conclude that the electric field has the property that
+By symmetry, the electric field should depend only on the cylindrical radius $\varrho$. To see why, pick a random field point in the $xy$-plane. Now pick a random source point at a height $z'$ along the wire. Then there must also be an opposite source point at a height $-z'$. If we add the two field vectors together, their $z$-components will cancel, leaving only a contribution in the $\varrho$-direction. We thus must conclude that the electric field has the property that
 $$
-\mathbf{E}(\mathbf{x}) = E(r) \mathbf{e}_r \ .
+\mathbf{E}(\mathbf{x}) = E(\varrho) \mathbf{e}_\varrho \ .
 $$
-All that remains thus is to find $E(r)$. Now, the electric field must be constant along cylinders of constant $r$. This means we have a natural Gaussian surface on which to apply Gauss's Law. We'll choose cylinders of radius $r$ and length $z$​ centered on the wire. Since only the sides of the cylinder contribute to the flux, we need only consider the area of the sides of the cylinder, ignoring the two caps. This means the flux of the field is
+All that remains thus is to find $E(\varrho)$. Now, the electric field must be constant along cylinders of constant $\varrho$. This means we have a natural Gaussian surface on which to apply Gauss's Law. We'll choose cylinders of radius $\varrho$ and length $z$ centered on the wire. Since only the sides of the cylinder contribute to the flux, we need only consider the area of the sides of the cylinder, ignoring the two caps. This means the flux of the field is
 $$
-\oint_\mathcal{S} \mathbf{E} \cdot d\mathbf{a} = |\mathbf{E}| A = E(r) \cdot 2\pi r z
+\oint_\mathcal{S} \mathbf{E} \cdot d\mathbf{a} = |\mathbf{E}| A = E(\varrho) \cdot 2\pi \varrho z
 $$
 Inside this cylinder, the enclosed charge is $Q_{\text{enc}} = \lambda z$. Applying Gauss's Law, we thus have
 $$
-E(r) \cdot 2\pi r z = 4\pi \lambda z \ .
+E(r) \cdot 2\pi \varrho z = 4\pi \lambda z \ .
 $$
-Solving for $E(r)$, we finally have
+Solving for $E(\varrho)$, we finally have
 $$
-E(r) = \frac{2\lambda}{r} \ .
+E(\varrho) = \frac{2\lambda}{\varrho} \ .
 $$
 Thus, the electric field of an infinitely long wire of uniform charge is inversely proportional to its distance from the wire. Notice that this seems to contradicts Coulomb's Law, which predicts that far away from the wire the electric field should go like the inverse square of the distance. Why the contradiction? This comes from our assumption that the wire was infinitely long. If the wire had only a finite length, we would indeed recover Coulomb's Law in the far field limit.
 
-#### Example: Infinite Sheet of Uniform Charge
+#### Example: Infinite sheet of uniform charge
 
 We'll now consider not an infinite *line* of uniform charge, but an infinite *flat sheet* of uniform charge. We'll suppose this sheet is oriented in the $xy$-plane and has infinitesimal thickness, so we can treat the sheet as 2-dimensional with a constant surface charge density $\sigma$​.
 
@@ -428,7 +428,7 @@ E(z) = 2\pi\sigma \ .
 $$
 That is, the electric field strength of an infinite sheet of uniform charge is constant, no matter how far away from the surface we are, with the only difference being the direction (pointing above or below the surface). Yet again this seems to contradict Coulomb's Law, since the field would still be constant infinitely far from the sheet. This can be rectified, however, by noting that the sheet chosen is infinite in extent. For a finite sheet, Coulomb's Law would still hold in the far field limit.
 
-#### Example: Uniformly Charged Sphere
+#### Example: Sphere with uniform charge
 
 As our final example in this section we'll consider an example we've already seen, the uniformly charged sphere. In a previous section we worked out its electric field with great pain. Here we'll show that Gauss's Law gives a much simpler way. We'll again suppose that the charge lies on a hollow sphere of radius $R$​ centered at the origin.
 
@@ -532,7 +532,7 @@ U = \int d^3 \mathbf{x} \ \rho(\mathbf{x}) \phi(\mathbf{x})
 $$
 Remember, this is only true for charges moving in the presence of an external electric field. This is *not* true for the charges used to assemble the distribution giving rise to the field itself. We'll see what that potential energy must be momentarily.
 
-#### Example: Hollow Sphere
+#### Example: Hollow sphere with uniform charge
 
 Let's now try to calculate the scalar potential for the uniformly charged hollow sphere. Since we already know what the electric field should be, all we need to do is calculate the line integral. Recall the electric field for a uniformly charged hollow sphere of radius $R$ and charge $Q$ centered at the origin is given by
 $$
@@ -572,7 +572,7 @@ $$
 $$
 Notice that while the electric field is zero inside the sphere, the potential is not. It's a constant value throughout. Also notice that the two sides match at $r=R$, meaning the potential is continuous even though the field is not at $r=R$.
 
-#### Example: Solid Sphere
+#### Example: Solid sphere with uniform charge
 
 We can also calculate the potential of the solid sphere if we wish. Outside the sphere the result is the same. Inside the sphere we have to use the fact that the field is no longer zero, but linear in $r$, with $\mathbf{E}(\mathbf{x}) = \frac{Qr}{R^3} \mathbf{e}_r$. When $r < R$ we thus have
 $$
@@ -593,7 +593,7 @@ $$
 $$
 Again, the potential is continuous at $r=R$. In fact so is its gradient since the field is also continuous at $r=R$.
 
-#### Example: Infinite Sheet
+#### Example: Infinite sheet with uniform charge
 
 Let's briefly work an example involving an infinite charge distribution. We'll choose the uniformly charged infinite sheet. In this case we can no longer take infinity as the ground point. Instead we'll choose $\mathbf{g} = \mathbf{0}$ as the ground point. Recall for the infinite sheet the electric field for $z \geq 0$ is given by $\mathbf{E}(\mathbf{x}) = 2\pi\sigma \mathbf{e}_z$. This means $\mathbf{E} \cdot d\boldsymbol{\ell} = E(z) dz$, and so we have
 $$
@@ -635,11 +635,11 @@ FIGURE
 
 Let's now work some examples to show how much nicer this integral formula is to use than the one for the electric field.
 
-#### Example: Finite Wire
+#### Example: Finite wire with uniform charge
 
-Let's find the potential of a uniformly charged wire of finite length. Suppose a wire of length $L$ has a uniform charge $Q = \lambda L$. We'll assume that it is oriented along the $z$-axis with its center at the origin, as shown in the figure below.
+Let's find the potential of a uniformly charged wire of finite length. Suppose a wire of length $L$ has a uniform charge $Q = \lambda L$. We'll assume that it is oriented along the $z$-axis with its center at the origin.
 
-FIGURE
+![](../statistical-mechanics/resources/image-20240811130653319.png){fig-align=center width=300}
 
 Assuming the wire has negligible thickness we can use the $1$-dimensional version of the integral formula for the potential,
 $$
@@ -649,27 +649,27 @@ Since $\lambda$ is constant along the wire and the wire is centered on the $z$-a
 $$
 \phi(\mathbf{x}) = \lambda \int_{-L/2}^{L/2} \frac{dz'}{|\mathbf{x} - \mathbf{x}'|} \ .
 $$
-All that remains now is to find $\xi = |\mathbf{x} - \mathbf{x}'|$. We'll work in cylindrical coordinates. Since each source point is along the $z$-axis we can write $\mathbf{x}' = z' \mathbf{e}_z$. For the field point we'll write $\mathbf{x} = r \mathbf{e}_r + z \mathbf{e}_z$, where $r$ is the radial cylindrical coordinate. This means we have
+All that remains now is to find $\xi = |\mathbf{x} - \mathbf{x}'|$. We'll work in cylindrical coordinates. Since each source point is along the $z$-axis we can write $\mathbf{x}' = z' \mathbf{e}_z$. For the field point we'll write $\mathbf{x} = \varrho \mathbf{e}_\varrho + z \mathbf{e}_z$, where $r$ is the radial cylindrical coordinate. This means we have
 $$
-\xi^2 = r^2 + (z - z')^2 \ .
+\xi^2 = \varrho^2 + (z - z')^2 \ .
 $$
 Plugging this into the integral for the potential, we're left to evaluate the following integral,
 $$
-\phi(\mathbf{x}) = \lambda \int_{-L/2}^{L/2} \frac{dz}{\sqrt{r^2 + (z - z')^2}} \ .
+\phi(\mathbf{x}) = \lambda \int_{-L/2}^{L/2} \frac{dz}{\sqrt{\varrho^2 + (z - z')^2}} \ .
 $$
-We can evaluate this integral by making the substitution $x = \frac{z - z'}{r}$ and $dx = -\frac{z'}{r}$ to get
+We can evaluate this integral by making the substitution $x = \frac{z - z'}{\varrho}$ and $dx = -\frac{z'}{\varrho}$ to get
 $$
-\phi(\mathbf{x}) = -\lambda \int_{\frac{z+L/2}{r}}^{\frac{z-L/2}{r}} \frac{dx}{\sqrt{1 + x^2}} = -\lambda \log(\sqrt{1 + x^2} + x) \bigg |_{x=\frac{z+L/2}{r}}^{\frac{z-L/2}{r}} \ .
+\phi(\mathbf{x}) = -\lambda \int_{\frac{z+L/2}{\varrho}}^{\frac{z-L/2}{\varrho}} \frac{dx}{\sqrt{1 + x^2}} = -\lambda \log(\sqrt{1 + x^2} + x) \bigg |_{x=\frac{z+L/2}{\varrho}}^{\frac{z-L/2}{\varrho}} \ .
 $$
 Evaluating the endpoints and simplifying a bit, we get
 $$
-\phi(\mathbf{x}) = \lambda \log\bigg[\frac{\sqrt{r^2 + (z + L/2)^2} - (z - L/2)}{\sqrt{r^2 + (z - L/2)^2} - (z + L/2)}\bigg] \ .
+\phi(\mathbf{x}) = \lambda \log\bigg[\frac{\sqrt{\varrho^2 + (z + L/2)^2} - (z - L/2)}{\sqrt{\varrho^2 + (z - L/2)^2} - (z + L/2)}\bigg] \ .
 $$
 This is the full potential in terms of a general field point $\mathbf{x}$ in cylindrical coordinates. We still don't easily have an idea what this potential looks like. Let's try to find its equipotentials. To do that we'll need to introduce *elliptical coordinates*. Define
 $$
 \begin{align*}
-u &= \frac{1}{2} \bigg( \sqrt{r^2 + (z + L/2)^2} + \sqrt{r^2 + (z - L/2)^2}\bigg)  \ , \\
-v &= \frac{1}{2} \bigg( \sqrt{r^2 + (z + L/2)^2} - \sqrt{r^2 + (z - L/2)^2}\bigg) \ .\\
+u &= \frac{1}{2} \bigg( \sqrt{\varrho^2 + (z + L/2)^2} + \sqrt{\varrho^2 + (z - L/2)^2}\bigg)  \ , \\
+v &= \frac{1}{2} \bigg( \sqrt{\varrho^2 + (z + L/2)^2} - \sqrt{\varrho^2 + (z - L/2)^2}\bigg) \ .\\
 \end{align*}
 $$
 If we plug these new coordinates into the potential and simplify, a little tedious algebra will show that the potential is given by
@@ -680,23 +680,23 @@ Now, we can immediately see from this result that the equipotentials will be the
 
 FIGURE
 
-We can further verify the correctness of this result by considering two limits: the infinite wire limit where $|\mathbf{x}| \ll L$, and the far field limit where $|\mathbf{x}| \gg L$. In the infinite wire limit we have $r, z \ll L$. In that limit we can neglect $z$ and use the binomial approximation then to write
+We can further verify the correctness of this result by considering two limits: the infinite wire limit where $|\mathbf{x}| \ll L$, and the far field limit where $|\mathbf{x}| \gg L$. In the infinite wire limit we have $\varrho, z \ll L$. In that limit we can neglect $z$ and use the binomial approximation then to write
 $$
-\phi(\mathbf{x}) \approx \lambda \log\bigg[\frac{\sqrt{r^2 + (L/2)^2} + L/2}{\sqrt{r^2 + (L/2)^2} - L/2}\bigg] \approx \lambda \log\bigg[\frac{L/2 + L/2}{L/2 - L/2 + 2r^2/L}\bigg] \approx \lambda \log \frac{L^2}{2r^2} \ .
+\phi(\mathbf{x}) \approx \lambda \log\bigg[\frac{\sqrt{\varrho^2 + (L/2)^2} + L/2}{\sqrt{\varrho^2 + (L/2)^2} - L/2}\bigg] \approx \lambda \log\bigg[\frac{L/2 + L/2}{L/2 - L/2 + 2\varrho^2/L}\bigg] \approx \lambda \log \frac{L^2}{2\varrho^2} \ .
 $$
 Simplifying this expression a bit, we get
 $$
-\phi(\mathbf{x}) \approx -2\lambda \log \frac{r}{L} - \lambda \log 2 \ .
+\phi(\mathbf{x}) \approx -2\lambda \log \frac{\varrho}{L} - \lambda \log 2 \ .
 $$
 To verify whether this is correct we can take its gradient to recover the electric field, in which case we get
 $$
-\mathbf{E}(\mathbf{x}) \approx - \frac{\partial \phi}{\partial r} \mathbf{e}_r \approx \frac{2\lambda}{r} \mathbf{e}_r \ . 
+\mathbf{E}(\mathbf{x}) \approx - \frac{\partial \phi}{\partial \varrho} \mathbf{e}_r \approx \frac{2\lambda}{\varrho} \mathbf{e}_\varrho \ .
 $$
 This is of course exactly what we should expect for an infinite wire of uniform charge, as we've derived before.
 
 In the far field limit we have $r, z \gg L$. For convenience let's suppose $z=0$. In that case, we can neglect the $L/2$ terms inside the roots and use the Taylor series approximation $\log(1+x) \approx x$ when $x$ is small to write
 $$
-\phi(\mathbf{x}) \approx \lambda \log\bigg[\frac{\sqrt{r^2 + (L/2)^2} + L/2}{\sqrt{r^2 + (L/2)^2} - L/2}\bigg] \approx \lambda \log\bigg[\frac{r + L/2}{r - L/2}\bigg] \approx \lambda \log\bigg[1 + \frac{L}{r}\bigg] \approx \frac{\lambda L}{r} \ .
+\phi(\mathbf{x}) \approx \lambda \log\bigg[\frac{\sqrt{\varrho^2 + (L/2)^2} + L/2}{\sqrt{\varrho^2 + (L/2)^2} - L/2}\bigg] \approx \lambda \log\bigg[\frac{\varrho + L/2}{\varrho - L/2}\bigg] \approx \lambda \log\bigg[1 + \frac{L}{\varrho}\bigg] \approx \frac{\lambda L}{r} \ .
 $$
 Since $Q = \lambda L$ is just the total charge of the wire, we get the Coulomb potential $\phi(\mathbf{x}) = \frac{Q}{r}$ in the far field limit, as we'd expect.
 
@@ -891,7 +891,7 @@ We made a subtle error of sorts when we transitioned from a sum over discrete ch
 
 This doesn't necessarily mean, however, that the second formula is not *correct*. It's just counting something that the first formula isn't. Namely, it's also counting the energy required to *create* the charges, not just assemble them in place. The first formula only counts the energy to assemble the charges, not create them. In this sense they're both correct, they just mean slightly different things. Indeed, the second formula ties in with the question of whether empty space has energy, the so-called *vacuum energy*. This topic is a major issue in quantum electrodynamics. In classical dynamics we ignore this distinction, but we do occasionally have to be careful when subtleties like this arise.
 
-#### Example: Field Energy of a Holow Sphere
+#### Example: Field energy of a hollow sphere
 
 Recall that the uniformly charged hollow sphere with radius $R$ has an electric field given by
 $$
@@ -913,13 +913,13 @@ As we can see, the two results agree as expected.
 
 ## Conductors and Capacitance
 
-Electromagnetic materials can often be thought of one of two types: *conductors* and *insulators*. Conductors are materials where free electrons are allowed to move around the material freely. Insulators are materials where all the electrons are bound to local orbitals, meaning they can only respond to an external field by distorting their electron clouds. We'll talk more about insulators in a future chapter. For now we'll just focus on conductors, which are easier to understand.
+Electromagnetic materials can often be thought of one of two types: *conductors* and *insulators*. Both are just materials composed of almost all neutral atoms, and hence charge neutral. They differ in one subtle way. Unlike insulators, conductors have a small fraction of *unbound electrons* that are unbound to their nuclei and free to move around the material, causing the material to *conduct* in the presence of an external field by moving its unbound electrons around. Insulators don't have these unbound electrons. The only way an insulator can respond to an external field is by distorting its electron clouds. We'll talk more about insulators in a future chapter. For now we'll just focus on conductors, which are a bit easier to understand macroscopically.
 
 ### Conductors
 
-Suppose we have an *ideal conductor* with some charge distribution. We place that conductor in the presence of an external electric field and allow the system to come to electrostatic equilibrium, meaning the field is time independent. When this happens, the free charges will move in the direction of the external field, creating an internal field in the of the same strength in opposite direction. The net result is that in equilibrium there is no electric field inside the conductor.
+Suppose we have a conductor with some given charge distribution. We place that conductor in the presence of an external electric field and wait for the system to come to electrostatic equilibrium. Once this happens, the electric field becomes time independent, and hence electrostatic. When this happens, the unbound electrons will move in the direction of the external field, creating an internal field inside the conductor of the same strength as the external field, but in opposite direction. The net result is that once the conductor is in electrostatic equilibrium, the net electric field will vanish. Thus, conductors will have the property that the electric field is zero inside the conductor.
 
-Now, if there is no electric field inside the conductor it must be the case that all free charges will reside on the surface in electrostatic equilibrium. This follows from Gauss's Law. If there is no field then any Gaussian surface chosen inside the conductor must have $\rho = 0$​. Thus, the only place left for the charge to go is on the surface, where it will distribute itself such that the internal field vanishes.
+In fact, if there is no electric field inside the conductor it must be the case that all the unbound electrons will reside on the surface of the conductor. Indeed, this follows immediately from Gauss's Law. If there is no internal electric field in the conductor, then any Gaussian surface chosen inside the conductor must have $\rho = 0$​. Thus, the only place left for the charge to go is on the surface, where it will distribute itself such that the internal field vanishes.
 
 This also implies that the surface of a conductor must be an *equipotential surface*. Since the internal field is zero, we must have
 $$
@@ -929,15 +929,15 @@ for any two points $\mathbf{a}$ and $\mathbf{b}$ on the surface of the conductor
 
 ![](../statistical-mechanics/resources/image-20240703155651920.png){fig-align=center width=400}
 
-We'll find it convenient in the next chapter to express these results as a set of boundary conditions for conductors. Surface boundary conditions require that $\mathbf{E}_+ - \mathbf{E}_- = 4\pi\sigma \mathbf{n}$. Since the field inside the conductor is zero, $\mathbf{E}_- = \mathbf{0}$. Thus, just outside the surface we must have
+We'll find it convenient to express these results as a set of boundary conditions for conductors. Surface boundary conditions require that $\mathbf{E}_+ - \mathbf{E}_- = 4\pi\sigma \mathbf{n}$. Since the field inside the conductor is zero, $\mathbf{E}_- = \mathbf{0}$. Thus, just outside the surface we must have
 $$
-\mathbf{E}_+ = 4\pi\sigma \mathbf{n} \ .
+\mathbf{E}_+ = 4\pi\sigma \mathbf{n} \ ,
 $$
-In terms of the normal derivative, this says that the potential at the surface of the conductor must satisfy
+or, in terms of the normal derivative of the potential, we must have
 $$
 \frac{\partial\phi}{\partial n} = -4\pi\sigma \ .
 $$
-This gives us a way to find the surface charge on a conductor if we know the potential.
+This gives us a way to find the surface charge on a conductor if we know the potential, something we'll find useful in the next chapter.
 
 ### Capacitance
 
@@ -971,6 +971,22 @@ Notice how the capacitance again captures the geometric properties of the conduc
 
 Capacitors like the previous example are popular ways to store charge inside of electric circuits. The higher the capacitance, the more charge we say a capacitor can store at a given voltage. The capacitors used in practice usually aren't parallel plates, but more complex designs like overlapping cylinders, but the same idea holds.
 
+We can also derive a formula for the energy stored in a capacitor. We'll focus on a single conductor, though the same results easily carry over to multiple conductors as well. Consider again a single conductor with total charge $Q$ and potential $V$. We've already shown that the energy stored in this conductor must be $\mathcal{U} = \frac{1}{2} QV$. Using the fact that $Q = CV$, we get
+$$
+\boxed{
+\mathcal{U} = \frac{1}{2} C V^2
+}\ .
+$$
+Thus, the energy stored in a capacitor is proportional to the capacitance and the square of the potential. A capacitor that can store more charge also stores more energy. Unlike, say batteries, however, capacitors can only store energy while they're actively charged. If the capacitor discharges, for example by turning off its voltage source, it almost instantly dissipates all its energy.
+
+#### Example: Capacitance between two charged cylinders
+
+Suppose we have oppositely charged cylinders, one inside the other. The inner cylinder has a radius $a$ and a charge $-Q$, while the outer cylinder has a radius $b$ and a charge $Q$.
+
+- Finish this example. See Griffiths or Greiner.
+
+### Mutual Capacitance
+
 Though less common, we can define the mutual capacitance between any number of conductors, not just two. Suppose we have $n$ conductors with charges $Q_i$ and potentials $V_i$ relative to some ground. We can then write
 $$
 Q_i = \sum_{i=1}^n C_{i j} V_j \ .
@@ -981,14 +997,4 @@ We can relate the capacitance defined between two oppositely charged conductors 
 $$
 C = \frac{C_{11} V_1 + C_{12} V_2}{V_2 - V_1} = -\frac{C_{12} V_1 + C_{22} V_2}{V_2 - V_1} \ .
 $$
-We'll close this chapter by deriving a formula for the energy stored in a capacitor. We'll focus on a single conductor, though the same results easily carry over to multiple conductors as well. Consider again a single conductor with total charge $Q$ and potential $V$. We've already shown that the energy stored in this conductor must be $\mathcal{U} = \frac{1}{2} QV$. Using the fact that $Q = CV$, we get
-$$
-\boxed{
-\mathcal{U} = \frac{1}{2} C V^2
-}\ .
-$$
-Thus, the energy stored in a capacitor is proportional to the capacitance and the square of the potential. A capacitor that can store more charge also stores more energy. Unlike, say batteries, however, capacitors can only store energy while they're actively charged. If the capacitor discharges, for example by turning off its voltage source, it almost instantly dissipates all its energy.
-
-NOTES:
-
-- Maybe work example of capacitance between two cylinders?
+We don't tend to use mutual capacitance as much in practice, nor will we see it again in this course.

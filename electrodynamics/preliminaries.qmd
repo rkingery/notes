@@ -99,11 +99,9 @@ Below is a table of various electromagnetism formulas expressed in the three uni
 
 
 
-## Math Review
+## Vectors
 
-Here we give a very brief review of some important mathematical results that will be important in our study of electrodynamics. We will not prove anything here nor provide many if any examples, as this is all assumed to be review.
-
-### Vectors
+We will now give a very brief review of some important mathematical results that will be important in our study of electrodynamics. We will not prove anything here nor provide many if any examples, as this is all assumed to be review.
 
 As in mechanics, in electrodynamics we generally assume that physical objects live in a 3-dimensional real space, often denoted by the set $\mathbb{R}^3$. A *vector* or *3-vector* we'll define as a 3-component object $\mathbf{v}$ that lives in $\mathbb{R}^3$. The 3 components of the vector depend on the choice of *coordinate system* or *basis* chosen. In Cartesian coordinates we can expand a vector as a superposition of unit vectors aligned with the coordinate axes,
 $$
@@ -205,61 +203,7 @@ $$
 $$
 While cute, this formula only works in 3 dimensions. In other dimensions we'd have to use generalizations of the Levi-Civita symbol to get a formula like this, and even then they're not actually useful for *calculating* the determinant.
 
-### Tensors
-
-Thus far we've seen objects with no indices and objects with one index that transform in a specified way under coordinate transformations. It's fair to ask whether we can define matrices that transform in a specific way as well, and in fact we can. These two-index objects are called *rank-2 tensors*. They're matrices $\mathbf{T}$ that obey the transformation law
-$$
-\mathbf{T}(\mathbf{x}') = \mathbf{J}^\top \mathbf{T}(\mathbf{x}') \mathbf{J} \ .
-$$
-This is just a direct generalization of the vector transformation law. It's easier to see this in index notation. Vectors obey the transformation law $v_i' = J_{ij} v_j$, while rank-2 tensors obey the transformation law
-$$
-T_{ij}' =  J_{ik} J_{j\ell} T_{k\ell} \ .
-$$
-Roughly speaking, this just says each dimension of the tensor transforms itself as a vector would.
-
-While tensors didn't show up transparently in elementary physics courses, they show up a lot in more advanced physics. A lot of physical quantities are tensors: the metric tensor, the moment of inertia tensor, the strain tensor, and so on. Another example is the *cross product*. The cross product seems like a vector, but it's really not. In fact, we can define the cross product in a slightly different way using a rank-2 tensor as
-$$
-\varepsilon_{ijk} (\mathbf{v} \times \mathbf{w})_k = v_i w_j - v_j w_i
-$$
-In this variant definition the cross product is no longer a vector, but a rank-2 tensor whose upper diagonal components are the usual components of the cross product in 3 dimensions. Represented as a matrix $\mathbf{A}$, it looks like
-$$
-A_{ij} \equiv \varepsilon_{ijk} (\mathbf{v} \times \mathbf{w})_k \doteq
-\begin{pmatrix}
-0 & v_1 w_2 - v_2 w_1 & v_1 w_3 - v_3 w_1  \\
-v_2 w_1 - v_1 w_2 & 0 & v_2 w_3 - v_3 w_2 \\
-v_3 w_1 - v_1 w_3 &  & 0 \\
-\end{pmatrix}
-\ .
-$$
-Here $\mathbf{A}$ is a rank-2 tensor that evidently satisfies the *antisymmetric* property $A_{ij} = -A_{ji}$. Unlike with the regular cross product, this generalization of the cross product can be defined for any number of dimensions. To see why we can't extend the usual cross product this way, notice that the components $\mathbf{v} \times \mathbf{w}$ lie in the upper diagonal of $\mathbf{A}$. The diagonals are always zero, and the lower diagonal is just minus the upper diagonal, meaning there are only 3 independent components. For a general antisymmetric tensor in $d$ dimensions there will be $\frac{1}{2}d(d-1)$ such independent components in the upper diagonal. Insisteng that such a tensor be a vector is equivalent to requiring $d=\frac{1}{2}d(d-1)$, which evidently can only be true when $d=3$. Thus, the cross product can only be a vector in 3 dimensions.
-
-One useful operation that we can do with tensors is *contraction*. Contraction is the tensor generalization of the inner product, obtained by setting two indices in a tensor equal and summing over them. Since rank-2 tensors only have 2 indices, contracting a rank-2 tensor will always give a scalar, which is of course just *trace* of $\mathbf{T}$, i.e. $T_{ii} = \text{tr} \ \mathbf{T}$. Just as the dot product of a vector with itself says something about its size (in fact it's just its squared norm), the trace of a rank-2 tensor says something about its size. Since the trace has no free indices, it must be a rank-0 object, hence a proper scalar like the dot product.
-
-Another operation we can do with tensors is take their *tensor product*. A tensor product is no more than component-wise concatenation. For example, if $\mathbf{x}$ and $\mathbf{y}$ are two vectors, we can define their tensor product in index notation by
-$$
-T_{ij} \equiv x_i x_j \ .
-$$
-Evidently the tensor product of two vectors gives a rank-2 tensor. In fact, it's just the outer product of the two vectors. In this sense the tensor product is a generalization of the outer product, just as contraction is the generalization of the inner product. In more abstract notation we'd write the tensor product as
-$$
-\mathbf{T} = \mathbf{x} \otimes \mathbf{y} \equiv \mathbf{x} \mathbf{y} \ .
-$$
-The last expression $\mathbf{x} \mathbf{y}$ for the tensor product is called *dyadic notation*, where we omit the $\otimes$ symbol for brevity. It's tempting to think that all rank-2 tensors can be formed from a tensor product of vectors, but this is false. Only special vectors can, called *product tensors*. Most rank-2 tensors are *mixed tensors*, meaning superpositions of vector outer products.
-
-Using the tensor product we can define the notion of a *basis tensor* for a rank-2 tensor as
-$$
-\mathbf{e}_{ij} \equiv \mathbf{e}_i \mathbf{e}_j \equiv \mathbf{e}_i \otimes \mathbf{e}_j \ .
-$$
-Since this is just the outer products of the two basis vectors, they are 1 when at slot $(i,j)$ and 0 otherwise. Using superposition just as we do for vectors, we can use these basis tensors to expand any rank-2 tensor as
-$$
-\mathbf{T} = T_{ij} \mathbf{e}_i \mathbf{e}_j \ .
-$$
-We can also take the tensor product of a rank-2 tensor with a vector, which would give a three-index object, or a *rank-3 tensor*. Taking the tensor product of two rank-2 tensors would give a *rank-4 tensor*. And so on. In fact we can define a tensor of any rank. A *rank-k* tensor is an object with $k$ indices that tranforms component-wise according to the law
-$$
-T_{i_1' i_2' \cdots i_k'} = R_{i_1' i_1} R_{i_2' i_2} \cdots R_{i_2' i_2} T_{i_1 i_2 \cdots i_k} \ .
-$$
-In this course we won't generally work much with tensors of higher rank than 2, but they do occasionally show up in electromagnetism, for example in the multipole expansions of the scalar and vector potentials. Tensor contraction can be defined naturally on these higher-rank tensors as well. Contracting two indices in a tensor will always reduce its rank by 2.
-
-### Vector Calculus
+## Vector Calculus
 
 Calculus extends naturally to higher dimensions, but often in subtle ways. Most importantly, there are different types of derivatives and integrals defined in higher dimensions with different meaning and applications. Due to complications involved in using curvilinear coordinates in vector calculus we'll state results in Cartesian coordinates and address the curvilinear situation later.
 
@@ -344,23 +288,33 @@ To get the *surface integral* of a vector field $\mathbf{F}$ along the surface $
 $$
 \int_\mathcal{S} \mathbf{F} \cdot d\mathbf{a} = \int_\mathcal{S} \mathbf{F} \cdot \mathbf{n} \ da \ .
 $$
-The last form of vector integration we'll find ourselves using frequently is *path integration*, which is the integration of a field along some arbitrary curve in space. This form of integration is done by considering the contribution of the field along each vector line element $d\boldsymbol{\ell}$ along some path $\mathcal{C}$. For a vector field $\mathbf{F}$ each infinitesimal contribution is found by taking the dot product $\mathbf{F} \cdot d\boldsymbol{\ell}$, which we can add up, or integrate, along the entire path to get a scalar-valued path integral,
+The last form of vector integration we'll find ourselves using frequently is *contour integration*, which is the integration of a field along some arbitrary curve in space. We can integrate a vector field $\mathbf{F}$ along some *path* or *contour* $\mathcal{C}$ in space by defining a *line element* $d\boldsymbol{\ell}$ along the contour, defined in Cartesian coordinates by
 $$
-\int_\mathcal{C} \mathbf{F} \cdot d\boldsymbol{\ell} \ .
+d\boldsymbol{\ell} \equiv d\mathbf{x} = dx \mathbf{e}_x + dy \mathbf{e}_y + dy \mathbf{e}_y \ .
 $$
-To actually evaluate a path integral one needs to parametrize the line element somehow. For example, if we use Cartesian coordinates to parametrize the line element, we can find the path integral by
+The contour integral is just an infinitesimal sum of the projection of the field along the contour, i.e.
 $$
-\int_\mathcal{C} \mathbf{F} \cdot d\boldsymbol{\ell} = \int_{\mathcal{C}_x} dx \ F_x + \int_{\mathcal{C}_y} dy \ F_y + \int_{\mathcal{C}_z} dz \ F_z \ ,
+\int_\mathcal{C} \mathbf{F}(\mathbf{x}) \cdot d\boldsymbol{\ell} \ .
 $$
-where $\mathcal{C}_i$ is the projection of the path onto the $x_i$ axis.
-
-If we're not interested in the direction of the contour but only its length, we can integrate over its norm instead. This norm is called the *scalar line element* and defined by $ds \equiv |d\boldsymbol{\ell}|$. Integrating over $ds$ alone gives the *arc length* of the contour in space. Interestingly the scalar line element is very important in studying the geometry of a space. In general it depends on the metric $\mathbf{g}$ by
+The usual way to evaluate a contour integral is to parametrize the path with some real parameter $\tau$ from some starting point $\tau=a$ to some ending point $\tau = b$. Then we have
+$$
+\int_\mathcal{C} \mathbf{F}(\mathbf{x}) \cdot d\boldsymbol{\ell} \equiv \int_a^b d\tau \ \mathbf{F}(\mathbf{x}(\tau)) \cdot \frac{d\mathbf{x}}{d\tau} \ .
+$$
+We can also integrate a scalar field $f$ over the same contour by defining a similar contour integral of the form
+$$
+\int_\mathcal{C} ds \ f(\mathbf{x}) =  \int_a^b d\tau \ f(\mathbf{x}(\tau)) \bigg |\frac{d\mathbf{x}}{d\tau} \bigg | \ .
+$$
+Here $ds$ is the scalar line element defined in Cartesian coordinates by
+$$
+ds = |d\boldsymbol{\ell}| = \sqrt{dx^2 + dy^2 + dy^2} \ .
+$$
+Integrating over $ds$ alone gives the *arc length* of the contour. Interestingly the scalar line element is very important in studying the geometry of a space. In general it depends on the metric $\mathbf{g}$ by
 $$
 ds^2 = dx_i g_{ij} dx_j \ .
 $$
 For Euclidean space the metric is always the identity, so we just have $ds^2 = dx_i dx_i$. This is all we'll need for most of this course, but in relativity (especially general relativity) this line element becomes fundamental.
 
-Usually a path integral between two endpoints will depend on the exact path of the contour $\mathcal{C}$. For some special fields though the path integral depends only on the endpoints, not on the path between them. When this is true we say the field is *conservative*. An implication of this is that if we integrate a conservative field around any *closed contour* the path integral vanishes,
+Usually a path integral between two endpoints will depend on the exact path of the contour $\mathcal{C}$. For some special fields though the path integral depends only on the endpoints, not on the path between them. When this is true we say the field is *conservative*. An implication of this is that if we integrate a conservative field around any *closed contour* where the path integral vanishes,
 $$
 \oint \mathbf{F} \cdot d\mathbf{x} = 0 \ .
 $$
@@ -370,7 +324,7 @@ In vector calculus, each version of vector derivative has its own fundamental th
 $$
 \int_{\mathbf{x}_1}^{\mathbf{x}_2} \nabla f(\mathbf{x}) \cdot d\mathbf{x} = f(\mathbf{x}_2) - f(\mathbf{x}_1) \ .
 $$
-Said differently, the gradient of a scalar field is always *conservative*. Conversely, any conservative vector field $\mathbf{F}(\mathbf{x})$ can be written as the gradient of some scalar field $\phi(\mathbf{x})$,
+This means that the gradient of a scalar field is always *conservative*. In fact, it turns out any conservative vector field $\mathbf{F}(\mathbf{x})$ can be written as the gradient of some scalar field $\phi(\mathbf{x})$,
 $$
 \mathbf{F} = -\nabla \phi \ .
 $$
@@ -397,9 +351,75 @@ The fundamental theorem for curls is called *Stokes' theorem*. It says the curl 
 $$
 \int_\mathcal{S} (\nabla \times \mathbf{F}) \cdot \ d\mathbf{a} = \int_C \mathbf{F} \cdot d\mathbf{x} \ .
 $$
-Though perhaps not obvious at this stage, the divergence and Stokes' theorems are precisely what we use to go back and forth between the integral and differential forms of Maxwell's equations.
-
 It's interesting to note that all of these versions of the fundamental theorem of calculus say essentially the same thing: The integral of the derivative of a field over some space equals the value of that field along the boundary of that space. For gradients, the boundary of a contour is just two endpoints. For divergences, the boundary over a volume is a closed surface. For curls, the boundary of a surface is a closed contour.
+
+We can use the divergence theorem to derive two more important integral formulas that we'll use, the *Green's Identities*. What we'll do is let $\mathbf{F} = \psi \nabla \phi$, where $\psi$ and $\phi$ are two scalar fields that may or may not be different. We want to plug this into the divergence theorem, but first we need to figure out the product rule formula for $\nabla \cdot (\psi \nabla \phi)$. This can be done, for example, using index notation. It turns out that
+$$
+\nabla \cdot (\psi \nabla \phi) = \nabla \psi \cdot \nabla \phi + \psi \nabla^2 \phi \ .
+$$
+Plugging this into the divergence theorem formula, we then get *Green's First Identity*, which says that
+$$
+\int_\mathcal{V} d^3 \mathbf{x} \ (\nabla \psi \cdot \nabla \phi + \psi \nabla^2 \phi) = \oint_\mathcal{S} da \ \psi \frac{\partial \phi}{\partial n} \ .
+$$
+Here we've defined the *normal derivative* $\frac{\partial \phi}{\partial n} \equiv \nabla \phi \cdot \mathbf{n}$, which just says how much $\phi$ changes in the direction normal to the boundary surface $\mathcal{S}$. If we now swap $\psi$ and $\phi$ and difference the two formulas, we get another identity, called *Green's Second Identity*, given by
+$$
+\int_\mathcal{V} d^3 \mathbf{x} \ (\phi \nabla^2 \psi - \psi \nabla^2 \phi) = \oint_\mathcal{S} da \ \bigg[\phi \frac{\partial \psi}{\partial n} - \psi \frac{\partial \phi}{\partial n} \bigg] \ .
+$$
+We'll see frequent use of each of these integral formulas throughout the course.
+
+## Tensors
+
+Thus far we've seen objects with no indices and objects with one index that transform in a specified way under coordinate transformations. It's fair to ask whether we can define matrices that transform in a specific way as well, and in fact we can. These two-index objects are called *rank-2 tensors*. They're matrices $\mathbf{T}$ that obey the transformation law
+$$
+\mathbf{T}(\mathbf{x}') = \mathbf{J}^\top \mathbf{T}(\mathbf{x}') \mathbf{J} \ .
+$$
+This is just a direct generalization of the vector transformation law. It's easier to see this in index notation. Vectors obey the transformation law $v_i' = J_{ij} v_j$, while rank-2 tensors obey the transformation law
+$$
+T_{ij}' =  J_{ik} J_{j\ell} T_{k\ell} \ .
+$$
+Roughly speaking, this just says each dimension of the tensor transforms itself as a vector would.
+
+While tensors didn't show up transparently in elementary physics courses, they show up a lot in more advanced physics. A lot of physical quantities are tensors: the metric tensor, the moment of inertia tensor, the strain tensor, and so on. Another example is the *cross product*. The cross product seems like a vector, but it's really not. In fact, we can define the cross product in a slightly different way using a rank-2 tensor as
+$$
+\varepsilon_{ijk} (\mathbf{v} \times \mathbf{w})_k = v_i w_j - v_j w_i
+$$
+In this variant definition the cross product is no longer a vector, but a rank-2 tensor whose upper diagonal components are the usual components of the cross product in 3 dimensions. Represented as a matrix $\mathbf{A}$, it looks like
+$$
+A_{ij} \equiv \varepsilon_{ijk} (\mathbf{v} \times \mathbf{w})_k \doteq
+\begin{pmatrix}
+0 & v_1 w_2 - v_2 w_1 & v_1 w_3 - v_3 w_1  \\
+v_2 w_1 - v_1 w_2 & 0 & v_2 w_3 - v_3 w_2 \\
+v_3 w_1 - v_1 w_3 &  & 0 \\
+\end{pmatrix}
+\ .
+$$
+Here $\mathbf{A}$ is a rank-2 tensor that evidently satisfies the *antisymmetric* property $A_{ij} = -A_{ji}$. Unlike with the regular cross product, this generalization of the cross product can be defined for any number of dimensions. To see why we can't extend the usual cross product this way, notice that the components $\mathbf{v} \times \mathbf{w}$ lie in the upper diagonal of $\mathbf{A}$. The diagonals are always zero, and the lower diagonal is just minus the upper diagonal, meaning there are only 3 independent components. For a general antisymmetric tensor in $d$ dimensions there will be $\frac{1}{2}d(d-1)$ such independent components in the upper diagonal. Insisteng that such a tensor be a vector is equivalent to requiring $d=\frac{1}{2}d(d-1)$, which evidently can only be true when $d=3$. Thus, the cross product can only be a vector in 3 dimensions.
+
+One useful operation that we can do with tensors is *contraction*. Contraction is the tensor generalization of the inner product, obtained by setting two indices in a tensor equal and summing over them. Since rank-2 tensors only have 2 indices, contracting a rank-2 tensor will always give a scalar, which is of course just *trace* of $\mathbf{T}$, i.e. $T_{ii} = \text{tr} \ \mathbf{T}$. Just as the dot product of a vector with itself says something about its size (in fact it's just its squared norm), the trace of a rank-2 tensor says something about its size. Since the trace has no free indices, it must be a rank-0 object, hence a proper scalar like the dot product.
+
+Another operation we can do with tensors is take their *tensor product*. A tensor product is no more than component-wise concatenation. For example, if $\mathbf{x}$ and $\mathbf{y}$ are two vectors, we can define their tensor product in index notation by
+$$
+T_{ij} \equiv x_i x_j \ .
+$$
+Evidently the tensor product of two vectors gives a rank-2 tensor. In fact, it's just the outer product of the two vectors. In this sense the tensor product is a generalization of the outer product, just as contraction is the generalization of the inner product. In more abstract notation we'd write the tensor product as
+$$
+\mathbf{T} = \mathbf{x} \otimes \mathbf{y} \equiv \mathbf{x} \mathbf{y} \ .
+$$
+The last expression $\mathbf{x} \mathbf{y}$ for the tensor product is called *dyadic notation*, where we omit the $\otimes$ symbol for brevity. It's tempting to think that all rank-2 tensors can be formed from a tensor product of vectors, but this is false. Only special vectors can, called *product tensors*. Most rank-2 tensors are *mixed tensors*, meaning superpositions of vector outer products.
+
+Using the tensor product we can define the notion of a *basis tensor* for a rank-2 tensor as
+$$
+\mathbf{e}_{ij} \equiv \mathbf{e}_i \mathbf{e}_j \equiv \mathbf{e}_i \otimes \mathbf{e}_j \ .
+$$
+Since this is just the outer products of the two basis vectors, they are 1 when at slot $(i,j)$ and 0 otherwise. Using superposition just as we do for vectors, we can use these basis tensors to expand any rank-2 tensor as
+$$
+\mathbf{T} = T_{ij} \mathbf{e}_i \mathbf{e}_j \ .
+$$
+We can also take the tensor product of a rank-2 tensor with a vector, which would give a three-index object, or a *rank-3 tensor*. Taking the tensor product of two rank-2 tensors would give a *rank-4 tensor*. And so on. In fact we can define a tensor of any rank. A *rank-k* tensor is an object with $k$ indices that tranforms component-wise according to the law
+$$
+T_{i_1' i_2' \cdots i_k'} = R_{i_1' i_1} R_{i_2' i_2} \cdots R_{i_2' i_2} T_{i_1 i_2 \cdots i_k} \ .
+$$
+In this course we won't generally work much with tensors of higher rank than 2, but they do occasionally show up in electromagnetism, for example in the multipole expansions of the scalar and vector potentials. Tensor contraction can be defined naturally on these higher-rank tensors as well. Contracting two indices in a tensor will always reduce its rank by 2.
 
 We can define similar vector calculus operations for tensors as well, not just vectors. For example, if we have a rank-2 tensor $\mathbf{T}$ we can still imagine taking gradients $\partial_k T_{ij}$ to get a rank-3 tensor. By contracting the derivative with the tensor we get a different divergence for each index, $\partial_i T_{ij}$ and $\partial_j T_{ij}$. Evidently the divergence of a rank-2 tensor gives a vector, not a scalar. 
 
@@ -410,25 +430,25 @@ $$
 
 We could imagine taking the curl of a tensor as well. From index notation it's clear that the curl of a rank-2 tensor will give another rank-2 tensor. We can even imagine defining tensor integrals as well in similar ways. In practice though we'll only care about divergences and gradients of rank-2 tensors in this course, so we won't go into any detail here.
 
-### Coordinate Systems
+## Coordinate Systems
 
 It will be frequently useful in electrodynamics to work in other coordinate systems. As with other areas of physics, the most important coordinate systems we work with are Cartesian, polar, cylindrical, and spherical coordinates. Cartesian coordinates are *rectangular*, which means their basis vectors don't depend on position. They're always constant. The remaining three coordinate systems, however, are *curvilinear*, meaning their basis vectors *do* depend on position. This means going back and forth between these coordinate systems can be cumbersome since additional scale factors get introduced. Below is a table that shows the relationship between these coordinate systems for various vector calculus expressions we'll frequently use.
 
-|  | Cartesian $(x,y,z)$ | Cylindrical $(\rho,\varphi,z)$ | Spherical $(r,\theta,\varphi)$ |
+|  | Cartesian $(x,y,z)$ | Cylindrical $(\varrho,\varphi,z)$ | Spherical $(r,\theta,\varphi)$ |
 | ------ | ------ | ------ | ------ |
-| **Coordinates** | $\begin{align*} x&=x \\ y&=y \\ z&=z \end{align*}$ | $\begin{align*} x&=\rho\cos\varphi \\ y&=\rho\sin\varphi \\ z&=z \end{align*}$ | $\begin{align*} x&=r\sin\theta\cos\varphi \\ y&=r\sin\theta\sin\varphi \\ z&=r\cos\theta \end{align*}$ |
-| **Basis Vectors** | $\begin{align*} \mathbf{e}_x&=\mathbf{e}_x \\ \mathbf{e}_y&=\mathbf{e}_y \\ \mathbf{e}_z&=\mathbf{e}_z \end{align*}$ | $\begin{align*} \mathbf{e}_\rho &= \cos\varphi \mathbf{e}_x + \sin\varphi \mathbf{e}_y \\ \mathbf{e}_\varphi &= -\sin \varphi \mathbf{e}_x + \cos \varphi \mathbf{e}_y \\ \mathbf{e}_z&=\mathbf{e}_z \end{align*}$ | $\begin{align*} \mathbf{e}_r &= \sin\theta \cos\varphi \mathbf{e}_x + \sin\theta \sin\varphi \mathbf{e}_y + \cos\theta \mathbf{e}_z \\ \mathbf{e}_\theta &= \cos\theta \cos\varphi \mathbf{e}_x + \cos\theta \sin\varphi \mathbf{e}_y - \sin\theta \mathbf{e}_z  \\ \mathbf{e}_\varphi &= -\sin\varphi \mathbf{e}_x + \cos\varphi \mathbf{e}_y  \end{align*}$ |
-| **Differential** | $d\mathbf{x} = dx \mathbf{e}_x + dy \mathbf{e}_y + dz \mathbf{e}_z$ | $d\mathbf{x} = d\rho \mathbf{e}_\rho + \rho d\varphi \mathbf{e}_\varphi + dz \mathbf{e}_z$ | $d\mathbf{x} = dr \mathbf{e}_r + r d\theta \mathbf{e}_\theta + r \sin \theta d\varphi \mathbf{e}_\varphi$ |
-| **Line Element** | $ds^2=dx^2 + dy^2 + dz^2$ | $ds^2=d\rho^2 + \rho^2 d\varphi^2 + dz^2$ | $ds^2=dr^2 + r^2 d\theta^2 + r^2 \sin^2 \theta d\varphi^2$ |
-| **Volume Element** | $d^3 \mathbf{x} = dx dy dz$ | $d^3 \mathbf{x} = \rho d\rho d\varphi dz$ | $d^3 \mathbf{x} = r^2 \sin \theta dr d\theta d\varphi$ |
-| **Gradient** | $\nabla f = \partial_x f \mathbf{e}_x + \partial_y f \mathbf{e}_y + \partial_z f \mathbf{e}_z$ | $\nabla f = \partial_\rho f \mathbf{e}_\rho + \frac{1}{\rho} \partial_\varphi \mathbf{e}_\varphi + \partial_z f \mathbf{e}_z$ | $\nabla f = \partial_r f \mathbf{e}_r + \frac{1}{r} \partial_\theta f \mathbf{e}_\theta + \frac{1}{r \sin \theta} \partial_\varphi f \mathbf{e}_\varphi$ |
-| **Divergence** | $\nabla \cdot \mathbf{F} = \partial_x F_x + \partial_y F_y + \partial_z F_z$ | $\nabla \cdot \mathbf{F} = \frac{1}{\rho} \partial_\rho(\rho F_\rho) + \frac{1}{\rho} \partial_\varphi F_\varphi + \partial_z F_z$ | $\nabla \cdot \mathbf{F} = \frac{1}{r^2} \partial_r (r^2 F_r) + \frac{1}{r \sin \theta} \partial_\theta (F_\theta \sin \theta) + \frac{1}{r \sin \theta} \partial_\varphi F_\varphi$ |
-| **Curl** | $\begin{align*}\nabla \times \mathbf{F} &= \left( \partial_y F_z - \partial_z F_y \right) \mathbf{e}_x \\ &+ \left( \partial_z F_x - \partial_x F_z \right) \mathbf{e}_y \\ &+ \left( \partial_x F_y - \partial_y F_x \right) \mathbf{e}_z \end{align*}$ | $\begin{align*} \nabla \times \mathbf{F} &= \left( \frac{1}{\rho} \partial_\varphi F_z - \partial_z F_\varphi \right) \mathbf{e}_\rho \\ &+ \left( \partial_z F_\rho - \partial_\rho F_z \right) \mathbf{e}_\varphi \\ &+ \frac{1}{\rho} \left( \partial_\rho (\rho F_\varphi) - \partial_\varphi F_\rho \right) \mathbf{e}_z \end{align*}$ | $\begin{align*} \nabla \times \mathbf{F} &= \frac{1}{r \sin \theta} \left( \partial_\theta (F_\varphi \sin \theta) - \partial_\varphi F_\theta \right) \mathbf{e}_r \\ &+ \frac{1}{r} \left( \frac{1}{\sin \theta} \partial_\varphi F_r - \partial_r (r F_\varphi) \right) \mathbf{e}_\theta \\ &+ \frac{1}{r} \left( \partial_r (r F_\theta) - \partial_\theta F_r \right) \mathbf{e}_\varphi \end{align*}$ |
-| **Laplacian** | $\nabla^2 f = \partial_x^2 f + \partial_y^2 f + \partial_z^2 f$ | $\nabla^2 f = \frac{1}{\rho} \partial_\rho \left( \rho \partial_\rho f \right) + \frac{1}{\rho^2} \partial_\varphi^2 f + \partial_z^2 f$ | $\nabla^2 f = \frac{1}{r^2} \partial_r^2 \left( r^2 \partial_r f \right) + \frac{1}{r^2 \sin \theta} \partial_\theta \left( \sin \theta \partial_\theta f \right) + \frac{1}{r^2 \sin^2 \theta} \partial_\varphi^2 f$ |
+| **Coordinates** | $\begin{align*} x&=x \\ y&=y \\ z&=z \end{align*}$ | $\begin{align*} x&=\varrho\cos\varphi \\ y&=\varrho\sin\varphi \\ z&=z \end{align*}$ | $\begin{align*} x&=r\sin\theta\cos\varphi \\ y&=r\sin\theta\sin\varphi \\ z&=r\cos\theta \end{align*}$ |
+| **Basis Vectors** | $\begin{align*} \mathbf{e}_x&=\mathbf{e}_x \\ \mathbf{e}_y&=\mathbf{e}_y \\ \mathbf{e}_z&=\mathbf{e}_z \end{align*}$ | $\begin{align*} \mathbf{e}_\varrho &= \cos\varphi \mathbf{e}_x + \sin\varphi \mathbf{e}_y \\ \mathbf{e}_\varphi &= -\sin \varphi \mathbf{e}_x + \cos \varphi \mathbf{e}_y \\ \mathbf{e}_z&=\mathbf{e}_z \end{align*}$ | $\begin{align*} \mathbf{e}_r &= \sin\theta \cos\varphi \mathbf{e}_x + \sin\theta \sin\varphi \mathbf{e}_y + \cos\theta \mathbf{e}_z \\ \mathbf{e}_\theta &= \cos\theta \cos\varphi \mathbf{e}_x + \cos\theta \sin\varphi \mathbf{e}_y - \sin\theta \mathbf{e}_z  \\ \mathbf{e}_\varphi &= -\sin\varphi \mathbf{e}_x + \cos\varphi \mathbf{e}_y  \end{align*}$ |
+| **Differential** | $d\mathbf{x} = dx \mathbf{e}_x + dy \mathbf{e}_y + dz \mathbf{e}_z$ | $d\mathbf{x} = d\varrho \mathbf{e}_\varrho + \varrho d\varphi \mathbf{e}_\varphi + dz \mathbf{e}_z$ | $d\mathbf{x} = dr \mathbf{e}_r + r d\theta \mathbf{e}_\theta + r \sin \theta d\varphi \mathbf{e}_\varphi$ |
+| **Line Element** | $ds^2=dx^2 + dy^2 + dz^2$ | $ds^2=d\varrho^2 + \varrho^2 d\varphi^2 + dz^2$ | $ds^2=dr^2 + r^2 d\theta^2 + r^2 \sin^2 \theta d\varphi^2$ |
+| **Volume Element** | $d^3 \mathbf{x} = dx dy dz$ | $d^3 \mathbf{x} = \varrho d\varrho d\varphi dz$ | $d^3 \mathbf{x} = r^2 \sin \theta dr d\theta d\varphi$ |
+| **Gradient** | $\nabla f = \partial_x f \mathbf{e}_x + \partial_y f \mathbf{e}_y + \partial_z f \mathbf{e}_z$ | $\nabla f = \partial_\varrho f \mathbf{e}_\varrho + \frac{1}{\varrho} \partial_\varphi \mathbf{e}_\varphi + \partial_z f \mathbf{e}_z$ | $\nabla f = \partial_r f \mathbf{e}_r + \frac{1}{r} \partial_\theta f \mathbf{e}_\theta + \frac{1}{r \sin \theta} \partial_\varphi f \mathbf{e}_\varphi$ |
+| **Divergence** | $\nabla \cdot \mathbf{F} = \partial_x F_x + \partial_y F_y + \partial_z F_z$ | $\nabla \cdot \mathbf{F} = \frac{1}{\varrho} \partial_\varrho(\varrho F_\varrho) + \frac{1}{\varrho} \partial_\varphi F_\varphi + \partial_z F_z$ | $\nabla \cdot \mathbf{F} = \frac{1}{r^2} \partial_r (r^2 F_r) + \frac{1}{r \sin \theta} \partial_\theta (F_\theta \sin \theta) + \frac{1}{r \sin \theta} \partial_\varphi F_\varphi$ |
+| **Curl** | $\begin{align*}\nabla \times \mathbf{F} &= \left( \partial_y F_z - \partial_z F_y \right) \mathbf{e}_x \\ &+ \left( \partial_z F_x - \partial_x F_z \right) \mathbf{e}_y \\ &+ \left( \partial_x F_y - \partial_y F_x \right) \mathbf{e}_z \end{align*}$ | $\begin{align*} \nabla \times \mathbf{F} &= \left( \frac{1}{\varrho} \partial_\varphi F_z - \partial_z F_\varphi \right) \mathbf{e}_\varrho \\ &+ \left( \partial_z F_\varrho - \partial_\varrho F_z \right) \mathbf{e}_\varphi \\ &+ \frac{1}{\varrho} \left( \partial_\varrho (\varrho F_\varphi) - \partial_\varphi F_\varrho \right) \mathbf{e}_z \end{align*}$ | $\begin{align*} \nabla \times \mathbf{F} &= \frac{1}{r \sin \theta} \left( \partial_\theta (F_\varphi \sin \theta) - \partial_\varphi F_\theta \right) \mathbf{e}_r \\ &+ \frac{1}{r} \left( \frac{1}{\sin \theta} \partial_\varphi F_r - \partial_r (r F_\varphi) \right) \mathbf{e}_\theta \\ &+ \frac{1}{r} \left( \partial_r (r F_\theta) - \partial_\theta F_r \right) \mathbf{e}_\varphi \end{align*}$ |
+| **Laplacian** | $\nabla^2 f = \partial_x^2 f + \partial_y^2 f + \partial_z^2 f$ | $\nabla^2 f = \frac{1}{\varrho} \partial_\varrho \left(\varrho \partial_\varrho f \right) + \frac{1}{\varrho^2} \partial_\varphi^2 f + \partial_z^2 f$ | $\nabla^2 f = \frac{1}{r^2} \partial_r^2 \left( r^2 \partial_r f \right) + \frac{1}{r^2 \sin \theta} \partial_\theta \left( \sin \theta \partial_\theta f \right) + \frac{1}{r^2 \sin^2 \theta} \partial_\varphi^2 f$ |
 
+Note the formulas for these expressions in the the two-dimensional polar coordinate system $(\varrho,\varphi)$ can be obtained by taking the formulas for cylindrical coordinates and setting all the $z$-components equal to zero.
 
-
-### Fourier Analysis
+## Fourier Analysis
 
 We will at times find it convenient in this course to go back and forth between the time domain and the frequency domain. To express a continuous function of time as a function of frequency we can use the *Fourier transform*. For a sufficiently well-behaved time-dependent function $f(t)$, we can define its Fourier transform $f(\omega)$ by
 $$
@@ -448,7 +468,7 @@ The last operation is a very common integral transform known as *convolution*, d
 $$
 (f \ast g)(t) \equiv \int_{-\infty}^\infty dt' \ f(t') g(t-t') \ .
 $$
-The convolution operation shows up surprisingly often, particularly in the theory of Green's functions, which we'll work with later in this course. Convolutions act like a form of function multiplication in that the operation is both commutative and associative.
+The convolution operation shows up surprisingly often, particularly in the theory of Green's functions, which we'll get to later in this course. Convolutions act like a form of function multiplication in that the operation is both commutative and associative.
 
 #### Example: Fourier Transform of a Gaussian
 
@@ -484,7 +504,7 @@ f(t) = \mathcal{F}^{-1}[f(\omega)](t) = \int_{-\infty}^\infty \frac{d\omega}{2\p
 $$
 Notice that unlike the Fourier transform, its inverse transform comes has a rescaled measure of $\frac{d\omega}{2\pi}$. There's nothing deep about this fact. It's just a relic of the way we defined the Fourier transform above. We could define it in ways that remove the $2\pi$ as well. In fact, there are many different conventions used to define the Fourier transform, which can make it a bit annoying to look up these formulas in tables.
 
-Evidently, to for the Fourier transform to be invertible we must have that $f(t) = \mathcal{F}^{-1} \mathcal{F} [f(t')](t)$. Let's see what this says by manipulating the formula a little bit. We have
+Evidently, for the Fourier transform to be invertible we must have that $f(t) = \mathcal{F}^{-1} \mathcal{F} [f(t')](t)$. Let's see what this says by manipulating the formula a little bit. We have
 $$
 \begin{align*}
 f(t) &= \mathcal{F}^{-1} \mathcal{F} [f(t')](t) \\
@@ -544,7 +564,7 @@ $$
 $$
 Here $\mathbf{J} = \frac{d\mathbf{u}}{d\mathbf{x}}$ is the Jacobian of the transformation from $u$-coordinates to Cartesian $x$​​-coordinates.
 
-#### Example: Divergence of Inverse Square Fields**
+#### Example: Divergence of Inverse Square Fields
 
 As an exercise in much of what we've learned so far, let's calculate the divergence of the vector field $\mathbf{F}(\mathbf{x}) = \frac{\mathbf{e}_r}{r^2}$. We could proceed in one of two ways. One way would be to use Cartesian coordinates and index notation to churn it out the hard way. The other way would be to recognize this scalar field is spherically symmetric, so we should work in spherical coordinates. Adopting the second approach since it's easier, we have
 $$
@@ -570,11 +590,169 @@ $$
 $$
 We will make good use of these formulas in the rest of this course.
 
+## Complex Analysis
 
+The last math topic we will briefly review the topic of *complex analysis*, or the calculus of complex variables. We won't make a huge use of this topic in this course, but we will make key use of a few essential ideas at a few points, particularly the useful *Residue Theorem* and the idea of conformal mappings.
 
+Recall that a *complex variable* is any variable of the form $z = x + iy$, where $x$ and $y$ are real variables and $i = \sqrt{-1}$ is the imaginary number. We call $x \equiv \text{Re} z$ the *real part* of $z$ and $y \equiv \text{Im} z$ the *imaginary part* of $z$. We imagine any complex variable $z$ as a point in the *complex plane* $\mathbb{C}$, where the $x$-axis represents the real part of $z$ and the $y$-axis the imaginary part of $z$.
 
+Associated to any complex variable is its *complex conjugate* $z^* \equiv x - iy$ and its *modulus* defined by
+$$
+|z| \equiv \sqrt{z z^*} = \sqrt{x^2 + y^2} \ .
+$$
+We can also write any complex variable $z$ in a *polar form* $z = r e^{i\phi}$, where $r = |z|$ is the radial distance of $z$ from the origin in the complex plane, and $\phi$ its angle relative to the $x$-axis. The complex exponential $e^{i\phi}$ satisfies the well-known *Euler identity*
+$$
+e^{i\phi} = \cos\phi + i\sin\phi \ .
+$$
+Just as we can define a real-valued function of a single variable like $f(x)$, we can also define a complex function $f(z)$ of a single complex variable $z = x + iy$. Any complex-valued function $f(z)$ can be written as a sum of real and imaginary functions $f(z) = u(x,y) + i v(x,y)$. One example of such a function is the complex exponential function, defined by
+$$
+f(z) = e^z = e^{x + iy} = e^x e^{iy} = e^x \cos y + i e^x \sin y \ .
+$$
+Just like with a real variable, we can differentiate functions of a complex variable in the usual way. For example, the derivative of the complex exponential function $f(z) = e^z$ is given by
+$$
+\frac{d}{dz} e^z = e^z \ .
+$$
+It turns out that calculus in complex numbers is special, in the sense that any complex-valued function that can be differentiated at least once at a given point can be differentiated infinitely many times at that point. Any complex function that can be differentiated at each $z$ in the complex plane is called *analytic*. For a complex function to be analytic it's equivalent to check that it satisfies the *Cauchy-Riemann conditions*: If $f(z) = u(x,y) + i v(x,y)$, for $f(z)$ to be analytic we require that at each point
+$$
+\frac{\partial u}{\partial x} = \frac{\partial v}{\partial y} \quad , \quad \frac{\partial u}{\partial y} = -\frac{\partial v}{\partial x} \ .
+$$
+A curious but useful fact we'll make use of when we get to conformal mapping is that when $f(z)$ is analytic, $u(x,y)$ and $v(x,y)$ will always satisfy the 2-dimensional Laplace's equation. That is,
+$$
+\frac{\partial^2 u}{\partial x^2} + \frac{\partial^2 v}{\partial y^2} = 0 \ .
+$$
+This can easily be seen by plugging the Cauchy-Riemann conditions into the left-hand side and seeing that the terms cancel.
 
+Every analytic function has a valid Taylor series expansion about any point defined in the usual way. For example, the Taylor series for the complex exponential about $z=0$ is what we'd expect,
+$$
+e^z = \sum_{n=0}^\infty \frac{z^n}{n!} = 1 + z + \frac{z^2}{2!} + \frac{z^3}{3!} + \cdots \ .
+$$
+Many complex functions can't be differentiated at every point, but can at all but a finite number of points. These functions aren't analytic, but almost analytic in a sense. For functions like this, $f(z)$ is differentiable except at a finite number of points where the function blows up to infinity, called *poles*. For example, the function $f(z) = \frac{1}{z}$ is not differentiable at the pole $z=0$ but is at any other point in the complex plane.
 
+Complex functions with poles like this have a Taylor series expansion about any point away from the poles. We can also expand complex functions about poles as well if we allow for negative powers in the series expansion. This sort of generalization of a Taylor series is called a *Laurent Series*, defined by
+$$
+f(z) = \sum_{n = -\infty}^\infty c_n (z - a)^n = \cdots + \frac{c_{-2}}{(z-a)^2} + \frac{c_{-1}}{(z-a)} + c_0 + c_1 (z-a) + c_2 (z-a)^2 + \cdots \ .
+$$
+The coefficients $c_n$ can be determined any number of ways. To see an example, let's find the Laurent series for
+$$
+f(z) = e^{1/z} \ .
+$$
+This function clearly blows up at $z=0$. Using the Taylor series expansion for the complex exponential at $z=0$, we can write
+$$
+f(z) = \sum_{n=0}^\infty \frac{(1/z)^n}{n!} = 1 + \frac{1}{z} + \frac{1}{2z^2} + \frac{1}{6z^3} + \cdots \ .
+$$
+The coefficient $c_{-1}$ in the Laurent Series is called a *residue* of the function $f(z)$. In the previous example the function $f(z) = e^{1/z}$ evidently has a residue of $c_{-1} = 1$. These residues that turn out to be very useful for our purposes due to a useful integral theorem we'll see shortly.
 
+Many complex functions have residues at different points. Anywhere the function has a pole there will be at least one residue. For example, the function
+$$
+f(z) = \frac{1}{(z-a)(z-b)}
+$$
+has two simple poles, one at $z=a$ and another at $z=b$. There's a trick we can use to quickly figure out the residues in a case like this. Notice if we ignore the $z - a$ term in the denominator what remains is $\frac{1}{z - b}$. When $z=a$ this remaining term is a residue, with
+$$
+c_{-1} = \frac{1}{a - b} \ .
+$$
+Similarly, if we ignore the $z - b$ term what remains is $\frac{1}{z-a}$. When $z=b$ this remaining term is another residue, with
+$$
+c_{-1} = \frac{1}{b - a} \ .
+$$
+The two residues associated with this function are thus $c_{-1} = \pm \frac{1}{b-a}$. This can also be seen by writing down the full Laurent series at $z=a$ and $z=b$ and picking off the $c_{-1}$ coefficients directly.
 
+We can also have complex functions with higher order poles. For example, consider the function
+$$
+f(z) = \frac{1}{(z-a)^2(z-b)} \ .
+$$
+Clearly there are poles at $z=a$ and $z=b$, but the fact that the $z-a$ term is squared in the denominator means there are effectively two poles at $z=a$. We call such a point $z=a$ in this case a pole of order 2. In general, if a function with $n$ poles at a single point $z=a$ we call that point a *pole of order* $n$. We can find the residues of $f(z)$ for poles of order $n$ using the formula
+$$
+c_{-1} = \frac{1}{(n-1)!} \frac{d^{n-1}}{d z^{n-1}} \bigg |_{z=a} (z-a)^n f(z) \ .
+$$
+In the previous example, the pole of order 1 at $z=b$ has a residue of $c_{-1} = \frac{1}{(a-b)^2}$, while the pole of order 2 at $z=a$ has a residue given by
+$$
+c_{-1} = \frac{d}{dz} (z-a)^2 \frac{1}{(z-a)^2(z-b)} \bigg |_{z=a} = -\frac{1}{(a-b)^2} \ .
+$$
+To understand why residues are important in complex analysis we need to talk a bit about the integration of complex functions. Since complex functions are secretly functions of two real variables, when we integrate a complex function we're actually integrating over a plane instead of a line. This means complex integrals are always necessarily *contour integrals* over the complex plane, meaning the result of an integral will always depend on the *path* chosen. 
 
+We can define a contour integral in the complex plane just as we would any other contour integral. If $f(z)$ is some function we wish to integrate and $\mathcal{C}$ is some contour, we parametrize $z = z(\tau)$ where $\tau$ is some real parameter traversing the contour from $\tau=a$ to $\tau=b$. Then we can define the complex contour integral via
+$$
+\int_\mathcal{C} dz \ f(z) \equiv \int_a^b d\tau \ f(z(\tau)) \frac{dz}{d\tau} \ .
+$$
+It turns out that analytic functions in complex analysis are the analogue of conservative functions in vector calculus, in that their closed loop integrals always vanish. If $f(z)$ is analytic, for any closed loop in the complex plane we have
+$$
+\oint dz \ f(z) = 0 \ .
+$$
+This result is known as *Cauchy's Theorem* in complex analysis. If a function has poles we need to modify this result somewhat. This is what leads us to the *Residue Theorem*. 
+
+The residue theorem says that any closed loop integral is proportional to the residues contained inside the closed loop. More formally, suppose $f(z)$ is a complex function with poles at $n$ points $z=a_n$ in the complex plane all contained inside the closed loop. If we denote the residue at $z=a_i$ by $R_i$, the residue theorem says that
+$$
+\oint dz \ f(z) = 2\pi i \sum_{i=1}^n R_i \ .
+$$
+This means that to calculate any closed loop integral of a complex function, we need only find the residues for each pole inside the closed loop and add them together to get the result, up to a factor of $2\pi i$. Let's work a couple of examples.
+
+First, consider the simple function $f(z) = \frac{1}{z}$. This function clearly only has a simple pole at $z=0$ with residue $c_{-1} = 1$. Suppose we wish to integrate this function in a closed loop around the origin. The loop could be anything, a circle, a square, whatever, as long as the origin is inside the closed loop. Then the residue theorem simply says that
+$$
+\oint \frac{dz}{z} = 2\pi i \ .
+$$
+What if we chose a closed loop that didn't contain the origin? In that case the integral would be zero, since there are no poles inside the loop and hence no residues inside.
+
+As a slightly more interesting example, consider now the function
+$$
+f(z) = \frac{e^z}{(z-1)(z+1)} \ .
+$$
+This function has two simple poles at $z = \pm 1$ with residues $c_{-1} = \frac{e}{2}, -\frac{1}{2e}$. Suppose we wanted to integrate this function over a closed loop that's a circle of some radius $R > 1$ centered at $z=0$. Since both residues are contained inside this loop, we have
+$$
+\oint dz \ \frac{e^z}{(z-1)(z+1)} = 2\pi i \bigg(\frac{e}{2} - \frac{1}{2e}\bigg) \ .
+$$
+The residue theorem turns out to be surprisingly useful, even for calculating integrals of functions of a real variable. This is where we find the most use of residues in electromagnetism. Let's work an example of such a scenario.
+
+#### Example: Evaluating a real integral using the residue theorem
+
+Suppose we have the following real integral we need to evaluate,
+$$
+\int_{-\infty}^\infty dx \ \frac{\cos x}{x^2 + 1} \ .
+$$
+This integral turns out to be very difficult to evaluate using traditional means, but we can relatively easily turn it into a complex integral and use the residue theorem to evaluate it. Let's consider instead the complex integral
+$$
+\oint dz \ \frac{e^{iz}}{z^2 + 1} \ .
+$$
+Now let's look closer at the integrand of this complex integral,
+$$
+f(z) = \frac{e^{iz}}{z^2 + 1} = \frac{e^{iz}}{(z + i)(z - i)} \ .
+$$
+This function evidently has two poles of order 1 at $z = \pm i$ with residues
+$$
+\begin{align*}
+c_{-1} &= - \frac{i}{2e} \ \text{when} \ z = i \ , \\
+c_{-1} &= \frac{ie}{2} \ \text{when} \ z = -i \ . \\
+\end{align*}
+$$
+Now, we want to relate the complex integral to the real integral we wish to evaluate. To do this, what we can do is choose a closed contour that traverses the real line and then circles back over in a semi-circle to close the path. We'll thus express the closed contour in two pieces: one piece $\mathcal{R}$ that runs from $-R$ to $R$ on the real axis, and another piece $\mathcal{S}$ that connects $z=R$ to $z=-R$ via a semicircular of radius $R$ in the upper half plane. See the figure below to get an idea.
+
+FIGURE
+
+This means the closed loop integral breaks up into two pieces,
+$$
+\oint dz \ \frac{e^{iz}}{z^2 + 1} = \int_{-R}^R dz \ \frac{e^{iz}}{z^2 + 1} + \int_\mathcal{S} dz \ \frac{e^{iz}}{z^2 + 1} \ .
+$$
+Notice now that if we send $R \rightarrow \infty$ and take the real part that the first integral on the right-hand side just gives us back the integral we wish to evaluate, which is what we want,
+$$
+\int_{-\infty}^\infty dx \ \frac{\cos x}{x^2 + 1} = \text{Re} \lim_{R \rightarrow \infty} \int_{-R}^R dz \ \frac{e^{iz}}{z^2 + 1} \ .
+$$
+We now need to evaluate the contour integral using the residue theorem. We'll suppose that $R > 1$ since we're going to send it to infinity anyway. This means the only residue contained inside the closed loop above is at $z=i$, so we have
+$$
+\oint dz \ \frac{e^{iz}}{z^2 + 1} = 2\pi i \bigg(- \frac{i}{2e}\bigg) = \frac{\pi}{e} \ .
+$$
+To deal with the contour integral along the semi-circular arc $\mathcal{S}$, we can parametrize the arc by letting $z = R e^{i\varphi}$, where $\varphi$ is an angle parameter that runs from $\varphi = 0$ to $\varphi = \pi$. We then have
+$$
+\int_\mathcal{S} dz \ \frac{e^{iz}}{z^2 + 1} = \int_0^\pi d\varphi \ \frac{e^{i z(\varphi)}}{z^2(\varphi) + 1} \frac{dz}{d\varphi} = 
+\int_0^\pi d\varphi \ \frac{\exp(iRe^{i\varphi})}{(Re^{i\varphi})^2 + 1} (i R e^{i\varphi}) \ .
+$$
+Now, if we let $R \rightarrow \infty$ this integral will go to zero, since $|e^{iz}| = 1$ and hence
+$$
+\bigg |\int_0^\pi d\varphi \ \frac{\exp(iRe^{i\varphi})}{(Re^{i\varphi})^2 + 1} (i R e^{i\varphi}) \bigg | \sim \frac{R}{R^2 + 1} \rightarrow 0 \ .
+$$
+Putting this all together, as $R \rightarrow \infty$ we're left with
+$$
+\int_{-\infty}^\infty dz \ \frac{e^{iz}}{z^2 + 1} = \frac{\pi}{e} \ .
+$$
+Finally, taking the real part of both sides, we have our answer for the original integral we sought to evaluate,
+$$
+\int_{-\infty}^\infty dx \ \frac{\cos x}{x^2 + 1} = \frac{\pi}{e} \ .
+$$
