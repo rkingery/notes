@@ -52,7 +52,7 @@ Notice since $\mathbf{R}^\top \mathbf{R} = \mathbf{I}$, we can take the determin
 - Proper Rotations ($\det(\mathbf{R}) = 1$): These correspond to pure *rotations* in space. They preserve the *handedness* of the underlying coordinate system.
 - Improper Rotations ($\det(\mathbf{R}) = -1$): These correspond to *reflections* in space, which are transformations $\mathbf{v} \Rightarrow -\mathbf{v}$ combined with a pure rotation. These transformations permute the handedness of the underlying coordinate system.
 
-![](./resources/image-20230216104709404.png){width=180 fig-align=center}
+![](../resources/image-20230216104709404.png){width=180 fig-align=center}
 
 Most vector operations are proper, in the sense that they preserve the handedness of the underlying coordinate system. If $\mathbf{v}$ is a vector, they'll transform under a reflection to $-\mathbf{v}$. The one major exception is the *cross product*, which reverses the handedness. Under a reflection, it keeps its sign,
 $$
@@ -73,7 +73,7 @@ The group of orthogonal transformations under matrix multiplication is called th
 
 We can easily figure out what proper rotations look like in 2D space by looking at how to relate one basis with another. Suppose $\{\mathbf{e}_x, \mathbf{e}_y \}$ is the standard basis for $\mathbb{R}^2$, and $\{\mathbf{e}_{x'}, \mathbf{e}_{y'}\}$ is some other orthonormal basis. Suppose $\varphi$ is the angle between $\mathbf{e}_x$ and $\mathbf{e}_{x'}$. Using a little geometry, we have,
 
-![](./resources/image-20230216110516749.png){width=200 fig-align=center}
+![](../resources/image-20230216110516749.png){width=200 fig-align=center}
 
 $$
 \begin{align*}
@@ -99,7 +99,7 @@ The previous example suggests that we can think about a rotation in space two di
 
 Another way of looking at a rotation is to imagine keeping the coordinate system fixed, but rotating the components of the vector $\mathbf{v}$ directly. That is, $v_i \Rightarrow R_{i'i}v_i$. This way of looking at a rotation is called an **active transformation**. Despite sounding semantically different, these two ways are physically equivalent. Note though that if a vector rotates actively under $\mathbf{R}(-\varphi)$, it will rotate passively under $\mathbf{R}(\varphi)$.
 
-![](./resources/image-20230216112859340.png){width=700 fig-align=center}
+![](../resources/image-20230216112859340.png){width=700 fig-align=center}
 
 It's usually more convenient to assume rotations are active transformations. The major exception is when dealing with rigid bodies, where it's more convenient to passively transform to body coordinates. Note the same logic applies to 3D transformations. In that case, there are now three angles of rotation to deal with, not just one. 
 
@@ -109,7 +109,7 @@ Let's now examine the motion of systems in non-inertial reference frames. In exa
 
 Suppose a system is "locked into" a reference frame $S_{rel}$, which is itself moving at a velocity $\mathbf{v}_0$ with respect to an inertial *lab frame* $S$. We'll seek out the equations of motion with respect to the non-inertial frame $S_{rel}$.
 
-![](./resources/image-20230216114604959.png){width=250 fig-align=center}
+![](../resources/image-20230216114604959.png){width=250 fig-align=center}
 
 Evidently, $\mathbf{x} = \mathbf{x}_{rel} + \mathbf{v}_0t$, which means $\mathbf{v} = \mathbf{v}_{rel} + \mathbf{v}_0$, and $\mathbf{a} = \mathbf{a}_{rel} + \mathbf{a}_0$. When $\mathbf{a}_0=\mathbf{0}$ we recover the special case of a **Galilean transformation**. In that case, $\mathbf{F} = m \mathbf{a} = m \mathbf{a}_{rel}$, which means $S_{rel}$ is by definition an inertial frame.
 
@@ -119,7 +119,7 @@ $$
 $$
 One special case of a linear accelerating frame is an object free-falling under gravity. In that case, $\mathbf{a}_0=-\mathbf{g}$ is constant. In some sense, this means we can treat gravity as a kind of generalized coordinate transformation that shifts the acceleration from $\mathbf{a}$ to $\mathbf{a}_{rel} = \mathbf{a} + \mathbf{g}$. This curious fact arises due to the **equivalence principle**, which says the gravitational force is proportional to the inertial mass $m$. This curious fact causes the $m$ to cancel from both sides of $m\mathbf{a} = m\mathbf{g}$. As far as we know, gravity is the *only* force in nature with this special property. The equivalence principle is essentially the launch point to Einstein's general theory of relativity.
 
-![](./resources/image-20230217104903472.png){width=400 fig-align=center}
+![](../resources/image-20230217104903472.png){width=400 fig-align=center}
 
 ---
 
@@ -127,7 +127,7 @@ One special case of a linear accelerating frame is an object free-falling under 
 
 A railcar is moving along the x-axis at a constant acceleration $\mathbf{a}_0$ with respect to the lab frame. Inside the railcar, a pendulum with mass $m$ and length $\ell$ is attached to the ceiling and allowed to swing freely. Find the equations of motion for the swinging pendulum. Also, find the equilibrium position of the pendulum.
 
-![](./resources/image-20230217105357519.png){width=300 fig-align=center}
+![](../resources/image-20230217105357519.png){width=300 fig-align=center}
 
 Working in the frame of the railcar, we have $\mathbf{F}_{rel} = \mathbf{F} + \mathbf{F}_{lin}$. The inertial forces on the pendulum are the string tension $\mathbf{T}$ and gravity $m\mathbf{g}$. We thus have
 $$
@@ -139,7 +139,7 @@ $$
 $$
 The equilibrium position occurs when $\mathbf{F}_{rel}=\mathbf{0}$, which is when $\mathbf{T} = -m\mathbf{g}_{eff}$. Using a little trig, we can see the equilibrium angle will be shifted to the angle $\theta_{eq}$ given by
 
-![](./resources/image-20230217110859846.png){width=140 fig-align=center}
+![](../resources/image-20230217110859846.png){width=140 fig-align=center}
 
 $$
 \theta_{eq} = \tan^{-1} \frac{g}{a_0}.
@@ -153,7 +153,7 @@ Notice when $a_0$ we get $\theta_{eq}=0$, which is what we'd expect if the railc
 
 Let's now look at reference frames that are rotating about some axis. Without loss of generality, we'll consider a reference frame $S_{rot}$ that's rotating about the z-axis with respect to the lab frame $S$ at some angular velocity $\boldsymbol{\omega} = \dot \varphi \mathbf{e}_z$.
 
-![](./resources/image-20230217111757574.png){width=200 fig-align=center}
+![](../resources/image-20230217111757574.png){width=200 fig-align=center}
 
 
 
@@ -239,7 +239,7 @@ The Coriolis force tends to deflect a moving object away from its line of motion
 
 Suppose a baseball is thrown from the North Pole for a distance $\ell$ and a constant velocity $\mathbf{v}_0$ with respect to the lab frame. Find the deflection angle $\delta\theta$ of the ball caused by the Coriolis force.
 
-![](./resources/image-20230217134747801.png){width=400 fig-align=center}
+![](../resources/image-20230217134747801.png){width=400 fig-align=center}
 
 The rotating frame in this case is the Earth itself. The Earth rotates counterclockwise about the North Pole with an angular velocity of $\omega_\oplus = \frac{2\pi}{\text{1 day}} \approx 7 \cdot 10^{-5} \frac{\text{rad}}{\text{sec}}$. Suppose $\mathbf{e}_z$ is the direction pointing *skyward*, with the origin at the North Pole. Then $\boldsymbol{\omega} = \omega_{\oplus} \mathbf{e}_z$. Suppose the ball is thrown initially along the positive x-axis, so $\mathbf{x} = \ell \mathbf{e}_x$. Since $\mathbf{v} = \mathbf{v}_{rot} + \boldsymbol{\omega} \times \mathbf{x}_{rot}$, we have
 $$
@@ -269,7 +269,7 @@ To plug in some numbers, suppose the ball stays in the air for $t = \text{100 se
 
 It turns out that hurricanes rotate the direction they do due to the Coriolis force of the Earth. Pressure gradients cause water currents flowing east-west to spiral inward. In the Northern hemisphere, water deflects rightward, causing the gradients (or "hurricanes") to spiral counterclockwise. Whereas in the Southern hemisphere, water deflects leftward, causing gradients (or "typhoons") to spiral clockwise.
 
-![](./resources/image-20230217142823695.png){width=300 fig-align=center}
+![](../resources/image-20230217142823695.png){width=300 fig-align=center}
 
 ---
 
@@ -277,7 +277,7 @@ It turns out that hurricanes rotate the direction they do due to the Coriolis fo
 
 The Foucalt pendulum is a classic problem that's often used to demonstrate that the Earth rotates. Suppose a very long pendulum of length $l$ and mass $m$ is fixed near the Earth's surface at some latitude $\lambda$ above the equator. Here's a picture of what's going on.
 
-![](./resources/image-20230217145604558.png){width=400 fig-align=center}
+![](../resources/image-20230217145604558.png){width=400 fig-align=center}
 
 It's reasonable to assume that $\omega_{\oplus}$ is constant, so the Euler force is zero. It's also reasonable to assume the centrifugal force is zero since $\omega_{\oplus}$ is small. Thus, in the frame of the rotating Earth, we're left with the inertial forces on the pendulum and the Coriolis force,
 $$

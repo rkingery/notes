@@ -398,7 +398,7 @@ window.Quarto = {
 <p>Engineering can be loosely speaking defined as “the purposeful use of science”. Electrical engineering can then be thought of as “the gainful employment of Maxwell’s Equations”. Here’s a broad overview of the topics we’ll cover in this course.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="./resources/image-20230212045712110.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="500"></p>
+<p><img src="../resources/image-20230212045712110.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="500"></p>
 </figure>
 </div>
 <section id="maxwells-equations" class="level2">
@@ -457,7 +457,7 @@ window.Quarto = {
 <p>For many materials, a linear relation holds between the electric field <span class="math inline">\(\mathbf{E}\)</span> inside the material and its current density <span class="math inline">\(\mathbf{J}\)</span>. This is the Generalized Ohm’s Law: <span class="math display">\[\mathbf{E} = \rho \mathbf{J},\]</span> where <span class="math inline">\(\rho\)</span> is the material’s <strong>resistivity</strong>. Consider a piece of cylindrical material, called a <strong>resistor</strong>, with a current <span class="math inline">\(i\)</span> pumped through its ends.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="./resources/image-20230212052106358.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="150"></p>
+<p><img src="../resources/image-20230212052106358.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="150"></p>
 </figure>
 </div>
 <p>Since <span class="math inline">\(\mathbf{E} = E \mathbf{e}_y\)</span> and <span class="math inline">\(\mathbf{J} = J \mathbf{e}_y\)</span>, and <span class="math inline">\(A\)</span> and <span class="math inline">\(\ell\)</span> are constant, we have</p>
@@ -477,27 +477,27 @@ v &amp;= \oint \mathbf{E} \cdot d\mathbf{\ell} = E \cdot l.
 <p>As an example, let’s consider a lightbulb connected to a battery supplying a voltage <span class="math inline">\(v\)</span>, which causes a current <span class="math inline">\(i\)</span> to flow across the bulb from the positive terminal of the battery to the negative terminal.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="./resources/image-20230212053314477.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="300"></p>
+<p><img src="../resources/image-20230212053314477.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="300"></p>
 </figure>
 </div>
 <p>We’d like to solve for the current <span class="math inline">\(i\)</span> as a function of the input voltage <span class="math inline">\(v\)</span>. How should we do this? The <em>hard way</em> would be to just use Maxwell’s Equations. But this is unnecessary.</p>
 <p>Notice that we don’t care about many of the physical properties of the circuit, including the bulb’s shape, temperature, filament design, or what the wires are made of. We <em>only</em> care about the bulb’s resistance, since Ohm’s law says <span class="math inline">\(v=iR\)</span>. We can thus abstract the details of the bulb and the battery away, treating the bulb as a resistor and the battery as a voltage source.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="./resources/image-20230212053637354.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="300"></p>
+<p><img src="../resources/image-20230212053637354.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="300"></p>
 </figure>
 </div>
 <p>Once we’ve done this, we can simply solve for the current in terms of the voltage simply as <span class="math display">\[i = \frac{v}{R}.\]</span></p>
 <p>A more abstract way to express this simple circuit is to use special symbols for the resistor and the voltage source. We’d write the exact same setup like this.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="./resources/image-20230212053848916.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="200"></p>
+<p><img src="../resources/image-20230212053848916.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="200"></p>
 </figure>
 </div>
 <p>Now, how do we know we can do this? How do we even know that <span class="math inline">\(v\)</span> and <span class="math inline">\(i\)</span> are even defined? After all, neither voltage nor current need exist in a well-defined way. However, under certain conditions, they do exist. Consider the following setup, where a current <span class="math inline">\(i\)</span> flows through a wire from <span class="math inline">\(A\)</span> to <span class="math inline">\(B\)</span>. The voltage across the wire is <span class="math inline">\(v\)</span>. The cross-sectional areas through <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are <span class="math inline">\(s_A\)</span> and <span class="math inline">\(s_B\)</span>, respectively.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="./resources/image-20230212054157207.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="200"></p>
+<p><img src="../resources/image-20230212054157207.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="200"></p>
 </figure>
 </div>
 <p>By the continuity equation, we have <span class="math display">\[i_A - i_B \equiv \int_{s_A} \mathbf{J} \cdot d\mathbf{a} - \int_{s_B} \mathbf{J} \cdot d\mathbf{a} = \frac{\partial q}{\partial t}.\]</span> Provided no charge can build up inside the wire, we have <span class="math display">\[\frac{\partial q}{\partial t} = 0 \Rightarrow i_A = i_B \equiv i.\]</span> That is, we have a well-defined current <span class="math inline">\(i\)</span> flowing through the wire provided we forbid a buildup of charge inside the wire.</p>
