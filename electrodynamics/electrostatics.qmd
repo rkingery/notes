@@ -35,7 +35,7 @@ Before moving on, it's worth stopping to ask what exactly it is we mean when we 
 
 A body is really a collection of atoms held together in some way, each with some number of protons and electrons.  What we think of as charge is really how the electrons and protons are distributed inside the body. Electrons and protons carry the same charge but with opposite sign. In practice most bodies are at least approximately charge neutral, meaning it contains the same number of protons and electrons. If there are more electrons than protons the body has negative charge. If there are fewer electrons than protons the body has positive charge.
 
-In practice, it's the movement of electrons that control how a body is charged. In some bodies, called *conductors* these electrons move freely around the body, while for other bodies, called *dielectrics* or *insulators*, these electrons stay locked into their respective atoms and only move inside their confined electron clouds. In either case, if the body is charged it implies some deficit or surplus of electrons.
+In practice, it's the movement of electrons that control how a material is charged. In some materials, called *conductors* these electrons move freely around the material, while for materials, called *insulators*, these electrons stay locked into their respective atoms and only move inside their confined electron clouds. In either case, if the body is charged it implies some deficit or surplus of electrons.
 
 One would think that we should think of charge in terms of electrons and define charge in units of the number of surplus electrons present in the body. However, atomic structure wasn't known at the time the theory of electromagnetism was first formulated. It was only known that there was a scalar quantity called charge associated to the body, with no understanding of what gives rise to it. It's for these largely historical reasons that we continue to think of positive charge as moving around inside a body, even though it's really negatively charged electrons that move around.
 
@@ -61,7 +61,7 @@ While we could proceed to study this force between charges just as we did in wit
 
 ### Electric Field
 
-Instead what we'll do is imagine that particles interact due to the presence of background fields, and think of these fields as giving rise to forces. Suppose we have a charge $q'$ sitting in space at some position $\mathbf{x}'$. Suppose we place an infinitesimal *test charge* $q$ at position $\mathbf{x}$. By Coulomb's Law, the test charge will feel a force $\mathbf{F}$ due to $q'$. We'll define a vector-valued function of position known as the *electric field* by the ratio
+Instead what we'll do is imagine that particles interact due to the presence of background fields, and think of these fields as giving rise to forces. Suppose we have a charge $q'$ sitting in space at some position $\mathbf{x}'$. Suppose we then place an infinitesimal *test charge* $q$ at some other position $\mathbf{x}$. By Coulomb's Law, the test charge will feel a force $\mathbf{F}$ due to $q'$. We'll define a vector-valued function of position known as the *electric field* by the ratio
 $$
 \mathbf{E}(\mathbf{x}) \equiv \frac{\mathbf{F}}{q} \ .
 $$
@@ -73,21 +73,15 @@ Here for convenience we define the separation vector $\boldsymbol{\xi} \equiv \m
 
 
 
-![](.../resources/image-20240616171528590.png){fig-align=center width=400}
+![](../resources/image-20240616171528590.png){fig-align=center width=400}
 
 Notice that the electric field doesn't depend on $q$ at all. It has a value at every point in space. When a test charge $q$ is brought in and placed at a position $\mathbf{x}$ it feels a force
 $$
-\mathbf{F} = q \mathbf{E}(\mathbf{x}) \ .
+\boxed{
+\mathbf{F} = q \mathbf{E}(\mathbf{x})
+} \ .
 $$
-Note that the requirement that $q$ be infinitesimal in this definition is important. If it's not its presence will distort the value of the background field, in effect making *both* charges source charges for the field.
-
-Since $\mathbf{E}$ is just a vector field we can visualize it as such. At each field point $\mathbf{x}$ in space, we can imagine plotting $\mathbf{E}$ as a vector located at $\mathbf{x}$ and pointing outward. It's traditional though, and very convenient, to visualize electric fields using *field lines*. The idea is to imagine placing vector field arrows at each point in space and then connecting them together with lines running along the directions of the arrows. Both of these visualizations are shown in the figure below for a single *positive* point source charge $q'$.
-
-
-
-![](../resources/image-20240602115754745.png){fig-align=center width=500}
-
-As a good rule of thumb for drawing field lines, they should always *start* at positive charges and *end* either at negative charges or go to infinity. Field lines should never cross each other. The density of the field lines at a point indicates the strength of the field at that point. In this way, we could loosely speaking *define* the electric field at a point as the *flux density* of field lines, or number of field lines per unit area, passing near that point.
+Note that the requirement that $q$ be an infinitesimal charge in this definition is important. If test charge is high enough, it will distort the background electric field through its presence, in effect making *both* charges source charges for the field. Also, note that this doesn't mean that the charge will move in the direction of the electric field. All that will be true is that its force vector will be tangential to the electric field at that point, pointing in the direction of the field if $q$ is negative, and opposite the field if $q$ is opposite. The path the charge actually follows through the field may be quite complicated.
 
 We'll often find it more useful to express the electric field formula in a slightly different way by getting rid of the unit vector. Using the fact that the separation vector can be written $\boldsymbol{\xi} = |\mathbf{x}-\mathbf{x}'| \mathbf{e}_\xi$ we can write the same electric field in the equivalent form
 $$
@@ -103,11 +97,19 @@ $$
 $$
 Again, the combined electric field does not depend on the test charge, only the source charges. If we imagine placing an infinitesimal test charge $q$ at $\mathbf{x}$ it will still feel the combined force $\mathbf{F} = q \mathbf{E}$.
 
+The most typical way to visualize vector fields in electromagnetism is via *field lines*. We imagine that any positive charge emits from it a bunch of lines, called field lines. These field lines follow the direction of the vector field in space, only terminating at negative charges or at infinity. Field lines should never cross each other. The direction of a field line is always from positive charges to negative charges. The strength of the field is captured by the density of field lines. The more field lines there are surrounding a given point in space, the stronger the field at that point. Indeed, we can informally *define* a vector field as the *flux density* of field lines, i.e. the number of field lines per unit volume.
+
+Here are some examples of electric field line sketches for a few different configurations of point charges. Notice it's usually fairly easy to sketch field lines for a given charge configuration, even if finding an expression for the actual electric field of that configuration might be difficult. We'll see field lines sketched in many figures throughout this course.
+
+FIGURE
+
+Let's now work a problem involving finding the electric field for a very simple example, the *simple dipole*.
+
 #### Example: Simple dipole
 
-Let's try to find the electric field of perhaps the simplest non-trivial example, the *electric dipole*. Suppose we have two like charges of opposite sign separated by a fixed distance along some axis. More formally, suppose we have a positive charge $+q$ located at a point $\mathbf{x}_+ = \frac{d}{2} \mathbf{e}_z$, and a negative charge $-q$ located at the opposite point $\mathbf{x}_- = -\frac{d}{2} \mathbf{e}_z$. Our goal will be to find the electric field for any field point $\mathbf{x}$ in the $xy$-plane. 
+Suppose we have two like charges of opposite sign separated by a fixed distance along some axis. More formally, suppose we have a positive charge $+q$ located at a point $\mathbf{x}_+ = \frac{d}{2} \mathbf{e}_z$, and a negative charge $-q$ located at the opposite point $\mathbf{x}_- = -\frac{d}{2} \mathbf{e}_z$. Our goal will be to find the electric field for any field point $\mathbf{x}$ in the $xy$-plane. 
 
-![](.../resources/image-20240811130607078.png){fig-align=center width=300}
+![](../resources/image-20240811130607078.png){fig-align=center width=300}
 
 By the superposition principle, the electric field is given by
 $$
@@ -141,7 +143,7 @@ Notice the first term is just the projection of the dipole onto the field point 
 
 ### Continuous Charge Distributions
 
-In classical electromagnetism we rarely find ourselves dealing with point charges. We're generally dealing with *macroscopic* bodies containing many charged particles packed densely together. In such cases it's more convenient to treat those charges not as a sum over all the point charges, but instead as a continuous *charge distribution*.
+In classical electromagnetism we rarely find ourselves dealing with point charges. We're generally dealing with *macroscopic* materials containing many charged particles packed densely together. In such cases it's more convenient to treat those charges not as a sum over all the point charges, but instead as a continuous *charge distribution*.
 
 A charge distribution can be thought of as a large number of charged point particles packed densely together. Provided the charges are dense enough that we can treat them as continuous, we can define a *charge density* $\rho(\mathbf{x}')$ by
 $$
@@ -160,6 +162,8 @@ This idea can be seen in the figure below. Here the gray blob is some charge dis
 
 
 ![](../resources/image-20240308151931197.png){fig-align=center width=400}
+
+The field lines for the electric fields of continuous distributions work the same way they do for point charges. The main new thing to be aware of is that field lines will always point *normal* to the surface of the charge distribution. Again, the field lines will point away from positive charge distributions, and toward negative charge distributions or out to infinity, never crossing.
 
 We'll often be interested in charge distributions of lower dimension as well, for example lines of charge and sheets of charge. For this reason it's useful to define charge densities in these dimensions as well. The simplest case is the point charge, which we can think of as a zero-dimensional density. If $q'$ is some point charge located at $\mathbf{x}'$, we can use the delta function to write
 $$
@@ -193,9 +197,7 @@ Again, it's understood we're integrating over the whole surface of charge $\math
 
 We could in principle define charge densities in higher dimensions as well, though we won't since we won't need them. Each of the cases we discussed can be visualized using the figure below.
 
-
-
-![](.../resources/image-20240616171649819.png){fig-align=center width=500}
+![](../resources/image-20240616171649819.png){fig-align=center width=500}
 
 #### Example: Sphere with uniform charge
 
@@ -326,7 +328,7 @@ This is only true though when the charge is contained *inside* the surface. What
 
 
 
-![](.../resources/image-20240616173508660.png){fig-align=center width=400}
+![](../resources/image-20240616173508660.png){fig-align=center width=400}
 
 Putting these two results together, we've shown that if $q$ is a point charge and $\mathcal{S}$ is some closed surface, then
 $$
@@ -386,7 +388,7 @@ For this to work though the charge distribution really needs to have a high leve
 
 Consider a line of charge of infinite length and infinitesimal width, so we can treat the line as one-dimensional. We'll suppose the line is oriented along the $z$-axis and carries a constant charge per unit length of $\lambda$​. Our goal is to find its electric field. We could do this the hard way as before, but in this case we can do it much more easily using Gauss's Law, so that's what we'll do.
 
-![](.../resources/image-20240616180813782.png){fig-align=center width=300}
+![](../resources/image-20240616180813782.png){fig-align=center width=300}
 
 By symmetry, the electric field should depend only on the cylindrical radius $\varrho$. To see why, pick a random field point in the $xy$-plane. Now pick a random source point at a height $z'$ along the wire. Then there must also be an opposite source point at a height $-z'$. If we add the two field vectors together, their $z$-components will cancel, leaving only a contribution in the $\varrho$-direction. We thus must conclude that the electric field has the property that
 $$
@@ -410,7 +412,7 @@ Thus, the electric field of an infinitely long wire of uniform charge is inverse
 
 We'll now consider not an infinite *line* of uniform charge, but an infinite *flat sheet* of uniform charge. We'll suppose this sheet is oriented in the $xy$-plane and has infinitesimal thickness, so we can treat the sheet as 2-dimensional with a constant surface charge density $\sigma$​.
 
-![](.../resources/image-20240616180900393.png){fig-align=center width=400}
+![](../resources/image-20240616180900393.png){fig-align=center width=400}
 
 By symmetry, we'll argue that the electric field must always point away from the sheet in the $z$ direction. To see why, pick a random field point at a height $z$ above (or below) the sheet, centered at the origin. Pick a random source point $(r',\varphi')$ along the sheet. Now, there must be an opposite source point at $(r',\varphi'+\pi)$ for which the two field vectors will cancel in all but the $z$-direction. This means
 $$
@@ -432,7 +434,7 @@ That is, the electric field strength of an infinite sheet of uniform charge is c
 
 As our final example in this section we'll consider an example we've already seen, the uniformly charged sphere. In a previous section we worked out its electric field with great pain. Here we'll show that Gauss's Law gives a much simpler way. We'll again suppose that the charge lies on a hollow sphere of radius $R$​ centered at the origin.
 
-![](.../resources/image-20240616180936896.png){fig-align=center width=400}
+![](../resources/image-20240616180936896.png){fig-align=center width=400}
 
 As argued before, symmetry requires that the electric field point in the radial $r$-direction, with
 $$
@@ -639,7 +641,7 @@ Let's now work some examples to show how much nicer this integral formula is to 
 
 Let's find the potential of a uniformly charged wire of finite length. Suppose a wire of length $L$ has a uniform charge $Q = \lambda L$. We'll assume that it is oriented along the $z$-axis with its center at the origin.
 
-![](.../resources/image-20240811130653319.png){fig-align=center width=300}
+![](../resources/image-20240811130653319.png){fig-align=center width=300}
 
 Assuming the wire has negligible thickness we can use the $1$-dimensional version of the integral formula for the potential,
 $$
@@ -927,7 +929,7 @@ $$
 $$
 for any two points $\mathbf{a}$ and $\mathbf{b}$ on the surface of the conductor, meaning $\phi(\mathbf{a}) = \phi(\mathbf{b})$ is constant on the surface. Since the surface of the conductor is an equipotential, this also means that the field lines at the surface must be perpendicular to the surface, since $\mathbf{E} = -\nabla \phi$​ and we know that gradients are perpendicular to their equipotential surfaces.
 
-![](.../resources/image-20240703155651920.png){fig-align=center width=400}
+![](../resources/image-20240703155651920.png){fig-align=center width=400}
 
 We'll find it convenient to express these results as a set of boundary conditions for conductors. Surface boundary conditions require that $\mathbf{E}_+ - \mathbf{E}_- = 4\pi\sigma \mathbf{n}$. Since the field inside the conductor is zero, $\mathbf{E}_- = \mathbf{0}$. Thus, just outside the surface we must have
 $$

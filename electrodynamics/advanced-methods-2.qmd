@@ -1,0 +1,913 @@
+# Advanced Methods II
+
+In this chapter, we continue on with the topic of advanced electrostatics by continuing to look at more advanced techniques for solving electrostatics problems. We'll first introduce the mathematics of orthogonal functions, which we'll need in this chapter and the next. Last, we'll introduce the separation of variables technique, a method that can be used to solve Laplace's equation for a large class of problems, before solving some problems using this technique.
+
+## Orthogonal Functions
+
+Since Laplace's equation is a linear PDE, we know we can use the principle of superposition to assemble a general solution. If we know that a set of functions $\phi_n$ all solve Laplace's equation subject to the boundary conditions, any linear combination of must will solve Laplace's equation as well, since
+$$
+\nabla^2 \bigg(\sum_n c_n \phi_n(\mathbf{x})\bigg) = \sum_n \nabla^2 \phi_n(\mathbf{x}) = 0 \ .
+$$
+In many cases, we can find a "good" set of functions $\phi_n(\mathbf{x})$, in that we can represent *any* general solution $\phi(\mathbf{x})$ as a linear superposition of these functions,
+$$
+\phi(\mathbf{x}) = \sum_n c_n \phi_n(\mathbf{x}) \ .
+$$
+When this happens, we say the set of functions is a *complete set*. If the set of functions has the additional special property of being *orthogonal*, we can even find the coefficients $c_n$ in a simple way, thus fully specifying the general solution. 
+
+In this section, we'll cover in more detail what each of these terms mean, and mention a few classes of complete orthogonal sets of functions we'll frequently encounter in electrostatics, and indeed in much of physics. We'll focus mostly on the simpler case of univariate functions, but all of this can easily be extended to multivariate functions in a natural way.
+
+### Inner Products
+
+Suppose $f$ and $g$ are two potentially complex-valued functions defined on some interval $a \leq x \leq b$. We will assume both of these functions are *square integrable* on the given interval, meaning
+$$
+\int_a^b dx \ |f(x)|^2 < \infty \ .
+$$
+If this is the case, we can define an *inner product* between the two functions on this interval by the integral
+$$
+\langle f | g \rangle \equiv \int_a^b dx \ f^*(x) g(x) \ .
+$$
+Here $f^*(x)$ denotes the complex conjugate of $f(x)$. The range of the integration can be between any two points, or even the whole real line, so long as we're consistent. Notice how similar this definition looks to the inner product of two vectors, apart from the notation. If we have two complex-valued vectors $\mathbf{v}$ and $\mathbf{w}$, their inner product is given by
+$$
+\mathbf{v} \cdot \mathbf{w} = \sum_n v_n^* w_n \ ,
+$$
+hence the inner product of functions is essentially the continuous analogue of the inner product of vectors. Like the inner product of vectors, the inner product of functions is linear in each of its arguments and its output will always be a complex number.
+
+As with vectors, we'll say two functions $f$ and $g$ are *orthogonal* if their inner product is zero,
+$$
+\langle f | g \rangle = \int_a^b dx \ f^*(x) g(x) = 0 \ .
+$$
+Similarly, we can define a *norm* of a function $f$ as being the square root of its self inner product,
+$$
+||f|| \equiv \sqrt{\langle f | f \rangle} = \sqrt{\int_a^b dx \ |f(x)|^2} \ .
+$$
+Notice that for this to make sense the self inner product $\langle f | f \rangle$ should always be a non-negative real number. We can see from the integrand that this will indeed always be the case, since $|f(x)|^2$ will always be a non-negative real number as well. As with vectors, we say that a nonzero function is *normalized* or *unit length* if its norm is one, i.e. $||f|| = 1$.
+
+From linear algebra, we also know that if we have an orthogonal set of vectors $\mathbf{e}_n$ that span the vector space, then those vectors form a *basis* for that space, and we can represent any vector in the space as a linear superposition of those basis vectors, with
+$$
+\mathbf{v} = \sum_n c_n \mathbf{e}_n \ .
+$$
+To find the coefficients $c_n$ we need only dot $\mathbf{v}$ with any basis vector, say $\mathbf{e}_m \cdot \mathbf{v} = c_m |\mathbf{e}_m|^2$. This means the $c_n$ are given by
+$$
+c_n = \frac{\mathbf{e}_n \cdot \mathbf{v}}{|\mathbf{e}_n|^2} \ .
+$$
+These ideas extend to functions as well. We say a set of functions $f_n(x)$ forms an *orthogonal set* provided each pair of functions is mutually orthogonal, i.e. $\langle f_m | f_n \rangle = 0$ whenever $m \neq n$. If furthermore each of the functions $f_n(x)$ is *normalized*, we say the set of functions forms an *orthonormal set*. An orthonormal set of functions satisfies the nice property that
+$$
+\langle f_m | f_n \rangle = \delta_{mn} \ ,
+$$
+where $\delta_{mn}$ is the usual Kronecker delta. If the set is orthogonal but *not* orthonormal, we have to modify this expression slightly by factoring out the norm of each function, giving instead
+$$
+\langle f_m | f_n \rangle = ||f_m|| \ ||f_n|| \ \delta_{mn} \ .
+$$
+### Orthogonal Expansions
+
+Now, we'd like to get to the idea of a basis of functions, but we have to be more careful by what we mean when we say any function can be expanded as a linear superposition of basis functions. We'd like to write something like
+$$
+f(x) = \sum_n c_n f_n(x) \ .
+$$
+But for this equality to hold like we want, we have to reinterpret what we mean by the word *equals*. It will *not* in general be true that the two sides equal *pointwise*, in the sense that the equality holds for any value of $x$ we plug into the formula. Instead, when we write an equals sign like this, we really mean that the two expressions are *equal in norm*, meaning the norm of their difference goes to zero as $n$ becomes infinite,
+$$
+\bigg|\bigg| f(x) - \sum_n c_n f_n(x) \bigg|\bigg| \rightarrow 0 \quad \text{as} \quad n \rightarrow \infty \ .
+$$
+If two functions are equal in norm, they won't *always* be equal at every point $x$, but they *will* be equal at *almost all* $x$. This is a minor mathematical point that we mostly gloss over in physics, but it does lead to some interesting phenomena, e.g. the *Gibbs phenomenon* in Fourier series.
+
+We say a set of functions $f_n(x)$ is a *complete set* provided we can represent any function $f(x)$ on the given interval as a linear superposition of these functions, in the *equals in norm* sense defined above,
+$$
+f(x) = \sum_n c_n f_n(x) \ .
+$$
+If the complete set is also orthogonal, we call this an *orthogonal expansion* of $f(x)$ in the basis of functions $f_n(x)$. In this case, we can easily determine the expansion coefficients $c_n$ by taking the inner product of both sides with respect to some $f_m$,
+$$
+\langle f_m | f \rangle = \sum_n c_n \langle f_m | f_n \rangle = c_m ||f_m||^2  \ ,
+$$
+which implies the expansion coefficients are given by
+$$
+c_n = \frac{\langle f_n | f \rangle}{||f_n||^2} = \frac{1}{||f_n||^2} \int_a^b dx \ f_n^*(x) f(x) \ .
+$$
+This method of obtaining the expansion coefficients is sometimes called the *Fourier trick*. We'll use it a good bit in this course.
+
+Now, observe if we plug this expressions back into the orthogonal expansion for $f(x)$, we get
+$$
+\begin{align*}
+f(x) &= \sum_n c_n f_n(x) \\
+&= \sum_n \bigg(\frac{1}{||f_n||^2}\int_a^b dx' \ f_n^*(x') f(x')\bigg) f_n(x) \\
+&= \int_a^b dx' \ \bigg(\frac{1}{||f_n||^2}\sum_n f_n^*(x') f_n(x)\bigg) f(x') \ .
+\end{align*}
+$$
+Evidently, this expression can only be true provided
+$$
+\frac{1}{||f_n||^2} \sum_n f_n^*(x') f_n(x) = \delta(x-x') \ .
+$$
+This relation is called the *completeness relation*. It's a necessary condition for the set of $f_n(x)$ to form a complete set. This gives us a relatively simple way to check whether a given an orthogonal set of functions is complete or not. Provided the completeness condition holds, we know we can write down an orthogonal expansion in terms of those basis functions.
+
+Last, we'll derive one more useful result known as *Parseval's Identity*. Suppose we've expanded $f(x)$ in terms of an orthogonal set $f_n(x)$. If we consider the squared norm $||f||^2 = \langle f | f \rangle$ and expand $f(x)$ out on both sides and plug in the formula for the coefficients, we have
+$$
+\begin{align*}
+||f||^2 &= \bigg\langle \sum_{n'} c_{n'} f_{n'} \bigg| \sum_n c_n f_n \bigg\rangle \\
+&= \sum_{n,n'} c_{n'}^* c_n \langle f_{n'} | f_n \rangle \\
+&= \sum_{n,n'} c_{n'}^* c_n ||f_{n'}|| \ ||f_n|| \ \delta_{nn'} \\
+&= \sum_n |c_n|^2 ||f_n||^2 \ .
+\end{align*}
+$$
+That is, the squared function norm of $f(x)$ is equal to the squared *vector* norm of the coefficients $c_n$, weighted by $f_n$. If the set is *orthonormal* then the weights disappear, and we can simply write $||f||^2 = |\mathbf{c}|^2$, where $\mathbf{c}$ is an infinite vector of coefficients. One immediate implication of this identity is that if $f(x)$ is square-integrable, then the coefficients must decay to zero as $n \rightarrow \infty$.
+
+### Sturm-Liouville Theory
+
+For a large class of problems we don't need to go through the hard work of figuring out whether a set of functions is complete or orthogonal. These are *Sturm-Liouville problems*. Provided we can prove that a set of functions satisfies a Sturm-Liouville problem, we automatically know that it will be a complete orthogonal set of functions, among other things.
+
+Suppose we have some linear differential operator $\mathcal{L}$ satisfying a differential equation
+$$
+\mathcal{L} f = \lambda f \ .
+$$
+We call this an *eigenvalue problem*. Any function that satisfies the differential equation is called an *eigenfunction* with associated *eigenvalue* $\lambda$. Indeed, this is just a continuous generalization of the eigenvalue problem $\mathbf{A}\mathbf{x} = \lambda\mathbf{x}$ from linear algebra, with the vector $\mathbf{x}$ replaced by a function $f(x)$ and the matrix $\mathbf{A}$ replaced by a linear operator $\mathcal{L}$.
+
+If we restrict the class of functions to those that are square-normalizable on some interval $a \leq x \leq b$, we can define an inner product on them in the usual way by
+$$
+\langle f | g \rangle \equiv \int_a^b dx \ f^*(x) w(x) g(x) \ .
+$$
+Notice we've introduced an optional positive-valued *weighting function* $w(x) > 0$ in the inner product, which will be useful below.
+
+The most useful types of differential operators in physics are the *Hermitian* or *self-adjoint* operators, which are operators satisfying the self-adjoint relation
+$$
+\langle \mathcal{L} f | g \rangle = \langle f | \mathcal{L}g \rangle \ .
+$$
+If we think of $\mathcal{L}$ as a type of matrix, it's easy to see that this is equivalent to requiring that the $\mathcal{L}$ be *Hermitian*, i.e. $\mathcal{L}^\dagger = \mathcal{L}$, where $\mathcal{L}^\dagger$ is the conjugate transpose of $\mathcal{L}$. This is where the term *Hermitian operator* comes from.
+
+As an example, suppose $\mathcal{L}$ is the second derivative operator $\mathcal{L} = \frac{d^2}{dx^2}$ and we take $w(x)=1$. If we plug this into the inner product and integrate by parts twice, we get
+$$
+\begin{align*}
+\langle \mathcal{L} f | g \rangle &= \int_a^b dx \ \frac{d^2f^*}{dx^2} g(x) \\
+&= \frac{d}{dx} f^*(x) \frac{d}{dx}g(x) \bigg|_{x=a}^{x=b} - \int_a^b dx \ \frac{df^*}{dx} \frac{dg}{dx} \\
+&= g(x) \frac{d}{dx} f^*(x) \bigg|_{x=a}^{x=b} - f^*(x) \frac{d}{dx}g(x) \bigg|_{x=a}^{x=b} + \int_a^b dx \ f^*(x) \frac{dg}{dx} \ .
+\end{align*}
+$$
+Provided either of these functions or their first derivatives vanish at the endpoints $x=a$ and $x=b$, we can satisfy the self-adjoint condition $\langle \mathcal{L} f | g \rangle = \langle f | \mathcal{L} g \rangle$. That is, the second derivative operator is Hermitian when applied to functions with Dirichlet, Neumann, or indeed mixed boundary conditions.
+
+One can easily check the following two facts about Hermitian operators:
+
+- Any operator of the form $\mathcal{L} = g(x)$ where $g(x)$ is a real-valued function will be Hermitian.
+- Any linear superposition of Hermitian operators will be Hermitian as well.
+
+So why are Hermitian operators so important? It turns out that any Hermitian operator satisfies these two conditions:
+
+1. The eigenvalues $\lambda_n$ of a Hermitian operator will always be real-valued.
+
+2. The eigenfunctions $f_n$ corresponding to distinct eigenvalues with always be orthogonal.
+
+Both of these are easy to check from the definition. To check the first statement, we pick an nonzero eigenfunction $f_n(x)$ and notice that since $\mathcal{L}$ is Hermitian and $\mathcal{L} f_n = \lambda_n f_n$ we must have
+$$
+\langle \mathcal{L} f_n | f_n \rangle = \lambda_n^* \langle f_n | f_n \rangle = \langle f_n | \mathcal{L} f_n \rangle = \lambda_n \langle f_n | f_n \rangle \quad \Longrightarrow \quad (\lambda_n^* - \lambda_n) \langle f_n | f_n \rangle = 0 \ .
+$$
+The only way this can be true is if $f_n = 0$ or $\lambda_n = \lambda_n^*$. Since $f_n = 0$ is disallowed, the eigenvalue $\lambda_n$ must be real. To check the second statement, we pick two eigenfunctions $f_m(x)$ and $f_n(x)$ with distinct eigenvalues $\lambda_n \neq \lambda_m$ and do the same thing,
+$$
+\langle \mathcal{L} f_m | f_n \rangle = \lambda_m \langle f_m | f_n \rangle = \langle f_m | \mathcal{L} f_n \rangle = \lambda_n \langle f_m | f_n \rangle \quad \Longrightarrow \quad (\lambda_m - \lambda_n) \langle f_m | f_n \rangle = 0 \ .
+$$
+Since $\lambda_m \neq \lambda_n$ by assumption, the only way this can be true is if $\langle f_m | f_n \rangle = 0$, meaning $f_m(x)$ and $f_n(x)$ are orthogonal.
+
+With this theory in hand, let's now focus specifically the Sturm-Liouville problem. A *Sturm-Liouville problem* is any boundary value problem of the form
+$$
+\begin{align*}
+\begin{cases}
+\frac{d}{dx} \bigg[\ \ p(x) &\frac{df}{dx}\bigg] + q(x) f = \lambda w(x) f \ , \\
+\text{such that} \ &\alpha_1 f(a) + \alpha_2 \frac{d}{dx} f(a) = 0 \ , & \alpha_1 \neq 0 \ \text{or} \  \beta_1 \neq 0 \ , \\
+\text{and} \ &\beta_1 f(b) + \beta_2 \frac{d}{dx} f(b) = 0 \ , & \alpha_2 \neq 0 \ \text{or} \  \beta_2 \neq 0 \ .
+\end{cases}
+\end{align*}
+$$
+We require that $p(x), q(x), w(x)$ all be real-valued continuous functions with $p(x),w(x) > 0$. By expressing the boundary conditions this way, we're just saying in a fancy way that the boundary conditions must be of type Dirichlet, Neumann, or mixed. We can recover the Dirichlet conditions by setting $\beta_1 = \beta_2 = 0$, and the Neumann conditions by setting $\alpha_1 = \alpha_2 = 0$.
+
+Now let's look closer at the differential equation itself. If we expand things out, we get
+$$
+p(x) \frac{df}{dx} + \frac{dp}{dx} \frac{df}{dx} + \big(q(x) - \lambda w(x)\big) f(x) = 0 \ .
+$$
+Notice this is just the general form for *any* linear second order ODE. Thus, in some sense the Sturm-Liouville problem covers every linear second order ODE subject to the right boundary conditions.
+
+Though perhaps not obvious, the Sturm-Liouville problem is Hermitian. We can see this by defining an operator of the form
+$$
+\mathcal{L}f \equiv \frac{1}{w(x)} \bigg[\frac{d}{dx} \bigg(p(x) \frac{df}{dx}\bigg) + q(x) f\bigg] \ .
+$$
+Since the second term is a function operator we know it will be Hermitian. We also know that the sum of Hermitian operators is Hermitian. This means it suffices for our purposes to check that the operator $\mathcal{L} - \frac{q(x)}{w(x)}$ is Hermitian, meaning it satisfies the self-adjoint condition $\langle (\mathcal{L}-\frac{q}{w}) f | g \rangle = \langle f | (\mathcal{L}-\frac{q}{w}) g \rangle$. To do that we integrate by parts twice again to get
+$$
+\begin{align*}
+\big\langle \big(\mathcal{L}-\frac{q}{w}\big) f \big| g \big\rangle &= \int_a^b dx \ \frac{d}{dx} \bigg(p(x) \frac{d}{dx}f^*(x)\bigg) g(x) \\
+&= p(x)g(x) \frac{d}{dx}f^*(x) \bigg|_{x=a}^{x=b} - \int_a^b dx \ \bigg(p(x) \frac{d}{dx}f^*(x)\bigg) \frac{d}{dx}g(x) \\
+&= \bigg[p(x)g(x) \frac{d}{dx}f^*(x) - p(x)f^*(x) \frac{d}{dx}g(x) \bigg]_{x=a}^{x=b} + \int_a^b dx \ f^*(x) \frac{d}{dx} \bigg(p(x) \frac{d}{dx}g(x)\bigg) \\
+&= \bigg[p(x)g(x) \frac{d}{dx}f^*(x) \bigg|_{x=a}^{x=b} - p(x)f^*(x) \frac{d}{dx}g(x) \bigg]_{x=a}^{x=b} + \int_a^b dx \ f^*(x) \frac{d}{dx} \bigg(p(x) \frac{d}{dx}g(x)\bigg) \ .
+\end{align*}
+$$
+It's not hard to show that the Sturm-Liouville boundary conditions now require that both boundary terms vanish, leaving us with
+$$
+\big\langle \big(\mathcal{L}-\frac{q}{w}\big) f \big| g \big\rangle = \big\langle f \big| \big(\mathcal{L}-\frac{q}{w}\big) g \big\rangle \ .
+$$
+Thus, the Sturm-Liouville operator $\mathcal{L}$ must be Hermitian. An immediately consequence of this is that we know that the eigenvalues of $\mathcal{L}$ are real-valued, and eigenfunctions with different eigenvalues must be orthogonal.
+
+We can actually say something stronger about the eigenvalues and eigenfunctions of the Sturm-Liouville problem. The proof is a bit technical so we'll just state the result: For any Sturm-Liouville problem the following facts must be true:
+
+- There will be infinitely many eigenvalues and eigenfunctions.
+- The eigenvalues will always be distinct, and can be linearly ordered such that $\lambda_1 < \lambda_2 < \cdots < \lambda_n < \cdots \rightarrow \infty$.
+- Corresponding to each eigenvalue $\lambda_n$ is a unique function $f_n(x)$ satisfying the Sturm-Liouville problem.
+- The eigenfunctions form a complete orthogonal set of functions on $a \leq x \leq b$ that can be made orthonormal.
+
+The last condition is probably the most useful for our purposes. It says that for any function $f(x)$ satisfying the boundary conditions of a Sturm-Liouville problem, we can do an orthogonal expansion of $f(x)$ in terms of the eigenfunctions $f_n(x)$ as
+$$
+f(x) = \sum_{n=1}^\infty c_n f_n(x) \ ,
+$$
+where the coefficients are given in the usual way by $c_n = \frac{\langle f_n | f_m \rangle}{||f_n||^2}$. This is a remarkable result. It means that to find a set of complete orthogonal functions on some interval, all we need to do is show that it satisfies some type of Sturm-Liouville problem. If it does, the orthogonal expansion is just given by the eigenfunctions of that problem. 
+
+We'll see a few important example of this in the following sections, where we'll cover some of the most important classes of orthogonal functions we see in electromagnetism, the so-called *special functions*.
+
+## Special Functions
+
+Now that we've worked through the basic theory of orthogonal functions, let's look at some the most important sets of orthogonal functions that we'll encounter in this course. These *special functions* include Fourier series, Legendre polynomials, Bessel functions, and spherical harmonics.
+
+### Fourier Series
+
+First, we'll look at perhaps the most important class of functions in physics, the complex exponentials. The complex exponentials won't in general be orthogonal to each other, but we can make them orthogonal by choosing the right constants. Suppose
+$$
+f_n(x) = a_n e^{i k_n x} \
+$$
+is defined on some closed interval $-L \leq x \leq L$ of length $2L$. We'll show that for certain choices of $a_n$ and $k_n$ this set of functions forms a complete orthonormal set on the above interval. We'll do that by finding a Sturm Liouville problem whose eigenfunctions are these complex exponentials.
+
+Consider the following boundary value problem,
+$$
+\begin{align*}
+\begin{cases}
+\frac{d^2f}{d^2x} = \lambda f \ , \\
+\text{such that} \ f(-L) = \frac{d}{dx} f(L) = 0 \ .
+\end{cases}
+\end{align*}
+$$
+This is a clearly a Sturm-Liouville problem, with $p(x) = 1$, $q(x) = 0$, $w(x) = 1$, $\alpha_1 = \beta_2 = 1$, and $\alpha_2 = \beta_1 = 0$.
+
+To solve this problem we recognize that it's just a simple harmonic oscillator with $\lambda = -k^2$. The general solution can be written
+$$
+f(x) = a e^{i kx} + b e^{-i kx} \ .
+$$
+Plugging in the boundary conditions evidently gives
+$$
+\begin{align*}
+0 &= a e^{-ikL} + b e^{ikL} \ ,\\
+0 &= ik \big(a e^{ikL} - b e^{-ikL}\big) \ .
+\end{align*}
+$$
+The only way these conditions can both be true is if $kL$ is an integer multiple of $\pi$. That is, if
+$$
+k_n = \frac{n\pi}{L} \quad , \quad n = 0, \pm 1, \pm 2, \cdots \ .
+$$
+We've thus found an infinite set of solutions that satisfy a Sturm-Liouville problem, given by
+$$
+f_n(x) = a_n \exp\bigg(\frac{n\pi x}{L}\bigg) \quad , \quad n = 0, \pm 1, \pm 2, \cdots \ .
+$$
+Let's go ahead and normalize them as well so we get a complete orthonormal set of functions. We do that by requiring that $\langle f_n | f_n \rangle = 1$. Taking this inner product and requiring it equal one, we have
+$$
+\langle f_n | f_n \rangle = \int_{-L}^L dx \ a_n^* e^{-i k_n x} a_n e^{i k_n x} = 2L |a_n|^2 \quad \Longrightarrow \quad a_n = \frac{1}{\sqrt{2L}} \ .
+$$
+According to Sturm Liouville theory, we've thus found a complete orthonormal set on the interval $-L \leq x \leq L$ given by the infinite set of functions
+$$
+f_n(x) = \frac{1}{\sqrt{2L}} \exp\bigg(\frac{n\pi x}{L}\bigg) \quad , \quad n = 0, \pm 1, \pm 2, \cdots \ .
+$$
+This means we can do an orthogonal expansion any function $f(x)$ on this interval and write
+$$
+f(x) = \frac{1}{\sqrt{2L}} \sum_{n=-\infty}^\infty c_n \exp\bigg(\frac{i\pi n x}{L}\bigg) \ .
+$$
+This important series expansion is known as a *Fourier series*. It's arguably the most important series in science and engineering. It's conventional with Fourier series to absorb the normalization constant into the coefficients $c_n$ and instead write
+$$
+\boxed{
+f(x) = \sum_{n=-\infty}^\infty c_n \exp\bigg(\frac{i\pi n x}{L}\bigg)
+} \ .
+$$
+Note that, strictly speaking, Sturm Liouville only guarantees that any functions $f(x)$ that satisfy the boundary conditions of the Sturm-Liouville problem are guaranteed to have an orthogonal expansion. However, further results from the theory of Fourier analysis show that any function on this interval can be expanded this way, not just ones satisfying the boundary conditions.
+
+The coefficients $c_n$ are given in the usual way, except we have to account for the absorption of $\frac{1}{2\sqrt{L}}$ into the $c_n$. With this, we must have $c_n = \frac{1}{\sqrt{2L}} \langle f_n | f \rangle$, which gives
+$$
+\boxed{
+c_n = \frac{1}{2L} \int_{-L}^L dx \ f(x) \exp\bigg(-\frac{i\pi n x}{L}\bigg) 
+} \ .
+$$
+Notice that the set of basis functions $f_n(x)$ are all *periodic* on the real line with period $2L$, i.e. $f_n(x) = f_n(x + 2L)$. This means we can also think of the Fourier series as a periodic expansion over the real line. An implication of this is that any $2L$-periodic function $f(x)$ can be expanded into a Fourier series.
+
+It's common to rewrite the Fourier series in a different form by making the basis functions real-valued.  To achieve this, we'll first rewrite the series in a slightly different from by grouping terms and restricting $n$ to be non-negative,
+$$
+f(x) = c_0 + \sum_{n=1}^\infty \bigg[c_n \exp\bigg(\frac{i\pi n x}{L}\bigg) + c_{-n} \exp\bigg(-\frac{i\pi n x}{L}\bigg)\bigg] \ .
+$$
+We can now use the Euler identity to write each complex exponential into sines and cosines, and regroup terms to get
+$$
+\begin{align*}
+f(x) &= c_0 + \sum_{n=1}^\infty \bigg[c_n \exp\bigg(\frac{i\pi n x}{L}\bigg) + c_{-n} \exp\bigg(-\frac{i\pi n x}{L}\bigg)\bigg] \\
+&= c_0 + \sum_{n=1}^\infty \bigg[c_n \bigg(\cos \frac{\pi n x}{L} + i \sin \frac{\pi n x}{L}\bigg) + c_{-n} \bigg(\cos \frac{\pi n x}{L} - i \sin \frac{\pi n x}{L}\bigg)\bigg] \\
+&= c_0 + \sum_{n=1}^\infty \bigg[(c_n + c_{-n}) \cos \frac{\pi n x}{L} + i (c_n - c_{-n}) \sin \frac{\pi n x}{L}\bigg] \ .
+\end{align*}
+$$
+Now, we'll define new expansion coefficients $a_n$ and $b_n$ by breaking $c_n$ as follows,
+$$
+a_0 \equiv 2c_0 \quad , \quad a_n \equiv c_n + c_{-n} \quad , \quad b_n \equiv i(c_n - c_{-n}) \ .
+$$
+Plugging this back into the Fourier series, we get
+$$
+\boxed{
+f(x) = \frac{a_0}{2} + \sum_{n=1}^\infty \bigg[a_n \cos \frac{\pi n x}{L} + b_n \sin \frac{\pi n x}{L}\bigg]
+} \ .
+$$
+The expansion coefficients can then be found by plugging in the formulas for $c_n$ and $c_{-n}$ and grouping terms to get
+$$
+\boxed{
+\begin{align*}
+a_0 &= \frac{1}{L} \int_{-L}^L dx \ f(x) \\
+a_n &= \frac{1}{L} \int_{-L}^L dx \ f(x) \cos \frac{\pi nx}{L} \\
+b_n &= \frac{1}{L} \int_{-L}^L dx \ f(x) \sin \frac{\pi nx}{L}
+\end{align*}
+} \ .
+$$
+Though perhaps not immediately obvious, this set of sines and cosines also forms an orthogonal expansion. Indeed, if we define
+$$
+C_n(x) \equiv \frac{1}{\sqrt{L}} \cos \frac{\pi nx}{L} \quad , \quad S_n(x) \equiv \frac{1}{\sqrt{L}} \sin \frac{\pi nx}{L} \ ,
+$$
+then each set of functions forms an orthonormal set, with $\langle C_m | C_n \rangle = \langle S_m | S_n \rangle = \delta_{mn}$, and the functions in each set are always orthogonal to each other, with $\langle C_m | S_n \rangle = 0$. These facts can easily be shown by writing $C_n$ and $S_n$ in terms of $f_n$ and plugging those expressions into the inner product and simplifying terms, with no integration needed.
+
+Let's work a brief example to show how to actually find the Fourier series for some simple function.
+
+##### Example: Fourier series of a rectangular pulse
+
+Suppose we have a function $f(x)$ representing a rectangular pulse of height $h$ on the interval $-L \leq x \leq L$, with
+$$
+f(x) = \begin{cases}
+0 , & -L \leq x \leq -\frac{L}{2} \ , \\
+h , & -\frac{L}{2} < x < \frac{L}{2} \ , \\
+0 , & \frac{L}{2} \leq x \leq L \ .
+\end{cases}
+$$
+We'd like to expand this function as a Fourier series. To do that, we need to find the coefficients $c_n$. According to the formula above, we have
+$$
+\begin{align*}
+c_n &= \frac{1}{2L} \int_{-L}^L dx \ f(x) \exp\bigg(-\frac{\pi in x}{L}\bigg) \\
+&= \frac{1}{2L} \int_{-\frac{L}{2}}^{\frac{L}{2}} dx \ h \exp\bigg(-\frac{\pi in x}{L}\bigg) \\
+&= \frac{h}{2L} \frac{2L}{n\pi} \frac{1}{2i} \bigg(\exp\bigg(\frac{\pi in}{L}\frac{L}{2}\bigg) - \exp\bigg(-\frac{\pi in}{L}\frac{L}{2}\bigg)\bigg) \\
+&= \frac{h}{n\pi} \sin \frac{n\pi}{2} \\
+&= \begin{cases}
+\frac{h}{n\pi} & n=\pm 1, \pm 5, \pm 9, \cdots \\
+-\frac{h}{n\pi} & n=\pm 3, \pm 7, \pm 11, \cdots \\
+0 & n=\pm 2, \pm 4, \pm 6, \cdots
+\end{cases} \ .
+\end{align*}
+$$
+The case when $n=0$ we have to check separately. In that case, the integral is just $\frac{1}{2L}$ times the area of the pulse, which is $hL$. This gives $c_0 = \frac{h}{2}$. Now, could proceed to plug these coefficients into the complex Fourier series, but in this case it's more useful to work with the real Fourier series as we'll see. Using the conversion formulas between $c_n$ and $a_n, b_n$ we have
+$$
+a_0 = h \quad , \quad a_n = \pm \frac{2h}{n\pi} \quad , \quad b_n = 0 \ .
+$$
+Then the real Fourier series expansion is given by
+$$
+f(x) = \frac{a_0}{2} + \sum_{n=1}^\infty a_n \cos \frac{\pi n x}{L} = \frac{h}{2} + \frac{2h}{\pi} \bigg[\cos \frac{\pi x}{L} - \frac{1}{3}\cos \frac{3\pi x}{L} + \frac{1}{5}\cos \frac{5\pi x}{L} - \frac{1}{7}\cos \frac{7\pi x}{L} + \cdots \bigg] \ .
+$$
+Notice that each term in the series decays as $\frac{1}{n}$. This means we can approximate this series by keeping only the first few terms. Below we show a plot of the pulse function $f(x)$ overlaid with plots of these Fourier approximations for different $n$. Notice that as we keep more terms, the series better and better approximates the behavior of $f(x)$, which is what we'd expect.
+
+FIGURE
+
+Notice something curious from this plot. Around the discontinuous points at $x = \pm \frac{L}{2}$ the series never seems to converge to the function's value at those points. This is a general fact about Fourier series. They will only converge at points where the function is actually continuous. At discontinuous points the series will converge to the average value of the left and right limits. Moreover, there will always be a weird spike around the discontinuities that's about 9% of the gap. This is the strange *Gibbs phenomenon*.
+
+Had we been smarter, we'd notice something that could've greatly simplified this problem: The pulse function $f(x)$ is *even*. If we stare at the Fourier series, we see that only the cosine terms are even, while the sine terms are all odd. This means the only way we could expand an even function is if we require all the odd coefficients to vanish, leaving us with
+$$
+f(x) = \frac{a_0}{2} + \sum_{n=1}^\infty a_n \cos \frac{\pi n x}{L} \ .
+$$
+This is called a *cosine series*. Any even function can be expanded this way. Had we recognized this, we could've just calculated $a_0$ and $a_n$ and we'd be done. A similar fact is true for odd functions. In that case, all the even coefficients must vanish, leaving us with a *sine series* instead.
+
+---
+
+It turns out that the Fourier series is closely related to the Fourier transform. To see this we'll first define $k \equiv \frac{n\pi}{L}$ and write $c_n$ as $c_n = \frac{1}{2L} f(k)$. Now, if we let $L \rightarrow \infty$, we can replace the sum over $n$ by an integral over $k$ as follows,
+$$
+\begin{align*}
+f(x) &= \sum_{n=-\infty}^\infty c_n \exp\bigg(\frac{\pi inx}{L}\bigg) \\
+&\approx \int_{n=-\infty}^\infty dn \ c_n \exp\bigg(\frac{\pi inx}{L}\bigg) \\
+&\approx \int_{-\infty}^\infty \frac{L dk}{\pi} \ \frac{1}{2L} f(k) e^{ikx} \\
+&\approx \int_{-\infty}^\infty \frac{dk}{2\pi} \ f(k) e^{ikx} \ .
+\end{align*}
+$$
+Thus, we can think of the Fourier transform as the continuum limit of the Fourier series. An immediate consequence of this result is that the Fourier transforms $f(k)$ are also orthogonal functions, but in a continuous sense. In the continuum limit, we have a set of basis functions on the real line given by
+$$
+f_k(x) = \frac{1}{2\pi} e^{i k x} \ .
+$$
+If we think of the inner product as integration over $k$ instead of a discrete sum, we can write
+$$
+\langle f_{k'} | f_k \rangle = \frac{1}{(2\pi)^2} \int_{-\infty}^\infty dx \ e^{i(k-k')x} = \frac{1}{2\pi} \delta(k-k') \ .
+$$
+As long as $k' \neq k$ this inner product is zero, and we say that $f_{k'}$ and $f_k$ are orthogonal. However, when $k'=k$ the inner product blows up since the delta function becomes infinite. Nevertheless, if we ignore this subtlety and just focus on the constant out front, we can say that $\langle f_k | f_k \rangle \sim \frac{1}{2\pi}$. Notice that the result isn't one, which we'd expect if the $f_k$ were normalized. The only reason for this is because of the convention we've chosen to define the Fourier transform. We can redefine the Fourier transform to make things normalized, and thus get an orthonormal expansion, but we won't bother with that convention in this course.
+
+We can easily recover the inverse Fourier transform as well by noting that the expansion coefficients of $f(x)$ are just the Fourier transformed functions $f(k)$. Indeed, if we set $f(k) = \langle f_k | f \rangle$ we get the usual inverse transform relation
+$$
+f(k) = \int_{-\infty}^\infty dx \ f_k^*(x) f(x) = \int_{-\infty}^\infty dx \ f(x) e^{-ikx} \ .
+$$
+These results create a useful link between Fourier series and Fourier transforms.
+
+### Legendre Polynomials
+
+We'll now look at another class of orthogonal functions known as the Legendre polynomials. The Legendre polynomials arise in physics primarily when trying to use separation of variables on the Laplacian in spherical coordinates.
+
+There are several ways one can define these polynomials. To keep the math as simple as possible we'll define these via a *generating function*. A generating function for a set of functions $f_n(x)$ is any function $g(x,t)$ such that
+$$
+g(x,t) = \sum_n f_n(x) t^2 \ .
+$$
+In our case, we'll define a generating function of the form
+$$
+g(x,t) \equiv \frac{1}{\sqrt{1 - 2xt + t^2}} \equiv \sum_{\ell=0}^\infty P_\ell(x) t^\ell \ .
+$$
+If we expand $g(x,t)$ in a Taylor series in $t$ about $t=0$, we get
+$$
+g(x,t) = 1 + xt + \frac{1}{2} (3x^2 - 1) t^2 + \frac{1}{2} x(5x^2 - 3) t^3 + \frac{1}{8} (35x^4 - 30x^2 + 3) t^4 + \cdots \ .
+$$
+We'll define the *Legendre polynomials* as the set of coefficient functions $P_\ell(x)$ in this series expansion of $g(x,t)$,
+$$
+\begin{align*}
+P_0(x) &\equiv 1 \ , \\
+P_1(x) &\equiv x \ , \\
+P_2(x) &\equiv \frac{1}{2} (3x^2 - 1) \ , \\
+P_3(x) &\equiv \frac{1}{2} x(5x^2 - 3) \ , \\
+P_4(x) &\equiv \frac{1}{8} (35x^4 - 30x^2 + 3) \ , \\
+&\vdots \\
+P_\ell(x) &\equiv \ell! \frac{\partial g}{\partial t} \bigg|_{t=0} \ .
+\end{align*}
+$$
+As the name suggests, the Legendre polynomials are all polynomials, with each $P_\ell(x)$ being a polynomial of degree $\ell$. We can see a plot of the first few polynomials in the figure below. Notice that $P_\ell(x)$ is odd when $\ell$ is odd, and even when $\ell$ is even.
+
+![](../resources/image-20240820193434775.png){fig-align=center width=400}
+
+By using the binomial theorem to expand $g(x,t)$ in powers of $2xt-t^2$ and collecting terms, it's not too hard to show that
+$$
+P_\ell(x) = \sum_{j=0}^{\lfloor\ell/2\rfloor} (-1)^j \frac{(2\ell-2j)!}{2^\ell j! (\ell-2j)! (\ell-j)!} x^{\ell-2j} \ .
+$$
+Through some manipulation, we can re-write this series expression in a different form by differentiating $n$ times to get
+$$
+P_\ell(x) = \frac{1}{2^\ell \ell!} \frac{d^\ell}{dx^\ell} \sum_{j=0}^{\ell} \frac{(-1)^j \ell!}{j! (\ell-j)!} x^{2\ell-2j} \ .
+$$
+Now, notice the sum is just the binomial expansion of $(x^2-1)^\ell$. This means we have
+$$
+P_\ell(x) = \frac{1}{2^\ell \ell!} \frac{d^\ell}{dx^\ell} (x^2 - 1)^\ell \ .
+$$
+This formula is called the *Rodrigues' Formula*. Among other uses, it's perhaps one of the easier ways to find $P_\ell(x)$ in practice.
+
+The Legendre polynomials turn out to provide a complete orthogonal set of functions on the interval $-1 \leq x \leq 1$.  To see that, we'll show that they satisfy the *Legendre differential equation* defined by
+$$
+\frac{d}{dx} \bigg((1-x^2)\frac{dP}{dx}\bigg) - \lambda P = 0 \ .
+$$
+This clearly has the correct Sturm-Liouville form, with $p(x) = 1-x^2$, $q(x) = 0$, and $w(x) = 1$. Notice that we didn't specify the boundary conditions. In fact we don't really need to. Recall that in proving that the Sturm-Liouville operator is Hermitian we had the following formula,
+$$
+\begin{align*}
+\big\langle \big(\mathcal{L}-\frac{q}{w}\big) f \big| g \big\rangle = \bigg[p(x)g(x) \frac{d}{dx}f^*(x) - p(x)f^*(x) \frac{d}{dx}g(x) \bigg]_{x=a}^{x=b} + \big\langle \big(\mathcal{L}-\frac{q}{w}\big) f \big| g \big\rangle \ .
+\end{align*}
+$$
+The way we forced this relationship to be Hermitian was to require that the boundary terms vanish by requiring that some linear combination of $f$ and $\frac{df}{dx}$ vanish at the endpoints. However, notice that the boundary terms will *also* vanish if $p(x)$ happens to vanish at the boundary, so long the eigenfunctions and their first derivatives are finite at the endpoints. This is what we have with the Legendre equation. Since $p(x) = 1-x^2$ we can be sure the boundary terms will vanish, thus ensuring we have a valid Sturm-Liouville problem.
+
+Anyway, we still need to show that the Legendre polynomials solve this differential equation. To do that we'll derive several recursive relations for $P_\ell(x)$ from the generating function, and show that those relations imply $P_\ell(x)$ will solve Legendre's equation with an eigenvalue of $\lambda = -\ell(\ell+1)$.
+
+Notice if we differentiate the generating function $g(x,t)$ with respect to $x$ and $t$ that we get
+$$
+\begin{align*}
+\frac{\partial g}{\partial x} &= \frac{t}{(1 - 2xt + t^2)^{3/2}} = \frac{t g(x,t)}{1 - 2xt + t^2} = \sum_\ell \frac{dP_\ell}{dx} t^n \ , \\
+\frac{\partial g}{\partial t} &= \frac{x-t}{(1 - 2xt + t^2)^{3/2}} = \frac{(x-t) g(x,t)}{1 - 2xt + t^2} = \sum_\ell \ell P_\ell(x) t^{\ell-1} \ .
+\end{align*}
+$$
+By collecting terms in the series and requiring the coefficient of each power of $t$ to independently vanish, one can show that we get the following recursive relations,
+$$
+\begin{align*}
+(2\ell+1) x P_\ell(x) &= (\ell+1) P_{\ell+1}(x) + \ell P_{\ell-1}(x) \ , \\
+\frac{d}{dx} P_{\ell+1}(x) + \frac{d}{dx} P_{\ell-1} &= 2x \frac{d}{dx} P_\ell(x) + P_\ell(x) \ , \\
+\frac{d}{dx} P_{\ell+1}(x) - \frac{d}{dx} P_{\ell-1} &= (2\ell+1) P_\ell(x) \ .
+\end{align*}
+$$
+We can then combine these relations together to get two more useful relations,
+$$
+\begin{align*}
+(1 - x^2) \frac{d}{dx} P_\ell(x) &= \ell P_{\ell-1}(x) - \ell x P_\ell(x) \ , \\
+\frac{d}{dx} P_{\ell-1}(x) &= -\ell P_\ell(x) + x \frac{d}{dx} P_\ell(x) \ .
+\end{align*}
+$$
+Now, we can differentiate the first equation and use the second equation to eliminate $\frac{d}{dx} P_{\ell-1}(x)$. We then get
+$$
+(1 - x^2) \frac{d^2}{dx^2} P_\ell(x) - 2x \frac{d}{dx} P_\ell(x) + \ell(\ell+1) P_\ell(x) = 0 .
+$$
+But this is exactly Legendre's equation in expanded form with $\lambda = -\ell(\ell+1)$. We've thus shown that $P_\ell(x)$ satisfies Legendre's equation with associated eigenvalue $\lambda = -\ell(\ell+1)$.
+
+Since the Legendre polynomials satisfy a Sturm-Liouville problem, we know they must form a complete orthogonal set of functions on the interval $-1 \leq x \leq 1$. This means we can expand any function $f(x)$ on this interval in terms of them, as
+$$
+f(x) = \sum_{\ell=0}^\infty c_\ell P_\ell(x) \ .
+$$
+We still don't know though whether the Legendre polynomials are normalized. Since evaluating the inner product is too cumbersome, we'll again appeal to the generating function for this. Notice if we square $g(x,t)$ and integrate over the interval with a change of variable $u = 1 - 2tx + t^2$, we get
+$$
+\int_{-1}^1 \frac{dx}{1 - 2tx + t^2} = \frac{1}{2t} \int_{(1-t)^2}^{(1+t)^2} \frac{du}{u} = \frac{1}{t} \log \frac{1+t}{1-t} \ .
+$$
+Since we can expand $g(x,t)$ as a series of Legendre polynomials, we also must have
+$$
+\int_{-1}^1 dx \ \bigg(\sum_\ell P_\ell(x) t^\ell \bigg)^2 = \sum_\ell t^{2\ell} \int_{-1}^1 dx \ \big(P_\ell(x)\big)^2 \ .
+$$
+Expanding the logarithm and equating the two series, we get
+$$
+\frac{1}{t} \log \frac{1+t}{1-t} = \sum_\ell \frac{2t^{2\ell}}{2\ell+1} = \sum_\ell t^{2\ell} \int_{-1}^1 dx \ \big(P_\ell(x)\big)^2 \ .
+$$
+This means at each power $t^{2\ell}$ we must have
+$$
+\langle P_\ell | P_\ell \rangle = \int_{-1}^1 dx \ \big(P_\ell(x)\big)^2 = \frac{2}{2\ell+1} \ .
+$$
+Thus, the Legendre polynomials aren't quite normalized. Instead we have the orthogonality condition
+$$
+\langle P_k | P_\ell \rangle = \frac{2 \delta_{k\ell}}{2\ell+1} \ .
+$$
+This means the coefficients in the orthogonal expansion are given by
+$$
+c_\ell = \frac{2\ell+1}{2} \int_{-1}^1 dx \ P_\ell(x) f(x) \ .
+$$
+Note that in physics applications, the Legendre polynomials usually appear in a slightly different form. They arise in solving the angular equation, which comes from applying separation of variables to the Laplacian in spherical coordinates. In that setting we're presented with a differential equation of the form
+$$
+\frac{d}{d\theta} \bigg(\sin\theta \frac{df}{d\theta}\bigg) + \ell (\ell+1) \sin^2 \theta = 0 \ .
+$$
+It's easy to see that if we do a change of variables $x = \cos\theta$ this equation reduces to the Legendre equation, meaning its solutions are given by $P_\ell(x) = P_\ell(\cos\theta)$. Since $-1 \leq \cos\theta \leq 1$ the polynomials naturally falls on the correct interval, and we can apply everything learned in this section. We'll see more on this later.
+
+### Bessel Functions
+
+We'll now consider a different class of orthogonal functions called *Bessel functions*. In physics, Bessel functions usually arise when trying to use separation of variables on the Laplacian in cylindrical coordinates.
+
+As with Legendre polynomials, there are any number of ways we can define Bessel functions. We'll again use the generating function approach since it's the easiest. Define
+$$
+g(x,t) \equiv e^{xt/2} e^{-x/2t} \equiv \sum_{n=-\infty}^\infty J_n(x) t^n \ .
+$$
+If we expand this function in powers of $t$, we get a prod
+$$
+
+$$
+
+
+
+## Separation of Variables
+
+In the previous chapter we showed that, at least formally, we can solve Poisson's equation subject to some set of boundary conditions by first finding the Green's function and then writing the potential as
+$$
+\phi(\mathbf{x}) = \int_\mathcal{V} d^3 \mathbf{x}' \ \rho(\mathbf{x}') G(\mathbf{x} - \mathbf{x}') + \frac{1}{4\pi} \oint_\mathcal{S} da' \ \bigg[G \frac{\partial \phi}{\partial n'} - \phi \frac{\partial G}{\partial n'} \bigg] \ ,
+$$
+where only either the first or second boundary term is kept depending on the type of boundary conditions used. We also showed that for some problems with high degrees of symmetry, we can use the method of images to write down the potential for a corresponding image problem, and then use that to find the Green's function if desired.
+
+This isn't, however, the *only* way to solve Poisson's equation, nor is it always the most useful. Usually the above integral is very difficult to solve in practice, since we'd first need to find the Green's function. Moreover, the method of images only works on a small subclass of problems, not more difficult ones.
+
+Another way we can proceed is to attempt to solve Poisson's equation directly using PDE methods. From the theory of differential equations, we know we can solve any linear differential equation in two parts:
+
+- Find a *homogenous solution* $\phi_h$ that satisfies the differential equation in the absence of any sources, subject to the boundary conditions.
+- Find any *particular solution* $\phi_p$ that solves the original differential equation in the absence of boundary conditions.
+
+For Poisson's equation, the homogeneous solution is any function $\phi_h$ that satisfies Laplace's equation subject to the boundary conditions.
+$$
+\nabla^2 \phi_h = 0 \ .
+$$
+The particular solution is just the solution to Poisson's equation in the absence of boundary conditions. For a localized charge distribution, this is just the integral formula
+$$
+\phi_h(\mathbf{x}) = \int d^3 \mathbf{x}' \ \frac{\rho(\mathbf{x}')}{|\mathbf{x} - \mathbf{x}'|} \ .
+$$
+Once we've found these two functions, the general solution to the differential equation is just given by their sum,
+$$
+\phi(\mathbf{x}) = \phi_p(\mathbf{x}) + \phi_h(\mathbf{x}) \ .
+$$
+Notice how similar this looks to the formal solution. The integral in the formal solution is just the particular solution $\phi_p$, and the second integral is just the homogeneous solution $\phi_h$. Indeed, $\phi_h$ is closely related to the $F(\mathbf{x}-\mathbf{x}')$ term of the Green's function.
+
+We'll focus now on localized charge distributions, so that the particular solution can always be found via the integral formula. Since we know how to find this term in principle, what remains is figuring out how to find the homogeneous solution. This involves solving Laplace's equation subject to the given boundary conditions.
+
+### Formal Procedure
+
+We'll now introduce the most common method for solving Laplace's equation analytically, the *separation of variables*. Suppose $\phi(\mathbf{x})$ is some function satisfying Laplace's equation subject to some given boundary conditions,
+$$
+\nabla^2 \phi = 0 \ .
+$$
+Our goal is to solve this PDE directly. The separation of variables technique works by assuming a trial solution $\phi(\mathbf{x})$ that can be decomposed into a product of univariate functions,
+$$
+\phi(\mathbf{x}) = U(u) V(v) W(w) \ ,
+$$
+where $(u,v,w)$ is the representation of $\mathbf{x}$ in some orthogonal coordinate system. Suppose the Laplacian in this coordinate system has the general form
+$$
+\nabla^2 \phi = a_u(u,v,w) \frac{\partial}{\partial u} \bigg(b_u(u) \frac{\partial \phi}{\partial u}\bigg) + a_v(u,v,w) \frac{\partial}{\partial v} \bigg(b_v(v) \frac{\partial \phi}{\partial v}\bigg) + a_w(u,v,w) \frac{\partial}{\partial w} \bigg(b_w(w) \frac{\partial \phi}{\partial w}\bigg) \ .
+$$
+If we plug in our trial solution and simplify, we get
+$$
+\begin{align*}
+\nabla^2 \phi &= a_u \frac{\partial}{\partial u} \bigg(b_u \frac{\partial}{\partial u} UVW\bigg) + a_v \frac{\partial}{\partial v} \bigg(b_v \frac{\partial}{\partial v} UVW\bigg) + a_w \frac{\partial}{\partial w} \bigg(b_w \frac{\partial}{\partial w} UVW\bigg) \\
+&= VW a_u \frac{d}{du} \bigg(b_u \frac{dU}{du}\bigg) + UW a_v \frac{d}{dv} \bigg(b_v \frac{dV}{dv}\bigg) + UV a_w \frac{d}{dw} \bigg(b_w \frac{dW}{dw}\bigg) \ .
+\end{align*}
+$$
+To satisfy Laplace's equation we require that $\nabla^2 \phi = 0$. We can thus divide both sides by $UVW$ to get
+$$
+0 = \frac{a_u}{U} \frac{d}{du} \bigg(b_u \frac{dU}{du}\bigg) + \frac{a_v}{V} \frac{d}{dv} \bigg(b_v \frac{dV}{dv}\bigg) + \frac{a_w}{W} \frac{d}{dw} \bigg(b_w \frac{dW}{dw}\bigg) \ .
+$$
+Now, if we can further assume that $a_u,a_v,a_w$ are each functions of only their own variable, then each term in this sum is an independent function of its own variable. That is, we have an equation of the form
+$$
+0 = f(u) + g(v) + h(w) \ .
+$$
+Since each of these functions are independent, the only way their sum can be zero for all $u,v,w$ is if each function is constant and these constants all sum to zero, i.e.
+$$
+f(u) = \alpha \ , \ g(v) = \beta \ , \ h(w) = \gamma \ , \ \alpha + \beta + \gamma = 0 \ .
+$$
+Plugging these constants in, we've managed to reduce the PDE down to 3 coupled ordinary differential equations for $U,V,W$,
+$$
+\begin{align*}
+a_u \frac{d}{du} \bigg(b_u \frac{dU}{du}\bigg) &= \alpha U \ , \\
+a_v \frac{d}{dv} \bigg(b_v \frac{dV}{dv}\bigg) &= \beta V \ , \\
+a_w \frac{d}{dw} \bigg(b_w \frac{dW}{dw}\bigg) &= \gamma W \ , \\
+\alpha + \beta + \gamma &= 0 \ .
+\end{align*}
+$$
+All that remains now is to solve each of these ODEs and impose the boundary conditions. Provided we can find a set of three functions $U,V,W$ that solve these ODEs as well as the boundary conditions, we can reassemble them to get the full solution.
+
+Note that if the assumption that $a_u, a_v, a_w$ are functions only of their own variable is not true, we can't separate Laplace's equation into a set of ODEs anymore, since each term in the sum is no longer independent. In this scenario, it's still often true that we can multiply the equation by some other function $\psi$, such that $\psi a_u$ is a function only of $u$, even if $a_u$ is not, and so on. We'll see an example of this when we cover separation of variables in spherical coordinates below.
+
+### Cartesian Coordinates
+
+In Cartesian coordinates $(x,y,z)$ the separation of variables technique becomes especially simple. In this coordinate system, the Laplacian is just the sum of the three second partial derivatives,
+$$
+\nabla^2 \phi = \frac{\partial^2 \phi}{\partial x^2} + \frac{\partial^2 \phi}{\partial y^2} + \frac{\partial^2 \phi}{\partial z^2} \ .
+$$
+We apply the separation of variables in this coordinate system by supposing a trial solution exists of the form
+$$
+\phi(\mathbf{x}) = X(x) Y(y) Z(z) \ .
+$$
+Plugging this into Laplace's equation and dividing by $\phi = XYZ$, we get
+$$
+0 = \frac{1}{X} \frac{d^2 X}{dx^2} + \frac{1}{Y} \frac{d^2 Y}{dy^2} + \frac{1}{Z} \frac{d^2 Z}{dz^2} \ .
+$$
+Again, since each term is a function of its own variable, the only way this equation can be satisfied for all coordinate values is if each term is constant, and those constants sum to zero,
+$$
+\frac{d^2 X}{dx^2} = \alpha X \ , \ \frac{d^2 Y}{dy^2} = \beta Y \ , \ \frac{d^2 Z}{dz^2} = \gamma Z \ , \ \alpha + \beta + \gamma = 0 \ .
+$$
+All that remains is to solve each of these ODEs and impose the boundary conditions. Notice that each of these ODEs is just a linear second order differential equation. This means their solutions will always be just a sum of two exponential functions, with real exponents if the separation constant is positive, and imaginary exponents if the separation constant is negative.
+
+Let's now work a few examples to hopefully make this technique a bit easier to understand.
+
+##### Example: Two infinite parallel grounded conducting sheets
+
+Suppose we have two grounded parallel conducting sheets separated by a distance $L$. On one end, the two sheets are separated with insulating material from a perpendicular third conducting sheet held at a constant potential $V$. On the other end, the two parallel sheets extend infinitely far.
+
+FIGURE
+
+We'll assume the sheets are oriented parallel to the $xz$-plane and separated along the $y$-axis from $y=0$ to $y=L$. This means the sheet is held at constant potential $\phi = V$ at $x=0$, and at $\phi = 0$ when $y=0$ or $y=L$. Assume there are no other source charges present, this means we have the following boundary value to solve,
+$$
+\begin{align*}
+\begin{cases}
+\nabla^2 \phi = 0 \ , \\
+\text{where} \ \phi(0,y) = V \ , \\
+\phi(x,0) = \phi(x,L) = 0 \ .
+\end{cases}
+\end{align*}
+$$
+We'll also impose the condition that $\phi(x,y) \rightarrow 0 \ \text{as} \ x \rightarrow \infty$ to keep things somewhat physically sensible.
+
+Now we can employ separation of variables. Suppose a trial solution of the form
+$$
+\phi(x,y) = X(x) Y(y) \ .
+$$
+We neglect the $z$ coordinate since it isn't contributing anything to the problem. Now, if we plug this trial solution into Laplace's equation, we find the problem reduces to solving two ODEs,
+$$
+\frac{1}{X} \frac{d^2 X}{dx^2} = \alpha \quad , \quad \frac{1}{Y} \frac{d^2 Y}{dy^2} = \beta \quad , \quad \alpha + \beta = 0 \ .
+$$
+For later convenience, we'll set $\alpha = k^2$, which immediately implies $\beta = -k^2$. We now have two ordinary differential equations left to solve subject to the boundary conditions,
+$$
+\frac{d^2 X}{dx^2} = k^2 X \quad , \quad \frac{d^2 Y}{dy^2} = -k^2 Y \ .
+$$
+These are both linear second order equations that are easy to solve. The general solution for the first equation is given by
+$$
+X(x) = A e^{kx} + B e^{-kx} \ .
+$$
+If we impose the condition that $\phi \rightarrow 0 \ \text{as} \ x \rightarrow \infty$, we see the first term has to vanish, leaving only
+$$
+X(x) = B e^{-kx} \ .
+$$
+Next, the general solution for the second equation can be written as
+$$
+Y(y) = C \cos ky + D \sin ky \ .
+$$
+This solution has to satisfy the boundary conditions $Y(0) = Y(L) = 0$. Plugging in the first condition requires $C=0$. Plugging in the second condition, we're left with
+$$
+Y(y) = D \sin kL = 0 \ .
+$$
+The only way this can be true is if either $D=0$ or $kL$ is an integer multiple of $\pi$. If $D=0$ we're dead in the water, since that would give the trivial solution $\phi = 0$. We're thus left to impose the second condition. Suppose $kL = \pi n$ for some positive integer $n$. This implies that $k$ must be *quantized* as a function of $n$, with
+$$
+k_n = \frac{n\pi}{L} \quad , \quad n=1,2,3,\cdots \ .
+$$
+Putting all of this together and ignoring the remaining constants $B$ and $D$, we have a family of trial solutions $\phi_n$ given by,
+$$
+\phi_n(x,y) = \exp\bigg(-\frac{n\pi x}{L}\bigg) \sin\bigg(\frac{n\pi y}{L}\bigg) \ .
+$$
+Provided this family of solutions forms a complete set, we can use the superposition principle to express the general solution for the potential by
+$$
+\phi(x,y) = \sum_n c_n \phi_n(x,y) \ .
+$$
+We're still not done though. We don't know what the coefficients $c_n$ are, and we still haven't imposed the last of the boundary conditions requiring $\phi(0,y) = V$. To proceed from here we can use the properties of the inner product of functions.
+
+If we expand out the final boundary condition in terms of the trial solutions, we get
+$$
+V = \phi(0,y) = \sum_n c_n \sin\bigg(\frac{n\pi y}{L}\bigg) \ .
+$$
+Now, observe that the basis functions $\sin \frac{n\pi y}{L}$ are Fourier functions. As we mentioned before, this means they form an orthonormal set on the interval $0 \leq y \leq L$, and we can represent any *odd* function as an orthogonal expansion of these basis functions. So long as we can show that $\phi(x,y)$ is an odd function in $y$, we can appeal to completeness to know that the orthogonal expansion gives the general solution for $\phi(x,y)$.
+
+Anyway, if we now take the inner product of both sides with respect to some $\phi_m(0,y)$ we evidently get
+$$
+\bigg\langle \sin \frac{m\pi y}{L} \bigg| V \bigg\rangle = \sum_n c_n \bigg\langle \sin \frac{m\pi y}{L} \bigg | \sin \frac{n\pi y}{L} \bigg\rangle \ .
+$$
+Evaluating the left-hand side, we get
+$$
+\begin{align*}
+\bigg\langle \sin \frac{m\pi y}{L} \bigg| V \bigg\rangle &= V \int_0^L dy \ \sin \frac{m\pi y}{L} \\
+&= \frac{VL}{m\pi} \big(1 - \cos n\pi\big) \\
+&= \frac{VL}{m\pi} \big(1 - (-1)^n\big) \\
+&= \begin{cases}
+\frac{2VL}{m\pi}, & n = 1,3,5,\cdots \\
+0 , & n=0,2,4,\cdots
+\end{cases} \ .
+\end{align*}
+$$
+Evidently, only the odd powers of $n$ will contribute anything to the sum, while the even terms will all vanish. The implication of this is that the potential that solves the BVP must be an odd function in $y$, i.e. $\phi(x,y) = -\phi(x,-y)$.
+
+Evaluating the inner product on the right-hand side, we get
+$$
+\begin{align*}
+\bigg\langle \sin \frac{m\pi y}{L} \bigg | \sin \frac{n\pi y}{L} \bigg\rangle &= \int_0^L dy \ \sin \frac{m\pi y}{L} \sin \frac{n\pi y}{L} \\
+&= \frac{L}{\pi} \frac{1}{m^2-n^2} \bigg[n\sin \frac{m\pi y}{L} \cos \frac{n\pi y}{L} - m\cos \frac{m\pi y}{L} \sin \frac{n\pi y}{L}\bigg]_{y=0}^{y=L} \\
+&= \frac{L}{\pi} \frac{1}{m^2-n^2} \big(n\sin m\pi \cos n\pi - m\cos m\pi \sin n\pi\big) \\
+&= \begin{cases}
+\frac{L}{2} \ , & m=n \\
+0 \ , & m \neq n
+\end{cases} \ .
+\end{align*}
+$$
+This means the boundary condition we need to solve requires the coefficients to be given by
+$$
+\frac{2VL}{m\pi} = \sum_n c_n \frac{L}{2} \delta_{nm} = \frac{L}{2} c_m \quad \Longrightarrow \quad c_m = \frac{4V}{m\pi} \ \ , \ \ m=1,3,5,\cdots \ .
+$$
+Putting this all together we have an expression for the potential that solves this BVP,
+$$
+\phi(x,y) = \frac{4V}{\pi} \sum_{n=1,3,\cdots} \frac{1}{n} \exp\bigg(-\frac{n\pi x}{L}\bigg) \sin\bigg(\frac{n\pi y}{L}\bigg) \ .
+$$
+If we like, we can further simplify this expression by noting that the sum on the right-hand side has a closed form given by
+$$
+\phi(x,y) = \frac{2V}{\pi} \tan^{-1} \bigg(\frac{\sin \frac{\pi y}{L}}{\sinh \frac{\pi x}{L}}\bigg) \ .
+$$
+Since this potential is only a function of two variables, we can plot its equipotentials with a contour plot in the $xy$-plane. In the $x$-direction, the potential is highest at $x=0$, where $\phi(0,y)=V$ before dying off exponentially as $x \rightarrow \infty$. In the $y$-direction, the potential goes to zero at the endpoints $y=0$ and $y=L$, and hits its maximum at the midpoint $y=\frac{L}{2}$.
+
+So how do we know that this expression is in fact the general solution? This is where the uniqueness theorem comes into play. Remember that so long as we can find a potential that satisfies the BVP, we know it must be unique. Since this potential satisfies all the boundary conditions by construction, we know it must be the unique solution.
+
+##### Example: Infinite conducting rectangular pipe held at constant potential on one end
+
+Let's now consider a slight generalization of the previous problem. Suppose we have a rectangular infinitely long conducting pipe. One end of the pipe is held at a constant potential $V$, while the other end extends infinitely far. Suppose the pipe has a finite width $a$ and a finite depth $b$, and the sides of the pipe are grounded. We want to find the potential inside the pipe.
+
+FIGURE
+
+We'll orient the pipe exactly like we did in the previous problem, with the length along the $x$-axis, and the width and depth along the $y$ and $z$ axes. At $x=0$ the potential is held constant, with $\phi(0,y,z)=V$. At $y=0$ and $y=a$, and at $z=0$ and $z=b$, the pipe is grounded, with $\phi(x,0,z) = \phi(x,b,z) = \phi(x,y,0) = \phi(x,y,b) = 0$. This means the BVP we seek to solve is
+$$
+\begin{align*}
+\begin{cases}
+\nabla^2 \phi = 0 \ , \\
+\text{where} \ \phi(0,y,z) = V \ , \\
+\phi(x,0,z) = \phi(x,a,z) = 0 \ , \\
+\phi(x,y,0) = \phi(x,y,b) = 0 \ .
+\end{cases}
+\end{align*}
+$$
+We again require that $\phi \rightarrow \infty$ as $x \rightarrow \infty$ to keep the problem physically realistic.
+
+We'll now employ separation of variables. Assume a trial solution of the form
+$$
+\phi(x,y,z) = X(x) Y(y) Z(z) \ .
+$$
+Plugging this into Laplace's equation and simplifying, we find the problem reduces to solving three ODEs,
+$$
+\frac{1}{X} \frac{d^2 X}{dx^2} = \alpha \quad , \quad \frac{1}{Y} \frac{d^2 Y}{dy^2} = \beta \quad , \quad \quad \frac{1}{Y} \frac{d^2 Z}{dz^2} = \gamma \quad , \quad \alpha + \beta + \gamma = 0 \ .
+$$
+Based on the intuition of the previous problem, we'll assume $\beta \equiv -k^2$ and $\gamma \equiv -\ell^2$ are both negative, which requires that $\alpha = \sqrt{k^2 + \ell^2}$ be positive. This gives us three ODEs to solve subject to the boundary conditions,
+$$
+\frac{d^2 X}{dx^2} = (k^2+\ell^2) X \quad , \quad \frac{d^2 Y}{dy^2} = -k^2 Y \quad , \quad \frac{d^2 Z}{dz^2} = -\ell^2 Z \ .
+$$
+The first ODE is solved the same way as in the previous example. Requiring that $X \rightarrow 0$ as $x \rightarrow \infty$ gives
+$$
+X(x) = A e^{-\sqrt{k^2+\ell^2}x} \ .
+$$
+The second and third ODE are both solved the same way as before as well. Imposing the boundary conditions, we get
+$$
+\begin{align*}
+Y(y) = B \sin ky \quad &\Longrightarrow \quad k = \frac{n\pi}{a} \ , \ n=1,2,3,\cdots \ , \\
+Z(z) = C \sin \ell z \quad &\Longrightarrow \quad \ell = \frac{m\pi}{b} \ , \ m=1,2,3,\cdots \ .
+\end{align*}
+$$
+Again, $k$ and $\ell$ are forced to be quantized in terms of positive integers $n$ and $m$ respectively. Putting this all together, the trial solutions form an infinite set of solutions of the form
+$$
+\phi_{nm}(x,y,z) = \exp\bigg(-\sqrt{(n/a)^2+(m/b)^2}\pi x\bigg) \sin \frac{n\pi y}{a} \sin \frac{m\pi z}{b} \ .
+$$
+Now, provided the general solution $\phi(x,y,z)$ is *odd* in both $y$ and $z$, the set of basis functions $\sin \frac{n\pi y}{a} \sin \frac{m\pi z}{b}$ forms a complete set of orthogonal functions on the rectangle where $0 \leq y \leq a$ and $0 \leq z \leq b$. If this is true, we can do an orthogonal expansion and write the general solution in the form
+$$
+\phi(x,y,z) = \sum_{n,m} c_{nm} \phi_{nm}(x,y,z) \ .
+$$
+It remains now to impose the final boundary condition that $\phi(0,y,z) = V$. If we set $x=0$ and take the inner product of both sides with respect to some basis function $\phi_{n'm'}(0,y,z)$, we have
+$$
+\bigg\langle \sin \frac{n'\pi y}{a}\sin \frac{m'\pi z}{b} \bigg| V \bigg\rangle = \sum_{n,m} c_{nm} \bigg\langle \sin \frac{n'\pi y}{a}\sin \frac{m'\pi z}{b} \bigg | \sin \frac{n\pi y}{a}\sin \frac{m\pi z}{b} \bigg\rangle \ .
+$$
+Evaluating the left-hand side the same way as before, we have
+$$
+\begin{align*}
+\bigg\langle \sin \frac{n'\pi y}{a}\sin \frac{m'\pi z}{b} \bigg| V \bigg\rangle &= V \int_0^a dy \ \sin \frac{n'\pi y}{a} \int_0^b dz \ \sin \frac{m'\pi z}{b} \\
+&= V \frac{a}{n'\pi} \frac{b}{m'\pi} \big(1 - (-1)^{n'}\big) \big(1 - (-1)^{m'}\big) \\
+&= \begin{cases}
+\frac{4Vab}{n'm'\pi^2}, & n',m' = 1,3,5,\cdots \\
+0 , & \text{otherwise}
+\end{cases} \ .
+
+\end{align*}
+$$
+This evidently means that the general solution must be odd in both $n$ and $m$. Evaluating now the inner product on the right-hand side, we have
+$$
+\begin{align*}
+\bigg\langle \sin \frac{n'\pi y}{a}\sin \frac{m'\pi z}{b} \bigg | \sin \frac{n\pi y}{a}\sin \frac{m\pi z}{b} \bigg\rangle &= \bigg(\int_0^a dy \sin \frac{n'\pi y}{a} \sin \frac{n\pi y}{a}\bigg) \bigg(\int_0^b dz \ \sin \frac{m'\pi z}{b} \sin \frac{m\pi z}{b}\bigg) \\
+&= \frac{a}{\pi} \frac{n\sin n'\pi \cos n\pi - n'\cos n'\pi \sin n\pi}{n'^2-n^2} \cdot \frac{b}{\pi} \frac{m\sin m'\pi \cos m\pi - m'\cos m'\pi \sin m\pi}{m'^2-m^2} \\
+&= \begin{cases}
+\frac{ab}{4} \ , & n'=n,m'=m \ , \\
+0 \ , & \text{otherwise}
+\end{cases} \ .
+\end{align*}
+$$
+Putting this all together, we have
+$$
+\frac{4Vab}{n'm'\pi^2} = \frac{ab}{4} \sum_{n,m} c_{nm} \delta_{n' n} \delta_{m' m} \ .
+$$
+This relation implies that the coefficients are given by $c_{nm} = \frac{16V}{\pi^2 nm}$. The general solution to the BVP is thus given by
+$$
+\phi(x,y,z) = \frac{16V}{\pi^2} \sum_{n,m=1,3,\cdots} \frac{1}{nm} \exp\bigg(-\sqrt{(n/a)^2+(m/b)^2}\pi x\bigg) \sin\bigg(\frac{n\pi y}{a}\bigg) \sin\bigg(\frac{m\pi z}{b}\bigg)  \ .
+$$
+Again, by the uniqueness theorem we know this must be the unique solution since it satisfies the full BVP. In this case though there's no closed-form solution. However, notice that each term falls off quite rapidly with $n$ and $m$, meaning we can get a reasonable approximation to this potential by keeping only the first few terms in the series.
+
+Visualizing the equipotentials for this problem is also a good deal harder than the last example, since now we'd need to do a 3D contour plot to see the whole thing. Qualitatively speaking, we expect that the potential will be highest at $x=0$ before falling off exponentially. On the other edges of the pipe the potential goes to zero due to grounding, and peaks along the center-line of the pipe where $y=\frac{a}{2}$ and $z=\frac{b}{2}$.
+
+### Spherical Coordinates
+
+Applying separation of variables in Cartesian coordinates is pretty easy due to the fact that the Laplacian takes such a simple form. In curvilinear coordinates though it's not quite as easy, but it's still very useful to solve many interesting problems.
+
+Suppose we now choose to work in spherical coordinates $(r,\theta,\varphi)$. In this coordinate system, the Laplacian is given by
+$$
+\nabla^2 \phi = \frac{1}{r^2} \frac{\partial}{\partial r} \bigg(r^2 \frac{\partial \phi}{\partial r}\bigg) + \frac{1}{r^2 \sin\theta} \frac{\partial}{\partial \theta} \bigg(\sin\theta \frac{\partial \phi}{\partial \theta}\bigg) + \frac{1}{r^2 \sin^2 \theta} \frac{\partial^2 \phi}{\partial \varphi^2} \ .
+$$
+
+Assume a trial solution of the form
+$$
+\phi(\mathbf{x}) = R(r) Y(\theta,\varphi) \ .
+$$
+Plugging this solution into Laplace's equation, dividing by $\phi = RY$, and multiplying by $r^2$, we get
+$$
+0 = \frac{1}{R} \frac{d}{dr} \bigg(r^2 \frac{dR}{dr}\bigg) + \frac{1}{Y}\bigg[\frac{1}{\sin\theta} \frac{\partial}{\partial\theta} \bigg(\sin\theta \frac{\partial Y}{\partial\theta}\bigg) + \frac{1}{\sin^2 \theta} \frac{\partial^2 Y}{\partial\varphi^2}\bigg] \ .
+$$
+Notice that now we don't have three independent terms that sum to zero, but only two. We will separate the $Y$ variable soon. For now it's convenient to keep it as is, since $Y$ turns out to be important in its own right.
+
+Since each term is independent of the other, the only way they can sum to zero is they both equal the same constant but with opposite sign. By convention, we call this constant $\ell (\ell + 1)$ for reasons we'll see soon. We can then separate Laplace's equation into two independent differential equations, with
+$$
+\begin{align*}
+\frac{d}{dr} \bigg(r^2 \frac{dR}{dr}\bigg) &= \ell (\ell+1) R \\
+\frac{\partial}{\partial\theta} \bigg(\sin\theta \frac{\partial Y}{\partial\theta}\bigg) + \frac{\partial^2 Y}{\partial\varphi^2} &= -\ell (\ell+1) \sin^2 \theta \ Y \ .
+\end{align*}
+$$
+We can most easily solve the *radial equation* for $R(r)$ since it's a function of only $r$. The trick here is to do a change of variables where we define $U(r) = rR(r)$. Then $\frac{dR}{dr} = \frac{U}{r} - \frac{dU}{dr}$. Plugging this in and simplifying a bit, we get
+$$
+\frac{d^2 U}{dr^2} = \frac{\ell (\ell+1)}{r^2} U \ .
+$$
+This equation can be solved by assuming a trial solution of the form $U = r^\lambda$ for some $\lambda$ and noticing that plugging this into the ODE requires that $\lambda = -\ell, \ell+1$. Plugging this in and dividing by $r$, we finally get the general solution for the radial equation,
+$$
+R(r) = A r^\ell + B r^{-(\ell+1)} \ .
+$$
+Now we need to deal with the remaining *angular equation*,
+$$
+\frac{\partial}{\partial\theta} \bigg(\sin\theta \frac{\partial Y}{\partial\theta}\bigg) + \frac{\partial^2 Y}{\partial\varphi^2} = -\ell (\ell+1) \sin^2 \theta \ Y \ .
+$$
+To solve this equation, we can again use separation of variables. We assume a trial solution of the form
+$$
+Y(\theta,\varphi) = \Theta(\theta) \Phi(\varphi) \ .
+$$
+Plugging this into the angular equation and dividing by $Y = \Theta \Phi$, we get
+$$
+0 = \frac{1}{\Theta}\bigg[\frac{d}{d\theta} \bigg(\sin\theta \frac{d\Theta}{d\theta}\bigg) + \ell (\ell+1) \sin^2 \theta\bigg] + \frac{1}{\Phi}\frac{d^2 \Phi}{\partial\varphi^2} \ .
+$$
+This gives us two more ODEs. In this case, it's traditional to call the separation constant $m^2$. We end up with
+$$
+\begin{align*}
+\frac{d}{d\theta} \bigg(\sin\theta \frac{d\Theta}{d\theta}\bigg) - m^2 \Theta &= -\ell (\ell+1) \sin^2 \theta \ , \\
+\frac{d^2 \Phi}{\partial\varphi^2} &= -m^2 \Phi \ .
+\end{align*}
+$$
+The second equation for $\Phi$ is easy enough to solve. It's traditional to write this solution in terms of the complex exponential instead of sines and cosines. Ignoring any multiplicative constants, which we can just absorb into $\Theta$, we can write
+$$
+\Phi(\varphi) = e^{\pm im\varphi} \ .
+$$
+Note that this function is only single-valued if we require that $m$ be an integer, with $m=0,1,2,\cdots$.
+
+What remains now is to solve the formidable differential equation for $\Theta$. For this equation, it's customary to define $x=\cos\theta$ and $P(x) \equiv P(\cos\theta) \equiv \Theta(\theta)$ and write the equation in a slightly different way as,
+$$
+\frac{d}{dx} \bigg((1-x^2)\frac{dP}{dx}\bigg) + \bigg(\ell(\ell+1) - \frac{m^2}{1-x^2}\bigg) P = 0 \ .
+$$
+This differential equation is a well-known form. It's called the *Legendre equation*. We'll solve this equation in steps, starting with the simplest case where $m=0$. This special case is equivalent to requiring that the solution be azimuthally symmetric, since in that case $\Phi = 1$ is constant, and hence the solution doesn't depend on $\varphi$.
+
+In this simplified setting, we can write Legendre's equation in the slightly simpler form
+$$
+\frac{d}{dx} \bigg((1-x^2)\frac{dP}{dx}\bigg) + \ell(\ell+1)P = 0 \ .
+$$
+
+
+
+
+
+$$
+Y_{\ell m}(\theta,\varphi) = \sqrt{\frac{2\ell+1}{4\pi} \frac{(\ell-m)!}{(\ell+m)!}} P_{\ell m}(\cos\theta) e^{im\varphi}
+$$
+
+

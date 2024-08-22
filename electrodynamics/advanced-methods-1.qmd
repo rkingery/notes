@@ -1,8 +1,10 @@
-# Advanced Electrostatics
+# Advanced Methods I
 
-In this chapter we will continue on with the subject of electrostatics by focusing on some of the more advanced aspects of the subject. Many of the things we cover in this chapter will also apply to other areas of electromagnetism as well, like magnetostatics and electrodynamics, with minor modifications here and there. We'll discuss those extensions in later chapters. Here we'll focus on methods to find the scalar potential for more complex charge distributions, including Green's theorems, the method of images, orthogonal expansions, the multipole expansion, and conformal mappings.
+In this chapter and the next, we will continue on with the subject of electrostatics by focusing on some of the more advanced aspects of the subject. Many of the things we cover in these two chapters will also apply to other areas of electromagnetism as well, like magnetostatics and electrodynamics, with minor modifications here and there that we'll touch on in future chapters. 
 
-## Formal Solution
+In this chapter, we will derive the formal solution for Poisson's equation using the theory of Green's functions. Once we've done that, we will introduce the closely-related method of images, a technique that can be used to solve electrostatics problems when there are certain symmetries present.
+
+## Poisson's Equation
 
 We saw in the previous chapter that we can in principle calculate the scalar potential $\phi$ due to the presence of a localized charge distribution $\rho$ by evaluating the following integral,
 $$
@@ -14,11 +16,11 @@ One natural way to find the potential in the presence of arbitrary boundary cond
 $$
 \nabla^2 \phi = -4\pi\rho \ .
 $$
-This is a linear second-order PDE with six boundary conditions that need to be specified to find the potential. In this section we will provide a formal way to solve Poisson's Equation in the presence of some set boundary conditions using *Green's Functions*.
+This is a linear second-order PDE. To solve for the exact potential of a given problem, we need to match the PDE with a set of *boundary conditions*. For Poisson's equation we do that by specifying the value of either the potential or its normal derivative along some given *boundary surface*.
 
-### CLEANUP: Green's Function for Poisson's Equation
+### Green's Functions
 
-We will now introduce the idea of a *Green's Function*, which is a very useful and important concept in electromagnetism and many other field theories. We'll see that the Green's function provides a general formulation for solving Poisson's equation, and indeed any linear PDE, even in the presence of boundary conditions.
+We will now introduce the idea of a *Green's Function*, which is a very useful and important concept in electromagnetism and many other field theories. We'll see that the Green's function provides a general formulation for solving Poisson's equation, and indeed for solving any linear PDE.
 
 We already know that for a localized charge distribution in the absense of boundary conditions that the potential can be found by
 $$
@@ -34,88 +36,98 @@ Suppose we wanted to solve Poisson's equation for a single unit point charge loc
 $$
 \nabla^2 G(\mathbf{x} - \mathbf{x}') = -4\pi \delta(\mathbf{x} - \mathbf{x}') \ .
 $$
-Suppose we were able to find this Green's function. We could then multiply both sides by some general charge $q$ to get the potential for a point charge, and then use the principle of superposition to find the potential for a general charge distribution, which turns out to be equivalent to convolution.
-
-
-
-
+Now, suppose as suggested above that we could recover the potential $\phi$ from the Green's function by convolution with the charge density $\rho$,
 $$
-\nabla^2 \phi(\mathbf{x}) = -4\pi \rho(\mathbf{x}) \\
-
-\nabla^2\int d^3\mathbf{x}' \ G(\mathbf{x}-\mathbf{x}') = -4\pi \int d^3\mathbf{x}' \ \delta(\mathbf{x}-\mathbf{x}') \
+\phi(\mathbf{x}) = \int d^3 \mathbf{x}' \ \rho(\mathbf{x}') G(\mathbf{x} - \mathbf{x}') \ .
 $$
-
-- This section is a mess. Redo it by being more thorough about what the Green's function is and how it can be used to construct solutions. Don't just appeal to the integral formula for the potential derived above.
-- See ChatGPT explanation for how to go from $\rho$ in terms of $\delta$ to $\phi$ in terms of $G$.
-- Introduce an intermediate variable $\boldsymbol{\xi}$ to represent the separation vector, and propagate that through the proof below.
-
-
-
-
-
-Since the potential for a unit charge should vanish at infinity, we require that $G(\boldsymbol{\xi}) \rightarrow 0$ as $|\boldsymbol{\xi}| \rightarrow \infty$.
-
-The reason it's useful to find the Green's function is that we can use the principle of superposition to reconstruct the potential for a general charge distribution. To see why, observe we can 
-
-
-
-Indeed, by definition of the delta function, any charge density $\rho$ should satisfy the relation
+If we take the Laplacian of $\phi(\mathbf{x})$, we then have
 $$
-\rho(\mathbf{x}) = \int d^3 \mathbf{x}' \rho(\mathbf{x}') \delta(\mathbf{x} - \mathbf{x}') \ .
+\begin{align*}
+\nabla^2 \phi(\mathbf{x}) &= \nabla^2 \int d^3 \mathbf{x}' \ \rho(\mathbf{x}') G(\mathbf{x} - \mathbf{x}') \\ 
+&= \int d^3 \mathbf{x}' \ \rho(\mathbf{x}') \nabla^2 G(\mathbf{x} - \mathbf{x}') \\
+&= -4\pi \int d^3 \mathbf{x}' \ \rho(\mathbf{x}') \delta(\mathbf{x} - \mathbf{x}') \\
+&= -4\pi \rho(\mathbf{x}) \ .
+\end{align*}
 $$
-This means if 
+This proves that if we can find the Green's function, we can use it to find the potential for any given charge distribution by convolution.
 
+### Green's Function Solution via the Fourier Transform
 
-
-Now, suppose we were able to find $G(\boldsymbol{\xi})$. Since Poisson's equation is a linear PDE, we can bui
-
-
-
-For physical reasons we'll impose the condition that the Green's function vanishes at infinity, $G(\mathbf{x}) \rightarrow 0$ as $|\mathbf{x}| \rightarrow \infty$.
-
-To solve this equation, what we can do is take the Fourier transform of both sides,
+Since we already know that the Green's function for Poisson's equation must be given by
 $$
-\mathcal{F} \big(\nabla^2 G(\mathbf{x})\big) = \mathcal{F} \big(-4\pi \delta(\mathbf{x})\big) \ .
+G(\mathbf{x} - \mathbf{x}') = \frac{1}{|\mathbf{x} - \mathbf{x}'|} \ ,
 $$
-On the right-hand side, we can use the fact that the Fourier transform is a linear operator and that the Fourier transform of the delta function is one to get $\mathcal{F} \big(-4\pi \delta(\mathbf{x})\big) = -4\pi$. For the left-hand side we need to figure out what the Fourier transform of the Laplacian operator is. Recall that $\mathcal{F} \nabla = i \mathbf{k}$, where $\mathbf{k}$ is the Fourier conjugate to $\mathbf{x}$. This means we have
+we could just skip ahead to the next section. However, we want to derive the Green's function yet another way, using the properties of the Fourier transform. We introduce this new method because in future chapters we'll want to find the Green's function for other PDEs in future chapters, where we can't rely on already-known formulas to help us find these functions.
+
+Let's suppose that we wished to solve Poisson's equation for a unit point charge,
 $$
-\mathcal{F} \big(\nabla^2 G(\mathbf{x})\big) = \mathcal{F} \big(\nabla \cdot \nabla G(\mathbf{x})\big) = -|\mathbf{k}|^2 G(\mathbf{k}) \ ,
+\nabla^2 G(\boldsymbol{\xi}) = -4\pi \delta(\boldsymbol{\xi}) \ ,
 $$
-where $G(\mathbf{k})$ is a lazy notation for the the Fourier transform of the Green's function $G(\mathbf{x})$. Putting this together, we have
+where $\boldsymbol{\xi} = \mathbf{x} - \mathbf{x}'$. We'll assume that both $G$ and its normal derivative go to zero as $|\boldsymbol{\xi}| \rightarrow \infty$, a physically realistic assumption.
+
+Now, what we can do is take the Fourier transform of both sides,
+$$
+\mathcal{F} \big(\nabla^2 G(\boldsymbol{\xi})\big) = \mathcal{F} \big(-4\pi \delta(\boldsymbol{\xi})\big) \ .
+$$
+Let $\mathbf{k}$ denote the Fourier conjugate to $\boldsymbol{\xi}$ and $G(\mathbf{k})$ denote the Fourier transform of $G(\boldsymbol{\xi})$. Then the left-hand side becomes
+$$
+\mathcal{F} \big(\nabla^2 G(\boldsymbol{\xi})\big) = \int d^3 \boldsymbol{\xi} \ \nabla^2 G(\boldsymbol{\xi}) e^{-i \mathbf{k} \cdot \boldsymbol{\xi}} \ .
+$$
+Now, if we apply Green's second identity and require that $G$ and its normal derivative vanish at infinity, we get
+$$
+\begin{align*}
+\mathcal{F} \big(\nabla^2 G(\boldsymbol{\xi})\big) &= \int d^3 \boldsymbol{\xi} \ \nabla^2 G(\boldsymbol{\xi}) e^{-i \mathbf{k} \cdot \boldsymbol{\xi}} \\
+&= \int d^3 \boldsymbol{\xi} \ G(\boldsymbol{\xi}) \nabla^2 e^{-i \mathbf{k} \cdot \boldsymbol{\xi}} + 
+\oint_\mathcal{S} da \ \bigg[e^{-i \mathbf{k} \cdot \boldsymbol{\xi}} \frac{\partial G}{\partial n} - G \frac{\partial}{\partial n} e^{-i \mathbf{k} \cdot \boldsymbol{\xi}} \bigg] \\
+&= -|\mathbf{k}|^2 \int d^3 \boldsymbol{\xi} \ G(\boldsymbol{\xi}) e^{-i \mathbf{k} \cdot \boldsymbol{\xi}} \\
+&= -|\mathbf{k}|^2 G(\mathbf{k}) \ .
+\end{align*}
+$$
+This result is important enough that it's useful to remember: For any well-behaved scalar field $f(\mathbf{x})$, the Fourier transform of its Laplacian is given by $\nabla^2 f(\mathbf{x}) \leftrightarrow -|\mathbf{k}|^2 f(\mathbf{k})$.
+
+Now, for the right-hand side we can use the definition of the delta function to write
+$$
+\mathcal{F} \big(-4\pi \delta(\boldsymbol{\xi})\big) = -4\pi \int d^3 \boldsymbol{\xi} \ \delta(\boldsymbol{\xi}) e^{i \mathbf{k} \cdot \boldsymbol{\xi}} = -4\pi \ .
+$$
+Putting these together, the Fourier dual of the original Green's function PDE is just
 $$
 -|\mathbf{k}|^2 G(\mathbf{k}) = -4\pi \ .
 $$
-This means that the Fourier transformed Green's function is simply given by
+This means the Fourier transform of the Green's function is just given by
 $$
 G(\mathbf{k}) = \frac{4\pi}{|\mathbf{k}|^2} \ .
 $$
-To get the Green's function we now need to take the inverse Fourier transform of both sides to get things in terms of $\mathbf{x}$ again,
+To get back $G(\boldsymbol{\xi})$ we now need to take the inverse Fourier transform of both sides,
 $$
-G(\mathbf{x}) = \mathcal{F}^{-1} G(\mathbf{k}) = \mathcal{F}^{-1} \bigg(\frac{4\pi}{|\mathbf{k}|^2}\bigg) \ .
+G(\boldsymbol{\xi}) = \mathcal{F}^{-1} G(\mathbf{k}) = \mathcal{F}^{-1} \bigg(\frac{4\pi}{|\mathbf{k}|^2}\bigg) \ .
 $$
-At this point we'll proceed by evaluating the inverse Fourier integral directly,
+Using the definition of the inverse Fourier transform, we evidently have
 $$
-G(\mathbf{x}) = \int \frac{d^3 \mathbf{k}}{(2\pi)^3} \ G(\mathbf{k}) e^{-i \mathbf{k} \cdot \mathbf{x}} = 4\pi \int \frac{d^3 \mathbf{k}}{(2\pi)^3} \ \frac{e^{-i \mathbf{k} \cdot \mathbf{x}}}{|\mathbf{k}|^2} \ .
+G(\boldsymbol{\xi}) = \int \frac{d^3 \mathbf{k}}{(2\pi)^3} \ G(\mathbf{k}) e^{-i \mathbf{k} \cdot \boldsymbol{\xi}} = 4\pi \int \frac{d^3 \mathbf{k}}{(2\pi)^3} \ \frac{e^{-i \mathbf{k} \cdot \boldsymbol{\xi}}}{|\mathbf{k}|^2} \ .
 $$
-To evaluate this integral we'll work in spherical coordinates $(k,\theta_k,\phi_k)$ in $\mathbf{k}$-space. We'll suppose without loss of generality that $\mathbf{x}$ is oriented in the $k_z$-direction, so we can write $\mathbf{k} \cdot \mathbf{x} = r k \cos\theta_k$. The volume element is $d^3 \mathbf{k} = k^2 \sin\theta_k dk d\theta_k d\phi_k$. We thus have
+We now need to evaluate this integral over $\mathbf{k}$-space the hard way. We'll work in spherical coordinates $(k,\theta_k,\phi_k)$. This means the volume element reduces to
 $$
-G(\mathbf{x}) = 4\pi \int \frac{k^2 \sin\theta_k dk d\theta_k d\phi_k}{(2\pi)^3} \ \frac{e^{-i k r \cos\theta_k}}{k^2} = \frac{1}{\pi} \int dk d\theta_k \ \sin\theta_k \ e^{-i k r \cos\theta_k} \ .
+d^3 \mathbf{k} = k^2 \sin\theta_k dk d\theta_k d\phi_k \ .
+$$
+Now, suppose without loss of generality that $\boldsymbol{\xi}$ is oriented in the $k_z$-direction, so we can write $\mathbf{k} \cdot \boldsymbol{\xi} = \xi k \cos\theta_k$, where $\xi = \boldsymbol{\xi}$. Then we have
+$$
+G(\boldsymbol{\xi}) = 4\pi \int \frac{k^2 \sin\theta_k dk d\theta_k d\phi_k}{(2\pi)^3} \ \frac{e^{-i k \xi \cos\theta_k}}{k^2} = \frac{1}{\pi} \int dk d\theta_k \ \sin\theta_k \ e^{-i k \xi \cos\theta_k} \ .
 $$
 To evaluate the integral over $\theta_k$, we'll again make the common substitution $\mu = \cos\theta_k$ to get
 $$
 \begin{align*}
-G(\mathbf{x}) &= \frac{1}{\pi} \int_0^\infty dk \int_{-1}^1 d\mu \ e^{-i k r \mu} \\
-&= \frac{1}{\pi} \int_0^\infty dk \ \frac{e^{-ikr} - e^{ikr}}{-ikr} \\
-&= \frac{2}{\pi} \int_0^\infty dk \ \frac{\sin kr}{kr} \ ,
+G(\mathbf{x}) &= \frac{1}{\pi} \int_0^\infty dk \int_{-1}^1 d\mu \ e^{-i k \xi \mu} \\
+&= \frac{1}{\pi} \int_0^\infty dk \ \frac{e^{-ik\xi} - e^{ik\xi}}{-ik\xi} \\
+&= \frac{2}{\pi} \int_0^\infty dk \ \frac{\sin k\xi}{k\xi} \ ,
 \end{align*}
 $$
-What's left is an integral over $k$. We'll make another substitution $u = kr$ to simplify the integral somewhat,
+What remains is an integral over $k$. We'll make another substitution $u = k\xi$ to simplify the integral somewhat,
 $$
-G(\mathbf{x}) = \frac{2}{\pi r} \int_0^\infty du \ \frac{\sin u}{u} \ .
+G(\boldsymbol{\xi}) = \frac{2}{\pi \xi} \int_0^\infty du \ \frac{\sin u}{u} \ .
 $$
-The remaining integral is a well-known integral known as a *Dirichlet integral*. These kinds of integrals can be evaluated any number of ways. We'll use a technique popularized by Feynman known as the *Feynman trick*. The idea is to introduce a dummy variable $t$ into the integrand and use differentiation under the integral sign to evaluate the integral in terms of $t$, then set $t=0$ to recover the original integral.
+The remaining integral is a well-known integral known as a *Dirichlet integral*. These kinds of integrals can be evaluated any number of ways. We'll use a technique popularized by Feynman known as the *Feynman trick*. 
 
-Consider the integral
+The idea is to introduce a dummy variable $t$ into the integrand and use differentiation under the integral sign to evaluate the integral in terms of $t$, then set $t=0$ to recover the original integral. Consider the integral
 $$
 F(t) \equiv \int_0^\infty du \ e^{-tu} \frac{\sin u}{u} \ .
 $$
@@ -143,67 +155,16 @@ $$
 $$
 Plugging this back into the Green's function, we finally get
 $$
-G(\mathbf{x}) = \frac{2}{\pi r} \cdot \frac{\pi}{2} = \frac{1}{r} = \frac{1}{|\mathbf{x}|} \ .
+G(\boldsymbol{\xi}) = \frac{2}{\pi \xi} \cdot \frac{\pi}{2} = \frac{1}{\xi} = \frac{1}{|\boldsymbol{\xi}|} \ .
 $$
-Shifting $\mathbf{x}$ to $\mathbf{x} - \mathbf{x}'$, we finally get exactly what we sought,
+That is,
 $$
 G(\mathbf{x} - \mathbf{x}') = \frac{1}{|\mathbf{x} - \mathbf{x}'|} \ .
 $$
-Thus, we've shown that the Green's function for Poisson's equation is indeed $\frac{1}{|\mathbf{x} - \mathbf{x}'|}$. To get the potential we need only convolve this Green's function with the charge density to get
-$$
-\phi(\mathbf{x}) = \int d^3 \mathbf{x}' \ \frac{\rho(\mathbf{x}')}{|\mathbf{x} - \mathbf{x}'|} \ .
-$$
-Since we already knew the answer, why did we go through all this math? The answer is that in electrodynamics we won't know ahead of time what the right Green's function is, and we'll have to go through this same math. Going through it now gives us some early practice on a relatively simple example.
-
-#### Example: Green's function in other dimensions
-
-For practice, let's try to find the Green's function for Poisson's equation in one and two dimensions. In this example, we'll assume that Poisson's equation is written in the general form
-$$
-\nabla^2 \phi(\mathbf{x}) = -f(\mathbf{x}) \ ,
-$$
-The Green's function we seek to find thus satisfies the following PDE in that dimension,
-$$
-\nabla^2 G(\mathbf{x}) = -\delta(\mathbf{x}) \ .
-$$
-Since the Laplacian operator is rotationally and translationally invariant, we require that to be a proper Green's function that $G(\mathbf{x})$ be both rotationally and translationally invariant as well, meaning $G(\mathbf{x}-\mathbf{x}') = G(|\mathbf{x}-\mathbf{x}'|)$.
-
-Let's consider first the simplest case of a one-dimensional problem. In one dimension, the Laplacian just reduces to a single second derivative equation. Working in absolute coordinates $r = |x|$, we have
-$$
-\nabla^2 \phi = -\frac{d^2 \phi}{d r^2} \ .
-$$
-To find the Green's function, we need to solve the 1-dimensional differential equation
-$$
-\frac{d^2 G}{d r^2} = -\delta(x) = -\frac{1}{2} \delta(r) \ .
-$$
-Note the last term follows from the fact the scaling property of delta functions, which says $\delta(f(x)) = \frac{\delta(x)}{|f'(x)|}$. Since $r=|x|$ has a multivalued inverse, we have to break the scaling property up into two terms for $x < 0$ and $x > 0$, 
-$$
-\delta(r) = \frac{\delta(x)}{|-1|} + \frac{\delta(x)}{|1|} = \frac{1}{2} \delta(x) \ .
-$$
-Now, integrating both sides of the differential equation twice, we get $G(r) = -\frac{r}{2}$. This means the Green's function in one dimension is given by
-$$
-G(x-x') = -\frac{|x-x'|}{2} \ .
-$$
-Let's now consider the two dimensional problem. In two dimensions, Poisson's equation in polar coordinates is given by
-$$
-\nabla^2 \phi = \frac{1}{r} \frac{\partial}{\partial r} \bigg(r \frac{\partial \phi}{\partial r}\bigg) + \frac{1}{r^2} \frac{\partial^2 \phi}{\partial \varphi^2} \ .
-$$
-If we impose the requirement that the Green's function be rotationally invariant only the radial component will contribute anything. This means the Green's function we seek to find is given by the PDE
-$$
-\frac{1}{r} \frac{\partial}{\partial r}\bigg(r \frac{\partial G}{\partial r}\bigg) = -\delta(\mathbf{x}) \ = -\frac{\delta(r)}{2\pi r}.
-$$
-In the last step, we used the fact that if the delta function is radial we can express $\delta(\mathbf{x})$ in terms of $\delta(r)$ by dividing by the area element, which for a radial function is $2\pi r$. Integrating both sides and dividing by $r$, we get
-$$
-\frac{\partial G}{\partial r} = -\frac{1}{2\pi r} \quad \Longrightarrow \quad G(r) = -\frac{1}{2\pi} \log r \ .
-$$
-This means the two dimensional Green's function we seek is given by
-$$
-G(\mathbf{x} - \mathbf{x}') = -\frac{1}{2\pi} \log |\mathbf{x} - \mathbf{x}'| \ .
-$$
-In a similar fashion, we could find Green's functions in higher dimensions as well, but of course things get more complicated.
-
+This, of course, is exactly what we wanted to prove.
 ### Formal Solution to Poisson's Equation
 
-We'll now derive a formal solution to Poisson's equation when boundary conditions are present. To do so we'll make use of Green's second identity, which we introduced in the first chapter. Recall that Green's second identity says that for two scalar fields $\psi(\mathbf{x}')$ and $\phi(\mathbf{x}')$, we have
+We'll now derive a formal solution to Poisson's equation when boundary conditions are present. To do so we'll make use of Green's second identity. Recall that Green's second identity says that for two scalar fields $\psi(\mathbf{x}')$ and $\phi(\mathbf{x}')$, we have
 
 $$
 \int_\mathcal{V} d^3 \mathbf{x}' \ (\phi \nabla'^2 \psi - \psi \nabla'^2 \phi) = \oint_\mathcal{S} da' \ \bigg[\phi \frac{\partial \psi}{\partial n'} - \psi \frac{\partial \phi}{\partial n'} \bigg] \ .
@@ -395,7 +356,7 @@ $$
 $$
 The potential of this image problem just happens to solve the original boundary conditions, since $\phi(x,y,0) = 0$. By the uniqueness theorem, then, this same potential must *also* be the solution to the original BVP. See the figure below.
 
-![](.../resources/image-20240811130344134.png){fig-align=center width=400}
+![](../resources/image-20240811130344134.png){fig-align=center width=400}
 
 From this potential we can also easily find the Green's function satisfying the boundary conditions. For a point charge $q$ located at a position $\mathbf{x}_0$, we have $\rho(\mathbf{x}') = q \delta(\mathbf{x}' - \mathbf{x}_0)$, meaning
 $$
@@ -447,7 +408,7 @@ We'll now work through a few more complicated examples to help solidify these id
 
 Suppose we have a point charge $q$ located at some distance $d$ outside a grounded conducting sphere of radius $R$. This means that the boundary surface is just the surface of the sphere, where we must have $\phi = 0$. To find the potential of this BVP, we'll suppose there is a single image charge $q'$ located inside the sphere at some distance $d' \leq R$ from the center.
 
-![](.../resources/image-20240811130410188.png){fig-align=center width=400}
+![](../resources/image-20240811130410188.png){fig-align=center width=400}
 
 If we ignore the presence of the sphere and focus on these two charges alone, the potential will be
 $$
@@ -464,13 +425,13 @@ $$
 $$
 This means we means for the image problem to satisfy the boundary conditions, the image charge must satisfy
 $$
-q' = -\frac{R}{d} q \quad , \quad d' = \frac{R^2}{d} \ .
+q' = -\frac{R}{d} q \quad , \quad \mathbf{d}' = \frac{R^2}{d} \mathbf{n} \ .
 $$
 Plugging these expressions back into the potential, we thus have
 $$
-\phi(\mathbf{x}) = \frac{q}{|\mathbf{x} - d \mathbf{n}|} - \frac{\frac{R}{d} q}{|\mathbf{x} - \frac{R^2}{d} \mathbf{n}'|} \ .
+\phi(\mathbf{x}) = \frac{q}{|\mathbf{x} - d \mathbf{n}|} - \frac{\frac{R}{d} q}{|\mathbf{x} - \frac{R^2}{d} \mathbf{n}|} \ .
 $$
-We can rewrite this expression in a somewhat more useful form by using the law of cosines. If we let $\alpha$ denote the angle between the field point $\mathbf{x}$, we have
+We can rewrite this expression in a somewhat more useful form by using the law of cosines. If we let $\alpha$ denote the angle between $\mathbf{x}$ and $\mathbf{d}$, we can write
 $$
 \phi(\mathbf{x}) = \frac{q}{\sqrt{r^2 + d^2 - 2rd\cos\alpha}} - \frac{\frac{R}{d} q}{\sqrt{R^2 + \frac{r^2 d^2}{R^2} - 2rd\cos\alpha}} \ .
 $$
@@ -508,15 +469,41 @@ Evidently the force between the conductor and the point charge is always attract
 
 In the previous example we considered the problem of a point charge in the presence of a grounded conducting sphere. In fact, there's no necessary reason that the conductor to be grounded. We can hold it at any fixed potential we like, but to do so we need to modify the potential somewhat to account for this.
 
-![](.../resources/image-20240811130445270.png){fig-align=center width=400}
+Suppose the sphere is held at a constant potential $\phi=V$. We'll again place an image charge $q' = -\frac{R}{d} q$ at a distance $d' = \frac{R^2}{d}$. However, we need to cancel the potential on the surface of the sphere as well. To address this, we can place another image charge at the origin with charge $q'' = VR$, to ensure that when $|\mathbf{x}| = R$ we have $\phi = V$ as expected.
+
+FIGURE
+
+Then we have
+$$
+\phi(\mathbf{x}) = \frac{q}{|\mathbf{x} - d\mathbf{n}|} - \frac{\frac{R}{d}q}{|\mathbf{x} - \frac{R^2}{d^2}\mathbf{n}|} + \frac{VR}{|\mathbf{x}|} \ .
+$$
+We can use this to get the Green's function in the usual way by dividing by $q$. In this case, the function
+$$
+F(\mathbf{x} - \mathbf{d}) = -\frac{\frac{R}{d}q}{|\mathbf{x} - \frac{R^2}{d^2}\mathbf{n}|} + \frac{VR}{|\mathbf{x}|}
+$$
+will satisfy Laplace's equation. In fact, each term satisfies Laplace's equation separately, as one can check.
+
+One can check that the charge $Q$ on the surface of the sphere is given by $Q = q' + q'' = VR - \frac{R}{d} q$. The force between the conductor in the sphere is evidently given by
+$$
+\begin{align*}
+\mathbf{F} &= q\bigg(\frac{q'}{|\mathbf{d} - \mathbf{d}'|^2} + \frac{VR}{|\mathbf{d}|^2}\bigg)\mathbf{e}_r \\ 
+&= \frac{q}{d^2} \bigg(VR - \frac{qRd^3}{\big(d^2 - R^2\big)^2}\bigg) \mathbf{e}_r \ .
+
+\end{align*}
+$$
+Now, the force includes both the dipole contribution from before, as well as a new monopole contribution due to the presence of the fixed potential $V$. This means in the far field limit $d \gg R$ the force reduces to Coulomb's Law between point charges $Q$ and $q$. 
+
+In the opposite limit where $d \approx R$ things are somewhat more interesting. Suppose that $d = R + \delta$, where $\delta \ll r$. After working out the math, we find that very close to the surface $\mathbf{F} \sim -\frac{q^2}{4\delta^2} \mathbf{e}_r$. That is, no matter what the force becomes infinitely attractive near the surface, even if $q$ and $Q$ have the same sign.
+
+The point where this attraction happens is usually very close to the sphere. One can show that when $Q \approx VR \gg q$, the force has an unstable equilibrium at $d \approx R\big(1 + \frac{1}{2}\sqrt{\frac{q}{VR}}\big)$. For example, an electron near the surface of a conductor with radius $R = 30 \ \text{cm}$ and $V = 1 \ \text{V}$ will experience this attraction only when $d-R \lesssim 10 \ \mu\text{m}$.
+
+We can use this fact to interpret why charges almost never leave the surface of a conductor in the presence of an external field. If they tried to, they'd always be pulled back to the surface by this very powerful attractive force.
 
 #### Example: Point charge near two grounded conducting perpendicular sheets
 
-Thus far we've only seen problems where we only need a single image charge to find the potential. This isn't always true. In this problem we'll consider a case where multiple image charges are required to find the potential. 
-
 Suppose we have a point charge $q$ located at point $\mathbf{d} = (a,b)$ above two perpendicular grounded conducting sheets in the $xy$-plane. It's not too hard to see that using a single image charge for this problem won't work, no matter what its charge or position is. We'll need multiple. But how many? It turns out we'll need 3 image charges.
 
-Consider an equivalent problem where we have 3 image charges $q',q'',q'''$ located at positions $\mathbf{d}'$, $\mathbf{d}'$, and $\mathbf{d}'$ respectively. The potential of this configuration is evidently given by
+Consider an equivalent problem where we have 3 image charges $q',q'',q'''$ located at positions $\mathbf{d}'$, $\mathbf{d}''$, and $\mathbf{d}'''$ respectively. The potential of this configuration is evidently given by
 $$
 \phi(\mathbf{x}) = \frac{q}{|\mathbf{x}-\mathbf{d}|} + \frac{q'}{|\mathbf{x}-\mathbf{d}'|} + \frac{q''}{|\mathbf{x}-\mathbf{d}''|} + \frac{q'''}{|\mathbf{x}-\mathbf{d}'''|} \ .
 $$
@@ -525,12 +512,12 @@ $$
 \begin{align*}
 q' = -q \quad &, \quad \mathbf{d}' = (-a,b) \ , \\
 q'' = -q \quad &, \quad \mathbf{d}'' = (a,-b) \ , \\
-q''' = q \quad &, \quad \mathbf{d}' = (-a,-b) \ . \\
+q''' = q \quad &, \quad \mathbf{d}''' = (-a,-b) \ . \\
 \end{align*}
 $$
-This configuration of charges is called the *simple quadropole*, a concept we'll return to in more generality later.
+This configuration of charges is called the *simple quadrupole*, a concept we'll return to in more generality later.
 
-![](.../resources/image-20240811130516105.png){fig-align=center width=400}
+![](../resources/image-20240811130516105.png){fig-align=center width=400}
 
 Now, observe if we plug these values back into the potential we get
 $$
@@ -541,36 +528,4 @@ $$
 G_D(\mathbf{x} - \mathbf{d}) = \frac{1}{\sqrt{(x-a)^2+(y-b)^2}} - \frac{1}{\sqrt{(x+a)^2+(y-b)^2}} - \frac{1}{\sqrt{(x-a)^2+(y+b)^2}} + \frac{1}{\sqrt{(x+a)^2+(y+b)^2}} \ .
 $$
 The first term is the usual unbounded part, and what remains is the function $F$ that satisfies Laplace's equation subject to the boundary conditions, as one can check.
-
-
-
-## Direct Methods
-
-So far, we've seen one way to solve Poisson's equation subject to some set of boundary conditions, the method of images. The method of images relies largely on the Green's function method as an approach to solve these problems. Instead of relying on Green's functions, we can also try to solve Poisson's equation using direct PDE methods. We'll introduce a few of those ideas now, though there are many more direct methods than we can cover here.
-
-Recall that Poisson's equation is a second order linear PDE. To solve this PDE we need some specified set of boundary conditions, which we'll generally assume are either Dirichlet or Neumann conditions so that a unique solution is guaranteed.
-
-
-
-There are also direct PDE methods as well that we can often use to solve Poisson's equation.
-
-### Orthogonal Functions
-
-### Separation of Variables
-
-- introduce orthogonal functions and how linear PDEs can be solved by superposing orthogonal functions
-- show how to solve Laplace's equation directly using separation of variables, working a few common examples
-
-## Multipole Expansion
-
-- derive the multipole expansion for cartesian coordinates, defining the various moments involved
-- derive the multipole expansion for spherical coordinates and show it's equivalent to the former
-- work a few examples (see Griffiths mostly, maybe Jackson)
-
-## Contour Mappings
-
-- contour methods are a powerful method for solving 2D electrostatics problems
-- idea is to use contour mappings from complex analysis to turn an electrostatics problem into a complex analysis problem
-- you've already shown that a complex function satisfies Laplace's equation, now show what conformal mappings are
-- work a few examples (see Greiner)
 

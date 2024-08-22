@@ -449,7 +449,7 @@ window.Quarto = {
 <h3 class="anchored" data-anchor-id="what-is-charge">What is Charge?</h3>
 <p>Before moving on, it’s worth stopping to ask what exactly it is we mean when we say a body has charge. Mathematically, we can think of charge similar to how we think of mass. It’s a scalar quantity associated with a body, except unlike mass it can take on any real value, positive or negative. More fundamentally though, the charge of a body is really an aggregate of charge due to more atomic particles inside the body like electrons and protons.</p>
 <p>A body is really a collection of atoms held together in some way, each with some number of protons and electrons. What we think of as charge is really how the electrons and protons are distributed inside the body. Electrons and protons carry the same charge but with opposite sign. In practice most bodies are at least approximately charge neutral, meaning it contains the same number of protons and electrons. If there are more electrons than protons the body has negative charge. If there are fewer electrons than protons the body has positive charge.</p>
-<p>In practice, it’s the movement of electrons that control how a body is charged. In some bodies, called <em>conductors</em> these electrons move freely around the body, while for other bodies, called <em>dielectrics</em> or <em>insulators</em>, these electrons stay locked into their respective atoms and only move inside their confined electron clouds. In either case, if the body is charged it implies some deficit or surplus of electrons.</p>
+<p>In practice, it’s the movement of electrons that control how a material is charged. In some materials, called <em>conductors</em> these electrons move freely around the material, while for materials, called <em>insulators</em>, these electrons stay locked into their respective atoms and only move inside their confined electron clouds. In either case, if the body is charged it implies some deficit or surplus of electrons.</p>
 <p>One would think that we should think of charge in terms of electrons and define charge in units of the number of surplus electrons present in the body. However, atomic structure wasn’t known at the time the theory of electromagnetism was first formulated. It was only known that there was a scalar quantity called charge associated to the body, with no understanding of what gives rise to it. It’s for these largely historical reasons that we continue to think of positive charge as moving around inside a body, even though it’s really negatively charged electrons that move around.</p>
 </section>
 <section id="coulomb-vs-gravity" class="level3">
@@ -468,26 +468,21 @@ window.Quarto = {
 <p>While we could proceed to study this force between charges just as we did in with gravity in classical mechanics, we’ll find it’s useful in electromagnetism to make a further abstraction, the <em>field abstraction</em>. The reason for this is that we want to think of all interactions as <em>local</em>. That is, a particle should only feel the presence of things near by, not things far away. If we think in terms of forces we have to give locality up, since two charges will feel a force no matter how far away they are, so-called “action at a distance”.</p>
 <section id="electric-field" class="level3">
 <h3 class="anchored" data-anchor-id="electric-field">Electric Field</h3>
-<p>Instead what we’ll do is imagine that particles interact due to the presence of background fields, and think of these fields as giving rise to forces. Suppose we have a charge <span class="math inline">\(q'\)</span> sitting in space at some position <span class="math inline">\(\mathbf{x}'\)</span>. Suppose we place an infinitesimal <em>test charge</em> <span class="math inline">\(q\)</span> at position <span class="math inline">\(\mathbf{x}\)</span>. By Coulomb’s Law, the test charge will feel a force <span class="math inline">\(\mathbf{F}\)</span> due to <span class="math inline">\(q'\)</span>. We’ll define a vector-valued function of position known as the <em>electric field</em> by the ratio <span class="math display">\[
+<p>Instead what we’ll do is imagine that particles interact due to the presence of background fields, and think of these fields as giving rise to forces. Suppose we have a charge <span class="math inline">\(q'\)</span> sitting in space at some position <span class="math inline">\(\mathbf{x}'\)</span>. Suppose we then place an infinitesimal <em>test charge</em> <span class="math inline">\(q\)</span> at some other position <span class="math inline">\(\mathbf{x}\)</span>. By Coulomb’s Law, the test charge will feel a force <span class="math inline">\(\mathbf{F}\)</span> due to <span class="math inline">\(q'\)</span>. We’ll define a vector-valued function of position known as the <em>electric field</em> by the ratio <span class="math display">\[
 \mathbf{E}(\mathbf{x}) \equiv \frac{\mathbf{F}}{q} \ .
 \]</span> Empirically this ratio is found to be well-defined and independent of the value of <span class="math inline">\(q\)</span> so long as <span class="math inline">\(q\)</span> is infinitesimal, with <span class="math display">\[
 \mathbf{E}(\mathbf{x}) = \frac{q'}{|\mathbf{x} - \mathbf{x}'|^2} \mathbf{e}_\xi \ .
 \]</span> Here for convenience we define the separation vector <span class="math inline">\(\boldsymbol{\xi} \equiv \mathbf{x} - \mathbf{x}'\)</span>, so that the field always points from the location <span class="math inline">\(\mathbf{x}'\)</span> of the <em>source charge</em> <span class="math inline">\(q'\)</span> to the <em>field point</em> <span class="math inline">\(\mathbf{x}\)</span> where we imagine placing the test charge <span class="math inline">\(q\)</span>. The relationship between all these points is shown in the figure below.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src=".../resources/image-20240616171528590.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="400"></p>
+<p><img src="../resources/image-20240616171528590.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="400"></p>
 </figure>
 </div>
 <p>Notice that the electric field doesn’t depend on <span class="math inline">\(q\)</span> at all. It has a value at every point in space. When a test charge <span class="math inline">\(q\)</span> is brought in and placed at a position <span class="math inline">\(\mathbf{x}\)</span> it feels a force <span class="math display">\[
-\mathbf{F} = q \mathbf{E}(\mathbf{x}) \ .
-\]</span> Note that the requirement that <span class="math inline">\(q\)</span> be infinitesimal in this definition is important. If it’s not its presence will distort the value of the background field, in effect making <em>both</em> charges source charges for the field.</p>
-<p>Since <span class="math inline">\(\mathbf{E}\)</span> is just a vector field we can visualize it as such. At each field point <span class="math inline">\(\mathbf{x}\)</span> in space, we can imagine plotting <span class="math inline">\(\mathbf{E}\)</span> as a vector located at <span class="math inline">\(\mathbf{x}\)</span> and pointing outward. It’s traditional though, and very convenient, to visualize electric fields using <em>field lines</em>. The idea is to imagine placing vector field arrows at each point in space and then connecting them together with lines running along the directions of the arrows. Both of these visualizations are shown in the figure below for a single <em>positive</em> point source charge <span class="math inline">\(q'\)</span>.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="../resources/image-20240602115754745.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="500"></p>
-</figure>
-</div>
-<p>As a good rule of thumb for drawing field lines, they should always <em>start</em> at positive charges and <em>end</em> either at negative charges or go to infinity. Field lines should never cross each other. The density of the field lines at a point indicates the strength of the field at that point. In this way, we could loosely speaking <em>define</em> the electric field at a point as the <em>flux density</em> of field lines, or number of field lines per unit area, passing near that point.</p>
+\boxed{
+\mathbf{F} = q \mathbf{E}(\mathbf{x})
+} \ .
+\]</span> Note that the requirement that <span class="math inline">\(q\)</span> be an infinitesimal charge in this definition is important. If test charge is high enough, it will distort the background electric field through its presence, in effect making <em>both</em> charges source charges for the field. Also, note that this doesn’t mean that the charge will move in the direction of the electric field. All that will be true is that its force vector will be tangential to the electric field at that point, pointing in the direction of the field if <span class="math inline">\(q\)</span> is negative, and opposite the field if <span class="math inline">\(q\)</span> is opposite. The path the charge actually follows through the field may be quite complicated.</p>
 <p>We’ll often find it more useful to express the electric field formula in a slightly different way by getting rid of the unit vector. Using the fact that the separation vector can be written <span class="math inline">\(\boldsymbol{\xi} = |\mathbf{x}-\mathbf{x}'| \mathbf{e}_\xi\)</span> we can write the same electric field in the equivalent form <span class="math display">\[
 \mathbf{E}(\mathbf{x}) = q' \frac{\mathbf{x}-\mathbf{x}'}{|\mathbf{x}-\mathbf{x}'|^3} \ .
 \]</span> This only defines the electric field due to a single point charge <span class="math inline">\(q'\)</span>. What if instead we have multiple source charges spread out in space. Suppose we instead have <span class="math inline">\(N\)</span> point source charges <span class="math inline">\(q_1, q_2, \cdots, q_N\)</span> located at positions <span class="math inline">\(\mathbf{x}_1, \mathbf{x}_2, \cdots, \mathbf{x}_N\)</span> respectively. Since forces obey the principle of superposition, we know we can add the force due to each source charge to get the total force, <span class="math display">\[
@@ -495,12 +490,16 @@ window.Quarto = {
 \]</span> Since the electric field is proportional to the force it must evidently obey the superposition principle as well. Then the combined electric field due to the presence of all of these charges must be given by the sum of each individual field, <span class="math display">\[
 \mathbf{E}(\mathbf{x}) = \sum_{i=1}^N \mathbf{E}_i(\mathbf{x}) = \sum_{i=1}^N q_i \frac{\mathbf{x}-\mathbf{x}_i}{|\mathbf{x}-\mathbf{x}_i|^3} \ .
 \]</span> Again, the combined electric field does not depend on the test charge, only the source charges. If we imagine placing an infinitesimal test charge <span class="math inline">\(q\)</span> at <span class="math inline">\(\mathbf{x}\)</span> it will still feel the combined force <span class="math inline">\(\mathbf{F} = q \mathbf{E}\)</span>.</p>
+<p>The most typical way to visualize vector fields in electromagnetism is via <em>field lines</em>. We imagine that any positive charge emits from it a bunch of lines, called field lines. These field lines follow the direction of the vector field in space, only terminating at negative charges or at infinity. Field lines should never cross each other. The direction of a field line is always from positive charges to negative charges. The strength of the field is captured by the density of field lines. The more field lines there are surrounding a given point in space, the stronger the field at that point. Indeed, we can informally <em>define</em> a vector field as the <em>flux density</em> of field lines, i.e.&nbsp;the number of field lines per unit volume.</p>
+<p>Here are some examples of electric field line sketches for a few different configurations of point charges. Notice it’s usually fairly easy to sketch field lines for a given charge configuration, even if finding an expression for the actual electric field of that configuration might be difficult. We’ll see field lines sketched in many figures throughout this course.</p>
+<p>FIGURE</p>
+<p>Let’s now work a problem involving finding the electric field for a very simple example, the <em>simple dipole</em>.</p>
 <section id="example-simple-dipole" class="level4">
 <h4 class="anchored" data-anchor-id="example-simple-dipole">Example: Simple dipole</h4>
-<p>Let’s try to find the electric field of perhaps the simplest non-trivial example, the <em>electric dipole</em>. Suppose we have two like charges of opposite sign separated by a fixed distance along some axis. More formally, suppose we have a positive charge <span class="math inline">\(+q\)</span> located at a point <span class="math inline">\(\mathbf{x}_+ = \frac{d}{2} \mathbf{e}_z\)</span>, and a negative charge <span class="math inline">\(-q\)</span> located at the opposite point <span class="math inline">\(\mathbf{x}_- = -\frac{d}{2} \mathbf{e}_z\)</span>. Our goal will be to find the electric field for any field point <span class="math inline">\(\mathbf{x}\)</span> in the <span class="math inline">\(xy\)</span>-plane.</p>
+<p>Suppose we have two like charges of opposite sign separated by a fixed distance along some axis. More formally, suppose we have a positive charge <span class="math inline">\(+q\)</span> located at a point <span class="math inline">\(\mathbf{x}_+ = \frac{d}{2} \mathbf{e}_z\)</span>, and a negative charge <span class="math inline">\(-q\)</span> located at the opposite point <span class="math inline">\(\mathbf{x}_- = -\frac{d}{2} \mathbf{e}_z\)</span>. Our goal will be to find the electric field for any field point <span class="math inline">\(\mathbf{x}\)</span> in the <span class="math inline">\(xy\)</span>-plane.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src=".../resources/image-20240811130607078.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="300"></p>
+<p><img src="../resources/image-20240811130607078.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="300"></p>
 </figure>
 </div>
 <p>By the superposition principle, the electric field is given by <span class="math display">\[
@@ -524,7 +523,7 @@ window.Quarto = {
 </section>
 <section id="continuous-charge-distributions" class="level3">
 <h3 class="anchored" data-anchor-id="continuous-charge-distributions">Continuous Charge Distributions</h3>
-<p>In classical electromagnetism we rarely find ourselves dealing with point charges. We’re generally dealing with <em>macroscopic</em> bodies containing many charged particles packed densely together. In such cases it’s more convenient to treat those charges not as a sum over all the point charges, but instead as a continuous <em>charge distribution</em>.</p>
+<p>In classical electromagnetism we rarely find ourselves dealing with point charges. We’re generally dealing with <em>macroscopic</em> materials containing many charged particles packed densely together. In such cases it’s more convenient to treat those charges not as a sum over all the point charges, but instead as a continuous <em>charge distribution</em>.</p>
 <p>A charge distribution can be thought of as a large number of charged point particles packed densely together. Provided the charges are dense enough that we can treat them as continuous, we can define a <em>charge density</em> <span class="math inline">\(\rho(\mathbf{x}')\)</span> by <span class="math display">\[
 dq = d^3 \mathbf{x}' \ \rho(\mathbf{x}') \ .
 \]</span> Each <span class="math inline">\(dq\)</span> will give rise to an infinitesimal electric field <span class="math inline">\(d\mathbf{E}\)</span> defined by Coulomb’s Law. Using the principle of superposition, we can then integrate over all these charges over all space to get the electric field of the distribution, <span class="math display">\[
@@ -538,6 +537,7 @@ dq = d^3 \mathbf{x}' \ \rho(\mathbf{x}') \ .
 <p><img src="../resources/image-20240308151931197.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="400"></p>
 </figure>
 </div>
+<p>The field lines for the electric fields of continuous distributions work the same way they do for point charges. The main new thing to be aware of is that field lines will always point <em>normal</em> to the surface of the charge distribution. Again, the field lines will point away from positive charge distributions, and toward negative charge distributions or out to infinity, never crossing.</p>
 <p>We’ll often be interested in charge distributions of lower dimension as well, for example lines of charge and sheets of charge. For this reason it’s useful to define charge densities in these dimensions as well. The simplest case is the point charge, which we can think of as a zero-dimensional density. If <span class="math inline">\(q'\)</span> is some point charge located at <span class="math inline">\(\mathbf{x}'\)</span>, we can use the delta function to write <span class="math display">\[
 dq = d^3 \mathbf{x} \ q \delta(\mathbf{x} - \mathbf{x}') \ .
 \]</span> Indeed, we get <span class="math display">\[
@@ -556,7 +556,7 @@ dq = d\mathcal{a}' \ \sigma(\mathbf{x}') \ .
 <p>We could in principle define charge densities in higher dimensions as well, though we won’t since we won’t need them. Each of the cases we discussed can be visualized using the figure below.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src=".../resources/image-20240616171649819.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="500"></p>
+<p><img src="../resources/image-20240616171649819.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="500"></p>
 </figure>
 </div>
 <section id="example-sphere-with-uniform-charge" class="level4">
@@ -639,7 +639,7 @@ da = \frac{r^2}{\cos\alpha} d\Omega \ .
 \]</span> This is only true though when the charge is contained <em>inside</em> the surface. What if it’s <em>outside</em> the surface? We already said informally the flux in that case should be zero, since any field lines going into the surface also comes out, offsetting the flux. Indeed, if <span class="math inline">\(\mathbf{E} \cdot d\mathbf{a}\)</span> is some contribution to the flux, there will be a corresponding contribution <span class="math inline">\(-\mathbf{E} \cdot d\mathbf{a}\)</span> on some other part of the Gaussian surface that will cancel out the first contribution. This can be seen geometrically in the figure below.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src=".../resources/image-20240616173508660.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="400"></p>
+<p><img src="../resources/image-20240616173508660.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="400"></p>
 </figure>
 </div>
 <p>Putting these two results together, we’ve shown that if <span class="math inline">\(q\)</span> is a point charge and <span class="math inline">\(\mathcal{S}\)</span> is some closed surface, then <span class="math display">\[
@@ -682,7 +682,7 @@ Q_{\text{enc}} = \int_\mathcal{V} d^3\mathbf{x} \ \rho(\mathbf{x}) \ .
 <p>Consider a line of charge of infinite length and infinitesimal width, so we can treat the line as one-dimensional. We’ll suppose the line is oriented along the <span class="math inline">\(z\)</span>-axis and carries a constant charge per unit length of <span class="math inline">\(\lambda\)</span>​. Our goal is to find its electric field. We could do this the hard way as before, but in this case we can do it much more easily using Gauss’s Law, so that’s what we’ll do.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src=".../resources/image-20240616180813782.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="300"></p>
+<p><img src="../resources/image-20240616180813782.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="300"></p>
 </figure>
 </div>
 <p>By symmetry, the electric field should depend only on the cylindrical radius <span class="math inline">\(\varrho\)</span>. To see why, pick a random field point in the <span class="math inline">\(xy\)</span>-plane. Now pick a random source point at a height <span class="math inline">\(z'\)</span> along the wire. Then there must also be an opposite source point at a height <span class="math inline">\(-z'\)</span>. If we add the two field vectors together, their <span class="math inline">\(z\)</span>-components will cancel, leaving only a contribution in the <span class="math inline">\(\varrho\)</span>-direction. We thus must conclude that the electric field has the property that <span class="math display">\[
@@ -700,7 +700,7 @@ E(\varrho) = \frac{2\lambda}{\varrho} \ .
 <p>We’ll now consider not an infinite <em>line</em> of uniform charge, but an infinite <em>flat sheet</em> of uniform charge. We’ll suppose this sheet is oriented in the <span class="math inline">\(xy\)</span>-plane and has infinitesimal thickness, so we can treat the sheet as 2-dimensional with a constant surface charge density <span class="math inline">\(\sigma\)</span>​.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src=".../resources/image-20240616180900393.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="400"></p>
+<p><img src="../resources/image-20240616180900393.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="400"></p>
 </figure>
 </div>
 <p>By symmetry, we’ll argue that the electric field must always point away from the sheet in the <span class="math inline">\(z\)</span> direction. To see why, pick a random field point at a height <span class="math inline">\(z\)</span> above (or below) the sheet, centered at the origin. Pick a random source point <span class="math inline">\((r',\varphi')\)</span> along the sheet. Now, there must be an opposite source point at <span class="math inline">\((r',\varphi'+\pi)\)</span> for which the two field vectors will cancel in all but the <span class="math inline">\(z\)</span>-direction. This means <span class="math display">\[
@@ -717,7 +717,7 @@ E(z) = 2\pi\sigma \ .
 <p>As our final example in this section we’ll consider an example we’ve already seen, the uniformly charged sphere. In a previous section we worked out its electric field with great pain. Here we’ll show that Gauss’s Law gives a much simpler way. We’ll again suppose that the charge lies on a hollow sphere of radius <span class="math inline">\(R\)</span>​ centered at the origin.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src=".../resources/image-20240616180936896.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="400"></p>
+<p><img src="../resources/image-20240616180936896.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="400"></p>
 </figure>
 </div>
 <p>As argued before, symmetry requires that the electric field point in the radial <span class="math inline">\(r\)</span>-direction, with <span class="math display">\[
@@ -858,7 +858,7 @@ U = \int d^3 \mathbf{x} \ \rho(\mathbf{x}) \phi(\mathbf{x})
 <p>Let’s find the potential of a uniformly charged wire of finite length. Suppose a wire of length <span class="math inline">\(L\)</span> has a uniform charge <span class="math inline">\(Q = \lambda L\)</span>. We’ll assume that it is oriented along the <span class="math inline">\(z\)</span>-axis with its center at the origin.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src=".../resources/image-20240811130653319.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="300"></p>
+<p><img src="../resources/image-20240811130653319.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="300"></p>
 </figure>
 </div>
 <p>Assuming the wire has negligible thickness we can use the <span class="math inline">\(1\)</span>-dimensional version of the integral formula for the potential, <span class="math display">\[
@@ -1031,7 +1031,7 @@ u = \frac{1}{8\pi} |\mathbf{E} + \mathbf{E}'|^2 = \frac{1}{8\pi}|\mathbf{E}|^2 +
 \]</span> for any two points <span class="math inline">\(\mathbf{a}\)</span> and <span class="math inline">\(\mathbf{b}\)</span> on the surface of the conductor, meaning <span class="math inline">\(\phi(\mathbf{a}) = \phi(\mathbf{b})\)</span> is constant on the surface. Since the surface of the conductor is an equipotential, this also means that the field lines at the surface must be perpendicular to the surface, since <span class="math inline">\(\mathbf{E} = -\nabla \phi\)</span>​ and we know that gradients are perpendicular to their equipotential surfaces.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src=".../resources/image-20240703155651920.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="400"></p>
+<p><img src="../resources/image-20240703155651920.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="400"></p>
 </figure>
 </div>
 <p>We’ll find it convenient to express these results as a set of boundary conditions for conductors. Surface boundary conditions require that <span class="math inline">\(\mathbf{E}_+ - \mathbf{E}_- = 4\pi\sigma \mathbf{n}\)</span>. Since the field inside the conductor is zero, <span class="math inline">\(\mathbf{E}_- = \mathbf{0}\)</span>. Thus, just outside the surface we must have <span class="math display">\[
