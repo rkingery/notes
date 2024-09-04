@@ -1,0 +1,1431 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.551">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Personal Notes - Boundary Value Problems II</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../electrodynamics/multipole-expansion.html" rel="next">
+<link href="../electrodynamics/bvps-1.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar docked">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../electrodynamics/preliminaries.html">Electromagnetism</a></li><li class="breadcrumb-item"><a href="../electrodynamics/bvps-2.html"><span class="chapter-title">Boundary Value Problems II</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">Personal Notes</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">Classical Mechanics</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../classical-mechanics/newtonian-mechanics.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Newtonian Mechanics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../classical-mechanics/simple-systems.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Simple Systems</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../classical-mechanics/reference-frames.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Reference Frames</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../classical-mechanics/lagrangian-mechanics.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Lagrangian Mechanics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../classical-mechanics/hamiltonian-mechanics.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Hamiltonian Mechanics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../classical-mechanics/central-forces.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Central Forces</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../classical-mechanics/coupled-oscillations.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Coupled Oscillations</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../classical-mechanics/rigid-bodies.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Rigid Bodies</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../classical-mechanics/canonical-transformations.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Canonical Transformations</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../classical-mechanics/integrability-and-chaos.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Integrability and Chaos</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../classical-mechanics/continuum-mechanics.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Continuum Mechanics</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text">Electromagnetism</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../electrodynamics/preliminaries.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Preliminaries</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../electrodynamics/electrostatics.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Electrostatics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../electrodynamics/bvps-1.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Boundary Value Problems I</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../electrodynamics/bvps-2.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">Boundary Value Problems II</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../electrodynamics/multipole-expansion.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Advanced Methods III</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../electrodynamics/orthogonal-functions.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Appendix I: Orthogonal Functions</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+ <span class="menu-text">Circuit Analysis</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../circuits/circuit-abstraction.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">The Lumped Circuit Abstraction</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../circuits/analysis.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Analyzing Circuits</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../circuits/nonlinear-methods.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Nonlinear Methods</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../circuits/digital-abstraction.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">The Digital Abstraction</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../circuits/amplifiers.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Amplifiers</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../circuits/first-order-systems.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">First-Order Systems</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../circuits/second-order-systems.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Second-Order Systems</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../circuits/ac-analysis.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">AC Analysis</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../circuits/op-amps.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Operational Amplifiers</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../circuits/energy-power.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Energy and Power</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+ <span class="menu-text">Quantum Mechanics</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../quantum-mechanics/identical-particles.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Identical Particles</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../quantum-mechanics/second-quantization.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Second Quantization</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
+ <span class="menu-text">Statistical Mechanics</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../statistical-mechanics/thermodynamics.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Thermodynamics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../statistical-mechanics/probability.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Probability</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../statistical-mechanics/kinetic-theory.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Kinetic Theory</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../statistical-mechanics/classical-stat-mech.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Classical Statistical Mechanics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../statistical-mechanics/classical-gases.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Classical Gases</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../statistical-mechanics/quantum-stat-mech.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Quantum Statistical Mechanics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../statistical-mechanics/quantum-gases.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Quantum Gases</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+    <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#linear-partial-differential-equations" id="toc-linear-partial-differential-equations" class="nav-link active" data-scroll-target="#linear-partial-differential-equations">Linear Partial Differential Equations</a>
+  <ul class="collapse">
+  <li><a href="#general-problem" id="toc-general-problem" class="nav-link" data-scroll-target="#general-problem">General Problem</a></li>
+  </ul></li>
+  <li><a href="#separation-of-variables" id="toc-separation-of-variables" class="nav-link" data-scroll-target="#separation-of-variables">Separation of Variables</a>
+  <ul class="collapse">
+  <li><a href="#laplaces-equation-in-cartesian-coordinates" id="toc-laplaces-equation-in-cartesian-coordinates" class="nav-link" data-scroll-target="#laplaces-equation-in-cartesian-coordinates">Laplace’s Equation in Cartesian Coordinates</a></li>
+  <li><a href="#laplaces-equation-in-spherical-coordinates" id="toc-laplaces-equation-in-spherical-coordinates" class="nav-link" data-scroll-target="#laplaces-equation-in-spherical-coordinates">Laplace’s Equation in Spherical Coordinates</a></li>
+  <li><a href="#laplaces-equation-in-cylindrical-coordinates" id="toc-laplaces-equation-in-cylindrical-coordinates" class="nav-link" data-scroll-target="#laplaces-equation-in-cylindrical-coordinates">Laplace’s Equation in Cylindrical Coordinates</a></li>
+  </ul></li>
+  </ul>
+</nav>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+    </div>
+<!-- main -->
+<main class="content column-page-right" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../electrodynamics/preliminaries.html">Electromagnetism</a></li><li class="breadcrumb-item"><a href="../electrodynamics/bvps-2.html"><span class="chapter-title">Boundary Value Problems II</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-title">Boundary Value Problems II</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta column-page-right">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>In this chapter, we continue on with the topic of boundary value problems in electrostatics. We’ll introduce the separation of variables technique, a method that can be used to solve Laplace’s equation for a large class of problems, before solving some problems using this technique.</p>
+<section id="linear-partial-differential-equations" class="level2">
+<h2 class="anchored" data-anchor-id="linear-partial-differential-equations">Linear Partial Differential Equations</h2>
+<p>In the previous chapter we showed that, at least formally, we can solve Poisson’s equation subject to some set of boundary conditions by first finding the Green’s function and then writing the potential as a volume integral plus a surface integral, <span class="math display">\[
+\phi(\mathbf{x}) = \int_\mathcal{V} d^3 \mathbf{x}' \ \rho(\mathbf{x}') G(\mathbf{x} - \mathbf{x}') + \frac{1}{4\pi} \oint_\mathcal{S} da' \ \bigg[G \frac{\partial \phi}{\partial n'} - \phi \frac{\partial G}{\partial n'} \bigg] \ ,
+\]</span> where only either the first or second boundary term is kept depending on the type of boundary conditions used. We also showed that for some problems with high degrees of symmetry, we can use the method of images to write down the potential for a corresponding image problem, and then use that to find the Green’s function if desired.</p>
+<p>This isn’t, however, the <em>only</em> way to solve Poisson’s equation, nor is it always the most useful. For all but the simplest problems this integral is very difficult to solve in practice, since we’d first need to find the Green’s function. Moreover, the method of images only works on a small subclass of problems, not more difficult ones.</p>
+<section id="general-problem" class="level3">
+<h3 class="anchored" data-anchor-id="general-problem">General Problem</h3>
+<p>Another way we can proceed is to attempt to solve Poisson’s equation directly using PDE methods. Suppose we have a linear PDE of the form <span class="math display">\[
+\mathcal{L} \phi(\mathbf{x}) = f(\mathbf{x}) \ ,
+\]</span> where <span class="math inline">\(\mathcal{L}\)</span> is a linear partial differential operator and <span class="math inline">\(f(\mathbf{x})\)</span> is some source term, e.g.&nbsp;the charge density <span class="math inline">\(\rho(\mathbf{x})\)</span>. We assume that some set of boundary conditions may be given implicitly.</p>
+<p>When we say <span class="math inline">\(\mathcal{L}\)</span> is a linear operator, we mean that for any two functions <span class="math inline">\(\phi_1(\mathbf{x})\)</span> and <span class="math inline">\(\phi_2(\mathbf{x})\)</span> and constants <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta\)</span>, we have <span class="math display">\[
+\mathcal{L} \big(\alpha\phi_1(\mathbf{x}) + \beta\phi_2(\mathbf{x})\big) = \alpha\mathcal{L} \phi_1(\mathbf{x}) + \beta\mathcal{L} \phi_2(\mathbf{x}) \ .
+\]</span> Linearity means we can compose solutions to a linear PDE using the principle of superposition. In fact we can say more than this. The theory of linear PDEs guarantees that we can solve <em>any</em> linear PDE by finding two solutions of a particular kind and summing them together:</p>
+<ul>
+<li>A general <em>homogeneous solution</em> <span class="math inline">\(\phi_h(\mathbf{x})\)</span> that solves the homogeneous PDE <span class="math inline">\(\mathcal{L} \phi_h(\mathbf{x}) = 0\)</span> subject to the boundary conditions.</li>
+<li>A <em>particular solution</em> <span class="math inline">\(\phi_p(\mathbf{x})\)</span> that solves the inhomogeneous PDE <span class="math inline">\(\mathcal{L} \phi_p(\mathbf{x}) = f(\mathbf{x})\)</span> in the absence of boundary conditions.</li>
+</ul>
+<p>Provided we can find these two solutions, the most general solution to <span class="math inline">\(\mathcal{L} \phi(\mathbf{x}) = f(\mathbf{x})\)</span> can be written in the form <span class="math display">\[
+\phi(\mathbf{x}) = \phi_h(\mathbf{x}) + \phi_p(\mathbf{x}) \ .
+\]</span> All of the PDEs we’ll see in electromagnetism, and indeed in most of physics, turn out to be linear second-order PDEs. The most general spatial second-order linear partial differential operator we can write down is a linear superposition of first and second partial derivatives, plus an ordinary function. We can write this with summation notation in the form <span class="math display">\[
+\mathcal{L} = a_{ij}(\mathbf{x}) \frac{\partial^2}{\partial x_i \partial x_j} + b_i(\mathbf{x}) \frac{\partial}{\partial x_i} + c(\mathbf{x}) \ .
+\]</span> In particular, we can see that the Laplacian <span class="math inline">\(\nabla^2\)</span> is a linear operator if we take <span class="math inline">\(a_{ij} = \delta_{ij}\)</span> and <span class="math inline">\(b_i = c = 0\)</span>. This means we can solve Poisson’s equation in the way specified before, by finding a homogeneous solution that solves Laplace’s equation subject to the boundary conditions, and a particular solution that solves Poisson’s equation with a given charge density <span class="math inline">\(\rho(\mathbf{x})\)</span>.</p>
+<p>For a localized charge distribution, we already know how to find the particular solution via the integral <span class="math display">\[
+\phi_p(\mathbf{x}) = \int d^3 \mathbf{x}' \ \frac{\rho(\mathbf{x}')}{|\mathbf{x} - \mathbf{x}'|} \ .
+\]</span> This means to solve the general PDE we only need to find the homogeneous solution <span class="math inline">\(\phi_h(\mathbf{x})\)</span> that solves Laplace’s equation <span class="math inline">\(\nabla^2 \phi_h = 0\)</span> subject to the given boundary conditions, and we’ll have a general solution to Poisson’s equation subject to those boundary conditions.</p>
+<p>Notice how similar this looks to the formal solution approach we took before using Green’s functions. In fact the two approaches are completely equivalent, as they should be. Recall the formal solution could be written <span class="math display">\[
+\phi(\mathbf{x}) = \int_\mathcal{V} d^3 \mathbf{x}' \ \rho(\mathbf{x}') G(\mathbf{x} - \mathbf{x}') + \frac{1}{4\pi} \oint_\mathcal{S} da' \ \bigg[G \frac{\partial \phi}{\partial n'} - \phi \frac{\partial G}{\partial n'} \bigg] \ ,
+\]</span> where the Green’s function is given by <span class="math display">\[
+G(\mathbf{x} - \mathbf{x}') = \frac{1}{|\mathbf{x} - \mathbf{x}'|} + F(\mathbf{x} - \mathbf{x}') \ .
+\]</span> The first integral is just the particular solution <span class="math inline">\(\phi_p(\mathbf{x})\)</span>. The second integral is in fact the homogeneous solution <span class="math inline">\(\phi_h(\mathbf{x})\)</span>, which is evidently closely related to the inhomogeneous component of the Green’s function, <span class="math inline">\(F(\mathbf{x} - \mathbf{x}')\)</span>.</p>
+<p>Since we know how to find the particular solution in principle, what remains is figuring out how to find the homogeneous solution. This involves solving Laplace’s equation subject to the given boundary conditions. This is what the rest of this chapter will focus on.</p>
+</section>
+</section>
+<section id="separation-of-variables" class="level2">
+<h2 class="anchored" data-anchor-id="separation-of-variables">Separation of Variables</h2>
+<p>The most popular technique for solving linear PDEs is the <em>separation of variables</em> method. Suppose we have an arbitrary homogeneous linear PDE of the form <span class="math display">\[
+\mathcal{L} \phi(\mathbf{x}) = 0 \ .
+\]</span> The separation of variables of variable method works exactly as the name suggests. We first assume that in some coordinate system <span class="math inline">\((u,v,w)\)</span> that <span class="math inline">\(\phi(\mathbf{x})\)</span> can be written as a trial solution that’s a product of univariate functions of only those coordinates, <span class="math display">\[
+\phi(\mathbf{x}) = U(u) V(v) W(w) \ .
+\]</span> Provided the linear operator <span class="math inline">\(\mathcal{L}\)</span> in this coordinate system can be separated into linear operators acting only on these variables alone, i.e.&nbsp;<span class="math inline">\(\mathcal{L} = \mathcal{L}_u + \mathcal{L}_v + \mathcal{L}_w \ \)</span>, we can plug this trial solution in and divide by <span class="math inline">\(UVW\)</span> and write <span class="math display">\[
+\frac{1}{U(u)}\mathcal{L}_u U(u) + \frac{1}{V(v)}\mathcal{L}_v V(v) + \frac{1}{W(w)}\mathcal{L}_v W(w) = 0 \ .
+\]</span> Now, notice we have an equation of the form <span class="math display">\[
+f(u) + g(v) + h(w) = 0 \ .
+\]</span> Since each of these functions is an independent function of its own coordinate, the only way their sum can be zero for all possible <span class="math inline">\(u,v,w\)</span> is if each of these functions is constant and those constants all sum to zero, i.e. <span class="math display">\[
+f(u) = \alpha \ , \ g(v) = \beta \ , \ h(w) = \gamma \ , \ \alpha + \beta + \gamma = 0 \ .
+\]</span> That is, we must have three coupled ordinary differential equations of the form <span class="math display">\[
+\begin{align*}
+&amp;\mathcal{L}_u U(u) = \alpha U(u) \ , \\
+&amp;\mathcal{L}_v V(v) = \beta V(v) \ , \\
+&amp;\mathcal{L}_w W(w) = \gamma W(w) \ , \\
+&amp;\alpha + \beta + \gamma = 0 \ .
+\end{align*}
+\]</span> All that remains now is to solve each of these ODEs and impose the boundary conditions. Provided we can find a set of three functions <span class="math inline">\(U,V,W\)</span> that solve these ODEs as well as the boundary conditions, we can reassemble them to get the full solution.</p>
+<p>Those that have read the appendix will notice that each of these differential equations is an eigenvalue problem with eigenvalues <span class="math inline">\(\alpha\)</span>, <span class="math inline">\(\beta\)</span>, and <span class="math inline">\(\gamma\)</span> respectively. Typically the separation constants will end up being quantized in terms of one or more integers whose eigenfunctions form a complete orthonormal set inside the boundary region.</p>
+<p>For example, solving <span class="math inline">\(\mathcal{L}_u U(u) = \alpha U(u)\)</span> may result in a family of orthogonal solutions <span class="math inline">\(U_n(u)\)</span> such that <span class="math inline">\(\mathcal{L}_u U_n(u) = \alpha_n U_n(u)\)</span>, where <span class="math inline">\(n\)</span> is some integer. Then the most general solution for <span class="math inline">\(U(u)\)</span> will be given by the principle of superposition as <span class="math display">\[
+U(u) = \sum_n c_n U_n(u) \ ,
+\]</span> where the coefficients <span class="math inline">\(c_n\)</span> are constants that depend on <span class="math inline">\(n\)</span> and the boundary conditions in the problem. Assuming we’ve found the other two general solutions <span class="math inline">\(V(v)\)</span> and <span class="math inline">\(W(w)\)</span>, this means we can express the full solution as a series in <span class="math inline">\(n\)</span>, <span class="math display">\[
+\phi(\mathbf{x}) = \sum_n c_n \phi_n(u,v,w) \ ,
+\]</span> where <span class="math inline">\(\phi_n(\mathbf{x}) = U_n(u) V(v) W(w)\)</span>. Since the <span class="math inline">\(U_n(u)\)</span> form a complete set of orthogonal functions, so will <span class="math inline">\(\phi_n(u,v,w)\)</span>. This means we can determine the expansion coefficients <span class="math inline">\(c_n\)</span> by taking inner products of some known function <span class="math inline">\(f\)</span> with each <span class="math inline">\(\phi_n\)</span>. For example, suppose we have a boundary condition of the form <span class="math inline">\(\phi(0,v,w) = f(v,w)\)</span>, where <span class="math inline">\(f(v,w)\)</span> is known. Then to determine <span class="math inline">\(c_n\)</span> we can use the inner product relation <span class="math display">\[
+c_n = \frac{\langle f| \phi_n \rangle}{\langle \phi_n | \phi_n \rangle} \ ,
+\]</span> where the inner product used is the inner product of the basis functions <span class="math inline">\(U_n(u)\)</span> found before. Once we’ve determined these coefficients we have the final solution <span class="math inline">\(\phi(\mathbf{x})\)</span> that solves the given boundary value problem. In many cases we’ll be able to guarantee that the solution found will be unique, and will be the most general function that satisfies the problem.</p>
+<p>This process will be much easier to illustrate by looking at specific problems. We’ll do that first by considering Laplace’s equation in Cartesian coordinates, before looking at Laplace’s equation in spherical and cylindrical coordinates as well. By the end, the process of how to use separation of variables to find the general solution should hopefully be quite clear.</p>
+<section id="laplaces-equation-in-cartesian-coordinates" class="level3">
+<h3 class="anchored" data-anchor-id="laplaces-equation-in-cartesian-coordinates">Laplace’s Equation in Cartesian Coordinates</h3>
+<p>We’ll now turn our focus to solving Laplace’s equation <span class="math inline">\(\nabla^2 \phi(\mathbf{x}) = 0\)</span> using separation of variables, subject to either Dirichlet, Neumann, or mixed boundary conditions. Since the Laplacian looks different in different coordinate systems, we’ll need separate variables and solve this PDE in different coordinate systems of interest, i.e.&nbsp;Cartesian, spherical, and cylindrical coordinates.</p>
+<p>We start with the simplest case of solving Laplace’s equation in Cartesian coordinates <span class="math inline">\((x,y,z)\)</span>. In this coordinate system the Laplacian has an especially simple form, with <span class="math display">\[
+\nabla^2 \phi = \frac{\partial^2 \phi}{\partial x^2} + \frac{\partial^2 \phi}{\partial y^2} + \frac{\partial^2 \phi}{\partial z^2} \ .
+\]</span> To match with the general setup from before, we can take <span class="math inline">\(\mathcal{L} = \nabla^2\)</span>, <span class="math inline">\(\mathcal{L}_x = \partial_x^2\)</span>, <span class="math inline">\(\mathcal{L}_y = \partial_y^2\)</span>, and <span class="math inline">\(\mathcal{L}_z = \partial_z^2\)</span>.</p>
+<p>We now apply the separation of variables by supposing a trial solution exists of the form <span class="math display">\[
+\phi(\mathbf{x}) = X(x) Y(y) Z(z) \ .
+\]</span> Plugging this into Laplace’s equation and dividing by <span class="math inline">\(\phi = XYZ\)</span>, we get <span class="math display">\[
+0 = \frac{1}{X} \frac{d^2 X}{dx^2} + \frac{1}{Y} \frac{d^2 Y}{dy^2} + \frac{1}{Z} \frac{d^2 Z}{dz^2} \ .
+\]</span> Again, since each term is a function of its own variable, the only way this equation can be satisfied for all coordinate values is if each term is constant, and those constants sum to zero. This gives us three coupled ordinary differential equations of the form <span class="math display">\[
+\begin{align*}
+&amp;\frac{d^2 X}{dx^2} = \alpha_x X \ , \\
+&amp;\frac{d^2 Y}{dy^2} = \alpha_y Y \ , \\
+&amp;\frac{d^2 Z}{dz^2} = \alpha_z Z \ , \\
+&amp;\alpha_x + \alpha_y + \alpha_z = 0 \ .
+\end{align*}
+\]</span> All that remains is to solve each of these ODEs and impose the boundary conditions. In each case, we know the ODE can be solved by a sum of exponentials of the form <span class="math display">\[
+X_i(x_i) = c_1 e^{\sqrt{\alpha_i} x_i} + c_2 e^{-\sqrt{\alpha_i} x_i} \ ,
+\]</span> where each <span class="math inline">\(\alpha_i\)</span> could be positive or negative. When <span class="math inline">\(\alpha_i &gt; 0\)</span> the solution is just a sum of real exponentials. When <span class="math inline">\(\alpha_i &lt; 0\)</span> the solution is a sum of complex exponentials. In that case we can also write the solution using sines and cosines as <span class="math display">\[
+X_i(x_i) = c_1 \cos \sqrt{\alpha_i} x_i + c_2 \sin \sqrt{\alpha_i} x_i \ .
+\]</span> In practice the choice of sign for each of these separation constants <span class="math inline">\(\alpha_i\)</span> matters a lot, since this determines whether we can fit the boundary conditions in the problem or not. As a rule of thumb, for coordinates that have <em>unbounded</em> boundary conditions, or <em>bounded</em> boundary conditions where one of the boundary values is a known function, we’ll want to choose <span class="math inline">\(\alpha_i &gt; 0\)</span>. For any remaining coordinates we’ll typically be left with bounded coordinates with fixed boundary values, and for these we’ll want to choose <span class="math inline">\(\alpha_i &lt; 0\)</span>. Note though that at least one of the three constants <span class="math inline">\(\alpha_i\)</span> will have to have an opposite sign from the other two, so we can’t choose all to be the same sign.</p>
+<p>Quite often, but not always, we’ll require that the potential vanish at infinity. This will force any solutions in unbounded directions to take the form <span class="math inline">\(X_i(x_i) = c e^{-\sqrt{\alpha_i} x_i}\)</span> to ensure these functions decay to zero at infinity.</p>
+<p>In one or more of the bounded directions we’ll often end up with sine and cosine solutions. We’ll see that matching these solutions with the boundary values will often force <span class="math inline">\(\alpha_i\)</span> to be quantized in terms of some integer <span class="math inline">\(n\)</span>. For each <span class="math inline">\(\alpha_{i,n}\)</span> we’ll have a solution in that direction of the form <span class="math display">\[
+X_{i,n}(x_i) = a_n \cos \sqrt{|\alpha_{i,n}|} x_i + b_n \sin \sqrt{|\alpha_{i,n}|} x_i \ .
+\]</span> Notice that these solutions are just the basis functions for the Fourier series. For the right choice of <span class="math inline">\(\alpha_{i,n}\)</span>, these solutions will form a complete set of orthogonal functions in the <span class="math inline">\(x_i\)</span> direction.</p>
+<p>To get the full general solution to the potential we’ll then multiply each of these solutions together to get a basis solution <span class="math inline">\(\phi_n(x,y,z)\)</span>, and then use the principle of superposition to sum over all <span class="math inline">\(n\)</span> and get the general solution, <span class="math display">\[
+\phi(\mathbf{x}) = \sum_n c_n \phi_n(x,y,z) \ .
+\]</span> To find the coefficients <span class="math inline">\(c_n\)</span> we’ll rely on the theory of orthogonal functions to get an inner product in terms of one of the remaining boundary conditions and the basis functions <span class="math inline">\(\phi_n\)</span>. Once this is done, we’ll have our general solution. By the uniqueness theorem, we know that this will be the unique solution to Laplace’s equation for the given BVP.</p>
+<p>Let’s now work a few examples to hopefully make this technique a bit easier to understand.</p>
+<section id="example-two-infinite-parallel-grounded-conducting-sheets" class="level5">
+<h5 class="anchored" data-anchor-id="example-two-infinite-parallel-grounded-conducting-sheets">Example: Two infinite parallel grounded conducting sheets</h5>
+<p>To keep things simple, we’ll start with a 2-dimensional problem only involving <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>. Suppose we have two grounded parallel conducting sheets separated by a distance <span class="math inline">\(L\)</span>. On one end, the two sheets are separated with insulating material from a perpendicular third conducting sheet held at a constant potential <span class="math inline">\(V\)</span>, while on the other end the two parallel sheets extend infinitely far.</p>
+<p>FIGURE</p>
+<p>We’ll assume the sheets are oriented parallel to the <span class="math inline">\(xz\)</span>-plane and separated along the <span class="math inline">\(y\)</span>-axis from <span class="math inline">\(y=0\)</span> to <span class="math inline">\(y=L\)</span>. This means the sheet is held at constant potential <span class="math inline">\(\phi = V\)</span> at <span class="math inline">\(x=0\)</span>, and at <span class="math inline">\(\phi = 0\)</span> when <span class="math inline">\(y=0\)</span> or <span class="math inline">\(y=L\)</span>. We will require that the potential go to zero at infinity as well. Assuming there are no other source charges present, this means we have the following boundary value problem to solve, <span class="math display">\[
+\begin{align*}
+\begin{cases}
+\nabla^2 \phi = 0 \ , \\
+\text{where} \ \phi(0,y) = V \ , \\
+\phi(x,0) = \phi(x,L) = 0 \ , \\
+\phi(x,y) \rightarrow 0 \ \text{as} \ x \rightarrow \infty \ .
+\end{cases}
+\end{align*}
+\]</span> Now we can employ separation of variables. Suppose a trial solution of the form</p>
+<p><span class="math display">\[
+\phi(x,y) = X(x) Y(y) \ .
+\]</span> We neglect the <span class="math inline">\(z\)</span> coordinate since it isn’t contributing anything to the problem. Now, if we plug this trial solution into Laplace’s equation, we find the problem reduces to solving two ODEs, <span class="math display">\[
+\frac{1}{X} \frac{d^2 X}{dx^2} = \alpha \quad , \quad \frac{1}{Y} \frac{d^2 Y}{dy^2} = -\alpha \ .
+\]</span> Since the problem is unbounded in the <span class="math inline">\(x\)</span> direction we’ll suppose <span class="math inline">\(\alpha\)</span> is positive, with <span class="math inline">\(\alpha = k^2\)</span>. Since the problem is also bounded in the <span class="math inline">\(y\)</span> direction this gives us what we want.</p>
+<p>We now have two ordinary differential equations left to solve subject to the boundary conditions, <span class="math display">\[
+\frac{d^2 X}{dx^2} = k^2 X \quad , \quad \frac{d^2 Y}{dy^2} = -k^2 Y \ .
+\]</span> These are both linear second order equations that are easy to solve. The general solution for the first equation is given by <span class="math display">\[
+X(x) = A e^{kx} + B e^{-kx} \ .
+\]</span> If we impose the condition that <span class="math inline">\(\phi \rightarrow 0 \ \text{as} \ x \rightarrow \infty\)</span>, we see the first term has to vanish, leaving only <span class="math display">\[
+X(x) = B e^{-kx} \ .
+\]</span> Next, the general solution for the second equation can be written as <span class="math display">\[
+Y(y) = C \cos ky + D \sin ky \ .
+\]</span> This solution has to satisfy the boundary conditions <span class="math inline">\(Y(0) = Y(L) = 0\)</span>. Plugging in the first condition requires <span class="math inline">\(C=0\)</span>. Plugging in the second condition, we’re left with <span class="math display">\[
+Y(y) = D \sin kL = 0 \ .
+\]</span> The only way this can be true is if either <span class="math inline">\(D=0\)</span> or <span class="math inline">\(kL\)</span> is an integer multiple of <span class="math inline">\(\pi\)</span>. If <span class="math inline">\(D=0\)</span> we’re dead in the water, since that would give the trivial solution <span class="math inline">\(\phi = 0\)</span>. We’re thus left to impose the second condition. Suppose <span class="math inline">\(kL = \pi n\)</span> for some positive integer <span class="math inline">\(n\)</span>. This implies that <span class="math inline">\(k\)</span> must be <em>quantized</em> as a function of <span class="math inline">\(n\)</span>, with <span class="math display">\[
+k_n = \frac{n\pi}{L} \quad , \quad n=1,2,3,\cdots \ .
+\]</span> This means we have an infinite family of solutions in the <span class="math inline">\(y\)</span> direction of the form <span class="math inline">\(Y_n(y) = \sin k_n y\)</span>. Each separation constant <span class="math inline">\(-k_n^2\)</span> gives rise to its own solution <span class="math inline">\(Y_n(y)\)</span>. Notice that these functions are Fourier series components. We know that these functions form a complete set of orthogonal functions on the interval <span class="math inline">\(0 \leq y \leq L\)</span>. This means we can use them as a basis to compose the general solution for the potential by using a basis function <span class="math inline">\(\phi_n(x,y)\)</span> of the form <span class="math display">\[
+\phi_n(x,y) \equiv e^{-k_n x} \sin k_n y \ .
+\]</span> By the principle of superposition, we can then write the general solution <span class="math inline">\(\phi(\mathbf{x})\)</span> as a linear superposition of <span class="math inline">\(\phi_n(x,y)\)</span>, with <span class="math display">\[
+\phi(\mathbf{x}) = \sum_{n=1}^\infty b_n \phi_n(x,y) \ .
+\]</span> We’re now left with an infinite set of coefficients <span class="math inline">\(b_n\)</span> we to find. We can do that by imposing the final boundary condition, which says that at <span class="math inline">\(x=0\)</span> we must have <span class="math inline">\(\phi(0,y) = V\)</span> for some constant <span class="math inline">\(V\)</span>. Plugging this into the general solution, we have <span class="math display">\[
+V = \phi(0,y) = \sum_{n=1}^\infty b_n \sin k_n y \ .
+\]</span> We can find the coefficients <span class="math inline">\(b_n\)</span> in a couple of ways. One way is to take the inner product of both sides of this formula, work out the integrals, and set them equal and solve for <span class="math inline">\(b_n\)</span>. This is equivalent to just using the formula derived in the appendix, which says <span class="math display">\[
+b_n = \frac{\langle \phi_n | \phi \rangle}{\langle \phi_n | \phi_n \rangle} \ ,
+\]</span> where the inner product of two functions are defined by integrating their product over <span class="math inline">\(y\)</span> from <span class="math inline">\(y=0\)</span> to <span class="math inline">\(y=L\)</span>, with <span class="math display">\[
+\langle f | g \rangle \equiv \int_0^L dy \ f(y) g(y) \ .
+\]</span> We want to evaluate these inner products at the boundary point <span class="math inline">\(x=0\)</span> since that’s where we know <span class="math inline">\(\phi = V\)</span>. At this boundary point we must have <span class="math inline">\(\phi_n(0,y) = \sin k_n y\)</span>, where <span class="math inline">\(k_n = \frac{n\pi}{L}\)</span>. Working out the denominator first, we get <span class="math display">\[
+\langle \phi_n | \phi_n  \rangle = \int_0^L dy \ \sin^2 \frac{n\pi}{L} y = \frac{L}{2} \ .
+\]</span> Working out the the numerator under the same conditions, we get <span class="math display">\[
+\begin{align*}
+\langle \phi_n | \phi \rangle &amp;= V \int_0^L dy \ \sin \frac{n\pi y}{L} \\
+&amp;= \frac{VL}{n\pi} \big(1 - \cos n\pi\big) \\
+&amp;= \frac{VL}{n\pi} \big(1 - (-1)^n\big) \\
+&amp;= \begin{cases}
+\frac{2VL}{n\pi}, &amp; n = 1,3,5,\cdots \\
+0 , &amp; n=0,2,4,\cdots
+\end{cases} \ .
+\end{align*}
+\]</span> Putting these together, we evidently get <span class="math display">\[
+b_n = \frac{4V}{n\pi} \ \ , \ \ n=1,3,5,\cdots \ .
+\]</span> This means the general solution for the potential in this problem is given by <span class="math display">\[
+\phi(\mathbf{x}) = \frac{4V}{\pi} \sum_{n=1,3,\cdots} \frac{1}{n} \exp\bigg(-\frac{n\pi x}{L}\bigg) \sin\bigg(\frac{n\pi y}{L}\bigg) \ .
+\]</span> If we like, we can further simplify this expression by noting that the sum on the right-hand side has a closed form given by <span class="math display">\[
+\phi(x,y) = \frac{2V}{\pi} \tan^{-1} \bigg(\frac{\sin \frac{\pi y}{L}}{\sinh \frac{\pi x}{L}}\bigg) \ .
+\]</span> Since this potential is only a function of two variables, we can plot its equipotentials with a contour plot in the <span class="math inline">\(xy\)</span>-plane. In the <span class="math inline">\(x\)</span>-direction, the potential is highest at <span class="math inline">\(x=0\)</span>, where <span class="math inline">\(\phi(0,y)=V\)</span> before dying off exponentially as <span class="math inline">\(x \rightarrow \infty\)</span>. In the <span class="math inline">\(y\)</span>-direction, the potential goes to zero at the endpoints <span class="math inline">\(y=0\)</span> and <span class="math inline">\(y=L\)</span>, and hits its maximum at the midpoint <span class="math inline">\(y=\frac{L}{2}\)</span>.</p>
+<p>So how do we know that this expression is in fact the general solution? This is where the uniqueness theorem and the theory of orthogonal functions comes into play. The theory of orthogonal functions guarantees we can construct general solutions using a superposition of basis functions. The uniqueness theorem says that once we’ve found this function, we know it’s the only one that solves Laplace’s equation subject to the given boundary conditions.</p>
+</section>
+<section id="example-infinite-conducting-rectangular-pipe-held-at-a-given-potential-on-one-end" class="level5">
+<h5 class="anchored" data-anchor-id="example-infinite-conducting-rectangular-pipe-held-at-a-given-potential-on-one-end">Example: Infinite conducting rectangular pipe held at a given potential on one end</h5>
+<p>Let’s now consider a slight generalization of the previous problem. Suppose we have a rectangular infinitely long conducting pipe. One end of the pipe is held at some potential <span class="math inline">\(V(y,z)\)</span>, while the other end extends infinitely far. Suppose the pipe has a finite width <span class="math inline">\(a\)</span> and a finite depth <span class="math inline">\(b\)</span>, and the sides of the pipe are grounded. We want to find the potential inside the pipe.</p>
+<p>FIGURE</p>
+<p>We’ll orient the pipe exactly like we did in the previous problem, with the length along the <span class="math inline">\(x\)</span>-axis, and the width and depth along the <span class="math inline">\(y\)</span> and <span class="math inline">\(z\)</span> axes. At <span class="math inline">\(x=0\)</span> the potential is held constant, with <span class="math inline">\(\phi(0,y,z)=V(y,z)\)</span>. At <span class="math inline">\(y=0\)</span> and <span class="math inline">\(y=a\)</span>, and at <span class="math inline">\(z=0\)</span> and <span class="math inline">\(z=b\)</span>, the pipe is grounded, with <span class="math inline">\(\phi(x,0,z) = \phi(x,b,z) = \phi(x,y,0) = \phi(x,y,b) = 0\)</span>. We’ll also require that <span class="math inline">\(\phi \rightarrow 0\)</span> at infinity.</p>
+<p>This means the BVP we seek to solve is <span class="math display">\[
+\begin{align*}
+\begin{cases}
+\nabla^2 \phi = 0 \ , \\
+\text{where} \ \phi(0,y,z) = V(y,z) \ , \\
+\phi(x,0,z) = \phi(x,a,z) = 0 \ , \\
+\phi(x,y,0) = \phi(x,y,b) = 0 \ , \\
+\phi(x,y,z) \rightarrow 0 \ \text{as} \ x \rightarrow \infty \ .
+\end{cases}
+\end{align*}
+\]</span> We again employ separation of variables by assuming a trial solution of the form</p>
+<p><span class="math display">\[
+\phi(x,y,z) = X(x) Y(y) Z(z) \ .
+\]</span> Plugging this into Laplace’s equation and simplifying, we find the problem reduces to solving three ODEs, <span class="math display">\[
+\frac{1}{X} \frac{d^2 X}{dx^2} = \alpha \quad , \quad \frac{1}{Y} \frac{d^2 Y}{dy^2} = \beta \quad , \quad \quad \frac{1}{Y} \frac{d^2 Z}{dz^2} = \gamma \quad , \quad \alpha + \beta + \gamma = 0 \ .
+\]</span> Since the problem is unbounded in the <span class="math inline">\(x\)</span> direction and bounded in the <span class="math inline">\(y\)</span> and <span class="math inline">\(z\)</span> directions we’ll assume <span class="math inline">\(\beta = -k^2\)</span> and <span class="math inline">\(\gamma = -\ell^2\)</span> are both negative. This decision forces <span class="math inline">\(\alpha = \sqrt{k^2 + \ell^2}\)</span> to be positive, which is also what we want.</p>
+<p>This gives us three ODEs to solve subject to the boundary conditions, <span class="math display">\[
+\frac{d^2 X}{dx^2} = (k^2+\ell^2) X \quad , \quad \frac{d^2 Y}{dy^2} = -k^2 Y \quad , \quad \frac{d^2 Z}{dz^2} = -\ell^2 Z \ .
+\]</span> The first ODE involves an unbounded coordinate direction. Requiring that <span class="math inline">\(X \rightarrow 0\)</span> as <span class="math inline">\(x \rightarrow \infty\)</span> gives <span class="math display">\[
+X(x) = A e^{-\sqrt{k^2+\ell^2}x} \ .
+\]</span> The second and third ODE both involved bounded coordinate directions. Imposing the boundary conditions, we get <span class="math display">\[
+\begin{align*}
+Y(y) = B \sin ky \quad &amp;\Longrightarrow \quad k = \frac{n\pi}{a} \ , \ n=1,2,3,\cdots \ , \\
+Z(z) = C \sin \ell z \quad &amp;\Longrightarrow \quad \ell = \frac{m\pi}{b} \ , \ m=1,2,3,\cdots \ .
+\end{align*}
+\]</span> Again, <span class="math inline">\(k\)</span> and <span class="math inline">\(\ell\)</span> are forced to be quantized in terms of positive integers <span class="math inline">\(n\)</span> and <span class="math inline">\(m\)</span> respectively. Each set of Fourier functions forms a complete orthonormal basis of solutions on their given intervals, which means we can express the general solutions <span class="math inline">\(Y(y)\)</span> and <span class="math inline">\(Z(z)\)</span> as a linear superposition of solutions <span class="math inline">\(Y_n(y) = \sin k_n y\)</span> and <span class="math inline">\(Z_m(z) = \cos \ell_m z\)</span> respectively.</p>
+<p>Putting this all together, we have a basis of solutions of the form <span class="math display">\[
+\phi_{nm}(x,y,z) = e^{-\sqrt{k_n^2+\ell_m^2}x} \sin k_n y \sin \ell_m z \ .
+\]</span> To get the general solution we use the principle of superposition and sum over all <span class="math inline">\(n\)</span> and <span class="math inline">\(m\)</span> to write <span class="math display">\[
+\phi(\mathbf{x}) = \sum_{n=1}^\infty \sum_{m=1}^\infty b_{nm} \phi_{nm}(x,y,z) \ .
+\]</span> It remains now to impose the final boundary condition that <span class="math inline">\(\phi(0,y,z) = V(y,z)\)</span>, which we can use to find the coefficients <span class="math inline">\(b_{nm}\)</span>. Again, we can use the orthogonality of the Fourier functions to find these coefficients via <span class="math display">\[
+b_{nm} = \frac{\langle \phi_{nm} | \phi \rangle}{\langle \phi_{nm} | \phi_{nm} \rangle} \ ,
+\]</span> where now the inner product needs to be taken as an integral over both <span class="math inline">\(y\)</span> and <span class="math inline">\(z\)</span>, with <span class="math display">\[
+\langle f | g \rangle \equiv \int_0^a dy \ \int_0^b dz \ f(y,z) g(y,z) \ .
+\]</span> At the boundary point <span class="math inline">\(x=0\)</span> we have <span class="math inline">\(\phi = V(y,z)\)</span> and <span class="math inline">\(\phi_{nm} = \sin k_n y \sin \ell_m z\)</span>. This means at <span class="math inline">\(x=0\)</span> the denominator is given by <span class="math display">\[
+\langle \phi_{nm} | \phi_{nm} \rangle = \int_0^a dy \ \sin^2 k_n y \int_0^b dz \ \sin^2 \ell_m z = \frac{ab}{4} \ .
+\]</span> The numerator at <span class="math inline">\(x=0\)</span> is given by <span class="math display">\[
+\langle \phi_{nm} | \phi \rangle = \int_0^a dy \ \int_0^b dz \ V(y,z) \sin k_n y \sin \ell_m z \ .
+\]</span> We can’t proceed any further without a specific functional form for <span class="math inline">\(V(y,z)\)</span>. For example, if we assume as we did in the previous example that <span class="math inline">\(V\)</span> is constant, we get <span class="math display">\[
+\begin{align*}
+\langle \phi_{nm} | \phi \rangle &amp;= V \int_0^a dy \ \sin\frac{n\pi y}{a} \int_0^b dz \ \sin\frac{m\pi z}{b} \\
+&amp;= V \frac{a}{n\pi} \frac{b}{m\pi} \big(1 - (-1)^n\big) \big(1 - (-1)^m\big) \\
+&amp;= \begin{cases}
+\frac{4Vab}{nm\pi^2}, &amp; n,m = 1,3,5,\cdots \\
+0 , &amp; \text{otherwise}
+\end{cases} \ .
+\end{align*}
+\]</span> Thus, the coefficients are given by <span class="math display">\[
+b_{nm} = \frac{16V}{nm\pi^2} \ , \quad n,m=1,3,5,\cdots \ .
+\]</span> The general solution for the potential to this BVP is thus given by <span class="math display">\[
+\phi(x,y,z) = \frac{16V}{\pi^2} \sum_{n,m=1,3,\cdots} \frac{1}{nm} \exp\bigg(-\sqrt{(n/a)^2+(m/b)^2}\pi x\bigg) \sin\bigg(\frac{n\pi y}{a}\bigg) \sin\bigg(\frac{m\pi z}{b}\bigg)  \ .
+\]</span> Again, by the uniqueness theorem and the theory of orthogonal functions we know this must be the unique solution since it satisfies the full BVP. In this case though there’s no closed-form solution. However, notice that each term falls off quite rapidly with <span class="math inline">\(n\)</span> and <span class="math inline">\(m\)</span>, meaning we can get a reasonable approximation to this potential by keeping only the first few terms in the series.</p>
+<p>Visualizing the equipotentials for this problem is also a good deal harder than the last example, since now we’d need to do a 3D contour plot to see the whole thing. Qualitatively speaking, we expect that the potential will be highest at <span class="math inline">\(x=0\)</span> before falling off exponentially. On the other edges of the pipe the potential goes to zero due to grounding, and peaks along the center-line of the pipe where <span class="math inline">\(y=\frac{a}{2}\)</span> and <span class="math inline">\(z=\frac{b}{2}\)</span>.</p>
+</section>
+<section id="example-conducting-rectangular-box-held-at-given-potential-on-one-end" class="level5">
+<h5 class="anchored" data-anchor-id="example-conducting-rectangular-box-held-at-given-potential-on-one-end">Example: Conducting rectangular box held at given potential on one end</h5>
+<p>Let’s now consider a slight variation to the previous problem. Suppose we have a rectangular conducting box of finite extent in all directions. One of the sides of the box is held at some varying potential <span class="math inline">\(V(y,z)\)</span>, while the other five sides of the box are grounded. Suppose the box has a width <span class="math inline">\(a\)</span> in the direction where the potential is ungrounded, a depth <span class="math inline">\(b\)</span>, and a height <span class="math inline">\(c\)</span>.</p>
+<p>FIGURE</p>
+<p>We’ll orient the box exactly like we did in the previous problem, with the length along the <span class="math inline">\(x\)</span>-axis, and the width and depth along the <span class="math inline">\(y\)</span> and <span class="math inline">\(z\)</span> axes. We’ll assume the box is is ungrounded at <span class="math inline">\(x=a\)</span> with <span class="math inline">\(\phi(a,x,y) = V(y,z)\)</span>, while the other sides are grounded. This gives us a BVP to solve of the form <span class="math display">\[
+\begin{align*}
+\begin{cases}
+\nabla^2 \phi = 0 \ , \\
+\text{where} \ \phi(a,y,z) = V(y,z) \ , \\
+\phi(0,y,z) = 0 \ , \\
+\phi(x,0,z) = \phi(x,a,z) = 0 \ , \\
+\phi(x,y,0) = \phi(x,y,b) = 0 \ .
+\end{cases}
+\end{align*}
+\]</span> Since we confine ourselves to the inside of the box, we don’t need to require that <span class="math inline">\(\phi \rightarrow \infty\)</span> as <span class="math inline">\(|\mathbf{x}| \rightarrow \infty\)</span>.</p>
+<p>If we apply separation of variables to this problem, we again end up with three ODEs to solve of the following form, <span class="math display">\[
+\frac{d^2 X}{dx^2} = (k^2+\ell^2) X \quad , \quad \frac{d^2 Y}{dy^2} = -k^2 Y \quad , \quad \frac{d^2 Z}{dz^2} = -\ell^2 Z \ .
+\]</span> As with the previous problems, we chose negative separation constants <span class="math inline">\(-k^2\)</span> and <span class="math inline">\(-\ell^2\)</span> for the two grounded directions, which forces the ungrounded direction to have a positive separation constant <span class="math inline">\(k^2+\ell^2\)</span>.</p>
+<p>The ODEs for <span class="math inline">\(Y(y)\)</span> and <span class="math inline">\(Z(z)\)</span> are solved the same way as before. The boundary conditions force the <span class="math inline">\(k\)</span> and <span class="math inline">\(\ell\)</span> to be quantized in terms of two integers <span class="math inline">\(n\)</span> and <span class="math inline">\(m\)</span>, with <span class="math display">\[
+k_n = \sqrt{\frac{n\pi}{b}} \quad , \quad \ell_m = \sqrt{\frac{m\pi}{c}} \quad , \quad n,m=1,2,\cdots \ .
+\]</span> This then yield two basis set of solutions of the form <span class="math display">\[
+Y_n(y) = A_n \sin k_n y \quad , \quad Z_m(y) = B_m \sin \ell_m z  \ .
+\]</span> As before, the ODE for <span class="math inline">\(X(y)\)</span> has general solutions of the form <span class="math display">\[
+X_{nm}(x) = C_{nm} e^{\sqrt{k_{n}^2+\ell_{m}^2} x} + D_{nm} e^{-\sqrt{k_{n}^2+\ell_{m}^2} x} \ .
+\]</span> What changes are the boundary conditions. Requiring that <span class="math inline">\(X_{nm}(0) = 0\)</span> forces <span class="math inline">\(D_{nm} = -C_{nm}\)</span>, which gives <span class="math display">\[
+X_{nm}(x) = C_{nm} \big(e^{\sqrt{k_{n}^2+\ell_{m}^2} x} - e^{-\sqrt{k_{n}^2+\ell_{m}^2} x}\big) = 2C_{nm} \sinh \sqrt{k_{nm}^2+\ell_{nm}^2} x \ .
+\]</span> Multiplying these solutions together and combining constants, we get a basis of solutions for the potential of the form <span class="math display">\[
+\phi_{nm}(x,y,z) = \sinh\sqrt{k_{n}^2+\ell_{m}^2} x \ \sin k_n y \ \sin \ell_m z \ .
+\]</span> The general solution for the potential must then be a superposition of these basis solutions, with <span class="math display">\[
+\phi(\mathbf{x}) = \sum_{n=1}^\infty \sum_{m=1}^\infty b_{nm} \phi_{nm}(x,y,z) \ .
+\]</span> We again find the expansion coefficients <span class="math inline">\(b_{nm}\)</span> by imposing the final boundary condition <span class="math inline">\(\phi(a,y,z) = V(y,z)\)</span>. The answer will depend on the specific form of <span class="math inline">\(V(y,z)\)</span>, but can be found in the usual way once we do.</p>
+<p>Once this is found, we have the general solution for this BVP. By the uniqueness theorem and the theory of orthogonal functions, we can guarantee that the solution found will be unique.</p>
+</section>
+</section>
+<section id="laplaces-equation-in-spherical-coordinates" class="level3">
+<h3 class="anchored" data-anchor-id="laplaces-equation-in-spherical-coordinates">Laplace’s Equation in Spherical Coordinates</h3>
+<p>Applying separation of variables in Cartesian coordinates is pretty easy due to the fact that the Laplacian takes such a simple form. In curvilinear coordinates though it’s not quite as easy, but it’s still very useful to solve many interesting problems.</p>
+<p>Suppose we now choose to work in spherical coordinates <span class="math inline">\((r,\theta,\varphi)\)</span>. In this coordinate system, the Laplacian is given by <span class="math display">\[
+\nabla^2 \phi = \frac{1}{r^2} \frac{\partial}{\partial r} \bigg(r^2 \frac{\partial \phi}{\partial r}\bigg) + \frac{1}{r^2 \sin\theta} \frac{\partial}{\partial \theta} \bigg(\sin\theta \frac{\partial \phi}{\partial \theta}\bigg) + \frac{1}{r^2 \sin^2 \theta} \frac{\partial^2 \phi}{\partial \varphi^2} \ .
+\]</span></p>
+<p>To solve Laplace’s equation we require that <span class="math inline">\(\nabla^2 \phi = 0\)</span>. If we multiply both sides by <span class="math inline">\(r^2\)</span> we end up with <span class="math display">\[
+\frac{\partial}{\partial r} \bigg(r^2 \frac{\partial \phi}{\partial r}\bigg) + \frac{1}{ \sin\theta} \frac{\partial}{\partial \theta} \bigg(\sin\theta \frac{\partial \phi}{\partial \theta}\bigg) + \frac{1}{\sin^2 \theta} \frac{\partial^2 \phi}{\partial \varphi^2} = 0 \ .
+\]</span> Notice this equation isn’t completely separated yet since the last term still depends on <span class="math inline">\(\theta\)</span>. As is convention, we’ll handle the special situation of azimuthal symmetry before proceeding to study the general case.</p>
+<section id="azimuthally-symmetric-potentials" class="level4">
+<h4 class="anchored" data-anchor-id="azimuthally-symmetric-potentials">Azimuthally Symmetric Potentials</h4>
+<p>For problems with azimuthal symmetry the potential depends only on <span class="math inline">\(r\)</span> and <span class="math inline">\(\theta\)</span>, not on <span class="math inline">\(\varphi\)</span>. An example of this type of situation might be a conducting sphere held at a fixed potential, or a potential with only a polar dependence, say <span class="math inline">\(\phi = V(\theta)\)</span> on the surface. For problems like this we can ignore the <span class="math inline">\(\varphi\)</span> derivatives in Laplace’s equation and write <span class="math display">\[
+\frac{\partial}{\partial r} \bigg(r^2 \frac{\partial \phi}{\partial r}\bigg) + \frac{1}{ \sin\theta} \frac{\partial}{\partial \theta} \bigg(\sin\theta \frac{\partial \phi}{\partial \theta}\bigg) = 0 \ .
+\]</span> This equation is clearly separable in <span class="math inline">\(r\)</span> and <span class="math inline">\(\theta\)</span>, so we can proceed as usual. Assume a trial solution of the form <span class="math display">\[
+\phi(\mathbf{x}) = R(r) \Theta(\theta) \ .
+\]</span> Plugging this into the previous equation and dividing by <span class="math inline">\(R\Theta\)</span>, we get <span class="math display">\[
+0 = \frac{1}{R} \frac{d}{dr} \bigg(r^2 \frac{dR}{dr}\bigg) + \frac{1}{\Theta} \frac{1}{\sin\theta} \frac{d}{d\theta} \bigg(\sin\theta \frac{dY}{d\theta}\bigg) \ .
+\]</span> Since each term is an independent function in its own variable, the only way their sum can vanish for all <span class="math inline">\(r,\theta\)</span> is the two terms are equal to a constant if opposite sign. We’ll denote this separation constant by <span class="math inline">\(\ell(\ell+1)\)</span> for reasons that will become clear in a moment. Then we have <span class="math display">\[
+\begin{align*}
+\frac{d}{dr} \bigg(r^2 \frac{dR}{dr}\bigg) &amp;= \ell (\ell+1) R(r) \ , \\
+\frac{1}{\sin\theta}\frac{d}{d\theta} \bigg(\sin\theta \frac{d\Theta}{d\theta}\bigg) &amp;= -\ell (\ell+1) \Theta(\theta) \ .
+\end{align*}
+\]</span> The first equation, called the <em>radial equation</em> can be solved by changing variables to <span class="math inline">\(U(r) = r R(r)\)</span>. Then <span class="math inline">\(\frac{dR}{dr} = \frac{U}{r} - \frac{dU}{dr}\)</span>, and so after simplifying a bit we end up with an ODE for <span class="math inline">\(U(r)\)</span> of the form <span class="math display">\[
+\frac{d^2 U}{dr^2} = \frac{\ell (\ell+1)}{r^2} U \ .
+\]</span> To solve this ODE we assume a trial solution of the form <span class="math inline">\(U(r) = r^\lambda\)</span> for some parameter <span class="math inline">\(\lambda\)</span> we need to determine. Plugging this solution into the ODE evidently forces <span class="math inline">\(\lambda = -\ell, \ell+1\)</span>, which means the general solution is given by the superposition <span class="math display">\[
+U(r) = a r^{-\ell} + b r^{\ell+1} \ .
+\]</span> Finally, dividing by <span class="math inline">\(r\)</span> gives us the general solution to the original radial equation, <span class="math display">\[
+R(r) = a r^{-\ell-1} + b r^{\ell} \ .
+\]</span> We now need to deal with the other ODE, called the <em>angular equation</em>, <span class="math display">\[
+\frac{1}{\sin\theta} \frac{d}{d\theta} \bigg(\sin\theta \frac{d\Theta}{d\theta}\bigg) = -\ell (\ell+1) \Theta(\theta) \ .
+\]</span> If we change variables by letting <span class="math inline">\(x = \cos\theta\)</span>, then <span class="math inline">\(\frac{d\Theta}{d\theta} = -\sin\theta \frac{d\Theta}{dx}\)</span>, and so we end up with the following ODE for <span class="math inline">\(\Theta(x)\)</span>, <span class="math display">\[
+-\frac{d}{dx} \bigg((1-x^2)\frac{d\Theta}{dx}\bigg) = \ell(\ell+1) \Theta(x) \ .
+\]</span> Those who have read the appendix will know that this ODE has a name. It’s the <em>Legendre equation</em>. Its only bounded solution is the <em>Legendre polynomial</em> <span class="math inline">\(P_\ell(x) = P_\ell(\cos\theta)\)</span>, where <span class="math inline">\(\ell = 0,1,2,\cdots\)</span> must be a positive integer. Since this is a second order equation, there is also a second solution, but this solution is known to be unbounded for all <span class="math inline">\(\ell\)</span>, and hence non-physical.</p>
+<p>We can define the Legendre polynomials most simply using the Rodrigues’ formula as <span class="math display">\[
+P_\ell(x) \equiv \frac{1}{2^\ell \ell!} \frac{d^\ell}{dx^\ell} (x^2 - 1)^\ell \ .
+\]</span> For example, the first three Legendre polynomials are given by <span class="math display">\[
+P_0(x) = 1 \quad , \quad P_1(x) = x = \cos\theta \quad , \quad P_2(x) = \frac{1}{2} (3x^2 - 1) = \frac{1}{2} (3\cos^2 \theta - 1) \ .
+\]</span> The Legendre polynomials form a complete orthogonal set on the interval <span class="math inline">\(-1 \leq x \leq 1\)</span>. This means we can express the general solution <span class="math inline">\(\Theta(\theta)\)</span> as a linear superposition of <span class="math inline">\(P_\ell(\cos\theta)\)</span>, with <span class="math display">\[
+\Theta(\theta) = \sum_{\ell=0}^\infty c_\ell P_\ell(\cos\theta) \ .
+\]</span> Combining this angular solution with the radial solution, we can combine these constants <span class="math inline">\(c_\ell\)</span> with the constants in the radial solution to write the general solution for an azimuthally symmetric potential <span class="math inline">\(\phi(\mathbf{x})\)</span> in the form <span class="math display">\[
+\boxed{
+\phi(\mathbf{x}) = \sum_{\ell=0}^\infty \big(a_\ell r^\ell + b_\ell r^{-(\ell+1)}\big) P_\ell(\cos\theta)
+} \ .
+\]</span> Note that since we’re generally only interested in solutions either inside or outside a spherical surface, the requirement that the potential not blow up inside the boundary region will force either <span class="math inline">\(a_\ell\)</span> or <span class="math inline">\(b_\ell\)</span> to vanish, meaning we only need to find one set or the other. As usual, we’ll find the remaining coefficients by imposing the boundary conditions and taking an inner product. Let’s now work some examples before proceeding to the more general case of non-azimuthally symmetric potentials.</p>
+<p>To see that this solution makes sense, let’s consider the special case where the potential is spherically symmetric, with <span class="math inline">\(\phi = \phi(r)\)</span>. Then all but the <span class="math inline">\(\ell=0\)</span> terms vanish. Since <span class="math inline">\(P_0(\cos\theta) = 1\)</span> by definition, we get <span class="math display">\[
+\phi(r) = a_0 + \frac{b_0}{r} \ .
+\]</span> We immediately recognize this as the potential of a uniformly charge sphere, with <span class="math inline">\(b_0 = Q\)</span> and <span class="math inline">\(a_0 = \phi(0)\)</span> a chosen ground point potential at the origin. Let’s now consider some more interesting examples.</p>
+<section id="example-potential-inside-a-hollow-sphere-held-at-a-given-potential" class="level5">
+<h5 class="anchored" data-anchor-id="example-potential-inside-a-hollow-sphere-held-at-a-given-potential">Example: Potential inside a hollow sphere held at a given potential</h5>
+<p>Suppose we have a hollow sphere of radius <span class="math inline">\(R\)</span> with a fixed potential <span class="math inline">\(V(\theta)\)</span> on its surface. We want to find the potential inside of the sphere.</p>
+<p>FIGURE</p>
+<p>The boundary value problem we seek to solve is evidently <span class="math display">\[
+\begin{align*}
+\begin{cases}
+\nabla^2 \phi(r,\theta,\varphi) = 0 \ , \\
+\text{where} \ \phi(R,\theta,\varphi) = V(\theta) \ .
+\end{cases}
+\end{align*}
+\]</span> Since this is clearly an azimuthally symmetric problem, <span class="math inline">\(\phi = \phi(r,\theta)\)</span>, which means the general solution must have the form <span class="math display">\[
+\phi(r,\theta) = \sum_{\ell=0}^\infty \big(a_\ell r^\ell + b_\ell r^{-(\ell+1)}\big) P_\ell(\cos\theta) \ .
+\]</span> Since we’re inside the sphere, we require that all <span class="math inline">\(b_\ell = 0\)</span> to prevent the potential from blowing up at the origin. This leaves <span class="math display">\[
+\phi(r,\theta) = \sum_{\ell=0}^\infty a_\ell r^\ell P_\ell(\cos\theta) \ .
+\]</span> We’re now left to find the coefficients <span class="math inline">\(b_\ell\)</span> by imposing the boundary condition at <span class="math inline">\(\phi(R,\theta)\)</span>, which we can write as <span class="math display">\[
+V(\theta) = \phi(R,\theta) = \sum_{\ell=0}^\infty a_\ell R^\ell P_\ell(\cos\theta) \ .
+\]</span> Now, recall from the appendix that the Legendre polynomials satisfy the orthogonality relation <span class="math display">\[
+\langle P_\ell(x) | P_{\ell'}(x) \rangle = \int_{-1}^1 dx P_\ell(x) P_{\ell'}(x) = \frac{2}{2\ell+1} \delta_{\ell\ell'} \ .
+\]</span> Using the relation <span class="math inline">\(x=\cos\theta\)</span> we can re-express this integral in terms of <span class="math inline">\(\theta\)</span> as well, <span class="math display">\[
+\langle P_\ell(\cos\theta) | P_{\ell'}(\cos\theta) \rangle = \int_0^\pi d\theta \ P_\ell(\cos\theta) P_{\ell'}(\cos\theta) \sin\theta = \frac{2}{2\ell+1} \delta_{\ell\ell'} \ .
+\]</span> By the orthogonality condition, we can find <span class="math inline">\(a_\ell\)</span> by the relation <span class="math display">\[
+a_\ell = \frac{\langle R^\ell P_\ell(\cos\theta) | V(\theta) \rangle}{\langle R^\ell P_\ell(\cos\theta) | R^\ell P_\ell(\cos\theta) \rangle} \ .
+\]</span> Let’s find the numerator first. From the orthogonality relation, we simply have <span class="math display">\[
+\langle R^\ell P_\ell(\cos\theta) | R^\ell P_\ell(\cos\theta) \rangle = \frac{2R^{2\ell}}{2\ell + 1} \ .
+\]</span> The denominator is given by <span class="math display">\[
+\langle R^\ell P_\ell(\cos\theta) | V(\theta) \rangle = R^\ell \langle P_\ell(\cos\theta) | V(\theta) \rangle \ .
+\]</span> Putting these together, we get <span class="math display">\[
+a_\ell = \frac{2\ell+1}{2R^\ell} \langle P_\ell(\cos\theta) | V(\theta) \rangle = \frac{2\ell+1}{2R^\ell} \int_0^\pi d\theta \ V(\theta) P_\ell(\cos\theta) \sin\theta \ .
+\]</span> To proceed further we’d need a particular form for the boundary potential <span class="math inline">\(V(\theta)\)</span>. As an example, let’s suppose that <span class="math display">\[
+V(\theta) = k \sin^2 \frac{\theta}{2} \ .
+\]</span> Using the half-angle formula and the value of the first two Legendre polynomials, we can write this in the form <span class="math display">\[
+V(\theta) = \frac{k}{2} (1-\cos\theta) = \frac{k}{2} \big(P_0(\cos\theta) - P_1(\cos\theta)\big) \ .
+\]</span> If we then plug this into the previous integral and use the definition of the inner product above, we get <span class="math display">\[
+\begin{align*}
+a_\ell &amp;= \frac{k}{2}\frac{2\ell+1}{2R^\ell} \int_0^\pi d\theta \  \big[P_0(\cos\theta) - P_1(\cos\theta)\big]P_\ell(\cos\theta) \sin\theta \\
+&amp;= \frac{k}{2}\frac{2\ell+1}{2R^\ell} \big[\langle P_0 | P_\ell \rangle - \langle P_1 | P_\ell \rangle\big] \ .
+\end{align*}
+\]</span> Now, by the orthogonality relation, only the <span class="math inline">\(\ell=0,1\)</span> terms will contribute anything while the rest vanish, with <span class="math display">\[
+\begin{align*}
+a_0 &amp;= \frac{k}{2} \frac{1}{2} \langle P_0 | P_0 \rangle = \frac{k}{2} \ , \\
+a_1 &amp;= -\frac{k}{2} \frac{3}{2R} \langle P_1 | P_1 \rangle = -\frac{k}{2R} \ .
+\end{align*}
+\]</span> For this choice of <span class="math inline">\(V(\theta)\)</span> we thus have our general solution for the potential that solves this BVP, given by <span class="math display">\[
+\phi(\mathbf{x}) = a_0 P_0(\cos\theta) + a_1 r P_1(\cos\theta) = \frac{k}{2} \bigg(1 - \frac{r}{R} \cos\theta\bigg) \ .
+\]</span> By the theory of orthogonal functions and the uniqueness theorem, we can guarantee this will be the unique general solution.</p>
+</section>
+<section id="example-potential-outside-a-hollow-sphere-held-at-a-given-potential" class="level5">
+<h5 class="anchored" data-anchor-id="example-potential-outside-a-hollow-sphere-held-at-a-given-potential">Example: Potential outside a hollow sphere held at a given potential</h5>
+<p>Let’s now consider again the previous problem, but suppose we’re not interested in the potential <em>outside</em> the hollow sphere. We now require that the potential vanish at infinity, giving a BVP of the form <span class="math display">\[
+\begin{align*}
+\begin{cases}
+\nabla^2 \phi(r,\theta,\varphi) = 0 \ , \\
+\text{where} \ \phi(R,\theta,\varphi) = V(\theta) \\
+\phi(r,\theta,\varphi) \rightarrow 0 \ \text{as} \ r \rightarrow \infty \ .
+\end{cases}
+\end{align*}
+\]</span> Clearly this problem also has an azimuthally symmetric potential <span class="math inline">\(\phi = \phi(r,\theta)\)</span>, and hence we can still write <span class="math display">\[
+\phi(r,\theta) = \sum_{\ell=0}^\infty \big(a_\ell r^\ell + b_\ell r^{-(\ell+1)}\big) P_\ell(\cos\theta) \ .
+\]</span> But now we need the potential outside the sphere, not inside. This forces <span class="math inline">\(a_\ell=0\)</span> instead, leaving <span class="math display">\[
+\phi(r,\theta) = \sum_{\ell=0}^\infty b_\ell r^{-(\ell+1)} P_\ell(\cos\theta) \ .
+\]</span> To find <span class="math inline">\(b_\ell\)</span> we proceed the same way as before, relying on the orthogonality of Legendre polynomials. We need to find <span class="math display">\[
+b_\ell = \frac{\langle R^{-(\ell+1)} P_\ell(\cos\theta) | V(\theta) \rangle}{\langle R^{-(\ell+1)} P_\ell(\cos\theta) | R^{-(\ell+1)} P_\ell(\cos\theta) \rangle} \ .
+\]</span> The denominator is simply given by <span class="math display">\[
+\langle R^{-(\ell+1)} P_\ell(\cos\theta) | R^{-(\ell+1)} P_\ell(\cos\theta) \rangle = \frac{2R^{-2(\ell+1)}}{2\ell + 1} \ ,
+\]</span> while the numerator is given by <span class="math display">\[
+\langle R^{-(\ell+1)} P_\ell(\cos\theta) | V(\theta) \rangle = R^{-(\ell+1)} \int_0^\pi d\theta \ V(\theta) P_\ell(\cos\theta) \sin\theta \ .
+\]</span> Putting these together, we have <span class="math display">\[
+b_\ell = \frac{(2\ell+1)R^{\ell+1}}{2} \int_0^\pi d\theta \ V(\theta) P_\ell(\cos\theta) \sin\theta \ .
+\]</span> To proceed further we’d need to know the specific form of the boundary potential <span class="math inline">\(V(\theta)\)</span>. For example, if we again assume the same boundary potential given in the previous problem, we can write <span class="math display">\[
+V(\theta) = k \sin^2 \theta = \frac{k}{2} \big[P_0(\cos\theta) - P_1(\cos\theta)\big] \ .
+\]</span> As in that problem, plugging this into the integral for <span class="math inline">\(b_\ell\)</span> forces only the <span class="math inline">\(\ell=0,1\)</span> terms to survive, with coefficients <span class="math display">\[
+\begin{align*}
+b_0 &amp;= \frac{k}{2} \frac{R}{2} \langle P_0 | P_0 \rangle = \frac{kR}{2} \ , \\
+b_1 &amp;= -\frac{k}{2} \frac{3R^2}{2} \langle P_1 | P_1 \rangle = -\frac{kR^2}{2} \ .
+\end{align*}
+\]</span> With these, we can write the general solution for the potential outside the sphere as <span class="math display">\[
+\phi(\mathbf{x}) = \frac{b_0}{r} P_0(\cos\theta) + \frac{b_1}{r^2} P_1(\cos\theta) = \frac{kR}{2r} \bigg(1 - \frac{R}{r} \cos\theta\bigg) \ .
+\]</span> Notice that this behaves exactly how we expect, with <span class="math inline">\(\phi \rightarrow 0\)</span> at infinity. It’s also easy to see that this solution agrees with the one inside the sphere at the boundary surface where <span class="math inline">\(r=R\)</span>. Indeed, these two solutions together give us the unique potential in all space that satisfies the boundary condition <span class="math inline">\(\phi(R,\theta,\varphi) = V(\theta)\)</span> on the surface of the sphere.</p>
+<p>In general, if we have a problem where a boundary value is specified on the surface of a sphere and we’re interested in the potential inside and outside the sphere, we only need to find one of the solutions and we automatically know the other. For example, suppose we’ve found the potential <span class="math inline">\(\phi\)</span> inside the sphere. All we need to do to get the potential outside the sphere is make the substitution <span class="math inline">\(\big(\frac{r}{R})^\ell \rightarrow \big(\frac{R}{r}\big)^{\ell+1}\)</span> and we automatically have that solution as well.</p>
+</section>
+<section id="example-conducting-hemispheres-at-opposite-constant-potential" class="level5">
+<h5 class="anchored" data-anchor-id="example-conducting-hemispheres-at-opposite-constant-potential">Example: Conducting hemispheres at opposite constant potential</h5>
+<p>Let’s now consider a slightly more interesting example that we calculated before using the method of images, the problem of two conducting hemispheres held at equal and opposite constant potentials <span class="math inline">\(\pm V\)</span>.</p>
+<p>FIGURE</p>
+<p>We can also solve this problem using separation of variables. We formulate this setup as a boundary value problem as follows. <span class="math display">\[
+\begin{align*}
+\begin{cases}
+\nabla^2 \phi(r,\theta,\varphi) = 0 \ , \\
+\text{where} \ \phi(R,\theta,\varphi) = V \ \text{when} \ 0 \leq \theta &lt; \frac{\pi}{2} \ , \\
+\phi(R,\theta,\varphi) = -V \ \text{when} \ \frac{\pi}{2} &lt; \theta \leq \pi \ , \\
+\phi(r) \rightarrow 0 \ \text{as} \ r \rightarrow \infty \ .
+\end{cases}
+\end{align*}
+\]</span> Again, this problem is clearly azimuthally symmetric. Since one is as easy as the other, we’ll show how to find the potential inside the sphere, and then use that formula to get the potential outside as well using the trick described in the previous example.</p>
+<p>Inside the sphere we require that <span class="math inline">\(b_\ell = 0\)</span>, which gives an expansion of the form <span class="math display">\[
+\phi(r,\theta,\varphi) = \sum_{\ell=0}^\infty a_\ell r^{\ell} P_\ell(\cos\theta) \ .
+\]</span> Notice this looks exactly like the previous examples if we take <span class="math inline">\(V(\theta) = \pm V\)</span>. This means we can use the same formula for the coefficients to write <span class="math display">\[
+a_\ell = \frac{2\ell+1}{2R^\ell} \langle P_\ell(\cos\theta) | V(\theta) \rangle = \frac{2\ell+1}{2R^\ell} \int_0^\pi d\theta \ V(\theta) P_\ell(\cos\theta) \sin\theta \ .
+\]</span> Plugging in <span class="math inline">\(V(\theta) = \pm V\)</span>, this becomes <span class="math display">\[
+a_\ell =  \frac{2\ell+1}{2R^\ell} V \bigg[\int_0^{\pi/2} d\theta \ P_\ell(\cos\theta) \sin\theta - \int_{\pi/2}^\pi d\theta \ P_\ell(\cos\theta) \sin\theta\bigg] \ .
+\]</span> Since <span class="math inline">\(P_\ell(\cos\theta)\)</span> is odd when <span class="math inline">\(\ell\)</span> is odd and even when <span class="math inline">\(\ell\)</span> is even, we can see that the even coefficients must cancel out, while for odd terms we can write <span class="math display">\[
+a_\ell = \frac{2\ell+1}{R^\ell} V \int_0^{\pi/2} d\theta \ P_\ell(\cos\theta) \sin\theta \ .
+\]</span> Now, by changing variables with <span class="math inline">\(x=\cos\theta\)</span> we see that the above integral can be written in the simpler form <span class="math display">\[
+\int_0^{\pi/2} d\theta \ P_\ell(\cos\theta) \sin\theta = \int_0^1 dx \ P_\ell(x) \ .
+\]</span> This integral is just the interval of <span class="math inline">\(P_\ell(x)\)</span> over the right-half interval <span class="math inline">\(0 \leq x \leq 1\)</span>. Its expression can be calculated for odd <span class="math inline">\(\ell\)</span> (see the appendix for an example) to give <span class="math display">\[
+\int_0^1 dx \ P_\ell(x) = \frac{(-1)^{\frac{\ell-1}{2}}}{2^\ell \big(\frac{\ell+1}{2}\big)} \frac{(\ell-1)!}{\big(\frac{\ell-1}{2}!\big)^2} \ .
+\]</span> Plugging this in and simplifying, the coefficients we seek are given by <span class="math display">\[
+a_\ell = \bigg(\frac{-1}{2}\bigg)^{\frac{\ell-1}{2}} \frac{(2\ell+1)(\ell-2)!!}{2\big(\frac{\ell+1}{2}!\big)^2} \frac{V}{R^\ell} \quad , \quad \ell=1,3,5,\cdots \ .
+\]</span> This means the potential inside the sphere must be given by <span class="math display">\[
+\begin{align*}
+\phi(r,\theta,\varphi) &amp;= V\sum_{\ell=0}^\infty \bigg(\frac{-1}{2}\bigg)^{\frac{\ell-1}{2}} \frac{(2\ell+1)(\ell-2)!!}{2\big(\frac{\ell+1}{2}!\big)^2} \bigg(\frac{r}{R}\bigg)^\ell P_\ell(\cos\theta) \\
+&amp;= V \bigg[\frac{3}{2}\bigg(\frac{r}{R}\bigg)P_1(\cos\theta) - \frac{7}{8}\bigg(\frac{r}{R}\bigg)^3P_3(\cos\theta) + \frac{11}{16}\bigg(\frac{r}{R}\bigg)^5P_5(\cos\theta) - \cdots\bigg] \ , \quad r \leq R \ .
+\end{align*}
+\]</span> To get the potential outside the sphere we need only substitute <span class="math inline">\(\big(\frac{r}{R})^\ell \rightarrow \big(\frac{R}{r}\big)^{\ell+1}\)</span> to get <span class="math display">\[
+\begin{align*}
+\phi(r,\theta,\varphi) &amp;= V\sum_{\ell=0}^\infty \bigg(\frac{-1}{2}\bigg)^{\frac{\ell-1}{2}} \frac{(2\ell+1)(\ell-2)!!}{2\big(\frac{\ell+1}{2}!\big)^2} \bigg(\frac{R}{r}\bigg)^{\ell+1} P_\ell(\cos\theta) \\
+&amp;= V \bigg[\frac{3}{2}\bigg(\frac{R}{r}\bigg)^2P_1(\cos\theta) - \frac{7}{8}\bigg(\frac{R}{r}\bigg)^4P_3(\cos\theta) + \frac{11}{16}\bigg(\frac{R}{r}\bigg)^6P_5(\cos\theta) - \cdots\bigg] \ , \quad r \geq R \ .
+\end{align*}
+\]</span> As expected, the potential outside the sphere goes to zero at infinity, satisfying the final boundary condition. It also appears that the potential vanishes at the origin, and indeed in the whole equatorial plane. Indeed, the potential seems to behave as a dipole, with the electric field falling off like <span class="math inline">\(r^{-3}\)</span> far away from the sphere. This should hopefully make sense. Far away from the sphere we could imagine modeling the two hemispheres as opposite point charges very close together, i.e.&nbsp;a dipole.</p>
+</section>
+<section id="example-conducting-sphere-in-the-presence-of-an-external-electric-field" class="level5">
+<h5 class="anchored" data-anchor-id="example-conducting-sphere-in-the-presence-of-an-external-electric-field">Example: Conducting sphere in the presence of an external electric field</h5>
+<p>Let’s revisit another problem we solved previously with the method of images, that of a solid conducting sphere of radius <span class="math inline">\(R\)</span> in the presence of a constant external electric field <span class="math inline">\(\mathbf{E}_0\)</span>. Recall that we solved this problem previously by modeling the external field with two opposite point charges located far away from the sphere, and placed two image charges inside the sphere that fit the boundary conditions on the sphere. We’ll now show that we can solve this same problem using separation of variables as well.</p>
+<p>Modeling this as a boundary value problem with <span class="math inline">\(\mathbf{E}_0 = E_0 \mathbf{e}_z\)</span> oriented along the <span class="math inline">\(z\)</span>-axis, we write <span class="math display">\[
+\begin{align*}
+\begin{cases}
+\nabla^2 \phi(r,\theta,\varphi) = 0 \ , \\
+\text{where} \ \phi(R,\theta,\varphi) = 0 \ , \\
+\phi(r,\theta,\varphi) \rightarrow -E_0 r\cos\theta \ \text{as} \ r \rightarrow \infty \ .
+\end{cases}
+\end{align*}
+\]</span> Note the last boundary condition was chosen to ensure <span class="math inline">\(\phi\)</span> becomes the potential for <span class="math inline">\(E_0\)</span> at <span class="math inline">\(z=\infty\)</span>, i.e.&nbsp;<span class="math inline">\(\phi = -E_0z\)</span>. This problem is clearly azimuthally symmetric as well. However, since the potential in this case doesn’t vanish at infinity we can’t set <span class="math inline">\(a_\ell=0\)</span> anymore. We have to include both terms. Suppose then that <span class="math display">\[
+\phi(r,\theta,\varphi) = \sum_{\ell=0}^\infty \big(a_\ell r^\ell + b_\ell r^{-\ell(\ell+1)}\big) P_\ell(\cos\theta) \ .
+\]</span> At the surface of the sphere we must have <span class="math inline">\(\phi(R,\theta,\varphi) = 0\)</span>, which means each term in the sum must vanish, with <span class="math display">\[
+\big(a_\ell R^\ell + b_\ell R^{-\ell(\ell+1)}\big) P_\ell(\cos\theta) = 0 \ .
+\]</span> Since <span class="math inline">\(P_\ell(\cos\theta)\)</span> doesn’t depend on <span class="math inline">\(r\)</span>, the only way each term can vanish is if the terms in parentheses do. This happens when <span class="math display">\[
+b_\ell = -a_\ell R^{2\ell+1} \ .
+\]</span> Let’s now look at the limiting behavior as <span class="math inline">\(r \rightarrow \infty\)</span>. When <span class="math inline">\(r \gg R\)</span> we can neglect the second term and write <span class="math display">\[
+\phi(r,\theta,\varphi) \approx \sum_{\ell=0}^\infty a_\ell r^\ell P_\ell(\cos\theta) \ .
+\]</span> To satisfy the boundary condition at infinity we require that <span class="math inline">\(\phi(r,\theta,\varphi) \approx -E_0 r \cos\theta\)</span>. Matching this condition with the series evidently forces <span class="math inline">\(\ell = 1\)</span> while the other terms must vanish. Since <span class="math inline">\(P_1(\cos\theta) = \cos\theta\)</span>, we then get <span class="math display">\[
+-E_0 r \cos\theta = a_1 r \cos\theta \quad \Longrightarrow \quad a_1 = -E_0 \ .
+\]</span> Plugging this in, we get a final expression for the potential satisfying these boundary conditions, with <span class="math display">\[
+\phi(\mathbf{x}) = -E_0 r \bigg(1 - \frac{R^3}{r^3}\bigg) \cos\theta \ .
+\]</span> This of course is exactly what we found before using the method of images. It’s useful to look at the induced surface charge on the sphere as well to see how the charges are distributing in response to the external field. We do that by calculating <span class="math display">\[
+\sigma = -\frac{1}{4\pi} \frac{\partial \phi}{\partial r} \bigg|_{r=R} = \frac{E_0}{\pi} \cos\theta \ .
+\]</span> Notice that charge density is evidently the most positive near <span class="math inline">\(\theta = 0\)</span> and the most negative near <span class="math inline">\(\theta = \pi\)</span>. This indicates that positive charge is building up in the direction of the external field, while negative charge is building up opposite to the direction of the field, which is of course what we’d expect physically in this situation.</p>
+</section>
+</section>
+<section id="general-potentials" class="level4">
+<h4 class="anchored" data-anchor-id="general-potentials">General Potentials</h4>
+<p>Now that we’ve studied the special case of azimuthally symmetric potentials we’ll return to the general case where the potential can depend on the angle <span class="math inline">\(\varphi\)</span> as well. Recall we had the following form for Laplace’s equation in spherical coordinates, <span class="math display">\[
+\frac{\partial}{\partial r} \bigg(r^2 \frac{\partial \phi}{\partial r}\bigg) + \frac{1}{ \sin\theta} \frac{\partial}{\partial \theta} \bigg(\sin\theta \frac{\partial \phi}{\partial \theta}\bigg) + \frac{1}{\sin^2 \theta} \frac{\partial^2 \phi}{\partial \varphi^2} = 0 \ .
+\]</span> Now we’ll keep the last term involving the <span class="math inline">\(\varphi\)</span> derivatives in. However, since the two angular terms depend on each other, we can only separate the radial and angular components, but not all three. Suppose then a trial solution of the form <span class="math display">\[
+\phi(\mathbf{x}) = R(r) Y(\theta,\varphi) \ .
+\]</span> Plugging this trial solution into the above equation and dividing by <span class="math inline">\(\phi = RY\)</span>, we get <span class="math display">\[
+0 = \frac{1}{R} \frac{d}{dr} \bigg(r^2 \frac{dR}{dr}\bigg) + \frac{1}{Y}\bigg[\frac{1}{\sin\theta} \frac{\partial}{\partial\theta} \bigg(\sin\theta \frac{\partial Y}{\partial\theta}\bigg) + \frac{1}{\sin^2 \theta} \frac{\partial^2 Y}{\partial\varphi^2}\bigg] \ .
+\]</span> Since these two terms are independent of the other, the only way they can sum to zero is they both equal the same constant but with opposite sign. Again, we’ll denote the separation constant by <span class="math inline">\(\ell(\ell+1)\)</span> and write <span class="math display">\[
+\begin{align*}
+\frac{d}{dr} \bigg(r^2 \frac{dR}{dr}\bigg) &amp;= \ell (\ell+1) R(r) \\
+\frac{\partial}{\partial\theta} \bigg(\sin\theta \frac{\partial Y}{\partial\theta}\bigg) + \frac{\partial^2 Y}{\partial\varphi^2} &amp;= -\ell (\ell+1) \sin^2 \theta \ Y(\theta,\varphi) \ .
+\end{align*}
+\]</span> The first equation we recognize from before. It’s the radial equation. Its general solution is given by <span class="math display">\[
+R(r) = a r^\ell + b r^{-(\ell+1)} \ .
+\]</span> The second equation is evidently a more general form of the angular equation. We can again separate variables for the angular equation by supposing a second trial solution of the form <span class="math display">\[
+Y(\theta,\varphi) = \Theta(\theta) \Phi(\varphi) \ .
+\]</span> If we plug this into the angular equation and divide by <span class="math inline">\(\Theta\Phi \ \)</span>, we get <span class="math display">\[
+\bigg[\frac{1}{\Theta} \frac{d}{d\theta} \bigg(\sin\theta \frac{d\Theta}{d\theta}\bigg) - \ell (\ell+1) \sin^2 \theta\bigg] + \frac{1}{\Phi} \frac{d^2 \Phi}{d\varphi^2} = 0
+\]</span> Again, each term is an independent function of its own variable, so the only way their sum can vanish is if they’re both constants of equal and opposite sign. For reasons we’ll see in a moment, we’ll denote the separation constant by <span class="math inline">\(m^2\)</span> and write <span class="math display">\[
+\begin{align*}
+&amp;\frac{d}{d\theta} \bigg(\sin\theta \frac{d\Theta}{d\theta}\bigg) - \ell (\ell+1)\Theta(\theta) = m^2 \Theta(\theta) \ , \\
+&amp;\frac{d^2\Phi}{d\varphi^2} = -m^2 \Phi(\varphi) \ .
+\end{align*}
+\]</span> The second equation is easy to solve. It’s just a sum of complex exponentials <span class="math inline">\(e^{\pm im\varphi}\)</span>. Since we’re dealing with an angle, we require that any solution <span class="math inline">\(\Phi(\varphi)\)</span> be periodic, meaning <span class="math inline">\(\Phi(\varphi) = \Phi(\varphi + 2\pi)\)</span>. It’s easy to see that this requirement forces <span class="math inline">\(m\)</span> to be an integer. By convention, we’ll allow <span class="math inline">\(m\)</span> to run both positive and negative, and write <span class="math inline">\(\Phi(\varphi)\)</span> in the form <span class="math display">\[
+\Phi(\varphi) = c e^{im\varphi} \ .
+\]</span> We’re now left with the other differential equation to deal with, which we’ll write as <span class="math display">\[
+\frac{d}{d\theta} \bigg(\sin\theta \frac{d\Theta}{d\theta}\bigg) - \big[\ell (\ell+1) \sin^2 \theta - m^2\big] \Theta(\theta) = 0 \ .
+\]</span> Notice that this equation looks very similar to the Legendre equation except there’s an extra term of the form <span class="math inline">\(m^2 \Theta(\theta)\)</span> present. From the appendix, we know that the solutions to this equation are the <em>associated Legendre functions</em> <span class="math inline">\(P_\ell^m(\cos\theta)\)</span>, where <span class="math inline">\(\ell\)</span> again must be a non-negative integer, and <span class="math inline">\(m\)</span> must be an integer that runs from <span class="math inline">\(-\ell\)</span> to <span class="math inline">\(\ell\)</span>. By again defining <span class="math inline">\(x = \cos\theta\)</span> we can again define these functions in terms of a Rodrigues’ equation, with <span class="math display">\[
+P_\ell^m(x) = \frac{1}{2^\ell \ell!} (1-x^2)^{m/2} \frac{d^{\ell+m}}{dx^{\ell+m}} (x^2 - 1)^\ell \ .
+\]</span> These also form a complete set of orthogonal functions on the interval <span class="math inline">\(-1 \leq x \leq 1\)</span>, which means we can use superposition to write the general solution <span class="math inline">\(\Theta(\theta)\)</span> in the form <span class="math display">\[
+\Theta(\theta) = \sum_{\ell=0}^\infty \sum_{m=-\ell}^\ell c_{\ell m} P_\ell^m(\cos\theta) \ .
+\]</span> If we combine <span class="math inline">\(\Theta(\theta)\)</span> and <span class="math inline">\(\Phi(\varphi)\)</span> back together, we get an angular solution <span class="math inline">\(Y(\theta,\varphi)\)</span> of the form <span class="math display">\[
+Y(\theta,\varphi) = \sum_{\ell=0}^\infty \sum_{m=-\ell}^\ell c_{\ell m} P_\ell^m(\cos\theta) e^{im\varphi} \ .
+\]</span> Note that we absorbed the integration constant for <span class="math inline">\(\Phi(\varphi)\)</span> into the ones for <span class="math inline">\(\Theta(\theta)\)</span>.</p>
+<p>Now, recall again from the appendix that functions proportional to <span class="math inline">\(P_\ell^m(\cos\theta) e^{im\varphi}\)</span> also have a name. They’re called the <em>spherical harmonics</em>, which we by convention normalize and write in the more complicated form <span class="math display">\[
+Y_{\ell m}(\theta,\varphi) \equiv (-1)^m \sqrt{\frac{2\ell+1}{4\pi} \frac{(\ell-m)!}{(\ell+m)!}} P_\ell^m(\cos\theta) e^{im\varphi} \ .
+\]</span> The spherical harmonics are precisely the eigenfunctions of the Laplacian in spherical coordinates. By construction, they form a complete orthonormal set of functions on the sphere, meaning we can write any <span class="math inline">\(Y(\theta,\varphi)\)</span> as a superposition of them, <span class="math display">\[
+Y(\theta,\varphi) = \sum_{\ell=0}^\infty \sum_{m=-\ell}^\ell c_{\ell m} Y_\ell^m(\theta,\varphi) \ .
+\]</span> Finally, we can combine <span class="math inline">\(R(r)\)</span> and <span class="math inline">\(Y(\theta,\varphi)\)</span> back together to get the general solution for the potential <span class="math inline">\(\phi(\mathbf{x})\)</span>. We’ll again absorb the constants <span class="math inline">\(c_{\ell m}\)</span> into the constants of <span class="math inline">\(R(r)\)</span> and write <span class="math display">\[
+\boxed{
+\phi(\mathbf{x}) = \sum_{\ell=0}^\infty \sum_{m=-\ell}^\ell \big(a_{\ell m} r^\ell + b_{\ell m} r^{-(\ell+1)}\big) Y_\ell^m(\theta,\varphi)} \ .
+\]</span> This equation looks exactly the same as the one for the azimuthally symmetric potential, except we now have to replace the Legendre polynomial <span class="math inline">\(P_\ell(\cos\theta)\)</span> by the more general spherical harmonic <span class="math inline">\(Y_\ell^m(\theta,\varphi)\)</span> and sum over <span class="math inline">\(m\)</span>. Indeed, it’s easy to see that the azimuthally symmetric potential is a special case of this general potential. Azimuthal symmetry is evidently equivalent to requiring that <span class="math inline">\(m=0\)</span>. If we set <span class="math inline">\(m=0\)</span> in the general potential we recover the previous one, up to a normalization factor.</p>
+<p>The coefficients <span class="math inline">\(a_{\ell m}\)</span> and <span class="math inline">\(b_{\ell m}\)</span> can be found in the usual way, by imposing the boundary conditions and taking an inner product. As before, the requirement that the potential not blow up inside the boundary surface will often force either <span class="math inline">\(a_{\ell m}\)</span> or <span class="math inline">\(b_{\ell m}\)</span> to vanish depending on whether we’re inside of or outside of a spherical boundary surface.</p>
+</section>
+</section>
+<section id="laplaces-equation-in-cylindrical-coordinates" class="level3">
+<h3 class="anchored" data-anchor-id="laplaces-equation-in-cylindrical-coordinates">Laplace’s Equation in Cylindrical Coordinates</h3>
+<p>We’ll finally apply separation of variables to the Laplacian in the last coordinate system we commonly use, cylindrical coordinates. If we work in cylindrical coordinates <span class="math inline">\((\varrho,\varphi,z)\)</span>, the Laplacian can be written in the form <span class="math display">\[
+\nabla^2 \phi = \frac{1}{\varrho} \frac{\partial}{\partial\varrho} \bigg(\varrho \frac{\partial\phi}{\partial\varrho} \bigg) + \frac{1}{\varrho^2} \frac{\partial^2 \phi}{\partial^2\varphi} + \frac{\partial^2 \phi}{\partial z^2} \ .
+\]</span> To satisfy Laplace’s equation we require <span class="math inline">\(\nabla^2 \phi = 0\)</span>. If we set the above equation equal to zero we get <span class="math display">\[
+0 = \frac{1}{\varrho} \frac{\partial}{\partial\varrho} \bigg(\varrho \frac{\partial\phi}{\partial\varrho} \bigg) + \frac{1}{\varrho^2} \frac{\partial^2 \phi}{\partial^2\varphi} + \frac{\partial^2 \phi}{\partial z^2} \ .
+\]</span> As with spherical coordinates, the terms aren’t completely separable since <span class="math inline">\(\varrho\)</span> appears in two terms. We’ll first consider the case of cylindrical symmetry, where the potential is independent of <span class="math inline">\(z\)</span>, before proceeding to the case of more general potentials.</p>
+<section id="cylindrically-symmetric-potentials" class="level4">
+<h4 class="anchored" data-anchor-id="cylindrically-symmetric-potentials">Cylindrically Symmetric Potentials</h4>
+<p>For problems with cylindrically symmetry the potential depends only on <span class="math inline">\(r\)</span> and <span class="math inline">\(\varphi\)</span>, not on <span class="math inline">\(z\)</span>. These kinds of problems include the infinitely long wire held at constant potential, or infinitely long wires held at some anisotropic potential <span class="math inline">\(V(\varphi)\)</span>.</p>
+<p>If we assume the potential is cylindrically symmetric then the <span class="math inline">\(z\)</span> derivatives in Laplace’s equation vanish, and we can multiply through by <span class="math inline">\(\varrho^2\)</span> and write Laplace’s equation in the form <span class="math display">\[
+0 = \varrho \frac{\partial}{\partial\varrho} \bigg(\varrho \frac{\partial\phi}{\partial\varrho} \bigg) + \frac{\partial^2 \phi}{\partial^2\varphi} \ .
+\]</span> Now each term is separable and we can proceed to apply separation of variables. Assume a trial solution of the form <span class="math display">\[
+\phi(\mathbf{x}) = R(\varrho) \Phi(\varphi) \ .
+\]</span> Plugging this into Laplace’s equation and dividing through by <span class="math inline">\(\phi = RZ\)</span>, we end up with <span class="math display">\[
+0 = \frac{\varrho}{R} \frac{d}{d\varrho} \bigg(\varrho \frac{dR}{d\varrho} \bigg) + \frac{1}{\Phi} \frac{d^2 \Phi}{d\varphi^2} \ .
+\]</span> The only way this equation can vanish is if both terms equal a constant of opposite sign, which we’ll call <span class="math inline">\(n^2\)</span>. Then we have <span class="math display">\[
+\begin{align*}
+\varrho \frac{d}{d\varrho} \bigg(\varrho \frac{dR}{d\varrho} \bigg)&amp;= n^2 R(\varrho) \ , \\
+\frac{d^2 \Phi}{d\varphi^2} &amp;= -n^2 \Phi(\varphi) \ .
+\end{align*}
+\]</span> The second equation is easy enough to solve. In real form its solutions are sines and cosines. Since the potentials should be the same when <span class="math inline">\(\varphi \rightarrow \varphi + 2\pi\)</span>, we require that <span class="math inline">\(n\)</span> be an integer so that <span class="math inline">\(\Phi(\phi) = \Phi(\phi + 2\pi)\)</span>. This means that for each <span class="math inline">\(n\)</span> we’ll have a solution of the form <span class="math display">\[
+\Phi_n(\varphi) = a \cos n\varphi + b \sin n\varphi \ .
+\]</span> Now, to get the full solution for all <span class="math inline">\(n\)</span> we appeal to the principle of superposition. We know that the set of functions <span class="math inline">\(\Phi_n(\varphi)\)</span> are just the real Fourier functions on the interval <span class="math inline">\(0 \leq \varphi \leq 2\pi\)</span>, which form a complete set of orthogonal functions on this interval. This means the general solution will be a Fourier series <span class="math display">\[
+\Phi(\varphi) = \frac{a_0}{2} + \sum_{n=1}^\infty \big(a_n \cos n\varphi + b_n \sin n\varphi\big) \ .
+\]</span> To solve the first equation we’ll assume a trial solution of the form <span class="math inline">\(R(\varrho) = \varrho^\lambda\)</span>. Plugging this in forces <span class="math inline">\(\lambda = \pm n\)</span>, giving <span class="math display">\[
+R_n(\varrho) = c_1 \varrho^n + c_2 \varrho^{-n} \ .
+\]</span> However, this is only true when <span class="math inline">\(n \neq 0\)</span>. When <span class="math inline">\(n=0\)</span> we need to solve for <span class="math inline">\(R(\varrho)\)</span> separately. In that case it’s easy to see that <span class="math display">\[
+R_0(\varrho) = d_1 + d_2 \log \varrho \ .
+\]</span> To get the general solution for the potential we then combine these two functions. We’ll absorb the constants together and write <span class="math display">\[
+\phi(\mathbf{x}) = a_0 + b_0 \log\varrho + \sum_{n=1}^\infty \big[(a_n \cos n\varphi + b_n \sin n\varphi)\varrho^n + (c_n \cos n\varphi + d_n \sin n\varphi)\varrho^{-n}\big] \ .
+\]</span> Note that the requirement that the potential not blow up inside the boundary surface will generally force some of these constants to vanish depending on whether we’re inside of our outside of the wire. If we’re inside the wire, we require that <span class="math inline">\(b_0\)</span> and the <span class="math inline">\(\varrho^{-n}\)</span> constants vanish so that the potential doesn’t blow up at the origin. If we’re outside the wire we require that the <span class="math inline">\(\varrho^n\)</span> constants vanish so that the potential vanishes at infinity.</p>
+<p>To check that this solution makes sense, let’s consider the case of a potential where <span class="math inline">\(\phi = \phi(\varrho)\)</span> only. In this case only the <span class="math inline">\(n=0\)</span> terms survive, leaving <span class="math display">\[
+\phi(\varrho) = a_0 + b_0 \log\varrho \ .
+\]</span> The associated electric field is then <span class="math inline">\(\mathbf{E}(\mathbf{x}) = E(\varrho) \mathbf{e}_\varrho\)</span>, where <span class="math display">\[
+E(\varrho) = -\frac{d\phi}{d\varrho} = -\frac{b_0}{\varrho} \equiv \frac{2\lambda}{\varrho} \ .
+\]</span> If we take <span class="math inline">\(b_0 = -2\lambda\)</span> and <span class="math inline">\(a_0 = \phi(0)\)</span> as a ground point, this is evidently the potential of a uniform wire with line density <span class="math inline">\(\lambda\)</span>. Let’s now consider a more general example.</p>
+<section id="example-infinite-wire-held-at-a-given-surface-charge-density" class="level5">
+<h5 class="anchored" data-anchor-id="example-infinite-wire-held-at-a-given-surface-charge-density">Example: Infinite wire held at a given surface charge density</h5>
+</section>
+<section id="example-grounded-infinite-wire-perpendicular-to-a-uniform-electric-field" class="level5">
+<h5 class="anchored" data-anchor-id="example-grounded-infinite-wire-perpendicular-to-a-uniform-electric-field">Example: Grounded infinite wire perpendicular to a uniform electric field</h5>
+</section>
+</section>
+<section id="general-potentials-1" class="level4">
+<h4 class="anchored" data-anchor-id="general-potentials-1">General Potentials</h4>
+<p>We’ll now return to the more general case with no symmetry in the potential. Recall we had Laplace’s equation in the form <span class="math display">\[
+0 = \frac{1}{\varrho} \frac{\partial}{\partial\varrho} \bigg(\varrho \frac{\partial\phi}{\partial\varrho} \bigg) + \frac{1}{\varrho^2} \frac{\partial^2 \phi}{\partial^2\varphi} + \frac{\partial^2 \phi}{\partial z^2} \ .
+\]</span> We’ll first apply separation of variables to split off the first two terms from the second. Assume a trial solution of the form <span class="math display">\[
+\phi(\mathbf{x}) = F(\varrho, \varphi) Z(z) \ .
+\]</span> Plugging this in and dividing by <span class="math inline">\(JZ\)</span>, we end up with <span class="math display">\[
+0 = \frac{1}{F\varrho} \frac{\partial}{\partial\varrho} \bigg(\varrho \frac{\partial F}{\partial\varrho} \bigg) + \frac{1}{F\varrho^2} \frac{\partial^2 F}{\partial^2\varphi} + \frac{1}{Z}\frac{\partial^2 Z}{\partial z^2} \ .
+\]</span> The only way this equation can vanish is if the first two terms equal a constant, and the last term is a constant of opposite sign. We’ll call that constant <span class="math inline">\(-k^2\)</span>. We then end up with two differential equations of the form <span class="math display">\[
+\begin{align*}
+\frac{1}{\varrho} \frac{\partial}{\partial\varrho} \bigg(\varrho \frac{\partial F}{\partial\varrho} \bigg) + \frac{1}{\varrho^2} \frac{\partial^2 F}{\partial^2\varphi} &amp;= -k^2 F(\varrho,\varphi) \ , \\
+\frac{d^2 Z}{dz^2} &amp;= k^2 Z(z) \ .
+\end{align*}
+\]</span> The second equation is easy enough to solve. Its solutions are just exponentials, with <span class="math display">\[
+Z(z) = c_1 e^{kz} + c_2 e^{-kz} \ .
+\]</span> To deal with the first equation we separate variables again by assuming a trial solution of the form <span class="math display">\[
+F(\varrho,\varphi) = R(\varrho) \Phi(\varphi) \ .
+\]</span> Then multiplying both sides of the equation by <span class="math inline">\(\varrho^2\)</span>, dividing by <span class="math inline">\(F = R\Phi\)</span>, and rearranging terms, we get <span class="math display">\[
+\bigg[\frac{\varrho}{R\varrho} \frac{d}{d\varrho} \bigg(\varrho \frac{dR}{d\varrho} \bigg) + k^2 \varrho^2\bigg] + \frac{1}{\Phi} \frac{d^2 \Phi}{d^2\varphi} = 0 \ .
+\]</span> Again, the only way these terms can vanish is if they equal the same constant with opposite sign. We’ll call that constant <span class="math inline">\(n^2\)</span>, so that we end up with following two differential equations, <span class="math display">\[
+\begin{align*}
+\frac{1}{\varrho} \frac{d}{d\varrho} \bigg(\varrho \frac{dR}{d\varrho} \bigg) + k^2 \varrho^2 R(\varrho)  &amp;= n^2 R(\varrho) \ , \\
+\frac{d^2 \Phi}{d^2\varphi} &amp;= -n^2 \Phi(\varphi) \ .
+\end{align*}
+\]</span> The second equation just gives the same solution found in the cylindrically symmetric case. Requiring that <span class="math inline">\(\Phi(\varphi)\)</span> be periodic forces <span class="math inline">\(n\)</span> be an integer. In terms of sines and cosines we get an orthonormal set of Fourier functions whose superposition can be written as a Fourier series to yield the general solution, <span class="math display">\[
+\Phi(\varphi) = \frac{a_0}{2} + \sum_{n=1}^\infty \big(a_n \cos n\varphi + b_n \sin n\varphi\big) \ .
+\]</span> To deal with the first equation, we’ll expand out the derivative and move everything to one side to write <span class="math display">\[
+\varrho^2\frac{d^2R}{d\varrho^2} + \varrho \frac{dR}{d\varrho} + \big(k^2 \varrho^2 - n^2\big) R(\varrho) = 0 \ .
+\]</span> From the appendix, we recognize this equation as <em>Bessel’s equation</em>. Its solutions are <span class="math inline">\(J_n(k\varrho)\)</span> and <span class="math inline">\(Y_n(k\varrho)\)</span>, which are the integer Bessel functions of the first and second kind respectively. For each <span class="math inline">\(n\)</span>, we have a solution of the form <span class="math display">\[
+R_n(\varrho) = c_n J_n(k\varrho) + d_n Y_n(k\varrho) \ .
+\]</span> In cylindrical problems we typically require that the potential vanish on the sides of a cylinder, or at infinity.</p>
+<p>In the first case, if we have a cylinder of radius <span class="math inline">\(a\)</span>, the requirement that the potential vanish at <span class="math inline">\(\varrho=a\)</span> forces <span class="math inline">\(R(a)=0\)</span>. The only way that can be true is if each <span class="math inline">\(k\)</span> satisfies <span class="math inline">\(k_{nm} = \frac{x_{nm}}{a}\)</span> for some <span class="math inline">\(m\)</span>, where <span class="math inline">\(x_{nm}\)</span> is the <span class="math inline">\(m\)</span><sup>th</sup> root of the Bessel function <span class="math inline">\(J_n(x)\)</span>. The set of functions <span class="math inline">\(J_n(k_{nm}\varrho)\)</span> forms a complete set of orthogonal functions on the interval <span class="math inline">\(0 \leq \varrho \leq a\)</span>, hence we can use the principle of superposition to write the general solution for each <span class="math inline">\(R_n(\varrho)\)</span> as <span class="math display">\[
+R_n(\varrho) = \sum_{m=1}^\infty c_{nm} J_n(k_{nm}\varrho) + d_{nm} Y_n(k_{nm}\varrho) \ .
+\]</span> Combining this with the other two solutions and absorbing constants together, we can write the general solution for the potential that’s forced to vanish on the sides of the cylinder as <span class="math display">\[
+\phi(\mathbf{x}) = c_{00} + \sum_{n=1}^\infty \sum_{m=1}^\infty e^{-k_{nm}z} \big[c_{nm} J_n(k_{nm}\varrho) \cos n\pi + d_{nm} Y_n(k_{nm}\varrho) \sin n\pi \big] \ .
+\]</span></p>
+<ul>
+<li>This last bit is sloppy. Be more careful.</li>
+</ul>
+
+
+</section>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation column-page-right">
+  <div class="nav-page nav-page-previous">
+      <a href="../electrodynamics/bvps-1.html" class="pagination-link" aria-label="Boundary Value Problems I">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Boundary Value Problems I</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../electrodynamics/multipole-expansion.html" class="pagination-link" aria-label="Advanced Methods III">
+        <span class="nav-page-text"><span class="chapter-title">Advanced Methods III</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

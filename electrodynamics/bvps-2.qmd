@@ -1,0 +1,976 @@
+# Boundary Value Problems II
+
+In this chapter, we continue on with the topic of boundary value problems in electrostatics. We'll introduce the separation of variables technique, a method that can be used to solve Laplace's equation for a large class of problems, before solving some problems using this technique.
+
+## Linear Partial Differential Equations
+
+In the previous chapter we showed that, at least formally, we can solve Poisson's equation subject to some set of boundary conditions by first finding the Green's function and then writing the potential as a volume integral plus a surface integral,
+$$
+\phi(\mathbf{x}) = \int_\mathcal{V} d^3 \mathbf{x}' \ \rho(\mathbf{x}') G(\mathbf{x} - \mathbf{x}') + \frac{1}{4\pi} \oint_\mathcal{S} da' \ \bigg[G \frac{\partial \phi}{\partial n'} - \phi \frac{\partial G}{\partial n'} \bigg] \ ,
+$$
+where only either the first or second boundary term is kept depending on the type of boundary conditions used. We also showed that for some problems with high degrees of symmetry, we can use the method of images to write down the potential for a corresponding image problem, and then use that to find the Green's function if desired.
+
+This isn't, however, the *only* way to solve Poisson's equation, nor is it always the most useful. For all but the simplest problems this integral is very difficult to solve in practice, since we'd first need to find the Green's function. Moreover, the method of images only works on a small subclass of problems, not more difficult ones.
+
+### General Problem
+
+Another way we can proceed is to attempt to solve Poisson's equation directly using PDE methods. Suppose we have a linear PDE of the form
+$$
+\mathcal{L} \phi(\mathbf{x}) = f(\mathbf{x}) \ ,
+$$
+where $\mathcal{L}$ is a linear partial differential operator and $f(\mathbf{x})$ is some source term, e.g. the charge density $\rho(\mathbf{x})$. We assume that some set of boundary conditions may be given implicitly.
+
+When we say $\mathcal{L}$ is a linear operator, we mean that for any two functions $\phi_1(\mathbf{x})$ and $\phi_2(\mathbf{x})$ and constants $\alpha$ and $\beta$, we have 
+$$
+\mathcal{L} \big(\alpha\phi_1(\mathbf{x}) + \beta\phi_2(\mathbf{x})\big) = \alpha\mathcal{L} \phi_1(\mathbf{x}) + \beta\mathcal{L} \phi_2(\mathbf{x}) \ .
+$$
+Linearity means we can compose solutions to a linear PDE using the principle of superposition. In fact we can say more than this. The theory of linear PDEs guarantees that we can solve *any* linear PDE by finding two solutions of a particular kind and summing them together:
+
+- A general *homogeneous solution* $\phi_h(\mathbf{x})$ that solves the homogeneous PDE $\mathcal{L} \phi_h(\mathbf{x}) = 0$ subject to the boundary conditions.
+- A *particular solution* $\phi_p(\mathbf{x})$ that solves the inhomogeneous PDE $\mathcal{L} \phi_p(\mathbf{x}) = f(\mathbf{x})$ in the absence of boundary conditions.
+
+Provided we can find these two solutions, the most general solution to $\mathcal{L} \phi(\mathbf{x}) = f(\mathbf{x})$ can be written in the form
+$$
+\phi(\mathbf{x}) = \phi_h(\mathbf{x}) + \phi_p(\mathbf{x}) \ .
+$$
+All of the PDEs we'll see in electromagnetism, and indeed in most of physics, turn out to be linear second-order PDEs. The most general spatial second-order linear partial differential operator we can write down is a linear superposition of first and second partial derivatives, plus an ordinary function. We can write this with summation notation in the form
+$$
+\mathcal{L} = a_{ij}(\mathbf{x}) \frac{\partial^2}{\partial x_i \partial x_j} + b_i(\mathbf{x}) \frac{\partial}{\partial x_i} + c(\mathbf{x}) \ .
+$$
+In particular, we can see that the Laplacian $\nabla^2$ is a linear operator if we take $a_{ij} = \delta_{ij}$ and $b_i = c = 0$. This means we can solve Poisson's equation in the way specified before, by finding a homogeneous solution that solves Laplace's equation subject to the boundary conditions, and a particular solution that solves Poisson's equation with a given charge density $\rho(\mathbf{x})$.
+
+For a localized charge distribution, we already know how to find the particular solution via the integral
+$$
+\phi_p(\mathbf{x}) = \int d^3 \mathbf{x}' \ \frac{\rho(\mathbf{x}')}{|\mathbf{x} - \mathbf{x}'|} \ .
+$$
+This means to solve the general PDE we only need to find the homogeneous solution $\phi_h(\mathbf{x})$ that solves Laplace's equation $\nabla^2 \phi_h = 0$ subject to the given boundary conditions, and we'll have a general solution to Poisson's equation subject to those boundary conditions.
+
+Notice how similar this looks to the formal solution approach we took before using Green's functions. In fact the two approaches are completely equivalent, as they should be. Recall the formal solution could be written
+$$
+\phi(\mathbf{x}) = \int_\mathcal{V} d^3 \mathbf{x}' \ \rho(\mathbf{x}') G(\mathbf{x} - \mathbf{x}') + \frac{1}{4\pi} \oint_\mathcal{S} da' \ \bigg[G \frac{\partial \phi}{\partial n'} - \phi \frac{\partial G}{\partial n'} \bigg] \ ,
+$$
+where the Green's function is given by
+$$
+G(\mathbf{x} - \mathbf{x}') = \frac{1}{|\mathbf{x} - \mathbf{x}'|} + F(\mathbf{x} - \mathbf{x}') \ .
+$$
+The first integral is just the particular solution $\phi_p(\mathbf{x})$. The second integral is in fact the homogeneous solution $\phi_h(\mathbf{x})$, which is evidently closely related to the inhomogeneous component of the Green's function, $F(\mathbf{x} - \mathbf{x}')$.
+
+Since we know how to find the particular solution in principle, what remains is figuring out how to find the homogeneous solution. This involves solving Laplace's equation subject to the given boundary conditions. This is what the rest of this chapter will focus on.
+
+## Separation of Variables
+
+The most popular technique for solving linear PDEs is the *separation of variables* method. Suppose we have an arbitrary homogeneous linear PDE of the form
+$$
+\mathcal{L} \phi(\mathbf{x}) = 0 \ .
+$$
+The separation of variables of variable method works exactly as the name suggests. We first assume that in some coordinate system $(u,v,w)$ that $\phi(\mathbf{x})$ can be written as a trial solution that's a product of univariate functions of only those coordinates,
+$$
+\phi(\mathbf{x}) = U(u) V(v) W(w) \ .
+$$
+Provided the linear operator $\mathcal{L}$ in this coordinate system can be separated into linear operators acting only on these variables alone, i.e. $\mathcal{L} = \mathcal{L}_u + \mathcal{L}_v + \mathcal{L}_w \ $, we can plug this trial solution in and divide by $UVW$ and write
+$$
+\frac{1}{U(u)}\mathcal{L}_u U(u) + \frac{1}{V(v)}\mathcal{L}_v V(v) + \frac{1}{W(w)}\mathcal{L}_v W(w) = 0 \ .
+$$
+Now, notice we have an equation of the form
+$$
+f(u) + g(v) + h(w) = 0 \ .
+$$
+Since each of these functions is an independent function of its own coordinate, the only way their sum can be zero for all possible $u,v,w$ is if each of these functions is constant and those constants all sum to zero, i.e.
+$$
+f(u) = \alpha \ , \ g(v) = \beta \ , \ h(w) = \gamma \ , \ \alpha + \beta + \gamma = 0 \ .
+$$
+That is, we must have three coupled ordinary differential equations of the form
+$$
+\begin{align*}
+&\mathcal{L}_u U(u) = \alpha U(u) \ , \\
+&\mathcal{L}_v V(v) = \beta V(v) \ , \\
+&\mathcal{L}_w W(w) = \gamma W(w) \ , \\
+&\alpha + \beta + \gamma = 0 \ .
+\end{align*}
+$$
+All that remains now is to solve each of these ODEs and impose the boundary conditions. Provided we can find a set of three functions $U,V,W$ that solve these ODEs as well as the boundary conditions, we can reassemble them to get the full solution.
+
+Those that have read the appendix will notice that each of these differential equations is an eigenvalue problem with eigenvalues $\alpha$, $\beta$, and $\gamma$ respectively. Typically the separation constants will end up being quantized in terms of one or more integers whose eigenfunctions form a complete orthonormal set inside the boundary region. 
+
+For example, solving $\mathcal{L}_u U(u) = \alpha U(u)$ may result in a family of orthogonal solutions $U_n(u)$ such that $\mathcal{L}_u U_n(u) = \alpha_n U_n(u)$, where $n$ is some integer. Then the most general solution for $U(u)$ will be given by the principle of superposition as
+$$
+U(u) = \sum_n c_n U_n(u) \ ,
+$$
+where the coefficients $c_n$ are constants that depend on $n$ and the boundary conditions in the problem. Assuming we've found the other two general solutions $V(v)$ and $W(w)$, this means we can express the full solution as a series in $n$,
+$$
+\phi(\mathbf{x}) = \sum_n c_n \phi_n(u,v,w) \ ,
+$$
+where $\phi_n(\mathbf{x}) = U_n(u) V(v) W(w)$. Since the $U_n(u)$ form a complete set of orthogonal functions, so will $\phi_n(u,v,w)$. This means we can determine the expansion coefficients $c_n$ by taking inner products of some known function $f$ with each $\phi_n$. For example, suppose we have a boundary condition of the form $\phi(0,v,w) = f(v,w)$, where $f(v,w)$ is known. Then to determine $c_n$ we can use the inner product relation
+$$
+c_n = \frac{\langle f| \phi_n \rangle}{\langle \phi_n | \phi_n \rangle} \ ,
+$$
+where the inner product used is the inner product of the basis functions $U_n(u)$ found before. Once we've determined these coefficients we have the final solution $\phi(\mathbf{x})$ that solves the given boundary value problem. In many cases we'll be able to guarantee that the solution found will be unique, and will be the most general function that satisfies the problem.
+
+This process will be much easier to illustrate by looking at specific problems. We'll do that first by considering Laplace's equation in Cartesian coordinates, before looking at Laplace's equation in spherical and cylindrical coordinates as well. By the end, the process of how to use separation of variables to find the general solution should hopefully be quite clear.
+
+### Laplace's Equation in Cartesian Coordinates
+
+We'll now turn our focus to solving Laplace's equation $\nabla^2 \phi(\mathbf{x}) = 0$ using separation of variables, subject to either Dirichlet, Neumann, or mixed boundary conditions. Since the Laplacian looks different in different coordinate systems, we'll need separate variables and solve this PDE in different coordinate systems of interest, i.e. Cartesian, spherical, and cylindrical coordinates.
+
+We start with the simplest case of solving Laplace's equation in Cartesian coordinates $(x,y,z)$. In this coordinate system the Laplacian has an especially simple form, with
+$$
+\nabla^2 \phi = \frac{\partial^2 \phi}{\partial x^2} + \frac{\partial^2 \phi}{\partial y^2} + \frac{\partial^2 \phi}{\partial z^2} \ .
+$$
+To match with the general setup from before, we can take $\mathcal{L} = \nabla^2$, $\mathcal{L}_x = \partial_x^2$, $\mathcal{L}_y = \partial_y^2$, and $\mathcal{L}_z = \partial_z^2$.
+
+We now apply the separation of variables by supposing a trial solution exists of the form
+$$
+\phi(\mathbf{x}) = X(x) Y(y) Z(z) \ .
+$$
+Plugging this into Laplace's equation and dividing by $\phi = XYZ$, we get
+$$
+0 = \frac{1}{X} \frac{d^2 X}{dx^2} + \frac{1}{Y} \frac{d^2 Y}{dy^2} + \frac{1}{Z} \frac{d^2 Z}{dz^2} \ .
+$$
+Again, since each term is a function of its own variable, the only way this equation can be satisfied for all coordinate values is if each term is constant, and those constants sum to zero. This gives us three coupled ordinary differential equations of the form
+$$
+\begin{align*}
+&\frac{d^2 X}{dx^2} = \alpha_x X \ , \\
+&\frac{d^2 Y}{dy^2} = \alpha_y Y \ , \\
+&\frac{d^2 Z}{dz^2} = \alpha_z Z \ , \\
+&\alpha_x + \alpha_y + \alpha_z = 0 \ .
+\end{align*}
+$$
+All that remains is to solve each of these ODEs and impose the boundary conditions. In each case, we know the ODE can be solved by a sum of exponentials of the form
+$$
+X_i(x_i) = c_1 e^{\sqrt{\alpha_i} x_i} + c_2 e^{-\sqrt{\alpha_i} x_i} \ ,
+$$
+where each $\alpha_i$ could be positive or negative. When $\alpha_i > 0$ the solution is just a sum of real exponentials. When $\alpha_i < 0$ the solution is a sum of complex exponentials. In that case we can also write the solution using sines and cosines as
+$$
+X_i(x_i) = c_1 \cos \sqrt{\alpha_i} x_i + c_2 \sin \sqrt{\alpha_i} x_i \ .
+$$
+In practice the choice of sign for each of these separation constants $\alpha_i$ matters a lot, since this determines whether we can fit the boundary conditions in the problem or not. As a rule of thumb, for coordinates that have *unbounded* boundary conditions, or *bounded* boundary conditions where one of the boundary values is a known function, we'll want to choose $\alpha_i > 0$. For any remaining coordinates we'll typically be left with bounded coordinates with fixed boundary values, and for these we'll want to choose $\alpha_i < 0$. Note though that at least one of the three constants $\alpha_i$ will have to have an opposite sign from the other two, so we can't choose all to be the same sign.
+
+Quite often, but not always, we'll require that the potential vanish at infinity. This will force any solutions in unbounded directions to take the form $X_i(x_i) = c e^{-\sqrt{\alpha_i} x_i}$ to ensure these functions decay to zero at infinity.
+
+In one or more of the bounded directions we'll often end up with sine and cosine solutions. We'll see that matching these solutions with the boundary values will often force $\alpha_i$ to be quantized in terms of some integer $n$. For each $\alpha_{i,n}$ we'll have a solution in that direction of the form
+$$
+X_{i,n}(x_i) = a_n \cos \sqrt{|\alpha_{i,n}|} x_i + b_n \sin \sqrt{|\alpha_{i,n}|} x_i \ .
+$$
+Notice that these solutions are just the basis functions for the Fourier series. For the right choice of $\alpha_{i,n}$, these solutions will form a complete set of orthogonal functions in the $x_i$ direction.
+
+To get the full general solution to the potential we'll then multiply each of these solutions together to get a basis solution $\phi_n(x,y,z)$, and then use the principle of superposition to sum over all $n$ and get the general solution,
+$$
+\phi(\mathbf{x}) = \sum_n c_n \phi_n(x,y,z) \ .
+$$
+To find the coefficients $c_n$ we'll rely on the theory of orthogonal functions to get an inner product in terms of one of the remaining boundary conditions and the basis functions $\phi_n$. Once this is done, we'll have our general solution. By the uniqueness theorem, we know that this will be the unique solution to Laplace's equation for the given BVP.
+
+Let's now work a few examples to hopefully make this technique a bit easier to understand.
+
+##### Example: Two infinite parallel grounded conducting sheets
+
+To keep things simple, we'll start with a 2-dimensional problem only involving $x$ and $y$. Suppose we have two grounded parallel conducting sheets separated by a distance $L$. On one end, the two sheets are separated with insulating material from a perpendicular third conducting sheet held at a constant potential $V$, while on the other end the two parallel sheets extend infinitely far.
+
+FIGURE
+
+We'll assume the sheets are oriented parallel to the $xz$-plane and separated along the $y$-axis from $y=0$ to $y=L$. This means the sheet is held at constant potential $\phi = V$ at $x=0$, and at $\phi = 0$ when $y=0$ or $y=L$. We will require that the potential go to zero at infinity as well. Assuming there are no other source charges present, this means we have the following boundary value problem to solve,
+$$
+\begin{align*}
+\begin{cases}
+\nabla^2 \phi = 0 \ , \\
+\text{where} \ \phi(0,y) = V \ , \\
+\phi(x,0) = \phi(x,L) = 0 \ , \\
+\phi(x,y) \rightarrow 0 \ \text{as} \ x \rightarrow \infty \ .
+\end{cases}
+\end{align*}
+$$
+Now we can employ separation of variables. Suppose a trial solution of the form
+
+$$
+\phi(x,y) = X(x) Y(y) \ .
+$$
+We neglect the $z$ coordinate since it isn't contributing anything to the problem. Now, if we plug this trial solution into Laplace's equation, we find the problem reduces to solving two ODEs,
+$$
+\frac{1}{X} \frac{d^2 X}{dx^2} = \alpha \quad , \quad \frac{1}{Y} \frac{d^2 Y}{dy^2} = -\alpha \ .
+$$
+Since the problem is unbounded in the $x$ direction we'll suppose $\alpha$ is positive, with $\alpha = k^2$. Since the problem is also bounded in the $y$ direction this gives us what we want.
+
+We now have two ordinary differential equations left to solve subject to the boundary conditions,
+$$
+\frac{d^2 X}{dx^2} = k^2 X \quad , \quad \frac{d^2 Y}{dy^2} = -k^2 Y \ .
+$$
+These are both linear second order equations that are easy to solve. The general solution for the first equation is given by
+$$
+X(x) = A e^{kx} + B e^{-kx} \ .
+$$
+If we impose the condition that $\phi \rightarrow 0 \ \text{as} \ x \rightarrow \infty$, we see the first term has to vanish, leaving only
+$$
+X(x) = B e^{-kx} \ .
+$$
+Next, the general solution for the second equation can be written as
+$$
+Y(y) = C \cos ky + D \sin ky \ .
+$$
+This solution has to satisfy the boundary conditions $Y(0) = Y(L) = 0$. Plugging in the first condition requires $C=0$. Plugging in the second condition, we're left with
+$$
+Y(y) = D \sin kL = 0 \ .
+$$
+The only way this can be true is if either $D=0$ or $kL$ is an integer multiple of $\pi$. If $D=0$ we're dead in the water, since that would give the trivial solution $\phi = 0$. We're thus left to impose the second condition. Suppose $kL = \pi n$ for some positive integer $n$. This implies that $k$ must be *quantized* as a function of $n$, with
+$$
+k_n = \frac{n\pi}{L} \quad , \quad n=1,2,3,\cdots \ .
+$$
+This means we have an infinite family of solutions in the $y$ direction of the form $Y_n(y) = \sin k_n y$. Each separation constant $-k_n^2$ gives rise to its own solution $Y_n(y)$. Notice that these functions are Fourier series components. We know that these functions form a complete set of orthogonal functions on the interval $0 \leq y \leq L$. This means we can use them as a basis to compose the general solution for the potential by using a basis function $\phi_n(x,y)$ of the form
+$$
+\phi_n(x,y) \equiv e^{-k_n x} \sin k_n y \ .
+$$
+By the principle of superposition, we can then write the general solution $\phi(\mathbf{x})$ as a linear superposition of $\phi_n(x,y)$, with
+$$
+\phi(\mathbf{x}) = \sum_{n=1}^\infty b_n \phi_n(x,y) \ .
+$$
+We're now left with an infinite set of coefficients $b_n$ we to find. We can do that by imposing the final boundary condition, which says that at $x=0$ we must have $\phi(0,y) = V$ for some constant $V$. Plugging this into the general solution, we have
+$$
+V = \phi(0,y) = \sum_{n=1}^\infty b_n \sin k_n y \ .
+$$
+We can find the coefficients $b_n$ in a couple of ways. One way is to take the inner product of both sides of this formula, work out the integrals, and set them equal and solve for $b_n$. This is equivalent to just using the formula derived in the appendix, which says
+$$
+b_n = \frac{\langle \phi_n | \phi \rangle}{\langle \phi_n | \phi_n \rangle} \ ,
+$$
+where the inner product of two functions are defined by integrating their product over $y$ from $y=0$ to $y=L$, with
+$$
+\langle f | g \rangle \equiv \int_0^L dy \ f(y) g(y) \ .
+$$
+We want to evaluate these inner products at the boundary point $x=0$ since that's where we know $\phi = V$. At this boundary point we must have $\phi_n(0,y) = \sin k_n y$, where $k_n = \frac{n\pi}{L}$. Working out the denominator first, we get
+$$
+\langle \phi_n | \phi_n  \rangle = \int_0^L dy \ \sin^2 \frac{n\pi}{L} y = \frac{L}{2} \ .
+$$
+Working out the the numerator under the same conditions, we get
+$$
+\begin{align*}
+\langle \phi_n | \phi \rangle &= V \int_0^L dy \ \sin \frac{n\pi y}{L} \\
+&= \frac{VL}{n\pi} \big(1 - \cos n\pi\big) \\
+&= \frac{VL}{n\pi} \big(1 - (-1)^n\big) \\
+&= \begin{cases}
+\frac{2VL}{n\pi}, & n = 1,3,5,\cdots \\
+0 , & n=0,2,4,\cdots
+\end{cases} \ .
+\end{align*}
+$$
+Putting these together, we evidently get
+$$
+b_n = \frac{4V}{n\pi} \ \ , \ \ n=1,3,5,\cdots \ .
+$$
+This means the general solution for the potential in this problem is given by
+$$
+\phi(\mathbf{x}) = \frac{4V}{\pi} \sum_{n=1,3,\cdots} \frac{1}{n} \exp\bigg(-\frac{n\pi x}{L}\bigg) \sin\bigg(\frac{n\pi y}{L}\bigg) \ .
+$$
+If we like, we can further simplify this expression by noting that the sum on the right-hand side has a closed form given by
+$$
+\phi(x,y) = \frac{2V}{\pi} \tan^{-1} \bigg(\frac{\sin \frac{\pi y}{L}}{\sinh \frac{\pi x}{L}}\bigg) \ .
+$$
+Since this potential is only a function of two variables, we can plot its equipotentials with a contour plot in the $xy$-plane. In the $x$-direction, the potential is highest at $x=0$, where $\phi(0,y)=V$ before dying off exponentially as $x \rightarrow \infty$. In the $y$-direction, the potential goes to zero at the endpoints $y=0$ and $y=L$, and hits its maximum at the midpoint $y=\frac{L}{2}$.
+
+So how do we know that this expression is in fact the general solution? This is where the uniqueness theorem and the theory of orthogonal functions comes into play. The theory of orthogonal functions guarantees we can construct general solutions using a superposition of basis functions. The uniqueness theorem says that once we've found this function, we know it's the only one that solves Laplace's equation subject to the given boundary conditions.
+
+##### Example: Infinite conducting rectangular pipe held at a given potential on one end
+
+Let's now consider a slight generalization of the previous problem. Suppose we have a rectangular infinitely long conducting pipe. One end of the pipe is held at some potential $V(y,z)$, while the other end extends infinitely far. Suppose the pipe has a finite width $a$ and a finite depth $b$, and the sides of the pipe are grounded. We want to find the potential inside the pipe.
+
+FIGURE
+
+We'll orient the pipe exactly like we did in the previous problem, with the length along the $x$-axis, and the width and depth along the $y$ and $z$ axes. At $x=0$ the potential is held constant, with $\phi(0,y,z)=V(y,z)$. At $y=0$ and $y=a$, and at $z=0$ and $z=b$, the pipe is grounded, with $\phi(x,0,z) = \phi(x,b,z) = \phi(x,y,0) = \phi(x,y,b) = 0$. We'll also require that $\phi \rightarrow 0$ at infinity.
+
+This means the BVP we seek to solve is
+$$
+\begin{align*}
+\begin{cases}
+\nabla^2 \phi = 0 \ , \\
+\text{where} \ \phi(0,y,z) = V(y,z) \ , \\
+\phi(x,0,z) = \phi(x,a,z) = 0 \ , \\
+\phi(x,y,0) = \phi(x,y,b) = 0 \ , \\
+\phi(x,y,z) \rightarrow 0 \ \text{as} \ x \rightarrow \infty \ .
+\end{cases}
+\end{align*}
+$$
+We again employ separation of variables by assuming a trial solution of the form
+
+$$
+\phi(x,y,z) = X(x) Y(y) Z(z) \ .
+$$
+Plugging this into Laplace's equation and simplifying, we find the problem reduces to solving three ODEs,
+$$
+\frac{1}{X} \frac{d^2 X}{dx^2} = \alpha \quad , \quad \frac{1}{Y} \frac{d^2 Y}{dy^2} = \beta \quad , \quad \quad \frac{1}{Y} \frac{d^2 Z}{dz^2} = \gamma \quad , \quad \alpha + \beta + \gamma = 0 \ .
+$$
+Since the problem is unbounded in the $x$ direction and bounded in the $y$ and $z$ directions we'll assume $\beta = -k^2$ and $\gamma = -\ell^2$ are both negative. This decision forces $\alpha = \sqrt{k^2 + \ell^2}$ to be positive, which is also what we want.
+
+This gives us three ODEs to solve subject to the boundary conditions,
+$$
+\frac{d^2 X}{dx^2} = (k^2+\ell^2) X \quad , \quad \frac{d^2 Y}{dy^2} = -k^2 Y \quad , \quad \frac{d^2 Z}{dz^2} = -\ell^2 Z \ .
+$$
+The first ODE involves an unbounded coordinate direction. Requiring that $X \rightarrow 0$ as $x \rightarrow \infty$ gives
+$$
+X(x) = A e^{-\sqrt{k^2+\ell^2}x} \ .
+$$
+The second and third ODE both involved bounded coordinate directions. Imposing the boundary conditions, we get
+$$
+\begin{align*}
+Y(y) = B \sin ky \quad &\Longrightarrow \quad k = \frac{n\pi}{a} \ , \ n=1,2,3,\cdots \ , \\
+Z(z) = C \sin \ell z \quad &\Longrightarrow \quad \ell = \frac{m\pi}{b} \ , \ m=1,2,3,\cdots \ .
+\end{align*}
+$$
+Again, $k$ and $\ell$ are forced to be quantized in terms of positive integers $n$ and $m$ respectively. Each set of Fourier functions forms a complete orthonormal basis of solutions on their given intervals, which means we can express the general solutions $Y(y)$ and $Z(z)$ as a linear superposition of solutions $Y_n(y) = \sin k_n y$ and $Z_m(z) = \cos \ell_m z$ respectively.
+
+Putting this all together, we have a basis of solutions of the form
+$$
+\phi_{nm}(x,y,z) = e^{-\sqrt{k_n^2+\ell_m^2}x} \sin k_n y \sin \ell_m z \ .
+$$
+To get the general solution we use the principle of superposition and sum over all $n$ and $m$ to write
+$$
+\phi(\mathbf{x}) = \sum_{n=1}^\infty \sum_{m=1}^\infty b_{nm} \phi_{nm}(x,y,z) \ .
+$$
+It remains now to impose the final boundary condition that $\phi(0,y,z) = V(y,z)$, which we can use to find the coefficients $b_{nm}$. Again, we can use the orthogonality of the Fourier functions to find these coefficients via
+$$
+b_{nm} = \frac{\langle \phi_{nm} | \phi \rangle}{\langle \phi_{nm} | \phi_{nm} \rangle} \ ,
+$$
+where now the inner product needs to be taken as an integral over both $y$ and $z$, with
+$$
+\langle f | g \rangle \equiv \int_0^a dy \ \int_0^b dz \ f(y,z) g(y,z) \ .
+$$
+At the boundary point $x=0$ we have $\phi = V(y,z)$ and $\phi_{nm} = \sin k_n y \sin \ell_m z$. This means at $x=0$ the denominator is given by
+$$
+\langle \phi_{nm} | \phi_{nm} \rangle = \int_0^a dy \ \sin^2 k_n y \int_0^b dz \ \sin^2 \ell_m z = \frac{ab}{4} \ .
+$$
+The numerator at $x=0$ is given by
+$$
+\langle \phi_{nm} | \phi \rangle = \int_0^a dy \ \int_0^b dz \ V(y,z) \sin k_n y \sin \ell_m z \ .
+$$
+We can't proceed any further without a specific functional form for $V(y,z)$. For example, if we assume as we did in the previous example that $V$ is constant, we get
+$$
+\begin{align*}
+\langle \phi_{nm} | \phi \rangle &= V \int_0^a dy \ \sin\frac{n\pi y}{a} \int_0^b dz \ \sin\frac{m\pi z}{b} \\
+&= V \frac{a}{n\pi} \frac{b}{m\pi} \big(1 - (-1)^n\big) \big(1 - (-1)^m\big) \\
+&= \begin{cases}
+\frac{4Vab}{nm\pi^2}, & n,m = 1,3,5,\cdots \\
+0 , & \text{otherwise}
+\end{cases} \ .
+\end{align*}
+$$
+Thus, the coefficients are given by
+$$
+b_{nm} = \frac{16V}{nm\pi^2} \ , \quad n,m=1,3,5,\cdots \ .
+$$
+The general solution for the potential to this BVP is thus given by
+$$
+\phi(x,y,z) = \frac{16V}{\pi^2} \sum_{n,m=1,3,\cdots} \frac{1}{nm} \exp\bigg(-\sqrt{(n/a)^2+(m/b)^2}\pi x\bigg) \sin\bigg(\frac{n\pi y}{a}\bigg) \sin\bigg(\frac{m\pi z}{b}\bigg)  \ .
+$$
+Again, by the uniqueness theorem and the theory of orthogonal functions we know this must be the unique solution since it satisfies the full BVP. In this case though there's no closed-form solution. However, notice that each term falls off quite rapidly with $n$ and $m$, meaning we can get a reasonable approximation to this potential by keeping only the first few terms in the series.
+
+Visualizing the equipotentials for this problem is also a good deal harder than the last example, since now we'd need to do a 3D contour plot to see the whole thing. Qualitatively speaking, we expect that the potential will be highest at $x=0$ before falling off exponentially. On the other edges of the pipe the potential goes to zero due to grounding, and peaks along the center-line of the pipe where $y=\frac{a}{2}$ and $z=\frac{b}{2}$.
+
+##### Example: Conducting rectangular box held at given potential on one end
+
+Let's now consider a slight variation to the previous problem. Suppose we have a rectangular conducting box of finite extent in all directions. One of the sides of the box is held at some varying potential $V(y,z)$, while the other five sides of the box are grounded. Suppose the box has a width $a$ in the direction where the potential is ungrounded, a depth $b$, and a height $c$.
+
+FIGURE
+
+We'll orient the box exactly like we did in the previous problem, with the length along the $x$-axis, and the width and depth along the $y$ and $z$ axes. We'll assume the box is is ungrounded at $x=a$ with $\phi(a,x,y) = V(y,z)$, while the other sides are grounded. This gives us a BVP to solve of the form
+$$
+\begin{align*}
+\begin{cases}
+\nabla^2 \phi = 0 \ , \\
+\text{where} \ \phi(a,y,z) = V(y,z) \ , \\
+\phi(0,y,z) = 0 \ , \\
+\phi(x,0,z) = \phi(x,a,z) = 0 \ , \\
+\phi(x,y,0) = \phi(x,y,b) = 0 \ .
+\end{cases}
+\end{align*}
+$$
+Since we confine ourselves to the inside of the box, we don't need to require that $\phi \rightarrow \infty$ as $|\mathbf{x}| \rightarrow \infty$.
+
+If we apply separation of variables to this problem, we again end up with three ODEs to solve of the following form,
+$$
+\frac{d^2 X}{dx^2} = (k^2+\ell^2) X \quad , \quad \frac{d^2 Y}{dy^2} = -k^2 Y \quad , \quad \frac{d^2 Z}{dz^2} = -\ell^2 Z \ .
+$$
+As with the previous problems, we chose negative separation constants $-k^2$ and $-\ell^2$ for the two grounded directions, which forces the ungrounded direction to have a positive separation constant $k^2+\ell^2$.
+
+The ODEs for $Y(y)$ and $Z(z)$ are solved the same way as before. The boundary conditions force the $k$ and $\ell$ to be quantized in terms of two integers $n$ and $m$, with
+$$
+k_n = \sqrt{\frac{n\pi}{b}} \quad , \quad \ell_m = \sqrt{\frac{m\pi}{c}} \quad , \quad n,m=1,2,\cdots \ .
+$$
+This then yield two basis set of solutions of the form
+$$
+Y_n(y) = A_n \sin k_n y \quad , \quad Z_m(y) = B_m \sin \ell_m z  \ .
+$$
+As before, the ODE for $X(y)$ has general solutions of the form
+$$
+X_{nm}(x) = C_{nm} e^{\sqrt{k_{n}^2+\ell_{m}^2} x} + D_{nm} e^{-\sqrt{k_{n}^2+\ell_{m}^2} x} \ .
+$$
+What changes are the boundary conditions. Requiring that $X_{nm}(0) = 0$ forces $D_{nm} = -C_{nm}$, which gives
+$$
+X_{nm}(x) = C_{nm} \big(e^{\sqrt{k_{n}^2+\ell_{m}^2} x} - e^{-\sqrt{k_{n}^2+\ell_{m}^2} x}\big) = 2C_{nm} \sinh \sqrt{k_{nm}^2+\ell_{nm}^2} x \ .
+$$
+Multiplying these solutions together and combining constants, we get a basis of solutions for the potential of the form
+$$
+\phi_{nm}(x,y,z) = \sinh\sqrt{k_{n}^2+\ell_{m}^2} x \ \sin k_n y \ \sin \ell_m z \ .
+$$
+The general solution for the potential must then be a superposition of these basis solutions, with
+$$
+\phi(\mathbf{x}) = \sum_{n=1}^\infty \sum_{m=1}^\infty b_{nm} \phi_{nm}(x,y,z) \ .
+$$
+We again find the expansion coefficients $b_{nm}$ by imposing the final boundary condition $\phi(a,y,z) = V(y,z)$. The answer will depend on the specific form of $V(y,z)$, but can be found in the usual way once we do.
+
+Once this is found, we have the general solution for this BVP. By the uniqueness theorem and the theory of orthogonal functions, we can guarantee that the solution found will be unique.
+
+### Laplace's Equation in Spherical Coordinates
+
+Applying separation of variables in Cartesian coordinates is pretty easy due to the fact that the Laplacian takes such a simple form. In curvilinear coordinates though it's not quite as easy, but it's still very useful to solve many interesting problems.
+
+Suppose we now choose to work in spherical coordinates $(r,\theta,\varphi)$. In this coordinate system, the Laplacian is given by
+$$
+\nabla^2 \phi = \frac{1}{r^2} \frac{\partial}{\partial r} \bigg(r^2 \frac{\partial \phi}{\partial r}\bigg) + \frac{1}{r^2 \sin\theta} \frac{\partial}{\partial \theta} \bigg(\sin\theta \frac{\partial \phi}{\partial \theta}\bigg) + \frac{1}{r^2 \sin^2 \theta} \frac{\partial^2 \phi}{\partial \varphi^2} \ .
+$$
+
+To solve Laplace's equation we require that $\nabla^2 \phi = 0$. If we multiply both sides by $r^2$ we end up with
+$$
+\frac{\partial}{\partial r} \bigg(r^2 \frac{\partial \phi}{\partial r}\bigg) + \frac{1}{ \sin\theta} \frac{\partial}{\partial \theta} \bigg(\sin\theta \frac{\partial \phi}{\partial \theta}\bigg) + \frac{1}{\sin^2 \theta} \frac{\partial^2 \phi}{\partial \varphi^2} = 0 \ .
+$$
+Notice this equation isn't completely separated yet since the last term still depends on $\theta$. As is convention, we'll handle the special situation of azimuthal symmetry before proceeding to study the general case.
+
+#### Azimuthally Symmetric Potentials
+
+For problems with azimuthal symmetry the potential depends only on $r$ and $\theta$, not on $\varphi$. An example of this type of situation might be a conducting sphere held at a fixed potential, or a potential with only a polar dependence, say $\phi = V(\theta)$ on the surface. For problems like this we can ignore the $\varphi$ derivatives in Laplace's equation and write
+$$
+\frac{\partial}{\partial r} \bigg(r^2 \frac{\partial \phi}{\partial r}\bigg) + \frac{1}{ \sin\theta} \frac{\partial}{\partial \theta} \bigg(\sin\theta \frac{\partial \phi}{\partial \theta}\bigg) = 0 \ .
+$$
+This equation is clearly separable in $r$ and $\theta$, so we can proceed as usual. Assume a trial solution of the form
+$$
+\phi(\mathbf{x}) = R(r) \Theta(\theta) \ .
+$$
+Plugging this into the previous equation and dividing by $R\Theta$, we get
+$$
+0 = \frac{1}{R} \frac{d}{dr} \bigg(r^2 \frac{dR}{dr}\bigg) + \frac{1}{\Theta} \frac{1}{\sin\theta} \frac{d}{d\theta} \bigg(\sin\theta \frac{dY}{d\theta}\bigg) \ .
+$$
+Since each term is an independent function in its own variable, the only way their sum can vanish for all $r,\theta$ is the two terms are equal to a constant if opposite sign. We'll denote this separation constant by $\ell(\ell+1)$ for reasons that will become clear in a moment. Then we have
+$$
+\begin{align*}
+\frac{d}{dr} \bigg(r^2 \frac{dR}{dr}\bigg) &= \ell (\ell+1) R(r) \ , \\
+\frac{1}{\sin\theta}\frac{d}{d\theta} \bigg(\sin\theta \frac{d\Theta}{d\theta}\bigg) &= -\ell (\ell+1) \Theta(\theta) \ .
+\end{align*}
+$$
+The first equation, called the *radial equation* can be solved by changing variables to $U(r) = r R(r)$. Then $\frac{dR}{dr} = \frac{U}{r} - \frac{dU}{dr}$, and so after simplifying a bit we end up with an ODE for $U(r)$ of the form
+$$
+\frac{d^2 U}{dr^2} = \frac{\ell (\ell+1)}{r^2} U \ .
+$$
+To solve this ODE we assume a trial solution of the form $U(r) = r^\lambda$ for some parameter $\lambda$ we need to determine. Plugging this solution into the ODE evidently forces $\lambda = -\ell, \ell+1$, which means the general solution is given by the superposition
+$$
+U(r) = a r^{-\ell} + b r^{\ell+1} \ .
+$$
+Finally, dividing by $r$ gives us the general solution to the original radial equation,
+$$
+R(r) = a r^{-\ell-1} + b r^{\ell} \ .
+$$
+We now need to deal with the other ODE, called the *angular equation*,
+$$
+\frac{1}{\sin\theta} \frac{d}{d\theta} \bigg(\sin\theta \frac{d\Theta}{d\theta}\bigg) = -\ell (\ell+1) \Theta(\theta) \ .
+$$
+If we change variables by letting $x = \cos\theta$, then $\frac{d\Theta}{d\theta} = -\sin\theta \frac{d\Theta}{dx}$, and so we end up with the following ODE for $\Theta(x)$,
+$$
+-\frac{d}{dx} \bigg((1-x^2)\frac{d\Theta}{dx}\bigg) = \ell(\ell+1) \Theta(x) \ .
+$$
+Those who have read the appendix will know that this ODE has a name. It's the *Legendre equation*. Its only bounded solution is the  *Legendre polynomial* $P_\ell(x) = P_\ell(\cos\theta)$, where $\ell = 0,1,2,\cdots$ must be a positive integer. Since this is a second order equation, there is also a second solution, but this solution is known to be unbounded for all $\ell$, and hence non-physical.
+
+We can define the Legendre polynomials most simply using the Rodrigues' formula as
+$$
+P_\ell(x) \equiv \frac{1}{2^\ell \ell!} \frac{d^\ell}{dx^\ell} (x^2 - 1)^\ell \ .
+$$
+For example, the first three Legendre polynomials are given by
+$$
+P_0(x) = 1 \quad , \quad P_1(x) = x = \cos\theta \quad , \quad P_2(x) = \frac{1}{2} (3x^2 - 1) = \frac{1}{2} (3\cos^2 \theta - 1) \ .
+$$
+The Legendre polynomials form a complete orthogonal set on the interval $-1 \leq x \leq 1$. This means we can express the general solution $\Theta(\theta)$ as a linear superposition of $P_\ell(\cos\theta)$, with
+$$
+\Theta(\theta) = \sum_{\ell=0}^\infty c_\ell P_\ell(\cos\theta) \ .
+$$
+Combining this angular solution with the radial solution, we can combine these constants $c_\ell$ with the constants in the radial solution to write the general solution for an azimuthally symmetric potential $\phi(\mathbf{x})$ in the form
+$$
+\boxed{
+\phi(\mathbf{x}) = \sum_{\ell=0}^\infty \big(a_\ell r^\ell + b_\ell r^{-(\ell+1)}\big) P_\ell(\cos\theta)
+} \ .
+$$
+Note that since we're generally only interested in solutions either inside or outside a spherical surface, the requirement that the potential not blow up inside the boundary region will force either $a_\ell$ or $b_\ell$ to vanish, meaning we only need to find one set or the other. As usual, we'll find the remaining coefficients by imposing the boundary conditions and taking an inner product. Let's now work some examples before proceeding to the more general case of non-azimuthally symmetric potentials.
+
+To see that this solution makes sense, let's consider the special case where the potential is spherically symmetric, with $\phi = \phi(r)$. Then all but the $\ell=0$ terms vanish. Since $P_0(\cos\theta) = 1$ by definition, we get
+$$
+\phi(r) = a_0 + \frac{b_0}{r} \ .
+$$
+We immediately recognize this as the potential of a uniformly charge sphere, with $b_0 = Q$ and $a_0 = \phi(0)$ a chosen ground point potential at the origin. Let's now consider some more interesting examples.
+
+##### Example: Potential inside a hollow sphere held at a given potential
+
+Suppose we have a hollow sphere of radius $R$ with a fixed potential $V(\theta)$ on its surface. We want to find the potential inside of the sphere.
+
+FIGURE
+
+The boundary value problem we seek to solve is evidently
+$$
+\begin{align*}
+\begin{cases}
+\nabla^2 \phi(r,\theta,\varphi) = 0 \ , \\
+\text{where} \ \phi(R,\theta,\varphi) = V(\theta) \ .
+\end{cases}
+\end{align*}
+$$
+Since this is clearly an azimuthally symmetric problem, $\phi = \phi(r,\theta)$, which means the general solution must have the form
+$$
+\phi(r,\theta) = \sum_{\ell=0}^\infty \big(a_\ell r^\ell + b_\ell r^{-(\ell+1)}\big) P_\ell(\cos\theta) \ .
+$$
+Since we're inside the sphere, we require that all $b_\ell = 0$ to prevent the potential from blowing up at the origin. This leaves
+$$
+\phi(r,\theta) = \sum_{\ell=0}^\infty a_\ell r^\ell P_\ell(\cos\theta) \ .
+$$
+We're now left to find the coefficients $b_\ell$ by imposing the boundary condition at $\phi(R,\theta)$, which we can write as 
+$$
+V(\theta) = \phi(R,\theta) = \sum_{\ell=0}^\infty a_\ell R^\ell P_\ell(\cos\theta) \ .
+$$
+Now, recall from the appendix that the Legendre polynomials satisfy the orthogonality relation
+$$
+\langle P_\ell(x) | P_{\ell'}(x) \rangle = \int_{-1}^1 dx P_\ell(x) P_{\ell'}(x) = \frac{2}{2\ell+1} \delta_{\ell\ell'} \ .
+$$
+Using the relation $x=\cos\theta$ we can re-express this integral in terms of $\theta$ as well,
+$$
+\langle P_\ell(\cos\theta) | P_{\ell'}(\cos\theta) \rangle = \int_0^\pi d\theta \ P_\ell(\cos\theta) P_{\ell'}(\cos\theta) \sin\theta = \frac{2}{2\ell+1} \delta_{\ell\ell'} \ .
+$$
+By the orthogonality condition, we can find $a_\ell$ by the relation
+$$
+a_\ell = \frac{\langle R^\ell P_\ell(\cos\theta) | V(\theta) \rangle}{\langle R^\ell P_\ell(\cos\theta) | R^\ell P_\ell(\cos\theta) \rangle} \ .
+$$
+Let's find the numerator first. From the orthogonality relation, we simply have
+$$
+\langle R^\ell P_\ell(\cos\theta) | R^\ell P_\ell(\cos\theta) \rangle = \frac{2R^{2\ell}}{2\ell + 1} \ .
+$$
+The denominator is given by
+$$
+\langle R^\ell P_\ell(\cos\theta) | V(\theta) \rangle = R^\ell \langle P_\ell(\cos\theta) | V(\theta) \rangle \ .
+$$
+Putting these together, we get
+$$
+a_\ell = \frac{2\ell+1}{2R^\ell} \langle P_\ell(\cos\theta) | V(\theta) \rangle = \frac{2\ell+1}{2R^\ell} \int_0^\pi d\theta \ V(\theta) P_\ell(\cos\theta) \sin\theta \ .
+$$
+To proceed further we'd need a particular form for the boundary potential $V(\theta)$. As an example, let's suppose that
+$$
+V(\theta) = k \sin^2 \frac{\theta}{2} \ .
+$$
+Using the half-angle formula and the value of the first two Legendre polynomials, we can write this in the form
+$$
+V(\theta) = \frac{k}{2} (1-\cos\theta) = \frac{k}{2} \big(P_0(\cos\theta) - P_1(\cos\theta)\big) \ .
+$$
+If we then plug this into the previous integral and use the definition of the inner product above, we get
+$$
+\begin{align*}
+a_\ell &= \frac{k}{2}\frac{2\ell+1}{2R^\ell} \int_0^\pi d\theta \  \big[P_0(\cos\theta) - P_1(\cos\theta)\big]P_\ell(\cos\theta) \sin\theta \\
+&= \frac{k}{2}\frac{2\ell+1}{2R^\ell} \big[\langle P_0 | P_\ell \rangle - \langle P_1 | P_\ell \rangle\big] \ .
+\end{align*}
+$$
+Now, by the orthogonality relation, only the $\ell=0,1$ terms will contribute anything while the rest vanish, with
+$$
+\begin{align*}
+a_0 &= \frac{k}{2} \frac{1}{2} \langle P_0 | P_0 \rangle = \frac{k}{2} \ , \\
+a_1 &= -\frac{k}{2} \frac{3}{2R} \langle P_1 | P_1 \rangle = -\frac{k}{2R} \ .
+\end{align*}
+$$
+For this choice of $V(\theta)$ we thus have our general solution for the potential that solves this BVP, given by
+$$
+\phi(\mathbf{x}) = a_0 P_0(\cos\theta) + a_1 r P_1(\cos\theta) = \frac{k}{2} \bigg(1 - \frac{r}{R} \cos\theta\bigg) \ .
+$$
+By the theory of orthogonal functions and the uniqueness theorem, we can guarantee this will be the unique general solution.
+
+##### Example: Potential outside a hollow sphere held at a given potential
+
+Let's now consider again the previous problem, but suppose we're not interested in the potential *outside* the hollow sphere. We now require that the potential vanish at infinity, giving a BVP of the form
+$$
+\begin{align*}
+\begin{cases}
+\nabla^2 \phi(r,\theta,\varphi) = 0 \ , \\
+\text{where} \ \phi(R,\theta,\varphi) = V(\theta) \\
+\phi(r,\theta,\varphi) \rightarrow 0 \ \text{as} \ r \rightarrow \infty \ .
+\end{cases}
+\end{align*}
+$$
+Clearly this problem also has an azimuthally symmetric potential $\phi = \phi(r,\theta)$, and hence we can still write
+$$
+\phi(r,\theta) = \sum_{\ell=0}^\infty \big(a_\ell r^\ell + b_\ell r^{-(\ell+1)}\big) P_\ell(\cos\theta) \ .
+$$
+But now we need the potential outside the sphere, not inside. This forces $a_\ell=0$ instead, leaving
+$$
+\phi(r,\theta) = \sum_{\ell=0}^\infty b_\ell r^{-(\ell+1)} P_\ell(\cos\theta) \ .
+$$
+To find $b_\ell$ we proceed the same way as before, relying on the orthogonality of Legendre polynomials. We need to find
+$$
+b_\ell = \frac{\langle R^{-(\ell+1)} P_\ell(\cos\theta) | V(\theta) \rangle}{\langle R^{-(\ell+1)} P_\ell(\cos\theta) | R^{-(\ell+1)} P_\ell(\cos\theta) \rangle} \ .
+$$
+The denominator is simply given by
+$$
+\langle R^{-(\ell+1)} P_\ell(\cos\theta) | R^{-(\ell+1)} P_\ell(\cos\theta) \rangle = \frac{2R^{-2(\ell+1)}}{2\ell + 1} \ ,
+$$
+while the numerator is given by
+$$
+\langle R^{-(\ell+1)} P_\ell(\cos\theta) | V(\theta) \rangle = R^{-(\ell+1)} \int_0^\pi d\theta \ V(\theta) P_\ell(\cos\theta) \sin\theta \ .
+$$
+Putting these together, we have
+$$
+b_\ell = \frac{(2\ell+1)R^{\ell+1}}{2} \int_0^\pi d\theta \ V(\theta) P_\ell(\cos\theta) \sin\theta \ .
+$$
+To proceed further we'd need to know the specific form of the boundary potential $V(\theta)$. For example, if we again assume the same boundary potential given in the previous problem, we can write
+$$
+V(\theta) = k \sin^2 \theta = \frac{k}{2} \big[P_0(\cos\theta) - P_1(\cos\theta)\big] \ .
+$$
+As in that problem, plugging this into the integral for $b_\ell$ forces only the $\ell=0,1$ terms to survive, with coefficients
+$$
+\begin{align*}
+b_0 &= \frac{k}{2} \frac{R}{2} \langle P_0 | P_0 \rangle = \frac{kR}{2} \ , \\
+b_1 &= -\frac{k}{2} \frac{3R^2}{2} \langle P_1 | P_1 \rangle = -\frac{kR^2}{2} \ .
+\end{align*}
+$$
+With these, we can write the general solution for the potential outside the sphere as
+$$
+\phi(\mathbf{x}) = \frac{b_0}{r} P_0(\cos\theta) + \frac{b_1}{r^2} P_1(\cos\theta) = \frac{kR}{2r} \bigg(1 - \frac{R}{r} \cos\theta\bigg) \ .
+$$
+Notice that this behaves exactly how we expect, with $\phi \rightarrow 0$ at infinity. It's also easy to see that this solution agrees with the one inside the sphere at the boundary surface where $r=R$. Indeed, these two solutions together give us the unique potential in all space that satisfies the boundary condition $\phi(R,\theta,\varphi) = V(\theta)$ on the surface of the sphere.
+
+In general, if we have a problem where a boundary value is specified on the surface of a sphere and we're interested in the potential inside and outside the sphere, we only need to find one of the solutions and we automatically know the other. For example, suppose we've found the potential $\phi$ inside the sphere. All we need to do to get the potential outside the sphere is make the substitution $\big(\frac{r}{R})^\ell \rightarrow \big(\frac{R}{r}\big)^{\ell+1}$ and we automatically have that solution as well.
+
+##### Example: Conducting hemispheres at opposite constant potential
+
+Let's now consider a slightly more interesting example that we calculated before using the method of images, the problem of two conducting hemispheres held at equal and opposite constant potentials $\pm V$. 
+
+FIGURE
+
+We can also solve this problem using separation of variables. We formulate this setup as a boundary value problem as follows.
+$$
+\begin{align*}
+\begin{cases}
+\nabla^2 \phi(r,\theta,\varphi) = 0 \ , \\
+\text{where} \ \phi(R,\theta,\varphi) = V \ \text{when} \ 0 \leq \theta < \frac{\pi}{2} \ , \\
+ \phi(R,\theta,\varphi) = -V \ \text{when} \ \frac{\pi}{2} < \theta \leq \pi \ , \\
+ \phi(r) \rightarrow 0 \ \text{as} \ r \rightarrow \infty \ .
+\end{cases}
+\end{align*}
+$$
+Again, this problem is clearly azimuthally symmetric. Since one is as easy as the other, we'll show how to find the potential inside the sphere, and then use that formula to get the potential outside as well using the trick described in the previous example.
+
+Inside the sphere we require that $b_\ell = 0$, which gives an expansion of the form
+$$
+\phi(r,\theta,\varphi) = \sum_{\ell=0}^\infty a_\ell r^{\ell} P_\ell(\cos\theta) \ .
+$$
+Notice this looks exactly like the previous examples if we take $V(\theta) = \pm V$. This means we can use the same formula for the coefficients to write
+$$
+a_\ell = \frac{2\ell+1}{2R^\ell} \langle P_\ell(\cos\theta) | V(\theta) \rangle = \frac{2\ell+1}{2R^\ell} \int_0^\pi d\theta \ V(\theta) P_\ell(\cos\theta) \sin\theta \ .
+$$
+Plugging in $V(\theta) = \pm V$, this becomes
+$$
+a_\ell =  \frac{2\ell+1}{2R^\ell} V \bigg[\int_0^{\pi/2} d\theta \ P_\ell(\cos\theta) \sin\theta - \int_{\pi/2}^\pi d\theta \ P_\ell(\cos\theta) \sin\theta\bigg] \ .
+$$
+Since $P_\ell(\cos\theta)$ is odd when $\ell$ is odd and even when $\ell$ is even, we can see that the even coefficients must cancel out, while for odd terms we can write
+$$
+a_\ell = \frac{2\ell+1}{R^\ell} V \int_0^{\pi/2} d\theta \ P_\ell(\cos\theta) \sin\theta \ .
+$$
+Now, by changing variables with $x=\cos\theta$ we see that the above integral can be written in the simpler form
+$$
+\int_0^{\pi/2} d\theta \ P_\ell(\cos\theta) \sin\theta = \int_0^1 dx \ P_\ell(x) \ .
+$$
+This integral is just the interval of $P_\ell(x)$ over the right-half interval $0 \leq x \leq 1$. Its expression can be calculated for odd $\ell$ (see the appendix for an example) to give
+$$
+\int_0^1 dx \ P_\ell(x) = \frac{(-1)^{\frac{\ell-1}{2}}}{2^\ell \big(\frac{\ell+1}{2}\big)} \frac{(\ell-1)!}{\big(\frac{\ell-1}{2}!\big)^2} \ .
+$$
+Plugging this in and simplifying, the coefficients we seek are given by
+$$
+a_\ell = \bigg(\frac{-1}{2}\bigg)^{\frac{\ell-1}{2}} \frac{(2\ell+1)(\ell-2)!!}{2\big(\frac{\ell+1}{2}!\big)^2} \frac{V}{R^\ell} \quad , \quad \ell=1,3,5,\cdots \ .
+$$
+This means the potential inside the sphere must be given by
+$$
+\begin{align*}
+\phi(r,\theta,\varphi) &= V\sum_{\ell=0}^\infty \bigg(\frac{-1}{2}\bigg)^{\frac{\ell-1}{2}} \frac{(2\ell+1)(\ell-2)!!}{2\big(\frac{\ell+1}{2}!\big)^2} \bigg(\frac{r}{R}\bigg)^\ell P_\ell(\cos\theta) \\
+&= V \bigg[\frac{3}{2}\bigg(\frac{r}{R}\bigg)P_1(\cos\theta) - \frac{7}{8}\bigg(\frac{r}{R}\bigg)^3P_3(\cos\theta) + \frac{11}{16}\bigg(\frac{r}{R}\bigg)^5P_5(\cos\theta) - \cdots\bigg] \ , \quad r \leq R \ .
+\end{align*}
+$$
+To get the potential outside the sphere we need only substitute $\big(\frac{r}{R})^\ell \rightarrow \big(\frac{R}{r}\big)^{\ell+1}$ to get
+$$
+\begin{align*}
+\phi(r,\theta,\varphi) &= V\sum_{\ell=0}^\infty \bigg(\frac{-1}{2}\bigg)^{\frac{\ell-1}{2}} \frac{(2\ell+1)(\ell-2)!!}{2\big(\frac{\ell+1}{2}!\big)^2} \bigg(\frac{R}{r}\bigg)^{\ell+1} P_\ell(\cos\theta) \\
+&= V \bigg[\frac{3}{2}\bigg(\frac{R}{r}\bigg)^2P_1(\cos\theta) - \frac{7}{8}\bigg(\frac{R}{r}\bigg)^4P_3(\cos\theta) + \frac{11}{16}\bigg(\frac{R}{r}\bigg)^6P_5(\cos\theta) - \cdots\bigg] \ , \quad r \geq R \ .
+\end{align*}
+$$
+As expected, the potential outside the sphere goes to zero at infinity, satisfying the final boundary condition. It also appears that the potential vanishes at the origin, and indeed in the whole equatorial plane. Indeed, the potential seems to behave as a dipole, with the electric field falling off like $r^{-3}$ far away from the sphere. This should hopefully make sense. Far away from the sphere we could imagine modeling the two hemispheres as opposite point charges very close together, i.e. a dipole.
+
+##### Example: Conducting sphere in the presence of an external electric field
+
+Let's revisit another problem we solved previously with the method of images, that of a solid conducting sphere of radius $R$  in the presence of a constant external electric field $\mathbf{E}_0$. Recall that we solved this problem previously by modeling the external field with two opposite point charges located far away from the sphere, and placed two image charges inside the sphere that fit the boundary conditions on the sphere. We'll now show that we can solve this same problem using separation of variables as well.
+
+Modeling this as a boundary value problem with $\mathbf{E}_0 = E_0 \mathbf{e}_z$ oriented along the $z$-axis, we write
+$$
+\begin{align*}
+\begin{cases}
+\nabla^2 \phi(r,\theta,\varphi) = 0 \ , \\
+\text{where} \ \phi(R,\theta,\varphi) = 0 \ , \\
+\phi(r,\theta,\varphi) \rightarrow -E_0 r\cos\theta \ \text{as} \ r \rightarrow \infty \ .
+\end{cases}
+\end{align*}
+$$
+Note the last boundary condition was chosen to ensure $\phi$ becomes the potential for $E_0$ at $z=\infty$, i.e. $\phi = -E_0z$. This problem is clearly azimuthally symmetric as well. However, since the potential in this case doesn't vanish at infinity we can't set $a_\ell=0$ anymore. We have to include both terms. Suppose then that
+$$
+\phi(r,\theta,\varphi) = \sum_{\ell=0}^\infty \big(a_\ell r^\ell + b_\ell r^{-\ell(\ell+1)}\big) P_\ell(\cos\theta) \ .
+$$
+At the surface of the sphere we must have $\phi(R,\theta,\varphi) = 0$, which means each term in the sum must vanish, with
+$$
+\big(a_\ell R^\ell + b_\ell R^{-\ell(\ell+1)}\big) P_\ell(\cos\theta) = 0 \ .
+$$
+Since $P_\ell(\cos\theta)$ doesn't depend on $r$, the only way each term can vanish is if the terms in parentheses do. This happens when
+$$
+b_\ell = -a_\ell R^{2\ell+1} \ .
+$$
+Let's now look at the limiting behavior as $r \rightarrow \infty$. When $r \gg R$ we can neglect the second term and write
+$$
+\phi(r,\theta,\varphi) \approx \sum_{\ell=0}^\infty a_\ell r^\ell P_\ell(\cos\theta) \ .
+$$
+To satisfy the boundary condition at infinity we require that $\phi(r,\theta,\varphi) \approx -E_0 r \cos\theta$. Matching this condition with the series evidently forces $\ell = 1$ while the other terms must vanish. Since $P_1(\cos\theta) = \cos\theta$, we then get
+$$
+-E_0 r \cos\theta = a_1 r \cos\theta \quad \Longrightarrow \quad a_1 = -E_0 \ .
+$$
+Plugging this in, we get a final expression for the potential satisfying these boundary conditions, with
+$$
+\phi(\mathbf{x}) = -E_0 r \bigg(1 - \frac{R^3}{r^3}\bigg) \cos\theta \ .
+$$
+This of course is exactly what we found before using the method of images. It's useful to look at the induced surface charge on the sphere as well to see how the charges are distributing in response to the external field. We do that by calculating
+$$
+\sigma = -\frac{1}{4\pi} \frac{\partial \phi}{\partial r} \bigg|_{r=R} = \frac{E_0}{\pi} \cos\theta \ .
+$$
+Notice that charge density is evidently the most positive near $\theta = 0$ and the most negative near $\theta = \pi$. This indicates that positive charge is building up in the direction of the external field, while negative charge is building up opposite to the direction of the field, which is of course what we'd expect physically in this situation.
+
+#### General Potentials
+
+Now that we've studied the special case of azimuthally symmetric potentials we'll return to the general case where the potential can depend on the angle $\varphi$ as well. Recall we had the following form for Laplace's equation in spherical coordinates,
+$$
+\frac{\partial}{\partial r} \bigg(r^2 \frac{\partial \phi}{\partial r}\bigg) + \frac{1}{ \sin\theta} \frac{\partial}{\partial \theta} \bigg(\sin\theta \frac{\partial \phi}{\partial \theta}\bigg) + \frac{1}{\sin^2 \theta} \frac{\partial^2 \phi}{\partial \varphi^2} = 0 \ .
+$$
+Now we'll keep the last term involving the $\varphi$ derivatives in. However, since the two angular terms depend on each other, we can only separate the radial and angular components, but not all three. Suppose then a trial solution of the form
+$$
+\phi(\mathbf{x}) = R(r) Y(\theta,\varphi) \ .
+$$
+Plugging this trial solution into the above equation and dividing by $\phi = RY$, we get
+$$
+0 = \frac{1}{R} \frac{d}{dr} \bigg(r^2 \frac{dR}{dr}\bigg) + \frac{1}{Y}\bigg[\frac{1}{\sin\theta} \frac{\partial}{\partial\theta} \bigg(\sin\theta \frac{\partial Y}{\partial\theta}\bigg) + \frac{1}{\sin^2 \theta} \frac{\partial^2 Y}{\partial\varphi^2}\bigg] \ .
+$$
+Since these two terms are independent of the other, the only way they can sum to zero is they both equal the same constant but with opposite sign. Again, we'll denote the separation constant by $\ell(\ell+1)$ and write
+$$
+\begin{align*}
+\frac{d}{dr} \bigg(r^2 \frac{dR}{dr}\bigg) &= \ell (\ell+1) R(r) \\
+\frac{\partial}{\partial\theta} \bigg(\sin\theta \frac{\partial Y}{\partial\theta}\bigg) + \frac{\partial^2 Y}{\partial\varphi^2} &= -\ell (\ell+1) \sin^2 \theta \ Y(\theta,\varphi) \ .
+\end{align*}
+$$
+The first equation we recognize from before. It's the radial equation. Its general solution is given by
+$$
+R(r) = a r^\ell + b r^{-(\ell+1)} \ .
+$$
+The second equation is evidently a more general form of the angular equation. We can again separate variables for the angular equation by supposing a second trial solution of the form
+$$
+Y(\theta,\varphi) = \Theta(\theta) \Phi(\varphi) \ .
+$$
+If we plug this into the angular equation and divide by $\Theta\Phi \ $, we get
+$$
+\bigg[\frac{1}{\Theta} \frac{d}{d\theta} \bigg(\sin\theta \frac{d\Theta}{d\theta}\bigg) - \ell (\ell+1) \sin^2 \theta\bigg] + \frac{1}{\Phi} \frac{d^2 \Phi}{d\varphi^2} = 0
+$$
+Again, each term is an independent function of its own variable, so the only way their sum can vanish is if they're both constants of equal and opposite sign. For reasons we'll see in a moment, we'll denote the separation constant by $m^2$ and write
+$$
+\begin{align*}
+&\frac{d}{d\theta} \bigg(\sin\theta \frac{d\Theta}{d\theta}\bigg) - \ell (\ell+1)\Theta(\theta) = m^2 \Theta(\theta) \ , \\
+&\frac{d^2\Phi}{d\varphi^2} = -m^2 \Phi(\varphi) \ .
+\end{align*}
+$$
+The second equation is easy to solve. It's just a sum of complex exponentials $e^{\pm im\varphi}$. Since we're dealing with an angle, we require that any solution $\Phi(\varphi)$ be periodic, meaning $\Phi(\varphi) = \Phi(\varphi + 2\pi)$. It's easy to see that this requirement forces $m$ to be an integer. By convention, we'll allow $m$ to run both positive and negative, and write $\Phi(\varphi)$ in the form
+$$
+\Phi(\varphi) = c e^{im\varphi} \ .
+$$
+We're now left with the other differential equation to deal with, which we'll write as
+$$
+\frac{d}{d\theta} \bigg(\sin\theta \frac{d\Theta}{d\theta}\bigg) - \big[\ell (\ell+1) \sin^2 \theta - m^2\big] \Theta(\theta) = 0 \ .
+$$
+Notice that this equation looks very similar to the Legendre equation except there's an extra term of the form $m^2 \Theta(\theta)$ present. From the appendix, we know that the solutions to this equation are the *associated Legendre functions* $P_\ell^m(\cos\theta)$, where $\ell$ again must be a non-negative integer, and $m$ must be an integer that runs from $-\ell$ to $\ell$. By again defining $x = \cos\theta$ we can again define these functions in terms of a Rodrigues' equation, with
+$$
+P_\ell^m(x) = \frac{1}{2^\ell \ell!} (1-x^2)^{m/2} \frac{d^{\ell+m}}{dx^{\ell+m}} (x^2 - 1)^\ell \ .
+$$
+These also form a complete set of orthogonal functions on the interval $-1 \leq x \leq 1$, which means we can use superposition to write the general solution $\Theta(\theta)$ in the form
+$$
+\Theta(\theta) = \sum_{\ell=0}^\infty \sum_{m=-\ell}^\ell c_{\ell m} P_\ell^m(\cos\theta) \ .
+$$
+If we combine $\Theta(\theta)$ and $\Phi(\varphi)$ back together, we get an angular solution $Y(\theta,\varphi)$ of the form
+$$
+Y(\theta,\varphi) = \sum_{\ell=0}^\infty \sum_{m=-\ell}^\ell c_{\ell m} P_\ell^m(\cos\theta) e^{im\varphi} \ .
+$$
+Note that we absorbed the integration constant for $\Phi(\varphi)$ into the ones for $\Theta(\theta)$.
+
+Now, recall again from the appendix that functions proportional to $P_\ell^m(\cos\theta) e^{im\varphi}$ also have a name. They're called the *spherical harmonics*, which we by convention normalize and write in the more complicated form
+$$
+Y_{\ell m}(\theta,\varphi) \equiv (-1)^m \sqrt{\frac{2\ell+1}{4\pi} \frac{(\ell-m)!}{(\ell+m)!}} P_\ell^m(\cos\theta) e^{im\varphi} \ .
+$$
+The spherical harmonics are precisely the eigenfunctions of the Laplacian in spherical coordinates. By construction, they form a complete orthonormal set of functions on the sphere, meaning we can write any $Y(\theta,\varphi)$ as a superposition of them,
+$$
+Y(\theta,\varphi) = \sum_{\ell=0}^\infty \sum_{m=-\ell}^\ell c_{\ell m} Y_\ell^m(\theta,\varphi) \ .
+$$
+Finally, we can combine $R(r)$ and $Y(\theta,\varphi)$ back together to get the general solution for the potential $\phi(\mathbf{x})$. We'll again absorb the constants $c_{\ell m}$ into the constants of $R(r)$ and write
+$$
+\boxed{
+\phi(\mathbf{x}) = \sum_{\ell=0}^\infty \sum_{m=-\ell}^\ell \big(a_{\ell m} r^\ell + b_{\ell m} r^{-(\ell+1)}\big) Y_\ell^m(\theta,\varphi)} \ .
+$$
+This equation looks exactly the same as the one for the azimuthally symmetric potential, except we now have to replace the Legendre polynomial $P_\ell(\cos\theta)$ by the more general spherical harmonic $Y_\ell^m(\theta,\varphi)$ and sum over $m$. Indeed, it's easy to see that the azimuthally symmetric potential is a special case of this general potential. Azimuthal symmetry is evidently equivalent to requiring that $m=0$. If we set $m=0$ in the general potential we recover the previous one, up to a normalization factor.
+
+The coefficients $a_{\ell m}$ and $b_{\ell m}$ can be found in the usual way, by imposing the boundary conditions and taking an inner product. As before, the requirement that the potential not blow up inside the boundary surface will often force either $a_{\ell m}$ or $b_{\ell m}$ to vanish depending on whether we're inside of or outside of a spherical boundary surface.
+
+### Laplace's Equation in Cylindrical Coordinates
+
+We'll finally apply separation of variables to the Laplacian in the last coordinate system we commonly use, cylindrical coordinates.  If we work in cylindrical coordinates $(\varrho,\varphi,z)$, the Laplacian can be written in the form
+$$
+\nabla^2 \phi = \frac{1}{\varrho} \frac{\partial}{\partial\varrho} \bigg(\varrho \frac{\partial\phi}{\partial\varrho} \bigg) + \frac{1}{\varrho^2} \frac{\partial^2 \phi}{\partial^2\varphi} + \frac{\partial^2 \phi}{\partial z^2} \ .
+$$
+To satisfy Laplace's equation we require $\nabla^2 \phi = 0$. If we set the above equation equal to zero we get
+$$
+0 = \frac{1}{\varrho} \frac{\partial}{\partial\varrho} \bigg(\varrho \frac{\partial\phi}{\partial\varrho} \bigg) + \frac{1}{\varrho^2} \frac{\partial^2 \phi}{\partial^2\varphi} + \frac{\partial^2 \phi}{\partial z^2} \ .
+$$
+As with spherical coordinates, the terms aren't completely separable since $\varrho$ appears in two terms. We'll first consider the case of cylindrical symmetry, where the potential is independent of $z$, before proceeding to the case of more general potentials.
+
+#### Cylindrically Symmetric Potentials
+
+For problems with cylindrically symmetry the potential depends only on $r$ and $\varphi$, not on $z$. These kinds of problems include the infinitely long wire held at constant potential, or infinitely long wires held at some anisotropic potential $V(\varphi)$.
+
+If we assume the potential is cylindrically symmetric then the $z$ derivatives in Laplace's equation vanish, and we can multiply through by $\varrho^2$ and write Laplace's equation in the form
+$$
+0 = \varrho \frac{\partial}{\partial\varrho} \bigg(\varrho \frac{\partial\phi}{\partial\varrho} \bigg) + \frac{\partial^2 \phi}{\partial^2\varphi} \ .
+$$
+Now each term is separable and we can proceed to apply separation of variables. Assume a trial solution of the form
+$$
+\phi(\mathbf{x}) = R(\varrho) \Phi(\varphi) \ .
+$$
+Plugging this into Laplace's equation and dividing through by $\phi = RZ$, we end up with
+$$
+0 = \frac{\varrho}{R} \frac{d}{d\varrho} \bigg(\varrho \frac{dR}{d\varrho} \bigg) + \frac{1}{\Phi} \frac{d^2 \Phi}{d\varphi^2} \ .
+$$
+The only way this equation can vanish is if both terms equal a constant of opposite sign, which we'll call $n^2$. Then we have
+$$
+\begin{align*}
+\varrho \frac{d}{d\varrho} \bigg(\varrho \frac{dR}{d\varrho} \bigg)&= n^2 R(\varrho) \ , \\
+\frac{d^2 \Phi}{d\varphi^2} &= -n^2 \Phi(\varphi) \ .
+\end{align*}
+$$
+The second equation is easy enough to solve. In real form its solutions are sines and cosines. Since the potentials should be the same when $\varphi \rightarrow \varphi + 2\pi$, we require that $n$ be an integer so that $\Phi(\phi) = \Phi(\phi + 2\pi)$. This means that for each $n$ we'll have a solution of the form
+$$
+\Phi_n(\varphi) = a \cos n\varphi + b \sin n\varphi \ .
+$$
+Now, to get the full solution for all $n$ we appeal to the principle of superposition. We know that the set of functions $\Phi_n(\varphi)$ are just the real Fourier functions on the interval $0 \leq \varphi \leq 2\pi$, which form a complete set of orthogonal functions on this interval. This means the general solution will be a Fourier series
+$$
+\Phi(\varphi) = \frac{a_0}{2} + \sum_{n=1}^\infty \big(a_n \cos n\varphi + b_n \sin n\varphi\big) \ .
+$$
+To solve the first equation we'll assume a trial solution of the form $R(\varrho) = \varrho^\lambda$. Plugging this in forces $\lambda = \pm n$, giving
+$$
+R_n(\varrho) = c_1 \varrho^n + c_2 \varrho^{-n} \ .
+$$
+However, this is only true when $n \neq 0$. When $n=0$ we need to solve for $R(\varrho)$ separately. In that case it's easy to see that
+$$
+R_0(\varrho) = d_1 + d_2 \log \varrho \ .
+$$
+To get the general solution for the potential we then combine these two functions. We'll absorb the constants together and write
+$$
+\phi(\mathbf{x}) = a_0 + b_0 \log\varrho + \sum_{n=1}^\infty \big[(a_n \cos n\varphi + b_n \sin n\varphi)\varrho^n + (c_n \cos n\varphi + d_n \sin n\varphi)\varrho^{-n}\big] \ .
+$$
+Note that the requirement that the potential not blow up inside the boundary surface will generally force some of these constants to vanish depending on whether we're inside of our outside of the wire. If we're inside the wire, we require that $b_0$ and the $\varrho^{-n}$ constants vanish so that the potential doesn't blow up at the origin. If we're outside the wire we require that the $\varrho^n$ constants vanish so that the potential vanishes at infinity.
+
+To check that this solution makes sense, let's consider the case of a potential where $\phi = \phi(\varrho)$ only. In this case only the $n=0$ terms survive, leaving
+$$
+\phi(\varrho) = a_0 + b_0 \log\varrho \ .
+$$
+The associated electric field is then $\mathbf{E}(\mathbf{x}) = E(\varrho) \mathbf{e}_\varrho$, where
+$$
+E(\varrho) = -\frac{d\phi}{d\varrho} = -\frac{b_0}{\varrho} \equiv \frac{2\lambda}{\varrho} \ .
+$$
+If we take $b_0 = -2\lambda$ and $a_0 = \phi(0)$ as a ground point, this is evidently the potential of a uniform wire with line density $\lambda$. Let's now consider a more general example.
+
+##### Example: Infinite wire held at a given surface charge density
+
+
+
+##### Example: Grounded infinite wire perpendicular to a uniform electric field
+
+
+
+#### General Potentials
+
+We'll now return to the more general case with no symmetry in the potential. Recall we had Laplace's equation in the form
+$$
+0 = \frac{1}{\varrho} \frac{\partial}{\partial\varrho} \bigg(\varrho \frac{\partial\phi}{\partial\varrho} \bigg) + \frac{1}{\varrho^2} \frac{\partial^2 \phi}{\partial^2\varphi} + \frac{\partial^2 \phi}{\partial z^2} \ .
+$$
+We'll first apply separation of variables to split off the first two terms from the second. Assume a trial solution of the form
+$$
+\phi(\mathbf{x}) = F(\varrho, \varphi) Z(z) \ .
+$$
+Plugging this in and dividing by $JZ$, we end up with
+$$
+0 = \frac{1}{F\varrho} \frac{\partial}{\partial\varrho} \bigg(\varrho \frac{\partial F}{\partial\varrho} \bigg) + \frac{1}{F\varrho^2} \frac{\partial^2 F}{\partial^2\varphi} + \frac{1}{Z}\frac{\partial^2 Z}{\partial z^2} \ .
+$$
+The only way this equation can vanish is if the first two terms equal a constant, and the last term is a constant of opposite sign. We'll call that constant $-k^2$. We then end up with two differential equations of the form
+$$
+\begin{align*}
+\frac{1}{\varrho} \frac{\partial}{\partial\varrho} \bigg(\varrho \frac{\partial F}{\partial\varrho} \bigg) + \frac{1}{\varrho^2} \frac{\partial^2 F}{\partial^2\varphi} &= -k^2 F(\varrho,\varphi) \ , \\
+\frac{d^2 Z}{dz^2} &= k^2 Z(z) \ .
+\end{align*}
+$$
+The second equation is easy enough to solve. Its solutions are just exponentials, with
+$$
+Z(z) = c_1 e^{kz} + c_2 e^{-kz} \ .
+$$
+To deal with the first equation we separate variables again by assuming a trial solution of the form
+$$
+F(\varrho,\varphi) = R(\varrho) \Phi(\varphi) \ .
+$$
+Then multiplying both sides of the equation by $\varrho^2$, dividing by $F = R\Phi$, and rearranging terms, we get
+$$
+\bigg[\frac{\varrho}{R\varrho} \frac{d}{d\varrho} \bigg(\varrho \frac{dR}{d\varrho} \bigg) + k^2 \varrho^2\bigg] + \frac{1}{\Phi} \frac{d^2 \Phi}{d^2\varphi} = 0 \ .
+$$
+Again, the only way these terms can vanish is if they equal the same constant with opposite sign. We'll call that constant $n^2$, so that we end up with following two differential equations,
+$$
+\begin{align*}
+\frac{1}{\varrho} \frac{d}{d\varrho} \bigg(\varrho \frac{dR}{d\varrho} \bigg) + k^2 \varrho^2 R(\varrho)  &= n^2 R(\varrho) \ , \\
+\frac{d^2 \Phi}{d^2\varphi} &= -n^2 \Phi(\varphi) \ .
+\end{align*}
+$$
+The second equation just gives the same solution found in the cylindrically symmetric case. Requiring that $\Phi(\varphi)$ be periodic forces $n$ be an integer. In terms of sines and cosines we get an orthonormal set of Fourier functions whose superposition can be written as a Fourier series to yield the general solution,
+$$
+\Phi(\varphi) = \frac{a_0}{2} + \sum_{n=1}^\infty \big(a_n \cos n\varphi + b_n \sin n\varphi\big) \ .
+$$
+To deal with the first equation, we'll expand out the derivative and move everything to one side to write
+$$
+\varrho^2\frac{d^2R}{d\varrho^2} + \varrho \frac{dR}{d\varrho} + \big(k^2 \varrho^2 - n^2\big) R(\varrho) = 0 \ .
+$$
+From the appendix, we recognize this equation as *Bessel's equation*. Its solutions are $J_n(k\varrho)$ and $Y_n(k\varrho)$, which are the integer Bessel functions of the first and second kind respectively. For each $n$, we have a solution of the form
+$$
+R_n(\varrho) = c_n J_n(k\varrho) + d_n Y_n(k\varrho) \ .
+$$
+In cylindrical problems we typically require that the potential vanish on the sides of a cylinder, or at infinity. 
+
+
+
+In the first case, if we have a cylinder of radius $a$, the requirement that the potential vanish at $\varrho=a$ forces $R(a)=0$. The only way that can be true is if  each $k$ satisfies $k_{nm} = \frac{x_{nm}}{a}$ for some $m$, where $x_{nm}$ is the $m$<sup>th</sup> root of the Bessel function $J_n(x)$. The set of functions $J_n(k_{nm}\varrho)$  forms a complete set of orthogonal functions on the interval $0 \leq \varrho \leq a$, hence we can use the principle of superposition to write the general solution for each $R_n(\varrho)$ as
+$$
+R_n(\varrho) = \sum_{m=1}^\infty c_{nm} J_n(k_{nm}\varrho) + d_{nm} Y_n(k_{nm}\varrho) \ .
+$$
+Combining this with the other two solutions and absorbing constants together, we can write the general solution for the potential that's forced to vanish on the sides of the cylinder as
+$$
+\phi(\mathbf{x}) = c_{00} + \sum_{n=1}^\infty \sum_{m=1}^\infty e^{-k_{nm}z} \big[c_{nm} J_n(k_{nm}\varrho) \cos n\pi + d_{nm} Y_n(k_{nm}\varrho) \sin n\pi \big] \ .
+$$
+
+- This last bit is sloppy. Be more careful.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

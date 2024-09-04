@@ -1,6 +1,6 @@
-# Advanced Methods I
+# Boundary Value Problems I
 
-In this chapter and the next, we will continue on with the subject of electrostatics by focusing on some of the more advanced aspects of the subject. Many of the things we cover in these two chapters will also apply to other areas of electromagnetism as well, like magnetostatics and electrodynamics, with minor modifications here and there that we'll touch on in future chapters. 
+In this chapter and the next, we will continue on with the subject of electrostatics by solving electrostatics problems in the presence of boundary conditions. These are called *boundary value problems*, or BVPs. Many of the things we cover in these two chapters will also apply to other areas of electromagnetism as well, like magnetostatics and electrodynamics, with minor modifications here and there that we'll touch on in future chapters. 
 
 In this chapter, we will derive the formal solution for Poisson's equation using the theory of Green's functions. Once we've done that, we will introduce the closely-related method of images, a technique that can be used to solve electrostatics problems when there are certain symmetries present.
 
@@ -10,17 +10,17 @@ We saw in the previous chapter that we can in principle calculate the scalar pot
 $$
 \phi(\mathbf{x}) = \int d^3 \mathbf{x}' \ \frac{\rho(\mathbf{x}')}{|\mathbf{x} - \mathbf{x}'|} \ .
 $$
-In principle, this integral formula will work as long as the charge distribution is localized, there are no other sources of charge, and we've already specified in advance what the charge density $\rho(\mathbf{x}')$ actually is. Unfortunately, in practice there are other sources of charge present, and we often don't know what the charge density is. Instead we can often only specify other *boundary conditions*, like the values of the potential or the electric field at various points in space. For example, if we have a charge distribution in the presence of a set of conductors, we may only know the values of the potential on those conductors relative to some ground. For this reason, in practice we often need other, more useful ways to calculate the potential.
+In principle, this integral formula will work as long as the charge distribution is localized, there are no other sources of charge, and we've already specified in advance what the charge density $\rho(\mathbf{x}')$ actually is. Unfortunately, in practice there are other sources of charge present, and we often don't know what the charge density is. For example, there may be background conductors or other charged materials present that are too difficult to model, but we know the potential on those surfaces. We can model situations like this by introducing *boundary conditions*, while modeling the charge densities we care about directly.
 
-One natural way to find the potential in the presence of arbitrary boundary conditions like this is to instead express the problem in terms of a partial differential equation (PDE) subject to a set of boundary conditions. We saw in the previous chapter that we can specify the potential via *Poisson's Equation*,
+The natural way to find the potential in the presence of arbitrary boundary conditions like this is to instead express the problem in terms of a partial differential equation (PDE) subject to a set of boundary conditions. We saw in the previous chapter that we can specify the potential via *Poisson's Equation*,
 $$
 \nabla^2 \phi = -4\pi\rho \ .
 $$
 This is a linear second-order PDE. To solve for the exact potential of a given problem, we need to match the PDE with a set of *boundary conditions*. For Poisson's equation we do that by specifying the value of either the potential or its normal derivative along some given *boundary surface*.
 
-### Green's Functions
+## Green's Functions
 
-We will now introduce the idea of a *Green's Function*, which is a very useful and important concept in electromagnetism and many other field theories. We'll see that the Green's function provides a general formulation for solving Poisson's equation, and indeed for solving any linear PDE.
+We will now introduce the idea of a *Green's Function*, which is a very useful and important concept in electromagnetism and many other field theories, as well as the theory of partial differential equations. We'll see that the Green's function provides a general formulation for solving Poisson's equation, and indeed for solving any linear PDE.
 
 We already know that for a localized charge distribution in the absense of boundary conditions that the potential can be found by
 $$
@@ -28,11 +28,13 @@ $$
 $$
 If we look at this integral more closely we can see that it's really just a convolution of two functions, $\rho(\mathbf{x}')$ and another function
 $$
-G(\mathbf{x} - \mathbf{x}') \equiv \frac{1}{|\mathbf{x} - \mathbf{x}'|} \ .
+\boxed{
+G(\mathbf{x} - \mathbf{x}') \equiv \frac{1}{|\mathbf{x} - \mathbf{x}'|}
+}\ .
 $$
 This function $G(\mathbf{x} - \mathbf{x}')$ is called a *Green's Function*. This function is evidently a property of the PDE itself, and doesn't depend on any charge distributions or boundary conditions. So where does this function come from?
 
-Suppose we wanted to solve Poisson's equation for a single unit point charge located at a source point $\mathbf{x}'$. Since $q=1$ this means that $\rho(\mathbf{x}) = \delta(\mathbf{x} - \mathbf{x}')$. The potential $G(\mathbf{x} - \mathbf{x}')$ that solves Poisson's equation in the absence of any boundary conditions is known as a *Green's function*, with
+Suppose we wanted to solve Poisson's equation for a single unit point charge located at a source point $\mathbf{x}'$. Since $q=1$ this means that $\rho(\mathbf{x}) = \delta(\mathbf{x} - \mathbf{x}')$. The potential $G(\mathbf{x} - \mathbf{x}')$ that solves this Poisson's equation in the absence of any boundary conditions is known as a *Green's function*, 
 $$
 \nabla^2 G(\mathbf{x} - \mathbf{x}') = -4\pi \delta(\mathbf{x} - \mathbf{x}') \ .
 $$
@@ -57,7 +59,7 @@ Since we already know that the Green's function for Poisson's equation must be g
 $$
 G(\mathbf{x} - \mathbf{x}') = \frac{1}{|\mathbf{x} - \mathbf{x}'|} \ ,
 $$
-we could just skip ahead to the next section. However, we want to derive the Green's function yet another way, using the properties of the Fourier transform. We introduce this new method because in future chapters we'll want to find the Green's function for other PDEs in future chapters, where we can't rely on already-known formulas to help us find these functions.
+we could just skip ahead to the next section. However, we want to derive the Green's function yet another way, using the properties of the Fourier transform. We introduce this new method because in future chapters we'll want to find the Green's function for other PDEs in future chapters, where we can't rely on already-known formulas to help us.
 
 Let's suppose that we wished to solve Poisson's equation for a unit point charge,
 $$
@@ -161,7 +163,6 @@ That is,
 $$
 G(\mathbf{x} - \mathbf{x}') = \frac{1}{|\mathbf{x} - \mathbf{x}'|} \ .
 $$
-This, of course, is exactly what we wanted to prove.
 ### Formal Solution to Poisson's Equation
 
 We'll now derive a formal solution to Poisson's equation when boundary conditions are present. To do so we'll make use of Green's second identity. Recall that Green's second identity says that for two scalar fields $\psi(\mathbf{x}')$ and $\phi(\mathbf{x}')$, we have
@@ -185,9 +186,9 @@ $$
 \phi(\mathbf{x}) = \int_\mathcal{V} d^3 \mathbf{x}' \ \rho(\mathbf{x}') G(\mathbf{x} - \mathbf{x}') + \frac{1}{4\pi} \oint_\mathcal{S} da' \ \bigg[G \frac{\partial \phi}{\partial n'} - \phi \frac{\partial G}{\partial n'} \bigg]
 }\ .
 $$
-Provided we interpret $\mathcal{S}$ is the boundary surface we have exactly what we seek, a formal solution for the potential in the presence of boundary conditions acting along the boundary surface. The surface integral term encodes all the information contained in the boundary conditions. Indeed, if we send the boundary surface to infinity the surface integral goes to zero like $r'^{-3}$, and we recover our original integral formula for the potential.
+Provided we interpret $\mathcal{S}$ as the *boundary surface* we have exactly what we seek, a formal solution for the potential in the presence of boundary conditions acting along the boundary surface. The surface integral term encodes all the information contained in the boundary conditions. Indeed, if we send the boundary surface to infinity the surface integral goes to zero like $r'^{-3}$, and we recover our original integral formula for the potential.
 
-So what exactly is the surface integral encoding? Notice that it contains two terms, one proportional to the *value* of $\phi$ along the boundary surface, and another proportional to the *normal derivative* of $\phi$ along the boundary surface. Since we can write the normal derivative in terms of the electric field via
+So what exactly is the surface integral encoding? Notice that it contains two terms, one proportional to the *value* of the potential along the boundary surface, and another proportional to the *normal derivative* of the potential along the boundary surface. Since we can write the normal derivative in terms of the electric field via
 $$
 \frac{\partial \phi}{\partial n'} = \nabla' \phi \cdot \mathbf{n}' = -\mathbf{E} \cdot \mathbf{n}' \ ,
 $$
@@ -197,7 +198,7 @@ We can also see that if there are no source charges present inside the boundary 
 $$
 \nabla^2 \phi = 0 \ .
 $$
-This means we can solve many electrostatics problems just by solving Laplace's equation subject to boundary conditions, allowing us to avoid having to specify ahead what the charge distributions are. We'll return to this idea later.
+We can solve many electrostatics problems just by solving Laplace's equation subject to boundary conditions, allowing us to avoid having to specify ahead what the charge distributions are. We'll return to this idea later.
 
 ### Uniqueness Theorem
 
@@ -222,8 +223,6 @@ $$
 \end{align*}
 $$
 Here $E_0$ is used to denote the value of the electric field normal to the boundary surface, i.e. $E_0 = \mathbf{E} \cdot \mathbf{n}'$.
-
-One can also imagine problems where the value of the potential is specified on some part of the surface, and the normal derivative is specified on some other part of the surface. Such a problem is said to have *mixed boundary conditions*.
 
 We will now show that provided either Cauchy or Neumann boundary conditions are used, the Poisson equation with boundary conditions will yield a unique solution for the potential. Suppose we have two solutions $\phi_1$ and $\phi_2$ to Poisson's equation subject to either Cauchy or Neumann boundary conditions, but not both,
 $$
@@ -257,9 +256,9 @@ $$
 $$
 Now, according to Laplace's equation $\nabla'^2 u = 0$. Also, according to the boundary conditions, either $u$ or $\frac{\partial u}{\partial n'}$ must vanish on the boundary surface, which means the surface integral on the right-hand side must also vanish. We're thus left with
 $$
-\int_\mathcal{V} d^3 \mathbf{x}' \ (\nabla' u)^2 = 0 \ .
+\int_\mathcal{V} d^3 \mathbf{x}' \ |\nabla' u|^2 = 0 \ .
 $$
-Finally, since $(\nabla' u)^2$ is strictly non-negative, the integral can only vanish if its integrand does. This means we must have
+Finally, since $|\nabla' u|^2$ is strictly non-negative, the integral can only vanish if its integrand does. This means we must have
 $$
 \nabla' u = 0 \ .
 $$
@@ -267,13 +266,21 @@ The only way the gradient can vanish is if $u$ is constant, meaning $u = \phi_2 
 
 In either case it's physically immaterial what the additive constant is. Since the physical quantity of interest is the electric field, the additions of an additive constant to the potential doesn't physically matter. All together, this means that the solution to Poisson's equation subject to either Cauchy or Neumann boundary conditions must be unique up to an unimportant constant, which is what we wanted to show.
 
+Note that the same proof holds if the problem has *mixed boundary conditions*, where on some parts of the boundary surface the potential is specified, and on other parts the normal derivative is specified. In this case, we only need to break the boundary up into these two pieces and argue the proof for each part.
+
 ### Green's Function with Boundary Conditions
 
 Before we derived the Green's function for Poisson's equation under the assumption of no boundary conditions, and then used Green's second identity to find an expression for the potential when boundary conditions are present. If we like, we can encorporate the boundary conditions directly into the Green's function from the beginning. The idea is to generalize the definition of the Green's function somewhat by taking
 $$
 G(\mathbf{x} - \mathbf{x}') = \frac{1}{|\mathbf{x} - \mathbf{x}'|} + F(\mathbf{x} - \mathbf{x}') \ ,
 $$
-where $F$ is any function that satisfies Laplace's equation subject to the given boundary conditions. Intuitively, we can think of $F$ as the potential of any charge distributions lying beyond the boundary surface. Our goal in this section however isn't to find $F$, but to formally show that generalized Green's functions give us formal solutions for the potential that aren't overdetermined.
+where $F$ is any function that satisfies Laplace's equation subject to the given boundary conditions, i.e.
+$$
+\nabla^2 F(\mathbf{x} - \mathbf{x}') = 0 \ .
+$$
+Such a solution without a source term is usually called a *homogeneous solution*.
+
+Intuitively, we can think of $F$ as the potential of any charge distributions lying beyond the boundary surface. Our goal in this section however isn't to find $F$, but to formally show that generalized Green's functions give us formal solutions for the potential that aren't overdetermined.
 
 Consider first the case of a Poisson BVP with Dirichlet boundary conditions. We'll suppose there exists a Green's function $G_D$ that satisfies the BVP
 $$
@@ -338,6 +345,58 @@ $$
 $$
 Of course, while having these formal solutions is nice, we still haven't shown how to find these generalized Green's functions. In fact, it usually isn't that helpful to find the generalized Green's function directly when solving a given problem. Its primary use is theoretical, to show that a formal solution for the potential will always exist under certain types of boundary conditions.
 
+### Green's Function in Other Dimensions
+
+For the special case of the Laplacian operator, there's an easier way to find the (unbounded) Green's function that also happens to work just as easily for any number of dimensions. Let's again consider Poisson's equation for the Green's function free from boundary conditions, but this time we'll assume $\mathbf{x}$ and $\mathbf{x}'$ are vectors in some arbitrary $n$-dimensional space. If we ignore the factor of $4\pi$ from before, we have
+$$
+\nabla^2 G(|\mathbf{x} - \mathbf{x}'|) = -\delta(\mathbf{x} - \mathbf{x}') \ .
+$$
+Here the Laplacian operator is assumed to be defined in $n$ dimensions as well, i.e. $\nabla^2 = \partial_i \partial_i$ in summation notation.
+
+Let's now recall the divergence theorem in 3-dimensions, which says for any vector field $\mathbf{F}(\mathbf{x})$ we have
+$$
+\int_\mathcal{V} d^3 \mathbf{x} \ \nabla \cdot \mathbf{F} = \oint_\mathcal{S} da \ \mathbf{F} \cdot \mathbf{n} \ .
+$$
+This theorem can be written in any number of dimensions if we think of $\mathcal{V}_n$ as an $n$-dimensional volume and $\mathcal{S}_{n-1}$ as the closed boundary containing that volume in $n$-dimensional space. Then we have
+$$
+\int_{\mathcal{V}_n} d^n \mathbf{x} \ \nabla \cdot \mathbf{F} = \oint_{\mathcal{S}_{n-1}} da^{n-1} \ \mathbf{F} \cdot \mathbf{n} \ .
+$$
+Now, let $\mathbf{F} = \nabla G(|\mathbf{x} - \mathbf{x}'|)$. If we plug this in and integrate with respect to the field point $\mathbf{x}$. If we do that, the left-hand side becomes an $n$-dimensional Laplacian $\nabla^2 G$, while the right-hand side becomes the normal derivative $\frac{\partial G}{\partial n}$ through the $(n-1)$-dimensional surface $\mathcal{S}_{n-1}$,
+$$
+\int_{\mathcal{V}_n} d^n \mathbf{x} \ \nabla^2 G = \oint_{\mathcal{S}_{n-1}} da^{n-1} \ \frac{\partial G}{\partial n} \ .
+$$
+Now we'll apply this divergence theorem to the Poisson's equation above. If we suppose $\mathcal{V}_n$ is a volume centered at $\mathbf{x}'$ and use the divergence theorem to replace the volume integral with a surface integral, we have
+$$
+\oint_{\mathcal{S}_{n-1}} da^{n-1} \ \frac{\partial G}{\partial n} = -1 \ .
+$$
+Now, we can pick any Gaussian surface we like so long as its volume includes $\mathbf{x}'$. Let's suppose $\mathcal{S}_{n-1}$ is an $(n-1)$-dimensional sphere centered at $\mathbf{x}'$. If this sphere has a radius $r$, we can write the area element as
+$$
+da^{n-1} = r^{n-1} d\Omega^{n-1} \ ,
+$$
+where $d\Omega^{n-1}$ is the $(n-1)$-dimensional solid angle. Since $G(|\mathbf{x}|)$ is radial by assumption, its normal derivative with the sphere will just be its derivative with respect to $r$ and we can pull it out of the integral to write
+$$
+\oint_{\mathcal{S}_{n-1}} da^{n-1}  \ \frac{\partial G}{\partial n} = r^{n-1}  \frac{\partial G}{\partial r}\oint_{\mathcal{S}_{n-1}} d\Omega^{n-1} = r^{n-1} \frac{\partial G}{\partial r} \Omega_{n-1} \ ,
+$$
+where $\Omega_{n-1}$ is the area of an $(n-1)$-dimensional unit sphere. Putting this all together, we have
+$$
+\frac{\partial G}{\partial r} = -\frac{1}{\Omega_{n-1} r^{n-1}} \ .
+$$
+This can then be integrated to find the $n$-dimensional Green's function $G_n(|\mathbf{x} - \mathbf{x}'|) = G(r)$. For $n \geq 3$ we have
+$$
+G_n(|\mathbf{x} - \mathbf{x}'|) = \frac{(-1)^{n+1}}{(n-2) \Omega_{n-1}} \frac{1}{|\mathbf{x} - \mathbf{x}'|^{n-2}} \ .
+$$
+It's easy to see that when $n=3$ we get exactly what we'd derived before aside from the factor of $4\pi$. Indeed, since $\Omega_2 = 4\pi$ is the surface area of a unit sphere, we get
+$$
+G_3(|\mathbf{x} - \mathbf{x}'|) = \frac{1}{4\pi} \frac{1}{|\mathbf{x} - \mathbf{x}'|} \ .
+$$
+When $n=2$ we do get a proper function, but it looks different than the rest. In this case $\Omega_1 = 2\pi$ is the circumference of a unit sphere, so we get
+$$
+G_2(|\mathbf{x} - \mathbf{x}'|) = -\frac{1}{2\pi} \log |\mathbf{x} - \mathbf{x}'| \ .
+$$
+Finally, when $n=1$, $\Omega_0$ is just the size of a point, which is zero. This means that $G_1(|\mathbf{x} - \mathbf{x}'|) = \infty$, hence the Green's function isn't well-defined in 1-dimension.
+
+In practice, aside from the 3-dimensional Green's function we already studied in depth, it's the 2-dimensional Green's function that's likely to be of most use to use in electromagnetism. It can be useful, for instance, in solving electrostatics problems where we're only interested in the fields and potentials along some flat 2-dimensional surface.
+
 ## Method of Images
 
 Thus far, we've yet to show any practical ways to find the potential in a given boundary value problem. In this section we'll introduce the first method, the powerful *method of images*. This method exploits the uniqueness theorem and the geometry of a problem to quickly find the potential. It doesn't always work, but when it does it can be quite useful.
@@ -349,6 +408,8 @@ $$
 The added function $F(\mathbf{x} - \mathbf{x}')$ is any function that satisfies Laplace's equation subject to the boundary conditions. By the uniqueness theorem, we know that if we can find such an $F$ that satisfies the boundary conditions, it will be unique up to an unimportant additive constant to the potential, provided Dirichlet or Neumann boundary conditions are used.
 
 The method of images exploits this property of uniqueness by converting the original boundary value problem into an equivalent unbounded problem that still just happens to satisfy the same boundary conditions. Suppose we have one or more point charges in the presence of some set of boundary conditions, for example a set of conductors held at some fixed potentials. In many cases, we can exploit the geometry of the problem to convert this problem into an equivalent unbounded problem by introducing pseudo-charges outside the boundary surface, called *image charges*, such that when added to the problem the combination of original and image charges together happens to satisfy the original boundary conditions. By the uniqueness theorem, we know that if we find such a solution, it must be the unique solution, even for the original BVP.
+
+### Examples
 
 For example, suppose we wanted to find the potential for a point charge $q$ located at a distance $z=d$ above an infinite grounded sheet, meaning $\phi = 0$ at $z=0$. What we can do is pretend the grounded sheet wasn't there, and instead introduce an image charge $-q$ below the sheet at $z = -d$, which is outside the boundary surface. The potential of this new image problem is just
 $$
@@ -370,7 +431,7 @@ This means that to get the Green's function all we need to do is divide the pote
 $$
 G_D(\mathbf{x} - d\mathbf{e}_z) = \frac{q}{\sqrt{x^2 + y^2 + (z-d)^2}} - \frac{q}{\sqrt{x^2 + y^2 + (z+d)^2}} \ .
 $$
-Notice that the first term is just the unbounded Green's function. The second term is the added function $F$ that satisfies the boundary conditions, i.e.
+Notice that the first term is just the unbounded Green's function. The second term is the homogeneous function $F$ that satisfies the boundary conditions, i.e.
 $$
 F(\mathbf{x} - d \mathbf{e}_z) = -\frac{q}{\sqrt{x^2 + y^2 + (z+d)^2}} \ .
 $$
@@ -404,7 +465,7 @@ Notice that the induced charge on the surface is just the image charge, with $Q 
 
 We'll now work through a few more complicated examples to help solidify these ideas.
 
-#### Example: Point charge near a grounded conducting sphere
+##### Example: Point charge near a grounded conducting sphere
 
 Suppose we have a point charge $q$ located at some distance $d$ outside a grounded conducting sphere of radius $R$. This means that the boundary surface is just the surface of the sphere, where we must have $\phi = 0$. To find the potential of this BVP, we'll suppose there is a single image charge $q'$ located inside the sphere at some distance $d' \leq R$ from the center.
 
@@ -441,7 +502,7 @@ If we like we can also write down the Green's function by again dividing both si
 $$
 G_D(\mathbf{x} - \mathbf{d}) = \frac{1}{\sqrt{r^2 + d^2 - 2rd\cos\alpha}} - \frac{\frac{R}{d}}{\sqrt{R^2 + \frac{r^2 d^2}{R^2} - 2rd\cos\alpha}} \ .
 $$
-Again, the first term is just the unbounded Green's function. The second term is the function $F$ that satisfies the boundary conditions,
+Again, the first term is just the unbounded Green's function. The second term is the homogeneous function $F$ that satisfies the boundary conditions,
 $$
 F(\mathbf{x} - \mathbf{d}) = -\frac{\frac{R}{d}}{\sqrt{R^2 + \frac{r^2 d^2}{R^2} - 2rd\cos\alpha}} \ .
 $$
@@ -465,7 +526,7 @@ $$
 $$
 Evidently the force between the conductor and the point charge is always attractive. When the charge is near the conductor, the force goes like $F \sim (d-R)^{-2}$ similar to a monopole field, but as the charge moves farther away the force goes like $F \sim d^{-3}$, more similar to a dipole field.
 
-#### Example: Point charge near an ungrounded conducting sphere
+##### Example: Point charge near an ungrounded conducting sphere
 
 In the previous example we considered the problem of a point charge in the presence of a grounded conducting sphere. In fact, there's no necessary reason that the conductor to be grounded. We can hold it at any fixed potential we like, but to do so we need to modify the potential somewhat to account for this.
 
@@ -483,13 +544,9 @@ F(\mathbf{x} - \mathbf{d}) = -\frac{\frac{R}{d}q}{|\mathbf{x} - \frac{R^2}{d^2}\
 $$
 will satisfy Laplace's equation. In fact, each term satisfies Laplace's equation separately, as one can check.
 
-One can check that the charge $Q$ on the surface of the sphere is given by $Q = q' + q'' = VR - \frac{R}{d} q$. The force between the conductor in the sphere is evidently given by
+One can check that the charge $Q$ on the surface of the sphere is given by $Q = q' + q'' = VR - \frac{R}{d} q$. The force between the  ungrounded sphere and the point charge is evidently given by
 $$
-\begin{align*}
-\mathbf{F} &= q\bigg(\frac{q'}{|\mathbf{d} - \mathbf{d}'|^2} + \frac{VR}{|\mathbf{d}|^2}\bigg)\mathbf{e}_r \\ 
-&= \frac{q}{d^2} \bigg(VR - \frac{qRd^3}{\big(d^2 - R^2\big)^2}\bigg) \mathbf{e}_r \ .
-
-\end{align*}
+\mathbf{F} = q\bigg(\frac{q'}{|\mathbf{d} - \mathbf{d}'|^2} + \frac{VR}{|\mathbf{d}|^2}\bigg)\mathbf{e}_r = \frac{q}{d^2} \bigg(VR - \frac{qRd^3}{\big(d^2 - R^2\big)^2}\bigg) \mathbf{e}_r \ .
 $$
 Now, the force includes both the dipole contribution from before, as well as a new monopole contribution due to the presence of the fixed potential $V$. This means in the far field limit $d \gg R$ the force reduces to Coulomb's Law between point charges $Q$ and $q$. 
 
@@ -499,7 +556,7 @@ The point where this attraction happens is usually very close to the sphere. One
 
 We can use this fact to interpret why charges almost never leave the surface of a conductor in the presence of an external field. If they tried to, they'd always be pulled back to the surface by this very powerful attractive force.
 
-#### Example: Point charge near two grounded conducting perpendicular sheets
+##### Example: Point charge near two grounded conducting perpendicular sheets
 
 Suppose we have a point charge $q$ located at point $\mathbf{d} = (a,b)$ above two perpendicular grounded conducting sheets in the $xy$-plane. It's not too hard to see that using a single image charge for this problem won't work, no matter what its charge or position is. We'll need multiple. But how many? It turns out we'll need 3 image charges.
 
@@ -527,5 +584,95 @@ Observe now that if we set $\mathbf{x}=(x,0)$ or $\mathbf{x}=(0,y)$ the potentia
 $$
 G_D(\mathbf{x} - \mathbf{d}) = \frac{1}{\sqrt{(x-a)^2+(y-b)^2}} - \frac{1}{\sqrt{(x+a)^2+(y-b)^2}} - \frac{1}{\sqrt{(x-a)^2+(y+b)^2}} + \frac{1}{\sqrt{(x+a)^2+(y+b)^2}} \ .
 $$
-The first term is the usual unbounded part, and what remains is the function $F$ that satisfies Laplace's equation subject to the boundary conditions, as one can check.
+The first term is the usual unbounded part of the Green's function, and what remains is the homogeneous function $F$ that satisfies Laplace's equation subject to the boundary conditions, as one can check.
+
+The force between the point charge and the two sheets is given in the usual way. We end up with
+$$
+\mathbf{F} = q^2 \bigg(\frac{a}{(a^2+b^2)^{3/2}} - \frac{1}{a^2}\bigg)\mathbf{e}_x + q^2 \bigg(\frac{b}{(a^2+b^2)^{3/2}} - \frac{1}{b^2}\bigg)\mathbf{e}_y \ .
+$$
+Interestingly, this exact same problem can attempt to be carried out for two conducting sheets separated by an angle $\theta$. One can be convinced that in this general case, the method of images will only work for angles $\theta = \frac{\pi}{4}, \frac{\pi}{3}, \frac{\pi}{2}, \pi$. The lower the angle, the more image charges will be needed to match the problem configuration. If any other angles are tried, one is forced to place image charges inside the boundary surface, which of course is not allowed for the method of images are work.
+
+##### Example: Conducting sphere in a uniform electric field
+
+We'll consider now a problem that involves no point charges at all. Suppose a uniform conducting sphere of radius $R$ lies in the presence of a uniform electric field $\mathbf{E}_0$. Though not at all obvious, we can solve this problem using the method of images as well. 
+
+We'll suppose the sphere is centered at the origin, and that $\mathbf{E}_0 = E_0 \mathbf{e}_z$ points along the $z$-axis of the sphere. To turn this into an image problem, we can think of the electric field as being generated by two opposite charges $q_\pm = \pm q$ each located a distance $d \gg R$ from the origin with positions $\mathbf{d}_\pm = \pm R\mathbf{e}_z$. Then the electric field will be approximately constant near the sphere, with
+$$
+E_0 \approx \frac{2q}{d^2} \ .
+$$
+If we send $q, d$ to infinity in a way such that this ratio stays constant, $E_0$ will become exactly uniform at every point.
+
+FIGURE
+
+Now, we know how to solve the problem of point charges in the presence of a conducting sphere. Each charge $q_+$ and $q_-$ will have associated image charges inside the sphere with charges and positions given by
+$$
+q_\pm' = \mp q \frac{R}{d} \quad , \quad \mathbf{d}_\pm' = \frac{R^2}{d} \mathbf{e}_z \ .
+$$
+Then the potential near the $\phi(\mathbf{x})$ near the sphere will be given by
+$$
+\begin{align*}
+\phi(\mathbf{x}) &= \frac{q_+}{|\mathbf{x} - \mathbf{d}_+|} + \frac{q_-}{|\mathbf{x} - \mathbf{d}_-|} + \frac{q_+'}{|\mathbf{x} - \mathbf{d}_+'|} + \frac{q_-'}{|\mathbf{x} - \mathbf{d}_-'|} \\
+&= q \bigg[\frac{1}{\sqrt{r^2 + d^2 + 2rd\cos\theta}} - \frac{1}{\sqrt{r^2 + d^2 - 2rd\cos\theta}} - \frac{R/d}{\sqrt{r^2 + (R^2/d)^2 + 2r(R^2/d)\cos\theta}} \\
+&\quad + \frac{R/d}{\sqrt{r^2 + (R^2/d)^2 - 2r(R^2/d)\cos\theta}}\bigg] \ .
+\end{align*}
+$$
+Again, the term in brackets is the Green's function under Dirichlet boundary conditions.
+
+Now, to make this exact for a uniform field we need to send $d \rightarrow \infty$. In this limit, we can assume that $r \ll d$, meaning we can factor out $d^2$ from the roots and use the binomial approximation on each term to write
+$$
+\phi(\mathbf{x}) = -\frac{2q}{d^2} r \cos\theta + \frac{2q}{d^2} \frac{R^3}{r^2} \cos\theta + O\bigg(\frac{r}{d}\bigg) \ .
+$$
+The higher-order terms will vanish as $d \rightarrow \infty$. What remains are terms proportional to the uniform electric field $E_0 = \frac{2q}{d^2}$,
+$$
+\phi(\mathbf{x}) = -E_0\bigg(r - \frac{R^3}{r^2}\bigg) \cos\theta \ .
+$$
+Notice the first term is just $-E_0 z = -E_0 r\cos\theta$, which is what we'd expect for the potential of a uniform electric field in the absence of any conductors. The second term then is evidently the potential of the induced charge density on the sphere, which is equivalent of course to the potential of the image charges. The induced charge density is given in the usual way,
+$$
+\sigma = -\frac{1}{4\pi} \frac{\partial \phi}{\partial r} \bigg|_{r=R} = \frac{3}{4\pi} E_0 \cos\theta \ .
+$$
+Evidently, the surface integral of $\sigma$ in this case will vanish, meaning no net induced charge will accumulate on the sphere,
+$$
+Q = \oint_\mathcal{S} da \ \sigma = \frac{3}{2} E_0 R^2 \int_0^\pi d\theta \sin\theta \cos\theta = 0 \ .
+$$
+This can also be seen, of course, by noticing that the image charges $q'_+$ and $q_-'$ are equal and opposite, so their sum will vanish. This doesn't mean, of course, that there's no charge on the sphere. Indeed, we'd expect that in the direction of the field, positive charges will concentrate at one pole and negative charges on the other. What this result says is the net charge will be zero.
+
+### Green's Function for a Sphere
+
+
+
+##### Example: Conducting sphere with hemispheres of opposite potentials
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

@@ -110,7 +110,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../electrodynamics/preliminaries.html">Electrodynamics</a></li><li class="breadcrumb-item"><a href="../electrodynamics/preliminaries.html"><span class="chapter-title">Preliminaries</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../electrodynamics/preliminaries.html">Electromagnetism</a></li><li class="breadcrumb-item"><a href="../electrodynamics/preliminaries.html"><span class="chapter-title">Preliminaries</span></a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -210,7 +210,7 @@ window.Quarto = {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
- <span class="menu-text">Electrodynamics</span></a>
+ <span class="menu-text">Electromagnetism</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -224,6 +224,26 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../electrodynamics/electrostatics.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Electrostatics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../electrodynamics/bvps-1.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Boundary Value Problems I</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../electrodynamics/bvps-2.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Boundary Value Problems II</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../electrodynamics/multipole-expansion.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Advanced Methods III</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../electrodynamics/orthogonal-functions.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Appendix I: Orthogonal Functions</span></a>
   </div>
 </li>
       </ul>
@@ -379,7 +399,7 @@ window.Quarto = {
 <!-- main -->
 <main class="content column-page-right" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../electrodynamics/preliminaries.html">Electrodynamics</a></li><li class="breadcrumb-item"><a href="../electrodynamics/preliminaries.html"><span class="chapter-title">Preliminaries</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../electrodynamics/preliminaries.html">Electromagnetism</a></li><li class="breadcrumb-item"><a href="../electrodynamics/preliminaries.html"><span class="chapter-title">Preliminaries</span></a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title"><span class="chapter-title">Preliminaries</span></h1>
 </div>
@@ -639,7 +659,8 @@ df = \nabla f \cdot d\mathbf{x} \ .
 <p>Though again not obvious from the definition, the curl represents the tendency of a vector to rotate around a point in space. A field where <span class="math inline">\(\nabla \times \mathbf{F} = \mathbf{0}\)</span> at all points in space is called <em>irrotational</em> since it doesn’t experience any rotational motion at any point. It just flows inward or outward.</p>
 <p>We can also take vector second derivatives as well. The most useful of these is obtained by taking the divergence of the gradient of a scalar field. This is called the <em>Laplacian</em>, defined in Cartesian coordinates by <span class="math display">\[
 \nabla^2 f \equiv \nabla \cdot \nabla f = \partial_i \partial_i f = \frac{\partial^2 f}{\partial x^2} + \frac{\partial^2 f}{\partial y^2} + \frac{\partial^2 f}{\partial z^2} \ .
-\]</span> There are a few other vector second derivatives as well, some of which turn out to be zero. These are <span class="math display">\[
+\]</span> The Laplacian has the useful property of being rotationally invariant. That is, if <span class="math inline">\(\nabla\)</span> represents the del operator in some coordinate system <span class="math inline">\(\mathcal{S}\)</span> and <span class="math inline">\(\nabla'\)</span> the same operator in some rotated coordinate system <span class="math inline">\(\mathcal{S}'\)</span>, then <span class="math inline">\((\nabla')^2 = \nabla^2\)</span>. This follows from the fact that the Laplacian applied to any function gives a scalar, and scalars are by definition invariant under coordinate transformations.</p>
+<p>There are a few other vector second derivatives as well, some of which turn out to be zero. These are <span class="math display">\[
 \begin{align*}
 \nabla \cdot (\nabla \times \mathbf{F}) &amp;= 0 \ , \\
 \nabla \times \nabla f &amp;= \mathbf{0} \ , \\
@@ -741,6 +762,11 @@ T_{i_1' i_2' \cdots i_k'} = R_{i_1' i_1} R_{i_2' i_2} \cdots R_{i_2' i_2} T_{i_1
 \nabla \cdot \mathbf{T} \equiv \partial_i T_{ij} = \partial_j T_{ij} \ .
 \]</span></p>
 <p>We could imagine taking the curl of a tensor as well. From index notation it’s clear that the curl of a rank-2 tensor will give another rank-2 tensor. We can even imagine defining tensor integrals as well in similar ways. In practice though we’ll only care about divergences and gradients of rank-2 tensors in this course, so we won’t go into any detail here.</p>
+<ul>
+<li>Rewrite this section. It turns out higher-rank tensors do show up in this course, a lot in the multipole expansion especially.</li>
+<li>Need to define symmetric and antisymmetric tensors for tensors of higher rank.</li>
+<li>Need to talk about irreducible tensors, i.e.&nbsp;symmetric traceless tensors, and their decomposition in terms of irreducible components. This is essential to deriving the multipole expansion.</li>
+</ul>
 </section>
 <section id="coordinate-systems" class="level2">
 <h2 class="anchored" data-anchor-id="coordinate-systems">Coordinate Systems</h2>
@@ -907,6 +933,11 @@ f(\mathbf{x}) = \mathcal{F}^{-1}[f(\mathbf{k})](\mathbf{x}) = \int_{\mathbb{R}^3
 \]</span> Note that using the spherical coordinate version of the gradient we have <span class="math inline">\(\nabla \frac{1}{r} = -\frac{\mathbf{e}_r}{r^2}\)</span>. We’ve thus shown another useful fact, that <span class="math display">\[
 \nabla^2 \bigg(\frac{1}{r}\bigg) = -4\pi \delta(\mathbf{x}) \ .
 \]</span> We will make good use of these formulas in the rest of this course.</p>
+<ul>
+<li>Rewrite this section to emphasize that we’ll only take Fourier transforms in spatial dimensions, not time dimensions.</li>
+<li>For time dimensions we’ll need to take the Laplace transform, so you may need to mention that too.</li>
+<li>Try to hand-wave this section less, since the Fourier transform will be used a decent bit.</li>
+</ul>
 </section>
 </section>
 <section id="complex-analysis" class="level2">
@@ -997,6 +1028,11 @@ c_{-1} &amp;= \frac{ie}{2} \ \text{when} \ z = -i \ . \\
 \]</span> Finally, taking the real part of both sides, we have our answer for the original integral we sought to evaluate, <span class="math display">\[
 \int_{-\infty}^\infty dx \ \frac{\cos x}{x^2 + 1} = \frac{\pi}{e} \ .
 \]</span></p>
+<ul>
+<li>Move the stuff that’s essential only to conformal mappings to that section.</li>
+<li>Here be sure to cover the basics of complex variables, and <em>maybe</em> the residue theorem.</li>
+<li>Note the residue theorem won’t be used until we get to electrodynamics, so it could be thrown in somewhere else, so we can cover complex analysis in a little more depth.</li>
+</ul>
 
 
 </section>

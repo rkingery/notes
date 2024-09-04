@@ -252,6 +252,8 @@ We can also take vector second derivatives as well. The most useful of these is 
 $$
 \nabla^2 f \equiv \nabla \cdot \nabla f = \partial_i \partial_i f = \frac{\partial^2 f}{\partial x^2} + \frac{\partial^2 f}{\partial y^2} + \frac{\partial^2 f}{\partial z^2} \ .
 $$
+The Laplacian has the useful property of being rotationally invariant. That is, if $\nabla$ represents the del operator in some coordinate system $\mathcal{S}$ and $\nabla'$ the same operator in some rotated coordinate system $\mathcal{S}'$, then $(\nabla')^2 = \nabla^2$. This follows from the fact that the Laplacian applied to any function gives a scalar, and scalars are by definition invariant under coordinate transformations.
+
 There are a few other vector second derivatives as well, some of which turn out to be zero. These are
 $$
 \begin{align*}
@@ -430,6 +432,10 @@ $$
 
 We could imagine taking the curl of a tensor as well. From index notation it's clear that the curl of a rank-2 tensor will give another rank-2 tensor. We can even imagine defining tensor integrals as well in similar ways. In practice though we'll only care about divergences and gradients of rank-2 tensors in this course, so we won't go into any detail here.
 
+- Rewrite this section. It turns out higher-rank tensors do show up in this course, a lot in the multipole expansion especially.
+- Need to define symmetric and antisymmetric tensors for tensors of higher rank.
+- Need to talk about irreducible tensors, i.e. symmetric traceless tensors, and their decomposition in terms of irreducible components. This is essential to deriving the multipole expansion.
+
 ## Coordinate Systems
 
 It will be frequently useful in electrodynamics to work in other coordinate systems. As with other areas of physics, the most important coordinate systems we work with are Cartesian, polar, cylindrical, and spherical coordinates. Cartesian coordinates are *rectangular*, which means their basis vectors don't depend on position. They're always constant. The remaining three coordinate systems, however, are *curvilinear*, meaning their basis vectors *do* depend on position. This means going back and forth between these coordinate systems can be cumbersome since additional scale factors get introduced. Below is a table that shows the relationship between these coordinate systems for various vector calculus expressions we'll frequently use.
@@ -589,6 +595,10 @@ $$
 \nabla^2 \bigg(\frac{1}{r}\bigg) = -4\pi \delta(\mathbf{x}) \ .
 $$
 We will make good use of these formulas in the rest of this course.
+
+- Rewrite this section to emphasize that we'll only take Fourier transforms in spatial dimensions, not time dimensions.
+- For time dimensions we'll need to take the Laplace transform, so you may need to mention that too.
+- Try to hand-wave this section less, since the Fourier transform will be used a decent bit.
 
 ## Complex Analysis
 
@@ -756,3 +766,7 @@ Finally, taking the real part of both sides, we have our answer for the original
 $$
 \int_{-\infty}^\infty dx \ \frac{\cos x}{x^2 + 1} = \frac{\pi}{e} \ .
 $$
+
+- Move the stuff that's essential only to conformal mappings to that section.
+- Here be sure to cover the basics of complex variables, and *maybe* the residue theorem.
+- Note the residue theorem won't be used until we get to electrodynamics, so it could be thrown in somewhere else, so we can cover complex analysis in a little more depth.
