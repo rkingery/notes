@@ -238,12 +238,22 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../electrodynamics/multipole-expansion.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Advanced Methods III</span></a>
+  <a href="../electrodynamics/bvps-3.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Boundary Value Problems III</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../electrodynamics/magnetostatics.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Magnetostatics</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../electrodynamics/orthogonal-functions.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Appendix I: Orthogonal Functions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../electrodynamics/complex-analysis.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Appendix II: Complex Analysis</span></a>
   </div>
 </li>
       </ul>
@@ -495,7 +505,7 @@ window.Quarto = {
 \]</span> Here for convenience we define the separation vector <span class="math inline">\(\boldsymbol{\xi} \equiv \mathbf{x} - \mathbf{x}'\)</span>, so that the field always points from the location <span class="math inline">\(\mathbf{x}'\)</span> of the <em>source charge</em> <span class="math inline">\(q'\)</span> to the <em>field point</em> <span class="math inline">\(\mathbf{x}\)</span> where we imagine placing the test charge <span class="math inline">\(q\)</span>. The relationship between all these points is shown in the figure below.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="../resources/image-20240616171528590.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="400"></p>
+<p><img src="../resources/image-20240616171528590.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="500"></p>
 </figure>
 </div>
 <p>Notice that the electric field doesn’t depend on <span class="math inline">\(q\)</span> at all. It has a value at every point in space. When a test charge <span class="math inline">\(q\)</span> is brought in and placed at a position <span class="math inline">\(\mathbf{x}\)</span> it feels a force <span class="math display">\[
@@ -513,13 +523,13 @@ window.Quarto = {
 <p>The most typical way to visualize vector fields in electromagnetism is via <em>field lines</em>. We imagine that any positive charge emits from it a bunch of lines, called field lines. These field lines follow the direction of the vector field in space, only terminating at negative charges or at infinity. Field lines should never cross each other. The direction of a field line is always from positive charges to negative charges. The strength of the field is captured by the density of field lines. The more field lines there are surrounding a given point in space, the stronger the field at that point. Indeed, we can informally <em>define</em> a vector field as the <em>flux density</em> of field lines, i.e.&nbsp;the number of field lines per unit volume.</p>
 <p>Here are some examples of electric field line sketches for a few different configurations of point charges. Notice it’s usually fairly easy to sketch field lines for a given charge configuration, even if finding an expression for the actual electric field of that configuration might be difficult. We’ll see field lines sketched in many figures throughout this course.</p>
 <p>FIGURE</p>
-<p>Let’s now work a problem involving finding the electric field for a very simple example, the <em>simple dipole</em>.</p>
-<section id="example-simple-dipole" class="level4">
-<h4 class="anchored" data-anchor-id="example-simple-dipole">Example: Simple dipole</h4>
+<p>Let’s now work a problem involving finding the electric field for a very simple example, the <em>physical dipole</em>.</p>
+<section id="example-physical-dipole" class="level4">
+<h4 class="anchored" data-anchor-id="example-physical-dipole">Example: Physical dipole</h4>
 <p>Suppose we have two like charges of opposite sign separated by a fixed distance along some axis. More formally, suppose we have a positive charge <span class="math inline">\(+q\)</span> located at a point <span class="math inline">\(\mathbf{x}_+ = \frac{d}{2} \mathbf{e}_z\)</span>, and a negative charge <span class="math inline">\(-q\)</span> located at the opposite point <span class="math inline">\(\mathbf{x}_- = -\frac{d}{2} \mathbf{e}_z\)</span>. Our goal will be to find the electric field for any field point <span class="math inline">\(\mathbf{x}\)</span> in the <span class="math inline">\(xy\)</span>-plane.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="../resources/image-20240811130607078.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="300"></p>
+<p><img src="../resources/image-20240811130607078.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="400"></p>
 </figure>
 </div>
 <p>By the superposition principle, the electric field is given by <span class="math display">\[
@@ -554,7 +564,7 @@ dq = d^3 \mathbf{x}' \ \rho(\mathbf{x}') \ .
 <p>This idea can be seen in the figure below. Here the gray blob is some charge distribution, and <span class="math inline">\(dq\)</span> some infinitesimal element of it. Adding up, or integrating, over all these charges will give the full electric field <span class="math inline">\(\mathbf{E}(\mathbf{x})\)</span>.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="../resources/image-20240308151931197.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="400"></p>
+<p><img src="../resources/image-20240308151931197.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="500"></p>
 </figure>
 </div>
 <p>The field lines for the electric fields of continuous distributions work the same way they do for point charges. The main new thing to be aware of is that field lines will always point <em>normal</em> to the surface of the charge distribution. Again, the field lines will point away from positive charge distributions, and toward negative charge distributions or out to infinity, never crossing.</p>
@@ -576,7 +586,7 @@ dq = d\mathcal{a}' \ \sigma(\mathbf{x}') \ .
 <p>We could in principle define charge densities in higher dimensions as well, though we won’t since we won’t need them. Each of the cases we discussed can be visualized using the figure below.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="../resources/image-20240616171649819.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="500"></p>
+<p><img src="../resources/image-20240616171649819.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="600"></p>
 </figure>
 </div>
 <section id="example-sphere-with-uniform-charge" class="level4">
@@ -593,7 +603,7 @@ da' = R^2 \sin\theta' d\theta' d\phi' \ .
 \]</span></p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="../resources/image-20240602122925138.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="400"></p>
+<p><img src="../resources/image-20240602122925138.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="500"></p>
 </figure>
 </div>
 <p>Next we need to calculate the dot product <span class="math inline">\(\boldsymbol{\xi} \cdot \mathbf{e}_r\)</span>. Using the geometric formula for the dot product and the above triangle, we see <span class="math display">\[
@@ -640,7 +650,6 @@ E(r) = \frac{4\pi\rho}{3} r = \frac{Qr}{R^3} \ .
 \Phi \equiv \int_\mathcal{S} \mathbf{E} \cdot d\mathbf{a} \ .
 \]</span> Note when we need to specify which field we’re calculating the flux of, we’ll write <span class="math inline">\(\Phi_\mathbf{E}\)</span> to be more specific.</p>
 <p>Informally, we can think of the flux as the total number of <em>signed</em> field lines passing through some specified surface of interest. By signed, we mean that the field lines passing through the positively oriented side of the surface contribute positive flux, while those passing through the negatively oriented side of the surface contribute negative flux. This means that flux itself will be a signed quantity indicating the net tendency of a field to flow into or out of a given surface. In particular, this means if the same field line passes in and out of the same surface it contributes nothing to the flux.</p>
-<p>FIGURE</p>
 <p>As defined, the flux depends entirely on the surface <span class="math inline">\(\mathcal{S}\)</span> we choose. Different surfaces will have a different flux. However, in practice we’ll usually be interested in <em>closed surfaces</em>. In that case, we’ll show that the flux depends only on the charge distribution enclosed by the surface, not on the geometric properties of the surface itself. To do that we need to find a way to relate the flux of an electric field to the charge distribution in some way.</p>
 </section>
 <section id="integral-form-of-gausss-law" class="level3">
@@ -659,7 +668,7 @@ da = \frac{r^2}{\cos\alpha} d\Omega \ .
 \]</span> This is only true though when the charge is contained <em>inside</em> the surface. What if it’s <em>outside</em> the surface? We already said informally the flux in that case should be zero, since any field lines going into the surface also comes out, offsetting the flux. Indeed, if <span class="math inline">\(\mathbf{E} \cdot d\mathbf{a}\)</span> is some contribution to the flux, there will be a corresponding contribution <span class="math inline">\(-\mathbf{E} \cdot d\mathbf{a}\)</span> on some other part of the Gaussian surface that will cancel out the first contribution. This can be seen geometrically in the figure below.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="../resources/image-20240616173508660.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="400"></p>
+<p><img src="../resources/image-20240616173508660.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="600"></p>
 </figure>
 </div>
 <p>Putting these two results together, we’ve shown that if <span class="math inline">\(q\)</span> is a point charge and <span class="math inline">\(\mathcal{S}\)</span> is some closed surface, then <span class="math display">\[
@@ -702,7 +711,7 @@ Q_{\text{enc}} = \int_\mathcal{V} d^3\mathbf{x} \ \rho(\mathbf{x}) \ .
 <p>Consider a line of charge of infinite length and infinitesimal width, so we can treat the line as one-dimensional. We’ll suppose the line is oriented along the <span class="math inline">\(z\)</span>-axis and carries a constant charge per unit length of <span class="math inline">\(\lambda\)</span>​. Our goal is to find its electric field. We could do this the hard way as before, but in this case we can do it much more easily using Gauss’s Law, so that’s what we’ll do.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="../resources/image-20240616180813782.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="300"></p>
+<p><img src="../resources/image-20240616180813782.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="400"></p>
 </figure>
 </div>
 <p>By symmetry, the electric field should depend only on the cylindrical radius <span class="math inline">\(\varrho\)</span>. To see why, pick a random field point in the <span class="math inline">\(xy\)</span>-plane. Now pick a random source point at a height <span class="math inline">\(z'\)</span> along the wire. Then there must also be an opposite source point at a height <span class="math inline">\(-z'\)</span>. If we add the two field vectors together, their <span class="math inline">\(z\)</span>-components will cancel, leaving only a contribution in the <span class="math inline">\(\varrho\)</span>-direction. We thus must conclude that the electric field has the property that <span class="math display">\[
@@ -720,7 +729,7 @@ E(\varrho) = \frac{2\lambda}{\varrho} \ .
 <p>We’ll now consider not an infinite <em>line</em> of uniform charge, but an infinite <em>flat sheet</em> of uniform charge. We’ll suppose this sheet is oriented in the <span class="math inline">\(xy\)</span>-plane and has infinitesimal thickness, so we can treat the sheet as 2-dimensional with a constant surface charge density <span class="math inline">\(\sigma\)</span>​.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="../resources/image-20240616180900393.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="400"></p>
+<p><img src="../resources/image-20240616180900393.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="500"></p>
 </figure>
 </div>
 <p>By symmetry, we’ll argue that the electric field must always point away from the sheet in the <span class="math inline">\(z\)</span> direction. To see why, pick a random field point at a height <span class="math inline">\(z\)</span> above (or below) the sheet, centered at the origin. Pick a random source point <span class="math inline">\((r',\varphi')\)</span> along the sheet. Now, there must be an opposite source point at <span class="math inline">\((r',\varphi'+\pi)\)</span> for which the two field vectors will cancel in all but the <span class="math inline">\(z\)</span>-direction. This means <span class="math display">\[
@@ -737,7 +746,7 @@ E(z) = 2\pi\sigma \ .
 <p>As our final example in this section we’ll consider an example we’ve already seen, the uniformly charged sphere. In a previous section we worked out its electric field with great pain. Here we’ll show that Gauss’s Law gives a much simpler way. We’ll again suppose that the charge lies on a hollow sphere of radius <span class="math inline">\(R\)</span>​ centered at the origin.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="../resources/image-20240616180936896.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="400"></p>
+<p><img src="../resources/image-20240616180936896.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="500"></p>
 </figure>
 </div>
 <p>As argued before, symmetry requires that the electric field point in the radial <span class="math inline">\(r\)</span>-direction, with <span class="math display">\[
@@ -793,7 +802,7 @@ E(r) = \frac{Q(r)}{r^2} = \frac{4\pi\rho}{3} r \ .
 <p>Notice that the integral formula for the scalar potential looks an awful lot like the formula for work in terms of force. Recall that the work done in moving a particle from a point <span class="math inline">\(\mathbf{a}\)</span> to a point <span class="math inline">\(\mathbf{b}\)</span> via an exerted force <span class="math inline">\(\mathbf{F}_{\text{ex}}\)</span> is given by <span class="math display">\[
 W = \int_\mathbf{a}^\mathbf{b} \mathbf{F}_{\text{ex}} \cdot d\boldsymbol{\ell} \ .
 \]</span> Since the force one must exert to move against the field is just minus the force generated by the field itself, we must evidently have <span class="math inline">\(\mathbf{F}_{\text{ex}} = -q\mathbf{E}\)</span>. Plugging this in and factoring out the charge from both sides, we can see that the work done is proportional to the potential difference between the two points, <span class="math display">\[
-W = -q \int_\mathbf{a}^\mathbf{b} \mathbf{E} \cdot d\boldsymbol{\ell} = q \big(\phi(\mathbf{b}) - \phi(\mathbf{a})\big) \ .
+W = -q \int_\mathbf{a}^\mathbf{b} \mathbf{E} \cdot d\boldsymbol{\ell} = q \big[\phi(\mathbf{b}) - \phi(\mathbf{a})\big] \ .
 \]</span> This means we can think of the scalar potential as the work done in moving a unit charge from infinity to its current location in the presence of an external electric field <span class="math inline">\(\mathbf{E}\)</span>. Indeed, this is why we include the minus sign in the definition of the scalar potential as <span class="math inline">\(\mathbf{E} = - \nabla \phi\)</span>​, to ensure that the potential has the same sign as the work done on the charge.</p>
 <p>Provided we set the ground point at infinity, the work done in moving the charge from infinity to some location <span class="math inline">\(\mathbf{x}\)</span> must evidently be <span class="math inline">\(W = q\phi(\mathbf{x})\)</span>. This is of course just the potential energy <span class="math inline">\(U\)</span>, provided we define <span class="math inline">\(U(\infty)\equiv 0\)</span>. Thus, for a point charge moving in the presence of an external field, its potential energy is just <span class="math inline">\(U = q\phi\)</span>. For a general charge distribution we need only use the superposition principle to replace the charge <span class="math inline">\(q\)</span> by a volume integral over the charge density <span class="math inline">\(\rho(\mathbf{x})\)</span>, in which case we have <span class="math display">\[
 \boxed{
@@ -859,8 +868,6 @@ U = \int d^3 \mathbf{x} \ \rho(\mathbf{x}) \phi(\mathbf{x})
 <section id="integral-formula" class="level3">
 <h3 class="anchored" data-anchor-id="integral-formula">Integral Formula</h3>
 <p>We’ll now see what Coulomb’s Law looks like in terms of the scalar potential. In the previous chapter we proved the identity <span class="math display">\[
-\nabla \frac{1}{r} = -\frac{\mathbf{e}_r}{r^2} = -\frac{\mathbf{x}}{r^3} \ .
-\]</span> Replacing <span class="math inline">\(\mathbf{x}\)</span> with <span class="math inline">\(|\mathbf{x} - \mathbf{x}'|\)</span> and noting that we’re differentiating with respect to the field point <span class="math inline">\(\mathbf{x}\)</span>, we have <span class="math display">\[
 \nabla \frac{1}{|\mathbf{x} - \mathbf{x}'|} = -\frac{\mathbf{x} - \mathbf{x}'}{|\mathbf{x} - \mathbf{x}'|^3} \ .
 \]</span> Multiplying both sides by the charge density <span class="math inline">\(-\rho(\mathbf{x}')\)</span> and integrating over <span class="math inline">\(\mathbf{x}'\)</span>, we have <span class="math display">\[
 -\nabla \int d^3 \mathbf{x}' \ \frac{\rho(\mathbf{x}')}{|\mathbf{x} - \mathbf{x}'|} = \int d^3 \mathbf{x}' \ \rho(\mathbf{x}') \frac{\mathbf{x} - \mathbf{x}'}{|\mathbf{x} - \mathbf{x}'|^3} \ .
@@ -878,7 +885,7 @@ U = \int d^3 \mathbf{x} \ \rho(\mathbf{x}) \phi(\mathbf{x})
 <p>Let’s find the potential of a uniformly charged wire of finite length. Suppose a wire of length <span class="math inline">\(L\)</span> has a uniform charge <span class="math inline">\(Q = \lambda L\)</span>. We’ll assume that it is oriented along the <span class="math inline">\(z\)</span>-axis with its center at the origin.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="../resources/image-20240811130653319.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="300"></p>
+<p><img src="../resources/image-20240811130653319.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="400"></p>
 </figure>
 </div>
 <p>Assuming the wire has negligible thickness we can use the <span class="math inline">\(1\)</span>-dimensional version of the integral formula for the potential, <span class="math display">\[
@@ -928,9 +935,9 @@ v &amp;= \frac{1}{2} \bigg( \sqrt{\varrho^2 + (z + L/2)^2} - \sqrt{\varrho^2 + (
 \nabla^2 \phi = -4\pi\rho
 } \ .
 \]</span> This second-order differential equation is called <em>Poisson’s Equation</em>. It’s fully equivalent to the two field equations we derived before. This means that instead of solving two vector first order differential equations to find the electric field, we need only solve Poisson’s equation subject to any boundary conditions and then take the gradient to get the electric field. Indeed, for this reason Poisson’s equation is perhaps the most important equation in electrostatics. It’s the most generally useful way to find the electric field of a charge distribution. We’ll spend considerable time analyzing and solving this equation in the next chapter.</p>
-<p>For now, just observe that Coulomb’s Law is indeed a solution of Poisson’s equation. To see why we can use the following formula derived in the last chapter: <span class="math display">\[
-\nabla \cdot \frac{\mathbf{e}_r}{r^2} = 4\pi\delta(\mathbf{x}) \ .
-\]</span> Replacing <span class="math inline">\(\mathbf{x}\)</span> with <span class="math inline">\(\mathbf{x} - \mathbf{x}'\)</span> and differentiating only with respect to <span class="math inline">\(\mathbf{x}\)</span>, we have <span class="math display">\[
+<p>For now, just observe that Coulomb’s Law is indeed a solution of Poisson’s equation. If we express Coulomb’s law as <span class="math display">\[
+\mathbf{E}(\mathbf{x}) = \int d^3 \mathbf{x}' \ \rho(\mathbf{x}') \frac{\mathbf{x} - \mathbf{x}'}{|\mathbf{x} - \mathbf{x}'|^3} \ ,
+\]</span> then the Laplacian of the potential is given by <span class="math display">\[
 \begin{align*}
 \nabla^2 \phi(\mathbf{x}) &amp;= -\nabla \cdot \mathbf{E}(\mathbf{x}) \\
 &amp;= -\nabla \cdot \int d^3 \mathbf{x}' \ \rho(\mathbf{x}') \frac{\mathbf{x} - \mathbf{x}'}{|\mathbf{x} - \mathbf{x}'|^3} \\
@@ -938,7 +945,7 @@ v &amp;= \frac{1}{2} \bigg( \sqrt{\varrho^2 + (z + L/2)^2} - \sqrt{\varrho^2 + (
 &amp;= -\int d^3 \mathbf{x}' \ \rho(\mathbf{x}') 4\pi \delta(\mathbf{x} - \mathbf{x}') \\
 &amp;= -4\pi \rho(\mathbf{x}) \ .
 \end{align*}
-\]</span> We’ll see another proof that Coulomb’s Law satisfies Poisson’s equation in the next chapter via the use of Green’s functions. For now, just note that this is only a <em>particular</em> solution, not a general solution. The <em>general</em> solution will also depend on the boundary conditions in the problem as well. Indeed, we can add to <span class="math inline">\(\phi\)</span> any function <span class="math inline">\(f\)</span> satisfying <span class="math inline">\(\nabla^2 f = 0\)</span> and their sum will also satisfy Poisson’s Equation. An equation of the form <span class="math inline">\(\nabla^2 f = 0\)</span> is called <em>Laplace’s Equation</em>. We’ll say more on this in the next chapter.</p>
+\]</span> We’ve thus shown that Coulomb’s law satisfies Poisson’s equation, as we’d expect. In fact, if the charge distribution is localized and there are no boundary conditions present, like say a set of background conductors, then Coulomb’s law is the only valid solution. If boundary conditions are present we have to modify things slightly. We’ll see more on this in the next few chapters.</p>
 </section>
 <section id="surfaces-of-charge" class="level3">
 <h3 class="anchored" data-anchor-id="surfaces-of-charge">Surfaces of Charge</h3>
@@ -957,7 +964,7 @@ E_+^\perp - E_-^\perp = 4\pi\sigma \ .
 \phi_+ - \phi_- = -\int_{\mathbf{x}_-}^{\mathbf{x}_+} \mathbf{E} \cdot d\boldsymbol{\ell} \approx -(E_+  + E_-) \delta\ell \ .
 \]</span> Since the right-hand side is infinitesimal, we can conclude that the potential difference crossing the surface must be zero, <span class="math display">\[
 \phi_+ = \phi_- \ .
-\]</span> Since we’ll be solving Poisson’s equation in the next chapter, let’s go ahead and formulate these conditions as a set of boundary conditions for the potential and its gradient. For that purpose it’ll be convenient to express the condition for the electric field as a <em>normal derivative</em> of the potential. If we define the normal derivative by <span class="math display">\[
+\]</span> Since we’ll be solving Poisson’s equation in the next few chapters, let’s go ahead and formulate these conditions as a set of boundary conditions for the potential and its gradient. For that purpose it’ll be convenient to express the condition for the electric field as a <em>normal derivative</em> of the potential. If we define the normal derivative by <span class="math display">\[
 \frac{\partial \phi}{\partial n} \equiv \nabla \phi \cdot \mathbf{n} \ ,
 \]</span> we can write the two boundary conditions for the potential across a surface of charge as <span class="math display">\[
 \begin{align*}
@@ -996,7 +1003,7 @@ U_i = q_i \sum_{j&lt;i} \phi_j(\mathbf{x}_i) = q_i \sum_{j=1}^{i-1} \frac{q_j}{|
 \]</span> This is the potential energy stored in the entire charge distribution. Notice how similar it looks to the potential energy we derived before for a charge distribution in the presence of an external electric field, <span class="math inline">\(U = \int d^3 \mathbf{x} \ \rho(\mathbf{x}) \phi(\mathbf{x})\)</span>. On the surface, the only difference between the two evidently is the factor of <span class="math inline">\(\frac{1}{2}\)</span>. However, we must keep in mind that the <span class="math inline">\(\rho\)</span> used to find <span class="math inline">\(\mathcal{U}\)</span> is the <em>source</em> charge distribution, not an external charge distribution like the one used to find <span class="math inline">\(U\)</span>​.</p>
 <p>We can think of <span class="math inline">\(\mathcal{U}\)</span> as the potential energy stored in the source charge distribution, but we can also think of it equivalently as the potential energy stored in the electric field itself. To see why it’s helpful to rewrite the integral in a slightly different way. From Gauss’s Law, we know that <span class="math inline">\(\nabla \cdot \mathbf{E} = 4\pi \rho\)</span>. Plugging this into the formula for <span class="math inline">\(\mathcal{U}\)</span> we have <span class="math display">\[
 \mathcal{U} = \frac{1}{8\pi} \int d^3\mathbf{x} \ \phi \nabla \cdot \mathbf{E} \ .
-\]</span> Now, as a brief aside, let’s recall the following vector calculus identity between a scalar field <span class="math inline">\(f\)</span> and a vector field <span class="math inline">\(\mathbf{F}\)</span>, <span class="math display">\[
+\]</span> As a brief aside, let’s recall the following vector calculus identity between a scalar field <span class="math inline">\(f\)</span> and a vector field <span class="math inline">\(\mathbf{F}\)</span>, <span class="math display">\[
 \nabla (f \mathbf{F}) = \nabla f \cdot \mathbf{F} + f \nabla \cdot \mathbf{F} \ .
 \]</span> Rearranging terms and integrating over some volume <span class="math inline">\(\mathcal{V}\)</span>, we have <span class="math display">\[
 \begin{align*}
@@ -1005,7 +1012,7 @@ U_i = q_i \sum_{j&lt;i} \phi_j(\mathbf{x}_i) = q_i \sum_{j=1}^{i-1} \frac{q_j}{|
 \end{align*}
 \]</span> In the last line we used the fundamental theorem of vector calculus to rewrite the volume integral over <span class="math inline">\(\nabla (f \mathbf{F})\)</span> as an integral over <span class="math inline">\(f \mathbf{F}\)</span> evaluated at the volume’s surface <span class="math inline">\(\mathcal{S}\)</span>. Now, if we send the volume to infinity, we can neglect the surface term so long as <span class="math inline">\(f\mathbf{F}\)</span> vanishes at infinity faster than <span class="math inline">\(\frac{1}{r^2}\)</span>. This means if integrating over all space we’d simply have <span class="math display">\[
 \int d^3\mathbf{x} \ f \nabla \cdot \mathbf{F} = - \int d^3\mathbf{x} \ \nabla f \cdot \mathbf{F} \ .
-\]</span> Let’s now apply this result to our integral form for the potential energy <span class="math inline">\(\mathcal{U}\)</span>. Using the fact that <span class="math inline">\(\mathbf{E} = -\nabla\phi\)</span> we have <span class="math display">\[
+\]</span> Let’s now apply this result to our integral expression for the field potential energy <span class="math inline">\(\mathcal{U}\)</span>. Since <span class="math inline">\(\mathbf{E} = -\nabla\phi\)</span>, we have <span class="math display">\[
 \mathcal{U} = - \frac{1}{8\pi} \int d^3\mathbf{x} \ \nabla \phi \cdot \mathbf{E} = \frac{1}{8\pi} \int d^3\mathbf{x} \ \mathbf{E} \cdot \mathbf{E} \ .
 \]</span> Note that this will only be true if the boundary term vanishes. We can be sure this is true so long as the charge distribution is localized, since in that case we expect <span class="math inline">\(\phi \mathbf{E} \sim \frac{1}{r^3}\)</span>. It may <em>not</em> be true, however, for charge distributions that extend to infinity, in which case we’d have to be more careful with ignoring boundary term. Of course, such cases aren’t <em>really</em> physical anyway.</p>
 <p>At any rate, we’ve derived the following interesting result, which says the potential energy stored in the source charge distribution depends only on the square of the electric field, <span class="math display">\[
@@ -1026,8 +1033,8 @@ u = \frac{1}{8\pi} |\mathbf{E} + \mathbf{E}'|^2 = \frac{1}{8\pi}|\mathbf{E}|^2 +
 \]</span> As we’ve defined the potential energy it’s the latter that should be correct. There’s no potential energy stored in a single point charge since no work was required to bring it in from infinity and place it at the origin. So what’s going on?</p>
 <p>We made a subtle error of sorts when we transitioned from a sum over discrete charges to an integral over a charge distribution. Recall that in the sum version we used <span class="math inline">\(j \neq i\)</span> to enforce the requirement that a charge couldn’t affect itself. When we moved to the integral form though this distinction got lost. It turns out that this issue only affects the second formula though. In fact, it only affects distributions of <em>point charges</em>. For continuous distributions the formulas will generally agree.</p>
 <p>This doesn’t necessarily mean, however, that the second formula is not <em>correct</em>. It’s just counting something that the first formula isn’t. Namely, it’s also counting the energy required to <em>create</em> the charges, not just assemble them in place. The first formula only counts the energy to assemble the charges, not create them. In this sense they’re both correct, they just mean slightly different things. Indeed, the second formula ties in with the question of whether empty space has energy, the so-called <em>vacuum energy</em>. This topic is a major issue in quantum electrodynamics. In classical dynamics we ignore this distinction, but we do occasionally have to be careful when subtleties like this arise.</p>
-<section id="example-field-energy-of-a-hollow-sphere" class="level4">
-<h4 class="anchored" data-anchor-id="example-field-energy-of-a-hollow-sphere">Example: Field energy of a hollow sphere</h4>
+<section id="example-field-energy-of-a-hollow-sphere" class="level5">
+<h5 class="anchored" data-anchor-id="example-field-energy-of-a-hollow-sphere">Example: Field energy of a hollow sphere</h5>
 <p>Recall that the uniformly charged hollow sphere with radius <span class="math inline">\(R\)</span> has an electric field given by <span class="math display">\[
 \mathbf{E}(\mathbf{x}) = \frac{Q}{r^2} \ \mathbf{e}_r \ ,
 \]</span> where <span class="math inline">\(Q = 4\pi R^2 \sigma\)</span> when <span class="math inline">\(r \geq R\)</span> and zero otherwise. Thus, according to the second formula for the field energy we have <span class="math display">\[
@@ -1051,14 +1058,14 @@ u = \frac{1}{8\pi} |\mathbf{E} + \mathbf{E}'|^2 = \frac{1}{8\pi}|\mathbf{E}|^2 +
 \]</span> for any two points <span class="math inline">\(\mathbf{a}\)</span> and <span class="math inline">\(\mathbf{b}\)</span> on the surface of the conductor, meaning <span class="math inline">\(\phi(\mathbf{a}) = \phi(\mathbf{b})\)</span> is constant on the surface. Since the surface of the conductor is an equipotential, this also means that the field lines at the surface must be perpendicular to the surface, since <span class="math inline">\(\mathbf{E} = -\nabla \phi\)</span>​ and we know that gradients are perpendicular to their equipotential surfaces.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="../resources/image-20240703155651920.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="400"></p>
+<p><img src="../resources/image-20240703155651920.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="500"></p>
 </figure>
 </div>
 <p>We’ll find it convenient to express these results as a set of boundary conditions for conductors. Surface boundary conditions require that <span class="math inline">\(\mathbf{E}_+ - \mathbf{E}_- = 4\pi\sigma \mathbf{n}\)</span>. Since the field inside the conductor is zero, <span class="math inline">\(\mathbf{E}_- = \mathbf{0}\)</span>. Thus, just outside the surface we must have <span class="math display">\[
 \mathbf{E}_+ = 4\pi\sigma \mathbf{n} \ ,
 \]</span> or, in terms of the normal derivative of the potential, we must have <span class="math display">\[
 \frac{\partial\phi}{\partial n} = -4\pi\sigma \ .
-\]</span> This gives us a way to find the surface charge on a conductor if we know the potential, something we’ll find useful in the next chapter.</p>
+\]</span> This gives us a way to find the surface charge on a conductor if we know the potential, something we’ll find useful later on.</p>
 </section>
 <section id="capacitance" class="level3">
 <h3 class="anchored" data-anchor-id="capacitance">Capacitance</h3>
@@ -1083,8 +1090,8 @@ C = \frac{A}{4\pi d} \ .
 \mathcal{U} = \frac{1}{2} C V^2
 }\ .
 \]</span> Thus, the energy stored in a capacitor is proportional to the capacitance and the square of the potential. A capacitor that can store more charge also stores more energy. Unlike, say batteries, however, capacitors can only store energy while they’re actively charged. If the capacitor discharges, for example by turning off its voltage source, it almost instantly dissipates all its energy.</p>
-<section id="example-capacitance-between-two-charged-cylinders" class="level4">
-<h4 class="anchored" data-anchor-id="example-capacitance-between-two-charged-cylinders">Example: Capacitance between two charged cylinders</h4>
+<section id="example-capacitance-between-two-charged-cylinders" class="level5">
+<h5 class="anchored" data-anchor-id="example-capacitance-between-two-charged-cylinders">Example: Capacitance between two charged cylinders</h5>
 <p>Suppose we have oppositely charged cylinders, one inside the other. The inner cylinder has a radius <span class="math inline">\(a\)</span> and a charge <span class="math inline">\(-Q\)</span>, while the outer cylinder has a radius <span class="math inline">\(b\)</span> and a charge <span class="math inline">\(Q\)</span>.</p>
 <ul>
 <li>Finish this example. See Griffiths or Greiner.</li>
@@ -1096,7 +1103,7 @@ C = \frac{A}{4\pi d} \ .
 <p>Though less common, we can define the mutual capacitance between any number of conductors, not just two. Suppose we have <span class="math inline">\(n\)</span> conductors with charges <span class="math inline">\(Q_i\)</span> and potentials <span class="math inline">\(V_i\)</span> relative to some ground. We can then write <span class="math display">\[
 Q_i = \sum_{i=1}^n C_{i j} V_j \ .
 \]</span> Here each coefficient <span class="math inline">\(C_{ij}\)</span> is called the <em>mutual capacitance</em> between conductor <span class="math inline">\(i\)</span> and conductor <span class="math inline">\(j\)</span>.</p>
-<p>We can relate the capacitance defined between two oppositely charged conductors with the previous definition by setting <span class="math inline">\(Q_1 = Q\)</span>, <span class="math inline">\(Q_2 = -Q\)</span>, and <span class="math inline">\(V = V_2 - V_1\)</span> to relate <span class="math inline">\(C\)</span> with the coefficients <span class="math inline">\(C_{ij}\)</span>. It’s not hard to see that we get <span class="math display">\[
+<p>We can relate the mutual capacitance between two oppositely charged conductors with the previous definition of capacitance by setting <span class="math inline">\(Q_1 = Q\)</span>, <span class="math inline">\(Q_2 = -Q\)</span>, and <span class="math inline">\(V = V_2 - V_1\)</span>. It’s not hard to see that we get <span class="math display">\[
 C = \frac{C_{11} V_1 + C_{12} V_2}{V_2 - V_1} = -\frac{C_{12} V_1 + C_{22} V_2}{V_2 - V_1} \ .
 \]</span> We don’t tend to use mutual capacitance as much in practice, nor will we see it again in this course.</p>
 

@@ -10,17 +10,23 @@ We saw in the previous chapter that we can in principle calculate the scalar pot
 $$
 \phi(\mathbf{x}) = \int d^3 \mathbf{x}' \ \frac{\rho(\mathbf{x}')}{|\mathbf{x} - \mathbf{x}'|} \ .
 $$
-In principle, this integral formula will work as long as the charge distribution is localized, there are no other sources of charge, and we've already specified in advance what the charge density $\rho(\mathbf{x}')$ actually is. Unfortunately, in practice there are other sources of charge present, and we often don't know what the charge density is. For example, there may be background conductors or other charged materials present that are too difficult to model, but we know the potential on those surfaces. We can model situations like this by introducing *boundary conditions*, while modeling the charge densities we care about directly.
+In principle, this integral formula will work as long as the charge distribution is localized, there are no other sources of charge, and we've already specified in advance what the charge density $\rho(\mathbf{x}')$ actually is. Unfortunately, in practice there are often other sources of charge present, and we often don't know what the charge density is for those. For example, there may be background conductors or other charged materials present that are too difficult to model, but we know the potential on those surfaces. We can model situations like this by incorporating them into the problem as *boundary conditions*.
 
-The natural way to find the potential in the presence of arbitrary boundary conditions like this is to instead express the problem in terms of a partial differential equation (PDE) subject to a set of boundary conditions. We saw in the previous chapter that we can specify the potential via *Poisson's Equation*,
+Recall from the previous chapter that we can express the solution for the potential in an equivalent way to the integral given above via a partial differential equation (PDE) known as *Poisson's Equation*,
 $$
 \nabla^2 \phi = -4\pi\rho \ .
 $$
-This is a linear second-order PDE. To solve for the exact potential of a given problem, we need to match the PDE with a set of *boundary conditions*. For Poisson's equation we do that by specifying the value of either the potential or its normal derivative along some given *boundary surface*.
+As we can clearly see, Poisson's equation is a linear, second-order PDE that depends only on spatial coordinates. Note that in the absence of source charges, Poisson's equation reduces to another important equation we'll study known as *Laplace's Equation*,
+$$
+\nabla^2 \phi = 0 \ .
+$$
+To solve Poisson's equation, it's sufficient to specify some set of *boundary conditions*, or conditions that the solution must satisfy on some given boundary surface $\mathcal{S}$. We imagine the charge distribution $\rho$ lies inside the surface $\mathcal{S}$, which may or may not be closed. On the surface, we know before-hand that some condition is satisfied, for example the value of the potential or the electric field on $\mathcal{S}$.
+
+A problem of this kind is known as a *boundary value problem* or BVP. The entire goal of this chapter and the next will be devoted to solving BVPs of this type in various ways. The first way we will do so is via Green's function methods.
 
 ## Green's Functions
 
-We will now introduce the idea of a *Green's Function*, which is a very useful and important concept in electromagnetism and many other field theories, as well as the theory of partial differential equations. We'll see that the Green's function provides a general formulation for solving Poisson's equation, and indeed for solving any linear PDE.
+We will now introduce the idea of a *Green's Function*, which is a very useful and important concept in electromagnetism and many other field theories, as well as the theory of partial differential equations. We'll see that the Green's function provides a general method for solving Poisson's equation, and indeed for solving any linear differential equation.
 
 We already know that for a localized charge distribution in the absense of boundary conditions that the potential can be found by
 $$
@@ -51,7 +57,7 @@ $$
 &= -4\pi \rho(\mathbf{x}) \ .
 \end{align*}
 $$
-This proves that if we can find the Green's function, we can use it to find the potential for any given charge distribution by convolution.
+This proves that given the Green's function, we can use it to find the potential for any given charge distribution by convolution.
 
 ### Green's Function Solution via the Fourier Transform
 
@@ -59,120 +65,83 @@ Since we already know that the Green's function for Poisson's equation must be g
 $$
 G(\mathbf{x} - \mathbf{x}') = \frac{1}{|\mathbf{x} - \mathbf{x}'|} \ ,
 $$
-we could just skip ahead to the next section. However, we want to derive the Green's function yet another way, using the properties of the Fourier transform. We introduce this new method because in future chapters we'll want to find the Green's function for other PDEs in future chapters, where we can't rely on already-known formulas to help us.
+we could just skip ahead to the next section. However, we want to derive the Green's function yet another way that's more broadly applicable, namely via the Fourier transform. We cover the mathematical details of the Fourier transform in the appendix, so feel free to stop and read over that first before proceeding.
 
-Let's suppose that we wished to solve Poisson's equation for a unit point charge,
+Let's suppose that we wished to solve Poisson's equation for a unit point charge placed at the origin,
 $$
-\nabla^2 G(\boldsymbol{\xi}) = -4\pi \delta(\boldsymbol{\xi}) \ ,
+\nabla^2 G(\mathbf{x}) = -4\pi \delta(\mathbf{x}) \ ,
 $$
-where $\boldsymbol{\xi} = \mathbf{x} - \mathbf{x}'$. We'll assume that both $G$ and its normal derivative go to zero as $|\boldsymbol{\xi}| \rightarrow \infty$, a physically realistic assumption.
+We'll assume that both $G(\mathbf{x})$ and its normal derivative go to zero as $|\mathbf{x}| \rightarrow \infty$, a physically realistic assumption.
 
-Now, what we can do is take the Fourier transform of both sides,
+Now, we take the Fourier transform of both sides to get the Green's function as a function of the wavevector $\mathbf{k}$. That is, we multiply both sides by $e^{-i \mathbf{k} \cdot \mathbf{x}}$ and integrate with respect to $\mathbf{x}$ over all space,
 $$
-\mathcal{F} \big(\nabla^2 G(\boldsymbol{\xi})\big) = \mathcal{F} \big(-4\pi \delta(\boldsymbol{\xi})\big) \ .
+\int d^3\mathbf{x} \ \nabla^2 G(\mathbf{x}) e^{-i \mathbf{k} \cdot \mathbf{x}} = -4\pi \int d^3\mathbf{x} \ \delta(\mathbf{x}) e^{-i \mathbf{k} \cdot \mathbf{x}} \ .
 $$
-Let $\mathbf{k}$ denote the Fourier conjugate to $\boldsymbol{\xi}$ and $G(\mathbf{k})$ denote the Fourier transform of $G(\boldsymbol{\xi})$. Then the left-hand side becomes
+Now, the right-hand side is easy to work out. By definition of the delta function we get $-4\pi e^{-i \mathbf{k} \cdot \mathbf{0}} = -4\pi$. The left-hand side is more interesting. Those familiar with the Fourier transform will immediately see it must be $-|\mathbf{k}|^2 G(\mathbf{k})$, where $G(\mathbf{k})$ is the Fourier transform of $G(\mathbf{x})$ defined by
 $$
-\mathcal{F} \big(\nabla^2 G(\boldsymbol{\xi})\big) = \int d^3 \boldsymbol{\xi} \ \nabla^2 G(\boldsymbol{\xi}) e^{-i \mathbf{k} \cdot \boldsymbol{\xi}} \ .
+G(\mathbf{k}) = \int d^3\mathbf{x} \ G(\mathbf{x}) e^{-i \mathbf{k} \cdot \mathbf{x}} \ .
 $$
-Now, if we apply Green's second identity and require that $G$ and its normal derivative vanish at infinity, we get
+Let's prove this real quick. If we apply Green's second identity to the left-hand side above and require that $G(\mathbf{x})$ go to zero as $|\mathbf{x}| \rightarrow \pm \infty$, then the boundary terms vanish, leaving us with
 $$
 \begin{align*}
-\mathcal{F} \big(\nabla^2 G(\boldsymbol{\xi})\big) &= \int d^3 \boldsymbol{\xi} \ \nabla^2 G(\boldsymbol{\xi}) e^{-i \mathbf{k} \cdot \boldsymbol{\xi}} \\
-&= \int d^3 \boldsymbol{\xi} \ G(\boldsymbol{\xi}) \nabla^2 e^{-i \mathbf{k} \cdot \boldsymbol{\xi}} + 
-\oint_\mathcal{S} da \ \bigg[e^{-i \mathbf{k} \cdot \boldsymbol{\xi}} \frac{\partial G}{\partial n} - G \frac{\partial}{\partial n} e^{-i \mathbf{k} \cdot \boldsymbol{\xi}} \bigg] \\
-&= -|\mathbf{k}|^2 \int d^3 \boldsymbol{\xi} \ G(\boldsymbol{\xi}) e^{-i \mathbf{k} \cdot \boldsymbol{\xi}} \\
+\int d^3\mathbf{x} \ \nabla^2 G(\mathbf{x}) e^{-i \mathbf{k} \cdot \mathbf{x}} &= 
+\int d^3\mathbf{x} \ G(\mathbf{x}) \nabla^2 e^{-i \mathbf{k} \cdot \mathbf{x}} + 
+\oint_\mathcal{S} da \ \bigg[e^{-i \mathbf{k} \cdot \mathbf{x}} \frac{\partial G}{\partial n} - G \frac{\partial}{\partial n} e^{-i \mathbf{k} \cdot \mathbf{x}} \bigg] \\
+&= -|\mathbf{k}|^2 \int d^3\mathbf{x} \ G(\mathbf{x}) e^{-i \mathbf{k} \cdot \mathbf{x}} \\
 &= -|\mathbf{k}|^2 G(\mathbf{k}) \ .
 \end{align*}
 $$
-This result is important enough that it's useful to remember: For any well-behaved scalar field $f(\mathbf{x})$, the Fourier transform of its Laplacian is given by $\nabla^2 f(\mathbf{x}) \leftrightarrow -|\mathbf{k}|^2 f(\mathbf{k})$.
+Putting both sides together, we end up with an algebraic equation in $k$-space that's easily solved for $G(\mathbf{k})$,
 
-Now, for the right-hand side we can use the definition of the delta function to write
 $$
-\mathcal{F} \big(-4\pi \delta(\boldsymbol{\xi})\big) = -4\pi \int d^3 \boldsymbol{\xi} \ \delta(\boldsymbol{\xi}) e^{i \mathbf{k} \cdot \boldsymbol{\xi}} = -4\pi \ .
+-|\mathbf{k}|^2 G(\mathbf{k}) = -4\pi \quad \Longrightarrow \quad G(\mathbf{k}) = \frac{4\pi}{|\mathbf{k}|^2} \ .
 $$
-Putting these together, the Fourier dual of the original Green's function PDE is just
+Now, we want the Green's function in terms of $\mathbf{x}$, not in terms of $\mathbf{k}$. We can get that by now taking the inverse Fourier transform. That is, we multiply $G(\mathbf{k})$ by $\frac{1}{(2\pi)^3} e^{i \mathbf{k} \cdot \mathbf{x}}$ and integrate with respect to $\mathbf{k}$ over all $k$-space to get
 $$
--|\mathbf{k}|^2 G(\mathbf{k}) = -4\pi \ .
+G(\mathbf{x}) = \int \frac{d^3\mathbf{k}}{(2\pi)^3} \ G(\mathbf{k}) e^{-i \mathbf{k} \cdot \mathbf{x}} 
+= 4\pi \int \frac{d^3\mathbf{k}}{(2\pi)^3} \ \frac{e^{-i \mathbf{k} \cdot \mathbf{x}}}{|\mathbf{k}|^2} \ .
 $$
-This means the Fourier transform of the Green's function is just given by
-$$
-G(\mathbf{k}) = \frac{4\pi}{|\mathbf{k}|^2} \ .
-$$
-To get back $G(\boldsymbol{\xi})$ we now need to take the inverse Fourier transform of both sides,
-$$
-G(\boldsymbol{\xi}) = \mathcal{F}^{-1} G(\mathbf{k}) = \mathcal{F}^{-1} \bigg(\frac{4\pi}{|\mathbf{k}|^2}\bigg) \ .
-$$
-Using the definition of the inverse Fourier transform, we evidently have
-$$
-G(\boldsymbol{\xi}) = \int \frac{d^3 \mathbf{k}}{(2\pi)^3} \ G(\mathbf{k}) e^{-i \mathbf{k} \cdot \boldsymbol{\xi}} = 4\pi \int \frac{d^3 \mathbf{k}}{(2\pi)^3} \ \frac{e^{-i \mathbf{k} \cdot \boldsymbol{\xi}}}{|\mathbf{k}|^2} \ .
-$$
-We now need to evaluate this integral over $\mathbf{k}$-space the hard way. We'll work in spherical coordinates $(k,\theta_k,\phi_k)$. This means the volume element reduces to
+We're now left with an integral to evaluate that's quite non-trivial. First, we observe that the integrand depends on two things, the squared norm $|\mathbf{k}|^2$ and the dot product $\mathbf{k} \cdot \mathbf{x}$. Now, we're free to orient $\mathbf{x}$ along any direction of $k$-space we like. Without loss of generality then, let's suppose $\mathbf{x}$ is oriented along the $k_z$-axis, so that $\mathbf{x} = r \mathbf{e}_{k_z}$. Then $\mathbf{k} \cdot \mathbf{x} = kr\cos\theta_k$, where $k = |\mathbf{k}|$ and $\theta_k$ is the usual polar angle of spherical coordinates in $k$-space. This strongly suggests we should do the integration in $k$-space spherical coordinates $(k, \theta_k, \varphi_k)$. This means the volume element $d^3\mathbf{k}$ becomes
 $$
 d^3 \mathbf{k} = k^2 \sin\theta_k dk d\theta_k d\phi_k \ .
 $$
-Now, suppose without loss of generality that $\boldsymbol{\xi}$ is oriented in the $k_z$-direction, so we can write $\mathbf{k} \cdot \boldsymbol{\xi} = \xi k \cos\theta_k$, where $\xi = \boldsymbol{\xi}$. Then we have
+Plugging this all into the integral and evaluating the trivial integral over $\varphi_k$, we thus have
 $$
-G(\boldsymbol{\xi}) = 4\pi \int \frac{k^2 \sin\theta_k dk d\theta_k d\phi_k}{(2\pi)^3} \ \frac{e^{-i k \xi \cos\theta_k}}{k^2} = \frac{1}{\pi} \int dk d\theta_k \ \sin\theta_k \ e^{-i k \xi \cos\theta_k} \ .
+G(\mathbf{x}) = 4\pi \int_0^\infty dk \int_0^\pi d\theta_k \int_0^{2\pi} d\varphi_k \ \frac{k^2 \sin\theta_k}{(2\pi)^3} \frac{e^{-i kr \cos\theta_k}}{k^2} = \frac{1}{\pi} \int_0^\infty dk \int_0^\pi d\theta_k \ \sin\theta_k \ e^{-i kr \cos\theta_k} \ .
 $$
-To evaluate the integral over $\theta_k$, we'll again make the common substitution $\mu = \cos\theta_k$ to get
+Next, we need to evaluate the integral over $\theta_k$. This is most easily done by making the useful substitution $\mu = \cos\theta_k$ to get
 $$
-\begin{align*}
-G(\mathbf{x}) &= \frac{1}{\pi} \int_0^\infty dk \int_{-1}^1 d\mu \ e^{-i k \xi \mu} \\
-&= \frac{1}{\pi} \int_0^\infty dk \ \frac{e^{-ik\xi} - e^{ik\xi}}{-ik\xi} \\
-&= \frac{2}{\pi} \int_0^\infty dk \ \frac{\sin k\xi}{k\xi} \ ,
-\end{align*}
+G(\mathbf{x}) = \frac{1}{\pi} \int_0^\infty dk \int_{-1}^1 d\mu \ e^{-i kr \mu} = \frac{1}{\pi} \int_0^\infty dk \ \frac{e^{-ikr} - e^{ikr}}{-ikr} = \frac{2}{\pi} \int_0^\infty dk \ \frac{\sin kr}{kr} \ .
 $$
-What remains is an integral over $k$. We'll make another substitution $u = k\xi$ to simplify the integral somewhat,
+All that remains now is the integral over $k$. We'll simplify this remaining integral slightly by substituting $u=kr$ to write
 $$
-G(\boldsymbol{\xi}) = \frac{2}{\pi \xi} \int_0^\infty du \ \frac{\sin u}{u} \ .
+G(\mathbf{x}) = \frac{2}{\pi r} \int_0^\infty du \ \frac{\sin u}{u} \ .
 $$
-The remaining integral is a well-known integral known as a *Dirichlet integral*. These kinds of integrals can be evaluated any number of ways. We'll use a technique popularized by Feynman known as the *Feynman trick*. 
-
-The idea is to introduce a dummy variable $t$ into the integrand and use differentiation under the integral sign to evaluate the integral in terms of $t$, then set $t=0$ to recover the original integral. Consider the integral
+The remaining integral in $u$ is a well-known integral, known as a *Dirichlet integral*. Dirichlet integrals can be evaluated any number of ways. In the appendix we showed that we can evaluate this integral using the residue theorem to get
 $$
-F(t) \equiv \int_0^\infty du \ e^{-tu} \frac{\sin u}{u} \ .
-$$
-Notice that $F(t)$ reduces to the original integral if we set $t=0$. Also notice that $F(t) \rightarrow 0$ as $t \rightarrow \infty$, a fact we'll use shortly.
-
-Now, if we differentiate $F(t)$ with respect to $t$ we can pull the derivative inside the integral sign to get
-$$
-\begin{align*}
-\frac{dF}{dt} &= \int_0^\infty du \ \frac{\partial}{\partial t} e^{-tu} \frac{\sin u}{u} \\
-&= -\int_0^\infty du \ e^{-tu} \sin u \\
-&= -\frac{1}{1 + t^2} \ .
-\end{align*}
-$$
-Now, if we integrate $\frac{dF}{dt}$ we can recover a closed form expression for $F(t)$. We now have
-$$
-F(t) = C - \arctan t \ .
-$$
-To figure out the integration constant $C$, we can send $t \rightarrow \infty$. Since $F(t) \rightarrow 0$ and $\arctan t \rightarrow \frac{\pi}{2}$, we must have $C = \frac{\pi}{2}$. Thus,
-$$
-F(t) = \frac{\pi}{2} - \arctan t \ .
-$$
-All we have to do now is set $t=0$ to find the original Dirichlet integral,
-$$
-\int_0^\infty du \ \frac{\sin u}{u} = F(0) = \frac{\pi}{2} \ .
+\int_0^\infty du \ \frac{\sin u}{u} = \frac{\pi}{2} \ .
 $$
 Plugging this back into the Green's function, we finally get
 $$
-G(\boldsymbol{\xi}) = \frac{2}{\pi \xi} \cdot \frac{\pi}{2} = \frac{1}{\xi} = \frac{1}{|\boldsymbol{\xi}|} \ .
+G(\mathbf{x}) = \frac{2}{\pi r} \cdot \frac{\pi}{2} = \frac{1}{r} = \frac{1}{|\mathbf{x}|} \ .
 $$
-That is,
+This is the Green's function that solves the equation posed above. Finally, if we shift the source point from the origin to some other source point $\mathbf{x}'$ we recover the general Green's function derived above,
 $$
 G(\mathbf{x} - \mathbf{x}') = \frac{1}{|\mathbf{x} - \mathbf{x}'|} \ .
 $$
+
+This perhaps seemed like a pointless exercise, but we'll see later that this method for solving PDEs is broadly useful. For example, in a later chapter we'll need to find the Green's function for the Helmholtz equation, and for that we'll need this method.
+
 ### Formal Solution to Poisson's Equation
 
-We'll now derive a formal solution to Poisson's equation when boundary conditions are present. To do so we'll make use of Green's second identity. Recall that Green's second identity says that for two scalar fields $\psi(\mathbf{x}')$ and $\phi(\mathbf{x}')$, we have
+We'll now derive a formal solution to Poisson's equation in the presence of boundary conditions. To do so we'll again make use of Green's second identity. Recall that Green's second identity says that for two scalar fields $\psi(\mathbf{x}')$ and $\phi(\mathbf{x}')$, we have
 
 $$
 \int_\mathcal{V} d^3 \mathbf{x}' \ (\phi \nabla'^2 \psi - \psi \nabla'^2 \phi) = \oint_\mathcal{S} da' \ \bigg[\phi \frac{\partial \psi}{\partial n'} - \psi \frac{\partial \phi}{\partial n'} \bigg] \ .
 $$
 Here $\mathcal{S}$ is some closed surface enclosing a volume $\mathcal{V}$, and $\frac{\partial \phi}{\partial n'} = \nabla' \phi \cdot \mathbf{n}'$ is the normal derivative of $\phi$ across the surface. We write the identity in terms of the source point $\mathbf{x}'$ since that's what will be useful for us here.
 
-Now, what we'll do is set $\psi(\mathbf{x}') = G(\mathbf{x} - \mathbf{x}')$ and $\phi(\mathbf{x}')$ equal to the potential, so we have
+Now, what we'll do is set $\psi(\mathbf{x}') = G(\mathbf{x} - \mathbf{x}')$ and $\phi(\mathbf{x}')$ equal to the potential to get
 $$
 \int_\mathcal{V} d^3 \mathbf{x}' \ (\phi \nabla'^2 G - G \nabla'^2 \phi) = \oint_\mathcal{S} da' \ \bigg[\phi \frac{\partial G}{\partial n'} - G \frac{\partial \phi}{\partial n'} \bigg] \ .
 $$
@@ -208,8 +177,8 @@ When we solve Poisson's equation with only the *value* of the potential specifie
 $$
 \begin{align*}
 \begin{cases}
-\nabla^2 \phi &=& -4\pi\rho \ , \\
-\text{where} \ \phi &=& \phi_0 \ \text{on} \ \mathcal{S} \ .
+\nabla^2 \phi = -4\pi\rho \ , \\
+\text{where} \ \phi = \phi_0 \ \text{on} \ \mathcal{S} \ .
 \end{cases}
 \end{align*}
 $$
@@ -217,20 +186,20 @@ On the other hand, when we solve Poisson's equation with only the *normal deriva
 $$
 \begin{align*}
 \begin{cases}
-\nabla^2 \phi &=& -4\pi\rho \ , \\
-\text{where} \ \frac{\partial \phi}{\partial n'} &=& -E_0 \ \text{on} \ \mathcal{S} \ .
+\nabla^2 \phi = -4\pi\rho \ , \\
+\text{where} \ \frac{\partial \phi}{\partial n'} = -E_0 \ \text{on} \ \mathcal{S} \ .
 \end{cases}
 \end{align*}
 $$
 Here $E_0$ is used to denote the value of the electric field normal to the boundary surface, i.e. $E_0 = \mathbf{E} \cdot \mathbf{n}'$.
 
-We will now show that provided either Cauchy or Neumann boundary conditions are used, the Poisson equation with boundary conditions will yield a unique solution for the potential. Suppose we have two solutions $\phi_1$ and $\phi_2$ to Poisson's equation subject to either Cauchy or Neumann boundary conditions, but not both,
+We will now show that provided either Cauchy or Neumann boundary conditions are used, the Poisson equation with boundary conditions will yield a unique solution for the potential. Suppose we have two solutions $\phi_1$ and $\phi_2$ to Poisson's equation subject to either Cauchy or Neumann boundary conditions, but not both. That is, we have
 $$
 \begin{align*}
 \begin{cases}
-\nabla^2 \phi_1 &=& \nabla^2 \phi_2 &=& -4\pi\rho \ , \\
-\text{where} \ \phi_1 &=& \phi_2 &=& \phi_0 \ \text{on} \ \mathcal{S} \ , \\
-\text{or} \ \frac{\partial \phi_1}{\partial n'} &=& \frac{\partial \phi_1}{\partial n'} &=& -E_0 \ \text{on} \ \mathcal{S} \ .
+\nabla^2 \phi_1 = \nabla^2 \phi_2 = -4\pi\rho \ , \\
+\text{where} \ \phi_1 = \phi_2 = \phi_0 \ \text{on} \ \mathcal{S} \ , \\
+\text{or} \ \frac{\partial \phi_1}{\partial n'} = \frac{\partial \phi_1}{\partial n'} = -E_0 \ \text{on} \ \mathcal{S} \ .
 \end{cases}
 \end{align*}
 $$
@@ -238,9 +207,9 @@ Now, let $u = \phi_2 - \phi_1$. Then $\nabla^2 u = 0$ by linearity and either $u
 $$
 \begin{align*}
 \begin{cases}
-\nabla^2 u &=& 0 \ , \\
-\text{where} \ u &=& 0 \ \text{on} \ \mathcal{S} \ , \\
-\text{or} \ \frac{\partial u}{\partial n'} &=& 0 \ \text{on} \ \mathcal{S} \ .
+\nabla^2 u = 0 \ , \\
+\text{where} \ u = 0 \ \text{on} \ \mathcal{S} \ , \\
+\text{or} \ \frac{\partial u}{\partial n'} = 0 \ \text{on} \ \mathcal{S} \ .
 \end{cases}
 \end{align*}
 $$
@@ -270,24 +239,28 @@ Note that the same proof holds if the problem has *mixed boundary conditions*, w
 
 ### Green's Function with Boundary Conditions
 
-Before we derived the Green's function for Poisson's equation under the assumption of no boundary conditions, and then used Green's second identity to find an expression for the potential when boundary conditions are present. If we like, we can encorporate the boundary conditions directly into the Green's function from the beginning. The idea is to generalize the definition of the Green's function somewhat by taking
+We derived the Green's function above under the assumption that no boundary conditions were present, and then later imposed boundary conditions when deriving the formal solution. But we can also define the Green's function so that the boundary conditions are already backed in. The idea is to generalize the definition of the Green's function somewhat by supposing
 $$
 G(\mathbf{x} - \mathbf{x}') = \frac{1}{|\mathbf{x} - \mathbf{x}'|} + F(\mathbf{x} - \mathbf{x}') \ ,
 $$
-where $F$ is any function that satisfies Laplace's equation subject to the given boundary conditions, i.e.
-$$
-\nabla^2 F(\mathbf{x} - \mathbf{x}') = 0 \ .
-$$
-Such a solution without a source term is usually called a *homogeneous solution*.
-
-Intuitively, we can think of $F$ as the potential of any charge distributions lying beyond the boundary surface. Our goal in this section however isn't to find $F$, but to formally show that generalized Green's functions give us formal solutions for the potential that aren't overdetermined.
-
-Consider first the case of a Poisson BVP with Dirichlet boundary conditions. We'll suppose there exists a Green's function $G_D$ that satisfies the BVP
+where $F(\mathbf{x} - \mathbf{x}')$ is some function that satisfies Laplace's equation subject to the boundary conditions,
 $$
 \begin{align*}
 \begin{cases}
-\nabla^2 G_D &=& -4\pi\delta(\mathbf{x} - \mathbf{x}') \ , \\
-\text{where} \ G_D &=& 0 \ \text{on} \ \mathcal{S} \ .
+\nabla^2 F(\mathbf{x} - \mathbf{x}') = 0 \ , \\
+\text{where} \ F(\mathbf{x} - \mathbf{x}') = 0 \ \text{on} \ \mathcal{S} \ , \\
+\text{or} \ \frac{\partial F}{\partial n'} = 0 \ \text{on} \ \mathcal{S} \ .
+\end{cases}
+\end{align*}
+$$
+We'll call $F(\mathbf{x} - \mathbf{x}')$ the *homogeneous part* of the Green's function. Intuitively, we can think of the homogeneous part as the potential of any charge distributions lying beyond the boundary surface. Our goal in this section however isn't to find $F(\mathbf{x} - \mathbf{x}')$, but to formally show that this generalization of the Green's function gives formal solutions that aren't overdetermined.
+
+Consider first the case of a Poisson BVP with Dirichlet boundary conditions. We'll suppose there exists a Green's function $G_D(\mathbf{x} - \mathbf{x}')$ that satisfies the BVP
+$$
+\begin{align*}
+\begin{cases}
+\nabla^2 G_D(\mathbf{x} - \mathbf{x}') = -4\pi\delta(\mathbf{x} - \mathbf{x}') \ , \\
+\text{where} \ G_D(\mathbf{x} - \mathbf{x}') = 0 \ \text{on} \ \mathcal{S} \ .
 \end{cases}
 \end{align*}
 $$
@@ -295,7 +268,7 @@ Now, if we plug this Green's function into the formal solution for the potential
 $$
 \phi(\mathbf{x}) = \int_\mathcal{V} d^3 \mathbf{x}' \ \rho(\mathbf{x}') G_D(\mathbf{x} - \mathbf{x}') + \frac{1}{4\pi} \oint_\mathcal{S} da' \ \bigg[G_D \frac{\partial \phi}{\partial n'} - \phi \frac{\partial G_D}{\partial n'} \bigg] \ .
 $$
-Since $G_D$ will vanish on the surface $\mathcal{S}$ by assumption, the first term in the surface integral vanishes and we're left with
+Since $G_D(\mathbf{x} - \mathbf{x}')$ will vanish on the surface $\mathcal{S}$ by assumption, the first term in the surface integral vanishes and we're left with
 $$
 \boxed{
 \phi(\mathbf{x}) = \int_\mathcal{V} d^3 \mathbf{x}' \ \rho(\mathbf{x}') G_D(\mathbf{x} - \mathbf{x}') - \frac{1}{4\pi} \oint_\mathcal{S} da' \ \phi \frac{\partial G_D}{\partial n'}
@@ -307,8 +280,8 @@ We can do something similar for a Poisson BVP with Neumann boundary conditions, 
 $$
 \begin{align*}
 \begin{cases}
-\nabla^2 G_N &=& -4\pi\delta(\mathbf{x} - \mathbf{x}') \ , \\
-\text{where} \ \frac{\partial G_N}{\partial n'} &=& C \ \text{on} \ \mathcal{S} \ .
+\nabla^2 G_N(\mathbf{x} - \mathbf{x}') = -4\pi\delta(\mathbf{x} - \mathbf{x}') \ , \\
+\text{where} \ \frac{\partial G_N}{\partial n'} = C \ \text{on} \ \mathcal{S} \ .
 \end{cases}
 \end{align*}
 $$
@@ -345,9 +318,9 @@ $$
 $$
 Of course, while having these formal solutions is nice, we still haven't shown how to find these generalized Green's functions. In fact, it usually isn't that helpful to find the generalized Green's function directly when solving a given problem. Its primary use is theoretical, to show that a formal solution for the potential will always exist under certain types of boundary conditions.
 
-### Green's Function in Other Dimensions
+### Green's Functions in Other Dimensions
 
-For the special case of the Laplacian operator, there's an easier way to find the (unbounded) Green's function that also happens to work just as easily for any number of dimensions. Let's again consider Poisson's equation for the Green's function free from boundary conditions, but this time we'll assume $\mathbf{x}$ and $\mathbf{x}'$ are vectors in some arbitrary $n$-dimensional space. If we ignore the factor of $4\pi$ from before, we have
+For the special case of the Laplacian operator, there's an easier way to find the (unbounded) Green's function that also happens to work just as easily for any number of dimensions. Let's again consider Poisson's equation for the Green's function free from boundary conditions, but this time we'll assume $\mathbf{x}$ and $\mathbf{x}'$ are vectors in some arbitrary $n$-dimensional space. If we ignore the factor of $4\pi$ from before, we can write
 $$
 \nabla^2 G(|\mathbf{x} - \mathbf{x}'|) = -\delta(\mathbf{x} - \mathbf{x}') \ .
 $$
@@ -403,9 +376,9 @@ Thus far, we've yet to show any practical ways to find the potential in a given 
 
 From the previous section, we know we can express the Green's function satisfying the boundary conditions by letting
 $$
-G(\mathbf{x} - \mathbf{x}') = \frac{1}{|\mathbf{x} - \mathbf{x}'|} + F(\mathbf{x} - \mathbf{x}') \ .
+G(\mathbf{x} - \mathbf{x}') = \frac{1}{|\mathbf{x} - \mathbf{x}'|} + F(\mathbf{x} - \mathbf{x}') \ ,
 $$
-The added function $F(\mathbf{x} - \mathbf{x}')$ is any function that satisfies Laplace's equation subject to the boundary conditions. By the uniqueness theorem, we know that if we can find such an $F$ that satisfies the boundary conditions, it will be unique up to an unimportant additive constant to the potential, provided Dirichlet or Neumann boundary conditions are used.
+where the homogeneous part $F(\mathbf{x} - \mathbf{x}')$ is any function that satisfies Laplace's equation subject to the boundary conditions. By the uniqueness theorem, we know that if we can find such a function $F(\mathbf{x} - \mathbf{x}')$, it will be unique up to an unimportant additive constant to the potential, provided Dirichlet or Neumann (or mixed) boundary conditions are used.
 
 The method of images exploits this property of uniqueness by converting the original boundary value problem into an equivalent unbounded problem that still just happens to satisfy the same boundary conditions. Suppose we have one or more point charges in the presence of some set of boundary conditions, for example a set of conductors held at some fixed potentials. In many cases, we can exploit the geometry of the problem to convert this problem into an equivalent unbounded problem by introducing pseudo-charges outside the boundary surface, called *image charges*, such that when added to the problem the combination of original and image charges together happens to satisfy the original boundary conditions. By the uniqueness theorem, we know that if we find such a solution, it must be the unique solution, even for the original BVP.
 
@@ -431,7 +404,7 @@ This means that to get the Green's function all we need to do is divide the pote
 $$
 G_D(\mathbf{x} - d\mathbf{e}_z) = \frac{q}{\sqrt{x^2 + y^2 + (z-d)^2}} - \frac{q}{\sqrt{x^2 + y^2 + (z+d)^2}} \ .
 $$
-Notice that the first term is just the unbounded Green's function. The second term is the homogeneous function $F$ that satisfies the boundary conditions, i.e.
+Notice that the first term is just the unbounded Green's function. The second term is the homogeneous part
 $$
 F(\mathbf{x} - d \mathbf{e}_z) = -\frac{q}{\sqrt{x^2 + y^2 + (z+d)^2}} \ .
 $$
@@ -502,7 +475,7 @@ If we like we can also write down the Green's function by again dividing both si
 $$
 G_D(\mathbf{x} - \mathbf{d}) = \frac{1}{\sqrt{r^2 + d^2 - 2rd\cos\alpha}} - \frac{\frac{R}{d}}{\sqrt{R^2 + \frac{r^2 d^2}{R^2} - 2rd\cos\alpha}} \ .
 $$
-Again, the first term is just the unbounded Green's function. The second term is the homogeneous function $F$ that satisfies the boundary conditions,
+Again, the first term is just the unbounded Green's function. The second term is the homogeneous part
 $$
 F(\mathbf{x} - \mathbf{d}) = -\frac{\frac{R}{d}}{\sqrt{R^2 + \frac{r^2 d^2}{R^2} - 2rd\cos\alpha}} \ .
 $$
@@ -580,11 +553,7 @@ Now, observe if we plug these values back into the potential we get
 $$
 \phi(\mathbf{x}) = \frac{q}{\sqrt{(x-a)^2+(y-b)^2}} - \frac{q}{\sqrt{(x+a)^2+(y-b)^2}} - \frac{q}{\sqrt{(x-a)^2+(y+b)^2}} + \frac{q}{\sqrt{(x+a)^2+(y+b)^2}} \ .
 $$
-Observe now that if we set $\mathbf{x}=(x,0)$ or $\mathbf{x}=(0,y)$ the potential vanishes, meaning this potential satisfies the boundary conditions, and hence by uniqueness must also be the correct potential for the original BVP. Dividing by $q$ will again give us the Green's function, with
-$$
-G_D(\mathbf{x} - \mathbf{d}) = \frac{1}{\sqrt{(x-a)^2+(y-b)^2}} - \frac{1}{\sqrt{(x+a)^2+(y-b)^2}} - \frac{1}{\sqrt{(x-a)^2+(y+b)^2}} + \frac{1}{\sqrt{(x+a)^2+(y+b)^2}} \ .
-$$
-The first term is the usual unbounded part of the Green's function, and what remains is the homogeneous function $F$ that satisfies Laplace's equation subject to the boundary conditions, as one can check.
+Observe now that if we set $\mathbf{x}=(x,0)$ or $\mathbf{x}=(0,y)$ the potential vanishes, meaning this potential satisfies the boundary conditions, and hence by uniqueness must also be the correct potential for the original BVP. Dividing by $q$ will again give us the Green's function as usual.
 
 The force between the point charge and the two sheets is given in the usual way. We end up with
 $$
@@ -638,17 +607,76 @@ This can also be seen, of course, by noticing that the image charges $q'_+$ and 
 
 ### Green's Function for a Sphere
 
+Let's consider again the example of a point charge $q$ in the presence of a grounded conducting sphere of radius $R$. If we let $r'$ denote the distance of the point charge from the origin, we saw that we could write the Green's function for this problem by
+$$
+G_D(\mathbf{x} - \mathbf{x}') = \frac{1}{\sqrt{r^2 + r'^2 - 2rr'\cos\alpha}} - \frac{R/r'}{\sqrt{R^2 + \frac{r^2 r'^2}{R^2} - 2rr'\cos\alpha}} \ ,
+$$
+where $\alpha$ is the angle between the field point $\mathbf{x}$ and the source point $\mathbf{x}'$. 
 
+We can use this Green's function as a building block to find solutions to any problem whose potential is specified on the surface of a sphere. Recall from a few sections back that we saw we could express the potential in the presence of Dirichlet boundary conditions by the formal solution
+$$
+\phi(\mathbf{x}) = \int_\mathcal{V} d^3 \mathbf{x}' \ \rho(\mathbf{x}') G_D(\mathbf{x} - \mathbf{x}') - \frac{1}{4\pi} \oint_\mathcal{S} da' \ \phi \frac{\partial G_D}{\partial n'} \ .
+$$
+Provided we can find the Green's function and we know the value of the potential on some given boundary surface, we have a unique solution of this form for the potential everywhere in space.
+
+Now, suppose we have some charge distribution $\rho(\mathbf{x})$ located some distance away from a sphere of radius $R$ whose surface is held at some known potential $\phi_0 = \phi(R,\theta',\varphi')$. Since $\mathcal{S}$ is a sphere and the charge distribution lies outside the sphere, its surface normal $\mathbf{n}'$ will point inward toward the sphere with $\mathbf{n}' = -\mathbf{e}_{r'}$. This means the normal derivative of $G_D$ at the surface of the sphere will be
+$$
+\frac{\partial G_D}{\partial n'} = -\frac{\partial G_D}{\partial r'} \bigg|_{r'=R} = -\frac{(r^2 - R^2)/R}{(r^2 + R^2 - 2Rr \cos\alpha)^{3/2}} \ .
+$$
+Plugging this in and using the fact that the area element is $da' = R^2 d\Omega'$ on the surface of the sphere, we can express the potential for *any* charge distribution $\rho(\mathbf{x})$ outside a sphere of known potential by the integral
+$$
+\begin{align*}
+\phi(\mathbf{x}) = &\int_\mathcal{V} d^3 \mathbf{x}' \ \rho(\mathbf{x}') \bigg[\frac{1}{\sqrt{r^2 + r'^2 - 2rr'\cos\alpha}} - \frac{R/r'}{\sqrt{R^2 + \frac{r^2 r'^2}{R^2} - 2rr'\cos\alpha}}\bigg] \\
+&+ \frac{1}{4\pi} \oint_\mathcal{S} d\Omega' \ \phi(R,\theta',\varphi') \frac{R(r^2 - R^2)}{(r^2 + R^2 - 2Rr \cos\alpha)^{3/2}} \ ,
+\end{align*}
+$$
+where $\cos\alpha$ can be expressed in terms of the trig relation
+$$
+\cos\alpha = \cos\theta \cos\theta' + \sin\theta \sin\theta' \cos(\varphi-\varphi') \ .
+$$
+This is an imposing set of integrals to solve though, so it's perhaps worth looking at a simplifying scenario. Suppose there are no other charges present other than the sphere. Then we can neglect the volume integral and express the potential by
+$$
+\phi(\mathbf{x}) = \frac{1}{4\pi} \oint_\mathcal{S} d\Omega' \ \phi(R,\theta',\varphi') \frac{R(r^2 - R^2)}{(r^2 + R^2 - 2Rr \cos\alpha)^{3/2}} \ .
+$$
+Note that we can easily write down the potential inside the sphere as well. All we need to do is flip the sign on the normal derivative, which is equivalent to replacing $r^2 - R^2 \rightarrow R^2 - r^2$ in the integral above. Everything else is the same.
 
 ##### Example: Conducting sphere with hemispheres of opposite potentials
 
+Suppose we have a hollow sphere of radius $R$ consisting of two hemispheres held at opposite fixed potentials $\pm V$ that are separated by a thin insulating ring at the equator. We want to find the potential that matches these boundary conditions on the surface of the sphere.
 
+FIGURE
 
+Since there are no other source charges present, we can express the potential in terms of the integral given above,
+$$
+\phi(\mathbf{x}) = \frac{1}{4\pi} \oint_\mathcal{S} d\Omega' \ \phi(R,\theta',\varphi') \frac{R(r^2 - R^2)}{(r^2 + R^2 - 2Rr \cos\alpha)^{3/2}} \ .
+$$
+We require that $\phi(R,\theta',\varphi') = +V$ when $0 \leq \theta' < \frac{\pi}{2}$ and $\phi(R,\theta',\varphi') = -V$ when $\frac{\pi}{2} < \theta' \leq \pi$. Plugging this in, we get
+$$
+\phi(\mathbf{x}) = \frac{VR(r^2 - R^2)}{4\pi} \int_0^{2\pi} d\varphi' \bigg[\int_0^{\pi/2} \sin\theta' d\theta' - \int_{\pi/2}^\pi \sin\theta' d\theta'\bigg] \frac{1}{(r^2 + R^2 - 2Rr \cos\alpha)^{3/2}} \ .
+$$
+We can simplify this expression somewhat by making the change of variables $\theta' \rightarrow \pi - \theta', \varphi' \rightarrow \pi + \varphi'$ on the second $\theta'$ integral, combining terms, and making a change of variable $\mu' = \cos\theta'$ to write
+$$
+\phi(\mathbf{x}) = \frac{VR(r^2 - R^2)}{4\pi} \int_0^{2\pi} d\varphi' \int_0^1 d\mu' \bigg[\frac{1}{(r^2 + R^2 - 2Rr \cos\alpha)^{3/2}} - \frac{1}{(r^2 + R^2 + 2Rr \cos\alpha)^{3/2}}\bigg] \ .
+$$
+Unfortunately though, the presence of the term $\cos\alpha = \cos\theta \cos\theta' + \sin\theta \sin\theta' \cos(\varphi-\varphi')$ still makes this integral impossible to easily solve. But we can solve it in one simplifying case, when the field point is located on the positive $z$-axis, so $r=z$. In that case, we can simply write $\cos\alpha = \cos\theta' = \mu'$. Then the $\varphi'$ integral becomes trivial, and we have
+$$
+\phi(z\mathbf{e}_z) = \frac{VR(z^2 - R^2)}{2} \int_0^1 d\mu' \bigg[\frac{1}{(z^2 + R^2 - 2Rz \mu')^{3/2}} - \frac{1}{(z^2 + R^2 + 2Rz \mu')^{3/2}}\bigg] \ .
+$$
+Both integrals can be easily solved using substitutions of the form $u = r^2 + R^2 \mp 2Rr \mu'$. We finally get
+$$
+\phi(z\mathbf{e}_z) = V \bigg[1 - \frac{(z^2 - R^2)/z}{\sqrt{z^2 + R^2}}\bigg] \ .
+$$
+Let's check that this solution makes sense. When $z=R$ we get $\phi = V$, which is what we expect when $z > 0$, which we assumed. When $z \gg R$ we get $\phi \sim \frac{3VR^2}{2z^2}$, which means the potential falls off *faster* than it would for a point charge. In fact, it falls off like a *dipole*. This should make sense, given that we have two identical hemispheres held at opposite potentials, which means they have a net charge of zero and effectively act as a sort of dipole.
 
-
-
-
-
+While we can't evaluate the general integral for this potential for arbitrary $\mathbf{x}$, we can at least get a series solution. The idea here is to suppose we're far away from the sphere, so that $r \gg R$, and define $\varepsilon \equiv (R/r)^2$. If we expand the integrand in powers of $\varepsilon$ and integrate term by term, it's possible to show that the potential we end up with has the form
+$$
+\phi(\mathbf{x}) = \frac{3VR^2}{2r^2} \bigg(P_1(\cos\theta) - \frac{7R^2}{12r^2} P_3(\cos\theta) + \cdots\bigg) \ .
+$$
+Here each term $P_\ell(\cos\theta)$ is the *Legendre polynomial* of degree $\ell$. Details on the Legendre polynomials can be found in the appendix. Evidently, the potential given only includes the odd degree polynomials. The even degree terms vanish due to the polar symmetry in the problem. The first two odd Legendre polynomials are given by
+$$
+P_1(\cos\theta) = \cos\theta \quad , \quad P_3(\cos\theta) = \frac{1}{2} (5\cos^3\theta - 3\cos\theta) \ .
+$$
+The further we are from the sphere, the better we can approximate this series solution by keeping only the first few terms. In fact, this is the entire idea behind the multipole expansion, something we'll cover in great detail in a future chapter.
 
 
 

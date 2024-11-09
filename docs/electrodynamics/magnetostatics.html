@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Personal Notes - Advanced Methods III</title>
+<title>Personal Notes - Magnetostatics</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -31,7 +31,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
 <link href="../electrodynamics/orthogonal-functions.html" rel="next">
-<link href="../electrodynamics/bvps-2.html" rel="prev">
+<link href="../electrodynamics/bvps-3.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -81,7 +81,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../electrodynamics/preliminaries.html">Electromagnetism</a></li><li class="breadcrumb-item"><a href="../electrodynamics/multipole-expansion.html"><span class="chapter-title">Advanced Methods III</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../electrodynamics/preliminaries.html">Electromagnetism</a></li><li class="breadcrumb-item"><a href="../electrodynamics/magnetostatics.html"><span class="chapter-title">Magnetostatics</span></a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -209,12 +209,22 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../electrodynamics/multipole-expansion.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">Advanced Methods III</span></a>
+  <a href="../electrodynamics/bvps-3.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Boundary Value Problems III</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../electrodynamics/magnetostatics.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">Magnetostatics</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../electrodynamics/orthogonal-functions.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Appendix I: Orthogonal Functions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../electrodynamics/complex-analysis.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Appendix II: Complex Analysis</span></a>
   </div>
 </li>
       </ul>
@@ -353,9 +363,12 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#multipole-expansion" id="toc-multipole-expansion" class="nav-link active" data-scroll-target="#multipole-expansion">Multipole Expansion</a></li>
-  <li><a href="#complex-analysis" id="toc-complex-analysis" class="nav-link" data-scroll-target="#complex-analysis">Complex Analysis</a></li>
-  <li><a href="#conformal-mappings" id="toc-conformal-mappings" class="nav-link" data-scroll-target="#conformal-mappings">Conformal Mappings</a></li>
+  <li><a href="#amperes-force-law" id="toc-amperes-force-law" class="nav-link active" data-scroll-target="#amperes-force-law">Ampere’s Force Law</a></li>
+  <li><a href="#magnetic-fields" id="toc-magnetic-fields" class="nav-link" data-scroll-target="#magnetic-fields">Magnetic Fields</a></li>
+  <li><a href="#amperes-law" id="toc-amperes-law" class="nav-link" data-scroll-target="#amperes-law">Ampere’s Law</a></li>
+  <li><a href="#vector-potential" id="toc-vector-potential" class="nav-link" data-scroll-target="#vector-potential">Vector Potential</a></li>
+  <li><a href="#multipole-expansion" id="toc-multipole-expansion" class="nav-link" data-scroll-target="#multipole-expansion">Multipole Expansion</a></li>
+  <li><a href="#field-energy" id="toc-field-energy" class="nav-link" data-scroll-target="#field-energy">Field Energy</a></li>
   </ul>
 </nav>
 </nav>
@@ -366,9 +379,9 @@ ul.task-list li input[type="checkbox"] {
 <!-- main -->
 <main class="content column-page-right" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../electrodynamics/preliminaries.html">Electromagnetism</a></li><li class="breadcrumb-item"><a href="../electrodynamics/multipole-expansion.html"><span class="chapter-title">Advanced Methods III</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../electrodynamics/preliminaries.html">Electromagnetism</a></li><li class="breadcrumb-item"><a href="../electrodynamics/magnetostatics.html"><span class="chapter-title">Magnetostatics</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-title">Advanced Methods III</span></h1>
+<h1 class="title"><span class="chapter-title">Magnetostatics</span></h1>
 </div>
 
 
@@ -385,30 +398,31 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>In this chapter, we continue on with the topic of advanced methods in electrostatics by continuing to look at advanced techniques for solving electrostatics problems. We’ll first introduce the multipole expansion, a useful approach for finding approximate solutions to an electrostatics problem when we’re far away from the source charges. Once we’ve done that, we’ll discuss the mathematical topic of complex analysis, deriving important results like conformal mappings and the residue theorem. Finally, we’ll apply the idea of conformal mappings to show how it can be used to solve electrostatics problems in two dimensions.</p>
+<p>Now that we’ve spent a considerable amount of time covering the topic of electrostatics and the basic concepts of electric fields, we will now move to the topic of magnetostatics and the concepts of magnetic fields. Magnetostatics can informally be thought of as the magnetic analogue of electrostatics. Whereas in electrostatics we were interested in the behavior of <em>electric fields</em> due to static <em>charges</em>, in magnetostatics we’re interested in the behavior of <em>magnetic fields</em> due to static <em>currents</em>. We will approach this new topic in much the same way we approached electrostatics, by first defining the force between two wires of steady current, and then abstracting from that the notion of the magnetic field. We will then use the properties of the magnetic field to derive the field equations of magnetostatics, and show that these can be cast in terms of a single equation for the <em>vector potential</em>, which is the magnetic analogue of the scalar potential from electrostatics.</p>
+<section id="amperes-force-law" class="level2">
+<h2 class="anchored" data-anchor-id="amperes-force-law">Ampere’s Force Law</h2>
+<p>In the 18th century, it was discovered that aside from mass, every physical body has associated to it another scalar quantity called <em>electric charge</em>, which can take on any real value, positive, negative, or zero. From these facts and other experiments, Coulomb discovered that the force between two static, charged bodies satisfies the following properties:</p>
+<ul>
+<li>The force between the two charges depends linearly on the magnitude of each charge. The larger the magnitude, the stronger the force between them.</li>
+<li>The force obeys an inverse square law nature similar to gravity. That is, the strength of the force between the two charges varies with the inverse square of the distance between them.</li>
+<li>As with gravity, the force is directed along the line of force joining the two charges.</li>
+<li>The force is <em>attractive</em> if the two bodies have charges of <em>opposite</em> sign, and <em>repulsive</em> if the two bodies have charges of the <em>same</em> sign. If either body has zero charge there is no force between them.</li>
+</ul>
+</section>
+<section id="magnetic-fields" class="level2">
+<h2 class="anchored" data-anchor-id="magnetic-fields">Magnetic Fields</h2>
+</section>
+<section id="amperes-law" class="level2">
+<h2 class="anchored" data-anchor-id="amperes-law">Ampere’s Law</h2>
+</section>
+<section id="vector-potential" class="level2">
+<h2 class="anchored" data-anchor-id="vector-potential">Vector Potential</h2>
+</section>
 <section id="multipole-expansion" class="level2">
 <h2 class="anchored" data-anchor-id="multipole-expansion">Multipole Expansion</h2>
-<ul>
-<li>derive the multipole expansion for cartesian coordinates, defining the various moments involved</li>
-<li>derive the multipole expansion for spherical coordinates and show it’s equivalent to the former</li>
-<li>work a few examples (see Griffiths mostly, maybe Jackson)</li>
-</ul>
 </section>
-<section id="complex-analysis" class="level2">
-<h2 class="anchored" data-anchor-id="complex-analysis">Complex Analysis</h2>
-<ul>
-<li>Keep a shorter topic on complex variables in the preliminaries.</li>
-<li>Move the more advanced stuff to this section and provide more details and examples.</li>
-</ul>
-</section>
-<section id="conformal-mappings" class="level2">
-<h2 class="anchored" data-anchor-id="conformal-mappings">Conformal Mappings</h2>
-<ul>
-<li>contour methods are a powerful method for solving 2D electrostatics problems</li>
-<li>idea is to use contour mappings from complex analysis to turn an electrostatics problem into a complex analysis problem</li>
-<li>you’ve already shown that a complex function satisfies Laplace’s equation, now show what conformal mappings are</li>
-<li>work a few examples (see Greiner)</li>
-</ul>
+<section id="field-energy" class="level2">
+<h2 class="anchored" data-anchor-id="field-energy">Field Energy</h2>
 
 
 </section>
@@ -825,8 +839,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation column-page-right">
   <div class="nav-page nav-page-previous">
-      <a href="../electrodynamics/bvps-2.html" class="pagination-link" aria-label="Boundary Value Problems II">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Boundary Value Problems II</span></span>
+      <a href="../electrodynamics/bvps-3.html" class="pagination-link" aria-label="Boundary Value Problems III">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Boundary Value Problems III</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">

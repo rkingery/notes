@@ -117,9 +117,17 @@ $$
 $$
 Recall the summation convention says that if a term has a repeated index a summation over all values of that index is implied. In this case, $v_i \mathbf{e}_i$ has the repeated index $i$, which is assumed to sum from 1 to 3. Any index that does not repeat does not get summed over. We'll sometimes express a vector only by its components $v_i$, where the basis is left unspecified. This is called *index notation*. It's fully equivalent to vector notation but sometimes more convenient when doing complex vector calculations. We'll go back and forth between these two notations in this course.
 
-For a vector to be a valid physical object, we require it transform in a specific way under coordinate transformations. If $S$ is one coordinate system and $S'$ is another, we require that $\mathbf{v}(\mathbf{x}') = \mathbf{J} \mathbf{v}(\mathbf{x})$, where $\mathbf{v}(\mathbf{x}')$ is the representation of $\mathbf{v}$ in the $S'$ coordinates and $\mathbf{v}(\mathbf{x})$ its representation in the $S$ coordinates. The object $\mathbf{J} \equiv \frac{d\mathbf{x}'}{d\mathbf{x}}$ is the *Jacobian matrix*, an invertible square matrix that describes how the coordinates transform from $S$ and $S'$. Any superposition of vectors is a valid vector as well.
+For a vector to be a valid physical object, we require it transform in a specific way under coordinate transformations. Suppose in one rectangular coordinate system we have coordinates $x_i$ and in another rotated coordinate system we have coordinates $x_i'$. Then for $\mathbf{v}$ to be a valid vector we require that for any such choice of coordinates we have
+$$
+\mathbf{v} = v_i \mathbf{e}_i = v_i' \mathbf{e}_i' \ .
+$$
+We can express this more succinctly by saying that
+$$
+v_j' = \frac{\partial x_j'}{\partial x_i} v_i \ .
+$$
+This set of $3^2 = 9$ partial derivatives is called the *Jacobian* between the coordinates $x_i$ and $x_i'$. Notice the implied summation going on over $i$. This means the right-hand side will contain only 3 elements indexed by $j$. These partial derivatives can be collected into a matrix called the *Jacobian matrix*, which is often denoted by $\mathbf{J}$ or $\mathbf{J}(\mathbf{x},\mathbf{x}')$. The Jacobian is a surprisingly important object in vector calculus as we'll see. Note that by definition, any linear superposition of valid vectors will also be a valid vector.
 
-We can think of a vector as a one index, or *rank-1*, object that transforms as specified above. A simpler object with no index, or *rank-0*, defines a *scalar*. A *scalar* is a single number that doesn't change under coordinate transformations. An important example of a scalar is the *dot product* or *inner product* between two vectors, defined in Euclidean space by
+We can thus think of a vector as a one index, or *rank-1*, object that transforms in the manner specified above. A simpler object with no index, or *rank-0*, defines a *scalar*. A *scalar* is a single number that doesn't change under coordinate transformations. An important example of a scalar is the *dot product* or *inner product* between two vectors, defined in Euclidean space by
 $$
 \mathbf{v} \cdot \mathbf{w} \equiv v_i w_i = v_1 w_1 + v_2 w_2 + v_3 w_3 \ .
 $$
@@ -129,11 +137,9 @@ $$
 $$
 Here $|\mathbf{v}| \equiv \sqrt{\mathbf{v} \cdot \mathbf{v}}$ is the *norm* or *magnitude* of $\mathbf{v}$. This formula says that in some sense the dot product encodes information about both the magnitude of vectors as well as the angles between them. When $|\mathbf{v}|=1$ we say $\mathbf{v}$ is a *unit vector*, which in this course we'll usually denote by $\mathbf{e}_v$. Evidently the dot product of two vectors is zero if they're perpendicular, in which case we call the two vectors *orthogonal*. When the two vectors are parallel or antiparallel their dot product is $\pm 1$.
 
-As long as coordinate transformations are rotations, the dot product will always be a scalar. As an exercise in using index notation let's prove this. When working in index notation we need to convert every object we need to an indexed object. Since $\mathbf{v}$ and $\mathbf{w}$ are vectors, they both get one index. Since their components get summed over in the dot product, the indices on the two vectors should be the same. That is, $\mathbf{v} \cdot \mathbf{w} \leftrightarrow v_i w_i$. 
+As long as coordinate transformations are rotations, the dot product will always be a scalar. As an exercise in using index notation let's prove this. When working in index notation we need to convert every object we need to an indexed object. Since $\mathbf{v}$ and $\mathbf{w}$ are vectors, they both get one index. Since their components get summed over in the dot product, the indices on the two vectors should be the same.
 
-We'll also need to index the Jacobian matrix $\mathbf{J}$. Since matrices carry two indices, we'll need two indices to index the Jacobian. It's not hard to see that the matrix multiplication $\mathbf{v}'=\mathbf{J}\mathbf{v}$ in index notation can be expressed as $v_i' = J_{ij} v_j$. We'll need to make use of two other facts. First, *transposing* a matrix in index notation just swaps the indices, so $(J^\top)_{ij} = J_{ji}$. Second, the identity matrix $\mathbf{I}$ is expressed in index notation using the *Kronecker delta* $\delta_{ij}$, defined to be 1 when $i=j$ and 0 otherwise. 
-
-We're now ready to proceed with the proof. We need to show that under a coordinate transformation from $S'$ to $S$ the dot product stays invariant under rotations. Starting with the dot product in $S'$ coordinates, we have
+We're now ready to proceed with the proof. We need to show that under a coordinate transformation the dot product stays invariant under rotations. Starting with the dot product in $x_i'$ coordinates, and denoting the partial derivatives in the Jacobian between $x_i$ and $x_i'$ coordinates by $J_{ij}$, we have
 $$
 v_i' w_i' = v_i' w_j' = (J_{ij} v_j) (J_{ik} w_k) = J_{ij} J_{ik} v_i w_k  \ .
 $$
@@ -171,13 +177,14 @@ Notice we have $\varepsilon_{ijk} x_i x_j y_k = -\varepsilon_{ijk} x_i x_j y_k$,
 
 Another surprisingly useful identity of the Levi-Civita symbol is gotten by *contracting* their product to get
 $$
-\varepsilon_{ijk} \varepsilon_{k\ell m} = \delta_{i\ell} \delta_{jm} - \delta_{im} \delta_{j\ell} \ .
+\boxed{
+\varepsilon_{ijk} \varepsilon_{k\ell m} = \delta_{i\ell} \delta_{jm} - \delta_{im} \delta_{j\ell} 
+} \ .
 $$
 
+##### Example: BAC-CAB rule
 
-#### Example: BAC-CAB Rule
-
-As an application of this surprising identity, we'll use it to prove the well-known *BAC-CAB* rule for triple products,
+As an application of this identity, we'll use it to prove the well-known *BAC-CAB* rule for triple products,
 $$
 \mathbf{a} \times (\mathbf{b} \times \mathbf{c}) = \mathbf{b} (\mathbf{a} \cdot \mathbf{c}) - \mathbf{c} (\mathbf{a} \cdot \mathbf{b}) \ .
 $$
@@ -205,7 +212,9 @@ While cute, this formula only works in 3 dimensions. In other dimensions we'd ha
 
 ## Vector Calculus
 
-Calculus extends naturally to higher dimensions, but often in subtle ways. Most importantly, there are different types of derivatives and integrals defined in higher dimensions with different meaning and applications. Due to complications involved in using curvilinear coordinates in vector calculus we'll state results in Cartesian coordinates and address the curvilinear situation later.
+Calculus extends naturally to higher dimensions, but often in subtle ways. Most importantly, there are different types of derivatives and integrals defined in higher dimensions with different meaning and applications. Due to complications involved in using curvilinear coordinates in vector calculus we'll state results in Cartesian coordinates and address the others later.
+
+### Differential Vector Calculus
 
 The fundamental object of vector calculus is the *differential* of a field. This says how much the field changes if its inputs are nudged in some direction by an infinitesimal amount. In Cartesian coordinates, it turns out the differential of a scalar field $f(\mathbf{x})$ is nothing more than a sum of partial differentials along each coordinate. That is,
 $$
@@ -223,7 +232,7 @@ $$
 $$
 \nabla f \equiv \partial_i f \ \mathbf{e}_i \equiv \frac{\partial f}{\partial x} \mathbf{e}_x + \frac{\partial f}{\partial y} \mathbf{e}_y + \frac{\partial f}{\partial z} \mathbf{e}_z \ .
 $$
-This quantity is evidently some kind of vector derivative, called the *gradient* of the field $f$. Since $f$ is a scalar field, $\nabla f$ will be a vector field. Its components are the partial derivatives of $f$ in the $x_i$ direction at each $\mathbf{x}$. The gradient always points perpendicular to the *level curves* where $f=\text{const}$. To see why we can use the geometric formula for the dot product to express any change in the function along a level curve as
+This quantity is evidently some kind of vector derivative, called the *gradient* of the field $f$. Since $f$ is a scalar field, $\nabla f$ will be a vector field. Its components are the partial derivatives of $f$ in the $x_i$ direction at each $\mathbf{x}$. The gradient always points perpendicular to the *level curves* where $f=\text{const}$. To see why this is the case, we can use the geometric formula for the dot product to express any change in the function along a level curve as
 $$
 \delta f = \nabla f \cdot \delta \mathbf{x} = |\nabla f| |\delta \mathbf{x}| \cos\theta \ .
 $$
@@ -263,6 +272,8 @@ $$
 \end{align*}
 $$
 The Laplacian in the last expression is understood to be taken component-wise, as a vector with components $\nabla^2 F_i$. Each of these identities can all be efficiently proven using index notation.
+
+### Integral Vector Calculus
 
 The gradient, divergence, and curl each has its own corresponding version of the fundamental theorem of calculus. To understand integration in higher dimensions though we first need to define what the differentials are. To integrate over a spatial volume we use the *volume element* $d^3 \mathbf{x}$, defined in Cartesian components by
 $$
@@ -419,7 +430,7 @@ $$
 $$
 We can also take the tensor product of a rank-2 tensor with a vector, which would give a three-index object, or a *rank-3 tensor*. Taking the tensor product of two rank-2 tensors would give a *rank-4 tensor*. And so on. In fact we can define a tensor of any rank. A *rank-k* tensor is an object with $k$ indices that tranforms component-wise according to the law
 $$
-T_{i_1' i_2' \cdots i_k'} = R_{i_1' i_1} R_{i_2' i_2} \cdots R_{i_2' i_2} T_{i_1 i_2 \cdots i_k} \ .
+T_{i_1' i_2' \cdots i_k'} = J_{i_1' i_1} J_{i_2' i_2} \cdots J_{i_2' i_2} T_{i_1 i_2 \cdots i_k} \ .
 $$
 In this course we won't generally work much with tensors of higher rank than 2, but they do occasionally show up in electromagnetism, for example in the multipole expansions of the scalar and vector potentials. Tensor contraction can be defined naturally on these higher-rank tensors as well. Contracting two indices in a tensor will always reduce its rank by 2.
 
@@ -454,129 +465,200 @@ It will be frequently useful in electrodynamics to work in other coordinate syst
 
 Note the formulas for these expressions in the the two-dimensional polar coordinate system $(\varrho,\varphi)$ can be obtained by taking the formulas for cylindrical coordinates and setting all the $z$-components equal to zero.
 
-## Fourier Analysis
+## Complex Variables
 
-We will at times find it convenient in this course to go back and forth between the time domain and the frequency domain. To express a continuous function of time as a function of frequency we can use the *Fourier transform*. For a sufficiently well-behaved time-dependent function $f(t)$, we can define its Fourier transform $f(\omega)$ by
-$$
-f(\omega) \equiv \mathcal{F}[f(t)](\omega) \equiv \int_{-\infty}^\infty dt \ f(t) e^{-i\omega t} \ .
-$$
-The function $f(\omega)$, which in general will be complex-valued, is thought of as a function of *angular frequency* $\omega$. We can express the same thing using the *Fourier operator* $\mathcal{F}$. Since the $\mathcal{F}$ is an integral transform it inherits many of the properties of the integral plus a few other convenient properties that are easy to prove from the definition. Here the $\leftrightarrow$ symbol means that right-hand side is the Fourier transform, or *Fourier dual*, of the left-hand side. That is, $f(t) \leftrightarrow f(\omega)$, a very convenient simplification of notation.
+In electromagnetism we'll often find ourselves dealing with not only real variables and real-valued functions, but complex variables and complex-valued functions. Here we'll briefly touch on the basics of complex variables and functions.
 
-- Linearity: $\alpha f(t) + \beta g(t) \leftrightarrow \alpha f(\omega) + \beta g(\omega)$.
-- Time Scaling: $f(\alpha t) \leftrightarrow \frac{1}{|\alpha|} f\big(\frac{\omega}{\alpha}\big)$.
-- Time Shifting: $f(t-t_0) \leftrightarrow e^{i\omega t_0} f\big(\omega)$.
-- Time Reversal: $f(-t) \leftrightarrow f(-\omega)$.
-- Complex Conjugation: $f^*(t) \leftrightarrow f^*(\omega)$.
-- Differentiation: $\frac{d}{dt} f(t) \leftrightarrow i\omega f(\omega)$.
-- Convolution: $f \ast g \leftrightarrow f(\omega) g(\omega)$.
+A *complex variable* is any variable $z$ of the form
+$$
+z = x + iy \ ,
+$$
+where $x$ and $y$ are real numbers and $i \equiv \sqrt{-1}$ is the imaginary number. We call $x \equiv \text{Re} \ z$ the *real part* of $z$ and $y \equiv \text{Im} \ z$ the *imaginary part* of $z$. Geometrically, we can imagine any complex variable $z$ as a representing a point in a 2-dimensional *complex plane*, usually denoted by the symbol $\mathbb{C}$. The $x$-axis represents the real part of $z$ and the $y$-axis the imaginary part of $z$.
 
-The last operation is a very common integral transform known as *convolution*, defined by
+Every complex variable has a dual variable $z^*$ called the *complex conjugate*, defined by
 $$
-(f \ast g)(t) \equiv \int_{-\infty}^\infty dt' \ f(t') g(t-t') \ .
+z^* \equiv x - iy \ .
 $$
-The convolution operation shows up surprisingly often, particularly in the theory of Green's functions, which we'll get to later in this course. Convolutions act like a form of function multiplication in that the operation is both commutative and associative.
+By adding and subtracting $z$ and $z^*$ together, we also get the following relations for the real and imaginary parts of $z$,
+$$
+x = \text{Re} \ z = \frac{z + z^*}{2} \quad , \quad y = \text{Im} \ z = \frac{z - z^*}{2i} \ .
+$$
+Geometrically, the complex conjugate is obtained by flipping $z$ across the real axis in the complex plane. When we say that $z^*$ is dual to $z$, we mean that their product will always be a non-negative real number, with $zz^* = x^2 + y^2$. In the complex plane, this number represents the squared radial distance of $z$ from the origin. We can thus define a *modulus* or length by
+$$
+|z| \equiv \sqrt{zz^*} = \sqrt{x^2 + y^2} \ .
+$$
+Just as we can have real-valued functions of a real variable, we can have complex-valued functions of a real variable, and even complex functions of a complex variable. We'll talk about these functions more generally in the appendix. 
 
-#### Example: Fourier Transform of a Gaussian
+For now we only mention the most important complex-valued function in this course, and indeed in all of science, the *complex exponential*. For a real variable $x$, we define the complex exponential function by $f(x) = e^{i x}$. As written this function seems mysterious and perhaps not that important, but as we'll see it's very important.
 
-As an example of using these Fourier transform properties let's calculate the Fourier transform of the Gaussian probability density
-$$
-f(t) = \frac{1}{\sqrt{2\pi\sigma^2}} \exp\bigg(-\frac{1}{2} \frac{(t-t_0)^2}{\sigma^2}\bigg)
-$$
-First, using the linear, time scaling, and shifting properties together we must have
-$$
-f(\omega) = \frac{e^{i\omega t_0}}{\sqrt{2\pi\sigma^2}} \mathcal{F}\bigg[\exp\bigg(-\frac{1}{2} \frac{t^2}{\sigma^2}\bigg)\bigg] = \frac{1}{\pi} e^{i\omega t_0} \mathcal{F}\big[e^{-t^2}\big](\sqrt{2}\sigma\omega) \ .
-$$
-All that remains then is to find the transform of $g(t) \equiv e^{-t^2}$. We can do this by completing the square and using the translational invariance of the Gaussian integral to get
+Observe that since $i^2 = -1$, then $i^3 = -i$, $i^4 = 1$, etc. In general, $i^n = \pm 1$ if $n$ is even and $i^n = \pm i$ if $n$ is odd. This means if we expand the complex exponential as a Taylor series and rearrange terms, we have
 $$
 \begin{align*}
-g(\omega) &= \int_{-\infty}^\infty dt \ g(\omega) e^{-i\omega t} \\
-&= \int_{-\infty}^\infty dt \ e^{-t^2} e^{-i\omega t} \\
-&= \int_{-\infty}^\infty dt \ \exp(-\bigg(t-\frac{i\omega}{2}\bigg)^2) \\
-&= \sqrt{\pi} \exp(-\frac{\omega^2}{4}) \ .
-
+e^{ix} &= 1 + ix + \frac{i^2}{2!} x^2 + \frac{i^3}{3!} x^3 + \frac{i^4}{4!} x^4 + \frac{i^5}{5!} x^5 + \cdots \\
+&= 1 + ix - \frac{x^2}{2!} - \frac{ix^3}{3!} + \frac{x^4}{4!} + \frac{ix^5}{5!} + \cdots \\
+&= \bigg(1 - \frac{x^2}{2!} + \frac{x^4}{4!} + \cdots\bigg) + i\bigg(x - \frac{x^3}{3!} + \frac{x^5}{5!} + \cdots\bigg) \\
+&= \cos x + i \sin x \ .
 \end{align*}
 $$
-Thus, putting it all together, we have
-$$
-\mathcal{F}\bigg[\frac{1}{\sqrt{2\pi\sigma^2}} \exp\bigg(-\frac{1}{2} \frac{(t-t_0)^2}{\sigma^2}\bigg)\bigg](\omega) = \exp(i\omega t_0 - \frac{\sigma^2\omega^2}{2}) \ .
-$$
-Evidently then, the Fourier transform of a Gaussian is another Gaussian. In a sense, the Gaussian is the unique class of functions whose Fourier transforms are also of the same class.
-
----
-
-An important fact about the Fourier transform is that it's *invertible*, meaning we can define an *inverse Fourier transform operator* $\mathcal{F}^{-1}$ such that $\mathcal{F} \mathcal{F}^{-1} = 1$. The inverse Fourier transform of $f(t)$ turns out to be given by the dual integral
-$$
-f(t) = \mathcal{F}^{-1}[f(\omega)](t) = \int_{-\infty}^\infty \frac{d\omega}{2\pi} \ f(\omega) e^{i\omega t} \ .
-$$
-Notice that unlike the Fourier transform, its inverse transform comes has a rescaled measure of $\frac{d\omega}{2\pi}$. There's nothing deep about this fact. It's just a relic of the way we defined the Fourier transform above. We could define it in ways that remove the $2\pi$ as well. In fact, there are many different conventions used to define the Fourier transform, which can make it a bit annoying to look up these formulas in tables.
-
-Evidently, for the Fourier transform to be invertible we must have that $f(t) = \mathcal{F}^{-1} \mathcal{F} [f(t')](t)$. Let's see what this says by manipulating the formula a little bit. We have
-$$
-\begin{align*}
-f(t) &= \mathcal{F}^{-1} \mathcal{F} [f(t')](t) \\
-&= \int_{-\infty}^\infty \frac{d\omega}{2\pi} \ \int_{-\infty}^\infty dt' \ f(t') e^{-i\omega t'} e^{i\omega t} \\
-&= \int_{-\infty}^\infty dt' \ f(t') \int_{-\infty}^\infty \frac{d\omega}{2\pi} \ e^{i\omega(t-t')} \ .
-\end{align*}
-$$
-Evidently, the inner integral acts as some kind of kernel function that picks out the value $f(t)$ from the integrand function $f(t')$. Let's give this kernel function a name, the *Dirac delta function* $\delta(t-t')$,
-$$
-\delta(t-t') \equiv \int_{-\infty}^\infty \frac{d\omega}{2\pi} \ e^{i\omega(t-t')} \ .
-$$
-The delta function evidently then has the defining property that
+In the last step, we recognized the fact that the even powers in the series expansion were just those for $\cos x$, and the odd terms were just those for $i \sin x$. This proves the well-known *Euler identity*,
 $$
 \boxed{
-f(t) = \int_{-\infty}^\infty dt' \ f(t') \delta(t-t')
-}\ .
+e^{ix} = \cos x + i \sin x
+} \ .
 $$
-In a sense, the delta function can be thought of as a sort of density function for a single point. When $t \neq t'$ the delta function must be zero. But to be a proper density this means that when $t=t'$​ the delta function must be infinitely high so its area under the curve remains constant.
+Notice that according to this formula, the modulus of $e^{ix}$ is given by
+$$
+|e^{ix}| = e^{ix} (e^{ix})^* = \cos^2 x + \sin^2 x  = 1 \ .
+$$
+This means that the complex exponential in effect behaves like a rotation in the complex plane. Indeed, the path traversed by $e^{ix}$ as $x$ increases traces a counterclockwise circle of radius one in the complex plane.
 
-Notice that based on this definition the delta function must have units to cancel out the units of the differential $dt'$. If $dt'$ has units of time, evidently $\delta(t-t')$ must have units of *frequency* or *inverse time*.
+If we take any complex variable $z$ and multiply it by $e^{i\varphi}$, then $z$ rotates counter-clockwise by an angle $\varphi$ in the complex plane. An immediate consequence of this fact is that any complex variable can be represented by the polar formula
+$$
+z = r e^{i\varphi} \ ,
+$$
+where $r = |z|$ represents the distance of $z$ from the origin in the complex plane, while $\varphi$ represents its angle above the $x$-axis, called the *argument* or *phase* of $z$, often denoted by $\phi \equiv \text{Arg} \ z$.
 
-In one sense, the delta function is just the Fourier transform of the constant $f(t)=1$. In a more visual sense it's an infinite spike. Indeed, we can imagine defining the delta function differently as a limiting case of a normalized Gaussian whose variance $\sigma^2$ goes to zero,
+By writing $z = x + iy$, it's not hard to see that the phase will depend on the quadrant $z$ is in, with
 $$
-\delta(t-t') = \lim_{\sigma \rightarrow 0} \frac{1}{\sqrt{2\pi\sigma^2}} e^{-\frac{(t-t')^2}{2\sigma^2}} \ .
+\varphi = \text{Arg} \ z = \begin{cases}
+\tan^{-1} \frac{y}{x} & x > 0 \ , \\
+\pi + \tan^{-1} \frac{y}{x} & x < 0 \ , y > 0 \ , \\
+-\pi + \tan^{-1} \frac{y}{x} & x < 0 \ , y < 0 \ .
+\end{cases}
 $$
-This can be illustrated in the figure below.
+One useful fact to remember about phases is that when two complex variables are multiplied together their phases add. To see why this is true, let $z_1 = r_1 e^{i \phi_1}$ and $z_2 = r_2 e^{i \phi_2}$. Then the product $z_1 z_2$ can be written as
+$$
+z_1 z_2 = r_1 r_2 e^{i (\varphi_1 + \varphi_2)} \ .
+$$
+From this, we can see that the modulus of the product is $|z_1 z_2| = r_1 r_2$, and the phase of the product is
+$$
+\text{Arg} \ z_1 z_2 = \text{Arg} \ z_1 + \text{Arg} \ z_2 \ .
+$$
+In a similar manner, it's easy to see that when dividing two complex numbers their phases get subtracted,
+$$
+\text{Arg} \ \frac{z_1}{z_2} = \text{Arg} \ z_1 - \text{Arg} \ z_2 \ .
+$$
+Last, note that if we substitute $x=\pi$ into the complex exponential function and move everything to one side, we get
+$$
+e^{i\pi} + 1 = 0 \ .
+$$
+This curious identity has sometimes been called the most beautiful in mathematics, since it's the only valid equation that includes only the fundamental numbers $0,1,\pi,e$ and $i$, with each number occurring exactly once in the equation.
 
-![](../../../Library/Application Support/typora-user-images/image-20240309160905585.png){fig-align=center width=300}
+## Delta Function
 
-Strictly speaking the delta function isn't a proper function at all since it's undefined when $t=t'$​. It's a so-called *generalized function*, meaning it's a function that has meaning only when inside an integral. As physicists rarely do, we won't really bother with these mathematical details in this course. Whatever it is, the delta function is a convenient mathematical object.
+A very important mathematical object in electromagnetism and physics more generally is the *Dirac delta function* $\delta(x-x')$, defined by the property that for any real-valued function $f(x)$,
+$$
+\boxed{
+f(x) = \int_{-\infty}^\infty dx' \ f(x') \delta(x-x')
+} \ .
+$$
+Notice from this definition the delta function must have units to cancel out the units of $dx'$. If $dx'$ has units of length, for example, then evidently $\delta(x-x')$ must have units of inverse length.
 
-One fact that's worth remembering and easy to prove is how the delta function transforms under a time rescaling,
+Evidently, the delta function acts as a sort of sifting function that picks out a point $x$ from an integral and evaluates whatever function is inside the integral at that point. In particular, when $x=0$ we have
 $$
-\delta(at) = \frac{1}{|a|} \delta(t) \ .
+f(0) = \int_{-\infty}^\infty dx \ f(x) \delta(x) \ .
 $$
-Another useful fact to remember is that the delta function is the identity of the convolution operation. That is, $f \ast \delta = f$. This can easily be seen from the definition, which is just a special convolution operation.
+By taking $f(x) = 1$, we can see that the delta function satisfies
+$$
+\int_{-\infty}^\infty dx' \ \delta(x-x') = 1 \ .
+$$
+In fact, we don't even need to integrate over the whole real line. All that's required is that $x$ is included in the interval. If we consider some small interval $x - \varepsilon \leq x \leq x + \varepsilon$, we still have
+$$
+1 = \int_{x-\varepsilon}^{x+\varepsilon} dx' \ \delta(x-x') \ .
+$$
+By letting $\varepsilon \rightarrow 0$, we can see that $\delta(x-x') = 0$ when $x' \neq x$, but still must integrate to one. This means we can informally think of the delta function as an infinite spike at the point $x' = x$ that instantly dies off to zero away from the point $x$. That is, we can think of the delta function as a sort of density for a single point.
 
-Thus far we've talked about the Fourier transform in time. We can define a Fourier transform for a scalar field $f(\mathbf{x})$ as well by multiplying the transform of each component together. For a well-behaved scalar field $f(\mathbf{x})$, we have
+We can use this infinite spike idea if we like to "define" a delta function as a limit of Gaussian functions of the form
 $$
-f(\mathbf{k}) \equiv \mathcal{F}[f(\mathbf{x})](\mathbf{k}) \equiv \int_{\mathbb{R}^3} d^3 \mathbf{x} \ f(\mathbf{x}) e^{i \mathbf{k} \cdot \mathbf{x}} \ .
+p(x) = \frac{1}{\sqrt{2\pi\sigma^2}} e^{-(x-x')^2 / 2\sigma^2} \ .
 $$
-Here $\mathbf{k}$ is the *wavevector*, a proper vector of three components. Note the subtle change in sign in this definition of the Fourier transform. This is a physics convention that makes the application of the Fourier transform easier to scalar fields $f(\mathbf{x},t)$​ in space and time.
+Recall that this function represents the probability density of a Gaussian random variable $x$. In particular, this means this function also integrates to one, is peaked at $x' = x$, and dies off to zero at a rate characterized by the parameter $\sigma$. The larger $\sigma$ is the more spread out the Gaussian will be, and vice versa. As we let $\sigma \to 0$ the Gaussian becomes infinitely sharp at $x'=x$ and dies off quickly to zero away from this point. This means we can also "define" the delta function as the limit of $p(x)$ as $\sigma \to 0$,
+$$
+\delta(x-x') = \lim_{\sigma \rightarrow 0} \frac{1}{\sqrt{2\pi\sigma^2}} e^{-(x-x')^2/2\sigma^2} \ .
+$$
+We use the term "define" in quotations here because strictly speaking this limit isn't well-defined at $x'=x$, which means the delta function itself isn't well-defined. Instead it's a so-called *generalized function* or *distribution*, meaning it's an object that has meaning only when integrated against some *test function* $f(x)$. If we like we can formalize the above limit by
+$$
+\int_{-\infty}^\infty dx' f(x) \delta(x-x') = \lim_{\sigma \to \infty} \frac{1}{\sqrt{2\pi\sigma^2}} \int_{-\infty}^\infty dx' f(x') e^{-(x-x')^2/2\sigma^2} \ .
+$$
+From this formula, it's clear that the delta function must be an even function, so $\delta(-x) = \delta(x)$. In particular, this means that we can always swap $x$ and $x'$ using the relation $\delta(x-x') = \delta(x'-x)$.
 
-The inverse Fourier transform for a scalar field is defined in a similar way, by
+Another useful fact about the delta function relates to how it transforms under a rescaling of coordinates $u=ax$. We have
 $$
-f(\mathbf{x}) = \mathcal{F}^{-1}[f(\mathbf{k})](\mathbf{x}) = \int_{\mathbb{R}^3} \frac{d^3 \mathbf{x}}{(2\pi)^3} \ f(\mathbf{x}) e^{-i \mathbf{k} \cdot \mathbf{x}} \ .
+\delta(ax) = \frac{1}{|a|} \delta(x) \ .
 $$
-The scalar field version of the Fourier transform satisfies essentially the same properties as the time-dependent version, just appropriately modified for use with vectors. The delta function extends to fields as well. We simply define the field version of the delta function as the product of its components. In Cartesian coordinates, this says
+This can easily be proven by integrating against a test function $f(x)$ and changing variables using $u=ax$. The absolute value in the denominator follows from the fact that the delta function must be an even function. This property can be extended to delta functions of the form $\delta(g(x))$ as well. If $g(x)$ has roots $a_n$ with non-zero derivatives at each $a_n$, we have
 $$
-\delta(\mathbf{x}-\mathbf{x}') \equiv \delta(x-x') \delta(y-y') \delta(z-z') \ .
+\delta(g(x)) = \sum_n \frac{\delta(x-a_n)}{\big|\frac{d}{dx} g(a_n)\big|} \ .
 $$
-This definition evidently means $\delta(\mathbf{x}-\mathbf{x}')$ must have units of inverse volume.
+This can be proven by Taylor expanding $g(x)$ around each root and using the scaling property above on each root.
 
-In the case of fields, the delta function $\delta(\mathbf{x}-\mathbf{x}')$ picks out points in 3-dimensional space, activating only when $\mathbf{x}=\mathbf{x}'$. It's worth noting that since the delta function is really a density rather than an ordinary function, under a change of coordinates it transforms as a density, meaning we have to include the Jacobian factor in the definition. For example, in a change of coordinates of the form $\mathbf{u}=\mathbf{u}(\mathbf{x})$, we have
+We can define the derivative of a delta function as well by choosing a test function $f(x)$ and integrating by parts to get
 $$
-\delta(\mathbf{x}-\mathbf{x}') = \frac{1}{|\det \mathbf{J}|} \delta(u-u') \delta(v-v') \delta(w-w') \ .
+\int_{-\infty}^\infty dx \ f(x) \frac{d}{dx} \delta(x-x') = - \int_{-\infty}^\infty dx \ \frac{d}{dx} f(x) \cdot \delta(x-x') = -\frac{d}{dx} f(x') \ .
 $$
-Here $\mathbf{J} = \frac{d\mathbf{u}}{d\mathbf{x}}$ is the Jacobian of the transformation from $u$-coordinates to Cartesian $x$​​-coordinates.
+Note for this to be well-defined we require that $f(x)$ vanish as $x \to \pm \infty$.
 
-#### Example: Divergence of Inverse Square Fields
+We can also define the delta function in another useful way using the *Fourier transform*. We won't go into details on the Fourier transform here. See the appendix for details. In brief, the Fourier transform of a function $f(x)$ can be obtained by multiplying by $e^{-ikx}$ and integrating over the real line to get another function $f(k)$ in terms of this new variable $k$,
+$$
+f(k) \equiv \int_{-\infty}^\infty dx \ f(x) e^{-ikx} \ .
+$$
+It turns out the Fourier transform is invertible, meaning we can recover $f(x)$ from $f(k)$ by another integral. If we multiply $f(k)$ by $\frac{1}{2\pi} e^{ikx}$ and integrate over $x$, we can recover $f(x)$ by the *inverse Fourier transform*
+$$
+f(x) = \int_{-\infty}^\infty \frac{dk}{2\pi} \ f(k) e^{ikx} \ .
+$$
+If we plug the first integral for $f(k)$ into this integral, using $x'$ instead of $x$, we get the *completeness relation*
+$$
+f(x) = \int_{-\infty}^\infty \frac{dk}{2\pi} \bigg(\int_{-\infty}^\infty dx' \ f(x') e^{-ikx'}\bigg) e^{ikx} \ .
+$$
+Suppose we interchange the order of integration to integrate first over $k$. Then we get
+$$
+f(x) = \int_{-\infty}^\infty dx' f(x') \int_{-\infty}^\infty \frac{dk}{2\pi} \ e^{ik(x-x')} \ .
+$$
+The only way this can be true evidently is if the inner integral is the delta function $\delta(x-x')$. We thus must have
+$$
+\boxed{
+\delta(x-x') = \int_{-\infty}^\infty \frac{dk}{2\pi} \ e^{ik(x-x')}
+} \ .
+$$
+Note that this integral isn't well-defined in the usual sense, since the complex exponentials are oscillating sine and cosine functions, and hence don't converge at infinity. We think of this integral instead as a formal relation that tells us when we can justify replacing it by a delta function.
 
-As an exercise in much of what we've learned so far, let's calculate the divergence of the vector field $\mathbf{F}(\mathbf{x}) = \frac{\mathbf{e}_r}{r^2}$. We could proceed in one of two ways. One way would be to use Cartesian coordinates and index notation to churn it out the hard way. The other way would be to recognize this scalar field is spherically symmetric, so we should work in spherical coordinates. Adopting the second approach since it's easier, we have
+The delta function extends naturally to higher dimensions. In three dimensions, we can define the delta function $\delta(\mathbf{x}-\mathbf{x}')$ by
+$$
+f(\mathbf{x}) = \int d^3\mathbf{x}' \ f(\mathbf{x}') \delta(\mathbf{x}-\mathbf{x}') \ .
+$$
+The integral is assumed to be over all space, but it doesn't matter. So long as $\mathbf{x}$ is contained inside the integration volume this relation will still hold.
+
+Again, if we set $f(\mathbf{x}) = 1$ we can write
+$$
+1 = \int d^3\mathbf{x}' \ \delta(\mathbf{x}-\mathbf{x}') \ .
+$$
+This means we can think of the 3-dimensional delta function as an infinite spike in three dimensions, which can be defined, for instance, by a limit of 3-dimensional Gaussian functions.
+
+The specific form of $\delta(\mathbf{x}-\mathbf{x}')$ in terms of coordinates will depend on the coordinate system used. For instance, if working in Cartesian coordinates, we can write $d^3\mathbf{x}' = dx'dy'dz'$, in which case it's clear we must have
+$$
+\delta(\mathbf{x}-\mathbf{x}') = \delta(x-x') \delta(y-y') \delta(z-z') \ .
+$$
+Since densities transform with volume element and the delta function is a kind of density, when working in other coordinate systems the delta function will depend on the Jacobian.  If $(u,v,w)$ is some other coordinate system with a volume element of the form $d^3\mathbf{x}' = |\text{det} \ \mathbf{J}| du' dv' dw'$, then we have
+$$
+\delta(\mathbf{x}-\mathbf{x}') = \frac{1}{|\text{det} \ \mathbf{J}|} \delta(u-u') \delta(v-v') \delta(w-w') \ .
+$$
+For example, in spherical coordinates we have $|\text{det} \ \mathbf{J}| = r^2 \sin\theta$, which means the delta function is given by
+$$
+\delta(\mathbf{x}-\mathbf{x}') = \frac{1}{r^2 \sin\theta} \delta(r-r') \delta(\theta-\theta') \delta(\varphi-\varphi') \ .
+$$
+Let's now work a simple example that puts together some of the topics covered in this chapter.
+
+##### Example: Divergence of Inverse Square Fields
+
+Suppose we wanted to calculate the divergence of the following vector field,
+$$
+\mathbf{F}(\mathbf{x}) = \frac{\mathbf{e}_r}{r^2} \ .
+$$
+We could proceed in one of two ways. One way would be to use Cartesian coordinates and index notation to churn it out the hard way. The other way would be to recognize this scalar field is spherically symmetric, so we should work in spherical coordinates more easily. Adopting the second approach, we can write
 $$
 \nabla \cdot \mathbf{F} = \frac{1}{r} \frac{\partial}{\partial r} \bigg(r^2 \frac{1}{r^2}\bigg) \ .
 $$
-It's tempting to cancel out the factors of $r^2$ and conclude $\nabla \cdot \mathbf{F} = 0$, but we have to be a little more careful than that. To see why let's use the divergence theorem to express the same problem as an integral over some closed volume. We can pick any volume we like. To make things easy let's suppose we're integrating inside a sphere of radius $R$. Then we have
+It's tempting to cancel out the factors of $r^2$ and conclude $\nabla \cdot \mathbf{F} = 0$, but we have to be a little more careful than that. To see why, let's use the divergence theorem to express the same problem as an integral over some closed surface. We can pick any surface we like as long as it includes the origin. Let's suppose we're integrating inside a sphere of radius $R$. Then we have
 $$
 \int_S \mathbf{F} \cdot d\mathbf{a} = \int_\mathcal{V} \nabla \cdot \mathbf{F} \ d^3\mathbf{x} \ .
 $$
@@ -584,72 +666,32 @@ Since $\mathbf{F}$ is spherically symmetric and we're integrating over a sphere,
 $$
 \int_S \mathbf{F} \cdot d\mathbf{a} = \int r^2 \bigg(\frac{1}{r^2}\bigg) \ d\Omega = 4\pi \ .
 $$
-Here the notation $d\Omega \equiv \sin\theta d\theta d\varphi$ is called the *solid angle*. It's just an infinitesimal 2-dimensional angle element. By convention the solid angle has units of *steradians*, a dimensionless angle unit similar to the radian.
+Here the notation $d\Omega \equiv \sin\theta d\theta d\varphi$ is called the *solid angle*, and has units of *steradians*.
 
-At any rate, the result we just derived true for *any* surface of arbitrary radius so long as it contains the origin. This means the divergence of $\mathbf{F}$ can't be zero, otherwise the surface integral would be zero. Moreover, it means the only contribution from the divergence can come at the point $r=0$ where the function blows up. We thus conclude that there must be a delta function multiplying $4\pi$ whose value is non-zero only when $r=0$. That is, we have
+The result we just derived true for *any* surface of arbitrary radius so long as it contains the origin. This means the divergence of $\mathbf{F}$ can't be zero, otherwise the surface integral would be zero. Moreover, it means the only contribution from the divergence can come at the point $r=0$ where the function blows up. We thus conclude that there must be a delta function multiplying $4\pi$ whose value is non-zero only when $r=0$. That is, we have
 $$
 \nabla \cdot \bigg(\frac{\mathbf{e}_r}{r^2}\bigg) = 4\pi \delta(\mathbf{x}) \ .
 $$
-Note that using the spherical coordinate version of the gradient we have $\nabla \frac{1}{r} = -\frac{\mathbf{e}_r}{r^2}$. We've thus shown another useful fact, that
+It's not hard to see that if we shift the divergence point from the origin to some other point $\mathbf{x}'$ and define $\boldsymbol{\xi} \equiv \mathbf{x} - \mathbf{x}'$, then the above result doesn't change except with $r$ replaced by $|\boldsymbol{\xi}|$ and the unit vector $\mathbf{e}_r$ replaced by $\mathbf{e}_\xi = \frac{\boldsymbol{\xi}}{|\boldsymbol{\xi}|}$. That is,
 $$
-\nabla^2 \bigg(\frac{1}{r}\bigg) = -4\pi \delta(\mathbf{x}) \ .
+\boxed{
+\nabla \cdot \bigg(\frac{\mathbf{x} - \mathbf{x}'}{|\mathbf{x} - \mathbf{x}'|^3}\bigg) = 4\pi \delta(\mathbf{x} - \mathbf{x}') 
+} \ .
 $$
-We will make good use of these formulas in the rest of this course.
+Last, notice that $\nabla \frac{1}{r} = -\frac{\mathbf{e}_r}{r^2}$. This means we've also established that
+$$
+\nabla^2 \bigg(\frac{1}{r}\bigg) = -4\pi \delta(\mathbf{x})
+$$
+Again shifting by $\mathbf{x}'$, it's easy to see this also implies that
+$$
+\boxed{
+\nabla^2 \bigg(\frac{1}{|\mathbf{x} - \mathbf{x}'|}\bigg) = -4\pi \delta(\mathbf{x} - \mathbf{x}')
+}\ .
+$$
+We will make good use of these formulas in the rest of this course, particularly in electrostatics.
 
-- Rewrite this section to emphasize that we'll only take Fourier transforms in spatial dimensions, not time dimensions.
-- For time dimensions we'll need to take the Laplace transform, so you may need to mention that too.
-- Try to hand-wave this section less, since the Fourier transform will be used a decent bit.
+## TEMPORARY
 
-## Complex Analysis
-
-The last math topic we will briefly review the topic of *complex analysis*, or the calculus of complex variables. We won't make a huge use of this topic in this course, but we will make key use of a few essential ideas at a few points, particularly the useful *Residue Theorem* and the idea of conformal mappings.
-
-Recall that a *complex variable* is any variable of the form $z = x + iy$, where $x$ and $y$ are real variables and $i = \sqrt{-1}$ is the imaginary number. We call $x \equiv \text{Re} z$ the *real part* of $z$ and $y \equiv \text{Im} z$ the *imaginary part* of $z$. We imagine any complex variable $z$ as a point in the *complex plane* $\mathbb{C}$, where the $x$-axis represents the real part of $z$ and the $y$-axis the imaginary part of $z$.
-
-Associated to any complex variable is its *complex conjugate* $z^* \equiv x - iy$ and its *modulus* defined by
-$$
-|z| \equiv \sqrt{z z^*} = \sqrt{x^2 + y^2} \ .
-$$
-We can also write any complex variable $z$ in a *polar form* $z = r e^{i\phi}$, where $r = |z|$ is the radial distance of $z$ from the origin in the complex plane, and $\phi$ its angle relative to the $x$-axis. The complex exponential $e^{i\phi}$ satisfies the well-known *Euler identity*
-$$
-e^{i\phi} = \cos\phi + i\sin\phi \ .
-$$
-Just as we can define a real-valued function of a single variable like $f(x)$, we can also define a complex function $f(z)$ of a single complex variable $z = x + iy$. Any complex-valued function $f(z)$ can be written as a sum of real and imaginary functions $f(z) = u(x,y) + i v(x,y)$. One example of such a function is the complex exponential function, defined by
-$$
-f(z) = e^z = e^{x + iy} = e^x e^{iy} = e^x \cos y + i e^x \sin y \ .
-$$
-Just like with a real variable, we can differentiate functions of a complex variable in the usual way. For example, the derivative of the complex exponential function $f(z) = e^z$ is given by
-$$
-\frac{d}{dz} e^z = e^z \ .
-$$
-It turns out that calculus in complex numbers is special, in the sense that any complex-valued function that can be differentiated at least once at a given point can be differentiated infinitely many times at that point. Any complex function that can be differentiated at each $z$ in the complex plane is called *analytic*. For a complex function to be analytic it's equivalent to check that it satisfies the *Cauchy-Riemann conditions*: If $f(z) = u(x,y) + i v(x,y)$, for $f(z)$ to be analytic we require that at each point
-$$
-\frac{\partial u}{\partial x} = \frac{\partial v}{\partial y} \quad , \quad \frac{\partial u}{\partial y} = -\frac{\partial v}{\partial x} \ .
-$$
-A curious but useful fact we'll make use of when we get to conformal mapping is that when $f(z)$ is analytic, $u(x,y)$ and $v(x,y)$ will always satisfy the 2-dimensional Laplace's equation. That is,
-$$
-\frac{\partial^2 u}{\partial x^2} + \frac{\partial^2 v}{\partial y^2} = 0 \ .
-$$
-This can easily be seen by plugging the Cauchy-Riemann conditions into the left-hand side and seeing that the terms cancel.
-
-Every analytic function has a valid Taylor series expansion about any point defined in the usual way. For example, the Taylor series for the complex exponential about $z=0$ is what we'd expect,
-$$
-e^z = \sum_{n=0}^\infty \frac{z^n}{n!} = 1 + z + \frac{z^2}{2!} + \frac{z^3}{3!} + \cdots \ .
-$$
-Many complex functions can't be differentiated at every point, but can at all but a finite number of points. These functions aren't analytic, but almost analytic in a sense. For functions like this, $f(z)$ is differentiable except at a finite number of points where the function blows up to infinity, called *poles*. For example, the function $f(z) = \frac{1}{z}$ is not differentiable at the pole $z=0$ but is at any other point in the complex plane.
-
-Complex functions with poles like this have a Taylor series expansion about any point away from the poles. We can also expand complex functions about poles as well if we allow for negative powers in the series expansion. This sort of generalization of a Taylor series is called a *Laurent Series*, defined by
-$$
-f(z) = \sum_{n = -\infty}^\infty c_n (z - a)^n = \cdots + \frac{c_{-2}}{(z-a)^2} + \frac{c_{-1}}{(z-a)} + c_0 + c_1 (z-a) + c_2 (z-a)^2 + \cdots \ .
-$$
-The coefficients $c_n$ can be determined any number of ways. To see an example, let's find the Laurent series for
-$$
-f(z) = e^{1/z} \ .
-$$
-This function clearly blows up at $z=0$. Using the Taylor series expansion for the complex exponential at $z=0$, we can write
-$$
-f(z) = \sum_{n=0}^\infty \frac{(1/z)^n}{n!} = 1 + \frac{1}{z} + \frac{1}{2z^2} + \frac{1}{6z^3} + \cdots \ .
-$$
 The coefficient $c_{-1}$ in the Laurent Series is called a *residue* of the function $f(z)$. In the previous example the function $f(z) = e^{1/z}$ evidently has a residue of $c_{-1} = 1$. These residues that turn out to be very useful for our purposes due to a useful integral theorem we'll see shortly.
 
 Many complex functions have residues at different points. Anywhere the function has a pole there will be at least one residue. For example, the function
@@ -767,6 +809,3 @@ $$
 \int_{-\infty}^\infty dx \ \frac{\cos x}{x^2 + 1} = \frac{\pi}{e} \ .
 $$
 
-- Move the stuff that's essential only to conformal mappings to that section.
-- Here be sure to cover the basics of complex variables, and *maybe* the residue theorem.
-- Note the residue theorem won't be used until we get to electrodynamics, so it could be thrown in somewhere else, so we can cover complex analysis in a little more depth.

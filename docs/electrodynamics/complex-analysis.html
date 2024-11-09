@@ -1,0 +1,1575 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.551">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Personal Notes - Appendix II: Complex Analysis</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../circuits/circuit-abstraction.html" rel="next">
+<link href="../electrodynamics/orthogonal-functions.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar docked">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../electrodynamics/preliminaries.html">Electromagnetism</a></li><li class="breadcrumb-item"><a href="../electrodynamics/complex-analysis.html"><span class="chapter-title">Appendix II: Complex Analysis</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">Personal Notes</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">Classical Mechanics</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../classical-mechanics/newtonian-mechanics.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Newtonian Mechanics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../classical-mechanics/simple-systems.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Simple Systems</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../classical-mechanics/reference-frames.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Reference Frames</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../classical-mechanics/lagrangian-mechanics.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Lagrangian Mechanics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../classical-mechanics/hamiltonian-mechanics.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Hamiltonian Mechanics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../classical-mechanics/central-forces.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Central Forces</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../classical-mechanics/coupled-oscillations.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Coupled Oscillations</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../classical-mechanics/rigid-bodies.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Rigid Bodies</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../classical-mechanics/canonical-transformations.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Canonical Transformations</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../classical-mechanics/integrability-and-chaos.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Integrability and Chaos</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../classical-mechanics/continuum-mechanics.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Continuum Mechanics</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text">Electromagnetism</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../electrodynamics/preliminaries.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Preliminaries</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../electrodynamics/electrostatics.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Electrostatics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../electrodynamics/bvps-1.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Boundary Value Problems I</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../electrodynamics/bvps-2.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Boundary Value Problems II</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../electrodynamics/bvps-3.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Boundary Value Problems III</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../electrodynamics/magnetostatics.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Magnetostatics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../electrodynamics/orthogonal-functions.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Appendix I: Orthogonal Functions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../electrodynamics/complex-analysis.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">Appendix II: Complex Analysis</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+ <span class="menu-text">Circuit Analysis</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../circuits/circuit-abstraction.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">The Lumped Circuit Abstraction</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../circuits/analysis.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Analyzing Circuits</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../circuits/nonlinear-methods.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Nonlinear Methods</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../circuits/digital-abstraction.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">The Digital Abstraction</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../circuits/amplifiers.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Amplifiers</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../circuits/first-order-systems.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">First-Order Systems</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../circuits/second-order-systems.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Second-Order Systems</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../circuits/ac-analysis.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">AC Analysis</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../circuits/op-amps.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Operational Amplifiers</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../circuits/energy-power.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Energy and Power</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+ <span class="menu-text">Quantum Mechanics</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../quantum-mechanics/identical-particles.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Identical Particles</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../quantum-mechanics/second-quantization.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Second Quantization</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
+ <span class="menu-text">Statistical Mechanics</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../statistical-mechanics/thermodynamics.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Thermodynamics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../statistical-mechanics/probability.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Probability</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../statistical-mechanics/kinetic-theory.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Kinetic Theory</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../statistical-mechanics/classical-stat-mech.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Classical Statistical Mechanics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../statistical-mechanics/classical-gases.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Classical Gases</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../statistical-mechanics/quantum-stat-mech.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Quantum Statistical Mechanics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../statistical-mechanics/quantum-gases.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Quantum Gases</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+    <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#complex-functions" id="toc-complex-functions" class="nav-link active" data-scroll-target="#complex-functions">Complex Functions</a>
+  <ul class="collapse">
+  <li><a href="#multivalued-functions" id="toc-multivalued-functions" class="nav-link" data-scroll-target="#multivalued-functions">Multivalued Functions</a></li>
+  </ul></li>
+  <li><a href="#analytic-functions" id="toc-analytic-functions" class="nav-link" data-scroll-target="#analytic-functions">Analytic Functions</a>
+  <ul class="collapse">
+  <li><a href="#definition" id="toc-definition" class="nav-link" data-scroll-target="#definition">Definition</a></li>
+  <li><a href="#cauchy-riemann-equations" id="toc-cauchy-riemann-equations" class="nav-link" data-scroll-target="#cauchy-riemann-equations">Cauchy-Riemann Equations</a></li>
+  <li><a href="#harmonic-functions" id="toc-harmonic-functions" class="nav-link" data-scroll-target="#harmonic-functions">Harmonic Functions</a></li>
+  </ul></li>
+  <li><a href="#complex-integration" id="toc-complex-integration" class="nav-link" data-scroll-target="#complex-integration">Complex Integration</a>
+  <ul class="collapse">
+  <li><a href="#contour-integration" id="toc-contour-integration" class="nav-link" data-scroll-target="#contour-integration">Contour Integration</a></li>
+  <li><a href="#cauchys-theorem" id="toc-cauchys-theorem" class="nav-link" data-scroll-target="#cauchys-theorem">Cauchy’s Theorem</a></li>
+  <li><a href="#cauchys-integral-formula" id="toc-cauchys-integral-formula" class="nav-link" data-scroll-target="#cauchys-integral-formula">Cauchy’s Integral Formula</a></li>
+  </ul></li>
+  <li><a href="#power-series" id="toc-power-series" class="nav-link" data-scroll-target="#power-series">Power Series</a>
+  <ul class="collapse">
+  <li><a href="#taylor-series" id="toc-taylor-series" class="nav-link" data-scroll-target="#taylor-series">Taylor Series</a></li>
+  <li><a href="#analytic-continuation" id="toc-analytic-continuation" class="nav-link" data-scroll-target="#analytic-continuation">Analytic Continuation</a></li>
+  <li><a href="#laurent-series" id="toc-laurent-series" class="nav-link" data-scroll-target="#laurent-series">Laurent Series</a></li>
+  </ul></li>
+  <li><a href="#residue-calculus" id="toc-residue-calculus" class="nav-link" data-scroll-target="#residue-calculus">Residue Calculus</a>
+  <ul class="collapse">
+  <li><a href="#singularities" id="toc-singularities" class="nav-link" data-scroll-target="#singularities">Singularities</a></li>
+  <li><a href="#residue-theorem" id="toc-residue-theorem" class="nav-link" data-scroll-target="#residue-theorem">Residue Theorem</a></li>
+  <li><a href="#residues" id="toc-residues" class="nav-link" data-scroll-target="#residues">Residues</a></li>
+  <li><a href="#definite-integrals" id="toc-definite-integrals" class="nav-link" data-scroll-target="#definite-integrals">Definite Integrals</a></li>
+  </ul></li>
+  <li><a href="#transformations" id="toc-transformations" class="nav-link" data-scroll-target="#transformations">Transformations</a>
+  <ul class="collapse">
+  <li><a href="#affine-transformations" id="toc-affine-transformations" class="nav-link" data-scroll-target="#affine-transformations">Affine Transformations</a></li>
+  <li><a href="#non-affine-transformations" id="toc-non-affine-transformations" class="nav-link" data-scroll-target="#non-affine-transformations">Non-Affine Transformations</a></li>
+  <li><a href="#conformal-mappings" id="toc-conformal-mappings" class="nav-link" data-scroll-target="#conformal-mappings">Conformal Mappings</a></li>
+  </ul></li>
+  </ul>
+</nav>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+    </div>
+<!-- main -->
+<main class="content column-page-right" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../electrodynamics/preliminaries.html">Electromagnetism</a></li><li class="breadcrumb-item"><a href="../electrodynamics/complex-analysis.html"><span class="chapter-title">Appendix II: Complex Analysis</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-title">Appendix II: Complex Analysis</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta column-page-right">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>In this appendix, we will present the basics of the mathematical field known as <em>complex analysis</em>. Complex analysis can be thought of as calculus applied to complex variables. We’ll see that for complex variables we can define notions of differentiation and integration just as we can with real variables, with some new caveats that will turn out to be interesting and useful. We will show that complex analysis can even be used to solve real-variable calculus problems, for example using the method of residues. Finally, we will show how we can use complex analysis to solve problems in electrostatics through the idea of conformal mappings.</p>
+<section id="complex-functions" class="level2">
+<h2 class="anchored" data-anchor-id="complex-functions">Complex Functions</h2>
+<p>Recall from the first chapter that a <em>complex variable</em> is any variable <span class="math inline">\(z\)</span> of the form <span class="math display">\[
+z = x + iy \ ,
+\]</span> where <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> are real numbers and <span class="math inline">\(i \equiv \sqrt{-1}\)</span> is the imaginary number. We call <span class="math inline">\(x = \text{Re} \ z\)</span> the <em>real part</em> of <span class="math inline">\(z\)</span> and <span class="math inline">\(y = \text{Im} \ z\)</span> the <em>imaginary part</em> of <span class="math inline">\(z\)</span>. Recall that we can think of <span class="math inline">\(z\)</span> geometrically as representing a point in the <em>complex plane</em> <span class="math inline">\(\mathbb{C}\)</span>, where the <span class="math inline">\(x\)</span>-axis is the real axis and the <span class="math inline">\(y\)</span>-axis is the imaginary axis. We showed that any complex variable could also be written in the polar form <span class="math display">\[
+z = r e^{i\varphi} \ ,
+\]</span> where <span class="math inline">\(r \equiv |z| = \sqrt{zz^*}\)</span> is the <em>modulus</em> of <span class="math inline">\(z\)</span> and <span class="math inline">\(\varphi \equiv \text{Arg} \ z\)</span> is the <em>argument</em> or <em>phase</em> of <span class="math inline">\(z\)</span>. In the complex plane, the modulus <span class="math inline">\(|z|\)</span> represents the radial distance of the point <span class="math inline">\(z\)</span> in the plane, while <span class="math inline">\(\varphi\)</span> represents its angle relative to the positive real axis.</p>
+<p>We showed that when two complex variables are multiplied together that their phases add, with <span class="math display">\[
+\text{Arg} \ z_1 z_2 = \text{Arg} \ z_1 + \text{Arg} \ z_2 \ .
+\]</span> We also introduced the complex exponential <span class="math inline">\(e^{i\varphi}\)</span>, and derived the Euler identity <span class="math display">\[
+e^{i \varphi} = \cos\varphi + i\sin\varphi \ .
+\]</span> ### Complex Functions</p>
+<p>We’ll now introduce the notion of functions of a complex variable. Just as we can create functions <span class="math inline">\(f(x)\)</span> of a real variable <span class="math inline">\(x\)</span>, we can just as well create functions <span class="math inline">\(f(z)\)</span> of a complex variable <span class="math inline">\(z\)</span>. We define a complex function <span class="math inline">\(f(z)\)</span> as any function that can be expressed in the form <span class="math display">\[
+f(z) = u(x,y) + iv(x,y) \ ,
+\]</span> where <span class="math inline">\(u(x,y)\)</span> and <span class="math inline">\(v(x,y)\)</span> are both real bivariate functions of the real and imaginary parts of <span class="math inline">\(z\)</span>.</p>
+<p>As an example, consider the exponential function <span class="math inline">\(f(z) = e^z\)</span>. If we substitute <span class="math inline">\(z = x + iy\)</span> into this function and use Euler’s identity, we can write <span class="math inline">\(f(z)\)</span> in the form <span class="math display">\[
+e^z = e^{x + iy} = e^x e^{iy} = e^x \cos y + i e^x \sin y \quad \Longrightarrow \quad \begin{cases}
+u(x,y) = e^x \cos y \ ,\\
+v(x,y) = e^x \sin y \ .
+\end{cases}
+\]</span> As another example, consider the sine function <span class="math inline">\(f(z) = \sin z\)</span>. If we use Euler’s identity and the hyperbolic trig functions to simplify terms, we can write <span class="math display">\[
+\sin z = \frac{1}{2i} \big(e^{iz} - e^{-iz}\big) = \sin x \cosh y + i \cos x \sinh y \quad \Longrightarrow \quad \begin{cases}
+u(x,y) = \sin x \cosh y \ , \\
+v(x,y) = \sin x \sinh y \ .
+\end{cases}
+\]</span> As a final example, consider the function <span class="math inline">\(f(z) = 1/z\)</span>. If we multiply the numerator and denominator by <span class="math inline">\(z^*\)</span> and simplify, we have <span class="math display">\[
+\frac{1}{z} = \frac{z^*}{zz^*} = \frac{x}{x^2 + y^2} - i \frac{y}{x^2 + y^2} \quad \Longrightarrow \quad \begin{cases}
+u(x,y) = \frac{x}{x^2 + y^2} \ , \\
+v(x,y) = -\frac{y}{x^2 + y^2} \ .
+\end{cases}
+\]</span> ### Continuous Functions</p>
+<p>We’ll now discuss the concept of the continuity of a complex function. We know from calculus that a real function <span class="math inline">\(f(x)\)</span> is continuous at a point <span class="math inline">\(x=a\)</span> provided the difference <span class="math inline">\(f(x) - f(a)\)</span> is infinitesimal whenever <span class="math inline">\(x-a\)</span> is infinitesimal, that is, whenever <span class="math inline">\(x \approx a\)</span> we have <span class="math inline">\(f(x) \approx f(a)\)</span>. In terms of limits, this is equivalent to the statement that <span class="math display">\[
+f(a) = f\bigg(\lim_{x \to a} x\bigg) = \lim_{x \to a} f(x) \ .
+\]</span> We say <span class="math inline">\(f(x)\)</span> is continuous on some interval if <span class="math inline">\(f(x)\)</span> is continuous at all points <span class="math inline">\(a\)</span> in that interval.</p>
+<p>We can define something analogous for complex functions. We say a complex function <span class="math inline">\(f(z)\)</span> is <em>continuous</em> at a point <span class="math inline">\(z=a\)</span> provided <span class="math inline">\(f(z) - f(a)\)</span> is infinitesimal whenever <span class="math inline">\(z-a\)</span> is infinitesimal, or equivalently <span class="math display">\[
+f(a) = f\bigg(\lim_{z \to a} z\bigg) = \lim_{z \to a} f(z) \ .
+\]</span> Note that in the complex plane limits can be more than two-sides. When we say the limit exists, we mean the limit from <em>all</em> directions must exist, a much stronger condition. Similarly, when we say <span class="math inline">\(z-a\)</span> is infinitesimal, we mean that <span class="math inline">\(z-a\)</span> is infinitesimal for <em>all</em> choice of <span class="math inline">\(z\)</span> near the point <span class="math inline">\(a\)</span>. We say <span class="math inline">\(f(z)\)</span> is <em>continuous</em> in some region <span class="math inline">\(R\)</span> provided <span class="math inline">\(f(z)\)</span> is continuous at each point <span class="math inline">\(a\)</span> inside the region <span class="math inline">\(R\)</span>.</p>
+<p>An equivalent but more useful condition for a complex function <span class="math inline">\(f(z)\)</span> to be continuous is that both <span class="math inline">\(u(x,y)\)</span> and <span class="math inline">\(v(x,y)\)</span> are continuous in both <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>. We can use this idea to quickly list off a bunch of continuous complex functions:</p>
+<ul>
+<li>The exponential function <span class="math inline">\(e^z = e^x \cos y + i e^x \sin y\)</span> is everywhere continuous.</li>
+<li>The sine function <span class="math inline">\(\sin z = \sin x \cosh y + i \cos x \sinh y\)</span> is everywhere continuous.</li>
+<li>The cosine function <span class="math inline">\(\cos z = \cos x \cosh y - i \sin x \sinh y\)</span> is everywhere continuous.</li>
+<li>The power function <span class="math inline">\(z^n = |z|(\cos n\varphi + i\sin n\varphi)\)</span> is everywhere continuous when <span class="math inline">\(n\)</span> is an integer.</li>
+<li>The reciprocal function <span class="math inline">\(1/z = x/|z|^2 - i y/|z|^2\)</span> is continuous at every point except the origin <span class="math inline">\(z=0\)</span>.</li>
+<li>The sum or product of continuous functions is also continuous. For example, <span class="math inline">\(f(z) = 3e^z - z^2 \sin z\)</span> is continuous.</li>
+<li>The composition of continuous functions is also continuous. For example, <span class="math inline">\(f(z) = e^{2 \cos z}\)</span> is continuous.</li>
+</ul>
+<section id="multivalued-functions" class="level3">
+<h3 class="anchored" data-anchor-id="multivalued-functions">Multivalued Functions</h3>
+<p>We know though that not all real functions are single-valued everywhere. For example, the inverse of the real function <span class="math inline">\(f(x) = x^2\)</span> is the multivalued function <span class="math inline">\(g(x) = \pm \sqrt{x}\)</span>. To deal with this issue we often restrict the range of <span class="math inline">\(f(x)\)</span> to <span class="math inline">\(x \geq 0\)</span> so that it has a well-defined inverse of <span class="math inline">\(g(x) = +\sqrt{x}\)</span>. This is known as the <em>principle root</em> of <span class="math inline">\(f(x) = x^2\)</span>.</p>
+<p>The same kinds issues also arise when dealing with complex functions. For example, consider the complex log function <span class="math inline">\(f(z) = \log z\)</span>. By expressing <span class="math inline">\(z\)</span> in polar form, we can write <span class="math display">\[
+\log z = \log |z| e^{i\varphi} = \log |z| + i\varphi \ .
+\]</span> Notice first that <span class="math inline">\(\log z\)</span> can’t be defined at <span class="math inline">\(z=0\)</span> since <span class="math inline">\(u(x,y) = \log |z|\)</span> is undefined when <span class="math inline">\(x=y=0\)</span>. More interesting though is what happens with <span class="math inline">\(v(x,y) = \varphi\)</span>. Since <span class="math inline">\(\varphi\)</span> is an angle, if we add or subtract any multiple of <span class="math inline">\(2\pi\)</span> we must get back the same point in the complex plane. This means that in general we have <span class="math inline">\(v(x,y) = \phi + 2\pi n\)</span> for any integer <span class="math inline">\(n\)</span>. That is, <span class="math inline">\(v(x,y)\)</span> is multivalued since it depends on <span class="math inline">\(n\)</span>. This evidently implies that the complex logarithm must be a multivalued function as well.</p>
+<p>To force the complex logarithm to be single-valued, we have to thus choose a fixed value of <span class="math inline">\(n\)</span>. By convention we usually choose <span class="math inline">\(n=0\)</span>, which defines the <em>principle logarithm</em>. This is equivalent to requiring that the phase be bounded in some <span class="math inline">\(2\pi\)</span> interval, which by convention we choose to be <span class="math inline">\(-\pi &lt; \varphi &lt; \pi\)</span>, which is called the <em>principal branch</em>. Along the negative real axis <span class="math inline">\(\varphi = \pm \pi\)</span>, and there the principal logarithm is not defined. We call this ray a <em>branch cut</em>. At any point away from the branch cut, the principle logarithm is well-defined and single-valued.</p>
+<p>FIGURE (show branch cut)</p>
+<p>To differentiate the principle and multi-valued logarithms, people sometimes write <span class="math inline">\(\text{Log} \ z\)</span> to refer to the principle logarithm, and <span class="math inline">\(\log z\)</span> to exclusively refer to the multi-valued logarithm, with the two related by the formula <span class="math display">\[
+\text{log} \ z = \text{Log} \ z + i2n\pi \ .
+\]</span> Provided we restrict ourselves to the principle logarithm, we can define an inverse for the exponential function in the usual way, <span class="math display">\[
+z = \text{Log} \ e^z = e^{\text{Log} \ z} \ .
+\]</span> A similar issue arises with many other complex functions as well. Another common class of functions with branch cuts are polynomial functions with rational powers. For example, suppose <span class="math inline">\(f(z) = z^{p/q}\)</span>. We can also write this function as <span class="math display">\[
+z^{p/q} = e^{p/q \cdot \log z} = \big(e^{\text{Log} \ z + 2n\pi i}\big)^{p/q} = \big(e^{\text{Log} \ z})^{p/q} e^{i2\pi n p/q} \ .
+\]</span> The first term <span class="math inline">\(\big(e^{\text{Log} \ z})^{p/q}\)</span> is just the ordinary single-valued part of <span class="math inline">\(z^{p/q}\)</span>. The second term <span class="math inline">\(e^{i2\pi n p/q}\)</span> is a phase factor that depends on <span class="math inline">\(n\)</span>. If <span class="math inline">\(p/q\)</span> is an integer then <span class="math inline">\(e^{i2\pi n p/q} = 1\)</span> for all <span class="math inline">\(n\)</span>, and <span class="math inline">\(f(z)\)</span> is hence single-valued. If <span class="math inline">\(p/q\)</span> is not an integer this won’t happen, which means the phase factor will depend on <span class="math inline">\(n\)</span>, and so <span class="math inline">\(f(z)\)</span> becomes multi-valued. To force <span class="math inline">\(f(z)\)</span> to be single-valued we can again restrict the phase of <span class="math inline">\(z\)</span> to some <span class="math inline">\(2\pi\)</span> range, e.g.&nbsp;<span class="math inline">\(-\pi &lt; z &lt; \pi\)</span>. This means any single-valued version of <span class="math inline">\(f(z) = z^{p/q}\)</span> will also have a branch cut along some ray from the origin in the complex plane, e.g.&nbsp;the negative real axis.</p>
+</section>
+</section>
+<section id="analytic-functions" class="level2">
+<h2 class="anchored" data-anchor-id="analytic-functions">Analytic Functions</h2>
+<p>Just as we could define the notion of a derivative for real functions, we can define it just as well for complex functions. We’ll see though that complex differentiation turns out to be a much stronger restriction on a function’s behavior than real differentiation.</p>
+<section id="definition" class="level3">
+<h3 class="anchored" data-anchor-id="definition">Definition</h3>
+<p>Recall how the derivative was defined for real functions <span class="math inline">\(f(x)\)</span>. We say that a function <span class="math inline">\(y=f(x)\)</span> is differentiable at a point <span class="math inline">\(x\)</span> provided for <em>any</em> infinitesimal <span class="math inline">\(-1 \gg dx \ll 1\)</span> the difference <span class="math display">\[
+dy \equiv f(x+dx) - f(x)
+\]</span> is also infinitesimal. When this is the case, we can take their ratio and define the <em>derivative</em> of <span class="math inline">\(f(x)\)</span> at <span class="math inline">\(x\)</span> by <span class="math inline">\(dy/dx\)</span>. This is equivalent to saying that the limit of the ratio <span class="math inline">\(\Delta y / \Delta x\)</span> becomes a finite number as <span class="math inline">\(\Delta x \to 0\)</span>. In particular, this must be true for <em>both</em> the left-hand and right-hand limits, which must be equal to the same ratio <span class="math inline">\(dy/dx\)</span>.</p>
+<p>The same notion of derivative exists for complex functions <span class="math inline">\(f(z)\)</span> as well. We say <span class="math inline">\(w = f(z)\)</span> is differentiable at <span class="math inline">\(z\)</span> provided for <em>any</em> infinitesimal <span class="math inline">\(0 &lt; |dz| \ll 1\)</span> the difference <span class="math display">\[
+dw \equiv f(z + dz) - f(z)
+\]</span> is also infinitesimal. When this is the case, we can take their ratio and define the <em>derivative</em> of <span class="math inline">\(f(z)\)</span> at <span class="math inline">\(z\)</span> by <span class="math inline">\(dw/dz\)</span>. This is equivalent to saying that the limit of the ratio <span class="math inline">\(\Delta w / \Delta z\)</span> approaches the same finite ratio <span class="math inline">\(dw/dz\)</span> as <span class="math inline">\(\Delta z \to 0\)</span> for <em>any</em> choice of <span class="math inline">\(\Delta z\)</span>. That is, this limit must approach the same ratio no matter which direction of approach for <span class="math inline">\(\Delta z\)</span> we choose.</p>
+<p>Note that it’s necessary that <span class="math inline">\(f(z)\)</span> be continuous at <span class="math inline">\(z\)</span> for its derivative to exist, for otherwise if it would be impossible for <span class="math inline">\(dw\)</span> to be infinitesimal. However, this is not a sufficient condition for the derivative to exist, since the ratio must be defined for <em>every</em> <span class="math inline">\(dz\)</span>.</p>
+<p>If <span class="math inline">\(f(z)\)</span> is differentiable at <span class="math inline">\(z\)</span> and some region around <span class="math inline">\(z\)</span>, we say <span class="math inline">\(f(z)\)</span> is <em>analytic</em> (or <em>holomorphic</em>) at the point <span class="math inline">\(z\)</span>. More generally, iif <span class="math inline">\(f(z)\)</span> is differentiable in some region <span class="math inline">\(\mathcal{R}\)</span> in the complex plane, we say that <span class="math inline">\(f(z)\)</span> is <em>analytic</em> inside <span class="math inline">\(\mathcal{R}\)</span>. If that region is the whole complex plane, we say <span class="math inline">\(f(z)\)</span> is an <em>entire function</em>. In each case, we say <span class="math inline">\(f(z)\)</span> is an <em>analytic function</em>.</p>
+<p>It’s easy to see from the definition that analytic functions obey the usual differentiation rules:</p>
+<ul>
+<li>Linearity: <span class="math inline">\(d(\alpha f + \beta g) = \alpha df + \beta dg\)</span>,</li>
+<li>Product Rule: <span class="math inline">\(d(fg) = fdg + gdf\)</span>,</li>
+<li>Quotient Rule: <span class="math inline">\(g^2 d(f/g) = gdf - fdg\)</span>.</li>
+<li>Chain Rule: <span class="math inline">\(d\big[f(g(z))\big] = \frac{df}{dg} \frac{dg}{dz} dz\)</span>.</li>
+</ul>
+<p>Another property of analytic functions is that the composition of analytic functions is also analytic. That is, if <span class="math inline">\(w=f(z)\)</span> is analytic at <span class="math inline">\(z\)</span>, and <span class="math inline">\(s=g(w)\)</span> is analytic at the point <span class="math inline">\(w\)</span>, then the composition <span class="math inline">\(s = g(f(z))\)</span> is analytic at <span class="math inline">\(z\)</span>.</p>
+<p>The final property of analytic functions we’ll mention for now involves the inverses of analytic functions. Suppose <span class="math inline">\(w=f(z)\)</span> is analytic at <span class="math inline">\(z\)</span>, and suppose at the point <span class="math inline">\(z\)</span> we can invert the function to get <span class="math inline">\(z = f^{-1}(w)\)</span>. Then <span class="math inline">\(f^{-1}(w)\)</span> is analytic at <span class="math inline">\(w\)</span>, with <span class="math display">\[
+\frac{d}{dw} f^{-1}(w) = \frac{1}{dw/dz} \bigg|_{z=f^{-1}(w)} \ .
+\]</span> In simpler terms, this says that the derivative of the inverse is just <span class="math inline">\(dz/dw\)</span>, as we’d expect. Of course, we do have to be careful to ensure that the inverse function is single-valued, so that each <span class="math inline">\(w\)</span> maps to a distinct <span class="math inline">\(z\)</span>. If the inverse function is multi-valued, we can achieve this by restricting the inverse to some branch, like we did with the logarithm before.</p>
+</section>
+<section id="cauchy-riemann-equations" class="level3">
+<h3 class="anchored" data-anchor-id="cauchy-riemann-equations">Cauchy-Riemann Equations</h3>
+<p>Supposing that <span class="math inline">\(w = f(z)\)</span> is analytic, we can write <span class="math display">\[
+dw = \frac{dw}{dz} dz \ .
+\]</span> However, we also know that both <span class="math inline">\(z\)</span> and <span class="math inline">\(w\)</span> can be expressed in terms of real variables, with <span class="math inline">\(w = u(x,y)+iv(x,y)\)</span>. This means it must <em>also</em> be the case that <span class="math inline">\(f(z)\)</span> is differentiable with respect to both <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> in a real-variable sense. This means we can also write <span class="math inline">\(dw\)</span> as a differential sum of the partial derivatives in <span class="math inline">\(u\)</span> and <span class="math inline">\(v\)</span>, with <span class="math display">\[
+dw = \frac{\partial w}{\partial x} dx + \frac{\partial w}{\partial y} dy = \bigg(\frac{\partial u}{\partial x} + i\frac{\partial v}{\partial x}\bigg) dx + \bigg(\frac{\partial u}{\partial y} + i\frac{\partial v}{\partial y}\bigg) dy \ .
+\]</span> Now, both differential formulas for <span class="math inline">\(dw\)</span> must be equal. Writing <span class="math inline">\(dz = dx + idy\)</span>, we must have <span class="math display">\[
+dw = \frac{dw}{dz} (dx + idy) = \frac{dw}{dz} dx + i \frac{dw}{dz} dy \ .
+\]</span> It follows then that we must have <span class="math display">\[
+\frac{dw}{dz} = \frac{\partial u}{\partial x} + i\frac{\partial v}{\partial x} = -i \bigg(\frac{\partial u}{\partial y} + i\frac{\partial v}{\partial y}\bigg) \ .
+\]</span> Notice that this is in fact a very strong condition. The partial derivatives <span class="math inline">\(\frac{\partial w}{\partial x}\)</span> and <span class="math inline">\(\frac{\partial w}{\partial y}\)</span> must be related in a very specific way. This is <em>not</em> something that is true for ordinary 2-dimensional functions <span class="math inline">\(f(x,y)\)</span>. This strong condition makes complex differentiation a much stronger and interesting concept than real differentiation, as we’ll soon see.</p>
+<p>To see what conditions these partial derivatives must satisfy, notice if we move everything to one side, we get <span class="math display">\[
+\bigg(\frac{\partial u}{\partial x} - \frac{\partial v}{\partial y}\bigg) + i\bigg(\frac{\partial u}{\partial y} + \frac{\partial v}{\partial x}\bigg) = 0 \ .
+\]</span> Since both the real and imaginary parts must separately vanish, we end up with the following two conditions, <span class="math display">\[
+\boxed{
+\frac{\partial u}{\partial x} = \frac{\partial v}{\partial y} \quad , \quad
+\frac{\partial u}{\partial y} = -\frac{\partial v}{\partial x}
+} \ .
+\]</span> We call these conditions the <em>Cauchy-Riemann equations</em>. These two equations are necessary conditions for a complex function to be analytic. In fact, if we further require that these partial derivatives be continuous at the point of interest, then they’re necessary and sufficient conditions for the function to be analytic at that point.</p>
+<p>Checking that the Cauchy-Riemann equations hold is usually the easiest way to verify whether a given complex function is analytic. As an easy example of this, consider again the exponential function <span class="math inline">\(f(z) = e^z = e^x \cos y + e^x \sin y\)</span>. Let’s check that this function satisfy the Cauchy-Riemann equations. It’s easy to see we have <span class="math display">\[
+\begin{align*}
+\frac{\partial u}{\partial x} &amp;= e^x \cos y = \frac{\partial v}{\partial y} \ , \\
+\frac{\partial u}{\partial y} &amp;= -e^x \sin y = -\frac{\partial v}{\partial x} \ .
+\end{align*}
+\]</span> This means the exponential function <span class="math inline">\(f(z) = e^z\)</span> is analytic. In fact, it’s analytic on the whole complex plane, hence it’s also entire.</p>
+<p>As another example, consider again the reciprocal function <span class="math display">\[
+f(z) = \frac{1}{z} = \frac{x}{x^2 + y^2} - i \frac{y}{x^2 + y^2} \ .
+\]</span> If we apply the Cauchy-Riemann equations to this function, we get <span class="math display">\[
+\begin{align*}
+\frac{\partial u}{\partial x} &amp;= -\frac{x^2 - y^2}{(x^2 + y^2)^2} = \frac{\partial v}{\partial y} \ , \\
+\frac{\partial u}{\partial y} &amp;= -\frac{2xy}{(x^2 + y^2)^2} = -\frac{\partial v}{\partial x} \ .
+\end{align*}
+\]</span> Evidently, the reciprocal function <span class="math inline">\(f(z) = 1/z\)</span> is also analytic, but only when <span class="math inline">\(|z| \neq 0\)</span>. When <span class="math inline">\(z = 0\)</span> the denominator of both equations blow up and the equations are no longer well-defined. We call functions of this type that are analytic at all but a finite number of points <em>meromorphic functions</em>.</p>
+<p>A few examples of complex functions that are continuous but not analytic are the real part <span class="math inline">\(f(z) = \text{Re} \ z\)</span>, the imaginary part <span class="math inline">\(f(z) = \text{Im} \ z\)</span>, and the complex conjugate <span class="math inline">\(f(z) = z^*\)</span>. These are all easy to check by the Cauchy-Riemann equations.</p>
+<p>It’s easy to check that pretty much all of the usual differentiable functions from calculus are analytic functions in complex analysis if we replace <span class="math inline">\(f(x)\)</span> by <span class="math inline">\(f(z)\)</span>. Here are some of the most common ones:</p>
+<ul>
+<li>The exponential function <span class="math inline">\(e^z\)</span> is everywhere analytic.</li>
+<li>The sine and cosine functions <span class="math inline">\(\sin z\)</span> and <span class="math inline">\(\cos z\)</span> are both everywhere analytic.</li>
+<li>Any power function <span class="math inline">\(z^p\)</span> is everywhere analytic when <span class="math inline">\(\text{Re} \ p \geq 1\)</span>, and analytic everywhere but the point <span class="math inline">\(z=0\)</span> when <span class="math inline">\(\text{Re} \ p &lt; 1\)</span>.</li>
+<li>Any polynomial function of <span class="math inline">\(z\)</span> is everywhere analytic.</li>
+<li>Ratios of polynomial functions of <span class="math inline">\(z\)</span> are analytic at any point where the denominator isn’t zero.</li>
+<li>The principal logarithm <span class="math inline">\(\log z\)</span> is analytic everywhere but the point <span class="math inline">\(z = 0\)</span>.</li>
+</ul>
+</section>
+<section id="harmonic-functions" class="level3">
+<h3 class="anchored" data-anchor-id="harmonic-functions">Harmonic Functions</h3>
+<p>Another important fact about analytic functions is that their real and imaginary parts each independently satisfy Laplace’s equation in two dimensions. That is, if a function <span class="math inline">\(f(z) = u(x,y) + i v(x,y)\)</span> is analytic in some region, then we have <span class="math display">\[
+\begin{align*}
+&amp;\nabla^2 u = \frac{\partial^2 u}{\partial x^2} + \frac{\partial^2 u}{\partial y^2} = 0 \ , \\
+&amp;\nabla^2 v = \frac{\partial^2 v}{\partial x^2} + \frac{\partial^2 v}{\partial y^2} = 0 \ .
+\end{align*}
+\]</span> To see why this is true we again appeal to the Cauchy-Riemann equations. If we substitute these equations into <span class="math inline">\(\nabla^2 u\)</span>, we have <span class="math display">\[
+\begin{align*}
+\frac{\partial^2 u}{\partial x^2} + \frac{\partial^2 u}{\partial y^2}
+&amp;= \frac{\partial}{\partial x} \frac{\partial u}{\partial x} + \frac{\partial}{\partial y} \frac{\partial u}{\partial y} \\
+&amp;= \frac{\partial}{\partial x} \frac{\partial v}{\partial y} - \frac{\partial}{\partial y} \frac{\partial v}{\partial x} \\
+&amp;= \frac{\partial^2 v}{\partial x \partial y} - \frac{\partial^2 v}{\partial y \partial x} \ .
+\end{align*}
+\]</span> Since mixed partial derivatives commute the last line must vanish, leaving <span class="math inline">\(\nabla^2 u = 0\)</span>. Similarly, for <span class="math inline">\(\nabla^2 v\)</span> we have <span class="math display">\[
+\begin{align*}
+\frac{\partial^2 v}{\partial x^2} + \frac{\partial^2 v}{\partial y^2}
+&amp;= \frac{\partial}{\partial x} \frac{\partial v}{\partial x} + \frac{\partial}{\partial y} \frac{\partial v}{\partial y} \\
+&amp;= -\frac{\partial}{\partial x} \frac{\partial u}{\partial y} + \frac{\partial}{\partial y} \frac{\partial u}{\partial x} \\
+&amp;= -\frac{\partial^2 u}{\partial x \partial y} + \frac{\partial^2 u}{\partial y \partial x} \ .
+\end{align*}
+\]</span> Again, since mixed partial derivatives commute, the last line vanishes, leaving <span class="math inline">\(\nabla^2 v = 0\)</span>. Functions that satisfy Laplace’s equation are called <em>harmonic functions</em>. We’ve thus shown that the real and imaginary parts of an analytic function must each be a harmonic function inside the region in the <span class="math inline">\(xy\)</span>-plane where the function is analytic.</p>
+<p>Moreover, it turns out that the level curves of <span class="math inline">\(u(x,y)\)</span> and <span class="math inline">\(v(x,y)\)</span> must always be orthogonal inside the analytic region, i.e. <span class="math display">\[
+\nabla u(x,y) \cdot \nabla v(x,y) = 0 \ .
+\]</span> This again follows immediately from the Cauchy-Riemann equations. Indeed, we have <span class="math display">\[
+\nabla u \cdot \nabla v = \frac{\partial u}{\partial x} \frac{\partial v}{\partial x} + \frac{\partial u}{\partial y} \frac{\partial v}{\partial y} = \frac{\partial v}{\partial y} \frac{\partial v}{\partial x} - \frac{\partial v}{\partial x} \frac{\partial v}{\partial y} = 0 \ .
+\]</span> The Cauchy-Riemann conditions imply something else as well. Given a harmonic function <span class="math inline">\(u(x,y)\)</span>, we can determine the function <span class="math inline">\(v(x,y)\)</span>, called the <em>harmonic conjugate</em> of <span class="math inline">\(u(x,y)\)</span>, that makes <span class="math inline">\(f(z) = u(x,y) + i v(x,y)\)</span> analytic, up to constants. To see why this is true, we can write the total differential of <span class="math inline">\(v(x,y)\)</span> in the form <span class="math display">\[
+dv = \frac{\partial v}{\partial x} dx + \frac{\partial v}{\partial y} dy \ .
+\]</span> If we now use the Cauchy-Riemann conditions and integrate both sides, we get <span class="math display">\[
+v(x,y) = -\int dx \ \frac{\partial u}{\partial y} + \int dy \ \frac{\partial u}{\partial x} \ .
+\]</span> Thus, up to additive constants, we’ve completely determined the form of <span class="math inline">\(v(x,y)\)</span> from the derivatives of <span class="math inline">\(u(x,y)\)</span>.</p>
+<p>As an example, consider the function <span class="math display">\[
+u(x,y) = y^3 - 3x^3 y \ .
+\]</span> It’s easy to check that <span class="math inline">\(\nabla^2 u = 0\)</span>, which means <span class="math inline">\(u(x,y)\)</span> is harmonic on the <span class="math inline">\(xy\)</span>-plane. To find its conjugate <span class="math inline">\(v(x,y)\)</span>, we can impose the Cauchy-Riemann conditions. We have <span class="math display">\[
+\begin{align*}
+\frac{\partial v}{\partial x} &amp;= -\frac{\partial u}{\partial y} = -3y^2 - 3x^2 \ , \\
+\frac{\partial v}{\partial y} &amp;= \frac{\partial u}{\partial x} = -6x^2 y \ .
+\end{align*}
+\]</span> Then we have <span class="math display">\[
+\begin{align*}
+v(x,y) &amp;= -\int dx \ \frac{\partial u}{\partial y} + \int dy \ \frac{\partial u}{\partial x} \\
+&amp;= \int dx \ (-3y^2 - 3x^2) + \int dy \ (-6x^2 y) \\
+&amp;= -3xy^2 - x^3 + C \ .
+\end{align*}
+\]</span> It’s again easy to check that <span class="math inline">\(\nabla^2 v = 0\)</span>, so <span class="math inline">\(v(x,y)\)</span> is harmonic on the <span class="math inline">\(xy\)</span>-plane. We’ve thus found an analytic function <span class="math inline">\(f(z)\)</span> whose real and imaginary functions are harmonic, <span class="math display">\[
+f(z) = (y^3 - 3x^3 y) + i(-3xy^2 - x^3 + C) \ .
+\]</span> Evidently, the condition that a complex function be analytic is much stronger than the condition that a real function be differentiable. It implies a whole host of added properties we don’t see in calculus. In the next section we’ll show a few more.</p>
+</section>
+</section>
+<section id="complex-integration" class="level2">
+<h2 class="anchored" data-anchor-id="complex-integration">Complex Integration</h2>
+<p>Before discussing analytic functions further we need to introduce the concept of complex integration. The integration of complex functions is a good bit different from differentiation of real functions due to the fact that the integration is now being done in a plane instead of over a line. This means integration of complex numbers is much more akin to contour integration of a bivariate real function <span class="math inline">\(f(x,y)\)</span> than it is to integration of univariate real functions <span class="math inline">\(f(x)\)</span>.</p>
+<section id="contour-integration" class="level3">
+<h3 class="anchored" data-anchor-id="contour-integration">Contour Integration</h3>
+<p>Suppose <span class="math inline">\(f(z)\)</span> is some complex function that’s well-defined on some path <span class="math inline">\(\mathcal{C}\)</span> in the complex plane that starts at a point <span class="math inline">\(z=a\)</span> and ends at a point <span class="math inline">\(z=b\)</span>. Suppose we can parametrize this path via some function <span class="math inline">\(z(t)\)</span>, where <span class="math inline">\(t_a \leq t \leq t_b\)</span> is some parameter such that <span class="math inline">\(z(t_a) = a\)</span> and <span class="math inline">\(z(t_b) = b\)</span>. Then we can define the <em>contour integral</em> of <span class="math inline">\(f(z)\)</span> over <span class="math inline">\(\mathcal{C}\)</span> by <span class="math display">\[
+\int_\mathcal{C} dz \ f(z) \equiv \int_a^b dz \ f(z) \equiv \int_{t_a}^{t_b} dt \ f(z(t)) \frac{dz}{dt} \ .
+\]</span> As with real path integrals, we often find ourselves dealing with contour integrals over <em>closed loops</em>, i.e.&nbsp;closed paths where <span class="math inline">\(a=b\)</span>. In that case we often write the contour integral with the notations <span class="math inline">\(\oint dz \ f(z)\)</span> or <span class="math inline">\(\oint_\mathcal{C} dz \ f(z)\)</span>.</p>
+<p>As an example, let’s find the integral of the reciprocal function <span class="math inline">\(f(z) = 1/z\)</span> along a counterclockwise circular closed loop <span class="math inline">\(\mathcal{C}\)</span> of unit radius centered at the origin. We can parametrize this path by defining a parameter <span class="math inline">\(-\pi \leq t \leq \pi\)</span> and letting <span class="math inline">\(z = e^{it}\)</span>. Then <span class="math display">\[
+\oint_\mathcal{C} \frac{dz}{z} = \int_{-\pi}^\pi dt \ e^{-it} \frac{d}{dt} e^{it} = i \int_{-\pi}^\pi dt = 2\pi i \ .
+\]</span> It’s easily checked that the contour integral satisfies all of the usual properties the path integral of real variables satisfies:</p>
+<ul>
+<li>Linearity: <span class="math inline">\(\int_\mathcal{C} dz \ [af(z) + bg(z)] = a \int_\mathcal{C} dz \ f(z) + b \int_\mathcal{C} dz \ g(z)\)</span>,</li>
+<li>Change of Variables: If <span class="math inline">\(w = g(z)\)</span>, then <span class="math inline">\(\int_\mathcal{C} dw \ f(w) = \int_\mathcal{C} dz \ f(g(z)) \frac{dw}{dz}\)</span>,</li>
+<li>Path Decomposition: If <span class="math inline">\(\mathcal{C}\)</span> is decomposed into two paths <span class="math inline">\(\mathcal{C}_1\)</span> and <span class="math inline">\(\mathcal{C}_2\)</span>, then <span class="math inline">\(\int_\mathcal{C} dz \ f(z) = \int_\mathcal{C_1} dz \ f(z) + \int_\mathcal{C_2} dz \ f(z)\)</span>,</li>
+<li>Path Reversal: If the path <span class="math inline">\(-\mathcal{C}\)</span> is the reverse of the path <span class="math inline">\(\mathcal{C}\)</span>, then <span class="math inline">\(\int_{-\mathcal{C}} dz \ f(z) = -\int_\mathcal{C} dz \ f(z)\)</span>,</li>
+<li>Boundedness: If <span class="math inline">\(M\)</span> is the maximum of <span class="math inline">\(|f(z)|\)</span> along the path and <span class="math inline">\(L\)</span> the path length, then <span class="math inline">\(\big| \int_\mathcal{C} dz \ f(z) \big| \leq ML\)</span>.</li>
+</ul>
+</section>
+<section id="cauchys-theorem" class="level3">
+<h3 class="anchored" data-anchor-id="cauchys-theorem">Cauchy’s Theorem</h3>
+<p>Analytic functions satisfy a property when it comes to contour integration that’s akin to the property that conservative fields have in real Euclidean space, namely path independence. Suppose <span class="math inline">\(f(z)\)</span> is analytic inside some closed loop <span class="math inline">\(\mathcal{C}\)</span>. Then <span class="math display">\[
+\oint_{\mathcal{C}} dz \ f(z) = 0 \ .
+\]</span> This result is known as <em>Cauchy’s Theorem</em>. It says that any contour integral of an analytic function is independent of path, meaning its result depends only on the endpoints. Note that anytime we say <span class="math inline">\(\mathcal{C}\)</span> is a <em>closed loop</em>, we mean not only that the path closes back on itself, but also that it does not intersect at any other point. For example, a circle traversed once is a closed loop, while a figure eight is not. Mathematicians call a closed loop a <em>simple closed curve</em>, and the region inside the closed loop <em>simply connected</em>.</p>
+<p>Let’s verify Cauchy’s Theorem real quick on a function we know to be analytic, <span class="math inline">\(f(z) = e^z\)</span>. We’ll again choose a path to be the unit circle traversed counterclockwise in a closed loop. We again parametrize this path with <span class="math inline">\(z(t) = e^{it}\)</span> where <span class="math inline">\(-\pi \leq t \leq \pi\)</span>. Then <span class="math display">\[
+\int_\mathcal{C} dz \ e^z = \int_{-\pi}^\pi dt \ e^{e^{it}} \frac{d}{dt} e^{it} = i \int_{-\pi}^\pi dt \ e^{e^{it} + it} \ .
+\]</span> Now, if we substitute <span class="math inline">\(u = e^{it}\)</span> then <span class="math inline">\(du = i e^{it} dt\)</span> and <span class="math inline">\(u(\pm \pi) = e^{\pm i\pi} = -1\)</span>, and so <span class="math display">\[
+\int_\mathcal{C} dz \ e^z = \int_{-1}^{-1} du \ e^u = 0 \ .
+\]</span> Of course, Cauchy’s theorem says something stronger than this. The closed loop integral will vanish for <em>any</em> choice of path.</p>
+<p>Cauchy’s theorem isn’t that difficult to prove. If we write <span class="math inline">\(f(z) = u(x,y) + iv(x,y)\)</span> and <span class="math inline">\(dz = dx + idy\)</span>, then we can separate the integral into real and imaginary parts as <span class="math display">\[
+\oint_{\mathcal{C}} dz \ f(z) = \oint_{\mathcal{C}} (dx + idy) \ \big(u(x,y) + iv(x,y)\big)
+= \oint_{\mathcal{C}} (udx - vdy) + i \oint_{\mathcal{C}} (udy + vdx) \ .
+\]</span> Now, notice that both of these integrals are just integrals of real bivariate functions <span class="math inline">\(u(x,y)\)</span> and <span class="math inline">\(v(x,y)\)</span>. If we let <span class="math display">\[
+\mathbf{F}(\mathbf{x}) = u(x,y) \mathbf{e}_x - v(x,y) \mathbf{e}_y \quad , \quad \mathbf{G}(\mathbf{x}) = v(x,y) \mathbf{e}_x + u(x,y) \mathbf{e}_y \ ,
+\]</span> then we can write <span class="math display">\[
+\oint_{\mathcal{C}} dz \ f(z) = \oint_{\mathcal{C}} \mathbf{F} \cdot d\mathbf{x} + \oint_{\mathcal{C}} \mathbf{G} \cdot d\mathbf{x} \ .
+\]</span> If we now apply Stokes’ theorem to these two contour integrals, we can convert them into surface integrals to get <span class="math display">\[
+\oint_{\mathcal{C}} dz \ f(z) = \int_{\mathcal{S}} (\nabla \times \mathbf{F}) \cdot d\mathbf{a} + \int_{\mathcal{S}} (\nabla \times \mathbf{G}) \cdot d\mathbf{a} \ ,
+\]</span> where <span class="math inline">\(\mathcal{S}\)</span> is any surface bounded by the closed loop <span class="math inline">\(\mathcal{C}\)</span>. If we choose <span class="math inline">\(\mathcal{S}\)</span> to lie in the <span class="math inline">\(xy\)</span>-plane then we can write <span class="math inline">\(d\mathbf{a} = dxdy \mathbf{e}_z\)</span>, in which case <span class="math inline">\((\nabla \times \mathbf{F}) \cdot d\mathbf{a} = (\nabla \times \mathbf{F})_z\)</span> and <span class="math inline">\((\nabla \times \mathbf{G}) \cdot d\mathbf{a} = (\nabla \times \mathbf{G})_z\)</span>, and so we have <span class="math display">\[
+\begin{align*}
+\int_{\mathcal{S}} (\nabla \times \mathbf{F}) \cdot d\mathbf{a} &amp;= \int_\mathcal{S} dxdy \ \bigg(\frac{\partial u}{\partial x} - \frac{\partial v}{\partial y}\bigg) \ , \\
+\int_{\mathcal{S}} (\nabla \times \mathbf{G}) \cdot d\mathbf{a} &amp;= \int_\mathcal{S} dxdy \ \bigg(\frac{\partial v}{\partial y} + \frac{\partial u}{\partial x}\bigg) \ .
+\end{align*}
+\]</span> Now, if <span class="math inline">\(f(z)\)</span> is analytic in this region, then the Cauchy-Riemann equations must be satisfied. This means each integrand must vanish, which means the original closed loop integral must vanish, thus proving Cauchy’s theorem.</p>
+<p>Note that this proof implicitly assumes that the partial derivatives of both <span class="math inline">\(u(x,y)\)</span> and <span class="math inline">\(v(x,y)\)</span> are continuous so that Stokes’ theorem could be applied. While this will almost always be the case in physics, it’s not strictly speaking necessary. Cauchy’s theorem holds even if the partial derivatives are not continuous, though that proof is a bit more technical.</p>
+</section>
+<section id="cauchys-integral-formula" class="level3">
+<h3 class="anchored" data-anchor-id="cauchys-integral-formula">Cauchy’s Integral Formula</h3>
+<p>Perhaps the most important consequence of Cauchy’s theorem is the following integral formula. Suppose <span class="math inline">\(f(z)\)</span> is analytic in some region <span class="math inline">\(\mathcal{R}\)</span> and <span class="math inline">\(\mathcal{C}\)</span> is some arbitrary closed loop inside <span class="math inline">\(\mathcal{R}\)</span>. Then for any point <span class="math inline">\(z\)</span> inside <span class="math inline">\(\mathcal{R}\)</span> we can write <span class="math display">\[
+\boxed{
+f(z) = \frac{1}{2\pi i} \oint_{\mathcal{C}} dw \ \frac{f(w)}{w-z}
+}\ .
+\]</span> This result is known as <em>Cauchy’s Integral Formula</em>. Geometrically, this formula says that the value of an analytic function at a point <span class="math inline">\(z\)</span> is completely determined by the function’s values along any closed loop around <span class="math inline">\(z\)</span>. This is a powerful statement that’s analogous to Gauss’s Law in electrostatics, where the value of the electric field on any Gaussian surface enclosing a charge distribution must uniquely determine the charge distribution enclosed.</p>
+<p>Let’s now quickly prove this formula. First, notice that the integrand is analytic inside any region not containing the point <span class="math inline">\(z_0\)</span>. According to Cauchy’s theorem then, the integral will vanish for all closed loops that don’t include <span class="math inline">\(z\)</span>. It thus suffices for this proof to choose a closed loop containing <span class="math inline">\(z\)</span>​. We can choose any closed loop we like. To keep things simple, let’s choose the loop to be a counterclockwise circle centered at <span class="math inline">\(z\)</span> with radius <span class="math inline">\(\varepsilon \ll 1\)</span>. We can parametrize this path by choosing <span class="math inline">\(-\pi \leq t \leq \pi\)</span> and letting <span class="math display">\[
+w(t) = \varepsilon e^{it} + z \ .
+\]</span> Now, if we add and subtract <span class="math inline">\(f(z)\)</span> to the numerator of the integrand and plug in this parametrization, we get <span class="math display">\[
+\begin{align*}
+\frac{1}{2\pi i} \oint_{\mathcal{C}} dw \ \frac{f(w)}{w-z} &amp;= \frac{1}{2\pi i} \oint_{\mathcal{C}} dz \ \frac{f(z)}{w-z} + \frac{1}{2\pi i} \oint_{\mathcal{C}} dw \ \frac{f(w) - f(z)}{w-z} \\
+&amp;= \frac{1}{2\pi i} f(z)  \int_{-\pi}^\pi dt \ \frac{i\varepsilon e^{it}}{\varepsilon e^{it}} + \frac{1}{2\pi i} \int_{-\pi}^\pi dt \ \frac{f(\varepsilon e^{it} + z) - f(z)}{\varepsilon e^{it}} i\varepsilon e^{it} \\
+&amp;= f(z) + \frac{1}{2\pi} \int_{-\pi}^\pi dt \ \big[f(\varepsilon e^{it} + z) - f(z)\big] \ .
+\end{align*}
+\]</span> Now, observe that the remaining integral on the right-hand side is bounded by <span class="math display">\[
+\bigg|\int_{-\pi}^\pi dt \ \big[f(\varepsilon e^{it} + z) - f(z)\big]\bigg| \leq 2\pi \varepsilon \cdot \max \big|f(\varepsilon e^{it} + z) - f(z)\big| \ .
+\]</span> Since we assume <span class="math inline">\(f(z)\)</span> is analytic it must also be continuous. This means as <span class="math inline">\(\varepsilon \to 0\)</span> that <span class="math inline">\(f(w) \to f(z)\)</span>, which means the right-hand side vanishes, which means the integral itself must vanish, thus proving Cauchy’s integral formula.</p>
+<p>Cauchy’s integral formula turns out to imply something very powerful about analytic functions, namely that every analytic function is infinitely differentiable. This is <em>not</em> true for differentiable real functions. Just because a real function has a first derivative doesn’t mean it has a second derivative or any higher derivatives.</p>
+<p>To see why this is true, suppose we take the derivative of both sides with respect to <span class="math inline">\(z\)</span>. We can then pull the derivative inside the integral sign to get <span class="math display">\[
+\frac{d}{dz} f(z) = \frac{1}{2\pi i} \oint_{\mathcal{C}} dw \ \frac{f(w)}{(w-z)^2} \ .
+\]</span> Now, the right-hand side is still an integral of an analytic function over a numerator of some power of <span class="math inline">\(w-z\)</span>. This means we can apply the same logic as we did in the proof above to show that it must equal the left-hand side. Moreover, it implies that the derivative of <span class="math inline">\(f(z)\)</span> must be analytic as well at <span class="math inline">\(z\)</span>.</p>
+<p>We can do this as many times as we like by continuing to differentiate both sides. Taking <span class="math inline">\(n\)</span> derivatives with respect to <span class="math inline">\(z\)</span>, we get <span class="math display">\[
+\frac{d^n}{dz^n} f(z) = \frac{n!}{2\pi i} \oint_{\mathcal{C}} dw \ \frac{f(w)}{(w-z)^{n+1}} \ .
+\]</span> This implies that for all <span class="math inline">\(n\)</span>, the <span class="math inline">\(n\)</span><sup>th</sup> derivative of <span class="math inline">\(f(z)\)</span> must exist at the point <span class="math inline">\(z\)</span>, and must be analytic. That is, any function <span class="math inline">\(f(z)\)</span> that is analytic on some region <span class="math inline">\(\mathcal{R}\)</span> is also infinitely differentiable on that same region, and all its derivatives are analytic as well. Interestingly, this formula can also be used as a basis to define <em>fractional derivatives</em> where <span class="math inline">\(n\)</span> need no longer be an integer.</p>
+</section>
+</section>
+<section id="power-series" class="level2">
+<h2 class="anchored" data-anchor-id="power-series">Power Series</h2>
+<p>We’ll now derive the two important types of power series we see in complex analysis, the complex Taylor series for analytic functions, and its meromorphic extension known as the Laurent series. We will also introduce an important concept in mathematical physics known as analytic continuation.</p>
+<section id="taylor-series" class="level3">
+<h3 class="anchored" data-anchor-id="taylor-series">Taylor Series</h3>
+<p>Suppose we have a complex-valued power series of the form <span class="math display">\[
+\sum_{n=0}^\infty a_n (z - z_0)^n = a_0 + a_1 (z-z_0) + a_2 (z-z_0)^2 + \cdots \ .
+\]</span> As with a real power series, these will converge to a valid function so long as the <em>root test</em> is satisfied, <span class="math display">\[
+\lim_{n \to \infty} |a_n z^n|^{1/n} &lt; 1 \ .
+\]</span> If we solve for the value of <span class="math inline">\(|z|\)</span> such that <span class="math inline">\(|a_n z^n|^{1/n} \to 1\)</span> we get the <em>radius of convergence</em> <span class="math inline">\(R\)</span> of the power series, <span class="math display">\[
+R = \lim_{n \to \infty} \frac{1}{|a_n z_n|^{1/n}} \ .
+\]</span> A power series will converge to a valid function inside any region where <span class="math inline">\(|z| &lt; R\)</span>, called its <em>disk of convergence</em> <span class="math inline">\(\mathcal{D}\)</span>.</p>
+<p>Moreover, suppose we have two power series that equal each other in some region <span class="math inline">\(\mathcal{R}\)</span> containing the point <span class="math inline">\(z_0\)</span>, where <span class="math inline">\(\mathcal{R}\)</span> lies inside the disk of convergence of both power series, <span class="math display">\[
+\sum_{n=0}^\infty a_n (z - z_0)^n = \sum_{n=0}^\infty b_n (z - z_0)^n \ .
+\]</span> If we move everything to the left-hand side, we get <span class="math display">\[
+\sum_{n=0}^\infty (a_n-b_n) (z - z_0)^n = 0 \ .
+\]</span> The only way this can be true for all <span class="math inline">\(z\)</span> in <span class="math inline">\(\mathcal{R}\)</span> is if <span class="math inline">\(a_n = b_n\)</span> for all <span class="math inline">\(n\)</span>. That is, the two power series must be identical inside <span class="math inline">\(\mathcal{R}\)</span>. In fact, the two series must be identical inside the overlapping region of their disks of convergence. This seemingly trivial fact is sometimes called the <em>identity theorem</em> for power series.</p>
+<p>Now, suppose <span class="math inline">\(f(z)\)</span> is analytic inside some region <span class="math inline">\(\mathcal{R}\)</span> containing <span class="math inline">\(z_0\)</span>. Suppose we can express <span class="math inline">\(f(z)\)</span> as a power series of the form <span class="math display">\[
+f(z) = \sum_{n=0}^\infty a_n (z - z_0)^n \ ,
+\]</span> where the power series is defined on some disk of convergence <span class="math inline">\(\mathcal{D}\)</span>. In the region where <span class="math inline">\(\mathcal{R}\)</span> and <span class="math inline">\(\mathcal{D}\)</span> overlap, <span class="math inline">\(f(z)\)</span> must also be analytic, which according to Cauchy’s integral formula means it will have infinitely many derivatives. If we differentiate both sides <span class="math inline">\(n\)</span> times at the point <span class="math inline">\(z=z_0\)</span>, we can find the unique choice of coefficients <span class="math inline">\(a_n\)</span> that determine the power series, <span class="math display">\[
+\frac{d^n}{dz^n} f(z_0) = a_n n! \quad \Longrightarrow \quad a_n = \frac{1}{n!} \frac{d^n}{dz^n} f(z_0) \ .
+\]</span> Plugging these back into the power series representation, we have <span class="math display">\[
+f(z) = \sum_{n=0}^\infty \frac{(z-z_0)^n}{n!} \frac{d^n}{dz^n} f(z_0) \ .
+\]</span> This is called the <em>Taylor series</em> of <span class="math inline">\(f(z)\)</span> about the point <span class="math inline">\(z=z_0\)</span>. According to Taylor’s theorem, we know that this series will be well-defined and unique inside the overlapping region containing both <span class="math inline">\(\mathcal{R}\)</span> and <span class="math inline">\(\mathcal{D}\)</span>.</p>
+<p>In most respects, the complex Taylor series behaves pretty much identically to the real Taylor series. For instance, we have <span class="math display">\[
+e^z = \sum_{n=0}^\infty \frac{z^n}{n!} \ .
+\]</span> Like its real counterpart, the radius of convergence is infinite, which means this series is valid for all <span class="math inline">\(z\)</span> in the complex plane.</p>
+</section>
+<section id="analytic-continuation" class="level3">
+<h3 class="anchored" data-anchor-id="analytic-continuation">Analytic Continuation</h3>
+<p>If a power series is analytic, we can often extend it to an analytic function that’s well-defined even beyond the disk of convergence. This is known as analytic continuation. More formally, suppose we have a complex power series <span class="math inline">\(P(z)\)</span> with a disk of convergence <span class="math inline">\(\mathcal{D}\)</span>, and <span class="math inline">\(P'(z)\)</span> is some other power series with a disk of convergence <span class="math inline">\(\mathcal{D}'\)</span>. If <span class="math inline">\(\mathcal{D}\)</span> is a subregion of <span class="math inline">\(\mathcal{D}'\)</span>, we say that the power series <span class="math inline">\(P'(x)\)</span> is an <em>analytic continuation</em> of <span class="math inline">\(P(x)\)</span> from the smaller disk <span class="math inline">\(\mathcal{D}\)</span> to the larger disk <span class="math inline">\(\mathcal{D}'\)</span>.</p>
+<p>It’s a known fact that if <span class="math inline">\(P'(x)\)</span> is an analytic continuation of <span class="math inline">\(P(x)\)</span> from <span class="math inline">\(\mathcal{D}\)</span> to <span class="math inline">\(\mathcal{D}'\)</span>, then <span class="math inline">\(P'(x)\)</span> is the <em>unique</em> analytic continuation of <span class="math inline">\(P(x)\)</span> to <span class="math inline">\(\mathcal{D}'\)</span>. This means that <span class="math inline">\(P'(x)\)</span> is the only possible analytic function to <span class="math inline">\(\mathcal{D}'\)</span> such that <span class="math inline">\(P'(x) = P(x)\)</span> on <span class="math inline">\(\mathcal{D}\)</span>. Of course, <span class="math inline">\(P'(x)\)</span> may have many functional representations, but when expanded as a power series it must equal the original power series on <span class="math inline">\(\mathcal{D}\)</span>.</p>
+<p>The canonical example of analytic continuation is the <em>geometric series</em>. Consider the power series <span class="math display">\[
+P(z) = \sum_{n=0}^\infty z^n = 1 + z + z^2 + \cdots \ .
+\]</span> It’s easy to see that this power series has a radius of convergence <span class="math inline">\(R=1\)</span>, and so its disk of convergence <span class="math inline">\(\mathcal{D}\)</span> will be the disk of all points <span class="math inline">\(z\)</span> where <span class="math inline">\(|z| &lt; 1\)</span>. However, we know that the geometric series can also be written in a closed form by the function <span class="math display">\[
+f(z) = \frac{1}{1 - z} \ .
+\]</span> This function <span class="math inline">\(f(z)\)</span> is analytic anywhere <span class="math inline">\(z \neq 1\)</span>, which means we can Taylor expand it about any point <span class="math inline">\(z_0 \neq 1\)</span> we like. If we do that, we get a new power series <span class="math inline">\(P'(x)\)</span> of the form <span class="math display">\[
+P'(x) = \sum_{n=0}^\infty \frac{(z-z_0)^n}{(1-z_0)^{n+1}} = \frac{1}{1-z_0} + \frac{z-z_0}{(1-z_0)^2} + \frac{(z-z_0)^2}{(1-z_0)^3} + \cdots \ .
+\]</span> The radius of convergence of this power series is <span class="math inline">\(R' = |1-z_0|\)</span>, and so its disk of convergence <span class="math inline">\(\mathcal{D}'\)</span> will be the disk of all points <span class="math inline">\(z\)</span> where <span class="math inline">\(|z-z_0| &lt; |1-z_0|\)</span>. Provided <span class="math inline">\(|z_0| &gt; 1\)</span>, <span class="math inline">\(P'(x)\)</span> will be an analytic continuation of <span class="math inline">\(P(x)\)</span> to this larger disk, and it must be the case that <span class="math inline">\(P'(x) = P(x)\)</span> in the region where the two disks overlap. In fact, we can repeat this as often as we like by expanding the function about different points, creating an ever larger analytic continuation. In the end we’ll end up with a function <span class="math inline">\(f(z)\)</span> that’s analytic everywhere except <span class="math inline">\(z=1\)</span>, which is the closed form above.</p>
+<p>There are many more interesting examples of analytic continuation than this. In fact, we can often analytically continue a function <span class="math inline">\(f(z)\)</span> to another function <span class="math inline">\(g(z)\)</span> whether <span class="math inline">\(f(z)\)</span> is a power series or not. If <span class="math inline">\(f(z)\)</span> is analytic on some region <span class="math inline">\(\mathcal{R}\)</span> and <span class="math inline">\(g(z)\)</span> is some other function that’s analytic on a larger region <span class="math inline">\(\mathcal{R}'\)</span>, we say <span class="math inline">\(g(z)\)</span> is an analytic continuation of <span class="math inline">\(f(z)\)</span> to the larger region <span class="math inline">\(\mathcal{R}'\)</span> provided <span class="math inline">\(f(z) = g(z)\)</span> on the smaller region <span class="math inline">\(\mathcal{R}\)</span>.</p>
+<p>For instance, consider the factorial function <span class="math inline">\(n!\)</span> defined for integers <span class="math inline">\(n=1,2,3,\cdots\)</span> by <span class="math display">\[
+n! = n (n-1) (n-2) \cdots 1 \ .
+\]</span> Now, observe that we can also express <span class="math inline">\(n!\)</span> by the following real integral, <span class="math display">\[
+n! = \int_0^\infty dx \ x^n e^{-x} \ .
+\]</span> This can easily be shown by using integration by parts <span class="math inline">\(n\)</span> times and noting the boundary terms always vanish. Now, we can extend the integral on the right into the complex plane by replacing <span class="math inline">\(n\)</span> with <span class="math inline">\(z-1\)</span> to get a function <span class="math inline">\(\Gamma(z)\)</span> defined by <span class="math display">\[
+\Gamma(z) = \int_0^\infty dx \ x^{z-1} e^{-x} \ .
+\]</span> This function is well-defined and analytic so long as <span class="math inline">\(\text{Re} \ z \geq 0\)</span>. It’s called the <em>gamma function</em>. When <span class="math inline">\(z\)</span> is an integer we have <span class="math display">\[
+\Gamma(n) = (n+1)! \ .
+\]</span> In fact, one can show that the gamma function satisfies the recursive relation <span class="math display">\[
+\Gamma(z+1) = z \Gamma(z) \ .
+\]</span> If we now solve for <span class="math inline">\(\Gamma(z)\)</span> and keep applying this recursive relation <span class="math inline">\(n\)</span> times, we get <span class="math display">\[
+\Gamma(z) = \frac{\Gamma(z+n)}{z(z+1)(z+2) \cdots (z+n-1)} \ .
+\]</span> As expressed in this form, <span class="math inline">\(\Gamma(z)\)</span> will be well-defined and analytic at any point where <span class="math inline">\(z \neq 0,-1,-2,\cdots\)</span>. We can thus think of this relation as an analytic continuation of the Gamma function, and hence of the factorial function, to the whole complex plane.</p>
+</section>
+<section id="laurent-series" class="level3">
+<h3 class="anchored" data-anchor-id="laurent-series">Laurent Series</h3>
+<p>Now that we’ve discussed analytic functions in some depth, we will now turn our attention to functions with <em>singularities</em>, or points where either the function isn’t well-defined or the derivative doesn’t exist.</p>
+<p>Suppose a function <span class="math inline">\(f(z)\)</span> has a pole at a point <span class="math inline">\(z=z_0\)</span>. If we tried to expand <span class="math inline">\(f(z)\)</span> into a Taylor series, we could only do so at non-singular points away from <span class="math inline">\(z=z_0\)</span>. But what would happen if we insisted we wanted to expand <span class="math inline">\(f(z)\)</span> right at the pole <span class="math inline">\(z=z_0\)</span>?</p>
+<p>To address this question let’s consider a more general setup. Suppose <span class="math inline">\(f(z)\)</span> is potentially non-analytic inside some region <span class="math inline">\(\mathcal{S}\)</span> containing a point <span class="math inline">\(z_0\)</span>, which may or may not be singular, but <span class="math inline">\(f(z)\)</span> is analytic outside of <span class="math inline">\(\mathcal{S}\)</span> in some larger region <span class="math inline">\(\mathcal{R}\)</span>. We now want to use Cauchy’s integral formula, but to do that we need to make sure we do so on a region where <span class="math inline">\(f(z)\)</span> is analytic. We define a contour on the analytic region <span class="math inline">\(\mathcal{S}\)</span> as follows:</p>
+<ul>
+<li><p>Suppose the inner non-analytic region <span class="math inline">\(\mathcal{R}\)</span> has a maximum radius <span class="math inline">\(d_1\)</span> and the outer analytic region <span class="math inline">\(\mathcal{S}\)</span> a minimum radius of <span class="math inline">\(d_2\)</span>.</p></li>
+<li><p>Let <span class="math inline">\(\mathcal{C}_1\)</span> be a circular path centered at <span class="math inline">\(z_0\)</span> of radius <span class="math inline">\(r_1 &gt; d_1\)</span>. This will be our <em>inner loop</em>.</p></li>
+<li><p>Let <span class="math inline">\(\mathcal{C}_2\)</span> be another circular path of a larger radius <span class="math inline">\(d_2 &gt; r_2 &gt; r_1\)</span>. This will be our <em>outer loop</em>.</p></li>
+<li><p>Let <span class="math inline">\(\mathcal{L}\)</span> be a linear path connecting the inner and outer circles radially.</p></li>
+</ul>
+<p>We now define a combined closed loop <span class="math inline">\(\mathcal{C}\)</span> from these paths as follows:</p>
+<ul>
+<li>We start at the intersection point of <span class="math inline">\(\mathcal{L}\)</span> and <span class="math inline">\(\mathcal{C}_2\)</span> and traverse <span class="math inline">\(\mathcal{C}_2\)</span> counterclockwise in a full rotation.</li>
+<li>Next, we traverse inward radially along <span class="math inline">\(\mathcal{L}\)</span> until we reach the inner circle <span class="math inline">\(\mathcal{C}_1\)</span>.</li>
+<li>Next, we traverse <span class="math inline">\(\mathcal{C}_1\)</span> clockwise in a full rotation until we return to the intersection point of <span class="math inline">\(\mathcal{L}\)</span> and <span class="math inline">\(\mathcal{C}_1\)</span>.</li>
+<li>Finally, we traverse <span class="math inline">\(\mathcal{L}\)</span> radially outward until we get back to the point on <span class="math inline">\(\mathcal{C}_2\)</span> where we started.</li>
+</ul>
+<p>See the figure below for an illustration of this closed loop.</p>
+<p>FIGURE</p>
+<p>Now, <span class="math inline">\(f(z)\)</span> will be analytic anywhere where <span class="math inline">\(d_1 &lt; |z-z_0| &lt; d_2\)</span>. Since <span class="math inline">\(\mathcal{C}\)</span> lies inside this region by construction, we can use Cauchy’s integral formula to write <span class="math display">\[
+f(z) = \frac{1}{2\pi i} \oint_{\mathcal{C}} dw \ \frac{f(w)}{w-z} \ .
+\]</span> Next, we decompose the combined loop <span class="math inline">\(\mathcal{C}\)</span> into its constituent paths, but we have to make sure the signs are correct. Since we traverse the outer circle <span class="math inline">\(\mathcal{C}_2\)</span> counterclockwise, that integral will get a plus sign. Since we traverse the inner circle <span class="math inline">\(\mathcal{C}_1\)</span> clockwise, that integral will get a plus sign. The two integrals over the radial path <span class="math inline">\(\mathcal{L}\)</span> run in opposite direction, and so those will cancel each other out. We thus end up with <span class="math display">\[
+f(z) = \frac{1}{2\pi i} \oint_{\mathcal{C}_2} dw \ \frac{f(w)}{w-z} - \frac{1}{2\pi i} \oint_{\mathcal{C}_1} dw \ \frac{f(w)}{w-z} \ .
+\]</span> Notice that each integrand contains a factor <span class="math inline">\(1/(w-z)\)</span>. We want to expand this in a power series, but we need to do so in a way such that the power series is well-defined in the annular region where <span class="math inline">\(r_1 \leq |z-z_0| \leq r_2\)</span>. First, notice that along the outer circle <span class="math inline">\(\mathcal{C}_2\)</span> that <span class="math inline">\(|z-z_0| &lt; r_2\)</span> but <span class="math inline">\(|w-z_0| = r_2\)</span> since <span class="math inline">\(w\)</span> is integrated along the circle. We can thus expand <span class="math inline">\(1/(w-z)\)</span> here as a geometric series of the form <span class="math display">\[
+\text{on} \ \mathcal{C}_2: \ \frac{1}{w-z} = \frac{1}{w-z_0} \frac{1}{1-\frac{z-z_0}{w-z_0}} = \frac{1}{w-z_0} \sum_{n=0}^\infty \bigg(\frac{z-z_0}{w-z_0}\bigg)^n \ .
+\]</span> This geometric series is guaranteed to converge along <span class="math inline">\(\mathcal{C}_2\)</span> by construction. Next, we want to do the same thing, but along the inner circle <span class="math inline">\(\mathcal{C}_1\)</span>. Along this circle we have <span class="math inline">\(|z-z_0| &gt; r_1\)</span>, but <span class="math inline">\(|w-z_0| = r_1\)</span> since <span class="math inline">\(w\)</span> is integrated along the circle. We can thus expand <span class="math inline">\(1/(w-z)\)</span> here as a geometric series of the form <span class="math display">\[
+\text{on} \ \mathcal{C}_1: \ \frac{1}{w-z} = -\frac{1}{z-z_0} \frac{1}{1-\frac{w-z_0}{z-z_0}} = -\frac{1}{z-z_0} \sum_{n=0}^\infty \bigg(\frac{w-z_0}{z-z_0}\bigg)^n \ .
+\]</span> Again, this geometric series is guaranteed to converge along <span class="math inline">\(\mathcal{C}_1\)</span> by construction. Plugging these expressions back into Cauchy’s integral formula for <span class="math inline">\(f(z)\)</span>, we have <span class="math display">\[
+\begin{align*}
+f(z) &amp;= \frac{1}{2\pi i} \oint_{\mathcal{C}_2} dw \ f(w) \bigg[\frac{1}{w-z_0} \sum_{n=0}^\infty \bigg(\frac{z-z_0}{w-z_0}\bigg)^n\bigg] - \frac{1}{2\pi i} \oint_{\mathcal{C}_1} dw \ f(w) \bigg[-\frac{1}{z-z_0} \sum_{n=0}^\infty \bigg(\frac{w-z_0}{z-z_0}\bigg)^n\bigg] \\
+&amp;= \frac{1}{2\pi i} \sum_{n=0}^\infty (z-z_0)^n \oint_{\mathcal{C}_2} dw \ \frac{f(w)}{(w-z_0)^{n+1}} + \frac{1}{2\pi i} \sum_{n=0}^\infty \frac{1}{(z-z_0)^{n+1}} \oint_{\mathcal{C}_1} dw \ f(w) (w-z_0)^n \ .
+\end{align*}
+\]</span> We now make a change of index on the second sum by letting <span class="math inline">\(n \to -(n+1)\)</span>. Doing that means <span class="math inline">\(n\)</span> now runs from <span class="math inline">\(n=-\infty\)</span> to <span class="math inline">\(n=-1\)</span> in this sum and <span class="math inline">\(z-z_0\)</span> and <span class="math inline">\(w-w_0\)</span> swap places. We then end up with <span class="math display">\[
+f(z) = \frac{1}{2\pi i} \sum_{n=0}^\infty (z-z_0)^n \oint_{\mathcal{C}_2} dw \ \frac{f(w)}{(w-z_0)^{n+1}} + \frac{1}{2\pi i} \sum_{n=-\infty}^{-1} (z-z_0)^n \oint_{\mathcal{C}_1} dw \ \frac{f(w)}{(w-z_0)^{n+1}} \ .
+\]</span> Notice now that each integral is identical apart from the path they traverse. We can now join the two paths together by letting the inner circle <span class="math inline">\(\mathcal{C}_2\)</span> be traversed counterclockwise instead of clockwise. Then we can combine the sums together and write <span class="math display">\[
+f(z) = \sum_{n=-\infty}^\infty \bigg(\frac{1}{2\pi i}\oint_{\mathcal{C}} dw \ \frac{f(w)}{(w-z_0)^{n+1}} \bigg) (z-z_0)^n \ ,
+\]</span> where we’ve now redefined <span class="math inline">\(\mathcal{C} \equiv \mathcal{C}_1 = \mathcal{C}_2\)</span> for convenience. What remains is an infinite power series that runs over all positive and negative integer powers of <span class="math inline">\(z-z_0\)</span> with coefficients <span class="math inline">\(a_n\)</span> given by the integral <span class="math display">\[
+\boxed{
+a_n \equiv \frac{1}{2\pi i}\oint_{\mathcal{C}} dz \ \frac{f(z)}{(z-z_0)^{n+1}}
+} \ .
+\]</span> Note that it’s not too hard to see that the closed loop <span class="math inline">\(\mathcal{C}\)</span> we take to find the coefficients <span class="math inline">\(a_n\)</span> in this integral can be anything, so long as <span class="math inline">\(\mathcal{C}\)</span> lies in a region where <span class="math inline">\(f(z)\)</span> is analytic. Provided this is the case, we can expand <span class="math inline">\(f(z)\)</span> about the point <span class="math inline">\(z=z_0\)</span> as <span class="math display">\[
+\boxed{
+f(z) = \sum_{n=-\infty}^\infty a_n (z-z_0)^n = \cdots + \frac{a_{-2}}{(z-z_0)^2} + \frac{a_{-1}}{z-z_0} + a_0 + a_1 (z-z_0) + a_2 (z-z_0)^2 + \cdots
+} \ .
+\]</span> This is called the <em>Laurent series</em> of <span class="math inline">\(f(z)\)</span> about the point <span class="math inline">\(z=z_0\)</span>. By the identity theorem for power series, the Laurent series will be unique for any analytic path <span class="math inline">\(\mathcal{C}\)</span> and any point <span class="math inline">\(z_0\)</span>.</p>
+<p>It should be clear that the Laurent series will converge inside an annulus centered about <span class="math inline">\(z_0\)</span> provided there are no other singularities contained inside the annulus. If the closest singularity to <span class="math inline">\(z_0\)</span> is <span class="math inline">\(z_1\)</span>, then the Laurent series will converge inside any annulus whose outer radius is less than <span class="math inline">\(|z_1-z_0|\)</span>. If <span class="math inline">\(z_0\)</span> is itself singular, then the inner radius must be non-zero.</p>
+<p>The Laurent series is perhaps best thought of as an extension of the Taylor series to non-analytic functions. To see why, suppose that <span class="math inline">\(f(z)\)</span> is analytic inside the region <span class="math inline">\(\mathcal{R}\)</span> where we initially assumed <span class="math inline">\(f(z)\)</span> might have singularities. Then the negative coefficients <span class="math inline">\(a_{-n}\)</span> in the Laurent series will all vanish since <span class="math display">\[
+a_{-n} = \frac{1}{2\pi i} \oint_{\mathcal{C}} dz \ \frac{f(z)}{(z-z_0)^{-n+1}} = \oint_{\mathcal{C}} dz \ f(z) (z-z_0)^{n-1} \ ,
+\]</span> whose integrand is evidently an analytic function when <span class="math inline">\(n\)</span> is positive, and so <span class="math inline">\(a_{-n}\)</span> will vanish by Cauchy’s theorem. Moreover, the positive coefficients <span class="math inline">\(a_n\)</span> will be given by the Cauchy integral formula for derivatives, which says <span class="math display">\[
+a_n = \frac{1}{2\pi i}\oint_{\mathcal{C}} dz \ \frac{f(z)}{(z-z_0)^{n+1}} = \frac{1}{n!} \frac{d^n}{dz^n} f(z_0) \ .
+\]</span> Plugging these coefficients back into the Laurent series then gives a Taylor series for <span class="math inline">\(f(z)\)</span>, provided <span class="math inline">\(f(z)\)</span> is analytic.</p>
+<p>What if <span class="math inline">\(f(z)\)</span> is not analytic? How do we find its Laurent series then? One way would be to define a contour and calculate the coefficients <span class="math inline">\(a_n\)</span> via the integral defined above. But we often don’t need to. If we can find an expansion of <span class="math inline">\(f(z)\)</span> in powers of <span class="math inline">\(z\)</span> about a point <span class="math inline">\(z=z_0\)</span>, we know it must be unique inside its annulus of convergence by the identity theorem.</p>
+<p>For example, consider the function <span class="math inline">\(f(z) = e^{1/z}\)</span>. Clearly this function is non-analytic at the point <span class="math inline">\(z=0\)</span>. Nevertheless we can Laurent expand it at <span class="math inline">\(z=0\)</span> by Taylor expanding the exponential in powers of <span class="math inline">\(1/z\)</span>, in which case we get <span class="math display">\[
+e^{1/z} = \sum_{n=0}^\infty \frac{(1/z)^n}{n!} = \sum_{n=-\infty}^0 \frac{z^n}{(-n)!} = 1 + \frac{1}{z} + \frac{1}{2z^2} + \cdots \ .
+\]</span></p>
+<p>This expansion is well-defined on any annulus with a positive inner radius <span class="math inline">\(r &gt; 0\)</span>. That is, its annulus of convergence is the complex plane with the origin <span class="math inline">\(z=0\)</span> removed. This function is interesting in that all the positive coefficients are zero, while all the negative coefficients are non-zero. This is an example of a function with an <em>essential singularity</em>.</p>
+<p>It turns out that functions with essential singularities behave unusually. If <span class="math inline">\(f(z)\)</span> has an essential singularity at <span class="math inline">\(z=z_0\)</span>, then for <em>any</em> region containing this point <span class="math inline">\(f(z)\)</span> takes on <em>all</em> possible complex values except possibly one, infinitely many times. For example, inside any disk centered at <span class="math inline">\(z=0\)</span>, the function <span class="math inline">\(f(z) = e^{1/z}\)</span> takes on all values except <span class="math inline">\(z=0\)</span> infinitely many times. This strange result is known as <em>Picard’s Great Theorem</em>. Its proof is well beyond the scope of this course.</p>
+<p>As another example, consider the function <span class="math display">\[
+f(z) = \frac{1}{z(z-1)} \ .
+\]</span> This function is clearly singular at the points <span class="math inline">\(z=0\)</span> and <span class="math inline">\(z=1\)</span>, and analytic everywhere else. We can easily Laurent expand this function about <span class="math inline">\(z=0\)</span> by noting that we can also write it as a partial fraction expansion involving a geometric series, <span class="math display">\[
+\frac{1}{z(z-1)} =  -\frac{1}{z} - \frac{1}{1-z} = -\frac{1}{z} - \sum_{n=0}^\infty z^n = -\sum_{n=-1}^\infty z^n \ ,
+\]</span> where in the last step we combined the fractions together by shifting the index <span class="math inline">\(n\)</span> down one. This expansion is evidently valid inside any annulus with an inner radius <span class="math inline">\(r&gt;0\)</span> and an outer radius <span class="math inline">\(R &lt; 1\)</span>. Evidently, all negative coefficients except <span class="math inline">\(a_{-1}\)</span> vanish in this expansion. Functions with finitely many nonzero negative expansion coefficients like this are special. Such functions are called <em>meromorphic functions</em>. We’ll study these in more detail in the next section.</p>
+</section>
+</section>
+<section id="residue-calculus" class="level2">
+<h2 class="anchored" data-anchor-id="residue-calculus">Residue Calculus</h2>
+<p>We will now study the behavior of the singularities of complex functions in more depth. This will lead us to a brief study of meromorphic functions, and then finally to the powerful residue theorem.</p>
+<section id="singularities" class="level3">
+<h3 class="anchored" data-anchor-id="singularities">Singularities</h3>
+<p>Suppose <span class="math inline">\(f(z)\)</span> is some complex function with a singularity at a point <span class="math inline">\(z=z_0\)</span>, meaning <span class="math inline">\(|f(z)| \to \infty\)</span> as <span class="math inline">\(z \to z_0\)</span>. If we Laurent expand <span class="math inline">\(f(z)\)</span> about some annulus centered at the point <span class="math inline">\(z_0\)</span> we get an infinite power series in both the positive and negative powers of <span class="math inline">\(z-z_0\)</span> of the form <span class="math display">\[
+f(z) = \sum_{n=-\infty}^\infty a_n (z-z_0)^n = \cdots + \frac{a_{-2}}{(z-z_0)^2} + \frac{a_{-1}}{z-z_0} + a_0 + a_1 (z-z_0) + a_2 (z-z_0)^2 + \cdots \ .
+\]</span> If all negative coefficients <span class="math inline">\(a_{-n} = 0\)</span> then <span class="math inline">\(f(z)\)</span> will be analytic at <span class="math inline">\(z_0\)</span>, and hence <span class="math inline">\(z_0\)</span> won’t be a singularity. If any of the negative coefficients are nonzero <span class="math inline">\(z_0\)</span> will be a singularity, and we can classify the nature of this singularity by counting how many nonzero negative coefficients the expansion has:</p>
+<ul>
+<li>If only <span class="math inline">\(a_{-1} \neq 0\)</span> and all other <span class="math inline">\(a_{-n} = 0\)</span>, we say that <span class="math inline">\(z_0\)</span> is a <em>simple pole</em>, or <em>pole of order one</em>, of <span class="math inline">\(f(z)\)</span>.</li>
+<li>If <span class="math inline">\(a_{-1}, a_{-2}, \cdots, a_{-m} \neq 0\)</span> and all other <span class="math inline">\(a_{-n} = 0\)</span>, we say that <span class="math inline">\(z_0\)</span> is a <em>pole of order</em> <span class="math inline">\(m\)</span> of <span class="math inline">\(f(z)\)</span>.</li>
+<li>If infinitely many <span class="math inline">\(a_{-n} \neq 0\)</span>, we say that <span class="math inline">\(z_0\)</span> is an <em>essential singularity</em> of <span class="math inline">\(f(z)\)</span>.</li>
+</ul>
+<p>An example of a function with a simple pole is the function <span class="math inline">\(f(z) = 1/z\)</span>, which has a simple pole at <span class="math inline">\(z=0\)</span>. Its Laurent expansion about any annulus at <span class="math inline">\(z=0\)</span> is just the function itself, with <span class="math inline">\(a_{-1} = 1\)</span> and all other <span class="math inline">\(a_{\pm n} = 0\)</span>.</p>
+<p>An example of a function with a pole of order <span class="math inline">\(m\)</span> is <span class="math inline">\(f(z) = 1/z^m\)</span>, which has a pole of order <span class="math inline">\(m\)</span> at <span class="math inline">\(z=0\)</span>. Its Laurent expansion about any annulus at <span class="math inline">\(z=0\)</span> is also just the function itself, with <span class="math inline">\(a_{-m} = 1\)</span> and all other <span class="math inline">\(a_{\pm n} = 0\)</span>.</p>
+<p>An example of a function with an essential singularity is the function <span class="math inline">\(f(z) = e^{1/z}\)</span>. We saw in the previous section that we could Laurent expand this function about any annulus at <span class="math inline">\(z=0\)</span> by <span class="math display">\[
+e^{1/z} = \sum_{n=-\infty}^0 \frac{z^n}{(-n)!} = 1 + \frac{1}{z} + \frac{1}{2z^2} + \cdots \ .
+\]</span> In this expansion the negative coefficients <span class="math inline">\(a_{-n} = 1/(-n)!\)</span> for all <span class="math inline">\(n\)</span>, meaning they never vanish at a finite <span class="math inline">\(n\)</span>.</p>
+<p>Poles are special in that we can get rid of them with simple transformations. This contrasts heavily with essential singularities, which can’t be removed, hence the term essential. A function <span class="math inline">\(f(z)\)</span> with a pole of order <span class="math inline">\(m\)</span> at <span class="math inline">\(z_0\)</span> will always be analytic in some region around <span class="math inline">\(z_0\)</span>. We can simply multiply <span class="math inline">\(f(z)\)</span> by <span class="math inline">\((z-z_0)^m\)</span> to remove the singularity. That is, the function <span class="math display">\[
+g(z) \equiv (z-z_0)^m f(z)
+\]</span> is analytic in some region around <span class="math inline">\(z_0\)</span>. This can’t be done for essential singularities.</p>
+<p>If <span class="math inline">\(z_0\)</span> is a pole of some function <span class="math inline">\(f(z)\)</span>, we also call <span class="math inline">\(z_0\)</span> an <em>isolated singularity</em>. This means that in some small region about <span class="math inline">\(z_0\)</span>, the function <span class="math inline">\(f(z)\)</span> is analytic except at the point <span class="math inline">\(z_0\)</span>. Poles aren’t the only type of isolated singularity, but they’re the most important. Another type of isolated singularity is a <em>removable singularity</em>. We say <span class="math inline">\(z_0\)</span> is a removable singularity if the function is just not defined at a given point, not if it blows up at that point. A trivial example is <span class="math inline">\(f(z) = z/z\)</span>, which is one when <span class="math inline">\(z \neq 0\)</span> but undefined at the removable singularity <span class="math inline">\(z=0\)</span>. Removable singularities aren’t terribly interesting, since we could just define <span class="math inline">\(f(z_0)\)</span> by a limit.</p>
+<p>A function that is analytic every except at a set of isolated poles is called a <em>meromorphic function</em>. Meromorphic functions are in a sense “almost analytic”, in the sense that it’s analytic except at a few poles, and those poles we can get rid of via simple transformations. Functions of this type often involve ratios of analytic functions, for example <span class="math inline">\(f(z) = 1/z\)</span> or <span class="math inline">\(f(z) = \tan z\)</span>.</p>
+<p>Functions that blow up at infinity are said to have a <em>singularity at infinity</em>. If <span class="math inline">\(f(z)\)</span> has a singularity at infinity, then we must have <span class="math inline">\(f(z) \to \infty\)</span> as <span class="math inline">\(z \to \infty\)</span> by definition. Observe that this is equivalent to the statement that <span class="math inline">\(f(1/z) \to 0\)</span> as <span class="math inline">\(1/z \to 0\)</span>. This means we can study singularities at infinity by looking at <span class="math inline">\(f(1/z)\)</span> as <span class="math inline">\(z \to 0\)</span>. For example, consider the analytic function <span class="math display">\[
+f(z) = \sin z = \sin x \cosh y + i \cos x \sinh y \ .
+\]</span> Since both <span class="math inline">\(\cosh y\)</span> and <span class="math inline">\(\sinh y\)</span> go to infinity as <span class="math inline">\(y \to \infty\)</span>, we see that <span class="math inline">\(f(z)\)</span> must have a singularity at infinity. This is an interesting result, since it’s <em>not</em> true for the real-valued sine function <span class="math inline">\(f(x) = \sin x\)</span>, which stays bounded at infinity. To understand what kind, we can expand <span class="math inline">\(f(z)\)</span> into a Taylor series about <span class="math inline">\(z=0\)</span> and make the transformation <span class="math inline">\(z \to 1/z\)</span> to see that <span class="math display">\[
+f(1/z) = \sin 1/z = \sum_{n=0}^\infty \frac{(-1)^n}{(2n+1)!} \frac{1}{z^{2n+1}} \ .
+\]</span> Under this transformation, the Taylor series of <span class="math inline">\(f(z)\)</span> at <span class="math inline">\(z=0\)</span> becomes the Laurent series of <span class="math inline">\(f(1/z)\)</span> at <span class="math inline">\(z=0\)</span>. Since this Laurent series contains infinitely many nonzero negative-power terms, the function <span class="math inline">\(f(1/z)\)</span> has an essential singularity at <span class="math inline">\(1/z=0\)</span>, which means the original function <span class="math inline">\(f(z) = \sin z\)</span> has an essential singularity at <span class="math inline">\(z=\infty\)</span>.</p>
+<p>There is a final type of singularity briefly worth mentioning, namely <em>branch points</em>. Recall that many complex functions are multi-valued, for example the functions <span class="math inline">\(f(z) = \log z\)</span> or <span class="math inline">\(f(z) = z^{p/q}\)</span>. These functions both diverge at <span class="math inline">\(z=0\)</span> and <span class="math inline">\(z=\infty\)</span>. The multi-valued nature of these functions means it’s impossible to classify these singularities into the groups defined above, since to make the functions single-valued we need to specify a branch cut to join the two singularities together, and along that entire branch cut the function is neither continuous nor analytic.</p>
+</section>
+<section id="residue-theorem" class="level3">
+<h3 class="anchored" data-anchor-id="residue-theorem">Residue Theorem</h3>
+<p>Suppose <span class="math inline">\(f(z)\)</span> has an isolated singularity at <span class="math inline">\(z_0\)</span> and is analytic around <span class="math inline">\(z_0\)</span>. We can do a Laurent expansion of <span class="math inline">\(f(z)\)</span> about <span class="math inline">\(z_0\)</span> to get <span class="math display">\[
+f(z) = \sum_{n=-\infty}^\infty a_n (z-z_0)^n \ .
+\]</span> Now, suppose we wanted to integrate <span class="math inline">\(f(z)\)</span> in some closed loop <span class="math inline">\(\mathcal{C}\)</span> about the singularity <span class="math inline">\(z_0\)</span>. We’ll assume the closed loop is a small counterclockwise circle centered at <span class="math inline">\(z_0\)</span> of some small radius <span class="math inline">\(\varepsilon\)</span>. We can make <span class="math inline">\(\varepsilon\)</span> as small as we like to ensure that no other singularities are contained inside the closed loop. Inside this small loop we can integrate <span class="math inline">\(f(z)\)</span> by instead integrating its Laurent series term by term. Pulling the integral inside the summation sign, we have <span class="math display">\[
+\oint_\mathcal{C} dz \ f(z) = \sum_{n=-\infty}^\infty a_n \oint_\mathcal{C} dz \ (z-z_0)^n \ .
+\]</span> We now need to evaluate the integral of each power function <span class="math inline">\((z-z_0)^n\)</span>. We can do that by again parametrizing the circle in the usual way by letting <span class="math inline">\(z(t) = z_0 + \varepsilon e^{it}\)</span> and integrating from <span class="math inline">\(t=-\pi\)</span> to <span class="math inline">\(t=\pi\)</span> to get <span class="math display">\[
+\oint_\mathcal{C} dz \ (z - z_0)^n = \int_{-\pi}^\pi dt \ (\varepsilon e^{it})^n (i\varepsilon e^{it}) = i\varepsilon^{n+1} \int_{-\pi}^\pi dt \ e^{i(n+1)t} \ .
+\]</span> Now, since the function <span class="math inline">\(e^{i(n+1)t}\)</span> is periodic on the interval <span class="math inline">\(-\pi \leq t \leq \pi\)</span>, the integral will vanish whenever <span class="math inline">\(n \neq -1\)</span>. When <span class="math inline">\(n=-1\)</span> the integrand becomes one, in which case the integral is just <span class="math inline">\(2\pi\)</span>. We thus have <span class="math display">\[
+\oint_\mathcal{C} dz \ (z - z_0)^n = \begin{cases}
+2\pi i &amp; n = -1 \\
+0 &amp; n \neq -1
+\end{cases} \ .
+\]</span> Plugging this back into the integral for <span class="math inline">\(f(z)\)</span>, we see that all but the <span class="math inline">\(n=-1\)</span> terms in the series vanish, leaving <span class="math display">\[
+\oint_\mathcal{C} dz \ f(z) = 2\pi i a_{-1} \ .
+\]</span> Evidently the <span class="math inline">\(a_{-1}\)</span> coefficient is special, in that it’s the only one that remains when <span class="math inline">\(f(z)\)</span> is integrated. For this reason we call the coefficient <span class="math inline">\(a_{-1}\)</span> the <em>residue</em> of <span class="math inline">\(f(z)\)</span> at the point <span class="math inline">\(z_0\)</span>. Residues turn out to be very important to the theory of complex integration.</p>
+<p>But what we’ve shown is only true when integrating over a small loop about a single isolated singularity <span class="math inline">\(z_0\)</span>. What if we want to integrate <span class="math inline">\(f(z)\)</span> over some more general closed loop of arbitrary size and shape? It turns out we get the same result, except now we need to sum over the residues of all the isolated singularities inside the closed loop.</p>
+<p>To see why this is true, suppose <span class="math inline">\(\mathcal{C}\)</span> is some counterclockwise closed loop whose inner region contains some number of isolated singularities <span class="math inline">\(z_1, z_2, \cdots, z_k\)</span>. We assume that no singularities lie directly on the closed loop itself, so that <span class="math inline">\(f(z)\)</span> is analytic on <span class="math inline">\(\mathcal{C}\)</span>. For each singularity <span class="math inline">\(z_j\)</span>, suppose <span class="math inline">\(\mathcal{C}_j\)</span> is a small counterclockwise circular path enclosing only the singularity <span class="math inline">\(z_j\)</span>. We can traverse the outer closed loop <span class="math inline">\(\mathcal{C}\)</span> by joining it to each <span class="math inline">\(\mathcal{C}_j\)</span> via a cut as we did when proving Cauchy’s integral formula.</p>
+<p>FIGURE</p>
+<p>By traversing the inner circular paths in the opposite direction of the outer closed loop, we end up with <span class="math display">\[
+\oint_\mathcal{C} dz \ f(z) = \sum_{j=1}^k \oint_{\mathcal{C}_j} dz \ f(z) \ .
+\]</span> Using the same argument applied before, the integral over each <span class="math inline">\(\mathcal{C}_j\)</span> will yield <span class="math inline">\(2\pi i a_{-1}(z_j)\)</span>. We thus have <span class="math display">\[
+\boxed{
+\oint_C dz \ f(z) = 2\pi i \sum_{j=1}^k a_{-1}(z_k)
+} \ .
+\]</span> This important result is known as the <em>Residue Theorem</em>. It says that so long as we have a function with isolated singularities, we can evaluate its complex contour integral over any path by finding all the residues inside the closed loop, summing them up, and multiplying by <span class="math inline">\(2\pi i\)</span>.</p>
+<p>Note that as stated, the residue theorem is only true for simple closed loops that loop around each singularity <span class="math inline">\(z_j\)</span> only once counterclockwise. In general, we can imagine a loop that loops around each singularity <span class="math inline">\(w_j\)</span> times, where <span class="math inline">\(w_j\)</span> is known as the <em>winding number</em> of <span class="math inline">\(z_j\)</span>. Each counterclockwise traversal of <span class="math inline">\(z_j\)</span> adds one from <span class="math inline">\(w_j\)</span>, while each clockwise traversal of <span class="math inline">\(z_j\)</span> subtracts one from <span class="math inline">\(w_j\)</span>. Any singularities not looped over have a winding number <span class="math inline">\(w_j = 0\)</span>. We can then write the residue theorem as <span class="math display">\[
+\oint_C dz \ f(z) = 2\pi i \sum_{j=1}^k w_j a_{-1}(z_k) \ .
+\]</span> We won’t use this more general formula as much in practice. Most important is to note that if <span class="math inline">\(\mathcal{C}\)</span> is traversed clockwise exactly once, each winding number will be <span class="math inline">\(w_j = -1\)</span>, and hence the right-hand side will acquire a minus sign.</p>
+</section>
+<section id="residues" class="level3">
+<h3 class="anchored" data-anchor-id="residues">Residues</h3>
+<p>Of course, for the residue theorem to be useful, we need an easier way to find the residues than to do the integral the hard way. We can find residues in a few ways. The first way is to find the Laurent series of <span class="math inline">\(f(z)\)</span> at each singularity inside the closed loop and extract the <span class="math inline">\(a_{-1}\)</span> coefficients. Sometimes this can be helpful, but there’s often an even easier way to find residues for lower order poles that lets us avoid having to calculate the entire Laurent series.</p>
+<p>Suppose <span class="math inline">\(z_0\)</span> is a pole of order <span class="math inline">\(m\)</span> of <span class="math inline">\(f(z)\)</span>. If we expand <span class="math inline">\(f(z)\)</span> in a Laurent series about <span class="math inline">\(z_0\)</span>, we get <span class="math display">\[
+f(z) = \frac{a_{-m}}{(z-z_0)^m} + \cdots + \frac{a_{-1}}{z-z_0} + a_0 + \cdots \ .
+\]</span> If we now multiply both sides by <span class="math inline">\((z-z_0)^m\)</span> we get a new function <span class="math inline">\(g(z) = (z-z_0)^m f(z)\)</span> with <span class="math display">\[
+g(z) = (z-z_0)^m f(z) = a_{-m} + \cdots + a_{-1} (z-z_0)^{m-1} + a_0 (z-z_0)^m + \cdots \ .
+\]</span> This new function <span class="math inline">\(g(z)\)</span> is evidently analytic at <span class="math inline">\(z_0\)</span>. This means <span class="math inline">\(g(z)\)</span> also has a Taylor series expansion at <span class="math inline">\(z_0\)</span>, with <span class="math display">\[
+g(z) = g(z_0) + \cdots + \frac{(z-z_0)^{m-1}}{(m-1)!} \frac{d^{m-1}}{dz^{m-1}} g(z_0) + \frac{(z-z_0)^m}{m!} \frac{d^m}{dz^m} g(z_0) + \cdots \ .
+\]</span> The two expansions of <span class="math inline">\(g(z)\)</span> must be equal term by term by the identity theorem, which means we must have <span class="math display">\[
+a_{-1} = \frac{1}{(m-1)!} \frac{d^{m-1}}{dz^{m-1}} g(z_0) \ .
+\]</span> This means if <span class="math inline">\(z_0\)</span> is a pole of order <span class="math inline">\(m\)</span> of <span class="math inline">\(f(z)\)</span>, we have the following formula for the residue <span class="math inline">\(a_{-1}(z_0)\)</span>, <span class="math display">\[
+\boxed{
+a_{-1}(z_0) = \frac{1}{(m-1)!} \frac{d^{m-1}}{dz^{m-1}} \bigg|_{z=z_0} (z-z_0)^m f(z)
+} \ .
+\]</span> In most cases, this is the quickest and simplest way to find the residues of a given function.</p>
+<p>As an easy example, consider the function <span class="math display">\[
+f(z) = \frac{e^z}{z - 1} \ ,
+\]</span> This function has a single pole of order 1 at <span class="math inline">\(z=1\)</span>, with a residue of <span class="math display">\[
+a_{-1}(1) = (z - 1) f(z) \bigg |_{z=1} = e \ .
+\]</span> As another example, consider the function <span class="math display">\[
+f(z) = \frac{1 + z^2}{z^2} \ .
+\]</span> This function has a single pole of order 2 at <span class="math inline">\(z=0\)</span>, with residue <span class="math display">\[
+a_{-1}(0) = \frac{d}{dz} \bigg|_{z=0} z^2 f(z) = \frac{d}{dz} \bigg|_{z=0} (1 + z^2) = 0 \ .
+\]</span> As a final example let’s consider a function with multiple distinct poles. Consider the function <span class="math display">\[
+f(z) = \frac{\cos z}{z (z-\pi)(z+\pi)} \ .
+\]</span> This function has three simple poles at <span class="math inline">\(z=0\)</span>, <span class="math inline">\(z= \pi\)</span>, and <span class="math inline">\(z=-\pi\)</span>. The residues are given by <span class="math display">\[
+\begin{align*}
+&amp;a_{-1}(0) = z f(z) \bigg |_{z=0} = -\frac{1}{\pi^2}  \ , \\
+&amp;a_{-1}(\pi) = (z-\pi) f(z) \bigg |_{z=\pi} = -\frac{1}{2\pi^2}  \ , \\
+&amp;a_{-1}(-\pi) = (z+\pi) f(z) \bigg |_{z=-\pi} = -\frac{1}{2\pi^2} \ .
+\end{align*}
+\]</span> Sometimes we’ll find ourselves needing to integrate over a closed loop that goes to infinity, for example over the <em>upper half plane</em> where <span class="math inline">\(\text{Im} \ z &gt; 0\)</span>. When this is the case, we need to account for the fact that we can have poles at infinity, which means we can have residues at infinity as well. Provided <span class="math inline">\(f(z)\)</span> is a meromorphic function, its residue at infinity will just be minus the sum of all its finite residues. That is, if <span class="math inline">\(f(z)\)</span> is meromorphic with isolated finite singularities <span class="math inline">\(z_1, z_2, \cdots, z_k\)</span>, then <span class="math display">\[
+a_{-1}(\infty) = -\sum_{j=1}^k a_{-1}(z_j) \ .
+\]</span> An immediate implication of this result is that the integral of a meromorphic function over the whole complex plane is zero.</p>
+<p>With this knowledge in hand, let’s now evaluate a few complex integrals using the residue theorem.</p>
+<section id="example-evaluate-oint-dzz-over-a-counterclockwise-unit-circular-path-centered-at-the-origin" class="level5">
+<h5 class="anchored" data-anchor-id="example-evaluate-oint-dzz-over-a-counterclockwise-unit-circular-path-centered-at-the-origin">Example: Evaluate <span class="math inline">\(\oint dz/z\)</span> over a counterclockwise unit circular path centered at the origin</h5>
+<p>As a simple example we’ve seen before, suppose we want to evaluate the following integral over a counterclockwise circular path of unit radius centered at the origin <span class="math inline">\(z=0\)</span>, <span class="math display">\[
+\oint \frac{dz}{z} \ .
+\]</span> We saw before that the answer should be <span class="math inline">\(2\pi i\)</span>. Let’s verify this with the residue theorem.</p>
+<p>The function <span class="math inline">\(f(z) = 1/z\)</span> has a single simple pole at <span class="math inline">\(z=0\)</span>, with residue <span class="math display">\[
+a_{-1}(0) = z f(z) \bigg |_{z=0} = 1 \ .
+\]</span> By the residue theorem, we thus must have that <span class="math display">\[
+\oint \frac{dz}{z} = 2\pi i \ a_{-1}(0) = 2\pi i \ .
+\]</span> Notice that since the residue theorem only depends on the residues poles inside the closed loop, this answer will be the same for <em>any</em> counterclockwise closed loop we choose, so long as it contains the origin. If the loop doesn’t contain the origin then there are no residues inside, hence the integral will vanish as we’d expect by Cauchy’s theorem.</p>
+</section>
+<section id="example-evaluate-oint-dzz2-1-over-a-counterclockwise-circular-path-of-radius-r1-centered-at-the-origin" class="level5">
+<h5 class="anchored" data-anchor-id="example-evaluate-oint-dzz2-1-over-a-counterclockwise-circular-path-of-radius-r1-centered-at-the-origin">Example: Evaluate <span class="math inline">\(\oint dz/(z^2 + 1)\)</span> over a counterclockwise circular path of radius <span class="math inline">\(R&gt;1\)</span> centered at the origin</h5>
+<p>Suppose we want to evaluate the following integral over a counterclockwise circular loop of radius <span class="math inline">\(R &gt; 1\)</span> centered at the origin, <span class="math display">\[
+\oint \frac{dz}{z^2 + 1} \ .
+\]</span> Notice that we can factor the denominator of the integrand <span class="math inline">\(f(z) = \frac{1}{z^2+1}\)</span> as <span class="math display">\[
+f(z) = \frac{1}{(z-i)(z+i)} \ .
+\]</span> This function evidently has two simple poles at <span class="math inline">\(z = \pm i\)</span>. The residues are evidently <span class="math display">\[
+a_{-1}(i) = -\frac{i}{2} \quad , \quad a_{-1}(-i) = \frac{i}{2} \ .
+\]</span> Since we need to integrate over a circular loop of radius <span class="math inline">\(R &gt; 1\)</span>, both poles will be contained inside the loop, since <span class="math inline">\(|\pm i| = 1\)</span>. By the residue theorem, we thus have <span class="math display">\[
+\oint \frac{dz}{z^2 + 1} = 2\pi i \bigg(\frac{i}{2} - \frac{i}{2}\bigg) = 0 \ .
+\]</span> The integral thus vanishes over closed loops containing both poles. Note that if we only integrated over one of the two poles the integral would not vanish. For instance, if we only considered a circular loop of radius <span class="math inline">\(R=1\)</span> centered at <span class="math inline">\(z=i\)</span>, we’d instead have <span class="math display">\[
+\oint \frac{dz}{z^2 + 1} = 2\pi i \bigg(-\frac{i}{2}\bigg) = \pi \ .
+\]</span> This is a good reminder that in complex analysis, the value of a complex integral depends not only on the function, but also on the path chosen.</p>
+</section>
+</section>
+<section id="definite-integrals" class="level3">
+<h3 class="anchored" data-anchor-id="definite-integrals">Definite Integrals</h3>
+<p>In physics, the residue theorem is most useful for evaluating certain types of real definite integrals that are difficult or impossible to evaluate in any other way.</p>
+<p>One class of definite integrals amenable to this method are integrals of the form <span class="math display">\[
+\int_0^{2\pi} d\varphi \ f(\sin\varphi, \cos\varphi) \ .
+\]</span> To convert this into a complex integral we let <span class="math inline">\(z = e^{i\varphi}\)</span>. Then we have <span class="math display">\[
+d\varphi = -i \frac{dz}{z} \quad , \quad \sin\varphi = \frac{z - 1/z}{2i} \quad , \quad \cos\varphi = \frac{z + 1/z}{2} \ .
+\]</span> Under this transformation, the path of integration becomes a counterclockwise circular loop of unit radius. We thus have <span class="math display">\[
+\int_0^{2\pi} d\varphi \ f(\sin\varphi, \cos\varphi) = -i \oint \frac{dz}{z} \ f\bigg(\frac{z - 1/z}{2i}, \frac{z + 1/z}{2}\bigg) \ .
+\]</span> Provided we can evaluate the closed loop integral on the right-hand side using the residue theorem, we have an answer for the original definite integral as well.</p>
+<section id="example-evaluate-int_02pi-dvarphi1-varepsilon-cosvarphi-where-varepsilon-1" class="level5">
+<h5 class="anchored" data-anchor-id="example-evaluate-int_02pi-dvarphi1-varepsilon-cosvarphi-where-varepsilon-1">Example: Evaluate <span class="math inline">\(\int_0^{2\pi} d\varphi/(1 + \varepsilon \cos\varphi)\)</span> where <span class="math inline">\(|\varepsilon| &lt; 1\)</span></h5>
+<p>To evaluate this integral we again let <span class="math inline">\(z = e^{i\varphi}\)</span>. Plugging this in, we end up with a closed loop integral of the form <span class="math display">\[
+\oint \frac{dz}{z} \frac{1}{1 + \frac{\varepsilon}{2} (z + 1/z)} = \frac{2}{\varepsilon} \oint \frac{dz}{z^2 + (2/\varepsilon)z + 1} \ .
+\]</span> The function <span class="math inline">\(f(z)\)</span> in the integrand has two simple poles when the denominator is zero. These are evidently <span class="math display">\[
+z_\pm = \frac{1}{\varepsilon} \big(-1 \pm \sqrt{1 - \varepsilon^2}\big) \ .
+\]</span> Since <span class="math inline">\(|\varepsilon| &lt; 1\)</span>, we have <span class="math inline">\(|z_+| &lt; 1\)</span> and <span class="math inline">\(|z_-| &gt; 1\)</span>, so only the pole <span class="math inline">\(z_+\)</span> is inside of the circle of integration. Its residue is evidently <span class="math display">\[
+a_{-1}(z_+) = (z-z_+) f(z) \bigg|_{z=z_+} = \frac{1}{z_+ - z_-} = \frac{\varepsilon}{2\sqrt{1 - \varepsilon^2}} \ .
+\]</span> By the residue theorem, we thus have <span class="math display">\[
+\frac{2}{\varepsilon} \oint \frac{dz}{z^2 + (2/\varepsilon)z + 1} = \frac{2}{\varepsilon} 2\pi i a_{-1}(z_+) = \frac{2\pi i}{\sqrt{1 - \varepsilon^2}} \ .
+\]</span> Finally, multiplying both sides by <span class="math inline">\(-i\)</span> then gives the value of the definite integral we sought, <span class="math display">\[
+\int_0^{2\pi} \frac{d\varphi}{1 + \varepsilon \cos\varphi} = \frac{2\pi}{\sqrt{1 - \varepsilon^2}} \ .
+\]</span> Note if <span class="math inline">\(|\varepsilon| &gt; 1\)</span> the exact same logic would apply, except we’d use the residue of <span class="math inline">\(z_-\)</span> instead, which would add a minus sign to the answer given.</p>
+<hr>
+<p>Another class of definite integrals amenable to this method are integrals over the whole real line, <span class="math display">\[
+\int_{-\infty}^\infty dx \ f(x) \ .
+\]</span> For the method of residues to work on these integrals, we need <span class="math inline">\(f(z)\)</span> to be meromorphic in either the upper or lower half plane, and for <span class="math inline">\(f(z)\)</span> to vanish at infinity at least as fast as <span class="math inline">\(1/z^2\)</span>. We will assume <span class="math inline">\(f(z)\)</span> has no poles on the real axis in this discussion. We’ll see in the examples how to deal with situations where there are poles on the real axis.</p>
+<p>We now define a closed loop integral over a semicircular loop <span class="math inline">\(\mathcal{C}\)</span> of radius <span class="math inline">\(R \gg 1\)</span> centered on the real axis. Letting <span class="math inline">\(\mathcal{C}_R\)</span> be the circular part of the path, we can decompose the closed loop integral into a real integral and the circular integral as <span class="math display">\[
+\oint_\mathcal{C} dz \ f(z) = \int_{-R}^R dx \ f(x) + \int_{\mathcal{C}_R} dz \ f(z) \ .
+\]</span> The circular integral we can parametrize by letting <span class="math inline">\(z(t) = R e^{it}\)</span> with <span class="math inline">\(0 \leq t \leq \pi\)</span>, giving <span class="math display">\[
+\oint_\mathcal{C} dz \ f(z) = \int_{-R}^R dx \ f(x) + \int_0^\pi dt \ f(Re^{it}) i Re^{it} \ .
+\]</span> Sending <span class="math inline">\(R \to \infty\)</span> and requiring that <span class="math inline">\(f(z)\)</span> vanish at infinity faster than <span class="math inline">\(1/z^2\)</span>, the circular part vanishes, leaving us with <span class="math display">\[
+\oint_\mathcal{C} dz \ f(z) = \int_{-\infty}^\infty dx \ f(x) \ .
+\]</span> To evaluate the closed loop integral on the left-hand side we can use the residue theorem, being sure to include all residues inside the semicircle, which will be all residues in either the upper or lower half plane as <span class="math inline">\(R \to \infty\)</span>. Once we’ve done that, we have the answer for the original definite integral as well.</p>
+</section>
+<section id="example-evaluate-int_-inftyinfty-dx1x2" class="level5">
+<h5 class="anchored" data-anchor-id="example-evaluate-int_-inftyinfty-dx1x2">Example: Evaluate <span class="math inline">\(\int_{-\infty}^\infty dx/(1+x^2)\)</span></h5>
+<p>This definite integral is of the form specified above. We thus consider the closed loop integral <span class="math display">\[
+\oint \frac{dz}{1 + z^2} \ ,
+\]</span> where the closed loop is taken as a counterclockwise semicircular path of radius <span class="math inline">\(R \gg 1\)</span> in the upper half plane.</p>
+<p>The denominator of the integrand <span class="math inline">\(f(z)\)</span> can be factored, giving <span class="math display">\[
+f(z) = \frac{1}{(z + i)(z - i)} \ .
+\]</span> This means <span class="math inline">\(f(z)\)</span> has two simple poles at the points <span class="math inline">\(z = \pm i\)</span>. Since only <span class="math inline">\(z = i\)</span> lies inside the closed loop, we need only find its residue, which is evidently <span class="math display">\[
+a_{-1}(i) = (z-i) f(z) \bigg|_{z=i} = \frac{1}{2i} \ .
+\]</span> By the residue theorem, we thus have <span class="math display">\[
+\oint \frac{dz}{1 + z^2} = 2\pi i a_{-1}(i) = \pi \ .
+\]</span> Now, as we send <span class="math inline">\(R \to \infty\)</span>, the circular component of the integral vanishes since <span class="math inline">\(f(z) \to 0\)</span> as fast as <span class="math inline">\(1/z^2\)</span>. What remains is the definite integral we seek. Thus, we have <span class="math display">\[
+\int_{-\infty}^\infty \frac{dx}{1 + x^2} = \pi \ .
+\]</span> Note the result would be the same if we used a clockwise semicircular loop in the lower half plane. In that case, the residue <span class="math inline">\(a_{-1}(-i) = -1/2i\)</span> would have an opposite sign, which would compensate for the sign from traversing in the opposite direction.</p>
+<hr>
+<p>Another, closely related, class of definite integrals amenable to the method of residues are those of the form <span class="math display">\[
+\int_{-\infty}^\infty dx \ f(x) e^{iax} \ .
+\]</span> Integrals of this type usually show up as Fourier transforms, and thus occur quite often in physics. We can solve integrals of this type in a similar was as the previous class of integrals, except with some slight modifications. We again extend <span class="math inline">\(f(x)\)</span> to a complex function <span class="math inline">\(f(z)\)</span>, and require <span class="math inline">\(f(z)\)</span> be meromorphic. We also require that <span class="math inline">\(f(z)\)</span> vanish at infinity, but place no restriction on how fast <span class="math inline">\(f(z)\)</span> decays at infinity.</p>
+<p>As before, we consider a semicircular loop <span class="math inline">\(\mathcal{C}\)</span> of radius <span class="math inline">\(R\)</span> whose diameter lies on the real axis, and whose circular part <span class="math inline">\(\mathcal{C}'\)</span> is traversed counterclockwise if in the upper half plane, and clockwise if in the lower half plane. Then we can write <span class="math display">\[
+\oint_\mathcal{C} dz \ f(z) = \int_{-R}^R dx \ f(x) e^{iax} + \int_{\mathcal{C}_R} dz \ f(z) e^{iaz} \ .
+\]</span> Now, before we took <span class="math inline">\(R \to \infty\)</span> and argued that the circular part of the integral vanishes, leaving the original definite integral. This time though we can’t easily follow the same argument. Instead we appeal to <em>Jordan’s Lemma</em>, which says that so long as <span class="math inline">\(f(z)\)</span> is continuous along a circular path and goes to zero at infinity, then the circular part vanishes, leaving <span class="math display">\[
+\oint_\mathcal{C} dz \ f(z) = \int_{-\infty}^\infty dx \ f(x) e^{iax} \ .
+\]</span> Provided this is the case, we can again use the residue theorem to evaluate the definite integral as before.</p>
+</section>
+<section id="example-evaluate-int_0infty-dx-sin-x-x" class="level5">
+<h5 class="anchored" data-anchor-id="example-evaluate-int_0infty-dx-sin-x-x">Example: Evaluate <span class="math inline">\(\int_0^\infty dx \ \sin x / x\)</span></h5>
+<p>Notice that the integrand <span class="math inline">\(f(x)\)</span> is <em>even</em> since <span class="math inline">\(f(-x) = f(x)\)</span>. This means we have <span class="math display">\[
+\int_0^\infty dx \ \frac{\sin x}{x} = \frac{1}{2} \int_{-\infty}^\infty dx \ \frac{\sin x}{x} \ .
+\]</span> We can thus focus on evaluating the definite integral of <span class="math inline">\(f(x)\)</span> over the whole real line. Consider the complex function <span class="math display">\[
+f(z) = \frac{e^{iz}}{z} = \frac{\cos z}{z} + i \frac{\sin z}{z} \ .
+\]</span> Evidently, the original real function <span class="math inline">\(f(x)\)</span> is the imaginary part of the complex function <span class="math inline">\(f(z)\)</span>. The function <span class="math inline">\(f(z)\)</span> has a single simple pole at the origin <span class="math inline">\(z=0\)</span>, with residue <span class="math display">\[
+a_{-1}(0) = z f(z) \bigg|_{z=0} = 1 \ .
+\]</span> However, we run into a slight problem, in that the pole <span class="math inline">\(z=0\)</span> lies on the real axis. To deal with this problem, we place a third clockwise circular path <span class="math inline">\(\mathcal{C}_r\)</span> of radius <span class="math inline">\(r \ll 1\)</span> around <span class="math inline">\(z=0\)</span>. The rest of the closed loop will again be a counterclockwise semicircular loop <span class="math inline">\(\mathcal{C}\)</span> of radius <span class="math inline">\(R \gg 1\)</span> with diameter along the real axis.</p>
+<p>FIGURE</p>
+<p>We can then decompose <span class="math inline">\(\mathcal{C}\)</span> as follows, <span class="math display">\[
+\oint_\mathcal{C} dz \ f(z) = \int_{-R}^{-r} dx \ f(x) + \int_r^R dx \ f(x) + \int_{\mathcal{C}_r} dz \ f(z) + \int_{\mathcal{C}_R} dz \ f(z) \ .
+\]</span> First, notice that along this closed loop there are no residues inside, which means we have <span class="math display">\[
+\oint_\mathcal{C} dz \ f(z) = 0 \ .
+\]</span> In the end we’ll send <span class="math inline">\(r \to 0\)</span> and <span class="math inline">\(R \to \infty\)</span> to recover the original definite integral, but first we need to deal with the two circular integrals over <span class="math inline">\(\mathcal{C}_r\)</span> and <span class="math inline">\(\mathcal{C}_R\)</span>. Now, clearly <span class="math inline">\(f(z) \to 0\)</span> at infinity and is continuous along the outer path <span class="math inline">\(\mathcal{C}_R\)</span>, which means by Jordan’s Lemma the outer <span class="math inline">\(\mathcal{C}_R\)</span> integral vanishes at infinity, <span class="math display">\[
+\int_{\mathcal{C}_R} dz \ f(z) \to 0 \ .
+\]</span> Along the inner path <span class="math inline">\(\mathcal{C}_r\)</span>, notice that integral is just <em>half</em> that of a counterclockwise circular loop of radius <span class="math inline">\(r\)</span> centered at the origin, which means by the residue theorem we must have <span class="math display">\[
+\int_{\mathcal{C}_r} dz \ f(z) = \frac{1}{2} \oint dz \ f(z) = -\pi i,
+\]</span> where the minus sign comes from traversing the inner loop clockwise. This is true for any radius <span class="math inline">\(r \ll 1\)</span>.</p>
+<p>Sending <span class="math inline">\(r \to 0\)</span> and <span class="math inline">\(R \to \infty\)</span>, we thus have <span class="math display">\[
+0 = \int_{-\infty}^\infty dx \ \frac{\sin x}{x} - \pi i \ .
+\]</span> Moving <span class="math inline">\(\pi i\)</span> to the left-hand side, taking its imaginary part, and dividing by a half, we finally see that <span class="math display">\[
+\int_0^\infty dx \ \frac{\sin x}{x} = \frac{\pi}{2} \ .
+\]</span> Definite integral turn out to be important in physics and engineering. They’re known as <em>Dirichlet integrals</em>. We’ll make use of this result in other sections in this course, for example in deriving the Green’s function of Laplace’s equation in electrostatics.</p>
+</section>
+</section>
+</section>
+<section id="transformations" class="level2">
+<h2 class="anchored" data-anchor-id="transformations">Transformations</h2>
+<p>Thus far we’ve said little about the <em>geometry</em> of complex functions, that is, how complex functions change the geometry of the complex plane under transformations. We will now introduce the idea of complex transformations, and show how they can be used to visualize complex functions. We will also introduce the important idea of conformal mappings. We’ll find these ideas quite useful to electromagnetism, since they allow us to transform many boundary value problems into simpler boundary value problems that are much more easily solved in a different space.</p>
+<section id="affine-transformations" class="level3">
+<h3 class="anchored" data-anchor-id="affine-transformations">Affine Transformations</h3>
+<p>Suppose <span class="math inline">\(w = f(z)\)</span> is some complex function that maps each point <span class="math inline">\(z\)</span> in the complex <span class="math inline">\(z\)</span>-plane to some point <span class="math inline">\(w\)</span> in the complex <span class="math inline">\(w\)</span>-plane. When thinking of a function this way, we call it a <em>transformation</em> or a <em>mapping</em>.</p>
+<p>To see how this whole idea works, let’s consider first the simple transformation <span class="math inline">\(w = z\)</span>. This function maps each point <span class="math inline">\(z\)</span> in the <span class="math inline">\(z\)</span>-plane to the <em>same</em> point <span class="math inline">\(w=z\)</span> in the <span class="math inline">\(w\)</span>-plane. Interpreting this geometrically, we can thus think of this transformation as mapping the complex plane to itself, leaving all points fixed. Nothing is happening. This is the <em>identity transformation</em>.</p>
+<p>Now let’s consider a slightly more interesting example. Consider the transformation <span class="math inline">\(w = z + 1\)</span>. For each point <span class="math inline">\(z\)</span> in the <span class="math inline">\(z\)</span>-plane, this transformation sends <span class="math inline">\(z\)</span> to the point <span class="math inline">\(w = z+1\)</span> in the <span class="math inline">\(w\)</span>-plane. Interpreted geometrically, this means each point is being <em>translated</em> to the right one unit. This is thus an example of a <em>pure translation</em>. Every point just gets translated right by one.</p>
+<p>Another example of a pure translation is the transformation <span class="math inline">\(w = z + i\)</span>. Instead of translating each point to the right by one, it instead translates each point up by one along the imaginary axis. In general, a pure translation of a complex variable is any transformation of the form <span class="math inline">\(z = z + z_0\)</span> for some fixed <span class="math inline">\(z_0\)</span>. This translates each <span class="math inline">\(z\)</span> by a distance <span class="math inline">\(|z_0|\)</span> in the <span class="math inline">\(z_0\)</span>-direction.</p>
+<p>Let’s now consider a different kind of transformation. Consider the transformation <span class="math inline">\(w = i z\)</span>. Evidently this transformation maps each <span class="math inline">\(z\)</span> in the <span class="math inline">\(z\)</span>-plane to the point <span class="math inline">\(w = iz\)</span> in the <span class="math inline">\(w\)</span>-plane. To see what this represents geometrically we can rewrite it in polar notation. If we let <span class="math inline">\(z = re^{i\varphi}\)</span> and observe that <span class="math inline">\(i = e^{i\pi/2}\)</span>, we then have <span class="math display">\[
+w = i z = r e^{i(\varphi + \pi/2)} \ .
+\]</span> This is just a rotation. Each point <span class="math inline">\(z\)</span> simply gets rotated counterclockwise by <span class="math inline">\(\pi/2\)</span> under this transformation. That is, the transformation <span class="math inline">\(w = iz\)</span> is a <em>pure rotation</em> counterclockwise by <span class="math inline">\(90^\circ\)</span>. More generally, any transformation of the form <span class="math inline">\(w = e^{i\alpha} z\)</span> defines a pure rotation, rotating each <span class="math inline">\(z\)</span> in the <span class="math inline">\(z\)</span>-plane by an angle <span class="math inline">\(\alpha\)</span> in the <span class="math inline">\(w\)</span>-plane. Equivalently, it’s a pure rotation of the entire complex plane by an angle <span class="math inline">\(\alpha\)</span>.</p>
+<p>Next, let’s consider the transformation <span class="math inline">\(w = 2 z\)</span>. In this case, each <span class="math inline">\(z\)</span> gets mapped to a point <span class="math inline">\(w = 2z\)</span>. Interpreted geometrically, this says that each <span class="math inline">\(z\)</span> gets <em>scaled</em> by a factor of two. This is an example of a <em>pure scaling</em> transformation, where each point just gets rescaled by some constant factor. More generally, any transformation of the form <span class="math inline">\(w = az\)</span> where <span class="math inline">\(a &gt; 0\)</span> is a positive real number is an example of a scaling transformation, which scales each point <span class="math inline">\(z\)</span> in the <span class="math inline">\(z\)</span>-plane by a factor of <span class="math inline">\(a\)</span> in the <span class="math inline">\(w\)</span>-plane. Equivalently, we can think of transformations like this as scaling the whole complex plane by a factor of <span class="math inline">\(a\)</span>.</p>
+<p>By combining these different types of pure transformations together we can build more interesting transformations. For example, consider the transformation <span class="math inline">\(w = -z/2 + i\)</span>. To interpret this geometrically we break the transformation into pieces. Consider the sequence of intermediate transformations <span class="math inline">\(z \to -z \to -z/2 \to -z/2 + i\)</span>. On the left we have <span class="math inline">\(z\)</span>, and on the right we have <span class="math inline">\(w = -z/2 + i\)</span>. Since <span class="math inline">\(-z = e^{i\pi} z\)</span>, the first step <span class="math inline">\(z \to -z\)</span> as a pure rotation counterclockwise by <span class="math inline">\(180^\circ\)</span>. The next step in the transformation is then <span class="math inline">\(-z \to -z/2\)</span>, which is a pure scaling of <span class="math inline">\(-z\)</span> by a factor of <span class="math inline">\(1/2\)</span>. Finally, the last step <span class="math inline">\(-z/2 \to -z/2 + i\)</span> is just a pure translation of <span class="math inline">\(-z/2\)</span> up by one. All together then, this transformation takes the complex <span class="math inline">\(z\)</span>-plane and performs a pure rotation by <span class="math inline">\(180^\circ\)</span>, followed be a pure scaling by <span class="math inline">\(1/2\)</span>, followed by a translation up by one.</p>
+<p>Transformations give us a nice way to visualize the behavior of complex functions. For real functions <span class="math inline">\(y = f(x)\)</span> we could visualize the function using its <em>graph</em>. Since the graph of such a function is just a curve, we can plot it in a 2-dimensional plane and easily visualize the function’s behavior. Unfortunately, we cannot do this for complex functions <span class="math inline">\(w = f(z)\)</span> since the graph would lie in a 4-dimensional space, which we can’t easily visualize.</p>
+<p>Instead what we can do is draw two plots, one of the <span class="math inline">\(z\)</span>-plane and another of the <span class="math inline">\(w\)</span>-plane. Each mapping of a point <span class="math inline">\(z \to w\)</span> can be visualized by drawing an arrow connecting <span class="math inline">\(z\)</span> in the <span class="math inline">\(z\)</span>-plane to <span class="math inline">\(w\)</span> in the <span class="math inline">\(w\)</span>-plane. More usefully though, we often see how curves or regions of the <span class="math inline">\(z\)</span>-plane get mapped under the transformation <span class="math inline">\(w = f(z)\)</span>. As an example, let’s visualize the transformation in the previous example, <span class="math inline">\(w = -z/2 + i\)</span>. To do so, we’ll focus on looking at how the four points <span class="math inline">\(z = 0, 1, i, 1+i\)</span> transform. Notice that these points define the unit square in the <span class="math inline">\(z\)</span>-plane. We can thus see what the unit square maps to in the <span class="math inline">\(w\)</span>-plane. It’s easy to see that these four points map, in order, to the points <span class="math inline">\(w = i, -1/2 + i, i/2, -1/2 + i/2\)</span>, as shown below.</p>
+<p>FIGURE (visualize this unit square under the mapping)</p>
+<p>We can see visually here what’s going on. We see that each point is being rotated, scaled, and translated as describe above. This is easy to see since we can just visualize how the unit square gets distorted under the transformation. Notice that the area of the transformed unit square is now evidently <span class="math inline">\(1/2\)</span>, which is the same scaling factor we see in the transformation.</p>
+<p>The simple transformations we’ve covered so far are examples of the more general class of <em>affine transformations</em> <span class="math display">\[
+w = a z + z_0 \ .
+\]</span> Any affine transformation can be thought of as a combination of a rotation by the phase <span class="math inline">\(\text{Arg} \ a\)</span>, a scaling by <span class="math inline">\(|a|\)</span>, and a translation by <span class="math inline">\(z_0\)</span>. For what it’s worth, the special case where <span class="math inline">\(z_0 = 0\)</span> is called a <em>linear transformation</em>. These only involve rotation and scaling.</p>
+<p>An important property of affine transformations is that they always map lines to lines, and parallelograms to parallelograms. Both of these facts can be easily seen by looking at the definition of an affine transformation.</p>
+<section id="example-analyze-the-affine-transformation-w-i-z-eipi-4" class="level5">
+<h5 class="anchored" data-anchor-id="example-analyze-the-affine-transformation-w-i-z-eipi-4">Example: Analyze the affine transformation <span class="math inline">\(w = i + z e^{i\pi / 4}\)</span></h5>
+<p>We can again break this transformation up into the intermediate transformations <span class="math inline">\(z \to z e^{i\pi/4} \to z e^{i\pi/4} + i\)</span>. The first transformation is evidently a counterclockwise rotation by <span class="math inline">\(45^\circ\)</span>. The second transformation is a translation by <span class="math inline">\(i\)</span>, or equivalently a translation up by one. Clearly then, this transformation is just a rotation followed by a translation.</p>
+<p>But let’s try to be a bit more precise. Observe if we substitute <span class="math inline">\(z = x+iy\)</span> into <span class="math inline">\(w = u+iv\)</span>, we have <span class="math display">\[
+w = i + (x+iy) e^{i\pi / 4} = \frac{x-y}{\sqrt{2}} + i \bigg(1 + \frac{x+y}{\sqrt{2}}\bigg)  \quad \Longrightarrow \quad \begin{cases}
+u = \frac{x-y}{\sqrt{2}} \ ,\\
+v = \frac{x+y}{\sqrt{2}} \ .
+\end{cases}
+\]</span> This relation gives the exact point <span class="math inline">\(w = u+iv\)</span> in the <span class="math inline">\(w\)</span>-plane that each point <span class="math inline">\(z = x+iy\)</span> in the <span class="math inline">\(z\)</span>-plane gets mapped to. Let’s now try to use this information to see how various curves in the <span class="math inline">\(z\)</span>-plane get transformed under this mapping. Notice that we can eliminate either <span class="math inline">\(x\)</span> or <span class="math inline">\(y\)</span> from the equations for <span class="math inline">\(u\)</span> and <span class="math inline">\(v\)</span> by adding and subtracting them together. We end up with <span class="math display">\[
+v = u + (1 + \sqrt{2}y) \quad , \quad v = -u + (1 + \sqrt{2}x) \ .
+\]</span> Now, consider first the horizontal lines <span class="math inline">\(y=\text{const}\)</span> in the <span class="math inline">\(z\)</span>-plane. If we treat <span class="math inline">\(y\)</span> as a parameter in the equations above, we see that in the <span class="math inline">\(w\)</span>-plane these horizontal lines get transformed to lines of the form <span class="math inline">\(v = u + (1 + \sqrt{2}y)\)</span>, which are <span class="math inline">\(45^\circ\)</span> lines passing through the point <span class="math inline">\(v = 1 + \sqrt{2}y\)</span>. Thus, horizontal lines get mapped to a family of <span class="math inline">\(45^\circ\)</span> lines under this transformation.</p>
+<p>Next, let’s consider the vertical lines <span class="math inline">\(x = \text{const}\)</span> in the <span class="math inline">\(z\)</span>-plane. Again treating <span class="math inline">\(x\)</span> as a parameter, we see that these lines get transformed to lines of the form <span class="math inline">\(v = -u + (1+\sqrt{2} x)\)</span> in the <span class="math inline">\(w\)</span>-plane, which are <span class="math inline">\(135^\circ\)</span> lines passing through the point <span class="math inline">\(v=1+\sqrt{2}x\)</span>. Thus, vertical lines get mapped to a family of <span class="math inline">\(135^\circ\)</span> lines under this transformation.</p>
+<p>Last, let’s look at how the unit square gets mapped under this transformation. Consider again the points <span class="math inline">\(z = 0, 1, i, 1+i\)</span>. Under the mapping, these respectively transform to the points <span class="math inline">\(w = i, e^{i\pi/4} + i, (-1 + i\sqrt{3+2\sqrt{2}})/\sqrt{2}, i\sqrt{3 + 2\sqrt{2}}\)</span>. The area of the transformed rectangle is evidently one, indicating no scaling took place under this transformation.</p>
+<p>FIGURE (visualize the above transformation)</p>
+</section>
+</section>
+<section id="non-affine-transformations" class="level3">
+<h3 class="anchored" data-anchor-id="non-affine-transformations">Non-Affine Transformations</h3>
+<p>So far we’ve considered only affine transformations, which are especially simple. But most transformations we could write down aren’t affine. For example, the transformations <span class="math inline">\(w = 1/z\)</span>, <span class="math inline">\(w = e^z\)</span>, or <span class="math inline">\(w = z^2\)</span> are all non-affine transformations. How then should we interpret more complicated translations like these geometrically?</p>
+<p>Let’s first consider the transformation <span class="math inline">\(w = 1/z\)</span>. Evidently, each point <span class="math inline">\(z\)</span> in the <span class="math inline">\(z\)</span>-plane gets mapped to the point <span class="math inline">\(w = 1/z\)</span> in the <span class="math inline">\(w\)</span>-plane. By convention, we agree that <span class="math inline">\(\infty = 1/0\)</span> and <span class="math inline">\(0 = 1/\infty\)</span>, so that <span class="math inline">\(z=0\)</span> gets mapped to <span class="math inline">\(w=\infty\)</span> and <span class="math inline">\(z=\infty\)</span> gets mapped to <span class="math inline">\(w=0\)</span>. To see what’s going on, we can re-express this transformation in polar form. If <span class="math inline">\(z = re^{i\varphi}\)</span>, then <span class="math display">\[
+w = \frac{1}{z} = \frac{1}{r} e^{-i\varphi} \ .
+\]</span> Geometrically, this means each <span class="math inline">\(z = re^{i\varphi}\)</span> in the <span class="math inline">\(z\)</span>-plane is getting scaled by a <span class="math inline">\(z\)</span>-dependent factor of <span class="math inline">\(1/r\)</span>, and then reflected across the real axis from the angle <span class="math inline">\(\varphi\)</span> to the angle <span class="math inline">\(-\varphi\)</span>. We call a transformation of this kind an <em>inversion</em>. Notice that the inverse transformation <span class="math inline">\(z = 1/w\)</span> is also an inversion transformation.</p>
+<p>An inversion maps points inside the unit disk <span class="math inline">\(|z| &lt; 1\)</span> to points outside the unit disk <span class="math inline">\(|z| &gt; 1\)</span>, and points outside the unit disk to points inside the unit disk. Evidently, points on the unit circle <span class="math inline">\(|z| = 1\)</span> remain on the unit circle <span class="math inline">\(|w| = 1\)</span> under an inversion, except reflected across the real axis.</p>
+<p>Inversion transformations have a useful but interesting property that we won’t prove. Namely, they map circles in the <span class="math inline">\(z\)</span>-plane to lines in the <span class="math inline">\(w\)</span>-plane, and lines in the <span class="math inline">\(z\)</span>-plane to circles in the <span class="math inline">\(w\)</span>-plane. For example, the counterclockwise unit circle <span class="math inline">\(z(\varphi) = e^{i\varphi}\)</span> gets mapped to the horizontal line <span class="math inline">\(w=1\)</span>, and the horizontal line <span class="math inline">\(z=1\)</span> gets mapped to the clockwise circle <span class="math inline">\(w(\varphi) = e^{-i\varphi}\)</span>. The loan exception are lines or circles that pass through the origin <span class="math inline">\(z=0\)</span>, which always map to lines in the <span class="math inline">\(w\)</span>-plane.</p>
+<p>FIGURE (draw the inversion of a few lines and circles)</p>
+<p>It turns out we can combine affine transformations and inversion transformations together into a single class of transformations known as <em>bilinear transformations</em> (or <em>linear fractional transformations</em>, or <em>Möbius transformations</em>). These have the form <span class="math display">\[
+w = \frac{az + b}{cz + d} \quad , \ ad-bc \neq 0 \ .
+\]</span> We can recover affine transformations by setting <span class="math inline">\(c=0\)</span>, and inversion transformations by setting <span class="math inline">\(a=d=0\)</span> and <span class="math inline">\(b=c=1\)</span>. Geometrically, bilinear transformations can be thought of as an affine transformation, followed by an inversion transformation, followed by another affine transformation. It’s easily seen that the inverse of a bilinear transformation is also a bilinear transformation.</p>
+<p>Bilinear transformations inherit the properties of both of these kinds of transformations. For example, circles still map to lines, and lines still map to circles. They also have the property that a bilinear transformation can always be found to map any three distinct points in the <span class="math inline">\(z\)</span>-plane to any three distinct points in the <span class="math inline">\(w\)</span>-plane. One useful example of a bilinear transformation is <span class="math display">\[
+w = \frac{i - z}{i + z} \ .
+\]</span> This transformation is useful because it maps the upper half of the <span class="math inline">\(z\)</span>-plane to the interior of the unit disk <span class="math inline">\(|w| &lt; 1\)</span> in the <span class="math inline">\(w\)</span>-plane, and the real axis <span class="math inline">\(x = 0\)</span> gets mapped precisely to the boundary of the unit disk <span class="math inline">\(|w| = 1\)</span>. By inverting this transformation we can do the opposite, map the unit disk to the upper half plane. We’ll occasionally find this fact useful for solving 2-dimensional boundary value problems in cylindrical coordinates.</p>
+<p>Next, consider the quadratic transformation <span class="math inline">\(w = z^2\)</span>. It makes most sense to analyze this transformation in polar coordinates. If we again let <span class="math inline">\(z = r e^{i\varphi}\)</span>, then we see that <span class="math inline">\(w = r^2 e^{i 2\varphi}\)</span>.</p>
+<ul>
+<li>Consider first a circle in the <span class="math inline">\(z\)</span>-plane, or curves <span class="math inline">\(z(\varphi) = re^{i\varphi}\)</span>, where <span class="math inline">\(r=\text{const}\)</span> and <span class="math inline">\(0 \leq \varphi &lt; 2\pi\)</span>. Under this transformation, this circle evidently maps to <span class="math inline">\(w(\varphi) = r^2 e^{i 2\varphi}\)</span>. This is a circle in the <span class="math inline">\(w\)</span>-plane of radius <span class="math inline">\(r^2\)</span>, but a circle with twice the phase, meaning it does two full rotations instead of one. This geometrically reflects the fact that <span class="math inline">\(w=z^2\)</span> is a two-to-one mapping, meaning each point in the <span class="math inline">\(w\)</span>-plane is the mapping of exactly two points <span class="math inline">\(z\)</span>-plane.</li>
+<li>Evidently then, circles in the <span class="math inline">\(z\)</span>-plane map to <em>two</em> circles in the <span class="math inline">\(w\)</span>-plane. Equivalently, a semi-circle maps to a full circle, and a quarter circle maps to a semi-circle.</li>
+<li>In fact, this transformation preserves all quadratic surfaces, not just circles. For example, hyperbolas map to hyperbolas.</li>
+<li>The inverse transformation <span class="math inline">\(z = \sqrt{w}\)</span> does these actions all in reverse. Note that this transformation will generally be multivalued unless we restrict ourselves to a particular branch in the <span class="math inline">\(w\)</span>-plane.</li>
+</ul>
+<p>FIGURE (draw quadratic map of circles and hyperbolas)</p>
+<p>Next, consider the exponential transformation <span class="math inline">\(w = e^z\)</span>. By writing <span class="math inline">\(z = x+iy\)</span>, we see that <span class="math inline">\(w = e^x e^{iy}\)</span>. This means we can interpret this transformation as a <span class="math inline">\(z\)</span>-dependent scaling by <span class="math inline">\(e^x\)</span> followed by a <span class="math inline">\(z\)</span>-dependent rotation by a angle <span class="math inline">\(y\)</span>. Evidently then, the exponential transformation has the following properties:</p>
+<ul>
+<li>By setting <span class="math inline">\(x=\text{const}\)</span> in the <span class="math inline">\(z\)</span>-plane, we see that vertical lines get mapped to circles of radius <span class="math inline">\(e^x\)</span> in the <span class="math inline">\(w\)</span>-plane. Since the phase <span class="math inline">\(y = \text{Arg} \ w\)</span> can take on any real value, these circles loop around counterclockwise infinitely many times. This reflects the fact that the inverse transformation <span class="math inline">\(z = \log w\)</span> has infinitely many branches.</li>
+<li>By setting <span class="math inline">\(y=\text{const}\)</span> in the <span class="math inline">\(z\)</span>-plane, we see that horizontal lines get mapped to rays emanating out from the origin. The angle of these rays are determined by the phase <span class="math inline">\(y\)</span>.</li>
+<li>Non axis lines of the form <span class="math inline">\(y = kx\)</span> in the <span class="math inline">\(z\)</span>-plane map to curves of the form <span class="math inline">\(w = e^{x(1+ik)}\)</span> in the <span class="math inline">\(w\)</span>-plane. If we write <span class="math inline">\(w = \varrho e^{i\theta}\)</span> in polar coordinates, we can eliminate <span class="math inline">\(x\)</span> to get <span class="math inline">\(\varrho(\theta) = e^{\theta/k}\)</span>. These curves evidently then represent exponentially growing spirals in the <span class="math inline">\(w\)</span>-plane. Such curves are called <em>logarithmic spirals</em>.</li>
+<li>The unit square gets mapped to an annular segment bounded by circles of radius <span class="math inline">\(e^0 = 1\)</span> and <span class="math inline">\(e^1 = e\)</span>. The segment is bounded between the angles <span class="math inline">\(y=0\)</span> and <span class="math inline">\(y=1\)</span> radians in the <span class="math inline">\(w\)</span>-plane. Indeed, all rectangles map to annular regions.</li>
+<li>The inverse transformation <span class="math inline">\(z = \log w\)</span> does these actions in reverse. Note that this inverse transformation is multivalued unless we restrict ourselves to a particular branch in the <span class="math inline">\(w\)</span>-plane.</li>
+</ul>
+<p>FIGURE (draw exponential map)</p>
+<p>Last, we’ll mention the sine transformation <span class="math inline">\(w = \sin z\)</span>. This transformation is best analyzed in rectangular coordinates. If we write <span class="math inline">\(z = x + iy\)</span>, it’s not hard to see that <span class="math inline">\(w = \sin x \cosh y + i \cos x \sinh y\)</span>.</p>
+<ul>
+<li>Setting <span class="math inline">\(x=\text{const}\)</span>, it’s not too hard to show that vertical lines get mapped to hyperbolas in the <span class="math inline">\(w\)</span>-plane of the form <span class="math inline">\((u/\sin x)^2 - (v/\cos x)^2 = 1\)</span>.</li>
+<li>Similarly, setting <span class="math inline">\(y=\text{const}\)</span>, it’s not hard to show that horizontal lines get mapped to ellipses in the <span class="math inline">\(w\)</span>-plane of the form <span class="math inline">\((u/\cosh y)^2 + (v/\sinh y)^2 = 1\)</span>.</li>
+<li>Rectangular regions in the <span class="math inline">\(z\)</span>-plane get mapped to regions bounded by orthogonal ellipses and hyperbolas, each having the same focal point.</li>
+<li>The related transformation <span class="math inline">\(w = \cos z\)</span> has exactly the same behavior, except compared to the sine transformation the hyperbolas get reflected across the real axis, and the ellipses get reflected across the imaginary axis.</li>
+</ul>
+</section>
+<section id="conformal-mappings" class="level3">
+<h3 class="anchored" data-anchor-id="conformal-mappings">Conformal Mappings</h3>
+<p>Analytic functions possess yet another very special property, namely analytic function are <em>conformal mappings</em>. That is, analytic functions preserve the angles between curves. To see why this is the case, suppose <span class="math inline">\(w=f(z)\)</span> is analytic at <span class="math inline">\(z\)</span>, and suppose <span class="math inline">\(\mathcal{C}_1\)</span> and <span class="math inline">\(\mathcal{C}_2\)</span> are two curves in the <span class="math inline">\(z\)</span>-plane that intersect at the point <span class="math inline">\(z\)</span>.</p>
+<p>At the point <span class="math inline">\(z\)</span> we can create a tangent line <span class="math inline">\(dz_1\)</span> to <span class="math inline">\(\mathcal{C}_1\)</span> and a tangent line <span class="math inline">\(dz_2\)</span> to <span class="math inline">\(\mathcal{C}_2\)</span>, with these tangent lines intersecting at <span class="math inline">\(z\)</span> at some angle <span class="math inline">\(\alpha\)</span>. Under the transformation <span class="math inline">\(w = f(z)\)</span>, these tangent lines get mapped to tangent lines <span class="math inline">\(dw_1\)</span> and <span class="math inline">\(dw_2\)</span> in the <span class="math inline">\(w\)</span>-plane that intersect at the point <span class="math inline">\(w = f(z)\)</span> at some other angle <span class="math inline">\(\alpha'\)</span>.</p>
+<p>FIGURE</p>
+<p>Now, since <span class="math inline">\(w=f(z)\)</span> is analytic at <span class="math inline">\(z\)</span>, we can relate the tangent lines in the two planes via <span class="math display">\[
+dw_1 = \frac{dw}{dz} dz_1 \quad , \quad dw_2 = \frac{dw}{dz} dz_2 \ .
+\]</span> So long as <span class="math inline">\(dw/dz \neq 0\)</span>, we can take the ratio of these tangent lines to get <span class="math display">\[
+\frac{dw_1}{dw_2} = \frac{dw/dz \ dz_1}{dw/dz \ dz_2} = \frac{dz_1}{dz_2} \ .
+\]</span> This means that the ratios of the two sets of tangent lines are identical. But this in fact implies the angles must be identical as well. To see why this is true, notice at the point <span class="math inline">\(z\)</span> we can write <span class="math inline">\(dz_1 = |z| e^{i \varphi_1}\)</span> and <span class="math inline">\(dz_2 = |z| e^{i \varphi_2}\)</span>. Since <span class="math inline">\(\alpha = \varphi_1 - \varphi_2\)</span>, we have <span class="math display">\[
+\frac{dz_1}{dz_2} = e^{i (\varphi_1 - \varphi_2)} = e^{i\alpha} \ .
+\]</span> Similarly, at the point <span class="math inline">\(w = f(z)\)</span> we can write <span class="math inline">\(dw_1 = |w| e^{i \theta_1}\)</span> and <span class="math inline">\(dw_2 = |w| e^{i \theta_2}\)</span>. Since <span class="math inline">\(\alpha' = \theta_1 - \theta_2\)</span>, we have <span class="math display">\[
+\frac{dw_1}{dw_2} = e^{i (\theta_1 - \theta_2)} = e^{i\alpha'} \ .
+\]</span> Thus, since the two ratios must equal, the angles must be the same, i.e.&nbsp;<span class="math inline">\(\alpha' = \alpha\)</span>. That is, the transformation <span class="math inline">\(w=f(z)\)</span> is <em>conformal</em>, meaning it preserves the angle between curves at points where the function is analytic with non-vanishing derivative.</p>
+<p>What if the derivative is zero at <span class="math inline">\(z\)</span>? In that case, it’s possible to show that under the transformation the angle between curves gets multiplied by <span class="math inline">\(n\)</span>, where <span class="math inline">\(d^n w / dz^n\)</span> is the first non-vanishing derivative of <span class="math inline">\(f(z)\)</span> at <span class="math inline">\(z\)</span>. This can be shown by expanding <span class="math inline">\(f(z)\)</span> as a Taylor series at <span class="math inline">\(z\)</span> and applying the same logic as above on the first non-vanishing derivative.</p>
+<p>While angles stay invariant under conformal mappings, areas do not. They scale in a very particular way. To see this, consider an area element <span class="math inline">\(dxdy\)</span> in the <span class="math inline">\(xy\)</span>-plane, and its transformed area element <span class="math inline">\(dudv\)</span> in the <span class="math inline">\(uv\)</span>-plane. According to the change of variables theorem, these two area elements can be related by the formula <span class="math inline">\(dxdy = |J| dudv\)</span>, where <span class="math inline">\(|J|\)</span> is the absolute Jacobian determinant given by <span class="math display">\[
+|J| = \bigg|\frac{\partial u}{\partial x} \frac{\partial v}{\partial y} - \frac{\partial u}{\partial y} \frac{\partial v}{\partial x}\bigg| \ .
+\]</span> If we now insist the Cauchy-Riemann conditions be satisfied, we can rewrite this determinant factor as <span class="math display">\[
+|J| = \bigg|\bigg(\frac{\partial u}{\partial x}\bigg)^2 + \bigg(\frac{\partial u}{\partial y}\bigg)^2\bigg| = \bigg|\frac{dw}{dz}\bigg|^2 \ .
+\]</span> Thus, the area element transforms under a conformal mapping <span class="math inline">\(w = f(z)\)</span> as <span class="math display">\[
+dudv = \bigg|\frac{dw}{dz}\bigg|^2 dxdy \ .
+\]</span> Evidently, an infinitesimal patch of area in the <span class="math inline">\(z\)</span>-plane gets transformed to an infinitesimal patch of area in the <span class="math inline">\(w\)</span>-plane that’s rescaled by a factor of <span class="math inline">\(|dw/dz|^2\)</span>. Evidently, when <span class="math inline">\(|dw/dz|^2 &lt; 1\)</span> this scaling is contracts the area element, and when <span class="math inline">\(|dw/dz|^2 &gt; 1\)</span> it dilates the area element. Only in the special situation where <span class="math inline">\(|dw/dz|^2 = 1\)</span> does the area element stay the same, hence in general a conformal mapping is not area preserving (and hence not an orthogonal transformation).</p>
+<p>Note that as with all area elements, this scale factor only says how infinitesimal patches of areas change under transformation, not how larger patches of areas change. One needs to integrate the area element over a region to see how its area changes.</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation column-page-right">
+  <div class="nav-page nav-page-previous">
+      <a href="../electrodynamics/orthogonal-functions.html" class="pagination-link" aria-label="Appendix I: Orthogonal Functions">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Appendix I: Orthogonal Functions</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../circuits/circuit-abstraction.html" class="pagination-link" aria-label="The Lumped Circuit Abstraction">
+        <span class="nav-page-text"><span class="chapter-title">The Lumped Circuit Abstraction</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

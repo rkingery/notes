@@ -4,21 +4,7 @@ In this appendix, we'll cover the basic theory of orthogonal functions. This the
 
 ## Orthogonal Functions
 
-In electrostatics in particular, we're often interest in solving *Laplace's equation* subject to some given boundary condition,
-$$
-\nabla^2 \phi = 0 \ .
-$$
-Since Laplace's equation is a linear PDE, we know we can use the principle of superposition to assemble a general solution. If we know that a set of functions $\phi_n$ all solve Laplace's equation subject to the boundary conditions, any linear combination of must will solve Laplace's equation as well, since
-$$
-\nabla^2 \bigg(\sum_n c_n \phi_n(\mathbf{x})\bigg) = \sum_n \nabla^2 \phi_n(\mathbf{x}) = 0 \ .
-$$
-In many cases, we can find a "good" set of functions $\phi_n(\mathbf{x})$, in that we can represent *any* general solution $\phi(\mathbf{x})$ as a linear superposition of these functions,
-$$
-\phi(\mathbf{x}) = \sum_n c_n \phi_n(\mathbf{x}) \ .
-$$
-When this happens, we say the set of functions is a *complete set*. If the set of functions has the additional special property of being *orthogonal*, we can even find the coefficients $c_n$ in a simple way, thus fully specifying the general solution. 
-
-In this appendix, we'll cover in more detail what each of these terms mean, and mention a few classes of complete orthogonal sets of functions we'll frequently encounter in electrostatics, and indeed in much of physics. We'll focus mostly on the simpler case of univariate functions, but all of this can easily be extended to multivariate functions in a natural way.
+We'll begin our discussion of orthogonal functions by defining what we mean when we say a function is orthogonal. This will involve defining and discussing the inner product of functions, which is a direct generalization of the dot product from linear algebra. We'll see that the theory of orthogonal functions indeed shares much in common with linear algebra, and can in a sense be thought of as a continuous limit of that subject.
 
 ### Inner Products
 
@@ -62,6 +48,8 @@ where $\delta_{mn}$ is the usual Kronecker delta. If the set is orthogonal but *
 $$
 \langle f_m | f_n \rangle = ||f_m|| \ ||f_n|| \ \delta_{mn} \ .
 $$
+
+
 ### Orthogonal Expansions
 
 Now, we'd like to get to the idea of a basis of functions, but we have to be more careful by what we mean when we say any function can be expanded as a linear superposition of basis functions. We'd like to write something like
@@ -115,7 +103,7 @@ That is, the squared function norm of $f(x)$ is equal to the squared *vector* no
 
 ## Sturm-Liouville Theory
 
-For a large class of problems we don't need to go through the hard work of figuring out whether a set of functions is complete or orthogonal. These are *Sturm-Liouville problems*. Provided we can prove that a set of functions satisfies a Sturm-Liouville problem, we automatically know that it will be a complete orthogonal set of functions, among other things.
+For a large class of problems we don't need to go through the hard work of figuring out whether a set of functions is complete or orthogonal. These are so-called *Sturm-Liouville problems*. Provided we can prove that a set of functions satisfies a Sturm-Liouville problem, we automatically know that it will form a complete orthogonal set of functions, which saves us the hard work of having to verify each of these properties independently.
 
 ### Hermitian Operators
 
@@ -174,7 +162,7 @@ With this theory in hand, let's now focus specifically the Sturm-Liouville probl
 $$
 \begin{align*}
 \begin{cases}
--\frac{d}{dx} \bigg[p(x) \frac{df}{dx}\bigg] + q(x) f(x) = \lambda w(x) f(x) \ , \\
+-\frac{d}{dx} \big[p(x) \frac{df}{dx}\big] + q(x) f(x) = \lambda w(x) f(x) \ , \\
 \text{where} \ \alpha_1 f(a) + \alpha_2 \frac{d}{dx} f(a) = 0 \ , \quad \alpha_1 \neq 0 \ \text{or} \  \beta_1 \neq 0 \ , \\
 \text{and} \quad \beta_1 f(b) + \beta_2 \frac{d}{dx} f(b) = 0 \ , \quad \ \ \alpha_2 \neq 0 \ \text{or} \  \beta_2 \neq 0 \ .
 \end{cases}
@@ -224,11 +212,7 @@ where the coefficients are given in the usual way by $||f_n||^2 c_n = \langle f_
 
 We'll see a few important example of this in the following sections, where we'll cover some of the most important classes of orthogonal functions we see in electromagnetism, the so-called *special functions*.
 
-## Special Functions
-
-Now that we've worked through the basic theory of orthogonal functions, let's look at some the most important sets of orthogonal functions that we'll encounter in this course. These *special functions* include Fourier series, Legendre polynomials, Bessel functions, and spherical harmonics.
-
-### Fourier Series
+## Fourier Series
 
 First, we'll look at perhaps the most important class of functions in physics, the complex exponentials. The complex exponentials won't in general be orthogonal to each other, but we can make them orthogonal by choosing the right constants. Suppose
 $$
@@ -264,7 +248,7 @@ k_n = \frac{n\pi}{L} \quad , \quad n = 0, \pm 1, \pm 2, \cdots \ .
 $$
 We've thus found an infinite set of solutions that satisfy a Sturm-Liouville problem, given by
 $$
-f_n(x) = a_n \exp\bigg(\frac{n\pi x}{L}\bigg) \quad , \quad n = 0, \pm 1, \pm 2, \cdots \ .
+f_n(x) = a_n e^{in\pi x/L} \quad , \quad n = 0, \pm 1, \pm 2, \cdots \ .
 $$
 Let's go ahead and normalize them as well so we get a complete orthonormal set of functions. We do that by requiring that $\langle f_n | f_n \rangle = 1$. Taking this inner product and requiring it equal one, we have
 $$
@@ -272,42 +256,42 @@ $$
 $$
 According to Sturm Liouville theory, we've thus found a complete orthonormal set on the interval $-L \leq x \leq L$ given by the infinite set of functions
 $$
-f_n(x) = \frac{1}{\sqrt{2L}} \exp\bigg(\frac{n\pi x}{L}\bigg) \quad , \quad n = 0, \pm 1, \pm 2, \cdots \ .
+f_n(x) = \frac{1}{\sqrt{2L}} e^{in\pi x/L} \quad , \quad n = 0, \pm 1, \pm 2, \cdots \ .
 $$
-#### Complex Fourier Series
+### Complex Fourier Series
 
 This means we can do an orthogonal expansion any function $f(x)$ on this interval and write
 $$
-f(x) = \frac{1}{\sqrt{2L}} \sum_{n=-\infty}^\infty c_n \exp\bigg(\frac{i\pi n x}{L}\bigg) \ .
+f(x) = \frac{1}{\sqrt{2L}} \sum_{n=-\infty}^\infty c_n e^{in\pi x/L} \ .
 $$
 This important series expansion is known as a *Fourier series*. It's arguably the most important series in science and engineering. It's conventional with Fourier series to absorb the normalization constant into the coefficients $c_n$ and instead write
 $$
 \boxed{
-f(x) = \sum_{n=-\infty}^\infty c_n \exp\bigg(\frac{i\pi n x}{L}\bigg)
+f(x) = \sum_{n=-\infty}^\infty c_n e^{in\pi x/L}
 } \ .
 $$
-Note that, strictly speaking, Sturm Liouville only guarantees that any functions $f(x)$ that satisfy the boundary conditions of the Sturm-Liouville problem are guaranteed to have an orthogonal expansion. However, further results from the theory of Fourier analysis show that any function on this interval can be expanded this way, not just ones satisfying the boundary conditions.
+Note that, strictly speaking, Sturm-Liouville only guarantees that any functions $f(x)$ that satisfy the boundary conditions of the Sturm-Liouville problem are guaranteed to have an orthogonal expansion. However, further results from the theory of Fourier analysis show that any function on this interval can be expanded this way, not just ones satisfying the boundary conditions.
 
 The coefficients $c_n$ are given in the usual way, except we have to account for the absorption of $\frac{1}{2\sqrt{L}}$ into the $c_n$. With this, we must have $c_n = \frac{1}{\sqrt{2L}} \langle f_n | f \rangle$, which gives
 $$
 \boxed{
-c_n = \frac{1}{2L} \int_{-L}^L dx \ f(x) \exp\bigg(-\frac{i\pi n x}{L}\bigg) 
+c_n = \frac{1}{2L} \int_{-L}^L dx \ f(x) e^{-in\pi x/L}
 } \ .
 $$
 Notice that the set of basis functions $f_n(x)$ are all *periodic* on the real line with period $2L$, i.e. $f_n(x) = f_n(x + 2L)$. This means we can also think of the Fourier series as a periodic expansion over the real line. An implication of this is that any $2L$-periodic function $f(x)$ can be expanded into a Fourier series.
 
-#### Real Fourier Series
+### Real Fourier Series
 
 It's common to rewrite the Fourier series in a different form by making the basis functions real-valued.  To achieve this, we'll first rewrite the series in a slightly different from by grouping terms and restricting $n$ to be non-negative,
 $$
-f(x) = c_0 + \sum_{n=1}^\infty \bigg[c_n \exp\bigg(\frac{i\pi n x}{L}\bigg) + c_{-n} \exp\bigg(-\frac{i\pi n x}{L}\bigg)\bigg] \ .
+f(x) = c_0 + \sum_{n=1}^\infty \big[c_n e^{in\pi x/L} + c_{-n} e^{-in\pi x/L}\big] \ .
 $$
 We can now use the Euler identity to write each complex exponential into sines and cosines, and regroup terms to get
 $$
 \begin{align*}
-f(x) &= c_0 + \sum_{n=1}^\infty \bigg[c_n \exp\bigg(\frac{i\pi n x}{L}\bigg) + c_{-n} \exp\bigg(-\frac{i\pi n x}{L}\bigg)\bigg] \\
-&= c_0 + \sum_{n=1}^\infty \bigg[c_n \bigg(\cos \frac{\pi n x}{L} + i \sin \frac{\pi n x}{L}\bigg) + c_{-n} \bigg(\cos \frac{\pi n x}{L} - i \sin \frac{\pi n x}{L}\bigg)\bigg] \\
-&= c_0 + \sum_{n=1}^\infty \bigg[(c_n + c_{-n}) \cos \frac{\pi n x}{L} + i (c_n - c_{-n}) \sin \frac{\pi n x}{L}\bigg] \ .
+f(x) &= c_0 + \sum_{n=1}^\infty \bigg[c_n e^{in\pi x/L} + c_{-n} e^{-in\pi x/L}\bigg] \\
+&= c_0 + \sum_{n=1}^\infty \bigg[c_n \bigg(\cos \frac{n\pi x}{L} + i \sin \frac{n\pi x}{L}\bigg) + c_{-n} \bigg(\cos \frac{n\pi x}{L} - i \sin \frac{n\pi x}{L}\bigg)\bigg] \\
+&= c_0 + \sum_{n=1}^\infty \bigg[(c_n + c_{-n}) \cos \frac{n\pi x}{L} + i (c_n - c_{-n}) \sin \frac{n\pi x}{L}\bigg] \ .
 \end{align*}
 $$
 Now, we'll define new expansion coefficients $a_n$ and $b_n$ in terms of $c_n$ by
@@ -317,7 +301,7 @@ $$
 Plugging this back into the Fourier series, we get
 $$
 \boxed{
-f(x) = \frac{a_0}{2} + \sum_{n=1}^\infty \bigg[a_n \cos \frac{\pi n x}{L} + b_n \sin \frac{\pi n x}{L}\bigg]
+f(x) = \frac{a_0}{2} + \sum_{n=1}^\infty \bigg[a_n \cos \frac{n\pi x}{L} + b_n \sin \frac{n\pi x}{L}\bigg]
 } \ .
 $$
 The expansion coefficients can then be found by plugging in the formulas for $c_n$ and $c_{-n}$ and grouping terms to get
@@ -325,14 +309,14 @@ $$
 \boxed{
 \begin{align*}
 a_0 &= \frac{1}{L} \int_{-L}^L dx \ f(x) \\
-a_n &= \frac{1}{L} \int_{-L}^L dx \ f(x) \cos \frac{\pi nx}{L} \\
-b_n &= \frac{1}{L} \int_{-L}^L dx \ f(x) \sin \frac{\pi nx}{L}
+a_n &= \frac{1}{L} \int_{-L}^L dx \ f(x) \cos \frac{n\pi x}{L} \\
+b_n &= \frac{1}{L} \int_{-L}^L dx \ f(x) \sin \frac{n\pi x}{L}
 \end{align*}
 } \ .
 $$
 Though perhaps not immediately obvious, this set of sines and cosines also forms an orthogonal expansion. Indeed, if we define
 $$
-C_n(x) \equiv \frac{1}{\sqrt{L}} \cos \frac{\pi nx}{L} \quad , \quad S_n(x) \equiv \frac{1}{\sqrt{L}} \sin \frac{\pi nx}{L} \ ,
+C_n(x) \equiv \frac{1}{\sqrt{L}} \cos \frac{n\pi x}{L} \quad , \quad S_n(x) \equiv \frac{1}{\sqrt{L}} \sin \frac{n\pi x}{L} \ ,
 $$
 then each set of functions forms an orthonormal set, with $\langle C_m | C_n \rangle = \langle S_m | S_n \rangle = \delta_{mn}$, and the functions in each set are always orthogonal to each other, with $\langle C_m | S_n \rangle = 0$. These facts can easily be shown by writing $C_n$ and $S_n$ in terms of $f_n$ and plugging those expressions into the inner product and simplifying terms, with no integration needed.
 
@@ -351,9 +335,9 @@ $$
 We'd like to expand this function as a Fourier series. To do that, we need to find the coefficients $c_n$. According to the formula above, we have
 $$
 \begin{align*}
-c_n &= \frac{1}{2L} \int_{-L}^L dx \ f(x) \exp\bigg(-\frac{\pi in x}{L}\bigg) \\
-&= \frac{1}{2L} \int_{-\frac{L}{2}}^{\frac{L}{2}} dx \ h \exp\bigg(-\frac{\pi in x}{L}\bigg) \\
-&= \frac{h}{2L} \frac{2L}{n\pi} \frac{1}{2i} \bigg(\exp\bigg(\frac{\pi in}{L}\frac{L}{2}\bigg) - \exp\bigg(-\frac{\pi in}{L}\frac{L}{2}\bigg)\bigg) \\
+c_n &= \frac{1}{2L} \int_{-L}^L dx \ f(x) e^{-in\pi x/L} \\
+&= \frac{1}{2L} \int_{-\frac{L}{2}}^{\frac{L}{2}} dx \ h e^{-in\pi x/L} \\
+&= \frac{h}{2L} \frac{2L}{n\pi} \frac{1}{2i} \bigg[\exp\bigg(\frac{in\pi}{L}\frac{L}{2}\bigg) - \exp\bigg(-\frac{in\pi}{L}\frac{L}{2}\bigg)\bigg] \\
 &= \frac{h}{n\pi} \sin \frac{n\pi}{2} \\
 &= \begin{cases}
 \frac{h}{n\pi} & n=\pm 1, \pm 5, \pm 9, \cdots \\
@@ -374,7 +358,7 @@ Notice that each term in the series decays as $\frac{1}{n}$. This means we can a
 
 Below we show a plot $f(x)$ where $h=1$ and $L=2$ along with its Fourier approximations $S_N$ for $N=1, 5, 10, 100$. Notice that as we keep more terms, the series better and better approximates the behavior of $f(x)$, which is what we'd expect.
 
-![](../resources/image-20240827120157126.png){fig-align=center width=400}
+![](../resources/image-20240827120157126.png){fig-align=center width=500}
 
 Notice something curious from this plot. Around the discontinuous points at $x = \pm \frac{L}{2}$ the series never seems to converge at those two points. In fact, the series approximations seem to have a spike around $y \approx 1.09h$ near $x = \pm \frac{L}{2}$, or about $9\%$ of the gap. In fact, these spikes persists no matter how high we take $N$ to be in the series approximation. It's known as the *Gibb's phenomenon*, and can be proven analytically. 
 
@@ -382,42 +366,265 @@ This behavior around discontinuities is a general fact about Fourier series. The
 
 Anyway, had we been smarter, we'd notice something that could've greatly simplified this problem: The pulse function $f(x)$ is *even*. If we stare at the Fourier series, we see that only the cosine terms are even, while the sine terms are all odd. This means the only way we could expand an even function is if we require all the odd coefficients to vanish, leaving us with
 $$
-f(x) = \frac{a_0}{2} + \sum_{n=1}^\infty a_n \cos \frac{\pi n x}{L} \ .
+f(x) = \frac{a_0}{2} + \sum_{n=1}^\infty a_n \cos \frac{n\pi x}{L} \ .
 $$
 This is called a *cosine series*. Any even function can be expanded this way. Had we recognized this, we could've just calculated $a_0$ and $a_n$ and we'd be done. A similar fact is true for odd functions. In that case, all the even coefficients must vanish, leaving us with a *sine series* instead.
 
----
+## Fourier Transform
 
-#### Fourier Transforms
+It turns out that the Fourier series also has a continuous analogue to it known as the *Fourier transform*. The Fourier transform can be thought of the continuous analogue of the Fourier series as we let the interval length $L \rightarrow \infty$. When a well-behaved function $f(x)$ is defined on the entire real line we can take its Fourier transform. As innocuous as this all sounds, the Fourier transform is without a doubt one of the most important mathematical operations in all of science in engineering. It can be used to analyze signals, create filters, and even solve complex differential equations.
 
-It turns out that the Fourier series is closely related to the Fourier transform. To see this we'll first define $k \equiv \frac{n\pi}{L}$ and write $c_n$ as $c_n = \frac{1}{2L} f(k)$. Now, if we let $L \rightarrow \infty$, we can replace the sum over $n$ by an integral over $k$ as follows,
+### Definition
+
+We can derive the Fourier transform from Fourier series pretty easily. To do that, we suppose $f(x)$ can be expressed by a complex Fourier series of the form
+$$
+f(x) = \sum_{n=-\infty}^\infty c_n e^{ik_nx} \ ,
+$$
+where $k_n \equiv = \frac{n\pi}{L}$ and the coefficients $c_n$ are given by the integral
+$$
+c_n = \frac{1}{2L} \int_{-L}^L dx \ f(x) e^{-i k_n x} \ .
+$$
+Substituting this expression into the Fourier series, we get the completeness relation
+$$
+f(x) = \sum_{n=-\infty}^\infty \bigg(\frac{1}{2L} \int_{-L}^L dx' \ f(x') e^{-i k_n x'}\bigg) e^{ik_nx} \ .
+$$
+Now, suppose $L \gg 1$. Then the difference between successive $k_n$ becomes infinitesimal, with each $\Delta k_n = \frac{\pi}{L}$. This means we can approximate the sum over $n$ by an integral over $k \equiv k_n = \frac{n\pi}{L}$ with
+$$
+\sum_{n=-\infty}^\infty \approx \frac{L}{\pi} \int_0^\infty dk \ .
+$$
+This means the completeness relation becomes
+$$
+f(x) \approx \int_0^\infty \frac{dk}{2\pi} \ \bigg(\int_{-L}^L dx' \ f(x') e^{-i k x'}\bigg) e^{ikx} \ .
+$$
+Now, the inside integral is some function of $k$. We'll abuse notation and call this function $f(k)$. Letting $L \rightarrow \infty$, this inside integral evidently becomes
+$$
+\boxed{
+f(k) = \int_{-\infty}^\infty dx \ f(x) e^{-i k x} 
+} \ .
+$$
+This function $f(k)$ is called the *Fourier transform* of $f(x)$. It's common to denote the *operator* that transforms $f(x)$ into $f(k)$ by $\mathcal{F}$, and also write $f(k) = \mathcal{F}[f(x)](k)$ as a shorthand for the integral defined above.
+
+The function $f(k)$ is defined on the whole real line, but in a different space, known as $k$-space or *frequency space*. From dimensional analysis, it's easy to see that $k$ must have dimensions of $\frac{1}{x}$, which has units of *angular frequency* if $x$ is time, and *wavenumber* if $x$ is position. In this sense, the Fourier transform is an integral transform that converts a function of time into a function of frequency, or a function of position into a function of wavenumber.
+
+If we plug $f(k)$ back into the completeness relation, we get another integral that converts $f(k)$ back into $f(x)$,
+$$
+\boxed{
+f(x) = \int_0^\infty \frac{dk}{2\pi} \ f(k) e^{ikx}
+}\ .
+$$
+This function is known as the *inverse Fourier transform*. This transform can be thought of as the inverse operator to the Fourier transform operator $\mathcal{F}$. We thus denote it by $\mathcal{F}^{-1}$, and write $f(x) = \mathcal{F}^{-1}[f(k)](x)$. The inverse Fourier transform takes a function defined in $k$-space, and converts it back into a function in ordinary space. That is, it converts a function of frequency back into a function of time, or a function of wavenumber back into a function of position.
+
+### Orthogonality
+
+The complex integrals $e^{ikx}$ are still orthogonal in the continuum limit, except in a slightly different sense. We can define a set of basis functions $f_k(x)$ by
+$$
+f_k(x) \equiv \frac{1}{2\pi} e^{ikx} \ .
+$$
+Notice that this set of functions is now indexed by a continuous parameter $k$ instead of a discrete number $n$. If we take $L \rightarrow \infty$ and consider the inner product $\langle f_{k'} | f_k \rangle$, we evidently have
+$$
+\langle f_{k'} | f_k \rangle = \int_{-\infty}^\infty dx \ f_k^*(x) f_{k'}(x) = \frac{1}{2\pi} \int_{-\infty}^\infty \frac{dx}{2\pi} \ e^{i(k-k')x} = \frac{1}{2\pi} \delta(k-k') \ .
+$$
+When $k \neq k'$ we see that $\langle f_{k'} | f_k \rangle = 0$, which means $f_{k'}(x)$ and $f_k(x)$ are orthogonal. But when $k=k'$ we have something new. Instead of the inner product being some number, it's now infinite. Nevertheless, we can think of this as defining an orthogonality relation for a continuous set of basis functions, with Kronecker deltas $\delta_{nn'}$ replaced by Dirac deltas $\delta(k-k')$.
+
+If we ignore the delta function though, we can see that the basis functions are no longer normalized, since $\langle f_{k'} | f_k \rangle \sim \frac{1}{2\pi} \neq 1$. We could normalize them if we wanted to by redefining $f_k(x) \equiv \frac{1}{\sqrt{2\pi}} e^{ikx}$, but then we'd end up with a slightly different definition of the Fourier transform. This normalized version of the Fourier transform is usually chosen in quantum mechanics, but rarely in electromagnetism or other fields of physics, so we won't use it in this course.
+
+### Properties
+
+The Fourier transform turns out to be a very powerful operation. Much of its utility comes from the properties it satisfies. Before listing these, it's worth introducing the useful notation $f(x) \leftrightarrow f(k)$ as a shorthand for the much more cumbersome notation $\mathcal{F}[f(x)](k) = f(k)$. Think of the $\leftrightarrow$ symbol as meaning "is the Fourier duel of", in the sense that the relations on both sides are related by a Fourier transform.
+
+From the definition, it's easy to see that the Fourier transform satisfies the following properties:
+
+- Linearity: $af(x) + bg(x) \leftrightarrow af(k) + bg(k)$.
+- Scaling: $f(\alpha x) \leftrightarrow \frac{1}{|\alpha|} f\big(\frac{k}{\alpha}\big)$.
+- Translation: $f(x-x') \leftrightarrow e^{ikx'} f(k)$.
+- Reversal: $f(-x) \leftrightarrow f(-k)$.
+- Complex Conjugation: $f^*(x) \leftrightarrow f^*(k)$.
+
+##### Example: Fourier transform of a Gaussian
+
+Let's briefly work an example to show how one can use these properties to calculate Fourier transforms. Consider the function
+$$
+f(x) = \frac{1}{\sqrt{2\pi\sigma^2}} \exp\bigg[-\frac{1}{2\sigma^2} (x-\mu)^2\bigg] \ .
+$$
+This function describes the probability density function of a Gaussian distributed random variable with mean $\mu$ and variance $\sigma^2$.
+
+Using the linearity, scaling, and translation properties of the Fourier transform together, we must have
+$$
+f(k) = \frac{e^{ik\mu}}{\sqrt{2\pi\sigma^2}} \mathcal{F}\big[e^{-x^2/2\sigma^2}\big](k) = \frac{1}{\pi} e^{ik\mu} \mathcal{F}\big[e^{-x^2}\big](\sqrt{2}\sigma k) \ .
+$$
+All that remains then is to find the transform of $g(x) \equiv e^{-x^2}$. We can do this by completing the square and integrating to get
 $$
 \begin{align*}
-f(x) &= \sum_{n=-\infty}^\infty c_n \exp\bigg(\frac{\pi inx}{L}\bigg) \\
-&\approx \int_{n=-\infty}^\infty dn \ c_n \exp\bigg(\frac{\pi inx}{L}\bigg) \\
-&\approx \int_{-\infty}^\infty \frac{L dk}{\pi} \ \frac{1}{2L} f(k) e^{ikx} \\
-&\approx \int_{-\infty}^\infty \frac{dk}{2\pi} \ f(k) e^{ikx} \ .
+g(k) &= \int_{-\infty}^\infty dx \ g(x) e^{-ikx} \\
+&= \int_{-\infty}^\infty dx \ e^{-x^2} e^{-ikx} \\
+&= \int_{-\infty}^\infty dx \ e^{-(x-ik/2)^2} \\
+&= \sqrt{\pi} e^{-k^2/4} \ .
+
 \end{align*}
 $$
-Thus, we can think of the Fourier transform as the continuum limit of the Fourier series. An immediate consequence of this result is that the Fourier transforms $f(k)$ are also orthogonal functions, but in a continuous sense. In the continuum limit, we have a set of basis functions on the real line given by
+Putting these results together, we finally have
 $$
-f_k(x) = \frac{1}{2\pi} e^{i k x} \ .
+f(k) = e^{ik\mu} e^{-\sigma^2 k^2/2} = e^{-\mu^2/2\sigma^2} \exp\bigg[-\frac{\sigma^2}{2}\bigg(k-\frac{i\mu}{\sigma^2}\bigg)^2\bigg] \ .
 $$
-If we think of the inner product as integration over $k$ instead of a discrete sum, we can write
-$$
-\langle f_{k'} | f_k \rangle = \frac{1}{(2\pi)^2} \int_{-\infty}^\infty dx \ e^{i(k-k')x} = \frac{1}{2\pi} \delta(k-k') \ .
-$$
-As long as $k' \neq k$ this inner product is zero, and we say that $f_{k'}$ and $f_k$ are orthogonal. However, when $k'=k$ the inner product blows up since the delta function becomes infinite. Nevertheless, if we ignore this subtlety and just focus on the constant out front, we can say that $\langle f_k | f_k \rangle \sim \frac{1}{2\pi}$. Notice that the result isn't one, which we'd expect if the $f_k$ were normalized. The only reason for this is because of the convention we've chosen to define the Fourier transform. We can redefine the Fourier transform to make things normalized, and thus get an orthonormal expansion, but we won't bother with that convention in this course.
+Thus, the Fourier transform of a Gaussian is evidently just another Gaussian, except with a complex mean $\frac{i\mu}{\sigma^2}$ and a variance $\frac{1}{\sigma^2}$ in $k$-space. This means that the more spread out $f(x)$ is, the less spread out $f(k)$ will be, and vice versa. This essentially follows from the scaling property of the Fourier transform, which sends a function $f(\sigma x)$ to a function $f(k/\sigma)$.
 
-We can easily recover the inverse Fourier transform as well by noting that the expansion coefficients of $f(x)$ are just the Fourier transformed functions $f(k)$. Indeed, if we set $f(k) = \langle f_k | f \rangle$ we get the usual inverse transform relation
-$$
-f(k) = \int_{-\infty}^\infty dx \ f_k^*(x) f(x) = \int_{-\infty}^\infty dx \ f(x) e^{-ikx} \ .
-$$
-These results create a useful link between Fourier series and Fourier transforms.
+The class of Gaussian functions is unique in the sense that they're the *fixed points* of the Fourier transform operator, meaning the Fourier transform of a Gaussian will always be another Gaussian. This fact is used in quantum mechanics for formalize the idea of a *wave packet*, which formalizes the sense in which particles and waves are related.
 
-### Legendre Polynomials
+---
 
-We'll now look at another class of orthogonal functions known as the Legendre polynomials. The Legendre polynomials arise in physics primarily when trying to use separation of variables on the Laplacian in spherical coordinates.
+A few more important properties are worth mentioning as well, but these aren't as easy to see. First, suppose we have some function $h(x)$ that's a convolution of two other functions $f(x)$ and $g(x)$, i.e.
+$$
+h(x) = (f \ast g)(x) \equiv \int_{-\infty}^\infty dx' \ f(x') g(x-x') \ .
+$$
+If we take the Fourier transform of both sides, interchange integrals, and substitute $u=x-x'$, we get
+$$
+\begin{align*}
+h(k) &= \int_{-\infty}^\infty dx \bigg(\int_{-\infty}^\infty dx' \ f(x') g(x-x')\bigg) e^{-ikx} \\
+&= \int_{-\infty}^\infty dx' \ f(x') \int_{-\infty}^\infty dx \ g(x-x') e^{-ikx} \\
+&= \int_{-\infty}^\infty dx' \ f(x') e^{-ikx'} \int_{-\infty}^\infty du \ f(u) e^{-iku} \\
+&= f(k) g(k) \ .
+\end{align*}
+$$
+We've thus shown that the Fourier transform converts convolutions in $x$-space to products in $k$-space, with
+$$
+(f \ast g)(x) \leftrightarrow f(k) g(k) \ .
+$$
+By following the exact same argument starting with $h(k) \equiv (f \ast g)(k)$ and taking its inverse Fourier transform, one can show that the Fourier transform converts products in $x$-space into convolutions in $k$-space, with
+$$
+f(x) g(x) \leftrightarrow \frac{1}{2\pi} (f \ast g)(k) \ .
+$$
+The next non-trivial property of the Fourier transform is that it preserves the inner product of functions in a sense. Suppose $f(x)$ and $g(x)$ are two functions with an inner product $\langle f | g \rangle_x$ in $x$-space and an inner product $\langle f | g \rangle_k$ in $k$-space. Then
+$$
+\langle f | g \rangle_x = \frac{1}{2\pi} \langle f | g \rangle_k \ .
+$$
+This result is known as *Parseval's Theorem*. To prove this theorem, we start with the inner product $\langle f | g \rangle_x$, take the inverse Fourier transform of $f(x)$ and $g(x)$, and then interchange the $x$ and $k$ integrals to get a delta function. We get
+$$
+\begin{align*}
+\int_{-\infty}^\infty dx \ f^*(x) g(x) &= \int_{-\infty}^\infty dx \ \mathcal{F}^{-1}[f^*(k')](x) \cdot \mathcal{F}^{-1}[g(k)](x) \\
+&= \int_{-\infty}^\infty dx \ \int_{-\infty}^\infty \frac{dk'}{2\pi} \ f^*(k') e^{-ik'x} \int_{-\infty}^\infty \frac{dk}{2\pi} \ g(k) e^{ikx} \\
+&= \int_{-\infty}^\infty \frac{dk'}{2\pi} \ f^*(k') \int_{-\infty}^\infty \frac{dk}{2\pi} \ g(k) \int_{-\infty}^\infty dx \ e^{i(k-k')x} \\
+&= \int_{-\infty}^\infty \frac{dk'}{2\pi} \ f^*(k') \int_{-\infty}^\infty \frac{dk}{2\pi} \ g(k) \delta(k-k') \\
+&= \frac{1}{2\pi} \int_{-\infty}^\infty dk \ f^*(k) g(k) \ .
+\end{align*}
+$$
+We've thus shown what we wanted to prove, i.e. that $\langle f | g \rangle_x = \frac{1}{2\pi} \langle f | g \rangle_k$. An immediate corollary to this result is that the Fourier transform preserves the norm of a function (up to a factor of $2\pi$), with $||f||_x^2 = \frac{1}{2\pi} ||f||_k^2$. If $f(x)$ represents some time-varying signal, we can think of $||f||^2$ as representing the energy of the signal. Parseval's theorem says that we can calculate this energy in either $x$-space or $k$-space and get the same result, up to a constant. We can use this fact, for example, to calculate the energy output of an electromagnetic wave, which we will in this course.
+
+The last non-trivial property of the Fourier transform is how it transforms differentiation operators. Suppose we take the Fourier transform of the first derivative of some function $f(x)$. We can use integration by parts to move the derivate off of $f(x)$ onto the complex exponential, which is easy to differentiate. Observe
+$$
+\begin{align*}
+\mathcal{F} \bigg[\frac{d}{dx} f(x)\bigg](k) &= \int_{-\infty}^\infty dx \ \frac{df}{dx} e^{-ikx} \\
+&= f(x) e^{ikx} \bigg|_{x=-\infty}^{x=\infty} - \int_{-\infty}^\infty dx \ f(x) \frac{d}{dx} e^{-ikx} \\
+&= f(x) e^{ikx} \bigg|_{x=-\infty}^{x=\infty} - ik \int_{-\infty}^\infty dx \ f(x) e^{-ikx} \\
+&= f(x) e^{ikx} \bigg|_{x=-\infty}^{x=\infty} - ikf(k) \ .
+\end{align*}
+$$
+Provided $f(x)$ goes to zero at $\pm \infty$ the boundary terms vanish, and we end up with the useful relation
+$$
+\frac{d}{dx} f(x) \leftrightarrow -ik f(k) \ .
+$$
+Thus, the Fourier transform converts derivatives in $x$-space into algebraic functions in $k$-space. By successive application of this rule, it's easy to see that the $n$<sup>th</sup> derivative transforms as
+$$
+\frac{d^n}{dx^n} f(x) \leftrightarrow (-ik)^n f(k) \ .
+$$
+This property of the Fourier transform turns out to be extremely useful for solving differential equations. particularly partial differential equations in both space and time. If we can use the Fourier transform to deal with the spatial derivatives, we end up with a differential equation in $k$-space that depends only on time derivatives, which is often easier to solve. Here's an example.
+
+##### Example: Wave equation in one dimension
+
+Consider the following time-dependent initial value problem in one spatial dimension,
+$$
+\begin{cases}
+\frac{\partial^2 u}{\partial x^2} = \frac{1}{c^2} \frac{\partial^2 u}{\partial t^2} \ , \\
+u(x,0) = \delta(x) \ , \\ 
+\frac{\partial}{\partial t} u(x,0) = 0 \ .
+\end{cases}
+$$
+This problem can be used to model a wave $u(x,t)$ propagating along the $x$-axis at a constant speed $c$, where an impulse response is applied at the origin at time $t=0$ and there is initially no wave propagation taking place before the impulse. The second order PDE is called the *wave equation* in one-dimension. We'll see wave equations a lot in this course. The goal of this problem is of course to solve this problem for the wavefunction $u(x,t)$.
+
+Now, let's take the Fourier transform of both sides of the wave equation with respect to $x$ only, leaving $t$ alone,
+$$
+\mathcal{F} \bigg[\frac{\partial^2 u}{\partial x^2}\bigg](k,t) = \mathcal{F}\bigg[\frac{1}{c^2} \frac{\partial^2 u}{\partial t^2}\bigg](k,t) \ .
+$$
+The left-hand side involves a second derivative in $x$, so its Fourier transform will be $-k^2 u(k,t)$. The right-hand side involves a constant times a second derivative in $t$. Since we're taking the transform with respect to $x$, we can treat the time derivative as essentially a constant, and so by linearity the right-hand side will be $\frac{1}{c^2} \partial_t^2 u(k,t)$. Setting both sides must equal and multiplying through by $c^2$, we thus have
+$$
+-c^2 k^2 u(x,t) = \frac{\partial^2}{\partial t^2} u(k,t) \ .
+$$
+We've thus used the Fourier transform to eliminate the derivatives in $x$. All that remains now is a second derivative in $t$, which we can easily solve for $u(k,t)$. This is just a simple harmonic oscillator with general solution
+$$
+u(k,t) = a \cos ckt + b \sin ckt \ .
+$$
+Now we need to deal with the initial conditions. Since we're working in $k$-space, we need to Fourier transform the initial conditions first. It's easy to see that
+$$
+\begin{align*}
+&u(k,0) = \mathcal{F}[\delta(x)](k) = 1 \ , \\
+&\frac{\partial}{\partial t} u(k,0) = \mathcal{F}[0](k) = 0 \ .
+\end{align*}
+$$
+Plugging these initial conditions into the general solution, we end up with
+$$
+u(k,t) = \cos ckt = \frac{1}{2} \big[e^{ickt} + e^{-ickt}\big] \ .
+$$
+Here we wrote $\cos ckt$ in terms of complex exponentials to make the next step easier. Now, we have a solution in terms of $k$ and $t$, but we need a solution in terms of $x$ and $t$. To get $u(x,t)$ we need to take the inverse Fourier transform of $u(k,t)$. Plugging the general solution above into the inverse Fourier transform, we have
+$$
+\begin{align*}
+u(x,t) &= \int_{-\infty}^\infty \frac{dk}{2\pi} \ u(k,t) e^{ikx} \\
+&= \frac{1}{2} \int_{-\infty}^\infty \frac{dk}{2\pi} \ \big[e^{ickt} + e^{-ickt}\big] e^{ikx} \\
+&= \frac{1}{2} \bigg[\int_{-\infty}^\infty \frac{dk}{2\pi} \ e^{ik(x+ct)} + \int_{-\infty}^\infty \frac{dk}{2\pi} \ e^{ik(x-ct)} \bigg] \\
+&= \frac{1}{2} \big[\delta(x+ct) + \delta(x-ct) \big] \ .
+\end{align*}
+$$
+In the last step we use the definition of the delta function to evaluate the two integrals. We thus finally end up with a general solution in ordinary space of the form
+$$
+u(x,t) = \frac{1}{2} \big[\delta(x+ct) + \delta(x-ct) \big] \ .
+$$
+Incidentally, we can use this solution derived for an impulse response to get the solution for any wave generated by some arbitrary response $f(x)$ at the origin simply by convolving $f(x)$ with the two delta functions above. We end up with
+$$
+u(x,t) = \frac{1}{2} \big[f(x+ct) + f(x-ct) \big] \ .
+$$
+Physically, this solution says that a response at the origin will give rise to two traveling waves each propagating out from the origin at a constant speed $c$, one in the positive direction and another in the negative direction.
+
+### Higher Dimensions
+
+The Fourier transform extends easily into higher dimensions as well. Suppose $f(\mathbf{x})$ is a function of an $n$-dimensional vector $\mathbf{x}$ with Cartesian coordinates $(x_1,x_2,\cdots,x_n)$. Suppose we took the Fourier transform of the first coordinate $x_1$ and left the other coordinates alone. Then we'd end up with a function $f(k_1,x_2,\cdots,x_n)$ of the form
+$$
+f(k_1,x_2,\cdots,x_n) = \int_{-\infty}^\infty dx_1 \ f(x_1,x_2,\cdots,x_n) e^{-i k_1 x_1} \ .
+$$
+We could now take the Fourier transform of this function with respect to the second coordinate $x_2$, in which case we'd end up with another function $f(k_1,k_2,\cdots,x_n)$ of the form
+$$
+\begin{align*}
+f(k_1,k_2,\cdots,x_n) &= \int_{-\infty}^\infty dx_2 \ f(k_1,x_2,\cdots,x_n) e^{-i k_2 x_2} \\
+&= \int_{-\infty}^\infty dx_2 \bigg(\int_{-\infty}^\infty dx_1 \ f(x_1,x_2,\cdots,x_n) e^{-i k_1 x_1}\bigg) e^{-i k_2 x_2} \\
+&= \int_{-\infty}^\infty dx_1 \ \int_{-\infty}^\infty dx_2 \ f(x_1,x_2,\cdots,x_n) e^{-i(k_1 x_1+k_2 x_2)} \ .
+\end{align*}
+$$
+We can repeat this until we've taken the Fourier transform of the last coordinate $x_n$ to end up with a function $f(k_1,k_2,\cdots,k_n)$ that's only a function of the $k$-space coordinates $(k_1,k_2,\cdots,k_n)$. If we call the vector of $k$-space coordinates $\mathbf{k}$, we can write
+$$
+\boxed{
+f(\mathbf{k}) = \int d^n\mathbf{x} \ f(\mathbf{x}) e^{-i \mathbf{k} \cdot \mathbf{x}}
+} \ ,
+$$
+where the integral is taken over all $n$-dimensions of space. This is called the $n$-dimensional Fourier transform. Notice all we're doing is repeatedly applying Fourier transform operators on each coordinate one-by-one. If we let $\mathcal{F}_i$ denote the Fourier transform operator of the $i$<sup>th</sup> coordinate and $\mathcal{F}^{(n)}$ denote the $n$-dimensional Fourier transform, we can write
+$$
+\mathcal{F}^{(n)}[f(\mathbf{x})](\mathbf{k}) = \mathcal{F}_1 \mathcal{F}_2 \cdots \mathcal{F}_n [f(\mathbf{x})](\mathbf{k}) \ .
+$$
+We can do the exact same thing for the inverse Fourier transform, by starting with $f(k_1,k_2,\cdots,k_n)$ and take the inverse transform of each coordinate $k_i$ one by one. We end up with
+$$
+\boxed{
+f(\mathbf{x}) = \int \frac{d^n\mathbf{k}}{(2\pi)^n} \ f(\mathbf{k}) e^{i \mathbf{k} \cdot \mathbf{x}}
+} \ ,
+$$
+where again the integral is taken over all $n$-dimensions of $k$-space. This is the $n$-dimensional inverse Fourier transform. Perhaps the main thing to be aware of here is that each dimension contributes its own factor of $2\pi$ in the integral. We can express this integral relation equivalently in terms of Fourier transform operators by writing
+$$
+\big(\mathcal{F}^{(n)}\big)^{-1}[f(\mathbf{k})](\mathbf{x}) = \mathcal{F}_1^{-1} \mathcal{F}_2^{-1} \cdots \mathcal{F}_n^{-1} [f(\mathbf{k})](\mathbf{x}) \ .
+$$
+It's not hard to see that these higher-dimensional Fourier transforms will also be invertible, and satisfy similar properties and orthogonality relations to the ordinary Fourier transform. For instance, the derivative property carries over. This means, for example, that the Fourier transform of the Laplacian $\nabla^2$ is simply $-|\mathbf{k}|^2$ in $k$-space,
+$$
+\nabla^2 f(\mathbf{x}) \leftrightarrow -|\mathbf{k}|^2 f(\mathbf{k}) \ .
+$$
+We can use this fact to solve many linear PDEs of interest in higher dimensions, including Poisson's equation and the Helmholtz equation. We'll see this done in detail in other chapters in the course.
+
+## Legendre Polynomials
+
+We'll now look at another class of orthogonal functions known as the Legendre polynomials. The Legendre polynomials arise in physics primarily when trying working with the Laplacian in spherical coordinates.
 
 There are several ways one can define these polynomials. To keep the math as simple as possible we'll define these via a *generating function*. A generating function for a set of functions $f_n(x)$ is any function $g(x,t)$ such that
 $$
@@ -448,7 +655,7 @@ P_5(x) &= \frac{1}{8} (63x^5 - 70x^3 + 15x) \ .
 $$
 As the name suggests, the Legendre polynomials are all polynomials, with each $P_n(x)$ being a polynomial of degree $n$. We can see a plot of the first few polynomials in the figure below.
 
-![](../resources/image-20240820193434775.png){fig-align=center width=400}
+![](../resources/image-20240820193434775.png){fig-align=center width=500}
 
 Notice that $P_n(x)$ is odd when $n$ is odd, and even when $n$ is even. That is, $P_n(x)$ satisfies the parity relation
 $$
@@ -456,7 +663,7 @@ P_n(-x) = (-1)^n P_n(x) \ .
 $$
 This can also be easily seen from the generating function by expanding $g(-x,t)$ and getting an alternating series. We can also see that $P_n(1) = 1$, which immediately implies that $P_n(-1) = (-1)^n$ from the parity relation.
 
-#### Basic Properties
+### Properties
 
 By using the binomial theorem to expand $g(x,t)$ in powers of $2xt-t^2$ and collecting terms, it's not too hard to show that
 $$
@@ -504,7 +711,7 @@ $$
 $$
 This differential equation is known as the *Legendre equation*. It turns out to be very important as we'll see in the next section.
 
-#### Orthogonality
+### Orthogonality
 
 The Legendre polynomials turn out to provide a complete orthogonal set of functions on the interval $-1 \leq x \leq 1$. To see that, we need only place Legendre's equation into Sturm-Liouville form. Observe we can write this equation in the form
 $$
@@ -546,6 +753,8 @@ This means the coefficients in the orthogonal expansion are given in the usual w
 $$
 c_n = \bigg(\frac{2n+1}{2}\bigg) \int_{-1}^1 dx \ f(x) P_n(x) \ .
 $$
+Let's now work a relatively simple example.
+
 ##### Example: Legendre Series of a Step Function
 
 Let's calculate the Legendre series expansion for the following step function defined on $-1 \leq x \leq 1$,
@@ -604,9 +813,9 @@ f(x) = \sum_{n=1,3,\cdots}^\infty \bigg(\frac{-1}{2}\bigg)^{\frac{n-1}{2}} \frac
 $$
 To visually verify that this expansion is sensible, we show a plot below of the series approximations for different partial sums $S_N$, for $N=3,5,7,99$. Notice again as $N$ increases that the expansion gets better and better at approximating the step function. Also, similar to what we saw with Fourier series, the expansion doesn't do well near the discontinuity at $x=0$, even when $N=99$. In fact, the Gibbs phenomenon seems to carry over as well, given we see spikes forming around $x=0$.
 
-![](../resources/image-20240901222511254.png){fig-align=center width=400}
+![](../resources/image-20240901222511254.png){fig-align=center width=500}
 
-#### Associated Legendre Functions
+### Associated Legendre Functions
 
 We can define a more general class of Legendre functions by taking Legendre's equation and differentiating it $m$ times. If we do that, we end up with a differential equation of the form
 $$
@@ -654,6 +863,8 @@ P_2^2(x) &= 3 (1-x^2) \\
 \end{cases} \ .
 \end{align*}
 $$
+
+
 Notice from these first few functions that each $P_n^m(x)$ and $P_n^{-m}(x)$ seem to be proportional. Indeed, using the Leibniz rule it's not hard to show that they're always proportional, according to the formula
 $$
 P_n^{-m}(x) = (-1)^m \frac{(n-m)!}{(n+m)!} P_n^m(x) \ .
@@ -684,9 +895,9 @@ $$
 $$
 It's easy to see that if we do a change of variables $x = \cos\theta$ this equation reduces to the associated Legendre equation. Since $-1 \leq \cos\theta \leq 1$, we can be sure that it will be defined on the same interval as well. The solutions are thus given by the associated Legendre functions $P_\ell^m(\cos\theta)$. In the special case of azimuthal symmetry we end up with $m=0$, which reduces this equation to the ordinary Legendre equation. In that case the solutions will be given by the Legendre polynomials $P_\ell(\cos\theta)$. We'll talk more about this in a few sections when we cover the spherical harmonics.
 
-### Bessel Functions
+## Bessel Functions
 
-We'll now consider a different class of orthogonal functions called *Bessel functions*. In physics, Bessel functions usually arise when trying to use separation of variables on the Laplacian in cylindrical coordinates.
+We'll now consider a different class of orthogonal functions called *Bessel functions*. In physics, Bessel functions usually arise when working with the Laplacian in cylindrical coordinates.
 
 As with Legendre polynomials, there are any number of ways we can define Bessel functions. We'll again use the generating function approach since it's the easiest. Define
 $$
@@ -707,9 +918,9 @@ $$
 
 Unfortunately, the Bessel functions do not have a closed form expression, so we can't easily write down the first few functions like we did the Legendre polynomials. We can still plot them though. Below is a plot of $J_n(x)$ for $n=1,\cdots,5$.
 
-![](../resources/image-20240822012913978.png){fig-align=center width=400}
+![](../resources/image-20240822012913978.png){fig-align=center width=500}
 
-#### Basic Properties
+### Properties
 
 Notice each of these functions appears to behave like a damped oscillation. Indeed, as $x \rightarrow \infty$ it's possible to show that
 $$
@@ -764,7 +975,7 @@ x^2 \frac{d^2 J_n}{dx^2} + x \frac{dJ_n}{dx} + (x^2-n^2) J_n(x) = 0
 $$
 This second order linear differential equation is known as *Bessel's Equation*. For a given $n$ it has a solution given by $J_n(x)$. In fact, since it's a second order equation it has another solution as well that we'll come back to.
 
-#### Orthogonality
+### Orthogonality
 
 We'd now like to use Bessel's equation to formulate a Sturm-Liouville problem. However, as stated it's not quite in a valid Sturm-Liouville form since it lacks an eigenvalue $\lambda$. To address this issue we'll instead consider the *parametric Bessel equation*
 $$
@@ -776,44 +987,44 @@ $$
 $$
 This is a valid Sturm-Liouville form with $p(x) = x$, $q(x) = -\frac{n^2}{x}$, and $w(x) = x$. To impose boundary conditions, we'll assume that $x$ is defined on some positive interval $0 \leq x \leq a$, where $a$ is some parameter. Since $p(0) = 0$, at $x=0$ we need only require that $J(x)$ be finite. At $x = a$ we'll require that $J(a) = 0$. Taken together, we have a valid Sturm-Liouville problem, which means its solutions will form a complete orthogonal set of functions on the given interval.
 
-It's perhaps not obvious that the Bessel functions $J_n(x)$ will solve this boundary value problem, and indeed they don't in their current form unless $\lambda = 1$. But there's a simple fix. Suppose we change variables $x \rightarrow \frac{\lambda}{a} x$, and consider instead the *scaled* Bessel functions of the form $J_{nk}(x) \equiv J_n\big(\frac{\omega_{nk}}{a} x\big)$ where $\omega_{nk}$ is some parameter to be determined. If we take these functions and differentiate with respect to $x$, we get
+It's perhaps not obvious that the Bessel functions $J_n(x)$ will solve this boundary value problem, and indeed they don't in their current form unless $\lambda = 1$. But there's a simple fix. Suppose we change variables $x \rightarrow \frac{\lambda}{a} x$, and consider instead the *scaled* Bessel functions of the form $J_{nm}(x) \equiv J_n\big(\frac{k_{nm}}{a} x\big)$ where $k_{nm}$ is some parameter to be determined. If we take these functions and differentiate with respect to $x$, we get
 $$
-x^2 \frac{d^2 J_{nk}}{dx^2} + x \frac{dJ_{nk}}{dx} - \bigg(\frac{\omega_{nk}^2}{a^2} x^2-n^2\bigg) J_{nk}(x) = 0 .
+x^2 \frac{d^2 J_{nm}}{dx^2} + x \frac{dJ_{nm}}{dx} - \bigg(\frac{k_{nm}^2}{a^2} x^2-n^2\bigg) J_{nm}(x) = 0 .
 $$
-This evidently means the eigenvalues will be given by $\lambda_n = \frac{\omega_{nk}^2}{a^2}$, provided we can find $\omega_{nk}$. We can do that by imposing the boundary conditions. At $x=0$ we know that $J_n(x) \sim x^n$ as $x \rightarrow 0$. Clearly this will be true for $J_{nk}(x)$ as well. This means $J_{nk}(x)$ will be finite at $x=0$, ensuring the first boundary condition holds. 
+This evidently means the eigenvalues will be given by $\lambda_n = \frac{k_{nm}^2}{a^2}$, provided we can find $\omega_{nk}$. We can do that by imposing the boundary conditions. At $x=0$ we know that $J_n(x) \sim x^n$ as $x \rightarrow 0$. Clearly this will be true for $J_{nm}(x)$ as well. This means $J_{nm}(x)$ will be finite at $x=0$, ensuring the first boundary condition holds. 
 
-At the other endpoint $x=a$ we require that $J_{nk}(a) = 0$. The only way this can be true is if $\omega_{nk}$ is a root of $J_n(x)$. Since each Bessel function is a damped oscillation, we can be sure it will have infinitely many roots, say $x_{nk}$ where $k=1,2,\cdots$. If we set $\omega_{nk} = x_{nk}$ for *any* $k$ we can be sure the boundary condition at $x=a$ will be solved. 
+At the other endpoint $x=a$ we require that $J_{nm}(a) = 0$. The only way this can be true is if $k_{nm}$ is a root of $J_n(x)$. Since each Bessel function is a damped oscillation, we can be sure it will have infinitely many roots $x_{nm}$, where $m=1,2,\cdots$. If we set $k_{nm} = x_{nm}$ for *any* $m$ we can be sure the boundary condition at $x=a$ will be solved. 
 
 Note that the roots of a Bessel function don't in general have an nice form except for the trivial root at $x=0$. They're not equally spaced, nor are they the same for different $n$. In practice we have to find these roots numerically for a given $J_n(x)$.
 
-Thus, on the interval $0 \leq x \leq a$, we've shown that the scaled Bessel functions of the form $J_{nk}(x) = J_n\big(\frac{x_{nk}}{a} x\big)$ solve the parametric Bessel's equation, and hence a Sturm-Liouville problem. This means that, we immediately know that, for any fixed $n$, any pair of functions $J_{nk}(x)$ and $J_{n\ell}(x)$ will be orthogonal on the interval $0 \leq x \leq a$, with respect to the the weight $w(x) = x$,
+Thus, on the interval $0 \leq x \leq a$, we've shown that the scaled Bessel functions of the form $J_{nm}(x) = J_n\big(\frac{x_{nm}}{a} x\big)$ solve the parametric Bessel's equation, and hence a Sturm-Liouville problem. This means that, we immediately know that, for any fixed $n$, any pair of functions $J_{nm}(x)$ and $J_{n\ell}(x)$ will be orthogonal on the interval $0 \leq x \leq a$, with respect to the the weight $w(x) = x$,
 $$
-\langle J_{nk} | J_{n\ell} \rangle = \int_0^a dx \ x \ J_n\bigg(\frac{x_{nk}}{a} x\bigg) J_n\bigg(\frac{x_{n\ell}}{a} x\bigg) = 0 \quad , \ k \neq \ell \ .
+\langle J_{nm} | J_{n\ell} \rangle = \int_0^a dx \ x \ J_n\bigg(\frac{x_{nm}}{a} x\bigg) J_n\bigg(\frac{x_{n\ell}}{a} x\bigg) = 0 \quad , \ m \neq \ell \ .
 $$
-Notice this subtle point. It's not distinct Bessel functions $J_n$ and $J_m$ that are orthogonal. We can't say $\langle J_n | J_m \rangle = 0$. Instead it's the scaled Bessel functions for a *fixed* $n$ that are orthogonal, i.e. $\langle J_{nk} | J_{n\ell} \rangle = 0$. This may seem strange, but it's completely a consequence of the Sturm-Liouville problem we posed, which was posed assuming a fixed value of $n$ already.
+Notice this subtle point. It's not distinct Bessel functions $J_n$ and $J_{n'}$ that are orthogonal. We can't say $\langle J_n | J_{n'} \rangle = 0$. Instead it's the scaled Bessel functions for a *fixed* $n$ that are orthogonal, i.e. $\langle J_{nm} | J_{nm'} \rangle = 0$. This may seem strange, but it's completely a consequence of the Sturm-Liouville problem we posed, which was posed assuming a fixed value of $n$ already.
 
 While we know that these functions are orthogonal, we still don't know what their normalization factors are. Finding these factors can be done any number of ways, though the math is a bit tedious in each case. We'll just state the result. We end up with
 $$
-\langle J_{nk} | J_{nk} \rangle = \frac{a}{2} J_{n+1}^2(x_{nk}) \ .
+\langle J_{nm} | J_{nm} \rangle = \frac{a}{2} J_{n+1}^2(x_{nm}) \ .
 $$
 Putting this all together, we end up with the following simple orthogonality relation,
 $$
 \boxed{
-\langle J_{nk} | J_{n\ell} \rangle = \frac{a}{2} J_{n+1}^2(x_{nk}) \delta_{k\ell} 
+\langle J_{nm} | J_{nm'} \rangle = \frac{a}{2} J_{n+1}^2(x_{nm}) \delta_{mm'} 
 } \ .
 $$
 With this information in hand, we know that the Bessel functions form a complete set on the interval $0 \leq x \leq a$, and hence any function $f(x)$ on that interval can be expanded as a linear superposition of them,
 $$
-f(x) = \sum_{k=1}^\infty c_k J_n\bigg(\frac{x_{nk}}{a} x\bigg) \ ,
+f(x) = \sum_{m=1}^\infty c_m J_n\bigg(\frac{x_{nm}}{a} x\bigg) \ ,
 $$
-where the coefficients $c_k$ are given in the usual way by taking $c_k = \frac{\langle J_{nk} | f \rangle}{||J_{nk}||^2}$, which gives
+where the coefficients $c_m$ are given in the usual way by solving $||J_{nm}||^2 c_m = \langle J_{nm} | f \rangle$, which gives
 $$
-c_k = \frac{2}{a^2 J_n^2(x_{nk})} \int_0^a dx \ x \ f(x) J_n\bigg(\frac{x_{nk}}{a} x\bigg) \ .
+c_m = \frac{2}{a^2 J_{n+1}^2(x_{nm})} \int_0^a dx \ x \ f(x) J_n\bigg(\frac{x_{nm}}{a} x\bigg) \ .
 $$
 
 This series expansion for $f(x)$ is sometimes called a *Bessel series*, or a *Fourier-Bessel series*.
 
-#### General Bessel Functions
+### General Bessel Functions
 
 Thus far, we've only studied Bessel functions of the first kind with an integer parameter $n$. It turns out that we can consider Bessel functions for non-integer $n$ as well. It's conventional in this more general case to use $\nu$ as the parameter instead of $n$. For non-integer $\nu$ we can no longer rely on the generating function. Instead we'll define Bessel functions in terms of the series expression we derived before, but with a non-integer $\nu$ instead of $n$,
 $$
@@ -843,19 +1054,19 @@ which is clearly well-defined when $\nu=n$. By expanding each Bessel function on
 $$
 Y_n(x) = \frac{2}{\pi} \bigg[J_n(x) \log\frac{x}{2} - \frac{1}{n} \sum_{k=0}^{n-1} J_k(x) - \frac{(-1)^n}{2n} \sum_{k=0}^{n-1} (-1)^k (n+k-1)! \bigg(\frac{x}{2}\bigg)^{k-n} \bigg] \ .
 $$
-An implication of this expansion is that evidently $Y_n(x) \sim x^n \log x$ as $x \rightarrow 0$, which means these functions will diverge at $x=0$. We can also see this behavior by looking at a plot of $Y_n(x)$ for the first few non-negative values of $n$, shown in the figure below.
+An implication of this expansion is that evidently $Y_n(x) \sim x^n \log x$ as $x \rightarrow 0$, which means these functions will diverge at $x=0$. When $x$ is large these functions behave similarly to $J_n(x)$, acting as damped oscillations. We illustrate these behavior below with a plot of $Y_n(x)$ for the first few non-negative values of $n$.
 
-![](../resources/image-20240825013654236.png){fig-align=center width=400}
+![](../resources/image-20240825013654236.png){fig-align=center width=500}
 
 Since $Y_\nu(x)$ is just a weighted sum of $J_\nu(x)$ and $J_{-\nu}(x)$, it's easy to show that all of the recursive formulas that hold for $J_\nu(x)$ also must hold for $Y_\nu(x)$ as well. This means that $Y_\nu(x)$ also solves Bessel's equation, and since $Y_\nu(x)$ is now an independent function of $J_\nu(x)$ even for integer $\nu$, we can express any solution to Bessel's equation as a linear superposition of these two,
 $$
 f(x) = c_1 J_\nu(x) + c_2 Y_{\nu}(x) \ .
 $$
-Indeed, this is the most general solution to Bessel's equation we can write down for a fixed $\nu$.
+Indeed, this is the most general solution to Bessel's equation we can write down for a fixed $\nu$. Note that in electromagnetism problems the physical requirement that the solution not blow up at the origin will force us to set $c_2 = 0$ and discard the $Y_\nu(x)$ term completely. We state the general solution here mainly for completeness.
 
 Though we won't really use them in this course, it's also possible to define yet another complex-valued function by taking $J_\nu(x)$ as the real part and $Y_\nu(x)$ as the imaginary part. These are called *Bessel functions of the third kind*, or *Hankle functions*, defined by
 $$
-H_\nu(x) = J_\nu(x) + i Y_\nu(x) \ .
+H_\nu(x) \equiv J_\nu(x) + i Y_\nu(x) \ .
 $$
 One can check that $H_\nu(x)$ satisfies the same recursive relations, and hence also solves Bessel's equation as well, with
 $$
@@ -863,60 +1074,73 @@ f(x) = c_1 H_\nu(x) + c_2 H_\nu^*(x) \ .
 $$
 Notice how similar this is to the relationship between the complex exponential and sines and cosines. The same thing is going on here, with $J_\nu(x)$ behaving as a sort of cosine, $Y_\nu(x)$ as a sort of sine, and $H_\nu(x)$ as a sort of complex exponential.
 
-We can also define yet another class of Bessel functions called the *spherical Bessel functions*, defined for integer $n$ by
+There is one more class of Bessel functions we'll mention, called the *modified Bessel functions of the first and second kind*. These functions are respectively defined by
 $$
-\begin{align*}
-j_n(x) &\equiv \sqrt{\frac{\pi}{2x}} J_{n+1/2}(x) \ , \\
-y_n(x) &\equiv \sqrt{\frac{\pi}{2x}} Y_{n+1/2}(x) \ , \\
-h_n(x) &\equiv \sqrt{\frac{\pi}{2x}} H_{n+1/2}(x) \ . \\
-\end{align*}
+I_\nu(x) \equiv i^{-\nu} J_\nu(ix) \quad , \quad K_\nu(x) \equiv \frac{\pi}{2} \frac{I_{-\nu}(x) - I_\nu(x)}{\sin \nu\pi} \ .
 $$
-It's possible to show that these functions satisfy the following *Rayleigh formulas*,
+Unlike the ordinary Bessel functions, the modified Bessel functions do not oscillate. They behave essentially like real exponentials, with $I_\nu(x)$ behaving like a growing exponential and $K_\nu(x)$ like a decaying exponential.
+
+It's possible to show that the modified Bessel functions are solutions to the *modified Bessel equation* given by
 $$
-\begin{align*}
-j_n(x) &= (-x)^n \bigg(\frac{1}{x} \frac{d}{dx}\bigg)^n \frac{\sin x}{x} \ , \\
-y_n(x) &= -(-x)^n \bigg(\frac{1}{x} \frac{d}{dx}\bigg)^n \frac{\cos x}{x} \ .
-\end{align*}
+x^2 \frac{d^2 f}{dx^2} + x \frac{df}{dx} - (x^2 + \nu^2) f(x) = 0 \ .
 $$
-Unlike the ordinary Bessel functions, with spherical Bessel functions we can use the Rayleigh formulas to calculate closed form expressions. For example, the first few expressions for $j_n(x)$ are listed below.
+Its general solutions are linear combinations of the modified Bessel functions, with
 $$
-\begin{align*}
-j_0(x) &= \frac{\sin x}{x} \ , \\
-j_1(x) &= \frac{\sin x}{x^2} - \frac{\cos x}{x} \ , \\
-j_2(x) &= \bigg(\frac{3}{x^2} - 1\bigg) \frac{\sin x}{x} - \frac{3\cos x}{x^2} \ , \\
-j_3(x) &= \bigg(\frac{15}{x^3} - \frac{6}{x}\bigg) \frac{\sin x}{x} - \bigg(\frac{15}{x^2} - 1\bigg) \frac{\cos x}{x} \ .
-\end{align*}
+f(x) = c_1 I_\nu(x) + c_2 K_\nu(x) \ .
 $$
-As with the ordinary Bessel functions, these functions can also be defined in terms of generating functions as well, with
-$$
-\begin{align*}
-g(x,t) &= \frac{1}{x} \cos(\sqrt{x^2 - 2 x t}) = \sum_{n=0}^\infty \frac{t^n}{n!} j_{n-1}(x) \ , \\
-g(x,t) &= \frac{1}{x} \sin(\sqrt{x^2 - 2 x t}) = \sum_{n=0}^\infty \frac{t^n}{n!} y_{n-1}(x) \ .
-\end{align*}
-$$
-The spherical Bessel functions don't satisfy Bessel's equation exactly. Instead they solve the *spherical Bessel equation* given by
-$$
-x^2 \frac{d^2 f}{dx^2} + 2x \frac{df}{dx} + \big(x^2 - n(n+1)\big)f(x) = 0 \ .
-$$
-By making a change of variables $g(x) \equiv \sqrt{x} f(x)$, it's easy to see that $g(x)$ will solve Bessel's equation with $\nu = n + \frac{1}{2}$,
-$$
-x^2 \frac{d^2 g}{dx^2} + x \frac{dg}{dx} + \bigg[x^2 - \bigg(n + \frac{1}{2}\bigg)^2\bigg]g(x) = 0 \ .
-$$
-Since the general solution to this Bessel's equation is $g(x) = c_1 J_{n+1/2}(x) + c_2 Y_{n+1/2}(x)$, it's easy to see that the general solution to the spherical Bessel's equation will be a superposition of the spherical Bessel functions, i.e.
-$$
-f(x) = c_1 j_n(x) + c_2 y_n(x) \ .
-$$
-In electromagnetism, we'll see these various Bessel functions arise primarily when solving linear PDEs using cylindrical coordinates. For example, when applying separation of variables to the Laplacian in cylindrical coordinates, we end up with the following radial equation,
+In electromagnetism, we'll see these various Bessel functions arise primarily when solving linear PDEs in cylindrical coordinates. For example, when trying to solve Laplace's equation in cylindrical coordinates, we end up with the following radial equation,
 $$
 \varrho^2 \frac{d^2 R}{d\varrho^2} + \varrho \frac{dR}{d\varrho} + \big(k^2 \varrho^2 - n^2\big)R(\varrho) = 0 \ .
 $$
-This equation is clearly just the Bessel's equation with an eigenvalue of $k^2$, which gets determined by the boundary conditions.
+This equation is clearly just the Bessel's equation with an eigenvalue of $k^2$. Once we impose boundary conditions, we can solve this equation for a general solution that satisfies Laplace's equation.
 
-### Spherical Harmonics
+### Hankel Transform
+
+Just as we can define an integral transform from Fourier series, we can define a similar transform from a Bessel series. These are called *Hankel transforms*. Suppose we've expressed expanded some $f(x)$ on the interval $0 \leq x \leq a$ as a Bessel series with
+$$
+f(x) = \sum_{m=1}^\infty c_m J_n(k_{mn} x) \ ,
+$$
+
+where $k_{mn} \equiv \frac{x_{nm}}{a}$, and the coefficients $c_m$ are given by the inner product relation
+$$
+c_m = \frac{2}{a^2 J_{n+1}^2(x_{nm})} \int_0^a dx \ x \ f(x) J_n(k_{mn} x) \ .
+$$
+Now, suppose we send $a \to \infty$. In this limit, the difference between roots $x_{nm}$ goes like $\Delta x_{nm} \sim \pi$, which means $k_{nm}$ becomes dense with $\Delta k_{nm} \sim \frac{\pi}{a}$. This means we can treat it as a continuous variable $k \equiv \frac{m\pi}{a}$ and replace the sum over $m$ by an integral
+$$
+\sum_{m=1}^\infty \approx \frac{a}{\pi} \int_0^\infty dk \ .
+$$
+Moreover, we know from the asymptotic relation for Bessel functions that $J_n(x) \sim \sqrt{2/\pi x}$ when $x \gg n$. This means when $m \gg n$ we have $J_{n+1}(x_{nm}) \sim \sqrt{2/m \pi^2}$. Now, if we plug $c_m$ directly into the Bessel series, we get
+$$
+f(x) = \sum_{m=1}^\infty \frac{2}{a^2 J_{n+1}^2(x_{nm})} \bigg[\int_0^a dx' \ x' \ f(x') J_n(k_{mn} x')\bigg] J_n(k_{mn} x) \ .
+$$
+If we now put all this together, simplify terms, and send $a \to \infty$ we finally end up with
+$$
+f(x) \approx \int_0^\infty dk \ k \bigg[\int_0^\infty dx' \ x' \ f(x') J_n(k x')\bigg] J_n(k x) \ .
+$$
+This gives us a completeness relation between $f(x)$ and the inner integral that we'll call $f(k)$, where
+$$
+\boxed{
+f(k) \equiv \mathcal{H}_n f(x) = \int_0^\infty dx \ x \ f(x) J_n(k x)}
+$$
+is called a *Hankel transform* of order $n$. The *Hankel operator* $\mathcal{H}_n$ maps the function $f(x)$ to its Hankel transform $f(k)$. If we plug $f(k)$ back into the outer integral, we get the *inverse Hankel transform* of order $n$,
+$$
+\boxed{
+f(x) = \mathcal{H}_n^{-1} f(x) = \int_0^\infty dk \ k \ f(k) J_n(k x) 
+} \ .
+$$
+The Hankel transform is clearly invertible by the completeness relation. By definition, it also satisfies many of the relations that the Fourier transform does. It's a linear operator, has a scaling property, converts convolutions into products and vice versa, and satisfies Parseval's theorem. It also transforms derivatives in a standard way we won't mention here, but is easy to derive.
+
+In the continuum limit, the Bessel functions $J_n(kx)$ are still orthogonal, but in a continuous sense, with
+$$
+\langle J_n(k) | J_n(k') \rangle = \int_0^\infty dx \ x J_n(kx) J_n(k'x) = \frac{\delta(k-k')}{k} \ .
+$$
+In electromagnetism, the Hankel transform usually shows up when trying to solve Laplace's equation in cylindrical coordinates. When the radius of the cylinder is finite we end up with a radial equation to solve that can be written as a Bessel series. But if we let that radius become infinite, the Bessel series converts into a Hankel transform in the same manner described above.
+
+## Spherical Harmonics
 
 Yet another class of orthogonal functions that are extremely prevalent in physics are the *spherical harmonics*. The spherical harmonics most often arise in electromagnetism as the basis of solutions when solving Laplace's equation on the sphere.
 
-#### Derivation
+### Derivation
 
 In spherical coordinates, we can express Laplace's equation on the unit sphere in the form
 $$
@@ -934,6 +1158,8 @@ $$
 &\frac{1}{\sin\theta} \frac{d}{d\theta} \bigg(\sin\theta \frac{d}{d\theta} \Theta(\cos\theta) \bigg) + \bigg[\ell (\ell+1) - \frac{m^2}{\sin^2\theta}\bigg] \Theta(\cos\theta) = 0 \ .
 \end{align*}
 $$
+
+
 The first equation we recognize as a simple harmonic oscillator with eigenvalue $-m^2$. For a given eigenvalue $m$, its general solution can be written in the form
 $$
 \Phi_m(\varphi) = c_1 e^{im\varphi} + c_2 e^{-im\varphi} \ .
@@ -948,59 +1174,61 @@ The second equation we should recognize immediately as the associated Legendre e
 $$
 \Theta_{\ell m}(\theta) = (-1)^m \sqrt{\frac{(2\ell+1)(\ell-m)!}{2(\ell+m)!}} P_\ell^m(\cos\theta) \ .
 $$
-Note that we went ahead and normalized these solutions, which will be useful in what follows. We also introduced an extra factor of $(-1)^m$ to agree with common convention, which doesn't affect anything really.
-
-#### Definition
+Note that we went ahead and normalized these solutions, which will be useful in what follows. We also introduced an extra factor of $(-1)^m$ to agree with common convention, which doesn't affect much really.
 
 If we multiply these two basis solutions together, we get a set of basis functions defined on the unit sphere by
 $$
 \boxed{
-Y_{\ell}^m(\theta,\varphi) \equiv (-1)^m \sqrt{\frac{(2\ell+1)(\ell-m)!}{4\pi(\ell+m)!}} P_\ell^m(\cos\theta) e^{im\varphi} 
+Y_{\ell m}(\theta,\varphi) \equiv (-1)^m \sqrt{\frac{(2\ell+1)(\ell-m)!}{4\pi(\ell+m)!}} P_\ell^m(\cos\theta) e^{im\varphi} 
 }\ .
 $$
 These basis functions on the sphere are called the *spherical harmonics*. By construction, these functions form a basis of solutions for Laplace's equation on the unit sphere, which is why they're called spherical harmonics.
 
 Note that readers familiar with quantum mechanics will observe that the spherical harmonics can also be thought of as the eigenfunctions of the square of the angular momentum operator $\mathbf{L} \equiv -i\hbar \mathbf{x} \times \nabla$. That is,
 $$
-\mathbf{L}^2 Y_\ell^m(\theta,\varphi) = \hbar^2 \ell(\ell+1) Y_\ell^m(\theta,\varphi) \ .
+\mathbf{L}^2 Y_{\ell m}(\theta,\varphi) = \hbar^2 \ell(\ell+1) Y_{\ell m}(\theta,\varphi) \ .
 $$
 Indeed, it's possible to show that expanding the operator $\mathbf{L}^2 = \mathbf{L} \cdot \mathbf{L}$ in spherical coordinates yields the same differential equation we solved above when $\hbar = 1$. Similarly, the azimuthal functions $\Phi_m(\varphi)$ turn out to be the eigenfunctions of the  $z$-component of the angular momentum operator $L_z = -i\hbar\partial_\varphi$ , with $L_z \Phi_m = \hbar m \Phi_m$.
+
+### Properties
 
 Using the generalized Rodrigues' formula for the associated Legendre functions it's possible to write down expressions for spherical harmonics. We list the spherical harmonics for $\ell=0,1,2$ below.
 $$
 \begin{align*}
-Y_0^0(\theta,\varphi) &= \frac{1}{2} \sqrt{\frac{1}{\pi}} \ , \quad
+Y_{00}(\theta,\varphi) &= \sqrt{\frac{1}{4\pi}} \ , \quad
 
 \begin{cases}
-Y_1^{-1}(\theta,\varphi) &= \frac{1}{2} \sqrt{\frac{3}{2\pi}} \sin\theta e^{-i\varphi} \\
-Y_1^0(\theta,\varphi)& = \frac{1}{2} \sqrt{\frac{3}{\pi}} \cos\theta \\
-Y_1^1(\theta,\varphi) &= -\frac{1}{2} \sqrt{\frac{3}{2\pi}} \sin\theta e^{i\varphi} \\
+Y_{1,-1}(\theta,\varphi) &= \sqrt{\frac{3}{8\pi}} \sin\theta e^{-i\varphi} \\
+Y_{10}(\theta,\varphi)& = \sqrt{\frac{3}{4\pi}} \cos\theta \\
+Y_{11}(\theta,\varphi) &= -\sqrt{\frac{3}{8\pi}} \sin\theta e^{i\varphi} \\
 \end{cases} \ , \quad
 
 \begin{cases}
-Y_2^{-2}(\theta,\varphi) &= \frac{1}{4} \sqrt{\frac{15}{2\pi}} \sin^2 \theta e^{-2i\varphi} \\
-Y_2^{-1}(\theta,\varphi) &= \frac{1}{2} \sqrt{\frac{15}{2\pi}} \sin\theta \cos\theta e^{-i\varphi} \\
-Y_2^0(\theta,\varphi) &= \frac{1}{4} \sqrt{\frac{5}{\pi}} (3\cos^2 \theta - 1) \\
-Y_2^1(\theta,\varphi) &= -\frac{1}{2} \sqrt{\frac{15}{2\pi}} \sin\theta \cos\theta e^{i\varphi} \\
-Y_2^2(\theta,\varphi) &= \frac{1}{4} \sqrt{\frac{15}{2\pi}} \sin^2 \theta e^{2i\varphi} \\
+Y_{2,-2}(\theta,\varphi) &= \sqrt{\frac{15}{32\pi}} \sin^2 \theta e^{-2i\varphi} \\
+Y_{2,-1}(\theta,\varphi) &= \sqrt{\frac{15}{8\pi}} \sin\theta \cos\theta e^{-i\varphi} \\
+Y_{20}(\theta,\varphi) &= \sqrt{\frac{5}{16\pi}} (3\cos^2 \theta - 1) \\
+Y_{21}(\theta,\varphi) &= -\sqrt{\frac{15}{8\pi}} \sin\theta \cos\theta e^{i\varphi} \\
+Y_{22}(\theta,\varphi) &= \sqrt{\frac{15}{32\pi}} \sin^2 \theta e^{2i\varphi} \\
 \end{cases} \ .
 \end{align*}
 $$
-Notice from these first few harmonics that $Y_\ell^m(\theta,\varphi)$ and $Y_\ell^{-m}(\theta,\varphi)$ are evidently related, with
+
+
+Notice from these first few harmonics that $Y_{\ell m}(\theta,\varphi)$ and $Y_{\ell, -m}(\theta,\varphi)$ are evidently related, with
 $$
-Y_\ell^{-m}(\theta,\varphi) = (-1)^m (Y_\ell^m)^*(\theta,\varphi) \ .
+Y_{\ell, -m}(\theta,\varphi) = (-1)^m Y_{\ell m}^*(\theta,\varphi) \ .
 $$
 We can also see how the spherical harmonics behave under the parity transformations $\theta \rightarrow -\theta$ or $\varphi \rightarrow -\varphi$. Evidently, we have
 $$
-Y_\ell^m(-\theta,\varphi) = (-1)^m Y_\ell^m(\theta,\varphi) \quad , \quad Y_\ell^m(\theta,-\varphi) = (Y_\ell^m)^*(\theta,\varphi) \ .
+Y_{\ell m}(-\theta,\varphi) = (-1)^m Y_{\ell m}(\theta,\varphi) \quad , \quad Y_{\ell m}(\theta,-\varphi) = Y_{\ell m}^*(\theta,\varphi) \ .
 $$
-It's common to visualize the spherical harmonics by doing a 3D surface plot. For a given harmonic, these surfaces represent the size of the absolute value of the real part of $Y_\ell^m(\theta,\varphi)$ at a given solid angle $(\theta,\varphi)$. We show such a plot below for the first few harmonics. The blue surfaces represent surfaces with positive $Y_\ell^m(\theta,\varphi)$, while the yellow surfaces represent surfaces with negative $Y_\ell^m(\theta,\varphi)$. The harmonics are ordered top-to-bottom as $\ell=0,1,2,3$, and left-to-right as $m=-\ell,\cdots,\ell$.
+It's common to visualize the spherical harmonics by doing a 3D surface plot. For a given harmonic, these surfaces represent the size of the absolute value of the real part of $Y_{\ell m}(\theta,\varphi)$ at a given solid angle $(\theta,\varphi)$. We show such a plot below for the first few harmonics. The blue surfaces represent surfaces with positive $Y_{\ell m}(\theta,\varphi)$, while the yellow surfaces represent surfaces with negative $Y_{\ell m}(\theta,\varphi)$. The harmonics are ordered top-to-bottom as $\ell=0,1,2,3$, and left-to-right as $m=-\ell,\cdots,\ell$.
 
-![](../resources/2560px-Spherical_Harmonics.png){fig-align=center width=500}
+![](../resources/2560px-Spherical_Harmonics.png){fig-align=center width=600}
 
 Notice that only the middle harmonics where $m=0$ have azimuthally symmetric surfaces. This just follows from the fact that $e^{im\varphi} = 0$ when $m=0$. In this simple case, the spherical harmonics can be written in the somewhat simpler form
 $$
-Y_{\ell}^0(\theta,\varphi) = \sqrt{\frac{(2\ell+1)}{4\pi}} P_\ell(\cos\theta) \ .
+Y_{\ell 0}(\theta,\varphi) = \sqrt{\frac{(2\ell+1)}{4\pi}} P_\ell(\cos\theta) \ .
 $$
 Evidently these harmonics are just normalized Legendre polynomials on the sphere.
 
@@ -1018,109 +1246,106 @@ This means we can represent any well-behaved function $f(\theta,\varphi)$ on the
 $$
 f(\theta,\varphi) = \sum_{\ell=0}^\infty \sum_{m=-\ell}^\ell c_{\ell m} Y_{\ell m}(\theta,\varphi) \ ,
 $$
-where the coefficients are given in the usual way by $c_{\ell m} = \langle Y_\ell^m | f \rangle$, or written out,
+where the coefficients are given in the usual way by $c_{\ell m} = \langle Y_{\ell m} | f \rangle$, or written out,
 $$
-c_{\ell m} = \int d\Omega \ f(\theta,\varphi) (Y_\ell^m)^*(\theta,\varphi) \ .
+c_{\ell m} = \int d\Omega \ f(\theta,\varphi) Y_{\ell m}^*(\theta,\varphi) \ .
 $$
 This series expansion of $f(\theta,\varphi)$ is sometimes called a *Laplace* series, or a *Fourier-Laplace* series.
 
 Given that the spherical harmonics are basis functions for the sphere, it's natural to ask how these functions behave under rotations. For azimuthal rotations this is easy to see from the definition. If $\phi \rightarrow \phi' =\phi + \phi_0$, then
 $$
-Y_{\ell}^m(\theta,\varphi') = Y_{\ell}^m(\theta,\varphi) e^{im\phi_0} \ .
+Y_{\ell m}(\theta,\varphi') = Y_{\ell m}(\theta,\varphi) e^{im\phi_0} \ .
 $$
-Under more arbitrary rotations it's not as obvious. Under a more general rotation that maps a unit vector at at $(\theta,\varphi)$ to another unit vector at $(\theta',\varphi')$, the rotated harmonic $Y_\ell^m(\theta',\varphi')$ isn't given in terms of one harmonic, but a linear combination of them,
+Under more arbitrary rotations it's not as obvious. Under a more general rotation that maps a unit vector at at $(\theta,\varphi)$ to another unit vector at $(\theta',\varphi')$, the rotated harmonic $Y_{\ell m}(\theta',\varphi')$ isn't given in terms of one harmonic, but a linear combination of them,
 $$
-Y_\ell^m(\theta',\varphi') = \sum_{m'=-\ell}^\ell D_{mm'}^* Y_\ell^{m'}(\theta,\varphi) \ .
+Y_{\ell m}(\theta',\varphi') = \sum_{m'=-\ell}^\ell D_{mm'}^* Y_\ell^{m'}(\theta,\varphi) \ .
 $$
 Here $D_{mm'}$ are the elements of a size $(2\ell+1) \times (2\ell+1)$ unitary matrix known as a *Wigner D-matrix*. These matrices turn out to be very important in the theory of representation groups and the quantum theory of angular momentum, but less so for electromagnetism. We thus won't say anymore about them in this course.
 
 As we've defined them, the spherical harmonics are inherently complex-valued due to the presence of the complex exponentials. In some fields, it's common to express the spherical harmonics in a slightly different way by using sines and cosines as basis functions in place of complex exponentials, similar to how the real Fourier series uses these basis pairs instead of the complex exponential. Each $\ell, m$ pair leads to a pair of *real spherical harmonics* defined by
 $$
 \begin{align*}
-Y_{\ell,m}^e(\theta,\varphi) &\equiv P_n^m(\cos\theta) \cos m \varphi \ , \\
-Y_{\ell,m}^o(\theta,\varphi) &\equiv P_n^m(\cos\theta) \sin m \varphi \ .
+Y_{\ell m}^e(\theta,\varphi) &\equiv P_n^m(\cos\theta) \cos m \varphi \ , \\
+Y_{\ell m}^o(\theta,\varphi) &\equiv P_n^m(\cos\theta) \sin m \varphi \ .
 \end{align*}
 $$
 In this setting, $m$ is required to run positive from $m=0,\cdots,\ell$. Notice that unlike the ordinary spherical harmonics, these real spherical harmonics haven't been normalized in the definition. Nevertheless, it's not hard to see that they also form an orthogonal expansion of functions on the unit sphere, and hence any function $f(\theta,\varphi)$ can be expanded in a series of the form
 $$
-f(\theta,\varphi) = a_{00} + \sum_{\ell=0}^\infty \sum_{m=1}^\ell \big[a_{\ell m} Y_{\ell,m}^e(\theta,\varphi) + b_{\ell m} Y_{\ell,m}^o(\theta,\varphi) \big] \ .
+f(\theta,\varphi) = a_{00} + \sum_{\ell=0}^\infty \sum_{m=1}^\ell \big[a_{\ell m} Y_{\ell m}^e(\theta,\varphi) + b_{\ell m} Y_{\ell m}^o(\theta,\varphi) \big] \ .
 $$
 The coefficients are determined in a similar way to the way they are with real Fourier series. We won't use this form of spherical harmonics in this course, but it's good to be aware of their existence.
 
-#### Addition Theorem
+### Addition Theorem
 
 One very useful result involving the spherical harmonics is the *addition theorem*, which provides a way to relate a single Legendre polynomial to a sum of spherical harmonics. We will use this result, for example. to derive the Green's function and multipole expansion of an electrostatic charge distribution in spherical coordinates.
 
 Suppose $\mathbf{x}$ and $\mathbf{x}'$ are two unit vectors at different angles on the sphere, $(\theta,\varphi)$ and $(\theta',\varphi')$ respectively. The angle $\gamma$ between these two vectors will then be given by $\cos\gamma = \mathbf{x} \cdot \mathbf{x}'$. The addition theorem states that
 $$
 \boxed{
-P_\ell(\cos\gamma) = \frac{4\pi}{2\ell+1} \sum_{m=-\ell}^\ell Y_\ell^m(\theta,\varphi) (Y_\ell^m)^*(\theta',\varphi')
+P_\ell(\cos\gamma) = \frac{4\pi}{2\ell+1} \sum_{m=-\ell}^\ell Y_{\ell m}(\theta,\varphi) Y_{\ell m}^*(\theta',\varphi')
 }\ .
 $$
 We will now give a brief proof of this important result. Suppose without loss of generality that $\mathbf{x}'$ is fixed in space at an angle $(\theta',\varphi')$ in a base reference frame $\mathcal{S}$. In that case, we can think of $P_\ell(\cos\gamma)$ as being only a function of $\theta$ and $\varphi$.
 
-Now, suppose we rotate to a new reference frame $\mathcal{S}'$ such that $\mathbf{x}'$ is along the $z'$-axis in the new frame and $\mathbf{x}$ is at an angle $(\gamma,\beta)$.  In this frame, we can expand the harmonic $Y_\ell^m(\theta,\varphi)$ in terms of the harmonics $Y_\ell^{m'}(\gamma,\beta)$ in the new frame by writing
+Now, suppose we rotate to a new reference frame $\mathcal{S}'$ such that $\mathbf{x}'$ is along the $z'$-axis in the new frame and $\mathbf{x}$ is at an angle $(\gamma,\beta)$.  In this frame, we can expand the harmonic $Y_{\ell m}(\theta,\varphi)$ in terms of the harmonics $Y_{\ell m'}(\gamma,\beta)$ in the new frame by writing
 $$
-Y_\ell^m(\theta,\varphi) = \sum_{m'=-\ell}^\ell c_{\ell m'} Y_\ell^{m'}(\gamma,\beta) \ .
+Y_{\ell m}(\theta,\varphi) = \sum_{m'=-\ell}^\ell c_{\ell m'} Y_{\ell m'}(\gamma,\beta) \ .
 $$
 This follows from the fact that the harmonics on both sides must satisfy the same eigenvalue equation, and since the Laplacian is invariant under rotations we can express the eigenfunctions in one frame as a superposition of the eigenfunctions in the other.
 
 It suffices to consider only the $m'=0$ coefficient, which in the $\mathcal{S}'$ frame is given by
 $$
-c_{\ell 0} = \int d\Omega' \ Y_\ell^m(\theta,\varphi) (Y_\ell^0)^*(\gamma,\beta) \ .
+c_{\ell 0} = \int d\Omega' \ Y_{\ell m}(\theta,\varphi) Y_{\ell 0}^*(\gamma,\beta) \ .
 $$
-This follows from the fact that in this frame $P_\ell(\cos\gamma)$ is proportional to $Y_\ell^0(\gamma, \beta)$, with
+This follows from the fact that in this frame $P_\ell(\cos\gamma)$ is proportional to $Y_{\ell 0}(\gamma, \beta)$, with
 $$
-P_\ell(\cos\gamma) = \sqrt{\frac{4\pi}{2\ell+1}} Y_\ell^0(\gamma, \beta) \ .
+P_\ell(\cos\gamma) = \sqrt{\frac{4\pi}{2\ell+1}} Y_{\ell 0}(\gamma, \beta) \ .
 $$
 This also implies that $P_\ell(\cos\gamma)$ must be an eigenfunction of the Laplacian $\nabla'^2$ in the $\mathcal{S}'$ frame, with
 $$
 \nabla'^2 P_\ell(\cos\gamma) + \frac{\ell(\ell+1)}{r^2} P_\ell(\cos\gamma) = 0 \ .
 $$
-Now, we know that the Laplacian operator is invariant under rotations, which means the Laplacian $\nabla^2$ in the $\mathcal{S}$ frame must be the same as the rotated Laplacian $\nabla'^2$ in the $\mathcal{S}'$ frame. This means the same differential equation must hold in the $\mathcal{S}$ frame, and since the eigenfunctions in that frame are given by $Y_\ell^m(\theta,\varphi)$, we can write $P_\ell(\cos\gamma)$ as a superposition of these, with
+Now, we know that the Laplacian operator is invariant under rotations, which means the Laplacian $\nabla^2$ in the $\mathcal{S}$ frame must be the same as the rotated Laplacian $\nabla'^2$ in the $\mathcal{S}'$ frame. This means the same differential equation must hold in the $\mathcal{S}$ frame, and since the eigenfunctions in that frame are given by $Y_{\ell m}(\theta,\varphi)$, we can write $P_\ell(\cos\gamma)$ as a superposition of these, with
 $$
-P_\ell(\cos\gamma) = \sum_{m=-\ell}^\ell a_m Y_\ell^m(\theta,\varphi) \ .
+P_\ell(\cos\gamma) = \sum_{m=-\ell}^\ell a_m Y_{\ell m}(\theta,\varphi) \ .
 $$
 Putting the expressions for $P_\ell(\cos\gamma)$ in both reference frames together, we have
 $$
-P_\ell(\cos\gamma) = \sqrt{\frac{4\pi}{2\ell+1}} Y_\ell^0(\gamma, \beta) = \sum_{m=-\ell}^\ell a_m Y_\ell^m(\theta,\varphi) \ ,
+P_\ell(\cos\gamma) = \sqrt{\frac{4\pi}{2\ell+1}} Y_{\ell 0}(\gamma, \beta) = \sum_{m=-\ell}^\ell a_m Y_{\ell m}(\theta,\varphi) \ ,
 $$
 where the coefficients $a_m$ are given in the $\mathcal{S}$ frame by
 $$
-a_m = \int d\Omega \ P_\ell(\cos\gamma) (Y_\ell^m)^*(\theta,\varphi) \ .
+a_m = \int d\Omega \ P_\ell(\cos\gamma) Y_{\ell m}^*(\theta,\varphi) \ .
 $$
 We now substitute the expression for $P_\ell(\cos\gamma)$ in the $\mathcal{S}'$ frame into this integral to get
 $$
-a_m = \sqrt{\frac{4\pi}{2\ell+1}} \int d\Omega \ Y_\ell^0(\gamma, \beta) (Y_\ell^m)^*(\theta,\varphi) \ .
+a_m = \sqrt{\frac{4\pi}{2\ell+1}} \int d\Omega \ Y_{\ell 0}(\gamma, \beta) Y_{\ell m}^*(\theta,\varphi) \ .
 $$
 Since the integral depends only on the angles in one of the reference frames, we can freely change this from an integral in the $\mathcal{S}$ frame to an integral in the $\mathcal{S}'$ frame by replacing $d\Omega$ with $d\Omega'$. Then the integral is just the complex conjugate of the integral for $c_{\ell 0}$ from before. That is,
 $$
 a_m^* = \sqrt{\frac{4\pi}{2\ell+1}} \ c_{\ell 0} \ .
 $$
-Now, we still need to deal with $Y_\ell^m(\theta',\varphi')$. We do that by observing that in the $\mathcal{S}'$ frame we simply have
+Now, we still need to deal with $Y_{\ell m}(\theta',\varphi')$. We do that by observing that in the $\mathcal{S}'$ frame we simply have
 $$
-Y_\ell^m(\theta',\varphi') = c_{\ell 0} Y_\ell^0(0,0) = c_{\ell 0} \sqrt{\frac{2\ell+1}{4\pi}} \ .
+Y_{\ell m}(\theta',\varphi') = c_{\ell 0} Y_{\ell 0}(0,0) = c_{\ell 0} \sqrt{\frac{2\ell+1}{4\pi}} \ .
 $$
 Substituting this result into the previous expression for $a_m^*$ and complex conjugating, we get
 $$
-a_m = \frac{4\pi}{2\ell+1} (Y_\ell^m)^*(\theta',\varphi') \ .
+a_m = \frac{4\pi}{2\ell+1} Y_{\ell m}^*(\theta',\varphi') \ .
 $$
 Finally, plugging this back into the series expansion for $P_\ell(\cos\gamma)$ in the $\mathcal{S}$ frame, we get what we wanted to prove,
 $$
-P_\ell(\cos\gamma) = \frac{4\pi}{2\ell+1} \sum_{m=-\ell}^\ell (Y_\ell^m)^*(\theta',\varphi') Y_\ell^m(\theta,\varphi) \ .
+P_\ell(\cos\gamma) = \frac{4\pi}{2\ell+1} \sum_{m=-\ell}^\ell Y_{\ell m}(\theta,\varphi) Y_{\ell m}^*(\theta',\varphi') \ .
 $$
 To conclude, notice if we set $\gamma = 0$ in this formula, then $\theta'=\theta$, $\varphi'=\varphi$, and $P_\ell(\cos\gamma) = 1$, giving us the relation
 $$
-\sum_{m=-\ell}^\ell |Y_\ell^m(\theta,\varphi)|^2 = \frac{2\ell+1}{4\pi} \ .
+\sum_{m=-\ell}^\ell |Y_{\ell m}(\theta,\varphi)|^2 = \frac{2\ell+1}{4\pi} \ .
 $$
 This can be thought of as a sort of squared vector norm or sum rule for the set of $\ell$<sup>th</sup> spherical harmonics.
 
+### Spherical Basis
 
-$$
-
-$$
-
-
+We've defined the spherical harmonics as the system of orthonormal functions that solve the angular part of Laplace's equation in spherical coordinates. But we can also think of them in another way that's more geometric and physical, as the representation of a vector in a particular basis.
 
 
 

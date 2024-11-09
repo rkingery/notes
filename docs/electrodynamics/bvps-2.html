@@ -30,7 +30,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../electrodynamics/multipole-expansion.html" rel="next">
+<link href="../electrodynamics/bvps-3.html" rel="next">
 <link href="../electrodynamics/bvps-1.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -238,12 +238,22 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../electrodynamics/multipole-expansion.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Advanced Methods III</span></a>
+  <a href="../electrodynamics/bvps-3.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Boundary Value Problems III</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../electrodynamics/magnetostatics.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Magnetostatics</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../electrodynamics/orthogonal-functions.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Appendix I: Orthogonal Functions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../electrodynamics/complex-analysis.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Appendix II: Complex Analysis</span></a>
   </div>
 </li>
       </ul>
@@ -424,13 +434,12 @@ window.Quarto = {
 <p>In this chapter, we continue on with the topic of boundary value problems in electrostatics. We’ll introduce the separation of variables technique, a method that can be used to solve Laplace’s equation for a large class of problems, before solving some problems using this technique.</p>
 <section id="linear-partial-differential-equations" class="level2">
 <h2 class="anchored" data-anchor-id="linear-partial-differential-equations">Linear Partial Differential Equations</h2>
-<p>In the previous chapter we showed that, at least formally, we can solve Poisson’s equation subject to some set of boundary conditions by first finding the Green’s function and then writing the potential as a volume integral plus a surface integral, <span class="math display">\[
+<p>In the previous chapter we showed that, at least formally, we can solve Poisson’s equation subject to some given set of boundary conditions by the integral <span class="math display">\[
 \phi(\mathbf{x}) = \int_\mathcal{V} d^3 \mathbf{x}' \ \rho(\mathbf{x}') G(\mathbf{x} - \mathbf{x}') + \frac{1}{4\pi} \oint_\mathcal{S} da' \ \bigg[G \frac{\partial \phi}{\partial n'} - \phi \frac{\partial G}{\partial n'} \bigg] \ ,
-\]</span> where only either the first or second boundary term is kept depending on the type of boundary conditions used. We also showed that for some problems with high degrees of symmetry, we can use the method of images to write down the potential for a corresponding image problem, and then use that to find the Green’s function if desired.</p>
-<p>This isn’t, however, the <em>only</em> way to solve Poisson’s equation, nor is it always the most useful. For all but the simplest problems this integral is very difficult to solve in practice, since we’d first need to find the Green’s function. Moreover, the method of images only works on a small subclass of problems, not more difficult ones.</p>
+\]</span> where <span class="math inline">\(G(\mathbf{x} - \mathbf{x}')\)</span> is the Green’s function. This isn’t, however, the <em>only</em> way to solve Poisson’s equation, nor is it always the most useful. For all but the simplest problems this integral can be very difficult to solve in practice.</p>
 <section id="general-problem" class="level3">
 <h3 class="anchored" data-anchor-id="general-problem">General Problem</h3>
-<p>Another way we can proceed is to attempt to solve Poisson’s equation directly using PDE methods. Suppose we have a linear PDE of the form <span class="math display">\[
+<p>Another way we can proceed is to solve Poisson’s equation directly using standard PDE methods. Suppose we have a linear PDE of the form <span class="math display">\[
 \mathcal{L} \phi(\mathbf{x}) = f(\mathbf{x}) \ ,
 \]</span> where <span class="math inline">\(\mathcal{L}\)</span> is a linear partial differential operator and <span class="math inline">\(f(\mathbf{x})\)</span> is some source term, e.g.&nbsp;the charge density <span class="math inline">\(\rho(\mathbf{x})\)</span>. We assume that some set of boundary conditions may be given implicitly.</p>
 <p>When we say <span class="math inline">\(\mathcal{L}\)</span> is a linear operator, we mean that for any two functions <span class="math inline">\(\phi_1(\mathbf{x})\)</span> and <span class="math inline">\(\phi_2(\mathbf{x})\)</span> and constants <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta\)</span>, we have <span class="math display">\[
@@ -452,13 +461,13 @@ window.Quarto = {
 \phi(\mathbf{x}) = \int_\mathcal{V} d^3 \mathbf{x}' \ \rho(\mathbf{x}') G(\mathbf{x} - \mathbf{x}') + \frac{1}{4\pi} \oint_\mathcal{S} da' \ \bigg[G \frac{\partial \phi}{\partial n'} - \phi \frac{\partial G}{\partial n'} \bigg] \ ,
 \]</span> where the Green’s function is given by <span class="math display">\[
 G(\mathbf{x} - \mathbf{x}') = \frac{1}{|\mathbf{x} - \mathbf{x}'|} + F(\mathbf{x} - \mathbf{x}') \ .
-\]</span> The first integral is just the particular solution <span class="math inline">\(\phi_p(\mathbf{x})\)</span>. The second integral is in fact the homogeneous solution <span class="math inline">\(\phi_h(\mathbf{x})\)</span>, which is evidently closely related to the inhomogeneous component of the Green’s function, <span class="math inline">\(F(\mathbf{x} - \mathbf{x}')\)</span>.</p>
-<p>Since we know how to find the particular solution in principle, what remains is figuring out how to find the homogeneous solution. This involves solving Laplace’s equation subject to the given boundary conditions. This is what the rest of this chapter will focus on.</p>
+\]</span> The first integral is just the particular solution <span class="math inline">\(\phi_p(\mathbf{x})\)</span>. The second integral is in fact the homogeneous solution <span class="math inline">\(\phi_h(\mathbf{x})\)</span>, which is evidently closely related to the homogeneous part of the Green’s function, <span class="math inline">\(F(\mathbf{x} - \mathbf{x}')\)</span>.</p>
+<p>Since we know how to find the particular solution, what remains is finding the homogeneous solution. This involves solving Laplace’s equation subject to the given boundary conditions. This is what the rest of this chapter will focus on.</p>
 </section>
 </section>
 <section id="separation-of-variables" class="level2">
 <h2 class="anchored" data-anchor-id="separation-of-variables">Separation of Variables</h2>
-<p>The most popular technique for solving linear PDEs is the <em>separation of variables</em> method. Suppose we have an arbitrary homogeneous linear PDE of the form <span class="math display">\[
+<p>The most popular technique for solving linear PDEs analytically is the <em>separation of variables</em> method. Suppose we have an arbitrary homogeneous linear PDE of the form <span class="math display">\[
 \mathcal{L} \phi(\mathbf{x}) = 0 \ .
 \]</span> The separation of variables of variable method works exactly as the name suggests. We first assume that in some coordinate system <span class="math inline">\((u,v,w)\)</span> that <span class="math inline">\(\phi(\mathbf{x})\)</span> can be written as a trial solution that’s a product of univariate functions of only those coordinates, <span class="math display">\[
 \phi(\mathbf{x}) = U(u) V(v) W(w) \ .
@@ -476,14 +485,19 @@ f(u) = \alpha \ , \ g(v) = \beta \ , \ h(w) = \gamma \ , \ \alpha + \beta + \gam
 &amp;\alpha + \beta + \gamma = 0 \ .
 \end{align*}
 \]</span> All that remains now is to solve each of these ODEs and impose the boundary conditions. Provided we can find a set of three functions <span class="math inline">\(U,V,W\)</span> that solve these ODEs as well as the boundary conditions, we can reassemble them to get the full solution.</p>
-<p>Those that have read the appendix will notice that each of these differential equations is an eigenvalue problem with eigenvalues <span class="math inline">\(\alpha\)</span>, <span class="math inline">\(\beta\)</span>, and <span class="math inline">\(\gamma\)</span> respectively. Typically the separation constants will end up being quantized in terms of one or more integers whose eigenfunctions form a complete orthonormal set inside the boundary region.</p>
-<p>For example, solving <span class="math inline">\(\mathcal{L}_u U(u) = \alpha U(u)\)</span> may result in a family of orthogonal solutions <span class="math inline">\(U_n(u)\)</span> such that <span class="math inline">\(\mathcal{L}_u U_n(u) = \alpha_n U_n(u)\)</span>, where <span class="math inline">\(n\)</span> is some integer. Then the most general solution for <span class="math inline">\(U(u)\)</span> will be given by the principle of superposition as <span class="math display">\[
-U(u) = \sum_n c_n U_n(u) \ ,
-\]</span> where the coefficients <span class="math inline">\(c_n\)</span> are constants that depend on <span class="math inline">\(n\)</span> and the boundary conditions in the problem. Assuming we’ve found the other two general solutions <span class="math inline">\(V(v)\)</span> and <span class="math inline">\(W(w)\)</span>, this means we can express the full solution as a series in <span class="math inline">\(n\)</span>, <span class="math display">\[
-\phi(\mathbf{x}) = \sum_n c_n \phi_n(u,v,w) \ ,
-\]</span> where <span class="math inline">\(\phi_n(\mathbf{x}) = U_n(u) V(v) W(w)\)</span>. Since the <span class="math inline">\(U_n(u)\)</span> form a complete set of orthogonal functions, so will <span class="math inline">\(\phi_n(u,v,w)\)</span>. This means we can determine the expansion coefficients <span class="math inline">\(c_n\)</span> by taking inner products of some known function <span class="math inline">\(f\)</span> with each <span class="math inline">\(\phi_n\)</span>. For example, suppose we have a boundary condition of the form <span class="math inline">\(\phi(0,v,w) = f(v,w)\)</span>, where <span class="math inline">\(f(v,w)\)</span> is known. Then to determine <span class="math inline">\(c_n\)</span> we can use the inner product relation <span class="math display">\[
-c_n = \frac{\langle f| \phi_n \rangle}{\langle \phi_n | \phi_n \rangle} \ ,
-\]</span> where the inner product used is the inner product of the basis functions <span class="math inline">\(U_n(u)\)</span> found before. Once we’ve determined these coefficients we have the final solution <span class="math inline">\(\phi(\mathbf{x})\)</span> that solves the given boundary value problem. In many cases we’ll be able to guarantee that the solution found will be unique, and will be the most general function that satisfies the problem.</p>
+<p>Those that have read the appendix will notice that each of these differential equations is an eigenvalue problem with eigenvalues <span class="math inline">\(\alpha\)</span>, <span class="math inline">\(\beta\)</span>, and <span class="math inline">\(\gamma\)</span> respectively. Typically one or more of the separation constants will end up being quantized in terms of an integer whose eigenfunctions form a complete orthonormal set inside the boundary region. For example, we may end up with a set of three quantized differential equations of the form <span class="math display">\[
+\begin{align*}
+&amp;\mathcal{L}_u U_n(u) = \alpha_n U_n(u) \ , \\
+&amp;\mathcal{L}_v V_m(v) = \beta_m V_m(v) \ , \\
+&amp;\mathcal{L}_w W_k(w) = \gamma_k W_k(w) \ , \\
+&amp;\alpha_n + \beta_m + \gamma_k = 0 \ ,
+\end{align*}
+\]</span> where <span class="math inline">\(n,m,k\)</span> are integers. The product of <span class="math inline">\(U_n, V_m, W_k\)</span> will then give rise to a basis solution of the form <span class="math display">\[
+\phi_{nmk}(u,v,w) = U_n(u) V_m(v) W_k(w) \ .
+\]</span> Since <span class="math inline">\(U_n(u)\)</span>, <span class="math inline">\(V_m(v)\)</span>, and <span class="math inline">\(W_k(w)\)</span> are each complete sets of orthogonal functions on their own intervals, <span class="math inline">\(\phi_{nmk}\)</span> will also form a complete set of orthogonal functions in 3-dimensional space. To get the most general solution that solves the boundary value problem, we can use the principle of superposition to sum over a weighted combination of these basis functions to get <span class="math display">\[
+\phi(\mathbf{x}) = \sum_{n,m,k} c_{nmk} \phi_{nmk}(u,v,w) \ .
+\]</span> At this point there will be one more boundary condition left that we still need to satisfy, usually that the potential needs to equal some known function <span class="math inline">\(f\)</span> on one of the boundaries. We can use this last boundary condition along with the orthogonality of the basis functions to determine the coefficients <span class="math inline">\(c_{nmk}\)</span>. Once we find these coefficients we’ll have the general solution to the boundary value problem.</p>
+<p>In this chapter we’ll only be concerned with solving Laplace’s equation, where <span class="math inline">\(\mathcal{L} = \nabla^2\)</span>. In this case, we can guarantee by the uniqueness theorem that once we find the general solution that fits the boundary conditions that it will be unique, provided the boundary conditions are Dirichlet, Neumann, or mixed, which in practice they always will be.</p>
 <p>This process will be much easier to illustrate by looking at specific problems. We’ll do that first by considering Laplace’s equation in Cartesian coordinates, before looking at Laplace’s equation in spherical and cylindrical coordinates as well. By the end, the process of how to use separation of variables to find the general solution should hopefully be quite clear.</p>
 <section id="laplaces-equation-in-cartesian-coordinates" class="level3">
 <h3 class="anchored" data-anchor-id="laplaces-equation-in-cartesian-coordinates">Laplace’s Equation in Cartesian Coordinates</h3>
@@ -502,172 +516,171 @@ c_n = \frac{\langle f| \phi_n \rangle}{\langle \phi_n | \phi_n \rangle} \ ,
 &amp;\frac{d^2 Z}{dz^2} = \alpha_z Z \ , \\
 &amp;\alpha_x + \alpha_y + \alpha_z = 0 \ .
 \end{align*}
-\]</span> All that remains is to solve each of these ODEs and impose the boundary conditions. In each case, we know the ODE can be solved by a sum of exponentials of the form <span class="math display">\[
-X_i(x_i) = c_1 e^{\sqrt{\alpha_i} x_i} + c_2 e^{-\sqrt{\alpha_i} x_i} \ ,
-\]</span> where each <span class="math inline">\(\alpha_i\)</span> could be positive or negative. When <span class="math inline">\(\alpha_i &gt; 0\)</span> the solution is just a sum of real exponentials. When <span class="math inline">\(\alpha_i &lt; 0\)</span> the solution is a sum of complex exponentials. In that case we can also write the solution using sines and cosines as <span class="math display">\[
-X_i(x_i) = c_1 \cos \sqrt{\alpha_i} x_i + c_2 \sin \sqrt{\alpha_i} x_i \ .
-\]</span> In practice the choice of sign for each of these separation constants <span class="math inline">\(\alpha_i\)</span> matters a lot, since this determines whether we can fit the boundary conditions in the problem or not. As a rule of thumb, for coordinates that have <em>unbounded</em> boundary conditions, or <em>bounded</em> boundary conditions where one of the boundary values is a known function, we’ll want to choose <span class="math inline">\(\alpha_i &gt; 0\)</span>. For any remaining coordinates we’ll typically be left with bounded coordinates with fixed boundary values, and for these we’ll want to choose <span class="math inline">\(\alpha_i &lt; 0\)</span>. Note though that at least one of the three constants <span class="math inline">\(\alpha_i\)</span> will have to have an opposite sign from the other two, so we can’t choose all to be the same sign.</p>
-<p>Quite often, but not always, we’ll require that the potential vanish at infinity. This will force any solutions in unbounded directions to take the form <span class="math inline">\(X_i(x_i) = c e^{-\sqrt{\alpha_i} x_i}\)</span> to ensure these functions decay to zero at infinity.</p>
-<p>In one or more of the bounded directions we’ll often end up with sine and cosine solutions. We’ll see that matching these solutions with the boundary values will often force <span class="math inline">\(\alpha_i\)</span> to be quantized in terms of some integer <span class="math inline">\(n\)</span>. For each <span class="math inline">\(\alpha_{i,n}\)</span> we’ll have a solution in that direction of the form <span class="math display">\[
-X_{i,n}(x_i) = a_n \cos \sqrt{|\alpha_{i,n}|} x_i + b_n \sin \sqrt{|\alpha_{i,n}|} x_i \ .
-\]</span> Notice that these solutions are just the basis functions for the Fourier series. For the right choice of <span class="math inline">\(\alpha_{i,n}\)</span>, these solutions will form a complete set of orthogonal functions in the <span class="math inline">\(x_i\)</span> direction.</p>
-<p>To get the full general solution to the potential we’ll then multiply each of these solutions together to get a basis solution <span class="math inline">\(\phi_n(x,y,z)\)</span>, and then use the principle of superposition to sum over all <span class="math inline">\(n\)</span> and get the general solution, <span class="math display">\[
-\phi(\mathbf{x}) = \sum_n c_n \phi_n(x,y,z) \ .
-\]</span> To find the coefficients <span class="math inline">\(c_n\)</span> we’ll rely on the theory of orthogonal functions to get an inner product in terms of one of the remaining boundary conditions and the basis functions <span class="math inline">\(\phi_n\)</span>. Once this is done, we’ll have our general solution. By the uniqueness theorem, we know that this will be the unique solution to Laplace’s equation for the given BVP.</p>
-<p>Let’s now work a few examples to hopefully make this technique a bit easier to understand.</p>
-<section id="example-two-infinite-parallel-grounded-conducting-sheets" class="level5">
-<h5 class="anchored" data-anchor-id="example-two-infinite-parallel-grounded-conducting-sheets">Example: Two infinite parallel grounded conducting sheets</h5>
-<p>To keep things simple, we’ll start with a 2-dimensional problem only involving <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>. Suppose we have two grounded parallel conducting sheets separated by a distance <span class="math inline">\(L\)</span>. On one end, the two sheets are separated with insulating material from a perpendicular third conducting sheet held at a constant potential <span class="math inline">\(V\)</span>, while on the other end the two parallel sheets extend infinitely far.</p>
+\]</span> Notice that we now have three uncoupled linear ordinary second differential equations to solve, which can be easily done once we know the boundary conditions. Once we’ve solved these equations, we can stitch them back together to get the general solution for the potential <span class="math inline">\(\phi(\mathbf{x})\)</span>.</p>
+<p>At this point it will be easiest to proceed by illustrating this technique with a simple example, since to go any further we need to impose some boundary conditions. We’ll consider a simple 2-dimensional problem involving only <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>. Suppose we have two grounded parallel conducting sheets separated by a distance <span class="math inline">\(L\)</span>. On one end, the two sheets are separated with insulating material from a perpendicular third conducting sheet held at a constant potential <span class="math inline">\(V\)</span>, while on the other end the two parallel sheets extend infinitely far.</p>
 <p>FIGURE</p>
-<p>We’ll assume the sheets are oriented parallel to the <span class="math inline">\(xz\)</span>-plane and separated along the <span class="math inline">\(y\)</span>-axis from <span class="math inline">\(y=0\)</span> to <span class="math inline">\(y=L\)</span>. This means the sheet is held at constant potential <span class="math inline">\(\phi = V\)</span> at <span class="math inline">\(x=0\)</span>, and at <span class="math inline">\(\phi = 0\)</span> when <span class="math inline">\(y=0\)</span> or <span class="math inline">\(y=L\)</span>. We will require that the potential go to zero at infinity as well. Assuming there are no other source charges present, this means we have the following boundary value problem to solve, <span class="math display">\[
+<p>We’ll assume the sheets are oriented parallel to the <span class="math inline">\(xz\)</span>-plane and separated along the <span class="math inline">\(y\)</span>-axis from <span class="math inline">\(y=0\)</span> to <span class="math inline">\(y=L\)</span>. This means the sheet is held at constant potential <span class="math inline">\(\phi = V\)</span> at <span class="math inline">\(x=0\)</span>, and at <span class="math inline">\(\phi = 0\)</span> when <span class="math inline">\(y=0\)</span> or <span class="math inline">\(y=L\)</span>. We will require that the potential not blow up at infinity as well. Assuming there are no other source charges present, this means we have the following boundary value problem to solve, <span class="math display">\[
 \begin{align*}
 \begin{cases}
 \nabla^2 \phi = 0 \ , \\
 \text{where} \ \phi(0,y) = V \ , \\
 \phi(x,0) = \phi(x,L) = 0 \ , \\
-\phi(x,y) \rightarrow 0 \ \text{as} \ x \rightarrow \infty \ .
+|\phi| &lt; \infty \ \text{for all} \ 0 \leq x \leq \infty \ .
 \end{cases}
 \end{align*}
 \]</span> Now we can employ separation of variables. Suppose a trial solution of the form</p>
 <p><span class="math display">\[
-\phi(x,y) = X(x) Y(y) \ .
-\]</span> We neglect the <span class="math inline">\(z\)</span> coordinate since it isn’t contributing anything to the problem. Now, if we plug this trial solution into Laplace’s equation, we find the problem reduces to solving two ODEs, <span class="math display">\[
-\frac{1}{X} \frac{d^2 X}{dx^2} = \alpha \quad , \quad \frac{1}{Y} \frac{d^2 Y}{dy^2} = -\alpha \ .
-\]</span> Since the problem is unbounded in the <span class="math inline">\(x\)</span> direction we’ll suppose <span class="math inline">\(\alpha\)</span> is positive, with <span class="math inline">\(\alpha = k^2\)</span>. Since the problem is also bounded in the <span class="math inline">\(y\)</span> direction this gives us what we want.</p>
-<p>We now have two ordinary differential equations left to solve subject to the boundary conditions, <span class="math display">\[
+\phi(x,y) = X(x) Y(y) Z(z) \ .
+\]</span> We neglect the <span class="math inline">\(z\)</span> coordinate since it isn’t contributing anything to the problem, so we can just set <span class="math inline">\(Z(z) = 1\)</span> and focus on the remaining functions <span class="math inline">\(X(x)\)</span> and <span class="math inline">\(Y(y)\)</span>.</p>
+<p>Now, if we plug this trial solution into Laplace’s equation, we find the problem reduces to solving two coupled ODEs, <span class="math display">\[
+\frac{1}{X} \frac{d^2 X}{dx^2} = \alpha \quad , \quad \frac{1}{Y} \frac{d^2 Y}{dy^2} = \beta \quad , \quad \alpha + \beta = 0 \ .
+\]</span> Now, since we only have two separation constants <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta\)</span>, and those constants must add to zero, we immediately have that <span class="math inline">\(\beta = -\alpha\)</span>. This means we can work in terms of a single separation constant <span class="math inline">\(\alpha\)</span>. We’ll suppose that <span class="math inline">\(\alpha = k^2\)</span> for some <span class="math inline">\(k &gt; 0\)</span>. This then gives us the following two ODEs to solve subject to the boundary conditions,</p>
+<p><span class="math display">\[
 \frac{d^2 X}{dx^2} = k^2 X \quad , \quad \frac{d^2 Y}{dy^2} = -k^2 Y \ .
-\]</span> These are both linear second order equations that are easy to solve. The general solution for the first equation is given by <span class="math display">\[
+\]</span> The first equation must satisfy the boundary conditions that <span class="math inline">\(X(x)\)</span> is finite at infinity, and <span class="math inline">\(X(0) = V\)</span>. The second equation must satisfy the boundary conditions <span class="math inline">\(Y(0) = Y(L) = 0\)</span>.</p>
+<p>The general solution for the first equation is given by <span class="math display">\[
 X(x) = A e^{kx} + B e^{-kx} \ .
-\]</span> If we impose the condition that <span class="math inline">\(\phi \rightarrow 0 \ \text{as} \ x \rightarrow \infty\)</span>, we see the first term has to vanish, leaving only <span class="math display">\[
+\]</span> If we impose the condition that <span class="math inline">\(X(x)\)</span> not blow up at infinity, then we must choose <span class="math inline">\(A=0\)</span> so that the first term vanishes. Then <span class="math display">\[
 X(x) = B e^{-kx} \ .
-\]</span> Next, the general solution for the second equation can be written as <span class="math display">\[
+\]</span> We still need to impose the boundary condition <span class="math inline">\(X(0) = V\)</span>. We’ll come back to this at the end.</p>
+<p>For the second equation, we know we can express its general solution in the form <span class="math display">\[
 Y(y) = C \cos ky + D \sin ky \ .
 \]</span> This solution has to satisfy the boundary conditions <span class="math inline">\(Y(0) = Y(L) = 0\)</span>. Plugging in the first condition requires <span class="math inline">\(C=0\)</span>. Plugging in the second condition, we’re left with <span class="math display">\[
 Y(y) = D \sin kL = 0 \ .
-\]</span> The only way this can be true is if either <span class="math inline">\(D=0\)</span> or <span class="math inline">\(kL\)</span> is an integer multiple of <span class="math inline">\(\pi\)</span>. If <span class="math inline">\(D=0\)</span> we’re dead in the water, since that would give the trivial solution <span class="math inline">\(\phi = 0\)</span>. We’re thus left to impose the second condition. Suppose <span class="math inline">\(kL = \pi n\)</span> for some positive integer <span class="math inline">\(n\)</span>. This implies that <span class="math inline">\(k\)</span> must be <em>quantized</em> as a function of <span class="math inline">\(n\)</span>, with <span class="math display">\[
+\]</span> The only way this can be true is if either <span class="math inline">\(D=0\)</span> or <span class="math inline">\(kL\)</span> is an integer multiple of <span class="math inline">\(\pi\)</span>. If <span class="math inline">\(D=0\)</span> we get nowhere, since that would give the trivial solution <span class="math inline">\(Y(y) = 0\)</span>. We’re thus left to impose the second condition. Suppose <span class="math inline">\(kL = \pi n\)</span> for some positive integer <span class="math inline">\(n\)</span>. This implies that <span class="math inline">\(k\)</span> must be <em>quantized</em> as a function of <span class="math inline">\(n\)</span>, with <span class="math display">\[
 k_n = \frac{n\pi}{L} \quad , \quad n=1,2,3,\cdots \ .
-\]</span> This means we have an infinite family of solutions in the <span class="math inline">\(y\)</span> direction of the form <span class="math inline">\(Y_n(y) = \sin k_n y\)</span>. Each separation constant <span class="math inline">\(-k_n^2\)</span> gives rise to its own solution <span class="math inline">\(Y_n(y)\)</span>. Notice that these functions are Fourier series components. We know that these functions form a complete set of orthogonal functions on the interval <span class="math inline">\(0 \leq y \leq L\)</span>. This means we can use them as a basis to compose the general solution for the potential by using a basis function <span class="math inline">\(\phi_n(x,y)\)</span> of the form <span class="math display">\[
-\phi_n(x,y) \equiv e^{-k_n x} \sin k_n y \ .
-\]</span> By the principle of superposition, we can then write the general solution <span class="math inline">\(\phi(\mathbf{x})\)</span> as a linear superposition of <span class="math inline">\(\phi_n(x,y)\)</span>, with <span class="math display">\[
-\phi(\mathbf{x}) = \sum_{n=1}^\infty b_n \phi_n(x,y) \ .
-\]</span> We’re now left with an infinite set of coefficients <span class="math inline">\(b_n\)</span> we to find. We can do that by imposing the final boundary condition, which says that at <span class="math inline">\(x=0\)</span> we must have <span class="math inline">\(\phi(0,y) = V\)</span> for some constant <span class="math inline">\(V\)</span>. Plugging this into the general solution, we have <span class="math display">\[
-V = \phi(0,y) = \sum_{n=1}^\infty b_n \sin k_n y \ .
-\]</span> We can find the coefficients <span class="math inline">\(b_n\)</span> in a couple of ways. One way is to take the inner product of both sides of this formula, work out the integrals, and set them equal and solve for <span class="math inline">\(b_n\)</span>. This is equivalent to just using the formula derived in the appendix, which says <span class="math display">\[
-b_n = \frac{\langle \phi_n | \phi \rangle}{\langle \phi_n | \phi_n \rangle} \ ,
-\]</span> where the inner product of two functions are defined by integrating their product over <span class="math inline">\(y\)</span> from <span class="math inline">\(y=0\)</span> to <span class="math inline">\(y=L\)</span>, with <span class="math display">\[
-\langle f | g \rangle \equiv \int_0^L dy \ f(y) g(y) \ .
-\]</span> We want to evaluate these inner products at the boundary point <span class="math inline">\(x=0\)</span> since that’s where we know <span class="math inline">\(\phi = V\)</span>. At this boundary point we must have <span class="math inline">\(\phi_n(0,y) = \sin k_n y\)</span>, where <span class="math inline">\(k_n = \frac{n\pi}{L}\)</span>. Working out the denominator first, we get <span class="math display">\[
-\langle \phi_n | \phi_n  \rangle = \int_0^L dy \ \sin^2 \frac{n\pi}{L} y = \frac{L}{2} \ .
-\]</span> Working out the the numerator under the same conditions, we get <span class="math display">\[
+\]</span> Now, each choice of <span class="math inline">\(k_n\)</span> will give rise to its own solution <span class="math inline">\(Y_n(y) = D_n \sin k_n y\)</span> that solves the differential equation <span class="math display">\[
+\frac{d^2 Y_n}{dy^2} = -k_n^2 Y_n
+\]</span> So which <span class="math inline">\(Y_n(y)\)</span> do we choose? In fact we’ll want to keep all of them, since <em>any</em> choice of these functions will satisfy Laplace’s equation, albeit with different separation constants. We don’t care about the separation constants. We care about the general solution to Laplace’s equation. To get the general solution, we use the fact that each <span class="math inline">\(Y_n(y)\)</span> are just the Fourier sine functions. This means they will be orthogonal, and we can represent any general solution <span class="math inline">\(Y(y)\)</span> as a linear superposition of <span class="math inline">\(Y_n(y)\)</span>. This means the general solution <span class="math inline">\(Y(y)\)</span> will be a real <em>Fourier series</em>.</p>
+<p>Instead of applying superposition now though, we typically want to do it to the full potential. Notice that if we quantize <span class="math inline">\(k\)</span> that <span class="math inline">\(X(x)\)</span> now also becomes an infinitely family of solutions as well, with <span class="math inline">\(X_n(x) = B_n e^{-k_n x}\)</span>. If we now multiply <span class="math inline">\(X_n(x)\)</span> and <span class="math inline">\(Y_n(y)\)</span> back together, we get a <em>basis solution</em> <span class="math inline">\(\phi_n(x,y,z)\)</span> that solves Laplace’s equation subject to these boundary conditions. We’ll ignore the integration constants, which we’ll put back in a moment, and define the basis functions by <span class="math display">\[
+\phi_n(x,y,z) \equiv e^{-k_n x} \sin k_n y \ .
+\]</span> By construction <span class="math inline">\(\phi_n(x,y,z)\)</span> will solve Laplace’s equation subject to all boundary conditions except one, that <span class="math inline">\(\phi_n(0,y,z) = V\)</span>. The only way we can <em>also</em> satisfy this boundary condition is to use the principle of superposition to take a weighted sum over all of these basis functions to get the most general possible expression for the potential, <span class="math display">\[
+\phi(x,y,z) = \sum_{n=1}^\infty b_n \phi_n(x,y,z) \ .
+\]</span> Now, at this point we have one boundary condition to satisfy, and an infinite set of coefficients <span class="math inline">\(b_n\)</span> to determine. Here we appeal to the property of orthogonality. Observe that when <span class="math inline">\(x=0\)</span> we must have <span class="math display">\[
+V = \phi(0,y,z) = \sum_{n=1}^\infty b_n \sin k_n y \ .
+\]</span> We know from the appendix that the functions <span class="math inline">\(\sin k_n y\)</span> will be orthogonal on the interval <span class="math inline">\(0 \leq y \leq L\)</span>. That is, we know that when <span class="math inline">\(m \neq n\)</span> we must have <span class="math display">\[
+\langle \sin k_m y | \sin k_n y \rangle = \int_0^L dy \ \sin k_m y \sin k_n y = 0 \ .
+\]</span> This is called an <em>inner product</em>. Similar to how we can define a dot product between two vectors, we can define an inner product between two functions. We say two functions <span class="math inline">\(f\)</span> and <span class="math inline">\(g\)</span> are orthogonal provided <span class="math inline">\(\langle f | g \rangle = 0\)</span>.</p>
+<p>To see what this implies, let’s multiply both expressions for <span class="math inline">\(\phi(0,y,z)\)</span> by <span class="math inline">\(\sin k_m y\)</span> and integrate from <span class="math inline">\(y=0\)</span> to <span class="math inline">\(y=L\)</span>. That is, we want to take the inner product of both sides and solve <span class="math inline">\(\langle \sin k_m y | V \rangle = \langle \sin k_m | \sin k_n y \rangle\)</span>. Plugging in <span class="math inline">\(k_m = \frac{2\pi}{L}\)</span>, we see that <span class="math display">\[
+\langle \sin k_m y | V \rangle = \int_0^L dy \ V \sin \frac{m\pi y}{L} = \frac{VL}{m\pi}(1-\cos m\pi) \ .
+\]</span> Evaluating the second inner product, we get <span class="math display">\[
 \begin{align*}
-\langle \phi_n | \phi \rangle &amp;= V \int_0^L dy \ \sin \frac{n\pi y}{L} \\
-&amp;= \frac{VL}{n\pi} \big(1 - \cos n\pi\big) \\
-&amp;= \frac{VL}{n\pi} \big(1 - (-1)^n\big) \\
-&amp;= \begin{cases}
-\frac{2VL}{n\pi}, &amp; n = 1,3,5,\cdots \\
-0 , &amp; n=0,2,4,\cdots
-\end{cases} \ .
+\bigg\langle \sin k_m \bigg| \sum_{n=1}^\infty b_n \sin k_n y \bigg\rangle &amp;= \sum_{n=1}^\infty b_n \int_0^L dy \ \sin\frac{m\pi y}{L} \sin\frac{n\pi y}{L} \\
+&amp;= \sum_{n=1}^\infty b_n \frac{L}{2} \delta_{nm} \\
+&amp;= \frac{L}{2} b_m \ .
 \end{align*}
-\]</span> Putting these together, we evidently get <span class="math display">\[
-b_n = \frac{4V}{n\pi} \ \ , \ \ n=1,3,5,\cdots \ .
-\]</span> This means the general solution for the potential in this problem is given by <span class="math display">\[
-\phi(\mathbf{x}) = \frac{4V}{\pi} \sum_{n=1,3,\cdots} \frac{1}{n} \exp\bigg(-\frac{n\pi x}{L}\bigg) \sin\bigg(\frac{n\pi y}{L}\bigg) \ .
-\]</span> If we like, we can further simplify this expression by noting that the sum on the right-hand side has a closed form given by <span class="math display">\[
-\phi(x,y) = \frac{2V}{\pi} \tan^{-1} \bigg(\frac{\sin \frac{\pi y}{L}}{\sinh \frac{\pi x}{L}}\bigg) \ .
+\]</span> Notice that we in fact didn’t need to take <span class="math inline">\(m\)</span> different from <span class="math inline">\(n\)</span> in these inner products. We already knew the sine functions would be orthogonal. We could have just taken the inner products with <span class="math inline">\(\sin k_n y\)</span> directly. In fact, we could’ve calculate the coefficients <span class="math inline">\(b_n\)</span> directly by using the formula <span class="math display">\[
+b_n = \frac{\langle \sin k_n y | V \rangle}{\langle \sin k_n y | \sin k_n y \rangle} \ .
+\]</span> At any rate, these two inner product expressions together give us an equation for each <span class="math inline">\(b_n\)</span>. We evidently have</p>
+<p><span class="math display">\[
+b_n = \frac{2V}{n\pi} (1 - \cos n\pi) \ .
+\]</span> Before plugging this back into the general solution we can simplify it a little bit. Notice that <span class="math inline">\(\cos n\pi\)</span> will be <span class="math inline">\(+1\)</span> when <span class="math inline">\(n\)</span> is an even number, and <span class="math inline">\(-1\)</span> when <span class="math inline">\(n\)</span> is an odd number. In the even case we get <span class="math inline">\(b_n = 0\)</span> since each term cancels, while in the odd case we get <span class="math display">\[
+b_n = \frac{4V}{n\pi} \quad , \quad n=1,3,5,\cdots \ .
+\]</span> This means the series expansion for the potential will contain only odd terms, with <span class="math display">\[
+\phi(\mathbf{x}) = \frac{4V}{\pi} \sum_{n=1,3,5,\cdots}^\infty \frac{1}{n} e^{-k_n x} \sin k_n y \ .
+\]</span> This expression is the most general form we can write down to the potential for this boundary value problem. By construction it satisfies all of the boundary conditions, which means by the uniqueness theorem it will be the only such solution that does.</p>
+<p>If we like, we can further simplify this expression further by noting that the sum on the right-hand side has a closed form given by <span class="math display">\[
+\phi(\mathbf{x}) = \frac{2V}{\pi} \tan^{-1} \bigg(\frac{\sin k_n y}{\sinh k_n x}\bigg) \ .
 \]</span> Since this potential is only a function of two variables, we can plot its equipotentials with a contour plot in the <span class="math inline">\(xy\)</span>-plane. In the <span class="math inline">\(x\)</span>-direction, the potential is highest at <span class="math inline">\(x=0\)</span>, where <span class="math inline">\(\phi(0,y)=V\)</span> before dying off exponentially as <span class="math inline">\(x \rightarrow \infty\)</span>. In the <span class="math inline">\(y\)</span>-direction, the potential goes to zero at the endpoints <span class="math inline">\(y=0\)</span> and <span class="math inline">\(y=L\)</span>, and hits its maximum at the midpoint <span class="math inline">\(y=\frac{L}{2}\)</span>.</p>
-<p>So how do we know that this expression is in fact the general solution? This is where the uniqueness theorem and the theory of orthogonal functions comes into play. The theory of orthogonal functions guarantees we can construct general solutions using a superposition of basis functions. The uniqueness theorem says that once we’ve found this function, we know it’s the only one that solves Laplace’s equation subject to the given boundary conditions.</p>
-</section>
+<p>FIGURE</p>
+<p>This in essence is how separation of variables works in Cartesian coordinates. We will always end up with a potential that’s a linear superposition of exponentials and sinusoid functions, where the expansion coefficients are determined by imposing a final boundary condition of some type. Let’s work a few more complex examples to solidify the idea.</p>
 <section id="example-infinite-conducting-rectangular-pipe-held-at-a-given-potential-on-one-end" class="level5">
 <h5 class="anchored" data-anchor-id="example-infinite-conducting-rectangular-pipe-held-at-a-given-potential-on-one-end">Example: Infinite conducting rectangular pipe held at a given potential on one end</h5>
 <p>Let’s now consider a slight generalization of the previous problem. Suppose we have a rectangular infinitely long conducting pipe. One end of the pipe is held at some potential <span class="math inline">\(V(y,z)\)</span>, while the other end extends infinitely far. Suppose the pipe has a finite width <span class="math inline">\(a\)</span> and a finite depth <span class="math inline">\(b\)</span>, and the sides of the pipe are grounded. We want to find the potential inside the pipe.</p>
+<p>We’ll orient the pipe exactly like we did in the previous problem, with the length along the <span class="math inline">\(x\)</span>-axis, and the width and depth along the <span class="math inline">\(y\)</span> and <span class="math inline">\(z\)</span> axes. At <span class="math inline">\(x=0\)</span> the potential is held constant, with <span class="math inline">\(\phi(0,y,z)=V(y,z)\)</span>. At <span class="math inline">\(y=0\)</span> and <span class="math inline">\(y=a\)</span>, and at <span class="math inline">\(z=0\)</span> and <span class="math inline">\(z=b\)</span>, the pipe is grounded, with <span class="math inline">\(\phi(x,0,z) = \phi(x,b,z) = \phi(x,y,0) = \phi(x,y,b) = 0\)</span>. We’ll also require that <span class="math inline">\(\phi\)</span> not blow up at infinity.</p>
 <p>FIGURE</p>
-<p>We’ll orient the pipe exactly like we did in the previous problem, with the length along the <span class="math inline">\(x\)</span>-axis, and the width and depth along the <span class="math inline">\(y\)</span> and <span class="math inline">\(z\)</span> axes. At <span class="math inline">\(x=0\)</span> the potential is held constant, with <span class="math inline">\(\phi(0,y,z)=V(y,z)\)</span>. At <span class="math inline">\(y=0\)</span> and <span class="math inline">\(y=a\)</span>, and at <span class="math inline">\(z=0\)</span> and <span class="math inline">\(z=b\)</span>, the pipe is grounded, with <span class="math inline">\(\phi(x,0,z) = \phi(x,b,z) = \phi(x,y,0) = \phi(x,y,b) = 0\)</span>. We’ll also require that <span class="math inline">\(\phi \rightarrow 0\)</span> at infinity.</p>
-<p>This means the BVP we seek to solve is <span class="math display">\[
+<p>This means we end up with a boundary value problem to solve of the form <span class="math display">\[
 \begin{align*}
 \begin{cases}
 \nabla^2 \phi = 0 \ , \\
 \text{where} \ \phi(0,y,z) = V(y,z) \ , \\
 \phi(x,0,z) = \phi(x,a,z) = 0 \ , \\
 \phi(x,y,0) = \phi(x,y,b) = 0 \ , \\
-\phi(x,y,z) \rightarrow 0 \ \text{as} \ x \rightarrow \infty \ .
+|\phi| &lt; \infty \ \text{for all} \ 0 \leq x \leq \infty \ .
 \end{cases}
 \end{align*}
 \]</span> We again employ separation of variables by assuming a trial solution of the form</p>
 <p><span class="math display">\[
 \phi(x,y,z) = X(x) Y(y) Z(z) \ .
-\]</span> Plugging this into Laplace’s equation and simplifying, we find the problem reduces to solving three ODEs, <span class="math display">\[
+\]</span> This time we can’t set <span class="math inline">\(Z(z) = 1\)</span>, meaning we’ll end up with three ODEs to solve instead of two. We end up with <span class="math display">\[
 \frac{1}{X} \frac{d^2 X}{dx^2} = \alpha \quad , \quad \frac{1}{Y} \frac{d^2 Y}{dy^2} = \beta \quad , \quad \quad \frac{1}{Y} \frac{d^2 Z}{dz^2} = \gamma \quad , \quad \alpha + \beta + \gamma = 0 \ .
-\]</span> Since the problem is unbounded in the <span class="math inline">\(x\)</span> direction and bounded in the <span class="math inline">\(y\)</span> and <span class="math inline">\(z\)</span> directions we’ll assume <span class="math inline">\(\beta = -k^2\)</span> and <span class="math inline">\(\gamma = -\ell^2\)</span> are both negative. This decision forces <span class="math inline">\(\alpha = \sqrt{k^2 + \ell^2}\)</span> to be positive, which is also what we want.</p>
-<p>This gives us three ODEs to solve subject to the boundary conditions, <span class="math display">\[
+\]</span> At this point it’s not obvious what signs to choose for these constants. As a general rule of thumb though, if there’s an unbounded coordinate in the problem (in this case <span class="math inline">\(x\)</span>) we want that coordinate to have a positive constant. Any coordinates that have fixed boundary conditions on both ends (in this case <span class="math inline">\(y\)</span> and <span class="math inline">\(z\)</span>) we’ll want to have negative constants. To that end, we’ll assume that <span class="math inline">\(\beta = -k^2\)</span> and <span class="math inline">\(\gamma = -\ell^2\)</span> are both negative, which luckily forces <span class="math inline">\(\alpha = \sqrt{k^2 + \ell^2}\)</span> to be positive.</p>
+<p>This then leaves us with three differential equations to solve of the form <span class="math display">\[
 \frac{d^2 X}{dx^2} = (k^2+\ell^2) X \quad , \quad \frac{d^2 Y}{dy^2} = -k^2 Y \quad , \quad \frac{d^2 Z}{dz^2} = -\ell^2 Z \ .
-\]</span> The first ODE involves an unbounded coordinate direction. Requiring that <span class="math inline">\(X \rightarrow 0\)</span> as <span class="math inline">\(x \rightarrow \infty\)</span> gives <span class="math display">\[
-X(x) = A e^{-\sqrt{k^2+\ell^2}x} \ .
-\]</span> The second and third ODE both involved bounded coordinate directions. Imposing the boundary conditions, we get <span class="math display">\[
+\]</span> The equation for <span class="math inline">\(X(x)\)</span> must satisfy the boundary conditions that <span class="math inline">\(X(x)\)</span> is finite at infinity, and <span class="math inline">\(X(0) = V(y,z)\)</span>. The first condition will force <span class="math inline">\(X(x)\)</span> be given by a negative exponential, and the second condition we’ll have to come back to at the end. We have <span class="math display">\[
+X(x) = C e^{-\sqrt{k^2+\ell^2}x} \ .
+\]</span> The equations for <span class="math inline">\(Y(y)\)</span> and <span class="math inline">\(Z(z)\)</span> are identical apart for their separation constants and their endpoints. Requiring that <span class="math inline">\(Y(y)\)</span> vanish at <span class="math inline">\(y=0\)</span> and <span class="math inline">\(y=a\)</span> forces <span class="math inline">\(k\)</span> to be quantized in terms of an integer <span class="math inline">\(n\)</span>, with <span class="math inline">\(k_n = \frac{n\pi}{a}\)</span>. Similarly, requiring that <span class="math inline">\(Z(z)\)</span> vanish at <span class="math inline">\(z=0\)</span> and <span class="math inline">\(z=b\)</span> forces <span class="math inline">\(\ell\)</span> to be quantized in terms of another integer <span class="math inline">\(m\)</span>, with <span class="math inline">\(\ell_m = \frac{m\pi}{b}\)</span>. In each case, we’ll have a basis of sinusoid solutions of the form <span class="math display">\[
+Y_n(y) = A_n \sin k_n y \quad , \quad Z_m(z) = B_n \sin \ell_m z \ .
+\]</span> As in the previous example, each of these functions forms a set of complete orthogonal functions on their respective intervals. Now, since <span class="math inline">\(X(x)\)</span> depends on both <span class="math inline">\(k\)</span> and <span class="math inline">\(\ell\)</span>, its set of solutions will now depend on both <span class="math inline">\(n\)</span> and <span class="math inline">\(m\)</span>, with <span class="math display">\[
+X_{nm}(x) = C e^{-\sqrt{k_n^2+\ell_m^2}x} \ .
+\]</span> This means we can construct the general solution for the potential by multiplying each of these solutions together to get a basis function for the potential, which we can superpose with each other to get the general solution. Again ignoring the integration constants, which we’ll put back in soon, we define basis functions of the form <span class="math display">\[
+\phi_{nm}(x,y,z) \equiv e^{-\sqrt{k_n^2+\ell_m^2}x} \sin k_n y \sin \ell_m z \ .
+\]</span> Now, none of these solutions satisfies the final boundary condition that <span class="math inline">\(\phi(0,y,z) = V(y,z)\)</span>. This means we need to consider a more general class of solutions. We again do that by appealing to the principle of superposition. This time though we need to sum over both <span class="math inline">\(n\)</span> and <span class="math inline">\(m\)</span> to get the most general possible solution, <span class="math display">\[
+\phi(x,y,z) = \sum_{n=1}^\infty \sum_{m=1}^\infty b_{nm} \phi_{nm}(x,y,z) \ .
+\]</span> We’ll now impose the final boundary condition and use that to find the expansion coefficients <span class="math inline">\(b_{nm}\)</span>. Plugging in the final condition <span class="math inline">\(V(y,z) = \phi(0,y,z)\)</span> to the general solution evaluated at <span class="math inline">\(x=0\)</span>, we get <span class="math display">\[
+V(y,z) = \phi(0,y,z) = \sum_{n=1}^\infty \sum_{m=1}^\infty b_{nm} \sin k_n y \sin \ell_m z \ .
+\]</span> To find the coefficients, we now appeal to the fact that the set of functions <span class="math inline">\(\sin k_n y\)</span> and <span class="math inline">\(\sin \ell_m z\)</span> are each orthogonal on their respective intervals. This means we can multiply both sides of this equation by <span class="math inline">\(\sin k_{n'} y \ \sin \ell_{m'} z\)</span> and integrate over both <span class="math inline">\(y\)</span> and <span class="math inline">\(z\)</span> to get <span class="math display">\[
+\int_0^a dy \int_0^b dz \ V(y,z) \sin k_{n'} y \ \sin \ell_{m'} z = \sum_{n=1}^\infty \sum_{m=1}^\infty b_{nm} \int_0^a dy \int_0^b dz \ \sin k_n y \sin \ell_m z \sin k_{n'} y \ \sin \ell_{m'} z \ .
+\]</span> On the right-hand side, we see that the integrals separate into a product of two univariate integrals, giving <span class="math display">\[
 \begin{align*}
-Y(y) = B \sin ky \quad &amp;\Longrightarrow \quad k = \frac{n\pi}{a} \ , \ n=1,2,3,\cdots \ , \\
-Z(z) = C \sin \ell z \quad &amp;\Longrightarrow \quad \ell = \frac{m\pi}{b} \ , \ m=1,2,3,\cdots \ .
+\sum_{n,m} b_{nm} \int_0^a dy \int_0^b dz \ \sin k_n y \sin \ell_m z \sin k_{n'} z \ \sin \ell_{m'} y
+&amp;= \sum_{n,m} b_{nm} \bigg(\int_0^a dy \ \sin k_{n'} y \ \sin k_n y\bigg) \bigg(\int_0^b dz \ \sin \ell_m z \ \sin \ell_{m'} z\bigg) \\
+&amp;= \frac{a}{2} \frac{b}{2} \sum_{n,m} b_{nm} \delta_{nn'} \delta_{mm'} \\
+&amp;= \frac{ab}{4} b_{n'm'} \ .
 \end{align*}
-\]</span> Again, <span class="math inline">\(k\)</span> and <span class="math inline">\(\ell\)</span> are forced to be quantized in terms of positive integers <span class="math inline">\(n\)</span> and <span class="math inline">\(m\)</span> respectively. Each set of Fourier functions forms a complete orthonormal basis of solutions on their given intervals, which means we can express the general solutions <span class="math inline">\(Y(y)\)</span> and <span class="math inline">\(Z(z)\)</span> as a linear superposition of solutions <span class="math inline">\(Y_n(y) = \sin k_n y\)</span> and <span class="math inline">\(Z_m(z) = \cos \ell_m z\)</span> respectively.</p>
-<p>Putting this all together, we have a basis of solutions of the form <span class="math display">\[
-\phi_{nm}(x,y,z) = e^{-\sqrt{k_n^2+\ell_m^2}x} \sin k_n y \sin \ell_m z \ .
-\]</span> To get the general solution we use the principle of superposition and sum over all <span class="math inline">\(n\)</span> and <span class="math inline">\(m\)</span> to write <span class="math display">\[
-\phi(\mathbf{x}) = \sum_{n=1}^\infty \sum_{m=1}^\infty b_{nm} \phi_{nm}(x,y,z) \ .
-\]</span> It remains now to impose the final boundary condition that <span class="math inline">\(\phi(0,y,z) = V(y,z)\)</span>, which we can use to find the coefficients <span class="math inline">\(b_{nm}\)</span>. Again, we can use the orthogonality of the Fourier functions to find these coefficients via <span class="math display">\[
-b_{nm} = \frac{\langle \phi_{nm} | \phi \rangle}{\langle \phi_{nm} | \phi_{nm} \rangle} \ ,
-\]</span> where now the inner product needs to be taken as an integral over both <span class="math inline">\(y\)</span> and <span class="math inline">\(z\)</span>, with <span class="math display">\[
-\langle f | g \rangle \equiv \int_0^a dy \ \int_0^b dz \ f(y,z) g(y,z) \ .
-\]</span> At the boundary point <span class="math inline">\(x=0\)</span> we have <span class="math inline">\(\phi = V(y,z)\)</span> and <span class="math inline">\(\phi_{nm} = \sin k_n y \sin \ell_m z\)</span>. This means at <span class="math inline">\(x=0\)</span> the denominator is given by <span class="math display">\[
-\langle \phi_{nm} | \phi_{nm} \rangle = \int_0^a dy \ \sin^2 k_n y \int_0^b dz \ \sin^2 \ell_m z = \frac{ab}{4} \ .
-\]</span> The numerator at <span class="math inline">\(x=0\)</span> is given by <span class="math display">\[
-\langle \phi_{nm} | \phi \rangle = \int_0^a dy \ \int_0^b dz \ V(y,z) \sin k_n y \sin \ell_m z \ .
-\]</span> We can’t proceed any further without a specific functional form for <span class="math inline">\(V(y,z)\)</span>. For example, if we assume as we did in the previous example that <span class="math inline">\(V\)</span> is constant, we get <span class="math display">\[
+\]</span> For the left-hand side, we can’t proceed any further without a specific form for <span class="math inline">\(V(y,z)\)</span>. For the sake of argument we’ll suppose that <span class="math inline">\(V(y,z) = V\)</span> is constant. In that case, the left-hand side evaluates to <span class="math display">\[
 \begin{align*}
-\langle \phi_{nm} | \phi \rangle &amp;= V \int_0^a dy \ \sin\frac{n\pi y}{a} \int_0^b dz \ \sin\frac{m\pi z}{b} \\
-&amp;= V \frac{a}{n\pi} \frac{b}{m\pi} \big(1 - (-1)^n\big) \big(1 - (-1)^m\big) \\
-&amp;= \begin{cases}
-\frac{4Vab}{nm\pi^2}, &amp; n,m = 1,3,5,\cdots \\
-0 , &amp; \text{otherwise}
-\end{cases} \ .
+\int_0^a dy \int_0^b dz \ V(y,z) \sin k_{n'} y \ \sin \ell_{m'} z
+&amp;= V \int_0^a dy \ \sin k_{n'} y \int_0^b dz \ \sin \ell_{m'} z \\
+&amp;= V \frac{a}{n'\pi}(1-\cos n'\pi) \frac{b}{m'\pi}(1-\cos m'\pi) \\
+&amp;= \frac{Vab}{n'm' \pi^2} (1-\cos n'\pi) (1-\cos m'\pi) \ .
 \end{align*}
-\]</span> Thus, the coefficients are given by <span class="math display">\[
-b_{nm} = \frac{16V}{nm\pi^2} \ , \quad n,m=1,3,5,\cdots \ .
-\]</span> The general solution for the potential to this BVP is thus given by <span class="math display">\[
-\phi(x,y,z) = \frac{16V}{\pi^2} \sum_{n,m=1,3,\cdots} \frac{1}{nm} \exp\bigg(-\sqrt{(n/a)^2+(m/b)^2}\pi x\bigg) \sin\bigg(\frac{n\pi y}{a}\bigg) \sin\bigg(\frac{m\pi z}{b}\bigg)  \ .
-\]</span> Again, by the uniqueness theorem and the theory of orthogonal functions we know this must be the unique solution since it satisfies the full BVP. In this case though there’s no closed-form solution. However, notice that each term falls off quite rapidly with <span class="math inline">\(n\)</span> and <span class="math inline">\(m\)</span>, meaning we can get a reasonable approximation to this potential by keeping only the first few terms in the series.</p>
-<p>Visualizing the equipotentials for this problem is also a good deal harder than the last example, since now we’d need to do a 3D contour plot to see the whole thing. Qualitatively speaking, we expect that the potential will be highest at <span class="math inline">\(x=0\)</span> before falling off exponentially. On the other edges of the pipe the potential goes to zero due to grounding, and peaks along the center-line of the pipe where <span class="math inline">\(y=\frac{a}{2}\)</span> and <span class="math inline">\(z=\frac{b}{2}\)</span>.</p>
+\]</span> Putting these together, the coefficients <span class="math inline">\(b_{nm}\)</span> are evidently given by <span class="math display">\[
+b_{nm} = \frac{4V}{nm\pi^2} (1-\cos n\pi) (1-\cos m\pi) \ .
+\]</span> As with the previous example, <span class="math inline">\(\cos n\pi\)</span> will equal <span class="math inline">\(+1\)</span> when <span class="math inline">\(n\)</span> is even and <span class="math inline">\(-1\)</span> when <span class="math inline">\(n\)</span> is odd, and similarly for <span class="math inline">\(\cos m\pi\)</span>. This means the coefficients will vanish if either <span class="math inline">\(n\)</span> or <span class="math inline">\(m\)</span> is even. The only terms that survive are when both are odd, with <span class="math display">\[
+b_{nm} = \frac{16V}{nm\pi^2} \quad , \quad n,m = 1,3,5,\cdots \ .
+\]</span> We’ve thus satisfied all the boundary conditions in the problem. According to the uniqueness theorem, plugging <span class="math inline">\(b_{nm}\)</span> back into the general solution will give the unique solution that solves this boundary value problem, with <span class="math display">\[
+\phi(\mathbf{x}) = \frac{16V}{\pi^2} \sum_{n,m=1,3,5,\cdots} \frac{1}{nm} e^{-\sqrt{k_n^2+\ell_m^2}x} \sin k_n y \sin \ell_m z  \ .
+\]</span> In this case there’s no closed-form solution, so we’re left with this series. Notice, though, that each term falls off quadratically. This means if we like we can get a reasonable approximation to this potential by keeping only the first few terms. Visualizing the equipotentials for this problem is more challenging since now we’re faced with a 4-dimensional plotting situation, but we can still describe qualitatively what these equipotentials will look like. We expect that the potential will be highest at <span class="math inline">\(x=0\)</span> before falling off exponentially in that direction. On the other edges of the pipe the potential will vanish on both sides due to grounding, and will peak along the center-line of the pipe.</p>
 </section>
 <section id="example-conducting-rectangular-box-held-at-given-potential-on-one-end" class="level5">
 <h5 class="anchored" data-anchor-id="example-conducting-rectangular-box-held-at-given-potential-on-one-end">Example: Conducting rectangular box held at given potential on one end</h5>
 <p>Let’s now consider a slight variation to the previous problem. Suppose we have a rectangular conducting box of finite extent in all directions. One of the sides of the box is held at some varying potential <span class="math inline">\(V(y,z)\)</span>, while the other five sides of the box are grounded. Suppose the box has a width <span class="math inline">\(a\)</span> in the direction where the potential is ungrounded, a depth <span class="math inline">\(b\)</span>, and a height <span class="math inline">\(c\)</span>.</p>
+<p>We’ll orient the box exactly like we did in the previous problem, with the length along the <span class="math inline">\(x\)</span>-axis, and the width and depth along the <span class="math inline">\(y\)</span> and <span class="math inline">\(z\)</span> axes. We’ll assume the box is is ungrounded at <span class="math inline">\(x=a\)</span> with <span class="math inline">\(\phi(a,x,y) = V(y,z)\)</span>, while the other sides are grounded.</p>
 <p>FIGURE</p>
-<p>We’ll orient the box exactly like we did in the previous problem, with the length along the <span class="math inline">\(x\)</span>-axis, and the width and depth along the <span class="math inline">\(y\)</span> and <span class="math inline">\(z\)</span> axes. We’ll assume the box is is ungrounded at <span class="math inline">\(x=a\)</span> with <span class="math inline">\(\phi(a,x,y) = V(y,z)\)</span>, while the other sides are grounded. This gives us a BVP to solve of the form <span class="math display">\[
+<p>This gives us a BVP to solve of the form <span class="math display">\[
 \begin{align*}
 \begin{cases}
 \nabla^2 \phi = 0 \ , \\
 \text{where} \ \phi(a,y,z) = V(y,z) \ , \\
 \phi(0,y,z) = 0 \ , \\
 \phi(x,0,z) = \phi(x,a,z) = 0 \ , \\
-\phi(x,y,0) = \phi(x,y,b) = 0 \ .
+\phi(x,y,0) = \phi(x,y,b) = 0 \ , \\
+|\phi| &lt; \infty \ \text{for all} \ x,y,z \ .
 \end{cases}
 \end{align*}
 \]</span> Since we confine ourselves to the inside of the box, we don’t need to require that <span class="math inline">\(\phi \rightarrow \infty\)</span> as <span class="math inline">\(|\mathbf{x}| \rightarrow \infty\)</span>.</p>
-<p>If we apply separation of variables to this problem, we again end up with three ODEs to solve of the following form, <span class="math display">\[
+<p>If we apply separation of variables to this problem, we end up with three differential equations to solve of the form <span class="math display">\[
 \frac{d^2 X}{dx^2} = (k^2+\ell^2) X \quad , \quad \frac{d^2 Y}{dy^2} = -k^2 Y \quad , \quad \frac{d^2 Z}{dz^2} = -\ell^2 Z \ .
-\]</span> As with the previous problems, we chose negative separation constants <span class="math inline">\(-k^2\)</span> and <span class="math inline">\(-\ell^2\)</span> for the two grounded directions, which forces the ungrounded direction to have a positive separation constant <span class="math inline">\(k^2+\ell^2\)</span>.</p>
-<p>The ODEs for <span class="math inline">\(Y(y)\)</span> and <span class="math inline">\(Z(z)\)</span> are solved the same way as before. The boundary conditions force the <span class="math inline">\(k\)</span> and <span class="math inline">\(\ell\)</span> to be quantized in terms of two integers <span class="math inline">\(n\)</span> and <span class="math inline">\(m\)</span>, with <span class="math display">\[
-k_n = \sqrt{\frac{n\pi}{b}} \quad , \quad \ell_m = \sqrt{\frac{m\pi}{c}} \quad , \quad n,m=1,2,\cdots \ .
-\]</span> This then yield two basis set of solutions of the form <span class="math display">\[
-Y_n(y) = A_n \sin k_n y \quad , \quad Z_m(y) = B_m \sin \ell_m z  \ .
-\]</span> As before, the ODE for <span class="math inline">\(X(y)\)</span> has general solutions of the form <span class="math display">\[
-X_{nm}(x) = C_{nm} e^{\sqrt{k_{n}^2+\ell_{m}^2} x} + D_{nm} e^{-\sqrt{k_{n}^2+\ell_{m}^2} x} \ .
-\]</span> What changes are the boundary conditions. Requiring that <span class="math inline">\(X_{nm}(0) = 0\)</span> forces <span class="math inline">\(D_{nm} = -C_{nm}\)</span>, which gives <span class="math display">\[
-X_{nm}(x) = C_{nm} \big(e^{\sqrt{k_{n}^2+\ell_{m}^2} x} - e^{-\sqrt{k_{n}^2+\ell_{m}^2} x}\big) = 2C_{nm} \sinh \sqrt{k_{nm}^2+\ell_{nm}^2} x \ .
-\]</span> Multiplying these solutions together and combining constants, we get a basis of solutions for the potential of the form <span class="math display">\[
-\phi_{nm}(x,y,z) = \sinh\sqrt{k_{n}^2+\ell_{m}^2} x \ \sin k_n y \ \sin \ell_m z \ .
-\]</span> The general solution for the potential must then be a superposition of these basis solutions, with <span class="math display">\[
-\phi(\mathbf{x}) = \sum_{n=1}^\infty \sum_{m=1}^\infty b_{nm} \phi_{nm}(x,y,z) \ .
-\]</span> We again find the expansion coefficients <span class="math inline">\(b_{nm}\)</span> by imposing the final boundary condition <span class="math inline">\(\phi(a,y,z) = V(y,z)\)</span>. The answer will depend on the specific form of <span class="math inline">\(V(y,z)\)</span>, but can be found in the usual way once we do.</p>
-<p>Once this is found, we have the general solution for this BVP. By the uniqueness theorem and the theory of orthogonal functions, we can guarantee that the solution found will be unique.</p>
+\]</span> Notice that we skipped the step where we chose the signs of the separation constants. To give a brief justification for the above choice, notice that all coordinates are bounded in this problem. Two of the coordinates (<span class="math inline">\(y\)</span> and <span class="math inline">\(z\)</span>) have vanishing potentials at both boundaries. For those it makes sense to choose negative constants so that we again get sinusoidal solutions, and can expand the general solution in terms of Fourier bases again. The final coordinate <span class="math inline">\(x\)</span> is then forced to have a positive separation constant. This will turn out to be a reasonable choice, as we’ll see.</p>
+<p>Now, the equations for <span class="math inline">\(Y(y)\)</span> and <span class="math inline">\(Z(z)\)</span> are exactly the same as they were in the previous problem. The boundary conditions force the constants <span class="math inline">\(k\)</span> and <span class="math inline">\(\ell\)</span> to be quantized in terms of integers <span class="math inline">\(n\)</span> and <span class="math inline">\(m\)</span>, with <span class="math inline">\(k_n = \frac{n\pi}{b}\)</span> and <span class="math inline">\(\ell_m = \frac{m\pi}{c}\)</span>. This means we end up with two infinite sets of basis functions of the form <span class="math inline">\(Y_n(y) = \sin k_n y\)</span> and <span class="math inline">\(Z_m(z) = \sin \ell_m z\)</span>. Both sets of functions will be complete and orthogonal on their given intervals.</p>
+<p>The equation for <span class="math inline">\(X(x)\)</span> again gives a general solution in terms of real exponentials, but this time we can’t throw away one of them since <span class="math inline">\(x\)</span> is bounded as well in this problem. For each <span class="math inline">\(n\)</span> and <span class="math inline">\(m\)</span>, we’ll have a general solution of the form <span class="math display">\[
+X_{nm}(x) = A_{nm} e^{\sqrt{k_n^2 + \ell_m^2} x} + B_{nm} e^{-\sqrt{k_n^2 + \ell_m^2} x} \ .
+\]</span> Each of these functions must satisfy the boundary condition that <span class="math inline">\(X_{nm}(0) = 0\)</span>. Plugging this in forces <span class="math inline">\(B_{nm} = -A_{nm}\)</span>, giving <span class="math display">\[
+X_{nm}(x) = A_{nm} \big(e^{\sqrt{k_n^2 + \ell_m^2} x} - e^{-\sqrt{k_n^2 + \ell_m^2} x}\big) = 2 A_{nm} \sinh \sqrt{k_n^2 + \ell_m^2} x \ .
+\]</span> We can then combine each of these solutions together to get a basis of solutions for the potential, which we’ll define by <span class="math display">\[
+\phi_{nm}(x,y,z) \equiv \sinh \sqrt{k_n^2 + \ell_m^2} x \ \sin k_n y \ \sin \ell_m z \ .
+\]</span> Now, we still have to fit the boundary condition that <span class="math inline">\(\phi(a,y,z) = V(y,z)\)</span>. None of these basis functions solve this condition. This means we need to consider a more general solution by appealing to the principle of superposition to write <span class="math display">\[
+\phi(x,y,z) = \sum_{n=1}^\infty \sum_{m=1}^\infty b_{nm} \phi_{nm}(x,y,z) \ .
+\]</span> Fitting the final boundary condition will determine the expansion coefficients <span class="math inline">\(b_{nm}\)</span>. Setting <span class="math inline">\(x=a\)</span> in the above solution, we get <span class="math display">\[
+V(y,z) = \phi(a,y,z) = \sum_{n=1}^\infty \sum_{m=1}^\infty b_{nm} \sinh \sqrt{k_n^2 + \ell_m^2} a \ \sin k_n y \ \sin \ell_m z \ .
+\]</span> We now again appeal to the fact that <span class="math inline">\(\sin k_n y\)</span> and <span class="math inline">\(\sin \ell_m z\)</span> each form an orthogonal set of functions, which means we can determine the expansion coefficients by taking inner products. Equivalently, we can determine <span class="math inline">\(b_{nm}\)</span> by multiplying both sides of the above equation by <span class="math inline">\(\sin k_{n'} y \ \sin \ell_{m'} z\)</span> and integrating over both <span class="math inline">\(y\)</span> and <span class="math inline">\(z\)</span> on their respective intervals. Using the previous example as a guide, it’s not hard to see that the right-hand side will give <span class="math display">\[
+\sum_{n,m} b_{nm} \sinh \sqrt{k_n^2 + \ell_m^2} a \int_0^b dy \int_0^c dz \ \sin k_n y \sin \ell_m z \sin k_{n'} z \ \sin \ell_{m'} y = \frac{bc}{4} \sinh \sqrt{k_{n'}^2 + \ell_{m'}^2} a \ b_{n'm'} \ .
+\]</span> To evaluate the left-hand side we need a specific functional form for <span class="math inline">\(V(y,z)\)</span>. Even so, we can formally express <span class="math inline">\(b_{nm}\)</span> in terms of an integral by using the previous expression to write <span class="math display">\[
+b_{nm} = \frac{4}{bc} \frac{1}{\sinh \sqrt{k_n^2 + \ell_m^2} a} \int_0^b dy \int_0^c dz \ V(y,z) \sin k_n y \ \sin \ell_m z \ .
+\]</span> Notice if we set <span class="math inline">\(V(y,z)\)</span> to a constant and integrate, we get a solution that looks identical to the solution in the previous problem, except with an extra hyperbolic sine factor included. In that simple case, we get <span class="math display">\[
+\phi(\mathbf{x}) = \frac{16V}{\pi^2} \sum_{n,m=1,3,5,\cdots} \frac{1}{nm} \frac{\sinh \sqrt{k_n^2 + \ell_m^2} x}{\sinh \sqrt{k_n^2 + \ell_m^2} a} \sin k_n y \sin \ell_m z  \ .
+\]</span> Again, the uniqueness theorem will guarantee that once we’ve found this solution, it will be unique.</p>
 </section>
 </section>
 <section id="laplaces-equation-in-spherical-coordinates" class="level3">
@@ -709,14 +722,15 @@ P_\ell(x) \equiv \frac{1}{2^\ell \ell!} \frac{d^\ell}{dx^\ell} (x^2 - 1)^\ell \ 
 P_0(x) = 1 \quad , \quad P_1(x) = x = \cos\theta \quad , \quad P_2(x) = \frac{1}{2} (3x^2 - 1) = \frac{1}{2} (3\cos^2 \theta - 1) \ .
 \]</span> The Legendre polynomials form a complete orthogonal set on the interval <span class="math inline">\(-1 \leq x \leq 1\)</span>. This means we can express the general solution <span class="math inline">\(\Theta(\theta)\)</span> as a linear superposition of <span class="math inline">\(P_\ell(\cos\theta)\)</span>, with <span class="math display">\[
 \Theta(\theta) = \sum_{\ell=0}^\infty c_\ell P_\ell(\cos\theta) \ .
-\]</span> Combining this angular solution with the radial solution, we can combine these constants <span class="math inline">\(c_\ell\)</span> with the constants in the radial solution to write the general solution for an azimuthally symmetric potential <span class="math inline">\(\phi(\mathbf{x})\)</span> in the form <span class="math display">\[
+\]</span> Combining this angular solution with the radial solution and absorbing constants together, we can write the general solution for an azimuthally symmetric potential <span class="math inline">\(\phi(\mathbf{x})\)</span> in the form <span class="math display">\[
 \boxed{
 \phi(\mathbf{x}) = \sum_{\ell=0}^\infty \big(a_\ell r^\ell + b_\ell r^{-(\ell+1)}\big) P_\ell(\cos\theta)
 } \ .
-\]</span> Note that since we’re generally only interested in solutions either inside or outside a spherical surface, the requirement that the potential not blow up inside the boundary region will force either <span class="math inline">\(a_\ell\)</span> or <span class="math inline">\(b_\ell\)</span> to vanish, meaning we only need to find one set or the other. As usual, we’ll find the remaining coefficients by imposing the boundary conditions and taking an inner product. Let’s now work some examples before proceeding to the more general case of non-azimuthally symmetric potentials.</p>
-<p>To see that this solution makes sense, let’s consider the special case where the potential is spherically symmetric, with <span class="math inline">\(\phi = \phi(r)\)</span>. Then all but the <span class="math inline">\(\ell=0\)</span> terms vanish. Since <span class="math inline">\(P_0(\cos\theta) = 1\)</span> by definition, we get <span class="math display">\[
+\]</span> The coefficients <span class="math inline">\(a_\ell\)</span> and <span class="math inline">\(b_\ell\)</span> can then be found by imposing the remaining boundary condition. Once these are found, we’ve found the unique general solution for the potential in spherical coordinates that satisfy all the boundary conditions.</p>
+<p>Notice that as written, this solution will always blow up at either the origin or infinity unless we force one of these sets of constants to be zero. In practice, when faced with a spherical boundary value problem, what we’ll do is write down the solution separately inside and outside the surface and match them together along the boundary. Inside the surface we’ll want to set <span class="math inline">\(b_\ell = 0\)</span> to prevent the potential from blowing up at <span class="math inline">\(r=0\)</span>, while outside the surface we’ll often want to set <span class="math inline">\(a_\ell = 0\)</span> to prevent the potential from blowing up at infinity.</p>
+<p>To see that this solution makes sense, let’s consider the special case where the potential is spherically symmetric, with <span class="math inline">\(\phi = \phi(r)\)</span>. Then all but the <span class="math inline">\(\ell=0\)</span> terms vanish, and since <span class="math inline">\(P_0(\cos\theta) = 1\)</span> by definition, we end up with <span class="math display">\[
 \phi(r) = a_0 + \frac{b_0}{r} \ .
-\]</span> We immediately recognize this as the potential of a uniformly charge sphere, with <span class="math inline">\(b_0 = Q\)</span> and <span class="math inline">\(a_0 = \phi(0)\)</span> a chosen ground point potential at the origin. Let’s now consider some more interesting examples.</p>
+\]</span> We immediately recognize this as the potential of a uniformly charged sphere, with <span class="math inline">\(b_0 = Q\)</span> and <span class="math inline">\(a_0 = \phi(0)\)</span> a chosen ground point potential that we can ignore. Let’s now consider some more interesting examples.</p>
 <section id="example-potential-inside-a-hollow-sphere-held-at-a-given-potential" class="level5">
 <h5 class="anchored" data-anchor-id="example-potential-inside-a-hollow-sphere-held-at-a-given-potential">Example: Potential inside a hollow sphere held at a given potential</h5>
 <p>Suppose we have a hollow sphere of radius <span class="math inline">\(R\)</span> with a fixed potential <span class="math inline">\(V(\theta)\)</span> on its surface. We want to find the potential inside of the sphere.</p>
@@ -725,7 +739,8 @@ P_0(x) = 1 \quad , \quad P_1(x) = x = \cos\theta \quad , \quad P_2(x) = \frac{1}
 \begin{align*}
 \begin{cases}
 \nabla^2 \phi(r,\theta,\varphi) = 0 \ , \\
-\text{where} \ \phi(R,\theta,\varphi) = V(\theta) \ .
+\text{where} \ \phi(R,\theta,\varphi) = V(\theta) \ , \\
+|\phi| &lt; \infty \ \text{for all} \ 0 \leq r \leq R \ .
 \end{cases}
 \end{align*}
 \]</span> Since this is clearly an azimuthally symmetric problem, <span class="math inline">\(\phi = \phi(r,\theta)\)</span>, which means the general solution must have the form <span class="math display">\[
@@ -738,15 +753,11 @@ V(\theta) = \phi(R,\theta) = \sum_{\ell=0}^\infty a_\ell R^\ell P_\ell(\cos\thet
 \langle P_\ell(x) | P_{\ell'}(x) \rangle = \int_{-1}^1 dx P_\ell(x) P_{\ell'}(x) = \frac{2}{2\ell+1} \delta_{\ell\ell'} \ .
 \]</span> Using the relation <span class="math inline">\(x=\cos\theta\)</span> we can re-express this integral in terms of <span class="math inline">\(\theta\)</span> as well, <span class="math display">\[
 \langle P_\ell(\cos\theta) | P_{\ell'}(\cos\theta) \rangle = \int_0^\pi d\theta \ P_\ell(\cos\theta) P_{\ell'}(\cos\theta) \sin\theta = \frac{2}{2\ell+1} \delta_{\ell\ell'} \ .
-\]</span> By the orthogonality condition, we can find <span class="math inline">\(a_\ell\)</span> by the relation <span class="math display">\[
-a_\ell = \frac{\langle R^\ell P_\ell(\cos\theta) | V(\theta) \rangle}{\langle R^\ell P_\ell(\cos\theta) | R^\ell P_\ell(\cos\theta) \rangle} \ .
-\]</span> Let’s find the numerator first. From the orthogonality relation, we simply have <span class="math display">\[
-\langle R^\ell P_\ell(\cos\theta) | R^\ell P_\ell(\cos\theta) \rangle = \frac{2R^{2\ell}}{2\ell + 1} \ .
-\]</span> The denominator is given by <span class="math display">\[
-\langle R^\ell P_\ell(\cos\theta) | V(\theta) \rangle = R^\ell \langle P_\ell(\cos\theta) | V(\theta) \rangle \ .
-\]</span> Putting these together, we get <span class="math display">\[
-a_\ell = \frac{2\ell+1}{2R^\ell} \langle P_\ell(\cos\theta) | V(\theta) \rangle = \frac{2\ell+1}{2R^\ell} \int_0^\pi d\theta \ V(\theta) P_\ell(\cos\theta) \sin\theta \ .
-\]</span> To proceed further we’d need a particular form for the boundary potential <span class="math inline">\(V(\theta)\)</span>. As an example, let’s suppose that <span class="math display">\[
+\]</span> We can now use this orthogonality condition to determine the coefficients <span class="math inline">\(a_\ell\)</span>. To do that we proceed as usual. We multiply both sides of the equation for <span class="math inline">\(\phi(R,\theta)\)</span> by <span class="math inline">\(P_{\ell'}(\cos\theta)\)</span> and integrate from <span class="math inline">\(\theta=0\)</span> to <span class="math inline">\(\theta=\pi\)</span>. Doing the right-hand side, first, we have <span class="math display">\[
+\sum_{\ell=0}^\infty a_\ell R^\ell \int_0^\pi d\theta \ P_{\ell'}(\cos\theta) P_\ell(\cos\theta) = \sum_{\ell=0}^\infty a_\ell R^\ell \frac{2}{2\ell+1} \delta_{\ell\ell'} = \frac{2}{2\ell'+1} a_{\ell'} R^{\ell'} \ .
+\]</span> To evaluate the left-hand side we need a specific form for <span class="math inline">\(V(\theta)\)</span>. Nevertheless, we can use the previous expression to solve for <span class="math inline">\(a_\ell\)</span> in terms of this integral to get <span class="math display">\[
+a_\ell = \frac{2\ell+1}{2R^\ell} \int_0^\pi d\theta \ V(\theta) P_\ell(\cos\theta) \ .
+\]</span> As an example, let’s suppose <span class="math inline">\(V(\theta)\)</span> takes the specific form <span class="math display">\[
 V(\theta) = k \sin^2 \frac{\theta}{2} \ .
 \]</span> Using the half-angle formula and the value of the first two Legendre polynomials, we can write this in the form <span class="math display">\[
 V(\theta) = \frac{k}{2} (1-\cos\theta) = \frac{k}{2} \big(P_0(\cos\theta) - P_1(\cos\theta)\big) \ .
@@ -762,29 +773,23 @@ a_1 &amp;= -\frac{k}{2} \frac{3}{2R} \langle P_1 | P_1 \rangle = -\frac{k}{2R} \
 \end{align*}
 \]</span> For this choice of <span class="math inline">\(V(\theta)\)</span> we thus have our general solution for the potential that solves this BVP, given by <span class="math display">\[
 \phi(\mathbf{x}) = a_0 P_0(\cos\theta) + a_1 r P_1(\cos\theta) = \frac{k}{2} \bigg(1 - \frac{r}{R} \cos\theta\bigg) \ .
-\]</span> By the theory of orthogonal functions and the uniqueness theorem, we can guarantee this will be the unique general solution.</p>
+\]</span> By the uniqueness theorem, we can guarantee this will be the unique general solution to the given BVP.</p>
 </section>
 <section id="example-potential-outside-a-hollow-sphere-held-at-a-given-potential" class="level5">
 <h5 class="anchored" data-anchor-id="example-potential-outside-a-hollow-sphere-held-at-a-given-potential">Example: Potential outside a hollow sphere held at a given potential</h5>
-<p>Let’s now consider again the previous problem, but suppose we’re not interested in the potential <em>outside</em> the hollow sphere. We now require that the potential vanish at infinity, giving a BVP of the form <span class="math display">\[
+<p>Let’s now consider again the previous problem, but suppose we’re not interested in the potential <em>outside</em> the hollow sphere. We now require that the potential not blow up at infinity, giving a BVP of the form <span class="math display">\[
 \begin{align*}
 \begin{cases}
 \nabla^2 \phi(r,\theta,\varphi) = 0 \ , \\
 \text{where} \ \phi(R,\theta,\varphi) = V(\theta) \\
-\phi(r,\theta,\varphi) \rightarrow 0 \ \text{as} \ r \rightarrow \infty \ .
+|\phi| &lt; \infty \ \text{for all} \ R \leq r \leq \infty \ .
 \end{cases}
 \end{align*}
 \]</span> Clearly this problem also has an azimuthally symmetric potential <span class="math inline">\(\phi = \phi(r,\theta)\)</span>, and hence we can still write <span class="math display">\[
 \phi(r,\theta) = \sum_{\ell=0}^\infty \big(a_\ell r^\ell + b_\ell r^{-(\ell+1)}\big) P_\ell(\cos\theta) \ .
-\]</span> But now we need the potential outside the sphere, not inside. This forces <span class="math inline">\(a_\ell=0\)</span> instead, leaving <span class="math display">\[
+\]</span> But now we need the potential outside the sphere, not inside. The requirement that <span class="math inline">\(\phi\)</span> not blow up at infinity now forces <span class="math inline">\(a_\ell=0\)</span> instead, leaving <span class="math display">\[
 \phi(r,\theta) = \sum_{\ell=0}^\infty b_\ell r^{-(\ell+1)} P_\ell(\cos\theta) \ .
-\]</span> To find <span class="math inline">\(b_\ell\)</span> we proceed the same way as before, relying on the orthogonality of Legendre polynomials. We need to find <span class="math display">\[
-b_\ell = \frac{\langle R^{-(\ell+1)} P_\ell(\cos\theta) | V(\theta) \rangle}{\langle R^{-(\ell+1)} P_\ell(\cos\theta) | R^{-(\ell+1)} P_\ell(\cos\theta) \rangle} \ .
-\]</span> The denominator is simply given by <span class="math display">\[
-\langle R^{-(\ell+1)} P_\ell(\cos\theta) | R^{-(\ell+1)} P_\ell(\cos\theta) \rangle = \frac{2R^{-2(\ell+1)}}{2\ell + 1} \ ,
-\]</span> while the numerator is given by <span class="math display">\[
-\langle R^{-(\ell+1)} P_\ell(\cos\theta) | V(\theta) \rangle = R^{-(\ell+1)} \int_0^\pi d\theta \ V(\theta) P_\ell(\cos\theta) \sin\theta \ .
-\]</span> Putting these together, we have <span class="math display">\[
+\]</span> To find <span class="math inline">\(b_\ell\)</span> we proceed the same way as before, relying on the orthogonality of Legendre polynomials. Multiplying both sides by <span class="math inline">\(P_{\ell'}(\cos\theta)\)</span> and integrating, we end up with the expression <span class="math display">\[
 b_\ell = \frac{(2\ell+1)R^{\ell+1}}{2} \int_0^\pi d\theta \ V(\theta) P_\ell(\cos\theta) \sin\theta \ .
 \]</span> To proceed further we’d need to know the specific form of the boundary potential <span class="math inline">\(V(\theta)\)</span>. For example, if we again assume the same boundary potential given in the previous problem, we can write <span class="math display">\[
 V(\theta) = k \sin^2 \theta = \frac{k}{2} \big[P_0(\cos\theta) - P_1(\cos\theta)\big] \ .
@@ -796,26 +801,27 @@ b_1 &amp;= -\frac{k}{2} \frac{3R^2}{2} \langle P_1 | P_1 \rangle = -\frac{kR^2}{
 \]</span> With these, we can write the general solution for the potential outside the sphere as <span class="math display">\[
 \phi(\mathbf{x}) = \frac{b_0}{r} P_0(\cos\theta) + \frac{b_1}{r^2} P_1(\cos\theta) = \frac{kR}{2r} \bigg(1 - \frac{R}{r} \cos\theta\bigg) \ .
 \]</span> Notice that this behaves exactly how we expect, with <span class="math inline">\(\phi \rightarrow 0\)</span> at infinity. It’s also easy to see that this solution agrees with the one inside the sphere at the boundary surface where <span class="math inline">\(r=R\)</span>. Indeed, these two solutions together give us the unique potential in all space that satisfies the boundary condition <span class="math inline">\(\phi(R,\theta,\varphi) = V(\theta)\)</span> on the surface of the sphere.</p>
-<p>In general, if we have a problem where a boundary value is specified on the surface of a sphere and we’re interested in the potential inside and outside the sphere, we only need to find one of the solutions and we automatically know the other. For example, suppose we’ve found the potential <span class="math inline">\(\phi\)</span> inside the sphere. All we need to do to get the potential outside the sphere is make the substitution <span class="math inline">\(\big(\frac{r}{R})^\ell \rightarrow \big(\frac{R}{r}\big)^{\ell+1}\)</span> and we automatically have that solution as well.</p>
+<p>In general, if we have a problem where a boundary value is specified on the surface of a sphere and we’re interested in the potential inside and outside the sphere, we only need to find one of the solutions, and we automatically know the other. For example, suppose we’ve found the potential <span class="math inline">\(\phi\)</span> inside the sphere. All we need to do to get the potential outside the sphere is make the substitution <span class="math inline">\(\big(\frac{r}{R})^\ell \rightarrow \big(\frac{R}{r}\big)^{\ell+1}\)</span> and we automatically have that solution as well.</p>
 </section>
 <section id="example-conducting-hemispheres-at-opposite-constant-potential" class="level5">
 <h5 class="anchored" data-anchor-id="example-conducting-hemispheres-at-opposite-constant-potential">Example: Conducting hemispheres at opposite constant potential</h5>
-<p>Let’s now consider a slightly more interesting example that we calculated before using the method of images, the problem of two conducting hemispheres held at equal and opposite constant potentials <span class="math inline">\(\pm V\)</span>.</p>
+<p>Let’s now consider a slightly more interesting example that we calculated in the last chapter using Green’s functions, namely the problem of two conducting hemispheres held at equal and opposite constant potentials <span class="math inline">\(\pm V\)</span>.</p>
 <p>FIGURE</p>
+<p>We showed before with great effort that we could represent the potential as a series of odd-degree Legendre polynomials. Now we’ll provide a much easier way to arrive at the same result using separation of variables.</p>
 <p>We can also solve this problem using separation of variables. We formulate this setup as a boundary value problem as follows. <span class="math display">\[
 \begin{align*}
 \begin{cases}
 \nabla^2 \phi(r,\theta,\varphi) = 0 \ , \\
 \text{where} \ \phi(R,\theta,\varphi) = V \ \text{when} \ 0 \leq \theta &lt; \frac{\pi}{2} \ , \\
 \phi(R,\theta,\varphi) = -V \ \text{when} \ \frac{\pi}{2} &lt; \theta \leq \pi \ , \\
-\phi(r) \rightarrow 0 \ \text{as} \ r \rightarrow \infty \ .
+|\phi| &lt; \infty \ \text{for all} \ 0 \leq r \leq \infty \ .
 \end{cases}
 \end{align*}
 \]</span> Again, this problem is clearly azimuthally symmetric. Since one is as easy as the other, we’ll show how to find the potential inside the sphere, and then use that formula to get the potential outside as well using the trick described in the previous example.</p>
 <p>Inside the sphere we require that <span class="math inline">\(b_\ell = 0\)</span>, which gives an expansion of the form <span class="math display">\[
 \phi(r,\theta,\varphi) = \sum_{\ell=0}^\infty a_\ell r^{\ell} P_\ell(\cos\theta) \ .
-\]</span> Notice this looks exactly like the previous examples if we take <span class="math inline">\(V(\theta) = \pm V\)</span>. This means we can use the same formula for the coefficients to write <span class="math display">\[
-a_\ell = \frac{2\ell+1}{2R^\ell} \langle P_\ell(\cos\theta) | V(\theta) \rangle = \frac{2\ell+1}{2R^\ell} \int_0^\pi d\theta \ V(\theta) P_\ell(\cos\theta) \sin\theta \ .
+\]</span> Notice this looks exactly like the previous examples if we take <span class="math inline">\(V(\theta) = \pm V\)</span>. We can solve for the coefficients <span class="math inline">\(a_\ell\)</span> in the usual way, in which case we end up with the integral <span class="math display">\[
+a_\ell = \frac{2\ell+1}{2R^\ell} \int_0^\pi d\theta \ V(\theta) P_\ell(\cos\theta) \sin\theta \ .
 \]</span> Plugging in <span class="math inline">\(V(\theta) = \pm V\)</span>, this becomes <span class="math display">\[
 a_\ell =  \frac{2\ell+1}{2R^\ell} V \bigg[\int_0^{\pi/2} d\theta \ P_\ell(\cos\theta) \sin\theta - \int_{\pi/2}^\pi d\theta \ P_\ell(\cos\theta) \sin\theta\bigg] \ .
 \]</span> Since <span class="math inline">\(P_\ell(\cos\theta)\)</span> is odd when <span class="math inline">\(\ell\)</span> is odd and even when <span class="math inline">\(\ell\)</span> is even, we can see that the even coefficients must cancel out, while for odd terms we can write <span class="math display">\[
@@ -836,7 +842,37 @@ a_\ell = \bigg(\frac{-1}{2}\bigg)^{\frac{\ell-1}{2}} \frac{(2\ell+1)(\ell-2)!!}{
 \phi(r,\theta,\varphi) &amp;= V\sum_{\ell=0}^\infty \bigg(\frac{-1}{2}\bigg)^{\frac{\ell-1}{2}} \frac{(2\ell+1)(\ell-2)!!}{2\big(\frac{\ell+1}{2}!\big)^2} \bigg(\frac{R}{r}\bigg)^{\ell+1} P_\ell(\cos\theta) \\
 &amp;= V \bigg[\frac{3}{2}\bigg(\frac{R}{r}\bigg)^2P_1(\cos\theta) - \frac{7}{8}\bigg(\frac{R}{r}\bigg)^4P_3(\cos\theta) + \frac{11}{16}\bigg(\frac{R}{r}\bigg)^6P_5(\cos\theta) - \cdots\bigg] \ , \quad r \geq R \ .
 \end{align*}
-\]</span> As expected, the potential outside the sphere goes to zero at infinity, satisfying the final boundary condition. It also appears that the potential vanishes at the origin, and indeed in the whole equatorial plane. Indeed, the potential seems to behave as a dipole, with the electric field falling off like <span class="math inline">\(r^{-3}\)</span> far away from the sphere. This should hopefully make sense. Far away from the sphere we could imagine modeling the two hemispheres as opposite point charges very close together, i.e.&nbsp;a dipole.</p>
+\]</span> As expected, the potential outside the sphere goes to zero at infinity, satisfying the final boundary condition. It also appears that the potential vanishes at the origin, and indeed in the whole equatorial plane. Indeed, the potential seems to behave as a dipole, with the electric field falling off like <span class="math inline">\(r^{-3}\)</span> far away from the sphere. This should hopefully make sense. Far away from the sphere we could imagine modeling the two hemispheres as opposite point charges very close together.</p>
+</section>
+<section id="example-potential-of-a-hollow-sphere-with-an-azimuthally-symmetric-surface-charge-distribution" class="level5">
+<h5 class="anchored" data-anchor-id="example-potential-of-a-hollow-sphere-with-an-azimuthally-symmetric-surface-charge-distribution">Example: Potential of a hollow sphere with an azimuthally symmetric surface charge distribution</h5>
+<p>Since we’ve neglected Neumann boundary value problems in this chapter, let’s consider an example where the potential on the surface of a sphere isn’t known, but instead its surface charge density is known. Suppose we have a hollow sphere of radius <span class="math inline">\(R\)</span>, and on this sphere we have a surface charge density of the form <span class="math inline">\(\sigma' = k \cos\theta\)</span>, where <span class="math inline">\(k\)</span> is some constant.</p>
+<p>We’d like to find the potential due to this charged sphere both inside and outside the sphere. We can use the fact that the normal derivative is <span class="math inline">\(\partial \phi / \partial n' = -4\pi \sigma'\)</span> on the surface of the sphere to express this as a BVP of the form <span class="math display">\[
+\begin{align*}
+\begin{cases}
+\nabla^2 \phi(r,\theta,\varphi) = 0 \ , \\
+\text{where} \ \partial \phi / \partial r' \big|_{r'=R} = -4\pi k\cos\theta \ , \\
+|\phi| &lt; \infty \ \text{for all} \ r \geq 0 \ .
+\end{cases}
+\end{align*}
+\]</span> We’ll denote the potential inside the sphere by <span class="math inline">\(\phi_-(r,\theta,\varphi)\)</span>, and the potential outside the sphere by <span class="math inline">\(\phi_+(r,\theta,\varphi)\)</span>. By requiring that the potential be continuous at the surface of the sphere, we require that <span class="math inline">\(\phi_-(R,\theta,\varphi) = \phi_+(R,\theta,\varphi)\)</span>.</p>
+<p>When outside the sphere the coefficients <span class="math inline">\(a_\ell\)</span> must all vanish for the potential to not blow up at infinity. We thus have <span class="math display">\[
+\phi_+(r,\theta,\varphi) = \sum_{\ell=0}^\infty b_\ell r^{-\ell(\ell+1)} P_\ell(\cos\theta) \ .
+\]</span> Inside the sphere we require the opposite, that each <span class="math inline">\(b_\ell\)</span> vanish, giving <span class="math display">\[
+\phi_-(r,\theta,\varphi) = \sum_{\ell=0}^\infty a_\ell r^\ell P_\ell(\cos\theta) \ .
+\]</span> Requiring that the potential be continuous at the surface of the sphere means each term in these series must match at <span class="math inline">\(r=R\)</span>. This means for each <span class="math inline">\(\ell\)</span> we must have the condition <span class="math display">\[
+b_\ell R^{-\ell(\ell+1)} - a_\ell R^\ell = 0 \quad \Longrightarrow \quad b_\ell = a_\ell R^{2\ell+1} \ .
+\]</span> Since the sphere is hollow, we know that there’s a discontinuity in the electric field across the surface at <span class="math inline">\(r=R\)</span> that’s proportional to <span class="math inline">\(4\pi\sigma'\)</span>. The difference between the normal derivatives across the surface the sphere must then satisfy <span class="math display">\[
+\frac{\partial \phi_+}{\partial r'} \bigg|_{r'=R} - \frac{\partial \phi_-}{\partial r'} \bigg|_{r'=R} = -4\pi k\cos\theta \ .
+\]</span> Plugging in the series expansions for each term and differentiating, we then have <span class="math display">\[
+\sum_{\ell=0}^\infty \bigg[b_\ell (\ell+1)R^{-(\ell+2)} + a_\ell \ell R^{\ell-1} \bigg] P_\ell(\cos\theta) = 4\pi k\cos\theta \ .
+\]</span> Since only <span class="math inline">\(P_1(\cos\theta) = \cos\theta\)</span>, each <span class="math inline">\(\ell \neq 1\)</span> term on the left must vanish, which means we have <span class="math display">\[
+b_\ell (\ell+1)R^{-(\ell+2)} + a_\ell \ell R^{\ell-1} = 0 \quad \Longrightarrow b_\ell = a_\ell R^{2\ell+1} = 0 \ .
+\]</span> When <span class="math inline">\(\ell = 1\)</span> we must have <span class="math display">\[
+2b_1 R^{-3} + a_1 = 4\pi k \quad \Longrightarrow \quad b_1 = a_1 R^3 = \frac{4\pi}{3} kR^3 \ .
+\]</span> Thus, to satisfy the boundary conditions the full potential must be <span class="math display">\[
+\phi(r,\theta,\varphi) = \frac{4\pi}{3} kR \cos\theta \bigg(\frac{R}{r}\bigg)^2 \ .
+\]</span> By the uniqueness theorem, this is the only potential that satisfies the boundary condition <span class="math inline">\(\partial \phi / \partial n' = -4\pi \sigma'\)</span>, which means it’s the only valid potential that solves this BVP both inside and outside the sphere. Notice that this potential falls off like <span class="math inline">\(1/r^2\)</span>. That is, this problem is an example of a <em>dipole</em>. We’ll discuss this more in the next chapter.</p>
 </section>
 <section id="example-conducting-sphere-in-the-presence-of-an-external-electric-field" class="level5">
 <h5 class="anchored" data-anchor-id="example-conducting-sphere-in-the-presence-of-an-external-electric-field">Example: Conducting sphere in the presence of an external electric field</h5>
@@ -861,7 +897,7 @@ b_\ell = -a_\ell R^{2\ell+1} \ .
 -E_0 r \cos\theta = a_1 r \cos\theta \quad \Longrightarrow \quad a_1 = -E_0 \ .
 \]</span> Plugging this in, we get a final expression for the potential satisfying these boundary conditions, with <span class="math display">\[
 \phi(\mathbf{x}) = -E_0 r \bigg(1 - \frac{R^3}{r^3}\bigg) \cos\theta \ .
-\]</span> This of course is exactly what we found before using the method of images. It’s useful to look at the induced surface charge on the sphere as well to see how the charges are distributing in response to the external field. We do that by calculating <span class="math display">\[
+\]</span> This of course is exactly what we found before using the method of images. It’s useful to look at the induced surface charge on the sphere to see how the charges on the surface are distributing in response to the external field. We do that by calculating <span class="math display">\[
 \sigma = -\frac{1}{4\pi} \frac{\partial \phi}{\partial r} \bigg|_{r=R} = \frac{E_0}{\pi} \cos\theta \ .
 \]</span> Notice that charge density is evidently the most positive near <span class="math inline">\(\theta = 0\)</span> and the most negative near <span class="math inline">\(\theta = \pi\)</span>. This indicates that positive charge is building up in the direction of the external field, while negative charge is building up opposite to the direction of the field, which is of course what we’d expect physically in this situation.</p>
 </section>
@@ -909,14 +945,14 @@ Y(\theta,\varphi) = \sum_{\ell=0}^\infty \sum_{m=-\ell}^\ell c_{\ell m} Y_\ell^m
 \boxed{
 \phi(\mathbf{x}) = \sum_{\ell=0}^\infty \sum_{m=-\ell}^\ell \big(a_{\ell m} r^\ell + b_{\ell m} r^{-(\ell+1)}\big) Y_\ell^m(\theta,\varphi)} \ .
 \]</span> This equation looks exactly the same as the one for the azimuthally symmetric potential, except we now have to replace the Legendre polynomial <span class="math inline">\(P_\ell(\cos\theta)\)</span> by the more general spherical harmonic <span class="math inline">\(Y_\ell^m(\theta,\varphi)\)</span> and sum over <span class="math inline">\(m\)</span>. Indeed, it’s easy to see that the azimuthally symmetric potential is a special case of this general potential. Azimuthal symmetry is evidently equivalent to requiring that <span class="math inline">\(m=0\)</span>. If we set <span class="math inline">\(m=0\)</span> in the general potential we recover the previous one, up to a normalization factor.</p>
-<p>The coefficients <span class="math inline">\(a_{\ell m}\)</span> and <span class="math inline">\(b_{\ell m}\)</span> can be found in the usual way, by imposing the boundary conditions and taking an inner product. As before, the requirement that the potential not blow up inside the boundary surface will often force either <span class="math inline">\(a_{\ell m}\)</span> or <span class="math inline">\(b_{\ell m}\)</span> to vanish depending on whether we’re inside of or outside of a spherical boundary surface.</p>
+<p>The coefficients <span class="math inline">\(a_{\ell m}\)</span> and <span class="math inline">\(b_{\ell m}\)</span> can be found in the usual way, by imposing the final boundary condition and taking an inner product. As before, the requirement that the potential not blow up inside the boundary surface will often force either <span class="math inline">\(a_{\ell m}\)</span> or <span class="math inline">\(b_{\ell m}\)</span> to vanish depending on whether we’re inside of or outside of the boundary surface. If we seek a solution both inside and outside the surface we’ll need to match these expressions together at the boundary.</p>
 </section>
 </section>
 <section id="laplaces-equation-in-cylindrical-coordinates" class="level3">
 <h3 class="anchored" data-anchor-id="laplaces-equation-in-cylindrical-coordinates">Laplace’s Equation in Cylindrical Coordinates</h3>
-<p>We’ll finally apply separation of variables to the Laplacian in the last coordinate system we commonly use, cylindrical coordinates. If we work in cylindrical coordinates <span class="math inline">\((\varrho,\varphi,z)\)</span>, the Laplacian can be written in the form <span class="math display">\[
+<p>Last, we’ll apply separation of variables to the Laplacian in cylindrical coordinates <span class="math inline">\((\varrho,\varphi,z)\)</span>. In cylindrical coordinates, the Laplacian can be written in the form <span class="math display">\[
 \nabla^2 \phi = \frac{1}{\varrho} \frac{\partial}{\partial\varrho} \bigg(\varrho \frac{\partial\phi}{\partial\varrho} \bigg) + \frac{1}{\varrho^2} \frac{\partial^2 \phi}{\partial^2\varphi} + \frac{\partial^2 \phi}{\partial z^2} \ .
-\]</span> To satisfy Laplace’s equation we require <span class="math inline">\(\nabla^2 \phi = 0\)</span>. If we set the above equation equal to zero we get <span class="math display">\[
+\]</span> To satisfy Laplace’s equation we again require <span class="math inline">\(\nabla^2 \phi = 0\)</span>. If we set the above equation equal to zero we get <span class="math display">\[
 0 = \frac{1}{\varrho} \frac{\partial}{\partial\varrho} \bigg(\varrho \frac{\partial\phi}{\partial\varrho} \bigg) + \frac{1}{\varrho^2} \frac{\partial^2 \phi}{\partial^2\varphi} + \frac{\partial^2 \phi}{\partial z^2} \ .
 \]</span> As with spherical coordinates, the terms aren’t completely separable since <span class="math inline">\(\varrho\)</span> appears in two terms. We’ll first consider the case of cylindrical symmetry, where the potential is independent of <span class="math inline">\(z\)</span>, before proceeding to the case of more general potentials.</p>
 <section id="cylindrically-symmetric-potentials" class="level4">
@@ -933,9 +969,10 @@ Y(\theta,\varphi) = \sum_{\ell=0}^\infty \sum_{m=-\ell}^\ell c_{\ell m} Y_\ell^m
 \varrho \frac{d}{d\varrho} \bigg(\varrho \frac{dR}{d\varrho} \bigg)&amp;= n^2 R(\varrho) \ , \\
 \frac{d^2 \Phi}{d\varphi^2} &amp;= -n^2 \Phi(\varphi) \ .
 \end{align*}
-\]</span> The second equation is easy enough to solve. In real form its solutions are sines and cosines. Since the potentials should be the same when <span class="math inline">\(\varphi \rightarrow \varphi + 2\pi\)</span>, we require that <span class="math inline">\(n\)</span> be an integer so that <span class="math inline">\(\Phi(\phi) = \Phi(\phi + 2\pi)\)</span>. This means that for each <span class="math inline">\(n\)</span> we’ll have a solution of the form <span class="math display">\[
+\]</span> The second equation is easy enough to solve. In real form its solutions are sines and cosines. Provided the problem allows <span class="math inline">\(\varphi\)</span> to range over the full circle from <span class="math inline">\(0 \leq \varphi \leq 2\pi\)</span>, then we require that the potential be the same when <span class="math inline">\(\varphi \rightarrow \varphi + 2\pi\)</span>. That is, we require that <span class="math inline">\(n\)</span> be an integer so that <span class="math inline">\(\Phi(\phi) = \Phi(\phi + 2\pi)\)</span>. This means that for each <span class="math inline">\(n\)</span> we’ll have a solution of the form <span class="math display">\[
 \Phi_n(\varphi) = a \cos n\varphi + b \sin n\varphi \ .
-\]</span> Now, to get the full solution for all <span class="math inline">\(n\)</span> we appeal to the principle of superposition. We know that the set of functions <span class="math inline">\(\Phi_n(\varphi)\)</span> are just the real Fourier functions on the interval <span class="math inline">\(0 \leq \varphi \leq 2\pi\)</span>, which form a complete set of orthogonal functions on this interval. This means the general solution will be a Fourier series <span class="math display">\[
+\]</span> Note that if <span class="math inline">\(\varphi\)</span> is restricted to some range <span class="math inline">\(0 \leq \varphi \leq \beta\)</span> then we have to modify this result slightly. In that case, <span class="math inline">\(n\)</span> will no longer be an integer, but must instead be an integer multiple of <span class="math inline">\(\frac{\pi}{\beta}\)</span>. We’ll see an example of such a case below.</p>
+<p>Anyway, to get the full solution for all integer <span class="math inline">\(n\)</span> we appeal to the principle of superposition. We know that the set of functions <span class="math inline">\(\Phi_n(\varphi)\)</span> are just the real Fourier functions on the interval <span class="math inline">\(0 \leq \varphi \leq 2\pi\)</span>, which form a complete set of orthogonal functions on this interval. This means the general solution <span class="math inline">\(\Phi(\varphi)\)</span> can be written in terms of a real Fourier series of the form <span class="math display">\[
 \Phi(\varphi) = \frac{a_0}{2} + \sum_{n=1}^\infty \big(a_n \cos n\varphi + b_n \sin n\varphi\big) \ .
 \]</span> To solve the first equation we’ll assume a trial solution of the form <span class="math inline">\(R(\varrho) = \varrho^\lambda\)</span>. Plugging this in forces <span class="math inline">\(\lambda = \pm n\)</span>, giving <span class="math display">\[
 R_n(\varrho) = c_1 \varrho^n + c_2 \varrho^{-n} \ .
@@ -943,17 +980,102 @@ R_n(\varrho) = c_1 \varrho^n + c_2 \varrho^{-n} \ .
 R_0(\varrho) = d_1 + d_2 \log \varrho \ .
 \]</span> To get the general solution for the potential we then combine these two functions. We’ll absorb the constants together and write <span class="math display">\[
 \phi(\mathbf{x}) = a_0 + b_0 \log\varrho + \sum_{n=1}^\infty \big[(a_n \cos n\varphi + b_n \sin n\varphi)\varrho^n + (c_n \cos n\varphi + d_n \sin n\varphi)\varrho^{-n}\big] \ .
-\]</span> Note that the requirement that the potential not blow up inside the boundary surface will generally force some of these constants to vanish depending on whether we’re inside of our outside of the wire. If we’re inside the wire, we require that <span class="math inline">\(b_0\)</span> and the <span class="math inline">\(\varrho^{-n}\)</span> constants vanish so that the potential doesn’t blow up at the origin. If we’re outside the wire we require that the <span class="math inline">\(\varrho^n\)</span> constants vanish so that the potential vanishes at infinity.</p>
+\]</span> Note that the requirement that the potential not blow up inside the boundary surface will generally force some of these constants to vanish depending on whether we’re inside of our outside of the boundary surface. If we’re inside the surface, we require that <span class="math inline">\(b_0\)</span> and the <span class="math inline">\(\varrho^{-n}\)</span> constants vanish so that the potential doesn’t blow up at the origin. If we’re outside the surface we require that the <span class="math inline">\(\varrho^n\)</span> constants vanish so that the potential vanishes at infinity.</p>
 <p>To check that this solution makes sense, let’s consider the case of a potential where <span class="math inline">\(\phi = \phi(\varrho)\)</span> only. In this case only the <span class="math inline">\(n=0\)</span> terms survive, leaving <span class="math display">\[
 \phi(\varrho) = a_0 + b_0 \log\varrho \ .
 \]</span> The associated electric field is then <span class="math inline">\(\mathbf{E}(\mathbf{x}) = E(\varrho) \mathbf{e}_\varrho\)</span>, where <span class="math display">\[
 E(\varrho) = -\frac{d\phi}{d\varrho} = -\frac{b_0}{\varrho} \equiv \frac{2\lambda}{\varrho} \ .
 \]</span> If we take <span class="math inline">\(b_0 = -2\lambda\)</span> and <span class="math inline">\(a_0 = \phi(0)\)</span> as a ground point, this is evidently the potential of a uniform wire with line density <span class="math inline">\(\lambda\)</span>. Let’s now consider a more general example.</p>
-<section id="example-infinite-wire-held-at-a-given-surface-charge-density" class="level5">
-<h5 class="anchored" data-anchor-id="example-infinite-wire-held-at-a-given-surface-charge-density">Example: Infinite wire held at a given surface charge density</h5>
-</section>
 <section id="example-grounded-infinite-wire-perpendicular-to-a-uniform-electric-field" class="level5">
 <h5 class="anchored" data-anchor-id="example-grounded-infinite-wire-perpendicular-to-a-uniform-electric-field">Example: Grounded infinite wire perpendicular to a uniform electric field</h5>
+<p>Let’s now consider the problem of an infinite, grounded wire of some thickness <span class="math inline">\(R\)</span> that’s placed perpendicular to a uniform external electric field <span class="math inline">\(\mathbf{E}_0\)</span>. We’ll suppose the wire is oriented along the <span class="math inline">\(z\)</span>-axis and the field is oriented in the direction of the positive <span class="math inline">\(x\)</span>-axis, with <span class="math inline">\(\mathbf{E}_0 = E_0 \mathbf{e}_x\)</span>.</p>
+<p>FIGURE</p>
+<p>We can thus formulate this problem in terms of the following boundary value problem, <span class="math display">\[
+\begin{align*}
+\begin{cases}
+\nabla^2 \phi(\varrho,\varphi,z) = 0 \ , \\
+\text{where} \ \phi(R,\varphi,z) = 0 \ , \\
+\phi(r,\varphi,z) \rightarrow -E_0 \varrho \cos\varphi \ \text{as} \ \varrho \rightarrow \infty \ .
+\end{cases}
+\end{align*}
+\]</span> Again, we see that this problem is clearly cylindrically symmetric since the wire is infinite and perpendicular to the field. This means the general solution for the potential can again be written in the form <span class="math display">\[
+\phi(\mathbf{x}) = a_0 + b_0 \log\varrho + \sum_{n=1}^\infty \big[(a_n \cos n\varphi + b_n \sin n\varphi)\varrho^n + (c_n \cos n\varphi + d_n \sin n\varphi)\varrho^{-n}\big] \ .
+\]</span> Requiring that <span class="math inline">\(\phi \rightarrow -E_0 \varrho \cos\varphi\)</span> as <span class="math inline">\(\varrho \rightarrow \infty\)</span> forces <span class="math inline">\(a_0 = b_0 = 0\)</span> and <span class="math inline">\(b_n = d_n = 0\)</span> for all <span class="math inline">\(n\)</span>, and <span class="math inline">\(a_n = c_n = 0\)</span> when <span class="math inline">\(n \neq 1\)</span>. When <span class="math inline">\(n=1\)</span> we must evidently have <span class="math inline">\(a_1 = -E_0\)</span> as well. This evidently leaves a solution of the form <span class="math display">\[
+\phi(\mathbf{x}) = \bigg(-E_0 \rho + \frac{c_1}{\varrho}\bigg) \cos\varphi \ .
+\]</span> Requiring now that the potential vanish on the surface of the wire forces <span class="math inline">\(c_1 = E_0 R^2\)</span>. Plugging this back in, we finally have <span class="math display">\[
+\phi(\mathbf{x}) = -E_0 \varrho \bigg(1 - \frac{R^2}{\varrho^2}\bigg) \cos\varphi \ .
+\]</span> When dealing with conductors placed in an external field, it’s good to look at the induced charge density <span class="math inline">\(\sigma\)</span> along the surface of the conductor as well. Since the surface normal is just <span class="math inline">\(\mathbf{n} = \mathbf{e}_\varrho\)</span> in this problem, we have <span class="math display">\[
+\sigma = -\frac{1}{4\pi} \frac{\partial \phi}{\partial\varrho} = \frac{E_0}{2\pi} \cos\varphi \ .
+\]</span> As we’d expect, the surface charge polarizes along the direction of the field, with positive charge concentrating in the positive <span class="math inline">\(x\)</span>-direction and the negative charge concentrating in the negative <span class="math inline">\(x\)</span>-direction.</p>
+</section>
+<section id="example-infinite-hollow-cylinder-held-at-a-given-surface-charge-density" class="level5">
+<h5 class="anchored" data-anchor-id="example-infinite-hollow-cylinder-held-at-a-given-surface-charge-density">Example: Infinite hollow cylinder held at a given surface charge density</h5>
+<p>Suppose we have an infinitely long hollow cylinder of radius <span class="math inline">\(R\)</span> whose surface is held at some surface charge density <span class="math inline">\(\sigma(\varphi)\)</span>. We’re interested in the behavior of the potential inside and outside the cylinder.</p>
+<p>FIGURE</p>
+<p>Recall that we can relate the surface density to the potential via its normal derivative, with <span class="math inline">\(\frac{\partial \phi}{\partial n} = -4\pi \sigma\)</span>. Since the surface normal to the cylinder is <span class="math inline">\(\mathbf{n} = \pm \mathbf{e}_\varrho\)</span> depending on whether we’re outside or inside the surface, we thus require that <span class="math inline">\(\frac{\partial \phi}{\partial \varrho} \big|_{\varrho=R} = \mp 4\pi \sigma(\varphi)\)</span>. We’ll also require that the potential not blow up at any finite position or at infinity.</p>
+<p>This means we end up with a mixed boundary value problem to solve of the form <span class="math display">\[
+\begin{align*}
+\begin{cases}
+\nabla^2 \phi(\varrho,\varphi,z) = 0 \ , \\
+\text{where} \ \frac{\partial \phi}{\partial \varrho} \big|_{\varrho=R} = \mp 4\pi \sigma(\varphi) \ , \\
+|\phi| &lt; \infty \ \text{for all} \ 0 \leq \varrho \leq \infty \ .
+\end{cases}
+\end{align*}
+\]</span> Since this problem is cylindrically symmetric, we know the general solution can be written in the form <span class="math display">\[
+\phi(\mathbf{x}) = a_0 + b_0 \log\varrho + \sum_{n=1}^\infty \big[(a_n \cos n\varphi + b_n \sin n\varphi)\varrho^n + (c_n \cos n\varphi + d_n \sin n\varphi)\varrho^{-n}\big] \ .
+\]</span> Now, outside the cylinder we require the potential not blow up at infinity. This forces <span class="math inline">\(b_0 = a_n = b_n = 0\)</span> outside the wire, giving <span class="math display">\[
+\phi_+(\mathbf{x}) = a_0^+ + \sum_{n=1}^\infty (c_n^+ \cos n\varphi + d_n^+ \sin n\varphi)\varrho^{-n} \quad , \quad \varrho \geq R \ .
+\]</span> Meanwhile, inside the cylinder we require that the potential not blow up when <span class="math inline">\(\varrho \leq R\)</span>. This forces <span class="math inline">\(b_0 = c_n = d_n = 0\)</span>, giving <span class="math display">\[
+\phi_-(\mathbf{x}) = a_0^- + \sum_{n=1}^\infty (a_n^- \cos n\varphi + b_n^- \sin n\varphi)\varrho^n \quad , \quad \varrho \leq R \ .
+\]</span> We now need to match these two solutions together at the boundary surface <span class="math inline">\(\varrho = R\)</span>. Along this surface we require that these two solutions match and that the difference in normal derivatives be proportional to <span class="math inline">\(\sigma(\varphi)\)</span>. The first condition requires that <span class="math display">\[
+\begin{align*}
+0 &amp;= \phi_+(R,\varphi,z) - \phi_-(R,\varphi,z) \\
+&amp;= (a_0^+ - a_0^-) + \sum_{n=1}^\infty \bigg[(c_n^+ \cos n\varphi + d_n^+ \sin n\varphi) R^{-n} - (a_n^- \cos n\varphi + b_n^- \sin n\varphi) R^n \bigg] \\
+&amp;= (a_0^+ - a_0^-) + \sum_{n=1}^\infty R^n \bigg[(c_n^+ R^{-2n} - a_n^-) \cos n\varphi + (d_n^+ R^{-2n} - b_n^-) \sin n\varphi \bigg] \ .
+\end{align*}
+\]</span> The only way this can hold is if each term in parentheses vanishes, with <span class="math inline">\(a_0^+ = a_0^-\)</span>, <span class="math inline">\(a_n^- = c_n^+ R^{-2n}\)</span>, and <span class="math inline">\(b_n^- = d_n^+ R^{-2n}\)</span>.</p>
+<p>The second condition requires that <span class="math display">\[
+\begin{align*}
+\sigma(\varphi) &amp;= -\frac{1}{4\pi} \bigg[\frac{\partial \phi_+}{\partial \varrho} - \frac{\partial \phi_-}{\partial \varrho}\bigg]_{\varrho=R} \\
+&amp;= -\frac{1}{4\pi} \sum_{n=1}^\infty \bigg[-n(c_n^+ \cos n\varphi + d_n^+ \sin n\varphi)R^{-(n+1)} - n(a_n^- \cos n\varphi + b_n^- \sin n\varphi)R^{n-1} \bigg] \\
+&amp;= \frac{1}{4\pi} \sum_{n=1}^\infty n R^{n-1} \bigg[(c_n^+ R^{-2n} + a_n^-) \cos n\varphi + (d_n^+ R^{-2n} + b_n^-) \sin n\varphi \bigg] \ .
+\end{align*}
+\]</span> Once we have a specific form for <span class="math inline">\(\sigma(\varphi)\)</span> we can proceed to match coefficients on the left and right hand sides and determine the coefficients. As an example, suppose <span class="math inline">\(\sigma(\varphi) = k \sin m\varphi\)</span> for some integer <span class="math inline">\(m\)</span> and parameter <span class="math inline">\(k\)</span>. This means for all <span class="math inline">\(n \neq m\)</span> each term must vanish, with <span class="math inline">\(a_n^- = -c_n^+ R^{-2n}\)</span> for all <span class="math inline">\(n\)</span>, <span class="math inline">\(b_n^- = -d_n^+ R^{-2n}\)</span> for <span class="math inline">\(n \neq m\)</span>, and <span class="math inline">\(d_m^+ R^{-2m} + b_m^- = k\)</span> when <span class="math inline">\(n=m\)</span>.</p>
+<p>Matching these two sets of conditions together, we evidently require that <span class="math inline">\(a_n^- = b_n^- = c_n^+ = d_n^+ = 0\)</span> when <span class="math inline">\(n \neq m\)</span>, and <span class="math display">\[
+b_m^- = \frac{2\pi k}{m R^{m-1}} \quad , \quad d_m^+ = \frac{2\pi k}{m} R^{m+1} \ .
+\]</span> The coefficients <span class="math inline">\(a_0^+ = a_0^-\)</span> are immaterial to this problem and can freely be set to zero. Plugging these coefficients in then gives the final potential for this particular choice of <span class="math inline">\(\sigma(\varphi)\)</span>, <span class="math display">\[
+\phi(\mathbf{x}) = \begin{cases}
+\frac{2\pi k R}{m} \big(\frac{\varrho}{R}\big)^m \sin m\varphi &amp; \varrho \leq R \ , \\
+\frac{2\pi k R}{m} \big(\frac{R}{\varrho}\big)^m \sin m\varphi &amp; \varrho \geq R \ .
+\end{cases} \ .
+\]</span> Notice that this potential evidently has a discontinuous first derivative at the surface of the cylinder. This is consistent with our observation that the electric field is discontinuous when crossing a surface of charge.</p>
+</section>
+<section id="example-behavior-of-electric-fields-around-corners-and-edges-of-conductors" class="level5">
+<h5 class="anchored" data-anchor-id="example-behavior-of-electric-fields-around-corners-and-edges-of-conductors">Example: Behavior of electric fields around corners and edges of conductors</h5>
+<p>Let’s now consider a problem that will help us understand some physics better. We want to ask ourselves how the potential and electric field behave near sharp corners and edges of conducting objects. We can model this behavior by studying the following relatively simple problem.</p>
+<p>Suppose we have two infinite conducting sheets that intersect at some angle <span class="math inline">\(0 \leq \beta \leq 2\pi\)</span> in the <span class="math inline">\(xy\)</span>-plane. We’ll suppose that both of the sheets are held at some constant potential <span class="math inline">\(V\)</span> on their surfaces. Since the sheets are infinite along the <span class="math inline">\(z\)</span>-direction, we can treat this as a cylindrically symmetric problem and focus only on the behavior of the potential <span class="math inline">\(\phi(\varrho,\varphi)\)</span> in the <span class="math inline">\(xy\)</span>-plane.</p>
+<p>Consider then the following boundary value problem, <span class="math display">\[
+\begin{align*}
+\begin{cases}
+\nabla^2 \phi(\varrho,\varphi,z) = 0 \ , \\
+\text{where} \ \phi(\varrho,0,z) = V \ , \\
+\phi(\varrho,\beta,z) = V \ .
+\end{cases}
+\end{align*}
+\]</span> Note that we require <span class="math inline">\(0 \leq \varphi \leq \beta\)</span>. This means <span class="math inline">\(n\)</span> will no longer be an integer, but instead <span class="math inline">\(n = \frac{k\pi}{\beta}\)</span> for some integer <span class="math inline">\(k\)</span>. Replacing <span class="math inline">\(n\)</span> by this expression in the general formula for the potential, we thus have <span class="math display">\[
+\phi(\mathbf{x}) = a_0 + b_0 \log\varrho + \sum_{k=1}^\infty \bigg[\bigg(a_k \cos \frac{k\pi\varphi}{\beta} + b_k \sin \frac{k\pi\varphi}{\beta}\bigg) \varrho^{k\pi / \beta} + \bigg(c_k \cos \frac{k\pi\varphi}{\beta} + d_k \sin \frac{k\pi\varphi}{\beta}\bigg) \varrho^{-k\pi / \beta}\bigg] \ .
+\]</span> We’re interested in studying the behavior of this potential as <span class="math inline">\(\varrho \rightarrow 0\)</span>. To keep the potential from blowing up we thus require that <span class="math inline">\(b_0 = c_k = d_k = 0\)</span>. Requiring that <span class="math inline">\(\phi = V\)</span> when <span class="math inline">\(\varphi = 0,\beta\)</span> also forces <span class="math inline">\(a_0 = V\)</span> and all <span class="math inline">\(b_k = 0\)</span>. We’re thus left with the potential <span class="math display">\[
+\phi(\mathbf{x}) = V + \sum_{k=1}^\infty b_k \varrho^{k\pi / \beta} \sin \frac{k\pi\varphi}{\beta} \ .
+\]</span> Now, as <span class="math inline">\(\varrho \rightarrow 0\)</span> only the <span class="math inline">\(k=1\)</span> term dominates in the sum, meaning near the corner <span class="math inline">\(\varrho = 0\)</span> we have <span class="math display">\[
+\phi(\mathbf{x}) \approx V + b_1 \varrho^{\pi / \beta} \sin \frac{\pi\varphi}{\beta} \ .
+\]</span> This means near the corner the electric field is evidently given by <span class="math display">\[
+\mathbf{E}(\mathbf{x}) \approx -\frac{\pi b_1}{\beta} \varrho^{\pi / \beta-1} \bigg(\sin \frac{\pi\varphi}{\beta}\mathbf{e}_\varrho + \cos \frac{\pi\varphi}{\beta} \mathbf{e}_\varphi\bigg) \ .
+\]</span> The surface charge density near the corner is evidently then proportional to the field strength near the corner, with <span class="math display">\[
+\sigma \approx \frac{|\mathbf{E}(\varrho,0)|}{4\pi} \approx -\frac{b_1}{4\beta} \varrho^{\pi / \beta-1} \ .
+\]</span> Evidently, both the field strength and the density near the corner vary as <span class="math inline">\(\varrho^{\pi / \beta-1}\)</span>. Evidently, the strength of the field and the charge density near the corner will depend explicitly on the corner’s angle <span class="math inline">\(\beta\)</span>. In the figure below, we show this relation for different values of <span class="math inline">\(\beta\)</span>.</p>
+<p>FIGURE</p>
+<p>Notice when <span class="math inline">\(\beta = \pi\)</span> we recover the case of a flat conducting plane, where the electric field is constant and the charge is uniformly distributed along the surface. When <span class="math inline">\(\beta &lt; \pi\)</span> the charge density and field go to zero near the corner, but grow rapidly as we move away from the corner. Meanwhile, when <span class="math inline">\(\beta &gt; \pi\)</span> the corner becomes an edge, where the charge density and field become infinitely large at the edge before rapidly falling off away from the edge.</p>
+<p>The same qualitative behaviors turn out to hold true for 3-dimensional surfaces as well. This is the reason why lightening rods work. The high concentration of charges near the edge of the rod creates a large electric field, which will draw lightening from the air when electric breakdown takes place. Electric breakdown typically occurs when clouds create electric field strengths higher than about <span class="math inline">\(E \sim 250 \ \frac{\text{kV}}{\text{cm}}\)</span>. When this happens, a closed circuit effectively gets created between the charged clouds and the ground, which causes the charge to move from clouds to the ground, where the lightening rod will attract much of the charge.</p>
 </section>
 </section>
 <section id="general-potentials-1" class="level4">
@@ -970,7 +1092,7 @@ E(\varrho) = -\frac{d\phi}{d\varrho} = -\frac{b_0}{\varrho} \equiv \frac{2\lambd
 \frac{d^2 Z}{dz^2} &amp;= k^2 Z(z) \ .
 \end{align*}
 \]</span> The second equation is easy enough to solve. Its solutions are just exponentials, with <span class="math display">\[
-Z(z) = c_1 e^{kz} + c_2 e^{-kz} \ .
+Z(z) = A e^{kz} + B e^{-kz} \ .
 \]</span> To deal with the first equation we separate variables again by assuming a trial solution of the form <span class="math display">\[
 F(\varrho,\varphi) = R(\varrho) \Phi(\varphi) \ .
 \]</span> Then multiplying both sides of the equation by <span class="math inline">\(\varrho^2\)</span>, dividing by <span class="math inline">\(F = R\Phi\)</span>, and rearranging terms, we get <span class="math display">\[
@@ -980,23 +1102,74 @@ F(\varrho,\varphi) = R(\varrho) \Phi(\varphi) \ .
 \frac{1}{\varrho} \frac{d}{d\varrho} \bigg(\varrho \frac{dR}{d\varrho} \bigg) + k^2 \varrho^2 R(\varrho)  &amp;= n^2 R(\varrho) \ , \\
 \frac{d^2 \Phi}{d^2\varphi} &amp;= -n^2 \Phi(\varphi) \ .
 \end{align*}
-\]</span> The second equation just gives the same solution found in the cylindrically symmetric case. Requiring that <span class="math inline">\(\Phi(\varphi)\)</span> be periodic forces <span class="math inline">\(n\)</span> be an integer. In terms of sines and cosines we get an orthonormal set of Fourier functions whose superposition can be written as a Fourier series to yield the general solution, <span class="math display">\[
-\Phi(\varphi) = \frac{a_0}{2} + \sum_{n=1}^\infty \big(a_n \cos n\varphi + b_n \sin n\varphi\big) \ .
-\]</span> To deal with the first equation, we’ll expand out the derivative and move everything to one side to write <span class="math display">\[
+\]</span> The second equation just gives the same solution found in the cylindrically symmetric case. Requiring that <span class="math inline">\(\Phi(\varphi)\)</span> be periodic on the interval <span class="math inline">\(0 \leq \varphi \leq 2\pi\)</span> forces <span class="math inline">\(n\)</span> be an integer. For each integer <span class="math inline">\(n\)</span> we get a solution in terms of sines and cosines of the form <span class="math display">\[
+\Phi_n(\varphi) = a_n \cos n\varphi + b_n \sin n\varphi \ .
+\]</span> Since these Fourier functions form a complete set of orthogonal functions, we can get the general solution <span class="math inline">\(\Phi(\varphi)\)</span> by expanding in terms of these basis functions <span class="math inline">\(\Phi_n(\varphi)\)</span> to get a Fourier series solution.</p>
+<p>To deal with the first equation, we’ll expand out the derivative and move everything to one side to write <span class="math display">\[
 \varrho^2\frac{d^2R}{d\varrho^2} + \varrho \frac{dR}{d\varrho} + \big(k^2 \varrho^2 - n^2\big) R(\varrho) = 0 \ .
-\]</span> From the appendix, we recognize this equation as <em>Bessel’s equation</em>. Its solutions are <span class="math inline">\(J_n(k\varrho)\)</span> and <span class="math inline">\(Y_n(k\varrho)\)</span>, which are the integer Bessel functions of the first and second kind respectively. For each <span class="math inline">\(n\)</span>, we have a solution of the form <span class="math display">\[
-R_n(\varrho) = c_n J_n(k\varrho) + d_n Y_n(k\varrho) \ .
-\]</span> In cylindrical problems we typically require that the potential vanish on the sides of a cylinder, or at infinity.</p>
-<p>In the first case, if we have a cylinder of radius <span class="math inline">\(a\)</span>, the requirement that the potential vanish at <span class="math inline">\(\varrho=a\)</span> forces <span class="math inline">\(R(a)=0\)</span>. The only way that can be true is if each <span class="math inline">\(k\)</span> satisfies <span class="math inline">\(k_{nm} = \frac{x_{nm}}{a}\)</span> for some <span class="math inline">\(m\)</span>, where <span class="math inline">\(x_{nm}\)</span> is the <span class="math inline">\(m\)</span><sup>th</sup> root of the Bessel function <span class="math inline">\(J_n(x)\)</span>. The set of functions <span class="math inline">\(J_n(k_{nm}\varrho)\)</span> forms a complete set of orthogonal functions on the interval <span class="math inline">\(0 \leq \varrho \leq a\)</span>, hence we can use the principle of superposition to write the general solution for each <span class="math inline">\(R_n(\varrho)\)</span> as <span class="math display">\[
-R_n(\varrho) = \sum_{m=1}^\infty c_{nm} J_n(k_{nm}\varrho) + d_{nm} Y_n(k_{nm}\varrho) \ .
-\]</span> Combining this with the other two solutions and absorbing constants together, we can write the general solution for the potential that’s forced to vanish on the sides of the cylinder as <span class="math display">\[
-\phi(\mathbf{x}) = c_{00} + \sum_{n=1}^\infty \sum_{m=1}^\infty e^{-k_{nm}z} \big[c_{nm} J_n(k_{nm}\varrho) \cos n\pi + d_{nm} Y_n(k_{nm}\varrho) \sin n\pi \big] \ .
-\]</span></p>
+\]</span> It’s conventional to write this equation slightly differently by letting <span class="math inline">\(x = k\varrho\)</span>. Plugging this in, we get <span class="math display">\[
+x^2\frac{d^2R}{dx^2} + x \frac{dR}{dx} + \big(x^2 - n^2\big) R(x) = 0 \ .
+\]</span> From the appendix, we recognize this differential equation as <em>Bessel’s equation</em>. Its solutions are given by a superposition of Bessel functions of the first and second kind, denoted <span class="math inline">\(J_n(x)\)</span> and <span class="math inline">\(Y_n(x)\)</span> respectively, <span class="math display">\[
+R_n(x) = c_n J_n(x) + d_n Y_n(x) \ .
+\]</span> Recall that Bessel functions can be qualitatively thought of as decaying oscillating functions. This means they’ll both have infinitely many roots, which we’ll call <span class="math inline">\(x_{nm}\)</span>, where <span class="math inline">\(m\)</span> is another integer characterizing the <span class="math inline">\(m\)</span><sup>th</sup> root of <span class="math inline">\(J_n(x)\)</span>. Note that by definition both <span class="math inline">\(J_n(x)\)</span> and <span class="math inline">\(Y_n(x)\)</span> will share the same roots for a given fixed <span class="math inline">\(n\)</span>.</p>
+<p>As written, solutions of this form don’t form a complete set of orthogonal functions, but for each <span class="math inline">\(n\)</span> we can find such a set by letting <span class="math inline">\(k\)</span> be proportional to the roots <span class="math inline">\(x_{nm}\)</span>. Indeed, if we let <span class="math inline">\(k_{nm} = \frac{x_{nm}}{a}\)</span> for some characteristic length <span class="math inline">\(a\)</span>, then for each <span class="math inline">\(n\)</span>, the set of functions <span class="math inline">\(J_n(k_{nm} \varrho)\)</span> and <span class="math inline">\(Y_n(k_{nm} \varrho)\)</span> will form a complete set of orthogonal functions on the interval <span class="math inline">\(0 \leq \varrho \leq a\)</span>. We can then express each radial solution <span class="math inline">\(R_n(\varrho)\)</span> as a superposition of these basis functions <span class="math inline">\(R_{nm}(\varrho)\)</span> defined by <span class="math display">\[
+R_{nm}(\varrho) = c_n J_n(k_{nm}\varrho) + d_n Y_n(k_{nm} \varrho) \ .
+\]</span> To proceed further we need to know the specific boundary conditions for the given problem to stitch together the general solution. Let’s suppose we have a cylinder of radius <span class="math inline">\(R\)</span> and height <span class="math inline">\(h\)</span>. Suppose the bottom and side of the cylinder are grounded, and the top of the cylinder is held at some known potential <span class="math inline">\(V(\varrho,\varphi)\)</span>.</p>
+<p>FIGURE</p>
+<p>This then gives a boundary value problem of the form <span class="math display">\[
+\begin{align*}
+\begin{cases}
+\nabla^2 \phi(\varrho,\varphi,z) = 0 \ , \\
+\text{where} \ \phi(\varrho,\varphi,h) = V(\varrho,\varphi) \ , \\
+\phi(\varrho,\varphi,0) = 0 \ , \\
+\phi(R,\varphi,z) = 0 \ , \\
+|\phi(\mathbf{x})| &lt; \infty \ \text{as} \ |\mathbf{x}| \rightarrow \infty \ .
+\end{cases}
+\end{align*}
+\]</span> Suppose first we’re inside the cylinder, so <span class="math inline">\(0 \leq \varrho \leq R\)</span> and <span class="math inline">\(0 \leq z \leq h\)</span>. We can express the radial solution as a superposition of Bessel functions of the form <span class="math display">\[
+R_{nm}(\varrho) = c_{nm} J_n(k_{nm}\varrho) + d_{nm} Y_n(k_{nm} \varrho) \ ,
+\]</span> where requiring <span class="math inline">\(k_{nm} = \frac{x_{nm}}{R}\)</span> will forces this solution to vanish at the sides of the cylinder where <span class="math inline">\(\varrho = R\)</span>. Since <span class="math inline">\(Y_n(k_{nm} \varrho)\)</span> blows up at the origin, requiring that the potential not blow up at the origin will force each <span class="math inline">\(d_{nm} = 0\)</span>.</p>
+<p>Along the <span class="math inline">\(z\)</span>-direction, it’s easy to see that imposing the boundary condition <span class="math inline">\(Z(0) = 0\)</span> will yield a family of general solutions parametrized by <span class="math inline">\(k_{nm}\)</span> of the form <span class="math display">\[
+Z_{nm}(z) = \sinh k_{nm} z \ .
+\]</span> The general solution for <span class="math inline">\(\Phi_n(\varphi)\)</span> is unaffected by the boundary conditions. Multiplying the three solutions together will then yield an infinite set of basis potentials of the form <span class="math display">\[
+\phi_{nm}(\varrho,\varphi,z) = J_n(k_{nm}\varrho) \big[a_{nm} \cos n\varphi + b_{nm} \sin n\varphi\big] \sinh k_{nm} z \ .
+\]</span> These basis potentials still don’t satisfy the final boundary condition that <span class="math inline">\(\phi(\varrho,\varphi,h) = V(\varrho,\varphi)\)</span>. This means we need to use the principle of superposition to consider a more general class of solutions of the form <span class="math display">\[
+\phi(\varrho,\varphi,z) = \sum_{n=0}^\infty \sum_{m=1}^\infty J_n(k_{nm}\varrho) \big[a_{nm} \cos n\varphi + b_{nm} \sin n\varphi\big] \sinh k_{nm} z \ .
+\]</span> If we plug the final boundary condition into the previous expression and set <span class="math inline">\(z = h\)</span>, we get <span class="math display">\[
+V(\varrho,\varphi) = \phi(\varrho,\varphi,h) = \sum_{n=0}^\infty \sum_{m=1}^\infty J_n(k_{nm}\varrho) \big[a_{nm} \cos n\varphi + b_{nm} \sin n\varphi\big] \sinh k_{nm} h \ .
+\]</span> To determine the coefficients <span class="math inline">\(a_{nm}\)</span>, we multiply both sides by <span class="math inline">\(\varrho J_{n'}(k_{n'm'}\varrho) \cos n'\varphi\)</span> and integrate over <span class="math inline">\(\varrho\)</span> and <span class="math inline">\(\varphi\)</span> inside the cylinder. On the right-hand side, we end up with <span class="math display">\[
+\sum_{n,m} \sinh k_{nm} h \int_0^R d\varrho \ \varrho J_{n'}(k_{n'm'}\varrho) J_n(k_{nm}\varrho) \int_0^{2\pi} d\varphi \ \cos n'\varphi \big[a_{nm} \cos n\varphi + b_{nm} \sin n\varphi\big] \ .
+\]</span> To deal with the first integral we appeal to the orthogonality condition of Bessel functions, which says that <span class="math display">\[
+\int_0^R d\varrho \ \varrho J_{n'}(k_{n'm'}\varrho) J_n(k_{nm}\varrho) = \frac{R^2}{2} J_{n'+1}^2(k_{n'm'} \varrho) \delta_{mm'} \ .
+\]</span> For the second integral, we use the fact that <span class="math inline">\(\cos n'\varphi\)</span> will be orthogonal to all <span class="math inline">\(\sin n\varphi\)</span>, and all <span class="math inline">\(\cos n\varphi\)</span> when <span class="math inline">\(n \neq n'\)</span> to get <span class="math display">\[
+\int_0^{2\pi} d\varphi \ \cos n'\varphi \big[a_{nm} \cos n\varphi + b_{nm} \sin n\varphi\big] = \pi a_{nm} \delta_{nn'} \ .
+\]</span> Putting these two results together, the left-hand side evidently evaluates to <span class="math display">\[
+\frac{\pi R^2}{2} J_{n'+1}^2(k_{n'm'} \varrho) a_{n'm'} \sinh k_{n'm'} h \ .
+\]</span> For the right-hand side we do the same thing to get an integral of the form <span class="math display">\[
+\int_0^R d\varrho \int_0^{2\pi} d\varphi \ \varrho V(\varrho,\varphi) J_{n'}(k_{n'm'}\varrho) \cos n'\varphi \ .
+\]</span> This means the coefficients <span class="math inline">\(a_{nm}\)</span> will be given by the formula <span class="math display">\[
+a_{nm} = \frac{2}{\pi R^2 J_{n+1}^2(k_{nm} \varrho)} \frac{1}{\sinh k_{nm} h} \int_0^R d\varrho \int_0^{2\pi} d\varphi \ \varrho V(\varrho,\varphi) J_{n}(k_{nm}\varrho) \cos n\varphi \ .
+\]</span> Note that this is strictly speaking only true when <span class="math inline">\(n \neq 0\)</span>. When <span class="math inline">\(n = 0\)</span> we need to also divide by <span class="math inline">\(2\)</span>, since in that case no cosine terms appear in the <span class="math inline">\(\varphi\)</span> integral, which will cause it to give <span class="math inline">\(2\pi\)</span> instead of <span class="math inline">\(\pi\)</span>.</p>
+<p>Similarly, we can determine the coefficients <span class="math inline">\(b_{nm}\)</span> by multiplying both sides of the equation for <span class="math inline">\(\phi(\varrho,\varphi,h)\)</span> by <span class="math inline">\(\varrho J_{n'}(k_{n'm'}\varrho) \sin n'\varphi\)</span> and performing the same integrations. We end up with the same formula except with the cosine replaced by a sine, <span class="math display">\[
+b_{nm} = \frac{2}{\pi R^2 J_{n+1}^2(k_{nm} \varrho)} \frac{1}{\sinh k_{nm} h} \int_0^R d\varrho \int_0^{2\pi} d\varphi \ \varrho V(\varrho,\varphi) J_{n}(k_{nm}\varrho) \sin n\varphi \ .
+\]</span> Once these coefficients are determined we have the general solution for the potential that solves this BVP.</p>
+<p>In some cases, we might be interested in a problem where there is no cylindrical surface present. In that case we want to send <span class="math inline">\(R \rightarrow \infty\)</span> and <span class="math inline">\(z \rightarrow \infty\)</span>. It turns out in this case that the radial solution <span class="math inline">\(R(\varrho)\)</span> will now need to be expressed as an integral over all <span class="math inline">\(k\)</span>. Such an integral is called a <em>Hankel transform</em>. In that case we’d instead express the general solution for the potential in this problem as a sum over <span class="math inline">\(n\)</span> and an integral over <span class="math inline">\(k\)</span>. Sending <span class="math inline">\(z \rightarrow \infty\)</span> as well makes the <span class="math inline">\(\sinh\)</span> function goes away, giving <span class="math display">\[
+\phi(\varrho,\varphi,z) = \sum_{n=0}^\infty \int_0^\infty dk \ J_n(k\varrho) \big[a_n(k) \cos n\varphi + b_n(k) \sin n\varphi\big] \ .
+\]</span> The boundary condition relation would then be expressed by the integral <span class="math display">\[
+V(\varrho,\varphi) = \sum_{n=0}^\infty \int_0^\infty dk \ J_n(k\varrho) \big[a_n(k) \cos n\varphi + b_n(k) \sin n\varphi\big] \ .
+\]</span> Other than that, we’d proceed as the same. The only difference is that we now have a continuum of coefficients to obtain for both <span class="math inline">\(a_n(k)\)</span> and <span class="math inline">\(b_n(k)\)</span>. We can use similar techniques as above, except that the orthogonality relation will result in the Kronecker delta <span class="math inline">\(\delta_{mm'}\)</span> being replaced by a Dirac delta function <span class="math inline">\(\delta(k-k')\)</span>.</p>
 <ul>
-<li>This last bit is sloppy. Be more careful.</li>
+<li>Fill this in more, since you’ll use it in the next example.</li>
+<li>Add a section on Hankel transforms to the appendix, and expand on the Fourier transform there (and above perhaps).</li>
+</ul>
+<section id="example-conducting-plane-with-a-circular-hole" class="level5">
+<h5 class="anchored" data-anchor-id="example-conducting-plane-with-a-circular-hole">Example: Conducting plane with a circular hole</h5>
+<ul>
+<li>See Jackson.</li>
 </ul>
 
 
+</section>
 </section>
 </section>
 </section>
@@ -1418,8 +1591,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../electrodynamics/multipole-expansion.html" class="pagination-link" aria-label="Advanced Methods III">
-        <span class="nav-page-text"><span class="chapter-title">Advanced Methods III</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../electrodynamics/bvps-3.html" class="pagination-link" aria-label="Boundary Value Problems III">
+        <span class="nav-page-text"><span class="chapter-title">Boundary Value Problems III</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
