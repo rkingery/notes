@@ -27,11 +27,11 @@ Moreover, the potential $\phi(x,y)$ and the stream function $\psi(x,y)$ must eac
 $$
 \nabla^2 \phi(x,y) = 0 \quad , \quad \nabla^2 \psi(x,y) = 0 \ .
 $$
-Since the stream function is the harmonic conjugate of the potential, we can express it in terms of the potential directly by
+Since the stream function is the harmonic conjugate of the potential, we can express it formally as a function of the potential by
 $$
 \psi(x,y) = -\int dx \ \frac{\partial \phi}{\partial y} + \int dy \ \frac{\partial \phi}{\partial x} \ .
 $$
-This means the stream function is completely determined by the potential, up to additive constants.
+Indeed, this relationship follows directly from the Cauchy-Riemann equations. This means that the stream function is completely determined by the potential, up to additive constants.
 
 We also know that the level curves of $\phi(x,y)$, i.e. the equipotentials, must be perpendicular to the level curves of $\psi(x,y)$ in this region, or equivalently $\nabla \phi \cdot \nabla \psi = 0$. This lets us assign meaning to the stream function. The level curves of the stream function represent the direction of flow of electric field lines. To see why this is true, observe we can take the gradient of $\psi(x,y)$ and express it directly in terms of the electric field $\mathbf{E} = -\nabla \phi$ using the Cauchy-Riemann equations. We have
 $$
@@ -52,6 +52,62 @@ $$
 -\bigg(\frac{dF}{dz}\bigg)^* = E_x + i E_y \ .
 $$
 This is just the complex equivalent of the statement that the electric field is the negative gradient of the potential.
+
+##### Example: Complex potential of an infinite uniformly charged wire
+
+Consider again an infinitely long wire of uniform charge line density $\lambda$ oriented along the $z$-axis. We know the electric field is given in cylindrical coordinates by
+$$
+\mathbf{E}(\mathbf{x}) = \frac{2\lambda}{\varrho} \mathbf{e}_\varrho \ ,
+$$
+which implies that the potential is
+$$
+\phi(\mathbf{x}) = -2\lambda \log\varrho \ .
+$$
+We'd like to find the complex potential $F(z)$ for this wire in the $xy$-plane. We can then write the ordinary potential in the form
+$$
+\phi(x,y) = -\lambda \log(x^2 + y^2) \ .
+$$
+Away from the wire, the potential must satisfy Laplace's equation $\nabla^2 \phi(x,y) = 0$. The associated stream function $\psi(x,y)$ can most easily be found by applying the Cauchy-Riemann equations to $\phi(x,y)$. We have
+$$
+\begin{align*}
+\frac{\partial \psi}{\partial y} &= \frac{\partial \phi}{\partial x} = -2\lambda \frac{x}{x^2 + y^2} \ , \\
+\frac{\partial \psi}{\partial x} &= -\frac{\partial \phi}{\partial y} = 2\lambda \frac{y}{x^2 + y^2} \ .
+\end{align*}
+$$
+Integrating both sides of these equations, we then get
+$$
+\begin{align*}
+\psi(x,y) &= -2\lambda \int dy \ \frac{x}{x^2 + y^2} = -2\lambda \tan^{-1} \frac{y}{x} + c_1(x)  \ , \\
+\psi(x,y) &= 2\lambda \int dx \ \frac{y}{x^2 + y^2} = 2\lambda \tan^{-1} \frac{x}{y} + c_2(y)  \ .
+\end{align*}
+$$
+Now, observe that we can use a trig identity to write
+$$
+\tan^{-1} \frac{x}{y} = \frac{\pi}{2} - \tan^{-1} \frac{y}{x} \ .
+$$
+This means we must have
+$$
+\psi(x,y) = -2\lambda \tan^{-1} \frac{y}{x} + c_1(x) = 2\lambda \bigg(\frac{\pi}{2} - \tan^{-1} \frac{y}{x}\bigg) + c_2(y) \ .
+$$
+For these equations to be consistent, we require that $c_1(x)$ and $c_2(y)$ both be constant, with $c_1 = \pi\lambda + c_2$. Any choice of constants will work so long as this equation is satisfied. We'll choose $c_1=0$, so that the stream function can be written
+$$
+\psi(x,y) = -2\lambda \tan^{-1} \frac{y}{x} \ .
+$$
+This means the complex potential is then
+$$
+F(z) = \phi(x,y) + i \psi(x,y) = -\lambda \log(x^2 + y^2) - i \ 2\lambda \tan^{-1} \frac{y}{x} \ .
+$$
+We can rewrite this as an explicit function of $z = x+iy$ by observing that in polar coordinates we have
+$$
+\log z = \log |z| e^{i\varphi} = \log(|z|) + i \varphi = \frac{1}{2} \log(x^2 + y^2) + i \tan^{-1} \frac{y}{x} \ .
+$$
+Plugging this into the complex potential and simplifying, we finally get
+$$
+F(z) = -2 \lambda \log z \ .
+$$
+Surprisingly, the complex potential looks almost identical to the ordinary potential, except with $\varrho$ replaced by $z$.
+
+It's worth mentioning another interesting fact. Notice that in calculating the complex potential for the wire that we're only looking at the projection of the wire onto the $xy$-plane. Since the wire is oriented along the $z$-axis, its projection must be a point charge. This means that the complex potential of a point charge in two dimensions is exactly the same as the complex potential of an infinitely long wire. Indeed, the 2-dimensional Green's function for a point charge $q$ at the origin is $G(\mathbf{x}) = -2 \log \varrho$, which means its potential is $\phi(\mathbf{x}) = -2q \log\varrho$. If we thus set $q = \lambda$ then the two potentials are evidently identical.
 
 ### Conformal Mappings
 
@@ -97,13 +153,105 @@ The results of the previous section mean that, given some conformal mapping, we 
 
 Of course, the challenging part is finding a conformal mapping $w = T(z)$ that simplifies the given problem. There's an art to this, involving looking at the geometry of the original problem and using that to identify a good transformation that makes the problem easier to solve in a new space. This is best shown by example.
 
-Let's start with a BVP we've already seen before so we can see that the method of conformal mappings gives the same answer for the potential as other methods do. 
+Let's start with a relatively simple BVP that we can solve using methods we've already covered.
 
+##### Example: Long hollow cylinder held at two different potentials
 
+Suppose an infinitely long hollow cylinder of radius $R$ is such that exactly half of the circular cross-section of the cylinder is held at a constant potential $V$, while the other half is grounded. We'll assume each half of the cylinder is separated by a very thin insulating sheet. We'll assume that no other source charges are present inside our outside the cylinder. We're interested in finding the potential at each point inside of the cylinder.
+
+FIGURE (show cylinder with given potentials)
+
+Inside the cylinder the potential must satisfy Laplace's equation. We'll formulate this problem as a BVP of the form
+$$
+\begin{align*}
+\begin{cases}
+\nabla^2 \phi(x,y) = 0 \ , \\
+\text{where} \ \phi(x,y) = 0 \ \text{when} \ x^2+y^2 = R^2 \ \text{and} \ x > 0  \ , \\
+\text{and} \ \phi(x,y) = V \ \text{when} \ x^2+y^2 = R^2 \ \text{and} \ x < 0 \ .
+\end{cases}
+\end{align*}
+$$
+We'll solve this problem two different ways to show that the results agree, first using separation of variables, and second using conformal mappings.
+
+First, recall from the previous chapter that any BVP with cylindrical symmetry, as this problem does, has a solution of the form
+$$
+\phi(\varrho,\varphi) = a_0 + b_0 \log\varrho + \sum_{n=1}^\infty \big[(a_n \cos n\varphi + b_n \sin n\varphi)\varrho^n + (c_n \cos n\varphi + d_n \sin n\varphi)\varrho^{-n}\big] \ .
+$$
+For the potential to stay finite inside the cylinder we require that $b_0 = c_n = d_n = 0$. What remains then is a Fourier series,
+$$
+\phi(\varrho,\varphi) = a_0 + \sum_{n=1}^\infty (c_n \cos n\varphi + d_n \sin n\varphi)\varrho^{-n} \ .
+$$
+The coefficients can be found using standard Fourier series methods. By applying the boundary conditions, one can show that $a_0 =V/2$, $a_n=0$ for all $n$, and $b_n=0$ for all even $n$, while for odd $n$ we have
+$$
+b_n = -\frac{2V}{n\pi R^n} \quad , \quad n=1,3,5,\cdots \ .
+$$
+Plugging these in, we get
+$$
+\phi(\varrho,\varphi) = \frac{V}{2} - \frac{2V}{\pi} \sum_{n=1,3,5,\cdots} \bigg(\frac{\varrho}{R}\bigg)^n \frac{\sin n\varphi}{n} \ .
+$$
+It turns out this solution can also be written in closed form by using the Taylor expansion of the arctangent function. We get
+$$
+\phi(\varrho,\varphi) = \frac{V}{2} - \frac{V}{\pi} \tan^{-1} \frac{2R\varrho \sin\varphi}{R^2 - \varrho^2} \ .
+$$
+Let's now show that we get the same result using conformal mappings. Since the problem is cylindrically symmetric, we know that the solution must only depend on $x$ and $y$. Suppose then that we seek a potential $\phi(x,y)$, where $x$ and $y$ are the real and imaginary components of a complex variable $z$. Our goal is to find a conformal mapping $w = T(z)$ that makes $\phi(u,v)$ especially easy to write down in the $w$-plane. To that end, consider the following conformal mapping,
+$$
+w = -i \frac{z-R}{z+R} \ .
+$$
+By writing $w = u(x,y) + iv(x,y)$ and simplifying this expression, it's not hard to show that
+$$
+u = \frac{2Ry}{(x+R)^2 + y^2} \quad , \quad v = \frac{R^2 - x^2 - y^2}{(x+R)^2 + y^2} \ .
+$$
+To see why this is a useful conformal mapping to consider, let's look at how the boundary cylinder transforms under the transformation. In the $z$-plane, the boundary cylinder can be parametrized by $z(\varphi) = R e^{i\varphi}$, where $-\pi \leq \varphi \leq \pi$. Under the transformation $w=T(z)$, the cylinder transforms to a curve in the $w$-plane of the form
+$$
+w(\varphi) = -i \frac{z(\varphi)-R}{z(\varphi)+R} = -i \frac{R e^{i\varphi}-R}{R e^{i\varphi}+R} = -i \frac{e^{i\varphi}-1}{e^{i\varphi}+1} \ .
+$$
+By multiplying the numerator and denominator by $(e^{i\varphi}+1)^* = e^{-i\varphi}+1$ and simplifying, it's not hard to show that
+$$
+w(\varphi) = \frac{\sin\varphi}{1 + \cos\varphi} = \tan \frac{\varphi}{2} \ .
+$$
+This means the cylinder transforms to the curve $u(\varphi) = \tan \varphi / 2$ and $v(\varphi) = 0$ in the $w$-plane. Clearly this is just the real axis in the $w$-plane. When $-\pi < \varphi < 0$ the curve runs from $u=-\infty$ to $u=0$, and when $0 < \varphi < \pi$ the curve runs from $u=0$ to $u=\infty$. What we've managed to do with this conformal mapping is transform the surface of the cylinder in the $z$-plane into the $u$-axis in the $w$-plane. Moreover, the interior of the cylinder in the $z$-plane gets mapped to the upper half of the $w$-plane.
+
+What about the boundary conditions? If $\phi(x,y) = 0$ on the cylinder when $x > 0$, under the conformal mapping we must have $\phi(u,0) = 0$ when $u > 0$. Similarly, if $\phi(x,y) = V$ on the cylinder when $x < 0$, we must have $\phi(u,0) = V$ when $u < 0$. The points $x = \pm R$ in the $z$-plane where these two parts of the cylinder joint both map to $w = 0$. In the figure below we show a visualization of this mapping, including the boundary conditions.
+
+FIGURE (show this conformal mapping with BCs included)
+
+We now have a BVP in the $w$-plane. We demand a potential $\phi(u,v)$ that satisfies the conditions
+$$
+\begin{align*}
+\begin{cases}
+\nabla^2 \phi(u,v) = 0 \ , \\
+\text{where} \ \phi(u,0) = 0 \ \text{when} \ u > 0 \ , \\
+\text{and} \ \phi(u,0) = V \ \text{when} \ u < 0 \ .
+\end{cases}
+\end{align*}
+$$
+So how do we find such a potential? The trick is to find a function $\phi(w) = \phi(u,v)$ that's analytic in the upper half-plane while also satisfying the boundary conditions. If the function is analytic we know it must satisfy Laplace's equation, and if it satisfies the boundary conditions we know it must be the unique solution. To that end let's try to guess a solution. Consider the function
+$$
+\phi(w) = \frac{V}{\pi} \text{Arg} \ w \ ,
+$$
+where $\text{Arg} \ w$ is the phase of $w$, or equivalently the angle of the point $w = u+iv$ in the $w$-plane relative to the positive $u$-axis. First, notice that $\phi(w)$ satisfies the boundary conditions, since $\text{Arg} \ w = 0$ along the positive $u$-axis and $\text{Arg} \ w = \pi$ along the negative $u$-axis. Moreover, the function is analytic in the upper half plane $v > 0$ since $f(w) = \text{Arg} \ w$ is analytic when $v > 0$. This guarantees that $\phi(w) = \phi(u,v)$ satisfies Laplace's equation in the upper half plane. By the uniqueness theorem then, this must be the unique solution that solves the given BVP in the $w$-plane.
+
+We now need only transform back to the $z$-plane to get the original potential $\phi(x,y)$ we seek. To do this we need to express the phase $\text{Arg} \ w$ as a function of $x$ and $y$. Since the phase of a product is the sum of their phases, we have
+$$
+\text{Arg} \ w = \text{Arg} \bigg(-i \frac{z-R}{z+R}\bigg) = \text{Arg} \ i - \text{Arg} \ \frac{z-R}{z+R} \ .
+$$
+Now, $\text{Arg} \ i = \pi/2$, and the phase of the second term is just the arctangent of its imaginary part divided by its real part, which turns out to be given by
+$$
+\text{Arg} \ \frac{z-R}{z+R} = \tan^{-1} \frac{2yR}{R^2 - x^2 - y^2} \ .
+$$
+Plugging this back into the potential, we have
+$$
+\phi(x,y) = \frac{V}{\pi} \bigg[\frac{\pi}{2} - \tan^{-1} \frac{2yR}{R^2 - x^2 - y^2}\bigg] \ .
+$$
+Or, expressed in cylindrical coordinates, we have
+$$
+\phi(\varrho,\varphi) = \frac{V}{2} - \frac{V}{\pi} \tan^{-1} \frac{2R \varrho\sin\varphi}{R^2 - \varrho^2} \ .
+$$
+This is of course exactly the result we found above using separation of variables. It's fair to ask if the use of complex methods made this problem any easier than just using separation of variables. In one sense, we replaced the need to solve a PDE with the algebra of complex variables. But in another sense we needed to be a lot more clever. For complex methods to be useful we need to be able to guess a conformal mapping that simplifies the problem. In this case we were able to do that, but it's not always so obvious how to even find such a mapping. There are, however, problems that are much harder to solve using other methods where complex methods happen to be quite helpful. We'll see an example of this next.
 
 ##### Example: 
 
-
+- Work capacitor example or something just as complex.
 
 
 
@@ -217,6 +365,8 @@ $$
 
 \end{align*}
 $$
+
+
 We now have a potential that falls off like $1/r^2$. If we define $\mathbf{p} = qd \mathbf{e}_z$, in the far field limit we can express this potential as
 $$
 \phi(\mathbf{x}) \approx \phi_1(\mathbf{x}) = \frac{\mathbf{p} \cdot \mathbf{x}}{r^3} \ ,
@@ -510,6 +660,8 @@ Y_{22}(\theta,\varphi) &= \sqrt{\frac{15}{32\pi}} \sin^2 \theta e^{2i\varphi} \\
 \end{cases} \ .
 \end{align*}
 $$
+
+
 We now want to show that the spherical multipole expansion agrees with the basic multipole expansion when $\ell=0,1,2$. Let's proceed case by case. When $\ell = 0$, we only have one term, $m=0$. The moment $q_{00}$ is evidently given by
 $$
 q_{00} = \int d^3\mathbf{x}' \ \rho(\mathbf{x}') Y_{00}^*(\theta',\varphi') = \sqrt{\frac{1}{4\pi}} q \ ,
@@ -579,159 +731,3 @@ This shows that the spherical multipole expansion agrees with the basic multipol
 
 - Rederive multipole expansion for a localized charge distribution in the presence of an external electric field
 - See: Notes, Greiner, Jackson
-
-
-
-## TMP
-
-The remaining integrals in each term depend only on the source. We call these integrals the *spherical multipole moments* $q_{\ell m}$,
-$$
-q_{\ell m} \equiv \int d^3\mathbf{x}' r'^\ell \rho(\mathbf{x}') Y_{\ell m}^*(\theta',\varphi') \ .
-$$
-Note that since $Y_{\ell,-m}(\theta,\varphi) = (-1)^m Y_{\ell,-m}^*(\theta,\varphi)$, the $q_{\ell m}$ and $q_{\ell,-m}$ moments must evidently satisfy $q_{\ell, -m} = (-1)^m q_{\ell m}^*$.
-
-If we substitute these moments into the integral, we finally get the *spherical multipole expansion* for the potential,
-$$
-\boxed{
-\phi(\mathbf{x}) = \sum_{\ell=0}^\infty \sum_{m=-\ell}^\ell \frac{4\pi}{2\ell+1} q_{\ell m}\frac{Y_{\ell m}(\theta,\varphi)}{r^{\ell+1}}
-} \ .
-$$
-Note that since the spherical harmonics are complex-valued, the potential becomes complex valued in this expansion. 
-
-
-
-To get a feel for this, let's expand out the first few terms $\ell=0,1$. We have
-$$
-\begin{align*}
-\phi(\mathbf{\mathbf{x}}) &= \frac{4\pi}{r} q_{00} Y_{oo}(\theta,\varphi) + \frac{4\pi}{3r^2}\bigg[q_{1,-1}Y_{1,-1}(\theta,\varphi) + q_{10}Y_{10}(\theta,\varphi) + q_{11}Y_{11}(\theta,\varphi) \bigg] + \cdots \\
-&= \frac{4\pi}{r} q_{00} \sqrt{\frac{1}{4\pi}} + \frac{4\pi}{3r^2}\bigg[q_{1,-1}\sqrt{\frac{3}{8\pi}} \sin\theta e^{-i\varphi} + q_{10}\sqrt{\frac{3}{4\pi}} \cos\theta - q_{11}\sqrt{\frac{3}{8\pi}} \sin\theta e^{i\varphi} \bigg] + \cdots \\
-&= \frac{\sqrt{4\pi} q_{00}}{r} + \sqrt{\frac{4\pi}{3}} \frac{1}{r^2} \bigg[\frac{q_{1,-1}}{2} \sin\theta e^{-i\varphi} + q_{10} \cos\theta - \frac{q_{11}}{2} \sin\theta e^{i\varphi} \bigg] + \cdots \ .
-\end{align*}
-$$
-
-
-- Read Jackson, Griffiths, Greiner before coming back to this. Feel like I'm flapping in the wind here.
-
-
-$$
-q_{00} = \sqrt{\frac{1}{4\pi}} \int d^3\mathbf{x}' \rho(\mathbf{x}') = \sqrt{\frac{1}{4\pi}} Q \ .
-$$
-
-$$
-\begin{cases}
-q_{1,-1} &= \sqrt{\frac{3}{8\pi}} \int d^3\mathbf{x}' r' \rho(\mathbf{x}') \sin\theta' e^{i\varphi'} \\
-q_{10} & = \sqrt{\frac{3}{4\pi}} \int d^3\mathbf{x}' r' \rho(\mathbf{x}') \cos\theta' \\
-q_{11} &= -\sqrt{\frac{3}{8\pi}} \int d^3\mathbf{x}' r' \rho(\mathbf{x}') \sin\theta' e^{-i\varphi'} \\
-\end{cases}
-$$
-
-
-
-
-
-
-$$
-\begin{align*}
-Y_{00}(\theta,\varphi) &= \sqrt{\frac{1}{4\pi}} \ , \quad
-
-\begin{cases}
-Y_{1,-1}(\theta,\varphi) &= \sqrt{\frac{3}{8\pi}} \sin\theta e^{-i\varphi} \\
-Y_{10}(\theta,\varphi)& = \sqrt{\frac{3}{4\pi}} \cos\theta \\
-Y_{11}(\theta,\varphi) &= -\sqrt{\frac{3}{8\pi}} \sin\theta e^{i\varphi} \\
-\end{cases} \ , \quad
-
-\begin{cases}
-Y_{2,-2}(\theta,\varphi) &= \sqrt{\frac{15}{32\pi}} \sin^2 \theta e^{-2i\varphi} \\
-Y_{2,-1}(\theta,\varphi) &= \sqrt{\frac{15}{8\pi}} \sin\theta \cos\theta e^{-i\varphi} \\
-Y_{20}(\theta,\varphi) &= \sqrt{\frac{5}{16\pi}} (3\cos^2 \theta - 1) \\
-Y_{21}(\theta,\varphi) &= -\sqrt{\frac{15}{8\pi}} \sin\theta \cos\theta e^{i\varphi} \\
-Y_{22}(\theta,\varphi) &= \sqrt{\frac{15}{32\pi}} \sin^2 \theta e^{2i\varphi} \\
-\end{cases} \ .
-\end{align*}
-$$
-
-
-
-
-- Work out this in detail on paper first, especially the octupole term
-- Consider doing as Jackson does and derive the spherical version first. Seems more natural, and avoids all the tensor stuff.
-
-
-
-
-
-Of course, each $P_\ell(\cos\alpha)$ depends on the angle $\alpha$, which depends on both $\mathbf{x}$ and $\mathbf{x}'$ as
-$$
-\cos\alpha = \frac{\mathbf{x} \cdot \mathbf{x}'}{rr'} \ .
-$$
-This means we don't yet have a clean expansion of the Green's function in powers of $\frac{1}{r}$ yet. To rectify this issue let's for now focus instead on the first few terms in the series. For the first few polynomials we can write them out in index notation as
-
-- $n=0$: $P_0(\cos\alpha) = 1$,
-- $n = 1$: $P_1(\cos\alpha) = \cos\alpha = \frac{x_i x_i'}{rr'}$,
-- $n = 2$: $P_2(\cos\alpha) = \frac{1}{2} (3\cos^2\alpha - 1) = \frac{1}{2} \big(3\frac{(x_i x_i') (x_j x_j')}{r^2r'^2} - 1\big)$,
-
-- $n = 3$: $P_3(\cos\alpha) = \frac{1}{2} (5\cos^3\alpha - 3\cos\alpha) = \frac{1}{2} \big(5\frac{(x_i x_i') (x_j x_j') (x_k x_k')}{r^3 r'^3} - 3\frac{x_i x_i'}{rr'}\big)$.
-
-As always, any repeated index in a term is assumed to be summed over. If we plug these back into the Green's function, we get
-$$
-\begin{align*}
-G(\mathbf{x} - \mathbf{x}') &= \frac{1}{r} + \frac{x_i x_i'}{rr'} \frac{r'}{r^2} + \frac{1}{2} \bigg(\frac{3(x_i x_i') (x_j x_j')}{r^2r'^2} - 1\bigg) \frac{r'^2}{r^3} + \frac{1}{2} \bigg(5\frac{(x_i x_i') (x_j x_j') (x_k x_k')}{r^3 r'^3} - 3\frac{x_i x_i'}{rr'}\bigg) \frac{r'^3}{r^4} + \cdots \\
-&= \frac{1}{r} + \frac{x_i}{r^3} x_i' + \frac{x_i x_j}{2r^5} \bigg(3x_i'x_j'- \delta_{ij}\bigg) + 
-\frac{x_ix_jx_k}{2r^7} \bigg(5x_i'x_j'x_k' - 3r'^2  \frac{x_i x_i'}{r^5}\bigg) \frac{r'^3}{r^4}
-\end{align*}
-$$
-
-
-
-
-But what we really want is an expansion of the potential $\phi(\mathbf{x})$. If we plug this Green's function expansion into the integral formula for the potential given above, we can write
-$$
-\phi(\mathbf{x}) = \sum_{\ell=0}^\infty \frac{1}{r^{\ell+1}} \int d^3\mathbf{x}' \ \rho(\mathbf{x}') P_\ell(\cos\alpha) r'^\ell \ .
-$$
-Let's now expand this sum out into the first few terms. We have
-$$
-\phi(\mathbf{x}) = \frac{\int d^3\mathbf{x}' \rho(\mathbf{x}')}{r} + \frac{\int d^3\mathbf{x}' \rho(\mathbf{x}') r' \cos\alpha}{r^2} + \frac{\int d^3\mathbf{x}' \rho(\mathbf{x}') r'^2 (3\cos^2\alpha - 1)}{2r^3} + \cdots \ .
-$$
-The numerator in the first term depends only on $\mathbf{x}'$. In fact it's just the total charge $Q$ of the charge distribution,
-$$
-Q \equiv \int d^3\mathbf{x}' \rho(\mathbf{x}') \ .
-$$
-The numerator in the second term depends on $r' \cos \alpha$, which depends on both $\mathbf{x}$ and $\mathbf{x}'$. We can re-express this term as
-$$
-r' \cos\alpha = \frac{\mathbf{x} \cdot \mathbf{x}'}{r} \ .
-$$
-Plugging this in and pulling the $\mathbf{x}'$-independent terms out of the integral, we get
-$$
-\int d^3\mathbf{x}' \ \rho(\mathbf{x}') r' \cos\alpha = \frac{\mathbf{x}}{r} \cdot \bigg(\int d^3\mathbf{x}' \ \rho(\mathbf{x}') \mathbf{x}'\bigg) \ .
-$$
-Evidently then, the second term in the expansion depends on the source only via the vector integral
-$$
-\mathbf{p} \equiv \int d^3\mathbf{x}' \ \rho(\mathbf{x}') \mathbf{x}' \ .
-$$
-The numerator in the third term depends now on $r'^2 \cos^2\alpha$. We can rewrite this part of the integrand as
-$$
-r'^2 (3\cos^2\alpha - 1) = 3\bigg(\frac{\mathbf{x} \cdot \mathbf{x}'}{r}\bigg)^2 - r'^2 = \frac{x_i x_j}{r^2} x_i' x_j' - r'^2 \ .
-$$
-Plugging this in and pulling the $\mathbf{x}'$-independent terms out of the integral, we get
-$$
-\int d^3\mathbf{x}' \ \rho(\mathbf{x}') r'^2 (3\cos^2\alpha - 1) = \frac{x_i}{r} \cdot \bigg(\int d^3\mathbf{x}' \ \rho(\mathbf{x}') (3 x_i' x_j' - \delta_{ij}) \bigg) \cdot \frac{x_j}{r} \ .
-$$
-
-
-
-
-
-
-Now, since each Legendre polynomial $P_\ell(\cos\alpha)$ is a polynomial of degree $\ell$, the highest-degree term in each polynomial will be
-$$
-\begin{align*}
-\cos^\ell \alpha &= \bigg(\frac{\mathbf{x} \cdot \mathbf{x}'}{r'r}\bigg)^\ell \\
-&= \frac{1}{(r'r)^\ell} (x_{i_1} x_{i_1}') (x_{i_2} x_{i_2}') \cdots (x_{i_\ell} x_{i_\ell}') \\
-&= \frac{x_{i_1} x_{i_2} \cdots x_{i_\ell}}{r^\ell} \frac{x_{i_1}' x_{i_2}' \cdots x_{i_\ell}'}{r'^\ell} \ .
-\end{align*}
-$$
-Each term can be thought of as a rank-$n$ outer product of vectors $\mathbf{x}$ and $\mathbf{x}'$ respectively. We'll pull out the first term and write the potential in the form
-$$
-\phi(\mathbf{x}) = \sum_{\ell=0}^\infty \frac{x_{i_1} x_{i_2} \cdots x_{i_\ell}}{r^{2\ell+1}} \int d^3\mathbf{x}' \rho(\mathbf{x}') P_\ell(\cos\alpha) r'^\ell \ .
-$$
-
