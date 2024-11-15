@@ -247,7 +247,7 @@ This again follows immediately from the Cauchy-Riemann equations. Indeed, we hav
 $$
 \nabla u \cdot \nabla v = \frac{\partial u}{\partial x} \frac{\partial v}{\partial x} + \frac{\partial u}{\partial y} \frac{\partial v}{\partial y} = \frac{\partial v}{\partial y} \frac{\partial v}{\partial x} - \frac{\partial v}{\partial x} \frac{\partial v}{\partial y} = 0 \ .
 $$
-The Cauchy-Riemann conditions imply something else as well. Given a harmonic function $u(x,y)$, we can determine the function $v(x,y)$, called the *harmonic conjugate* of $u(x,y)$, that makes $f(z) = u(x,y) + i v(x,y)$ analytic, up to constants. To see why this is true, we can write the total differential of $v(x,y)$ in the form
+The Cauchy-Riemann conditions imply something else as well. Given a harmonic function $u(x,y)$, we can determine the function $v(x,y)$, called the *harmonic conjugate* of $u(x,y)$, that makes $f(z) = u(x,y) + i v(x,y)$ analytic, up an to an additive constant. To see why this is true, we can write the total differential of $v(x,y)$ in the form
 $$
 dv = \frac{\partial v}{\partial x} dx + \frac{\partial v}{\partial y} dy \ .
 $$
@@ -255,31 +255,36 @@ If we now use the Cauchy-Riemann conditions and integrate both sides, we get
 $$
 v(x,y) = -\int dx \ \frac{\partial u}{\partial y} + \int dy \ \frac{\partial u}{\partial x} \ .
 $$
-Thus, up to additive constants, we've completely determined the form of $v(x,y)$ from the derivatives of $u(x,y)$.
+Thus, we've completely determined the form of $v(x,y)$ from the derivatives of $u(x,y)$, up to an additive constant.
 
-As an example, consider the function
+As an example of finding a harmonic conjugate, consider the function
 $$
-u(x,y) = y^3 - 3x^3 y \ .
+u(x,y) = y^3 - 3x^2 y \ .
 $$
 It's easy to check that $\nabla^2 u = 0$, which means $u(x,y)$ is harmonic on the $xy$-plane. To find its conjugate $v(x,y)$, we can impose the Cauchy-Riemann conditions. We have
 $$
 \begin{align*}
-\frac{\partial v}{\partial x} &= -\frac{\partial u}{\partial y} = -3y^2 - 3x^2 \ , \\
-\frac{\partial v}{\partial y} &= \frac{\partial u}{\partial x} = -6x^2 y \ .
+\frac{\partial v}{\partial x} &= -\frac{\partial u}{\partial y} = -3y^2 + 3x^2 \ , \\
+\frac{\partial v}{\partial y} &= \frac{\partial u}{\partial x} = -6xy \ .
 \end{align*}
 $$
-Then we have
+Integrating each of these derivatives must then give the same function $v(x,y)$,
 $$
 \begin{align*}
-v(x,y) &= -\int dx \ \frac{\partial u}{\partial y} + \int dy \ \frac{\partial u}{\partial x} \\
-&= \int dx \ (-3y^2 - 3x^2) + \int dy \ (-6x^2 y) \\
-&= -3xy^2 - x^3 + C \ .
+v(x,y) &= \int dx \ \frac{\partial v}{\partial x} = -3xy^2 + x^3 + c_2(y) \ , \\
+v(x,y) &= \int dy \ \frac{\partial v}{\partial y} = -3xy^2 + c_1(x) \ .
 \end{align*}
 $$
-It's again easy to check that $\nabla^2 v = 0$, so $v(x,y)$ is harmonic on the $xy$-plane. We've thus found an analytic function $f(z)$ whose real and imaginary functions are harmonic,
+We can make these equations consistent by choosing $c_1(x) = x^3$ and $c_2(y) = \text{const}$. Choosing $c_2(y) = 0$, we have
 $$
-f(z) = (y^3 - 3x^3 y) + i(-3xy^2 - x^3 + C) \ .
+v(x,y) = -3xy^2 + x^3 \ .
 $$
+It's again easy to check that $\nabla^2 v = 0$, so $v(x,y)$ is harmonic in the $xy$-plane. We've thus found an analytic function of the form
+$$
+f(z) = (y^3 - 3x^3 y) - i \ (3xy^2 + x^3) \ .
+$$
+Indeed, it's not hard to check that the function $f(z)$ we created is in fact the function $f(z) = iz^3$, which is an entire function.
+
 Evidently, the condition that a complex function be analytic is much stronger than the condition that a real function be differentiable. It implies a whole host of added properties we don't see in calculus. In the next section we'll show a few more.
 
 ## Complex Integration

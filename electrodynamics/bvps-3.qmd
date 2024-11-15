@@ -147,7 +147,7 @@ $$
 $$
 This proves that Neumann boundary conditions are preserved under a conformal mapping. By combining these results together, it's possible to show that mixed boundary conditions are also preserved under conformal mappings.
 
-### Boundary Value Problems
+### 2D Boundary Value Problems
 
 The results of the previous section mean that, given some conformal mapping, we essentially have a duality between BVPs in the $xy$-plane and BVPs in the $uv$-plane. If we can somehow find such a conformal mapping that simplifies the problem so that it's much easier to solve in the new space using any of the techniques we've covered so far, we can map it back to get the potential that solves the original BVP.
 
@@ -161,7 +161,7 @@ Suppose an infinitely long hollow cylinder of radius $R$ is such that exactly ha
 
 FIGURE (show cylinder with given potentials)
 
-Inside the cylinder the potential must satisfy Laplace's equation. We'll formulate this problem as a BVP of the form
+Inside the cylinder the potential must satisfy Laplace's equation. We'll formulate this problem as a BVP in Cartesian coordinates,
 $$
 \begin{align*}
 \begin{cases}
@@ -173,7 +173,7 @@ $$
 $$
 We'll solve this problem two different ways to show that the results agree, first using separation of variables, and second using conformal mappings.
 
-First, recall from the previous chapter that any BVP with cylindrical symmetry, as this problem does, has a solution of the form
+First, recall from the previous chapter that any BVP with cylindrical symmetry, as this problem does, has a solution in cylindrical coordinates of the form
 $$
 \phi(\varrho,\varphi) = a_0 + b_0 \log\varrho + \sum_{n=1}^\infty \big[(a_n \cos n\varphi + b_n \sin n\varphi)\varrho^n + (c_n \cos n\varphi + d_n \sin n\varphi)\varrho^{-n}\big] \ .
 $$
@@ -215,7 +215,7 @@ What about the boundary conditions? If $\phi(x,y) = 0$ on the cylinder when $x >
 
 FIGURE (show this conformal mapping with BCs included)
 
-We now have a BVP in the $w$-plane. We demand a potential $\phi(u,v)$ that satisfies the conditions
+We now have an equivalent BVP to solve in the $w$-plane,
 $$
 \begin{align*}
 \begin{cases}
@@ -225,7 +225,7 @@ $$
 \end{cases}
 \end{align*}
 $$
-So how do we find such a potential? The trick is to find a function $\phi(w) = \phi(u,v)$ that's analytic in the upper half-plane while also satisfying the boundary conditions. If the function is analytic we know it must satisfy Laplace's equation, and if it satisfies the boundary conditions we know it must be the unique solution. To that end let's try to guess a solution. Consider the function
+So how do we find such a potential? The trick is to find a function $\phi(w) = \phi(u,v)$ that's analytic in the upper half-plane while also satisfying the boundary conditions. If the function is analytic we know it must satisfy Laplace's equation, and if it satisfies the boundary conditions we know it must be the unique solution. To that end, let's try to guess a solution. Consider the function
 $$
 \phi(w) = \frac{V}{\pi} \text{Arg} \ w \ ,
 $$
@@ -585,10 +585,6 @@ $$
 
 
 
-
-
-
-
 ##### Example: Quadrupole moment of a ring of uniform charge
 
 
@@ -601,6 +597,8 @@ $$
 ## Spherical Multipole Expansion
 
 We've now studied the first few terms of the multipole expansion in depth. In practice these are often the only terms we care about when finding an approximate expansion of the potential of some given. Nevertheless, it's illuminating to find the general multipole expansion for all powers of $1/r$, not just the first few. We will do that now.
+
+### Spherical Green's Function Expansion
 
 Recall in the previous section that we wrote the Green's function in the following form,
 $$
@@ -616,27 +614,43 @@ Now, notice that this generating function looks exactly like the Green's functio
 $$
 \frac{1}{|\mathbf{x} - \mathbf{x}'|} = \frac{1}{r} \sum_{\ell=0}^\infty P_\ell(\cos\alpha) \bigg(\frac{r'}{r}\bigg)^\ell \ .
 $$
-We now want to eliminate the explicit dependent on $\cos\alpha$. We can do that by making use of the *addition theorem* of spherical harmonics. We proved in the appendix that we can expand $P_\ell(\cos\alpha)$ as a series in spherical harmonics by
+We now want to eliminate the explicit dependent on $\cos\alpha$. We can do that by making use of the *addition theorem* of spherical harmonics. We proved in the appendix that we can expand $P_\ell(\cos\alpha)$ in terms of the spherical harmonics by
 $$
 P_\ell(\cos\alpha) = \frac{4\pi}{2\ell+1} \sum_{m=-\ell}^\ell Y_{\ell m}(\theta,\varphi) Y_{\ell m}^*(\theta',\varphi') \ .
 $$
-If we plug this back into the Green's function, we finally get
+If we plug this back into the Green's function, we get
 $$
-\frac{1}{|\mathbf{x} - \mathbf{x}'|} = \sum_{\ell=0}^\infty \frac{4\pi}{2\ell+1} \frac{r'^\ell}{r^{\ell+1}} \sum_{m=-\ell}^\ell Y_{\ell m}(\theta,\varphi) Y_{\ell m}^*(\theta',\varphi') \ .
+\frac{1}{|\mathbf{x} - \mathbf{x}'|} = \frac{1}{r} \sum_{\ell=0}^\infty \frac{4\pi}{2\ell+1} \bigg(\frac{r'}{r}\bigg)^\ell \sum_{m=-\ell}^\ell Y_{\ell m}(\theta,\varphi) Y_{\ell m}^*(\theta',\varphi') \ .
 $$
 Notice that this expansion is now over two indices, $\ell$ and $m$. For each $\ell$ there will be $2\ell+1$ terms in the sum indexed by $m$.
 
-If we now plug this Green's function expansion back into the integral formula for the potential, we get
+We'll call this version of the Green's function expansion in spherical coordinates the *exterior* expansion. The exterior expansion is valid whenever $r > r'$. It's worth mentioning that this derivation in terms of the generating function is completely symmetric under an interchange of $r$ and $r'$. This means we can also get an *interior* expansion of the Green's function when $r < r'$ by
 $$
-\phi(\mathbf{x}) = \int d^3\mathbf{x}' \ \rho(\mathbf{x}') \sum_{\ell=0}^\infty \frac{4\pi}{2\ell+1} \frac{r'^\ell}{r^{\ell+1}} \sum_{m=-\ell}^\ell Y_{\ell m}(\theta,\varphi) Y_{\ell m}^*(\theta',\varphi') \ .
+\frac{1}{|\mathbf{x} - \mathbf{x}'|} = \frac{1}{r'} \sum_{\ell=0}^\infty \frac{4\pi}{2\ell+1} \bigg(\frac{r}{r'}\bigg)^\ell \sum_{m=-\ell}^\ell Y_{\ell m}(\theta,\varphi) Y_{\ell m}^*(\theta',\varphi') \ .
 $$
-Now, notice that only the term $r'^\ell Y_{\ell m}^*(\theta',\varphi')$ depend on the source points $\mathbf{x}'$. Terms of this form are called *solid harmonics*, sometimes denoted by $\mathcal{Y}_{\ell m}(r,\theta, \varphi) \equiv r^\ell Y_{\ell m}(\theta,\varphi)$. We'll thus define a quantity
+Indeed, it's common to combine these two expressions together by letting $r_< \equiv \min(r,r')$ and $r_> \equiv \max(r,r')$, and writing
+$$
+\boxed{
+\frac{1}{|\mathbf{x} - \mathbf{x}'|} = \frac{1}{r_>} \sum_{\ell=0}^\infty \frac{4\pi}{2\ell+1} \bigg(\frac{r_<}{r_>}\bigg)^\ell \sum_{m=-\ell}^\ell Y_{\ell m}(\theta,\varphi) Y_{\ell m}^*(\theta',\varphi')
+} \ .
+$$
+We won't need this more general expansion to derive the spherical multipole expansion. It's just worth being aware of, since this expansion can occasionally be used to solve various boundary value problems.
+
+### Multipole Expansion
+
+If we plug the exterior Green's function expansion back into the integral formula for the potential, we get
+$$
+\phi(\mathbf{x}) = \int d^3\mathbf{x}' \ \frac{\rho(\mathbf{x}')}{r} \sum_{\ell=0}^\infty \frac{4\pi}{2\ell+1} \bigg(\frac{r'}{r}\bigg)^\ell \sum_{m=-\ell}^\ell Y_{\ell m}(\theta,\varphi) Y_{\ell m}^*(\theta',\varphi') \ .
+$$
+Now, notice that only the term $r'^\ell Y_{\ell m}^*(\theta',\varphi')$ depend on the source points $\mathbf{x}'$. We'll thus define the quantities
 $$
 q_{\ell m} \equiv \int d^3\mathbf{x}' \ \rho(\mathbf{x}') r'^\ell Y_{\ell m}^*(\theta',\varphi') \ .
 $$
 These quantities are the only terms in the expansion that depend on the source points. They're called the *spherical multipole moments*. These moments aren't *exactly* the usual multipole moments, but they're related to them in ways we'll show shortly. At any rate, if we substitute $q_{\ell m}$ in for this integral, we can finally write
 $$
-\phi(\mathbf{x}) = \sum_{\ell=0}^\infty \frac{4\pi}{2\ell+1} \frac{1}{r^{\ell+1}} \sum_{m=-\ell}^\ell q_{\ell m} Y_{\ell m}(\theta,\varphi) \ .
+\boxed{
+\phi(\mathbf{x}) = \sum_{\ell=0}^\infty \frac{4\pi}{2\ell+1} \frac{1}{r^{\ell+1}} \sum_{m=-\ell}^\ell q_{\ell m} Y_{\ell m}(\theta,\varphi) 
+} \ .
 $$
 As written, this is the most general form of the multipole expansion. We usually call the multipole expansion in this form the *spherical multipole expansion* since it involves an expansion in spherical coordinates.
 
@@ -698,32 +712,26 @@ $$
 &= \frac{1}{r^2} \big[x p_x + y p_y + z p_z \big] \ .
 \end{align*}
 $$
-In the last step we again used the fact that $e^{\pm i\varphi} = \cos\varphi \pm i \sin\varphi$. When this is plugged in and we simplify terms, we find that the imaginary parts all vanish. The remaining real parts then contain terms that turn out to be the Cartesian coordinates $(x,y,z)$. What remains in brackets is clearly just the dot product between $\mathbf{x}$ and $\mathbf{p}$. We thus have
+In the last step we again used the fact that $e^{\pm i\varphi} = \cos\varphi \pm i \sin\varphi$. When this is plugged in and we simplify terms, we find that the imaginary parts all vanish. The remaining real parts then contain terms that turn out to be the Cartesian coordinates $(x,y,z)$. What remains in brackets is clearly just the dot product between $\mathbf{x}$ and $\mathbf{p}$. We thus end up with the usual dipole potential,
 $$
-\phi_1(\mathbf{x}) = \frac{\mathbf{p} \cdot \mathbf{x}}{r^2} \ ,
+\phi_1(\mathbf{x}) = \frac{\mathbf{p} \cdot \mathbf{x}}{r^2} \ .
 $$
-which is of course the dipole potential.
-
 Finally we'll consider the $\ell=2$ expansion terms. In this case $m=-2,-1,0,1,2$, which means there will be five terms. Using the same logic we did with the dipole term, one can show that these spherical moments can be written in the form
+
 $$
 \begin{align*}
-q_{20} &= \frac{1}{2} \sqrt{\frac{5}{4\pi}} Q_{33} \ , \\
-q_{2,\pm 1} &= \mp \frac{1}{3} \sqrt{\frac{15}{8\pi}} (Q_{13} \mp 2i Q_{23}) \ , \\
-q_{2,\pm 2} &= \frac{1}{12} \sqrt{\frac{15}{2\pi}} (Q_{11} - Q_{22} \mp 2i Q_{12}) \ ,
+q_{20} &= \frac{1}{2} \sqrt{\frac{5}{4\pi}} Q_{zz} \ , \\
+q_{2,\pm 1} &= \mp \frac{1}{3} \sqrt{\frac{15}{8\pi}} (Q_{xz} \mp 2i Q_{yz}) \ , \\
+q_{2,\pm 2} &= \frac{1}{12} \sqrt{\frac{15}{2\pi}} (Q_{xx} - Q_{yy} \mp 2i Q_{xy}) \ ,
 \end{align*}
 $$
 where each $Q_{ij}$ are the components of the usual quadrupole tensor $\mathbf{Q}$. By plugging these into the $\ell=2$ expansion term and simplifying as before, we eventually end up with the usual quadrupole potential,
 $$
 \phi_2(\mathbf{x}) = \frac{Q_{ij} x_i x_j}{2r^5} = \frac{\mathbf{x} \cdot \mathbf{Q} \cdot \mathbf{x}}{2 r^5} \ .
 $$
-This shows that the spherical multipole expansion agrees with the basic multipole expansion up to the quadrupole term.
+This shows that the spherical multipole expansion agrees with the basic multipole expansion up to $\ell=2$. One could proceed to derive higher order multipole moments and potentials from this expansion as well. For example, by expanding the $\ell=3$ terms one can derive the octupole moment and octupole potential.
 
-
-
-- Mention the interior multipole moments, where $r \ll r'$ instead of $r \gg r'$. Basically give the same moments with $r \leftrightarrow r'$.
 - If feeling judicious, maybe derive the general cartesian expansion using the irreducible representations of tensors
-
-
 
 ## Multipole Expansion in an External Field
 
