@@ -2,9 +2,80 @@
 
 Now that we've spent a considerable amount of time covering the topic of electrostatics and the basic concepts of electric fields, we will now move to the topic of magnetostatics and the concepts of magnetic fields. Magnetostatics can informally be thought of as the magnetic analogue of electrostatics. Whereas in electrostatics we were interested in the behavior of *electric fields* due to static *charges*, in magnetostatics we're interested in the behavior of *magnetic fields* due to static *currents*. We will approach this new topic in much the same way we approached electrostatics, by first defining the force between two wires of steady current, and then abstracting from that the notion of the magnetic field. We will then use the properties of the magnetic field to derive the field equations of magnetostatics, and show that these can be cast in terms of a single equation for the *vector potential*, which is the magnetic analogue of the scalar potential from electrostatics.
 
-## Ampere's Force Law
+## Magnetism
 
-Magnetism as a qualitative subject is at least as old as electricity. It was known even in ancient times that there were certain *ferromagnetic* materials which tended to align themselves with the Earth's magnetic field. Indeed, the word *magnet* derives from *Magnesia*, an area in Ancient Greece where ferromagnetic materials were found. However, a quantitative description of magnetism took longer to find than it did for electricity. This owes primarily to the fact that magnetism doesn't have a notion of *magnetic charge*. Indeed, it was discovered in the 19th century that magnetic forces were caused by *electric current*, or moving electric charge. This discovery was first observed by Oersted, who noticed that if he placed a compass in the vicinity of a current carrying wire that the needle tended to align itself in a direction perpendicular to the wire.
+Magnetism as a qualitative subject is at least as old as electricity. It was known even in ancient times that there were certain stones whose filings tended to point north. In the 16th century, Gilbert used an iron needle to create the first compass for navigation. Nowadays we call these special kinds of metals *ferromagnets*. The ferromagnets found in nature consist primarily of either iron, cobalt, or nickel. To really understand how ferromagnets work requires quantum mechanics and statistical mechanics. We will just briefly summarize their behavior. 
+
+When a ferromagnetic material is brought into the presence of a magnetic field and heated to a suitable temperature, the spins of the electrons inside the material tend on average to align themselves in the direction of the magnetic field. When the temperature is lowered again, these spins stay locked in the same direction, causing the material to become ferromagnetic. By convention, we call the direction of the aligned spins the *north pole* of the magnet, and the opposite direction the *south pole*.
+
+By analogy with electrostatics, we can think of a ferromagnet is a kind of dipole, with the north pole being analogous to the positive polarization direction of the dipole and the south pole being analogous to the negative polarization direction. As with charges, we say that two like poles repel each other and two opposite poles attract each other. The most important difference here though is that we cannot separate a ferromagnet into distinct poles. No matter how finely we chop it up, the magnet will *always* contain *both* a north pole and a south pole, since an electron always contains a spin. Indeed, this one difference is probably the most important in the difference in the properties of electricity and magnetism.
+
+Just as an electric dipole has a dipole moment $\mathbf{p}$, we'll assume that the ferromagnet has a *magnetic dipole moment*. From quantum mechanics, the magnetic dipole moment $\boldsymbol{\mu}$ of a single electron with spin $\mathbf{S}$ is given by the formula
+$$
+\boldsymbol{\mu} = \gamma \mathbf{S} \ ,
+$$
+where the proportionality constant $\gamma$ is the *gyromagnetic ratio* of an electron, about $-1.8 \cdot 10^7$ in Gaussian units. To a very good approximation, we can ignore the spin contributions from the nuclei in calculating the total dipole moment and use only the electron dipole moments. By the principle of superposition, we thus define the magnetic dipole moment $\mathbf{m}$ of the ferromagnet as the vector sum of the dipole moments $\boldsymbol{\mu}_i$ of each electron inside the material,
+$$
+\mathbf{m} \equiv \sum_i \boldsymbol{\mu}_i = \gamma \sum_i \mathbf{S}_i \ .
+$$
+By definition, the dipole moment $\mathbf{m}$ evidently points in the same direction as the sum total of all the electron spins $\mathbf{S}_i$, but in the opposite direction due to the minus sign in $\gamma$. By convention, we agree that the dipole moment points from the south pole of the magnet to the north pole of the magnet, which means the total spin evidently points in the opposite direction.
+
+With the dipole moment defined, it thus makes sense to *define* the magnetic field $\mathbf{B}(\mathbf{x})$ of a ferromagnet analogously to the electric field of an electric pure dipole,
+$$
+\mathbf{E}(\mathbf{x}) \equiv \frac{3(\mathbf{p} \cdot \mathbf{x}) \mathbf{x} - r^2 \mathbf{p}}{r^5} \quad \leftrightarrow \quad \mathbf{B}(\mathbf{x}) \equiv \frac{3(\mathbf{m} \cdot \mathbf{x}) \mathbf{x} - r^2 \mathbf{m}}{r^5} \ .
+$$
+As with the electric dipole, this is strictly speaking an abstraction. It's only when the distance between the north and south pole of the magnet is much less than the distance to the field point $\mathbf{x}$. The field lines for such a *pure* magnetic dipole must then look identical to the field lines of the pure electric dipole.
+
+FIGURE (pure dipole again)
+
+
+
+##### Example: Torque on a magnetic compass needle
+
+When a ferromagnet is placed in the vicinity of an magnetic field, it will tend to align itself in the direction of the field. In particular, this means that the ferromagnet will experience a torque due to the presence of the magnetic field. This torque $\mathbf{N}$ turns out to be given by the cross product of the magnetic dipole moment $\mathbf{m}$ with the external magnetic field $\mathbf{B}$,
+$$
+\mathbf{N} = \mathbf{m} \times \mathbf{B} \ .
+$$
+First, notice from this mechanical equation that we can immediately see something insightful: The product of dipole moment and magnetic field must have units of torque, or equivalently units of energy.
+
+Now suppose we take as the ferromagnet a small iron needle, which we place on a swivel to create a magnetic compass. Due to the torque above, the needle will rotate until its north pole is aligned with the external magnetic field.
+
+Suppose both the compass and the field each lie in the $xy$-plane, which we could take for instance to be the surface of the earth, and suppose the external field points along the positive $x$-axis, which we'll take to be north. If $\varphi$ is the counterclockwise angle between the needle and the positive $x$-axis, then we can write
+$$
+\mathbf{N} = \mathbf{m} \times \mathbf{B} = -mB \sin\varphi \mathbf{e}_z \ ,
+$$
+where $m = ||$
+
+
+
+
+
+Now, suppose we place a small iron bar magnet on a swivel and allow it to rotate in response to the external field. This is essentially how a compass works. We'll assume the external field points in the $z$-direction, with $\mathbf{B} = B \mathbf{e}_z$.
+
+We can express the torque in terms of the moment of inertia $I$ by the formula $\mathbf{N} = I \boldsymbol{\dot\omega}$, where $\boldsymbol{\omega}$ is the angular velocity vector. If we assume the external field points along the positive $z$-axis, then the needle will point radially outward, meaning $$
+
+
+$$
+I \boldsymbol{\dot\omega} = \mathbf{m} \times \mathbf{B}
+$$
+
+$$
+I \dot\omega = I \ddot\varphi = -mB \sin\varphi \quad \Longrightarrow \quad \ddot\varphi + \frac{mB}{I} \sin\varphi = 0 \ .
+$$
+
+$$
+|\varphi| \ll 1 \quad \Longrightarrow \quad \ddot\varphi \approx -\omega_0^2 \varphi \quad , \quad \omega_0^2 \equiv \frac{mB}{I}
+$$
+
+- $mB/I$ has units of $1/\text{time}^2$, which means $mB$ has units of $\text{mass} \cdot \text{length}^2 / \text{time}^2$, or units of energy
+
+
+
+## Current
+
+
+
+Indeed, it was discovered in the 19th century that magnetic forces were caused by *electric current*, or moving electric charge. This discovery was first observed by Oersted, who noticed that if he placed a compass in the vicinity of a current carrying wire that the needle tended to align itself in a direction perpendicular to the wire. This discovery linked electricity and magnetism together for the first time, enabling the two phenomena to be unified into one framework.
 
 A few years later, Ampere observed that if two parallel current carrying wires were placed near each other, they tended to attract or repel each other depending on whether the currents were aligned or anti-aligned. Moreover, Ampere observed that the force per unit length of wire is inversely proportional to the distance between the wires. More formally, suppose two parallel wires each of length $L$ are placed at some distance $r$ apart. Suppose a current of $I_1$ flows through one wire, and a current of $I_2$ flows through the second wire. Then the force strength of attraction between them is given by
 $$
@@ -13,12 +84,63 @@ $$
 where $k_m$ is a proportionality constant known as the *magnetic constant*. Its value and form depend on the choice of units used. In the Gaussian system of units, we take $k_m \equiv 1/c^2$, where $c \approx 3 \cdot 10^{10} \ \text{cm/sec}$ is the speed of light in vacuum. The appearance of the speed of light in this constant is indeed no coincidence. We'll see where it comes from in a later chapter.
 
 
+$$
+I \equiv \frac{dq}{dt} = qv
+$$
+
+$$
+\mathbf{J} = \rho \mathbf{v} = \frac{\partial q}{\partial t \partial a} \mathbf{n}
+$$
+
+$$
+\boxed{
+\frac{\partial \rho}{\partial t} + \nabla \cdot \mathbf{J} = 0 
+} \ .
+$$
+
+
+
+### Lorentz Force Law
 
 
 
 
+$$
+\mathbf{F} = \frac{\mathbf{I}}{c} \times \mathbf{B}
+$$
 
-## Magnetic Fields
+$$
+\mathbf{F} = q \frac{\mathbf{v}}{c} \times \mathbf{B}
+$$
+
+$$
+\mathbf{F} = q \bigg(\mathbf{E} + \frac{\mathbf{v}}{c} \times \mathbf{B}\bigg)
+$$
+
+$$
+\mathbf{F} = \int d^3\mathbf{x} \ \bigg(\rho(\mathbf{x})\mathbf{E}(\mathbf{x}) + \frac{\mathbf{J}(\mathbf{x})}{c} \times \mathbf{B}(\mathbf{x})\bigg)
+$$
+
+- Magnetic forces do no work, since $\mathbf{v}$ is always perpendicular to $\mathbf{B}$. Can only change direction, not kinetic energy.
+
+
+
+## Biot-Savart Law
+
+
+$$
+\mathbf{B}(\mathbf{x}) = \int d^3 \mathbf{x}' \ \frac{\mathbf{J}(\mathbf{x}') \times \mathbf{x}}{cr^3}
+$$
+
+$$
+\mathbf{B}(\mathbf{x}) = \int d\ell' \ \frac{\mathbf{I}(\mathbf{x}') \times \mathbf{x}'}{cr^3}
+$$
+
+$$
+\mathbf{B}(\mathbf{x}) = \int da' \ \frac{\mathbf{K}(\mathbf{x}') \times \mathbf{x}'}{cr^3}
+$$
+
+
 
 
 
@@ -26,12 +148,51 @@ where $k_m$ is a proportionality constant known as the *magnetic constant*. Its 
 
 
 
+
+$$
+\boxed{
+\oint \mathbf{B} \cdot d\boldsymbol{\ell} = \frac{4\pi}{c} I_{\text{enc}}
+} \ .
+$$
+
+$$
+\boxed{
+\nabla \times \mathbf{B} = \frac{4\pi}{c} \mathbf{J}
+} \ .
+$$
+
+
+
+
+
 ## Vector Potential
+
+
+$$
+\mathbf{B} = \nabla \cdot \mathbf{A}
+$$
+
+$$
+\mathbf{A}(\mathbf{x}) = \int d^3\mathbf{x}' \ \frac{\mathbf{J}(\mathbf{x}')}{|\mathbf{x} - \mathbf{x}'|}
+$$
+
+
 
 
 
 ## Multipole Expansion
 
 
+$$
+\mathbf{A}(\mathbf{x}) = \frac{\mathbf{m} \cdot \mathbf{x}}{cr^3} + \cdots
+$$
+
+
+
 
 ## Field Energy
+
+
+$$
+U = - \mathbf{m} \cdot \mathbf{B} + \cdots
+$$
