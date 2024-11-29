@@ -78,12 +78,174 @@ We can use the relations found in the previous example to determine the units of
 
 Recall in Gaussian units that the squared charge has units of energy times length. This means the magnetic field must have units of charge per length squared, or equivalently units of electric field. The magnetic dipole moment must have units of charge times length, or units of electric dipole moment. Thus, the electric and magnetic fields and dipole moments have the *same* units in the Gaussian unit system. This hints at a strong relationship between electricity and magnetism, which we'll explore shortly.
 
-In Gaussian units, the unit of magnetic field strength is called the *Gauss*, with $1 \ \text{G} = 10^{-4} \ \text{T}$, where the *Tesla* is the SI unit equivalent. To get an idea for scales, the Earth's magnetic field strength is about $0.5 \ \text{G}$. A typical refrigerator magnet has a field strength of around $10 \ \text{G}$. A very large magnet, like say an MRI machine, has a field strength of $10^4-10^5 \ \text{G}$, or $1-10 \ \text{T}$.
+In Gaussian units, the unit of magnetic field strength is called the *Gauss*, with $1 \ \text{G} = 10^{-4} \ \text{T}$, where the *Tesla* is the SI unit equivalent. To get an idea for scales, the Earth's magnetic field strength is about $0.5 \ \text{G}$. A typical refrigerator magnet has a field strength of $\sim 10 \ \text{G}$. A very large magnet, like say an MRI machine, has a field strength of $\sim 10^4 \ \text{G}$, or $\sim 1 \ \text{T}$.
 
-## Current
+## Magnetic Fields
 
-If this were all there was to magnetism we wouldn't have much more to say about the subject. However, it turns out that ferromagnets are not the only things that generate magnetic fields. It turns out electric currents also produce magnetic fields.
+If this were all there was to magnetism we wouldn't have much more to say about the subject. However, it turns out that ferromagnets are not the only things that generate magnetic fields. It turns out electric currents also produce magnetic fields. Before discussing how this phenomenon arises though we first need to discuss the concept of electric current. Once we've done that, we'll discuss the relation between current and magnetic fields, as well as the force law between them.
 
+### Current
+
+Up until now we've always assumed that charges were *static*. Now we will allow them to move around. The movement of charge is called electric *current*. We will define current as follows. Suppose we have a set of $N$ point charges $q_i$ flowing inside some volume each with velocity $\mathbf{v}_i$. Consider an infinitesimal cross section through this volume with area element $d\mathbf{a} = \mathbf{n} da$ and thickness $d\ell$.
+
+FIGURE (show above scenario)
+
+On average, the charges will move through the volume with an average velocity
+$$
+\mathbf{v} \equiv \frac{1}{N} \sum_i \mathbf{v}_i \ .
+$$
+Now, the average speed at which the charges traverse the cross section in the normal direction must evidently be $|\mathbf{v}| = d\ell / dt$, which means the total charge $dq$ passing normal to the cross sectional area $da$ in a given time $dt$ must be
+$$
+dq = d^3 \mathbf{x} \ \rho(\mathbf{x}) = da \frac{d\ell}{dt} \ \rho dt = \rho \mathbf{v} \cdot \mathbf{n} \ da \ dt \ .
+$$
+Dividing both sides by $dt$, we have
+$$
+dI \equiv \frac{dq}{dt} = \rho \mathbf{v} \cdot \mathbf{n} \ da \ .
+$$
+Integrating both sides across an entire surface $\mathcal{S}$, we finally have
+$$
+I = \int_\mathcal{S} \rho \mathbf{v} \cdot d\mathbf{a} \ .
+$$
+The scalar $I$ we call the total *current* passing through a surface $\mathcal{S}$. Since current is $I = dq/dt$, it evidently must carry units of charge per unit time. In Gaussian units, current is measured in units of emu per second. In SI units, current is measured in units of Coulombs per second, also called an *Ampere* or an *amp*. The two units are related by $1 \ \text{esu} / \text{sec} \approx 10^{-12} \ \text{A}$.
+
+Current is a measure of the movement of charge. The faster a charge moves, the higher its current. The more charge is moving, the higher the current. In practice, it turns out to be much easier to measure current in the lab than it is to measure charge. Current can be easily measured in the lab using an *amp-meter*, which measures current using Ohm's Law, an important relation between voltage and current that we'll discuss in a later chapter. Measuring charge directly is much more tricky.
+
+It's convenient and useful to define the quantity $\mathbf{J} \equiv \rho \mathbf{v}$. We call this the *current density*. The current density is the analogue of the charge density, in that its integral gives the total current. Notice that current density carries units of current per unit area. In this sense, we can also think of the current density as the *flux* of current through a given cross section of area.
+
+Above we assumed we had a set of charges moving through a volume, but we can also imagine lower dimensional settings as well, where charges are confined to move along a surface, or along a curve. In these settings we have lower-dimensional ways to define the current density, similar to how we defined the surface and line charge densities in electrostatics.
+
+In two dimensions, we can go through the same math as above. Suppose we have the same set of charges moving along some surface instead of inside some volume. We can then consider the flow of charges passing normal to some curve $\mathcal{C}$ inside this surface. If the charges have a surface density $\sigma$, then the total current normal to the curve is
+$$
+I = \int_\mathcal{C} \sigma \mathbf{v} \cdot d\boldsymbol{\ell} \ .
+$$
+As we did above, it's convenient to define another current density $\mathbf{K} \equiv \sigma \mathbf{v}$, called the *surface current density*. The surface current density evidently then has units of current per unit length.
+
+In one dimension, we can do the same thing. Suppose the same set of charges are moving along some curve. In this case we can only consider charges passing through a point along the curve. If $\lambda$ is the line density along the curve, then the total current passing through a given point is just
+$$
+I = \lambda |\mathbf{v}| \ .
+$$
+In this setting it's sometimes convenient to think of current as a *vector* by defining $\mathbf{I} \equiv \lambda \mathbf{v}$.
+
+We've thus established the following set of relations for the total current,
+$$
+I = |\mathbf{I}| = \int_\mathcal{C} \mathbf{K} \cdot d\boldsymbol{\ell} = \int_\mathcal{S} \mathbf{J} \cdot d\mathbf{a} \ .
+$$
+The choice of integral used will depend on the dimension of the charge distribution of a given problem. See the figure below for a visual of these different types of current densities.
+
+FIGURE (show current densities)
+
+
+
+- In terms of charges, $\mathbf{J} = \sum_\alpha q_\alpha \mathbf{v}_\alpha \delta(\mathbf{x} - \mathbf{x}_\alpha)$.
+
+
+
+### Conservation of Charge
+
+One very important fact about electromagnetism, indeed just as important as Maxwell's equations, is that charge is conserved. That is, the enclosed charge $Q_{\text{enc}}$ inside any closed surface can't spontaneously appear or disappear. It can only flow out through the surface in the form of some current $I_{\text{out}}$. 
+
+FIGURE (show charge and current through surface)
+
+Mathematically, conservation of charge then says that
+$$
+\frac{dQ_{\text{enc}}}{dt} = -I_{\text{out}} \ .
+$$
+However, the statement of conservation of charge is stronger than this. Not only is charged conserved *globally*. It's also conserved *locally*. That is, no matter how small a closed surface we choose, charge must be conserved in this sense. We can formulate this statement most conveniently using a *continuity equation*.
+
+To achieve this, we'll write the enclosed charge as a volume integral over a charge density $\rho(\mathbf{x},t)$ and the outward current as a surface integral over the current density $\mathbf{J}(\mathbf{x},t)$,
+$$
+Q_{\text{enc}} = \int_\mathcal{V} d^3 \mathbf{x} \ \rho(\mathbf{x},t) \quad , \quad I_{\text{out}} = \int_\mathcal{S} \mathbf{J}(\mathbf{x},t) \cdot d\mathbf{a} \ .
+$$
+As usual, we denote the closed surface by $\mathcal{S}$ and its enclosed volume by $\mathcal{V}$. Plugging these integrals into the conservation law above, we have
+$$
+\frac{d}{dt} \int_\mathcal{V} d^3 \mathbf{x} \ \rho(\mathbf{x},t) = - \int_\mathcal{S} \mathbf{J}(\mathbf{x},t) \cdot d\mathbf{a} \ .
+$$
+Now, if we assume $\mathcal{S}$ is fixed then we can pull the time derivative inside the integral on the left-hand side. Moreover, we can use the divergence on the right-hand side to express the current as a divergence. We then get
+$$
+\int_\mathcal{V} d^3 \mathbf{x} \ \frac{\partial\rho(\mathbf{x},t)}{\partial t} = - \int_\mathcal{V} d^3 \mathbf{x} \ \nabla \cdot \mathbf{J}(\mathbf{x},t) \ .
+$$
+Since the closed surface is arbitrary, the only way this integral can hold is if the integrands equal. That is, if
+$$
+\boxed{
+\frac{\partial\rho}{\partial t} + \nabla \cdot \mathbf{J} = 0
+} \ .
+$$
+This continuity equation fully encapsulates the statement that charge is both locally and globally conserved.
+
+In this chapter, we will focus specifically on distributions in which $\nabla \cdot \mathbf{J} = 0$. That is, we focus only on distributions where the current neither converges nor diverges at any point. This is called the *steady current* condition. The study of electromagnetism in the special scenario of steady current is called *magnetostatics*, the subject of this chapter.
+
+FIGURE (show steady current flow, perhaps contrasting with non-steady current flow)
+
+From the continuity equation, the steady current condition evidently implies that
+$$
+\frac{\partial\rho}{\partial t} = 0 \ .
+$$
+This implies that the charge distribution must be time-independent, with $\rho = \rho(\mathbf{x})$. This isn't to say that the charge distribution isn't moving, only that the entire distribution is moving together in unison. This is the contrast with electrostatics, where we assumed the charge distribution was completely stationary.
+
+One immediately implication of the steady current condition is that point charges must be excluded. Indeed, the density of a moving point charge is constantly changing, since $\rho(\mathbf{x},t) = q \delta(\mathbf{x} - \mathbf{v}t)$ is necessarily time-dependent. This means when enforcing the steady current condition, we *must* only consider extended distributions of charge, so that the movement of each charge cancels out the movement of the others on average. We'll come back to moving point charges later in electrodynamics.
+
+### Biot-Savart Law
+
+In the 19th century, it was discovered that electric current gives rise to magnetic fields. The first discovery in this direction was by Oersted, who noticed that if he placed a compass in the vicinity of a current carrying wire that the needle no longer pointed north. He noticed that as he moved the needle around the wire, it tended to point azimuthally to the wire, suggesting that somehow the current in the wire was altering the magnetic forces acting on the needle.
+
+A few years later, Ampere observed that if two parallel current carrying wires were placed near each other, they tended to attract or repel each other depending on whether the currents were aligned or anti-aligned. Moreover, Ampere observed that the force per unit length of wire is inversely proportional to the distance between the wires.
+
+Not long after, Biot and Savart were able to deduce a precise empirical relation between the magnetic field and the current flowing through a wire. They found that when a current was passed through a wire, a magnetic field strength was created due to the current. Mathematically, if a current $I$ flows through a wire, the magnetic field strength per unit length $L$ of wire satisfies
+
+
+$$
+\frac{B}{L} = k \frac{I}{r^2}
+$$
+
+- Be more careful here. Don't forget the angle factor $\sin\alpha$ from the cross product.
+- Here $k = 1/c$ in Gaussian units.
+- Note the B-field for a wire *should* be proportional to $I/\varrho$.
+
+
+
+
+
+$$
+\mathbf{B}(\mathbf{x}) = \frac{1}{c} \int d^3 \mathbf{x}' \ \frac{\mathbf{J}(\mathbf{x}') \times \mathbf{x}}{|\mathbf{x} - \mathbf{x}'|^3}
+$$
+
+$$
+\mathbf{B}(\mathbf{x}) = \frac{1}{c} \int d\ell' \ \frac{\mathbf{I}(\mathbf{x}') \times \mathbf{x}'}{|\mathbf{x} - \mathbf{x}'|^3}
+$$
+
+$$
+\mathbf{B}(\mathbf{x}) = \frac{1}{c} \int da' \ \frac{\mathbf{K}(\mathbf{x}') \times \mathbf{x}'}{|\mathbf{x} - \mathbf{x}'|^3}
+$$
+
+
+
+### Lorentz Force Law
+
+In the 19th century, Ampere discovered that if two parallel wires had a current pumped through each of them at the same time, the wires tended to attract or repel each other. If the two currents ran in the same direction the wires attracted each other, and if the two currents ran in the opposite direction the wires repelled each other. Moreover, he observed that this force of attraction per unit length of wire was inversely proportional to the distance between them.
+
+Let's formulate this more precisely. Suppose the first wire has a constant current $I_1$, the second wire has a constant current $I_2$, and the two wires are parallel to each other and a distance $r$ apart. Then the force per unit length $L$ of wire is given by
+$$
+\frac{F}{L} = 2 k_m \frac{I_1 I_2}{r} \ .
+$$
+The proportionality constant $k$ depends on the system of units used. In the SI and EMU systems one takes $k_m = 1$. In the Gaussian system we take $k_m \equiv 1/c^2$, where $c$ is the *speed of light* in vacuum. We'll see how $c$ comes into all this later. For now, just think of $c$ as a characteristic velocity constant inserted to insure that electric and magnetic fields carry the same units. As usual, in the rest of this chapter we'll work explicitly in Gaussian units.
+
+
+$$
+\mathbf{F} = \frac{2}{c^2} \frac{I I'}{r} L \mathbf{e}_\varrho = \frac{I}{c} \frac{2I'}{c} L \mathbf{e}_\varrho = \frac{\mathbf{I}}{c} \times \mathbf{B} \\
+\mathbf{I} = I \mathbf{e}_z \quad , \quad \mathbf{B} = \frac{2I'L}{c} \mathbf{e}_\varphi
+$$
+
+$$
+\mathbf{B} = \frac{1}{c} \int d\ell' \ \frac{\mathbf{I}' \times \mathbf{x}}{|\mathbf{x} - \mathbf{x}'|^3} = \frac{1}{c} \int dz' \ \frac{I' \mathbf{e}_z \times \mathbf{x}}{|\mathbf{x} - z'\mathbf{e}_z|^3}
+$$
+
+
+
+$$
+\mathbf{N} = \mathbf{x} \times \mathbf{F} = \mathbf{m} \times \mathbf{B} \\
+\varepsilon_{ijk} x_j F_k = \varepsilon_{\ell m n} m_m B_n \\
+\varepsilon_{ijk} x_j F_k - \varepsilon_{\ell m n} m_m B_n = 0
+$$
 
 
 
@@ -113,13 +275,11 @@ $$
 
 
 
-### Lorentz Force Law
-
 
 
 
 $$
-\mathbf{F} = \frac{\mathbf{I}}{c} \times \mathbf{B}
+d\mathbf{F} = \frac{\mathbf{I}}{c} \times \mathbf{B} dt
 $$
 
 $$
@@ -135,23 +295,6 @@ $$
 $$
 
 - Magnetic forces do no work, since $\mathbf{v}$ is always perpendicular to $\mathbf{B}$. Can only change direction, not kinetic energy.
-
-
-
-## Biot-Savart Law
-
-
-$$
-\mathbf{B}(\mathbf{x}) = \int d^3 \mathbf{x}' \ \frac{\mathbf{J}(\mathbf{x}') \times \mathbf{x}}{cr^3}
-$$
-
-$$
-\mathbf{B}(\mathbf{x}) = \int d\ell' \ \frac{\mathbf{I}(\mathbf{x}') \times \mathbf{x}'}{cr^3}
-$$
-
-$$
-\mathbf{B}(\mathbf{x}) = \int da' \ \frac{\mathbf{K}(\mathbf{x}') \times \mathbf{x}'}{cr^3}
-$$
 
 
 

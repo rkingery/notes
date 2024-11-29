@@ -111,7 +111,7 @@ In this chapter we'll only be concerned with solving Laplace's equation, where $
 
 This process will be much easier to illustrate by looking at specific problems. We'll do that first by considering Laplace's equation in Cartesian coordinates, before looking at Laplace's equation in spherical and cylindrical coordinates as well. By the end, the process of how to use separation of variables to find the general solution should hopefully be quite clear.
 
-### Laplace's Equation in Cartesian Coordinates
+### Separation of Variables in Cartesian Coordinates
 
 We'll now turn our focus to solving Laplace's equation $\nabla^2 \phi(\mathbf{x}) = 0$ using separation of variables, subject to either Dirichlet, Neumann, or mixed boundary conditions. Since the Laplacian looks different in different coordinate systems, we'll need separate variables and solve this PDE in different coordinate systems of interest, i.e. Cartesian, spherical, and cylindrical coordinates.
 
@@ -144,19 +144,17 @@ At this point it will be easiest to proceed by illustrating this technique with 
 
 FIGURE
 
-We'll assume the sheets are oriented parallel to the $xz$-plane and separated along the $y$-axis from $y=0$ to $y=L$. This means the sheet is held at constant potential $\phi = V$ at $x=0$, and at $\phi = 0$ when $y=0$ or $y=L$. We will require that the potential not blow up at infinity as well. Assuming there are no other source charges present, this means we have the following boundary value problem to solve,
+We'll assume the sheets are oriented parallel to the $xz$-plane and separated along the $y$-axis from $y=0$ to $y=L$. This means the sheet is held at constant potential $\phi = V$ at $x=0$, and at $\phi = 0$ when $y=0$ or $y=L$. We will require that the potential not blow up at infinity as well. Assuming there are no other source charges present, this means we have the following Dirichlet boundary value problem to solve,
 $$
 \begin{align*}
 \begin{cases}
 \nabla^2 \phi = 0 \ , \\
 \text{where} \ \phi(0,y) = V \ , \\
-\phi(x,0) = \phi(x,L) = 0 \ , \\
-|\phi| < \infty \ \text{for all} \ 0 \leq x \leq \infty \ .
+\phi(x,0) = \phi(x,L) = 0 \ .
 \end{cases}
 \end{align*}
 $$
-Now we can employ separation of variables. Suppose a trial solution of the form
-
+We will also require that the potential stay finite inside the boundary region. We will always assume this finiteness condition implicitly unless specified otherwise. Now we can employ separation of variables. Suppose a trial solution of the form
 $$
 \phi(x,y) = X(x) Y(y) Z(z) \ . 
 $$
@@ -268,15 +266,14 @@ We'll orient the pipe exactly like we did in the previous problem, with the leng
 
 FIGURE
 
-This means we end up with a boundary value problem to solve of the form
+This means we end up with a Dirichlet boundary value problem to solve of the form
 $$
 \begin{align*}
 \begin{cases}
 \nabla^2 \phi = 0 \ , \\
 \text{where} \ \phi(0,y,z) = V(y,z) \ , \\
 \phi(x,0,z) = \phi(x,a,z) = 0 \ , \\
-\phi(x,y,0) = \phi(x,y,b) = 0 \ , \\
-|\phi| < \infty \ \text{for all} \ 0 \leq x \leq \infty \ .
+\phi(x,y,0) = \phi(x,y,b) = 0 \ .
 \end{cases}
 \end{align*}
 $$
@@ -363,7 +360,7 @@ We'll orient the box exactly like we did in the previous problem, with the lengt
 
 FIGURE
 
-This gives us a BVP to solve of the form
+This gives us a Dirichlet BVP to solve of the form
 $$
 \begin{align*}
 \begin{cases}
@@ -371,8 +368,7 @@ $$
 \text{where} \ \phi(a,y,z) = V(y,z) \ , \\
 \phi(0,y,z) = 0 \ , \\
 \phi(x,0,z) = \phi(x,a,z) = 0 \ , \\
-\phi(x,y,0) = \phi(x,y,b) = 0 \ , \\
-|\phi| < \infty \ \text{for all} \ x,y,z \ .
+\phi(x,y,0) = \phi(x,y,b) = 0 \ .
 \end{cases}
 \end{align*}
 $$
@@ -420,7 +416,7 @@ $$
 $$
 Again, the uniqueness theorem will guarantee that once we've found this solution, it will be unique.
 
-### Laplace's Equation in Spherical Coordinates
+## Separation of Variables in Spherical Coordinates
 
 Applying separation of variables in Cartesian coordinates is pretty easy due to the fact that the Laplacian takes such a simple form. In curvilinear coordinates though it's not quite as easy, but it's still very useful to solve many interesting problems.
 
@@ -498,8 +494,6 @@ $$
 $$
 The coefficients $a_\ell$ and $b_\ell$ can then be found by imposing the remaining boundary condition. Once these are found, we've found the unique general solution for the potential in spherical coordinates that satisfy all the boundary conditions.
 
-Notice that as written, this solution will always blow up at either the origin or infinity unless we force one of these sets of constants to be zero. In practice, when faced with a spherical boundary value problem, what we'll do is write down the solution separately inside and outside the surface and match them together along the boundary. Inside the surface we'll want to set $b_\ell = 0$ to prevent the potential from blowing up at $r=0$, while outside the surface we'll often want to set $a_\ell = 0$ to prevent the potential from blowing up at infinity.
-
 To see that this solution makes sense, let's consider the special case where the potential is spherically symmetric, with $\phi = \phi(r)$. Then all but the $\ell=0$ terms vanish, and since $P_0(\cos\theta) = 1$ by definition, we end up with
 $$
 \phi(r) = a_0 + \frac{b_0}{r} \ .
@@ -512,13 +506,12 @@ Suppose we have a hollow sphere of radius $R$ with a fixed potential $V(\theta)$
 
 FIGURE
 
-The boundary value problem we seek to solve is evidently
+The Dirichlet boundary value problem we seek to solve is evidently
 $$
 \begin{align*}
 \begin{cases}
 \nabla^2 \phi(r,\theta,\varphi) = 0 \ , \\
-\text{where} \ \phi(R,\theta,\varphi) = V(\theta) \ , \\
-|\phi| < \infty \ \text{for all} \ 0 \leq r \leq R \ .
+\text{where} \ \phi(R,\theta,\varphi) = V(\theta) \ .
 \end{cases}
 \end{align*}
 $$
@@ -580,13 +573,12 @@ By the uniqueness theorem, we can guarantee this will be the unique general solu
 
 ##### Example: Potential outside a hollow sphere held at a given potential
 
-Let's now consider again the previous problem, but suppose we're not interested in the potential *outside* the hollow sphere. We now require that the potential not blow up at infinity, giving a BVP of the form
+Let's now consider again the previous problem, but suppose we're not interested in the potential *outside* the hollow sphere. We now require that the potential not blow up at infinity, giving a Dirichlet BVP of the form
 $$
 \begin{align*}
 \begin{cases}
 \nabla^2 \phi(r,\theta,\varphi) = 0 \ , \\
-\text{where} \ \phi(R,\theta,\varphi) = V(\theta) \\
-|\phi| < \infty \ \text{for all} \ R \leq r \leq \infty \ .
+\text{where} \ \phi(R,\theta,\varphi) = V(\theta) \ .
 \end{cases}
 \end{align*}
 $$
@@ -629,14 +621,13 @@ FIGURE
 
 We showed before with great effort that we could represent the potential as a series of odd-degree Legendre polynomials. Now we'll provide a much easier way to arrive at the same result using separation of variables.
 
-We can also solve this problem using separation of variables. We formulate this setup as a boundary value problem as follows.
+We can also solve this problem using separation of variables. We thus have the following Dirichlet boundary value problem.
 $$
 \begin{align*}
 \begin{cases}
 \nabla^2 \phi(r,\theta,\varphi) = 0 \ , \\
 \text{where} \ \phi(R,\theta,\varphi) = V \ \text{when} \ 0 \leq \theta < \frac{\pi}{2} \ , \\
- \phi(R,\theta,\varphi) = -V \ \text{when} \ \frac{\pi}{2} < \theta \leq \pi \ , \\
-|\phi| < \infty \ \text{for all} \ 0 \leq r \leq \infty \ .
+ \phi(R,\theta,\varphi) = -V \ \text{when} \ \frac{\pi}{2} < \theta \leq \pi \ .
 \end{cases}
 \end{align*}
 $$
@@ -688,15 +679,14 @@ As expected, the potential outside the sphere goes to zero at infinity, satisfyi
 
 ##### Example: Potential of a hollow sphere with an azimuthally symmetric surface charge distribution
 
-Since we've neglected Neumann boundary value problems in this chapter, let's consider an example where the potential on the surface of a sphere isn't known, but instead its surface charge density is known. Suppose we have a hollow sphere of radius $R$, and on this sphere we have a surface charge density of the form $\sigma' = k \cos\theta$, where $k$ is some constant.
+Since we've neglected Neumann boundary value problems so far in this chapter, let's consider an example where the potential on the surface of a sphere isn't known, but instead its surface charge density is known. Suppose we have a hollow sphere of radius $R$, and on this sphere we have a surface charge density of the form $\sigma' = k \cos\theta$, where $k$ is some constant.
 
-We'd like to find the potential due to this charged sphere both inside and outside the sphere. We can use the fact that the normal derivative is $\partial \phi / \partial n' = -4\pi \sigma'$ on the surface of the sphere to express this as a BVP of the form
+We'd like to find the potential due to this charged sphere both inside and outside the sphere. We can use the fact that the normal derivative is $\partial \phi / \partial n' = -4\pi \sigma'$ on the surface of the sphere to express this as a Neumann BVP of the form
 $$
 \begin{align*}
 \begin{cases}
 \nabla^2 \phi(r,\theta,\varphi) = 0 \ , \\
-\text{where} \ \partial \phi / \partial r' \big|_{r'=R} = -4\pi k\cos\theta \ , \\
-|\phi| < \infty \ \text{for all} \ r \geq 0 \ .
+\text{where} \ \partial \phi / \partial r' \big|_{r'=R} = -4\pi k\cos\theta \ .
 \end{cases}
 \end{align*}
 $$
@@ -740,7 +730,7 @@ By the uniqueness theorem, this is the only potential that satisfies the boundar
 
 Let's revisit another problem we solved previously with the method of images, that of a solid conducting sphere of radius $R$  in the presence of a constant external electric field $\mathbf{E}_0$. Recall that we solved this problem previously by modeling the external field with two opposite point charges located far away from the sphere, and placed two image charges inside the sphere that fit the boundary conditions on the sphere. We'll now show that we can solve this same problem using separation of variables as well.
 
-Modeling this as a boundary value problem with $\mathbf{E}_0 = E_0 \mathbf{e}_z$ oriented along the $z$-axis, we write
+Modeling this as a Dirichlet boundary value problem with $\mathbf{E}_0 = E_0 \mathbf{e}_z$ oriented along the $z$-axis, we write
 $$
 \begin{align*}
 \begin{cases}
@@ -779,6 +769,50 @@ $$
 \sigma = -\frac{1}{4\pi} \frac{\partial \phi}{\partial r} \bigg|_{r=R} = \frac{E_0}{\pi} \cos\theta \ .
 $$
 Notice that charge density is evidently the most positive near $\theta = 0$ and the most negative near $\theta = \pi$. This indicates that positive charge is building up in the direction of the external field, while negative charge is building up opposite to the direction of the field, which is of course what we'd expect physically in this situation.
+
+---
+
+Before moving onto the more general non-azimuthally symmetric case we'll mention one more useful property of azimuthally symmetric potentials that can often be useful for solving BVPs. In this case, we know the potential must have the general form
+$$
+\phi(\mathbf{x}) = \sum_{\ell=0}^\infty \big(a_\ell r^\ell + b_\ell r^{-(\ell+1)}\big) P_\ell(\cos\theta) \ .
+$$
+Now, let's look at the special case where the field point $\mathbf{x}$ lies on the positive $z$-axis, so that $\mathbf{x} = z \mathbf{e}_z$. Along this axis we must have $\theta = 0$ in spherical coordinates, hence $r=z$. We also know that $P_\ell(1) = 1$ for all $\ell$. This means along this axis we must have
+$$
+\phi(z) = \sum_{\ell=0}^\infty \big(a_\ell z^\ell + b_\ell z^{-(\ell+1)}\big) \ .
+$$
+This tells us something interesting. Provided we can find the potential $\phi(z)$ along the positive $z$-axis, a much simpler case usually for azimuthally symmetric potentials, then we can immediately obtain the general solution as well by following the procedure above in reverse. We first find $\phi(z)$ and expand it in powers of $z$. Then, we set $r=z$ and multiply each term by its corresponding Legendre polynomial $P_\ell(\cos\theta)$.
+
+This trick provides an expedient way to obtain the general solution to many interesting BVPs. Let's see a quick example of this.
+
+##### Example: Potential of a ring of uniform charge
+
+Suppose we have a planar circular ring of radius $a$ containing a uniform charge line density $\lambda$. We'll suppose the ring is centered at the origin and oriented in the $xy$-plane. This means the problem will be azimuthally symmetric. 
+
+FIGURE (show ring of charge)
+
+Now, suppose we're interested in the potential at each $r > a$ outside the ring. To solve this problem we'll first try to find $\phi(z)$. We can do this any way we like. For this problem it's most convenient to use the integral formula directly. Since the ring is one-dimensional, we'll use the integral formula
+$$
+\phi(z) = \int d\ell \ \frac{\lambda(\mathbf{x}')}{|z \mathbf{e}_z - \mathbf{x}'|} \ .
+$$
+Since the ring has constant line charge density $\lambda$, we can pull it outside the integral. Since all charges lie on a ring of radius $a$, we can write $d\ell = a d\varphi$ and $|z\mathbf{e}_z - \mathbf{x}'| = \sqrt{a^2 + z^2}$. Since the integrand becomes independent of the integration variable $\varphi$, we get
+$$
+\phi(z) = a \lambda \int_0^{2\pi} \frac{d\varphi}{\sqrt{a^2 + z^2}} = \frac{2\pi a^2 \lambda}{\sqrt{a^2 + z^2}}  \ .
+$$
+This is the exact solution for the potential along the positive $z$-axis. To get the general solution we first need to expand $\phi(z)$. Since we're only interested in field points where $r > a$, we need only do an expansion in integer powers of $a/r$. This can easily be done by taking the binomial expansion of $(a^2 + z^2)^{-1/2}$, in which case we get
+$$
+\phi(z) = 2\pi a^2 \lambda \bigg[\frac{1}{z} - \frac{1}{2} \frac{a^2}{z^3} + \frac{3}{8} \frac{a^4}{z^5} - \frac{5}{16} \frac{a^6}{z^7} + \cdots \bigg] \ .
+$$
+Finally, we set $r=z$ and multiply each $1/r^{\ell+1}$ term by its Legendre polynomial $P_\ell(\cos\theta)$ to get the general solution,
+$$
+\phi(\mathbf{x}) = 2\pi a^2 \lambda \bigg[\frac{1}{r} - \frac{1}{2} \frac{a^2}{r^3} P_2(\cos\theta) + \frac{3}{8} \frac{a^4}{r^5} P_4(\cos\theta) - \frac{5}{16} \frac{a^6}{r^7} P_6(\cos\theta) + \cdots \bigg]  \ .
+$$
+Notice that $q = 2\pi a^2 \lambda$ is just the total charge of the ring. This means the first expansion term is just $q/r$. This is exactly what we expect, since very far away from the ring it should behave like a point charge. We call this the *monopole term*. The next expansion term goes like $1/r^3$. We call this the *quadrupole term*. And so on. In fact, what we've just done is a *multipole expansion* of this potential. We'll study such expansions in great depth in the next chapter.
+
+If we like, we can do an expansion for $r < a$ as well, by replacing $a^\ell / r^{\ell+1} \to r^\ell / a^{\ell+1}$ to get
+$$
+\phi(\mathbf{x}) = 2\pi a^2 \lambda \bigg[\frac{1}{a} - \frac{1}{2} \frac{r^2}{a^3} P_2(\cos\theta) + \frac{3}{8} \frac{r^4}{a^5} P_4(\cos\theta) - \frac{5}{16} \frac{r^6}{a^7} P_6(\cos\theta) + \cdots \bigg]  \ .
+$$
+These together give the potential at all points in space, except along the spherical shell $r=a$. The two solutions can be joined to get a solution along the shell by setting $r=a$. The potential will be finite at every point except along the ring itself, where we end up with a divergent series.
 
 #### General Potentials
 
@@ -855,11 +889,9 @@ $$
 \boxed{
 \phi(\mathbf{x}) = \sum_{\ell=0}^\infty \sum_{m=-\ell}^\ell \big(a_{\ell m} r^\ell + b_{\ell m} r^{-(\ell+1)}\big) Y_\ell^m(\theta,\varphi)} \ .
 $$
-This equation looks exactly the same as the one for the azimuthally symmetric potential, except we now have to replace the Legendre polynomial $P_\ell(\cos\theta)$ by the more general spherical harmonic $Y_\ell^m(\theta,\varphi)$ and sum over $m$. Indeed, it's easy to see that the azimuthally symmetric potential is a special case of this general potential. Azimuthal symmetry is evidently equivalent to requiring that $m=0$. If we set $m=0$ in the general potential we recover the previous one, up to a normalization factor.
+This equation looks exactly the same as the one for the azimuthally symmetric potential, except we now have to replace the Legendre polynomial $P_\ell(\cos\theta)$ by the more general spherical harmonic $Y_\ell^m(\theta,\varphi)$ and sum over $m$. Indeed, it's easy to see that the azimuthally symmetric potential is a special case of this general potential. Azimuthal symmetry is evidently equivalent to requiring that $m=0$. If we set $m=0$ in the general potential we recover the previous one, up to a normalization factor. The coefficients $a_{\ell m}$ and $b_{\ell m}$ can be found in the usual way, by imposing the final boundary condition and taking an inner product.
 
-The coefficients $a_{\ell m}$ and $b_{\ell m}$ can be found in the usual way, by imposing the final boundary condition and taking an inner product. As before, the requirement that the potential not blow up inside the boundary surface will often force either $a_{\ell m}$ or $b_{\ell m}$ to vanish depending on whether we're inside of or outside of the boundary surface. If we seek a solution both inside and outside the surface we'll need to match these expressions together at the boundary.
-
-### Laplace's Equation in Cylindrical Coordinates
+## Separation of Variables in Cylindrical Coordinates
 
 Last, we'll apply separation of variables to the Laplacian in cylindrical coordinates $(\varrho,\varphi,z)$. In cylindrical coordinates, the Laplacian can be written in the form
 $$
@@ -934,7 +966,7 @@ Let's now consider the problem of an infinite, grounded wire of some thickness $
 
 FIGURE
 
-We can thus formulate this problem in terms of the following boundary value problem,
+We can thus formulate this problem in terms of the following Dirichlet boundary value problem,
 $$
 \begin{align*}
 \begin{cases}
@@ -970,13 +1002,12 @@ FIGURE
 
 Recall that we can relate the surface density to the potential via its normal derivative, with $\frac{\partial \phi}{\partial n} = -4\pi \sigma$. Since the surface normal to the cylinder is $\mathbf{n} = \pm \mathbf{e}_\varrho$ depending on whether we're outside or inside the surface, we thus require that $\frac{\partial \phi}{\partial \varrho} \big|_{\varrho=R} = \mp 4\pi \sigma(\varphi)$. We'll also require that the potential not blow up at any finite position or at infinity. 
 
-This means we end up with a mixed boundary value problem to solve of the form
+This means we end up with a Neumann boundary value problem to solve of the form
 $$
 \begin{align*}
 \begin{cases}
 \nabla^2 \phi(\varrho,\varphi,z) = 0 \ , \\
-\text{where} \ \frac{\partial \phi}{\partial \varrho} \big|_{\varrho=R} = \mp 4\pi \sigma(\varphi) \ , \\
-|\phi| < \infty \ \text{for all} \ 0 \leq \varrho \leq \infty \ .
+\text{where} \ \frac{\partial \phi}{\partial \varrho} \big|_{\varrho=R} = \mp 4\pi \sigma(\varphi) \ .
 \end{cases}
 \end{align*}
 $$
@@ -1031,7 +1062,7 @@ Let's now consider a problem that will help us understand some physics better. W
 
 Suppose we have two infinite conducting sheets that intersect at some angle $0 \leq \beta \leq 2\pi$ in the $xy$-plane. We'll suppose that both of the sheets are held at some constant potential $V$ on their surfaces. Since the sheets are infinite along the $z$-direction, we can treat this as a cylindrically symmetric problem and focus only on the behavior of the potential $\phi(\varrho,\varphi)$ in the $xy$-plane.
 
-Consider then the following boundary value problem,
+Consider then the following Dirichlet boundary value problem,
 $$
 \begin{align*}
 \begin{cases}
@@ -1137,15 +1168,14 @@ To proceed further we need to know the specific boundary conditions for the give
 
 FIGURE
 
-This then gives a boundary value problem of the form
+This then gives a Dirichlet boundary value problem of the form
 $$
 \begin{align*}
 \begin{cases}
 \nabla^2 \phi(\varrho,\varphi,z) = 0 \ , \\
 \text{where} \ \phi(\varrho,\varphi,h) = V(\varrho,\varphi) \ , \\
 \phi(\varrho,\varphi,0) = 0 \ , \\
-\phi(R,\varphi,z) = 0 \ , \\
-|\phi(\mathbf{x})| < \infty \ \text{as} \ |\mathbf{x}| \rightarrow \infty \ .
+\phi(R,\varphi,z) = 0 \ .
 \end{cases}
 \end{align*}
 $$
