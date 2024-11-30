@@ -76,7 +76,7 @@ This relation provides a way to determine $B_0$, provided we already know $\alph
 
 We can use the relations found in the previous example to determine the units of the magnetic field and dipole moment, in Gaussian units. First, notice the equation $\mathbf{N} = \mathbf{m} \times \mathbf{B}_0$ implies the product $m B_0$ must have units of torque, or equivalently units of energy. Second, notice from the equation for $\tan\alpha$ that the ratio $m/B_0$ must have units of $d^3$, or volume. Combined, these together allow us to determine the units of both $m$ and $B_0$. Evidently, $B_0^2$ has units of energy per unit volume, or energy density, and $m^2$ has units of energy times volume.
 
-Recall in Gaussian units that the squared charge has units of energy times length. This means the magnetic field must have units of charge per length squared, or equivalently units of electric field. The magnetic dipole moment must have units of charge times length, or units of electric dipole moment. Thus, the electric and magnetic fields and dipole moments have the *same* units in the Gaussian unit system. This hints at a strong relationship between electricity and magnetism, which we'll explore shortly.
+Recall in Gaussian units that the squared charge has dimensions of energy times length. This means the magnetic field must have dimensions of charge per length squared, or equivalently dimensions of electric field. The magnetic dipole moment must have dimensions of charge times length, or dimensions of electric dipole moment. Thus, the electric and magnetic fields and dipole moments have the *same* dimensions in the Gaussian unit system. This hints at a strong relationship between electricity and magnetism, which we'll explore shortly.
 
 In Gaussian units, the unit of magnetic field strength is called the *Gauss*, with $1 \ \text{G} = 10^{-4} \ \text{T}$, where the *Tesla* is the SI unit equivalent. To get an idea for scales, the Earth's magnetic field strength is about $0.5 \ \text{G}$. A typical refrigerator magnet has a field strength of $\sim 10 \ \text{G}$. A very large magnet, like say an MRI machine, has a field strength of $\sim 10^4 \ \text{G}$, or $\sim 1 \ \text{T}$.
 
@@ -86,7 +86,15 @@ If this were all there was to magnetism we wouldn't have much more to say about 
 
 ### Current
 
-Up until now we've always assumed that charges were *static*. Now we will allow them to move around. The movement of charge is called electric *current*. We will define current as follows. Suppose we have a set of $N$ point charges $q_i$ flowing inside some volume each with velocity $\mathbf{v}_i$. Consider an infinitesimal cross section through this volume with area element $d\mathbf{a} = \mathbf{n} da$ and thickness $d\ell$.
+Up until now we've always assumed that charges were *static*. Now we will allow them to move around. The movement of charge is called electric *current*. Current is usually denoted by $I$, and defined by
+$$
+I \equiv \frac{dq}{dt} \ .
+$$
+Since current is $I = dq/dt$, it evidently must have dimensions of charge per unit time. In Gaussian units, current is measured in units of esu per second, sometimes called the *statampere*. In SI units, current is measured in units of Coulombs per second, also called an *Ampere* or an *amp*. The two units are related by $1 \ \text{esu} / \text{sec} \approx 10^{-12} \ \text{A}$.
+
+Current is a measure of the movement of charge. The faster a charge moves, the higher its current. The more charge is moving, the higher the current. In practice, it turns out to be much easier to measure current in the lab than it is to measure charge. Current can be easily measured in the lab using an *amp-meter*, which measures current using Ohm's Law, an important relation between voltage and current that we'll discuss in a later chapter. Measuring charge directly is much more tricky.
+
+We'll write the current in terms of a density as follows. Suppose we have a set of $N$ point charges $q_i$ flowing inside some volume each with velocity $\mathbf{v}_i$. Consider an infinitesimal cross section through this volume with area element $d\mathbf{a} = \mathbf{n} da$ and thickness $d\ell$.
 
 FIGURE (show above scenario)
 
@@ -106,9 +114,7 @@ Integrating both sides across an entire surface $\mathcal{S}$, we finally have
 $$
 I = \int_\mathcal{S} \rho \mathbf{v} \cdot d\mathbf{a} \ .
 $$
-The scalar $I$ we call the total *current* passing through a surface $\mathcal{S}$. Since current is $I = dq/dt$, it evidently must carry units of charge per unit time. In Gaussian units, current is measured in units of emu per second. In SI units, current is measured in units of Coulombs per second, also called an *Ampere* or an *amp*. The two units are related by $1 \ \text{esu} / \text{sec} \approx 10^{-12} \ \text{A}$.
-
-Current is a measure of the movement of charge. The faster a charge moves, the higher its current. The more charge is moving, the higher the current. In practice, it turns out to be much easier to measure current in the lab than it is to measure charge. Current can be easily measured in the lab using an *amp-meter*, which measures current using Ohm's Law, an important relation between voltage and current that we'll discuss in a later chapter. Measuring charge directly is much more tricky.
+The scalar $I$ yields the total current passing through a surface $\mathcal{S}$. 
 
 It's convenient and useful to define the quantity $\mathbf{J} \equiv \rho \mathbf{v}$. We call this the *current density*. The current density is the analogue of the charge density, in that its integral gives the total current. Notice that current density carries units of current per unit area. In this sense, we can also think of the current density as the *flux* of current through a given cross section of area.
 
@@ -136,21 +142,19 @@ FIGURE (show current densities)
 
 
 
-- In terms of charges, $\mathbf{J} = \sum_\alpha q_\alpha \mathbf{v}_\alpha \delta(\mathbf{x} - \mathbf{x}_\alpha)$.
-
-
-
 ### Conservation of Charge
 
-One very important fact about electromagnetism, indeed just as important as Maxwell's equations, is that charge is conserved. That is, the enclosed charge $Q_{\text{enc}}$ inside any closed surface can't spontaneously appear or disappear. It can only flow out through the surface in the form of some current $I_{\text{out}}$. 
+One very important fact about electromagnetism, indeed just as important as Maxwell's equations, is that charge is *conserved*. That is, the enclosed charge $Q_{\text{enc}}$ inside any closed surface can't spontaneously appear or disappear. It can only flow out through the surface in the form of some current $I_{\text{out}}$. 
 
 FIGURE (show charge and current through surface)
 
-Mathematically, conservation of charge then says that
+Mathematically, conservation of charge says that
 $$
 \frac{dQ_{\text{enc}}}{dt} = -I_{\text{out}} \ .
 $$
-However, the statement of conservation of charge is stronger than this. Not only is charged conserved *globally*. It's also conserved *locally*. That is, no matter how small a closed surface we choose, charge must be conserved in this sense. We can formulate this statement most conveniently using a *continuity equation*.
+The minus sign is needed to express the fact that charges are flowing out of the surface, not inward.
+
+The statement of conservation of charge is stronger than this however. Not only is charged conserved *globally*, it's also conserved *locally*. That is, no matter how small a closed surface we choose, charge must be conserved in the sense defined above. We can formulate the statement of local charge conservation most conveniently using a *continuity equation*.
 
 To achieve this, we'll write the enclosed charge as a volume integral over a charge density $\rho(\mathbf{x},t)$ and the outward current as a surface integral over the current density $\mathbf{J}(\mathbf{x},t)$,
 $$
@@ -182,121 +186,159 @@ $$
 $$
 This implies that the charge distribution must be time-independent, with $\rho = \rho(\mathbf{x})$. This isn't to say that the charge distribution isn't moving, only that the entire distribution is moving together in unison. This is the contrast with electrostatics, where we assumed the charge distribution was completely stationary.
 
-One immediately implication of the steady current condition is that point charges must be excluded. Indeed, the density of a moving point charge is constantly changing, since $\rho(\mathbf{x},t) = q \delta(\mathbf{x} - \mathbf{v}t)$ is necessarily time-dependent. This means when enforcing the steady current condition, we *must* only consider extended distributions of charge, so that the movement of each charge cancels out the movement of the others on average. We'll come back to moving point charges later in electrodynamics.
+One immediately implication of the steady current condition is that point charges must be excluded. Indeed, the density of a moving point charge is constantly changing. If a charge $q$ is moving at a velocity $\mathbf{v}$, then its source point $\mathbf{x}' = \mathbf{v} t$ becomes time dependent, which means the density $\rho(\mathbf{x},t) = q \delta(\mathbf{x} - \mathbf{v}t)$ is necessarily time-dependent. This means when enforcing the steady current condition, we *must* only consider extended distributions of charge, so that the movement of each charge cancels out the movement of the others on average. We'll come back to moving point charges later in electrodynamics.
 
 ### Biot-Savart Law
 
 In the 19th century, it was discovered that electric current gives rise to magnetic fields. The first discovery in this direction was by Oersted, who noticed that if he placed a compass in the vicinity of a current carrying wire that the needle no longer pointed north. He noticed that as he moved the needle around the wire, it tended to point azimuthally to the wire, suggesting that somehow the current in the wire was altering the magnetic forces acting on the needle.
 
-A few years later, Ampere observed that if two parallel current carrying wires were placed near each other, they tended to attract or repel each other depending on whether the currents were aligned or anti-aligned. Moreover, Ampere observed that the force per unit length of wire is inversely proportional to the distance between the wires.
+Not long after, Biot and Savart were able to deduce a precise empirical relation between the magnetic field and the current flowing through a wire. They found that when a current was passed through a wire, a magnetic field strength was created due to the current. Nowadays we formulate their statement in the following way. Suppose an infinitesimal length of wire $d\ell$ experiences a current $\mathbf{I}$ at the source point $\mathbf{x}'$. This will then give rise to an infinitesimal magnetic field $d\mathbf{B}$ at the field point $\mathbf{x}$ of the form
+$$
+d\mathbf{B} = k \mathbf{I}(\mathbf{x}') \times \frac{\mathbf{x} - \mathbf{x}'}{|\mathbf{x} - \mathbf{x}'|^3} \ .
+$$
+The constant $k$ chosen depends on the choice of units. In Gaussian units we choose $k \equiv 1/c$, where $c$ is the speed of light. This strange choice of constant is needed to make sure the dimensions are consistent in the Gaussian system. Of course, one could argue that dividing by *any* characteristic velocity will work. Why exactly that velocity is the speed of light we'll see in a future chapter when we study electrodynamics. Nevertheless, it does hint at a connection between electromagnetism and optics.
 
-Not long after, Biot and Savart were able to deduce a precise empirical relation between the magnetic field and the current flowing through a wire. They found that when a current was passed through a wire, a magnetic field strength was created due to the current. Mathematically, if a current $I$ flows through a wire, the magnetic field strength per unit length $L$ of wire satisfies
+To find the magnetic field $\mathbf{B}(\mathbf{x})$ generated by the full wire we need only integrate both sides along the length of the wire. If the wire lies on a curve $\mathcal{C}$ in space, we have
+$$
+\mathbf{B}(\mathbf{x}) = \frac{1}{c} \int_\mathcal{C} d\ell' \ \mathbf{I}(\mathbf{x}') \times \frac{\mathbf{x} - \mathbf{x}'}{|\mathbf{x} - \mathbf{x}'|^3} \ .
+$$
+This empirical result is known as the *Biot-Savart Law*. As written, the Biot-Savart law shows how to find the magnetic field due to a 1-dimensional wire. We can generalize the result immediately to 2-dimensional surfaces and 3-dimensional volumes in the usual way, by replacing a line density with a surface or volume density. The magnetic field due to a surface of current $\mathcal{S}$ can be stated by replacing $\mathbf{I} d\ell'$ with $\mathbf{K} da'$ in the formula above to get
+$$
+\mathbf{B}(\mathbf{x}) = \frac{1}{c} \int_\mathcal{S} da' \ \mathbf{K}(\mathbf{x}') \times \frac{\mathbf{x} - \mathbf{x}'}{|\mathbf{x} - \mathbf{x}'|^3} \ .
+$$
+Finally, the magnetic field due to a volume of current is given by replacing $\mathbf{I} d\ell'$ with $\mathbf{J} d^3\mathbf{x}'$ to get
+$$
+\boxed{
+\mathbf{B}(\mathbf{x}) = \frac{1}{c} \int d^3 \mathbf{x}' \ \mathbf{J}(\mathbf{x}') \times \frac{\mathbf{x} - \mathbf{x}'}{|\mathbf{x} - \mathbf{x}'|^3}
+} \ .
+$$
+It's worth comparing the Biot-Savart law in this form to Coulomb's law in electrostatics. There, we had
+$$
+\mathbf{E}(\mathbf{x}) = \int d^3 \mathbf{x}' \ \rho(\mathbf{x}') \frac{\mathbf{x} - \mathbf{x}'}{|\mathbf{x} - \mathbf{x}'|^3} \ .
+$$
+Notice that up to a constant the two laws look exactly the same, except with $\rho(\mathbf{x}')$ replaced by the cross product $\mathbf{J}(\mathbf{x}') \times$. The appearance of a cross product is perhaps the most important mathematical difference in the formulas between electrostatics and magnetostatics. An immediate implication of this is that the magnetic field *never* points in the direction of the current, but rather in a direction perpendicular to the current, given by the direction of the cross product $\mathbf{J}(\mathbf{x}') \times (\mathbf{x} - \mathbf{x}')$.
 
+The appearance of the cross product also makes calculating the magnetic field from the Biot-Savart law much more cumbersome to use than Coulomb's law, which was itself already cumbersome. We'll thus quickly move to finding better ways to calculate magnetic fields. But first we'll show a relatively simple example of how to use the Biot-Savart law directly.
+
+##### Example: Conducting loop of constant current
+
+The canonical charge distribution in magnetostatics is the loop of constant current. Suppose a loop of radius $a$ carries a constant current $I$ in the counterclockwise direction. To achieve this, we'll suppose the loop is centered at the origin in the $xy$-plane. Our goal will be to use the Biot-Savart law to calculate the magnetic field $\mathbf{B}(z)$ along the $z$-axis.
+
+FIGURE (loop of current)
+
+With this setup, it's not hard to see that $\mathbf{x}' = a \mathbf{e}_\varrho$ and $\mathbf{x} = z \mathbf{e}_z$, which means
+$$
+\mathbf{x} - \mathbf{x}' = z \mathbf{e}_z - a \mathbf{e}_\varrho \ .
+$$
+Since the current is constant and flows counterclockwise along the loop, we have $\mathbf{I} = I \mathbf{e}_\varphi$. This means we have
+$$
+\mathbf{I} \times (\mathbf{x} - \mathbf{x}') = Iz (\mathbf{e}_\varphi \times \mathbf{e}_z) - Ia (\mathbf{e}_\varphi \times \mathbf{e}_\varrho) = Iz \mathbf{e}_\varrho + Ia \mathbf{e}_z \ .
+$$
+Now consider an infinitesimal element $d\ell' = a d\varphi'$ of the loop. By the Biot-Savart law, we have
+$$
+d\mathbf{B} = \frac{1}{c} d\ell' \ \mathbf{I} \times \frac{\mathbf{x} - \mathbf{x}'}{|\mathbf{x} - \mathbf{x}'|^3} = a d\varphi' \ \frac{I}{c} \bigg[ \frac{z}{(a^2 + z^2)^{3/2}} \mathbf{e}_\varrho + \frac{a}{(a^2 + z^2)^{3/2}} \mathbf{e}_z \bigg] \ .
+$$
+Integrating along the entire loop, we thus have
+$$
+\mathbf{B}(z) = \frac{Ia}{c} \int_0^{2\pi} d\varphi' \ \bigg[ \frac{z}{(a^2 + z^2)^{3/2}} \mathbf{e}_\varrho + \frac{a}{(a^2 + z^2)^{3/2}} \mathbf{e}_z \bigg] \ .
+$$
+At this point we need to be a bit careful, since cylindrical basis vectors are functions of position. It's helpful to write $\mathbf{e}_\varphi$ in terms of the Cartesian vectors to avoid this issue,
+$$
+\mathbf{e}_\varphi = \cos\varphi' \mathbf{e}_x + \sin\varphi' \mathbf{e}_y \ .
+$$
+If we plug this into the first integral, we see it must vanish since the integrand is independent of $\varphi'$ and $\cos\phi'$ and $\sin\varphi'$ are each $2\pi$-periodic functions. The second integral is also independent of $\varphi'$. Since $\mathbf{e}_z$ is constant, we finally get
+$$
+\mathbf{B}(z) = \frac{2\pi Ia^2}{c(a^2 + z^2)^{3/2}} \mathbf{e}_z \ .
+$$
+Thus, along the $z$-axis the magnetic field points only in the $z$-direction. This should make sense by symmetry. After all, the current along the loop is constant, which means any segment of field in the $\varrho$-direction must cancel with an opposite segment of field, leaving only the $z$-component to contribute anything.
+
+Let's now check the far field limit $z \gg a$. In this limit, $(a^2 + z^2)^{-3/2} \approx 1/z^3$, and so
+$$
+\mathbf{B}(z) \approx \frac{2\pi Ia^2}{cz^3} \ .
+$$
+
+Since the far field falls off like $1/r^3$, in this limit the magnetic field seems to behave like a dipole field.
+
+---
+
+In fact, the lowest non-vanishing moment of magnetic field will *always* be at least a dipole field, as we'll see later. There will never be a monopole field contribution. Said equivalently, there is no such thing as a magnetic monopole, as far as we can tell based on all experiments done up to this day. More advanced theories predict that they could exist, but experiments have never found them. Until found, we're left to assume based on all experimental evidence that no magnetic monopoles exist in nature.
+
+Let's work one more example before moving on.
+
+##### Example: Infinite conducting wire of constant current
+
+Consider now an infinitely long conducting wire of constant current $I$. We'll assume the wire is oriented along the $z$-axis, which means the current vector is just $\mathbf{I} = I \mathbf{e}_z$.
+
+- Remember $\mathbf{x} = \varrho \mathbf{e}_\varrho + z \mathbf{e}_z$ in these coordinates, so no $\varphi$ component.
+- Don't forget $\mathbf{e}_\varphi$ is a function of $\varrho$ and/or $\varphi$. But not a function of $z$…
 
 $$
-\frac{B}{L} = k \frac{I}{r^2}
-$$
-
-- Be more careful here. Don't forget the angle factor $\sin\alpha$ from the cross product.
-- Here $k = 1/c$ in Gaussian units.
-- Note the B-field for a wire *should* be proportional to $I/\varrho$.
-
-
-
-
-
-$$
-\mathbf{B}(\mathbf{x}) = \frac{1}{c} \int d^3 \mathbf{x}' \ \frac{\mathbf{J}(\mathbf{x}') \times \mathbf{x}}{|\mathbf{x} - \mathbf{x}'|^3}
+\mathbf{x} - \mathbf{x}' = \varrho \mathbf{e}_\varrho + (z-z') \mathbf{e}_z
 $$
 
 $$
-\mathbf{B}(\mathbf{x}) = \frac{1}{c} \int d\ell' \ \frac{\mathbf{I}(\mathbf{x}') \times \mathbf{x}'}{|\mathbf{x} - \mathbf{x}'|^3}
+\mathbf{I} \times (\mathbf{x} - \mathbf{x}') = I\varrho (\mathbf{e}_z \times \mathbf{e}_\varrho) = I\varrho \mathbf{e}_\varphi
 $$
 
 $$
-\mathbf{B}(\mathbf{x}) = \frac{1}{c} \int da' \ \frac{\mathbf{K}(\mathbf{x}') \times \mathbf{x}'}{|\mathbf{x} - \mathbf{x}'|^3}
+d\ell' = dz'
 $$
+
+$$
+d\mathbf{B} = \frac{1}{c} d\ell' \ \mathbf{I} \times \frac{\mathbf{x} - \mathbf{x}'}{|\mathbf{x} - \mathbf{x}'|^3}
+$$
+
+$$
+\mathbf{B}(\mathbf{x}) = \frac{I}{c} \int dz' \ \frac{\varrho}{(\varrho^2 + (z-z')^2)^{3/2}} \mathbf{e}_\varphi
+$$
+
+
 
 
 
 ### Lorentz Force Law
 
-In the 19th century, Ampere discovered that if two parallel wires had a current pumped through each of them at the same time, the wires tended to attract or repel each other. If the two currents ran in the same direction the wires attracted each other, and if the two currents ran in the opposite direction the wires repelled each other. Moreover, he observed that this force of attraction per unit length of wire was inversely proportional to the distance between them.
-
-Let's formulate this more precisely. Suppose the first wire has a constant current $I_1$, the second wire has a constant current $I_2$, and the two wires are parallel to each other and a distance $r$ apart. Then the force per unit length $L$ of wire is given by
+Also in the early 19th century, Ampere observed that if two parallel current carrying wires were placed near each other, they tended to attract or repel each other depending on whether the currents were aligned or anti-aligned. More precisely, suppose the first wire carries a current $I_1$ and the second wire carries a current $I_2$. If the wires are separated by a distance $d$, Ampere found that the force strength $F$ per unit length $L$ of wire is given by
 $$
-\frac{F}{L} = 2 k_m \frac{I_1 I_2}{r} \ .
+\frac{F}{L} = 2 k_m \frac{I_1 I_2}{d} \ .
 $$
-The proportionality constant $k$ depends on the system of units used. In the SI and EMU systems one takes $k_m = 1$. In the Gaussian system we take $k_m \equiv 1/c^2$, where $c$ is the *speed of light* in vacuum. We'll see how $c$ comes into all this later. For now, just think of $c$ as a characteristic velocity constant inserted to insure that electric and magnetic fields carry the same units. As usual, in the rest of this chapter we'll work explicitly in Gaussian units.
+The constant of proportionality $k_m$ depends on the choice of units. In Gaussian units we choose $k_m \equiv 1/c^2$, where $c$ is again the speed of light.
 
-
+Later on in the century, Lorentz formulated a precise statement of the force on a moving point charge in a magnetic field. Suppose a point charge $q$ is moving at a velocity $\mathbf{v}$ in the presence of some external magnetic field $\mathbf{B}$. This charge will feel a force due to the field given by
 $$
-\mathbf{F} = \frac{2}{c^2} \frac{I I'}{r} L \mathbf{e}_\varrho = \frac{I}{c} \frac{2I'}{c} L \mathbf{e}_\varrho = \frac{\mathbf{I}}{c} \times \mathbf{B} \\
-\mathbf{I} = I \mathbf{e}_z \quad , \quad \mathbf{B} = \frac{2I'L}{c} \mathbf{e}_\varphi
+\mathbf{F} = \alpha q \mathbf{v} \times \mathbf{B} \ .
 $$
-
+Here $\alpha$ is yet another proportionality constant that depends on the choice of units. In the Gaussian system we choose $\alpha = 1/c$, which again ensures $\mathbf{E}$ and $\mathbf{B}$ carry the same dimensions. In these units, we get
 $$
-\mathbf{B} = \frac{1}{c} \int d\ell' \ \frac{\mathbf{I}' \times \mathbf{x}}{|\mathbf{x} - \mathbf{x}'|^3} = \frac{1}{c} \int dz' \ \frac{I' \mathbf{e}_z \times \mathbf{x}}{|\mathbf{x} - z'\mathbf{e}_z|^3}
+\mathbf{F} = q \frac{\mathbf{v}}{c} \times \mathbf{B} \ .
 $$
+This is called the *Lorentz Force Law*. Evidently, the force due to a magnetic field will always be perpendicular to both the velocity of the charge as well as the magnetic field. This fact immediately implies something interesting, magnetic fields can only change the direction of a moving charge, not speed it up or slow it down. Said differently, magnetic forces do no work.
 
-
-
+To see why this is true, consider the work done in moving a charge along some path $\mathcal{C}$ in the presence of a magnetic field $\mathbf{B}$. Plugging in the Lorentz force law and noting that $d\boldsymbol{\ell} = \mathbf{v} dt$, the work $W$ done in moving the charge along the path must be
 $$
-\mathbf{N} = \mathbf{x} \times \mathbf{F} = \mathbf{m} \times \mathbf{B} \\
-\varepsilon_{ijk} x_j F_k = \varepsilon_{\ell m n} m_m B_n \\
-\varepsilon_{ijk} x_j F_k - \varepsilon_{\ell m n} m_m B_n = 0
+W = \int_\mathcal{C} \mathbf{F} \cdot d\boldsymbol{\ell} = \int_\mathcal{C} \bigg(q \frac{\mathbf{v}}{c} \times \mathbf{B}\bigg) \cdot d\boldsymbol{\ell} = \frac{q}{c} \int dt \ \big(\mathbf{v} \times \mathbf{B}\big) \cdot \mathbf{v} = 0 \ .
 $$
+Thus, magnetic forces do no work. That is, they cannot change the kinetic energy of the moving charge. They can only deflect the moving charge in another direction.
 
-
-
-
-Indeed, it was discovered in the 19th century that magnetic forces were caused by *electric current*, or moving electric charge. This discovery was first observed by Oersted, who noticed that if he placed a compass in the vicinity of a current carrying wire that the needle tended to align itself in a direction perpendicular to the wire. This discovery linked electricity and magnetism together for the first time, enabling the two phenomena to be unified into one framework.
-
-A few years later, Ampere observed that if two parallel current carrying wires were placed near each other, they tended to attract or repel each other depending on whether the currents were aligned or anti-aligned. Moreover, Ampere observed that the force per unit length of wire is inversely proportional to the distance between the wires. More formally, suppose two parallel wires each of length $L$ are placed at some distance $r$ apart. Suppose a current of $I_1$ flows through one wire, and a current of $I_2$ flows through the second wire. Then the force strength of attraction between them is given by
+Nowadays, the Lorentz force law is more often stated in the more general setting where both an external electric and external magnetic may be present. Recall from electrostatics that the force on a charge $q$ due to an external electric field is given by $\mathbf{F} = q \mathbf{E}$. By the principle of superposition then, the combined force will be their sum,
 $$
-\frac{F}{L} = 2 k_m \frac{I_1 I_2}{r} \ ,
+\mathbf{F} = q \bigg(\mathbf{E} + \frac{\mathbf{v}}{c} \times \mathbf{B}\bigg) \ .
 $$
-where $k_m$ is a proportionality constant known as the *magnetic constant*. Its value and form depend on the choice of units used. In the Gaussian system of units, we take $k_m \equiv 1/c^2$, where $c \approx 3 \cdot 10^{10} \ \text{cm/sec}$ is the speed of light in vacuum. The appearance of the speed of light in this constant is indeed no coincidence. We'll see where it comes from in a later chapter.
-
-
+The Lorentz force law can easily be stated for continuous charge distributions as well. Consider an infinitesimal unit of charge $dq = \rho d^3\mathbf{x}$. This must obey the above force law, giving rise to an infinitesimal force $d\mathbf{F}$ given by
 $$
-I \equiv \frac{dq}{dt} = qv
+d\mathbf{F} = d^3\mathbf{x} \ \bigg(\rho\mathbf{E} + \rho \frac{\mathbf{v}}{c} \times \mathbf{B} \bigg) \ .
 $$
-
-$$
-\mathbf{J} = \rho \mathbf{v} = \frac{\partial q}{\partial t \partial a} \mathbf{n}
-$$
-
+Since $\mathbf{J} = \rho \mathbf{v}$ is the current density, when we integrate over the entire charge distribution we get
 $$
 \boxed{
-\frac{\partial \rho}{\partial t} + \nabla \cdot \mathbf{J} = 0 
+\mathbf{F} = \int d^3\mathbf{x} \ \bigg(\rho(\mathbf{x})\mathbf{E}(\mathbf{x}) + \frac{\mathbf{J}(\mathbf{x})}{c} \times \mathbf{B}(\mathbf{x})\bigg)
 } \ .
 $$
+This is the most general form of the Lorentz force law we can write down in electromagnetism.
 
 
 
-
-
-
-$$
-d\mathbf{F} = \frac{\mathbf{I}}{c} \times \mathbf{B} dt
-$$
-
-$$
-\mathbf{F} = q \frac{\mathbf{v}}{c} \times \mathbf{B}
-$$
-
-$$
-\mathbf{F} = q \bigg(\mathbf{E} + \frac{\mathbf{v}}{c} \times \mathbf{B}\bigg)
-$$
-
-$$
-\mathbf{F} = \int d^3\mathbf{x} \ \bigg(\rho(\mathbf{x})\mathbf{E}(\mathbf{x}) + \frac{\mathbf{J}(\mathbf{x})}{c} \times \mathbf{B}(\mathbf{x})\bigg)
-$$
-
-- Magnetic forces do no work, since $\mathbf{v}$ is always perpendicular to $\mathbf{B}$. Can only change direction, not kinetic energy.
-
-
+##### Example: Ampere's Current Law
 
 
 

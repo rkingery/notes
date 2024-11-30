@@ -23,23 +23,25 @@ $$
 $$
 Here $\mathbf{e}_{12}$ is the unit vector pointing from $q_2$ to $q_1$. By Newton's third law, the force $q_2$ experiences due to $q_1$ is equal and opposite, with $\mathbf{F}_{21} = -\mathbf{F}_{12}$. Since this force depends only on the distance between the two point charges it's a *central force*, which implies that energy is conserved in electrostatics. We'll say more about elecrostatic energy later.
 
-The proportionality constant $k$ has value and dimensions that depend on the choice of units used. In this course we'll mostly use the *Gaussian* system of units, where $k \equiv 1$ and the mechanical units are measured in CGS units. This means force is measured in *dynes* and distance in *centimeters*. Evidently then, in the Gaussian system of units charge must have units of $\sqrt{\text{dyne} \cdot \text{cm}^2}$. We give this unit of charge a name, called the *electrostatic unit* or *esu*, where $1 \ \text{esu} \approx 3.3 \cdot 10^{-10} \ \text{C}$ in SI units. In Gaussian units, Coulomb's Law thus simplifies to
+The proportionality constant $k$ depends on the choice of units used. In this course we'll use the *Gaussian* system of units, where $k \equiv 1$ and the mechanical units are measured in CGS units. This means force is measured in *dynes* and distance in *centimeters*. Evidently then, in the Gaussian system of units charge must have units of $\sqrt{\text{dyne} \cdot \text{cm}^2}$. We give this unit of charge a name, called the *electrostatic unit* or *esu*, where $1 \ \text{esu} \approx 3.3 \cdot 10^{-10} \ \text{C}$ in SI units. 
+
+In Gaussian units, Coulomb's Law thus simplifies to
 $$
 \mathbf{F}_{12} = \frac{q_1 q_2}{|\mathbf{x}_1 - \mathbf{x}_2|^2} \mathbf{e}_{12} \ .
 $$
 Note that as defined Coulomb's Law really only holds for *point charges*. That is, for point particles where all charge is localized at a single point. This is of course an abstraction. In reality we deal with larger bodies where the charge may be distributed across the body in some way. We'll see how to modify Coulomb's Law the work with more arbitrary distributions of charge below.
 
-### What is Charge?
+### Origins of Charge
 
-Before moving on, it's worth stopping to ask what exactly it is we mean when we say a body has charge. Mathematically, we can think of charge similar to how we think of mass. It's a scalar quantity associated with a body, except unlike mass it can take on any real value, positive or negative. More fundamentally though, the charge of a body is really an aggregate of charge due to more atomic particles inside the body like electrons and protons. 
+Before moving on, it's worth stopping to ask what exactly it is we mean when we say a particle has charge. Mathematically, we can think of charge similar to how we think of mass. It's a scalar quantity associated with a particle, except unlike mass it can take on any real value, positive or negative. More fundamentally though, the charge of a particle is really an aggregate of charge due to more atomic particles inside the particle like electrons and protons. 
 
-A body is really a collection of atoms held together by attractive internal forces, each with some number of protons and electrons.  What we think of as charge is really how the electrons and protons are distributed inside the body. Electrons and protons carry the same charge but with opposite sign. In practice most bodies are at least approximately charge neutral, meaning it contains the same number of protons and electrons. If there are more electrons than protons the body has negative charge. If there are fewer electrons than protons the body has positive charge.
+A particle is really a collection of atoms held together by attractive internal forces, each with some number of protons and electrons.  What we think of as charge is really how the electrons and protons are distributed inside the body. Electrons and protons carry the same charge but with opposite sign. In practice most large particles are at least approximately charge neutral, meaning they contain the same number of protons and electrons. If there are more electrons than protons the particle has negative charge. If there are fewer electrons than protons the particle has positive charge.
 
 In practice, it's the movement of electrons that control how a material is charged. In some materials, called *conductors* these electrons move freely around the material, while for materials, called *insulators*, these electrons stay locked into their respective atoms and only move inside their confined electron clouds. In either case, if the body is charged it implies some deficit or surplus of electrons.
 
-One would think that we should think of charge in terms of electrons and define charge in units of the number of surplus electrons present in the body. However, atomic structure wasn't known at the time the theory of electromagnetism was first formulated. It was only known that there was a scalar quantity called charge associated to the body, with no understanding of what gives rise to it. It's for these largely historical reasons that we continue to think of positive charge as moving around inside a body, even though physically it's really the negatively charged electrons that move around.
+One would think that we should think of charge in terms of electrons and define charge in units of the number of surplus electrons present in the particle. However, atomic structure wasn't known at the time the theory of electromagnetism was first formulated. It was only known that there was a scalar quantity called charge associated to the particle, with no understanding of what gives rise to it. It's for these largely historical reasons that we continue to think of positive charge as moving around inside a body, even though physically it's really the negatively charged electrons that move around.
 
-### Coulomb vs Gravity
+### Comparison with Gravity
 
 Given that Coulomb's Law looks so similar to Newton's law of gravitation, it's fair to ask how the forces compare to each other. Let's suppose we have two particles separated by a distance $r$ with masses $m_1, m_2$ and charges $q_1, q_2$ respectively. Since the particles have both mass and charge they'll feel both a gravitational force $\mathbf{F}_g$ and a Coulomb force $\mathbf{F}_e$. We can get an idea of the relative strengths of these two forces by looking at their ratio. In Gaussian units, this is given by
 $$
@@ -75,10 +77,10 @@ Here for convenience we define the separation vector $\boldsymbol{\xi} \equiv \m
 
 ![](../resources/image-20240616171528590.png){fig-align=center width=500}
 
-Notice that the electric field doesn't depend on $q$ at all. It has a value at every point in space. When a test charge $q$ is brought in and placed at a position $\mathbf{x}$ it feels a force
+Notice that the electric field doesn't depend on $q$ at all. It has a value at every point in space. When a test charge $q$ is brought in and placed at a position $\mathbf{x}$ it feels a force due to an external electric field $\mathbf{E}$ of the form
 $$
 \boxed{
-\mathbf{F} = q \mathbf{E}(\mathbf{x})
+\mathbf{F} = q \mathbf{E}
 } \ .
 $$
 Note that the requirement that $q$ be an infinitesimal charge in this definition is important. If test charge is high enough, it will distort the background electric field through its presence, in effect making *both* charges source charges for the field. Also, note that this doesn't mean that the charge will move in the direction of the electric field. All that will be true is that its force vector will be tangential to the electric field at that point, pointing in the direction of the field if $q$ is negative, and opposite the field if $q$ is opposite. The path the charge actually follows through the field may be quite complicated.
@@ -135,12 +137,7 @@ $$
 $$
 This result tells us something interesting. Even far away from the source charges, the dipole doesn't seem to follow Coulomb's Law since the field doesn't fall off as $\mathbf{E} \sim \frac{1}{r^2}$, but rather as $\mathbf{E} \sim \frac{1}{r^3}$. The reason for this is the two charges screen each other, canceling out the monopole field that would usually give rise to a $\frac{1}{r^2}$ term in the field. This causes the field to be weaker than we'd expect for a point charge in the far field limit.
 
-The term $qd \mathbf{e}_z$ has a name. It's called the *dipole moment*, denoted by the vector $\mathbf{p}$. The dipole moment is a vector of magnitude $qd$ that points from the negative to the positive charge in a dipole. Using the dipole moment it's possible to show that for a general field point, not just in the $xy$-plane, we can express the electric field of a dipole in the far field limit as
-$$
-\mathbf{E} = \frac{3(\mathbf{p} \cdot \mathbf{e}_r) \mathbf{e}_r}{r^3} - \frac{\mathbf{p}}{r^3} \ .
-$$
-Notice the first term is just the projection of the dipole onto the field point direction, which is zero when the two vectors are perpendicular. The dipole turns out to be very important to the theory of electrostatics. We'll talk about it in more detail in the next chapter when we discuss the multipole expansion.
-
+The dipole turns out to be very important to the theory of electrostatics. We'll talk about it in more detail in a later chapter when we discuss the multipole expansion.
 ### Continuous Charge Distributions
 
 In classical electromagnetism we rarely find ourselves dealing with point charges. We're generally dealing with *macroscopic* materials containing many charged particles packed densely together. In such cases it's more convenient to treat those charges not as a sum over all the point charges, but instead as a continuous *charge distribution*.
@@ -181,20 +178,17 @@ dq = d\ell' \ \lambda(\mathbf{x}') \ .
 $$
 Then the formula for the electric field becomes
 $$
-\mathbf{E}(\mathbf{x}) = \int d\ell' \ \lambda(\mathbf{x}') \frac{\mathbf{x}-\mathbf{x}'}{|\mathbf{x}-\mathbf{x}'|^3} \ .
+\mathbf{E}(\mathbf{x}) = \int_\mathcal{C} d\ell' \ \lambda(\mathbf{x}') \frac{\mathbf{x}-\mathbf{x}'}{|\mathbf{x}-\mathbf{x}'|^3} \ .
 $$
-Here it's again understood that we're integrating over the line of charge $\mathcal{C}$, but we'll again usually omit this dependency.
-
 Last, we can imagine a two-dimensional *surface of charge* in space, for example a thin sheet of charge. If $da'$ is the area element along this surface of charge, we can define a *surface charge density* $\sigma(\mathbf{x}')$ by the formula
+
 $$
 dq = d\mathcal{a}' \ \sigma(\mathbf{x}') \ .
 $$
 Then the formula for the electric field becomes
 $$
-\mathbf{E}(\mathbf{x}) = \int da' \ \sigma(\mathbf{x}') \frac{\mathbf{x}-\mathbf{x}'}{|\mathbf{x}-\mathbf{x}'|^3} \ .
+\mathbf{E}(\mathbf{x}) = \int_\mathcal{S} da' \ \sigma(\mathbf{x}') \frac{\mathbf{x}-\mathbf{x}'}{|\mathbf{x}-\mathbf{x}'|^3} \ .
 $$
-Again, it's understood we're integrating over the whole surface of charge $\mathcal{S}$, which we will usually omit.
-
 We could in principle define charge densities in higher dimensions as well, though we won't since we won't need them. Each of the cases we discussed can be visualized using the figure below.
 
 ![](../resources/image-20240616171649819.png){fig-align=center width=600}
@@ -498,7 +492,7 @@ $$
 \mathbf{E} = - \nabla \phi
 }\ .
 $$
-Note the minus sign is merely a convention. We'll see why we include this in a moment. In electromagnetism we call $\phi$ the *scalar potential*, or more simply the *potential* depending on the context. The units of scalar potential are evidently energy per unit charge. In SI units the scalar potential has units of *volts*, or Joules per Coulomb. In Gaussian units the potential has units of ergs per ESU, sometimes called the *statvolt*, with $1 \ \frac{\text{erg}}{\text{esu}} \approx 300 \ \text{V}$.
+Note the minus sign is merely a convention. We'll see why we include this in a moment. In electromagnetism we call $\phi$ the *scalar potential*, or more simply the *potential* depending on the context. The dimensions of scalar potential are evidently energy per unit charge. In SI units the scalar potential has units of *volts*, or Joules per Coulomb. In Gaussian units the potential has units of ergs per esu, sometimes called the *statvolt*, with $1 \ \frac{\text{erg}}{\text{esu}} \approx 300 \ \text{V}$.
 
 Using the fundamental theorem of calculus we can invert the previous formula to get the potential in terms of the field. If $\mathbf{x}$ is the field point of interest and $\mathbf{g}$ is some fixed reference point, often called the *ground point*, we have
 $$
@@ -945,7 +939,7 @@ Q = CV
 $$
 where $C$ is some proportionality constant, called the *capacitance* or *self capacitance*. This means we can also think of the capacitance as the amount of charge stored in a conductor held at unit potential.
 
-The capacitance incapsulates all the geometric information encoded in the conductor needed to relate its charge to its potential. In Gaussian units this is obvious, since by dimensional analysis the capacitance must evidently carry units of *length*, or *centimeters*. In SI units, capacitance has units of Volts per Coulomb, called the *Farad*, with $1 \ \text{F} \approx 9 \cdot 10^{11} \ \text{cm}$. An implication of this is that a Farad is a very large unit of capacitance. In laboratory settings, most capacitors have capacitances in the range of $10^{-12}$ to $10^{-6}$ Farads.
+The capacitance incapsulates all the geometric information encoded in the conductor needed to relate its charge to its potential. In Gaussian units this is obvious, since by dimensional analysis the capacitance must evidently carry dimensions of *length*. In SI units, capacitance has units of Volts per Coulomb, called the *Farad*, with $1 \ \text{F} \approx 9 \cdot 10^{11} \ \text{cm}$. An implication of this is that a Farad is a very large unit of capacitance. In laboratory settings, most capacitors have capacitances in the range of $10^{-12}$ to $10^{-6}$ Farads.
 
 As a quick example, let's consider a conducting sphere of radius $R$ and total charge $Q$. Since the potential inside the sphere is $\frac{Q}{R}$, we can easily see that $C = R$, meaning the capacitance of a conducting sphere is just its radius.
 
