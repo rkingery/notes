@@ -107,7 +107,7 @@ FIGURE
 
 Let's now work a problem involving finding the electric field for a very simple example, the *physical dipole*.
 
-#### Example: Physical dipole
+##### Example: Physical dipole
 
 Suppose we have two like charges of opposite sign separated by a fixed distance along some axis. More formally, suppose we have a positive charge $+q$ located at a point $\mathbf{x}_+ = \frac{d}{2} \mathbf{e}_z$, and a negative charge $-q$ located at the opposite point $\mathbf{x}_- = -\frac{d}{2} \mathbf{e}_z$. Our goal will be to find the electric field for any field point $\mathbf{x}$ in the $xy$-plane. 
 
@@ -138,7 +138,8 @@ $$
 This result tells us something interesting. Even far away from the source charges, the dipole doesn't seem to follow Coulomb's Law since the field doesn't fall off as $\mathbf{E} \sim \frac{1}{r^2}$, but rather as $\mathbf{E} \sim \frac{1}{r^3}$. The reason for this is the two charges screen each other, canceling out the monopole field that would usually give rise to a $\frac{1}{r^2}$ term in the field. This causes the field to be weaker than we'd expect for a point charge in the far field limit.
 
 The dipole turns out to be very important to the theory of electrostatics. We'll talk about it in more detail in a later chapter when we discuss the multipole expansion.
-### Continuous Charge Distributions
+
+### Charge Distributions
 
 In classical electromagnetism we rarely find ourselves dealing with point charges. We're generally dealing with *macroscopic* materials containing many charged particles packed densely together. In such cases it's more convenient to treat those charges not as a sum over all the point charges, but instead as a continuous *charge distribution*.
 
@@ -193,7 +194,7 @@ We could in principle define charge densities in higher dimensions as well, thou
 
 ![](../resources/image-20240616171649819.png){fig-align=center width=600}
 
-#### Example: Sphere with uniform charge
+##### Example: Sphere with uniform charge
 
 As a useful example of how to calculate the electric field of a charge distribution, let's consider the case of a uniformly charged sphere. We'll first suppose the sphere is *hollow* with a radius $R$ and a uniform charge $Q = 4\pi R^2 \sigma$ where $\sigma$ is a constant surface density.
 
@@ -278,7 +279,7 @@ This was clearly a difficult integration problem. We'll see a *much* easier way 
 
 While Coulomb's Law is perhaps more directly connected to experiment and the historical progression of electromagnetism, it's usually not the most illuminating nor useful way to understand and calculate electric fields. Just as in classical mechanics we found it useful to express Newton's law as an ordinary differential equation for the trajectory of a particle, in electromagnetism we'll find it more useful to express Coulomb's Law as a set of *partial differential equations* for the electric field.
 
-### Flux
+### Electric Flux
 
 We know from the Helmholtz theorem that any well behaving vector field can be fully characterized by its divergence and its curl. This means if we can find the divergence and curl of the electric field we have an equivalent characterization for the field in terms of two linear partial differential equations. We'll derive the divergence of the electric field in this section, saving the curl of the electric field for the next section before discovering a neat way to combine them both together.
 
@@ -292,7 +293,7 @@ Informally, we can think of the flux as the total number of *signed* field lines
 
 As defined, the flux depends entirely on the surface $\mathcal{S}$ we choose. Different surfaces will have a different flux. However, in practice we'll usually be interested in *closed surfaces*. In that case, we'll show that the flux depends only on the charge distribution enclosed by the surface, not on the geometric properties of the surface itself. To do that we need to find a way to relate the flux of an electric field to the charge distribution in some way.
 
-### Integral Form of Gauss's Law
+### Integral Form
 
 Let's start by trying to find the flux through a sphere of radius $r$ centered on a point charge $q$ located at the origin. Since $q$ is located at the origin we have $\mathbf{x}' = \mathbf{0}$, meaning the electric field is simply
 $$
@@ -338,45 +339,19 @@ $$
 $$
 This important result is called the *integral form* of *Gauss's Law*. It says that the total flux of the electric field through a closed surface is proportional to the enclosed charge inside the surface. 
 
-### Differential Form of Gauss's Law
+Gauss's Law in this form can be very convenient to directly find the electric field in situations where the charge distribution has a high level of symmetry. As we've shown, as long as two closed surfaces contain the same charge distribution they will also have the same flux. What we can thus do is use this freedom to choose a Gaussian surface that simplifies the problem. 
 
-The enclosed charge can be found by integrating the charge density over the volume $\mathcal{V}$ of the closed surface,
+The simplest thing we could imagine doing is to choose a Gaussian surface such that the electric field strength $|\mathbf{E}|$ is constant along the surface. In that case, we'd have
 $$
-Q_{\text{enc}} = \int_\mathcal{V} d^3\mathbf{x} \ \rho(\mathbf{x}) \ .
+\oint_\mathcal{S} \mathbf{E} \cdot d\mathbf{a} = |\mathbf{E}| \oint_\mathcal{S} da = |\mathbf{E}| A \ ,
 $$
-Indeed, if we plug this into Gauss's Law we get
+where $A$ is the total surface area of $\mathcal{S}$. Then by Gauss's law, the electric field strength is just
 $$
-\oint_\mathcal{S} \mathbf{E} \cdot d\mathbf{a} = 4\pi \int_\mathcal{V} d^3\mathbf{x} \ \rho(\mathbf{x}) \ .
+|\mathbf{E}| = 4\pi \frac{Q_{\text{enc}}}{A} \ .
 $$
-Also, notice we can use of the divergence theorem to convert the flux integral into a volume integral,
-$$
-\oint_\mathcal{S} \mathbf{E} \cdot d\mathbf{a} = \int_\mathcal{V} d^3\mathbf{x} \ \nabla \cdot \mathbf{E} \ .
-$$
-Putting the two integrals together and moving everything to one side, we have
-$$
-\int_\mathcal{V} d^3\mathbf{x} \ \big[\nabla \cdot \mathbf{E} - 4\pi\rho\big] = 0 \ .
-$$
-Since this integral must vanish for any valid integrand we must have
-$$
-\boxed{
-\nabla \cdot \mathbf{E} = 4\pi\rho
-} \ .
-$$
-This result is known as the *differential form* of Gauss's Law. It's the main thing we sought to derive in this section. It gives us an expression for the divergence of the electric field in terms of the source charge distribution.
+For this to work though the charge distribution really needs to have a high level of symmetry. There are essentially only three situations for where we can do this: infinite lines of charge, infinite sheets of charged, and charged spheres. Let's look at each of these cases one by one, since their solutions turn out to be very useful approximations to many practical problems.
 
-### Examples
-
-Gauss's Law can sometimes be very convenient to directly find the electric field in situations where the charge distribution has a high level of symmetry. As we've shown, as long as two closed surfaces contain the same charge distribution they will also have the same flux. What we can thus do is use this freedom to choose a Gaussian surface that simplifies the problem. The simplest thing we could imagine doing is to choose a Gaussian surface such that $|\mathbf{E}|$ is constant along the surface. In that case, we'd have
-$$
-\oint_\mathcal{S} \mathbf{E} \cdot d\mathbf{a} = |\mathbf{E}| A \ ,
-$$
-where $A$ is the total surface area of $\mathcal{S}$. Then the integral form of Gauss's Law simplifies greatly to
-$$
-|\mathbf{E}| = \frac{4\pi Q_{\text{enc}}}{A} \ .
-$$
-For this to work though the charge distribution really needs to have a high level of symmetry. There are essentially three situations where we can do this: for infinite lines of charge, infinite sheets of charged, and charged spheres. Let's look at each.
-
-#### Example: Infinite line of Uniform Charge
+##### Infinite line of Uniform Charge
 
 Consider a line of charge of infinite length and infinitesimal width, so we can treat the line as one-dimensional. We'll suppose the line is oriented along the $z$-axis and carries a constant charge per unit length of $\lambda$​. Our goal is to find its electric field. We could do this the hard way as before, but in this case we can do it much more easily using Gauss's Law, so that's what we'll do.
 
@@ -400,7 +375,7 @@ E(\varrho) = \frac{2\lambda}{\varrho} \ .
 $$
 Thus, the electric field of an infinitely long wire of uniform charge is inversely proportional to its distance from the wire. Notice that this seems to contradicts Coulomb's Law, which predicts that far away from the wire the electric field should go like the inverse square of the distance. Why the contradiction? This comes from our assumption that the wire was infinitely long. If the wire had only a finite length, we would indeed recover Coulomb's Law in the far field limit.
 
-#### Example: Infinite sheet of uniform charge
+##### Infinite sheet of uniform charge
 
 We'll now consider not an infinite *line* of uniform charge, but an infinite *flat sheet* of uniform charge. We'll suppose this sheet is oriented in the $xy$-plane and has infinitesimal thickness, so we can treat the sheet as 2-dimensional with a constant surface charge density $\sigma$​.
 
@@ -422,7 +397,7 @@ E(z) = 2\pi\sigma \ .
 $$
 That is, the electric field strength of an infinite sheet of uniform charge is constant, no matter how far away from the surface we are, with the only difference being the direction (pointing above or below the surface). Yet again this seems to contradict Coulomb's Law, since the field would still be constant infinitely far from the sheet. This can be rectified, however, by noting that the sheet chosen is infinite in extent. For a finite sheet, Coulomb's Law would still hold in the far field limit.
 
-#### Example: Sphere with uniform charge
+##### Sphere with uniform charge
 
 As our final example in this section we'll consider an example we've already seen, the uniformly charged sphere. In a previous section we worked out its electric field with great pain. Here we'll show that Gauss's Law gives a much simpler way. We'll again suppose that the charge lies on a hollow sphere of radius $R$​ centered at the origin.
 
@@ -449,6 +424,32 @@ $$
 E(r) = \frac{Q(r)}{r^2} = \frac{4\pi\rho}{3} r \ .
 $$
 That is, inside of a uniformly charged solid sphere the electric field is *linear* in the radius. When $r=R$​ of course this will equal the equation for the field outside the sphere, where the field will start to decrease as an inverse square law.
+
+### Differential Form
+
+The enclosed charge can be found by integrating the charge density over the volume $\mathcal{V}$ of the closed surface,
+$$
+Q_{\text{enc}} = \int_\mathcal{V} d^3\mathbf{x} \ \rho(\mathbf{x}) \ .
+$$
+Indeed, if we plug this into Gauss's Law we get
+$$
+\oint_\mathcal{S} \mathbf{E} \cdot d\mathbf{a} = 4\pi \int_\mathcal{V} d^3\mathbf{x} \ \rho(\mathbf{x}) \ .
+$$
+Also, notice we can use of the divergence theorem to convert the flux integral into a volume integral,
+$$
+\oint_\mathcal{S} \mathbf{E} \cdot d\mathbf{a} = \int_\mathcal{V} d^3\mathbf{x} \ \nabla \cdot \mathbf{E} \ .
+$$
+Putting the two integrals together and moving everything to one side, we have
+$$
+\int_\mathcal{V} d^3\mathbf{x} \ \big[\nabla \cdot \mathbf{E} - 4\pi\rho\big] = 0 \ .
+$$
+Since this integral must vanish for any valid integrand we must have
+$$
+\boxed{
+\nabla \cdot \mathbf{E} = 4\pi\rho
+} \ .
+$$
+This result is known as the *differential form* of Gauss's Law. It's fully equivalent to the integral form. The only real difference is that the differential form is a statement of the *local* behavior of the electric field, not the *global* behavior.
 
 ## Scalar Potential
 
@@ -566,7 +567,7 @@ $$
 $$
 Notice that while the electric field is zero inside the sphere, the potential is not. It's a constant value throughout. Also notice that the two sides match at $r=R$, meaning the potential is continuous even though the field is not at $r=R$.
 
-#### Example: Solid sphere with uniform charge
+##### Example: Solid sphere with uniform charge
 
 We can also calculate the potential of the solid sphere if we wish. Outside the sphere the result is the same. Inside the sphere we have to use the fact that the field is no longer zero, but linear in $r$, with $\mathbf{E}(\mathbf{x}) = \frac{Qr}{R^3} \mathbf{e}_r$. When $r < R$ we thus have
 $$
@@ -587,7 +588,7 @@ $$
 $$
 Again, the potential is continuous at $r=R$. In fact so is its gradient since the field is also continuous at $r=R$.
 
-#### Example: Infinite sheet with uniform charge
+##### Example: Infinite sheet with uniform charge
 
 Let's briefly work an example involving an infinite charge distribution. We'll choose the uniformly charged infinite sheet. In this case we can no longer take infinity as the ground point. Instead we'll choose $\mathbf{g} = \mathbf{0}$ as the ground point. Recall for the infinite sheet the electric field for $z \geq 0$ is given by $\mathbf{E}(\mathbf{x}) = 2\pi\sigma \mathbf{e}_z$. This means $\mathbf{E} \cdot d\boldsymbol{\ell} = E(z) dz$, and so we have
 $$
@@ -625,7 +626,7 @@ FIGURE
 
 Let's now work some examples to show how much nicer this integral formula is to use than the one for the electric field.
 
-#### Example: Finite wire with uniform charge
+##### Example: Finite wire with uniform charge
 
 Let's find the potential of a uniformly charged wire of finite length. Suppose a wire of length $L$ has a uniform charge $Q = \lambda L$. We'll assume that it is oriented along the $z$-axis with its center at the origin.
 

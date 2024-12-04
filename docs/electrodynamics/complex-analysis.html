@@ -394,6 +394,8 @@ window.Quarto = {
   <ul>
   <li><a href="#complex-functions" id="toc-complex-functions" class="nav-link active" data-scroll-target="#complex-functions">Complex Functions</a>
   <ul class="collapse">
+  <li><a href="#complex-functions-1" id="toc-complex-functions-1" class="nav-link" data-scroll-target="#complex-functions-1">Complex Functions</a></li>
+  <li><a href="#continuous-functions" id="toc-continuous-functions" class="nav-link" data-scroll-target="#continuous-functions">Continuous Functions</a></li>
   <li><a href="#multivalued-functions" id="toc-multivalued-functions" class="nav-link" data-scroll-target="#multivalued-functions">Multivalued Functions</a></li>
   </ul></li>
   <li><a href="#analytic-functions" id="toc-analytic-functions" class="nav-link" data-scroll-target="#analytic-functions">Analytic Functions</a>
@@ -468,7 +470,9 @@ z = r e^{i\varphi} \ ,
 \text{Arg} \ z_1 z_2 = \text{Arg} \ z_1 + \text{Arg} \ z_2 \ .
 \]</span> We also introduced the complex exponential <span class="math inline">\(e^{i\varphi}\)</span>, and derived the Euler identity <span class="math display">\[
 e^{i \varphi} = \cos\varphi + i\sin\varphi \ .
-\]</span> ### Complex Functions</p>
+\]</span></p>
+<section id="complex-functions-1" class="level3">
+<h3 class="anchored" data-anchor-id="complex-functions-1">Complex Functions</h3>
 <p>We’ll now introduce the notion of functions of a complex variable. Just as we can create functions <span class="math inline">\(f(x)\)</span> of a real variable <span class="math inline">\(x\)</span>, we can just as well create functions <span class="math inline">\(f(z)\)</span> of a complex variable <span class="math inline">\(z\)</span>. We define a complex function <span class="math inline">\(f(z)\)</span> as any function that can be expressed in the form <span class="math display">\[
 f(z) = u(x,y) + iv(x,y) \ ,
 \]</span> where <span class="math inline">\(u(x,y)\)</span> and <span class="math inline">\(v(x,y)\)</span> are both real bivariate functions of the real and imaginary parts of <span class="math inline">\(z\)</span>.</p>
@@ -487,7 +491,10 @@ v(x,y) = \sin x \sinh y \ .
 u(x,y) = \frac{x}{x^2 + y^2} \ , \\
 v(x,y) = -\frac{y}{x^2 + y^2} \ .
 \end{cases}
-\]</span> ### Continuous Functions</p>
+\]</span></p>
+</section>
+<section id="continuous-functions" class="level3">
+<h3 class="anchored" data-anchor-id="continuous-functions">Continuous Functions</h3>
 <p>We’ll now discuss the concept of the continuity of a complex function. We know from calculus that a real function <span class="math inline">\(f(x)\)</span> is continuous at a point <span class="math inline">\(x=a\)</span> provided the difference <span class="math inline">\(f(x) - f(a)\)</span> is infinitesimal whenever <span class="math inline">\(x-a\)</span> is infinitesimal, that is, whenever <span class="math inline">\(x \approx a\)</span> we have <span class="math inline">\(f(x) \approx f(a)\)</span>. In terms of limits, this is equivalent to the statement that <span class="math display">\[
 f(a) = f\bigg(\lim_{x \to a} x\bigg) = \lim_{x \to a} f(x) \ .
 \]</span> We say <span class="math inline">\(f(x)\)</span> is continuous on some interval if <span class="math inline">\(f(x)\)</span> is continuous at all points <span class="math inline">\(a\)</span> in that interval.</p>
@@ -504,6 +511,7 @@ f(a) = f\bigg(\lim_{z \to a} z\bigg) = \lim_{z \to a} f(z) \ .
 <li>The sum or product of continuous functions is also continuous. For example, <span class="math inline">\(f(z) = 3e^z - z^2 \sin z\)</span> is continuous.</li>
 <li>The composition of continuous functions is also continuous. For example, <span class="math inline">\(f(z) = e^{2 \cos z}\)</span> is continuous.</li>
 </ul>
+</section>
 <section id="multivalued-functions" class="level3">
 <h3 class="anchored" data-anchor-id="multivalued-functions">Multivalued Functions</h3>
 <p>We know though that not all real functions are single-valued everywhere. For example, the inverse of the real function <span class="math inline">\(f(x) = x^2\)</span> is the multivalued function <span class="math inline">\(g(x) = \pm \sqrt{x}\)</span>. To deal with this issue we often restrict the range of <span class="math inline">\(f(x)\)</span> to <span class="math inline">\(x \geq 0\)</span> so that it has a well-defined inverse of <span class="math inline">\(g(x) = +\sqrt{x}\)</span>. This is known as the <em>principle root</em> of <span class="math inline">\(f(x) = x^2\)</span>.</p>
@@ -616,27 +624,29 @@ f(z) = \frac{1}{z} = \frac{x}{x^2 + y^2} - i \frac{y}{x^2 + y^2} \ .
 \nabla u(x,y) \cdot \nabla v(x,y) = 0 \ .
 \]</span> This again follows immediately from the Cauchy-Riemann equations. Indeed, we have <span class="math display">\[
 \nabla u \cdot \nabla v = \frac{\partial u}{\partial x} \frac{\partial v}{\partial x} + \frac{\partial u}{\partial y} \frac{\partial v}{\partial y} = \frac{\partial v}{\partial y} \frac{\partial v}{\partial x} - \frac{\partial v}{\partial x} \frac{\partial v}{\partial y} = 0 \ .
-\]</span> The Cauchy-Riemann conditions imply something else as well. Given a harmonic function <span class="math inline">\(u(x,y)\)</span>, we can determine the function <span class="math inline">\(v(x,y)\)</span>, called the <em>harmonic conjugate</em> of <span class="math inline">\(u(x,y)\)</span>, that makes <span class="math inline">\(f(z) = u(x,y) + i v(x,y)\)</span> analytic, up to constants. To see why this is true, we can write the total differential of <span class="math inline">\(v(x,y)\)</span> in the form <span class="math display">\[
+\]</span> The Cauchy-Riemann conditions imply something else as well. Given a harmonic function <span class="math inline">\(u(x,y)\)</span>, we can determine the function <span class="math inline">\(v(x,y)\)</span>, called the <em>harmonic conjugate</em> of <span class="math inline">\(u(x,y)\)</span>, that makes <span class="math inline">\(f(z) = u(x,y) + i v(x,y)\)</span> analytic, up an to an additive constant. To see why this is true, we can write the total differential of <span class="math inline">\(v(x,y)\)</span> in the form <span class="math display">\[
 dv = \frac{\partial v}{\partial x} dx + \frac{\partial v}{\partial y} dy \ .
 \]</span> If we now use the Cauchy-Riemann conditions and integrate both sides, we get <span class="math display">\[
 v(x,y) = -\int dx \ \frac{\partial u}{\partial y} + \int dy \ \frac{\partial u}{\partial x} \ .
-\]</span> Thus, up to additive constants, we’ve completely determined the form of <span class="math inline">\(v(x,y)\)</span> from the derivatives of <span class="math inline">\(u(x,y)\)</span>.</p>
-<p>As an example, consider the function <span class="math display">\[
-u(x,y) = y^3 - 3x^3 y \ .
+\]</span> Thus, we’ve completely determined the form of <span class="math inline">\(v(x,y)\)</span> from the derivatives of <span class="math inline">\(u(x,y)\)</span>, up to an additive constant.</p>
+<p>As an example of finding a harmonic conjugate, consider the function <span class="math display">\[
+u(x,y) = y^3 - 3x^2 y \ .
 \]</span> It’s easy to check that <span class="math inline">\(\nabla^2 u = 0\)</span>, which means <span class="math inline">\(u(x,y)\)</span> is harmonic on the <span class="math inline">\(xy\)</span>-plane. To find its conjugate <span class="math inline">\(v(x,y)\)</span>, we can impose the Cauchy-Riemann conditions. We have <span class="math display">\[
 \begin{align*}
-\frac{\partial v}{\partial x} &amp;= -\frac{\partial u}{\partial y} = -3y^2 - 3x^2 \ , \\
-\frac{\partial v}{\partial y} &amp;= \frac{\partial u}{\partial x} = -6x^2 y \ .
+\frac{\partial v}{\partial x} &amp;= -\frac{\partial u}{\partial y} = -3y^2 + 3x^2 \ , \\
+\frac{\partial v}{\partial y} &amp;= \frac{\partial u}{\partial x} = -6xy \ .
 \end{align*}
-\]</span> Then we have <span class="math display">\[
+\]</span> Integrating each of these derivatives must then give the same function <span class="math inline">\(v(x,y)\)</span>, <span class="math display">\[
 \begin{align*}
-v(x,y) &amp;= -\int dx \ \frac{\partial u}{\partial y} + \int dy \ \frac{\partial u}{\partial x} \\
-&amp;= \int dx \ (-3y^2 - 3x^2) + \int dy \ (-6x^2 y) \\
-&amp;= -3xy^2 - x^3 + C \ .
+v(x,y) &amp;= \int dx \ \frac{\partial v}{\partial x} = -3xy^2 + x^3 + c_2(y) \ , \\
+v(x,y) &amp;= \int dy \ \frac{\partial v}{\partial y} = -3xy^2 + c_1(x) \ .
 \end{align*}
-\]</span> It’s again easy to check that <span class="math inline">\(\nabla^2 v = 0\)</span>, so <span class="math inline">\(v(x,y)\)</span> is harmonic on the <span class="math inline">\(xy\)</span>-plane. We’ve thus found an analytic function <span class="math inline">\(f(z)\)</span> whose real and imaginary functions are harmonic, <span class="math display">\[
-f(z) = (y^3 - 3x^3 y) + i(-3xy^2 - x^3 + C) \ .
-\]</span> Evidently, the condition that a complex function be analytic is much stronger than the condition that a real function be differentiable. It implies a whole host of added properties we don’t see in calculus. In the next section we’ll show a few more.</p>
+\]</span> We can make these equations consistent by choosing <span class="math inline">\(c_1(x) = x^3\)</span> and <span class="math inline">\(c_2(y) = \text{const}\)</span>. Choosing <span class="math inline">\(c_2(y) = 0\)</span>, we have <span class="math display">\[
+v(x,y) = -3xy^2 + x^3 \ .
+\]</span> It’s again easy to check that <span class="math inline">\(\nabla^2 v = 0\)</span>, so <span class="math inline">\(v(x,y)\)</span> is harmonic in the <span class="math inline">\(xy\)</span>-plane. We’ve thus found an analytic function of the form <span class="math display">\[
+f(z) = (y^3 - 3x^3 y) - i \ (3xy^2 + x^3) \ .
+\]</span> Indeed, it’s not hard to check that the function <span class="math inline">\(f(z)\)</span> we created is in fact the function <span class="math inline">\(f(z) = iz^3\)</span>, which is an entire function.</p>
+<p>Evidently, the condition that a complex function be analytic is much stronger than the condition that a real function be differentiable. It implies a whole host of added properties we don’t see in calculus. In the next section we’ll show a few more.</p>
 </section>
 </section>
 <section id="complex-integration" class="level2">
