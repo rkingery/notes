@@ -612,29 +612,61 @@ $$
 $$
 Notice the similarities and differences between these two settings. In electrostatics, the *electric* field is the *gradient* of a *scalar* potential, while in magnetostatics the *magnetic* field is the *curl* of a *vector* potential. In a sense, the differences between the two are what gives rise to the differences in behavior we see between electric and magnetic fields. But on another hand the two expressions for the potentials look quite similar, except with $\rho$ replaced by $\mathbf{J}/c$. Since $\rho$ and $\mathbf{J}/c$ have the same units, this evidently means the scalar potential and the vector potential have the same units in the Gaussian system.
 
-Unlike the scalar potential in electrostatics, it's typically much less helpful to solve problems in magnetostatics by first calculating the vector potential and then using that to calculate the magnetic field. The reason for this is that the integral for $\mathbf{A}(\mathbf{x})$ is still a vector equation, which can often be as difficult to solve as finding $\mathbf{B}(\mathbf{x})$ from the Biot-Savart law directly. On top of this, the integral for the vector potential has the same limitation that the integral for the scalar potential does. It only works for *localized* distributions of current. For infinite currents, like for example the infinite wire, we have to calculate the field directly.
-
 One useful vector potential to be aware of is that of a uniform magnetic field. If $\mathbf{B}$ is constant, a suitable vector potential is
 $$
 \mathbf{A}(\mathbf{x}) = -\frac{1}{2} \mathbf{x} \times \mathbf{B} \ .
 $$
 This can be relatively easily confirmed by writing out $\nabla \times \mathbf{B}$ in index notation and confirming it gives back $\mathbf{B}$.
 
-Just as we were able to combine the field equations of electrostatics into a single field equation for the scalar potential, namely Poisson's equation $\nabla^2 \phi = 0$, we can do the same in magnetostatics to get a field equation for the vector potential. First, notice that the condition $\mathbf{B} = \nabla \times \mathbf{A}$ automatically implies that $\nabla \cdot \mathbf{B} = 0$, taking care of the first field equation. We thus only need to deal with Ampere's law,
+Unlike the scalar potential in electrostatics, it's typically much less helpful to solve problems in magnetostatics by first calculating the vector potential and then using that to calculate the magnetic field. The reason for this is that the integral for $\mathbf{A}(\mathbf{x})$ is still a vector equation, which can often be as difficult to solve as finding $\mathbf{B}(\mathbf{x})$ from the Biot-Savart law directly. On top of this, the integral for the vector potential has the same limitation that the integral for the scalar potential does. It only works for *localized* distributions of current. For infinite currents, like for example the infinite wire, we have to calculate the field directly.
+
+##### Example: Vector potential of a rotating charged sphere
+
+Suppose a hollow sphere of radius $R$ is rotating with some constant angular velocity $\boldsymbol{\omega}$. On the sphere is a uniform surface charge density $\sigma$. We'd like to calculate the vector potential and magnetic field of this rotating sphere.
+
+FIGURE (rotating sphere)
+
+To calculate the vector potential, we need to evaluate the vector integral
 $$
-\nabla \times \mathbf{B} = \frac{4\pi}{c} \mathbf{J} \ .
+\mathbf{A}(\mathbf{x}) = \frac{1}{c} \int da' \ \frac{\mathbf{K}(\mathbf{x}')}{|\mathbf{x} - \mathbf{x}'|} \ .
 $$
-If we now substitute in $\mathbf{B} = \nabla \times \mathbf{A}$ and use the identity
+For this problem, it turns out to be easier to orient the axes so that $\mathbf{x}$ lies on the $z$-axis and $\boldsymbol{\omega}$ lies in the $xz$-plane. This way, the angle between $\mathbf{x}$ and $\mathbf{x}'$ is simply the polar coordinate $\theta'$, and so we have
 $$
-\nabla \times (\nabla \times \mathbf{A}) = \nabla(\nabla \cdot \mathbf{A}) - \nabla^2 \mathbf{A}
+|\mathbf{x} - \mathbf{x}'| = \sqrt{r^2 + R^2 -2rR\cos\theta'} \ .
 $$
-along with the fact that $\nabla \cdot \mathbf{A} = 0$ in the Coulomb gauge, we get
+To find the surface current density notice that each charge on the sphere is moving with a velocity
 $$
-\boxed{
-\nabla^2 \mathbf{A} = -\frac{4\pi}{c} \mathbf{J}
-} \ .
+\mathbf{v}' = \boldsymbol{\omega} \times \mathbf{x}' = 
+
+\\ R\omega [-\cos\psi\sin\theta'\sin\varphi' \mathbf{e}_x + \cos\psi\sin\theta'\cos\varphi' \mathbf{e}_x]
 $$
-We've thus managed to reduce the two first order field equations for $\mathbf{B}$ into a single second order field equation for $\mathbf{A}$. Notice that this is again just Poisson's equation, except we now have one Poisson equation to solve for each vector component. For the same reason that it's not terribly helpful to solve for the vector potential directly from the integral, it's not terribly helpful either to find the vector potential directly from this Poisson equation either. Nevertheless, it'll still be theoretically useful in the subject.
+
+
+
+
+we'll write $\mathbf{K}(\mathbf{x}') = \sigma \mathbf{v}'$, where $\mathbf{v}'$ is given
+
+
+
+Now, since $\mathbf{x}' = R \mathbf{e}_r$, each charge on the sphere will rotate around the sphere with a velocity
+$$
+\mathbf{v}' = \boldsymbol{\omega} \times \mathbf{x}' = R \omega (\mathbf{e}_z \times \mathbf{e}_r) \ .
+$$
+To simplify the cross product we'll want to express the radial unit vector $\mathbf{e}_r$ in Cartesian coordinates,
+$$
+\mathbf{e}_r = \sin\theta' \cos\varphi' \mathbf{e}_x + \sin\theta' \sin\varphi' \mathbf{e}_y + \cos\theta' \mathbf{e}_z \ .
+$$
+Plugging this into the velocity vector and simplifying the cross product, we then get
+$$
+\mathbf{v}' = R \omega (\sin\theta' \cos\varphi' \mathbf{e}_y - \sin\theta' \sin\varphi' \mathbf{e}_x) \ .
+$$
+This means there will be a surface current density $\mathbf{K}(\mathbf{x}')$ on the sphere of
+$$
+\mathbf{K}(\mathbf{x}') = \sigma \mathbf{v}' = \sigma R \omega (\sin\theta' \cos\varphi' \mathbf{e}_y - \sin\theta' \sin\varphi' \mathbf{e}_x) \ .
+$$
+
+
+
 
 ### Gauge Transformations
 
@@ -668,6 +700,36 @@ The requirement $\nabla^2 \chi = 0$ in all space implies that $\chi(\mathbf{x})$
 
 At any rate, the gauge invariance of the vector potential makes it much more complicated to interpret physically. In electrostatics, we could interpret the scalar potential simply as the energy per unit charge relative to some ground point. But with the vector potential things are much more subtle. Nevertheless, the vector potential still has great theoretical importance, even if its physical interpretation is difficult.
 
+### Poisson's Equation
+
+In electrostatics, we saw that we could combine the two first order field equations for the electric field into a single second order field equation for the scalar potential,
+$$
+\begin{cases}
+\nabla \cdot \mathbf{E} = 4\pi\rho \ , \\
+\nabla \times \mathbf{E} = \mathbf{0}
+\end{cases}
+\quad \Longrightarrow \quad 
+\nabla^2 \phi = -4\pi\rho \ .
+$$
+In magnetostatics, we can also combine the two first order field equations for the magnetic field into a single second order field equation for the vector potential. Starting with the two field equations for the magnetic field, we have
+$$
+\begin{cases}
+\nabla \cdot \mathbf{B} = 0 \ , \\
+\nabla \times \mathbf{B} = \frac{4\pi}{c} \mathbf{J} \ .
+\end{cases}
+$$
+By writing $\mathbf{B} = \nabla \times \mathbf{A}$, we automatically get the first field equation for free. All we need to do now is plug the vector potential into Ampere's law. To do that, we'll again use the identity
+$$
+\nabla \times (\nabla \times \mathbf{A}) = \nabla(\nabla \cdot \mathbf{A}) - \nabla^2 \mathbf{A} \ .
+$$
+The left-hand side is just $\nabla \times \mathbf{B}$, which by Ampere's law is $4\pi/c \ \mathbf{J}$. On the right-hand side we know $\nabla \cdot \mathbf{A} = 0$, which means all that remains is $-\nabla^2 \mathbf{A}$. We thus end up with the equation
+$$
+\boxed{
+\nabla^2 \mathbf{A} = -\frac{4\pi}{c} \mathbf{J}
+} \ .
+$$
+We've thus managed to reduce the two first order field equations for $\mathbf{B}$ into a single second order field equation for $\mathbf{A}$. Notice that this is again just Poisson's equation, except we now have one Poisson equation to solve for each vector component. For the same reason that it's not terribly helpful to solve for the vector potential directly from the integral, it's not terribly helpful either to find the vector potential directly from this Poisson equation either. Nevertheless, it'll still be theoretically useful in the subject.
+
 ## Field Energy
 
 
@@ -692,4 +754,6 @@ $$
 $$
 U = - \mathbf{m} \cdot \mathbf{B} + \cdots
 $$
+
+
 
