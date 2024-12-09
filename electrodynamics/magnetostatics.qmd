@@ -22,7 +22,7 @@ $$
 $$
 By definition, the dipole moment $\mathbf{m}$ evidently points in the same direction as the sum total of all the electron spins $\mathbf{S}_i$, but in the opposite direction due to the minus sign in $\gamma$. By convention, the direction of $\mathbf{m}$ is called the *north pole* of the magnet, and the opposite direction is called the *south pole*.
 
-Now, we know from electrostatics that the electric dipole moment $\mathbf{p}$ produces an electric dipole field $\mathbf{E}(\mathbf{x})$ of the form
+Now, we know from electrostatics that a electric dipole moment $\mathbf{p}$ produces an electric dipole field $\mathbf{E}(\mathbf{x})$ of the form
 $$
 \mathbf{E}(\mathbf{x}) \equiv \frac{3(\mathbf{p} \cdot \mathbf{x}) \mathbf{x} - r^2 \mathbf{p}}{r^5} \ .
 $$
@@ -92,13 +92,15 @@ If this were all there was to magnetism we wouldn't have much more to say about 
 
 ### Current
 
-Up until now we've always assumed that charges were *static*. Now we will allow them to move around. The movement of charge is called electric *current*. Current is usually denoted by $I$, and defined by
+Up until now we've always assumed that charges were *static*. Now we will allow them to move around. This movement of charge is called electric *current*. We define the *current* $I$ through a surface as the rate of change of charge passing through the surface,
 $$
 I \equiv \frac{dq}{dt} \ .
 $$
-Since current is $I = dq/dt$, it evidently must have dimensions of charge per unit time. In Gaussian units, current is measured in units of esu per second, sometimes called the *statampere*. In SI units, current is measured in units of Coulombs per second, also called an *Ampere* or an *amp*. The two units are related by $1 \ \text{esu} / \text{sec} \approx 10^{-12} \ \text{A}$.
+By definition, current must have dimensions of charge per unit time. In Gaussian units, current is measured in units of esu per second, sometimes called the *statampere*. In SI units, current is measured in units of Coulombs per second, also called an *Ampere* or an *amp*. The two units are related by $1 \ \text{esu} / \text{sec} \approx 10^{-12} \ \text{A}$.
 
-Current is a measure of the movement of charge. The faster a charge moves, the higher its current. The more charge is moving, the higher the current. In practice, it turns out to be much easier to measure current in the lab than it is to measure charge. Current can be easily measured in the lab using an *amp-meter*, which measures current using Ohm's Law, an important relation between voltage and current that we'll discuss in a later chapter. Measuring charge directly is much more tricky.
+Current is a measure of the movement of charge. The faster a charge moves, the higher its current. The more charge is moving, the higher the current. By convention, the current is the direction in which the *positive* charge flows. Current produced by positive charge moving in one direction is equivalent to negative charge moving in the opposite direction. We know now of course that charges in a material typically move via moving electrons, which are negatively charged. This means, for instance, that if the electrons are moving in one direction through a material, then the measured current is moving in the opposite direction.
+
+In practice, it turns out to be much easier to measure current in the lab than it is to measure charge. Current can be easily measured in the lab using an *amp-meter*, which measures current using Ohm's Law, an important relation between voltage and current that we'll discuss in a later chapter. Measuring charge itself directly is much more tricky.
 
 We'll write the current in terms of a density as follows. Suppose we have a set of $N$ point charges $q_i$ flowing inside some volume each with velocity $\mathbf{v}_i$. Consider an infinitesimal cross section through this volume with area element $d\mathbf{a} = \mathbf{n} da$ and thickness $d\ell$.
 
@@ -574,13 +576,43 @@ Again, we saw this behavior with the electric field as well, which flips directi
 
 ##### Solenoid
 
-The final current distribution we'll consider is the *solenoid*. A solenoid can be thought of as 
+The final current distribution we'll consider is the *solenoid*. A solenoid is a tightly wound coil of conducting wire through which a current is pumped, so tightly wound that the current always points azimuthally along the coil. Provided the coil is wound tightly enough, the magnetic field inside the coil will be constant and point cylindrically outward from the coil, while outside the wire the field will vanish. 
 
-FIGURE
+To see why this is the case, suppose we have an infinitely long coil of wire oriented along the $z$-axis with $n$ total turns of wire per unit length, each of a constant radius $a$. Suppose we now pump a constant current $I$ through the wire in the counterclockwise direction.  Now, if we assume the current is moving azimuthally, there can be no azimuthal component to the field since the field is always perpendicular to the current. But there also can't be a radial direction to the field either. To see why, suppose we choose a field point inside the solenoid. Since reversing the direction of the current through the solenoid shouldn't alter the radial current of the field due to symmetry. This means the magnetic field of the solenoid must point in the $z$-direction,
+$$
+\mathbf{B}(\mathbf{x}) = B(\mathbf{x}) \mathbf{e}_z \ .
+$$
+Let's now look closer at the field strength $B(\mathbf{x})$. By symmetry, the field strength cannot depend on $\varphi$ or $z$ since the solenoid is cylindrically symmetric. If it depends on anything, it can thus only depend on the radial distance $\varrho$. To analyze this dependence we'll need to consider two cases, field points lying either inside or outside the radius of the solenoid.
 
-- Read up on this before proceeding further.
+FIGURE (solenoid with two loops, inner and outer rectangles)
 
+To that end let's first suppose we have an Amperian loop lying completely outside the solenoid consisting of a rectangle of height $\ell$ oriented along the $z$-axis, as shown in the above figure. Since there is no enclosed current flowing through this loop, and since for each horizontal segment of loop we have $\mathbf{B} \cdot d\boldsymbol{\ell} = 0$, by Ampere's law we must have
+$$
+\int_\mathcal{C} \mathbf{B} \cdot d\boldsymbol{\ell} = B(a) \ell - B(b) \ell = 0 \ .
+$$
+This means $B(a) = B(b)$, which means the field strength also doesn't depend on $\varrho$, and hence must be constant. Now, outside of the solenoid we expect the field should go to zero at infinity as it would for any wire. But since the field is independent of $\varrho$, the only way this can be true is if $B = 0$ when $\varrho \geq a$.
 
+By the same argument, the field also must be constant inside the solenoid, when $\varrho < a$, but it need not vanish. To find out what its value is inside,  we'll take the same Amperian loop defined above, but translate it inward so the inner vertical segment lies along the $z$-axis. If we now look at the circulation integral again, we find that only the inner vertical segment contributes anything to the circulation since the outer vertical segment must vanish, giving
+$$
+\int_\mathcal{C} \mathbf{B} \cdot d\boldsymbol{\ell} = B \ell \ .
+$$
+But now this new loop contains an enclosed current consisting of the product of the current $I$ with the number of coils $n \ell$ passing through the enclosed surface of the loop,
+$$
+I_\text{enc} = n\ell I \ .
+$$
+By Ampere's law, inside the wire we thus have a constant magnetic field strength of
+$$
+B = \frac{4\pi}{c} n I \ .
+$$
+In summary then, the magnetic field of an infinitely long solenoid of radius $a$ is thus
+$$
+\mathbf{B}(\mathbf{x}) = 
+\begin{cases}
+\frac{4\pi}{c} n I \mathbf{e}_z & \varrho < a \ , \\
+\mathbf{0} & \varrho \geq a \ .
+\end{cases}
+$$
+Evidently, the solenoid is able to produce a uniform magnetic field inside an enclosed volume. In this sense, the solenoid is to magnetostatics what the parallel plate capacitor is to electrostatics, a simple device for producing a uniform field. This makes the solenoid a very useful and practical means for generating magnetic fields in the lab and in many engineering devices.
 
 ## Vector Potential
 
@@ -619,6 +651,8 @@ $$
 This can be relatively easily confirmed by writing out $\nabla \times \mathbf{B}$ in index notation and confirming it gives back $\mathbf{B}$.
 
 Unlike the scalar potential in electrostatics, it's typically much less helpful to solve problems in magnetostatics by first calculating the vector potential and then using that to calculate the magnetic field. The reason for this is that the integral for $\mathbf{A}(\mathbf{x})$ is still a vector equation, which can often be as difficult to solve as finding $\mathbf{B}(\mathbf{x})$ from the Biot-Savart law directly. On top of this, the integral for the vector potential has the same limitation that the integral for the scalar potential does. It only works for *localized* distributions of current. For infinite currents, like for example the infinite wire, we have to calculate the field directly.
+
+- Consider mentioning a way to get $\mathbf{A}$ if $\mathbf{B}$ is known, an integral or the flux relation $\int \mathbf{A} \cdot d\boldsymbol{\ell} = \int \mathbf{B} \cdot d\mathbf{a}$.
 
 ##### Example: Vector potential of a rotating charged sphere
 
