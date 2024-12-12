@@ -86,65 +86,59 @@ Recall in Gaussian units that the squared charge has dimensions of energy times 
 
 In Gaussian units, the unit of magnetic field strength is called the *Gauss*, with $1 \ \text{G} = 10^{-4} \ \text{T}$, where the *Tesla* is the SI unit equivalent. To get an idea for scales, the Earth's magnetic field strength at the surface is about $0.5 \ \text{G}$. A typical refrigerator magnet has a field strength of $\sim 50 \ \text{G}$. An MRI machine might have a field strength of at least $\sim 30 \ \text{kG}$, or $\sim 3 \ \text{T}$. The strongest continuous magnet produced in a lab thus far has a field strength of $\sim 450 \ \text{kG}$, or $\sim 45 \ \text{T}$.
 
-## Magnetic Fields
+## Current
 
-If this were all there was to magnetism we wouldn't have much more to say about the subject. However, it turns out that ferromagnets are not the only things that generate magnetic fields. It turns out electric currents also produce magnetic fields. Before discussing how this phenomenon arises though we first need to discuss the concept of electric current. Once we've done that, we'll discuss the relation between current and magnetic fields, as well as the force law between them.
+If this were all there was to magnetism we wouldn't have much more to say about the subject. However, it turns out that ferromagnets are not the only things that generate magnetic fields. It turns out electric currents also produce magnetic fields. Before discussing how this phenomenon arises though we first need to discuss the concept of electric current.
 
-### Current
+### Definition
 
-Up until now we've always assumed that charges were *static*. Now we will allow them to move around. This movement of charge is called electric *current*. We define the *current* $I$ through a surface as the rate of change of charge passing through the surface,
+Up until now we've always assumed that charges were *static*. Now we will allow them to move around. This movement of charge is called electric *current*. Informally, the current through a point is defined as the rate of change of charge through that point, or
 $$
 I \equiv \frac{dq}{dt} \ .
 $$
-By definition, current must have dimensions of charge per unit time. In Gaussian units, current is measured in units of esu per second, sometimes called the *statampere*. In SI units, current is measured in units of Coulombs per second, also called an *Ampere* or an *amp*. The two units are related by $1 \ \text{esu} / \text{sec} \approx 10^{-12} \ \text{A}$.
+Current must have dimensions of charge per unit time. In Gaussian units, current is measured in units of esu per second, sometimes called the *statampere*. In SI units, current is measured in units of Coulombs per second, also called an *Ampere* or an *amp*. The two units are related by $1 \ \text{statamp} \approx 10^{-12} \ \text{amp}$.
 
-Current is a measure of the movement of charge. The faster a charge moves, the higher its current. The more charge is moving, the higher the current. By convention, the current is the direction in which the *positive* charge flows. Current produced by positive charge moving in one direction is equivalent to negative charge moving in the opposite direction. We know now of course that charges in a material typically move via moving electrons, which are negatively charged. This means, for instance, that if the electrons are moving in one direction through a material, then the measured current is moving in the opposite direction.
+Current was perhaps first understood in the context of conducting wires. When a potential difference is created across a wire, for example by hooking the wire up to a battery, the charges inside the wire experience an *electromotive force*, causing the charges to move in the direction of lowest potential, thus creating an electric current through the wire.
 
-In practice, it turns out to be much easier to measure current in the lab than it is to measure charge. Current can be easily measured in the lab using an *amp-meter*, which measures current using Ohm's Law, an important relation between voltage and current that we'll discuss in a later chapter. Measuring charge itself directly is much more tricky.
-
-We'll write the current in terms of a density as follows. Suppose we have a set of $N$ point charges $q_i$ flowing inside some volume each with velocity $\mathbf{v}_i$. Consider an infinitesimal cross section through this volume with area element $d\mathbf{a} = \mathbf{n} da$ and thickness $d\ell$.
-
-FIGURE (show above scenario)
-
-On average, the charges will move through the volume with an average velocity
-$$
-\mathbf{v} \equiv \frac{1}{N} \sum_i \mathbf{v}_i \ .
-$$
-Now, the average speed at which the charges traverse the cross section in the normal direction must evidently be $|\mathbf{v}| = d\ell / dt$, which means the total charge $dq$ passing normal to the cross sectional area $da$ in a given time $dt$ must be
-$$
-dq = d^3 \mathbf{x} \ \rho(\mathbf{x}) = da \frac{d\ell}{dt} \ \rho dt = \rho \mathbf{v} \cdot \mathbf{n} \ da \ dt \ .
-$$
-Dividing both sides by $dt$, we have
-$$
-dI \equiv \frac{dq}{dt} = \rho \mathbf{v} \cdot \mathbf{n} \ da \ .
-$$
-Integrating both sides across an entire surface $\mathcal{S}$, we finally have
-$$
-I = \int_\mathcal{S} \rho \mathbf{v} \cdot d\mathbf{a} \ .
-$$
-The scalar $I$ yields the total current passing through a surface $\mathcal{S}$. 
-
-It's convenient and useful to define the quantity $\mathbf{J} \equiv \rho \mathbf{v}$. We call this the *current density*. The current density is the analogue of the charge density, in that its integral gives the total current. Notice that current density carries units of current per unit area. In this sense, we can also think of the current density as the *flux* of current through a given cross section of area.
-
-Above we assumed we had a set of charges moving through a volume, but we can also imagine lower dimensional settings as well, where charges are confined to move along a surface, or along a curve. In these settings we have lower-dimensional ways to define the current density, similar to how we defined the surface and line charge densities in electrostatics.
-
-In two dimensions, we can go through the same math as above. Suppose we have the same set of charges moving along some surface instead of inside some volume. We can then consider the flow of charges passing normal to some curve $\mathcal{C}$ inside this surface. If the charges have a surface density $\sigma$, then the total current normal to the curve is
-$$
-I = \int_\mathcal{C} \sigma \mathbf{v} \cdot d\boldsymbol{\ell} \ .
-$$
-As we did above, it's convenient to define another current density $\mathbf{K} \equiv \sigma \mathbf{v}$, called the *surface current density*. The surface current density evidently then has units of current per unit length.
-
-In one dimension, we can do the same thing. Suppose the same set of charges are moving along some curve. In this case we can only consider charges passing through a point along the curve. If $\lambda$ is the line density along the curve, then the total current passing through a given point is just
+If a wire has a line charge density $\lambda$ and the charges inside the wire move with an average *drift velocity* $\mathbf{v}$, the current $I$ at any point in the wire is given by the product
 $$
 I = \lambda |\mathbf{v}| \ .
 $$
-In this setting it's sometimes convenient to think of current as a *vector* by defining $\mathbf{I} \equiv \lambda \mathbf{v}$.
+If we like, we can assign a direction to the current through the wire by making it a vector,
+$$
+\mathbf{I} = \lambda \mathbf{v} \ .
+$$
+The current will always flow in the direction the positive charges are moving through the wire. Of course it's really the negatively charged electrons that move through the wire, in the opposite direction of the current. This means if the drift velocity is in the $\mathbf{v}$ direction, the electrons are really moving through the wire in the $-\mathbf{v}$ direction. This convention, that the current flows opposite to the flowing electrons, is unfortunate, but it agrees with the convention practically always used in the subject.
 
-We've thus established the following set of relations for the total current,
+So far we've only defined the current through a conducting wire, but we can generalize the definition to arbitrary moving charge distributions as well. Suppose some charge distribution with charge density $\rho(\mathbf{x},t)$ is flowing through space with some flow velocity $\mathbf{v}(\mathbf{x},t)$. Intuitively, we can think of this moving distribution as a bunch of wires of current flowing through space each with its own velocity. We define the *current density* $\mathbf{J}(\mathbf{x},t)$ at each point in space by the product
 $$
-I = |\mathbf{I}| = \int_\mathcal{C} \mathbf{K} \cdot d\boldsymbol{\ell} = \int_\mathcal{S} \mathbf{J} \cdot d\mathbf{a} \ .
+\mathbf{J} \equiv \rho \mathbf{v} \ .
 $$
-The choice of integral used will depend on the dimension of the charge distribution of a given problem. See the figure below for a visual of these different types of current densities.
+Evidently, the current density has dimensions of charge times velocity, or equivalently current per unit area. In Gaussian units, the current density thus carries units of $\text{statamp} / \text{cm}^2$. Unlike the charge density, the current density is a vector whose direction is the average direction of charge flow at any given point.
+
+From the current density we can define a more general notion of current. Suppose some charge distribution is flowing through some surface $\mathcal{S}$ with some given current density $\mathbf{J}$. We define the *current* flowing through $\mathcal{S}$ to be the flux integral
+$$
+I \equiv \int_\mathcal{S} \mathbf{J} \cdot d\mathbf{a} \ .
+$$
+Notice that the current defined this way depends on the direction of the outward surface normal. If the direction of the outward normal is reversed, the current changes sign.
+
+We can also define notions of current density for lower dimensional distributions analogously. Suppose a charge distribution with surface charge density $\sigma(\mathbf{x},t)$ is flowing across some 2-dimensional surface with some flow velocity $\mathbf{v}(\mathbf{x},t)$. Then we define the *surface current density* $\mathbf{K}(\mathbf{x},t)$ at each point along the surface by the project
+$$
+\mathbf{K} \equiv \sigma \mathbf{v} \ .
+$$
+As with the volume current density $\mathbf{J}$, the surface current density $\mathbf{K}$ is also a vector pointing in the direction of charge flow along the surface. The surface current density evidently carries dimensions of current per unit length.
+
+From the surface current density we can define a notion of current flowing through some curve on a surface. If a surface $\mathcal{S}$ carries some current density $\mathbf{K}$ and $\mathcal{C}$ is some curve on the surface, we define the current passing through the curve by
+$$
+I \equiv \int_\mathcal{C} \mathbf{K} \cdot d\boldsymbol{\ell} \ .
+$$
+Finally, we'll consider the 1-dimensional case. In this case there is no meaningful notion of line current density, since the current would just be the flow of line current density through a point. That is, line current density is the same thing as current for charge flowing along a curve. The closest thing to a line current density would be the current vector defined above for a wire. If a charge distribution with line density $\lambda(\mathbf{x},t)$ is moving along some curve with flow velocity $\mathbf{v}(\mathbf{x},t)$, we define the current vector
+$$
+\mathbf{I} \equiv \lambda \mathbf{v} \ .
+$$
+From the current vector, we can easily see the current $I$ at any point along the curve is just $I = \lambda |\mathbf{v}|$, as we defined before.
+
+See the figure below for a visual of these different types of current densities.
 
 FIGURE (show current densities)
 
@@ -195,6 +189,10 @@ $$
 This implies that the charge distribution must be time-independent, with $\rho = \rho(\mathbf{x})$, which also implies that $\mathbf{J} = \rho \mathbf{v}$ is also time independent, with $\mathbf{J} = \mathbf{J}(\mathbf{x})$. This isn't to say that charges isn't moving, only they're moving in such a way that the charge distribution throughout space isn't changing. The only way this can be true is if any charges leaving any given region are getting replaced by other charges moving into that region. Of course, this is an abstraction. Yet in many physical situations, for example with current moving through a wire, this is approximately the case. This situation of course contrasts with electrostatics, where the charge distribution was also time independent. In that setting, the charges were indeed assumed to be stationary.
 
 One immediately implication of the steady current condition is that point charges must be excluded. Indeed, the density of a moving point charge is constantly changing. If a charge $q$ is moving at a velocity $\mathbf{v}$, then its source point $\mathbf{x}' = \mathbf{v} t$ becomes time dependent, which means the density $\rho(\mathbf{x},t) = q \delta(\mathbf{x} - \mathbf{v}t)$ is necessarily time-dependent. This means when enforcing the steady current condition, we *must* only consider extended distributions of charge, so that the movement of each charge cancels out the movement of the others on average. We'll come back to moving point charges later in electrodynamics.
+
+## Magnetic Fields
+
+Now that we've defined a notion of current and discussed the steady current condition, we can proceed to discuss how currents give rise to magnetic fields. This will give rise first to the Biot-Savart law and then to the field equations of magnetostatics, particularly Ampere's law.
 
 ### Biot-Savart Law
 
@@ -385,11 +383,9 @@ $$
 $$
 where $\mathbf{x}_1 - \mathbf{x}_2$ is the separation vector between any two source points along the two wires. This can easily be derived by using the Biot-Savart law on the second wire. By symmetry, it's clear that the force $\mathbf{F}_{21}$ on the second wire due to the first wire is equal and opposite, with $\mathbf{F}_{21} = -\mathbf{F}_{12}$.
 
-## Field Equations
+### Field Equations
 
 Just as it wasn't convenient or illuminating in electrostatics to use Coulomb's law to calculate and study electric fields, it's not convenient in magnetostatics to use the Biot-Savart law to calculate or study magnetic fields. We'll thus want to re-cast the Biot-Savart law as a set of field equations.
-
-### Derivation
 
 By the Biot-Savart law, the magnetic field created by a volume of steady current is given by
 $$
@@ -475,7 +471,7 @@ $$
 $$
 In electrostatics, it appears that it's the charge distribution that gives rise to the electric field. There are no currents present. Meanwhile, in magnetostatics it appears it's the current distribution that gives rise to the magnetic field. In this case there are no charges present. In classical electromagnetism, it's only electric currents that cause magnetic fields. There is no notion of magnetic charge, or said differently there is no notion of magnetic monopoles. Again, it's possible these *may* exist, but we've never found them. Until that happens, we take these equations as reality.
 
-### Ampere's Law
+## Ampere's Law
 
 In electrostatics, we were able to use the integral form of Gauss's law to easily find the electric field of several charge distributions with high degrees of symmetry. It turns out we can do something similar with Ampere's law, but to do that we first need to convert the differential form of Ampere's law into its integral form.
 
@@ -644,15 +640,113 @@ $$
 $$
 Notice the similarities and differences between these two settings. In electrostatics, the *electric* field is the *gradient* of a *scalar* potential, while in magnetostatics the *magnetic* field is the *curl* of a *vector* potential. In a sense, the differences between the two are what gives rise to the differences in behavior we see between electric and magnetic fields. But on another hand the two expressions for the potentials look quite similar, except with $\rho$ replaced by $\mathbf{J}/c$. Since $\rho$ and $\mathbf{J}/c$ have the same units, this evidently means the scalar potential and the vector potential have the same units in the Gaussian system.
 
-One useful vector potential to be aware of is that of a uniform magnetic field. If $\mathbf{B}$ is constant, a suitable vector potential is
+### Gauge Transformations
+
+In electrostatics, we saw that we could add any constant to the scalar potential and it wouldn't affect the physics, since in the end the electric field is the gradient of the scalar potential. A similar concept exists in magnetostatics, except it's more subtle. What physically matters is the magnetic field, since it's the magnetic field that gives rise to the forces. 
+
+This means we can add anything we like to the vector potential, so long as its curl vanishes. It turns out that the most general thing we can add to the vector potential whose curl vanishes is the gradient of some scalar field $\chi(\mathbf{x})$. Suppose we transform some given vector potential $\mathbf{A}$ by
+$$
+\mathbf{A}' = \mathbf{A} + \nabla \chi \ .
+$$
+If we take the curl of $\mathbf{A}'$, we see that
+$$
+\nabla \times \mathbf{A}' = \nabla \times \mathbf{A} + \nabla \times \nabla \chi \ .
+$$
+Since the curl of the gradient of a scalar field must vanish, for any choice of $\chi(\mathbf{x})$ we have
+$$
+\mathbf{B} = \nabla \times \mathbf{A} = \nabla \times \mathbf{A}' \ .
+$$
+Thus, any transformation $\mathbf{A} \to \mathbf{A}'$ that adds the gradient of any scalar field $\chi(\mathbf{x})$ won't alter the underlying physics. We call the choice of scalar field $\chi$ a *gauge*, and the transformation $\mathbf{A} \to \mathbf{A}'$ a *gauge transformation*. This means that given any vector potential $\mathbf{A}$, we can always do a gauge transformation without altering the magnetic field $\mathbf{B}$. In particular, this means any two given vector potentials may look very different, yet still be gauge equivalent. This is very different to what we saw in electrostatics, where the scalar potential could only differ by an additive constant.
+
+All of this begs the question though of which gauge we should choose, and how we should choose it.  Typically, when we specify a gauge, we don't specify $\chi$ directly. Rather, we tend to specify the divergence of the vector potential. This is essentially equivalent to specifying the Laplacian of $\chi$ rather than specifying $\chi$ directly, since
+$$
+\nabla \cdot \mathbf{A}' = \nabla \cdot \mathbf{A} + \nabla^2 \chi \ .
+$$
+In magnetostatics, the natural choice of gauge is to require that $\nabla^2 \chi = 0$, so that $\mathbf{A}$ be given exactly by the integral
+$$
+\mathbf{A}(\mathbf{x}) = \frac{1}{c} \int d^3 \mathbf{x}' \ \frac{\mathbf{J}(\mathbf{x}')}{|\mathbf{x} - \mathbf{x}'|} \ .
+$$
+We already calculated the divergence of this integral and showed that $\nabla \cdot \mathbf{A} = 0$. We call this the *Coulomb gauge*. 
+
+The requirement $\nabla^2 \chi = 0$ in all space implies that $\chi(\mathbf{x})$ must be constant. As with electrostatics then, the vector potential in magnetostatics is essentially unique up to an additive constant, so long as there are no other boundary conditions present or currents don't run off to infinity too quickly.
+
+At any rate, the gauge invariance of the vector potential makes it much more complicated to interpret physically. In electrostatics, we could interpret the scalar potential simply as the energy per unit charge relative to some ground point. But with the vector potential things are much more subtle. In a loose sense, the vector potential can be thought of as a kind of momentum per unit charge, but not always. Nevertheless, the vector potential still has great theoretical importance.
+
+### Poisson's Equation
+
+In electrostatics, we saw that we could combine the two first order field equations for the electric field into a single second order field equation for the scalar potential,
+$$
+\begin{cases}
+\nabla \cdot \mathbf{E} = 4\pi\rho \ , \\
+\nabla \times \mathbf{E} = \mathbf{0}
+\end{cases}
+\quad \Longrightarrow \quad 
+\nabla^2 \phi = -4\pi\rho \ .
+$$
+In magnetostatics, we can also combine the two first order field equations for the magnetic field into a single second order field equation for the vector potential. Starting with the two field equations for the magnetic field, we have
+$$
+\begin{cases}
+\nabla \cdot \mathbf{B} = 0 \ , \\
+\nabla \times \mathbf{B} = \frac{4\pi}{c} \mathbf{J} \ .
+\end{cases}
+$$
+By writing $\mathbf{B} = \nabla \times \mathbf{A}$, we automatically get the first field equation for free. All we need to do now is plug the vector potential into Ampere's law. To do that, we'll use the identity
+$$
+\nabla \times \mathbf{B} = \nabla \times (\nabla \times \mathbf{A}) = \nabla(\nabla \cdot \mathbf{A}) - \nabla^2 \mathbf{A} \ .
+$$
+The left-hand side is just $\nabla \times \mathbf{B}$, which by Ampere's law is $4\pi/c \ \mathbf{J}$. On the right-hand side we know $\nabla \cdot \mathbf{A} = 0$, which means all that remains is $-\nabla^2 \mathbf{A}$. We thus end up with the equation
+$$
+\boxed{
+\nabla^2 \mathbf{A} = -\frac{4\pi}{c} \mathbf{J}
+} \ .
+$$
+We've thus managed to reduce the two first order field equations for $\mathbf{B}$ into a single second order field equation for $\mathbf{A}$. Notice that this is again just Poisson's equation, except we now have one Poisson equation to solve for each vector component.
+
+### Calculating Vector Potentials
+
+Unlike in electrostatics, it's typically much less helpful to solve problems in magnetostatics by first calculating the potential and then using that to calculate the magnetic field. The reason for this is that the integral for $\mathbf{A}(\mathbf{x})$ is still a vector equation, which can often be as difficult to solve as finding $\mathbf{B}(\mathbf{x})$ from the Biot-Savart law directly. Nevertheless, when an expression for the vector potential is needed, there are a few ways to calculate them. One way is to use the integral directly,
+$$
+\mathbf{A}(\mathbf{x}) = \frac{1}{c} \int d^3 \mathbf{x}' \ \frac{\mathbf{J}(\mathbf{x}')}{|\mathbf{x} - \mathbf{x}'|} \ .
+$$
+If the magnetic field is already known, we can calculate the vector potential another way. In magnetostatics, we can write
+$$
+\nabla^2 \mathbf{A} = -\nabla \times \mathbf{B} \ .
+$$
+Notice this equation looks like the Poisson equation $\nabla^2 \phi = -4\pi\rho$ in electrostatics, except with three components. This means $\nabla^2 \mathbf{A}$ must have the same Green's function as we had in electrostatics, namely $1/|\mathbf{x} - \mathbf{x}'|$. We know then that the solution of the equation $\nabla^2 \mathbf{A} = -4\pi \mathbf{F}$ can be expressed as the convolution of $\mathbf{F}$ with the Green's function. If we set $\mathbf{F} = 1/4\pi \ \nabla \times \mathbf{B}$, we thus immediate get that
+$$
+\mathbf{A}(\mathbf{x}) = \frac{1}{4\pi} \int d^3\mathbf{x}' \ \frac{\nabla' \times \mathbf{B}(\mathbf{x}')}{|\mathbf{x} - \mathbf{x}'|} \ .
+$$
+This provides a way to calculate the vector potential of some current distribution if we already know the magnetic field. Note that this formula implicitly assumes that the current distribution is localized. If it's infinite we need to do something else to find $\mathbf{A}$. In these cases, we can instead calculate the circulation of $\mathbf{A}$ around some Amperian loop. By Stoke's theorem, we have
+$$
+\oint_\mathcal{C} \mathbf{A} \cdot d\boldsymbol{\ell} = \int_\mathcal{S} (\nabla \times \mathbf{A}) \cdot d\mathbf{a} = \int_\mathcal{S} \mathbf{B} \cdot d\mathbf{a} \ .
+$$
+The integral on the right-hand side is just the *magnetic flux* through the surface $\mathcal{S}$, which we'll denote $\Phi_M$, so we have
+$$
+\oint_\mathcal{C} \mathbf{A} \cdot d\boldsymbol{\ell} = \Phi_M \ .
+$$
+Notice how similar this expression looks to Ampere's law, except with $\mathbf{B}$ replaced by $\mathbf{A}$ and $4\pi/c \ \mathbf{J}$ replaced by $\Phi_M$. This means if the symmetry of a problem permits, we can often use the same tricks we used with Ampere's law to find $\mathbf{A}$.
+
+##### Example: Vector potential of a uniform magnetic field
+
+Suppose some current distribution gives rise to a uniform magnetic field $\mathbf{B}$. We'd like to find the vector potential $\mathbf{A}$. First, it's clear that no localized current distribution can give rise to a constant magnetic field $\mathbf{B}$, since the field would go to zero at infinity for any localized current distribution. We thus need to use the modified Ampere's law to find $\mathbf{A}$,
+$$
+\oint_\mathcal{C} \mathbf{A} \cdot d\boldsymbol{\ell} = \Phi_M \ .
+$$
+Suppose the magnetic field is oriented in the positive $z$-direction, with $\mathbf{B} = B \mathbf{e}_z$. This means $\mathbf{A}$ must then be oriented in the $xy$-plane. In fact, it's not too hard to see that $\mathbf{A}$ must be azimuthal, with $\mathbf{A} = A \mathbf{e}_\varphi$.
+
+With this in mind, consider as an Amperian loop a counterclockwise circle of radius $\varrho$ centered in the $xy$-plane. Along this loop the vector potential must be constant, and $\Phi_M = \pi\varrho^2 B$. Thus, we get
+$$
+\oint_\mathcal{C} \mathbf{A} \cdot d\boldsymbol{\ell} = 2\pi \varrho A = \pi\varrho^2 B \ .
+$$
+This means we have
+$$
+\mathbf{A}(\mathbf{x}) = \frac{1}{2} \varrho B \mathbf{e}_\varphi = -\frac{1}{2} (\varrho\mathbf{e}_\varrho \times B\mathbf{e}_z) = -\frac{1}{2} \mathbf{x} \times \mathbf{B} \ .
+$$
+The vector potential of a uniform magnetic field can thus be expressed in the form
 $$
 \mathbf{A}(\mathbf{x}) = -\frac{1}{2} \mathbf{x} \times \mathbf{B} \ .
 $$
-This can be relatively easily confirmed by writing out $\nabla \times \mathbf{B}$ in index notation and confirming it gives back $\mathbf{B}$.
-
-Unlike the scalar potential in electrostatics, it's typically much less helpful to solve problems in magnetostatics by first calculating the vector potential and then using that to calculate the magnetic field. The reason for this is that the integral for $\mathbf{A}(\mathbf{x})$ is still a vector equation, which can often be as difficult to solve as finding $\mathbf{B}(\mathbf{x})$ from the Biot-Savart law directly. On top of this, the integral for the vector potential has the same limitation that the integral for the scalar potential does. It only works for *localized* distributions of current. For infinite currents, like for example the infinite wire, we have to calculate the field directly.
-
-- Consider mentioning a way to get $\mathbf{A}$ if $\mathbf{B}$ is known, an integral or the flux relation $\int \mathbf{A} \cdot d\boldsymbol{\ell} = \int \mathbf{B} \cdot d\mathbf{a}$.
+One can easily verify this gives the answer by confirming that $\mathbf{B} = \nabla \times \mathbf{A}$. This is perhaps one of the few vector potentials worth actually remembering. It's the magnetic analogue of the similar statement that $\phi(\mathbf{x}) = -\mathbf{x} \cdot \mathbf{E}$ for a uniform electric field.
 
 ##### Example: Vector potential of a rotating charged sphere
 
@@ -699,70 +793,7 @@ $$
 \mathbf{K}(\mathbf{x}') = \sigma \mathbf{v}' = \sigma R \omega (\sin\theta' \cos\varphi' \mathbf{e}_y - \sin\theta' \sin\varphi' \mathbf{e}_x) \ .
 $$
 
-
-
-
-### Gauge Transformations
-
-In electrostatics, we saw that we could add any constant to the scalar potential and it wouldn't affect the physics, since in the end the electric field is the gradient of the scalar potential. A similar concept exists in magnetostatics, except it's more subtle. What physically matters is the magnetic field, since it's the magnetic field that gives rise to the forces. 
-
-This means we can add anything we like to the vector potential, so long as its curl vanishes. It turns out that the most general thing we can add to the vector potential whose curl vanishes is the gradient of some scalar field $\chi(\mathbf{x})$. Suppose we transform some given vector potential $\mathbf{A}$ by
-$$
-\mathbf{A}' = \mathbf{A} + \nabla \chi \ .
-$$
-If we take the curl of $\mathbf{A}'$, we see that
-$$
-\nabla \times \mathbf{A}' = \nabla \times \mathbf{A} + \nabla \times \nabla \chi \ .
-$$
-Since the curl of the gradient of a scalar field must vanish, for any choice of $\chi(\mathbf{x})$ we have
-$$
-\mathbf{B} = \nabla \times \mathbf{A} = \nabla \times \mathbf{A}' \ .
-$$
-Thus, any transformation $\mathbf{A} \to \mathbf{A}'$ that adds the gradient of any scalar field $\chi(\mathbf{x})$ won't alter the underlying physics. We call the choice of scalar field $\chi$ a *gauge*, and the transformation $\mathbf{A} \to \mathbf{A}'$ a *gauge transformation*. This means that given any vector potential $\mathbf{A}$, we can always do a gauge transformation without altering the magnetic field $\mathbf{B}$. In particular, this means any two given vector potentials may look very different, yet still be gauge equivalent. This is very different to what we saw in electrostatics, where the scalar potential could only differ by an additive constant.
-
-All of this begs the question though of which gauge we should choose, and how we should choose it.  Typically, when we specify a gauge, we don't specify $\chi$ directly. Rather, we tend to specify the divergence of the vector potential. This is essentially equivalent to specifying the Laplacian of $\chi$ rather than specifying $\chi$ directly, since
-$$
-\nabla \cdot \mathbf{A}' = \nabla \cdot \mathbf{A} + \nabla^2 \chi \ .
-$$
-In magnetostatics, the natural choice of gauge is to require that $\nabla^2 \chi = 0$, so that $\mathbf{A}$ be given exactly by the integral
-$$
-\mathbf{A}(\mathbf{x}) = \frac{1}{c} \int d^3 \mathbf{x}' \ \frac{\mathbf{J}(\mathbf{x}')}{|\mathbf{x} - \mathbf{x}'|} \ .
-$$
-We already calculated the divergence of this integral and showed that $\nabla \cdot \mathbf{A} = 0$. We call this the *Coulomb gauge*. 
-
-The requirement $\nabla^2 \chi = 0$ in all space implies that $\chi(\mathbf{x})$ must be constant. As with electrostatics then, the vector potential in magnetostatics is essentially unique up to an additive constant, so long as there are no other boundary conditions present or currents don't run off to infinity too quickly.
-
-At any rate, the gauge invariance of the vector potential makes it much more complicated to interpret physically. In electrostatics, we could interpret the scalar potential simply as the energy per unit charge relative to some ground point. But with the vector potential things are much more subtle. Nevertheless, the vector potential still has great theoretical importance, even if its physical interpretation is difficult.
-
-### Poisson's Equation
-
-In electrostatics, we saw that we could combine the two first order field equations for the electric field into a single second order field equation for the scalar potential,
-$$
-\begin{cases}
-\nabla \cdot \mathbf{E} = 4\pi\rho \ , \\
-\nabla \times \mathbf{E} = \mathbf{0}
-\end{cases}
-\quad \Longrightarrow \quad 
-\nabla^2 \phi = -4\pi\rho \ .
-$$
-In magnetostatics, we can also combine the two first order field equations for the magnetic field into a single second order field equation for the vector potential. Starting with the two field equations for the magnetic field, we have
-$$
-\begin{cases}
-\nabla \cdot \mathbf{B} = 0 \ , \\
-\nabla \times \mathbf{B} = \frac{4\pi}{c} \mathbf{J} \ .
-\end{cases}
-$$
-By writing $\mathbf{B} = \nabla \times \mathbf{A}$, we automatically get the first field equation for free. All we need to do now is plug the vector potential into Ampere's law. To do that, we'll again use the identity
-$$
-\nabla \times (\nabla \times \mathbf{A}) = \nabla(\nabla \cdot \mathbf{A}) - \nabla^2 \mathbf{A} \ .
-$$
-The left-hand side is just $\nabla \times \mathbf{B}$, which by Ampere's law is $4\pi/c \ \mathbf{J}$. On the right-hand side we know $\nabla \cdot \mathbf{A} = 0$, which means all that remains is $-\nabla^2 \mathbf{A}$. We thus end up with the equation
-$$
-\boxed{
-\nabla^2 \mathbf{A} = -\frac{4\pi}{c} \mathbf{J}
-} \ .
-$$
-We've thus managed to reduce the two first order field equations for $\mathbf{B}$ into a single second order field equation for $\mathbf{A}$. Notice that this is again just Poisson's equation, except we now have one Poisson equation to solve for each vector component. For the same reason that it's not terribly helpful to solve for the vector potential directly from the integral, it's not terribly helpful either to find the vector potential directly from this Poisson equation either. Nevertheless, it'll still be theoretically useful in the subject.
+- This is not finished…
 
 ## Field Energy
 
@@ -791,3 +822,7 @@ $$
 
 
 
+- Consider moving ferromagnet section toward the end, after multipole expansion is discussed
+- Can use it to solve problems with the magnetic scalar potential $\psi$, assuming magnetization boundary conditions
+- Move initial history section to the magnetic field section
+- Maybe defer the microscopic details (spins etc) to the dialectrics/materials chapter
