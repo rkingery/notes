@@ -375,7 +375,7 @@ Now, if we were interested in the *total* force exerted on the second wire, we'd
 $$
 \mathbf{f} = \frac{d\mathbf{F}}{d\ell} = \frac{2I_1 I_2}{c^2 d} \mathbf{e}_y \ .
 $$
-This is exactly Ampere's current law. Notice that the force between the two wires is in the direction of separation between them. By Newton's third law, the force felt by the first wire due to the second wire must be exactly the same. This means both wires are attracted are repelled by exactly the same force. The wires will attract if the two currents are opposite and repulse otherwise. This effect can be observed in the lab, though one would need to use pretty high currents to actually observe these forces by eye. For example, to create a force of $1 \ \text{lbf} \approx 4 \cdot 10^5 \ \text{dyne}$ between two wires of length $3 \ \text{ft} \approx 10^2 \text{cm}$ separated by a distance of $6 \ \text{in} \approx 15 \ \text{cm}$, one would need to use a huge current of about $2000$ amps!
+This is exactly Ampere's current law. Notice that the force between the two wires is in the direction of separation between them. By Newton's third law, the force felt by the first wire due to the second wire must be exactly the same. This means both wires are attracted are repelled by exactly the same force. The wires will attract if the two currents are opposite and repulse otherwise. This effect can be observed in the lab, though one would need to use pretty high currents to actually observe these forces by eye. For example, to create a force of $1 \ \text{lbf} \approx 4 \cdot 10^5 \ \text{dyne}$ between two wires of length $3 \ \text{ft} \approx 10^2 \ \text{cm}$ separated by a distance of $6 \ \text{in} \approx 15 \ \text{cm}$, one would need to use a huge current of about $2000$ amps!
 
 A similar result can be derived for the force between two arbitrary wires each of constant current. If the first wire has a current $\mathbf{I}_1$ along some curve $\mathcal{C}_1$ and the second wire has a current $\mathbf{I}_2$ along some curve $\mathcal{C}_2$, then the force $\mathbf{F}_{12}$ exerted on the first wire due to the second wire is given by
 $$
@@ -795,30 +795,128 @@ $$
 
 - This is not finished…
 
-## Field Energy
-
-
-$$
-\mathcal{U} = \frac{1}{8\pi} \int d^3\mathbf{x} \ |\mathbf{B}|^2
-$$
-
-$$
-u(\mathbf{x}) = \frac{1}{8\pi} |\mathbf{B}|^2
-$$
-
-
-
 ## Multipole Expansion
 
+Just as we could do a multipole expansion of the scalar potential in electrostatics, we can do a multipole expansion of the vector potential in electrostatics. 
 
+### Derivation
+
+Recall that in magnetostatics we can express the vector potential via the integral
+$$
+\mathbf{A}(\mathbf{x}) = \frac{1}{c} \int d^3 \mathbf{x}' \ \frac{\mathbf{J}(\mathbf{x}')}{|\mathbf{x} - \mathbf{x}'|} \ .
+$$
+Since the Green's function inside this integral is the same as the one in electrostatics, deriving this expansion will be fairly simple. Recall from the derivation of the multipole expansion in electrostatics that we can expand the Green's function as
+$$
+\frac{1}{|\mathbf{x} - \mathbf{x}'|} = \frac{1}{r} + \frac{\mathbf{x} \cdot \mathbf{x}'}{r^3} + \cdots \ .
+$$
+We only expanded up to the dipole term, but of course there will be a quadrupole term after that, and so on. Up to the dipole term then, each component $A_i$ of the vector potential $\mathbf{A}$ can be expanded in index notation as
+$$
+A_i(\mathbf{x}) = \frac{1}{r} \int \frac{d^3 \mathbf{x}'}{c} \ J_i(\mathbf{x}') + \frac{x_j}{r^3} \int \frac{d^3 \mathbf{x}'}{c} \ x_j' J_i(\mathbf{x}') + \cdots \ .
+$$
+Notice that neither of these integrals depends on the field point $\mathbf{x}$, only the source point $\mathbf{x}'$. Similar to what we did with the multipole expansion in electrostatics, we call these integrals *magnetic multipole moments*. The first integral is evidently the *magnetic monopole moment*, and the second integral is evidently the *magnetic dipole moment*.
+
+We can calculate what those moments are most easily by first proving the following identity. For any two scalar fields $f(\mathbf{x})$ and $g(\mathbf{x})$ and any localized current density $\mathbf{J}(\mathbf{x})$ in the Coulomb gauge, we must have
+$$
+\int d^3 \mathbf{x} \ (f \mathbf{J} \cdot \nabla g + g \mathbf{J} \cdot \nabla f) = 0 \ .
+$$
+To prove this we'll use integration by parts on the second term. Assuming the boundary terms vanish at infinity, we have
+$$
+\int d^3 \mathbf{x} \ g \mathbf{J} \cdot \nabla f = -\int d^3 \mathbf{x} \ (\nabla \cdot g \mathbf{J}) f \ .
+$$
+Since $\nabla \cdot g \mathbf{J} = \nabla g \cdot \mathbf{J} + g \nabla \cdot \mathbf{J}$ and $\nabla \cdot \mathbf{J} = 0$ in the Coulomb gauge, the identity is proved.
+
+For our uses below it's helpful to write the above identity in index notation in terms of the source point $\mathbf{x}'$,
+$$
+\int d^3 \mathbf{x}' \ (f J_i \partial_i' g + g J_i \partial_i' f) = 0 \ .
+$$
+Now, observe if we set $f=1$ and $g = x_i$, the second term vanishes and the first term is $J_i$. We thus get
+$$
+\int d^3 \mathbf{x}' \ J_i(\mathbf{x}') = 0 \ .
+$$
+But these are just the components of the magnetic monopole moment. Thus, the vector potential has no monopole moment, and hence no monopole potential. This is a formal proof if we like of the statement that magnetic monopoles do not exist. It all follows directly from the fact that $\nabla \cdot \mathbf{B} = 0$, which is what allows us to define the vector potential in the first place.
+
+### Magnetic Dipole Moment
+
+Let's now look at the components of the dipole potential $\mathbf{A}_1(\mathbf{x})$, 
+$$
+\frac{x_j}{cr^3} \int d^3 \mathbf{x}' \ x_j' J_i \ .
+$$
+If we instead set $f = -x_i/2$ and $g = -x_j/2$ in the above identity we get
+$$
+-\frac{1}{2} \int d^3 \mathbf{x}' \ (x_i' J_j + x_j' J_i) = 0 \ .
+$$
+
+Since this integral vanishes, we can add it to the dipole integral without changing its value. If we do that, we get
+$$
+\int d^3 \mathbf{x}' \ x_j' J_i = \int d^3 \mathbf{x}' \ \bigg(x_j' J_i - \frac{1}{2} (x_i' J_j - x_j' J_i)\bigg) = -\frac{1}{2} \int d^3 \mathbf{x}' \ (x_i' J_j - x_j' J_i) \ .
+$$
+This integral is identical to the original one, just written differently. If we now add it to the dipole integral, we get
+$$
+-\frac{x_j}{2cr^3} \int d^3 \mathbf{x}' \ (x_i' J_j - x_j' J_i) \ .
+$$
+Now, recall that any expression of the form $x_i' J_j - x_j' J_i$ can be related to the cross product $\mathbf{x}' \times \mathbf{J}$ by
+$$
+x_i' J_j - x_j' J_i = \varepsilon_{ijk} (\mathbf{x}' \times \mathbf{J})_k \ .
+$$
+This means the dipole potential can also be rewritten as
+$$
+-\frac{1}{2cr^3} \varepsilon_{ijk} x_j \int d^3 \mathbf{x}' \ (\mathbf{x}' \times \mathbf{J})_k \ .
+$$
+Finally, observe that $\varepsilon_{ijk} x_j (\mathbf{x}' \times \mathbf{J})_k$ is just the $i$<sup>th</sup> component of the triple product $\mathbf{x} \times (\mathbf{x}' \times \mathbf{J})$. In vector notation, the dipole potential can thus evidently be written as
+$$
+\mathbf{A}_1(\mathbf{x}) = \frac{\mathbf{x}}{r^3} \times \frac{1}{2c} \int d^3 \mathbf{x}' \ (\mathbf{J} \times \mathbf{x}') \ .
+$$
+From this, we can see that the magnetic dipole moment, usually denoted $\mathbf{m}$, has the form
 
 $$
-\mathbf{A}(\mathbf{x}) = \frac{\mathbf{m} \cdot \mathbf{x}}{cr^3} + \cdots
+\boxed{
+\mathbf{m} \equiv \frac{1}{2c} \int d^3\mathbf{x}' \ \mathbf{x}' \times \mathbf{J}(\mathbf{x}') 
+} \ .
 $$
+
+Thus, up to the dipole term, the vector potential can evidently be expanded as
+$$
+\mathbf{A}(\mathbf{x}) = \frac{\mathbf{m} \times \mathbf{x}}{r^3} + \cdots \ .
+$$
+
+We could keep proceed to find the higher order magnetic multipole terms as well. The next component would be the quadrupole term, falling off like $1/r^3$. But these higher moments are generally less useful in magnetism than in electricity, and far more complicated to write down, so we'll stop at the dipole term. 
+
+Let's compare this multipole expansion with the multipole expansion we found for the scalar potential in electrostatics,
+$$
+\phi(\mathbf{x}) = \frac{q}{r} + \frac{\mathbf{p} \cdot \mathbf{x}}{r^3} + \cdots \ .
+$$
+First, as we noted before, the vector potential has no monopole moment. Second, the magnetic dipole term involves a cross product with the dipole moment, instead of a dot product with the dipole moment. This partly reflects the obvious fact that the vector potential is a vector, not a scalar. But it also reflects the fact that the electric dipole term is strongest in the direction of the dipole vector, while the magnetic dipole term is strongest in directions perpendicular to the dipole vector.
+
+By taking the curl of the vector potential and manipulating terms, one can show that the magnetic field of the dipole potential can be expressed in the form
+$$
+\mathbf{B}_1(\mathbf{x}) = \frac{3(\mathbf{m} \cdot \mathbf{x}) \mathbf{x} - r^2 \mathbf{m}}{r^5} \ .
+$$
+Interestingly, the *field* due to the dipole has the same form for both the electric and magnetic fields.
+
 
 $$
 U = - \mathbf{m} \cdot \mathbf{B} + \cdots
 $$
+
+
+
+We'll start by recalling the general spherical expansion we derived for the Green's function in electrostatics,
+$$
+\frac{1}{|\mathbf{x} - \mathbf{x}'|} = \frac{1}{r} \sum_{\ell=0}^\infty \frac{4\pi}{2\ell+1} \bigg(\frac{r'}{r}\bigg)^\ell \sum_{m=-\ell}^\ell Y_{\ell m}(\theta,\varphi) Y_{\ell m}^*(\theta',\varphi') \ .
+$$
+Recall that this expansion holds so long as the source distribution is localized around the origin, and the field point lies outside the source distribution. If we plug this expansion into the integral for the vector potential and group together the source-dependent terms, we get
+$$
+\mathbf{A}(\mathbf{x}) = \frac{1}{c} \sum_{\ell=0}^\infty \sum_{m=-\ell}^\ell \frac{4\pi}{2\ell+1} \frac{Y_{\ell m}(\theta,\varphi)}{r^{\ell+1}} \int d^3 \mathbf{x}' \ \mathbf{J}(\mathbf{x}') r'^\ell Y_{\ell m}^*(\theta',\varphi') \ .
+$$
+The terms inside the integral depend only on the source current distribution. We call these the *magnetic spherical multipole moments*, which we'll denote by $\boldsymbol{\mu}_{\ell m}$,
+$$
+\boldsymbol{\mu}_{\ell m} \equiv \int d^3 \mathbf{x}' \ \mathbf{J}(\mathbf{x}') r'^\ell Y_{\ell m}^*(\theta',\varphi') \ .
+$$
+Unlike the multipole moments in electrostatics, which always involved scalar integrals, the multipole moments of magnetostatics are *vectors*, and hence will have three components per moment.
+
+
+
+## Magnetic Scalar Potential
 
 
 

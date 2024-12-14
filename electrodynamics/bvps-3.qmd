@@ -271,51 +271,56 @@ Since only the only part of the integrand that depends on the field point $\math
 
 Suppose $\alpha$ is the angle between the vectors $\mathbf{x}$ and $\mathbf{x}'$, i.e. $\mathbf{x} \cdot \mathbf{x}' = rr' \cos \alpha$. We can then rewrite the Green's function as
 $$
-\frac{1}{|\mathbf{x} - \mathbf{x}'|} = \frac{1}{\sqrt{r^2 + r'^2 - 2 rr' \cos\alpha}} = \frac{1}{r} \frac{1}{\sqrt{1 + \varepsilon^2 - 2 \varepsilon \cos\alpha}} \ ,
+\frac{1}{|\mathbf{x} - \mathbf{x}'|} = \frac{1}{\sqrt{r^2 + r'^2 - 2 rr' \cos\alpha}} = \frac{1}{r} \frac{1}{\sqrt{1 + (r'/r)^2 - 2 (r'/r) \cos\alpha}} \ .
 $$
-where  $\varepsilon \equiv r'/r$. We expect $\varepsilon$ to be small in the far field limit $r \gg r'$, which means it suffices to look at only the first few expansion terms. We can then do a binomial expansion of the Green's function in powers of $\varepsilon^2 - 2 \varepsilon \cos\alpha$ to get
+We expect $r'/r$ to be small in the far field limit $r \gg r'$, which means it suffices to look at only the first few expansion terms. We can then do a binomial expansion of the Green's function in powers of $(r'/r)^2 - 2 (r'/r) \cos\alpha$ to get
 $$
-\frac{1}{|\mathbf{x} - \mathbf{x}'|} = \frac{1}{r} \bigg[1 - \frac{1}{2} (\varepsilon^2 - 2\varepsilon \cos\alpha) + \frac{3}{8} (\varepsilon^2 - 2\varepsilon \cos\alpha)^2 - \frac{5}{16} (\varepsilon^2 - 2\varepsilon \cos\alpha)^3 + \cdots \bigg] \ .
+\frac{1}{|\mathbf{x} - \mathbf{x}'|} = \frac{1}{r} \bigg[1 - \frac{1}{2} [(r'/r)^2 - 2(r'/r) \cos\alpha] + \frac{3}{8} [(r'/r)^2 - 2(r'/r) \cos\alpha]^2 - \cdots \bigg] \ .
 $$
-Collecting terms in powers of $\varepsilon$ and substituting back in $\varepsilon = r'/r$ we then get
+Collecting terms in powers of $r'/r$ and substituting back in $\mathbf{x} \cdot \mathbf{x}' = rr' \cos \alpha$, we get
 $$
-\frac{1}{|\mathbf{x} - \mathbf{x}'|} = \frac{1}{r} + \cos\alpha \frac{r'}{r^2} + \frac{1}{2} (3 \cos^2\alpha - 1) \frac{r'^2}{r^3} + \cdots \ .
+\frac{1}{|\mathbf{x} - \mathbf{x}'|} = \frac{1}{r} + \frac{\mathbf{x} \cdot \mathbf{x}'}{r^3} + \frac{3 (\mathbf{x} \cdot \mathbf{x}')^2 - r^2 r'^2}{2r^5} + \cdots \ .
 $$
 Finally, plugging this expansion of the Green's function back into the potential, we get
 $$
-\phi(\mathbf{x}) = \int d^3\mathbf{x}' \ \rho(\mathbf{x}') \bigg[\frac{1}{r} + \cos\alpha \frac{r'}{r^2} + \frac{1}{2} (3 \cos^2\alpha - 1) \frac{r'^2}{r^3} + \cdots\bigg] \ .
+\phi(\mathbf{x}) = \int d^3\mathbf{x}' \ \rho(\mathbf{x}') \bigg[\frac{1}{r} + \frac{\mathbf{x} \cdot \mathbf{x}'}{r^3} + \frac{3 (\mathbf{x} \cdot \mathbf{x}')^2 - r^2 r'^2}{2r^5} + \cdots\bigg] \ ,
 $$
-For reasons we'll explain below, we define
+or, separating out the source-dependent and field-dependent parts of the first two terms,
 $$
-\begin{align*}
-q &\equiv \int d^3\mathbf{x}' \ \rho(\mathbf{x}') \ , \\
-\mathbf{p} &\equiv \int d^3\mathbf{x}' \ \rho(\mathbf{x}') \mathbf{x}' \ , \\
-\mathbf{Q} &= \int d^3\mathbf{x}' \ \rho(\mathbf{x}') \bigg[3 \mathbf{x}' \otimes \mathbf{x}' - r'^2 \mathbf{1}\bigg] \ .
-\end{align*}
+\phi(\mathbf{x}) = \frac{1}{r} \int d^3\mathbf{x}' \ \rho(\mathbf{x}') + \frac{\mathbf{x}}{r^3} \cdot \int d^3\mathbf{x}' \ \rho(\mathbf{x}') \mathbf{x}' + \frac{1}{2r^5} \int d^3\mathbf{x}' \ \rho(\mathbf{x}') [3 (\mathbf{x} \cdot \mathbf{x}')^2 - r^2 r'^2] + \cdots \ .
 $$
-The first quantity $q$ is clearly a scalar. The second quantity $\mathbf{p}$ is evidently a vector. The last quantity $\mathbf{Q}$ is a rank-2 tensor. Its integrand contains an outer product of $\mathbf{x}'$ with itself, along with a term proportional to the rank-2 identity tensor $\mathbf{1}$. Each of these quantities we've defined are called *multipole moments*. They're called *moments* because they can each be thought of as the integral of a charge density times a power of $\mathbf{x}'$, similar to how the moments of a probability distribution are integrals of a probability distribution times powers of a random variable.
+The fact that the integrals of the first two terms depend only on the source suggest we give those a name. The first integral, which is evidently just the total charge of the distribution, we call the *monopole moment* $q$,
+$$
+q \equiv \int d^3\mathbf{x}' \ \rho(\mathbf{x}') \ .
+$$
 
-If we substitute these moments into the expansion, it's possible to show that we can rewrite the expansion as
+The second integral is evidently a vector depending only on the source distribution. We call it the *dipole moment* $\mathbf{p}$,
 $$
-\phi(\mathbf{x}) = \frac{q}{r} + \frac{\mathbf{p} \cdot \mathbf{e}_r}{r^2} + \frac{\mathbf{e}_r \cdot \mathbf{Q} \cdot \mathbf{e}_r}{2r^3} + \cdots \ .
+\mathbf{p} \equiv \int d^3\mathbf{x}' \ \rho(\mathbf{x}') \mathbf{x}' \ .
 $$
-We'll show how to rewrite the expansion using these moments in the sections below. For now, notice if we let $\mathbf{e}_r = \mathbf{x}/r$, we can rewrite the expansion in its more common form,
+In its current form the final integral doesn't depend solely on the sources. We'll come back to it later. For now, just note that this term can be re-expressed to depend on the following matrix integral, which we call the *quadrupole moment* $\mathbf{Q}$,
+$$
+\mathbf{Q} \equiv \int d^3\mathbf{x}' \ \rho(\mathbf{x}') [3 \mathbf{x}' \otimes \mathbf{x}' - r'^2 \mathbf{1}] \ .
+$$
+The quadrupole moment depends only on the source distribution. It's evidently a $3 \times 3$ matrix, and in fact a rank-2 tensor. In components, it can be written
+$$
+Q_{ij} = \int d^3\mathbf{x}' \ \rho(\mathbf{x}') [3 x_i' x_j' - r'^2 \delta_{ij}] \ .
+$$
+All of these moments are called *multipole moments*. We'll explain the physical meaning behind each of these in more detail in the following sections. For now, just note that using these multipole moments we can re-write the potential expansion in the form
 $$
 \boxed{
 \phi(\mathbf{x}) = \frac{q}{r} + \frac{\mathbf{p} \cdot \mathbf{x}}{r^3} + \frac{\mathbf{x} \cdot \mathbf{Q} \cdot \mathbf{x}}{2r^5} + \cdots
 } \ .
 $$
-This expansion is called the *Cartesian multipole expansion*, or more precisely the first few terms of the multipole expansion. In principle we could continue the expansion indefinitely using higher and higher multipole moments. We'll do that later. Notice that all of the dependence on the source charge distribution is evidently contained in the multipole moments, leaving explicit any terms that depend on the field point.
-
-Let's now look at each of these expansion terms one by one and study their moments.
+This is called the Cartesian *multipole expansion*. In principle we could continue the expansion indefinitely using higher and higher multipole moments. We'll do that later. Let's now look at each of these expansion terms and their moments one by one.
 
 ### Monopole Moment
 
 Substituting in the definition for the first multipole moment $q$, we can write the first term in the multipole expansion as
 $$
-\phi_0(\mathbf{x}) = \frac{1}{r} \int d^3\mathbf{x}' \ \rho(\mathbf{x}') = \frac{q}{r} \ .
+\phi_0(\mathbf{x}) \equiv \frac{1}{r} \int d^3\mathbf{x}' \ \rho(\mathbf{x}') = \frac{q}{r} \ .
 $$
-We call this first term in the expansion the *monopole potential*. Clearly it falls off like $1/r$. The multipole moment $q$ is called the *monopole moment*. Evidently, the monopole moment is just the total *net charge* $q$ of the distribution,
+We call this first term in the expansion the *monopole potential*. Clearly it falls off like $1/r$. The monopole moment $q$ is evidently just the total *net charge* $q$ of the source distribution,
 $$
 q \equiv \int d^3\mathbf{x}' \ \rho(\mathbf{x}') \ .
 $$
@@ -333,11 +338,10 @@ Since this is the first term in the multipole expansion, we should expect that v
 
 Substituting in the definition for the second multipole moment $\mathbf{p}$, we can write the second term in the multipole expansion as
 $$
-\phi_1(\mathbf{x}) = \frac{1}{r^2} \int d^3\mathbf{x}' \ \rho(\mathbf{x}') \cos\alpha r' = \frac{\mathbf{p} \cdot \mathbf{e}_r}{r^2} = \frac{\mathbf{p} \cdot \mathbf{x}}{r^3} \ .
+\phi_1(\mathbf{x}) \equiv \frac{\mathbf{p} \cdot \mathbf{x}}{r^3} \ .
 $$
-In making this substitution we just used the fact that $\mathbf{x} \cdot \mathbf{x}' = rr' \cos \alpha$ to replace the $\cos\alpha$ term in the integrand, which lets us pull out a factor of $\mathbf{x}/r$ from the integrand since the integral is over $\mathbf{x}'$. 
+We call this expansion term the *dipole potential*. This potential falls off like $1/r^2$. What remains is the dipole moment $\mathbf{p}$, which encapsulates all of the information from this term about the charge distribution,
 
-We call this expansion term the *dipole potential*. This potential clearly falls off like $1/r^2$. What remains is the multipole moment $\mathbf{p}$, which encapsulates all of the information about the charge distribution. We call this moment the *dipole moment*,
 $$
 \mathbf{p} \equiv \int d^3\mathbf{x}' \ \rho(\mathbf{x}') \mathbf{x}' \ .
 $$
@@ -445,27 +449,23 @@ FIGURE (sketch the field lines of this sphere, showing it looks like a dipole)
 
 ### Quadrupole Moment
 
-Finally, let's look at the quadratic term in the multipole expansion, which can be written
+Finally, let's look at the quadratic term in the multipole expansion, which we had last written in the form
 $$
-\phi_2(\mathbf{x}) \equiv \frac{1}{2r^3} \int d^3\mathbf{x}' \ \rho(\mathbf{x}') (3 \cos^2\alpha - 1) r'^2 \ .
+\phi_2(\mathbf{x}) \equiv \frac{1}{2r^5} \int d^3\mathbf{x}' \ \rho(\mathbf{x}') [3 (\mathbf{x} \cdot \mathbf{x}')^2 - r^2 r'^2] \ .
 $$
-This term in the multipole expansion is called the *quadrupole potential*. Recall above that we also defined the multipole moment
+This term in the multipole expansion is called the *quadrupole potential*. Recall that we also defined the quadrupole moment
 $$
-\mathbf{Q} = \int d^3\mathbf{x}' \ \rho(\mathbf{x}') \bigg[3 \mathbf{x}' \otimes \mathbf{x}' - r'^2 \mathbf{1}\bigg] \ .
+\mathbf{Q} \equiv \int d^3\mathbf{x}' \ \rho(\mathbf{x}') \bigg[3 \mathbf{x}' \otimes \mathbf{x}' - r'^2 \mathbf{1}\bigg] \ .
 $$
-We call this multipole moment the *quadrupole moment* or the *quadrupole tensor*. As defined, the quadrupole moment evidently have dimensions of charge times distances squared, or charge times area. In particular, this means we should always expect the components of the quadrupole moment to go like $qd^2$, where $d$ is some characteristic length scale.
+As defined, the quadrupole moment, also called the *quadrupole tensor*, evidently has dimensions of charge times distances squared, or charge times area. In particular, this means we should always expect the components of the quadrupole moment to go like $qd^2$, where $d$ is some characteristic length scale.
 
-We'd like to rewrite the quadrupole potential to show its explicit dependence on the quadrupole moment. To do that, we'll rewrite the quadrupole moment in index notation. In index notation the outer product $\mathbf{x}' \otimes \mathbf{x}'$ can be written $x_i' x_j'$ and the identity tensor $\mathbf{1}$ can be written $\delta_{ij}$. We thus have
+We'd like to rewrite the quadrupole potential to show its explicit dependence on the quadrupole moment. To do that, we'll first rewrite the quadrupole moment in index notation,
 $$
 Q_{ij} \equiv \int d^3\mathbf{x}' \ \rho(\mathbf{x}') \bigg[3 x_i' x_j' - r'^2 \delta_{ij}\bigg] \ .
 $$
-Now, let's look again at the potential. Observe if we substitute $\mathbf{x} \cdot \mathbf{x}' = rr' \cos \alpha$ we can write the quadrupole potential as
+In index notation we can rewrite the quadrupole potential as
 $$
-\phi_2(\mathbf{x}) = \frac{1}{2r^3} \int d^3\mathbf{x}' \ \rho(\mathbf{x}') \bigg[3 \bigg(\frac{\mathbf{x} \cdot \mathbf{x}'}{r}\bigg)^2 - r'^2\bigg] \ .
-$$
-We'll go ahead and rewrite this potential in index notation as well,
-$$
-\phi_2(\mathbf{x}) = \frac{1}{2r^3} \int d^3\mathbf{x}' \ \rho(\mathbf{x}') \bigg[3 \frac{(x_i x'_i) (x_j x_j')}{r^2} - r'^2\bigg] \ .
+\phi_2(\mathbf{x}) = \frac{1}{2r^5} \int d^3\mathbf{x}' \ \rho(\mathbf{x}') \bigg[3 (x_i x'_i) (x_j x_j') - r^2 r'^2\bigg] \ .
 $$
 We want the pull all dependence on $\mathbf{x}$ out of the integrand. We can do this be factoring $x_i x_j$ out of the first term, but if we do that we need to insert a $\delta_{ij}$ into the second term. We then have
 $$
