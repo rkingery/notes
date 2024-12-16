@@ -283,12 +283,10 @@ While Coulomb's Law is perhaps more directly connected to experiment and the his
 
 We know from the Helmholtz theorem that any well behaving vector field can be fully characterized by its divergence and its curl. This means if we can find the divergence and curl of the electric field we have an equivalent characterization for the field in terms of two linear partial differential equations. We'll derive the divergence of the electric field in this section, saving the curl of the electric field for the next section before discovering a neat way to combine them both together.
 
-To make a start we need to define the idea of the *flux* of a vector field. Suppose $\mathcal{S}$ is some surface of interest we'd like to calculate the flux through. In electromagnetism we call this surface a *Gaussian surface*. The *flux* $\Phi$ through $\mathcal{S}$ due to the field $\mathbf{E}$ is defined by the integral
+To make a start we need to define the idea of the *flux* of a vector field. Suppose $\mathcal{S}$ is some surface of interest we'd like to calculate the flux through. In electromagnetism we call this surface a *Gaussian surface*. The *flux* $\Phi_E$ through $\mathcal{S}$ due to the field $\mathbf{E}$ is defined by the integral
 $$
-\Phi \equiv \int_\mathcal{S} \mathbf{E} \cdot d\mathbf{a} \ .
+\Phi_E \equiv \int_\mathcal{S} \mathbf{E} \cdot d\mathbf{a} \ .
 $$
-Note when we need to specify which field we're calculating the flux of, we'll write $\Phi_\mathbf{E}$ to be more specific.
-
 Informally, we can think of the flux as the total number of *signed* field lines passing through some specified surface of interest. By signed, we mean that the field lines passing through the positively oriented side of the surface contribute positive flux, while those passing through the negatively oriented side of the surface contribute negative flux. This means that flux itself will be a signed quantity indicating the net tendency of a field to flow into or out of a given surface. In particular, this means if the same field line passes in and out of the same surface it contributes nothing to the flux.
 
 As defined, the flux depends entirely on the surface $\mathcal{S}$ we choose. Different surfaces will have a different flux. However, in practice we'll usually be interested in *closed surfaces*. In that case, we'll show that the flux depends only on the charge distribution enclosed by the surface, not on the geometric properties of the surface itself. To do that we need to find a way to relate the flux of an electric field to the charge distribution in some way.
@@ -301,7 +299,7 @@ $$
 $$
 For a sphere of radius $r$ the area element is given by $d\mathbf{a} = r^2 d\Omega \mathbf{e}_r$. Here $d\Omega$ is the differential *solid angle*, which is just a useful shorthand for angular components of the area element, $d\Omega \equiv \sin\theta d\theta d\phi$. To find the flux, we need only now integrate to get
 $$
-\Phi = \oint_\mathcal{S} \mathbf{E} \cdot d\mathbf{a} = \int d\Omega \ r^2 \frac{q}{r^2} \mathbf{e}_r \cdot \mathbf{e}_r = 4\pi q \ .
+\Phi_E = \oint_\mathcal{S} \mathbf{E} \cdot d\mathbf{a} = \int d\Omega \ r^2 \frac{q}{r^2} \mathbf{e}_r \cdot \mathbf{e}_r = 4\pi q \ .
 $$
 We've thus shown that the flux of a point charge through a sphere is just proportional to the charge. Notice in this result that the radius of the Gaussian surface didn't enter into the picture at all. No matter what it cancels out. This fact is unique to inverse square fields, like electricity or gravity. Any field of this type will have the property that its flux is proportional to its source "charge".
 
@@ -367,13 +365,17 @@ $$
 $$
 Inside this cylinder, the enclosed charge is $Q_{\text{enc}} = \lambda z$. Applying Gauss's Law, we thus have
 $$
-E(r) \cdot 2\pi \varrho z = 4\pi \lambda z \ .
+E(\varrho) \cdot 2\pi \varrho z = 4\pi \lambda z \ .
 $$
-Solving for $E(\varrho)$, we finally have
+Solving for $E(\varrho)$, we get
 $$
 E(\varrho) = \frac{2\lambda}{\varrho} \ .
 $$
-Thus, the electric field of an infinitely long wire of uniform charge is inversely proportional to its distance from the wire. Notice that this seems to contradicts Coulomb's Law, which predicts that far away from the wire the electric field should go like the inverse square of the distance. Why the contradiction? This comes from our assumption that the wire was infinitely long. If the wire had only a finite length, we would indeed recover Coulomb's Law in the far field limit.
+The electric field of an infinite wire is thus given by
+$$
+\mathbf{E}(\mathbf{x}) = \frac{2\lambda}{\varrho} \mathbf{e}_\varrho \ .
+$$
+Clearly the field lines point radially outward from the wire (or inward if $\lambda$ is negative), and fall off like $1/\varrho$. Notice that this seems to contradicts Coulomb's Law, which predicts that far away from the wire the electric field should go like the inverse square of the distance. Why the contradiction? This comes from our assumption that the wire was infinitely long. If the wire had only a finite length, we would indeed recover Coulomb's Law in the far field limit.
 
 ##### Infinite sheet of uniform charge
 
@@ -383,19 +385,30 @@ We'll now consider not an infinite *line* of uniform charge, but an infinite *fl
 
 By symmetry, we'll argue that the electric field must always point away from the sheet in the $z$ direction. To see why, pick a random field point at a height $z$ above (or below) the sheet, centered at the origin. Pick a random source point $(r',\varphi')$ along the sheet. Now, there must be an opposite source point at $(r',\varphi'+\pi)$ for which the two field vectors will cancel in all but the $z$-direction. This means
 $$
-\mathbf{E}(\mathbf{x}) = \pm E(z) \mathbf{e}_z \ .
+\mathbf{E}(\mathbf{x}) = E(z) \mathbf{e}_z \ .
 $$
-All that thus remains is to find $E(z)$. Clearly this field is constant along surfaces of constant $z$. This means that any Gaussian surface with a flat top and bottom will do, since only the field through the top and bottom of the surface contribute anything to the flux. Such a surface is historically called a *pillbox*. Examples of pillboxes include prisms and cylinders. All that matters is that the top and bottom are flat, and the sides are perpendicular to the sheet. We'll thus choose any pillbox with equal top and bottom areas $A$ and some arbitrary height, as shown in the figure.
+It's also clear from symmetry that we must have $E(-z) = -E(z)$, meaning the field changes direction crossing the $z$-axis. We can thus focus on finding $E(z)$ when $z > 0$, in which case the $z < 0$ case immediately follows. 
+
+Clearly this field is constant along surfaces of constant $z$. This means that any Gaussian surface with a flat top and bottom will do, since only the field through the top and bottom of the surface contribute anything to the flux. Such a surface is historically called a *pillbox*. Examples of pillboxes include prisms and cylinders. All that matters is that the top and bottom are flat, and the sides are perpendicular to the sheet. We'll thus choose any pillbox with equal top and bottom areas $A$ and some arbitrary height, as shown in the figure.
 
 Since the field is constant on the top and bottom of the Gaussian surface and only points in the $z$-direction, the flux is given by
 $$
 \oint_\mathcal{S} \mathbf{E} \cdot d\mathbf{a} = |\mathbf{E}| \cdot 2A = E(z) \cdot 2 A \ .
 $$
-The pillbox encloses a charge given by $Q_{\text{enc}} = \sigma A$. Plugging these into Gauss's Law and solving for $E(z)$, we finally have
+The pillbox encloses a charge given by $Q_{\text{enc}} = \sigma A$. Plugging these into Gauss's Law and solving for $E(z)$, we have
 $$
 E(z) = 2\pi\sigma \ .
 $$
-That is, the electric field strength of an infinite sheet of uniform charge is constant, no matter how far away from the surface we are, with the only difference being the direction (pointing above or below the surface). Yet again this seems to contradict Coulomb's Law, since the field would still be constant infinitely far from the sheet. This can be rectified, however, by noting that the sheet chosen is infinite in extent. For a finite sheet, Coulomb's Law would still hold in the far field limit.
+This means the electric field of the infinite sheet is evidently constant, with
+$$
+\mathbf{E}(\mathbf{x}) = \begin{cases}
+4\pi\sigma & z > 0 \ , \\
+-4\pi\sigma & z < 0 \ .
+\end{cases}
+$$
+Just as we saw with the infinite line of charge, the infinite sheet of charge also doesn't fall off as we'd expect from Coulomb's law. In fact, it's constant everywhere in space, the only difference being which way the field lines point.
+
+Notice also that the electric field appears to change discontinuously crossing the $xy$-plane. Evidently, the electric field strength changes by exactly $\Delta E = 4\pi\sigma$. This is an interesting result. In fact, this discontinuity arises from the fact that the charge distribution is 2-dimensional. Indeed, all surfaces of charge will have this property, as we'll show later.
 
 ##### Sphere with uniform charge
 
@@ -419,11 +432,20 @@ This of course is exactly what we expected. The electric field of a uniformly ch
 $$
 E(r) = 0 \ .
 $$
+The electric field of the hollow sphere of charge is thus
+$$
+\mathbf{E}(\mathbf{x}) = \begin{cases}
+Q/r^2 \ \mathbf{e}_r & r \geq R \ , \\
+\mathbf{0} & r < R \ .
+\end{cases}
+$$
+Yet again, the electric field seems to change discontinuously when crossing a 2-dimensional surface. In fact, as with the infinite sheet above, since $Q = 4\pi R^2 \sigma$, the field strength is also changing by exactly $\Delta E = 4\pi\sigma$ when crossing through the sphere.
+
 What if the sphere is now solid instead of hollow, with a constant charge density $\rho$? Outside the sphere the result is the same. Inside the sphere though the enclosed charge will be the volume of the Gaussian surface times the charge density, which is just $Q(r) = \frac{4}{3} \pi r^3 \rho$. Plugging this into Gauss's Law, we have
 $$
 E(r) = \frac{Q(r)}{r^2} = \frac{4\pi\rho}{3} r \ .
 $$
-That is, inside of a uniformly charged solid sphere the electric field is *linear* in the radius. When $r=R$​ of course this will equal the equation for the field outside the sphere, where the field will start to decrease as an inverse square law.
+That is, inside of a uniformly charged solid sphere the electric field is *linear* $r$. When $r=R$​ of course this will equal the equation for the field outside the sphere, where the field will start to decrease as an inverse square law.
 
 ### Differential Form
 

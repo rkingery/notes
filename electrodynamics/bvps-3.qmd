@@ -281,7 +281,7 @@ Collecting terms in powers of $r'/r$ and substituting back in $\mathbf{x} \cdot 
 $$
 \frac{1}{|\mathbf{x} - \mathbf{x}'|} = \frac{1}{r} + \frac{\mathbf{x} \cdot \mathbf{x}'}{r^3} + \frac{3 (\mathbf{x} \cdot \mathbf{x}')^2 - r^2 r'^2}{2r^5} + \cdots \ .
 $$
-Finally, plugging this expansion of the Green's function back into the potential, we get
+Plugging this expansion of the Green's function back into the potential, we get
 $$
 \phi(\mathbf{x}) = \int d^3\mathbf{x}' \ \rho(\mathbf{x}') \bigg[\frac{1}{r} + \frac{\mathbf{x} \cdot \mathbf{x}'}{r^3} + \frac{3 (\mathbf{x} \cdot \mathbf{x}')^2 - r^2 r'^2}{2r^5} + \cdots\bigg] \ ,
 $$
@@ -318,15 +318,15 @@ This is called the Cartesian *multipole expansion*. In principle we could contin
 
 Substituting in the definition for the first multipole moment $q$, we can write the first term in the multipole expansion as
 $$
-\phi_0(\mathbf{x}) \equiv \frac{1}{r} \int d^3\mathbf{x}' \ \rho(\mathbf{x}') = \frac{q}{r} \ .
+\phi^{(0)}(\mathbf{x}) \equiv \frac{1}{r} \int d^3\mathbf{x}' \ \rho(\mathbf{x}') = \frac{q}{r} \ .
 $$
 We call this first term in the expansion the *monopole potential*. Clearly it falls off like $1/r$. The monopole moment $q$ is evidently just the total *net charge* $q$ of the source distribution,
 $$
 q \equiv \int d^3\mathbf{x}' \ \rho(\mathbf{x}') \ .
 $$
-Thus, the first term in the expansion is just $q/r$. This is exactly what we'd expect. Since the electric field is always given by $\mathbf{E} = -\nabla \phi$, the electric field of the monopole potential will be given by Coulomb's Law, with
+Thus, the first term in the expansion is just $q/r$. This is exactly what we'd expect. Since the electric field is $\mathbf{E}^{(0)} = -\nabla \phi^{(0)}$, the *monopole field* $\mathbf{E}^{(0)}$will be given by Coulomb's Law, with
 $$
-\mathbf{E}_0(\mathbf{x}) = \frac{q}{r^2} \mathbf{e}_r \ .
+\mathbf{E}^{(0)}(\mathbf{x}) = \frac{q}{r^2} \mathbf{e}_r \ .
 $$
 The field lines for the monopole look exactly as we'd expect. We show a plot of these field lines below to compare with the field lines of the higher order multipole terms in the next few sections. As usual, the field lines are assume to point outward for a positive point charge, and inward for a negative point charge.
 
@@ -338,7 +338,7 @@ Since this is the first term in the multipole expansion, we should expect that v
 
 Substituting in the definition for the second multipole moment $\mathbf{p}$, we can write the second term in the multipole expansion as
 $$
-\phi_1(\mathbf{x}) \equiv \frac{\mathbf{p} \cdot \mathbf{x}}{r^3} \ .
+\phi^{(1)}(\mathbf{x}) \equiv \frac{\mathbf{p} \cdot \mathbf{x}}{r^3} \ .
 $$
 We call this expansion term the *dipole potential*. This potential falls off like $1/r^2$. What remains is the dipole moment $\mathbf{p}$, which encapsulates all of the information from this term about the charge distribution,
 
@@ -373,7 +373,7 @@ $$
 
 We now have a potential that falls off like $1/r^2$. If we define $\mathbf{p} = qd \mathbf{e}_z$, in the far field limit we can express this potential as
 $$
-\phi(\mathbf{x}) \approx \phi_1(\mathbf{x}) = \frac{\mathbf{p} \cdot \mathbf{x}}{r^3} \ ,
+\phi(\mathbf{x}) \approx \phi^{(1)}(\mathbf{x}) = \frac{\mathbf{p} \cdot \mathbf{x}}{r^3} \ ,
 $$
 which is of course the dipole potential. It's conventional to define a vector $\mathbf{d} = d\mathbf{e}_z$ and write the dipole moment for the physical dipole as $\mathbf{p} = q \mathbf{d}$. Writing the dipole moment this way allows us to remove the requirement that the charges lie on the $z$-axis.
 
@@ -405,10 +405,10 @@ Notice that in the special case $q_+ = q_-$, we can simplify this further to get
 
 FIGURE (sketch the dipole situation for a general charge distribution, showing the polarizations)
 
-By writing $\mathbf{E}_1 = -\nabla \phi_1$ in index notation and plugging in the dipole potential above, while keeping in mind that $\mathbf{p}$ doesn't depend on $\mathbf{x}$, one can show that the electric field for the pure dipole is given by
+By writing $\mathbf{E}^{(1)} = -\nabla \phi^{(1)}$ in index notation and plugging in the dipole potential above, while keeping in mind that $\mathbf{p}$ doesn't depend on $\mathbf{x}$, one can show that the *dipole field* $\mathbf{E}^{(1)}$ can be written as
 $$
 \boxed{
-\mathbf{E}_1(\mathbf{x}) = \frac{3(\mathbf{p} \cdot \mathbf{x}) \mathbf{x} - r^2 \mathbf{p}}{r^5}
+\mathbf{E}^{(1)}(\mathbf{x}) = \frac{3(\mathbf{p} \cdot \mathbf{x}) \mathbf{x} - r^2 \mathbf{p}}{r^5}
 } \ .
 $$
 Notice that, while the dipole potential falls off like $1/r^2$ that, the dipole field falls off like $1/r^3$, as we'd expect.
@@ -429,7 +429,7 @@ p_z = \int da' \ \sigma' z' = \int_0^\pi R^2 \sin\theta' d\theta' \ k R \cos^2\t
 $$
 With the dipole moment in hand we can now calculate the dipole potential. Evidently, we have
 $$
-\phi_1(\mathbf{x}) = \frac{\mathbf{p} \cdot \mathbf{x}}{r^3} = \frac{p_z \cos\theta}{r^2} = \frac{4\pi}{3} kR \cos\theta \bigg(\frac{R}{r}\bigg)^2 \ .
+\phi^{(1)}(\mathbf{x}) = \frac{\mathbf{p} \cdot \mathbf{x}}{r^3} = \frac{p_z \cos\theta}{r^2} = \frac{4\pi}{3} kR \cos\theta \bigg(\frac{R}{r}\bigg)^2 \ .
 $$
 Since there is no monopole moment, this means in the far field limit the full potential can be approximated by
 $$
@@ -439,7 +439,7 @@ In fact, this is the *exact* potential for this charge distribution. We actually
 
 We can calculate the associated electric field as well, which is
 $$
-\mathbf{E}(\mathbf{x}) = \frac{3(\mathbf{p} \cdot \mathbf{e}_r) \mathbf{e}_r}{r^3} - \frac{\mathbf{p}} {r^3} = \frac{4\pi}{3} k \bigg(\frac{R}{r}\bigg)^3 \bigg(3\cos\theta \mathbf{e}_r - \mathbf{e}_z\bigg) \ .
+\mathbf{E}(\mathbf{x}) = \mathbf{E}^{(1)}(\mathbf{x}) =  \frac{3(\mathbf{p} \cdot \mathbf{e}_r) \mathbf{e}_r}{r^3} - \frac{\mathbf{p}} {r^3} = \frac{4\pi}{3} k \bigg(\frac{R}{r}\bigg)^3 \bigg(3\cos\theta \mathbf{e}_r - \mathbf{e}_z\bigg) \ .
 $$
 As expected, the electric field falls off like $1/r^3$, with field lines coming out from the top of the sphere (which we can think of as a $+q$ charge, and going into the bottom of the sphere (which we can think of as a $-q$ charge).
 
@@ -451,7 +451,7 @@ FIGURE (sketch the field lines of this sphere, showing it looks like a dipole)
 
 Finally, let's look at the quadratic term in the multipole expansion, which we had last written in the form
 $$
-\phi_2(\mathbf{x}) \equiv \frac{1}{2r^5} \int d^3\mathbf{x}' \ \rho(\mathbf{x}') [3 (\mathbf{x} \cdot \mathbf{x}')^2 - r^2 r'^2] \ .
+\phi^{(2)}(\mathbf{x}) \equiv \frac{1}{2r^5} \int d^3\mathbf{x}' \ \rho(\mathbf{x}') [3 (\mathbf{x} \cdot \mathbf{x}')^2 - r^2 r'^2] \ .
 $$
 This term in the multipole expansion is called the *quadrupole potential*. Recall that we also defined the quadrupole moment
 $$
@@ -465,19 +465,19 @@ Q_{ij} \equiv \int d^3\mathbf{x}' \ \rho(\mathbf{x}') \bigg[3 x_i' x_j' - r'^2 \
 $$
 In index notation we can rewrite the quadrupole potential as
 $$
-\phi_2(\mathbf{x}) = \frac{1}{2r^5} \int d^3\mathbf{x}' \ \rho(\mathbf{x}') \bigg[3 (x_i x'_i) (x_j x_j') - r^2 r'^2\bigg] \ .
+\phi^{(2)}(\mathbf{x}) = \frac{1}{2r^5} \int d^3\mathbf{x}' \ \rho(\mathbf{x}') \bigg[3 (x_i x'_i) (x_j x_j') - r^2 r'^2\bigg] \ .
 $$
 We want the pull all dependence on $\mathbf{x}$ out of the integrand. We can do this be factoring $x_i x_j$ out of the first term, but if we do that we need to insert a $\delta_{ij}$ into the second term. We then have
 $$
-\phi_2(\mathbf{x}) = \frac{x_i x_j}{2r^5} \int d^3\mathbf{x}' \ \rho(\mathbf{x}') \bigg[3 x_i' x_j' - r'^2 \delta_{ij}\bigg] \ .
+\phi^{(2)}(\mathbf{x}) = \frac{x_i x_j}{2r^5} \int d^3\mathbf{x}' \ \rho(\mathbf{x}') \bigg[3 x_i' x_j' - r'^2 \delta_{ij}\bigg] \ .
 $$
 Notice now that the remaining integral is just the $Q_{ij}$ component of the quadrupole moment. We thus have
 $$
-\phi_2(\mathbf{x}) = \frac{Q_{ij} x_i x_j}{2r^5} \ .
+\phi^{(2)}(\mathbf{x}) = \frac{Q_{ij} x_i x_j}{2r^5} \ .
 $$
 This is the usual way the quadrupole potential is written. We can also write it in abstract form by observing that $Q_{ij} x_i x_j$ is just the quadratic form $\mathbf{x} \cdot \mathbf{Q} \cdot \mathbf{x}$, that is, the inner product of $\mathbf{x}$ with the vector $\mathbf{Q} \cdot \mathbf{x}$. We can thus also write
 $$
-\phi_2(\mathbf{x}) =\frac{\mathbf{x} \cdot \mathbf{Q} \cdot \mathbf{x}}{2r^5} \ .
+\phi^{(2)}(\mathbf{x}) =\frac{\mathbf{x} \cdot \mathbf{Q} \cdot \mathbf{x}}{2r^5} \ .
 $$
 With the quadrupole potential re-expressed in terms of the quadrupole moment, we've completed our derivation of the basic multipole expansion above up to the quadrupole term,
 $$
@@ -604,14 +604,14 @@ Clearly this agrees with the expansion derived above when $x = y = 0$. However, 
 
 ---
 
-To find the electric field associated to the quadrupole term we can differentiate it in the usual way. By writing the potential in index notation and using the symmetric property of the quadrupole moment, one can show the components of the quadrupole field are given by
+To find the electric field associated to the quadrupole term we can differentiate it in the usual way. By writing the potential in index notation and using the symmetric property of the quadrupole moment, one can show the components of the *quadrupole field* $\mathbf{E}^{(2)}$ are given by
 $$
-E_k(\mathbf{x}) = \frac{5 Q_{ij} x_i x_j x_k - 2r^2 Q_{ik} x_k}{2r^7} \ .
+E_k^{(2)}(\mathbf{x}) = \frac{5 Q_{ij} x_i x_j x_k - 2r^2 Q_{ik} x_k}{2r^7} \ .
 $$
-As expected, the quadrupole field falls off like $1/r^4$. We can also express this in vector notation as
+As expected, the quadrupole field falls off like $1/r^4$. In vector notation, this becomes
 $$
 \boxed{
-\mathbf{E}_2(\mathbf{x}) = \frac{5 (\mathbf{x} \cdot \mathbf{Q} \cdot \mathbf{x}) \mathbf{x} - 2r^2(\mathbf{Q} \cdot \mathbf{x})}{2r^7}
+\mathbf{E}^{(2)}(\mathbf{x}) = \frac{5 (\mathbf{x} \cdot \mathbf{Q} \cdot \mathbf{x}) \mathbf{x} - 2r^2(\mathbf{Q} \cdot \mathbf{x})}{2r^7}
 } \ .
 $$
 Below is a plot of the field lines of the pure quadrupole, with the charges shown all in red. Notice that these field lines agree with those of the physical quadrupole in the far field limit, but differ close to the charges due to the lack of higher order moments. The density of field lines indicate the strength of the field at a given point. Near the charges the field lines are extremely strong compared to farther away, due to the fact that the quadrupole field falls off very rapidly, as $1/r^4$.
@@ -814,9 +814,11 @@ This shows that the spherical multipole expansion agrees with the basic multipol
 
 - If feeling judicious, maybe derive the general cartesian expansion using the irreducible representations of tensors
 
-## Multipole Expansion in an External Field
+## Charges in External Fields
 
 
 
 - Rederive multipole expansion for a localized charge distribution in the presence of an external electric field
 - See: Notes, Greiner, Jackson
+- This is definitely the worst set of notes written so far. Figure out a better way to format this…
+- It's also massively unfinished: complex methods, quadrupole moment, spherical expansion, external fields
