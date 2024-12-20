@@ -105,39 +105,7 @@ Here are some examples of electric field line sketches for a few different confi
 
 FIGURE
 
-Let's now work a problem involving finding the electric field for a very simple example, the *physical dipole*.
 
-##### Example: Physical dipole
-
-Suppose we have two like charges of opposite sign separated by a fixed distance along some axis. More formally, suppose we have a positive charge $+q$ located at a point $\mathbf{x}_+ = \frac{d}{2} \mathbf{e}_z$, and a negative charge $-q$ located at the opposite point $\mathbf{x}_- = -\frac{d}{2} \mathbf{e}_z$. Our goal will be to find the electric field for any field point $\mathbf{x}$ in the $xy$-plane. 
-
-![](../resources/image-20240811130607078.png){fig-align=center width=400}
-
-By the superposition principle, the electric field is given by
-$$
-\mathbf{E} = \mathbf{E}_+ + \mathbf{E}_- = q\frac{\mathbf{x} - \mathbf{x}_+}{|\mathbf{x} - \mathbf{x}_+|^3} - q\frac{\mathbf{x} - \mathbf{x}_-}{|\mathbf{x} - \mathbf{x}_-|^3} \ .
-$$
-To proceed further we first need to find the separation vectors for each charge. We have 
-$$
-\mathbf{x} - \mathbf{x}_\pm = r \mathbf{e}_r \mp \frac{d}{2} \mathbf{e}_z \ ,
-$$
-Plugging this in and simplifying, we get
-$$
-\begin{align*}
-\mathbf{E} &= q \frac{r \mathbf{e}_r - \frac{d}{2} \mathbf{e}_z}{|r \mathbf{e}_r - \frac{d}{2} \mathbf{e}_z|^3} - q \frac{r \mathbf{e}_r + \frac{d}{2} \mathbf{e}_z}{|r \mathbf{e}_r + \frac{d}{2} \mathbf{e}_z|^3} \\
-&= q \frac{r \mathbf{e}_r - \frac{d}{2} \mathbf{e}_z}{\bigg[r^2 + \big(\frac{d}{2}\big)^2\bigg]^{3/2}} - q \frac{r \mathbf{e}_r + \frac{d}{2} \mathbf{e}_z}{\bigg[r^2 + \big(-\frac{d}{2}\big)^2\bigg]^{3/2}} \\
-&= \frac{-qd}{\bigg[r^2 + \big(\frac{d}{2}\big)^2\bigg]^{3/2}} \mathbf{e}_z \ .
-\end{align*}
-$$
-We can immediately see that the electric field for any point in the $xy$-plane must point along the negative $z$-axis. This can be understood intuitively just by vector subtracting the separation vectors in the figure above and noting that the magnitude of the field for each charge must be the same by symmetry.
-
-This is as far as we can go as is, but we can make one useful simplification. Let's suppose $r \gg d$. This is the *far field limit* where the field point is far away from both charges. In this limit we can ignore the $\frac{d}{2}$ term in the denominator and write
-$$
-\mathbf{E} \approx -\frac{qd}{r^3} \mathbf{e}_z \ .
-$$
-This result tells us something interesting. Even far away from the source charges, the dipole doesn't seem to follow Coulomb's Law since the field doesn't fall off as $\mathbf{E} \sim \frac{1}{r^2}$, but rather as $\mathbf{E} \sim \frac{1}{r^3}$. The reason for this is the two charges screen each other, canceling out the monopole field that would usually give rise to a $\frac{1}{r^2}$ term in the field. This causes the field to be weaker than we'd expect for a point charge in the far field limit.
-
-The dipole turns out to be very important to the theory of electrostatics. We'll talk about it in more detail in a later chapter when we discuss the multipole expansion.
 
 ### Charge Distributions
 

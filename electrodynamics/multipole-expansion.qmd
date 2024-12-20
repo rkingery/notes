@@ -1,6 +1,6 @@
-# Boundary Value Problems III
+# Multipole Expansion
 
-In this last chapter on boundary value problems in electrostatics, we will conclude our discussion of boundary value problems by discussing briefly the applications of complex methods to solving Laplace's equation in two dimensions. We will then move on to the discussion of the multipole expansion of electrostatics, a way to obtain approximate solutions to electrostatics problems. The idea of a multipole expansion turns out to be very useful not just in electrostatics, but in all of electromagnetism. We'll see extensions of these ideas to other areas of electromagnetism in future chapters.
+In this last chapter on electrostatics, we will conclude our discussion of boundary value problems by discussing briefly the applications of complex methods to solving Laplace's equation in two dimensions. We will then move on to the discussion of the multipole expansion of electrostatics, a way to obtain approximate solutions to electrostatics problems. The idea of a multipole expansion turns out to be very useful not just in electrostatics, but in all of electromagnetism. We'll see extensions of these ideas to other areas of electromagnetism in future chapters.
 
 ## Complex Methods
 
@@ -255,7 +255,7 @@ This is of course exactly the result we found above using separation of variable
 
 
 
-## Multipole Moments
+## Cartesian Multipole Expansion
 
 We will now turn our attention away from boundary value problems and consider again the problem of a localized charge distribution sitting somewhere in space, free of boundary surfaces like conductors or whatever. We know that in this setting we can formally express the potential as an integral
 $$
@@ -263,46 +263,60 @@ $$
 $$
 The hard part is actually solving this integral for a general charge distribution $\rho(\mathbf{x}')$. It would be nice then if we could find a systematic way to approximate the potential as a series in inverse powers of the distance of the field point from the charge distribution. Provided we can find such an expansion, we can often find a good approximate solution when we're far away from the source charges by considering the first few expansion terms. This sort of expansion is called a *multipole expansion*.
 
-### Cartesian Multipole Expansion
+### Derivation
 
 Based on intuition and past examples, we expect that very far away from the charge distribution the potential should be approximately that of a point charge, falling off like $1/r$ when $r \gg r'$. But we've also seen potentials that fall off like $1/r^2$ as well. In fact, we can find charge distributions with potentials that fall off like $1/r^n$ for *any* positive integer $n$. 
 
-Since only the only part of the integrand that depends on the field point $\mathbf{x}$ is the Green's function $1/|\mathbf{x} - \mathbf{x}'|$, it suffices to find an expression of the Green's function in powers of $1/r$. Provided we can do this, we can plug the expansion back into the integral formula for the potential and get an expansion for the potential in powers of $1/r$.
+Since the only part of the integrand that depends on the field point $\mathbf{x}$ is the Green's function $G(\mathbf{x} - \mathbf{x}')$, it suffices to find an expression of the Green's function in powers of $1/r$. Provided we can do this, we can plug the expansion back into the integral formula for the potential and get an expansion for the potential in powers of $1/r$.
 
-Suppose $\alpha$ is the angle between the vectors $\mathbf{x}$ and $\mathbf{x}'$, i.e. $\mathbf{x} \cdot \mathbf{x}' = rr' \cos \alpha$. We can then rewrite the Green's function as
+Assuming a scalar field $f(\mathbf{x})$ is infinitely differentiable at some point $\mathbf{x}=\mathbf{x}_0$, we can Taylor expand the function about this point. It's not hard to see using index notation that this expansion will take the following form,
 $$
-\frac{1}{|\mathbf{x} - \mathbf{x}'|} = \frac{1}{\sqrt{r^2 + r'^2 - 2 rr' \cos\alpha}} = \frac{1}{r} \frac{1}{\sqrt{1 + (r'/r)^2 - 2 (r'/r) \cos\alpha}} \ .
+f(\mathbf{x}) = \sum_{n=0}^\infty \frac{1}{n!} (\mathbf{x} \cdot \nabla)^n f(\mathbf{x}_0) = f(\mathbf{x}_0) + \mathbf{x} \cdot \nabla f(\mathbf{x}_0) + \frac{1}{2} x_i x_j \frac{\partial^2 f}{\partial x_j \partial x_i} \bigg|_{\mathbf{x}=\mathbf{x}_0} + \cdots \ .
 $$
-We expect $r'/r$ to be small in the far field limit $r \gg r'$, which means it suffices to look at only the first few expansion terms. We can then do a binomial expansion of the Green's function in powers of $(r'/r)^2 - 2 (r'/r) \cos\alpha$ to get
+We'd like to now Taylor expand the Green's function $G(\mathbf{x} - \mathbf{x}')$, assuming $\mathbf{x}'$ is the expansion variable and $\mathbf{x}$ is the expansion point of interest. It's not hard to see this will be given by
 $$
-\frac{1}{|\mathbf{x} - \mathbf{x}'|} = \frac{1}{r} \bigg[1 - \frac{1}{2} [(r'/r)^2 - 2(r'/r) \cos\alpha] + \frac{3}{8} [(r'/r)^2 - 2(r'/r) \cos\alpha]^2 - \cdots \bigg] \ .
+G(\mathbf{x} - \mathbf{x}') = \sum_{n=0}^\infty \frac{(-1)^n}{n!} (\mathbf{x}' \cdot \nabla)^n G(\mathbf{x}) = G(\mathbf{x}) - \mathbf{x}' \cdot \nabla G(\mathbf{x}) + \frac{1}{2} x_i' x_j' \frac{\partial^2 G}{\partial x_j \partial x_i} + \cdots \ .
 $$
-Collecting terms in powers of $r'/r$ and substituting back in $\mathbf{x} \cdot \mathbf{x}' = rr' \cos \alpha$, we get
+If we now let $G(\mathbf{x} - \mathbf{x}') = 1/|\mathbf{x} - \mathbf{x}'|$, then $G(\mathbf{x}) = 1/r$, and so we can write
 $$
-\frac{1}{|\mathbf{x} - \mathbf{x}'|} = \frac{1}{r} + \frac{\mathbf{x} \cdot \mathbf{x}'}{r^3} + \frac{3 (\mathbf{x} \cdot \mathbf{x}')^2 - r^2 r'^2}{2r^5} + \cdots \ .
+\frac{1}{|\mathbf{x} - \mathbf{x}'|} = \sum_{n=0}^\infty \frac{(-1)^n}{n!} (\mathbf{x}' \cdot \nabla)^n \frac{1}{r} = \frac{1}{r} - \mathbf{x}' \cdot \nabla \frac{1}{r} + \frac{1}{2} x_i x_j \frac{\partial^2}{\partial x_j \partial x_i} \frac{1}{r} + \cdots \ .
 $$
-Plugging this expansion of the Green's function back into the potential, we get
+Now, recall that $\nabla 1/r = -\mathbf{x} / r^3$ and notice that
 $$
-\phi(\mathbf{x}) = \int d^3\mathbf{x}' \ \rho(\mathbf{x}') \bigg[\frac{1}{r} + \frac{\mathbf{x} \cdot \mathbf{x}'}{r^3} + \frac{3 (\mathbf{x} \cdot \mathbf{x}')^2 - r^2 r'^2}{2r^5} + \cdots\bigg] \ ,
+x_i' x_j' \frac{\partial^2}{\partial x_j \partial x_i} \frac{1}{r} = x_i' x_j' \frac{\partial^2}{\partial x_j \partial x_i} (x_k x_k)^{-1/2} = x_i' x_j' \frac{3 x_i x_j - r^2 \delta_{ij}}{r^5} \ .
 $$
-or, separating out the source-dependent and field-dependent parts of the first two terms,
+Up to the quadratic term, we can thus expand the Green's function in vector notation as
+$$
+\boxed{
+\frac{1}{|\mathbf{x} - \mathbf{x}'|} = \frac{1}{r} + \frac{\mathbf{x} \cdot \mathbf{x}'}{r^3} + \frac{3 (\mathbf{x} \cdot \mathbf{x}')^2 - r^2 r'^2}{2r^5} + \cdots 
+} \ .
+$$
+We've thus managed to expand the Green's function in powers of $1/r$, at least up to the quadratic term. We could keep going if we like. In fact the expansion above is just a binomial expansion, so it's not difficult. We'll defer the full expansion to later.
+
+Plugging this Green's function expansion back into the integral for the potential, we get
+$$
+\phi(\mathbf{x}) = \int d^3\mathbf{x}' \ \rho(\mathbf{x}') \bigg[\frac{1}{r} + \frac{\mathbf{x} \cdot \mathbf{x}'}{r^3} + \frac{3 (\mathbf{x} \cdot \mathbf{x}')^2 - r^2 r'^2}{2r^5} + \cdots\bigg] \ .
+$$
+Notice that, apart from the quadratic term, we can group the source-dependent terms together inside each integral to write
 $$
 \phi(\mathbf{x}) = \frac{1}{r} \int d^3\mathbf{x}' \ \rho(\mathbf{x}') + \frac{\mathbf{x}}{r^3} \cdot \int d^3\mathbf{x}' \ \rho(\mathbf{x}') \mathbf{x}' + \frac{1}{2r^5} \int d^3\mathbf{x}' \ \rho(\mathbf{x}') [3 (\mathbf{x} \cdot \mathbf{x}')^2 - r^2 r'^2] + \cdots \ .
 $$
-The fact that the integrals of the first two terms depend only on the source suggest we give those a name. The first integral, which is evidently just the total charge of the distribution, we call the *monopole moment* $q$,
+The fact that the integrals of the first two terms depend only on the source suggests we give those a name. The first integral, which is evidently just the total charge of the distribution, we'll call the *monopole moment* $q$,
 $$
 q \equiv \int d^3\mathbf{x}' \ \rho(\mathbf{x}') \ .
 $$
 
-The second integral is evidently a vector depending only on the source distribution. We call it the *dipole moment* $\mathbf{p}$,
+Notice that this means the first expansion term is just $q/r$, which agrees with our prior intuition that a charge distribution should act as a point charge in the far field limit, so long as $q \neq 0$. Its corrections will just be the next expansion terms.
+
+The second integral is evidently a vector depending only on the source distribution. We'll call it the *dipole moment* $\mathbf{p}$,
 $$
 \mathbf{p} \equiv \int d^3\mathbf{x}' \ \rho(\mathbf{x}') \mathbf{x}' \ .
 $$
-In its current form the final integral doesn't depend solely on the sources. We'll come back to it later. For now, just note that this term can be re-expressed to depend on the following matrix integral, which we call the *quadrupole moment* $\mathbf{Q}$,
+In its current form the third integral doesn't depend solely on the sources. We'll deal with that later. For now, just note that we can express this third term in the form
 $$
-\mathbf{Q} \equiv \int d^3\mathbf{x}' \ \rho(\mathbf{x}') [3 \mathbf{x}' \otimes \mathbf{x}' - r'^2 \mathbf{1}] \ .
+\frac{\mathbf{x} \cdot \mathbf{Q} \cdot \mathbf{x}}{2r^5} = \frac{x_i x_j Q_{ij}}{2r^5} \ ,
 $$
-The quadrupole moment depends only on the source distribution. It's evidently a $3 \times 3$ matrix, and in fact a rank-2 tensor. In components, it can be written
+where $\mathbf{Q}$ is a rank-2 tensor called the *quadrupole moment* whose components are given by
 $$
 Q_{ij} = \int d^3\mathbf{x}' \ \rho(\mathbf{x}') [3 x_i' x_j' - r'^2 \delta_{ij}] \ .
 $$
@@ -312,112 +326,140 @@ $$
 \phi(\mathbf{x}) = \frac{q}{r} + \frac{\mathbf{p} \cdot \mathbf{x}}{r^3} + \frac{\mathbf{x} \cdot \mathbf{Q} \cdot \mathbf{x}}{2r^5} + \cdots
 } \ .
 $$
-This is called the Cartesian *multipole expansion*. In principle we could continue the expansion indefinitely using higher and higher multipole moments. We'll do that later. Let's now look at each of these expansion terms and their moments one by one.
+This is the Cartesian *multipole expansion*. Let's now look more deeply at each of these expansion terms one by one.
 
 ### Monopole Moment
 
-Substituting in the definition for the first multipole moment $q$, we can write the first term in the multipole expansion as
+Substituting in the monopole moment $q$, we can write the first term in the multipole expansion simply as
 $$
-\phi^{(0)}(\mathbf{x}) \equiv \frac{1}{r} \int d^3\mathbf{x}' \ \rho(\mathbf{x}') = \frac{q}{r} \ .
+\boxed{
+\phi^{(0)}(\mathbf{x}) = \frac{q}{r} 
+} \ .
 $$
-We call this first term in the expansion the *monopole potential*. Clearly it falls off like $1/r$. The monopole moment $q$ is evidently just the total *net charge* $q$ of the source distribution,
+This is called the *monopole potential*. Clearly it falls off like $1/r$. Recall the monopole moment $q$ is given by
 $$
-q \equiv \int d^3\mathbf{x}' \ \rho(\mathbf{x}') \ .
+\boxed{
+q \equiv \int d^3\mathbf{x}' \ \rho(\mathbf{x}') }
+ \ .
 $$
-Thus, the first term in the expansion is just $q/r$. This is exactly what we'd expect. Since the electric field is $\mathbf{E}^{(0)} = -\nabla \phi^{(0)}$, the *monopole field* $\mathbf{E}^{(0)}$will be given by Coulomb's Law, with
+Evidently, the monopole moment represents the *total net charge* of the distribution.
+
+Since the electric field is $\mathbf{E}^{(0)} = -\nabla \phi^{(0)}$, the *monopole field* $\mathbf{E}^{(0)}$will be given by Coulomb's Law, with
 $$
-\mathbf{E}^{(0)}(\mathbf{x}) = \frac{q}{r^2} \mathbf{e}_r \ .
+\mathbf{E}^{(0)}(\mathbf{x}) \equiv \frac{q}{r^2} \mathbf{x} \ .
 $$
 The field lines for the monopole look exactly as we'd expect. We show a plot of these field lines below to compare with the field lines of the higher order multipole terms in the next few sections. As usual, the field lines are assume to point outward for a positive point charge, and inward for a negative point charge.
 
 ![](../resources/image-20241108234730808.png){fig-align=center width=400}
 
-Since this is the first term in the multipole expansion, we should expect that very far away from the charge distribution, the potential should approximate the of a point charge with total net charge $q$. Of course, this is only true provided the net charge isn't zero. If it is, we have to proceed to the next term in the multipole expansion, the dipole term.
+Naturally, the best physical model of the monopole moment is just a point charge $q$ centered at the origin, which exactly reproduces the field lines shown above.
+
+Since this is the first term in the multipole expansion, we should expect that very far away from the charge distribution, the potential should approximate the of a point charge with total net charge $q$. Of course, this is only true if $q \neq 0$. If $q=0$, we have to proceed to the next term in the multipole expansion, the dipole potential.
 
 ### Dipole Moment
 
 Substituting in the definition for the second multipole moment $\mathbf{p}$, we can write the second term in the multipole expansion as
 $$
-\phi^{(1)}(\mathbf{x}) \equiv \frac{\mathbf{p} \cdot \mathbf{x}}{r^3} \ .
+\boxed{
+\phi^{(1)}(\mathbf{x}) \equiv \frac{\mathbf{p} \cdot \mathbf{x}}{r^3} 
+} \ .
 $$
-We call this expansion term the *dipole potential*. This potential falls off like $1/r^2$. What remains is the dipole moment $\mathbf{p}$, which encapsulates all of the information from this term about the charge distribution,
+We call this expansion term the *dipole potential*. This potential falls off like $1/r^2$. The dipole moment $\mathbf{p}$ is a *vector* given by
 
 $$
 \mathbf{p} \equiv \int d^3\mathbf{x}' \ \rho(\mathbf{x}') \mathbf{x}' \ .
 $$
-As defined, the dipole moment evidently has dimensions of charge times distance. In particular, this means we should always expect the components of the dipole moment to go like $qd$, where $d$ is some characteristic length scale.
-
-But why do we call it the *dipole* moment? We've seen the dipole before, or more precisely the *physical dipole*. To recall, suppose we have two opposite point charges $q$ and $-q$ separated from each other by a distance $d$. Suppose the charges are centered on the $z$-axis with charge $q$ at position $\mathbf{x}_+ = d/2 \mathbf{e}_z$ and charge $-q$ at position $\mathbf{x}_- = -d/2 \mathbf{e}_z$. We can then use the superposition principle to express the potential of the physical dipole as
-$$
-\phi(\mathbf{x}) = \frac{q}{|\mathbf{x} - d/2 \mathbf{e}_z|} - \frac{q}{|\mathbf{x} + d/2 \mathbf{e}_z|} \ .
-$$
-Rewriting the denominators in Cartesian coordinates, we can then write
-$$
-\phi(\mathbf{x}) = \frac{q}{\sqrt{x^2 + y^2 + (z-d/2)^2}} - \frac{q}{\sqrt{x^2 + y^2 + (z+d/2)^2}} \ .
-$$
-Here is a plot of what the field lines look like for the physical dipole, with $+q$ shown in red and $-q$ in blue. As always, the field lines go from positive charges to negative charges, and the equipotential curves are tangent to the field lines.
-
-![](../resources/image-20241103010905701.png){fig-align=center width=400}
-
-This is the *exact* expression for the potential of the physical dipole. Clearly it doesn't look at all like the expression for the dipole potential though. In fact, the dipole potential is just an approximation of the physical dipole potential in the far field limit. To see this, suppose we're far away from the two charges, so that $r \gg d$. Then we can do a binomial expansion of the roots to write
-$$
-\begin{align*}
-\phi(\mathbf{x}) &= q \bigg[\big(x^2 + y^2 + (z-d/2)^2\big)^{-1/2} - \big(x^2 + y^2 + (z+d/2)^2\big)^{-1/2}\bigg] \\
-&\approx \frac{q}{r} \bigg[\big(1-dz/r\big)^{-1/2} - \big(1+dz/r\big)^{-1/2}\bigg] \\
-&\approx \frac{q}{r} \big[(1 + dz/2r) - (1 - dz/2r)\big] \\
-&\approx \frac{qdz}{r^2} \ .
-
-\end{align*}
-$$
-
-
-We now have a potential that falls off like $1/r^2$. If we define $\mathbf{p} = qd \mathbf{e}_z$, in the far field limit we can express this potential as
-$$
-\phi(\mathbf{x}) \approx \phi^{(1)}(\mathbf{x}) = \frac{\mathbf{p} \cdot \mathbf{x}}{r^3} \ ,
-$$
-which is of course the dipole potential. It's conventional to define a vector $\mathbf{d} = d\mathbf{e}_z$ and write the dipole moment for the physical dipole as $\mathbf{p} = q \mathbf{d}$. Writing the dipole moment this way allows us to remove the requirement that the charges lie on the $z$-axis.
-
-We can model the behavior of the physical dipole in the far field limit in a slightly different way by considering an idealized physical dipole where we let $d \to 0$ while keeping $qd$ finite. This pushes the charges right on top of each other, giving an identical result to the far field dipole potential above. We call this idealized dipole configuration the *pure dipole*. The pure dipole is exactly the configuration that gives us the dipole potential in the multipole expansion.
-
-Here is a plot of what the field lines of a pure dipole look like. Since the charges are right on top of each other in this case we show them both in red. Notice that these look just like the field lines of the physical dipole when far away from the charges. However, the field lines do look different near the charges, since all the higher order terms in the physical dipole potential identically vanish for the pure dipole potential.
-
-![](../resources/image-20241103011630525.png){fig-align=center width=400}
-
-The physical dipole helps us assign meaning to what exactly the dipole moment and dipole potential represent. We can think of the dipole moment as representing the charge polarization of the source charge distribution $\rho(\mathbf{x}')$ along some axis $\mathbf{d}$. To understand why this is true, suppose $\rho(\mathbf{x}')$ consists of $N$ discrete point charges $q_i$ located at positions $\mathbf{x}_i$. Then
-$$
-\rho(\mathbf{x}') = \sum_{i=1}^N q_i \delta(\mathbf{x}' - \mathbf{x}_i) \ .
-$$
-We will now separate this sum into two sums, one for all the positive charges $q_i^+$ and one for all the negative charges $-q_i^-$,
-$$
-\rho(\mathbf{x}') = \rho_+(\mathbf{x}') + \rho_-(\mathbf{x}') = \bigg(\sum_{i=1}^{N_+} q_i^+ \delta(\mathbf{x}' - \mathbf{x}_i^+)\bigg) - \bigg(\sum_{i=1}^{N_-} q_i^- \delta(\mathbf{x}' - \mathbf{x}_i^-)\bigg) \ ,
-$$
-where $N_+$ is the number of positive charges and $N_-$ is the number of negative charges, so that $N = N_+ + N_-$.
-
-Now, just as a collection of particles has a center of mass, a collection of charges has a *center of charge*. We can define a center of charge $\mathbf{x}_\pm$ for the positive and negative charges by
-$$
-\mathbf{x}_\pm \equiv \frac{\sum_{i=1}^{N_\pm} q_i^+ \mathbf{x}_i^\pm}{\sum q_i^\pm} \ ,
-$$
-On average then, the total positive and negative charges $q_\pm$ will be separated by some distance $d = |\mathbf{d}|$, where $\mathbf{d} = \mathbf{x}_+ - \mathbf{x}_-$. We can model this behavior with a physical dipole with a positive charge $q_+$ and a negative charge $-q_-$ separated by a distance $d$ along the $\mathbf{d}$-axis. In the far field limit $r \gg d$, we get a dipole moment that can be expressed in the form
-$$
-\mathbf{p} = q_+ \mathbf{x}_+ - q_- \mathbf{x}_- \ .
-$$
-Notice that in the special case $q_+ = q_-$, we can simplify this further to get $\mathbf{p} = q_+ \mathbf{d}$, which is the expression we had above. In this sense then, the dipole moment represents the average charge polarization of charges in a charge distribution.
-
-FIGURE (sketch the dipole situation for a general charge distribution, showing the polarizations)
+Notice that the dipole moment, like all multipole moments, depends *only* on the source charges. It does not depend at all on the field point. Thus, the dipole moment captures all relevant information about the source charges in this expansion term. As defined, the dipole moment evidently has dimensions of charge times distance. In particular, this means we should always expect the components of the dipole moment to go like $qd$, where $d$ is some characteristic length scale.
 
 By writing $\mathbf{E}^{(1)} = -\nabla \phi^{(1)}$ in index notation and plugging in the dipole potential above, while keeping in mind that $\mathbf{p}$ doesn't depend on $\mathbf{x}$, one can show that the *dipole field* $\mathbf{E}^{(1)}$ can be written as
 $$
 \boxed{
-\mathbf{E}^{(1)}(\mathbf{x}) = \frac{3(\mathbf{p} \cdot \mathbf{x}) \mathbf{x} - r^2 \mathbf{p}}{r^5}
+\mathbf{E}^{(1)}(\mathbf{x}) \equiv \frac{3(\mathbf{p} \cdot \mathbf{x}) \mathbf{x} - r^2 \mathbf{p}}{r^5}
 } \ .
 $$
 Notice that, while the dipole potential falls off like $1/r^2$ that, the dipole field falls off like $1/r^3$, as we'd expect.
 
-Let's now work an example that involves calculating the dipole moment and potential for some general charge distribution.
+The field lines of the dipole field are those of a *pure dipole*, shown below. Unlike the field lines of the monopole field, the field lines of the dipole field never terminate at infinity except along the axis of the dipole moment $\mathbf{p}$. The other field lines instead wrap back around on the source in the opposite direction.
 
-##### Example: Dipole moment of a spherical shell with an azimuthally symmetric charge distribution
+![](../resources/image-20241103011630525.png){fig-align=center width=400}
 
-Consider a hollow spherical shell of radius $R$, but instead of having uniform charge density, we have a polar-dependent surface charge density of the form $\sigma' = k \cos\theta'$. We'd like to find the dipole moment and potential associated with this distribution.
+
+
+##### Example: Physical dipole
+
+We want to now try to get an idea of what the dipole physically says about a charge distribution. To that end let's consider the following simple problem. Suppose we have two opposite point charges $+q$ and $-q$ separated from each other by a distance $d$ along some axis, say the $z$-axis to keep things simple. We'll suppose the $+q$ charge is at the point $\mathbf{x}_+ = d/2 \mathbf{e}_z$ and the $-q$ charge is at the point $\mathbf{x}_- = -d/2 \mathbf{e}_z$. We call this the *physical dipole*.
+
+By the superposition principle, the *exact* potential of the physical dipole is given by
+$$
+\begin{align*}
+\phi(\mathbf{x}) &= \frac{q}{|\mathbf{x} - \mathbf{x}_+|} - \frac{q}{|\mathbf{x} - \mathbf{x}_-|} \\
+&= q\bigg[\frac{1}{\sqrt{x^2 + y^2 + (z-d/2)^2}} - \frac{1}{\sqrt{x^2 + y^2 + (z+d/2)^2}}\bigg] \ ,
+\end{align*}
+$$
+and the *exact* E-field of the physical dipole is given by
+$$
+\begin{align*}
+\mathbf{E}(\mathbf{x}) &= q\frac{\mathbf{x} - \mathbf{x}_+}{|\mathbf{x} - \mathbf{x}_+|^3} - q\frac{\mathbf{x} - \mathbf{x}_-}{|\mathbf{x} - \mathbf{x}_-|^3} \\
+&= q \bigg[\frac{\mathbf{x} - d/2 \ \mathbf{e}_z}{[x^2 + y^2 + (z-d/2)^2]^{3/2}} - \frac{\mathbf{x} + d/2 \ \mathbf{e}_z}{[x^2 + y^2 + (z+d/2)^2]^{3/2}}\bigg] \ .
+\end{align*}
+$$
+As formidable as this look, we can still plot the field lines numerically. Below is a plot of these field lines for the physical dipole, with the $+q$ charge shown in red and the $-q$ charge shown in blue. As always, the field lines go from positive charges to negative charges, and the equipotential curves are tangent to the field lines.
+
+![](../resources/image-20241103010905701.png){fig-align=center width=400}
+
+Compare these field lines for the physical dipole to those of the *pure dipole* field $\mathbf{E}^{(1)}$ given before. Notice that near the source charges they two fields look nothing alike, but far away from the point charges the field lines look basically the same.
+
+To connect the two, let's calculate the monopole and dipole potentials for the physical dipole. First, notice that there is no net charge since $q-q = 0$. This means there won't be a monopole potential contribution. We'll thus proceed to the dipole term.
+
+To find the dipole moment $\mathbf{p}$, notice that $\rho(\mathbf{x}') = q \delta(\mathbf{x}' - \mathbf{x}_+) - q \delta(\mathbf{x}' - \mathbf{x}_-)$, which means we have
+$$
+\mathbf{p} = \int d^3\mathbf{x}' \ \rho(\mathbf{x}') \mathbf{x}' = q(\mathbf{x}_+ - \mathbf{x}_-) = qd \mathbf{e}_z \ .
+$$
+This means the dipole potential is
+$$
+\phi^{(1)}(\mathbf{x}) = \frac{\mathbf{p} \cdot \mathbf{x}}{r^3} = \frac{qd}{r^2} \cos\theta \ .
+$$
+In the far field limit $r \gg d$ we expect that $\phi(\mathbf{x}) \approx \phi^{(1)}(\mathbf{x})$. This can be confirmed through more effort by doing a binomial expansion of $\phi(\mathbf{x})$ in powers of $d/r$ and confirming we get the same result to leading order.
+
+Is it possible to create a physical dipole whose potential is *exactly* that of the pure dipole, where $\phi(\mathbf{x}) = \phi^{(1)}(\mathbf{x})$ exactly? Sort of. Informally, we could achieve this by essentially placing the two charges right on top of each other. That is, we let $d \to 0$ while keeping the dipole moment $|\mathbf{p}| = qd$ fixed. While we can imagine doing this mathematically, physically it's a bit non-sensical, since to let $d \to 0$ we'd also have to let $q \to \infty$ just as quickly.
+
+Note that there's nothing special about the $z$-axis in this problem. We can orient the dipole along any axis we like. If the two opposite charges are separated by some vector $\mathbf{d}$, their dipole moment will be
+$$
+\mathbf{p} = q \mathbf{d} \ .
+$$
+This means the dipole moment will always point along the axis of the charges, in the direction of the positive charge.
+
+---
+
+In fact, we can model the dipole moment of an arbitrary charge distribution in a similar way. Suppose $\rho(\mathbf{x}')$ is some arbitrary charge distribution. If we imagine the distribution consists of a bunch of discrete point charges, each positively or negatively charged, we can decompose $\rho(\mathbf{x}')$ into a positively charge distribution $\rho_+(\mathbf{x}')$ and negatively charge distribution $\rho_-(\mathbf{x}')$ as
+$$
+\rho(\mathbf{x}') = \rho_+(\mathbf{x}') + \rho_-(\mathbf{x}') \ ,
+$$
+where $\rho_\pm(\mathbf{x}')$ is a sum over $N_\pm$ positive or negative charges $q_i^{\pm}$ located at positions $\mathbf{x}_i^\pm$,
+$$
+\rho_\pm(\mathbf{x}') = \sum_{i=1}^{N_\pm} q_i^\pm \delta(\mathbf{x}' - \mathbf{x}_i^\pm) \ .
+$$
+We can now do an averaging process over these two distributions. The average charge $q_\pm$ of each distribution will be
+$$
+q_\pm \equiv \frac{1}{N_\pm} \sum_{i=1}^{N_\pm} q_i^\pm
+$$
+The average position of these charges will be their *center of charges* $\mathbf{x}_\pm$, given by
+$$
+\mathbf{x}_\pm \equiv \frac{1}{N_\pm} \sum_{i=1}^{N_\pm} q_i^+ \mathbf{x}_i^\pm \ .
+$$
+This means the total net charge is $q_+ - q_-$, and the average separation between the $q_+$ and $q_-$ is
+$$
+\mathbf{d} \equiv \mathbf{x}_+ - \mathbf{x}_- \ .
+$$
+The dipole moment of $\rho(\mathbf{x}')$ can thus also be written as
+$$
+\mathbf{p} = q_+ \mathbf{x}_+ - q_- \mathbf{x}_- \ .
+$$
+In the special case that the total net charge is zero, then $q \equiv q_+ = -q_-$, in which case we get $\mathbf{p} = q \mathbf{d}$, which is exactly what we derived above for the physical dipole in the far field limit. In this sense then, we can think of the dipole moment as representing the average charge polarization of a given charge distribution.
+
+##### Example: Dipole moment of an azimuthally symmetric hollow sphere of charge
+
+Consider a hollow spherical shell of radius $R$ with a polar-dependent surface charge density of the form $\sigma' = k \cos\theta'$. We'd like to find the dipole moment and potential associated with this distribution.
 
 First, notice that this distribution has no net charge, since the monopole moment is
 $$
@@ -435,7 +477,7 @@ Since there is no monopole moment, this means in the far field limit the full po
 $$
 \phi(\mathbf{x}) \approx \frac{4\pi}{3} kR \cos\theta \bigg(\frac{R}{r}\bigg)^2 \ .
 $$
-In fact, this is the *exact* potential for this charge distribution. We actually calculated it in the last chapter using separation of variables in spherical coordinates. This means that this charge distribution is already exactly a pure dipole.
+In fact, this is the *exact* potential for this charge distribution. We calculated the exact potential for this distribution in the previous chapter and got the exact same result.
 
 We can calculate the associated electric field as well, which is
 $$
@@ -453,17 +495,29 @@ Finally, let's look at the quadratic term in the multipole expansion, which we h
 $$
 \phi^{(2)}(\mathbf{x}) \equiv \frac{1}{2r^5} \int d^3\mathbf{x}' \ \rho(\mathbf{x}') [3 (\mathbf{x} \cdot \mathbf{x}')^2 - r^2 r'^2] \ .
 $$
-This term in the multipole expansion is called the *quadrupole potential*. Recall that we also defined the quadrupole moment
-$$
-\mathbf{Q} \equiv \int d^3\mathbf{x}' \ \rho(\mathbf{x}') \bigg[3 \mathbf{x}' \otimes \mathbf{x}' - r'^2 \mathbf{1}\bigg] \ .
-$$
-As defined, the quadrupole moment, also called the *quadrupole tensor*, evidently has dimensions of charge times distances squared, or charge times area. In particular, this means we should always expect the components of the quadrupole moment to go like $qd^2$, where $d$ is some characteristic length scale.
-
-We'd like to rewrite the quadrupole potential to show its explicit dependence on the quadrupole moment. To do that, we'll first rewrite the quadrupole moment in index notation,
+This is called the *quadrupole potential*. Recall that we also defined the quadrupole moment $\mathbf{Q}$, whose components are
 $$
 Q_{ij} \equiv \int d^3\mathbf{x}' \ \rho(\mathbf{x}') \bigg[3 x_i' x_j' - r'^2 \delta_{ij}\bigg] \ .
 $$
-In index notation we can rewrite the quadrupole potential as
+Notice that $x_i' x_j'$ is just the components of the outer product $\mathbf{x}' \otimes \mathbf{x}'$, $\delta_{ij}$ is just the components of the identity tensor $\mathbf{1}$. This means we can also write the quadrupole moment in abstract notation as
+$$
+\mathbf{Q} \equiv \int d^3\mathbf{x}' \ \rho(\mathbf{x}') \bigg[3 \mathbf{x}' \otimes \mathbf{x}' - r'^2 \mathbf{1}\bigg] \ .
+$$
+Since the outer product and the identity tensor are both valid rank-2 tensors, the quadrupole moment, or *quadrupole tensor*, is clearly a rank-2 tensor as well by the superposition principle. Its components have dimensions of charge times distance squared, or charge times area. This means we should always expect the components of the quadrupole moment to go like $qd^2$, where $d$ is some characteristic length scale.
+
+Notice from the definition that the quadrupole tensor is clearly symmetric since both the outer product and the identity tensor are symmetric. That is, $Q_{ij} = Q_{ji}$. Moreover, the quadrupole tensor is also *traceless*. That is, its diagonal sum $Q_{ii} = 0$. To see why, observe that
+$$
+Q_{ii} = \int d^3\mathbf{x}' \ \rho(\mathbf{x}') \bigg[3 x_i' x_i' - r'^2 \delta_{ii}\bigg] = \int d^3\mathbf{x}' \ \rho(\mathbf{x}') \bigg[3 r'^2 - 3 r'^2\bigg] = 0 \ .
+$$
+Here, we used the fact that $r'^2 = x_i' x_i'$ and the diagonal sum of the $3 \times 3$ identity tensor is $\delta_{ii} = 3$.
+
+We've thus shown that the quadrupole tensor is a symmetric, traceless tensor of rank-2. Such a tensor is usually called an *irreducible tensor*. These conditions together imply that, while the quadrupole tensor has $3^2 = 9$ total components, it only has $3^2 - 3 - 1 = 5$ independent components. This is due to the fact that the symmetric condition makes three of the off-diagonal components redundant, while the tracelessness condition makes one of the diagonal components redundant.
+
+We'll now show that we can express the quadrupole potential explicitly in terms of the quadrupole moment as
+$$
+\phi^{(2)}(\mathbf{x}) = \frac{x_i x_j Q_{ij}}{2r^5} \ .
+$$
+First, let's take the expression for the quadrupole potential we had before and re-express it in index notation,
 $$
 \phi^{(2)}(\mathbf{x}) = \frac{1}{2r^5} \int d^3\mathbf{x}' \ \rho(\mathbf{x}') \bigg[3 (x_i x'_i) (x_j x_j') - r^2 r'^2\bigg] \ .
 $$
@@ -471,58 +525,100 @@ We want the pull all dependence on $\mathbf{x}$ out of the integrand. We can do 
 $$
 \phi^{(2)}(\mathbf{x}) = \frac{x_i x_j}{2r^5} \int d^3\mathbf{x}' \ \rho(\mathbf{x}') \bigg[3 x_i' x_j' - r'^2 \delta_{ij}\bigg] \ .
 $$
-Notice now that the remaining integral is just the $Q_{ij}$ component of the quadrupole moment. We thus have
+Notice now that the remaining integral is just the $Q_{ij}$ component of the quadrupole tensor. We thus have
 $$
 \phi^{(2)}(\mathbf{x}) = \frac{Q_{ij} x_i x_j}{2r^5} \ .
 $$
-This is the usual way the quadrupole potential is written. We can also write it in abstract form by observing that $Q_{ij} x_i x_j$ is just the quadratic form $\mathbf{x} \cdot \mathbf{Q} \cdot \mathbf{x}$, that is, the inner product of $\mathbf{x}$ with the vector $\mathbf{Q} \cdot \mathbf{x}$. We can thus also write
+This is precisely what we wanted to show. We can express this in abstract notation by noticing that $Q_{ij} x_i x_j$ is just the index notation representation of the quadratic form $\mathbf{x} \cdot \mathbf{Q} \cdot \mathbf{x}$, which is just the scalar $\mathbf{x} \cdot (\mathbf{Q} \cdot \mathbf{x})$. The dipole potential thus becomes
 $$
-\phi^{(2)}(\mathbf{x}) =\frac{\mathbf{x} \cdot \mathbf{Q} \cdot \mathbf{x}}{2r^5} \ .
+\boxed{
+\phi^{(2)}(\mathbf{x}) =\frac{\mathbf{x} \cdot \mathbf{Q} \cdot \mathbf{x}}{2r^5} 
+} \ .
 $$
-With the quadrupole potential re-expressed in terms of the quadrupole moment, we've completed our derivation of the basic multipole expansion above up to the quadrupole term,
+We've thus completed our derivation of the Cartesian multipole expansion we wrote above,
 $$
 \phi(\mathbf{x}) = \frac{q}{r} + \frac{\mathbf{p} \cdot \mathbf{x}}{r^3} + \frac{\mathbf{x} \cdot \mathbf{Q} \cdot \mathbf{x}}{2r^5} + \cdots \ .
 $$
-Let's now say a bit about the properties of the quadrupole moment and what it represents physically. As we already mentioned, the quadrupole moment is indeed a rank-2 tensor. That is, it transforms as a rank-2 tensor under coordinate transformations,
+To find the associated quadrupole field $\mathbf{E}^{(2)}(\mathbf{x})$ we again need only use the relation $\mathbf{E}^{(2)} = -\nabla \phi^{(2)}$. After a bit of algebraic manipulation, one can show that the quadrupole field can be expressed in abstract notation as
 $$
-Q_{i'j'} = \frac{\partial x_{i'}}{\partial x_i} \frac{\partial x_{j'}}{\partial x_j} Q_{ij} \ .
+\boxed{
+\mathbf{E}^{(2)}(\mathbf{x}) = \frac{5 (\mathbf{x} \cdot \mathbf{Q} \cdot \mathbf{x}) \mathbf{x} - 2r^2(\mathbf{Q} \cdot \mathbf{x})}{2r^7}
+} \ .
 $$
-Indeed, this follows immediately from the fact that both the outer product and the identity tensor are valid rank-2 tensors, which means any linear superposition of them is also a rank-2 tensor.
+As expected, the quadrupole field falls off like $1/r^4$. A plot of the field lines is shown below. Notice that, like the dipole field, most of the field lines begin and end at the source, with the exception of the field lines along the diagonal.
 
-It's also easy to see that the quadrupole moment is *symmetric*, meaning $Q_{ij} = Q_{ji}$. This also follows from the fact that the outer product of a vector with itself is symmetric, and the identity tensor is clearly also symmetric. Perhaps less intuitive though, the quadrupole moment is also *traceless*, meaning $Q_{ii} = 0$ when summed over $i$. To see why, observe that
-$$
-Q_{ii} = \int d^3\mathbf{x}' \ \rho(\mathbf{x}') \bigg[3 x_i' x_i' - r'^2 \delta_{ii}\bigg] = \int d^3\mathbf{x}' \ \rho(\mathbf{x}') \bigg[3 r'^2 - 3 r'^2\bigg] = 0 \ .
-$$
-Here, we used the fact that $x_i' x_i'$ is just the inner product $r'^2 = \mathbf{x}' \cdot \mathbf{x}'$, along with the fact that the trace of the identity is $\delta_{ii} = 3$ in three dimensions. We've thus shown that the quadrupole moment is a symmetric, traceless tensor of rank-2. Such a tensor is usually called an *irreducible tensor*. These conditions imply that the quadrupole moment only has $3^2 - 3 - 1 = 5$ independent components, since $3$ terms in a $3 \times 3$ symmetric matrix are redundant due to the $Q_{ij} = Q_{ji}$ requirement, and tracelessness implies that one of the terms in the diagonal depends on the rest, for instance $Q_{zz} = -Q_{xx}-Q_{yy}$.
+![](../resources/image-20241103010154876.png){fig-align=center width=400}
 
-As with many rank-2 tensors, it's common to express the components of the quadrupole moment as a matrix. If we enforce the redundancy requirements above for instance, we can write the quadrupole moment in matrix form as
+##### Example: Physical Quadrupole
+
+To get a handle as to what the quadrupole is saying about a charge distribution we'll do the same thing we did with the dipole, consider a toy problem involving a simple configuration of point charges. Suppose four point charges of the same magnitude $q$ are laid out in a square whose sides have a length $d$. Suppose the square is centered at the origin of the $yz$-plane, with the charges laid out as follows:
+
+- A charge $+q$ located at position $\mathbf{x}_1 = (0, d/2, d/2)$,
+- A charge $-q$ located at position $\mathbf{x}_2 = (0, d/2, -d/2)$,
+- A charge $+q$ located at position $\mathbf{x}_3 = (0, -d/2, -d/2)$,
+- A charge $-q$ located at position $\mathbf{x}_4 = (0, -d/2, d/2)$.
+
+We call a charge configuration of this kind a *physical quadrupole*. By the principal of superposition, the exact potential of this charge configuration is evidently
 $$
-\mathbf{Q} = \begin{pmatrix}
-Q_{xx} & Q_{xy} & Q_{xz} \\
-Q_{xy} & Q_{yy} & Q_{yz} \\
-Q_{xz} & Q_{yz} & -Q_{xx} - Q_{yy}
-\end{pmatrix} \ .
+\begin{align*}
+\phi(\mathbf{x}) &= \frac{q}{|\mathbf{x} - \mathbf{x}_1|} - \frac{q}{|\mathbf{x} - \mathbf{x}_2|} + \frac{q}{|\mathbf{x} - \mathbf{x}_3|} - \frac{q}{|\mathbf{x} - \mathbf{x}_4|} \\
+&= q\bigg[\frac{1}{\sqrt{x^2 + (y-d/2)^2 + (z-d/2)^2}} - \frac{1}{\sqrt{x^2 + (y-d/2)^2 + (z+d/2)^2}} \\
+&- \frac{1}{\sqrt{x^2 + (y+d/2)^2 + (z-d/2)^2}} + \frac{1}{\sqrt{x^2 + (y+d/2)^2 + (z+d/2)^2}}\bigg] \ ,
+\end{align*}
 $$
+and the exact E-field is
+$$
+\begin{align*}
+\mathbf{E}(\mathbf{x}) &= q\frac{\mathbf{x} - \mathbf{x}_1}{|\mathbf{x} - \mathbf{x}_1|^3} - q\frac{\mathbf{x} - \mathbf{x}_2}{|\mathbf{x} - \mathbf{x}_2|^3} + q\frac{\mathbf{x} - \mathbf{x}_3}{|\mathbf{x} - \mathbf{x}_3|^3} - q\frac{\mathbf{x} - \mathbf{x}_4}{|\mathbf{x} - \mathbf{x}_4|^3} \\
+&= q\bigg[\frac{\mathbf{x} - d/2 (\mathbf{e}_y + \mathbf{e}_z)}{\sqrt{x^2 + (y-d/2)^2 + (z-d/2)^2}} - \frac{\mathbf{x} - d/2 (\mathbf{e}_y - \mathbf{e}_z)}{\sqrt{x^2 + (y-d/2)^2 + (z+d/2)^2}} \\
+&- \frac{\mathbf{x} + d/2 (\mathbf{e}_y + \mathbf{e}_z)}{\sqrt{x^2 + (y+d/2)^2 + (z-d/2)^2}} + \frac{\mathbf{x} + d/2 (\mathbf{e}_y - \mathbf{e}_z)}{\sqrt{x^2 + (y+d/2)^2 + (z+d/2)^2}}\bigg] \ .
+\end{align*}
+$$
+As complicated as this looks, we can still plot the field lines numerically. Below is a plot of these field lines, with the positive charges are shown in red and the negative charges in blue. As usual, the equipotentials curves are tangential to the field lines.
+
+![](../resources/image-20241103012027269.png){fig-align=center width=400}
+
+Now, compare this plot to the ones shown for the *pure quadrupole* previously. Close to the charges the field lines look nothing alike, while far away from the point charges they look practically identical, exactly like we saw with the physical dipole before. This suggests that the physical quadrupole may provide a good approximation to the pure quadrupole in the far field limit $r \gg d$.
+
+We can confirm this by showing that this charge configuration has no monopole or dipole moment. Since the charges all sum to zero, there's clearly no monopole moment. The dipole moment also vanishes, since
+$$
+\begin{align*}
+\mathbf{p} &= q \mathbf{x}_1 - q \mathbf{x}_2 + q \mathbf{x}_3 - q \mathbf{x}_4 \\
+&= q \big[[\mathbf{x} - d/2 (\mathbf{e}_y + \mathbf{e}_z)] - [\mathbf{x} - d/2 (\mathbf{e}_y - \mathbf{e}_z)] + [\mathbf{x} + d/2 (\mathbf{e}_y + \mathbf{e}_z)] - [\mathbf{x} + d/2 (\mathbf{e}_y - \mathbf{e}_z)]\big] \\
+
+&= \mathbf{0} \ .
+
+\end{align*}
+$$
+This means when $r \gg d$ the exact potential $\phi(\mathbf{x})$ must fall off *at least* like $1/r^3$. In fact in this limit it falls off *exactly* like $1/r^3$. We can confirm this by calculating its quadrupole moment and confirm it's non-vanishing. It's not hard to see that each component of the quadrupole moment will be given by the sum
+$$
+Q_{ij} = \sum_{k=1}^4 q_k \bigg[3 x_i^{(k)} x_j^{(k)} - r_k^2 \delta_{ij}\bigg] \ ,
+$$
+where $x_i^{(k)}$ is the $i$<sup>th</sup> component of $\mathbf{x}_k$ and $r_k^2 = \mathbf{x}_k \cdot \mathbf{x}_k$.
+
+First, notice that the diagonal components of this tensor all vanish since ???
+
+
+
+Now, notice that the $x$-component $x^{(k)}$ of each $\mathbf{x}_k$ is zero. Since $\delta_{ij} = 0$ when $i \neq j$, this means each off diagonal $Q_{xj} = 0$.
+
+- Work this out on paper first. Should get answer below as a check.
+- See Deutsch notes for general rigorous intuition about quadrupole moment.
+
+
+
+- Figure out where best to put the intuitive explanations, and the quadrupole of a sphere vanishing
+- Figure out how best to handle the scalar quadrupole moment for azimuthally symmetric distributions
+
+
+
 So what does the quadrupole moment represent physically? As we did with the dipole moment, we'll consider a simple charge configuration, and show that in a certain limit its potential becomes the quadrupole potential. Consider then a configuration of point charges consisting of two oppositely oriented but parallel physical dipoles. We assume the charges inside each dipole is separated by a distance $d$, and that the charge on each dipole is separated by the charge on the opposite dipole by the same distance $d$. This will lead to a configuration of four opposite point charges $\pm q$ arranged as shown below.
 
 FIGURE
 
 We call this configuration of charges the *physical quadrupole*. First, notice that the physical quadrupole has no net charge, since all the charges sum to zero. Second, notice it also has no net dipole moment, since it consists of two opposite dipole moments $\pm q\mathbf{d}$, which cancel each other when added together. These together evidently imply that whatever terms remain in the potential must fall off at least like $1/r^3$ in the limit $d \ll r$.
 
-We can write down the exact potential for the physical quadrupole using the principle of superposition. We have
-$$
-\phi(\mathbf{x}) = \frac{q}{|\mathbf{x} - d/2 (\mathbf{e}_y + \mathbf{e}_z)|} - \frac{q}{|\mathbf{x} - d/2 (\mathbf{e}_y - \mathbf{e}_z)|} + \frac{q}{|\mathbf{x} + d/2 (\mathbf{e}_y + \mathbf{e}_z)|} - \frac{q}{|\mathbf{x} - d/2 (\mathbf{e}_z - \mathbf{e}_y)|} \ .
-$$
-Written out in Cartesian components, this becomes
-$$
-\begin{align*}
-\phi(\mathbf{x}) &= \frac{q}{\sqrt{x^2 + (y-d/2)^2 + (z-d/2)^2}} - \frac{q}{\sqrt{x^2 + (y-d/2)^2 + (z+d/2)^2}} \\
-&- \frac{q}{\sqrt{x^2 + (y+d/2)^2 + (z-d/2)^2}} + \frac{q}{\sqrt{x^2 + (y+d/2)^2 + (z+d/2)^2}} \ .
-\end{align*}
-$$
-Here is a plot of what the field lines look like for the physical quadrupole. Again, the positive charges are shown in red, and the negative charges in blue. As usual, the equipotentials curves are tangential to the field lines.
 
-![](../resources/image-20241103012027269.png){fig-align=center width=400}
 
 We can again proceed as we did with the physical dipole and take a binomial expansion of the roots when $d \ll r$. The end result of all the algebra is that in the far field limit we can approximate the potential of the physical quadrupole as
 $$
@@ -602,31 +698,74 @@ $$
 $$
 Clearly this agrees with the expansion derived above when $x = y = 0$. However, the expansion derived above works for *any* field point, not just those along the $z$-axis. Indeed, we already have a good approximation to the potential for the ring when $r \gg z$. So long as we're far enough away from the ring the higher order moments are negligible. It's really in this sense that the multipole expansion is most useful in practice.
 
----
+### Higher-Order Moments
 
-To find the electric field associated to the quadrupole term we can differentiate it in the usual way. By writing the potential in index notation and using the symmetric property of the quadrupole moment, one can show the components of the *quadrupole field* $\mathbf{E}^{(2)}$ are given by
+- Use general Green's function expansion to argue each term contains a moment that's a rank-$n$ tensor
+- Sketch out the common form for the $n$th multipole potential
+- Maybe say a brief word about irreducibility, leaving most of this for the next section
+- Be careful writing out the general term. Get the $\ell$'s right. May be better to do $\ell+1$ or something. Figure it out.
+
 $$
-E_k^{(2)}(\mathbf{x}) = \frac{5 Q_{ij} x_i x_j x_k - 2r^2 Q_{ik} x_k}{2r^7} \ .
+\frac{x_i x_j x_k \mathcal{O}_{ijk}}{6r^7} \quad , \quad \frac{x_{i_1} \cdots x_{i_\ell} \mathcal{Q}_{i_1 \cdots i_\ell}}{(\ell+1)! r^{2\ell}}
 $$
-As expected, the quadrupole field falls off like $1/r^4$. In vector notation, this becomes
+
+### Charges in External Fields
+
+Thus far, we've derived the multipole expansion for a localized charge distribution in free space, with no other external fields present. We'd now like to introduce an external E-field and examine the potential energy of a localized charge distribution in the presence of this field in terms of its multipole moments. We'll assume the external field is strong enough that we can neglect any self fields produced by the charge distribution itself.
+
+To that end, suppose we have a charge distribution $\rho(\mathbf{x})$ localized around the origin. In the background we assume there's an external E-field $\mathbf{E}_{\text{ext}}(\mathbf{x})$ whose potential is $\phi_{\text{ext}}(\mathbf{x})$. Clearly the external field will itself be generated by some other charge distribution $\rho_{\text{ext}}(\mathbf{x})$, but we'll assume it's far enough away from $\rho(\mathbf{x})$ that we can ignore it.
+
+We assume the external charge distribution is unknown. To that end, it doesn't make sense to do a multipole expansion of $\phi_{\text{ext}}(\mathbf{x})$, but we can still do a Taylor expansion about the origin,
+$$
+\begin{align*}
+\phi_{\text{ext}}(\mathbf{x}) &= \sum_{n=0}^\infty \frac{1}{n!} (\mathbf{x} \cdot \nabla)^n \phi_{\text{ext}}(\mathbf{0}) \\
+&= \phi_{\text{ext}}(\mathbf{0}) + \mathbf{x} \cdot \nabla \phi_{\text{ext}}(\mathbf{x}) \bigg|_{\mathbf{x} = \mathbf{0}} + \frac{1}{2} x_i x_j \partial_i \partial_j \phi_{\text{ext}}(\mathbf{x}) \bigg|_{\mathbf{x} = \mathbf{0}} + \cdots \\
+&= \phi_{\text{ext}}(\mathbf{0}) - \mathbf{x} \cdot \mathbf{E}_{\text{ext}}(\mathbf{0}) - \frac{1}{2} x_i x_j \partial_i E_j^{\text{ext}}(\mathbf{x}) \bigg|_{\mathbf{x} = \mathbf{0}} + \cdots \ .
+\end{align*}
+$$
+Note in the last line we used the relation $\mathbf{E}_{\text{ext}}(\mathbf{x}) = -\nabla \phi_{\text{ext}}(\mathbf{x})$ to simplify the expansion somewhat. Now, recall the potential energy $U$ on a charge distribution due to an external E-field is given by
+$$
+U = \int_\mathcal{V} d^3\mathbf{x} \ \rho(\mathbf{x}) \phi_{\text{ext}}(\mathbf{x}) \ ,
+$$
+where the region $\mathcal{V}$ is the enclosed volume of the charge distribution $\rho(\mathbf{x})$. If we plug in the Taylor expansion for the external potential into this integral and group terms, we get
+$$
+\begin{align*}
+U &= \int_\mathcal{V} d^3\mathbf{x} \ \rho(\mathbf{x}) \phi_{\text{ext}}(\mathbf{x}) \\
+&= \int_\mathcal{V} d^3\mathbf{x} \ \rho(\mathbf{x}) \bigg[\phi_{\text{ext}}(\mathbf{0}) - \mathbf{x} \cdot \mathbf{E}_{\text{ext}}(\mathbf{0}) - \frac{1}{2} x_i x_j \partial_i E_j^{\text{ext}}(\mathbf{x}) \bigg|_{\mathbf{x} = \mathbf{0}} + \cdots\bigg] \\
+&= \phi_{\text{ext}}(\mathbf{0}) \int_\mathcal{V} d^3\mathbf{x} \ \rho(\mathbf{x}) - \mathbf{E}_{\text{ext}}(\mathbf{0}) \cdot \int_\mathcal{V} d^3\mathbf{x} \ \rho(\mathbf{x}) \mathbf{x} - \frac{1}{2} \partial_i E_j^{\text{ext}}(\mathbf{x}) \bigg|_{\mathbf{x} = \mathbf{0}} \int_\mathcal{V} d^3\mathbf{x} \ \rho(\mathbf{x}) x_i x_j + \cdots \ .
+\end{align*}
+$$
+Note we pulled all field-dependent terms outside the integral since they don't depend on $\mathbf{x}$. Now, notice the first integral is just the monopole moment $q$ of the charge distribution, and the second integral is its dipole moment $\mathbf{p}$. Clearly the final integral should somehow be related to the quadrupole moment $Q_{ij}$. Indeed, observe if we contract $Q_{ij}$ with $\partial_i E_j^{\text{ext}}(\mathbf{x}) \big|_{\mathbf{x} = \mathbf{0}}$ we get
+$$
+\begin{align*}
+Q_{ij} \partial_i E_j^{\text{ext}}(\mathbf{x}) \bigg|_{\mathbf{x} = \mathbf{0}} &= \partial_i E_j^{\text{ext}}(\mathbf{x}) \int_\mathcal{V} d^3\mathbf{x} \ \rho(\mathbf{x}) [3 x_i x_j + \delta_{ij} r^2] \\
+&= 3 \partial_i E_j^{\text{ext}}(\mathbf{x}) \bigg|_{\mathbf{x} = \mathbf{0}} \int_\mathcal{V} d^3\mathbf{x} \ \rho(\mathbf{x}) x_i x_j + \delta_{ij} \partial_i E_j^{\text{ext}}(\mathbf{x}) \bigg|_{\mathbf{x} = \mathbf{0}} \int_\mathcal{V} d^3\mathbf{x} \ \rho(\mathbf{x}) r^2 \\
+&= 3 \partial_i E_j^{\text{ext}}(\mathbf{x}) \bigg|_{\mathbf{x} = \mathbf{0}} \int_\mathcal{V} d^3\mathbf{x} \ \rho(\mathbf{x}) x_i x_j + (\nabla \cdot \mathbf{E}_{\text{ext}}) \bigg|_{\mathbf{x} = \mathbf{0}} \int_\mathcal{V} d^3\mathbf{x} \ \rho(\mathbf{x}) r^2 \ .
+\end{align*}
+$$
+Now, by Gauss's law we know $\nabla \cdot \mathbf{E}_{\text{ext}} = 4\pi \rho_{\text{ext}}$. Since we're only interested inside $\mathcal{V}$ though we have $\nabla \cdot \mathbf{E}_{\text{ext}} = 0$. Thus, we get
+$$
+\partial_i E_j^{\text{ext}}(\mathbf{x}) \bigg|_{\mathbf{x} = \mathbf{0}} \int d^3\mathbf{x} \ \rho(\mathbf{x}) x_i x_j = \frac{1}{3} Q_{ij} \partial_i E_j^{\text{ext}}(\mathbf{x}) \ .
+$$
+Putting this all together now, we finally have the potential energy expansion of a charge distribution in an external E-field,
 $$
 \boxed{
-\mathbf{E}^{(2)}(\mathbf{x}) = \frac{5 (\mathbf{x} \cdot \mathbf{Q} \cdot \mathbf{x}) \mathbf{x} - 2r^2(\mathbf{Q} \cdot \mathbf{x})}{2r^7}
+U = q \phi_{\text{ext}}(\mathbf{0}) - \mathbf{p} \cdot \mathbf{E}_{\text{ext}}(\mathbf{0}) - \frac{1}{6} Q_{ij} \partial_i E_j^{\text{ext}}(\mathbf{x}) \bigg|_{\mathbf{x} = \mathbf{0}} + \cdots
 } \ .
 $$
-Below is a plot of the field lines of the pure quadrupole, with the charges shown all in red. Notice that these field lines agree with those of the physical quadrupole in the far field limit, but differ close to the charges due to the lack of higher order moments. The density of field lines indicate the strength of the field at a given point. Near the charges the field lines are extremely strong compared to farther away, due to the fact that the quadrupole field falls off very rapidly, as $1/r^4$.
+In particular, notice that if the E-field is *uniform* inside $\mathcal{V}$ with constant value $\mathbf{E}_0$, we can write
+$$
+U = q \phi_0 - \mathbf{p} \cdot \mathbf{E}_0 \ ,
+$$
+where $\phi_0$ is some chosen ground potential.
 
-![](../resources/image-20241103010154876.png){fig-align=center width=400}
-
-
-
-## General Multipole Expansion
+## Spherical Multipole Expansion
 
 We've now studied the first few terms of the multipole expansion in depth. In practice these are often the only terms we care about when finding an approximate expansion of the potential of some given. Nevertheless, it's illuminating to find the general multipole expansion for all powers of $1/r$, not just the first few. We will do that now, first considering the special case of azimuthally symmetric charge distributions before proceeding the more general distributions.
 
 ### Green's Function Expansion
 
-Recall from above that we wrote the Green's function in the following form,
+We can also write the Green's function in the following form,
 $$
 \frac{1}{|\mathbf{x} - \mathbf{x}'|} = \frac{1}{r} \frac{1}{\sqrt{1 + (r'/r)^2 - 2 (r'/r) \cos\alpha}} \ .
 $$
@@ -812,13 +951,3 @@ $$
 $$
 This shows that the spherical multipole expansion agrees with the basic multipole expansion up to $\ell=2$. One could proceed to derive higher order multipole moments and potentials from this expansion as well. For example, by expanding the $\ell=3$ terms one can derive the octupole moment and octupole potential.
 
-- If feeling judicious, maybe derive the general cartesian expansion using the irreducible representations of tensors
-
-## Charges in External Fields
-
-
-
-- Rederive multipole expansion for a localized charge distribution in the presence of an external electric field
-- See: Notes, Greiner, Jackson
-- This is definitely the worst set of notes written so far. Figure out a better way to format this…
-- It's also massively unfinished: complex methods, quadrupole moment, spherical expansion, external fields
