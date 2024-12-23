@@ -505,11 +505,11 @@ $$
 $$
 Since the outer product and the identity tensor are both valid rank-2 tensors, the quadrupole moment, or *quadrupole tensor*, is clearly a rank-2 tensor as well by the superposition principle. Its components have dimensions of charge times distance squared, or charge times area. This means we should always expect the components of the quadrupole moment to go like $qd^2$, where $d$ is some characteristic length scale.
 
-Notice from the definition that the quadrupole tensor is clearly symmetric since both the outer product and the identity tensor are symmetric. That is, $Q_{ij} = Q_{ji}$. Moreover, the quadrupole tensor is also *traceless*. That is, its diagonal sum $Q_{ii} = 0$. To see why, observe that
+Notice from the definition that the quadrupole tensor is clearly symmetric since both the outer product and the identity tensor are symmetric. That is, $Q_{ij} = Q_{ji}$. Moreover, the quadrupole tensor is also *traceless*. That is, its *trace* $Q_{ii} = 0$. To see why, observe that
 $$
 Q_{ii} = \int d^3\mathbf{x}' \ \rho(\mathbf{x}') \bigg[3 x_i' x_i' - r'^2 \delta_{ii}\bigg] = \int d^3\mathbf{x}' \ \rho(\mathbf{x}') \bigg[3 r'^2 - 3 r'^2\bigg] = 0 \ .
 $$
-Here, we used the fact that $r'^2 = x_i' x_i'$ and the diagonal sum of the $3 \times 3$ identity tensor is $\delta_{ii} = 3$.
+Here, we used the fact that $r'^2 = x_i' x_i'$ and the trace of the $3 \times 3$ identity tensor is $\delta_{ii} = 3$.
 
 We've thus shown that the quadrupole tensor is a symmetric, traceless tensor of rank-2. Such a tensor is usually called an *irreducible tensor*. These conditions together imply that, while the quadrupole tensor has $3^2 = 9$ total components, it only has $3^2 - 3 - 1 = 5$ independent components. This is due to the fact that the symmetric condition makes three of the off-diagonal components redundant, while the tracelessness condition makes one of the diagonal components redundant.
 
@@ -553,15 +553,15 @@ As expected, the quadrupole field falls off like $1/r^4$. A plot of the field li
 
 To get a handle as to what the quadrupole is saying about a charge distribution we'll do the same thing we did with the dipole, consider a toy problem involving a simple configuration of point charges. Suppose four point charges of the same magnitude $q$ are laid out in a square whose sides have a length $d$. Suppose the square is centered at the origin of the $yz$-plane, with the charges laid out as follows:
 
-- A charge $+q$ located at position $\mathbf{x}_1 = (0, d/2, d/2)$,
-- A charge $-q$ located at position $\mathbf{x}_2 = (0, d/2, -d/2)$,
-- A charge $+q$ located at position $\mathbf{x}_3 = (0, -d/2, -d/2)$,
-- A charge $-q$ located at position $\mathbf{x}_4 = (0, -d/2, d/2)$.
+- A charge $q_1=q$ located at position $\mathbf{x}_1 = (0, d/2, d/2)$,
+- A charge $q_2 = -q$ located at position $\mathbf{x}_2 = (0, d/2, -d/2)$,
+- A charge $q_3 = q$ located at position $\mathbf{x}_3 = (0, -d/2, -d/2)$,
+- A charge $q_4 = -q$ located at position $\mathbf{x}_4 = (0, -d/2, d/2)$.
 
 We call a charge configuration of this kind a *physical quadrupole*. By the principal of superposition, the exact potential of this charge configuration is evidently
 $$
 \begin{align*}
-\phi(\mathbf{x}) &= \frac{q}{|\mathbf{x} - \mathbf{x}_1|} - \frac{q}{|\mathbf{x} - \mathbf{x}_2|} + \frac{q}{|\mathbf{x} - \mathbf{x}_3|} - \frac{q}{|\mathbf{x} - \mathbf{x}_4|} \\
+\phi(\mathbf{x}) &= \frac{q_1}{|\mathbf{x} - \mathbf{x}_1|} + \frac{q_2}{|\mathbf{x} - \mathbf{x}_2|} + \frac{q_3}{|\mathbf{x} - \mathbf{x}_3|} + \frac{q_4}{|\mathbf{x} - \mathbf{x}_4|} \\
 &= q\bigg[\frac{1}{\sqrt{x^2 + (y-d/2)^2 + (z-d/2)^2}} - \frac{1}{\sqrt{x^2 + (y-d/2)^2 + (z+d/2)^2}} \\
 &- \frac{1}{\sqrt{x^2 + (y+d/2)^2 + (z-d/2)^2}} + \frac{1}{\sqrt{x^2 + (y+d/2)^2 + (z+d/2)^2}}\bigg] \ ,
 \end{align*}
@@ -569,7 +569,7 @@ $$
 and the exact E-field is
 $$
 \begin{align*}
-\mathbf{E}(\mathbf{x}) &= q\frac{\mathbf{x} - \mathbf{x}_1}{|\mathbf{x} - \mathbf{x}_1|^3} - q\frac{\mathbf{x} - \mathbf{x}_2}{|\mathbf{x} - \mathbf{x}_2|^3} + q\frac{\mathbf{x} - \mathbf{x}_3}{|\mathbf{x} - \mathbf{x}_3|^3} - q\frac{\mathbf{x} - \mathbf{x}_4}{|\mathbf{x} - \mathbf{x}_4|^3} \\
+\mathbf{E}(\mathbf{x}) &= q_1 \frac{\mathbf{x} - \mathbf{x}_1}{|\mathbf{x} - \mathbf{x}_1|^3} + q_2 \frac{\mathbf{x} - \mathbf{x}_2}{|\mathbf{x} - \mathbf{x}_2|^3} + q_3 \frac{\mathbf{x} - \mathbf{x}_3}{|\mathbf{x} - \mathbf{x}_3|^3} + q_4 \frac{\mathbf{x} - \mathbf{x}_4}{|\mathbf{x} - \mathbf{x}_4|^3} \\
 &= q\bigg[\frac{\mathbf{x} - d/2 (\mathbf{e}_y + \mathbf{e}_z)}{\sqrt{x^2 + (y-d/2)^2 + (z-d/2)^2}} - \frac{\mathbf{x} - d/2 (\mathbf{e}_y - \mathbf{e}_z)}{\sqrt{x^2 + (y-d/2)^2 + (z+d/2)^2}} \\
 &- \frac{\mathbf{x} + d/2 (\mathbf{e}_y + \mathbf{e}_z)}{\sqrt{x^2 + (y+d/2)^2 + (z-d/2)^2}} + \frac{\mathbf{x} + d/2 (\mathbf{e}_y - \mathbf{e}_z)}{\sqrt{x^2 + (y+d/2)^2 + (z+d/2)^2}}\bigg] \ .
 \end{align*}
@@ -596,39 +596,24 @@ Q_{ij} = \sum_{k=1}^4 q_k \bigg[3 x_i^{(k)} x_j^{(k)} - r_k^2 \delta_{ij}\bigg] 
 $$
 where $x_i^{(k)}$ is the $i$<sup>th</sup> component of $\mathbf{x}_k$ and $r_k^2 = \mathbf{x}_k \cdot \mathbf{x}_k$.
 
-First, notice that the diagonal components of this tensor all vanish since ???
-
-
-
-Now, notice that the $x$-component $x^{(k)}$ of each $\mathbf{x}_k$ is zero. Since $\delta_{ij} = 0$ when $i \neq j$, this means each off diagonal $Q_{xj} = 0$.
-
-- Work this out on paper first. Should get answer below as a check.
-- See Deutsch notes for general rigorous intuition about quadrupole moment.
-
-
-
-- Figure out where best to put the intuitive explanations, and the quadrupole of a sphere vanishing
-- Figure out how best to handle the scalar quadrupole moment for azimuthally symmetric distributions
-
-
-
-So what does the quadrupole moment represent physically? As we did with the dipole moment, we'll consider a simple charge configuration, and show that in a certain limit its potential becomes the quadrupole potential. Consider then a configuration of point charges consisting of two oppositely oriented but parallel physical dipoles. We assume the charges inside each dipole is separated by a distance $d$, and that the charge on each dipole is separated by the charge on the opposite dipole by the same distance $d$. This will lead to a configuration of four opposite point charges $\pm q$ arranged as shown below.
-
-FIGURE
-
-We call this configuration of charges the *physical quadrupole*. First, notice that the physical quadrupole has no net charge, since all the charges sum to zero. Second, notice it also has no net dipole moment, since it consists of two opposite dipole moments $\pm q\mathbf{d}$, which cancel each other when added together. These together evidently imply that whatever terms remain in the potential must fall off at least like $1/r^3$ in the limit $d \ll r$.
-
-
-
-We can again proceed as we did with the physical dipole and take a binomial expansion of the roots when $d \ll r$. The end result of all the algebra is that in the far field limit we can approximate the potential of the physical quadrupole as
+First, notice that the diagonal components of the quadrupole tensor all vanish, since each $+q$ contribution in the sum cancels exactly one $-q$ contribution in the sum, which means the total sum vanishes. For example, since $\delta_{yy} = 1$ and $r_k^2 = 2(d/2)^2$, for the $Q_{yy}$ component we have
 $$
-\phi(\mathbf{x}) \approx \frac{3qd^2 yz}{r^5} \ .
+\begin{align*}
+Q_{yy} &= \sum_{k=1}^4 q_k \bigg[3 y^{(k)} y^{(k)} - r_k^2 \delta_{yy}\bigg] \\
+&= q\bigg[3\bigg(\frac{d}{2}\bigg) \bigg(\frac{d}{2}\bigg) - 2\bigg(\frac{d}{2}\bigg)^2 \bigg] - q\bigg[3\bigg(\frac{d}{2}\bigg) \bigg(\frac{d}{2}\bigg) - 2\bigg(\frac{d}{2}\bigg)^2\bigg] \\
+&+ q\bigg[3\bigg(-\frac{d}{2}\bigg)\bigg(-\frac{d}{2}\bigg) - 2\bigg(\frac{d}{2}\bigg)^2\bigg] - q\bigg[3\bigg(-\frac{d}{2}\bigg)\bigg(-\frac{d}{2}\bigg) - 2\bigg(\frac{d}{2}\bigg)^2\bigg] \\
+&= 0 \ .
+\end{align*}
 $$
-Evidently, in the far field limit the potential of the physical quadrupole goes like $1/r^3$, which suggests the lowest expansion term of this potential is a quadrupole potential. However, since this approximation depends on $yz$, it appears that only the $Q_{yz}$ and $Q_{zy}$ components of the quadrupole moment appear to contribute anything to the potential. We can see this by writing
+Next, notice that if $i=x$ each $Q_{xj}$ component also vanishes. On the off diagonals this is obvious, since both $\delta_{xj} = 0$ and $x_i^{(k)} x_j^{(k)} = 0$. But it's true for $Q_{xx}$ as well since $\delta_{xx} = 1$ and $r_k^2 = 2(d/2)^2$, which again means each term pairwise cancels,
 $$
-\phi(\mathbf{x}) \approx \frac{3d^2 yz}{r^5} = \frac{Q_{yz} yz}{2r^5} + \frac{Q_{zy} zy}{2r^5} \ .
+Q_{xx} = q \bigg[-2\bigg(\frac{d}{2}\bigg)^2\bigg] - q \bigg[-2\bigg(\frac{d}{2}\bigg)^2\bigg] + q \bigg[-2\bigg(\frac{d}{2}\bigg)^2\bigg] - q \bigg[-2\bigg(\frac{d}{2}\bigg)^2\bigg] = 0 \ .
 $$
-Evidently, we have $Q_{yz} = Q_{zy} = 3qd^2$. The remaining components of $\mathbf{Q}$ all vanish, leaving us with the quadrupole matrix
+All that remains then are the two off diagonals $Q_{yz} = Q_{zy}$. We have
+$$
+Q_{yz} = 3q\bigg(\frac{d}{2}\bigg)^2 + 3q\bigg(\frac{d}{2}\bigg)^2 + 3q \bigg(\frac{d}{2}\bigg)^2 + 3q \bigg(\frac{d}{2}\bigg)^2 = 12q \bigg(\frac{d}{2}\bigg)^2 = 3 q d^2 \ .
+$$
+If we put all of these components into a matrix, the full quadrupole tensor $\mathbf{Q}$ then looks like
 $$
 \mathbf{Q} = 3 qd^2\begin{pmatrix}
 0 & 0 & 0 \\
@@ -636,21 +621,33 @@ $$
 0 & 1 & 0
 \end{pmatrix} \ .
 $$
-Just as we did with the physical dipole, we can model the behavior of the physical quadrupole in the far field limit by considering an idealized physical quadrupole where we let $d \to 0$ while keeping $qd$ finite. This will give a potential completely equivalent to that of the physical quadrupole in the far field limit, since the higher order multipole terms all vanish. We call this idealized version of the physical quadrupole the *pure quadrupole*. The potential of the pure quadrupole is exactly the quadrupole potential.
+Plugging this result into the quadrupole potential, we get
+$$
+\phi^{(2)}(\mathbf{x}) = \frac{Q_{ij} x_i x_j}{2r^5} = \frac{Q_{yz} yz}{2r^5} + \frac{Q_{zy} zy}{2r^5} = 3qd^2 \frac{yz}{r^5} \ . 
+$$
+One can check that this is correct by taking the exact potential $\phi(\mathbf{x})$ for the physical quadrupole above and do a binomial expansion in the limit $r \gg d$ to show that to first order we get the same result. Thus, in the far field limit the physical quadrupole behaves as a pure quadrupole, falling off like $1/r^3$. In this sense, we can think of the physical quadrupole as a simple model of the pure quadrupole by letting $d \to 0$ while keeping the product $q d^2$ fixed.
 
-Just as the physical dipole suggested something about what the dipole moment physically represents, the physical quadrupole suggests something about what the quadrupole moment physically represents. Notice each component of the quadrupole moment above is proportional to $qd^2$, where $d$ is the separation distance between the charges. This means the quadrupole moment is saying something about the *spread* of the charge distribution. The more spread out the distribution is, the higher the quadrupole moment will be. 
+---
 
-However, it's slightly more complicated than this. To see why, recall the uniformly charged hollow sphere of radius $R$. We showed that outside the sphere its potential is given by $\phi(\mathbf{x}) = q/r$, where $q = 4\pi R^2 \sigma$ is the total charge on the sphere. This is an exact result, which evidently means the uniformly charged sphere has only one non-vanishing multipole moment, the monopole moment. This implies that both its dipole moment and quadrupole moment must be zero. Yet, if the quadrupole moment truly represented the spread of the charge distribution, we'd expect its components to go like $qR^2$.
+The previous example provides us some intuition as to what the quadrupole moment is. For example, since the quadrupole moment goes like $q d^2$, in some sense it represents the *spread* of the charge distribution. The more spread out the distribution is, the higher the quadrupole moment will be. But it's more subtle than that. For example, consider again the uniformly charged sphere with charge $q$ and radius $R$, centered at the origin. Outside the sphere, we already know its potential is exactly
+$$
+\phi(\mathbf{x}) = \frac{q}{r} \ .
+$$
+This means the uniformly charged sphere *only* has a monopole moment, since its potential falls off exactly like $1/r$. This of course means both the dipole moment and the quadrupole moment must be zero. But this means the quadrupole moment can't *only* represent the spread of the distribution, since clearly if it's zero it doesn't go like $q R^2$. So what's going on? A better way to think about the quadrupole moment is that it characterizes the *anisotropy* of the charge distribution. That is, it's a measure of both the spread of the charge distribution as well as how non-spherical it is.
 
-So what's going on here? As it turns out, the quadrupole moment *also* measures the *anisotropy* of the charge distribution, or how much it deviates from being a sphere. The less spherical the distribution is, the more of a quadrupole moment it will have. We should thus *really* think of the quadrupole moment as a measure of a charge distribution's spread and anisotropy.
 
-Let's now work an example to show how to calculate the quadrupole moment for a slightly more complicated charge distribution.
+
+- See Deutsch notes for general rigorous intuition about quadrupole moment.
+
+
+
+
 
 ##### Example: Uniformly charged ring
 
 Suppose we have a uniformly charged circular ring with radius $a$ and line charge density $\lambda$. We'll assume that the ring is centered at the origin in the $xy$-plane. Clearly the ring has a net charge given by $q = 2\pi a \lambda$, which means its potential must have a monopole contribution. It does not, however, have a dipole moment. This can be seen from symmetry. The ring clearly has no preferred direction in the $xy$-plane since it's circular and uniformly charged, which means it can't have a dipole moment.
 
-But does it have a quadrupole moment? This isn't so clear from symmetry alone, so let's calculate it explicitly. To do so we need to keep in mind we're working with a one-dimensional distribution, which means $dq = \lambda d\ell'$. Each component of the quadrupole moment will thus be given by the integral
+But does it have a quadrupole moment? This isn't so clear from symmetry alone, so let's calculate it explicitly. To do so we need to keep in mind we're working with a one-dimensional distribution, which means $dq = \lambda d\ell'$. Each component of the quadrupole moment will thus be given by an integral of the form
 $$
 Q_{ij} = \int d\ell' \ \lambda(\mathbf{x}') \bigg[3 x_i' x_j' - r'^2 \delta_{ij}\bigg] \ .
 $$
@@ -669,7 +666,7 @@ Q_{xx} &= 3a\lambda \int_0^{2\pi} d\varphi' \ a^2 \cos^2\varphi' - 2\pi a^3 \lam
 &= \frac{1}{2} qa^2 \ .
 \end{align*}
 $$
-Similarly, it's easy to see we must get $Q_{yy} = qa^2 / 2$ as well. The vanishing trace property of the quadrupole tensor then implies we must have $Q_{zz} = -Q_{xx} - Q_{yy} = -qa^2$ for the remaining diagonal component.
+Similarly, it's easy to see we must get $Q_{yy} = qa^2 / 2$ as well. The tracelessness property of the quadrupole tensor then implies we must have $Q_{zz} = -Q_{xx} - Q_{yy} = -qa^2$ for the remaining diagonal component.
 
 Next, we need to find $Q_{xy}$. Since $y' = a\sin\varphi'$ and $\delta_{xy} = 0$, we have
 $$
@@ -685,7 +682,7 @@ $$
 0 & 0 & -2
 \end{pmatrix} \ .
 $$
-With these moments in hand, we can now calculate the multipole expansion for the charged ring,
+With these moments in hand, we can now calculate the multipole expansion for the charged ring, which is evidently
 $$
 \begin{align*}
 \phi(\mathbf{x}) &= \frac{q}{r} + \frac{Q_{xx} x^2 + Q_{yy} y^2 + Q_{zz} z^2}{2r^5} + \cdots \\
@@ -697,6 +694,42 @@ $$
 \phi(z) = \frac{q}{\sqrt{a^2 + z^2}} = \frac{q}{z} - \frac{qa^2}{2z^3} + \cdots \ .
 $$
 Clearly this agrees with the expansion derived above when $x = y = 0$. However, the expansion derived above works for *any* field point, not just those along the $z$-axis. Indeed, we already have a good approximation to the potential for the ring when $r \gg z$. So long as we're far enough away from the ring the higher order moments are negligible. It's really in this sense that the multipole expansion is most useful in practice.
+
+---
+
+The previous example is an example of a general fact: If a charge distribution is azimuthally symmetric, its quadrupole moment can be completely characterized by a single scalar, which we call the *scalar quadrupole moment* $Q$. In the previous example, this single scalar was $Q_{zz} = -q a^2$. Since $Q_{zz} = -Q_{xx} = -Q_{yy}$ and all the off diagonal terms vanished, we saw that $Q_{zz}$ was the only number we needed to calculate the quadrupole potential for the ring of charge.
+
+To see why this is true in general, suppose we have an azimuthally symmetric charge distribution $\rho(\mathbf{x}') = \rho(r', \theta')$. We'll show that for such a distribution, the off diagonal terms always vanish, and $Q_{zz} = -Q_{xx} = -Q_{yy}$, which means $Q = Q_{zz}$ is the only scalar we need to characterize the quadrupole moment of such a distribution.
+
+
+$$
+Q_{ij} = \int d^3\mathbf{x}' \ \rho(\mathbf{x}') \bigg[3 x_i' x_j' - r'^2 \delta_{ij}\bigg] \ .
+$$
+
+$$
+Q_{xy} = 3 \int d^3\mathbf{x}' \ \rho(r',\theta') r'^2 \sin^2\theta' \cos\varphi' \sin\varphi' \\
+= 3 \int r'^2 \sin\theta' dr' d\theta' \ \rho(r',\theta') r'^2 \sin^2\theta' \int d\varphi' \cos\varphi' \sin\varphi'
+$$
+
+$$
+Q_{xz} = 3 \int d^3\mathbf{x}' \ \rho(r',\theta') r'^2 \sin\theta' \cos\theta' \cos\varphi' \\
+= 3 \int r'^2 \sin\theta' dr' d\theta' \ \rho(r',\theta') r'^2 \sin\theta' \cos\theta' \int d\varphi' \cos\varphi'
+$$
+
+$$
+Q_{xx} = 3 \int d^3\mathbf{x}' \ \rho(r',\theta') r'^2 [\sin^2\theta' \cos^2 \varphi' - 1] \\
+= 3 \int r'^2 \sin\theta' dr' d\theta' \ \rho(r',\theta') r'^2 \sin^2\theta' \int d\varphi' \cos^2 \varphi' - 6\pi \int r'^2 \sin\theta' dr' d\theta' \ \rho(r',\theta') r'^2
+$$
+
+$$
+\phi(\mathbf{x}) = \sum_n \frac{1}{n!} \frac{Q_n}{r^n} P_n(\cos\theta)
+$$
+
+$$
+Q_1 = q \quad , \quad Q_2 = p_z \quad , \quad Q_3 = Q \quad , \quad \cdots
+$$
+
+- Confirm full potential expansion from Griffiths
 
 ### Higher-Order Moments
 
