@@ -275,11 +275,11 @@ f(\mathbf{x}) = \sum_{n=0}^\infty \frac{1}{n!} (\mathbf{x} \cdot \nabla)^n f(\ma
 $$
 We'd like to now Taylor expand the Green's function $G(\mathbf{x} - \mathbf{x}')$, assuming $\mathbf{x}'$ is the expansion variable and $\mathbf{x}$ is the expansion point of interest. It's not hard to see this will be given by
 $$
-G(\mathbf{x} - \mathbf{x}') = \sum_{n=0}^\infty \frac{(-1)^n}{n!} (\mathbf{x}' \cdot \nabla)^n G(\mathbf{x}) = G(\mathbf{x}) - \mathbf{x}' \cdot \nabla G(\mathbf{x}) + \frac{1}{2} x_i' x_j' \frac{\partial^2 G}{\partial x_j \partial x_i} + \cdots \ .
+G(\mathbf{x} - \mathbf{x}') = \sum_{\ell=0}^\infty \frac{(-1)^\ell}{\ell!} (\mathbf{x}' \cdot \nabla)^\ell G(\mathbf{x}) = G(\mathbf{x}) - \mathbf{x}' \cdot \nabla G(\mathbf{x}) + \frac{1}{2} x_i' x_j' \frac{\partial^2 G}{\partial x_j \partial x_i} + \cdots \ .
 $$
 If we now let $G(\mathbf{x} - \mathbf{x}') = 1/|\mathbf{x} - \mathbf{x}'|$, then $G(\mathbf{x}) = 1/r$, and so we can write
 $$
-\frac{1}{|\mathbf{x} - \mathbf{x}'|} = \sum_{n=0}^\infty \frac{(-1)^n}{n!} (\mathbf{x}' \cdot \nabla)^n \frac{1}{r} = \frac{1}{r} - \mathbf{x}' \cdot \nabla \frac{1}{r} + \frac{1}{2} x_i x_j \frac{\partial^2}{\partial x_j \partial x_i} \frac{1}{r} + \cdots \ .
+\frac{1}{|\mathbf{x} - \mathbf{x}'|} = \sum_{\ell=0}^\infty \frac{(-1)^\ell}{\ell!} (\mathbf{x}' \cdot \nabla)^\ell \frac{1}{r} = \frac{1}{r} - \mathbf{x}' \cdot \nabla \frac{1}{r} + \frac{1}{2} x_i x_j \frac{\partial^2}{\partial x_j \partial x_i} \frac{1}{r} + \cdots \ .
 $$
 Now, recall that $\nabla 1/r = -\mathbf{x} / r^3$ and notice that
 $$
@@ -623,7 +623,7 @@ $$
 $$
 Plugging this result into the quadrupole potential, we get
 $$
-\phi^{(2)}(\mathbf{x}) = \frac{Q_{ij} x_i x_j}{2r^5} = \frac{Q_{yz} yz}{2r^5} + \frac{Q_{zy} zy}{2r^5} = 3qd^2 \frac{yz}{r^5} \ . 
+\phi^{(2)}(\mathbf{x}) = \frac{Q_{ij} x_i x_j}{2r^5} = \frac{Q_{yz} yz}{2r^5} + \frac{Q_{zy} zy}{2r^5} = 3qd^2 \frac{yz}{r^5} \ .
 $$
 One can check that this is correct by taking the exact potential $\phi(\mathbf{x})$ for the physical quadrupole above and do a binomial expansion in the limit $r \gg d$ to show that to first order we get the same result. Thus, in the far field limit the physical quadrupole behaves as a pure quadrupole, falling off like $1/r^3$. In this sense, we can think of the physical quadrupole as a simple model of the pure quadrupole by letting $d \to 0$ while keeping the product $q d^2$ fixed.
 
@@ -634,14 +634,6 @@ $$
 \phi(\mathbf{x}) = \frac{q}{r} \ .
 $$
 This means the uniformly charged sphere *only* has a monopole moment, since its potential falls off exactly like $1/r$. This of course means both the dipole moment and the quadrupole moment must be zero. But this means the quadrupole moment can't *only* represent the spread of the distribution, since clearly if it's zero it doesn't go like $q R^2$. So what's going on? A better way to think about the quadrupole moment is that it characterizes the *anisotropy* of the charge distribution. That is, it's a measure of both the spread of the charge distribution as well as how non-spherical it is.
-
-
-
-- See Deutsch notes for general rigorous intuition about quadrupole moment.
-
-
-
-
 
 ##### Example: Uniformly charged ring
 
@@ -659,12 +651,7 @@ The second integral is clearly just $2\pi a^3 \lambda \delta_{ij}$, or equivalen
 
 Let's calculate $Q_{xx}$ first. Since $x' = a \cos\varphi'$ and $\delta_{xx} = 1$, we have 
 $$
-\begin{align*}
-Q_{xx} &= 3a\lambda \int_0^{2\pi} d\varphi' \ a^2 \cos^2\varphi' - 2\pi a^3 \lambda \\
-&= 3\pi a^3 \lambda - 2\pi a^3 \lambda \\
-&= \pi a^3 \lambda \\
-&= \frac{1}{2} qa^2 \ .
-\end{align*}
+Q_{xx} = 3a\lambda \int_0^{2\pi} d\varphi' \ a^2 \cos^2\varphi' - 2\pi a^3 \lambda = 3\pi a^3 \lambda - 2\pi a^3 \lambda = \frac{1}{2} qa^2 \ .
 $$
 Similarly, it's easy to see we must get $Q_{yy} = qa^2 / 2$ as well. The tracelessness property of the quadrupole tensor then implies we must have $Q_{zz} = -Q_{xx} - Q_{yy} = -qa^2$ for the remaining diagonal component.
 
@@ -697,50 +684,79 @@ Clearly this agrees with the expansion derived above when $x = y = 0$. However, 
 
 ---
 
-The previous example is an example of a general fact: If a charge distribution is azimuthally symmetric, its quadrupole moment can be completely characterized by a single scalar, which we call the *scalar quadrupole moment* $Q$. In the previous example, this single scalar was $Q_{zz} = -q a^2$. Since $Q_{zz} = -Q_{xx} = -Q_{yy}$ and all the off diagonal terms vanished, we saw that $Q_{zz}$ was the only number we needed to calculate the quadrupole potential for the ring of charge.
+The ring of charge is an example of a general fact: If a charge distribution is azimuthally symmetric, its quadrupole moment can be completely characterized by a single scalar $Q$, the *scalar quadrupole moment*. In the previous example, this single scalar was $Q_{zz} = -q a^2$. If we know $Q_{zz}$ along with the fact that the ring of charge is azimuthally symmetric, we automatically know the entire quadrupole tensor.
 
-To see why this is true in general, suppose we have an azimuthally symmetric charge distribution $\rho(\mathbf{x}') = \rho(r', \theta')$. We'll show that for such a distribution, the off diagonal terms always vanish, and $Q_{zz} = -Q_{xx} = -Q_{yy}$, which means $Q = Q_{zz}$ is the only scalar we need to characterize the quadrupole moment of such a distribution.
+To see why this is true in general, suppose we have a charge distribution $\rho(\mathbf{x}')$ that is azimuthally symmetric about some axis, which we'll take to be the $z'$-axis. That is, we suppose $\rho(\mathbf{x}') = \rho(r', \theta')$ is $\varphi'$-independent. We'll first show that for such a distribution the off diagonal components of the quadrupole tensor all vanish.
 
+Let's look first at $Q_{xy}$. In this case $\delta_{ij} = 0$. Converting Cartesian to spherical coordinates, we have
+$$
+Q_{xy} = 3 \int d^3\mathbf{x}' \ \rho(r', \theta') x' y' = 3 \int r'^2 \sin\theta' dr' d\theta' d\varphi' \ \rho(r', \theta') r'^2 \sin^2\theta' \cos\varphi' \sin\varphi' \ .
+$$
+Now, observe the volume integral factor into a double integral over $(r', \theta')$ and a single integral over $\varphi'$. The $\varphi'$ integral is over a full $2\pi$ period since the charge distribution is azimuthally symmetric. Since the integrand is $2\pi$-periodic, we have
+$$
+\int_0^{2\pi} d\varphi' \ \cos\varphi' \sin\varphi' = 0 \ .
+$$
+Thus, the entire integral vanishes, and hence $Q_{xy} = Q_{yx} = 0$.
 
+Let's now look at $Q_{xz}$. Again converting Cartesian to spherical coordinates, we have
 $$
-Q_{ij} = \int d^3\mathbf{x}' \ \rho(\mathbf{x}') \bigg[3 x_i' x_j' - r'^2 \delta_{ij}\bigg] \ .
+Q_{xz} = 3 \int d^3\mathbf{x}' \ \rho(r', \theta') x' z' = 3 \int r'^2 \sin\theta' dr' d\theta' d\varphi' \ \rho(r', \theta') r'^2 \sin\theta' \cos\theta' \cos\varphi' \ .
 $$
+Again, the integral factors into a double integral over $(r', \theta')$ and a single integral over $\varphi'$. Since $\cos\varphi'$ is clearly $2\pi$-periodic, the entire integral again vanishes, hence $Q_{xz} = Q_{zx} = 0$. By the exact same argument, $Q_{yz} = Q_{zy}$ vanishes as well. We've thus shown that the off diagonal components of the quadrupole tensor all vanish.
 
+Let's now look at the diagonal terms. This time $\delta_{ij} = 1$. Again converting Cartesian to spherical coordinates, we have
 $$
-Q_{xy} = 3 \int d^3\mathbf{x}' \ \rho(r',\theta') r'^2 \sin^2\theta' \cos\varphi' \sin\varphi' \\
-= 3 \int r'^2 \sin\theta' dr' d\theta' \ \rho(r',\theta') r'^2 \sin^2\theta' \int d\varphi' \cos\varphi' \sin\varphi'
+Q_{xx} = \int d^3\mathbf{x}' \ \rho(r',\theta') r'^2 [3 \sin^2\theta' \cos^2 \varphi' - 1] \ .
 $$
+Similarly, we have
+$$
+Q_{yy} = \int d^3\mathbf{x}' \ \rho(r',\theta') r'^2 [3 \sin^2\theta' \sin^2 \varphi' - 1] \ .
+$$
+We want to show that these are equal. To that end, we'll subtract $Q_{yy}$ from $Q_{xx}$ to get
+$$
+Q_{xx} - Q_{yy} = 3 \int d^3\mathbf{x}' \ \rho(r',\theta') r'^2 \sin^2\theta' [\cos^2 \varphi' - \sin^2 \varphi'] \ .
+$$
+Now, observe that in spherical coordinates the integral again factors into a double integral over $(r', \theta')$ and a single integral over $\varphi'$. For the $\varphi'$ integral we have
+$$
+\int_0^{2\pi} d\varphi' \ [\cos^2\varphi' - \sin^2\varphi'] = \pi - \pi = 0 \ .
+$$
+Thus, $Q_{xx} = Q_{yy}$. But by the tracelessness property of the quadrupole tensor, we also have $Q_{zz} = -2Q_{xx} = -2Q_{yy}$. That is, the quadrupole tensor reduces to description by a single scalar,
+$$
+Q \equiv \frac{1}{2} Q_{zz} = \frac{1}{2} \int d^3\mathbf{x}' \ \rho(r',\theta') r'^2 [3 \cos^2\theta' - 1] = \int d^3\mathbf{x}' \ \rho(r',\theta') r'^2 P_2(\cos\theta') \ .
+$$
+The absorption of the factor of $1/2$ into $Q$ allows us to write it directly in terms of the Legendre polynomial $P_2(\cos\theta')$.
 
+Plugging this into the quadrupole potential and converting each $x_i x_j$ to spherical coordinates and simplifying, we then have
 $$
-Q_{xz} = 3 \int d^3\mathbf{x}' \ \rho(r',\theta') r'^2 \sin\theta' \cos\theta' \cos\varphi' \\
-= 3 \int r'^2 \sin\theta' dr' d\theta' \ \rho(r',\theta') r'^2 \sin\theta' \cos\theta' \int d\varphi' \cos\varphi'
+\phi^{(2)}(\mathbf{x}) = \frac{Q_{ij} x_i x_j}{2r^5} = \frac{Q}{r^3} \cos 2\theta \ .
 $$
-
+Note that azimuthal symmetry also affects the dipole term. The only way an azimuthally symmetric charge distribution can have a dipole moment is if $\mathbf{p} = p_z \mathbf{e}_z$. This reduces even the dipole moment down to a single scalar $p_z$. Up to the quadrupole term then, such a distribution has a simpler multipole expansion of the form
 $$
-Q_{xx} = 3 \int d^3\mathbf{x}' \ \rho(r',\theta') r'^2 [\sin^2\theta' \cos^2 \varphi' - 1] \\
-= 3 \int r'^2 \sin\theta' dr' d\theta' \ \rho(r',\theta') r'^2 \sin^2\theta' \int d\varphi' \cos^2 \varphi' - 6\pi \int r'^2 \sin\theta' dr' d\theta' \ \rho(r',\theta') r'^2
+\phi(\mathbf{x}) = \frac{q}{r} + \frac{p_z}{r^2} \cos\theta + \frac{Q}{r^3} \cos 2\theta + \cdots \ .
 $$
-
-$$
-\phi(\mathbf{x}) = \sum_n \frac{1}{n!} \frac{Q_n}{r^n} P_n(\cos\theta)
-$$
-
-$$
-Q_1 = q \quad , \quad Q_2 = p_z \quad , \quad Q_3 = Q \quad , \quad \cdots
-$$
-
-- Confirm full potential expansion from Griffiths
+In fact, for an azimuthally symmetric charge distribution, *all* multipole moments reduce to scalars. We won't prove this here.
 
 ### Higher-Order Moments
 
-- Use general Green's function expansion to argue each term contains a moment that's a rank-$n$ tensor
-- Sketch out the common form for the $n$th multipole potential
-- Maybe say a brief word about irreducibility, leaving most of this for the next section
-- Be careful writing out the general term. Get the $\ell$'s right. May be better to do $\ell+1$ or something. Figure it out.
+In deriving the Cartesian multipole expansion we only focused on the first few moments, namely the monopole, dipole, and quadrupole moments. Of course, as the expansion continues there will be higher-order moments as well. To that end, let's re-express the Green's function expansion derived above, but this time in index notation,
+$$
+\frac{1}{|\mathbf{x} - \mathbf{x}'|} = \sum_{\ell=0}^\infty \frac{(-1)^\ell}{\ell!} (\mathbf{x}' \cdot \nabla)^\ell \frac{1}{r} = \sum_{\ell=0}^\infty \frac{(-1)^\ell}{\ell!} x'_{i_1} x'_{i_2} \cdots x'_{i_\ell} \partial_{i_1} \partial_{i_2} \cdots \partial_{i_\ell} \frac{1}{r} \ .
+$$
+Plugging this expansion back into the potential, we then get
+$$
+\phi(\mathbf{x}) = \sum_{\ell=0}^\infty \frac{(-1)^\ell}{\ell!} \bigg(\partial_{i_1} \partial_{i_2} \cdots \partial_{i_\ell} \frac{1}{r}\bigg) \int d^3\mathbf{x}' \ \rho(\mathbf{x}') x'_{i_1} x'_{i_2} \cdots x'_{i_\ell} \ .
+$$
+Now, notice that the mixed partial derivative will go like $1/r^{\ell+1}$. By manipulating terms in a clever way using the theory of irreducible tensors, one can show that the general Cartesian multipole expansion can be written in the form
+$$
+\phi(\mathbf{x}) = \sum_{\ell=0}^\infty \frac{1}{\ell! r^{\ell+1}} Q_{i_1 i_2 \cdots i_\ell} x_{i_1} x_{i_2} \cdots x_{i_\ell} \ ,
+$$
+where each $Q_{i_1 i_2 \cdots i_\ell}$ is a rank-$\ell$ irreducible tensor and the $\ell$<sup>th</sup> Cartesian multipole moment. By matching this expansion with the first few terms derived before, it's easy to see that the $\ell=0$ term is the monopole potential, the $\ell=1$ term is the dipole potential, and the $\ell=2$ term is the quadrupole potential. 
 
+For what it's worth, the $\ell=3$ term will be proportional to a rank-3 irreducible tensor $Q_{ijk}$ known as the *octupole moment*. The octupole potential will go like
 $$
-\frac{x_i x_j x_k \mathcal{O}_{ijk}}{6r^7} \quad , \quad \frac{x_{i_1} \cdots x_{i_\ell} \mathcal{Q}_{i_1 \cdots i_\ell}}{(\ell+1)! r^{2\ell}}
+\phi^{(3)}(\mathbf{x}) = \frac{x_i x_j x_k Q_{ijk}}{6r^7} \ .
 $$
+One can study the octupole moment or any higher moment just as we did above with the lower-order moments. For instance, it's clear the octupole potential will fall off like $1/r^4$, and the octupole moment will go like $qd^3$ for some characteristic length $d$. This is rarely done though, since in practice we're only interested in the first few terms of the multipole expansion, since those give the best approximation when far away from the source charge distribution.
 
 ### Charges in External Fields
 
@@ -794,100 +810,53 @@ where $\phi_0$ is some chosen ground potential.
 
 ## Spherical Multipole Expansion
 
-We've now studied the first few terms of the multipole expansion in depth. In practice these are often the only terms we care about when finding an approximate expansion of the potential of some given. Nevertheless, it's illuminating to find the general multipole expansion for all powers of $1/r$, not just the first few. We will do that now, first considering the special case of azimuthally symmetric charge distributions before proceeding the more general distributions.
+Now that we've studied the Cartesian multipole expansion in some depth, we'll now turn our attention to the multipole expansion in spherical coordinates. Rather than just focus on the first few terms, we'll go ahead and derive the full spherical expansion outright, and show how the spherical harmonics show up, and their relation to the irreducible components of the Cartesian multipole moments.
 
 ### Green's Function Expansion
 
-We can also write the Green's function in the following form,
+Previously we derived the following Cartesian expansion of the Green's function,
+$$
+\frac{1}{|\mathbf{x} - \mathbf{x}'|} = \sum_{\ell=0}^\infty \frac{(-1)^\ell}{\ell!} (\mathbf{x}' \cdot \nabla)^\ell \frac{1}{r} = \sum_{\ell=0}^\infty \frac{(-1)^\ell}{\ell!} x'_{i_1} x'_{i_2} \cdots x'_{i_\ell} \partial_{i_1} \partial_{i_2} \cdots \partial_{i_\ell} \frac{1}{r} \ .
+$$
+We'd now like to get a similar expansion of the Green's function, but this time in spherical coordinates. Rather than try to rewrite the above expansion in spherical coordinates it'll be more useful to proceed a different way. To that end, it'll be helpful to rewrite the squared norm $|\mathbf{x} - \mathbf{x}'|^2$ as
+$$
+(\mathbf{x} - \mathbf{x}') \cdot (\mathbf{x} - \mathbf{x}') = \mathbf{x} \cdot \mathbf{x} + \mathbf{x}' \cdot \mathbf{x}' - 2 \mathbf{x} \cdot \mathbf{x}' = r^2 + r'^2 - 2rr' \cos\alpha \ ,
+$$
+where as usual $\alpha$ is the angle between the vectors $\mathbf{x}$ and $\mathbf{x}'$. The Green's function can then be written as
 $$
 \frac{1}{|\mathbf{x} - \mathbf{x}'|} = \frac{1}{r} \frac{1}{\sqrt{1 + (r'/r)^2 - 2 (r'/r) \cos\alpha}} \ .
 $$
-We then used the binomial expansion in the limit $r \gg r'$ to find an expansion of the Green's function up to the first few terms. 
-
-We'll now do something slightly more clever. Recall from the appendix that we *defined* the Legendre polynomials $P_\ell(x)$ to be the expansion coefficients of the following *generating function* $g(x,t)$ when expanded in powers of $t$,
+Now, recall from the appendix that we *defined* the Legendre polynomials $P_\ell(x)$ as the expansion coefficients of the following generating function $g(x,t)$ when Taylor expanded in powers of $t$,
 $$
 g(x,t) \equiv \frac{1}{\sqrt{1 + t^2 - 2xt}} = \sum_{\ell=0}^\infty P_\ell(x) t^\ell \ .
 $$
-Now, notice that this generating function looks exactly like the Green's function, except with $t = r'/r$ and $x = \cos\alpha$. This means we immediately have an expansion of the Green's function in powers of $1/r$ given by
-
+Notice that apart from a factor of $1/r$, the Green's function looks exactly like this generating function provided we let $t = r'/r$ and $x = \cos\alpha$. This means we can expand the Green's function in terms of Legendre polynomials $P_\ell(\cos\alpha)$ as
 $$
 \frac{1}{|\mathbf{x} - \mathbf{x}'|} = \frac{1}{r} \sum_{\ell=0}^\infty P_\ell(\cos\alpha) \bigg(\frac{r'}{r}\bigg)^\ell \ .
 $$
-As written, this is the most general possible expansion of the Green's function in powers of $1/r$. Let's make sure that this agrees with the expansion we derived before up to the first few terms. First, let's recall the first few Legendre polynomials are
-$$
-P_0(\cos\alpha) = 1 \quad , \quad P_1(\cos\alpha) = \cos\alpha \quad , \quad P_2(\cos\alpha) = \frac{1}{2} (3 \cos^2\alpha - 1) \ .
-$$
-Expanding the Green's function up to the quadratic term and plugging these in, we have
-$$
-\begin{align*}
-\frac{1}{|\mathbf{x} - \mathbf{x}'|} &= P_0(\cos\alpha) \frac{1}{r} + P_1(\cos\alpha) \frac{r'}{r^2} + P_2(\cos\alpha) \frac{r'^2}{r^3} + \cdots \\
-&= \frac{1}{r} + \cos\alpha \frac{r'}{r^2} + \frac{1}{2} (3 \cos^2\alpha - 1) \frac{r'^2}{r^3} + \cdots \ .
-\end{align*}
-$$
-This is exactly what we derived before when deriving the first few terms of the Cartesian multipole expansion.
+This series expansion is valid so long as $r > r'$, which ensures the series decays rapidly enough to converge.
 
-If we plug this Green's function expansion back into the integral for the potential, we then get
-$$
-\phi(\mathbf{x}) = \int d^3\mathbf{x}' \ \frac{\rho(\mathbf{x}')}{r} \sum_{\ell=0}^\infty P_\ell(\cos\alpha) \bigg(\frac{r'}{r}\bigg)^\ell \ .
-$$
-Collecting the source-dependent terms all together, this becomes
-$$
-\phi(\mathbf{x}) = \sum_{\ell=0}^\infty \frac{1}{r^{\ell+1}} \int d^3\mathbf{x}' \ \rho(\mathbf{x}') P_\ell(\cos\alpha) r'^\ell \ .
-$$
-Now, the remaining integrals depend both on $\mathbf{x}$ and $\mathbf{x}'$, since the angle $\alpha$ between them depend on both points. This means we can't exactly identify these integrals with the multipole moment just yet. Instead we'll break this into two cases. First we'll consider the case of azimuthally symmetric distributions, and then proceed to more general distributions.
-
-### Azimuthally Symmetric Expansion
-
-Let's first consider the special case where the charge distribution is azimuthally symmetric, so that $\rho(\mathbf{x}') = \rho(r, \theta)$. 
-
-
-
-- This is turning out to be a lot harder and more subtle than expected.
-- Really the only thing I *need* from this expansion are the scalar multipole moments. Is there an easier way?
-- It may be easier to derive the general expansion first and do this as a special case, where $m=0$ for all $\ell$.
-- Don't forget to show the first non-vanishing moment is origin independent. Use spherical harmonics for this.
-
-
-$$
-\phi(\mathbf{x}) = \frac{1}{r_>} \sum_{\ell=0}^\infty c_\ell \bigg(\frac{r_<}{r_>}\bigg)^\ell P_\ell(\cos\theta) \ .
-$$
-$$
-\int d\theta \ \phi(\mathbf{x}) P_{\ell'}(\cos\theta) = \sum_{\ell=0}^\infty c_\ell \frac{r'^\ell}{r^{\ell+1}} \frac{2}{2\ell+1} \delta_{\ell\ell'}
-$$
-
-$$
-\int d\theta \ \phi(\mathbf{x}) P_{\ell}(\cos\theta) = c_\ell \frac{r'^\ell}{r^{\ell+1}} \frac{2}{2\ell+1}
-$$
-
-$$
-c_\ell = \frac{2\ell+1}{2} \frac{r^{\ell+1}}{r'^\ell} \int_{0}^{2\pi} d\theta \ \phi(\mathbf{x}) P_\ell(\cos\theta)
-$$
-
-
-
-
-
-We now want to eliminate the explicit dependent on $\cos\alpha$. We can do that by making use of the *addition theorem* of spherical harmonics. We proved in the appendix that we can expand $P_\ell(\cos\alpha)$ in terms of the spherical harmonics by
+We now want to eliminate the explicit dependent on $\cos\alpha$. We can do that by recalling from the appendix the *addition theorem* of spherical harmonics. We proved that a Legendre polynomial $P_\ell(\cos\alpha)$ can be expanded in terms of spherical harmonics as
 $$
 P_\ell(\cos\alpha) = \frac{4\pi}{2\ell+1} \sum_{m=-\ell}^\ell Y_{\ell m}(\theta,\varphi) Y_{\ell m}^*(\theta',\varphi') \ .
 $$
 If we plug this back into the Green's function, we get
 $$
-\frac{1}{|\mathbf{x} - \mathbf{x}'|} = \frac{1}{r} \sum_{\ell=0}^\infty \frac{4\pi}{2\ell+1} \bigg(\frac{r'}{r}\bigg)^\ell \sum_{m=-\ell}^\ell Y_{\ell m}(\theta,\varphi) Y_{\ell m}^*(\theta',\varphi') \ .
+\boxed{
+\frac{1}{|\mathbf{x} - \mathbf{x}'|} = \frac{1}{r} \sum_{\ell=0}^\infty \frac{4\pi}{2\ell+1} \bigg(\frac{r'}{r}\bigg)^\ell \sum_{m=-\ell}^\ell Y_{\ell m}(\theta,\varphi) Y_{\ell m}^*(\theta',\varphi') 
+} \ .
 $$
-Notice that this expansion is now over two indices, $\ell$ and $m$. For each $\ell$ there will be $2\ell+1$ terms in the sum indexed by $m$.
+This expansion is now a double sum over two indices, $\ell$ and $m$. For each $\ell$ there will be $2\ell+1$ terms in the sum indexed by $m$.
 
-We'll call this version of the Green's function expansion in spherical coordinates the *exterior* expansion. The exterior expansion is valid whenever $r > r'$. It's worth mentioning that this derivation in terms of the generating function is completely symmetric under an interchange of $r$ and $r'$. This means we can also get an *interior* expansion of the Green's function when $r < r'$ by
+Though we won't use it here, it's worth mentioning that this derivation was completely symmetric in $r$ and $r'$. We thus also get for free an *interior* expansion of the Green's function when $r < r'$,
 $$
 \frac{1}{|\mathbf{x} - \mathbf{x}'|} = \frac{1}{r'} \sum_{\ell=0}^\infty \frac{4\pi}{2\ell+1} \bigg(\frac{r}{r'}\bigg)^\ell \sum_{m=-\ell}^\ell Y_{\ell m}(\theta,\varphi) Y_{\ell m}^*(\theta',\varphi') \ .
 $$
-Indeed, it's common to combine these two expressions together by letting $r_< \equiv \min(r,r')$ and $r_> \equiv \max(r,r')$, and writing
+These two expansions are sometimes combined by letting $r_< \equiv \min(r,r')$ and $r_> \equiv \max(r,r')$, and writing
 $$
-\boxed{
-\frac{1}{|\mathbf{x} - \mathbf{x}'|} = \frac{1}{r_>} \sum_{\ell=0}^\infty \frac{4\pi}{2\ell+1} \bigg(\frac{r_<}{r_>}\bigg)^\ell \sum_{m=-\ell}^\ell Y_{\ell m}(\theta,\varphi) Y_{\ell m}^*(\theta',\varphi')
-} \ .
+\frac{1}{|\mathbf{x} - \mathbf{x}'|} = \frac{1}{r_>} \sum_{\ell=0}^\infty \frac{4\pi}{2\ell+1} \bigg(\frac{r_<}{r_>}\bigg)^\ell \sum_{m=-\ell}^\ell Y_{\ell m}(\theta,\varphi) Y_{\ell m}^*(\theta',\varphi') \ .
 $$
-We won't need this more general expansion to derive the spherical multipole expansion. It's just worth being aware of, since this expansion can occasionally be used to solve various boundary value problems.
+Though we won't make use of the interior expansion here, it can sometimes be useful as a means of solving various boundary value problems in electrostatics.
 
 ### Spherical Expansion
 
@@ -895,11 +864,19 @@ If we plug the exterior Green's function expansion back into the integral formul
 $$
 \phi(\mathbf{x}) = \int d^3\mathbf{x}' \ \frac{\rho(\mathbf{x}')}{r} \sum_{\ell=0}^\infty \frac{4\pi}{2\ell+1} \bigg(\frac{r'}{r}\bigg)^\ell \sum_{m=-\ell}^\ell Y_{\ell m}(\theta,\varphi) Y_{\ell m}^*(\theta',\varphi') \ .
 $$
-Now, notice that only the term $r'^\ell Y_{\ell m}^*(\theta',\varphi')$ depend on the source points $\mathbf{x}'$. We'll thus define the quantities
+Notice that only the product $r'^\ell Y_{\ell m}^*(\theta',\varphi')$ depends on the source point $\mathbf{x}'$. We can thus immediately define the *spherical multipole moments* $q_{\ell m}$ as the volume integral over this product,
 $$
 q_{\ell m} \equiv \int d^3\mathbf{x}' \ \rho(\mathbf{x}') r'^\ell Y_{\ell m}^*(\theta',\varphi') \ .
 $$
-These quantities are the only terms in the expansion that depend on the source points. They're called the *spherical multipole moments*. These moments aren't *exactly* the usual multipole moments, but they're related to them in ways we'll show shortly. At any rate, if we substitute $q_{\ell m}$ in for this integral, we can finally write
+Notice that the spherical multipole moments are *always* scalars, and in general complex-valued since $Y_{\ell m}^*(\theta',\varphi')$ will usually not be real-valued. For each $\ell$ there will be $2\ell+1$ corresponding spherical multipole moments. 
+
+Note that for each fixed $\ell$ the spherical harmonics are related by
+$$
+Y_{\ell,-m}(\theta,\varphi) = (-1)^m Y_{\ell m}^*(\theta,\varphi) \ .
+$$
+This immediately implies that $q_{\ell,-m} = (-1)^m q_{\ell m}^*$ as well, which means when calculating spherical multipole moments we only need to focus on finding the $m = 0, 1, \cdots, \ell$ components for a given fixed $\ell$, from which the remaining components follow.
+
+At any rate, if we substitute these moments back into the potential, we finally get the *spherical multipole expansion*,
 $$
 \boxed{
 \phi(\mathbf{x}) = \sum_{\ell=0}^\infty \frac{4\pi}{2\ell+1} \frac{1}{r^{\ell+1}} \sum_{m=-\ell}^\ell q_{\ell m} Y_{\ell m}(\theta,\varphi) 
@@ -907,70 +884,80 @@ $$
 $$
 As written, this is the most general form of the multipole expansion. We usually call the multipole expansion in this form the *spherical multipole expansion* since it involves an expansion in spherical coordinates.
 
-Before proceeding, it's worth briefly recalling a few properties of spherical harmonics. First, $Y_{\ell m}(\theta,\varphi)$ and $Y_{\ell,-1m}(\theta,\varphi)$ are related by the formula $Y_{\ell,-m}(\theta,\varphi) = (-1)^m Y_{\ell m}^*(\theta,\varphi)$. This evidently implies that the moment $q_{\ell m}$ is related to the moment $q_{\ell,-m}$ by $q_{\ell,-m} = (-1)^m q_{\ell m}^*$. The first few spherical harmonics when $\ell=0,1,2$ are given by
+Let's take a closer look at each of the expansion terms. For a given $(\ell,m)$ pair we have a multipole potential of the form
+$$
+\phi^{(\ell,m)}(\mathbf{x}) \equiv \frac{4\pi}{2\ell+1} \frac{q_{\ell m}}{r^{\ell+1}} Y_{\ell m}(\theta,\varphi) \ .
+$$
+Notice that the shape of each equipotential surface of $\phi^{(\ell,m)}(\mathbf{x})$ is determined mainly by the spherical harmonic $Y_{\ell m}(\theta,\varphi)$. To that end, we can immediately visualize the equipotential surfaces of each multipole potential by plotting the spherical harmonics. Below is a plot of the spherical harmonics for $\ell = 0, 1, 2, 3$, shown top to bottom with $m$ running left to right from $-\ell$ to $\ell$. The positive equipotential surfaces are shown in blue, and the negative equipotential surfaces are shown in yellow.
+
+![](../resources/2560px-Spherical_Harmonics.png){fig-align=center width=600}
+
+Notice that the lone $\ell = 0$ equipotentials are spheres, which are the equipotentials of the monopole potential $q/r$. In fact the $\ell = 0$ term corresponds *exactly* to the monopole potential, as we'll show below. Similarly, the $\ell=1$ equipotentials correspond to the equipotentials of a dipole oriented along one of the axial directions. The $\ell = 2$ terms start to look more complicated, but they look basically like the equipotentials of a quadrupole. The $\ell = 3$ terms are more complicated still. Those represent the equipotentials of an octupole. In this sense, the spherical harmonics provide the best way to visualize the multipole potentials.
+
+### Relation to Cartesian Expansion
+
+We now want to show that the spherical multipole expansion agrees with the Cartesian multipole expansion. Specifically, we'll show that the $\ell = 0, 1, 2$ terms agree with the monopole, dipole, and quadrupole terms explicitly. To that end, we'll list explicitly the spherical harmonics for $\ell = 0, 1, 2$ below,
 $$
 \begin{align*}
 Y_{00}(\theta,\varphi) &= \sqrt{\frac{1}{4\pi}} \ , \quad
 
 \begin{cases}
-Y_{1,-1}(\theta,\varphi) &= \sqrt{\frac{3}{8\pi}} \sin\theta e^{-i\varphi} \\
 Y_{10}(\theta,\varphi)& = \sqrt{\frac{3}{4\pi}} \cos\theta \\
-Y_{11}(\theta,\varphi) &= -\sqrt{\frac{3}{8\pi}} \sin\theta e^{i\varphi} \\
+Y_{1,\pm 1}(\theta,\varphi) &= \mp \sqrt{\frac{3}{8\pi}} \sin\theta e^{\pm i\varphi} \\
 \end{cases} \ , \quad
 
 \begin{cases}
-Y_{2,-2}(\theta,\varphi) &= \sqrt{\frac{15}{32\pi}} \sin^2 \theta e^{-2i\varphi} \\
-Y_{2,-1}(\theta,\varphi) &= \sqrt{\frac{15}{8\pi}} \sin\theta \cos\theta e^{-i\varphi} \\
 Y_{20}(\theta,\varphi) &= \sqrt{\frac{5}{16\pi}} (3\cos^2 \theta - 1) \\
-Y_{21}(\theta,\varphi) &= -\sqrt{\frac{15}{8\pi}} \sin\theta \cos\theta e^{i\varphi} \\
-Y_{22}(\theta,\varphi) &= \sqrt{\frac{15}{32\pi}} \sin^2 \theta e^{2i\varphi} \\
+Y_{2,\pm 1}(\theta,\varphi) &= \mp \sqrt{\frac{15}{8\pi}} \sin\theta \cos\theta e^{\pm i\varphi} \\
+Y_{2,\pm 2}(\theta,\varphi) &= \sqrt{\frac{15}{32\pi}} \sin^2 \theta e^{\pm 2i\varphi} \\
 \end{cases} \ .
 \end{align*}
 $$
-
-
-We now want to show that the spherical multipole expansion agrees with the basic multipole expansion when $\ell=0,1,2$. Let's proceed case by case. When $\ell = 0$, we only have one term, $m=0$. The moment $q_{00}$ is evidently given by
+First, notice when $\ell = 0$ we only have one spherical harmonic $Y_{00}(\theta,\varphi)$, with corresponding spherical multipole moment
 $$
-q_{00} = \int d^3\mathbf{x}' \ \rho(\mathbf{x}') Y_{00}^*(\theta',\varphi') = \frac{q}{\sqrt{4\pi}} \ ,
+q_{00} = \int d^3\mathbf{x}' \ \rho(\mathbf{x}') Y_{00}^*(\theta',\varphi') = \frac{1}{\sqrt{4\pi}} \int d^3\mathbf{x}' \ \rho(\mathbf{x}') = \frac{q}{\sqrt{4\pi}} \ .
 $$
-where $q$ is the usual monopole moment, or total net charge of the distribution. The $\ell=0$ expansion term is then just the monopole potential,
+Here $q$ is just the usual monopole moment. The $\ell=0$ expansion term is thus just the usual monopole potential, since
 $$
-\phi_0(\mathbf{x}) = \frac{q}{r} \ .
+\phi^{(0)}(\mathbf{x}) = \frac{4\pi}{r} q_{00} Y_{0 0}(\theta,\varphi) = \frac{4\pi}{r} \frac{q}{\sqrt{4\pi}} \frac{1}{\sqrt{4\pi}} = \frac{q}{r} \ .
 $$
-Next, when $\ell = 1$ we have $m=-1,0,1$. The associated multipole moments are evidently then
+Next, when $\ell = 1$ we have $m=-1,0,1$. The associated multipole moments are evidently
 $$
 \begin{align*}
 q_{10} &= \int d^3\mathbf{x}' \ \rho(\mathbf{x}') r' Y_{10}^*(\theta',\varphi') = \sqrt{\frac{3}{4\pi}}\int d^3\mathbf{x}' \ \rho(\mathbf{x}') r' \cos\theta \ , \\
 q_{1,\pm1} &= \int d^3\mathbf{x}' \ \rho(\mathbf{x}') r' Y_{1,\pm 1}^*(\theta',\varphi') = \mp \sqrt{\frac{3}{8\pi}}\int d^3\mathbf{x}' \ \rho(\mathbf{x}') r' \sin\theta e^{\mp i\varphi} \ .
 \end{align*}
 $$
-If we write $e^{\pm i\varphi} = \cos\varphi \pm i \sin\varphi$, and use the formulas to convert spherical coordinates $(r',\theta',\varphi')$ to Cartesian coordinates $(x',y',z')$, we get
+Writing $e^{\pm i\varphi} = \cos\varphi \pm i \sin\varphi$, and converting the spherical coordinates $(r',\theta',\varphi')$ to Cartesian coordinates $(x',y',z')$, we get
 $$
 \begin{align*}
 q_{10} &= \sqrt{\frac{3}{4\pi}}\int d^3\mathbf{x}' \ \rho(\mathbf{x}') r' \cos\theta = \sqrt{\frac{3}{4\pi}}\int d^3\mathbf{x}' \ \rho(\mathbf{x}') z' \ , \\
 q_{1,\pm 1} &= \mp \sqrt{\frac{3}{8\pi}} \int d^3\mathbf{x}' \ \rho(\mathbf{x}') r' \sin\theta (\cos\varphi \mp i \sin\varphi) = \mp \sqrt{\frac{3}{8\pi}} \int d^3\mathbf{x}' \ \rho(\mathbf{x}') (x' \mp iy') \ .
 \end{align*}
 $$
-Now, notice that the remaining terms in each integral are just the components of the dipole vector $\mathbf{p}$, with
+Now, notice each of these moments is proportional to some component of the dipole moment $\mathbf{p}$, with
 $$
 q_{10} = \sqrt{\frac{3}{4\pi}} p_z \quad , \quad
 q_{1,\pm 1} = \mp \sqrt{\frac{3}{8\pi}} (p_x \mp i p_y) \ .
 $$
-Then the $\ell=1$ terms in the spherical multipole expansion are
+If we plug these into the potential with $\ell = 1$ and simplify, we thus have
 $$
 \begin{align*}
-\phi_1(\mathbf{x}) &= \frac{4\pi}{3r^2} \big[q_{1,-1} Y_{1,-1}(\theta,\varphi) + q_{10} Y_{10}(\theta,\varphi) + q_{11} Y_{11}(\theta,\varphi)\big] \\
+\phi^{(1)}(\mathbf{x}) &= \frac{4\pi}{3r^2} \big[q_{1,-1} Y_{1,-1}(\theta,\varphi) + q_{10} Y_{10}(\theta,\varphi) + q_{11} Y_{11}(\theta,\varphi)\big] \\
 &= \frac{4\pi}{3r^2} \bigg[\frac{3}{8\pi} \sin\theta e^{-i\varphi} (p_x + i p_y) + \frac{3}{4\pi} \cos\theta p_z + \frac{3}{8\pi} \sin\theta e^{i\varphi} (p_x - i p_y) \bigg] \\
-&= \frac{1}{r^2} \bigg[\frac{1}{2} \sin\theta e^{-i\varphi} (p_x + i p_y) + \cos\theta p_z + \frac{1}{2} \sin\theta e^{i\varphi} (p_x - i p_y)\bigg] \\
+&= \frac{1}{r^2} \bigg[\frac{1}{2} \sin\theta (\cos\varphi - i\sin\varphi) (p_x + i p_y) + \cos\theta p_z + \frac{1}{2} \sin\theta (\cos\varphi + i\sin\varphi) (p_x - i p_y)\bigg] \\
 &= \frac{1}{r^2} \big[x p_x + y p_y + z p_z \big] \ .
 \end{align*}
 $$
-In the last step we again used the fact that $e^{\pm i\varphi} = \cos\varphi \pm i \sin\varphi$. When this is plugged in and we simplify terms, we find that the imaginary parts all vanish. The remaining real parts then contain terms that turn out to be the Cartesian coordinates $(x,y,z)$. What remains in brackets is clearly just the dot product between $\mathbf{x}$ and $\mathbf{p}$. We thus end up with the usual dipole potential,
+Notice that the imaginary parts all vanished from this potential. What we're left with is just the usual dipole potential,
 $$
-\phi_1(\mathbf{x}) = \frac{\mathbf{p} \cdot \mathbf{x}}{r^2} \ .
+\phi^{(1)}(\mathbf{x}) = \frac{\mathbf{p} \cdot \mathbf{x}}{r^3} \ .
 $$
-Finally we'll consider the $\ell=2$ expansion terms. In this case $m=-2,-1,0,1,2$, which means there will be five terms. Using the same logic we did with the dipole term, one can show that these spherical moments can be written in the form
-
+Finally, let's look at the $\ell=2$ expansion terms. In this case $m=-2,-1,0,1,2$, which means there will be five terms,
+$$
+\phi^{(2)}(\mathbf{x}) = \frac{4\pi}{5r^3} \big[q_{2,-2} Y_{2,-2}(\theta,\varphi) + q_{2,-1} Y_{2,-1}(\theta,\varphi) + q_{20} Y_{20}(\theta,\varphi) + q_{21} Y_{21}(\theta,\varphi) + q_{22} Y_{22}(\theta,\varphi)\big] \ .
+$$
+Using the same logic as we did before with the dipole term, one can show that these spherical moments can be written in terms of the usual quadrupole tensor components $Q_{ij}$ as
 $$
 \begin{align*}
 q_{20} &= \frac{1}{2} \sqrt{\frac{5}{4\pi}} Q_{zz} \ , \\
@@ -978,9 +965,15 @@ q_{2,\pm 1} &= \mp \frac{1}{3} \sqrt{\frac{15}{8\pi}} (Q_{xz} \mp 2i Q_{yz}) \ ,
 q_{2,\pm 2} &= \frac{1}{12} \sqrt{\frac{15}{2\pi}} (Q_{xx} - Q_{yy} \mp 2i Q_{xy}) \ ,
 \end{align*}
 $$
-where each $Q_{ij}$ are the components of the usual quadrupole tensor $\mathbf{Q}$. By plugging these into the $\ell=2$ expansion term and simplifying as before, we eventually end up with the usual quadrupole potential,
+Plugging these into the $\ell=2$ potential and simplifying, we'll eventually end up with the usual quadrupole potential,
 $$
-\phi_2(\mathbf{x}) = \frac{Q_{ij} x_i x_j}{2r^5} = \frac{\mathbf{x} \cdot \mathbf{Q} \cdot \mathbf{x}}{2 r^5} \ .
+\phi^{(2)}(\mathbf{x}) = \frac{Q_{ij} x_i x_j}{2r^5} = \frac{\mathbf{x} \cdot \mathbf{Q} \cdot \mathbf{x}}{2 r^5} \ .
 $$
-This shows that the spherical multipole expansion agrees with the basic multipole expansion up to $\ell=2$. One could proceed to derive higher order multipole moments and potentials from this expansion as well. For example, by expanding the $\ell=3$ terms one can derive the octupole moment and octupole potential.
+This suggests the spherical multipole expansion agrees with the Cartesian expansion, with each fixed $\ell$ corresponding to the $\ell$<sup>th</sup> Cartesian multipole potential. Moreover, each spherical multipole moment corresponds to the $2\ell+1$ irreducible components of the corresponding $\ell$<sup>th</sup> Cartesian multipole moment. In this sense, the spherical multipole expansion is more natural than the Cartesian multipole expansion, since the irreducible components of each moment are already transparent in the formula.
 
+### Independence of Origin
+
+
+
+- Average value of electric field over a sphere with a charge distribution inside or out (maybe an example of interior expansion)
+- Show using this expansion that the first non-vanishing moment is origin-independent
