@@ -814,11 +814,13 @@ Now that we've studied the Cartesian multipole expansion in some depth, we'll no
 
 ### Green's Function Expansion
 
-Previously we derived the following Cartesian expansion of the Green's function,
+Previously we derived the Cartesian expansion of the Green's function,
 $$
-\frac{1}{|\mathbf{x} - \mathbf{x}'|} = \sum_{\ell=0}^\infty \frac{(-1)^\ell}{\ell!} (\mathbf{x}' \cdot \nabla)^\ell \frac{1}{r} = \sum_{\ell=0}^\infty \frac{(-1)^\ell}{\ell!} x'_{i_1} x'_{i_2} \cdots x'_{i_\ell} \partial_{i_1} \partial_{i_2} \cdots \partial_{i_\ell} \frac{1}{r} \ .
+\frac{1}{|\mathbf{x} - \mathbf{x}'|} = \sum_{\ell=0}^\infty \frac{(-1)^\ell}{\ell!} (\mathbf{x}' \cdot \nabla)^\ell \frac{1}{r} \ .
 $$
-We'd now like to get a similar expansion of the Green's function, but this time in spherical coordinates. Rather than try to rewrite the above expansion in spherical coordinates it'll be more useful to proceed a different way. To that end, it'll be helpful to rewrite the squared norm $|\mathbf{x} - \mathbf{x}'|^2$ as
+We'd now like to get a similar expansion of the Green's function, but this time in spherical coordinates. Rather than try to rewrite the above expansion in spherical coordinates it'll be much easier to take a different approach. Namely, we'll show that the Green's function can be thought of as a *generating function* of the Legendre polynomials, and then relate these polynomials to spherical harmonics via the addition theorem.
+
+ To that end, let's first write the squared norm $|\mathbf{x} - \mathbf{x}'|^2$ as
 $$
 (\mathbf{x} - \mathbf{x}') \cdot (\mathbf{x} - \mathbf{x}') = \mathbf{x} \cdot \mathbf{x} + \mathbf{x}' \cdot \mathbf{x}' - 2 \mathbf{x} \cdot \mathbf{x}' = r^2 + r'^2 - 2rr' \cos\alpha \ ,
 $$
@@ -826,37 +828,42 @@ where as usual $\alpha$ is the angle between the vectors $\mathbf{x}$ and $\math
 $$
 \frac{1}{|\mathbf{x} - \mathbf{x}'|} = \frac{1}{r} \frac{1}{\sqrt{1 + (r'/r)^2 - 2 (r'/r) \cos\alpha}} \ .
 $$
-Now, recall from the appendix that we *defined* the Legendre polynomials $P_\ell(x)$ as the expansion coefficients of the following generating function $g(x,t)$ when Taylor expanded in powers of $t$,
+Now, recall from the appendix that we *defined* the Legendre polynomials $P_\ell(\cos\alpha)$ as the expansion coefficients of a certain generating function, namely
 $$
-g(x,t) \equiv \frac{1}{\sqrt{1 + t^2 - 2xt}} = \sum_{\ell=0}^\infty P_\ell(x) t^\ell \ .
+\frac{1}{\sqrt{1 + t^2 - 2t\cos\alpha}} \equiv \sum_{\ell=0}^\infty P_\ell(\cos\alpha) t^\ell \ .
 $$
-Notice that apart from a factor of $1/r$, the Green's function looks exactly like this generating function provided we let $t = r'/r$ and $x = \cos\alpha$. This means we can expand the Green's function in terms of Legendre polynomials $P_\ell(\cos\alpha)$ as
+Now, notice if we substitute $t = r'/r$ this expansion looks exactly like the Green's function above, up to a factor of $1/r$. This means if we expand the Green's function in powers of $r'/r$ its expansion coefficients are the Legendre polynomials, with
 $$
 \frac{1}{|\mathbf{x} - \mathbf{x}'|} = \frac{1}{r} \sum_{\ell=0}^\infty P_\ell(\cos\alpha) \bigg(\frac{r'}{r}\bigg)^\ell \ .
 $$
-This series expansion is valid so long as $r > r'$, which ensures the series decays rapidly enough to converge.
+Note this series expansion is valid so long as $r > r'$, which ensures the series decays rapidly enough to converge.
 
-We now want to eliminate the explicit dependent on $\cos\alpha$. We can do that by recalling from the appendix the *addition theorem* of spherical harmonics. We proved that a Legendre polynomial $P_\ell(\cos\alpha)$ can be expanded in terms of spherical harmonics as
+We now want to eliminate the explicit dependence on $\cos\alpha$. We can do that by recalling the *addition theorem* of spherical harmonics. We proved in the appendix that $P_\ell(\cos\alpha)$ can be expanded in a linear superposition of spherical harmonics as
 $$
 P_\ell(\cos\alpha) = \frac{4\pi}{2\ell+1} \sum_{m=-\ell}^\ell Y_{\ell m}(\theta,\varphi) Y_{\ell m}^*(\theta',\varphi') \ .
 $$
-If we plug this back into the Green's function, we get
+If we plug this back into the Green's function we finally get its expansion in spherical coordinates,
 $$
 \boxed{
 \frac{1}{|\mathbf{x} - \mathbf{x}'|} = \frac{1}{r} \sum_{\ell=0}^\infty \frac{4\pi}{2\ell+1} \bigg(\frac{r'}{r}\bigg)^\ell \sum_{m=-\ell}^\ell Y_{\ell m}(\theta,\varphi) Y_{\ell m}^*(\theta',\varphi') 
 } \ .
 $$
-This expansion is now a double sum over two indices, $\ell$ and $m$. For each $\ell$ there will be $2\ell+1$ terms in the sum indexed by $m$.
+Notice this expansion is now a double sum over two indices, $\ell$ and $m$. For each fixed $\ell$ there will be $2\ell+1$ terms indexed by $m$.
 
-Though we won't use it here, it's worth mentioning that this derivation was completely symmetric in $r$ and $r'$. We thus also get for free an *interior* expansion of the Green's function when $r < r'$,
+It's worth mentioning that this derivation was completely symmetric in $r$ and $r'$. Indeed, if we instead let $t = r/r'$ in the generating function, we instead get an *interior* expansion of the Green's function when $r < r'$,
 $$
 \frac{1}{|\mathbf{x} - \mathbf{x}'|} = \frac{1}{r'} \sum_{\ell=0}^\infty \frac{4\pi}{2\ell+1} \bigg(\frac{r}{r'}\bigg)^\ell \sum_{m=-\ell}^\ell Y_{\ell m}(\theta,\varphi) Y_{\ell m}^*(\theta',\varphi') \ .
 $$
-These two expansions are sometimes combined by letting $r_< \equiv \min(r,r')$ and $r_> \equiv \max(r,r')$, and writing
+The exterior and interior expansions are often combined by letting $r_< \equiv \min(r,r')$ and $r_> \equiv \max(r,r')$, and writing
 $$
 \frac{1}{|\mathbf{x} - \mathbf{x}'|} = \frac{1}{r_>} \sum_{\ell=0}^\infty \frac{4\pi}{2\ell+1} \bigg(\frac{r_<}{r_>}\bigg)^\ell \sum_{m=-\ell}^\ell Y_{\ell m}(\theta,\varphi) Y_{\ell m}^*(\theta',\varphi') \ .
 $$
-Though we won't make use of the interior expansion here, it can sometimes be useful as a means of solving various boundary value problems in electrostatics.
+Though we won't need the interior expansion to derive the multipole expansion in spherical coordinates, it can sometimes be useful as a means of solving various boundary value problems in electrostatics.
+
+##### Example: Average electric field on the surface of a sphere
+
+- Average value of electric field over a sphere with a charge distribution inside or out
+- Can this even be done without the multipole expansion of the potential first? May need to move to next section.
 
 ### Spherical Expansion
 
@@ -971,9 +978,26 @@ $$
 $$
 This suggests the spherical multipole expansion agrees with the Cartesian expansion, with each fixed $\ell$ corresponding to the $\ell$<sup>th</sup> Cartesian multipole potential. Moreover, each spherical multipole moment corresponds to the $2\ell+1$ irreducible components of the corresponding $\ell$<sup>th</sup> Cartesian multipole moment. In this sense, the spherical multipole expansion is more natural than the Cartesian multipole expansion, since the irreducible components of each moment are already transparent in the formula.
 
+### Azimuthally Symmetric Distributions
+
+We mentioned before when discussing the quadrupole moment that if a charge distribution is azimuthally symmetric, all the multipole moments reduce to scalars. We can prove this pretty easily using the spherical multipole expansion. If the spherical multipole moments are given by
+$$
+q_{\ell m} = \int d^3\mathbf{x}' \ \rho(\mathbf{x}') r'^\ell Y_{\ell m}^*(\theta',\varphi') \ ,
+$$
+and the charge distribution $\rho(\mathbf{x}') = \rho(r',\theta')$ is azimuthally symmetric, then in spherical coordinates we have
+$$
+q_{\ell m} = \int r'^2 dr' d\Omega' \ \rho(r', \theta') r'^\ell Y_{\ell m}^*(\theta',\varphi') = \int r'^2 \sin\theta' dr' d\theta' d\varphi' \ \rho(r', \theta') r'^\ell \int_0^{2\pi} d\varphi' \ Y_{\ell m}^*(\theta',\varphi') \ .
+$$
+But by the orthogonality relation for spherical harmonics we have
+$$
+\int d\Omega' \ Y_{\ell m}^*(\theta',\varphi') Y_{\ell' m'}(\theta',\varphi') = \delta_{\ell \ell'} \delta_{m m'} \ .
+$$
+Since $Y_{\ell,0}(\theta',\varphi') = \sqrt{(2\ell+1)/4\pi} \ P_\ell(\cos\theta')$, this means we have
+$$
+\int d\Omega' \ Y_{\ell m}(\theta',\varphi') =  \ .
+$$
+
+- This is subtle due to only needing the $\varphi'$ integration. Do this on paper first.
+
 ### Independence of Origin
 
-
-
-- Average value of electric field over a sphere with a charge distribution inside or out (maybe an example of interior expansion)
-- Show using this expansion that the first non-vanishing moment is origin-independent
