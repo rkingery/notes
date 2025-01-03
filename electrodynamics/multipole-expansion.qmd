@@ -4,7 +4,7 @@ In this last chapter on electrostatics, we will conclude our discussion of bound
 
 ## Complex Methods
 
-In many cases we find ourselves interested in boundary value problems that can be reduced to two dimensions, that is, problems that can be reduced to two variables. For example, if the symmetry of a problem dictates that the potential cannot depend on the $z$-coordinate, we can write $\phi(\mathbf{x}) = \phi(x,y)$, which reduces the problem to a two dimensional problem in the $xy$-plane.
+In many cases we find ourselves interested in boundary value problems that can be reduced to two dimensions. For example, if the symmetry of a problem dictates that the potential cannot depend on the $z$-coordinate, we can write $\phi(\mathbf{x}) = \phi(x,y)$, which reduces the problem to a two dimensional problem in the $xy$-plane.
 
 While the techniques we've covered so far we'll often work in this setting, there's another technique that can be used to solve more difficult problems that employs the tools of complex analysis, particular the theory of analytic functions and conformal mappings. We covered the mathematical background of this subject in the appendix. It's recommend that the reader read that material before proceeding further with this section.
 
@@ -281,7 +281,7 @@ If we now let $G(\mathbf{x} - \mathbf{x}') = 1/|\mathbf{x} - \mathbf{x}'|$, then
 $$
 \frac{1}{|\mathbf{x} - \mathbf{x}'|} = \sum_{\ell=0}^\infty \frac{(-1)^\ell}{\ell!} (\mathbf{x}' \cdot \nabla)^\ell \frac{1}{r} = \frac{1}{r} - \mathbf{x}' \cdot \nabla \frac{1}{r} + \frac{1}{2} x_i x_j \frac{\partial^2}{\partial x_j \partial x_i} \frac{1}{r} + \cdots \ .
 $$
-Now, recall that $\nabla 1/r = -\mathbf{x} / r^3$ and notice that
+Now, we already know $\nabla 1/r = -\mathbf{x} / r^3$. Moreover, notice that
 $$
 x_i' x_j' \frac{\partial^2}{\partial x_j \partial x_i} \frac{1}{r} = x_i' x_j' \frac{\partial^2}{\partial x_j \partial x_i} (x_k x_k)^{-1/2} = x_i' x_j' \frac{3 x_i x_j - r^2 \delta_{ij}}{r^5} \ .
 $$
@@ -291,7 +291,7 @@ $$
 \frac{1}{|\mathbf{x} - \mathbf{x}'|} = \frac{1}{r} + \frac{\mathbf{x} \cdot \mathbf{x}'}{r^3} + \frac{3 (\mathbf{x} \cdot \mathbf{x}')^2 - r^2 r'^2}{2r^5} + \cdots 
 } \ .
 $$
-We've thus managed to expand the Green's function in powers of $1/r$, at least up to the quadratic term. We could keep going if we like. In fact the expansion above is just a binomial expansion, so it's not difficult. We'll defer the full expansion to later.
+We've thus managed to expand the Green's function in powers of $1/r$, at least up to the cubic term. We could keep going if we like. In fact the expansion above is just a binomial expansion, so it's not difficult. We'll defer the full expansion to later.
 
 Plugging this Green's function expansion back into the integral for the potential, we get
 $$
@@ -354,7 +354,7 @@ The field lines for the monopole look exactly as we'd expect. We show a plot of 
 
 Naturally, the best physical model of the monopole moment is just a point charge $q$ centered at the origin, which exactly reproduces the field lines shown above.
 
-Since this is the first term in the multipole expansion, we should expect that very far away from the charge distribution, the potential should approximate the of a point charge with total net charge $q$. Of course, this is only true if $q \neq 0$. If $q=0$, we have to proceed to the next term in the multipole expansion, the dipole potential.
+Since this is the first term in the multipole expansion, we should expect that very far away from the charge distribution, the potential should approximate the of a point charge with total net charge $q$. Of course, this is only true if $q \neq 0$. If $q=0$, we have to proceed to the next term in the multipole expansion for a good approximation, the dipole potential.
 
 ### Dipole Moment
 
@@ -487,7 +487,17 @@ As expected, the electric field falls off like $1/r^3$, with field lines coming 
 
 FIGURE (sketch the field lines of this sphere, showing it looks like a dipole)
 
+---
 
+We'll finish this section by asking how the dipole moment changes if the charge distribution is no longer centered at the origin, but instead some point $\mathbf{a}$. This means each source point shifts by $\mathbf{x}' \to \mathbf{x}' - \mathbf{a}$, which means the dipole moment shifts from $\mathbf{p} \to \mathbf{p}'$, where
+$$
+\mathbf{p}' = \int d^3(\mathbf{x}' - \mathbf{a}) \ \rho(\mathbf{x}' - \mathbf{a}) (\mathbf{x}' - \mathbf{a}) \ .
+$$
+Now, it's easy to see the volume element $\rho(\mathbf{x}') d^3 \mathbf{x}'$ is independent to shifts by a constant vector. This means we can write
+$$
+\mathbf{p}' = \int d^3\mathbf{x}' \ \rho(\mathbf{x}') (\mathbf{x}' - \mathbf{a}) = \mathbf{p} - q\mathbf{a} \ ,
+$$
+where $q$ is the monopole moment. Thus, under a shift of origin, $\mathbf{p}$ shifts by a constant amount $q\mathbf{a}$. Evidently in the special case where the net charge is zero, $q=0$, which means $\mathbf{p}$ remains the same. This is a special case of a more general fact which we won't prove: The lowest *non-vanishing* Cartesian multipole moment is always independent of the choice of origin.
 
 ### Quadrupole Moment
 
@@ -684,57 +694,7 @@ Clearly this agrees with the expansion derived above when $x = y = 0$. However, 
 
 ---
 
-The ring of charge is an example of a general fact: If a charge distribution is azimuthally symmetric, its quadrupole moment can be completely characterized by a single scalar $Q$, the *scalar quadrupole moment*. In the previous example, this single scalar was $Q_{zz} = -q a^2$. If we know $Q_{zz}$ along with the fact that the ring of charge is azimuthally symmetric, we automatically know the entire quadrupole tensor.
-
-To see why this is true in general, suppose we have a charge distribution $\rho(\mathbf{x}')$ that is azimuthally symmetric about some axis, which we'll take to be the $z'$-axis. That is, we suppose $\rho(\mathbf{x}') = \rho(r', \theta')$ is $\varphi'$-independent. We'll first show that for such a distribution the off diagonal components of the quadrupole tensor all vanish.
-
-Let's look first at $Q_{xy}$. In this case $\delta_{ij} = 0$. Converting Cartesian to spherical coordinates, we have
-$$
-Q_{xy} = 3 \int d^3\mathbf{x}' \ \rho(r', \theta') x' y' = 3 \int r'^2 \sin\theta' dr' d\theta' d\varphi' \ \rho(r', \theta') r'^2 \sin^2\theta' \cos\varphi' \sin\varphi' \ .
-$$
-Now, observe the volume integral factor into a double integral over $(r', \theta')$ and a single integral over $\varphi'$. The $\varphi'$ integral is over a full $2\pi$ period since the charge distribution is azimuthally symmetric. Since the integrand is $2\pi$-periodic, we have
-$$
-\int_0^{2\pi} d\varphi' \ \cos\varphi' \sin\varphi' = 0 \ .
-$$
-Thus, the entire integral vanishes, and hence $Q_{xy} = Q_{yx} = 0$.
-
-Let's now look at $Q_{xz}$. Again converting Cartesian to spherical coordinates, we have
-$$
-Q_{xz} = 3 \int d^3\mathbf{x}' \ \rho(r', \theta') x' z' = 3 \int r'^2 \sin\theta' dr' d\theta' d\varphi' \ \rho(r', \theta') r'^2 \sin\theta' \cos\theta' \cos\varphi' \ .
-$$
-Again, the integral factors into a double integral over $(r', \theta')$ and a single integral over $\varphi'$. Since $\cos\varphi'$ is clearly $2\pi$-periodic, the entire integral again vanishes, hence $Q_{xz} = Q_{zx} = 0$. By the exact same argument, $Q_{yz} = Q_{zy}$ vanishes as well. We've thus shown that the off diagonal components of the quadrupole tensor all vanish.
-
-Let's now look at the diagonal terms. This time $\delta_{ij} = 1$. Again converting Cartesian to spherical coordinates, we have
-$$
-Q_{xx} = \int d^3\mathbf{x}' \ \rho(r',\theta') r'^2 [3 \sin^2\theta' \cos^2 \varphi' - 1] \ .
-$$
-Similarly, we have
-$$
-Q_{yy} = \int d^3\mathbf{x}' \ \rho(r',\theta') r'^2 [3 \sin^2\theta' \sin^2 \varphi' - 1] \ .
-$$
-We want to show that these are equal. To that end, we'll subtract $Q_{yy}$ from $Q_{xx}$ to get
-$$
-Q_{xx} - Q_{yy} = 3 \int d^3\mathbf{x}' \ \rho(r',\theta') r'^2 \sin^2\theta' [\cos^2 \varphi' - \sin^2 \varphi'] \ .
-$$
-Now, observe that in spherical coordinates the integral again factors into a double integral over $(r', \theta')$ and a single integral over $\varphi'$. For the $\varphi'$ integral we have
-$$
-\int_0^{2\pi} d\varphi' \ [\cos^2\varphi' - \sin^2\varphi'] = \pi - \pi = 0 \ .
-$$
-Thus, $Q_{xx} = Q_{yy}$. But by the tracelessness property of the quadrupole tensor, we also have $Q_{zz} = -2Q_{xx} = -2Q_{yy}$. That is, the quadrupole tensor reduces to description by a single scalar,
-$$
-Q \equiv \frac{1}{2} Q_{zz} = \frac{1}{2} \int d^3\mathbf{x}' \ \rho(r',\theta') r'^2 [3 \cos^2\theta' - 1] = \int d^3\mathbf{x}' \ \rho(r',\theta') r'^2 P_2(\cos\theta') \ .
-$$
-The absorption of the factor of $1/2$ into $Q$ allows us to write it directly in terms of the Legendre polynomial $P_2(\cos\theta')$.
-
-Plugging this into the quadrupole potential and converting each $x_i x_j$ to spherical coordinates and simplifying, we then have
-$$
-\phi^{(2)}(\mathbf{x}) = \frac{Q_{ij} x_i x_j}{2r^5} = \frac{Q}{r^3} \cos 2\theta \ .
-$$
-Note that azimuthal symmetry also affects the dipole term. The only way an azimuthally symmetric charge distribution can have a dipole moment is if $\mathbf{p} = p_z \mathbf{e}_z$. This reduces even the dipole moment down to a single scalar $p_z$. Up to the quadrupole term then, such a distribution has a simpler multipole expansion of the form
-$$
-\phi(\mathbf{x}) = \frac{q}{r} + \frac{p_z}{r^2} \cos\theta + \frac{Q}{r^3} \cos 2\theta + \cdots \ .
-$$
-In fact, for an azimuthally symmetric charge distribution, *all* multipole moments reduce to scalars. We won't prove this here.
+The ring of charge is an example of a general fact: If a charge distribution is azimuthally symmetric, its quadrupole moment can be completely characterized by a single scalar $Q$, the *scalar quadrupole moment*. In the previous example, this single scalar was $Q_{zz} = -q a^2$. If we know $Q_{zz}$ along with the fact that the ring of charge is azimuthally symmetric, we automatically know the entire quadrupole tensor. We'll prove this fact more generally in a later section.
 
 ### Higher-Order Moments
 
@@ -746,13 +706,15 @@ Plugging this expansion back into the potential, we then get
 $$
 \phi(\mathbf{x}) = \sum_{\ell=0}^\infty \frac{(-1)^\ell}{\ell!} \bigg(\partial_{i_1} \partial_{i_2} \cdots \partial_{i_\ell} \frac{1}{r}\bigg) \int d^3\mathbf{x}' \ \rho(\mathbf{x}') x'_{i_1} x'_{i_2} \cdots x'_{i_\ell} \ .
 $$
-Now, notice that the mixed partial derivative will go like $1/r^{\ell+1}$. By manipulating terms in a clever way using the theory of irreducible tensors, one can show that the general Cartesian multipole expansion can be written in the form
+Now, notice that the mixed partial derivative will go like $1/r^{\ell+1}$. By manipulating terms in a clever way, one can show that the general Cartesian multipole expansion can be written in the form
 $$
 \phi(\mathbf{x}) = \sum_{\ell=0}^\infty \frac{1}{\ell! r^{\ell+1}} Q_{i_1 i_2 \cdots i_\ell} x_{i_1} x_{i_2} \cdots x_{i_\ell} \ ,
 $$
-where each $Q_{i_1 i_2 \cdots i_\ell}$ is a rank-$\ell$ irreducible tensor and the $\ell$<sup>th</sup> Cartesian multipole moment. By matching this expansion with the first few terms derived before, it's easy to see that the $\ell=0$ term is the monopole potential, the $\ell=1$ term is the dipole potential, and the $\ell=2$ term is the quadrupole potential. 
+where each $Q_{i_1 i_2 \cdots i_\ell}$ is a rank-$\ell$ irreducible tensor, called the $\ell$<sup>th</sup> *Cartesian multipole moment*. By matching this expansion with the Cartesian expansion derived before, it's easy to see that the $\ell=0$ moment is the monopole moment $q$, the $\ell=1$ moment is the usual dipole moment $\mathbf{p}$, and the $\ell=2$ moment is the usual quadrupole moment $\mathbf{Q}$.
 
-For what it's worth, the $\ell=3$ term will be proportional to a rank-3 irreducible tensor $Q_{ijk}$ known as the *octupole moment*. The octupole potential will go like
+By *irreducible tensor*, we mean that the tensor is *symmetric* and *traceless*, meaning we can permute the indices without changing the tensor, and when contracted over all indices the tensor vanishes. Together, these conditions reduce a rank-$\ell$ tensor from having $3^\ell$ total components down to only $2\ell+1$ independent components. This is why the quadrupole tensor contains $3^2=9$ total components, but only $2 \cdot 2 +1 = 5$ of those components are independent. There is a whole rich theory to irreducible tensors that ties into group theory, which we will not go into here.
+
+For what it's worth, the $\ell=3$ term will be proportional to a rank-3 irreducible tensor $Q_{ijk}$ known as the *octupole moment*. The octupole potential is then given by
 $$
 \phi^{(3)}(\mathbf{x}) = \frac{x_i x_j x_k Q_{ijk}}{6r^7} \ .
 $$
@@ -980,24 +942,56 @@ This suggests the spherical multipole expansion agrees with the Cartesian expans
 
 ### Azimuthally Symmetric Distributions
 
-We mentioned before when discussing the quadrupole moment that if a charge distribution is azimuthally symmetric, all the multipole moments reduce to scalars. We can prove this pretty easily using the spherical multipole expansion. If the spherical multipole moments are given by
+It turns out that if a charge distribution is azimuthally symmetric, then all the Cartesian multipole moments reduce to scalars. We can prove this pretty easily using the spherical multipole expansion. If a charge distribution is azimuthally symmetric we can orient it normal to the $z$-axis and write $\rho(\mathbf{x}') = \rho(r',\theta')$. This means we can write spherical multipole moments in the form
 $$
-q_{\ell m} = \int d^3\mathbf{x}' \ \rho(\mathbf{x}') r'^\ell Y_{\ell m}^*(\theta',\varphi') \ ,
+q_{\ell m} = \int d^3\mathbf{x}' \ \rho(\mathbf{x}') r'^\ell Y_{\ell m}^*(\theta',\varphi') = \int r'^2 \sin\theta' dr' d\theta' \ \rho(r', \theta') r'^\ell \int_0^{2\pi} d\varphi' \ Y_{\ell m}^*(\theta',\varphi') \ .
 $$
-and the charge distribution $\rho(\mathbf{x}') = \rho(r',\theta')$ is azimuthally symmetric, then in spherical coordinates we have
+Now, by definition $Y_{\ell m}(\theta',\varphi') \propto P_\ell^m(\cos\theta') e^{im\varphi'}$, where $P_\ell^m(\cos\theta')$ is an associated Legendre polynomial. This means
 $$
-q_{\ell m} = \int r'^2 dr' d\Omega' \ \rho(r', \theta') r'^\ell Y_{\ell m}^*(\theta',\varphi') = \int r'^2 \sin\theta' dr' d\theta' d\varphi' \ \rho(r', \theta') r'^\ell \int_0^{2\pi} d\varphi' \ Y_{\ell m}^*(\theta',\varphi') \ .
+\int_0^{2\pi} d\varphi' \ Y_{\ell m}^*(\theta',\varphi') \propto \int_0^{2\pi} d\varphi' \ e^{-im\varphi'} = 2\pi \delta_{m0} \ .
 $$
-But by the orthogonality relation for spherical harmonics we have
+Thus, all $q_{\ell m}$ will vanish except those when $m=0$. To handle the $m=0$ case, recall from the appendix that
 $$
-\int d\Omega' \ Y_{\ell m}^*(\theta',\varphi') Y_{\ell' m'}(\theta',\varphi') = \delta_{\ell \ell'} \delta_{m m'} \ .
+Y_{\ell 0}(\theta',\varphi') = Y_{\ell 0}^*(\theta',\varphi') = \sqrt{\frac{2\ell+1}{4\pi}} P_\ell(\cos\theta') \ .
 $$
-Since $Y_{\ell,0}(\theta',\varphi') = \sqrt{(2\ell+1)/4\pi} \ P_\ell(\cos\theta')$, this means we have
+Plugging this in, the only non-vanishing spherical multipole moments are thus
 $$
-\int d\Omega' \ Y_{\ell m}(\theta',\varphi') =  \ .
+q_{\ell 0} = \int d^3\mathbf{x}' \ \rho(\mathbf{x}') r'^\ell Y_{\ell 0}^*(\theta',\varphi') = \sqrt{\frac{2\ell+1}{4\pi}} \int d^3\mathbf{x}' \ \rho(\mathbf{x}') r'^\ell P_\ell(\cos\theta') \ .
+$$
+Plugging these moments back into the spherical multipole expansion and writing $Y_{\ell 0}(\theta,\varphi)$ in terms of the Legendre polynomial $P_\ell(\cos\theta)$ the same way we did above, we thus have
+$$
+\phi(\mathbf{x}) = \sum_{\ell=0}^\infty \frac{4\pi}{2\ell+1} \frac{1}{r^{\ell+1}} q_{\ell 0} Y_{\ell 0}(\theta,\varphi) = \sum_{\ell=0}^\infty \frac{1}{r^{\ell+1}} \int d^3\mathbf{x}' \ \rho(\mathbf{x}') r'^\ell P_\ell(\cos\theta') \ .
 $$
 
-- This is subtle due to only needing the $\varphi'$ integration. Do this on paper first.
+Now, notice that each integral is a scalar depending only on the source points. We can thus define *scalar multipole moments* by
+$$
+Q_\ell \equiv \int d^3\mathbf{x}' \ \rho(\mathbf{x}') r'^\ell P_\ell(\cos\theta') \ .
+$$
+Then for an azimuthally symmetric charge distribution, we have a simple multipole expansion of the form
+$$
+\phi(\mathbf{x}) = \sum_{\ell=0}^\infty \frac{Q_\ell}{r^{\ell+1}} P_\ell(\cos\theta) \ .
+$$
+It's worth comparing this to the Cartesian expansion we derived before. The $\ell = 0$ moment $Q_0$ evidently corresponds exactly to the monopole moment $q$. The $\ell = 1$ moment can be related to the dipole moment by noting $P_1(\cos\theta) = \cos\theta$, which means
+$$
+Q_1 = \int d^3\mathbf{x}' \ \rho(\mathbf{x}') r' \cos\theta' = \int d^3\mathbf{x}' \ \rho(\mathbf{x}') z' = p_z \ .
+$$
+Thus, $Q_1$ is just the $z$-component of the dipole moment. Plugging this into the $\ell=1$ potential and simplifying, we have
+$$
+\phi^{(1)}(\mathbf{x}) = \frac{Q_1}{r^2} P_1(\cos\theta) = \frac{p_z}{r^2} \cos\theta = \frac{z p_z}{r^2} \ .
+$$
+Evidently the dipole moment $\mathbf{p}$ reduces to $\mathbf{p} = p_z \mathbf{e}_z$ for an azimuthally symmetric potential oriented normal to the $z$-axis.
 
-### Independence of Origin
-
+In a similar manner, the $\ell=2$ scalar multipole moment can be related to the quadrupole moment. Plugging in the $\ell=2$ Legendre polynomial and rewriting in Cartesian coordinates, we have
+$$
+\begin{align*}
+Q_2 &= \int d^3\mathbf{x}' \ \rho(\mathbf{x}') r'^2 P_2(\cos\theta') \\
+&= \frac{1}{2} \int d^3\mathbf{x}' \ \rho(\mathbf{x}') r'^2 (3\cos^2\theta' - 1) \\
+&= \frac{1}{2} \int d^3\mathbf{x}' \ \rho(\mathbf{x}') (3z'^2 - r'^2) \\
+&= \frac{1}{2} Q_{zz} \ .
+\end{align*}
+$$
+Plugging this into the $\ell=2$ potential and simplifying, we have
+$$
+\phi^{(2)}(\mathbf{x}) = \frac{Q_2}{r^3} P_2(\cos\theta) = \frac{Q_{zz}}{2r^3} \frac{3\cos^2\theta - 1}{2} = \frac{Q_{zz}}{2r^5} \bigg(z^2 - \frac{x^2 + y^2}{2}\bigg) \ .
+$$
+This evidently implies that the off-diagonal terms of the quadrupole tensor all vanish, and $Q_{zz} = -2 Q_{xx} = -2 Q_{yy}$. That is, for an azimuthally symmetric distribution the quadrupole tensor reduces to a single independent component, namely $Q_{zz}$ when oriented along the $z$-axis. We saw this before with the ring of charge example.

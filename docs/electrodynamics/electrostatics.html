@@ -238,12 +238,17 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../electrodynamics/bvps-3.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Boundary Value Problems III</span></a>
+  <a href="../electrodynamics/multipole-expansion.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Multipole Expansion</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../electrodynamics/magnetostatics.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Magnetostatics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../electrodynamics/maxwell-equations.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Maxwell’s Equations</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -523,31 +528,6 @@ window.Quarto = {
 <p>The most typical way to visualize vector fields in electromagnetism is via <em>field lines</em>. We imagine that any positive charge emits from it a bunch of lines, called field lines. These field lines follow the direction of the vector field in space, only terminating at negative charges or at infinity. Field lines should never cross each other. The direction of a field line is always from positive charges to negative charges. The strength of the field is captured by the density of field lines. The more field lines there are surrounding a given point in space, the stronger the field at that point. Indeed, we can informally <em>define</em> a vector field as the <em>flux density</em> of field lines, i.e.&nbsp;the number of field lines per unit volume.</p>
 <p>Here are some examples of electric field line sketches for a few different configurations of point charges. Notice it’s usually fairly easy to sketch field lines for a given charge configuration, even if finding an expression for the actual electric field of that configuration might be difficult. We’ll see field lines sketched in many figures throughout this course.</p>
 <p>FIGURE</p>
-<p>Let’s now work a problem involving finding the electric field for a very simple example, the <em>physical dipole</em>.</p>
-<section id="example-physical-dipole" class="level5">
-<h5 class="anchored" data-anchor-id="example-physical-dipole">Example: Physical dipole</h5>
-<p>Suppose we have two like charges of opposite sign separated by a fixed distance along some axis. More formally, suppose we have a positive charge <span class="math inline">\(+q\)</span> located at a point <span class="math inline">\(\mathbf{x}_+ = \frac{d}{2} \mathbf{e}_z\)</span>, and a negative charge <span class="math inline">\(-q\)</span> located at the opposite point <span class="math inline">\(\mathbf{x}_- = -\frac{d}{2} \mathbf{e}_z\)</span>. Our goal will be to find the electric field for any field point <span class="math inline">\(\mathbf{x}\)</span> in the <span class="math inline">\(xy\)</span>-plane.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="../resources/image-20240811130607078.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="400"></p>
-</figure>
-</div>
-<p>By the superposition principle, the electric field is given by <span class="math display">\[
-\mathbf{E} = \mathbf{E}_+ + \mathbf{E}_- = q\frac{\mathbf{x} - \mathbf{x}_+}{|\mathbf{x} - \mathbf{x}_+|^3} - q\frac{\mathbf{x} - \mathbf{x}_-}{|\mathbf{x} - \mathbf{x}_-|^3} \ .
-\]</span> To proceed further we first need to find the separation vectors for each charge. We have <span class="math display">\[
-\mathbf{x} - \mathbf{x}_\pm = r \mathbf{e}_r \mp \frac{d}{2} \mathbf{e}_z \ ,
-\]</span> Plugging this in and simplifying, we get <span class="math display">\[
-\begin{align*}
-\mathbf{E} &amp;= q \frac{r \mathbf{e}_r - \frac{d}{2} \mathbf{e}_z}{|r \mathbf{e}_r - \frac{d}{2} \mathbf{e}_z|^3} - q \frac{r \mathbf{e}_r + \frac{d}{2} \mathbf{e}_z}{|r \mathbf{e}_r + \frac{d}{2} \mathbf{e}_z|^3} \\
-&amp;= q \frac{r \mathbf{e}_r - \frac{d}{2} \mathbf{e}_z}{\bigg[r^2 + \big(\frac{d}{2}\big)^2\bigg]^{3/2}} - q \frac{r \mathbf{e}_r + \frac{d}{2} \mathbf{e}_z}{\bigg[r^2 + \big(-\frac{d}{2}\big)^2\bigg]^{3/2}} \\
-&amp;= \frac{-qd}{\bigg[r^2 + \big(\frac{d}{2}\big)^2\bigg]^{3/2}} \mathbf{e}_z \ .
-\end{align*}
-\]</span> We can immediately see that the electric field for any point in the <span class="math inline">\(xy\)</span>-plane must point along the negative <span class="math inline">\(z\)</span>-axis. This can be understood intuitively just by vector subtracting the separation vectors in the figure above and noting that the magnitude of the field for each charge must be the same by symmetry.</p>
-<p>This is as far as we can go as is, but we can make one useful simplification. Let’s suppose <span class="math inline">\(r \gg d\)</span>. This is the <em>far field limit</em> where the field point is far away from both charges. In this limit we can ignore the <span class="math inline">\(\frac{d}{2}\)</span> term in the denominator and write <span class="math display">\[
-\mathbf{E} \approx -\frac{qd}{r^3} \mathbf{e}_z \ .
-\]</span> This result tells us something interesting. Even far away from the source charges, the dipole doesn’t seem to follow Coulomb’s Law since the field doesn’t fall off as <span class="math inline">\(\mathbf{E} \sim \frac{1}{r^2}\)</span>, but rather as <span class="math inline">\(\mathbf{E} \sim \frac{1}{r^3}\)</span>. The reason for this is the two charges screen each other, canceling out the monopole field that would usually give rise to a <span class="math inline">\(\frac{1}{r^2}\)</span> term in the field. This causes the field to be weaker than we’d expect for a point charge in the far field limit.</p>
-<p>The dipole turns out to be very important to the theory of electrostatics. We’ll talk about it in more detail in a later chapter when we discuss the multipole expansion.</p>
-</section>
 </section>
 <section id="charge-distributions" class="level3">
 <h3 class="anchored" data-anchor-id="charge-distributions">Charge Distributions</h3>
@@ -643,10 +623,9 @@ E(r) = \frac{4\pi\rho}{3} r = \frac{Qr}{R^3} \ .
 <section id="electric-flux" class="level3">
 <h3 class="anchored" data-anchor-id="electric-flux">Electric Flux</h3>
 <p>We know from the Helmholtz theorem that any well behaving vector field can be fully characterized by its divergence and its curl. This means if we can find the divergence and curl of the electric field we have an equivalent characterization for the field in terms of two linear partial differential equations. We’ll derive the divergence of the electric field in this section, saving the curl of the electric field for the next section before discovering a neat way to combine them both together.</p>
-<p>To make a start we need to define the idea of the <em>flux</em> of a vector field. Suppose <span class="math inline">\(\mathcal{S}\)</span> is some surface of interest we’d like to calculate the flux through. In electromagnetism we call this surface a <em>Gaussian surface</em>. The <em>flux</em> <span class="math inline">\(\Phi\)</span> through <span class="math inline">\(\mathcal{S}\)</span> due to the field <span class="math inline">\(\mathbf{E}\)</span> is defined by the integral <span class="math display">\[
-\Phi \equiv \int_\mathcal{S} \mathbf{E} \cdot d\mathbf{a} \ .
-\]</span> Note when we need to specify which field we’re calculating the flux of, we’ll write <span class="math inline">\(\Phi_\mathbf{E}\)</span> to be more specific.</p>
-<p>Informally, we can think of the flux as the total number of <em>signed</em> field lines passing through some specified surface of interest. By signed, we mean that the field lines passing through the positively oriented side of the surface contribute positive flux, while those passing through the negatively oriented side of the surface contribute negative flux. This means that flux itself will be a signed quantity indicating the net tendency of a field to flow into or out of a given surface. In particular, this means if the same field line passes in and out of the same surface it contributes nothing to the flux.</p>
+<p>To make a start we need to define the idea of the <em>flux</em> of a vector field. Suppose <span class="math inline">\(\mathcal{S}\)</span> is some surface of interest we’d like to calculate the flux through. In electromagnetism we call this surface a <em>Gaussian surface</em>. The <em>flux</em> <span class="math inline">\(\Phi_E\)</span> through <span class="math inline">\(\mathcal{S}\)</span> due to the field <span class="math inline">\(\mathbf{E}\)</span> is defined by the integral <span class="math display">\[
+\Phi_E \equiv \int_\mathcal{S} \mathbf{E} \cdot d\mathbf{a} \ .
+\]</span> Informally, we can think of the flux as the total number of <em>signed</em> field lines passing through some specified surface of interest. By signed, we mean that the field lines passing through the positively oriented side of the surface contribute positive flux, while those passing through the negatively oriented side of the surface contribute negative flux. This means that flux itself will be a signed quantity indicating the net tendency of a field to flow into or out of a given surface. In particular, this means if the same field line passes in and out of the same surface it contributes nothing to the flux.</p>
 <p>As defined, the flux depends entirely on the surface <span class="math inline">\(\mathcal{S}\)</span> we choose. Different surfaces will have a different flux. However, in practice we’ll usually be interested in <em>closed surfaces</em>. In that case, we’ll show that the flux depends only on the charge distribution enclosed by the surface, not on the geometric properties of the surface itself. To do that we need to find a way to relate the flux of an electric field to the charge distribution in some way.</p>
 </section>
 <section id="integral-form" class="level3">
@@ -654,7 +633,7 @@ E(r) = \frac{4\pi\rho}{3} r = \frac{Qr}{R^3} \ .
 <p>Let’s start by trying to find the flux through a sphere of radius <span class="math inline">\(r\)</span> centered on a point charge <span class="math inline">\(q\)</span> located at the origin. Since <span class="math inline">\(q\)</span> is located at the origin we have <span class="math inline">\(\mathbf{x}' = \mathbf{0}\)</span>, meaning the electric field is simply <span class="math display">\[
 \mathbf{E}(\mathbf{x}) = q \frac{\mathbf{x}}{|\mathbf{x}|^3} = \frac{q}{r^2} \mathbf{e}_r \ .
 \]</span> For a sphere of radius <span class="math inline">\(r\)</span> the area element is given by <span class="math inline">\(d\mathbf{a} = r^2 d\Omega \mathbf{e}_r\)</span>. Here <span class="math inline">\(d\Omega\)</span> is the differential <em>solid angle</em>, which is just a useful shorthand for angular components of the area element, <span class="math inline">\(d\Omega \equiv \sin\theta d\theta d\phi\)</span>. To find the flux, we need only now integrate to get <span class="math display">\[
-\Phi = \oint_\mathcal{S} \mathbf{E} \cdot d\mathbf{a} = \int d\Omega \ r^2 \frac{q}{r^2} \mathbf{e}_r \cdot \mathbf{e}_r = 4\pi q \ .
+\Phi_E = \oint_\mathcal{S} \mathbf{E} \cdot d\mathbf{a} = \int d\Omega \ r^2 \frac{q}{r^2} \mathbf{e}_r \cdot \mathbf{e}_r = 4\pi q \ .
 \]</span> We’ve thus shown that the flux of a point charge through a sphere is just proportional to the charge. Notice in this result that the radius of the Gaussian surface didn’t enter into the picture at all. No matter what it cancels out. This fact is unique to inverse square fields, like electricity or gravity. Any field of this type will have the property that its flux is proportional to its source “charge”.</p>
 <p>But thus far we’ve only shown this holds for the flux through a sphere. What about an arbitrary closed surface? In fact the result is the same. To see why, suppose <span class="math inline">\(\mathcal{S}\)</span> is some arbitrary closed surface containing <span class="math inline">\(q\)</span>. Suppose <span class="math inline">\(\alpha\)</span> is the outward angle between <span class="math inline">\(\mathbf{E}\)</span> and the surface normal <span class="math inline">\(\mathbf{n}\)</span>. Then we evidently have <span class="math display">\[
 \mathbf{E} \cdot d\mathbf{a} = |\mathbf{E}| |\mathbf{n}| \cos\alpha da = \frac{q}{r^2} \cos\alpha da \ .
@@ -698,10 +677,12 @@ da = \frac{r^2}{\cos\alpha} d\Omega \ .
 \]</span> All that remains thus is to find <span class="math inline">\(E(\varrho)\)</span>. Now, the electric field must be constant along cylinders of constant <span class="math inline">\(\varrho\)</span>. This means we have a natural Gaussian surface on which to apply Gauss’s Law. We’ll choose cylinders of radius <span class="math inline">\(\varrho\)</span> and length <span class="math inline">\(z\)</span> centered on the wire. Since only the sides of the cylinder contribute to the flux, we need only consider the area of the sides of the cylinder, ignoring the two caps. This means the flux of the field is <span class="math display">\[
 \oint_\mathcal{S} \mathbf{E} \cdot d\mathbf{a} = |\mathbf{E}| A = E(\varrho) \cdot 2\pi \varrho z
 \]</span> Inside this cylinder, the enclosed charge is <span class="math inline">\(Q_{\text{enc}} = \lambda z\)</span>. Applying Gauss’s Law, we thus have <span class="math display">\[
-E(r) \cdot 2\pi \varrho z = 4\pi \lambda z \ .
-\]</span> Solving for <span class="math inline">\(E(\varrho)\)</span>, we finally have <span class="math display">\[
+E(\varrho) \cdot 2\pi \varrho z = 4\pi \lambda z \ .
+\]</span> Solving for <span class="math inline">\(E(\varrho)\)</span>, we get <span class="math display">\[
 E(\varrho) = \frac{2\lambda}{\varrho} \ .
-\]</span> Thus, the electric field of an infinitely long wire of uniform charge is inversely proportional to its distance from the wire. Notice that this seems to contradicts Coulomb’s Law, which predicts that far away from the wire the electric field should go like the inverse square of the distance. Why the contradiction? This comes from our assumption that the wire was infinitely long. If the wire had only a finite length, we would indeed recover Coulomb’s Law in the far field limit.</p>
+\]</span> The electric field of an infinite wire is thus given by <span class="math display">\[
+\mathbf{E}(\mathbf{x}) = \frac{2\lambda}{\varrho} \mathbf{e}_\varrho \ .
+\]</span> Clearly the field lines point radially outward from the wire (or inward if <span class="math inline">\(\lambda\)</span> is negative), and fall off like <span class="math inline">\(1/\varrho\)</span>. Notice that this seems to contradicts Coulomb’s Law, which predicts that far away from the wire the electric field should go like the inverse square of the distance. Why the contradiction? This comes from our assumption that the wire was infinitely long. If the wire had only a finite length, we would indeed recover Coulomb’s Law in the far field limit.</p>
 </section>
 <section id="infinite-sheet-of-uniform-charge" class="level5">
 <h5 class="anchored" data-anchor-id="infinite-sheet-of-uniform-charge">Infinite sheet of uniform charge</h5>
@@ -712,13 +693,20 @@ E(\varrho) = \frac{2\lambda}{\varrho} \ .
 </figure>
 </div>
 <p>By symmetry, we’ll argue that the electric field must always point away from the sheet in the <span class="math inline">\(z\)</span> direction. To see why, pick a random field point at a height <span class="math inline">\(z\)</span> above (or below) the sheet, centered at the origin. Pick a random source point <span class="math inline">\((r',\varphi')\)</span> along the sheet. Now, there must be an opposite source point at <span class="math inline">\((r',\varphi'+\pi)\)</span> for which the two field vectors will cancel in all but the <span class="math inline">\(z\)</span>-direction. This means <span class="math display">\[
-\mathbf{E}(\mathbf{x}) = \pm E(z) \mathbf{e}_z \ .
-\]</span> All that thus remains is to find <span class="math inline">\(E(z)\)</span>. Clearly this field is constant along surfaces of constant <span class="math inline">\(z\)</span>. This means that any Gaussian surface with a flat top and bottom will do, since only the field through the top and bottom of the surface contribute anything to the flux. Such a surface is historically called a <em>pillbox</em>. Examples of pillboxes include prisms and cylinders. All that matters is that the top and bottom are flat, and the sides are perpendicular to the sheet. We’ll thus choose any pillbox with equal top and bottom areas <span class="math inline">\(A\)</span> and some arbitrary height, as shown in the figure.</p>
+\mathbf{E}(\mathbf{x}) = E(z) \mathbf{e}_z \ .
+\]</span> It’s also clear from symmetry that we must have <span class="math inline">\(E(-z) = -E(z)\)</span>, meaning the field changes direction crossing the <span class="math inline">\(z\)</span>-axis. We can thus focus on finding <span class="math inline">\(E(z)\)</span> when <span class="math inline">\(z &gt; 0\)</span>, in which case the <span class="math inline">\(z &lt; 0\)</span> case immediately follows.</p>
+<p>Clearly this field is constant along surfaces of constant <span class="math inline">\(z\)</span>. This means that any Gaussian surface with a flat top and bottom will do, since only the field through the top and bottom of the surface contribute anything to the flux. Such a surface is historically called a <em>pillbox</em>. Examples of pillboxes include prisms and cylinders. All that matters is that the top and bottom are flat, and the sides are perpendicular to the sheet. We’ll thus choose any pillbox with equal top and bottom areas <span class="math inline">\(A\)</span> and some arbitrary height, as shown in the figure.</p>
 <p>Since the field is constant on the top and bottom of the Gaussian surface and only points in the <span class="math inline">\(z\)</span>-direction, the flux is given by <span class="math display">\[
 \oint_\mathcal{S} \mathbf{E} \cdot d\mathbf{a} = |\mathbf{E}| \cdot 2A = E(z) \cdot 2 A \ .
-\]</span> The pillbox encloses a charge given by <span class="math inline">\(Q_{\text{enc}} = \sigma A\)</span>. Plugging these into Gauss’s Law and solving for <span class="math inline">\(E(z)\)</span>, we finally have <span class="math display">\[
+\]</span> The pillbox encloses a charge given by <span class="math inline">\(Q_{\text{enc}} = \sigma A\)</span>. Plugging these into Gauss’s Law and solving for <span class="math inline">\(E(z)\)</span>, we have <span class="math display">\[
 E(z) = 2\pi\sigma \ .
-\]</span> That is, the electric field strength of an infinite sheet of uniform charge is constant, no matter how far away from the surface we are, with the only difference being the direction (pointing above or below the surface). Yet again this seems to contradict Coulomb’s Law, since the field would still be constant infinitely far from the sheet. This can be rectified, however, by noting that the sheet chosen is infinite in extent. For a finite sheet, Coulomb’s Law would still hold in the far field limit.</p>
+\]</span> This means the electric field of the infinite sheet is evidently constant, with <span class="math display">\[
+\mathbf{E}(\mathbf{x}) = \begin{cases}
+4\pi\sigma &amp; z &gt; 0 \ , \\
+-4\pi\sigma &amp; z &lt; 0 \ .
+\end{cases}
+\]</span> Just as we saw with the infinite line of charge, the infinite sheet of charge also doesn’t fall off as we’d expect from Coulomb’s law. In fact, it’s constant everywhere in space, the only difference being which way the field lines point.</p>
+<p>Notice also that the electric field appears to change discontinuously crossing the <span class="math inline">\(xy\)</span>-plane. Evidently, the electric field strength changes by exactly <span class="math inline">\(\Delta E = 4\pi\sigma\)</span>. This is an interesting result. In fact, this discontinuity arises from the fact that the charge distribution is 2-dimensional. Indeed, all surfaces of charge will have this property, as we’ll show later.</p>
 </section>
 <section id="sphere-with-uniform-charge" class="level5">
 <h5 class="anchored" data-anchor-id="sphere-with-uniform-charge">Sphere with uniform charge</h5>
@@ -736,9 +724,15 @@ E(z) = 2\pi\sigma \ .
 E(r) = \frac{Q}{r^2} \ .
 \]</span> This of course is exactly what we expected. The electric field of a uniformly charged sphere behaves as a point charge outside the sphere. What does Gauss’s Law say when we’re inside the sphere though? In that case there’s no enclosed charge, so <span class="math inline">\(Q_{\text{enc}} = 0\)</span>. This means Gauss’s Law just gives exactly what we’ve already shown, that there’s no electric field inside the sphere, <span class="math display">\[
 E(r) = 0 \ .
-\]</span> What if the sphere is now solid instead of hollow, with a constant charge density <span class="math inline">\(\rho\)</span>? Outside the sphere the result is the same. Inside the sphere though the enclosed charge will be the volume of the Gaussian surface times the charge density, which is just <span class="math inline">\(Q(r) = \frac{4}{3} \pi r^3 \rho\)</span>. Plugging this into Gauss’s Law, we have <span class="math display">\[
+\]</span> The electric field of the hollow sphere of charge is thus <span class="math display">\[
+\mathbf{E}(\mathbf{x}) = \begin{cases}
+Q/r^2 \ \mathbf{e}_r &amp; r \geq R \ , \\
+\mathbf{0} &amp; r &lt; R \ .
+\end{cases}
+\]</span> Yet again, the electric field seems to change discontinuously when crossing a 2-dimensional surface. In fact, as with the infinite sheet above, since <span class="math inline">\(Q = 4\pi R^2 \sigma\)</span>, the field strength is also changing by exactly <span class="math inline">\(\Delta E = 4\pi\sigma\)</span> when crossing through the sphere.</p>
+<p>What if the sphere is now solid instead of hollow, with a constant charge density <span class="math inline">\(\rho\)</span>? Outside the sphere the result is the same. Inside the sphere though the enclosed charge will be the volume of the Gaussian surface times the charge density, which is just <span class="math inline">\(Q(r) = \frac{4}{3} \pi r^3 \rho\)</span>. Plugging this into Gauss’s Law, we have <span class="math display">\[
 E(r) = \frac{Q(r)}{r^2} = \frac{4\pi\rho}{3} r \ .
-\]</span> That is, inside of a uniformly charged solid sphere the electric field is <em>linear</em> in the radius. When <span class="math inline">\(r=R\)</span>​ of course this will equal the equation for the field outside the sphere, where the field will start to decrease as an inverse square law.</p>
+\]</span> That is, inside of a uniformly charged solid sphere the electric field is <em>linear</em> <span class="math inline">\(r\)</span>. When <span class="math inline">\(r=R\)</span>​ of course this will equal the equation for the field outside the sphere, where the field will start to decrease as an inverse square law.</p>
 </section>
 </section>
 <section id="differential-form" class="level3">

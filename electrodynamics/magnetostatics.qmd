@@ -708,7 +708,7 @@ One can easily verify this gives the answer by confirming that $\mathbf{B} = \na
 
 ##### Example: Vector potential of a rotating charged sphere
 
-Suppose a hollow sphere of radius $R$ is rotating with some constant angular velocity $\boldsymbol{\omega}$. On the sphere is a uniform surface charge density $\sigma$. We'd like to calculate the vector potential and magnetic field of this rotating sphere.
+Suppose a hollow sphere of radius $R$ is rotating with some constant angular velocity $\omega$ about some axis. On the sphere is a uniform surface charge density $\sigma$. We'd like to calculate the vector potential and magnetic field of this rotating sphere.
 
 FIGURE (rotating sphere)
 
@@ -716,40 +716,23 @@ To calculate the vector potential, we need to evaluate the vector integral
 $$
 \mathbf{A}(\mathbf{x}) = \frac{1}{c} \int da' \ \frac{\mathbf{K}(\mathbf{x}')}{|\mathbf{x} - \mathbf{x}'|} \ .
 $$
-For this problem, it turns out to be easier to orient the axes so that $\mathbf{x}$ lies on the $z$-axis and $\boldsymbol{\omega}$ lies in the $xz$-plane. This way, the angle between $\mathbf{x}$ and $\mathbf{x}'$ is simply the polar coordinate $\theta'$, and so we have
+Now, by definition $\mathbf{K}(\mathbf{x}') = \sigma \mathbf{v}'$, and since $|\mathbf{x}'| = R$ we have
+$$
+|\mathbf{x} - \mathbf{x}'| = \sqrt{r^2 + R^2 - 2 \mathbf{x} \cdot \mathbf{x}'} \ .
+$$
+At this point we need to choose a coordinate system to do the integration. Obviously spherical coordinates makes the most sense, but rather than orient the angular velocity vector $\boldsymbol{\omega}$ along the $z$-axis like we normally would, it turns out to be easier to orient the coordinate system so that the field point $\mathbf{x}$ is oriented along the $z$-axis and $\boldsymbol{\omega}$ is in the $xy$-plane. This means we have $\mathbf{x} \cdot \mathbf{x}' = rR\cos\theta'$, and so
 $$
 |\mathbf{x} - \mathbf{x}'| = \sqrt{r^2 + R^2 -2rR\cos\theta'} \ .
 $$
-To find the surface current density notice that each charge on the sphere is moving with a velocity
+The velocity vector $\mathbf{v}'$ is given by the cross product $\boldsymbol{\omega} \times \mathbf{x}'$, which is evidently
 $$
-\mathbf{v}' = \boldsymbol{\omega} \times \mathbf{x}' = 
+\mathbf{v}' = \boldsymbol{\omega} \times \mathbf{x}' = \omega R \mathbf{e}_\varrho \times \mathbf{e}_{r'}
+$$
+This means the surface current density is then $\mathbf{K}(\mathbf{x}') = R\sigma\omega \cdot$, and so the vector potential can be written
+$$
+\mathbf{A}(\mathbf{x}) = \frac{4\pi R^3 \sigma\omega}{c} \int_0^\pi \sin\theta' d\theta' \ \frac{\cdot}{\sqrt{r^2 + R^2 -2rR\cos\theta'}} \mathbf{e}_\cdot \ .
+$$
 
-\\ R\omega [-\cos\psi\sin\theta'\sin\varphi' \mathbf{e}_x + \cos\psi\sin\theta'\cos\varphi' \mathbf{e}_x]
-$$
-
-
-
-
-we'll write $\mathbf{K}(\mathbf{x}') = \sigma \mathbf{v}'$, where $\mathbf{v}'$ is given
-
-
-
-Now, since $\mathbf{x}' = R \mathbf{e}_r$, each charge on the sphere will rotate around the sphere with a velocity
-$$
-\mathbf{v}' = \boldsymbol{\omega} \times \mathbf{x}' = R \omega (\mathbf{e}_z \times \mathbf{e}_r) \ .
-$$
-To simplify the cross product we'll want to express the radial unit vector $\mathbf{e}_r$ in Cartesian coordinates,
-$$
-\mathbf{e}_r = \sin\theta' \cos\varphi' \mathbf{e}_x + \sin\theta' \sin\varphi' \mathbf{e}_y + \cos\theta' \mathbf{e}_z \ .
-$$
-Plugging this into the velocity vector and simplifying the cross product, we then get
-$$
-\mathbf{v}' = R \omega (\sin\theta' \cos\varphi' \mathbf{e}_y - \sin\theta' \sin\varphi' \mathbf{e}_x) \ .
-$$
-This means there will be a surface current density $\mathbf{K}(\mathbf{x}')$ on the sphere of
-$$
-\mathbf{K}(\mathbf{x}') = \sigma \mathbf{v}' = \sigma R \omega (\sin\theta' \cos\varphi' \mathbf{e}_y - \sin\theta' \sin\varphi' \mathbf{e}_x) \ .
-$$
 
 - This is not finished…
 
@@ -939,7 +922,7 @@ Incidentally, this same result could be found in a different way by making use o
 $$
 d\mathbf{m} = \frac{dI}{c} (\pi \varrho'^2) \mathbf{e}_z \ .
 $$
-Integrating $d\mathbf{m}$ over the whole disk will then give the same dipole moment $\mathbf{m}$ we found before.
+Integrating $d\mathbf{m}$ over the whole disk will then give the same answer obtained above.
 
 ---
 
@@ -987,7 +970,7 @@ $$
 &= -\frac{1}{c} \mathbf{B}_{\text{ext}}(\mathbf{0}) \times \int_\mathcal{V} d^3\mathbf{x} \ \mathbf{J}(\mathbf{x}) + \frac{1}{c} \int_\mathcal{V} d^3\mathbf{x} \ \mathbf{J}(\mathbf{x}) \times(\mathbf{x} \cdot \nabla) \mathbf{B}_{\text{ext}}(\mathbf{x}) \bigg|_{\mathbf{x} = \mathbf{0}} + \cdots \ .
 \end{align*}
 $$
-Now, the first term will vanish. Indeed, for a localized distribution of steady current we've already shown that
+Now, the first term will vanish, since if $\mathbf{J}$ is a localized steady current we have
 $$
 \int_\mathcal{V} d^3\mathbf{x} \ \mathbf{J}(\mathbf{x}) = \mathbf{0} \ .
 $$
@@ -1026,6 +1009,10 @@ $$
 F_i = \partial_i (m_\ell B_\ell) = -\frac{1}{2c} \partial_i \int d^3\mathbf{x} \ \varepsilon_{\ell j k} J_j x_k B_\ell
 $$
 
+$$
+\mathbf{N} = \mathbf{m} \times \mathbf{B}
+$$
+
 
 
 
@@ -1044,7 +1031,7 @@ The terms inside the integral depend only on the source current distribution. Th
 $$
 \mathbf{m}_{\ell m} \equiv \int d^3 \mathbf{x}' \ \mathbf{J}(\mathbf{x}') r'^\ell Y_{\ell m}^*(\theta',\varphi') \ .
 $$
-Unlike the multipole moments in electrostatics, which always involved scalar integrals, the multipole moments of magnetostatics are *vectors*, and hence will have three components per moment.
+Unlike the spherical multipole moments $q_{\ell m}$ in electrostatics, which are scalars, the spherical multipole moments $\mathbf{m}_{\ell m}$ in magnetostatics are *vectors*, and hence will have three components per moment.
 
 We can thus formally express the *magnetic spherical multipole expansion* of the vector potential via the sum
 $$

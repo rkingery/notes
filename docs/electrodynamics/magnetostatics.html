@@ -30,8 +30,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../electrodynamics/orthogonal-functions.html" rel="next">
-<link href="../electrodynamics/bvps-3.html" rel="prev">
+<link href="../electrodynamics/maxwell-equations.html" rel="next">
+<link href="../electrodynamics/multipole-expansion.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -238,12 +238,17 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../electrodynamics/bvps-3.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Boundary Value Problems III</span></a>
+  <a href="../electrodynamics/multipole-expansion.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Multipole Expansion</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../electrodynamics/magnetostatics.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">Magnetostatics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../electrodynamics/maxwell-equations.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Maxwell’s Equations</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -392,22 +397,37 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#magnetism" id="toc-magnetism" class="nav-link active" data-scroll-target="#magnetism">Magnetism</a></li>
+  <li><a href="#current" id="toc-current" class="nav-link active" data-scroll-target="#current">Current</a>
+  <ul class="collapse">
+  <li><a href="#definition" id="toc-definition" class="nav-link" data-scroll-target="#definition">Definition</a></li>
+  <li><a href="#conservation-of-charge" id="toc-conservation-of-charge" class="nav-link" data-scroll-target="#conservation-of-charge">Conservation of Charge</a></li>
+  </ul></li>
   <li><a href="#magnetic-fields" id="toc-magnetic-fields" class="nav-link" data-scroll-target="#magnetic-fields">Magnetic Fields</a>
   <ul class="collapse">
-  <li><a href="#current" id="toc-current" class="nav-link" data-scroll-target="#current">Current</a></li>
-  <li><a href="#conservation-of-charge" id="toc-conservation-of-charge" class="nav-link" data-scroll-target="#conservation-of-charge">Conservation of Charge</a></li>
   <li><a href="#biot-savart-law" id="toc-biot-savart-law" class="nav-link" data-scroll-target="#biot-savart-law">Biot-Savart Law</a></li>
   <li><a href="#lorentz-force-law" id="toc-lorentz-force-law" class="nav-link" data-scroll-target="#lorentz-force-law">Lorentz Force Law</a></li>
   </ul></li>
   <li><a href="#field-equations" id="toc-field-equations" class="nav-link" data-scroll-target="#field-equations">Field Equations</a>
   <ul class="collapse">
-  <li><a href="#vector-potential" id="toc-vector-potential" class="nav-link" data-scroll-target="#vector-potential">Vector Potential</a></li>
-  <li><a href="#field-equations-1" id="toc-field-equations-1" class="nav-link" data-scroll-target="#field-equations-1">Field Equations</a></li>
-  <li><a href="#amperes-law" id="toc-amperes-law" class="nav-link" data-scroll-target="#amperes-law">Ampere’s Law</a></li>
+  <li><a href="#divergence-of-mathbfb" id="toc-divergence-of-mathbfb" class="nav-link" data-scroll-target="#divergence-of-mathbfb">Divergence of <span class="math inline">\(\mathbf{B}\)</span></a></li>
+  <li><a href="#curl-of-mathbfb" id="toc-curl-of-mathbfb" class="nav-link" data-scroll-target="#curl-of-mathbfb">Curl of <span class="math inline">\(\mathbf{B}\)</span></a></li>
   </ul></li>
-  <li><a href="#field-energy" id="toc-field-energy" class="nav-link" data-scroll-target="#field-energy">Field Energy</a></li>
-  <li><a href="#multipole-expansion" id="toc-multipole-expansion" class="nav-link" data-scroll-target="#multipole-expansion">Multipole Expansion</a></li>
+  <li><a href="#amperes-law" id="toc-amperes-law" class="nav-link" data-scroll-target="#amperes-law">Ampere’s Law</a></li>
+  <li><a href="#vector-potential" id="toc-vector-potential" class="nav-link" data-scroll-target="#vector-potential">Vector Potential</a>
+  <ul class="collapse">
+  <li><a href="#definition-1" id="toc-definition-1" class="nav-link" data-scroll-target="#definition-1">Definition</a></li>
+  <li><a href="#gauge-transformations" id="toc-gauge-transformations" class="nav-link" data-scroll-target="#gauge-transformations">Gauge Transformations</a></li>
+  <li><a href="#poissons-equation" id="toc-poissons-equation" class="nav-link" data-scroll-target="#poissons-equation">Poisson’s Equation</a></li>
+  <li><a href="#boundary-conditions" id="toc-boundary-conditions" class="nav-link" data-scroll-target="#boundary-conditions">Boundary Conditions</a></li>
+  <li><a href="#calculating-vector-potentials" id="toc-calculating-vector-potentials" class="nav-link" data-scroll-target="#calculating-vector-potentials">Calculating Vector Potentials</a></li>
+  </ul></li>
+  <li><a href="#multipole-expansion" id="toc-multipole-expansion" class="nav-link" data-scroll-target="#multipole-expansion">Multipole Expansion</a>
+  <ul class="collapse">
+  <li><a href="#derivation" id="toc-derivation" class="nav-link" data-scroll-target="#derivation">Derivation</a></li>
+  <li><a href="#magnetic-dipole-moment" id="toc-magnetic-dipole-moment" class="nav-link" data-scroll-target="#magnetic-dipole-moment">Magnetic Dipole Moment</a></li>
+  <li><a href="#currents-in-external-magnetic-fields" id="toc-currents-in-external-magnetic-fields" class="nav-link" data-scroll-target="#currents-in-external-magnetic-fields">Currents in External Magnetic Fields</a></li>
+  <li><a href="#spherical-multipole-expansion" id="toc-spherical-multipole-expansion" class="nav-link" data-scroll-target="#spherical-multipole-expansion">Spherical Multipole Expansion</a></li>
+  </ul></li>
   </ul>
 </nav>
 </nav>
@@ -437,84 +457,36 @@ window.Quarto = {
 </header>
 
 
-<p>Now that we’ve spent a considerable amount of time covering the topic of electrostatics and the basic concepts of electric fields, we will now move to the topic of magnetostatics and the concepts of magnetic fields. Magnetostatics can informally be thought of as the magnetic analogue of electrostatics. Whereas in electrostatics we were interested in the behavior of <em>electric fields</em> due to static <em>charges</em>, in magnetostatics we’re interested in the behavior of <em>magnetic fields</em> due to static <em>currents</em>. We will approach this new topic in much the same way we approached electrostatics, by first defining the force between two wires of steady current, and then abstracting from that the notion of the magnetic field. We will then use the properties of the magnetic field to derive the field equations of magnetostatics, and show that these can be cast in terms of a single equation for the <em>vector potential</em>, which is the magnetic analogue of the scalar potential from electrostatics.</p>
-<section id="magnetism" class="level2">
-<h2 class="anchored" data-anchor-id="magnetism">Magnetism</h2>
-<p>Magnetism as a qualitative subject is at least as old as electricity. It was known even in ancient times that there were certain stones whose filings tended to point north. In the 16th century, Gilbert used an iron needle to create the first compass for navigation. Nowadays we call these special kinds of metals <em>ferromagnets</em>. The ferromagnets found in nature consist primarily of either iron, cobalt, or nickel. To really understand how ferromagnets work requires quantum mechanics and statistical mechanics. We will just briefly summarize their behavior.</p>
-<p>When a ferromagnetic material is brought into the presence of a magnetic field and heated to a suitable temperature, the spins of the electrons inside the material tend on average to align themselves in the direction of the magnetic field. When the temperature is lowered again, these spins stay locked in the same direction, causing the material to become ferromagnetic. By convention, we call the direction of the aligned spins the <em>north pole</em> of the magnet, and the opposite direction the <em>south pole</em>.</p>
-<p>By analogy with electrostatics, we can think of a ferromagnet is a kind of dipole, with the north pole being analogous to the positive polarization direction of the dipole and the south pole being analogous to the negative polarization direction. As with charges, we say that two like poles repel each other and two opposite poles attract each other. The most important difference here though is that we cannot separate a ferromagnet into distinct poles. No matter how finely we chop it up, the magnet will <em>always</em> contain <em>both</em> a north pole and a south pole, since an electron always contains a spin. Indeed, this one difference is probably the most important in the difference in the properties of electricity and magnetism.</p>
-<p>Just as an electric dipole has a dipole moment <span class="math inline">\(\mathbf{p}\)</span>, we’ll assume that the ferromagnet has a <em>magnetic dipole moment</em>. From quantum mechanics, the magnetic dipole moment <span class="math inline">\(\boldsymbol{\mu}\)</span> of a single electron with spin <span class="math inline">\(\mathbf{S}\)</span> is given by the formula <span class="math display">\[
-\boldsymbol{\mu} = \gamma \mathbf{S} \ ,
-\]</span> where the proportionality constant <span class="math inline">\(\gamma\)</span> is the <em>gyromagnetic ratio</em> of an electron, about <span class="math inline">\(-1.8 \cdot 10^7\)</span> in Gaussian units. To a very good approximation, we can ignore the spin contributions from the nuclei in calculating the total dipole moment and use only the electron dipole moments. By the principle of superposition, we thus define the magnetic dipole moment <span class="math inline">\(\mathbf{m}\)</span> of the ferromagnet as the vector sum of the dipole moments <span class="math inline">\(\boldsymbol{\mu}_i\)</span> of each electron inside the material, <span class="math display">\[
-\mathbf{m} \equiv \sum_i \boldsymbol{\mu}_i = \gamma \sum_i \mathbf{S}_i \ .
-\]</span> By definition, the dipole moment <span class="math inline">\(\mathbf{m}\)</span> evidently points in the same direction as the sum total of all the electron spins <span class="math inline">\(\mathbf{S}_i\)</span>, but in the opposite direction due to the minus sign in <span class="math inline">\(\gamma\)</span>. By convention, we agree that the dipole moment points from the south pole of the magnet to the north pole of the magnet, which means the total spin evidently points in the opposite direction.</p>
-<p>With the dipole moment defined, it thus makes sense to <em>define</em> the magnetic field <span class="math inline">\(\mathbf{B}(\mathbf{x})\)</span> of a ferromagnet analogously to the electric field of an electric pure dipole, <span class="math display">\[
-\mathbf{E}(\mathbf{x}) \equiv \frac{3(\mathbf{p} \cdot \mathbf{x}) \mathbf{x} - r^2 \mathbf{p}}{r^5} \quad \leftrightarrow \quad \mathbf{B}(\mathbf{x}) \equiv \frac{3(\mathbf{m} \cdot \mathbf{x}) \mathbf{x} - r^2 \mathbf{m}}{r^5} \ .
-\]</span> As with the electric dipole, this is strictly speaking an abstraction. It’s only when the distance between the north and south pole of the magnet is much less than the distance to the field point <span class="math inline">\(\mathbf{x}\)</span>. The field lines for such a <em>pure</em> magnetic dipole must then look identical to the field lines of the pure electric dipole.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="../resources/image-20241103011630525.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="400"></p>
-</figure>
-</div>
-<section id="example-measuring-the-earths-magnetic-field" class="level5">
-<h5 class="anchored" data-anchor-id="example-measuring-the-earths-magnetic-field">Example: Measuring the Earth’s magnetic field</h5>
-<p>When a ferromagnet is placed in the vicinity of an magnetic field, it will tend to align itself in the direction of the field. In particular, this means that the ferromagnet will experience a torque due to the presence of the magnetic field. This torque <span class="math inline">\(\mathbf{N}\)</span> turns out to be given by the cross product of the magnetic dipole moment <span class="math inline">\(\mathbf{m}\)</span> with the external magnetic field <span class="math inline">\(\mathbf{B}_0\)</span>, <span class="math display">\[
-\mathbf{N} = \mathbf{m} \times \mathbf{B}_0 \ .
-\]</span> Now suppose we take as the ferromagnet a small iron needle, which we could place on a mechanical swivel to create a magnetic compass. Due to the torque above, the needle will rotate until its north pole is aligned with the external magnetic field. Provided that external field is generated by the Earth itself, this field will point toward the north pole of the Earth itself.</p>
-<p>FIGURE (show one needle setup)</p>
-<p>Suppose both the needle and the external field each lie in the <span class="math inline">\(xy\)</span>-plane, which we could to be the surface of the earth. Suppose the needle is located at the origin, and the external field points along the positive <span class="math inline">\(x\)</span>-axis, which we’ll take to be north. If <span class="math inline">\(\varphi\)</span> is the counterclockwise angle between the needle and the positive <span class="math inline">\(x\)</span>-axis, then we can write <span class="math display">\[
-\mathbf{N} = \mathbf{m} \times \mathbf{B}_0 = -mB_0 \sin\varphi \mathbf{e}_z \ ,
-\]</span> where <span class="math inline">\(m = |\mathbf{m}|\)</span> and <span class="math inline">\(B_0 = |\mathbf{B}_0|\)</span>. This means the torque will evidently point along the negative <span class="math inline">\(z\)</span>-axis. We can write the magnitude of the torque <span class="math inline">\(|\mathbf{N}| = I \ddot\varphi\)</span>, where <span class="math inline">\(I\)</span> is the moment of inertia of the needle. Plugging this in and dividing through by <span class="math inline">\(I\)</span>, we end up with the following equation of motion for the needle, <span class="math display">\[
-\ddot\varphi + \frac{mB_0}{I} \sin\varphi = 0 \ .
-\]</span> Those familiar with classical mechanics will recognize this as the equation of motion for the simple pendulum which oscillates at an angular frequency <span class="math display">\[
-\omega \equiv \sqrt{\frac{mB_0}{I}} \ .
-\]</span> Evidently, the needle will oscillate forever about the north pole with this frequency, just as a pendulum would. In practice this indefinite oscillation isn’t noticed, since for a real compass the swivel has friction, which causes the oscillations to dampen relatively quickly, causing the needle to come to rest in the direction of the external field. In the case of navigation, this external magnetic field is created by the Earth due to the motion of molten iron inside the Earth’s core.</p>
-<p>We can actually design a simple experiment to measure the value of the Earth’s magnetic field. Suppose again that magnetic field is <span class="math inline">\(\mathbf{B}_0 = B_0 \mathbf{e}_x\)</span>, but instead of one needle we have two. The first needle will be the same as before, with dipole moment <span class="math inline">\(\mathbf{m}\)</span>. The second needle will be a test needle. Suppose the first needle is located at the origin and already in equilibrium with the external field, so that <span class="math inline">\(\mathbf{m} = m \mathbf{e}_y\)</span>. We’ll place the second test needle at the point <span class="math inline">\(\mathbf{d} = d \mathbf{e}_y\)</span>, with the north pole pointed in the <span class="math inline">\(y\)</span>-direction.</p>
-<p>FIGURE (show two needle setup)</p>
-<p>Now, since the first needle is a magnetic dipole, it will generate its own magnetic field <span class="math inline">\(\mathbf{B}\)</span> given approximately by <span class="math display">\[
-\mathbf{B}(\mathbf{x}) \equiv \frac{3(\mathbf{m} \cdot \mathbf{x}) \mathbf{x} - r^2 \mathbf{m}}{r^5} \ .
-\]</span> By the principle of superposition, this means the external field felt by the test needle will be the <em>combined</em> field <span class="math inline">\(\mathbf{B}_0 + \mathbf{B}(\mathbf{x})\)</span> at the field point <span class="math inline">\(\mathbf{x} = \mathbf{d}\)</span>. At this point, we can simplify the field generated by the first needle as <span class="math display">\[
-\mathbf{B}(\mathbf{d}) = \frac{3(\mathbf{m} \cdot d\mathbf{e}_y) d\mathbf{e}_y - d^2 \mathbf{m}}{d^5} = \frac{2m}{d^3} \mathbf{e}_y \ .
-\]</span> The combined field will cause a torque on the test needle, causing it to move in the direction of <span class="math inline">\(\mathbf{B}_0 + \mathbf{B}(\mathbf{d})\)</span>. Now, suppose <span class="math inline">\(\alpha\)</span> is the angle between the combined field and the external field <span class="math inline">\(\mathbf{B}_0\)</span>. We can express this angle in terms of <span class="math inline">\(d\)</span>, <span class="math inline">\(m\)</span>, and <span class="math inline">\(B_0\)</span> by <span class="math display">\[
-\tan\alpha = \frac{B}{B_0} = \frac{2m}{d^3 B_0} \ .
-\]</span> This relation provides a way to determine <span class="math inline">\(B_0\)</span>, provided we already know <span class="math inline">\(\alpha\)</span>, <span class="math inline">\(m\)</span>, and <span class="math inline">\(d\)</span>. The challenge experimentally is that the magnetic field generated by the first needle will be very small, which means the deviation angle <span class="math inline">\(\alpha\)</span> will be very tiny. This simple method, known as the <em>Gaussian method</em>, has been used to experimentally measure the magnetic field strength <span class="math inline">\(B_0\)</span> of the Earth.</p>
-<hr>
-<p>We can use the relations found in the previous example to determine the units of the magnetic field and dipole moment, in Gaussian units. First, notice the equation <span class="math inline">\(\mathbf{N} = \mathbf{m} \times \mathbf{B}_0\)</span> implies the product <span class="math inline">\(m B_0\)</span> must have units of torque, or equivalently units of energy. Second, notice from the equation for <span class="math inline">\(\tan\alpha\)</span> that the ratio <span class="math inline">\(m/B_0\)</span> must have units of <span class="math inline">\(d^3\)</span>, or volume. Combined, these together allow us to determine the units of both <span class="math inline">\(m\)</span> and <span class="math inline">\(B_0\)</span>. Evidently, <span class="math inline">\(B_0^2\)</span> has units of energy per unit volume, or energy density, and <span class="math inline">\(m^2\)</span> has units of energy times volume.</p>
-<p>Recall in Gaussian units that the squared charge has dimensions of energy times length. This means the magnetic field must have dimensions of charge per length squared, or equivalently dimensions of electric field. The magnetic dipole moment must have dimensions of charge times length, or dimensions of electric dipole moment. Thus, the electric and magnetic fields and dipole moments have the <em>same</em> dimensions in the Gaussian unit system. This hints at a strong relationship between electricity and magnetism, which we’ll explore shortly.</p>
-<p>In Gaussian units, the unit of magnetic field strength is called the <em>Gauss</em>, with <span class="math inline">\(1 \ \text{G} = 10^{-4} \ \text{T}\)</span>, where the <em>Tesla</em> is the SI unit equivalent. To get an idea for scales, the Earth’s magnetic field strength at the surface is about <span class="math inline">\(0.5 \ \text{G}\)</span>. A typical refrigerator magnet has a field strength of <span class="math inline">\(\sim 50 \ \text{G}\)</span>. An MRI machine might have a field strength of at least <span class="math inline">\(\sim 30 \ \text{kG}\)</span>, or <span class="math inline">\(\sim 3 \ \text{T}\)</span>. The strongest continuous magnet produced in a lab thus far as a field strength of <span class="math inline">\(\sim 450 \ \text{kG}\)</span>, or <span class="math inline">\(\sim 45 \ \text{T}\)</span>.</p>
-</section>
-</section>
-<section id="magnetic-fields" class="level2">
-<h2 class="anchored" data-anchor-id="magnetic-fields">Magnetic Fields</h2>
-<p>If this were all there was to magnetism we wouldn’t have much more to say about the subject. However, it turns out that ferromagnets are not the only things that generate magnetic fields. It turns out electric currents also produce magnetic fields. Before discussing how this phenomenon arises though we first need to discuss the concept of electric current. Once we’ve done that, we’ll discuss the relation between current and magnetic fields, as well as the force law between them.</p>
-<section id="current" class="level3">
-<h3 class="anchored" data-anchor-id="current">Current</h3>
-<p>Up until now we’ve always assumed that charges were <em>static</em>. Now we will allow them to move around. The movement of charge is called electric <em>current</em>. Current is usually denoted by <span class="math inline">\(I\)</span>, and defined by <span class="math display">\[
+<p>Now that we’ve spent a considerable amount of time covering the topic of electrostatics and the basic concepts of electric fields, we will now move to the topic of magnetostatics and the concepts of magnetic fields. Magnetostatics can informally be thought of as the magnetic analogue of electrostatics. Whereas in electrostatics we were interested in the behavior of <em>electric fields</em> due to static <em>charges</em>, in magnetostatics we’re interested in the behavior of <em>magnetic fields</em> due to static <em>currents</em>. We will approach the subject here by first defining the notion of electric current and current density, before proceeding to define the magnetic field through the empirical Biot-Savart law, as well as the empirical force law for magnetism, the Lorentz force law. We will then proceed to derive the field equations of magnetostatics and discuss their implications.</p>
+<section id="current" class="level2">
+<h2 class="anchored" data-anchor-id="current">Current</h2>
+<p>If this were all there was to magnetism we wouldn’t have much more to say about the subject. However, it turns out that ferromagnets are not the only things that generate magnetic fields. It turns out electric currents also produce magnetic fields. Before discussing how this phenomenon arises though we first need to discuss the concept of electric current.</p>
+<section id="definition" class="level3">
+<h3 class="anchored" data-anchor-id="definition">Definition</h3>
+<p>Up until now we’ve always assumed that charges were <em>static</em>. Now we will allow them to move around. This movement of charge is called electric <em>current</em>. By convention, if a set of <em>positive</em> charges are moving in some direction, we say there’s a <em>current</em> in that direction. Equivalently, if a set of <em>negative</em> charges are moving in some direction, we say there’s a current in the opposite direction. Informally, the current through a point is defined as the rate of change of charge through that point, or <span class="math display">\[
 I \equiv \frac{dq}{dt} \ .
-\]</span> Since current is <span class="math inline">\(I = dq/dt\)</span>, it evidently must have dimensions of charge per unit time. In Gaussian units, current is measured in units of esu per second, sometimes called the <em>statampere</em>. In SI units, current is measured in units of Coulombs per second, also called an <em>Ampere</em> or an <em>amp</em>. The two units are related by <span class="math inline">\(1 \ \text{esu} / \text{sec} \approx 10^{-12} \ \text{A}\)</span>.</p>
-<p>Current is a measure of the movement of charge. The faster a charge moves, the higher its current. The more charge is moving, the higher the current. In practice, it turns out to be much easier to measure current in the lab than it is to measure charge. Current can be easily measured in the lab using an <em>amp-meter</em>, which measures current using Ohm’s Law, an important relation between voltage and current that we’ll discuss in a later chapter. Measuring charge directly is much more tricky.</p>
-<p>We’ll write the current in terms of a density as follows. Suppose we have a set of <span class="math inline">\(N\)</span> point charges <span class="math inline">\(q_i\)</span> flowing inside some volume each with velocity <span class="math inline">\(\mathbf{v}_i\)</span>. Consider an infinitesimal cross section through this volume with area element <span class="math inline">\(d\mathbf{a} = \mathbf{n} da\)</span> and thickness <span class="math inline">\(d\ell\)</span>.</p>
-<p>FIGURE (show above scenario)</p>
-<p>On average, the charges will move through the volume with an average velocity <span class="math display">\[
-\mathbf{v} \equiv \frac{1}{N} \sum_i \mathbf{v}_i \ .
-\]</span> Now, the average speed at which the charges traverse the cross section in the normal direction must evidently be <span class="math inline">\(|\mathbf{v}| = d\ell / dt\)</span>, which means the total charge <span class="math inline">\(dq\)</span> passing normal to the cross sectional area <span class="math inline">\(da\)</span> in a given time <span class="math inline">\(dt\)</span> must be <span class="math display">\[
-dq = d^3 \mathbf{x} \ \rho(\mathbf{x}) = da \frac{d\ell}{dt} \ \rho dt = \rho \mathbf{v} \cdot \mathbf{n} \ da \ dt \ .
-\]</span> Dividing both sides by <span class="math inline">\(dt\)</span>, we have <span class="math display">\[
-dI \equiv \frac{dq}{dt} = \rho \mathbf{v} \cdot \mathbf{n} \ da \ .
-\]</span> Integrating both sides across an entire surface <span class="math inline">\(\mathcal{S}\)</span>, we finally have <span class="math display">\[
-I = \int_\mathcal{S} \rho \mathbf{v} \cdot d\mathbf{a} \ .
-\]</span> The scalar <span class="math inline">\(I\)</span> yields the total current passing through a surface <span class="math inline">\(\mathcal{S}\)</span>.</p>
-<p>It’s convenient and useful to define the quantity <span class="math inline">\(\mathbf{J} \equiv \rho \mathbf{v}\)</span>. We call this the <em>current density</em>. The current density is the analogue of the charge density, in that its integral gives the total current. Notice that current density carries units of current per unit area. In this sense, we can also think of the current density as the <em>flux</em> of current through a given cross section of area.</p>
-<p>Above we assumed we had a set of charges moving through a volume, but we can also imagine lower dimensional settings as well, where charges are confined to move along a surface, or along a curve. In these settings we have lower-dimensional ways to define the current density, similar to how we defined the surface and line charge densities in electrostatics.</p>
-<p>In two dimensions, we can go through the same math as above. Suppose we have the same set of charges moving along some surface instead of inside some volume. We can then consider the flow of charges passing normal to some curve <span class="math inline">\(\mathcal{C}\)</span> inside this surface. If the charges have a surface density <span class="math inline">\(\sigma\)</span>, then the total current normal to the curve is <span class="math display">\[
-I = \int_\mathcal{C} \sigma \mathbf{v} \cdot d\boldsymbol{\ell} \ .
-\]</span> As we did above, it’s convenient to define another current density <span class="math inline">\(\mathbf{K} \equiv \sigma \mathbf{v}\)</span>, called the <em>surface current density</em>. The surface current density evidently then has units of current per unit length.</p>
-<p>In one dimension, we can do the same thing. Suppose the same set of charges are moving along some curve. In this case we can only consider charges passing through a point along the curve. If <span class="math inline">\(\lambda\)</span> is the line density along the curve, then the total current passing through a given point is just <span class="math display">\[
+\]</span> Current must have dimensions of charge per unit time. In Gaussian units, current is measured in units of esu per second, sometimes called the <em>statampere</em>. In SI units, current is measured in units of Coulombs per second, also called an <em>Ampere</em> or an <em>amp</em>. The two units are related by <span class="math inline">\(1 \ \text{statamp} \approx 10^{-12} \ \text{amp}\)</span>.</p>
+<p>Current was perhaps first understood in the context of conducting wires. When a potential difference is created across a wire, for example by hooking the wire up to a battery, the charges inside the wire experience an <em>electromotive force</em>, causing the charges to move in the direction of lowest potential, thus creating an electric current through the wire.</p>
+<p>If a wire has a line charge density <span class="math inline">\(\lambda\)</span> and the charges inside the wire move with an average <em>drift velocity</em> <span class="math inline">\(\mathbf{v}\)</span>, the current <span class="math inline">\(I\)</span> at any point in the wire is given by the product <span class="math display">\[
 I = \lambda |\mathbf{v}| \ .
-\]</span> In this setting it’s sometimes convenient to think of current as a <em>vector</em> by defining <span class="math inline">\(\mathbf{I} \equiv \lambda \mathbf{v}\)</span>.</p>
-<p>We’ve thus established the following set of relations for the total current, <span class="math display">\[
-I = |\mathbf{I}| = \int_\mathcal{C} \mathbf{K} \cdot d\boldsymbol{\ell} = \int_\mathcal{S} \mathbf{J} \cdot d\mathbf{a} \ .
-\]</span> The choice of integral used will depend on the dimension of the charge distribution of a given problem. See the figure below for a visual of these different types of current densities.</p>
+\]</span> If we like, we can assign a direction to the current through the wire by making it a vector, <span class="math display">\[
+\mathbf{I} = \lambda \mathbf{v} \ .
+\]</span> The current will always flow in the direction the positive charges are moving through the wire. Of course it’s really the negatively charged electrons that move through the wire, in the opposite direction of the current. This means if the drift velocity is in the <span class="math inline">\(\mathbf{v}\)</span> direction, the electrons are really moving through the wire in the <span class="math inline">\(-\mathbf{v}\)</span> direction. This convention, that the current flows opposite to the flowing electrons, is unfortunate, but it agrees with the convention practically always used in the subject.</p>
+<p>So far we’ve only defined the current through a conducting wire, but we can generalize the definition to arbitrary moving charge distributions as well. Suppose some charge distribution with charge density <span class="math inline">\(\rho(\mathbf{x},t)\)</span> is flowing through space with some flow velocity <span class="math inline">\(\mathbf{v}(\mathbf{x},t)\)</span>. Intuitively, we can think of this moving distribution as a bunch of wires of current flowing through space each with its own velocity. We define the <em>current density</em> <span class="math inline">\(\mathbf{J}(\mathbf{x},t)\)</span> at each point in space by the product <span class="math display">\[
+\mathbf{J} \equiv \rho \mathbf{v} \ .
+\]</span> Evidently, the current density has dimensions of charge times velocity, or equivalently current per unit area. In Gaussian units, the current density thus carries units of <span class="math inline">\(\text{statamp} / \text{cm}^2\)</span>. Unlike the charge density, the current density is a vector whose direction is the average direction of charge flow at any given point.</p>
+<p>From the current density we can define a more general notion of current. Suppose some charge distribution is flowing through some surface <span class="math inline">\(\mathcal{S}\)</span> with some given current density <span class="math inline">\(\mathbf{J}\)</span>. We define the <em>current</em> flowing through <span class="math inline">\(\mathcal{S}\)</span> to be the flux integral <span class="math display">\[
+I \equiv \int_\mathcal{S} \mathbf{J} \cdot d\mathbf{a} \ .
+\]</span> Notice that the current defined this way depends on the direction of the outward surface normal. If the direction of the outward normal is reversed, the current changes sign.</p>
+<p>We can also define notions of current density for lower dimensional distributions analogously. Suppose a charge distribution with surface charge density <span class="math inline">\(\sigma(\mathbf{x},t)\)</span> is flowing across some 2-dimensional surface with some flow velocity <span class="math inline">\(\mathbf{v}(\mathbf{x},t)\)</span>. Then we define the <em>surface current density</em> <span class="math inline">\(\mathbf{K}(\mathbf{x},t)\)</span> at each point along the surface by the project <span class="math display">\[
+\mathbf{K} \equiv \sigma \mathbf{v} \ .
+\]</span> As with the volume current density <span class="math inline">\(\mathbf{J}\)</span>, the surface current density <span class="math inline">\(\mathbf{K}\)</span> is also a vector pointing in the direction of charge flow along the surface. The surface current density evidently carries dimensions of current per unit length.</p>
+<p>From the surface current density we can define a notion of current flowing through some curve on a surface. If a surface <span class="math inline">\(\mathcal{S}\)</span> carries some current density <span class="math inline">\(\mathbf{K}\)</span> and <span class="math inline">\(\mathcal{C}\)</span> is some curve on the surface, we define the current passing through the curve by <span class="math display">\[
+I \equiv \int_\mathcal{C} \mathbf{K} \cdot d\boldsymbol{\ell} \ .
+\]</span> Finally, we’ll consider the 1-dimensional case. In this case there is no meaningful notion of line current density, since the current would just be the flow of line current density through a point. That is, line current density is the same thing as current for charge flowing along a curve. The closest thing to a line current density would be the current vector defined above for a wire. If a charge distribution with line density <span class="math inline">\(\lambda(\mathbf{x},t)\)</span> is moving along some curve with flow velocity <span class="math inline">\(\mathbf{v}(\mathbf{x},t)\)</span>, we define the current vector <span class="math display">\[
+\mathbf{I} \equiv \lambda \mathbf{v} \ .
+\]</span> From the current vector, we can easily see the current <span class="math inline">\(I\)</span> at any point along the curve is just <span class="math inline">\(I = \lambda |\mathbf{v}|\)</span>, as we defined before.</p>
+<p>See the figure below for a visual of these different types of current densities.</p>
 <p>FIGURE (show current densities)</p>
 </section>
 <section id="conservation-of-charge" class="level3">
@@ -540,68 +512,77 @@ Q_{\text{enc}} = \int_\mathcal{V} d^3 \mathbf{x} \ \rho(\mathbf{x},t) \quad , \q
 <p>FIGURE (show steady current flow, perhaps contrasting with non-steady current flow)</p>
 <p>From the continuity equation, the steady current condition evidently implies that <span class="math display">\[
 \frac{\partial\rho}{\partial t} = 0 \ .
-\]</span> This implies that the charge distribution must be time-independent, with <span class="math inline">\(\rho = \rho(\mathbf{x})\)</span>, which also implies that <span class="math inline">\(\mathbf{J} = \rho \mathbf{v}\)</span> is also time independent, with <span class="math inline">\(\mathbf{J} = \mathbf{J}(\mathbf{x})\)</span>. This isn’t to say that the charge distribution isn’t moving, only that the entire distribution is moving in a way that the density in space stays the same. But how can this be true? The only way it can be true is if any charges leaving any given region are getting replaced by other charges moving into that region. Of course, this is an abstraction. Yet in many physical situations, for example with current moving through a wire, this is approximately the case. This situation of course contrasts with electrostatics, where the charge distribution was also time independent. In that case, the charges were actually assumed to be stationary.</p>
+\]</span> This implies that the charge distribution must be time-independent, with <span class="math inline">\(\rho = \rho(\mathbf{x})\)</span>, which also implies that <span class="math inline">\(\mathbf{J} = \rho \mathbf{v}\)</span> is also time independent, with <span class="math inline">\(\mathbf{J} = \mathbf{J}(\mathbf{x})\)</span>. This isn’t to say that charges isn’t moving, only they’re moving in such a way that the charge distribution throughout space isn’t changing. The only way this can be true is if any charges leaving any given region are getting replaced by other charges moving into that region. Of course, this is an abstraction. Yet in many physical situations, for example with current moving through a wire, this is approximately the case. This situation of course contrasts with electrostatics, where the charge distribution was also time independent. In that setting, the charges were indeed assumed to be stationary.</p>
 <p>One immediately implication of the steady current condition is that point charges must be excluded. Indeed, the density of a moving point charge is constantly changing. If a charge <span class="math inline">\(q\)</span> is moving at a velocity <span class="math inline">\(\mathbf{v}\)</span>, then its source point <span class="math inline">\(\mathbf{x}' = \mathbf{v} t\)</span> becomes time dependent, which means the density <span class="math inline">\(\rho(\mathbf{x},t) = q \delta(\mathbf{x} - \mathbf{v}t)\)</span> is necessarily time-dependent. This means when enforcing the steady current condition, we <em>must</em> only consider extended distributions of charge, so that the movement of each charge cancels out the movement of the others on average. We’ll come back to moving point charges later in electrodynamics.</p>
 </section>
+</section>
+<section id="magnetic-fields" class="level2">
+<h2 class="anchored" data-anchor-id="magnetic-fields">Magnetic Fields</h2>
+<p>Magnetism as a qualitative subject is at least as old as electricity. In the days of Ancient Greece, Thales observed that rocks of iron ore, or lodestones, tended to attract small pieces of iron. He called this force <em>magnetism</em>, named after the ancient town of Magnesia, an area where lodestone was commonly found at the time. By the 11th century, the Chinese had discovered that iron needles could be used to create compasses for navigation, suggesting that the Earth itself had a magnetic force of its own. In the 16th century, Gilbert discovered was able to magnetic forces and electric forces must be distinctly different forces, though they appeared to be related to each other in a way that remained mysterious for a few hundred more years.</p>
+<p>In the 19th century, it was discovered that electric current gives rise to magnetic fields. The first discovery in this direction was by Oersted, who noticed that if he placed a compass in the vicinity of a current carrying wire that the needle no longer pointed north. He noticed that as he moved the needle around the wire, it tended to point azimuthally to the wire, suggesting that somehow the current in the wire was altering the magnetic forces acting on the needle.</p>
+<p>Not long after Oersted made his discovery, Biot and Savart were able to deduce a precise empirical relation between the magnetic field and the current flowing through a wire. They found that when a current was passed through a wire, a magnetic field strength was created due to the current. We will now present this law in more detail and derive its implications.</p>
 <section id="biot-savart-law" class="level3">
 <h3 class="anchored" data-anchor-id="biot-savart-law">Biot-Savart Law</h3>
-<p>In the 19th century, it was discovered that electric current gives rise to magnetic fields. The first discovery in this direction was by Oersted, who noticed that if he placed a compass in the vicinity of a current carrying wire that the needle no longer pointed north. He noticed that as he moved the needle around the wire, it tended to point azimuthally to the wire, suggesting that somehow the current in the wire was altering the magnetic forces acting on the needle.</p>
-<p>Not long after, Biot and Savart were able to deduce a precise empirical relation between the magnetic field and the current flowing through a wire. They found that when a current was passed through a wire, a magnetic field strength was created due to the current. Nowadays we formulate their statement in the following way. Suppose an infinitesimal length of wire <span class="math inline">\(d\ell\)</span> experiences a current <span class="math inline">\(\mathbf{I}\)</span> at the source point <span class="math inline">\(\mathbf{x}'\)</span>. This will then give rise to an infinitesimal magnetic field <span class="math inline">\(d\mathbf{B}\)</span> at the field point <span class="math inline">\(\mathbf{x}\)</span> of the form <span class="math display">\[
+<p>We’ll now present the Biot-Savart law, which provides a relation between the <em>magnetic field</em> <span class="math inline">\(\mathbf{B}\)</span> and the current. In a modern formulation we can express this law as follows. Suppose an infinitesimal length of wire <span class="math inline">\(d\ell\)</span> experiences a current <span class="math inline">\(\mathbf{I}\)</span> at the source point <span class="math inline">\(\mathbf{x}'\)</span>. This will then give rise to an infinitesimal magnetic field <span class="math inline">\(d\mathbf{B}\)</span> at the field point <span class="math inline">\(\mathbf{x}\)</span> of the form</p>
+<p><span class="math display">\[
 d\mathbf{B} = k \mathbf{I}(\mathbf{x}') \times \frac{\mathbf{x} - \mathbf{x}'}{|\mathbf{x} - \mathbf{x}'|^3} \ .
 \]</span> The constant <span class="math inline">\(k\)</span> chosen depends on the choice of units. In Gaussian units we choose <span class="math inline">\(k \equiv 1/c\)</span>, where <span class="math inline">\(c\)</span> is the speed of light. This strange choice of constant is needed to make sure the dimensions are consistent in the Gaussian system. Of course, one could argue that dividing by <em>any</em> characteristic velocity will work. Why exactly that velocity is the speed of light we’ll see in a future chapter when we study electrodynamics. Nevertheless, it does hint at a connection between electromagnetism and optics.</p>
 <p>To find the magnetic field <span class="math inline">\(\mathbf{B}(\mathbf{x})\)</span> generated by the full wire we need only integrate both sides along the length of the wire. If the wire lies on a curve <span class="math inline">\(\mathcal{C}\)</span> in space, we have <span class="math display">\[
 \mathbf{B}(\mathbf{x}) = \frac{1}{c} \int_\mathcal{C} d\ell' \ \mathbf{I}(\mathbf{x}') \times \frac{\mathbf{x} - \mathbf{x}'}{|\mathbf{x} - \mathbf{x}'|^3} \ .
-\]</span> This empirical result is known as the <em>Biot-Savart Law</em>. As written, the Biot-Savart law shows how to find the magnetic field due to a 1-dimensional wire. We can generalize the result immediately to 2-dimensional surfaces and 3-dimensional volumes in the usual way, by replacing a line density with a surface or volume density. The magnetic field due to a surface of current <span class="math inline">\(\mathcal{S}\)</span> can be stated by replacing <span class="math inline">\(\mathbf{I} d\ell'\)</span> with <span class="math inline">\(\mathbf{K} da'\)</span> in the formula above to get <span class="math display">\[
+\]</span> This empirical result is known as the <em>Biot-Savart Law</em>. If we like, we can think of this as the <em>definition</em> of the magnetic field in magnetostatics. Just as we sometimes call the electric field an <em>E-field</em> for short, we sometimes call the magnetic field the <em>B-field</em>.</p>
+<p>Evidently, the magnetic field in Gaussian units carries the same units as electric field. Indeed, this is by design. Even though the electric field has units of <span class="math inline">\(\text{esu} / \text{cm}^2\)</span>, which means the magnetic field’s units are the same, for historical reasons though we give the unit of magnetic field a different name, the <em>Gauss</em>, with <span class="math inline">\(1 \ \text{G} = 1 \ \text{esu} / \text{cm}^2\)</span> exactly. In SI units, the unit of magnetic field is called the <em>Tesla</em>, with <span class="math inline">\(1 \ \text{T} = 10^4 \ \text{G}\)</span> exactly. Note though that the <em>dimensions</em> of magnetic field are different in the two unit systems, as discussed in the first chapter.</p>
+<p>To get an idea for scales, the Earth’s magnetic field strength at the surface is about <span class="math inline">\(0.5 \ \text{G}\)</span>. A typical refrigerator magnet has a field strength of <span class="math inline">\(\sim 50 \ \text{G}\)</span>. An MRI machine might have a field strength of at least <span class="math inline">\(\sim 30 \ \text{kG}\)</span>, or <span class="math inline">\(\sim 3 \ \text{T}\)</span>. The strongest continuous magnet produced in a lab thus far has a field strength of <span class="math inline">\(\sim 450 \ \text{kG}\)</span>, or <span class="math inline">\(\sim 45 \ \text{T}\)</span>.</p>
+<p>As written, the Biot-Savart law shows how to find the magnetic field due to a 1-dimensional wire. We can generalize the result immediately to 2-dimensional surfaces and 3-dimensional volumes in the usual way, by replacing a line density with a surface or volume density. The B-field due to a surface of current <span class="math inline">\(\mathcal{S}\)</span> can be stated by replacing <span class="math inline">\(\mathbf{I} d\ell'\)</span> with <span class="math inline">\(\mathbf{K} da'\)</span> in the formula above to get <span class="math display">\[
 \mathbf{B}(\mathbf{x}) = \frac{1}{c} \int_\mathcal{S} da' \ \mathbf{K}(\mathbf{x}') \times \frac{\mathbf{x} - \mathbf{x}'}{|\mathbf{x} - \mathbf{x}'|^3} \ .
-\]</span> Finally, the magnetic field due to a volume of current is given by replacing <span class="math inline">\(\mathbf{I} d\ell'\)</span> with <span class="math inline">\(\mathbf{J} d^3\mathbf{x}'\)</span> to get <span class="math display">\[
+\]</span> Finally, the B-field due to a volume of current is given by replacing <span class="math inline">\(\mathbf{I} d\ell'\)</span> with <span class="math inline">\(\mathbf{J} d^3\mathbf{x}'\)</span> to get <span class="math display">\[
 \boxed{
 \mathbf{B}(\mathbf{x}) = \frac{1}{c} \int d^3 \mathbf{x}' \ \mathbf{J}(\mathbf{x}') \times \frac{\mathbf{x} - \mathbf{x}'}{|\mathbf{x} - \mathbf{x}'|^3}
 } \ .
-\]</span> It’s worth comparing the Biot-Savart law in this form to Coulomb’s law in electrostatics. There, we had <span class="math display">\[
+\]</span> It’s worth comparing the Biot-Savart law above to the integral form of Coulomb’s law in electrostatics. There, we had <span class="math display">\[
 \mathbf{E}(\mathbf{x}) = \int d^3 \mathbf{x}' \ \rho(\mathbf{x}') \frac{\mathbf{x} - \mathbf{x}'}{|\mathbf{x} - \mathbf{x}'|^3} \ .
 \]</span> Notice that up to a constant the two laws look exactly the same, except with <span class="math inline">\(\rho(\mathbf{x}')\)</span> replaced by the cross product <span class="math inline">\(\mathbf{J}(\mathbf{x}') \times\)</span>. The appearance of a cross product is perhaps the most important mathematical difference in the formulas between electrostatics and magnetostatics. An immediate implication of this is that the magnetic field <em>never</em> points in the direction of the current, but rather in a direction perpendicular to the current, given by the direction of the cross product <span class="math inline">\(\mathbf{J}(\mathbf{x}') \times (\mathbf{x} - \mathbf{x}')\)</span>.</p>
 <p>The appearance of the cross product also makes calculating the magnetic field from the Biot-Savart law much more cumbersome to use than Coulomb’s law, which was itself already cumbersome. We’ll thus quickly move to finding better ways to calculate magnetic fields. But first we’ll show a relatively simple example of how to use the Biot-Savart law directly.</p>
 <section id="example-conducting-loop-of-constant-current" class="level5">
 <h5 class="anchored" data-anchor-id="example-conducting-loop-of-constant-current">Example: Conducting loop of constant current</h5>
-<p>The canonical charge distribution in magnetostatics is the loop of constant current. Suppose a loop of radius <span class="math inline">\(a\)</span> carries a constant current <span class="math inline">\(I\)</span> in the counterclockwise direction. To achieve this, we’ll suppose the loop is centered at the origin in the <span class="math inline">\(xy\)</span>-plane. Our goal will be to use the Biot-Savart law to calculate the magnetic field <span class="math inline">\(\mathbf{B}(z)\)</span> along the <span class="math inline">\(z\)</span>-axis.</p>
+<p>The canonical charge distribution in magnetostatics is the loop of constant current. Suppose a loop of radius <span class="math inline">\(R\)</span> carries a constant current <span class="math inline">\(I\)</span> in the counterclockwise direction. To achieve this, we’ll suppose the loop is centered at the origin in the <span class="math inline">\(xy\)</span>-plane. Our goal will be to use the Biot-Savart law to calculate the B-field <span class="math inline">\(\mathbf{B}(z)\)</span> along the <span class="math inline">\(z\)</span>-axis.</p>
 <p>FIGURE (loop of current)</p>
-<p>With this setup, it’s not hard to see that <span class="math inline">\(\mathbf{x}' = a \mathbf{e}_\varrho\)</span> and <span class="math inline">\(\mathbf{x} = z \mathbf{e}_z\)</span>, which means <span class="math display">\[
-\mathbf{x} - \mathbf{x}' = z \mathbf{e}_z - a \mathbf{e}_\varrho \ .
+<p>With this setup, it’s not hard to see that <span class="math inline">\(\mathbf{x}' = R \mathbf{e}_\varrho\)</span> and <span class="math inline">\(\mathbf{x} = z \mathbf{e}_z\)</span>, which means <span class="math display">\[
+\mathbf{x} - \mathbf{x}' = z \mathbf{e}_z - R \mathbf{e}_\varrho \ .
 \]</span> Since the current is constant and flows counterclockwise along the loop, we have <span class="math inline">\(\mathbf{I} = I \mathbf{e}_\varphi\)</span>. This means we have <span class="math display">\[
-\mathbf{I} \times (\mathbf{x} - \mathbf{x}') = Iz (\mathbf{e}_\varphi \times \mathbf{e}_z) - Ia (\mathbf{e}_\varphi \times \mathbf{e}_\varrho) = Iz \mathbf{e}_\varrho + Ia \mathbf{e}_z \ .
-\]</span> Now consider an infinitesimal element <span class="math inline">\(d\ell' = a d\varphi'\)</span> of the loop. By the Biot-Savart law, we have <span class="math display">\[
-d\mathbf{B} = \frac{1}{c} d\ell' \ \mathbf{I} \times \frac{\mathbf{x} - \mathbf{x}'}{|\mathbf{x} - \mathbf{x}'|^3} = a d\varphi' \ \frac{I}{c} \bigg[ \frac{z}{(a^2 + z^2)^{3/2}} \mathbf{e}_\varrho + \frac{a}{(a^2 + z^2)^{3/2}} \mathbf{e}_z \bigg] \ .
+\mathbf{I} \times (\mathbf{x} - \mathbf{x}') = Iz (\mathbf{e}_\varphi \times \mathbf{e}_z) - IR (\mathbf{e}_\varphi \times \mathbf{e}_\varrho) = Iz \mathbf{e}_\varrho + IR \mathbf{e}_z \ .
+\]</span> Now consider an infinitesimal element <span class="math inline">\(d\ell' = R d\varphi'\)</span> of the loop. By the Biot-Savart law, we have <span class="math display">\[
+d\mathbf{B} = \frac{1}{c} d\ell' \ \mathbf{I} \times \frac{\mathbf{x} - \mathbf{x}'}{|\mathbf{x} - \mathbf{x}'|^3} = R d\varphi' \ \frac{I}{c} \bigg[ \frac{z}{(R^2 + z^2)^{3/2}} \mathbf{e}_\varrho + \frac{R}{(R^2 + z^2)^{3/2}} \mathbf{e}_z \bigg] \ .
 \]</span> Integrating along the entire loop, we thus have <span class="math display">\[
-\mathbf{B}(z) = \frac{Ia}{c} \int_0^{2\pi} d\varphi' \ \bigg[ \frac{z}{(a^2 + z^2)^{3/2}} \mathbf{e}_\varrho + \frac{a}{(a^2 + z^2)^{3/2}} \mathbf{e}_z \bigg] \ .
+\mathbf{B}(z) = \frac{IR}{c} \int_0^{2\pi} d\varphi' \ \bigg[ \frac{z}{(R^2 + z^2)^{3/2}} \mathbf{e}_\varrho + \frac{R}{(R^2 + z^2)^{3/2}} \mathbf{e}_z \bigg] \ .
 \]</span> At this point we need to be a bit careful, since cylindrical basis vectors are functions of position. It’s helpful to write <span class="math inline">\(\mathbf{e}_\varphi\)</span> in terms of the Cartesian vectors to avoid this issue, <span class="math display">\[
 \mathbf{e}_\varphi = \cos\varphi' \mathbf{e}_x + \sin\varphi' \mathbf{e}_y \ .
 \]</span> If we plug this into the first integral, we see it must vanish since the integrand is independent of <span class="math inline">\(\varphi'\)</span> and <span class="math inline">\(\cos\phi'\)</span> and <span class="math inline">\(\sin\varphi'\)</span> are each <span class="math inline">\(2\pi\)</span>-periodic functions. The second integral is also independent of <span class="math inline">\(\varphi'\)</span>. Since <span class="math inline">\(\mathbf{e}_z\)</span> is constant, we finally get <span class="math display">\[
-\mathbf{B}(z) = \frac{2\pi Ia^2}{c(a^2 + z^2)^{3/2}} \mathbf{e}_z \ .
-\]</span> Thus, along the <span class="math inline">\(z\)</span>-axis the magnetic field points only in the <span class="math inline">\(z\)</span>-direction. This should make sense by symmetry. After all, the current along the loop is constant, which means any segment of field in the <span class="math inline">\(\varrho\)</span>-direction must cancel with an opposite segment of field, leaving only the <span class="math inline">\(z\)</span>-component to contribute anything.</p>
-<p>Let’s now check the far field limit <span class="math inline">\(z \gg a\)</span>. In this limit, <span class="math inline">\((a^2 + z^2)^{-3/2} \approx 1/z^3\)</span>, and so <span class="math display">\[
-\mathbf{B}(z) \approx \frac{2\pi Ia^2}{cz^3} \ .
+\mathbf{B}(z) = \frac{2\pi IR^2}{c(R^2 + z^2)^{3/2}} \mathbf{e}_z \ .
+\]</span> Thus, along the <span class="math inline">\(z\)</span>-axis the B-field points only in the <span class="math inline">\(z\)</span>-direction. This should make sense by symmetry. After all, the current along the loop is constant, which means any segment of field in the <span class="math inline">\(\varrho\)</span>-direction must cancel with an opposite segment of field, leaving only the <span class="math inline">\(z\)</span>-component to contribute anything.</p>
+<p>Let’s now check the far field limit <span class="math inline">\(z \gg R\)</span>. In this limit, <span class="math inline">\((R^2 + z^2)^{-3/2} \approx 1/z^3\)</span>, and so <span class="math display">\[
+\mathbf{B}(z) \approx \frac{2\pi IR^2}{cz^3} \mathbf{e}_z \ .
 \]</span></p>
-<p>Since the far field falls off like <span class="math inline">\(1/r^3\)</span>, in this limit the magnetic field seems to behave like a dipole field.</p>
+<p>Since the far field falls off like <span class="math inline">\(1/r^3\)</span>, in this limit the B-field seems to behave like a dipole field.</p>
 <hr>
-<p>In fact, the lowest non-vanishing moment of magnetic field will <em>always</em> be at least a dipole field, as we’ll see later. There will never be a monopole field contribution. Said equivalently, there is no such thing as a magnetic monopole, as far as we can tell based on all experiments done up to this day. More advanced theories predict that they could exist, but experiments have never found them. Until found, we’re left to assume based on all experimental evidence that no magnetic monopoles exist in nature.</p>
-<p>It’s tempting to ask whether we can use the Biot-Savart law to calculate the magnetic field generated by a moving point charge. If we naively attempted to apply the Biot-Savart law to a moving point charge <span class="math inline">\(q\)</span> of velocity <span class="math inline">\(\mathbf{v}\)</span>, we’d find a magnetic field <span class="math display">\[
+<p>In fact, the lowest non-vanishing moment of the B-field will <em>always</em> be at least a dipole field, as we’ll see later. There will never be a monopole field contribution. Said equivalently, there is no such thing as a magnetic monopole, as far as we can tell based on all experiments done up to this day. More advanced theories predict that they could exist, but experiments have never found them. Until found, we’re left to assume based on all experimental evidence that no magnetic monopoles exist in nature.</p>
+<p>It’s tempting to ask whether we can use the Biot-Savart law to calculate the B-field generated by a moving point charge. If we naively attempted to apply the Biot-Savart law to a moving point charge <span class="math inline">\(q\)</span> of velocity <span class="math inline">\(\mathbf{v}\)</span>, we’d find a B-field <span class="math display">\[
 \mathbf{B}(\mathbf{x}) = q \frac{\mathbf{v}}{c} \times \frac{\mathbf{x} - \mathbf{v}t}{|\mathbf{x} - \mathbf{v}t|^3} \ .
-\]</span> But this can’t be true, since the Biot-Savart law requires that magnetic field only be a function of position and not time. The only way the magnetic field can be time-independent is if the steady current condition is imposed, which means the Biot-Savart law implicitly assumes the steady current condition is true. We thus cannot use the Biot-Savart law on point charges, at least without there being so many of them that we can meaningfully impose the steady current condition. To deal with point charges we’ll necessarily need electrodynamics, where we allow the electric and magnetic fields to both be time-dependent.</p>
+\]</span> But this can’t be true, since the Biot-Savart law requires that B-field only be a function of position and not time. The only way the B-field can be time-independent is if the steady current condition is imposed, which means the Biot-Savart law implicitly assumes the steady current condition is true. We thus cannot use the Biot-Savart law on point charges, at least without there being so many of them that we can meaningfully impose the steady current condition. To deal with point charges we’ll necessarily need electrodynamics, where we allow the electric and magnetic fields to both be time-dependent.</p>
 </section>
 <section id="example-infinite-conducting-wire-of-constant-current" class="level5">
 <h5 class="anchored" data-anchor-id="example-infinite-conducting-wire-of-constant-current">Example: Infinite conducting wire of constant current</h5>
-<p>Consider now an infinitely long conducting wire of constant current <span class="math inline">\(I\)</span>. We’d again like to use the Biot-Savart law to find the magnetic field created due to this current-carrying wire.</p>
+<p>Consider now an infinitely long conducting wire of constant current <span class="math inline">\(I\)</span>. We’d again like to use the Biot-Savart law to find the B-field created due to this current-carrying wire.</p>
 <p>We’ll assume the wire is oriented along the <span class="math inline">\(z\)</span>-axis, which means <span class="math inline">\(\mathbf{I} = I \mathbf{e}_z\)</span> and <span class="math inline">\(\mathbf{x}' = z' \mathbf{e}_z\)</span>. We’ll find it convenient for this problem to work in cylindrical coordinates, so that <span class="math inline">\(\mathbf{x} = \varrho \mathbf{e}_\varrho + z \mathbf{e}_z\)</span>. This means <span class="math display">\[
 \mathbf{x} - \mathbf{x}' = \varrho \mathbf{e}_\varrho + (z-z') \mathbf{e}_z \ .
 \]</span> The cross product of the current vector with this separation vector is thus <span class="math display">\[
 \mathbf{I} \times (\mathbf{x} - \mathbf{x}') = I\varrho (\mathbf{e}_z \times \mathbf{e}_\varrho) = I\varrho \mathbf{e}_\varphi \ .
 \]</span> The line element along the wire is clearly just <span class="math inline">\(d\ell' = dz'\)</span>, which means <span class="math display">\[
 d\mathbf{B} = \frac{1}{c} d\ell' \ \mathbf{I} \times \frac{\mathbf{x} - \mathbf{x}'}{|\mathbf{x} - \mathbf{x}'|^3} = \frac{I\varrho}{c} \mathbf{e}_\varphi dz' \ \frac{1}{\big(\varrho^2 + (z-z')^2\big)^{3/2}}  \ .
-\]</span> Notice that in this case we pulled <span class="math inline">\(\varrho\)</span> and <span class="math inline">\(\mathbf{e}_\varphi\)</span> out of the integral since neither depend on <span class="math inline">\(z'\)</span>. We now need to integrate this along the length of the wire, which is infinite, <span class="math display">\[
+\]</span> Notice we pulled <span class="math inline">\(\varrho\)</span> and <span class="math inline">\(\mathbf{e}_\varphi\)</span> out of the integral since neither depend on <span class="math inline">\(z'\)</span>. We now need to integrate this along the length of the wire, which is infinite, <span class="math display">\[
 \mathbf{B}(\mathbf{x}) = \frac{I\varrho}{c} \mathbf{e}_\varphi \int_{-\infty}^\infty \frac{dz'}{\big(\varrho^2 + (z-z')^2\big)^{3/2}} \ .
 \]</span> Evaluating this integral can be done using elementary methods we’ve seen before in the course. In the end we simply get <span class="math display">\[
 \mathbf{B}(\mathbf{x}) = \frac{2I}{c\varrho} \mathbf{e}_\varphi \ .
-\]</span> Evidently, the magnetic field of an infinite wire of constant current falls off like <span class="math inline">\(1/\varrho\)</span>, just like the electric field of an infinite wire of constant charge density. However, unlike the electric field, the magnetic field is directed <em>azimuthally</em> around the wire.</p>
+\]</span> Evidently, the B-field of an infinite wire of constant current falls off like <span class="math inline">\(1/\varrho\)</span>, just like the E-field of an infinite wire of constant charge density. However, unlike the E-field, the B-field is directed <em>azimuthally</em> around the wire.</p>
 </section>
 </section>
 <section id="lorentz-force-law" class="level3">
@@ -610,25 +591,29 @@ d\mathbf{B} = \frac{1}{c} d\ell' \ \mathbf{I} \times \frac{\mathbf{x} - \mathbf{
 f = 2 k_m \frac{I_1 I_2}{d} \ .
 \]</span> The constant of proportionality <span class="math inline">\(k_m\)</span> depends on the choice of units. In Gaussian units we choose <span class="math inline">\(k_m \equiv 1/c^2\)</span>, where <span class="math inline">\(c\)</span> is again the speed of light, which means the above law becomes <span class="math display">\[
 f = \frac{2 I_1 I_2}{c^2 d} \ .
-\]</span> Later on in the century, Lorentz formulated a precise statement of the force on a moving point charge in a magnetic field. Suppose a point charge <span class="math inline">\(q\)</span> is moving at a velocity <span class="math inline">\(\mathbf{v}\)</span> in the presence of some external magnetic field <span class="math inline">\(\mathbf{B}\)</span>. This charge will feel a force due to the field given by the <em>Lorentz Force Law</em>, <span class="math display">\[
+\]</span> Later on in the century, Lorentz formulated a precise statement of the force on a moving point charge in a magnetic field. Suppose a point charge <span class="math inline">\(q\)</span> is moving at a velocity <span class="math inline">\(\mathbf{v}\)</span> in the presence of some external B-field <span class="math inline">\(\mathbf{B}\)</span>. This charge will feel a force due to the B-field given by the <em>Lorentz Force Law</em>, <span class="math display">\[
 \mathbf{F} = \alpha q \mathbf{v} \times \mathbf{B} \ .
 \]</span> Here <span class="math inline">\(\alpha\)</span> is yet another proportionality constant that depends on the choice of units. In the Gaussian system we choose <span class="math inline">\(\alpha = 1/c\)</span>, which again ensures <span class="math inline">\(\mathbf{E}\)</span> and <span class="math inline">\(\mathbf{B}\)</span> carry the same dimensions. In these units, we get <span class="math display">\[
 \mathbf{F} = q \frac{\mathbf{v}}{c} \times \mathbf{B} \ .
-\]</span> Evidently, the force due to a magnetic field will always be perpendicular to both the velocity of the charge as well as the magnetic field. This fact immediately implies something interesting, magnetic fields can only change the direction of a moving charge, not speed it up or slow it down. Said differently, magnetic forces do no work.</p>
-<p>To see why this is true, consider the work done in moving a charge along some path <span class="math inline">\(\mathcal{C}\)</span> in the presence of a magnetic field <span class="math inline">\(\mathbf{B}\)</span>. Plugging in the Lorentz force law and noting that <span class="math inline">\(d\boldsymbol{\ell} = \mathbf{v} dt\)</span>, the work <span class="math inline">\(W\)</span> done in moving the charge along the path must be <span class="math display">\[
+\]</span> Evidently, the force due to a B-field will always be perpendicular to both the velocity of the charge as well as the B-field. This fact immediately implies something interesting, magnetic fields can only change the direction of a moving charge, not speed it up or slow it down. Said differently, magnetic forces do no work.</p>
+<p>To see why this is true, consider the work done in moving a charge along some path <span class="math inline">\(\mathcal{C}\)</span> in the presence of a B-field <span class="math inline">\(\mathbf{B}\)</span>. Plugging in the Lorentz force law and noting that <span class="math inline">\(d\boldsymbol{\ell} = \mathbf{v} dt\)</span>, the work <span class="math inline">\(W\)</span> done in moving the charge along the path must be <span class="math display">\[
 W = \int_\mathcal{C} \mathbf{F} \cdot d\boldsymbol{\ell} = \int_\mathcal{C} \bigg(q \frac{\mathbf{v}}{c} \times \mathbf{B}\bigg) \cdot d\boldsymbol{\ell} = \frac{q}{c} \int dt \ \big(\mathbf{v} \times \mathbf{B}\big) \cdot \mathbf{v} = 0 \ .
 \]</span> Thus, magnetic forces do no work. That is, they cannot change the kinetic energy of the moving charge. They can only deflect the moving charge in another direction.</p>
-<p>The Lorentz force law is more often stated in the more general setting where both an external electric and magnetic fields may be present. Recall from electrostatics that the force on a point charge <span class="math inline">\(q\)</span> due to an external electric field is given by <span class="math inline">\(\mathbf{F} = q \mathbf{E}\)</span>. By the principle of superposition then, the combined force on the charge will be the sum of electric and magnetic forces, <span class="math display">\[
+<p>The Lorentz force law is more often stated in the more general setting where both an external electric and magnetic fields may be present. Recall from electrostatics that the force on a point charge <span class="math inline">\(q\)</span> due to an external E-field is given by <span class="math inline">\(\mathbf{F} = q \mathbf{E}\)</span>. By the principle of superposition then, the combined force on a moving charge will be the sum of electric and magnetic forces, <span class="math display">\[
 \boxed{
 \mathbf{F} = q \bigg(\mathbf{E} + \frac{\mathbf{v}}{c} \times \mathbf{B}\bigg)
 } \ .
-\]</span> The Lorentz force law can easily be stated for continuous charge distributions as well. Consider an infinitesimal unit of charge <span class="math inline">\(dq = \rho d^3\mathbf{x}\)</span>. This must obey the above force law, giving rise to an infinitesimal force <span class="math inline">\(d\mathbf{F}\)</span> given by <span class="math display">\[
+\]</span> Notice that we can immediately deduce something about scales from this equation. For a given field strength, the magnetic force on a charged particle will typically be <em>much</em> smaller than the electric force, unless the particle is moving at velocity that’s an appreciable fraction of the speed of light <span class="math inline">\(c\)</span>.</p>
+<p>The Lorentz force law can easily be stated for continuous charge distributions as well. Consider an infinitesimal unit of charge <span class="math inline">\(dq = \rho d^3\mathbf{x}\)</span>. This must obey the above force law, giving rise to an infinitesimal force <span class="math inline">\(d\mathbf{F}\)</span> given by <span class="math display">\[
 d\mathbf{F} = d^3\mathbf{x} \ \bigg(\rho\mathbf{E} + \rho \frac{\mathbf{v}}{c} \times \mathbf{B} \bigg) \ .
 \]</span> Since <span class="math inline">\(\mathbf{J} = \rho \mathbf{v}\)</span> is the current density, when we integrate over the entire charge distribution we get <span class="math display">\[
+\mathbf{F} = \int d^3\mathbf{x} \ \bigg(\rho(\mathbf{x})\mathbf{E}(\mathbf{x}) + \frac{1}{c} \mathbf{J}(\mathbf{x}) \times \mathbf{B}(\mathbf{x})\bigg) \ .
+\]</span> This is the most general form of the Lorentz force law we can write down in electromagnetism. Remember that this is the force on a charge distribution due to <em>external fields</em>, not the force due to any fields the charge distribution itself may create. The issue of self fields is a delicate question in electromagnetism, one we’ve seen arise and will arise several times in the course.</p>
+<p>As is typical in field theories, everything of interest is inside the integrand. It’s useful to give that a name, the <em>force density</em> <span class="math inline">\(\mathbf{f}\)</span>, <span class="math display">\[
 \boxed{
-\mathbf{F} = \int d^3\mathbf{x} \ \bigg(\rho(\mathbf{x})\mathbf{E}(\mathbf{x}) + \frac{\mathbf{J}(\mathbf{x})}{c} \times \mathbf{B}(\mathbf{x})\bigg)
+\mathbf{f} \equiv \rho(\mathbf{x})\mathbf{E}(\mathbf{x}) + \frac{1}{c} \mathbf{J}(\mathbf{x}) \times \mathbf{B}(\mathbf{x})
 } \ .
-\]</span> This is the most general form of the Lorentz force law we can write down in electromagnetism. In lower dimensions the result will be similar, except with the densities and differentials replaced by their lower dimensional counterparts.</p>
+\]</span> The force <span class="math inline">\(\mathbf{F}\)</span> is then just the volume integral of the force density over the entire charge distribution.</p>
 <section id="example-amperes-current-law" class="level5">
 <h5 class="anchored" data-anchor-id="example-amperes-current-law">Example: Ampere’s Current Law</h5>
 <p>We’ll now derive Ampere’s current law between two current carrying wires. Suppose two parallel wires are separated by some distance <span class="math inline">\(d\)</span>, where the first wire carries a current <span class="math inline">\(I_1\)</span> and the second wire carries a current <span class="math inline">\(I_2\)</span>. We mentioned above that the following result was found empirically, <span class="math display">\[
@@ -636,27 +621,27 @@ f = \frac{2I_1 I_2}{c^2 d} \ ,
 \]</span> where <span class="math inline">\(f\)</span> is the force per unit length between the two wires. It’s pretty trivial to derive this result using the Lorentz force law.</p>
 <p>To do this it suffices to examine the force exerted by one wire on the other. We’ll focus on finding the force exerted on the second wire by the first. Suppose the two wires are oriented in the <span class="math inline">\(z\)</span>-direction, with the first wire exactly along the <span class="math inline">\(z\)</span>-axis and the second wire translated by <span class="math inline">\(d\)</span> along the <span class="math inline">\(y\)</span>-axis, as shown below.</p>
 <p>FIGURE (show two current carrying wires)</p>
-<p>Assuming both wires are sufficiently long that we can treat them as having infinite length. This means the first wire will produce a magnetic field of the form <span class="math display">\[
+<p>Assuming both wires are sufficiently long that we can treat them as having infinite length. This means the first wire will produce a B-field of the form <span class="math display">\[
 \mathbf{B}(\mathbf{x}) = \frac{2I_1}{c\varrho} \mathbf{e}_{\varphi} \ .
-\]</span> To find the force the first wire exerts on the second wire we only care about field points <span class="math inline">\(\mathbf{x} = z \mathbf{e}_z\)</span> along the first wire. Along the first wire, <span class="math inline">\(\varrho = d\)</span> and <span class="math inline">\(\mathbf{e}_\varphi = \mathbf{e}_x\)</span>, which means the magnetic field <span class="math inline">\(\mathbf{B}_1\)</span> experienced by the second wire due to the first wire is <span class="math display">\[
+\]</span> To find the force the first wire exerts on the second wire we only care about field points <span class="math inline">\(\mathbf{x} = z \mathbf{e}_z\)</span> along the first wire. Along the first wire, <span class="math inline">\(\varrho = d\)</span> and <span class="math inline">\(\mathbf{e}_\varphi = \mathbf{e}_x\)</span>, which means the B-field <span class="math inline">\(\mathbf{B}_1\)</span> experienced by the second wire due to the first wire is <span class="math display">\[
 \mathbf{B}_1 = \frac{2I_1}{cd} \mathbf{e}_x \ .
 \]</span> By the Lorentz force law, the force on the second wire due to the first wire will be given by integrating <span class="math display">\[
 d\mathbf{F} = \frac{1}{c} \mathbf{I}_2 \times \mathbf{B}_1 d\ell = \frac{1}{c} (I_2 \mathbf{e}_z) \times \bigg(\frac{2I_1}{cd} \mathbf{e}_x\bigg) d\ell = \frac{2I_1 I_2}{c^2 d} \mathbf{e}_y d\ell \ .
 \]</span> Now, if we were interested in the <em>total</em> force exerted on the second wire, we’d need to integrate along the full length of the first wire, which would be infinite. But we’re only interested in the force per unit length <span class="math inline">\(\mathbf{f}\)</span>, which is just <span class="math display">\[
 \mathbf{f} = \frac{d\mathbf{F}}{d\ell} = \frac{2I_1 I_2}{c^2 d} \mathbf{e}_y \ .
-\]</span> This is exactly Ampere’s current law. Notice that the force between the two wires is in the direction of separation between them. By Newton’s third law, the force felt by the first wire due to the second wire must be exactly the same. This means both wires are attracted are repelled by exactly the same force. The wires will attract if the two currents are opposite and repulse otherwise. This effect can be observed in the lab, though one would need to use pretty high currents to actually observe these forces by eye. For example, to create a force of <span class="math inline">\(1 \ \text{lbf} \approx 4 \cdot 10^5 \ \text{dyne}\)</span> between two wires of length <span class="math inline">\(3 \ \text{ft} \approx 10^2 \text{cm}\)</span> separated by a distance of <span class="math inline">\(6 \ \text{in} \approx 15 \ \text{cm}\)</span>, one would need to use a huge current of about <span class="math inline">\(2000\)</span> amps!</p>
+\]</span> This is exactly Ampere’s current law. Notice that the force between the two wires is in the direction of separation between them. By Newton’s third law, the force felt by the first wire due to the second wire must be exactly the same. This means both wires are attracted are repelled by exactly the same force. The wires will attract if the two currents are opposite and repulse otherwise. This effect can be observed in the lab, though one would need to use pretty high currents to actually observe these forces by eye. For example, to create a force of <span class="math inline">\(1 \ \text{lbf} \approx 4 \cdot 10^5 \ \text{dyne}\)</span> between two wires of length <span class="math inline">\(3 \ \text{ft} \approx 10^2 \ \text{cm}\)</span> separated by a distance of <span class="math inline">\(6 \ \text{in} \approx 15 \ \text{cm}\)</span>, one would need to use a huge current of about <span class="math inline">\(2000\)</span> amps!</p>
 <p>A similar result can be derived for the force between two arbitrary wires each of constant current. If the first wire has a current <span class="math inline">\(\mathbf{I}_1\)</span> along some curve <span class="math inline">\(\mathcal{C}_1\)</span> and the second wire has a current <span class="math inline">\(\mathbf{I}_2\)</span> along some curve <span class="math inline">\(\mathcal{C}_2\)</span>, then the force <span class="math inline">\(\mathbf{F}_{12}\)</span> exerted on the first wire due to the second wire is given by <span class="math display">\[
-\mathbf{F}_{12} = - \frac{1}{c^2} \int_{\mathcal{C}_1} d\ell_1 \int_{\mathcal{C}_2} d\ell_2 \ \mathbf{I}_1 \cdot \mathbf{I_2} \frac{\mathbf{x}_1 - \mathbf{x}_2}{|\mathbf{x}_1 - \mathbf{x}_2|^3} \ ,
+\mathbf{F}_{12} = - \frac{1}{c^2} \int_{\mathcal{C}_1} d\ell_1 \int_{\mathcal{C}_2} d\ell_2 \ \mathbf{I}_1 \cdot \mathbf{I}_2 \frac{\mathbf{x}_1 - \mathbf{x}_2}{|\mathbf{x}_1 - \mathbf{x}_2|^3} \ ,
 \]</span> where <span class="math inline">\(\mathbf{x}_1 - \mathbf{x}_2\)</span> is the separation vector between any two source points along the two wires. This can easily be derived by using the Biot-Savart law on the second wire. By symmetry, it’s clear that the force <span class="math inline">\(\mathbf{F}_{21}\)</span> on the second wire due to the first wire is equal and opposite, with <span class="math inline">\(\mathbf{F}_{21} = -\mathbf{F}_{12}\)</span>.</p>
 </section>
 </section>
 </section>
 <section id="field-equations" class="level2">
 <h2 class="anchored" data-anchor-id="field-equations">Field Equations</h2>
-<p>Just as it wasn’t convenient or illuminating in electrostatics to use Coulomb’s law to calculate and study electric fields, it’s not convenient in magnetostatics to use the Biot-Savart law to calculate or study magnetic fields. We’ll want to re-cast this law in terms of field equations. In electrostatics we did this by deriving Gauss’s law from Coulomb’s law, and then used the fact that the electric field had a vanishing curl to derive the scalar potential. We’ll do something similar here.</p>
-<section id="vector-potential" class="level3">
-<h3 class="anchored" data-anchor-id="vector-potential">Vector Potential</h3>
-<p>By the Biot-Savart law, the magnetic field created by a volume of steady current is given by <span class="math display">\[
+<p>Just as it wasn’t convenient or illuminating in electrostatics to use Coulomb’s law to calculate and study electric fields, it’s not convenient in magnetostatics to use the Biot-Savart law to calculate or study magnetic fields. We’ll thus want to re-cast the Biot-Savart law as a set of field equations.</p>
+<section id="divergence-of-mathbfb" class="level3">
+<h3 class="anchored" data-anchor-id="divergence-of-mathbfb">Divergence of <span class="math inline">\(\mathbf{B}\)</span></h3>
+<p>By the Biot-Savart law, the B-field created by a volume of steady current is given by <span class="math display">\[
 \mathbf{B}(\mathbf{x}) = \frac{1}{c} \int d^3 \mathbf{x}' \ \mathbf{J}(\mathbf{x}') \times \frac{\mathbf{x} - \mathbf{x}'}{|\mathbf{x} - \mathbf{x}'|^3} \ .
 \]</span> Now, we know from electrostatics that the gradient with respect to <span class="math inline">\(\mathbf{x}\)</span> is given by <span class="math display">\[
 \nabla \frac{1}{|\mathbf{x} - \mathbf{x}'|} = -\frac{\mathbf{x} - \mathbf{x}'}{|\mathbf{x} - \mathbf{x}'|^3} \ .
@@ -666,41 +651,34 @@ d\mathbf{F} = \frac{1}{c} \mathbf{I}_2 \times \mathbf{B}_1 d\ell = \frac{1}{c} (
 \mathbf{J}(\mathbf{x}') \times \frac{\mathbf{x} - \mathbf{x}'}{|\mathbf{x} - \mathbf{x}'|^3} = -\mathbf{J}(\mathbf{x}') \times \nabla \frac{1}{|\mathbf{x} - \mathbf{x}'|} = \nabla \times \frac{\mathbf{J}(\mathbf{x}')}{|\mathbf{x} - \mathbf{x}'|} \ .
 \]</span> Plugging this into the Biot-Savart law and pulling the curl operator outside the integral, we thus have <span class="math display">\[
 \mathbf{B}(\mathbf{x}) = \nabla \times \frac{1}{c} \int d^3 \mathbf{x}' \ \frac{\mathbf{J}(\mathbf{x}')}{|\mathbf{x} - \mathbf{x}'|} \ .
-\]</span> The argument inside the curl is evidently some vector field <span class="math inline">\(\mathbf{A}(\mathbf{x})\)</span>. We call this the <em>vector potential</em>. We’ve thus managed to show that the magnetic field can be expressed as the curl of a vector potential, <span class="math display">\[
-\boxed{
-\mathbf{B} = \nabla \times \mathbf{A}
-} \ .
-\]</span> Compare this to the equivalent statement in electrostatics, <span class="math inline">\(\mathbf{E} = -\nabla \phi\)</span>. While the electric field is the <em>gradient</em> of a <em>scalar</em> potential, the magnetic field is evidently the <em>curl</em> of a <em>vector</em> potential <span class="math display">\[
-\boxed{
-\mathbf{A}(\mathbf{x}) \equiv \frac{1}{c} \int d^3 \mathbf{x}' \ \frac{\mathbf{J}(\mathbf{x}')}{|\mathbf{x} - \mathbf{x}'|}
-} \ .
-\]</span> Let’s compare this integral expression to the integral expression of the scalar potential <span class="math inline">\(\phi(\mathbf{x})\)</span> from electrostatics, <span class="math display">\[
-\phi(\mathbf{x}) = \int d^3 \mathbf{x}' \ \frac{\rho(\mathbf{x}')}{|\mathbf{x} - \mathbf{x}'|} \ .
-\]</span> The two formulas look pretty much exactly the same, except with <span class="math inline">\(\rho\)</span> replaced by <span class="math inline">\(\mathbf{J}/c\)</span>. Since <span class="math inline">\(\rho\)</span> and <span class="math inline">\(\mathbf{J}/c\)</span> have the same units, this evidently means the scalar potential and the vector potential have the same units in the Gaussian system. But unlike the scalar potential <span class="math inline">\(\phi\)</span>, the vector potential <span class="math inline">\(\mathbf{A}\)</span> is evidently a vector. This one subtle distinction in a sense leads to the differences we see between electric and magnetic fields.</p>
-</section>
-<section id="field-equations-1" class="level3">
-<h3 class="anchored" data-anchor-id="field-equations-1">Field Equations</h3>
-<p>From the fact that the magnetic field must be the curl of a vector potential we can immediately derive the first field equation of magnetostatics. Since the divergence of the curl of a vector field must vanish, the divergence of the magnetic field must vanish, <span class="math display">\[
+\]</span> The argument inside the curl is evidently some vector field <span class="math inline">\(\mathbf{A}(\mathbf{x})\)</span> given by the integral <span class="math display">\[
+\mathbf{A}(\mathbf{x}) \equiv \frac{1}{c} \int d^3 \mathbf{x}' \ \frac{\mathbf{J}(\mathbf{x}')}{|\mathbf{x} - \mathbf{x}'|} \ .
+\]</span> We call this the <em>vector potential</em>. We’ll study this in more detail in the next section. For now, we’ve established that we can write <span class="math display">\[
+\mathbf{B} = \nabla \times \mathbf{A} \ .
+\]</span> Since the divergence of a curl must vanish, the first field equation of magnetostatics immediately follows, <span class="math display">\[
 \boxed{
 \nabla \cdot \mathbf{B} = 0
 } \ .
 \]</span> Given the similarity to Gauss’s law for electricity, this field equation is sometimes called Gauss’s law for magnetism.</p>
-<p>To derive the remaining field equation let’s now look at the curl of the magnetic field. Recall from vector calculus that <span class="math display">\[
+</section>
+<section id="curl-of-mathbfb" class="level3">
+<h3 class="anchored" data-anchor-id="curl-of-mathbfb">Curl of <span class="math inline">\(\mathbf{B}\)</span></h3>
+<p>To derive the remaining field equation let’s now look at the curl of the B-field. Recall from vector calculus that <span class="math display">\[
 \nabla \times (\nabla \times \mathbf{A}) = \nabla (\nabla \cdot \mathbf{A}) - \nabla^2 \mathbf{A} \ .
-\]</span> Clearly the left-hand side is just <span class="math inline">\(\nabla \times \mathbf{B}\)</span>, what we seek to find. Let’s simplify the right-hand side a bit, starting with <span class="math inline">\(\nabla (\nabla \cdot \mathbf{A})\)</span>. Plugging in the integral expression for the vector potential <span class="math inline">\(\mathbf{A}(\mathbf{x})\)</span> and moving the divergence inside the integral, we have <span class="math display">\[
-\nabla (\nabla \cdot \mathbf{A}) = \frac{1}{c} \nabla \int d^3 \mathbf{x}' \ \nabla \cdot \frac{\mathbf{J}(\mathbf{x}')}{|\mathbf{x} - \mathbf{x}'|} \ .
-\]</span> To simplify this expression, notice first that the integrand can be rewritten as <span class="math display">\[
+\]</span> Clearly the left-hand side is just <span class="math inline">\(\nabla \times \mathbf{B}\)</span>, what we seek to find. Let’s now simplify the right-hand side, starting with the first term. Plugging in the integral for <span class="math inline">\(\mathbf{A}(\mathbf{x})\)</span> and moving the divergence inside the integral, we have <span class="math display">\[
+\nabla (\nabla \cdot \mathbf{A}) = \nabla \int d^3 \mathbf{x}' \ \nabla \cdot \frac{\mathbf{J}(\mathbf{x}')}{|\mathbf{x} - \mathbf{x}'|} \ .
+\]</span> To simplify this expression, notice first that the integrand can using the vector calculus identity <span class="math display">\[
 \nabla \cdot \frac{\mathbf{J}(\mathbf{x}')}{|\mathbf{x} - \mathbf{x}'|} = \mathbf{J}(\mathbf{x}') \cdot \nabla \frac{1}{|\mathbf{x} - \mathbf{x}'|}
 \]</span> Next, we’ll use a useful fact that we’ll see a few times in the rest of this course. Namely, the gradient of <span class="math inline">\(1/|\mathbf{x} - \mathbf{x}'|\)</span> with respect to <span class="math inline">\(\mathbf{x}\)</span> is just minus its gradient with respect to <span class="math inline">\(\mathbf{x}'\)</span>, <span class="math display">\[
 \nabla \frac{1}{|\mathbf{x} - \mathbf{x}'|} = -\nabla' \frac{1}{|\mathbf{x} - \mathbf{x}'|} \ .
 \]</span> If we apply this trick to the above integral and then integrate by parts to move the derivatives from <span class="math inline">\(1/|\mathbf{x} - \mathbf{x}'|\)</span> to <span class="math inline">\(\mathbf{J}'(\mathbf{x}')\)</span>, we get <span class="math display">\[
 \int d^3 \mathbf{x}' \ \nabla \cdot \frac{\mathbf{J}(\mathbf{x}')}{|\mathbf{x} - \mathbf{x}'|} = -\int d^3 \mathbf{x}' \ \mathbf{J}(\mathbf{x}') \cdot \nabla' \frac{1}{|\mathbf{x} - \mathbf{x}'|} = \int d^3 \mathbf{x}' \ \frac{\nabla' \cdot \mathbf{J}(\mathbf{x}')}{|\mathbf{x} - \mathbf{x}'|} \ .
 \]</span> Of course, for this to be true we require that the surface term vanishes as <span class="math inline">\(r' \to \infty\)</span>. This will be true so long as <span class="math inline">\(\mathbf{J}(\mathbf{x}')\)</span> goes to zero at infinity faster than <span class="math inline">\(1/r'^2\)</span>, which will be the case at least for all localized current distributions.</p>
-<p>Now, in magnetostatics we require that the steady current condition hold, which means we must have <span class="math inline">\(\nabla' \cdot \mathbf{J}(\mathbf{x}') = 0\)</span>. This means the integrand must vanish for all <span class="math inline">\(\mathbf{x}'\)</span>, which means the integral also must vanish, and hence <span class="math inline">\(\nabla (\nabla \cdot \mathbf{A}) = 0\)</span>.</p>
-<p>Let’s now look at the remaining term <span class="math inline">\(\nabla^2 \mathbf{A}\)</span>. Plugging in the integral for <span class="math inline">\(\mathbf{A}(\mathbf{x})\)</span> and moving <span class="math inline">\(\nabla^2\)</span> inside the integral, we have <span class="math display">\[
+<p>Now, in magnetostatics we require that the steady current condition hold, which means we must have <span class="math inline">\(\nabla' \cdot \mathbf{J}(\mathbf{x}') = 0\)</span>. This means the integrand must vanish for all <span class="math inline">\(\mathbf{x}'\)</span>, which means the integral also must vanish, which means <span class="math inline">\(\nabla \cdot \mathbf{A} = 0\)</span>, which means that <span class="math inline">\(\nabla (\nabla \cdot \mathbf{A}) = 0\)</span> as well.</p>
+<p>We now need to simplify <span class="math inline">\(\nabla^2 \mathbf{A}\)</span>. Plugging in the integral for <span class="math inline">\(\mathbf{A}(\mathbf{x})\)</span> and moving <span class="math inline">\(\nabla^2\)</span> inside the integral, we have <span class="math display">\[
 \nabla^2 \mathbf{A} = \frac{1}{c} \int d^3 \mathbf{x}' \ \nabla^2 \frac{\mathbf{J}(\mathbf{x}')}{|\mathbf{x} - \mathbf{x}'|} \ .
 \]</span> Since <span class="math inline">\(\nabla^2 \ 1/|\mathbf{x} - \mathbf{x}'| = -4\pi \delta(\mathbf{x} - \mathbf{x}')\)</span> the integral is trivial, giving <span class="math inline">\(\nabla^2 \mathbf{A} = -4\pi/c \ \mathbf{J}\)</span>.</p>
-<p>Thus, in magnetostatics, the curl of the magnetic field is evidently proportional to the current density, with <span class="math display">\[
+<p>Thus, in magnetostatics, the curl of the B-field is evidently proportional to the current density, with <span class="math display">\[
 \boxed{
 \nabla \times \mathbf{B} = \frac{4\pi}{c} \mathbf{J}
 } \ .
@@ -709,15 +687,16 @@ d\mathbf{F} = \frac{1}{c} \mathbf{I}_2 \times \mathbf{B}_1 d\ell = \frac{1}{c} (
 \nabla \cdot \mathbf{B} = 0 \quad , \quad \nabla \times \mathbf{B} = \frac{4\pi}{c} \mathbf{J} \ .
 \]</span> So what do these tell us? Let’s compare these with the field equations we found for electrostatics, <span class="math display">\[
 \nabla \cdot \mathbf{E} = 4\pi \rho \quad , \quad \nabla \times \mathbf{E} = 0 \ .
-\]</span> In electrostatics, it appears that it’s the charge distribution that gives rise to the electric field. There are no currents present. Meanwhile, in magnetostatics it appears it’s the current distribution that gives rise to the magnetic field. In this case there are no charges present. In classical electromagnetism, it’s only electric currents that cause magnetic fields. There is no notion of magnetic charge, or said differently there is no notion of magnetic monopoles. Again, it’s possible these <em>may</em> exist, but we’ve never found them. Until that happens, we take these equations as reality.</p>
+\]</span> In electrostatics, it appears that it’s the charge distribution that gives rise to the E-field. There are no currents present. Meanwhile, in magnetostatics it appears it’s the current distribution that gives rise to the B-field. Evidently, in classical electromagnetism it’s only electric currents that create B-fields. Magnetic charges do not exist, or equivalently, magnetic monopoles do not exist. It’s entirely possible that magnetic monopoles <em>may</em> exist, in which case we’d need to modify the theory of electromagnetism, but we’ve never found them. Until that happens, we take these equations as reality.</p>
 </section>
-<section id="amperes-law" class="level3">
-<h3 class="anchored" data-anchor-id="amperes-law">Ampere’s Law</h3>
+</section>
+<section id="amperes-law" class="level2">
+<h2 class="anchored" data-anchor-id="amperes-law">Ampere’s Law</h2>
 <p>In electrostatics, we were able to use the integral form of Gauss’s law to easily find the electric field of several charge distributions with high degrees of symmetry. It turns out we can do something similar with Ampere’s law, but to do that we first need to convert the differential form of Ampere’s law into its integral form.</p>
 <p>To do this, we’ll choose some arbitrary surface <span class="math inline">\(\mathcal{S}\)</span> and integrate both sides of Ampere’s law over this surface, <span class="math display">\[
-\int_{\mathcal{S}} (\nabla \times \mathbf{B}) \cdot d\boldsymbol{\ell} = \frac{4\pi}{c} \int_{\mathcal{S}} \mathbf{J} \cdot d\boldsymbol{\ell} \ .
+\int_{\mathcal{S}} (\nabla \times \mathbf{B}) \cdot d\boldsymbol{\ell} = \frac{4\pi}{c} \int_{\mathcal{S}} \mathbf{J} \cdot d\mathbf{a} \ .
 \]</span> Now, notice that the path integral on the right-hand side is just the total enclosed current <span class="math inline">\(I_\text{enc}\)</span> flowing through the closed loop, <span class="math display">\[
-I_\text{enc} = \int_{\mathcal{S}} \mathbf{J} \cdot d\boldsymbol{\ell} \ .
+I_\text{enc} = \int_{\mathcal{S}} \mathbf{J} \cdot d\mathbf{a} \ .
 \]</span> The integral on the left-hand side can be rewritten as a surface integral using Stokes’ theorem. Suppose <span class="math inline">\(\mathcal{C}\)</span> is the closed loop that bounds the surface <span class="math inline">\(\mathcal{S}\)</span> chosen above. Then by Stokes’ theorem we have <span class="math display">\[
 \int_{\mathcal{S}} (\nabla \times \mathbf{B}) \cdot d\mathbf{a}  = \oint_{\mathcal{C}} \mathbf{B} \cdot d\boldsymbol{\ell} \ .
 \]</span> Putting these together, we have the integral form of Ampere’s law, <span class="math display">\[
@@ -725,36 +704,379 @@ I_\text{enc} = \int_{\mathcal{S}} \mathbf{J} \cdot d\boldsymbol{\ell} \ .
 \oint_{\mathcal{C}} \mathbf{B} \cdot d\boldsymbol{\ell} = \frac{4\pi}{c} I_\text{enc}
 } \ .
 \]</span> In words, the integral form of Ampere’s law says that the total <em>circulation</em> of magnetic field through any closed loop is proportional to the enclosed current flowing through that loop.</p>
-<p>The power of this form of Ampere’s law lies in the fact that for a given current distribution, Ampere’s law must be true for <em>any</em> closed loop <span class="math inline">\(\mathcal{C}\)</span> we choose. This means if we need to calculate the magnetic field of an enclosed current distribution then we can choose any closed loop we like to do so. We call any such choice of closed loop an <em>Amperian loop</em>. Indeed, this is very similar to Gauss’s law, which says we’re allowed to choose any closed surface, or <em>Gaussian surface</em>, we like to calculate the electric field of an enclosed charge distribution.</p>
-<p>Suppose for a given current distribution we know that it has a certain type of symmetry that enables us to choose an Amperian loop such that the magnetic field strength along this loop is constant. If the loop has some total length <span class="math inline">\(L\)</span>, then we’d have <span class="math display">\[
+<p>The power of this form of Ampere’s law lies in the fact that for a given current distribution, Ampere’s law must be true for <em>any</em> closed loop <span class="math inline">\(\mathcal{C}\)</span> we choose. This means if we need to calculate the B-field of an enclosed current distribution then we can choose any closed loop we like to do so. We call any such choice of closed loop an <em>Amperian loop</em>. Indeed, this is very similar to Gauss’s law, which says we’re allowed to choose any closed surface, or <em>Gaussian surface</em>, we like to calculate the electric field of an enclosed charge distribution.</p>
+<p>Suppose for a given current distribution we know that it has a certain type of symmetry that enables us to choose an Amperian loop such that the magnetic field strength along this loop is constant. If the field is constant along some section of the loop with length <span class="math inline">\(L\)</span>, then we’d have <span class="math display">\[
 \oint_{\mathcal{C}} \mathbf{B} \cdot d\boldsymbol{\ell} = |\mathbf{B}| \oint_{\mathcal{C}} d\ell = |\mathbf{B}| L \ .
 \]</span> This means the magnetic field strength <span class="math inline">\(|\mathbf{B}|\)</span> along this loop is evidently just <span class="math display">\[
 |\mathbf{B}| = \frac{4\pi}{c} \frac{I_\text{enc}}{L} \ .
-\]</span> Of course, for this to work we need to easily be able to identify the symmetry of a given current distribution and find an Amperian loop that matches this symmetry. Just as with Gauss’s law, there are only a handful of distributions in which this is really possible. Those are the infinite wire of uniform current, the solenoid, and the &lt;&gt;. Let’s look at each of these.</p>
-<section id="infinite-wire-of-uniform-current" class="level5">
-<h5 class="anchored" data-anchor-id="infinite-wire-of-uniform-current">Infinite wire of uniform current</h5>
+\]</span> Of course, for this to work we need to easily be able to identify the symmetry of a given current distribution and find an Amperian loop that matches this symmetry. Just as with Gauss’s law, there are only a handful of distributions in which this is really possible. Those are the infinite wire, the infinite sheet, and the solenoid. Let’s look at each of these one by one.</p>
+<section id="infinite-conducting-wire-of-current" class="level5">
+<h5 class="anchored" data-anchor-id="infinite-conducting-wire-of-current">Infinite conducting wire of current</h5>
+<p>Consider again the infinite conducting wire of uniform current <span class="math inline">\(I\)</span>. We calculated the B-field of this wire before using the Biot-Savart law. Now we’ll do the same using Ampere’s law. We’ll again suppose the wire is oriented along the <span class="math inline">\(z\)</span>-axis.</p>
+<p>FIGURE</p>
+<p>From symmetry it’s clear that the B-field of the wire should only be a function of the cylindrical radius <span class="math inline">\(\varrho\)</span>, and the field should point in the <span class="math inline">\(\varphi\)</span>-direction by the right-hand rule. We thus need only to find the field strength <span class="math inline">\(B(\varrho)\)</span>, where <span class="math display">\[
+\mathbf{B}(\mathbf{x}) = B(\varrho) \mathbf{e}_\varphi \ .
+\]</span> Now, <span class="math inline">\(B(\varrho)\)</span> is clearly constant along any counterclockwise circular loop of radius <span class="math inline">\(\varrho\)</span> around the wire. We’ll thus choose these circular loops as the Amperian loop. Inside such a loop the enclosed current is clearly just the current flowing through the wire, meaning <span class="math inline">\(I_\text{enc} = I\)</span>. Since such a loop has a length <span class="math inline">\(L = 2\pi \varrho\)</span>, we evidently have <span class="math display">\[
+B(\varrho) = \frac{4\pi}{c} \frac{I_\text{enc}}{L} = \frac{4\pi}{c} \frac{I}{2\pi \varrho} \ .
+\]</span> Thus, the B-field of the infinite wire of current is just <span class="math display">\[
+\mathbf{B}(\mathbf{x}) = \frac{2I}{c\varrho} \mathbf{e}_\varphi \ ,
+\]</span> which is the same result we found before using the Biot-Savart law directly. Just as we saw with the infinite wire of charge in electrostatics, the field doesn’t fall off like <span class="math inline">\(1/r^2\)</span> due to the assumption that the wire is infinite. Unlike with electrostatics though, the B-field points azimuthally, while the E-field points radially.</p>
+</section>
+<section id="infinite-conducting-sheet-of-current" class="level5">
+<h5 class="anchored" data-anchor-id="infinite-conducting-sheet-of-current">Infinite conducting sheet of current</h5>
+<p>Consider now an infinite conducting sheet of uniform surface current density <span class="math inline">\(K\)</span>. The B-field of this sheet can also be easily calculated using Ampere’s law.</p>
+<p>We’ll suppose the sheet is oriented in the <span class="math inline">\(xy\)</span>-plane, with the current flowing in the <span class="math inline">\(x\)</span>-direction, so <span class="math inline">\(\mathbf{K} = K \mathbf{e}_x\)</span>. From symmetry, it’s clear that the magnetic field of the sheet can only be a function of <span class="math inline">\(z\)</span>, and the field should point in the negative <span class="math inline">\(y\)</span>-direction by the right-hand rule. We thus need only to find the field strength <span class="math inline">\(B(z)\)</span>, where <span class="math display">\[
+\mathbf{B}(\mathbf{x}) = -B(z) \mathbf{e}_y \ .
+\]</span> It’s also clear from symmetry that we must have <span class="math inline">\(B(-z) = -B(z)\)</span>, meaning the field changes direction crossing the <span class="math inline">\(z\)</span>-axis.</p>
+<p>Now, <span class="math inline">\(B(z)\)</span> is clearly constant along any section of loop parallel to the <span class="math inline">\(xy\)</span>-plane. We’ll thus define an Amperian loop <span class="math inline">\(\mathcal{C}\)</span> as follows.</p>
+<ul>
+<li><span class="math inline">\(\mathcal{C}_1\)</span>: A directed line segment of length <span class="math inline">\(L\)</span> from <span class="math inline">\((0,-L/2,z)\)</span> to <span class="math inline">\((0,L/2,z)\)</span>.</li>
+<li><span class="math inline">\(\mathcal{C}_2\)</span>: A directed line segment of length <span class="math inline">\(2|z|\)</span> from <span class="math inline">\((0,L/2,z)\)</span> to <span class="math inline">\((0,L/2,-z)\)</span>.</li>
+<li><span class="math inline">\(\mathcal{C}_3\)</span>: A directed line segment of length <span class="math inline">\(L\)</span> from <span class="math inline">\((0,L/2,-z)\)</span> to <span class="math inline">\((0,-L/2,-z)\)</span>.</li>
+<li><span class="math inline">\(\mathcal{C}_4\)</span>: A directed line segment of length <span class="math inline">\(2|z|\)</span> from <span class="math inline">\((0,-L/2,-z)\)</span> to <span class="math inline">\((0,-L/2,z)\)</span>.</li>
+</ul>
+<p>See the figure below for a visual of the loop along with the flow of current along the sheet.</p>
+<p>FIGURE (show sheet of current with loop)</p>
+<p>Then, the circulation integral over the entire loop <span class="math inline">\(\mathcal{C}\)</span> is just the circulation integral over each of the four segments, <span class="math display">\[
+\int_\mathcal{C} \mathbf{B} \cdot d\boldsymbol{\ell} = \int_{\mathcal{C}_1} \mathbf{B} \cdot d\boldsymbol{\ell} + \int_{\mathcal{C}_2} \mathbf{B} \cdot d\boldsymbol{\ell} + \int_{\mathcal{C}_3} \mathbf{B} \cdot d\boldsymbol{\ell} + \int_{\mathcal{C}_4} \mathbf{B} \cdot d\boldsymbol{\ell} \ .
+\]</span> Now, notice that the integrals over the vertical segments <span class="math inline">\(\mathcal{C}_2\)</span> and <span class="math inline">\(\mathcal{C}_4\)</span> must be equal and opposite since the field depends only on <span class="math inline">\(z\)</span> and not <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>. This means only the horizontal segments contribute anything, giving <span class="math inline">\(B(z) L\)</span> over <span class="math inline">\(\mathcal{C}_1\)</span> and <span class="math inline">\(B(-z) L\)</span> over <span class="math inline">\(\mathcal{C}_3\)</span>. Thus, <span class="math display">\[
+\int_\mathcal{C} \mathbf{B} \cdot d\boldsymbol{\ell} = L B(z) + L B(-z) = 2L B(z) \ .
+\]</span> The enclosed current through the loop is just the current flowing through the line segment joining <span class="math inline">\((0,-L/2,0)\)</span> to <span class="math inline">\((0,L/2,0)\)</span>. Since this segment has length <span class="math inline">\(L\)</span> and the current density through it is a constant <span class="math inline">\(K\)</span>, the enclosed current is just <span class="math inline">\(I_\text{enc} = K L\)</span>.</p>
+<p>Putting these together, by Ampere’s law we have <span class="math display">\[
+B(z) = \frac{2\pi K}{c} \ ,
+\]</span> which means the magnetic field of the infinite sheet of current is evidently <span class="math display">\[
+\mathbf{B}(\mathbf{x}) = \begin{cases}
+2\pi K/c &amp; z &gt; 0 \ , \\
+-2\pi K/c &amp; z &lt; 0 \ .
+\end{cases}
+\]</span> Thus, the B-field strength is constant at any point above or below the sheet, just as the electric field of an infinite sheet of charge is constant. Since <span class="math inline">\(B(-z) = -B(z)\)</span>, the field strength experiences a discontinuity when crossing the sheet. The B-field strength changes discontinuously by exactly <span class="math inline">\(\Delta B = 4\pi K/c\)</span>. We saw this behavior in electrostatics as well, where the E-field through an infinite sheet of charge changes by a discontinuous amount <span class="math inline">\(\Delta E = 4\pi \sigma\)</span> when crossing the sheet.</p>
 </section>
 <section id="solenoid" class="level5">
 <h5 class="anchored" data-anchor-id="solenoid">Solenoid</h5>
+<p>The final current distribution we’ll consider is the <em>solenoid</em>. A solenoid is a tightly wound coil of conducting wire through which a current is pumped, so tightly wound that the current always points azimuthally along the coil. Provided the coil is wound tightly enough, the B-field inside the coil will be constant and point cylindrically outward from the coil, while outside the wire the field will more or less vanish. To see why, suppose we have an infinitely long coil of wire oriented along the <span class="math inline">\(z\)</span>-axis. We’ll assume that each coil is a loop of radius <span class="math inline">\(a\)</span>, and that there are exactly <span class="math inline">\(n\)</span> coils per unit length of wire. Through this coil we imagine some constant current <span class="math inline">\(I\)</span> is flowing azimuthally.</p>
+<p>Now, if the current is moving azimuthally, there can be no azimuthal component to the field since the B-field is always perpendicular to the current. But there also can’t be a radial direction to the field either. To see why, suppose we choose a B-field point inside the solenoid. Since reversing the direction of the current through the solenoid shouldn’t alter the radial current of the field due to symmetry. This means the B- field of the solenoid must point in the <span class="math inline">\(z\)</span>-direction. Moreover, the field strength cannot depend on <span class="math inline">\(\varphi\)</span> or <span class="math inline">\(z\)</span> since the solenoid is cylindrically symmetric. We thus must conclude that <span class="math display">\[
+\mathbf{B}(\mathbf{x}) = B(\varrho) \mathbf{e}_z \ .
+\]</span> Let’s now look more closely at the <span class="math inline">\(\varrho\)</span>-dependence of the field strength. To analyze this dependence we’ll need to consider two cases, field points lying either inside or outside the radius of the solenoid.</p>
+<p>FIGURE (solenoid with two loops, inner and outer rectangles)</p>
+<p>To that end let’s first suppose we have an Amperian loop lying completely outside the solenoid consisting of a rectangle of height <span class="math inline">\(\ell\)</span> oriented along the <span class="math inline">\(z\)</span>-axis, as shown in the above figure. Since there is no enclosed current flowing through this loop, and since for each horizontal segment of loop we have <span class="math inline">\(\mathbf{B} \cdot d\boldsymbol{\ell} = 0\)</span>, by Ampere’s law we must have <span class="math display">\[
+\int_\mathcal{C} \mathbf{B} \cdot d\boldsymbol{\ell} = B(a) \ell - B(b) \ell = 0 \ .
+\]</span> This means <span class="math inline">\(B(a) = B(b)\)</span>, which means the field strength also doesn’t depend on <span class="math inline">\(\varrho\)</span>, and hence must be constant. Now, outside of the solenoid we expect the field should go to zero at infinity as it would for any wire. But since the B-field is independent of <span class="math inline">\(\varrho\)</span>, the only way this can be true is if <span class="math inline">\(B = 0\)</span> outside the solenoid, i.e.&nbsp;when <span class="math inline">\(\varrho \geq a\)</span>.</p>
+<p>By the same argument, the field also must be constant inside the solenoid, when <span class="math inline">\(\varrho &lt; a\)</span>, but it need not vanish. To find its value inside the solenoid, we’ll take the same Amperian loop defined above, but translate it inward so the inner vertical segment lies inside the solenoid. If we now look at the circulation integral again, we find that only the vertical segment inside the solenoid contributes anything to the circulation since the outer vertical segment must vanish, giving <span class="math display">\[
+\int_\mathcal{C} \mathbf{B} \cdot d\boldsymbol{\ell} = B \ell \ .
+\]</span> But now this new loop contains an enclosed current consisting of the product of the current <span class="math inline">\(I\)</span> with the number of coils <span class="math inline">\(n \ell\)</span> passing through the enclosed surface of the loop, <span class="math inline">\(I_\text{enc} = n\ell I\)</span>. By Ampere’s law, inside the wire we thus have <span class="math display">\[
+B = \frac{4\pi}{c} n I \ .
+\]</span> In summary then, the B-field of an infinitely long solenoid of radius <span class="math inline">\(a\)</span> is thus <span class="math display">\[
+\mathbf{B}(\mathbf{x}) =
+\begin{cases}
+4\pi n I/c \ \mathbf{e}_z &amp; \varrho &lt; a \ , \\
+\mathbf{0} &amp; \varrho \geq a \ .
+\end{cases}
+\]</span> Evidently, the solenoid is able to produce a uniform B-field inside the coils. In this sense, the solenoid is to magnetostatics what the parallel plate capacitor is to electrostatics, a simple device for producing a uniform field inside a closed volume. This makes the solenoid a very useful and practical means for generating magnetic fields in the lab and in many engineering devices.</p>
+<p>As we saw with the infinite sheet of current, the B-field changes discontinuously when crossing outside the solenoid. In fact, since <span class="math inline">\(K = nI\)</span>, the field strength also changes by exactly <span class="math inline">\(\Delta B = 4\pi K/c\)</span>. This is due to the unstated assumption that the coils are infinitely thin, which means we can effectively think of a solenoid as a hollow cylinder with surface density <span class="math inline">\(K = nI\)</span>.</p>
 </section>
-<section id="section" class="level5">
-<h5 class="anchored" data-anchor-id="section">&lt;&gt;</h5>
+</section>
+<section id="vector-potential" class="level2">
+<h2 class="anchored" data-anchor-id="vector-potential">Vector Potential</h2>
+<p>In electrostatics, we saw that we could always write the E-field as the gradient of the scalar potential. Something similar exists in magnetostatics. We cannot write the B-field as the gradient of a scalar potential, but we can write it as the curl of a vector potential. Indeed, the need for a vector potential leads to the many differences between electricity and magnetism.</p>
+<section id="definition-1" class="level3">
+<h3 class="anchored" data-anchor-id="definition-1">Definition</h3>
+<p>In the previous section, we showed that we can express the B-field in terms of the curl of a <em>vector potential</em>, <span class="math display">\[
+\boxed{
+\mathbf{B} = \nabla \times \mathbf{A}
+} \ ,
+\]</span> where the vector potential <span class="math inline">\(\mathbf{A}(\mathbf{x})\)</span> is given by the integral <span class="math display">\[
+\boxed{
+\mathbf{A}(\mathbf{x}) = \frac{1}{c} \int d^3 \mathbf{x}' \ \frac{\mathbf{J}(\mathbf{x}')}{|\mathbf{x} - \mathbf{x}'|}
+} \ .
+\]</span> Notice that this is a vector integral, meaning that there will be three component integrals to calculate. Also, notice that <span class="math inline">\(\mathbf{A}\)</span> will always point in the same direction as the current density <span class="math inline">\(\mathbf{J}\)</span>, not in the direction of the field itself.</p>
+<p>Let’s compare this to the equivalent statement in electrostatics. In that setting, we found we could express the electric field as the <em>gradient</em> of a scalar potential, <span class="math display">\[
+\mathbf{E} = -\nabla \phi \ ,
+\]</span> where the scalar potential <span class="math inline">\(\phi(\mathbf{x})\)</span> could be expressed via the integral <span class="math display">\[
+\phi(\mathbf{x}) = \int d^3 \mathbf{x}' \ \frac{\rho(\mathbf{x}')}{|\mathbf{x} - \mathbf{x}'|} \ .
+\]</span> Notice the similarities and differences between these two settings. In electrostatics, the <em>electric</em> field is the <em>gradient</em> of a <em>scalar</em> potential, while in magnetostatics the <em>magnetic</em> field is the <em>curl</em> of a <em>vector</em> potential. In a sense, the differences between the two are what gives rise to the differences in behavior we see between electric and magnetic fields. But on another hand the two expressions for the potentials look quite similar, except with <span class="math inline">\(\rho\)</span> replaced by <span class="math inline">\(\mathbf{J}/c\)</span>.</p>
+<p>Since <span class="math inline">\(\rho\)</span> and <span class="math inline">\(\mathbf{J}/c\)</span> have the same units, this evidently means the scalar potential and the vector potential also have the same units in Gaussian units. The vector potential evidently carries units of <span class="math inline">\(\text{erg} / \text{esu}\)</span>, or equivalently units of <span class="math inline">\(\text{G} \cdot \text{cm}\)</span>.</p>
+</section>
+<section id="gauge-transformations" class="level3">
+<h3 class="anchored" data-anchor-id="gauge-transformations">Gauge Transformations</h3>
+<p>In electrostatics, we saw that we could add any constant to the scalar potential and it wouldn’t affect the physics, since in the end the E-field is the gradient of the scalar potential. A similar concept exists in magnetostatics, except it’s more subtle. What physically matters is the B-field, since it’s the B-field that gives rise to the forces.</p>
+<p>This means we can add anything we like to the vector potential, so long as its curl vanishes. It turns out that the most general thing we can add to the vector potential whose curl vanishes is the gradient of some scalar field <span class="math inline">\(\chi(\mathbf{x})\)</span>, called a <em>gauge potential</em>.</p>
+<p>Suppose we transform some given vector potential <span class="math inline">\(\mathbf{A}\)</span> by <span class="math display">\[
+\mathbf{A}' = \mathbf{A} + \nabla \chi \ .
+\]</span> If we take the curl of <span class="math inline">\(\mathbf{A}'\)</span>, we see that <span class="math display">\[
+\nabla \times \mathbf{A}' = \nabla \times \mathbf{A} + \nabla \times \nabla \chi \ .
+\]</span> Since the curl of the gradient of a scalar field must vanish, for any choice of <span class="math inline">\(\chi(\mathbf{x})\)</span> we have <span class="math display">\[
+\mathbf{B} = \nabla \times \mathbf{A} = \nabla \times \mathbf{A}' \ .
+\]</span> Thus, any transformation <span class="math inline">\(\mathbf{A} \to \mathbf{A}'\)</span> that adds the gradient of any gauge potential <span class="math inline">\(\chi\)</span> won’t alter the underlying physics. We call any transformation of this form a <em>gauge transformation</em>. This means that given any vector potential <span class="math inline">\(\mathbf{A}\)</span>, we can always do a gauge transformation without altering the B-field <span class="math inline">\(\mathbf{B}\)</span>. In particular, this means any two given vector potentials may look very different, yet still be <em>gauge equivalent</em>, in the sense that they give rise to the same B-field. This is very different to what we saw in electrostatics, where the scalar potential of a given E-field could only differ by an additive constant.</p>
+<p>All of this begs the question though of which gauge potential we should choose, and how we should choose it. In magnetostatics, the natural choice of gauge potential is one such that the vector potential can always be gauge transformed into the integral <span class="math display">\[
+\mathbf{A}(\mathbf{x}) = \frac{1}{c} \int d^3 \mathbf{x}' \ \frac{\mathbf{J}(\mathbf{x}')}{|\mathbf{x} - \mathbf{x}'|} \ .
+\]</span> It turns out that the only gauge potentials that meet this condition are those satisfying Laplace’s equation <span class="math inline">\(\nabla^2 \chi = 0\)</span>. If the integral is over all space, as it typically is, this condition implies the gauge potential itself must be constant as well.</p>
+<p>Typically, when choosing a gauge potential, or <em>gauge fixing</em>, we don’t specify the gauge potential directly, but instead specify a condition on the divergence of the vector potential. This is equivalent to specifying the <em>Laplacian</em> of the gauge potential, since if <span class="math inline">\(\mathbf{A}' = \mathbf{A} + \nabla \chi\)</span>, then the divergence is <span class="math display">\[
+\nabla \cdot \mathbf{A}' = \nabla \cdot \mathbf{A} + \nabla^2 \chi \ .
+\]</span> Since we require that <span class="math inline">\(\nabla^2 \chi = 0\)</span> in magnetostatics, this is equivalent to requiring that <span class="math inline">\(\nabla \cdot \mathbf{A}' = \nabla \cdot \mathbf{A}\)</span> for any choice of gauge, where <span class="math inline">\(\mathbf{A}\)</span> is given by the integral above. But in the previous section we already showed the divergence of this integral must vanish for any localized current distribution. Thus, in magnetostatics we assume the gauge condition <span class="math display">\[
+\boxed{
+\nabla \cdot \mathbf{A} = 0
+} \ .
+\]</span> This is called the <em>Coulomb gauge</em>. There are other gauge conditions one could choose as well. As a general rule, we want to choose a gauge that will simplify the theory in a particular setting. In magnetostatics, the simplest choice of gauge is the Coulomb gauge, so that the vector potential is given by the integral above. But in other settings a different choice of gauge may be more useful. For instance, when we get to electrodynamics we’ll find it more useful to choose a different gauge, namely the <em>Lorentz gauge</em>.</p>
+<p>At any rate, the gauge invariance of the vector potential makes it much more complicated to interpret physically. In electrostatics, we could interpret the scalar potential simply as the energy per unit charge relative to some ground point. But with the vector potential things are much more subtle. In a loose sense, the vector potential can be thought of as a kind of momentum per unit charge, but not always. Nevertheless, the vector potential still has great theoretical importance.</p>
+</section>
+<section id="poissons-equation" class="level3">
+<h3 class="anchored" data-anchor-id="poissons-equation">Poisson’s Equation</h3>
+<p>In electrostatics, we saw that we could combine the two first order field equations for the E-field into a single second order field equation for the scalar potential, <span class="math display">\[
+\begin{cases}
+\nabla \cdot \mathbf{E} = 4\pi\rho \ , \\
+\nabla \times \mathbf{E} = \mathbf{0}
+\end{cases}
+\quad \Longrightarrow \quad
+\nabla^2 \phi = -4\pi\rho \ .
+\]</span> In magnetostatics, we can also combine the two first order field equations for the B-field into a single second order field equation for the vector potential. Starting with the two field equations for the B-field, we have <span class="math display">\[
+\begin{cases}
+\nabla \cdot \mathbf{B} = 0 \ , \\
+\nabla \times \mathbf{B} = \frac{4\pi}{c} \mathbf{J} \ .
+\end{cases}
+\]</span> By writing <span class="math inline">\(\mathbf{B} = \nabla \times \mathbf{A}\)</span>, we automatically get the first field equation for free. All we need to do now is plug the vector potential into Ampere’s law. To do that, we’ll use the identity <span class="math display">\[
+\nabla \times \mathbf{B} = \nabla \times (\nabla \times \mathbf{A}) = \nabla(\nabla \cdot \mathbf{A}) - \nabla^2 \mathbf{A} \ .
+\]</span> The left-hand side is just <span class="math inline">\(\nabla \times \mathbf{B}\)</span>, which by Ampere’s law is <span class="math inline">\(4\pi/c \ \mathbf{J}\)</span>. On the right-hand side we know <span class="math inline">\(\nabla \cdot \mathbf{A} = 0\)</span>, which means all that remains is <span class="math inline">\(-\nabla^2 \mathbf{A}\)</span>. We thus end up with the equation <span class="math display">\[
+\boxed{
+\nabla^2 \mathbf{A} = -\frac{4\pi}{c} \mathbf{J}
+} \ .
+\]</span> We’ve thus managed to reduce the two first order PDEs for <span class="math inline">\(\mathbf{B}\)</span> into a single second order PDE for <span class="math inline">\(\mathbf{A}\)</span>. Notice that this is again just Poisson’s equation, except we now have one Poisson equation to solve for each vector component. In particular, this means the Green’s function of this differential equation is the same as the one in electrostatics, <span class="math display">\[
+G(\mathbf{x} - \mathbf{x}') = \frac{1}{|\mathbf{x} - \mathbf{x}'|} \ .
+\]</span> Any particular solution to the differential equation will be the convolution of the Green’s function with <span class="math inline">\(\mathbf{J}/c\)</span>, which of course gives back the integral we derived before, <span class="math display">\[
+\mathbf{A}(\mathbf{x}) = \frac{1}{c} \int d^3 \mathbf{x}' \ \frac{\mathbf{J}(\mathbf{x}')}{|\mathbf{x} - \mathbf{x}'|} \ .
+\]</span> For a given boundary value problem, the general solution will be this particular solution summed with any solution to the vector Laplace’s equation <span class="math inline">\(\nabla^2 \mathbf{A} = 0\)</span> subject to any given boundary conditions.</p>
+<p>Unfortunately, unlike Poisson’s equation for the scalar potential, solving Poisson’s equation directly for the vector potential is rarely useful as a means to solve a given problem. This is due to the fact that we now have a <em>coupled</em> vector differential equation to solve, which is much more difficult. The coupling comes from the fact that any solution to Poisson’s equation must <em>also</em> satisfy the gauge condition <span class="math inline">\(\nabla \cdot \mathbf{A} = 0\)</span>. Even worse, the boundary conditions for magnetostatics problems are often much less trivial. For instance, the B-field on the surface of a conductor need not vanish, nor is it physically realistic to fix a constant vector potential on the surface of a given material. We’ll cover some ways to calculate the vector potential using other methods below.</p>
+</section>
+<section id="boundary-conditions" class="level3">
+<h3 class="anchored" data-anchor-id="boundary-conditions">Boundary Conditions</h3>
+<ul>
+<li>Derive surface boundary conditions for <span class="math inline">\(B\)</span> and <span class="math inline">\(A\)</span></li>
+</ul>
+</section>
+<section id="calculating-vector-potentials" class="level3">
+<h3 class="anchored" data-anchor-id="calculating-vector-potentials">Calculating Vector Potentials</h3>
+<p>Unlike in electrostatics, it’s typically much less helpful to solve problems in magnetostatics by first calculating the potential and then using that to calculate the B-field. The reason for this is that the integral for <span class="math inline">\(\mathbf{A}(\mathbf{x})\)</span> is still a vector equation, which can often be as difficult to solve as finding <span class="math inline">\(\mathbf{B}(\mathbf{x})\)</span> from the Biot-Savart law directly. Nevertheless, when an expression for the vector potential is needed, there are a few ways to calculate them. One way is to use the integral directly, <span class="math display">\[
+\mathbf{A}(\mathbf{x}) = \frac{1}{c} \int d^3 \mathbf{x}' \ \frac{\mathbf{J}(\mathbf{x}')}{|\mathbf{x} - \mathbf{x}'|} \ .
+\]</span> If the magnetic field is already known, we can calculate the vector potential another way. In magnetostatics, we can write <span class="math display">\[
+\nabla^2 \mathbf{A} = -\nabla \times \mathbf{B} \ .
+\]</span> Notice this equation looks like the Poisson equation <span class="math inline">\(\nabla^2 \phi = -4\pi\rho\)</span> in electrostatics, except with three components. This means <span class="math inline">\(\nabla^2 \mathbf{A}\)</span> must have the same Green’s function as we had in electrostatics, namely <span class="math inline">\(1/|\mathbf{x} - \mathbf{x}'|\)</span>. We know then that the solution of the equation <span class="math inline">\(\nabla^2 \mathbf{A} = -4\pi \mathbf{F}\)</span> can be expressed as the convolution of <span class="math inline">\(\mathbf{F}\)</span> with the Green’s function. If we set <span class="math inline">\(\mathbf{F} = 1/4\pi \ \nabla \times \mathbf{B}\)</span>, we thus immediate get that <span class="math display">\[
+\mathbf{A}(\mathbf{x}) = \frac{1}{4\pi} \int d^3\mathbf{x}' \ \frac{\nabla' \times \mathbf{B}(\mathbf{x}')}{|\mathbf{x} - \mathbf{x}'|} \ .
+\]</span> This provides a way to calculate the vector potential of some current distribution if we already know the magnetic field. Note that this formula implicitly assumes that the current distribution is localized. If it’s infinite we need to do something else to find <span class="math inline">\(\mathbf{A}\)</span>. In these cases, we can instead calculate the circulation of <span class="math inline">\(\mathbf{A}\)</span> around some Amperian loop. By Stoke’s theorem, we have <span class="math display">\[
+\oint_\mathcal{C} \mathbf{A} \cdot d\boldsymbol{\ell} = \int_\mathcal{S} (\nabla \times \mathbf{A}) \cdot d\mathbf{a} = \int_\mathcal{S} \mathbf{B} \cdot d\mathbf{a} \ .
+\]</span> The integral on the right-hand side is just the <em>magnetic flux</em> through the surface <span class="math inline">\(\mathcal{S}\)</span>, which we’ll denote <span class="math inline">\(\Phi_B\)</span>, so we have <span class="math display">\[
+\oint_\mathcal{C} \mathbf{A} \cdot d\boldsymbol{\ell} = \Phi_B \ .
+\]</span> Notice how similar this expression looks to Ampere’s law, except with <span class="math inline">\(\mathbf{B}\)</span> replaced by <span class="math inline">\(\mathbf{A}\)</span> and <span class="math inline">\(4\pi/c \ \mathbf{J}\)</span> replaced by <span class="math inline">\(\Phi_B\)</span>. This means if the symmetry of a problem permits, we can often use the same tricks we used with Ampere’s law to find <span class="math inline">\(\mathbf{A}\)</span>.</p>
+<section id="example-vector-potential-of-a-uniform-magnetic-field" class="level5">
+<h5 class="anchored" data-anchor-id="example-vector-potential-of-a-uniform-magnetic-field">Example: Vector potential of a uniform magnetic field</h5>
+<p>Suppose some current distribution gives rise to a uniform magnetic field <span class="math inline">\(\mathbf{B}\)</span>. We’d like to find the vector potential <span class="math inline">\(\mathbf{A}\)</span>. First, it’s clear that no localized current distribution can give rise to a constant magnetic field <span class="math inline">\(\mathbf{B}\)</span>, since the field would go to zero at infinity for any localized current distribution. We thus need to use the modified Ampere’s law to find <span class="math inline">\(\mathbf{A}\)</span>, <span class="math display">\[
+\oint_\mathcal{C} \mathbf{A} \cdot d\boldsymbol{\ell} = \Phi_B \ .
+\]</span> Suppose the magnetic field is oriented in the positive <span class="math inline">\(z\)</span>-direction, with <span class="math inline">\(\mathbf{B} = B \mathbf{e}_z\)</span>. This means <span class="math inline">\(\mathbf{A}\)</span> must then be oriented in the <span class="math inline">\(xy\)</span>-plane. In fact, it’s not too hard to see that <span class="math inline">\(\mathbf{A}\)</span> must be azimuthal, with <span class="math inline">\(\mathbf{A} = A \mathbf{e}_\varphi\)</span>.</p>
+<p>With this in mind, consider as an Amperian loop a counterclockwise circle of radius <span class="math inline">\(\varrho\)</span> centered in the <span class="math inline">\(xy\)</span>-plane. Along this loop the vector potential must be constant, and <span class="math inline">\(\Phi_B = \pi\varrho^2 B\)</span>. Thus, we get <span class="math display">\[
+\oint_\mathcal{C} \mathbf{A} \cdot d\boldsymbol{\ell} = 2\pi \varrho A = \pi\varrho^2 B \ .
+\]</span> This means we have <span class="math display">\[
+\mathbf{A}(\mathbf{x}) = \frac{1}{2} \varrho B \mathbf{e}_\varphi = -\frac{1}{2} (\varrho\mathbf{e}_\varrho \times B\mathbf{e}_z) = -\frac{1}{2} \mathbf{x} \times \mathbf{B} \ .
+\]</span> The vector potential of a uniform B-field can thus be expressed in the form <span class="math display">\[
+\mathbf{A}(\mathbf{x}) = -\frac{1}{2} \mathbf{x} \times \mathbf{B} \ .
+\]</span> One can easily verify this gives the answer by confirming that <span class="math inline">\(\mathbf{B} = \nabla \times \mathbf{A}\)</span>. This is perhaps one of the few vector potentials worth actually remembering. It’s the magnetic analogue of the similar statement that <span class="math inline">\(\phi(\mathbf{x}) = -\mathbf{x} \cdot \mathbf{E}\)</span> for a uniform E-field.</p>
+</section>
+<section id="example-vector-potential-of-a-rotating-charged-sphere" class="level5">
+<h5 class="anchored" data-anchor-id="example-vector-potential-of-a-rotating-charged-sphere">Example: Vector potential of a rotating charged sphere</h5>
+<p>Suppose a hollow sphere of radius <span class="math inline">\(R\)</span> is rotating with some constant angular velocity <span class="math inline">\(\omega\)</span> about some axis. On the sphere is a uniform surface charge density <span class="math inline">\(\sigma\)</span>. We’d like to calculate the vector potential and magnetic field of this rotating sphere.</p>
+<p>FIGURE (rotating sphere)</p>
+<p>To calculate the vector potential, we need to evaluate the vector integral <span class="math display">\[
+\mathbf{A}(\mathbf{x}) = \frac{1}{c} \int da' \ \frac{\mathbf{K}(\mathbf{x}')}{|\mathbf{x} - \mathbf{x}'|} \ .
+\]</span> Now, by definition <span class="math inline">\(\mathbf{K}(\mathbf{x}') = \sigma \mathbf{v}'\)</span>, and since <span class="math inline">\(|\mathbf{x}'| = R\)</span> we have <span class="math display">\[
+|\mathbf{x} - \mathbf{x}'| = \sqrt{r^2 + R^2 - 2 \mathbf{x} \cdot \mathbf{x}'} \ .
+\]</span> At this point we need to choose a coordinate system to do the integration. Obviously spherical coordinates makes the most sense, but rather than orient the angular velocity vector <span class="math inline">\(\boldsymbol{\omega}\)</span> along the <span class="math inline">\(z\)</span>-axis like we normally would, it turns out to be easier to orient the coordinate system so that the field point <span class="math inline">\(\mathbf{x}\)</span> is oriented along the <span class="math inline">\(z\)</span>-axis and <span class="math inline">\(\boldsymbol{\omega}\)</span> is in the <span class="math inline">\(xy\)</span>-plane. This means we have <span class="math inline">\(\mathbf{x} \cdot \mathbf{x}' = rR\cos\theta'\)</span>, and so <span class="math display">\[
+|\mathbf{x} - \mathbf{x}'| = \sqrt{r^2 + R^2 -2rR\cos\theta'} \ .
+\]</span> The velocity vector <span class="math inline">\(\mathbf{v}'\)</span> is given by the cross product <span class="math inline">\(\boldsymbol{\omega} \times \mathbf{x}'\)</span>, which is evidently <span class="math display">\[
+\mathbf{v}' = \boldsymbol{\omega} \times \mathbf{x}' = \omega R \mathbf{e}_\varrho \times \mathbf{e}_{r'}
+\]</span> This means the surface current density is then <span class="math inline">\(\mathbf{K}(\mathbf{x}') = R\sigma\omega \cdot\)</span>, and so the vector potential can be written <span class="math display">\[
+\mathbf{A}(\mathbf{x}) = \frac{4\pi R^3 \sigma\omega}{c} \int_0^\pi \sin\theta' d\theta' \ \frac{\cdot}{\sqrt{r^2 + R^2 -2rR\cos\theta'}} \mathbf{e}_\cdot \ .
+\]</span></p>
+<ul>
+<li>This is not finished…</li>
+</ul>
 </section>
 </section>
-</section>
-<section id="field-energy" class="level2">
-<h2 class="anchored" data-anchor-id="field-energy">Field Energy</h2>
 </section>
 <section id="multipole-expansion" class="level2">
 <h2 class="anchored" data-anchor-id="multipole-expansion">Multipole Expansion</h2>
+<p>We saw that it is generally much more difficult to calculate the vector potential than it was the scalar potential in electrostatics. For this reason, it’s even more useful in magnetostatics than it was in electrostatics to find approximate solutions for the vector potential. We already know that one useful way to do that is to do a <em>multipole expansion</em>, which provides good approximations to the potential when far away from the source distribution. We’ll derive an expansion of this type for magnetostatics as well.</p>
+<section id="derivation" class="level3">
+<h3 class="anchored" data-anchor-id="derivation">Derivation</h3>
+<p>Recall that in magnetostatics we can express the vector potential via the integral <span class="math display">\[
+\mathbf{A}(\mathbf{x}) = \frac{1}{c} \int d^3 \mathbf{x}' \ \frac{\mathbf{J}(\mathbf{x}')}{|\mathbf{x} - \mathbf{x}'|} \ .
+\]</span> Since the Green’s function inside this integral is the same as the one in electrostatics, deriving this expansion will be fairly simple. Recall from the derivation of the multipole expansion in electrostatics that we can expand the Green’s function as <span class="math display">\[
+\frac{1}{|\mathbf{x} - \mathbf{x}'|} = \frac{1}{r} + \frac{\mathbf{x} \cdot \mathbf{x}'}{r^3} + \cdots \ .
+\]</span> We only expanded up to the dipole term, but of course there will be a quadrupole term after that, and so on. Up to the dipole term then, each component <span class="math inline">\(A_i\)</span> of the vector potential <span class="math inline">\(\mathbf{A}\)</span> can be expanded in index notation as <span class="math display">\[
+A_i(\mathbf{x}) = \frac{1}{r} \int \frac{d^3 \mathbf{x}'}{c} \ J_i(\mathbf{x}') + \frac{x_j}{r^3} \int \frac{d^3 \mathbf{x}'}{c} \ x_j' J_i(\mathbf{x}') + \cdots \ .
+\]</span> Notice that neither of these integrals depends on the field point <span class="math inline">\(\mathbf{x}\)</span>, only the source point <span class="math inline">\(\mathbf{x}'\)</span>. Similar to what we did with the multipole expansion in electrostatics, we call these integrals <em>magnetic multipole moments</em>. The first integral is evidently the <em>magnetic monopole moment</em>, and the second integral is evidently the <em>magnetic dipole moment</em>. If we included more terms, the next term would be the magnetic quadrupole moment, and so on.</p>
+<p>We can calculate what those moments are most easily by first proving the following identity. For any two scalar fields <span class="math inline">\(f(\mathbf{x})\)</span> and <span class="math inline">\(g(\mathbf{x})\)</span> and any localized current density <span class="math inline">\(\mathbf{J}(\mathbf{x})\)</span> in the Coulomb gauge, we must have <span class="math display">\[
+\int d^3 \mathbf{x} \ (f \mathbf{J} \cdot \nabla g + g \mathbf{J} \cdot \nabla f) = 0 \ .
+\]</span> To prove this we’ll use integration by parts on the second term. Assuming the current is localized it must be zero at infinity, which means when we use integration by parts on the second term, the surface term will vanish leaving us with <span class="math display">\[
+\int d^3 \mathbf{x} \ g \mathbf{J} \cdot \nabla f = -\int d^3 \mathbf{x} \ (\nabla \cdot g \mathbf{J}) f \ .
+\]</span> Finally, since <span class="math inline">\(\nabla \cdot g \mathbf{J} = \nabla g \cdot \mathbf{J} + g \nabla \cdot \mathbf{J}\)</span> and <span class="math inline">\(\nabla \cdot \mathbf{J} = 0\)</span> in the Coulomb gauge, the identity is proved.</p>
+<p>For our uses below it’ll be helpful to write the above identity in index notation in terms of the source point <span class="math inline">\(\mathbf{x}'\)</span>, <span class="math display">\[
+\int d^3 \mathbf{x}' \ (f J_i \partial_i' g + g J_i \partial_i' f) = 0 \ .
+\]</span> First, observe if we set <span class="math inline">\(f=1\)</span> and <span class="math inline">\(g = x_i\)</span>, the second term vanishes and the first term reduces <span class="math inline">\(J_i\)</span>. We thus get <span class="math display">\[
+\int d^3 \mathbf{x}' \ \mathbf{J}(\mathbf{x}') = 0 \ .
+\]</span> But these are just the components of the magnetic monopole moment. Thus, the vector potential has no monopole moment, and hence no monopole potential or field. This is a formal proof if we like of the statement that magnetic monopoles do not exist. It all follows directly from the fact that <span class="math inline">\(\nabla \cdot \mathbf{B} = 0\)</span>, which is what allows us to define the vector potential in the first place.</p>
+</section>
+<section id="magnetic-dipole-moment" class="level3">
+<h3 class="anchored" data-anchor-id="magnetic-dipole-moment">Magnetic Dipole Moment</h3>
+<p>Let’s now look at the of the dipole potential, which we can write in vector form as <span class="math display">\[
+\mathbf{A}^{(1)}(\mathbf{x}) = \frac{1}{cr^3} \int d^3\mathbf{x}' \ (\mathbf{x} \cdot \mathbf{x}') \mathbf{J}(\mathbf{x}') \ .
+\]</span> We’ll find it most convenient to express this in index notation, <span class="math display">\[
+A_i^{(1)} = \frac{x_j}{cr^3} \int d^3 \mathbf{x}' \ x_j' J_i \ .
+\]</span> If we instead set <span class="math inline">\(f = -x_i/2\)</span> and <span class="math inline">\(g = -x_j/2\)</span> in the above identity we get <span class="math display">\[
+-\frac{1}{2} \int d^3 \mathbf{x}' \ (x_i' J_j + x_j' J_i) = 0 \ .
+\]</span></p>
+<p>Since this integral vanishes, we can add it to the dipole integral without changing its value. If we do that, we get <span class="math display">\[
+\int d^3 \mathbf{x}' \ x_j' J_i = \int d^3 \mathbf{x}' \ \bigg(x_j' J_i - \frac{1}{2} (x_i' J_j - x_j' J_i)\bigg) = -\frac{1}{2} \int d^3 \mathbf{x}' \ (x_i' J_j - x_j' J_i) \ .
+\]</span> This integral is identical to the original one, just written differently. If we now add it to the integral in the dipole potential, we get <span class="math display">\[
+A_i^{(1)} = -\frac{x_j}{2cr^3} \int d^3 \mathbf{x}' \ (x_i' J_j - x_j' J_i) \ .
+\]</span> Now, recall that any expression of the form <span class="math inline">\(x_i' J_j - x_j' J_i\)</span> can be related to the cross product <span class="math inline">\(\mathbf{x}' \times \mathbf{J}\)</span> by <span class="math display">\[
+x_i' J_j - x_j' J_i = \varepsilon_{ijk} (\mathbf{x}' \times \mathbf{J})_k \ .
+\]</span> This means the dipole potential can also be rewritten as <span class="math display">\[
+A_i^{(1)} = -\frac{1}{2cr^3} \varepsilon_{ijk} x_j \int d^3 \mathbf{x}' \ (\mathbf{x}' \times \mathbf{J})_k \ .
+\]</span> Finally, observe that <span class="math inline">\(\varepsilon_{ijk} x_j (\mathbf{x}' \times \mathbf{J})_k\)</span> is just the <span class="math inline">\(i\)</span><sup>th</sup> component of the triple product <span class="math inline">\(\mathbf{x} \times (\mathbf{x}' \times \mathbf{J})\)</span>. In vector notation, the dipole potential can thus evidently be written as <span class="math display">\[
+\mathbf{A}^{(1)}(\mathbf{x}) = \frac{\mathbf{x}}{r^3} \times \frac{1}{2c} \int d^3 \mathbf{x}' \ (\mathbf{J} \times \mathbf{x}') \ .
+\]</span> From this, we can see that the magnetic dipole moment, usually denoted <span class="math inline">\(\mathbf{m}\)</span>, has the form</p>
 <p><span class="math display">\[
-\mathbf{A}(\mathbf{x}) = \frac{\mathbf{m} \cdot \mathbf{x}}{cr^3} + \cdots
+\boxed{
+\mathbf{m} \equiv \frac{1}{2c} \int d^3\mathbf{x}' \ \mathbf{x}' \times \mathbf{J}(\mathbf{x}')
+} \ .
+\]</span></p>
+<p>From this definition it’s clear that the magnetic dipole moment has dimensions of charge times distance in Gaussian units, or units of <span class="math inline">\(\text{esu} \cdot \text{cm}\)</span>, the same dimension and units that the electric dipole moment has. Typically, the magnetic monopole moment is expressed in <span class="math inline">\(\text{erg} / \text{G}\)</span> in Gaussian units, which is equivalent. In SI units, the magnetic monopole moment carries units of <span class="math inline">\(\text{A} \cdot \text{m}^2\)</span>.</p>
+<p>In general, calculating the magnetic dipole moment can be challenging. But there’s one important case where it isn’t difficult to calculate, namely a planar loop of current.</p>
+<section id="example-dipole-moment-of-a-planar-loop-of-constant-current" class="level5">
+<h5 class="anchored" data-anchor-id="example-dipole-moment-of-a-planar-loop-of-constant-current">Example: Dipole moment of a planar loop of constant current</h5>
+<p>Suppose a planar current loop with interior area <span class="math inline">\(A\)</span> carries a constant current <span class="math inline">\(I\)</span>. We want to calculate the magnetic monopole moment of this current loop. Since the loop is 1-dimensional, the dipole moment will be given by</p>
+<p><span class="math display">\[
+\mathbf{m} = \frac{1}{2c} \oint_\mathcal{C} d\ell' \ \mathbf{x}' \times \mathbf{I}(\mathbf{x}') \ .
+\]</span> We’ll orient the loop to lie in the <span class="math inline">\(xy\)</span>-plane, which means both <span class="math inline">\(\mathbf{x}'\)</span> and <span class="math inline">\(\mathbf{I}(\mathbf{x}')\)</span> are also in the <span class="math inline">\(xy\)</span>-plane.</p>
+<p>Since the current along the loop is constant and <span class="math inline">\(d\mathbf{I}(\mathbf{x}') = I d\boldsymbol{\ell}'\)</span>, we can write <span class="math display">\[
+\mathbf{m} = \frac{I}{2c} \oint_\mathcal{C} \mathbf{x}' \times d\boldsymbol{\ell}' \ .
+\]</span> Now, observe that <span class="math inline">\(\mathbf{x}' \times d\boldsymbol{\ell}'\)</span> is just twice the area element <span class="math inline">\(d\mathbf{a}'\)</span> inside the loop. Since the area <span class="math inline">\(A\)</span> of the loop is given, we get <span class="math display">\[
+\mathbf{m} = \frac{I}{c} \int_\mathcal{S} d\mathbf{a}' = \frac{IA}{c} \mathbf{e}_z \ .
+\]</span> This is the correct dipole moment so long as the loop lies in the <span class="math inline">\(xy\)</span>-plane. In general, for a surface normal <span class="math inline">\(\mathbf{n}\)</span> we’d have <span class="math display">\[
+\boxed{
+\mathbf{m} = \frac{IA}{c} \mathbf{n}
+} \ .
+\]</span> Thus, the dipole moment of a planar loop of current is proportional to the product of its current and its area, and points in the direction normal to the loop.</p>
+</section>
+<section id="example-dipole-moment-of-an-orbiting-point-charge" class="level5">
+<h5 class="anchored" data-anchor-id="example-dipole-moment-of-an-orbiting-point-charge">Example: Dipole moment of an orbiting point charge</h5>
+<p>Suppose a charged particle with mass <span class="math inline">\(m\)</span> and charge <span class="math inline">\(q\)</span> is orbiting about some center with velocity <span class="math inline">\(\mathbf{v}\)</span>. For instance, this could be an electron orbiting about the nucleus of an atom. We’d like to estimate the magnetic dipole moment of this orbiting charge.</p>
+<p>If we model the orbiting charge as a planar loop of current, its magnetic dipole moment is given by the previous example, <span class="math display">\[
+\mathbf{m} = \frac{IA}{c} \mathbf{n} \ .
+\]</span> We can estimate the current <span class="math inline">\(I\)</span> as the charge per period <span class="math inline">\(\tau\)</span> of orbit, <span class="math display">\[
+I = \frac{q}{\tau} \ .
+\]</span> Note that this strictly speaking isn’t a steady current. It’s only <em>on average</em> a steady current, where we imagine the period <span class="math inline">\(\tau\)</span> is much much smaller than the time period of observation. For small particles this is typically the case. For example, an electron orbiting a hydrogen atom has an orbital period of only <span class="math inline">\(\tau \sim 10^{-15} \ \text{s}\)</span>.</p>
+<p>To calculate the area of orbit, we recall that an orbiting particle satisfies Kepler’s second law, which says <span class="math display">\[
+\frac{da}{dt} = \frac{|\mathbf{L}|}{2m} \ ,
+\]</span> where <span class="math inline">\(\mathbf{L} = |\mathbf{L}| \mathbf{n}\)</span> is the particle’s angular momentum vector. Since angular momentum is conserved, <span class="math inline">\(\mathbf{L}\)</span> will be constant. If we integrate <span class="math inline">\(da\)</span> over a full period <span class="math inline">\(\tau\)</span> we thus get the full area of the orbit, <span class="math display">\[
+A = \frac{|\mathbf{L}|}{2m} \tau \ .
+\]</span> Thus, the magnetic moment of an orbiting point charge is evidently <span class="math display">\[
+\mathbf{m} = \frac{q}{2mc} \mathbf{L} \ .
+\]</span> That is, the magnetic dipole moment of an orbiting point charge is proportional to its angular momentum, and points in the direction of the angular momentum vector. Note that this formula only holds in the non-relativistic limit <span class="math inline">\(|\mathbf{v}| \ll c\)</span>, since the classical mechanics assumptions we made need to be modified to include special relativity when <span class="math inline">\(|\mathbf{v}| \sim c\)</span>.</p>
+<p>The proportionality constant <span class="math inline">\(\gamma \equiv q/2mc\)</span> is usually given a name, the <em>gyromagnetic ratio</em>. The gyromagnetic ratio depends only on the mass and charge of the orbiting particle, not its position or velocity.</p>
+<p>We see a version of this formula arise in quantum mechanics, where among other things we’re interested in the magnetic dipole moment of a <em>spinning</em> electron. Assuming a spinning particle has a spin angular momentum <span class="math inline">\(\mathbf{S}\)</span>, the above formula suggests that the magnetic dipole moment of a spinning electron might be <span class="math display">\[
+\mathbf{m} = -\frac{e}{2m_m c} \mathbf{S} \ ,
+\]</span> where <span class="math inline">\(-e\)</span> is the charge of the electron and <span class="math inline">\(m_e\)</span> is the mass of the electron. In fact, what we find in quantum mechanics is that the magnetic dipole moment of a spinning electron is approximately <em>twice</em> this value, <span class="math display">\[
+\mathbf{m} = -\frac{e}{m_m c} \mathbf{S} \ .
+\]</span> The extra factor of two comes from relativistic quantum mechanics, which we won’t go into. In this setting, we typically define a different proportionality constant called the <em>Bohr magneton</em> <span class="math inline">\(\mu_B\)</span> defined by <span class="math display">\[
+\mu_B \equiv \frac{e \hbar}{2 m_e c} \approx 9.274 \cdot 10^{-21} \ \text{erg} / \text{G} \ .
+\]</span> Notice the inclusion of Planck’s constant <span class="math inline">\(\hbar\)</span> in the Bohr magneton. This is because in quantum mechanics the spin is quantized in integer units of <span class="math inline">\(\hbar\)</span>, which means <span class="math inline">\(\mathbf{S} / \hbar\)</span> is a dimensionless vector, hence <span class="math inline">\(\mu_B\)</span> has the units of a magnetic dipole moment. We’d thus write the magnetic dipole moment of a spinning electron in quantum mechanics as <span class="math display">\[
+\mathbf{m} = -2 \mu_B \frac{\mathbf{S}}{\hbar} \ .
+\]</span> At any rate, it’s interesting we could get this far by treating an orbiting charged particle as a classical loop of current.</p>
+</section>
+<section id="example-dipole-moment-of-a-rotating-disk-of-uniform-charge" class="level5">
+<h5 class="anchored" data-anchor-id="example-dipole-moment-of-a-rotating-disk-of-uniform-charge">Example: Dipole moment of a rotating disk of uniform charge</h5>
+<p>Suppose we have a disk with radius <span class="math inline">\(R\)</span> and uniform surface charge density <span class="math inline">\(\sigma\)</span> that’s made to rotate about its center with a constant angular velocity <span class="math inline">\(\boldsymbol{\omega}\)</span> normal to the disk.</p>
+<p>FIGURE (rotating disk)</p>
+<p>Since the disk is 2-dimensional, the magnetic monopole moment will be given by the integral <span class="math display">\[
+\mathbf{m} = \frac{1}{2c} \int_\mathcal{S} da' \ \mathbf{x}' \times \mathbf{K}(\mathbf{x}') \ .
+\]</span> Assuming the disk is centered in the <span class="math inline">\(xy\)</span>-plane, then each point <span class="math inline">\(\mathbf{x}'\)</span> in the disk will rotate with a velocity <span class="math display">\[
+\mathbf{v}' = \boldsymbol{\omega} \times \mathbf{x}' = \omega \varrho' \mathbf{e}_z \times \mathbf{e}_\varrho = \omega \varrho' \mathbf{e}_\varphi \ .
+\]</span> Since the surface charge density on the disk is uniform, this means the surface current density <span class="math inline">\(\mathbf{K}(\mathbf{x}')\)</span> will be <span class="math display">\[
+\mathbf{K}(\mathbf{x}') = \sigma \mathbf{v}' = \sigma \omega \varrho' \mathbf{e}_\varphi \ .
+\]</span> This means <span class="math inline">\(\mathbf{x}' \times \mathbf{K}(\mathbf{x}') = \sigma\omega\varrho'^2 \mathbf{e}_z\)</span>, and so the magnetic monopole moment will be given by the integral <span class="math display">\[
+\mathbf{m} = \frac{\sigma\omega}{2c} \int_0^R \varrho' d\varrho' \int_0^{2\pi} d\varphi' \ \varrho'^2 \mathbf{e}_z = \frac{\pi R^4 \sigma\omega}{4c} \mathbf{e}_z \ .
+\]</span> Incidentally, this same result could be found in a different way by making use of the result we found for the planar current loop in the previous example. The idea is to break the disk up into a bunch of differential rings of charge. For a given ring of radius <span class="math inline">\(\varrho'\)</span>, there will be a planar loop with differential current <span class="math inline">\(dI = K d\varrho' = \sigma\omega \varrho' d\varrho'\)</span>. Then the ring has a differential dipole moment <span class="math display">\[
+d\mathbf{m} = \frac{dI}{c} (\pi \varrho'^2) \mathbf{e}_z \ .
+\]</span> Integrating <span class="math inline">\(d\mathbf{m}\)</span> over the whole disk will then give the same answer obtained above.</p>
+<hr>
+<p>Up to the dipole term, the vector potential can evidently be expanded as <span class="math display">\[
+\mathbf{A}(\mathbf{x}) = \frac{\mathbf{m} \times \mathbf{x}}{r^3} + \cdots \ .
+\]</span></p>
+<p>We could keep proceed to find the higher order magnetic multipole terms as well. The next component would be the quadrupole term, falling off like <span class="math inline">\(1/r^3\)</span>. But these higher moments are generally less useful in magnetism than in electricity, and far more complicated to write down, so we’ll stop at the dipole term.</p>
+<p>Let’s compare this multipole expansion with the multipole expansion we found for the scalar potential in electrostatics, <span class="math display">\[
+\phi(\mathbf{x}) = \frac{q}{r} + \frac{\mathbf{p} \cdot \mathbf{x}}{r^3} + \cdots \ .
+\]</span> First, as we noted before, the vector potential has no monopole moment. Second, the magnetic dipole term involves a cross product with the dipole moment, instead of a dot product with the dipole moment. This partly reflects the obvious fact that the vector potential is a vector, not a scalar. But it also reflects the fact that the electric dipole term is strongest in the direction of the dipole vector, while the magnetic dipole term is strongest in directions perpendicular to the dipole vector.</p>
+<p>By taking the curl of the vector potential and manipulating terms, one can show that the B-field of the dipole potential can be expressed in the form <span class="math display">\[
+\mathbf{B}^{(1)}(\mathbf{x}) = \frac{3(\mathbf{m} \cdot \mathbf{x}) \mathbf{x} - r^2 \mathbf{m}}{r^5} \ .
+\]</span> Interestingly, the <em>dipole field</em> has the same form for both the electric and magnetic fields. Indeed, this is why they’re called dipoles in both cases. The fields look exactly the same, even if the potentials do not. In particular, this means in analogy to electrostatics we could express the dipole field as the gradient of a scalar <em>pseudo-potential</em> <span class="math inline">\(\psi\)</span>, since <span class="math display">\[
+\mathbf{B}^{(1)} = -\nabla \frac{\mathbf{m} \cdot \mathbf{x}}{r^3} \equiv -\nabla \psi \ .
+\]</span> It may seem strange that we can express the B-field as the gradient of a scalar potential. We know we can’t do this in general. The reason we can in this case is because we’re only considering field points <em>outside</em> the current distribution, and outside the current distribution we must have <span class="math inline">\(\nabla \times \mathbf{B} = \mathbf{0}\)</span>, which means <span class="math inline">\(\mathbf{B} = -\nabla \psi\)</span> for some scalar field <span class="math inline">\(\psi\)</span>. In this special case then we <em>can</em> evidently introduce a scalar potential, even though in general we can’t. This is why we call it a pseudo-potential.</p>
+<p>Just like the lowest non-vanishing moment of the scalar potential is independent of the choice of origin, the same is true of the vector potential. Since the magnetic monopole moment always vanishes, this means the magnetic dipole moment will <em>always</em> be independent of the choice of origin. If the dipole moment vanishes, the quadrupole will be independent of origin, and so on.</p>
+</section>
+</section>
+<section id="currents-in-external-magnetic-fields" class="level3">
+<h3 class="anchored" data-anchor-id="currents-in-external-magnetic-fields">Currents in External Magnetic Fields</h3>
+<p>Thus far we’ve studied the multipole expansion of a localized current distribution in free space, assuming no external fields are present. Similar to what we did in electrostatics, we now want to ask how the potential energy of localized current distribution depends on the presence of an external B-field, particular its multipole moments. We’ll assume the external B-field is strong enough that we can neglect any self fields created by the current distribution of interest.</p>
+<p>Suppose we have a localized current distribution <span class="math inline">\(\mathbf{J}(\mathbf{x})\)</span> about the origin, and in the background we’ll suppose there is an external B-field <span class="math inline">\(\mathbf{B}_{\text{ext}}(\mathbf{x})\)</span> acting on this distribution. Assuming we can Taylor expand this field about the origin, we get <span class="math display">\[
+\mathbf{B}_{\text{ext}}(\mathbf{x}) = \mathbf{B}_{\text{ext}}(\mathbf{0}) + (\mathbf{x} \cdot \nabla) \mathbf{B}_{\text{ext}}(\mathbf{x}) \bigg|_{\mathbf{x} = \mathbf{0}}  + \cdots \ .
+\]</span> Now, this external field will create a force on the current distribution given by the Lorentz force law, <span class="math display">\[
+\mathbf{F} = \frac{1}{c} \int_\mathcal{V} d^3\mathbf{x} \ \mathbf{J}(\mathbf{x}) \times \mathbf{B}_{\text{ext}}(\mathbf{x}) \ ,
+\]</span> where <span class="math inline">\(\mathcal{V}\)</span> is the enclosed volume of the current distribution. If we plug in the Taylor expansion above into the force law and group terms, we have <span class="math display">\[
+\begin{align*}
+\mathbf{F} &amp;= \frac{1}{c} \int_\mathcal{V} d^3\mathbf{x} \ \mathbf{J}(\mathbf{x}) \times \bigg[\mathbf{B}_{\text{ext}}(\mathbf{0}) + (\mathbf{x} \cdot \nabla) \mathbf{B}_{\text{ext}}(\mathbf{x}) \bigg|_{\mathbf{x} = \mathbf{0}} + \cdots \bigg] \\
+&amp;= -\frac{1}{c} \mathbf{B}_{\text{ext}}(\mathbf{0}) \times \int_\mathcal{V} d^3\mathbf{x} \ \mathbf{J}(\mathbf{x}) + \frac{1}{c} \int_\mathcal{V} d^3\mathbf{x} \ \mathbf{J}(\mathbf{x}) \times(\mathbf{x} \cdot \nabla) \mathbf{B}_{\text{ext}}(\mathbf{x}) \bigg|_{\mathbf{x} = \mathbf{0}} + \cdots \ .
+\end{align*}
+\]</span> Now, the first term will vanish. Indeed, for a localized distribution of steady current we’ve already shown that <span class="math display">\[
+\int_\mathcal{V} d^3\mathbf{x} \ \mathbf{J}(\mathbf{x}) = \mathbf{0} \ .
+\]</span> We’ll thus focus on the second term. Recall how we derived the magnetic monopole moment before. We showed that <span class="math display">\[
+\frac{1}{c} \mathbf{x} \cdot \int d^3\mathbf{x}' \ \mathbf{x}' J_i = (\mathbf{m} \times \mathbf{x})_i \ .
+\]</span> In that derivation there was nothing special about <span class="math inline">\(\mathbf{x}\)</span>. We could replace it with any vector we like. Notice if we replace <span class="math inline">\(\mathbf{x} \to \nabla B_k\)</span> and <span class="math inline">\(\mathbf{x}' \to \mathbf{x}\)</span> in the above relation, we get <span class="math display">\[
+\frac{1}{c} \bigg[\int d^3\mathbf{x} \ J_i \mathbf{x}\bigg] \cdot \nabla B_k = (\mathbf{m} \times \nabla B_k)_i \ .
+\]</span> On the left-hand side is just the second term. We thus have <span class="math display">\[
+\mathbf{F} = (\mathbf{m} \times \nabla) \times \mathbf{B}
+\]</span></p>
+<ul>
+<li>This still isn’t quite right. The final step is true, but the derivation isn’t. Dig deeper here. It’s a huge pain in the ass.</li>
+</ul>
+<p><span class="math display">\[
+F_i \approx \frac{1}{c} \int_\mathcal{V} d^3\mathbf{x} \ \varepsilon_{ijk} J_j (\mathbf{x} \cdot \nabla) B_k^{\text{ext}} \ .
+\]</span></p>
+<ul>
+<li>Continue on with lectures. Don’t feel like it tonight.</li>
+</ul>
+<p><span class="math display">\[
+U = - \mathbf{m} \cdot \mathbf{B}(\mathbf{0}) + \cdots
 \]</span></p>
 <p><span class="math display">\[
-U = - \mathbf{m} \cdot \mathbf{B} + \cdots
+\mathbf{F} = \nabla (\mathbf{m} \cdot \mathbf{B}) = -\frac{1}{2c} \nabla \int d^3\mathbf{x} \ (\mathbf{J}(\mathbf{x}) \times\mathbf{x}) \cdot \mathbf{B}
 \]</span></p>
+<p><span class="math display">\[
+F_i = \partial_i (m_\ell B_\ell) = -\frac{1}{2c} \partial_i \int d^3\mathbf{x} \ \varepsilon_{\ell j k} J_j x_k B_\ell
+\]</span></p>
+</section>
+<section id="spherical-multipole-expansion" class="level3">
+<h3 class="anchored" data-anchor-id="spherical-multipole-expansion">Spherical Multipole Expansion</h3>
+<p>Since the Green’s function for the vector potential is the same as the one for the scalar potential, we can immediately write down the spherical multipole expansion for the vector potential in magnetostatics. Recall that we could expand the Green’s function as <span class="math display">\[
+\frac{1}{|\mathbf{x} - \mathbf{x}'|} = \frac{1}{r} \sum_{\ell=0}^\infty \frac{4\pi}{2\ell+1} \bigg(\frac{r'}{r}\bigg)^\ell \sum_{m=-\ell}^\ell Y_{\ell m}(\theta,\varphi) Y_{\ell m}^*(\theta',\varphi') \ .
+\]</span> If we plug this expansion into the integral for the vector potential and group together the source-dependent terms, we get <span class="math display">\[
+\mathbf{A}(\mathbf{x}) = \frac{1}{c} \sum_{\ell=0}^\infty \sum_{m=-\ell}^\ell \frac{4\pi}{2\ell+1} \frac{Y_{\ell m}(\theta,\varphi)}{r^{\ell+1}} \int d^3 \mathbf{x}' \ \mathbf{J}(\mathbf{x}') r'^\ell Y_{\ell m}^*(\theta',\varphi') \ .
+\]</span> The terms inside the integral depend only on the source current distribution. These are the <em>magnetic spherical multipole moments</em>, which we’ll denote by <span class="math inline">\(\mathbf{m}_{\ell m}\)</span>, <span class="math display">\[
+\mathbf{m}_{\ell m} \equiv \int d^3 \mathbf{x}' \ \mathbf{J}(\mathbf{x}') r'^\ell Y_{\ell m}^*(\theta',\varphi') \ .
+\]</span> Unlike the spherical multipole moments <span class="math inline">\(q_{\ell m}\)</span> in electrostatics, which are scalars, the spherical multipole moments <span class="math inline">\(\mathbf{m}_{\ell m}\)</span> in magnetostatics are <em>vectors</em>, and hence will have three components per moment.</p>
+<p>We can thus formally express the <em>magnetic spherical multipole expansion</em> of the vector potential via the sum <span class="math display">\[
+\mathbf{A}(\mathbf{x}) = \frac{1}{c} \sum_{\ell=0}^\infty \sum_{m=-\ell}^\ell \frac{4\pi}{2\ell+1} \frac{Y_{\ell m}(\theta,\varphi)}{r^{\ell+1}} \mathbf{m}_{\ell m} \ .
+\]</span> One can show that the <span class="math inline">\(\ell=0,1\)</span> expansion terms give the same results we found above in the Cartesian expansion.</p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -1169,13 +1491,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation column-page-right">
   <div class="nav-page nav-page-previous">
-      <a href="../electrodynamics/bvps-3.html" class="pagination-link" aria-label="Boundary Value Problems III">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Boundary Value Problems III</span></span>
+      <a href="../electrodynamics/multipole-expansion.html" class="pagination-link" aria-label="Multipole Expansion">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Multipole Expansion</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../electrodynamics/orthogonal-functions.html" class="pagination-link" aria-label="Appendix I: Orthogonal Functions">
-        <span class="nav-page-text"><span class="chapter-title">Appendix I: Orthogonal Functions</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../electrodynamics/maxwell-equations.html" class="pagination-link" aria-label="Maxwell's Equations">
+        <span class="nav-page-text"><span class="chapter-title">Maxwell’s Equations</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

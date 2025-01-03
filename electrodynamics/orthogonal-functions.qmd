@@ -1279,47 +1279,47 @@ The coefficients are determined in a similar way to the way they are with real F
 
 One very useful result involving the spherical harmonics is the *addition theorem*, which provides a way to relate a single Legendre polynomial to a sum of spherical harmonics. We will use this result, for example. to derive the Green's function and multipole expansion of an electrostatic charge distribution in spherical coordinates.
 
-Suppose $\mathbf{x}$ and $\mathbf{x}'$ are two unit vectors at different angles on the sphere, $(\theta,\varphi)$ and $(\theta',\varphi')$ respectively. The angle $\gamma$ between these two vectors will then be given by $\cos\gamma = \mathbf{x} \cdot \mathbf{x}'$. The addition theorem states that
+Suppose $\mathbf{x}$ and $\mathbf{x}'$ are two unit vectors at different angles on the sphere, $(\theta,\varphi)$ and $(\theta',\varphi')$ respectively. The angle $\alpha$ between these two vectors will then be given by $\cos\alpha = \mathbf{x} \cdot \mathbf{x}'$. The addition theorem states that
 $$
 \boxed{
-P_\ell(\cos\gamma) = \frac{4\pi}{2\ell+1} \sum_{m=-\ell}^\ell Y_{\ell m}(\theta,\varphi) Y_{\ell m}^*(\theta',\varphi')
+P_\ell(\cos\alpha) = \frac{4\pi}{2\ell+1} \sum_{m=-\ell}^\ell Y_{\ell m}(\theta,\varphi) Y_{\ell m}^*(\theta',\varphi')
 }\ .
 $$
-We will now give a brief proof of this important result. Suppose without loss of generality that $\mathbf{x}'$ is fixed in space at an angle $(\theta',\varphi')$ in a base reference frame $\mathcal{S}$. In that case, we can think of $P_\ell(\cos\gamma)$ as being only a function of $\theta$ and $\varphi$.
+We will now give a brief proof of this important result. Suppose without loss of generality that $\mathbf{x}'$ is fixed in space at an angle $(\theta',\varphi')$ in a base reference frame $\mathcal{S}$. In that case, we can think of $P_\ell(\cos\alpha)$ as being only a function of $\theta$ and $\varphi$.
 
-Now, suppose we rotate to a new reference frame $\mathcal{S}'$ such that $\mathbf{x}'$ is along the $z'$-axis in the new frame and $\mathbf{x}$ is at an angle $(\gamma,\beta)$.  In this frame, we can expand the harmonic $Y_{\ell m}(\theta,\varphi)$ in terms of the harmonics $Y_{\ell m'}(\gamma,\beta)$ in the new frame by writing
+Now, suppose we rotate to a new frame $\mathcal{S}'$ such that $\mathbf{x}'$ is along the $z'$-axis in the new frame and $\mathbf{x}$ is at an angle $(\alpha,\beta)$.  In this reference frame, we can expand the harmonic $Y_{\ell m}(\theta,\varphi)$ in terms of the harmonics $Y_{\ell m'}(\alpha,\beta)$ in the new frame by writing
 $$
-Y_{\ell m}(\theta,\varphi) = \sum_{m'=-\ell}^\ell c_{\ell m'} Y_{\ell m'}(\gamma,\beta) \ .
+Y_{\ell m}(\theta,\varphi) = \sum_{m'=-\ell}^\ell c_{\ell m'} Y_{\ell m'}(\alpha,\beta) \ .
 $$
 This follows from the fact that the harmonics on both sides must satisfy the same eigenvalue equation, and since the Laplacian is invariant under rotations we can express the eigenfunctions in one frame as a superposition of the eigenfunctions in the other.
 
 It suffices to consider only the $m'=0$ coefficient, which in the $\mathcal{S}'$ frame is given by
 $$
-c_{\ell 0} = \int d\Omega' \ Y_{\ell m}(\theta,\varphi) Y_{\ell 0}^*(\gamma,\beta) \ .
+c_{\ell 0} = \int d\Omega' \ Y_{\ell m}(\theta,\varphi) Y_{\ell 0}^*(\alpha,\beta) \ .
 $$
-This follows from the fact that in this frame $P_\ell(\cos\gamma)$ is proportional to $Y_{\ell 0}(\gamma, \beta)$, with
+This follows from the fact that in this frame $P_\ell(\cos\alpha)$ is proportional to $Y_{\ell 0}(\alpha, \beta)$, with
 $$
-P_\ell(\cos\gamma) = \sqrt{\frac{4\pi}{2\ell+1}} Y_{\ell 0}(\gamma, \beta) \ .
+P_\ell(\cos\alpha) = \sqrt{\frac{4\pi}{2\ell+1}} Y_{\ell 0}(\alpha, \beta) \ .
 $$
-This also implies that $P_\ell(\cos\gamma)$ must be an eigenfunction of the Laplacian $\nabla'^2$ in the $\mathcal{S}'$ frame, with
+This also implies that $P_\ell(\cos\alpha)$ must be an eigenfunction of the Laplacian $\nabla'^2$ in the $\mathcal{S}'$ frame, with
 $$
-\nabla'^2 P_\ell(\cos\gamma) + \frac{\ell(\ell+1)}{r^2} P_\ell(\cos\gamma) = 0 \ .
+\nabla'^2 P_\ell(\cos\alpha) + \frac{\ell(\ell+1)}{r^2} P_\ell(\cos\alpha) = 0 \ .
 $$
-Now, we know that the Laplacian operator is invariant under rotations, which means the Laplacian $\nabla^2$ in the $\mathcal{S}$ frame must be the same as the rotated Laplacian $\nabla'^2$ in the $\mathcal{S}'$ frame. This means the same differential equation must hold in the $\mathcal{S}$ frame, and since the eigenfunctions in that frame are given by $Y_{\ell m}(\theta,\varphi)$, we can write $P_\ell(\cos\gamma)$ as a superposition of these, with
+Now, we know that the Laplacian operator is invariant under rotations, which means the Laplacian $\nabla^2$ in the $\mathcal{S}$ frame must be the same as the rotated Laplacian $\nabla'^2$ in the $\mathcal{S}'$ frame. This means the same differential equation must hold in the $\mathcal{S}$ frame, and since the eigenfunctions in that frame are given by $Y_{\ell m}(\theta,\varphi)$, we can write $P_\ell(\cos\alpha)$ as a superposition of these, with
 $$
-P_\ell(\cos\gamma) = \sum_{m=-\ell}^\ell a_m Y_{\ell m}(\theta,\varphi) \ .
+P_\ell(\cos\alpha) = \sum_{m=-\ell}^\ell a_m Y_{\ell m}(\theta,\varphi) \ .
 $$
-Putting the expressions for $P_\ell(\cos\gamma)$ in both reference frames together, we have
+Putting the expressions for $P_\ell(\cos\alpha)$ in both reference frames together, we have
 $$
-P_\ell(\cos\gamma) = \sqrt{\frac{4\pi}{2\ell+1}} Y_{\ell 0}(\gamma, \beta) = \sum_{m=-\ell}^\ell a_m Y_{\ell m}(\theta,\varphi) \ ,
+P_\ell(\cos\alpha) = \sqrt{\frac{4\pi}{2\ell+1}} Y_{\ell 0}(\alpha, \beta) = \sum_{m=-\ell}^\ell a_m Y_{\ell m}(\theta,\varphi) \ ,
 $$
 where the coefficients $a_m$ are given in the $\mathcal{S}$ frame by
 $$
-a_m = \int d\Omega \ P_\ell(\cos\gamma) Y_{\ell m}^*(\theta,\varphi) \ .
+a_m = \int d\Omega \ P_\ell(\cos\alpha) Y_{\ell m}^*(\theta,\varphi) \ .
 $$
-We now substitute the expression for $P_\ell(\cos\gamma)$ in the $\mathcal{S}'$ frame into this integral to get
+We now substitute the expression for $P_\ell(\cos\alpha)$ in the $\mathcal{S}'$ frame into this integral to get
 $$
-a_m = \sqrt{\frac{4\pi}{2\ell+1}} \int d\Omega \ Y_{\ell 0}(\gamma, \beta) Y_{\ell m}^*(\theta,\varphi) \ .
+a_m = \sqrt{\frac{4\pi}{2\ell+1}} \int d\Omega \ Y_{\ell 0}(\alpha, \beta) Y_{\ell m}^*(\theta,\varphi) \ .
 $$
 Since the integral depends only on the angles in one of the reference frames, we can freely change this from an integral in the $\mathcal{S}$ frame to an integral in the $\mathcal{S}'$ frame by replacing $d\Omega$ with $d\Omega'$. Then the integral is just the complex conjugate of the integral for $c_{\ell 0}$ from before. That is,
 $$
@@ -1333,11 +1333,11 @@ Substituting this result into the previous expression for $a_m^*$ and complex co
 $$
 a_m = \frac{4\pi}{2\ell+1} Y_{\ell m}^*(\theta',\varphi') \ .
 $$
-Finally, plugging this back into the series expansion for $P_\ell(\cos\gamma)$ in the $\mathcal{S}$ frame, we get what we wanted to prove,
+Finally, plugging this back into the series expansion for $P_\ell(\cos\alpha)$ in the $\mathcal{S}$ frame, we get what we wanted to prove,
 $$
-P_\ell(\cos\gamma) = \frac{4\pi}{2\ell+1} \sum_{m=-\ell}^\ell Y_{\ell m}(\theta,\varphi) Y_{\ell m}^*(\theta',\varphi') \ .
+P_\ell(\cos\alpha) = \frac{4\pi}{2\ell+1} \sum_{m=-\ell}^\ell Y_{\ell m}(\theta,\varphi) Y_{\ell m}^*(\theta',\varphi') \ .
 $$
-To conclude, notice if we set $\gamma = 0$ in this formula, then $\theta'=\theta$, $\varphi'=\varphi$, and $P_\ell(\cos\gamma) = 1$, giving us the relation
+To conclude, notice if we set $\alpha = 0$ in this formula, then $\theta'=\theta$, $\varphi'=\varphi$, and $P_\ell(\cos\alpha) = 1$, giving us the relation
 $$
 \sum_{m=-\ell}^\ell |Y_{\ell m}(\theta,\varphi)|^2 = \frac{2\ell+1}{4\pi} \ .
 $$

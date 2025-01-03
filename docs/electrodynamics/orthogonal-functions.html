@@ -31,7 +31,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
 <link href="../electrodynamics/complex-analysis.html" rel="next">
-<link href="../electrodynamics/magnetostatics.html" rel="prev">
+<link href="../electrodynamics/maxwell-equations.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -238,12 +238,17 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../electrodynamics/bvps-3.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Boundary Value Problems III</span></a>
+  <a href="../electrodynamics/multipole-expansion.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Multipole Expansion</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../electrodynamics/magnetostatics.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Magnetostatics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../electrodynamics/maxwell-equations.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Maxwell’s Equations</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -1293,37 +1298,37 @@ f(\theta,\varphi) = a_{00} + \sum_{\ell=0}^\infty \sum_{m=1}^\ell \big[a_{\ell m
 <section id="addition-theorem" class="level3">
 <h3 class="anchored" data-anchor-id="addition-theorem">Addition Theorem</h3>
 <p>One very useful result involving the spherical harmonics is the <em>addition theorem</em>, which provides a way to relate a single Legendre polynomial to a sum of spherical harmonics. We will use this result, for example. to derive the Green’s function and multipole expansion of an electrostatic charge distribution in spherical coordinates.</p>
-<p>Suppose <span class="math inline">\(\mathbf{x}\)</span> and <span class="math inline">\(\mathbf{x}'\)</span> are two unit vectors at different angles on the sphere, <span class="math inline">\((\theta,\varphi)\)</span> and <span class="math inline">\((\theta',\varphi')\)</span> respectively. The angle <span class="math inline">\(\gamma\)</span> between these two vectors will then be given by <span class="math inline">\(\cos\gamma = \mathbf{x} \cdot \mathbf{x}'\)</span>. The addition theorem states that <span class="math display">\[
+<p>Suppose <span class="math inline">\(\mathbf{x}\)</span> and <span class="math inline">\(\mathbf{x}'\)</span> are two unit vectors at different angles on the sphere, <span class="math inline">\((\theta,\varphi)\)</span> and <span class="math inline">\((\theta',\varphi')\)</span> respectively. The angle <span class="math inline">\(\alpha\)</span> between these two vectors will then be given by <span class="math inline">\(\cos\alpha = \mathbf{x} \cdot \mathbf{x}'\)</span>. The addition theorem states that <span class="math display">\[
 \boxed{
-P_\ell(\cos\gamma) = \frac{4\pi}{2\ell+1} \sum_{m=-\ell}^\ell Y_{\ell m}(\theta,\varphi) Y_{\ell m}^*(\theta',\varphi')
+P_\ell(\cos\alpha) = \frac{4\pi}{2\ell+1} \sum_{m=-\ell}^\ell Y_{\ell m}(\theta,\varphi) Y_{\ell m}^*(\theta',\varphi')
 }\ .
-\]</span> We will now give a brief proof of this important result. Suppose without loss of generality that <span class="math inline">\(\mathbf{x}'\)</span> is fixed in space at an angle <span class="math inline">\((\theta',\varphi')\)</span> in a base reference frame <span class="math inline">\(\mathcal{S}\)</span>. In that case, we can think of <span class="math inline">\(P_\ell(\cos\gamma)\)</span> as being only a function of <span class="math inline">\(\theta\)</span> and <span class="math inline">\(\varphi\)</span>.</p>
-<p>Now, suppose we rotate to a new reference frame <span class="math inline">\(\mathcal{S}'\)</span> such that <span class="math inline">\(\mathbf{x}'\)</span> is along the <span class="math inline">\(z'\)</span>-axis in the new frame and <span class="math inline">\(\mathbf{x}\)</span> is at an angle <span class="math inline">\((\gamma,\beta)\)</span>. In this frame, we can expand the harmonic <span class="math inline">\(Y_{\ell m}(\theta,\varphi)\)</span> in terms of the harmonics <span class="math inline">\(Y_{\ell m'}(\gamma,\beta)\)</span> in the new frame by writing <span class="math display">\[
-Y_{\ell m}(\theta,\varphi) = \sum_{m'=-\ell}^\ell c_{\ell m'} Y_{\ell m'}(\gamma,\beta) \ .
+\]</span> We will now give a brief proof of this important result. Suppose without loss of generality that <span class="math inline">\(\mathbf{x}'\)</span> is fixed in space at an angle <span class="math inline">\((\theta',\varphi')\)</span> in a base reference frame <span class="math inline">\(\mathcal{S}\)</span>. In that case, we can think of <span class="math inline">\(P_\ell(\cos\alpha)\)</span> as being only a function of <span class="math inline">\(\theta\)</span> and <span class="math inline">\(\varphi\)</span>.</p>
+<p>Now, suppose we rotate to a new frame <span class="math inline">\(\mathcal{S}'\)</span> such that <span class="math inline">\(\mathbf{x}'\)</span> is along the <span class="math inline">\(z'\)</span>-axis in the new frame and <span class="math inline">\(\mathbf{x}\)</span> is at an angle <span class="math inline">\((\alpha,\beta)\)</span>. In this reference frame, we can expand the harmonic <span class="math inline">\(Y_{\ell m}(\theta,\varphi)\)</span> in terms of the harmonics <span class="math inline">\(Y_{\ell m'}(\alpha,\beta)\)</span> in the new frame by writing <span class="math display">\[
+Y_{\ell m}(\theta,\varphi) = \sum_{m'=-\ell}^\ell c_{\ell m'} Y_{\ell m'}(\alpha,\beta) \ .
 \]</span> This follows from the fact that the harmonics on both sides must satisfy the same eigenvalue equation, and since the Laplacian is invariant under rotations we can express the eigenfunctions in one frame as a superposition of the eigenfunctions in the other.</p>
 <p>It suffices to consider only the <span class="math inline">\(m'=0\)</span> coefficient, which in the <span class="math inline">\(\mathcal{S}'\)</span> frame is given by <span class="math display">\[
-c_{\ell 0} = \int d\Omega' \ Y_{\ell m}(\theta,\varphi) Y_{\ell 0}^*(\gamma,\beta) \ .
-\]</span> This follows from the fact that in this frame <span class="math inline">\(P_\ell(\cos\gamma)\)</span> is proportional to <span class="math inline">\(Y_{\ell 0}(\gamma, \beta)\)</span>, with <span class="math display">\[
-P_\ell(\cos\gamma) = \sqrt{\frac{4\pi}{2\ell+1}} Y_{\ell 0}(\gamma, \beta) \ .
-\]</span> This also implies that <span class="math inline">\(P_\ell(\cos\gamma)\)</span> must be an eigenfunction of the Laplacian <span class="math inline">\(\nabla'^2\)</span> in the <span class="math inline">\(\mathcal{S}'\)</span> frame, with <span class="math display">\[
-\nabla'^2 P_\ell(\cos\gamma) + \frac{\ell(\ell+1)}{r^2} P_\ell(\cos\gamma) = 0 \ .
-\]</span> Now, we know that the Laplacian operator is invariant under rotations, which means the Laplacian <span class="math inline">\(\nabla^2\)</span> in the <span class="math inline">\(\mathcal{S}\)</span> frame must be the same as the rotated Laplacian <span class="math inline">\(\nabla'^2\)</span> in the <span class="math inline">\(\mathcal{S}'\)</span> frame. This means the same differential equation must hold in the <span class="math inline">\(\mathcal{S}\)</span> frame, and since the eigenfunctions in that frame are given by <span class="math inline">\(Y_{\ell m}(\theta,\varphi)\)</span>, we can write <span class="math inline">\(P_\ell(\cos\gamma)\)</span> as a superposition of these, with <span class="math display">\[
-P_\ell(\cos\gamma) = \sum_{m=-\ell}^\ell a_m Y_{\ell m}(\theta,\varphi) \ .
-\]</span> Putting the expressions for <span class="math inline">\(P_\ell(\cos\gamma)\)</span> in both reference frames together, we have <span class="math display">\[
-P_\ell(\cos\gamma) = \sqrt{\frac{4\pi}{2\ell+1}} Y_{\ell 0}(\gamma, \beta) = \sum_{m=-\ell}^\ell a_m Y_{\ell m}(\theta,\varphi) \ ,
+c_{\ell 0} = \int d\Omega' \ Y_{\ell m}(\theta,\varphi) Y_{\ell 0}^*(\alpha,\beta) \ .
+\]</span> This follows from the fact that in this frame <span class="math inline">\(P_\ell(\cos\alpha)\)</span> is proportional to <span class="math inline">\(Y_{\ell 0}(\alpha, \beta)\)</span>, with <span class="math display">\[
+P_\ell(\cos\alpha) = \sqrt{\frac{4\pi}{2\ell+1}} Y_{\ell 0}(\alpha, \beta) \ .
+\]</span> This also implies that <span class="math inline">\(P_\ell(\cos\alpha)\)</span> must be an eigenfunction of the Laplacian <span class="math inline">\(\nabla'^2\)</span> in the <span class="math inline">\(\mathcal{S}'\)</span> frame, with <span class="math display">\[
+\nabla'^2 P_\ell(\cos\alpha) + \frac{\ell(\ell+1)}{r^2} P_\ell(\cos\alpha) = 0 \ .
+\]</span> Now, we know that the Laplacian operator is invariant under rotations, which means the Laplacian <span class="math inline">\(\nabla^2\)</span> in the <span class="math inline">\(\mathcal{S}\)</span> frame must be the same as the rotated Laplacian <span class="math inline">\(\nabla'^2\)</span> in the <span class="math inline">\(\mathcal{S}'\)</span> frame. This means the same differential equation must hold in the <span class="math inline">\(\mathcal{S}\)</span> frame, and since the eigenfunctions in that frame are given by <span class="math inline">\(Y_{\ell m}(\theta,\varphi)\)</span>, we can write <span class="math inline">\(P_\ell(\cos\alpha)\)</span> as a superposition of these, with <span class="math display">\[
+P_\ell(\cos\alpha) = \sum_{m=-\ell}^\ell a_m Y_{\ell m}(\theta,\varphi) \ .
+\]</span> Putting the expressions for <span class="math inline">\(P_\ell(\cos\alpha)\)</span> in both reference frames together, we have <span class="math display">\[
+P_\ell(\cos\alpha) = \sqrt{\frac{4\pi}{2\ell+1}} Y_{\ell 0}(\alpha, \beta) = \sum_{m=-\ell}^\ell a_m Y_{\ell m}(\theta,\varphi) \ ,
 \]</span> where the coefficients <span class="math inline">\(a_m\)</span> are given in the <span class="math inline">\(\mathcal{S}\)</span> frame by <span class="math display">\[
-a_m = \int d\Omega \ P_\ell(\cos\gamma) Y_{\ell m}^*(\theta,\varphi) \ .
-\]</span> We now substitute the expression for <span class="math inline">\(P_\ell(\cos\gamma)\)</span> in the <span class="math inline">\(\mathcal{S}'\)</span> frame into this integral to get <span class="math display">\[
-a_m = \sqrt{\frac{4\pi}{2\ell+1}} \int d\Omega \ Y_{\ell 0}(\gamma, \beta) Y_{\ell m}^*(\theta,\varphi) \ .
+a_m = \int d\Omega \ P_\ell(\cos\alpha) Y_{\ell m}^*(\theta,\varphi) \ .
+\]</span> We now substitute the expression for <span class="math inline">\(P_\ell(\cos\alpha)\)</span> in the <span class="math inline">\(\mathcal{S}'\)</span> frame into this integral to get <span class="math display">\[
+a_m = \sqrt{\frac{4\pi}{2\ell+1}} \int d\Omega \ Y_{\ell 0}(\alpha, \beta) Y_{\ell m}^*(\theta,\varphi) \ .
 \]</span> Since the integral depends only on the angles in one of the reference frames, we can freely change this from an integral in the <span class="math inline">\(\mathcal{S}\)</span> frame to an integral in the <span class="math inline">\(\mathcal{S}'\)</span> frame by replacing <span class="math inline">\(d\Omega\)</span> with <span class="math inline">\(d\Omega'\)</span>. Then the integral is just the complex conjugate of the integral for <span class="math inline">\(c_{\ell 0}\)</span> from before. That is, <span class="math display">\[
 a_m^* = \sqrt{\frac{4\pi}{2\ell+1}} \ c_{\ell 0} \ .
 \]</span> Now, we still need to deal with <span class="math inline">\(Y_{\ell m}(\theta',\varphi')\)</span>. We do that by observing that in the <span class="math inline">\(\mathcal{S}'\)</span> frame we simply have <span class="math display">\[
 Y_{\ell m}(\theta',\varphi') = c_{\ell 0} Y_{\ell 0}(0,0) = c_{\ell 0} \sqrt{\frac{2\ell+1}{4\pi}} \ .
 \]</span> Substituting this result into the previous expression for <span class="math inline">\(a_m^*\)</span> and complex conjugating, we get <span class="math display">\[
 a_m = \frac{4\pi}{2\ell+1} Y_{\ell m}^*(\theta',\varphi') \ .
-\]</span> Finally, plugging this back into the series expansion for <span class="math inline">\(P_\ell(\cos\gamma)\)</span> in the <span class="math inline">\(\mathcal{S}\)</span> frame, we get what we wanted to prove, <span class="math display">\[
-P_\ell(\cos\gamma) = \frac{4\pi}{2\ell+1} \sum_{m=-\ell}^\ell Y_{\ell m}(\theta,\varphi) Y_{\ell m}^*(\theta',\varphi') \ .
-\]</span> To conclude, notice if we set <span class="math inline">\(\gamma = 0\)</span> in this formula, then <span class="math inline">\(\theta'=\theta\)</span>, <span class="math inline">\(\varphi'=\varphi\)</span>, and <span class="math inline">\(P_\ell(\cos\gamma) = 1\)</span>, giving us the relation <span class="math display">\[
+\]</span> Finally, plugging this back into the series expansion for <span class="math inline">\(P_\ell(\cos\alpha)\)</span> in the <span class="math inline">\(\mathcal{S}\)</span> frame, we get what we wanted to prove, <span class="math display">\[
+P_\ell(\cos\alpha) = \frac{4\pi}{2\ell+1} \sum_{m=-\ell}^\ell Y_{\ell m}(\theta,\varphi) Y_{\ell m}^*(\theta',\varphi') \ .
+\]</span> To conclude, notice if we set <span class="math inline">\(\alpha = 0\)</span> in this formula, then <span class="math inline">\(\theta'=\theta\)</span>, <span class="math inline">\(\varphi'=\varphi\)</span>, and <span class="math inline">\(P_\ell(\cos\alpha) = 1\)</span>, giving us the relation <span class="math display">\[
 \sum_{m=-\ell}^\ell |Y_{\ell m}(\theta,\varphi)|^2 = \frac{2\ell+1}{4\pi} \ .
 \]</span> This can be thought of as a sort of squared vector norm or sum rule for the set of <span class="math inline">\(\ell\)</span><sup>th</sup> spherical harmonics.</p>
 </section>
@@ -1747,8 +1752,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation column-page-right">
   <div class="nav-page nav-page-previous">
-      <a href="../electrodynamics/magnetostatics.html" class="pagination-link" aria-label="Magnetostatics">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Magnetostatics</span></span>
+      <a href="../electrodynamics/maxwell-equations.html" class="pagination-link" aria-label="Maxwell's Equations">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Maxwell’s Equations</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">

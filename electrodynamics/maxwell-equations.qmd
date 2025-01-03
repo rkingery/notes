@@ -1,0 +1,87 @@
+# Maxwell's Equations
+
+Thus far we've spent a considerable amount of time studying *statics*, focusing on fields that are time-independent. We will now turn our attention to *dynamics*, where we allow the fields to depend explicitly on time. This leads us into the subject of *electrodynamics*, which we will study in depth for the rest of the course. In electrodynamics, we'll see that the electric and magnetic fields become coupled through Maxwell's equations, with changing electric fields giving rise to magnetic fields and vice versa. Before deriving Maxwell's equations and studying their implications, we'll first need to introduce Faraday's law of electromagnetic induction as well as the notion of displacement current.
+
+## Electromagnetic Induction
+
+In the early 19th century, Faraday studied the behavior of current flowing through an electric circuit. In doing so he accidentally stumbled on one of the most important facts of electromagnetism, that electric and magnetic fields are related. Specifically, Faraday observed that he could measure a brief transient current flowing through a circuit under the following conditions:
+
+- If the steady current in a second nearby circuit is turned on or off.
+- If the second circuit is moved relative to the first circuit while a steady current is flowing through it.
+- If a bar magnet is thrust into or out of the first circuit.
+
+- If none of these things is taking place, no current is measured to flow through the first circuit.
+
+Faraday interpreted the transient current flow as being due to a changing magnetic flux through the first circuit, with the changing magnetic flux inducing an electric field around the circuit via an *electromotive force*. He called this phenomenon *electromagnetic induction*.
+
+### Faraday's Law
+
+Nowadays we interpret Faraday's results mathematically as follows. Suppose a closed circuit is running along some closed loop $\mathcal{C}$ containing a bounded open surface $\mathcal{S}$ with unit normal $\mathbf{n}$. In the background we suppose there is some magnetic field $\mathbf{B}$. Then there will be a magnetic flux $\Phi_B$ through the circuit given by the integral
+$$
+\Phi_B = \int_\mathcal{S} da \ \mathbf{B} \cdot \mathbf{n} \ .
+$$
+Suppose an electric field $\mathbf{E}$ is present at each point along the circuit. Then we define the *electromotive force* or *EMF* $\mathcal{E}$ around the circuit as the closed loop integral
+$$
+\mathcal{E} \equiv \oint_\mathcal{C} \mathbf{E} \cdot d\boldsymbol{\ell} \ .
+$$
+Notice that despite its name, EMF is not a force. It doesn't even have dimensions of force, but instead dimensions of scalar potential or voltage. The EMF should be thought of as a *source voltage* created across the circuit due to some power source. For instance, if a circuit is hooked up to a battery, the EMF is the source voltage created by the battery itself. If the power source is some changing magnetic field as Faraday suggests, it's the changing magnetic field that creates the EMF.
+
+Faraday's observations can now be expressed mathematically by saying the induced EMF around a circuit is proportional to the time derivative of the magnetic flux through the circuit,
+$$
+\mathcal{E} = -k \frac{d\Phi_B}{dt} \ .
+$$
+The proportionality constant $k$ depends only on the choice of units. It is not an empirical constant. From dimensional analysis, it's clear that if we want $\mathbf{E}$ and $\mathbf{B}$ to have the same units then $k$ must have units of inverse velocity. Since the speed of light $c$ is the only characteristic velocity available to us, we choose $k \equiv 1/c$, so that in Gaussian units we have
+$$
+\boxed{
+\mathcal{E} = -\frac{1}{c} \frac{d\Phi_B}{dt}
+} \ .
+$$
+This relation between EMF and magnetic flux is known as *Faraday's Law*.
+
+
+
+$$
+\mathcal{E} = \int \mathbf{E} \cdot d\boldsymbol{\ell} = \frac{1}{c} \frac{\partial \Phi_B}{\partial t}
+$$
+
+$$
+\nabla \times \mathbf{E} = \frac{1}{c} \frac{\partial \mathbf{B}}{\partial t}
+$$
+
+$$
+\mathcal{E} = \frac{L \Phi_B}{c}
+$$
+
+
+
+
+
+## Maxwell's Equations
+
+
+$$
+\begin{align*}
+\nabla \cdot \mathbf{E} &= 4\pi \rho \ , \\
+\nabla \times \mathbf{E} &= \frac{1}{c} \frac{\partial \mathbf{B}}{\partial t} \ , \\
+\nabla \cdot \mathbf{B} &= 0 \ , \\
+\nabla \times \mathbf{B} &= \frac{4\pi}{c} \mathbf{J} - \frac{1}{c} \frac{\partial \mathbf{E}}{\partial t} \ . \\
+\end{align*}
+$$
+
+$$
+\begin{align*}
+\mathbf{E} &= -\nabla\phi + \frac{1}{c} \frac{\partial \mathbf{A}}{\partial t} \ , \\
+\mathbf{B} &= \nabla \cdot \mathbf{A} \ .
+\end{align*}
+$$
+
+
+
+
+
+## Conservation Laws
+
+
+$$
+\frac{\partial \rho}{\partial t} + \nabla \cdot \mathbf{J} = 0 \ .
+$$
