@@ -955,66 +955,76 @@ Just like the lowest non-vanishing moment of the scalar potential is independent
 
 Thus far we've studied the multipole expansion of a localized current distribution in free space, assuming no external fields are present. Similar to what we did in electrostatics, we now want to ask how the potential energy of localized current distribution depends on the presence of an external B-field, particular its multipole moments. We'll assume the external B-field is strong enough that we can neglect any self fields created by the current distribution of interest.
 
-Suppose we have a localized current distribution $\mathbf{J}(\mathbf{x})$ about the origin, and in the background we'll suppose there is an external B-field $\mathbf{B}_{\text{ext}}(\mathbf{x})$ acting on this distribution. Assuming we can Taylor expand this field about the origin, we get
+Suppose we have a localized current distribution $\mathbf{J}(\mathbf{x}')$ about the origin, and in the background we'll suppose there is an external B-field $\mathbf{B}_{\text{ext}}(\mathbf{x})$ acting on this distribution. Assuming we can Taylor expand this field about the origin, we get
 $$
 \mathbf{B}_{\text{ext}}(\mathbf{x}) = \mathbf{B}_{\text{ext}}(\mathbf{0}) + (\mathbf{x} \cdot \nabla) \mathbf{B}_{\text{ext}}(\mathbf{x}) \bigg|_{\mathbf{x} = \mathbf{0}}  + \cdots \ .
 $$
 Now, this external field will create a force on the current distribution given by the Lorentz force law,
 $$
-\mathbf{F} = \frac{1}{c} \int_\mathcal{V} d^3\mathbf{x} \ \mathbf{J}(\mathbf{x}) \times \mathbf{B}_{\text{ext}}(\mathbf{x}) \ ,
+\mathbf{F} = \frac{1}{c} \int d^3\mathbf{x}' \ \mathbf{J}(\mathbf{x}') \times \mathbf{B}_{\text{ext}}(\mathbf{x}) \ ,
 $$
-where $\mathcal{V}$ is the enclosed volume of the current distribution. If we plug in the Taylor expansion above into the force law and group terms, we have
+where $\mathcal{V}$ is the enclosed volume of the current distribution. If we plug in the Taylor expansion above into the force law and group terms, we have to leading order
 $$
 \begin{align*}
-\mathbf{F} &= \frac{1}{c} \int_\mathcal{V} d^3\mathbf{x} \ \mathbf{J}(\mathbf{x}) \times \bigg[\mathbf{B}_{\text{ext}}(\mathbf{0}) + (\mathbf{x} \cdot \nabla) \mathbf{B}_{\text{ext}}(\mathbf{x}) \bigg|_{\mathbf{x} = \mathbf{0}} + \cdots \bigg] \\
-&= -\frac{1}{c} \mathbf{B}_{\text{ext}}(\mathbf{0}) \times \int_\mathcal{V} d^3\mathbf{x} \ \mathbf{J}(\mathbf{x}) + \frac{1}{c} \int_\mathcal{V} d^3\mathbf{x} \ \mathbf{J}(\mathbf{x}) \times(\mathbf{x} \cdot \nabla) \mathbf{B}_{\text{ext}}(\mathbf{x}) \bigg|_{\mathbf{x} = \mathbf{0}} + \cdots \ .
+\mathbf{F} &= \frac{1}{c} \int d^3\mathbf{x}' \ \mathbf{J}(\mathbf{x}') \times \bigg[\mathbf{B}_{\text{ext}}(\mathbf{0}) + (\mathbf{x} \cdot \nabla) \mathbf{B}_{\text{ext}}(\mathbf{x}) \bigg|_{\mathbf{x} = \mathbf{0}} + \cdots \bigg] \\
+&\approx -\frac{1}{c} \mathbf{B}_{\text{ext}}(\mathbf{0}) \times \int d^3\mathbf{x}' \ \mathbf{J}(\mathbf{x}') + \frac{1}{c} \int d^3\mathbf{x}' \ \mathbf{J}(\mathbf{x}') \times(\mathbf{x} \cdot \nabla) \mathbf{B}_{\text{ext}}(\mathbf{x}) \bigg|_{\mathbf{x} = \mathbf{0}} + \cdots \ .
 \end{align*}
 $$
-Now, the first term will vanish, since if $\mathbf{J}$ is a localized steady current we have
+Now, the first term will vanish, since if $\mathbf{J}$ is a localized steady current we've already shown that
 $$
-\int_\mathcal{V} d^3\mathbf{x} \ \mathbf{J}(\mathbf{x}) = \mathbf{0} \ .
+\int d^3\mathbf{x}' \ \mathbf{J}(\mathbf{x}') = \mathbf{0} \ .
 $$
-We'll thus focus on the second term. Recall how we derived the magnetic monopole moment before. We showed that
+We'll thus focus on the second term. To simplify this term it'll be helpful to rewrite the force in index notation as
 $$
-\frac{1}{c} \mathbf{x} \cdot \int d^3\mathbf{x}' \ \mathbf{x}' J_i = (\mathbf{m} \times \mathbf{x})_i \ .
+F_i \approx \frac{1}{c} \varepsilon_{ijk} \int d^3\mathbf{x}' \ J_j (x_\ell \partial_\ell) B_k = \varepsilon_{ijk} \bigg(\frac{1}{c} \int d^3\mathbf{x}' \ J_j x_\ell\bigg) \partial_\ell B_k \ ,
 $$
-In that derivation there was nothing special about $\mathbf{x}$. We could replace it with any vector we like. Notice if we replace $\mathbf{x} \to \nabla B_k$ and $\mathbf{x}' \to \mathbf{x}$ in the above relation, we get
+where $B_k$ is the $k$<sup>th</sup> component of $\mathbf{B}_{\text{ext}}(\mathbf{x}) \big|_{\mathbf{x} = \mathbf{0}}$. Now, we've studied the integral in parenthesis already and showed that
 $$
-\frac{1}{c} \bigg[\int d^3\mathbf{x} \ J_i \mathbf{x}\bigg] \cdot \nabla B_k = (\mathbf{m} \times \nabla B_k)_i \ .
+\frac{1}{c} \int d^3\mathbf{x}' \ J_j x_\ell = \varepsilon_{\ell j n} m_n \ ,
 $$
-On the left-hand side is just the second term. We thus have
+where $m_n$ is the $n$<sup>th</sup> component of the magnetic dipole moment $\mathbf{m}$. Plugging this in and using the identity to convert the contraction of two Levi-Civita symbols into delta functions, we have
 $$
-\mathbf{F} = (\mathbf{m} \times \nabla) \times \mathbf{B}
+\begin{align*}
+F_i &\approx \varepsilon_{ijk} \varepsilon_{\ell j n} m_n \partial_\ell B_k \\
+&\approx \varepsilon_{ikj} \varepsilon_{j \ell n} m_n \partial_\ell B_k \\
+&\approx (\delta_{i\ell} \delta_{kn} - \delta_{in} \delta_{k\ell}) m_n \partial_\ell B_k \\
+&\approx m_k \partial_i B_k - m_i \partial_k B_k \ .
+\end{align*}
+$$
+Notice that the second term is proportional to $\nabla \cdot \mathbf{B}_\text{ext} = 0$, so the second term vanishes. Since the dipole moment $\mathbf{m}$ doesn't depend on $\mathbf{x}$, we can finally pull the derivative out of the product to get
+$$
+\mathbf{F} \approx \nabla \big(\mathbf{m} \cdot \mathbf{B}_\text{ext}(0)\big) \ .
+$$
+We now want to convert this into an expansion for the potential energy $U$. Since $\mathbf{F} = -\nabla U$, we immediately get
+$$
+U \approx - \mathbf{m} \cdot \mathbf{B}_\text{ext}(0) \ .
+$$
+Thus, to first order the potential energy of a current distribution in the presence of an external B-field is just the negative dot product of the magnetic dipole moment with the external field evaluated at the origin. 
+
+We can also calculate the torque exerted on the current distribution in the presence of an external B-field. By definition, the torque at each source point $\mathbf{x}'$ is given by $d\mathbf{N} = d(\mathbf{x}' \times \mathbf{F})$, which means the total torque is
+$$
+\mathbf{N} = \frac{1}{c} \int d^3\mathbf{x}' \ \mathbf{x}' \times [\mathbf{J}(\mathbf{x}') \times \mathbf{B}_{\text{ext}}(\mathbf{x})] \ .
+$$
+If we again substitute in the Taylor expansion for $\mathbf{B}_\text{ext}(\mathbf{x})$, to leading order we have
+$$
+\mathbf{N} \approx \frac{1}{c} \int d^3\mathbf{x}' \ \mathbf{x}' \times [\mathbf{J}(\mathbf{x}') \times \mathbf{B}_{\text{ext}}(\mathbf{0})] \ .
+$$
+This time we only kept the first leading term, since as we'll see this term will not vanish. We can simplify the triple product inside the integrand using the BAC-CAB rule,
+$$
+\mathbf{x}' \times [\mathbf{J} \times \mathbf{B}_{\text{ext}}(\mathbf{0})] = (\mathbf{x}' \cdot \mathbf{B}_\text{ext}(0)) \mathbf{J} - (\mathbf{x}' \cdot \mathbf{J}) \mathbf{B}_\text{ext}(0) \ ,
+$$
+which means we have
+$$
+\mathbf{N} \approx \frac{1}{c} \int d^3\mathbf{x}' \ \big[(\mathbf{x}' \cdot \mathbf{B}_\text{ext}(0)) \mathbf{J} - (\mathbf{x}' \cdot \mathbf{J}) \mathbf{B}_\text{ext}(0) \big] \ .
 $$
 
+- First term simplifies by prior argument, second term vanishes by prior argument. See Jackson.
 
-- This still isn't quite right. The final step is true, but the derivation isn't. Dig deeper here. It's a huge pain in the ass.
-
-$$
-F_i \approx \frac{1}{c} \int_\mathcal{V} d^3\mathbf{x} \ \varepsilon_{ijk} J_j (\mathbf{x} \cdot \nabla) B_k^{\text{ext}} \ .
-$$
-
-- Continue on with lectures. Don't feel like it tonight.
 
 
 $$
-U = - \mathbf{m} \cdot \mathbf{B}(\mathbf{0}) + \cdots
+\mathbf{N} \approx \mathbf{m} \times \mathbf{B}_\text{ext}(0) \ .
 $$
-
-$$
-\mathbf{F} = \nabla (\mathbf{m} \cdot \mathbf{B}) = -\frac{1}{2c} \nabla \int d^3\mathbf{x} \ (\mathbf{J}(\mathbf{x}) \times\mathbf{x}) \cdot \mathbf{B}
-$$
-
-$$
-F_i = \partial_i (m_\ell B_\ell) = -\frac{1}{2c} \partial_i \int d^3\mathbf{x} \ \varepsilon_{\ell j k} J_j x_k B_\ell
-$$
-
-$$
-\mathbf{N} = \mathbf{m} \times \mathbf{B}
-$$
-
-
-
 
 
 ### Spherical Multipole Expansion
@@ -1038,4 +1048,33 @@ $$
 \mathbf{A}(\mathbf{x}) = \frac{1}{c} \sum_{\ell=0}^\infty \sum_{m=-\ell}^\ell \frac{4\pi}{2\ell+1} \frac{Y_{\ell m}(\theta,\varphi)}{r^{\ell+1}} \mathbf{m}_{\ell m} \ .
 $$
 One can show that the $\ell=0,1$ expansion terms give the same results we found above in the Cartesian expansion.
+
+
+$$
+\mathbf{F} = -m \mathbf{g}
+$$
+
+$$
+\mathbf{g}(\mathbf{x}) = G \int d^3 \mathbf{x}' \ \rho(\mathbf{x}') \frac{\mathbf{x} - \mathbf{x}'}{|\mathbf{x} - \mathbf{x}'|^3}
+$$
+
+$$
+\mathbf{g}(\mathbf{x}) = -\nabla \phi(\mathbf{x}) \quad , \quad \phi(\mathbf{x}) = G \int d^3\mathbf{x}' \ \frac{\rho(\mathbf{x}')}{|\mathbf{x} - \mathbf{x}'|}
+$$
+
+$$
+M = \int d^3\mathbf{x}' \ \rho(\mathbf{x}') \quad , \quad \mathbf{R} = \frac{1}{M} \int d^3\mathbf{x}' \ \rho(\mathbf{x}') \mathbf{x}'
+$$
+
+$$
+\phi(\mathbf{x}) = G\bigg[\frac{M}{r} + \frac{M\mathbf{R} \cdot \mathbf{x}}{r^2} + \frac{\mathbf{x} \cdot \mathbf{M} \cdot \mathbf{x}}{2r^3} + \cdots\bigg]
+$$
+
+$$
+\mathbf{M} = \int d^3\mathbf{x}' \ \rho(\mathbf{x}') [3\mathbf{x}' \otimes \mathbf{x}' - r'^2 \mathbf{1}]
+$$
+
+$$
+\mathbf{I} = \int d^3\mathbf{x}' \ \rho(\mathbf{x}') [r'^2 \mathbf{1} - \mathbf{x}' \otimes \mathbf{x}']
+$$
 
