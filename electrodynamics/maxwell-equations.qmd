@@ -1,72 +1,202 @@
-# Maxwell's Equations
+# Electromagnetic Induction
 
-Thus far we've spent a considerable amount of time studying *statics*, focusing on fields that are time-independent. We will now turn our attention to *dynamics*, where we allow the fields to depend explicitly on time. This leads us into the subject of *electrodynamics*, which we will study in depth for the rest of the course. In electrodynamics, we'll see that the electric and magnetic fields become coupled through Maxwell's equations, with changing electric fields giving rise to magnetic fields and vice versa. Before deriving Maxwell's equations and studying their implications, we'll first introduce need to introduce the important concept of electromagnetic force, from which we'll introduce both Ohm's law and Faraday's law for the first time.
+Thus far we've spent a considerable amount of time studying *statics*, focusing on fields that are time-independent. We will now begin turning our attention to *dynamics*, where we allow the fields to depend explicitly on time. This leads us into the subject of *electrodynamics*, which we will study in depth for the rest of the course. To begin our study of this topic we will discuss a few important concepts that will lead us in the next chapter to Maxwell's equations, the crown jewel of electromagnetism. In this chapter, we'll start moving in this direction by discussing things like Ohm's law, electromotive force, Faraday's law, and electromagnetic induction.
 
-## Electromotive Force
+## Ohm's Law
 
-When a conductor is placed in the presence of an external electric field, the E-field causes the charges inside the conductor to move until the E-field inside the conductor vanishes. This results in a temporary current in the conductor that quickly subsides as the charges reach electrostatic equilibrium.
-
-Something different happens, however, when we take a conducting material and hook it up to a power source. If the power source creates a constant electric field across the conductor, we find that a steady current is created as long as the power source is turned on. We'd now like to understand why exactly this happens. After all, some force must be causing the charges to keep moving, otherwise they'd come to rest. This will lead us to the idea of electromotive force. 
-
-Before discussing this idea though we'll first introduce Ohm's law, an important phenomenological relationship between the current flowing through a material and an applied external E-field.
-
-### Ohm's Law
-
-When a material is brought into contact with an external electric field, the E-field will cause charges inside the conductor to move in the direction of the field, creating an induced current inside the material. For many materials, this induced current is linearly proportional to the external E-field. This phenomenological relationship is known as *Ohm's Law*, which says
+When a material is brought into contact with external electromagnetic fields, these fields will cause any unbound electrons inside the material to move in response to the fields, creating an induced current inside the material. If a material is placed in the vicinity of an external E-field $\mathbf{E}$ and an external B-field $\mathbf{B}$, there will be an induced current density $\mathbf{J} = \mathbf{J}(\mathbf{E},\mathbf{B})$ that's some function of these fields. Assuming the material is in electrostatic equilibrium before these fields are turned on, we can Taylor expand $\mathbf{J}$ to get a power series in $\mathbf{E}$. The $j$<sup>th</sup> component of the current density can then be written
+$$
+J_i = \sigma_{ij}(\mathbf{B}) E_i + \sigma_{ijk}(\mathbf{B}) E_j E_k + \cdots \ ,
+$$
+where the coefficients are some function of $\mathbf{B}$. If the applied E-field is sufficiently weak we can truncate to leading order to get
+$$
+J_i \approx \sigma_{ij}(\mathbf{B}) E_i \ .
+$$
+The coefficients $\sigma_{ij}(\mathbf{B})$ together form a $3 \times 3$ matrix, called the *conductivity matrix*. In general this matrix can be arbitrarily complicated. In the special case that the material is macroscopically *isotropic*, or uniform, and if $\mathbf{B} = \mathbf{0}$, this matrix becomes diagonal with $\sigma_{ij} = \sigma \delta_{ij}$, where $\sigma$ is some scalar constant. When this is true we get one version of *Ohm's Law*,
 $$
 \boxed{
 \mathbf{J} = \sigma \mathbf{E}
 } \ .
 $$
-The constant $\sigma$ is an empirical constant that depends on the material, called the electrical *conductivity* of the material. As the name suggests, it's a measure of how much a given material is able to conduct current in response to an external field. It's precisely materials with a very high conductivity that we call conductors, since in a good conductor we expect that the smallest applied E-field would create the highest induced current. Materials with low conductivity are similarly called insulators, since in a good insulator we expect that a large applied E-field is needed to produce even the slightest amount of induced current. A perfect conductor would have an infinite, meaning *any* non-zero E-field would produce an infinitely high induced current, while a perfect insulator would have a zero conductivity, meaning no amount of E-field would produce an induced current.
+The scalar $\sigma$ is an empirical constant that depends on the material. It's known as the electrical *conductivity*. As the name suggests, it's a measure of how much a given material is able to conduct current in response to an external E-field. It's precisely materials with a very high conductivity that we call conductors, since in a good conductor we expect that the smallest applied E-field would create the highest induced current. Materials with low conductivity are similarly called insulators, since in a good insulator we expect that a large applied E-field is needed to produce even the slightest amount of induced current. A perfect conductor would have an infinite, meaning *any* non-zero E-field would produce an infinitely high induced current, while a perfect insulator would have a zero conductivity, meaning no amount of E-field would produce an induced current.
 
-More commonly in applied settings, one defines $\rho \equiv 1/\sigma$, which is called the electrical *resistivity* of the material. In this case Ohm's law takes the form $\rho \mathbf{J} = \mathbf{E}$. Be careful not to confuse $\rho$ in this case with the charge density, as unfortunately the same notation is commonly used for both. Materials with low resistivity make good conductors, while those with high resistivity make good insulators. A perfect conductor would have a zero resistivity, while a perfect insulator has an infinite resistivity.
+In applied settings, one commonly defines $\rho \equiv 1/\sigma$, which is called the electrical *resistivity* of the material. In this case Ohm's law takes the form $\rho \mathbf{J} = \mathbf{E}$. Be careful not to confuse $\rho$ in this case with the charge density, as unfortunately the same notation is commonly used for both. Materials with low resistivity make good conductors, while those with high resistivity make good insulators. A perfect conductor would have a zero resistivity, while a perfect insulator has an infinite resistivity.
 
-In Gaussian units, dimensional analysis requires that conductivity have dimensions of inverse time. This means that resistivity must have dimensions of time, or units of seconds in Gaussian units. In SI units, resistivity is typically given in units of Ohm-meters, or $\Omega \cdot \text{m}$, with $1 \ \Omega \cdot \text{m} \approx 10^{-10} \ \text{s}$. The Ohm is a measure of a related unit called electrical *resistance*, which we'll see soon.
+In Gaussian units, dimensional analysis requires that conductivity have dimensions of inverse time. This means that resistivity must have dimensions of time, or units of seconds in Gaussian units. In SI units, resistivity is typically given in units of Ohm-meters, or $\Omega \cdot \text{m}$, with $1 \ \Omega \cdot \text{m} \approx 10^{-10} \ \text{s}$. One Ohm is defined to be one volt per amp, and is a measure of electrical *resistance*, a related quantity we'll come back to below.
 
 Most tables of materials list a material's resistivity rather than its conductivity, which is just the reciprocal of resistivity. Real life materials of course are neither perfect insulators nor perfect conductors, but many materials can be approximated as such. For example, good conductors like copper, gold, silver, and aluminum have resistivities of $\rho \sim 10^{-8} \ \Omega \cdot \text{m}$ or $\rho \sim 10^{-18} \ \text{s}$. Meanwhile, good insulators like quartz, glass, or wood have resistivities in the range $\rho \sim 10^{8} - 10^{16} \ \Omega \cdot \text{m}$ or $\rho \sim 10^{-2} - 10^{6} \ \text{s}$.
 
-At this point it's fair to ask how exactly Ohm's law arises. After all, it's a phenomenological law, not a fundamental law. This means that Ohm's law should be *derivable* from more fundamental physics. Unfortunately, a rigorous derivation of Ohm's law would require quantum mechanics, which we won't go into. However, we can give a reasonable enough derivation of Ohm's law from classical physics alone using a crude approximation of the quantum behavior of a material known as the *Drude model*.
-
-The idea of the Drude model is to suppose that a solid material is composed of a fixed set of atoms along with a classical free gas of electrons, which are allowed to collide with the fixed atoms at some frequency. As long as no external force is applied on the electrons, they'll move in a random walk through the material, leading to diffusion. But, if an external force is applied, these electrons will tend on average to move in the direction of the force, creating a random walk with drift.
-
-More formally, suppose the electron gas has a number density of $n$ particles per unit volume. Each electron has the same mass $m_e$ and the same charge $-e$. Suppose that when an external E-field $\mathbf{E}$ is applied across the material, these electrons move opposite the E-field with an average velocity $-\mathbf{v}$. We'll also suppose these electrons are allowed to collide with the fixed atoms inside the material with some average collision frequency $\nu_e$.
-
-In the Drude model, we assume each electron is acted on by two forces, an applied electric force $-e\mathbf{E}$, and a linear drag force opposing motion due to the collisions, given by $m_e \nu_e \mathbf{v}$. By Newton's second law, we then have
+Notice from Ohm's law that as long as we have a steady current there can be no charge buildup anywhere inside the material. Indeed, since $\nabla \cdot \mathbf{J} = 0$ for steady currents and $\nabla \cdot \mathbf{E} = 4\pi\rho$, by Ohm's law we must have
 $$
--m_e \frac{d\mathbf{v}}{dt} = -e \mathbf{E} + m_e \nu_e \mathbf{v} \ .
+\rho = \frac{1}{4\pi} \nabla \cdot \mathbf{E} = \frac{1}{4\pi\sigma} \nabla \cdot \mathbf{J} = 0 \ .
 $$
-If we multiply both sides by $-en/m_e$ and simplify, this becomes
-$$
-\frac{d}{dt} en\mathbf{v} = \frac{e^2n}{m_e} \mathbf{E} - \nu_e en\mathbf{v} \ .
-$$
-Now, the charge density of the electrons is just their charge times the number density, or $\rho = -en$. This means their current density is $\mathbf{J} = -\rho \mathbf{v} = en\mathbf{v}$. Remember, the current always flows in the opposite direction in which electrons flow. We thus now have a differential equation for the current density in terms of the electric field,
-$$
-\frac{d\mathbf{J}}{dt} = \frac{e^2 n}{m_e} \mathbf{E} - \nu_e \mathbf{J} \ .
-$$
-This differential equation is known as the *generalized Ohm's law*. It captures both the transient and steady state behavior of the moving electrons. Now, we're rarely interested in the transient behavior. We only want the steady state behavior, which is what gives rise to the steady current. At steady state we have $d\mathbf{J}/dt = 0$, which means
-$$
-\mathbf{J} = \frac{e^2 n}{m_e \nu_e} \mathbf{E} \ .
-$$
-We've thus managed to derive Ohm's law from the simple Drude model. Evidently, the conductivity $\sigma$ is given by
-$$
-\sigma \equiv \frac{e^2 n}{m_e \nu_e} \ .
-$$
-Since both the number density $n$ and the collision frequency $\nu_e$ are material dependent, $\sigma$ will be material dependent as well.
+This means inside an Ohmic material with steady current we can assume $\rho = 0$ inside the material. This then means that the inside of the material satisfies Laplace's equation $\nabla^2 \phi = 0$, which means all the tools we derived before can be used to find the potential and E-field inside the material. On the surface, however, things are much more complicated since any excess free charge must accumulate on the surface of the material.
+
+### V = IR
+
+- Redo this section. Focus on isotropic materials hooked up to electrodes held at constant voltages.
+
+Of course, the version of Ohm's law given above isn't the one most of us are probably familiar with. We're used to seeing Ohm's law in terms of voltage and current, not E-field and current density. To see how we get the more familiar version of Ohm's law, suppose …
 
 
 
-where we've defined $\omega_p^2 \equiv 4\pi e^2 n/m_e$, where $\omega_p$ is some constant with units of angular frequency, known as the *plasma frequency*. The plasma frequency in a sense captures the frequency with which the electrons in the gas are oscillating.
+the material in question is a wire with cross-sectional area $A$ and length $L$. If the applied E-field is approximately constant and directed along the wire, the potential difference $V$ across the wire is approximately
+$$
+V = \int_0^d \mathbf{E} \cdot d\boldsymbol{\ell} \approx |\mathbf{E}| L \ .
+$$
+Moreover, assuming the induced current $I$ running through the wire is approximately uniform, we have
+$$
+I = \int \mathbf{J} \cdot d\mathbf{a} \approx |\mathbf{J}| A \ .
+$$
+Plugging these expressions into Ohm's law above and multiplying both sides by $L/\sigma$, we have
+$$
+V = \frac{L}{\sigma A} I \ .
+$$
+The proportionality constant $R \equiv \sigma A/L$ we recognize as the electrical *resistance*. We thus have the familiar form of Ohm's law,
+$$
+\boxed{
+V = IR
+} \ .
+$$
+Evidently, the resistance is a function of *both* the conductivity properties of the material as well as its geometry. The greater the conductivity of the wire or the greater its cross-sectional area, the lower its resistance. The longer the wire is, the higher its resistance. For this reason, it doesn't make sense to take about the resistance of a material. It only makes sense to take about the resistance of a given *piece* of material, for example a piece of wire.
 
-These particles are allowed to collide with each other with some frequency, but otherwise act as a free gas.
+In Gaussian units, resistance has dimensions of time over distance, or units of $\text{s}/\text{cm}$. In SI units, resistance has units of volts per amp, which is commonly called an *Ohm*, denoted $\Omega$, with $1 \ \Omega \approx 10^{-12} \ \text{s}/\text{cm}$. As an example, a copper wire with a length of $1 \ \text{m}$ and a cross-sectional area of $1 \ \text{mm}$ would have a resistance of $R \approx 10^{-2} \ \Omega$ or $R \approx 10^{-14} \ \text{s}/\text{cm}$. A glass tube with the same length and cross-sectional area would have a much higher resistance of $R \approx 10^{14} \ \Omega$ or $R \approx 100 \ \text{s}/\text{cm}$.
 
-- Derive Ohm's law from Drude model (see notes)
-- Derive simplified Ohm's law $V = IR$ (see notes)
+### Drude Model
+
+Ohm's law is a phenomenological law, meaning it's a relation that happens to sometimes hold for some materials. It's not a fundamental law of physics. It's thus fair to ask whether we can derive Ohm's law from more fundamental physics. To do this properly we will need to cover a little bit of solid state physics first. 
+
+Strictly speaking, one should use quantum mechanics to truly understand the properties of solids, but it turns out we can get away with deriving Ohm's law from a purely classical theory of solids. This is known as the *Drude model* of a solid. The idea is to model a solid as an imperfect lattice of stationary atoms, or *defects*, along with a classical gas of free electrons that are allowed to flow freely throughout the solid. The free electrons are allowed to scatter with the defects and respond to an external field.
+
+More formally, we make the following assumptions in Drude model:
+
+1. The free electrons are allowed to scatter with defects according to a Poisson process. Suppose $\tau$ is the average time between collisions. It's an empirically measured constant that depends on the solid, known as the *mean free time*. We require that in any infinitesimal time interval $dt$, the probability of an electron scattering with a defect be a uniform value $dt/\tau$.
+2. Once an electron scatters with a defect, we assume it immediately comes to rest with velocity $\mathbf{v} = \mathbf{0}$.
+3. In between scattering events, the free electrons can only interact *classically* with an external applied force field $\mathbf{F}$. 
+4. The electrons do not interact with each other at all.
+
+Suppose an electron is moving through the solid with velocity $\mathbf{v}(t)$. We'd like to know what its velocity will be at a time $t+dt$. Since the scattering process is random, this will depend on whether the electron scatters or not. By assumption (2), if the electron *scatters* in the time interval $[t,t+dt]$, it will come to rest with a velocity $\mathbf{v}(t+dt) = \mathbf{0}$. By assumption (3), if the electron *does not* scatter in the time interval $[t,t+dt]$, its motion will be given by Newton's second law, with
+$$
+m_e \frac{d}{dt} \mathbf{v}(t+dt) = \mathbf{F} \ .
+$$
+If we multiply both sides by $dt/m_e$ and write $d\mathbf{v}(t+dt) = \mathbf{v}(t+dt) - \mathbf{v}(t)$, we then get
+$$
+\mathbf{v}(t+dt) = \mathbf{v}(t) + \frac{\mathbf{F}}{m_e}dt \ .
+$$
+Now, the *expected* velocity $\langle\mathbf{v}(t+dt)\rangle$ at time $t+dt$ is just the weighted sum of these two possibilities weighted by the probability that each occurs. By assumption (1), the scattering probability is $dt/\tau$, which means the probability of no scattering is $1-dt/\tau$. We thus have
+$$
+\langle \mathbf{v}(t+dt) \rangle = \frac{dt}{\tau} \mathbf{0} + \bigg(1 - \frac{dt}{\tau}\bigg) \bigg[\mathbf{v}(t) + \frac{\mathbf{F}}{m_e} dt\bigg] \ .
+$$
+Now, assuming we know the velocity at time $t$, the expected velocity at time $t$ is just $\langle\mathbf{v}(t)\rangle = \mathbf{v}(t)$. Since $dt$ is infinitesimal, if we move $\mathbf{v}(t)$ to the left-hand side and divide by $dt$, we just get the time derivative of $\langle\mathbf{v}(t)\rangle$,
+$$
+\frac{d\langle\mathbf{v}(t)\rangle}{dt} \equiv \frac{\langle \mathbf{v}(t+dt) \rangle - \langle \mathbf{v}(t) \rangle}{dt} \ .
+$$
+To deal with the right-hand side we can expand out and drop any terms of order $dt$. In the end, we have
+$$
+\frac{d \mathbf{v}}{dt} = \frac{\mathbf{F}}{m_e} - \frac{\mathbf{v}}{\tau} \ .
+$$
+Here we've dropped the brackets from the velocity for convenience, since we won't need them anymore. From this point $\mathbf{v}$ will represent the expected, or average, velocity of the free electrons.
+
+In principle the applied force could be any force field. If the field is purely electromagnetic, the force is given by the Lorentz force law, in which case we'd have
+$$
+\frac{d \mathbf{v}}{dt} = -\frac{e}{m_e}\bigg[\mathbf{E} + \frac{\mathbf{v}}{c} \times \mathbf{B}\bigg] - \frac{\mathbf{v}}{\tau} \ .
+$$
+Note the minus sign on the charge, since electrons are negatively charged with $q=-e$. We now need to figure out what the current density is. If we suppose there are on average $n$ free electrons per unit volume inside the solid, then the electrons will have a uniform charge density $\rho = -en$, which means there will be a current density
+$$
+\mathbf{J} = \rho \mathbf{v} = -ne\mathbf{v} \ .
+$$
+Substituting this into the differential equation, we get
+$$
+\boxed{
+\frac{d \mathbf{J}}{dt} = -\frac{ne^2}{m_e}\mathbf{E} + \frac{e}{m_ec} \mathbf{J} \times \mathbf{B} - \frac{\mathbf{J}}{\tau} 
+} \ .
+$$
+This differential equation is known as the *generalized Ohm's law*. In principle it describes how the current density responds to the external electromagnetic fields at any point in time. On the right-hand side, we have a driving term plus a relaxation term $-\mathbf{J}/\tau$. The relaxation term forces the current density $\mathbf{J}(t)$ to settle into a steady state on time scales of the relaxation time $\tau$.
+
+In practice we don't really care about the transient behavior of the current, only its steady state behavior. The transient behavior is pretty quick anyway. For most solids $\tau$ is so small that it's barely noticeable. For example, many conducting solids have relaxation times of order $\tau \sim 10^{-14} \ \text{s}$. We'll thus focus on the steady state behavior. At steady state we have $d\mathbf{J}/dt=0$, or
+$$
+\mathbf{0} = -\frac{ne^2}{m_e}\mathbf{E} + \frac{e}{m_ec} \mathbf{J} \times \mathbf{B} - \frac{\mathbf{J}}{\tau} \ .
+$$
+Though perhaps not so obvious, the relationship between the current density and the E-field is now linear. We can see this is the case by solving for $\mathbf{E}$ to get
+$$
+\mathbf{E} = \frac{m_e}{ne^2 \tau} \mathbf{J} + \frac{1}{nec} \mathbf{J} \times \mathbf{B} \ .
+$$
+To simplify the right-hand side, we can define a *resistivity matrix* $\boldsymbol{\rho}$ of the form
+$$
+\boldsymbol{\rho} \equiv \begin{pmatrix}
+m_e / ne^2 \tau & B_z / nec & -B_y / nec \\
+-B_z / nec & m_e / ne^2 \tau & B_x / nec \\
+B_y / nec & -B_x / nec & m_e / ne^2 \tau
+\end{pmatrix} \ .
+$$
+This matrix will generally be invertible, in which case we can define a conductivity matrix $\boldsymbol{\sigma}$ as the matrix inverse of $\boldsymbol{\rho}$. We can then express the components of the current density in terms of the components of the E-field as
+$$
+J_i = \sigma_{ij} E_j \ .
+$$
+This is exactly what we wrote down at the beginning of the section. In the special case where $\mathbf{B} = \mathbf{0}$, the conductivity matrix becomes diagonal with $\sigma_{ij} = ne^2\tau/m_e \ \delta_{ij}$. Evidently, the conductivity $\sigma$ is given by
+$$
+\sigma = \frac{ne^2 \tau}{m_e} \ .
+$$
+Plugging this in, we finally arrive at Ohm's law, which is what we sought to derive,
+$$
+\mathbf{J} = \sigma \mathbf{E} \ .
+$$
+This derived expression for $\sigma$ hopefully makes sense. After all, the more free electrons there are, the higher $n$ will be, and thus the higher $\sigma$ will be. The longer the time between collisions, the faster the free electrons can move, which means $\sigma$ will be higher.
+
+In this setting, one sometimes defines $\omega_p^2 \equiv 4\pi ne^2/m_e$, where $\omega_p$ is called the *plasma frequency*. The plasma frequency is a measure of the natural frequency of oscillations of electrons inside the electron gas. In terms of the plasma frequency, the conductivity is given by $\sigma = \tau\omega_p^2 / 4\pi$. Thus, the higher the plasma frequency, the higher the conductivity will be.
+
+The fact that we were able to derive Ohm's law from a classical model is interesting. But it is still worth asking how correct the model is. In particular, is the formula it gives for the conductivity correct? It turns out that the formula is correct for many solids, but not all solids. For example, it's highly accurate for <>.
+
+- Finish this part. Research which solids the Drude model works well on, and which it doesn't.
+
+We'll finish this section by noting that we didn't need to include the magnetic field term in the Lorentz force to derive Ohm's law from the Drude model. We could've just set $\mathbf{F} = -e \mathbf{E}$ and the derivation would've been easier. The reason we didn't is to briefly mention an interesting phenomenon in solids known as the *Hall effect*. If $\mathbf{B} \neq \mathbf{0}$, the resistivity matrix won't be diagonal, and the off-diagonal terms will be a function of $\mathbf{B}$. This leads to some interesting behavior. For example, the current will no longer move in the direction of the E-field. For example, if the E-field is oriented in the $x$-direction, there will be a component of current that moves along the $y$-direction, since
+$$
+E_x = \rho_{xy} J_y = \frac{B_z}{nec} J_y \ .
+$$
+As we'd expect, the presence of a B-field acts to deflect moving charges away from their trajectories. There are many more interesting things related to the Hall effect. For example, it can be used to levitate a solid. We won't discuss those ideas here.
+
+### Drift Velocity
+
+- The total velocity can be decomposed as $\mathbf{v} = \mathbf{v}_\text{th} + \mathbf{v}_d$, where $v_\text{th} \propto \sqrt{k_B T/m_e}$ and $v_d = -e\tau/m \cdot E$
+- Show that the thermal velocity averages to zero, leaving only the drift velocity (which is what contributes to the current)
+
+Copper: $v_e = 10^{6} \ m/s$, $\tau = 3 \cdot 10^{-14} \ s$, $n = 10^{29} \ m^{-3}$
+
+Drift velocity: $v_d = a \tau = eE/m_e \tau$, so $E = 1 \ V/m$ over copper wire implies $v_d \approx 0.5 \ cm/s$
+
+### Ohmic Heating
+
+- In detailed balance, the power dissipated is the rate at which work is done on the free charges: $P = dW/dt$
+- Rate at which fields do work on free charges per unit volume: $\mathbf{J} \cdot \mathbf{E}$
+- All this work gets dissipated as heat (comes from the drag term)
+- What is doing all this work: EMF
+
+
+$$
+w = \int dt \ \mathbf{f} \cdot \mathbf{v} = \int dt \ \bigg[\mathbf{E} + \frac{\mathbf{v}}{c} \times \mathbf{B}\bigg] \cdot \mathbf{v} = \int dt \ \mathbf{E} \cdot \mathbf{v}
+$$
+
+$$
+p = \frac{dw}{dt} = \mathbf{E} \cdot \mathbf{v}
+$$
+
+$$
+P = \sum_i p_i = \int d^3\mathbf{x} \ \rho(\mathbf{x}) \mathbf{E} \cdot \mathbf{v}(\mathbf{x}) = \int d^3\mathbf{x} \ \mathbf{J}(\mathbf{x}) \cdot \mathbf{E}(\mathbf{x})
+$$
+
+$$
+J = I/A \ , \ E = V/d \ , P = (I/A) (V/d) \cdot vol = IV = I^2 R
+$$
 
 
 
-### Electromotive Force
 
+
+## Electromotive Force
+
+When a conductor is placed in the presence of an external electric field, the E-field causes the charges inside the conductor to move until the E-field inside the conductor vanishes. This results in a temporary current in the conductor that quickly subsides as the charges reach electrostatic equilibrium.
+
+Something different happens, however, when we take a conducting material and hook it up to a power source. If the power source creates a constant electric field across the conductor, we find that a steady current is created as long as the power source is turned on. We'd now like to understand why exactly this happens. After all, some force must be causing the charges to keep moving, otherwise they'd come to rest. This will lead us to the idea of electromotive force.
 
 ### Faraday's Law
 
@@ -80,7 +210,7 @@ In the early 19th century, Faraday studied the behavior of current flowing throu
 
 Faraday interpreted the transient current flow as being due to a changing magnetic flux through the first circuit, with the changing magnetic flux inducing an electric field around the circuit via an *electromotive force*. He called this phenomenon *electromagnetic induction*.
 
-### Faraday's Law
+---
 
 Nowadays we interpret Faraday's results mathematically as follows. Suppose a closed circuit is running along some closed loop $\mathcal{C}$ containing a bounded open surface $\mathcal{S}$ with unit normal $\mathbf{n}$. In the background we suppose there is some magnetic field $\mathbf{B}$. Then there will be a magnetic flux $\Phi_B$ through the circuit given by the integral
 $$
@@ -109,6 +239,13 @@ This relation between EMF and magnetic flux is known as *Faraday's Law*.
 - Lenz' Law: nature abhors a change in (magnetic) flux
 - Lenz's law also implies a Lorentz force opposing the motion
 - Show how analogy between Ampere and Faraday laws can be used to find E-fields for various problems
+
+## Inductance
+
+
+
+## Energy in Magnetic Fields
+
 - Mention quasistatics case, where we assume both E and B fields are time independent
 - Mention (mutual) inductance, $\mathcal{E} = -L \dot I$ where $L$ is geometrical (units of Oersted)
 - Use Faraday's law to derive energy stored in B-fields, $u = 1/2c \ \mathbf{J} \cdot \mathbf{A} = 1/2 \ \mathbf{B}^2$
@@ -133,7 +270,7 @@ $$
 
 
 
-## Maxwell's Equations
+Maxwell's Equations
 
 - State quasistatic field equations
 - Introduce the displacement current to maintain charge conservation
@@ -154,12 +291,6 @@ $$
 \mathbf{B} &= \nabla \cdot \mathbf{A} \ .
 \end{align*}
 $$
-
-
-
-
-
-## Conservation Laws
 
 
 $$
