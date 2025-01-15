@@ -708,7 +708,7 @@ One can easily verify this gives the answer by confirming that $\mathbf{B} = \na
 
 ##### Example: Vector potential of a rotating charged sphere
 
-Suppose a hollow sphere of radius $R$ is rotating with some constant angular velocity $\omega$ about some axis. On the sphere is a uniform surface charge density $\sigma$. We'd like to calculate the vector potential and magnetic field of this rotating sphere.
+Suppose a sphere of radius $R$ is rotating with some constant angular velocity $\boldsymbol{\omega}$ about some axis. On the sphere is a uniform surface charge density $\sigma$. We'd like to calculate the vector potential outside this rotating sphere, when $r > R$.
 
 FIGURE (rotating sphere)
 
@@ -716,25 +716,43 @@ To calculate the vector potential, we need to evaluate the vector integral
 $$
 \mathbf{A}(\mathbf{x}) = \frac{1}{c} \int da' \ \frac{\mathbf{K}(\mathbf{x}')}{|\mathbf{x} - \mathbf{x}'|} \ .
 $$
-Now, by definition $\mathbf{K}(\mathbf{x}') = \sigma \mathbf{v}'$, and since $|\mathbf{x}'| = R$ we have
+Now, the area element in this case is $da' = R^2 \sin\theta' d\theta'd\varphi'$, and since $|\mathbf{x}'| = R$ we have
 $$
 |\mathbf{x} - \mathbf{x}'| = \sqrt{r^2 + R^2 - 2 \mathbf{x} \cdot \mathbf{x}'} \ .
 $$
-At this point we need to choose a coordinate system to do the integration. Obviously spherical coordinates makes the most sense, but rather than orient the angular velocity vector $\boldsymbol{\omega}$ along the $z$-axis like we normally would, it turns out to be easier to orient the coordinate system so that the field point $\mathbf{x}$ is oriented along the $z$-axis and $\boldsymbol{\omega}$ is in the $xy$-plane. This means we have $\mathbf{x} \cdot \mathbf{x}' = rR\cos\theta'$, and so
+By definition $\mathbf{K}(\mathbf{x}') = \sigma \mathbf{v}'$. Since the sphere is rigid and rotating with the same angular velocity $\boldsymbol{\omega}$, the velocity $\mathbf{v}'$ is given by
 $$
-|\mathbf{x} - \mathbf{x}'| = \sqrt{r^2 + R^2 -2rR\cos\theta'} \ .
+\mathbf{v}' = \boldsymbol{\omega} \times \mathbf{x}' \ .
 $$
-The velocity vector $\mathbf{v}'$ is given by the cross product $\boldsymbol{\omega} \times \mathbf{x}'$, which is evidently
+Since the surface charge density $\sigma$ is constant on the sphere, we thus have
 $$
-\mathbf{v}' = \boldsymbol{\omega} \times \mathbf{x}' = \omega R \mathbf{e}_\varrho \times \mathbf{e}_{r'}
+\mathbf{A}(\mathbf{x}) = \frac{R^2\sigma}{c} \int_0^\pi \sin\theta' d\theta' \int_0^{2\pi} d\varphi' \ \frac{\boldsymbol{\omega} \times\mathbf{x}'}{\sqrt{r^2 + R^2 - 2 \mathbf{x} \cdot \mathbf{x}'}} \ .
 $$
-This means the surface current density is then $\mathbf{K}(\mathbf{x}') = R\sigma\omega \cdot$, and so the vector potential can be written
+At this point we need to choose how we'd like to align the coordinate axes to perform the integration. While it seems natural to align axes such that the axis of rotation is the $z$-axis, it turns out to be much easier to evaluate the integral if we let $\mathbf{x}$ lie on the $z$-axis instead, so that
 $$
-\mathbf{A}(\mathbf{x}) = \frac{4\pi R^3 \sigma\omega}{c} \int_0^\pi \sin\theta' d\theta' \ \frac{\cdot}{\sqrt{r^2 + R^2 -2rR\cos\theta'}} \mathbf{e}_\cdot \ .
+\mathbf{x} \cdot \mathbf{x}' = rR \cos\theta' \ .
 $$
-
-
-- This is not finished…
+But this still leaves a choice as to how to align the axes in the $xy$-plane. It'll be most convenient to orient the $xy$-plane such that the axis of rotation lies in the $xz$-plane. If $\boldsymbol{\omega}$ lies at a constant angle $\gamma$ from the $z$-axis, we have
+$$
+\boldsymbol{\omega} \times \mathbf{x}' = R\omega[-\cos\gamma\sin\theta'\sin\varphi' \mathbf{e}_x + (\cos\gamma\sin\theta'\cos\varphi' - \sin\gamma\cos\theta') \mathbf{e}_y + \sin\gamma\sin\theta'\sin\varphi' \mathbf{e}_z] \ .
+$$
+Now, notice that each component of $\mathbf{A}$ containing a $\sin\varphi'$ or $\cos\varphi'$ will vanish when integrated over $\varphi'$. The only component without such a term will be $A_y$, which upon integrating over $\varphi'$ reduces to
+$$
+A_y(\mathbf{x}) = -\frac{2\pi R^3\omega\sigma}{c} \sin\gamma \int_0^\pi d\theta' \ \frac{\sin\theta'\cos\theta'}{\sqrt{r^2 + R^2 - 2 \cos\theta'}} \ .
+$$
+The remaining integral over $\theta'$ can be done by substituting $u = \cos\theta'$. For $r > R$, the result will be $2R/3r^2$. We thus have
+$$
+A_y(\mathbf{x}) = -\frac{4\pi R^4\sigma}{3cr^2} \omega\sin\gamma \ .
+$$
+Now, notice that in our choice of coordinates we have $\boldsymbol{\omega} \times \mathbf{x} = -\omega r \sin\gamma \mathbf{e}_y$. This means we can write the vector potential as
+$$
+\mathbf{A}(\mathbf{x}) = \frac{4\pi R^4 \sigma}{3cr^3} \boldsymbol{\omega} \times \mathbf{x} \ .
+$$
+In this notation we can now easily rotate the coordinate axes if we like so that $\boldsymbol{\omega}$ is along the $z$-axis. Then we have
+$$
+\mathbf{A}(\mathbf{x}) = \frac{4\pi R^4 \sigma\omega}{3cr^2} \sin\theta\mathbf{e}_\varphi \ .
+$$
+Thus, the vector potential of a rotation sphere moves in the direction the sphere is rotating, and falls off like $1/r^2$ outside the sphere. One can also show the vector potential inside the sphere is the same, except multiplied by $r^3/R^3$. This means the magnetic field inside the sphere will be constant and pointed along the axis of rotation.
 
 ## Multipole Expansion
 
@@ -1048,33 +1066,3 @@ $$
 \mathbf{A}(\mathbf{x}) = \frac{1}{c} \sum_{\ell=0}^\infty \sum_{m=-\ell}^\ell \frac{4\pi}{2\ell+1} \frac{Y_{\ell m}(\theta,\varphi)}{r^{\ell+1}} \mathbf{m}_{\ell m} \ .
 $$
 One can show that the $\ell=0,1$ expansion terms give the same results we found above in the Cartesian expansion.
-
-
-$$
-\mathbf{F} = -m \mathbf{g}
-$$
-
-$$
-\mathbf{g}(\mathbf{x}) = G \int d^3 \mathbf{x}' \ \rho(\mathbf{x}') \frac{\mathbf{x} - \mathbf{x}'}{|\mathbf{x} - \mathbf{x}'|^3}
-$$
-
-$$
-\mathbf{g}(\mathbf{x}) = -\nabla \phi(\mathbf{x}) \quad , \quad \phi(\mathbf{x}) = G \int d^3\mathbf{x}' \ \frac{\rho(\mathbf{x}')}{|\mathbf{x} - \mathbf{x}'|}
-$$
-
-$$
-M = \int d^3\mathbf{x}' \ \rho(\mathbf{x}') \quad , \quad \mathbf{R} = \frac{1}{M} \int d^3\mathbf{x}' \ \rho(\mathbf{x}') \mathbf{x}'
-$$
-
-$$
-\phi(\mathbf{x}) = G\bigg[\frac{M}{r} + \frac{M\mathbf{R} \cdot \mathbf{x}}{r^2} + \frac{\mathbf{x} \cdot \mathbf{M} \cdot \mathbf{x}}{2r^3} + \cdots\bigg]
-$$
-
-$$
-\mathbf{M} = \int d^3\mathbf{x}' \ \rho(\mathbf{x}') [3\mathbf{x}' \otimes \mathbf{x}' - r'^2 \mathbf{1}]
-$$
-
-$$
-\mathbf{I} = \int d^3\mathbf{x}' \ \rho(\mathbf{x}') [r'^2 \mathbf{1} - \mathbf{x}' \otimes \mathbf{x}']
-$$
-

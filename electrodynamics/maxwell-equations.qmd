@@ -75,29 +75,34 @@ More formally, we make the following assumptions in Drude model:
 3. In between scattering events, the free electrons can only interact *classically* with an external applied force field $\mathbf{F}$. 
 4. The electrons do not interact with each other at all.
 
-Suppose an electron is moving through the solid with velocity $\mathbf{v}(t)$. We'd like to know what its velocity will be at a time $t+dt$. Since the scattering process is random, this will depend on whether the electron scatters or not. By assumption (2), if the electron *scatters* in the time interval $[t,t+dt]$, it will come to rest with a velocity $\mathbf{v}(t+dt) = \mathbf{0}$. By assumption (3), if the electron *does not* scatter in the time interval $[t,t+dt]$, its motion will be given by Newton's second law, with
+Suppose an electron is moving through the solid with velocity $\mathbf{v}(t)$. We want to know what the velocity will be at an infinitesimally later time $t+dt$. But this velocity will depend on whether or not the electron scatters in the time interval $[t,t+dt]$. If the electron *does* scatter, by assumption (2) we must have $\mathbf{v}_{\text{scat}}(t+dt) = \mathbf{0}$.
+
+By assumption (3), if the electron *does not* scatter in the time interval $[t,t+dt]$, its motion in this time interval will be given by Newton's second law. If $\mathbf{v}_{\text{no}}(t+dt)$ is the velocity when there is no scattering, we'd have
 $$
-m_e \frac{d}{dt} \mathbf{v}(t+dt) = \mathbf{F} \ .
+m_e \frac{d}{dt} \mathbf{v}_{\text{no}}(t+dt) = \mathbf{F} \ .
 $$
 If we multiply both sides by $dt/m_e$ and write $d\mathbf{v}(t+dt) = \mathbf{v}(t+dt) - \mathbf{v}(t)$, we then get
 $$
-\mathbf{v}(t+dt) = \mathbf{v}(t) + \frac{\mathbf{F}}{m_e}dt \ .
+\mathbf{v}_{\text{no}}(t+dt) = \mathbf{v}(t) + \frac{\mathbf{F}}{m_e}dt \ .
 $$
-Now, the *expected* velocity $\langle\mathbf{v}(t+dt)\rangle$ at time $t+dt$ is just the weighted sum of these two possibilities weighted by the probability that each occurs. By assumption (1), the scattering probability is $dt/\tau$, which means the probability of no scattering is $1-dt/\tau$. We thus have
+Now, what we'd like to know is the *expected*, or average, velocity $\langle\mathbf{v}\rangle$ of all the free electrons, not the velocity of any single electron. At time $t$ we assume $\mathbf{v}(t)$ is known, which means $\langle\mathbf{v}(t)\rangle = \mathbf{v}(t)$ exactly. At time $t+dt$ the expected velocity will be the weighted average of $\mathbf{v}_{\text{scat}}(t+dt)$ and $\mathbf{v}_{\text{no}}(t+dt)$, where the weights are the probability each possibility occurs,
+$$
+\langle \mathbf{v}(t+dt) \rangle = p_{\text{scat}} \mathbf{v}_{\text{scat}}(t+dt) + p_{\text{no}} \mathbf{v}_{\text{no}}(t+dt) \ .
+$$
+By assumption (1), we have $p_{\text{scat}} = dt/\tau$, ,which means $p_{\text{no}} = 1-dt/\tau$. We thus have
 $$
 \langle \mathbf{v}(t+dt) \rangle = \frac{dt}{\tau} \mathbf{0} + \bigg(1 - \frac{dt}{\tau}\bigg) \bigg[\mathbf{v}(t) + \frac{\mathbf{F}}{m_e} dt\bigg] \ .
 $$
-Now, assuming we know the velocity at time $t$, the expected velocity at time $t$ is just $\langle\mathbf{v}(t)\rangle = \mathbf{v}(t)$. Since $dt$ is infinitesimal, if we move $\mathbf{v}(t)$ to the left-hand side and divide by $dt$, we just get the time derivative of $\langle\mathbf{v}(t)\rangle$,
+Assuming we know the velocity at time $t$, the expected velocity at time $t$ is just $\langle\mathbf{v}(t)\rangle = \mathbf{v}(t)$. If we now move $\mathbf{v}(t)$ to the left-hand side, drop any terms of order $dt^2$ on the right-hand side, and divide through by $dt$, we get
 $$
-\frac{d\langle\mathbf{v}(t)\rangle}{dt} \equiv \frac{\langle \mathbf{v}(t+dt) \rangle - \langle \mathbf{v}(t) \rangle}{dt} \ .
+\frac{\langle \mathbf{v}(t+dt) \rangle - \langle \mathbf{v}(t) \rangle}{dt} = \frac{\mathbf{F}}{m_e} - \frac{\langle\mathbf{v}(t)\rangle}{\tau} \ .
 $$
-To deal with the right-hand side we can expand out and drop any terms of order $dt$. In the end, we have
+Since $dt$ is infinitesimal, the left-hand side is just the time derivative $d\langle \mathbf{v} \rangle/dt$. We'll now drop the brackets from $\mathbf{v}$ since we won't need them anymore, in which case we can write
 $$
 \frac{d \mathbf{v}}{dt} = \frac{\mathbf{F}}{m_e} - \frac{\mathbf{v}}{\tau} \ .
 $$
-Here we've dropped the brackets from the velocity for convenience, since we won't need them anymore. From this point $\mathbf{v}$ will represent the expected, or average, velocity of the free electrons.
+Now, in principle the applied force could be any force field. If the field is purely electromagnetic, the force is given by the Lorentz force law, in which case we'd have
 
-In principle the applied force could be any force field. If the field is purely electromagnetic, the force is given by the Lorentz force law, in which case we'd have
 $$
 \frac{d \mathbf{v}}{dt} = -\frac{e}{m_e}\bigg[\mathbf{E} + \frac{\mathbf{v}}{c} \times \mathbf{B}\bigg] - \frac{\mathbf{v}}{\tau} \ .
 $$
@@ -111,17 +116,19 @@ $$
 \frac{d \mathbf{J}}{dt} = -\frac{ne^2}{m_e}\mathbf{E} + \frac{e}{m_ec} \mathbf{J} \times \mathbf{B} - \frac{\mathbf{J}}{\tau} 
 } \ .
 $$
-This differential equation is known as the *generalized Ohm's law*. In principle it describes how the current density responds to the external electromagnetic fields at any point in time. On the right-hand side, we have a driving term plus a relaxation term $-\mathbf{J}/\tau$. The relaxation term forces the current density $\mathbf{J}(t)$ to settle into a steady state on time scales of the relaxation time $\tau$.
+This differential equation is known as the *generalized Ohm's law*. In principle it describes how the current density responds to the external electromagnetic fields at any point in time. On the right-hand side, we have a driving term plus a relaxation term $-\mathbf{J}/\tau$. 
 
-In practice we don't really care about the transient behavior of the current, only its steady state behavior. The transient behavior is pretty quick anyway. For most solids $\tau$ is so small that it's barely noticeable. For example, many conducting solids have relaxation times of order $\tau \sim 10^{-14} \ \text{s}$. We'll thus focus on the steady state behavior. At steady state we have $d\mathbf{J}/dt=0$, or
+In practice we don't really care about the transient behavior of the current, only its steady state behavior. One major reason for this is that the transient behavior dies off fast, on time scales of $\tau$. For pretty much all solids $\tau$ is very tiny. For example, many metals have relaxation times of order $\tau \sim 10^{-14} \ \text{s}$. This means a steady state current is reached almost instantly.
+
+At steady state we can set $d\mathbf{J}/dt = \mathbf{0}$, which means the generalized Ohm's law reduces to
 $$
 \mathbf{0} = -\frac{ne^2}{m_e}\mathbf{E} + \frac{e}{m_ec} \mathbf{J} \times \mathbf{B} - \frac{\mathbf{J}}{\tau} \ .
 $$
-Though perhaps not so obvious, the relationship between the current density and the E-field is now linear. We can see this is the case by solving for $\mathbf{E}$ to get
+At this point it will be more convenient to solve for $\mathbf{E}$, in which case we get
 $$
 \mathbf{E} = \frac{m_e}{ne^2 \tau} \mathbf{J} + \frac{1}{nec} \mathbf{J} \times \mathbf{B} \ .
 $$
-To simplify the right-hand side, we can define a *resistivity matrix* $\boldsymbol{\rho}$ of the form
+Notice that this equation is linear in $\mathbf{J}$, which means the right-hand side must be some matrix multiple of $\mathbf{J}$. We'll call this matrix the *resistivity matrix* $\boldsymbol{\rho}$. It's not hard to show that the resistivity matrix can be written
 $$
 \boldsymbol{\rho} \equiv \begin{pmatrix}
 m_e / ne^2 \tau & B_z / nec & -B_y / nec \\
@@ -145,60 +152,90 @@ This derived expression for $\sigma$ hopefully makes sense. After all, the more 
 
 In this setting, one sometimes defines $\omega_p^2 \equiv 4\pi ne^2/m_e$, where $\omega_p$ is called the *plasma frequency*. The plasma frequency is a measure of the natural frequency of oscillations of electrons inside the electron gas. In terms of the plasma frequency, the conductivity is given by $\sigma = \tau\omega_p^2 / 4\pi$. Thus, the higher the plasma frequency, the higher the conductivity will be.
 
-The fact that we were able to derive Ohm's law from a classical model is interesting. But it is still worth asking how correct the model is. In particular, is the formula it gives for the conductivity correct? It turns out that the formula is correct for many solids, but not all solids. For example, it's highly accurate for <>.
-
-- Finish this part. Research which solids the Drude model works well on, and which it doesn't.
-
-We'll finish this section by noting that we didn't need to include the magnetic field term in the Lorentz force to derive Ohm's law from the Drude model. We could've just set $\mathbf{F} = -e \mathbf{E}$ and the derivation would've been easier. The reason we didn't is to briefly mention an interesting phenomenon in solids known as the *Hall effect*. If $\mathbf{B} \neq \mathbf{0}$, the resistivity matrix won't be diagonal, and the off-diagonal terms will be a function of $\mathbf{B}$. This leads to some interesting behavior. For example, the current will no longer move in the direction of the E-field. For example, if the E-field is oriented in the $x$-direction, there will be a component of current that moves along the $y$-direction, since
+We can also use the Drude model to ask how to estimate how fast the free electrons are moving through the solid in response to the applied E-field. Since $\mathbf{J} = -ne\mathbf{v}$ and $\sigma = ne^2\tau / m_e$, the average velocity of these electrons at steady state will evidently be
 $$
-E_x = \rho_{xy} J_y = \frac{B_z}{nec} J_y \ .
+\mathbf{v} = -\frac{e\tau}{m_e} \mathbf{E} \ .
 $$
-As we'd expect, the presence of a B-field acts to deflect moving charges away from their trajectories. There are many more interesting things related to the Hall effect. For example, it can be used to levitate a solid. We won't discuss those ideas here.
+Notice that, on average, the free electrons flow in the direction *opposite* the direction of the applied E-field, as we'd expect since electrons are negatively charged. Their average *speed* $v_d \equiv |\mathbf{v}|$ is known as the *drift velocity*, which is evidently
+$$
+v_d = \frac{e\tau}{m_e} |\mathbf{E}| \ .
+$$
+It's worth plugging in some numbers to get a feel for how fast this drift velocity is in a typical scenario. Supposing we apply an E-field of strength $|\mathbf{E}| = 1 \ \text{V}/\text{m}$ across a piece of copper with a mean free time of $\tau \approx 3 \cdot 10^{-14} \ \text{s}$, we'd have $v_d \approx 0.5 \ \text{cm}/\text{s}$. Thus, the free electrons are responding to the E-field very slowly. This is primarily due to all the collisions taking place as they move through the solid. These collisions cause the electrons to move through the material in a random walk, but with a slight drift in the direction of the E-field. The random walk velocities will average to zero, leaving only this tiny drift velocity to contribute to the average. Yet, this tiny drift velocity alone is entirely responsible for any induced currents measured in the material.
 
-### Drift Velocity
-
-- The total velocity can be decomposed as $\mathbf{v} = \mathbf{v}_\text{th} + \mathbf{v}_d$, where $v_\text{th} \propto \sqrt{k_B T/m_e}$ and $v_d = -e\tau/m \cdot E$
-- Show that the thermal velocity averages to zero, leaving only the drift velocity (which is what contributes to the current)
-
-Copper: $v_e = 10^{6} \ m/s$, $\tau = 3 \cdot 10^{-14} \ s$, $n = 10^{29} \ m^{-3}$
-
-Drift velocity: $v_d = a \tau = eE/m_e \tau$, so $E = 1 \ V/m$ over copper wire implies $v_d \approx 0.5 \ cm/s$
+Since we derived the generalized Ohm's law assuming a B-field might also be present, it's worth briefly asking what happens in that case.  If $\mathbf{B} \neq \mathbf{0}$, the resistivity matrix won't be diagonal, and the off-diagonal terms will be a function of $\mathbf{B}$. This will cause the induced current to be deflected by the B-field away from its usual trajectory. For example, if the E-field is oriented in the $x$-direction, there will now be a component of current that moves along the $y$ and $z$ directions as well. This is known as the *Hall effect*. We can actually use the Hall effect to build a sensor to measure B-field strength. The idea is to use a material whose conductivity is known, apply a known voltage across the material (which gives $\mathbf{E}$), and use these to measure $\mathbf{B}$. These kinds of sensors are known as *Hall sensors*, and are commonly used nowadays to measure B-field strength.
 
 ### Ohmic Heating
 
-- In detailed balance, the power dissipated is the rate at which work is done on the free charges: $P = dW/dt$
-- Rate at which fields do work on free charges per unit volume: $\mathbf{J} \cdot \mathbf{E}$
-- All this work gets dissipated as heat (comes from the drag term)
-- What is doing all this work: EMF
+The presence of a relaxation or drag term in the generalized Ohm's law above necessarily means that energy is being dissipated through the material as heat. After all, drag is not a conservative force, which means energy is not conserved unless thermal heat also gets taken into account. Fundamentally the heat loss is due to the random collisions, which causes the free electrons to lose kinetic energy, which gets converted into thermal energy and causes the material to warm up. This is known as *Ohmic heating*.
 
-
+In fact, Ohmic heating must occur anytime there is a steady current being pumped through the material, whether the material obey's Ohm's law or not. To see why this is the case, suppose a free charge $q$ is moving through the material at a velocity $\mathbf{v}$ in response to external electric or magnetic fields. Now, the total power $P$ dissipated by a single free charge at any instance is just the rate at which the fields do work on the free charge. Since B-fields do no work, we have
 $$
-w = \int dt \ \mathbf{f} \cdot \mathbf{v} = \int dt \ \bigg[\mathbf{E} + \frac{\mathbf{v}}{c} \times \mathbf{B}\bigg] \cdot \mathbf{v} = \int dt \ \mathbf{E} \cdot \mathbf{v}
+P = \frac{dW}{dt} = \mathbf{F} \cdot \mathbf{v} = q \mathbf{E} \cdot \mathbf{v} \ .
 $$
-
+Suppose now a distribution $\rho(\mathbf{x})$ of free charge is moving through the material at some flow velocity $\mathbf{v}(\mathbf{x})$. Then the total power dissipated by the entire charge distribution is given by
 $$
-p = \frac{dw}{dt} = \mathbf{E} \cdot \mathbf{v}
+P = \int d^3\mathbf{x} \ \rho(\mathbf{x}) \mathbf{E}(\mathbf{x}) \cdot \mathbf{v}(\mathbf{x}) \ .
 $$
-
+Since the current density is $\mathbf{J} = \rho \mathbf{v}$, this can also be written
 $$
-P = \sum_i p_i = \int d^3\mathbf{x} \ \rho(\mathbf{x}) \mathbf{E} \cdot \mathbf{v}(\mathbf{x}) = \int d^3\mathbf{x} \ \mathbf{J}(\mathbf{x}) \cdot \mathbf{E}(\mathbf{x})
+\boxed{
+P = \int d^3\mathbf{x} \ \mathbf{J}(\mathbf{x}) \cdot \mathbf{E}(\mathbf{x}) 
+} \ .
 $$
+The dot product $\mathbf{J} \cdot \mathbf{E}$ evidently represents the amount of heat generated per unit volume per unit time inside the material.
 
+Now, if the material is *Ohmic*, that is if it obeys Ohm's law, then $\mathbf{J} = \sigma \mathbf{E}$, and so we can also write
 $$
-J = I/A \ , \ E = V/d \ , P = (I/A) (V/d) \cdot vol = IV = I^2 R
+P = \sigma \int d^3\mathbf{x} \ |\mathbf{E}(\mathbf{x})|^2 = \frac{1}{\sigma} \int d^3\mathbf{x} \ |\mathbf{J}(\mathbf{x})|^2 \ .
 $$
-
-
-
-
+In the special case where we have an Ohmic material with cross-sectional area $A$ and length $L$ hooked up to a voltage source creating a voltage $V$, we know $|\mathbf{E}| = V/L$ and $|\mathbf{J}| = I/A$, in which case we get the more familiar relations
+$$
+P = IV = \frac{V^2}{R} = I^2R \ .
+$$
+Of course, we still haven't answered an important question: If energy is being dissipated as heat, how is it we're able to maintain a steady current inside the material? The answer to this is electromotive force, which we'll discuss in the next section.
 
 ## Electromotive Force
 
-When a conductor is placed in the presence of an external electric field, the E-field causes the charges inside the conductor to move until the E-field inside the conductor vanishes. This results in a temporary current in the conductor that quickly subsides as the charges reach electrostatic equilibrium.
+When a steady current flows across some material, something must be causing that current to flow. Due to Ohmic heating, the free charges making up the current would eventually come to rest if there wasn't some source of power to keep them from doing so. Said differently, there must be some *electromotive force* to maintain the steady current.
 
-Something different happens, however, when we take a conducting material and hook it up to a power source. If the power source creates a constant electric field across the conductor, we find that a steady current is created as long as the power source is turned on. We'd now like to understand why exactly this happens. After all, some force must be causing the charges to keep moving, otherwise they'd come to rest. This will lead us to the idea of electromotive force.
+### Definition
 
-### Faraday's Law
+Suppose we hook up an Ohmic material to some kind of power supply to create a closed circuit. The power supply could be, for instance, a battery or a generator. If we turn on the power supply, an electrostatic E-field gets created, which drives an induced current through the material according to Ohm's law. Said differently, the power supply is the *cause* of the induced current. Each free charge inside the material will feel a total force
+$$
+\mathbf{F} = \mathbf{F}_s + q \mathbf{E} \ ,
+$$
+where $\mathbf{F}_s$ is the force generated by the power supply. The work done in moving the free charge around the closed circuit is then
+$$
+W = \oint \mathbf{F} \cdot d\boldsymbol{\ell} = \oint \mathbf{F}_s \cdot d\boldsymbol{\ell} \ .
+$$
+Assuming the power supply itself has zero resistivity (or equivalently infinite conductivity), the total force will be zero across the power supply, where $\mathbf{F}_s = -\mathbf{E}$. Assuming the power supply is connected to the circuit via two terminals at points $\mathbf{a}$ and $\mathbf{b}$ on the circuit, and the force $\mathbf{F}_s$ points from $\mathbf{a}$ to $\mathbf{b}$, we then have
+$$
+W = \oint \mathbf{F}_s \cdot d\boldsymbol{\ell} = -q \int_\mathbf{a}^\mathbf{b} \mathbf{E} \cdot d\boldsymbol{\ell} \ .
+$$
+That is, the work done by the power supply to move a free charge all the way around the circuit is just the work done by the E-field on the free charge when moving through the power supply. By convention, we divide this work by $q$ and define
+$$
+\mathcal{E} \equiv -\int_\mathbf{a}^\mathbf{b} \mathbf{E} \cdot d\boldsymbol{\ell} \ .
+$$
+We call $\mathcal{E}$ the *electromotive force* or *EMF* of the power supply. Since the EMF is the work per unit charge to move a free charge all the way around the circuit, we can think of the EMF itself as the cause of the current. Despite its name, the EMF is actually a *voltage*, not a *force*. It's the potential difference created by the power supply across the rest of the circuit. The entire purpose, if you will, of the power supply, is to establish this potential difference, which then generates a current according to Ohm's law.
+
+FIGURE (show circuit with a power supply and EMF causing a current)
+
+Notice in defining the EMF we've said nothing about the internals of the power supply itself. The source of the EMF could be essentially anything that creates an E-field. If this source is a battery, the EMF is caused by chemical reactions taking place inside the battery. If the source is  a Van de Graaf machine, the EMF is caused by a belt sweeping up free charges and placing them on the circuit directly. If the source is a generator, the EMF is caused by a wire moving through a magnetic field. This last source is the one we'll focus on now. When the source is a generator, we say that the EMF is a *motional EMF*.
+
+### Motional EMF
+
+- Move a wire through a uniform B-field. Force will be a Lorentz force. Show how Faraday's law falls out.
+
+- Redo above section, trying to avoid focusing so much on a fixed circuit with two distinct terminals.
+- EMF == The total voltage across the circuit *excluding* the power supply
+- Consider briefly mentioning Kirkhoff's rules and maybe doing a couple examples under Ohm's law section (series, parallel?)
+  - $\sum V_i = 0$ (follows from a conservative E-field)
+  - $I_{in} = I_{out}$ through any node (follows from charge conservation)
+  - Series: $R = R_1 + \cdots + R_n$
+  - Parallel: $1/R = 1/R_1 + \cdots + 1/R_n$
+  - RC Circuit: $V = IR + Q/C$ or $V/R = \dot Q + Q/RC$
+
+## Faraday's Law
 
 In the early 19th century, Faraday studied the behavior of current flowing through an electric circuit. In doing so he accidentally stumbled on one of the most important facts of electromagnetism, that electric and magnetic fields are related. Specifically, Faraday observed that he could measure a brief transient current flowing through a circuit under the following conditions:
 
