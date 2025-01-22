@@ -718,50 +718,54 @@ $$
 $$
 We've thus shown that Coulomb's law satisfies Poisson's equation, as we'd expect. In fact, if the charge distribution is localized and there are no boundary conditions present, like say a set of background conductors, then Coulomb's law is the only valid solution. If boundary conditions are present we have to modify things slightly. We'll see more on this in the next few chapters.
 
-### Surfaces of Charge
+### Surface Boundary Conditions
 
-Recall from our discussion of Gauss's Law that we saw something seemingly peculiar: The electric field of an infinite sheet of uniform charge  is discontinuous at the surface. Below the surface the field is $\mathbf{E} = -2\pi\sigma \mathbf{e}_z$, while above the surface the field is $\mathbf{E} = +2\pi\sigma \mathbf{e}_z$. Evidently, crossing the surface causes the field to change discontinuously by an amount $\Delta |\mathbf{E}| = 4\pi\sigma$.
+Recall from earlier the infinite sheet of charge example. Specifically, we saw that the electric field across the sheet of charge changes discontinuously across the surface by an amount $4\pi\sigma$. In fact this is generally true for E-fields across surfaces of charge. Specifically, when crossing a surface of charge, the normal part of the E-field changes discontinuously, while the tangential part of the E-field changes continuously.
 
-In fact this is generally true for surfaces of charge. To see why, suppose $\mathcal{S}$ is some smooth surface of arbitrary shape carrying a surface charge density $\sigma$. Pick a point $\mathbf{x}$ on this surface. Since the field for a general surface can point in any direction, what we can do is decompose it into two components, one perpendicular to $\mathcal{S}$ and one parallel to $\mathcal{S}$​,
+FIGURE (show surface of charge with normal and tangential E-fields)
+
+To see why this is the case, suppose $\mathcal{S}$ is some smooth surface carrying a surface charge density $\sigma(\mathbf{x})$. Suppose $\mathbf{x}$ is some point on this surface. The E-field $\mathbf{E}(\mathbf{x})$ at this point can then be decomposed into two parts, one vector $\mathbf{E}^\perp(\mathbf{x})$ normal to the surface at this point, and another vector $\mathbf{E}^\parallel(\mathbf{x})$ tangential to the surface at this point,
 $$
-\mathbf{E} = \mathbf{E}^\perp + \mathbf{E}^\parallel \ .
+\mathbf{E}(\mathbf{x}) = \mathbf{E}^\perp(\mathbf{x}) + \mathbf{E}^\parallel(\mathbf{x}) \ .
 $$
-To deal with the perpendicular component, what we can do is apply Gauss's Law just like we did with the infinite sheet. We'll choose an infinitesimally high and very thin pillbox with top and bottom areas $\delta A$ as the Gaussian surface, where $\delta A$ is so small that any deviations in the curvature of the surface $\mathcal{S}$ are negligible inside the Gaussian surface. If $E_+$ is the value of the field above the surface and $E_-$ is the value of the field below the surface, by Gauss's Law we must have
+To deal with the normal vector, what we can do is apply Gauss's Law just like we did with the infinite sheet. We'll choose an infinitesimally high and very thin pillbox with top and bottom areas $\delta A$ as the Gaussian surface, where $\delta A$ is so small that any deviations in the curvature of the surface $\mathcal{S}$ are negligible inside the Gaussian surface. If $E_+$ is the value of the E-field above the surface and $E_-$ is the value of the E-field below the surface, by Gauss's Law we must have
 $$
-4\pi\sigma \delta A = \int \mathbf{E} \cdot d\mathbf{a} \approx (E_+^\perp - E_-^\perp) \delta A \ .
+(E_+^\perp - E_-^\perp) \delta A \approx \int \mathbf{E} \cdot d\mathbf{a} = 4\pi\sigma \delta A \ .
 $$
-That is, the perpendicular component of the field again undergoes a discontinuous change of $4\pi\sigma$ crossing the surface,
+That is, the normal part of the E-field changes discontinuously across the surface by an amount
 $$
-E_+^\perp - E_-^\perp = 4\pi\sigma \ .
+E_+^\perp(\mathbf{x}) - E_-^\perp(\mathbf{x}) = 4\pi\sigma(\mathbf{x}) \ .
 $$
-What about the parallel component? Suppose $\mathcal{C}$ is some small closed loop around the point $\mathbf{x}$ on the surface, so small the curvature of $\mathcal{S}$ is negligible. We've already seen that the circulation integral must be vanish. This means we have
+What about the parallel part? To handle this case, we can place an infinitesimally small closed loop of size $\delta\ell$ on the surface centered at the point $\mathbf{x}$. Since the circulation integral of the E-field is zero, we must have
 $$
-0 = \oint_\mathcal{C} \mathbf{E} \cdot d\boldsymbol{\ell} \approx (E_+^\parallel - E_-^\parallel) \ell \ .
+(E_+^\parallel - E_-^\parallel) \delta\ell = \oint_\mathcal{C} \mathbf{E} \cdot d\boldsymbol{\ell} = 0 \ .
 $$
-From this we must conclude that the parallel component is indeed continuous on the surface, with $\mathbf{E}_+^\parallel = \mathbf{E}_-^\parallel$. We can put these two results together by using the normal vector $\mathbf{n}$​ to write
+Assuming $\delta\ell$ is infinitesimal, we have $E_+^\parallel(\mathbf{x}) = E_-^\parallel(\mathbf{x})$. That is, the tangential part of the E-field remains continuous when crossing the surface of charge.
+
+We can put these two results together by using the (upward) normal vector $\mathbf{n}$​ to write
 $$
-\mathbf{E}_+ - \mathbf{E}_- = 4\pi\sigma \mathbf{n} \ .
+\mathbf{E}_+(\mathbf{x}) - \mathbf{E}_-(\mathbf{x}) = 4\pi\sigma(\mathbf{x}) \mathbf{n} \ .
 $$
-What about the scalar potential? In fact the potential *is* continuous across the surface of charge. To see why, suppose $\mathbf{x}_-$ is some point infinitesimally below the surface and $\mathbf{x}_+$ some other point infinitesimally above the surface. If the two points are separated by a distance $\delta\ell$, the potential difference between these two points must be given by
+What about the scalar potential? In fact the potential *is* continuous across the surface of charge. To see why, suppose $\mathbf{x}_-$ is some point infinitesimally below the surface and $\mathbf{x}_+$ some other point infinitesimally above the surface. If the two points are separated by a small distance $\delta\ell$, the potential difference between these two points must be given by
 $$
 \phi_+ - \phi_- = -\int_{\mathbf{x}_-}^{\mathbf{x}_+} \mathbf{E} \cdot d\boldsymbol{\ell} \approx -(E_+  + E_-) \delta\ell \ .
 $$
-Since the right-hand side is infinitesimal, we can conclude that the potential difference crossing the surface must be zero,
+Assuming $\delta\ell$ infinitesimal, the right-hand side will be much much smaller than the left-hand side. In this limit, we thus have
 $$
-\phi_+ = \phi_- \ .
+\phi_+(\mathbf{x}) = \phi_-(\mathbf{x}) \ .
 $$
-Since we'll be solving Poisson's equation in the next few chapters, let's go ahead and formulate these conditions as a set of boundary conditions for the potential and its gradient. For that purpose it'll be convenient to express the condition for the electric field as a *normal derivative* of the potential. If we define the normal derivative by
+Since need them to solve boundary value problems in the next few chapters, let's go ahead and formulate these surface conditions as a set of boundary conditions for the potential. For that purpose it'll be convenient to express the condition for the electric field as a normal derivative of the potential. The *normal derivative* of a scalar field on a surface is defined as the component of the scalar field's gradient in the normal direction,
 $$
-\frac{\partial \phi}{\partial n} \equiv \nabla \phi \cdot \mathbf{n} \ ,
+\frac{\partial \phi}{\partial n} \equiv \nabla \phi \cdot \mathbf{n} \ .
 $$
-we can write the two boundary conditions for the potential across a surface of charge as
+We can thus write the two boundary conditions for the potential across a surface of charge as
 $$
 \begin{align*}
-\phi_+ - \phi_- &= 0 \ , \\
-\frac{\partial \phi_+}{\partial n} - \frac{\partial \phi_-}{\partial n} &= -4\pi\sigma \ .
+\phi_+(\mathbf{x}) - \phi_-(\mathbf{x}) &= 0 \ , \\
+\frac{\partial}{\partial n} \phi_+(\mathbf{x}) - \frac{\partial}{\partial n} \phi_-(\mathbf{x}) &= -4\pi\sigma(\mathbf{x}) \ .
 \end{align*}
 $$
-Here it's of course understood that $\phi_+$ and $\phi_-$ refer to points infinitesimally above and below the surface, respectively.
+Here it's of course understood that $\phi_+(\mathbf{x})$ and $\phi_-(\mathbf{x})$ refer to points infinitesimally above and below the surface, respectively.
 
 ## Field Energy
 

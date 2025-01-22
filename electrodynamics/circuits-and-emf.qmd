@@ -1,12 +1,12 @@
-# Electromagnetic Induction
+# Circuits and Electromotive Force
 
-Thus far we've spent a considerable amount of time studying *statics*, focusing on fields that are time-independent. We will now begin turning our attention to *dynamics*, where we allow the fields to depend explicitly on time. This leads us into the subject of *electrodynamics*, which we will study in depth for the rest of the course. To begin our study of this topic we will discuss a few important concepts that will lead us in the next chapter to Maxwell's equations, the crown jewel of electromagnetism. In this chapter, we'll start moving in this direction by discussing things like Ohm's law, electromotive force, Faraday's law, and electromagnetic induction.
+In this chapter, we'll start moving in the direction of electrodynamics by combining electric and magnetic fields together. For now we will mostly still assume that both fields are time-independent by combining electrostatics and magnetostatics together to get a unified theory of statics known as *quasistatics*. We will first present Ohm's law and the basics of circuit theory before discussing electromotive force and finally arriving at Faraday's law, one of the four Maxwell equations. We'll finalize our discussion of Maxwell's equations in the next chapter.
 
 ## Ohm's Law
 
 When a material is brought into contact with external electromagnetic fields, these fields will cause any unbound electrons inside the material to move in response to the fields, creating an induced current inside the material. If a material is placed in the vicinity of an external E-field $\mathbf{E}$ and an external B-field $\mathbf{B}$, there will be an induced current density $\mathbf{J} = \mathbf{J}(\mathbf{E},\mathbf{B})$ that's some function of these fields. Assuming the material is in electrostatic equilibrium before these fields are turned on, we can Taylor expand $\mathbf{J}$ to get a power series in $\mathbf{E}$. The $j$<sup>th</sup> component of the current density can then be written
 $$
-J_i = \sigma_{ij}(\mathbf{B}) E_i + \sigma_{ijk}(\mathbf{B}) E_j E_k + \cdots \ ,
+J_i = \sigma_{ij}(\mathbf{B}) E_i + \frac{1}{2}\sigma_{ijk}(\mathbf{B}) E_j E_k + \cdots \ ,
 $$
 where the coefficients are some function of $\mathbf{B}$. If the applied E-field is sufficiently weak we can truncate to leading order to get
 $$
@@ -34,37 +34,61 @@ This means inside an Ohmic material with steady current we can assume $\rho = 0$
 
 ### V = IR
 
-- Redo this section. Focus on isotropic materials hooked up to electrodes held at constant voltages.
+Of course, the version of Ohm's law given above isn't the one most of us are probably familiar with. We're used to seeing Ohm's law in terms of voltage and current, not E-field and current density. To see how we get the more familiar version of Ohm's law, suppose we have a piece of cylindrically symmetric conducting material with some cross-sectional area $A$ and length $L$. We now take this material and hook both ends up to terminals held at fixed potentials $\phi_\pm$. Since no charges can accumulate inside the conductor, the potential inside the conductor must satisfy Laplace's equation $\nabla^2 \phi = 0$.
 
-Of course, the version of Ohm's law given above isn't the one most of us are probably familiar with. We're used to seeing Ohm's law in terms of voltage and current, not E-field and current density. To see how we get the more familiar version of Ohm's law, suppose …
-
-
-
-the material in question is a wire with cross-sectional area $A$ and length $L$. If the applied E-field is approximately constant and directed along the wire, the potential difference $V$ across the wire is approximately
+This means we can formulate the problem as an electrostatics BVP. Supposing the cylinder lies along the $z$-axis, we have
 $$
-V = \int_0^d \mathbf{E} \cdot d\boldsymbol{\ell} \approx |\mathbf{E}| L \ .
+\begin{cases}
+\nabla^2 \phi = 0 \ , \\
+\phi(\varrho,\varphi,0) = \phi_+ \ , \\
+\phi(\varrho,\varphi,L) = \phi_- \ .
+\end{cases}
 $$
-Moreover, assuming the induced current $I$ running through the wire is approximately uniform, we have
+We will also assume that $\phi(\mathbf{x}) = 0$ outside the conductor. This can be ensured, for instance, by wrapping the sides of the conducting cylinder in a good insulating material like rubber. Now, solving this BVP is a trivial matter. By the uniqueness theorem, if we can guess a correct solution satisfying the boundary conditions, it must be *the* unique solution. An obvious guess is
 $$
-I = \int \mathbf{J} \cdot d\mathbf{a} \approx |\mathbf{J}| A \ .
+\phi(\mathbf{x}) = \frac{\phi_+ - \phi_-}{L} z + \phi_- \ .
 $$
-Plugging these expressions into Ohm's law above and multiplying both sides by $L/\sigma$, we have
+This choice of potential turns out to satisfy both boundary conditions, and hence must be the unique solution to the BVP. Now, this potential will give rise to an induced electric field inside the conductor of the form
+$$
+\mathbf{E}(\mathbf{x}) = -\nabla \phi(\mathbf{x}) = -\frac{\phi_+ - \phi_-}{L} \mathbf{e}_z \ .
+$$
+Evidently then, the induced E-field inside the conductor will be uniform along the axis of the cylinder, and be proportional to the potential difference $V \equiv \phi_+ - \phi_-$ across the two terminals. The field strength is thus constant inside the conductor, with
+$$
+|\mathbf{E}| = \frac{V}{L} \ .
+$$
+The presence of this E-field will cause the free charges inside the conductor to move, creating a current density $\mathbf{J}$ that satisfies Ohm's law,
+$$
+\mathbf{J} = \sigma \mathbf{E} \ .
+$$
+Since the E-field is uniform, the current density will be uniform as well. This means the current $I$ flowing through each cross-sectional area $A$ inside the cylinder will be uniform as well, with
+$$
+I = |\mathbf{J}| A \ .
+$$
+If we now substitute these formulas into Ohm's law and solve for $V$, we get
 $$
 V = \frac{L}{\sigma A} I \ .
 $$
-The proportionality constant $R \equiv \sigma A/L$ we recognize as the electrical *resistance*. We thus have the familiar form of Ohm's law,
+That is, the voltage across the material is proportional to the current flowing through the material. The proportionality constant is called the electrical *resistance* of the material, usually denoted $R$, with
+$$
+R \equiv \frac{L}{\sigma A} \ .
+$$
+We've thus derived the more familiar form of Ohm's law,
 $$
 \boxed{
 V = IR
 } \ .
 $$
-Evidently, the resistance is a function of *both* the conductivity properties of the material as well as its geometry. The greater the conductivity of the wire or the greater its cross-sectional area, the lower its resistance. The longer the wire is, the higher its resistance. For this reason, it doesn't make sense to take about the resistance of a material. It only makes sense to take about the resistance of a given *piece* of material, for example a piece of wire.
+Though minor, it is worth pointing out that while this equation seems to suggest it's really the flowing current that causes the voltage across the material, it's really the opposite. It's the voltage that causes the current. If we wanted to be pedantic about it, we should really write $I = V/R$ instead. But nobody does this, so we won't either. Just keep this in mind.
 
-In Gaussian units, resistance has dimensions of time over distance, or units of $\text{s}/\text{cm}$. In SI units, resistance has units of volts per amp, which is commonly called an *Ohm*, denoted $\Omega$, with $1 \ \Omega \approx 10^{-12} \ \text{s}/\text{cm}$. As an example, a copper wire with a length of $1 \ \text{m}$ and a cross-sectional area of $1 \ \text{mm}$ would have a resistance of $R \approx 10^{-2} \ \Omega$ or $R \approx 10^{-14} \ \text{s}/\text{cm}$. A glass tube with the same length and cross-sectional area would have a much higher resistance of $R \approx 10^{14} \ \Omega$ or $R \approx 100 \ \text{s}/\text{cm}$.
+Notice the resistance $R$ depends on both the material's conductivity as well as its geometric properties (that is, its length and cross-sectional area). The more conductive the material, the lower its resistance. The longer the length of the material or the lower its cross sectional area, the higher its resistance.
+
+In Gaussian units, resistance has dimensions of time over distance, or units of $\text{s}/\text{cm}$. In SI units, resistance has units of volts per amp, which is commonly called an *Ohm*, denoted $\Omega$, with $1 \ \Omega \approx 10^{-12} \ \text{s}/\text{cm}$. As an example, a copper wire with a length of $1 \ \text{m}$ and a cross-sectional area of $1 \ \text{mm}$ would have a resistance of $R \approx 10^{-2} \ \Omega \approx 10^{-14} \ \text{s}/\text{cm}$. In contrast, an insulating glass tube with the same length and cross-sectional area would have a much higher resistance of $R \approx 10^{14} \ \Omega \approx 100 \ \text{s}/\text{cm}$.
+
+It's worth briefly saying a few words about what would happen outside the conductor. The free charges will always arrange themselves so that the E-field inside the conductor is uniform to satisfy Laplace's equation, but we can still have free charges that accumulate on the sides of the cylinder, creating a surface charge density $\sigma$ on the surface. Calculating $\sigma$ it turns out can be done, but it's quite difficult to do. At any rate, the presence of surface charges will produce an E-field outside the conductor. This is why we typically coat wires in insulating material like rubber, to ensure that the E-field quickly falls to zero outside the wire.
 
 ### Drude Model
 
-Ohm's law is a phenomenological law, meaning it's a relation that happens to sometimes hold for some materials. It's not a fundamental law of physics. It's thus fair to ask whether we can derive Ohm's law from more fundamental physics. To do this properly we will need to cover a little bit of solid state physics first. 
+Ohm's law is a phenomenological law, meaning it's a relation that happens to sometimes hold for many materials in ideal conditions. It's not a fundamental law of physics. It's thus fair to ask whether we can derive Ohm's law from more fundamental physics. To do this properly we will need to cover a little bit of solid state physics first. 
 
 Strictly speaking, one should use quantum mechanics to truly understand the properties of solids, but it turns out we can get away with deriving Ohm's law from a purely classical theory of solids. This is known as the *Drude model* of a solid. The idea is to model a solid as an imperfect lattice of stationary atoms, or *defects*, along with a classical gas of free electrons that are allowed to flow freely throughout the solid. The free electrons are allowed to scatter with the defects and respond to an external field.
 
@@ -166,9 +190,9 @@ Since we derived the generalized Ohm's law assuming a B-field might also be pres
 
 ### Ohmic Heating
 
-The presence of a relaxation or drag term in the generalized Ohm's law above necessarily means that energy is being dissipated through the material as heat. After all, drag is not a conservative force, which means energy is not conserved unless thermal heat also gets taken into account. Fundamentally the heat loss is due to the random collisions, which causes the free electrons to lose kinetic energy, which gets converted into thermal energy and causes the material to warm up. This is known as *Ohmic heating*.
+The presence of the drag term $\mathbf{J}/\tau$ in the generalized Ohm's law above necessarily means that energy is being dissipated through the material as heat. After all, drag is not a conservative force, which means energy is not conserved unless heat also gets taken into account. Fundamentally the heat loss is due to the random collisions, which causes the free electrons to lose kinetic energy, which gets converted into thermal energy and causes the material to warm up. This is known as *Ohmic heating*.
 
-In fact, Ohmic heating must occur anytime there is a steady current being pumped through the material, whether the material obey's Ohm's law or not. To see why this is the case, suppose a free charge $q$ is moving through the material at a velocity $\mathbf{v}$ in response to external electric or magnetic fields. Now, the total power $P$ dissipated by a single free charge at any instance is just the rate at which the fields do work on the free charge. Since B-fields do no work, we have
+In fact, Ohmic heating must occur anytime there is a steady current being pumped through the material, whether the material is Ohmic or not. To see why this is the case, suppose a free charge $q$ is moving through the material at a velocity $\mathbf{v}$ in response to external electric or magnetic fields. Now, the total power $P$ dissipated by a single free charge at any instance is just the rate at which the fields do work on the free charge. Since B-fields do no work, we have
 $$
 P = \frac{dW}{dt} = \mathbf{F} \cdot \mathbf{v} = q \mathbf{E} \cdot \mathbf{v} \ .
 $$
@@ -182,43 +206,63 @@ $$
 P = \int d^3\mathbf{x} \ \mathbf{J}(\mathbf{x}) \cdot \mathbf{E}(\mathbf{x}) 
 } \ .
 $$
-The dot product $\mathbf{J} \cdot \mathbf{E}$ evidently represents the amount of heat generated per unit volume per unit time inside the material.
+The *power density* $\mathbf{J} \cdot \mathbf{E}$ evidently represents the amount of heat generated per unit volume per unit time inside the material. This is the most general form of what's known as the *Joule heating law*.
 
-Now, if the material is *Ohmic*, that is if it obeys Ohm's law, then $\mathbf{J} = \sigma \mathbf{E}$, and so we can also write
+Thus far we've made no use whatsoever of Ohm's law. The discussion has been completely general. Let us now suppose that the material obey's Ohm's law $\mathbf{J} = \sigma \mathbf{E}$. Then we can write the above integral for power as
 $$
 P = \sigma \int d^3\mathbf{x} \ |\mathbf{E}(\mathbf{x})|^2 = \frac{1}{\sigma} \int d^3\mathbf{x} \ |\mathbf{J}(\mathbf{x})|^2 \ .
 $$
-In the special case where we have an Ohmic material with cross-sectional area $A$ and length $L$ hooked up to a voltage source creating a voltage $V$, we know $|\mathbf{E}| = V/L$ and $|\mathbf{J}| = I/A$, in which case we get the more familiar relations
+In the special case where a cylindrical Ohmic material with cross-sectional area $A$ and length $L$ is hooked up to terminals creating a voltage $V$ across the length of the material, we end up with the more familiar forms for the Joule heating law,
 $$
 P = IV = \frac{V^2}{R} = I^2R \ .
 $$
-Of course, we still haven't answered an important question: If energy is being dissipated as heat, how is it we're able to maintain a steady current inside the material? The answer to this is electromotive force, which we'll discuss in the next section.
+Of course, we still haven't answered an important question: If energy is being dissipated as heat, how is it we're able to maintain a steady current inside the material? The only way this can happen is if energy is being pumped into the system from somewhere. This added energy is known as electromotive force, which we'll discuss in detail in the next few sections.
 
-## Electromotive Force
+## Circuits
 
-When a steady current flows across some material, something must be causing that current to flow. Due to Ohmic heating, the free charges making up the current would eventually come to rest if there wasn't some source of power to keep them from doing so. Said differently, there must be some *electromotive force* to maintain the steady current.
+In practice, when we create electrical devices we usually do so through the use of *circuits*. An electrical circuit can be thought of as a set of electrical components with fixed properties that are connected together by conducting wires to form closed loops of current. The electrical components include things like power supplies, resistors, capacitors, inductors, gates, diodes, transistors, and so on. In this course we'll focus on circuits containing simpler components, usually single loops hooked up to a single power supply, where on that loop we may attach some number of resistors, capacitors, or inductors.
 
-### Definition
+### Wires and Resistors
 
-Suppose we hook up an Ohmic material to some kind of power supply to create a closed circuit. The power supply could be, for instance, a battery or a generator. If we turn on the power supply, an electrostatic E-field gets created, which drives an induced current through the material according to Ohm's law. Said differently, the power supply is the *cause* of the induced current. Each free charge inside the material will feel a total force
-$$
-\mathbf{F} = \mathbf{F}_s + q \mathbf{E} \ ,
-$$
-where $\mathbf{F}_s$ is the force generated by the power supply. The work done in moving the free charge around the closed circuit is then
-$$
-W = \oint \mathbf{F} \cdot d\boldsymbol{\ell} = \oint \mathbf{F}_s \cdot d\boldsymbol{\ell} \ .
-$$
-Assuming the power supply itself has zero resistivity (or equivalently infinite conductivity), the total force will be zero across the power supply, where $\mathbf{F}_s = -\mathbf{E}$. Assuming the power supply is connected to the circuit via two terminals at points $\mathbf{a}$ and $\mathbf{b}$ on the circuit, and the force $\mathbf{F}_s$ points from $\mathbf{a}$ to $\mathbf{b}$, we then have
-$$
-W = \oint \mathbf{F}_s \cdot d\boldsymbol{\ell} = -q \int_\mathbf{a}^\mathbf{b} \mathbf{E} \cdot d\boldsymbol{\ell} \ .
-$$
-That is, the work done by the power supply to move a free charge all the way around the circuit is just the work done by the E-field on the free charge when moving through the power supply. By convention, we divide this work by $q$ and define
-$$
-\mathcal{E} \equiv -\int_\mathbf{a}^\mathbf{b} \mathbf{E} \cdot d\boldsymbol{\ell} \ .
-$$
-We call $\mathcal{E}$ the *electromotive force* or *EMF* of the power supply. Since the EMF is the work per unit charge to move a free charge all the way around the circuit, we can think of the EMF itself as the cause of the current. Despite its name, the EMF is actually a *voltage*, not a *force*. It's the potential difference created by the power supply across the rest of the circuit. The entire purpose, if you will, of the power supply, is to establish this potential difference, which then generates a current according to Ohm's law.
+- Discuss wires and resistors here
 
-FIGURE (show circuit with a power supply and EMF causing a current)
+### Electromotive Force
+
+The next electrical component we'll discuss is the *power supply*. A power supply is any device capable of producing a current flow across a circuit. The source of this power can be anything, for instance a battery, a generator, or an electrical outlet attached to the wall. What matters is that the power supply is somehow capable of producing a potential difference across the circuit, which then drives a current through the circuit according to Ohm's law or some other dynamics.
+
+Suppose we have a closed loop circuit of some kind hooked up to a power supply with a *negative terminal* at a point $\mathbf{a}$ on the circuit and a *positive terminal* at a point $\mathbf{b}$. If $q$ is some free charge moving across the circuit, the work per unit charge to move the free charge all the way around the circuit is
+$$
+\mathcal{E} \equiv \frac{1}{q} \oint \mathbf{F} \cdot d\boldsymbol{\ell} \ .
+$$
+We call this work done the *electromotive force* or *EMF*. We now want to relate the EMF to the potential difference across the terminals of the power supply. To that end, let's analyze the force on the charge as it moves from terminal $\mathbf{a}$ to terminal $\mathbf{b}$.
+
+FIGURE (show power supply hooked up to a circuit, with the forces and currents shown)
+
+For the free charge to be moving at all, there must be some induced E-field $\mathbf{E}$ inside the circuit. This field will act on a moving charge at any point in the circuit with a force $q\mathbf{E}$. When the free charge is between the terminals, there will also be another source force $\mathbf{F}_s$ acting on the charge due the power supply itself. Inside the power supply, the total force is then the sum
+$$
+\mathbf{F} = \mathbf{F}_s + q \mathbf{E} \ .
+$$
+Provided the E-field is electrostatic it will also be conservative, which means the closed loop integral of $q\mathbf{E}$ vanishes, leaving only the source force $\mathbf{F}_s$ to contribute anything to the EMF. Since $\mathbf{F}_s$ only acts between $\mathbf{a}$ and $\mathbf{b}$, we have
+$$
+\mathcal{E} = \frac{1}{q} \int_\mathbf{a}^\mathbf{b} \mathbf{F}_s \cdot d\boldsymbol{\ell} \ .
+$$
+That is, the EMF can be thought of as the work done by the power supply on free charges moving across the power supply. It's perhaps for this reason that EMF is given its name. It's the "force" that causes free charges to move through a circuit. Despite the name though, one should not think of EMF as a force in the usual sense. Clearly EMF is a scalar that has dimensions of potential, not a vector that has dimensions of force.
+
+It's more useful to express the EMF in terms of the induced E-field rather than the source force. To do that we'll make a useful assumption that's often approximately true but not exactly true. We'll assume the power supply is *ideal*, meaning it has infinite conductivity. We can easily correct for this assumption later. If the power supply is ideal, then between the points $\mathbf{a}$ and $\mathbf{b}$ the total force on a moving free charge must be zero, which means $\mathbf{F}_s = -q\mathbf{E}$. We thus have
+$$
+\boxed{
+\mathcal{E} = -\int_\mathbf{a}^\mathbf{b} \mathbf{E} \cdot d\boldsymbol{\ell} 
+} \ .
+$$
+That is, the EMF produced by the power supply is just the potential difference or voltage produced by the power supply. We can thus think of EMF as the *cause* of current flow through a circuit. The EMF comes solely from the power supply and nothing else. In fact this is the whole purpose of a power supply, to create an EMF, which itself creates an induced E-field across the circuit, which by Ohm's law then creates a current through the circuit.
+
+- Continue on with Griffiths here.
+- Maybe talk in some brief depth about the different types of power supplies
+- Don't forget to correct for the realistic case where the power supply has resistance: $V = \mathcal{E} - Ir$
+
+
+
+
 
 Notice in defining the EMF we've said nothing about the internals of the power supply itself. The source of the EMF could be essentially anything that creates an E-field. If this source is a battery, the EMF is caused by chemical reactions taking place inside the battery. If the source is  a Van de Graaf machine, the EMF is caused by a belt sweeping up free charges and placing them on the circuit directly. If the source is a generator, the EMF is caused by a wire moving through a magnetic field. This last source is the one we'll focus on now. When the source is a generator, we say that the EMF is a *motional EMF*.
 
@@ -303,11 +347,22 @@ $$
 \mathcal{E} = \frac{L I}{c}
 $$
 
+## Quasistatics
+
+$$
+\begin{align*}
+\nabla \cdot \mathbf{E} &= 4\pi \rho \ , \\
+\nabla \times \mathbf{E} &= \frac{1}{c} \frac{\partial \mathbf{B}}{\partial t} \ , \\
+\nabla \cdot \mathbf{B} &= 0 \ , \\
+\nabla \times \mathbf{B} &= \frac{4\pi}{c} \mathbf{J} \ . \\
+\end{align*}
+$$
 
 
 
 
-Maxwell's Equations
+
+Thus far we've spent a considerable amount of time studying *statics*, focusing on fields that are time-independent. We will now begin turning our attention to *dynamics*, where we allow the fields to depend explicitly on time. This leads us into the subject of *electrodynamics*, which we will study in depth for the rest of the course. To begin our study of this topic we will discuss a few important concepts that will lead us in the next chapter to Maxwell's equations, the crown jewel of electromagnetism.
 
 - State quasistatic field equations
 - Introduce the displacement current to maintain charge conservation

@@ -12,7 +12,7 @@ Up until now we've always assumed that charges were *static*. Now we will allow 
 $$
 I \equiv \frac{dq}{dt} \ .
 $$
-Current must have dimensions of charge per unit time. In Gaussian units, current is measured in units of esu per second, sometimes called the *statampere*. In SI units, current is measured in units of Coulombs per second, also called an *Ampere* or an *amp*. The two units are related by $1 \ \text{statamp} \approx 10^{-12} \ \text{amp}$.
+Current must have dimensions of charge per unit time. In Gaussian units, current is measured in units of esu per second, which is also called a *statampere*. In SI units, current is measured in units of Coulombs per second, also called an *Ampere* or an *amp*. The two units are related by $1 \ \text{statamp} \approx 10^{-12} \ \text{A}$.
 
 Current was perhaps first understood in the context of conducting wires. When a potential difference is created across a wire, for example by hooking the wire up to a battery, the charges inside the wire experience an *electromotive force*, causing the charges to move in the direction of lowest potential, thus creating an electric current through the wire.
 
@@ -62,49 +62,59 @@ FIGURE (show current densities)
 
 ### Conservation of Charge
 
-One very important fact about electromagnetism, indeed just as important as Maxwell's equations, is that charge is *conserved*. That is, the enclosed charge $Q_{\text{enc}}$ inside any closed surface can't spontaneously appear or disappear. It can only flow out through the surface in the form of some current $I_{\text{out}}$. 
+One fundamental law of classical electromagnetism is that charge is *conserved*. That is, inside any closed surface the total charge  $Q_{\text{enc}}$ inside can't spontaneously appear or disappear. It can only flow out of the surface with some current $I_{\text{out}}$.
 
 FIGURE (show charge and current through surface)
 
-Mathematically, conservation of charge says that
+We can express conservation of charge mathematically then by writing
 $$
 \frac{dQ_{\text{enc}}}{dt} = -I_{\text{out}} \ .
 $$
-The minus sign is needed to express the fact that charges are flowing out of the surface, not inward.
+The minus sign expresses the fact that a current flowing out of the closed surface decreases the amount of enclosed charge inside the enclosed region.
 
 The statement of conservation of charge is stronger than this however. Not only is charged conserved *globally*, it's also conserved *locally*. That is, no matter how small a closed surface we choose, charge must be conserved in the sense defined above. We can formulate the statement of local charge conservation most conveniently using a *continuity equation*.
 
-To achieve this, we'll write the enclosed charge as a volume integral over a charge density $\rho(\mathbf{x},t)$ and the outward current as a surface integral over the current density $\mathbf{J}(\mathbf{x},t)$,
+To achieve this, we can express the enclosed charge as a volume integral over a charge density $\rho(\mathbf{x},t)$ and the outward current as a closed surface integral over the current density $\mathbf{J}(\mathbf{x},t)$,
 $$
-Q_{\text{enc}} = \int_\mathcal{V} d^3 \mathbf{x} \ \rho(\mathbf{x},t) \quad , \quad I_{\text{out}} = \int_\mathcal{S} \mathbf{J}(\mathbf{x},t) \cdot d\mathbf{a} \ .
+Q_{\text{enc}} = \int_\mathcal{V} d^3 \mathbf{x} \ \rho(\mathbf{x},t) \quad , \quad I_{\text{out}} = \oint_\mathcal{S} \mathbf{J}(\mathbf{x},t) \cdot d\mathbf{a} \ .
 $$
-As usual, we denote the closed surface by $\mathcal{S}$ and its enclosed volume by $\mathcal{V}$. Plugging these integrals into the conservation law above, we have
+As usual, we denote the closed surface by $\mathcal{S}$ and its enclosed volume by $\mathcal{V}$. Plugging these integrals into the conservation law above, we then have
 $$
-\frac{d}{dt} \int_\mathcal{V} d^3 \mathbf{x} \ \rho(\mathbf{x},t) = - \int_\mathcal{S} \mathbf{J}(\mathbf{x},t) \cdot d\mathbf{a} \ .
+\frac{d}{dt} \int_\mathcal{V} d^3 \mathbf{x} \ \rho(\mathbf{x},t) = - \oint_\mathcal{S} \mathbf{J}(\mathbf{x},t) \cdot d\mathbf{a} \ .
 $$
-Now, if we assume $\mathcal{S}$ is fixed then we can pull the time derivative inside the integral on the left-hand side. Moreover, we can use the divergence on the right-hand side to express the current as a divergence. We then get
+Now, we assume the closed surface $\mathcal{S}$ is fixed, which means we can pull the time derivative inside the integral. We can then use the divergence on the right-hand side to express the current as a divergence. All together, we get
 $$
 \int_\mathcal{V} d^3 \mathbf{x} \ \frac{\partial\rho(\mathbf{x},t)}{\partial t} = - \int_\mathcal{V} d^3 \mathbf{x} \ \nabla \cdot \mathbf{J}(\mathbf{x},t) \ .
 $$
-Since the closed surface is arbitrary, the only way this integral can hold is if the integrands equal. That is, if
+Since the volume $\mathcal{V}$ is arbitrary, the only way this integral can hold is if the integrands equal. That is, if
 $$
 \boxed{
 \frac{\partial\rho}{\partial t} + \nabla \cdot \mathbf{J} = 0
 } \ .
 $$
-This continuity equation fully encapsulates the statement that charge is both locally and globally conserved.
+This equation fully encapsulates the statement that charge is both locally and globally conserved. It's common to refer to this equation as both *conservation of charge* and the *continuity equation*, even though we could express conservation of charge globally, and there can be continuity equations for other conserved quantities as well.
 
-In this chapter, we will focus specifically on distributions in which $\nabla \cdot \mathbf{J} = 0$. That is, we focus only on distributions where the current neither converges nor diverges at any point. This is called the *steady current* condition. The study of electromagnetism in the special scenario of steady current is called *magnetostatics*, the subject of this chapter.
+In this chapter, we will focus specifically on distributions in which $\nabla \cdot \mathbf{J} = 0$. That is, we focus only on distributions where the current neither converges nor diverges at any point. This is called the *steady current* condition. The study of electromagnetism in the special scenario of steady current is called *magnetostatics*, the whole subject of this chapter.
 
 FIGURE (show steady current flow, perhaps contrasting with non-steady current flow)
 
-From the continuity equation, the steady current condition evidently implies that
+From the continuity equation, if the steady current condition holds, we must also have
 $$
 \frac{\partial\rho}{\partial t} = 0 \ .
 $$
-This implies that the charge distribution must be time-independent, with $\rho = \rho(\mathbf{x})$, which also implies that $\mathbf{J} = \rho \mathbf{v}$ is also time independent, with $\mathbf{J} = \mathbf{J}(\mathbf{x})$. This isn't to say that charges isn't moving, only they're moving in such a way that the charge distribution throughout space isn't changing. The only way this can be true is if any charges leaving any given region are getting replaced by other charges moving into that region. Of course, this is an abstraction. Yet in many physical situations, for example with current moving through a wire, this is approximately the case. This situation of course contrasts with electrostatics, where the charge distribution was also time independent. In that setting, the charges were indeed assumed to be stationary.
+That is, the charge distribution must be time-independent. That is, we must have $\rho = \rho(\mathbf{x})$ and  $\mathbf{J} = \mathbf{J}(\mathbf{x})$, which means neither density is allowed to depend explicitly on time in magnetostatics. If they do, we violate the steady current condition.
 
-One immediately implication of the steady current condition is that point charges must be excluded. Indeed, the density of a moving point charge is constantly changing. If a charge $q$ is moving at a velocity $\mathbf{v}$, then its source point $\mathbf{x}' = \mathbf{v} t$ becomes time dependent, which means the density $\rho(\mathbf{x},t) = q \delta(\mathbf{x} - \mathbf{v}t)$ is necessarily time-dependent. This means when enforcing the steady current condition, we *must* only consider extended distributions of charge, so that the movement of each charge cancels out the movement of the others on average. We'll come back to moving point charges later in electrodynamics.
+Note fact that $\rho = \rho(\mathbf{x})$ does *not* imply that charges aren't moving around in space, only that they're moving in such a way that $\rho$ itself isn't changing explicitly with time. The only way this can be true is if any charges flowing out a given region are being replaced by charges flowing back into the region at the same rate. Of course, this is an abstraction. Yet in many physical situations, for example when we have current moving through a wire, this is indeed approximately the case. 
+
+Though seemingly similar, this situation contrasts with electrostatics, where we also had $\rho = \rho(\mathbf{x})$. In that setting, the charges were indeed assumed to be stationary. Charges placed at a point stayed there. They didn't move around.
+
+One immediately implication of all this is that point charges can never generate steady currents. To see why this is the case, suppose a point charge $q$ is moving through space with some trajectory $\mathbf{x}'(t)$. Then its charge density is
+$$
+\rho(\mathbf{x},t) = q \delta\big(\mathbf{x} - \mathbf{x}'(t)\big) \ .
+$$
+This necessarily means that the charge density of a moving point charge must be an explicit function of time, which already violates the steady current condition.
+
+An immediate implication of this is that, when enforcing the steady current condition, we must consider extended distributions of charge from the outset. We can't start with moving point charges and build up steady currents from there. This is the major reason why magnetostatics is often much more cumbersome to introduce than electrostatics. In electrostatics, we could start by stating Coulomb's law for a point charge, and from there extend to continuous distributions. In magnetostatics, we have to start immediately from continuous distributions and go from there.
 
 ## Magnetic Fields
 
@@ -194,11 +204,11 @@ Since the far field falls off like $1/r^3$, in this limit the B-field seems to b
 
 In fact, the lowest non-vanishing moment of the B-field will *always* be at least a dipole field, as we'll see later. There will never be a monopole field contribution. Said equivalently, there is no such thing as a magnetic monopole, as far as we can tell based on all experiments done up to this day. More advanced theories predict that they could exist, but experiments have never found them. Until found, we're left to assume based on all experimental evidence that no magnetic monopoles exist in nature.
 
-It's tempting to ask whether we can use the Biot-Savart law to calculate the B-field generated by a moving point charge. If we naively attempted to apply the Biot-Savart law to a moving point charge $q$ of velocity $\mathbf{v}$, we'd find a B-field
+It's tempting to ask whether we can use the Biot-Savart law to calculate the B-field generated by a moving point charge. If we naively attempted to apply the Biot-Savart law to a point charge $q$ moving at constant velocity $\mathbf{v}$, we'd find that
 $$
 \mathbf{B}(\mathbf{x}) = q \frac{\mathbf{v}}{c} \times \frac{\mathbf{x} - \mathbf{v}t}{|\mathbf{x} - \mathbf{v}t|^3} \ .
 $$
-But this can't be true, since the Biot-Savart law requires that B-field only be a function of position and not time. The only way the B-field can be time-independent is if the steady current condition is imposed, which means the Biot-Savart law implicitly assumes the steady current condition is true. We thus cannot use the Biot-Savart law on point charges, at least without there being so many of them that we can meaningfully impose the steady current condition. To deal with point charges we'll necessarily need electrodynamics, where we allow the electric and magnetic fields to both be time-dependent.
+But this can't be true, since the Biot-Savart law requires that B-field only be a function of position and not time. The only way the B-field can be time-independent is if the steady current condition is imposed, which means the Biot-Savart law implicitly assumes the steady current condition is true. We thus cannot use the Biot-Savart law on moving point charges. It only holds for continuous distributions of steady currents. We'll revisit the magnetic field of a moving point charge in a later chapter.
 
 ##### Example: Infinite conducting wire of constant current
 
@@ -242,7 +252,9 @@ $$
 $$
 Here $\alpha$ is yet another proportionality constant that depends on the choice of units. In the Gaussian system we choose $\alpha = 1/c$, which again ensures $\mathbf{E}$ and $\mathbf{B}$ carry the same dimensions. In these units, we get
 $$
-\mathbf{F} = q \frac{\mathbf{v}}{c} \times \mathbf{B} \ .
+\boxed{
+\mathbf{F} = q \frac{\mathbf{v}}{c} \times \mathbf{B}
+} \ .
 $$
 Evidently, the force due to a B-field will always be perpendicular to both the velocity of the charge as well as the B-field. This fact immediately implies something interesting, magnetic fields can only change the direction of a moving charge, not speed it up or slow it down. Said differently, magnetic forces do no work.
 
@@ -262,21 +274,25 @@ Notice that we can immediately deduce something about scales from this equation.
 
 The Lorentz force law can easily be stated for continuous charge distributions as well. Consider an infinitesimal unit of charge $dq = \rho d^3\mathbf{x}$. This must obey the above force law, giving rise to an infinitesimal force $d\mathbf{F}$ given by
 $$
-d\mathbf{F} = d^3\mathbf{x} \ \bigg(\rho\mathbf{E} + \rho \frac{\mathbf{v}}{c} \times \mathbf{B} \bigg) \ .
+d\mathbf{F} = d^3\mathbf{x} \ \bigg[\rho\mathbf{E} + \rho \frac{\mathbf{v}}{c} \times \mathbf{B} \bigg] \ .
 $$
-Since $\mathbf{J} = \rho \mathbf{v}$ is the current density, when we integrate over the entire charge distribution we get
+Since $\mathbf{J} = \rho \mathbf{v}$ is the current density, when we integrate over the entire distribution we get
 $$
-\mathbf{F} = \int d^3\mathbf{x} \ \bigg(\rho(\mathbf{x})\mathbf{E}(\mathbf{x}) + \frac{1}{c} \mathbf{J}(\mathbf{x}) \times \mathbf{B}(\mathbf{x})\bigg) \ .
+\mathbf{F} = \int d^3\mathbf{x} \ \bigg[\rho\mathbf{E} + \frac{1}{c} \mathbf{J} \times \mathbf{B}\bigg] \ .
 $$
 This is the most general form of the Lorentz force law we can write down in electromagnetism. Remember that this is the force on a charge distribution due to *external fields*, not the force due to any fields the charge distribution itself may create. The issue of self fields is a delicate question in electromagnetism, one we've seen arise and will arise several times in the course.
 
-As is typical in field theories, everything of interest is inside the integrand. It's useful to give that a name, the *force density* $\mathbf{f}$,
+As is typical in field theories, everything of interest is inside the integrand. The integrand is just the force per unit volume, which is called the *force density* $\mathbf{f}$. For the Lorentz force, the force density is clearly
 $$
 \boxed{
-\mathbf{f} \equiv \rho(\mathbf{x})\mathbf{E}(\mathbf{x}) + \frac{1}{c} \mathbf{J}(\mathbf{x}) \times \mathbf{B}(\mathbf{x}) 
+\mathbf{f} = \rho\mathbf{E} + \frac{1}{c} \mathbf{J} \times \mathbf{B}
 } \ .
 $$
-The force $\mathbf{F}$ is then just the volume integral of the force density over the entire charge distribution.
+Clearly, when only B-fields are present, which we assume in magnetostatics, then the Lorentz force density reduces to
+$$
+\mathbf{f} = \frac{1}{c} \mathbf{J} \times \mathbf{B} \ .
+$$
+The total Lorentz force $\mathbf{F}$ for a continuous distribution is then the volume integral of $\mathbf{f}$ over the entire distribution.
 
 ##### Example: Ampere's Current Law
 
@@ -316,7 +332,7 @@ where $\mathbf{x}_1 - \mathbf{x}_2$ is the separation vector between any two sou
 
 ## Field Equations
 
-Just as it wasn't convenient or illuminating in electrostatics to use Coulomb's law to calculate and study electric fields, it's not convenient in magnetostatics to use the Biot-Savart law to calculate or study magnetic fields. We'll thus want to re-cast the Biot-Savart law as a set of field equations.
+Just as it wasn't convenient or illuminating in electrostatics to use Coulomb's law to calculate and study electric fields, it's not convenient in magnetostatics to use the Biot-Savart law to calculate or study magnetic fields. We'll want to instead re-cast the Biot-Savart law as a set of field equations.
 
 ### Divergence of $\mathbf{B}$
 
@@ -500,8 +516,8 @@ $$
 which means the magnetic field of the infinite sheet of current is evidently
 $$
 \mathbf{B}(\mathbf{x}) = \begin{cases}
-2\pi K/c & z > 0 \ , \\
--2\pi K/c & z < 0 \ .
+2\pi K/c \ \mathbf{e}_y & z > 0 \ , \\
+-2\pi K/c \ \mathbf{e}_y & z < 0 \ .
 \end{cases}
 $$
 Thus, the B-field strength is constant at any point above or below the sheet, just as the electric field of an infinite sheet of charge is constant. Since $B(-z) = -B(z)$, the field strength experiences a discontinuity when crossing the sheet. The B-field strength changes discontinuously by exactly $\Delta B = 4\pi K/c$. We saw this behavior in electrostatics as well, where the E-field through an infinite sheet of charge changes by a discontinuous amount $\Delta E = 4\pi \sigma$ when crossing the sheet.
@@ -574,47 +590,45 @@ $$
 $$
 Notice the similarities and differences between these two settings. In electrostatics, the *electric* field is the *gradient* of a *scalar* potential, while in magnetostatics the *magnetic* field is the *curl* of a *vector* potential. In a sense, the differences between the two are what gives rise to the differences in behavior we see between electric and magnetic fields. But on another hand the two expressions for the potentials look quite similar, except with $\rho$ replaced by $\mathbf{J}/c$. 
 
-Since $\rho$ and $\mathbf{J}/c$ have the same units, this evidently means the scalar potential and the vector potential also have the same units in Gaussian units. The vector potential evidently carries units of $\text{erg} / \text{esu}$, or equivalently units of $\text{G} \cdot \text{cm}$.
+Since $\rho$ and $\mathbf{J}/c$ have the same dimensions, evidently the scalar potential and the vector potential must also have the same dimensions in Gaussian units, or units of statvolts. In practice though, we tend to express the units of vector potential in $\text{G} \cdot \text{cm}$, which is equivalent to statvolts. In SI units, the vector potential and scalar potential unfortunately have different dimensions. In those units, the scalar potential has units of volts, while the vector potential has units of $\text{T} \cdot \text{m}$.
 
 ### Gauge Transformations
 
-In electrostatics, we saw that we could add any constant to the scalar potential and it wouldn't affect the physics, since in the end the E-field is the gradient of the scalar potential. A similar concept exists in magnetostatics, except it's more subtle. What physically matters is the B-field, since it's the B-field that gives rise to the forces. 
+In electrostatics, we saw that we could add any constant to the scalar potential and it wouldn't effect the E-field, which is the essential physical quantity of interest since the E-field is what gives rise to forces. A similar concept exists in magnetostatics, except it's more subtle. What physically matters is the B-field, since it's the B-field that gives rise to forces.
 
-This means we can add anything we like to the vector potential, so long as its curl vanishes. It turns out that the most general thing we can add to the vector potential whose curl vanishes is the gradient of some scalar field $\chi(\mathbf{x})$, called a *gauge potential*. 
-
-Suppose we transform some given vector potential $\mathbf{A}$ by
+Suppose we have a vector potential $\mathbf{A}$ whose magnetic field is $\mathbf{B} = \nabla \times \mathbf{A}$. What operations can we do to $\mathbf{A}$ so that $\mathbf{B}$ itself doesn't change? Clearly we can add any constant vector to $\mathbf{A}$, but that's not all. Generally speaking we can add anything we like to $\mathbf{A}$ whose curl vanishes. The most general thing we can add would be the gradient of some scalar field. Suppose we transform $\mathbf{A}$ by adding to it the gradient of some scalar field $\chi(\mathbf{x})$,
 $$
 \mathbf{A}' = \mathbf{A} + \nabla \chi \ .
 $$
-If we take the curl of $\mathbf{A}'$, we see that
-$$
-\nabla \times \mathbf{A}' = \nabla \times \mathbf{A} + \nabla \times \nabla \chi \ .
-$$
-Since the curl of the gradient of a scalar field must vanish, for any choice of $\chi(\mathbf{x})$ we have
+Since the curl of a gradient must always vanish we have
 $$
 \mathbf{B} = \nabla \times \mathbf{A} = \nabla \times \mathbf{A}' \ .
 $$
-Thus, any transformation $\mathbf{A} \to \mathbf{A}'$ that adds the gradient of any gauge potential $\chi$ won't alter the underlying physics. We call any transformation of this form a *gauge transformation*. This means that given any vector potential $\mathbf{A}$, we can always do a gauge transformation without altering the B-field $\mathbf{B}$. In particular, this means any two given vector potentials may look very different, yet still be *gauge equivalent*, in the sense that they give rise to the same B-field. This is very different to what we saw in electrostatics, where the scalar potential of a given E-field could only differ by an additive constant.
+We call such a transformation $\mathbf{A} \to \mathbf{A}'$ a *gauge transformation*, and the scalar field $\chi(\mathbf{x})$ a *gauge potential*. Evidently, there is no physical information contained in the gauge potential. We're free to choose any $\chi$ we like without changing $\mathbf{B}$.
 
-All of this begs the question though of which gauge potential we should choose, and how we should choose it. In magnetostatics, the natural choice of gauge potential is one such that the vector potential can always be gauge transformed into the integral
-$$
-\mathbf{A}(\mathbf{x}) = \frac{1}{c} \int d^3 \mathbf{x}' \ \frac{\mathbf{J}(\mathbf{x}')}{|\mathbf{x} - \mathbf{x}'|} \ .
-$$
-It turns out that the only gauge potentials that meet this condition are those satisfying Laplace's equation $\nabla^2 \chi = 0$. If the integral is over all space, as it typically is, this condition implies the gauge potential itself must be constant as well.
+An interesting consequence of this is that two vector potentials may look very different from each other, yet still give rise to the same B-field. When this happens, we say $\mathbf{A}$ and $\mathbf{A}'$ are *gauge equivalent*.
 
-Typically, when choosing a gauge potential, or *gauge fixing*, we don't specify the gauge potential directly, but instead specify a condition on the divergence of the vector potential. This is equivalent to specifying the *Laplacian* of the gauge potential, since if $\mathbf{A}' = \mathbf{A} + \nabla \chi$, then the divergence is
+Since we're free to choose or *fix* whatever gauge we wish, we might as well choose a gauge that simplifies our theory. Typically, when fixing a gauge potential in a given theory, for example in magnetostatics, we don't specify a gauge potential directly like this. Instead, we specify a condition on the *divergence* of the vector potential. To see why this is equivalent, remember that $\mathbf{A}$ is a vector field. From the Helmholtz theorem, we know we can uniquely specify any vector field in terms of its divergence and its curl. With the vector potential we specify the curl by requiring that $\mathbf{B} = \nabla \times \mathbf{A}$, but we still have freedom to choose $\nabla \cdot \mathbf{A}$.
+
+Specifying the divergence of $\mathbf{A}$ turns out to be equivalent to specifying a condition on the *Laplacian* of the gauge potential. Indeed, if $\mathbf{A}' = \mathbf{A} + \nabla \chi$, then $\nabla \cdot \mathbf{A}'$ must satisfy
 $$
 \nabla \cdot \mathbf{A}' = \nabla \cdot \mathbf{A} + \nabla^2 \chi \ .
 $$
-Since we require that $\nabla^2 \chi = 0$ in magnetostatics, this is equivalent to requiring that $\nabla \cdot \mathbf{A}' = \nabla \cdot \mathbf{A}$ for any choice of gauge, where $\mathbf{A}$ is given by the integral above. But in the previous section we already showed the divergence of this integral must vanish for any localized current distribution. Thus, in magnetostatics we assume the gauge condition
+If we now fix a gauge by requiring that $\nabla \cdot \mathbf{A}' = \nabla \cdot \mathbf{A}$, what we're left with is $\nabla^2 \chi = 0$. Thus, fixing a gauge with the divergence of the vector potential is equivalent to requiring that any valid gauge potential satisfy Laplace's equation.
+
+In magnetostatics, we know that we can always just choose the vector potential given by the integral
+$$
+\mathbf{A}(\mathbf{x}) = \frac{1}{c} \int d^3 \mathbf{x}' \ \frac{\mathbf{J}(\mathbf{x}')}{|\mathbf{x} - \mathbf{x}'|} \ .
+$$
+It's thus natural in magnetostatics to fix a gauge whose divergence is the same as the divergence of this integral. But we showed in the previous section that the divergence of this integral is zero for any localized current distribution. This means the natural choice of gauge is one where the divergence of the vector potential is always zero. In magnetostatics, we thus choose
 $$
 \boxed{
 \nabla \cdot \mathbf{A} = 0 
 } \ .
 $$
-This is called the *Coulomb gauge*. There are other gauge conditions one could choose as well. As a general rule, we want to choose a gauge that will simplify the theory in a particular setting. In magnetostatics, the simplest choice of gauge is the Coulomb gauge, so that the vector potential is given by the integral above. But in other settings a different choice of gauge may be more useful. For instance, when we get to electrodynamics we'll find it more useful to choose a different gauge, namely the *Lorentz gauge*.
+We call this choice of gauge the *Coulomb gauge*. We'll see more on why the Coulomb gauge is a convenient choice for magnetostatics in the next section.
 
-At any rate, the gauge invariance of the vector potential makes it much more complicated to interpret physically. In electrostatics, we could interpret the scalar potential simply as the energy per unit charge relative to some ground point. But with the vector potential things are much more subtle. In a loose sense, the vector potential can be thought of as a kind of momentum per unit charge, but not always. Nevertheless, the vector potential still has great theoretical importance.
+The gauge invariance of the vector potential makes it much more complicated to interpret physically what exactly the vector potential is. This wasn't the case in electrostatics, where we found we could interpret the scalar potential naturally as the potential energy per unit charge of a distribution. The vector potential is much more subtle. Sometimes the vector potential can be thought of as a kind of momentum per unit charge, but not always. Despite its difficulty to physically interpret though, the vector potential still has great theoretical importance in the theory of electromagnetism, as we'll see.
 
 ### Poisson's Equation
 
@@ -638,27 +652,92 @@ By writing $\mathbf{B} = \nabla \times \mathbf{A}$, we automatically get the fir
 $$
 \nabla \times \mathbf{B} = \nabla \times (\nabla \times \mathbf{A}) = \nabla(\nabla \cdot \mathbf{A}) - \nabla^2 \mathbf{A} \ .
 $$
-The left-hand side is just $\nabla \times \mathbf{B}$, which by Ampere's law is $4\pi/c \ \mathbf{J}$. On the right-hand side we know $\nabla \cdot \mathbf{A} = 0$, which means all that remains is $-\nabla^2 \mathbf{A}$. We thus end up with the equation
+The left-hand side is just $\nabla \times \mathbf{B}$, which by Ampere's law is $4\pi/c \ \mathbf{J}$. This means in general we have
+$$
+\nabla^2 \mathbf{A} - \nabla(\nabla \cdot \mathbf{A}) = -\frac{4\pi}{c} \mathbf{J} \ .
+$$
+Now we can see why specifying the divergence of $\mathbf{A}$ is a sensible way to fix a gauge, and why the Coulomb potential is so natural in magnetostatics. For if we fix $\nabla(\nabla \cdot \mathbf{A})$, then the above equation reduces to
 $$
 \boxed{
 \nabla^2 \mathbf{A} = -\frac{4\pi}{c} \mathbf{J}
 } \ .
 $$
-We've thus managed to reduce the two first order PDEs for $\mathbf{B}$ into a single second order PDE for $\mathbf{A}$. Notice that this is again just Poisson's equation, except we now have one Poisson equation to solve for each vector component. In particular, this means the Green's function of this differential equation is the same as the one in electrostatics,
+This is just a Poisson equation in each component of $\mathbf{A}$, which is analogous to what we saw in electrostatics where we had
+$$
+\nabla^2 \phi = -4\pi\rho \ .
+$$
+In particular, this means the Green's function for the vector potential (in the Coulomb gauge) is the same as the Green's function for the scalar potential in electrostatics,
 $$
 G(\mathbf{x} - \mathbf{x}') = \frac{1}{|\mathbf{x} - \mathbf{x}'|} \ .
 $$
-Any particular solution to the differential equation will be the convolution of the Green's function with $\mathbf{J}/c$, which of course gives back the integral we derived before,
+Any particular solution to Poisson's equation will be the convolution of the Green's function with $\mathbf{J}/c$, which of course gives back the integral we derived before,
 $$
 \mathbf{A}(\mathbf{x}) = \frac{1}{c} \int d^3 \mathbf{x}' \ \frac{\mathbf{J}(\mathbf{x}')}{|\mathbf{x} - \mathbf{x}'|} \ .
 $$
 For a given boundary value problem, the general solution will be this particular solution summed with any solution to the vector Laplace's equation $\nabla^2 \mathbf{A} = 0$ subject to any given boundary conditions.
 
-Unfortunately, unlike Poisson's equation for the scalar potential, solving Poisson's equation directly for the vector potential is rarely useful as a means to solve a given problem. This is due to the fact that we now have a *coupled* vector differential equation to solve, which is much more difficult. The coupling comes from the fact that any solution to Poisson's equation must *also* satisfy the gauge condition $\nabla \cdot \mathbf{A} = 0$. Even worse, the boundary conditions for magnetostatics problems are often much less trivial. For instance, the B-field on the surface of a conductor need not vanish, nor is it physically realistic to fix a constant vector potential on the surface of a given material. We'll cover some ways to calculate the vector potential using other methods below.
+Unfortunately, unlike Poisson's equation for the scalar potential, solving Poisson's equation directly for the vector potential is rarely useful as a means to solve a given problem. This is due to the fact that we now have a *coupled* vector differential equation to solve, which is much more difficult. The coupling comes from the fact that any solution must *also* satisfy the Coulomb gauge condition $\nabla \cdot \mathbf{A} = 0$. Even worse, the boundary conditions for magnetostatics problems are often much less trivial. For instance, the B-field on the surface of a conductor need not vanish, nor is it physically realistic to fix a constant vector potential on the surface of a given material. We'll cover some ways to calculate the vector potential using other methods below.
 
-### Boundary Conditions
+### Surface Boundary Conditions
 
-- Derive surface boundary conditions for $B$ and $A$
+We saw in a few earlier examples in the chapter that the magnetic field across a surface of current changes discontinuously by an amount $4\pi / c \ |\mathbf{K}|$. We will now prove this fact more generally. Specifically, we'll show that only the *tangential* part of the B-field changes discontinuously when crossing a surface of current, while the *normal* part of the B-field remains continuous.
+
+FIGURE (surface of current with normal and tangential B-field)
+
+Suppose $\mathcal{S}$ is some smooth surface of current with a surface current density $\mathbf{K}(\mathbf{x})$, where $\mathbf{x}$ is some point on the surface. The magnetic field $\mathbf{B}(\mathbf{x})$ at this point can be decomposed into two vectors, one vector $\mathbf{B}^\perp(\mathbf{x})$ normal to the surface, and another vector $\mathbf{B}^\parallel(\mathbf{x})$ tangential to the surface,
+$$
+\mathbf{B}(\mathbf{x}) = \mathbf{B}^\perp(\mathbf{x}) + \mathbf{B}^\parallel(\mathbf{x}) \ .
+$$
+Let's first show the normal vector is continuous across the surface. Since $\nabla \cdot \mathbf{B} = 0$, by the divergence theorem the surface integral of the B-field through any Gaussian surface must always satisfy
+$$
+\oint \mathbf{B} \cdot d\mathbf{a} = 0 \ .
+$$
+We can now apply Gauss's law exactly the same way we did with the E-field before. Choose an infinitesimally high and very thin pillbox with top and bottom areas $\delta A$ as the Gaussian surface, where $\delta A$ is so small that any deviations in the curvature of the surface $\mathcal{S}$ are negligible inside the Gaussian surface. If $B_+$ is the value of the B-field above the surface and $B_-$ is the value of the B-field below the surface, by Gauss's Law we must have
+$$
+(B_+^\perp - B_-^\perp) \delta A \approx \int \mathbf{B} \cdot d\mathbf{a} = 0 \ .
+$$
+Assuming $\delta A$ is infinitesimal, we thus have $B_+^\perp(\mathbf{x}) = B_-^\perp(\mathbf{x})$. That is, the normal component of the B-field remains continuous across the surface of current.
+
+Let's now deal with the tangential vector. This time we'll apply Ampere's law. For the Amperian loop we choose a square with infinitesimal side lengths $\delta\ell$, oriented with the face of the perpendicular to the direction of $\mathbf{K}$ as shown below.
+
+FIGURE (show amperian loop)
+
+When we calculate the circulation integral, only the sides parallel to the surface contribute. Since $I_{\text{enc}} \approx |\mathbf{K}| \delta\ell$, by Ampere's law we thus have
+$$
+(B_+^\parallel - B_-^\parallel) \delta\ell \approx \int \mathbf{B} \cdot d\boldsymbol{\ell} = \frac{4\pi}{c} |\mathbf{K}| \delta\ell \ .
+$$
+Assuming $\delta\ell$ is infinitesimal, we thus have
+$$
+B_+^\parallel(\mathbf{x}) - B_-^\parallel(\mathbf{x}) = \frac{4\pi}{c} |\mathbf{K}(\mathbf{x})| \ .
+$$
+That is, the tangential part of the B-field changes discontinuously across the surface by an amount $\frac{4\pi}{c} |\mathbf{K}|$.
+
+We can combine these results together into a single equation. Notice both conditions are equivalent to the statement that
+$$
+\mathbf{B}_+(\mathbf{x}) - \mathbf{B}_-(\mathbf{x}) = \frac{4\pi}{c} \mathbf{K}(\mathbf{x}) \times \mathbf{n} \ .
+$$
+In a similar manner, one can show that the vector potential $\mathbf{A}(\mathbf{x})$ across the surface is always continuous, both its tangential and normal parts. That is, for the vector potential we have
+$$
+\mathbf{A}_+(\mathbf{x}) = \mathbf{A}_-(\mathbf{x}) \ .
+$$
+That the tangential part remains continuous follows from the fact that $\mathbf{B} = \nabla \times \mathbf{A}$. The normal part is only continuous in the Coulomb gauge, since we require $\nabla \cdot \mathbf{A} = 0$ for this to be true.
+
+We can also express the discontinuity of the B-field across the surface using the normal derivative of the vector potential. We'll define the normal derivative of the vector potential in terms of its components by
+$$
+\frac{\partial A_i}{\partial n} \equiv \partial_j A_i n_j \ .
+$$
+One can then show that the B-field relations above are equivalent to the statement that
+$$
+\frac{\partial}{\partial n} \mathbf{A}_+(\mathbf{x}) - \frac{\partial}{\partial n} \mathbf{A}_-(\mathbf{x}) = -\frac{4\pi}{c} \mathbf{K}(\mathbf{x}) \ .
+$$
+Together, we thus have the following boundary conditions for the vector potential across a surface of current,
+$$
+\begin{align*}
+\mathbf{A}_+(\mathbf{x}) - \mathbf{A}_-(\mathbf{x}) &= \mathbf{0} \ , \\
+\frac{\partial}{\partial n} \mathbf{A}_+(\mathbf{x}) - \frac{\partial}{\partial n} \mathbf{A}_-(\mathbf{x}) &= -\frac{4\pi}{c} \mathbf{K}(\mathbf{x}) \ .
+\end{align*}
+$$
+While these boundary conditions for the vector potential are nice to know, we rarely use them in practice since we rarely solve the vector Poisson equation for reasons described in the previous section.
 
 ### Calculating Vector Potentials
 
@@ -752,7 +831,11 @@ In this notation we can now easily rotate the coordinate axes if we like so that
 $$
 \mathbf{A}(\mathbf{x}) = \frac{4\pi R^4 \sigma\omega}{3cr^2} \sin\theta\mathbf{e}_\varphi \ .
 $$
-Thus, the vector potential of a rotation sphere moves in the direction the sphere is rotating, and falls off like $1/r^2$ outside the sphere. One can also show the vector potential inside the sphere is the same, except multiplied by $r^3/R^3$. This means the magnetic field inside the sphere will be constant and pointed along the axis of rotation.
+Thus, the vector potential of a rotation sphere moves in the direction the sphere is rotating, and falls off like $1/r^2$ outside the sphere. In fact, this is exactly the behavior of a magnetic dipole field, which we'll study in the next section. From the multipole expansion we'll soon derive, the magnetic dipole moment $\mathbf{m}$ for this rotating sphere can easily be identified as
+$$
+\mathbf{m} = \frac{4\pi R^4 \sigma}{3c} \boldsymbol{\omega} \ .
+$$
+One can also show the vector potential inside the sphere is the same, except multiplied by $r^3/R^3$. This means the magnetic field inside the sphere will be constant and pointed along the axis of rotation.
 
 ## Multipole Expansion
 
