@@ -30,7 +30,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../electrodynamics/maxwell-equations.html" rel="next">
+<link href="../electrodynamics/circuits-and-emf.html" rel="next">
 <link href="../electrodynamics/multipole-expansion.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -248,7 +248,12 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../electrodynamics/maxwell-equations.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Maxwell’s Equations</span></a>
+  <a href="../electrodynamics/circuits-and-emf.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Circuits and Electromotive Force</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../electrodynamics/electrodynamics.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Electrodynamics</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -418,7 +423,7 @@ window.Quarto = {
   <li><a href="#definition-1" id="toc-definition-1" class="nav-link" data-scroll-target="#definition-1">Definition</a></li>
   <li><a href="#gauge-transformations" id="toc-gauge-transformations" class="nav-link" data-scroll-target="#gauge-transformations">Gauge Transformations</a></li>
   <li><a href="#poissons-equation" id="toc-poissons-equation" class="nav-link" data-scroll-target="#poissons-equation">Poisson’s Equation</a></li>
-  <li><a href="#boundary-conditions" id="toc-boundary-conditions" class="nav-link" data-scroll-target="#boundary-conditions">Boundary Conditions</a></li>
+  <li><a href="#surface-boundary-conditions" id="toc-surface-boundary-conditions" class="nav-link" data-scroll-target="#surface-boundary-conditions">Surface Boundary Conditions</a></li>
   <li><a href="#calculating-vector-potentials" id="toc-calculating-vector-potentials" class="nav-link" data-scroll-target="#calculating-vector-potentials">Calculating Vector Potentials</a></li>
   </ul></li>
   <li><a href="#multipole-expansion" id="toc-multipole-expansion" class="nav-link" data-scroll-target="#multipole-expansion">Multipole Expansion</a>
@@ -465,7 +470,7 @@ window.Quarto = {
 <h3 class="anchored" data-anchor-id="definition">Definition</h3>
 <p>Up until now we’ve always assumed that charges were <em>static</em>. Now we will allow them to move around. This movement of charge is called electric <em>current</em>. By convention, if a set of <em>positive</em> charges are moving in some direction, we say there’s a <em>current</em> in that direction. Equivalently, if a set of <em>negative</em> charges are moving in some direction, we say there’s a current in the opposite direction. Informally, the current through a point is defined as the rate of change of charge through that point, or <span class="math display">\[
 I \equiv \frac{dq}{dt} \ .
-\]</span> Current must have dimensions of charge per unit time. In Gaussian units, current is measured in units of esu per second, sometimes called the <em>statampere</em>. In SI units, current is measured in units of Coulombs per second, also called an <em>Ampere</em> or an <em>amp</em>. The two units are related by <span class="math inline">\(1 \ \text{statamp} \approx 10^{-12} \ \text{amp}\)</span>.</p>
+\]</span> Current must have dimensions of charge per unit time. In Gaussian units, current is measured in units of esu per second, which is also called a <em>statampere</em>. In SI units, current is measured in units of Coulombs per second, also called an <em>Ampere</em> or an <em>amp</em>. The two units are related by <span class="math inline">\(1 \ \text{statamp} \approx 10^{-12} \ \text{A}\)</span>.</p>
 <p>Current was perhaps first understood in the context of conducting wires. When a potential difference is created across a wire, for example by hooking the wire up to a battery, the charges inside the wire experience an <em>electromotive force</em>, causing the charges to move in the direction of lowest potential, thus creating an electric current through the wire.</p>
 <p>If a wire has a line charge density <span class="math inline">\(\lambda\)</span> and the charges inside the wire move with an average <em>drift velocity</em> <span class="math inline">\(\mathbf{v}\)</span>, the current <span class="math inline">\(I\)</span> at any point in the wire is given by the product <span class="math display">\[
 I = \lambda |\mathbf{v}| \ .
@@ -491,29 +496,34 @@ I \equiv \int_\mathcal{C} \mathbf{K} \cdot d\boldsymbol{\ell} \ .
 </section>
 <section id="conservation-of-charge" class="level3">
 <h3 class="anchored" data-anchor-id="conservation-of-charge">Conservation of Charge</h3>
-<p>One very important fact about electromagnetism, indeed just as important as Maxwell’s equations, is that charge is <em>conserved</em>. That is, the enclosed charge <span class="math inline">\(Q_{\text{enc}}\)</span> inside any closed surface can’t spontaneously appear or disappear. It can only flow out through the surface in the form of some current <span class="math inline">\(I_{\text{out}}\)</span>.</p>
+<p>One fundamental law of classical electromagnetism is that charge is <em>conserved</em>. That is, inside any closed surface the total charge <span class="math inline">\(Q_{\text{enc}}\)</span> inside can’t spontaneously appear or disappear. It can only flow out of the surface with some current <span class="math inline">\(I_{\text{out}}\)</span>.</p>
 <p>FIGURE (show charge and current through surface)</p>
-<p>Mathematically, conservation of charge says that <span class="math display">\[
+<p>We can express conservation of charge mathematically then by writing <span class="math display">\[
 \frac{dQ_{\text{enc}}}{dt} = -I_{\text{out}} \ .
-\]</span> The minus sign is needed to express the fact that charges are flowing out of the surface, not inward.</p>
+\]</span> The minus sign expresses the fact that a current flowing out of the closed surface decreases the amount of enclosed charge inside the enclosed region.</p>
 <p>The statement of conservation of charge is stronger than this however. Not only is charged conserved <em>globally</em>, it’s also conserved <em>locally</em>. That is, no matter how small a closed surface we choose, charge must be conserved in the sense defined above. We can formulate the statement of local charge conservation most conveniently using a <em>continuity equation</em>.</p>
-<p>To achieve this, we’ll write the enclosed charge as a volume integral over a charge density <span class="math inline">\(\rho(\mathbf{x},t)\)</span> and the outward current as a surface integral over the current density <span class="math inline">\(\mathbf{J}(\mathbf{x},t)\)</span>, <span class="math display">\[
-Q_{\text{enc}} = \int_\mathcal{V} d^3 \mathbf{x} \ \rho(\mathbf{x},t) \quad , \quad I_{\text{out}} = \int_\mathcal{S} \mathbf{J}(\mathbf{x},t) \cdot d\mathbf{a} \ .
-\]</span> As usual, we denote the closed surface by <span class="math inline">\(\mathcal{S}\)</span> and its enclosed volume by <span class="math inline">\(\mathcal{V}\)</span>. Plugging these integrals into the conservation law above, we have <span class="math display">\[
-\frac{d}{dt} \int_\mathcal{V} d^3 \mathbf{x} \ \rho(\mathbf{x},t) = - \int_\mathcal{S} \mathbf{J}(\mathbf{x},t) \cdot d\mathbf{a} \ .
-\]</span> Now, if we assume <span class="math inline">\(\mathcal{S}\)</span> is fixed then we can pull the time derivative inside the integral on the left-hand side. Moreover, we can use the divergence on the right-hand side to express the current as a divergence. We then get <span class="math display">\[
+<p>To achieve this, we can express the enclosed charge as a volume integral over a charge density <span class="math inline">\(\rho(\mathbf{x},t)\)</span> and the outward current as a closed surface integral over the current density <span class="math inline">\(\mathbf{J}(\mathbf{x},t)\)</span>, <span class="math display">\[
+Q_{\text{enc}} = \int_\mathcal{V} d^3 \mathbf{x} \ \rho(\mathbf{x},t) \quad , \quad I_{\text{out}} = \oint_\mathcal{S} \mathbf{J}(\mathbf{x},t) \cdot d\mathbf{a} \ .
+\]</span> As usual, we denote the closed surface by <span class="math inline">\(\mathcal{S}\)</span> and its enclosed volume by <span class="math inline">\(\mathcal{V}\)</span>. Plugging these integrals into the conservation law above, we then have <span class="math display">\[
+\frac{d}{dt} \int_\mathcal{V} d^3 \mathbf{x} \ \rho(\mathbf{x},t) = - \oint_\mathcal{S} \mathbf{J}(\mathbf{x},t) \cdot d\mathbf{a} \ .
+\]</span> Now, we assume the closed surface <span class="math inline">\(\mathcal{S}\)</span> is fixed, which means we can pull the time derivative inside the integral. We can then use the divergence on the right-hand side to express the current as a divergence. All together, we get <span class="math display">\[
 \int_\mathcal{V} d^3 \mathbf{x} \ \frac{\partial\rho(\mathbf{x},t)}{\partial t} = - \int_\mathcal{V} d^3 \mathbf{x} \ \nabla \cdot \mathbf{J}(\mathbf{x},t) \ .
-\]</span> Since the closed surface is arbitrary, the only way this integral can hold is if the integrands equal. That is, if <span class="math display">\[
+\]</span> Since the volume <span class="math inline">\(\mathcal{V}\)</span> is arbitrary, the only way this integral can hold is if the integrands equal. That is, if <span class="math display">\[
 \boxed{
 \frac{\partial\rho}{\partial t} + \nabla \cdot \mathbf{J} = 0
 } \ .
-\]</span> This continuity equation fully encapsulates the statement that charge is both locally and globally conserved.</p>
-<p>In this chapter, we will focus specifically on distributions in which <span class="math inline">\(\nabla \cdot \mathbf{J} = 0\)</span>. That is, we focus only on distributions where the current neither converges nor diverges at any point. This is called the <em>steady current</em> condition. The study of electromagnetism in the special scenario of steady current is called <em>magnetostatics</em>, the subject of this chapter.</p>
+\]</span> This equation fully encapsulates the statement that charge is both locally and globally conserved. It’s common to refer to this equation as both <em>conservation of charge</em> and the <em>continuity equation</em>, even though we could express conservation of charge globally, and there can be continuity equations for other conserved quantities as well.</p>
+<p>In this chapter, we will focus specifically on distributions in which <span class="math inline">\(\nabla \cdot \mathbf{J} = 0\)</span>. That is, we focus only on distributions where the current neither converges nor diverges at any point. This is called the <em>steady current</em> condition. The study of electromagnetism in the special scenario of steady current is called <em>magnetostatics</em>, the whole subject of this chapter.</p>
 <p>FIGURE (show steady current flow, perhaps contrasting with non-steady current flow)</p>
-<p>From the continuity equation, the steady current condition evidently implies that <span class="math display">\[
+<p>From the continuity equation, if the steady current condition holds, we must also have <span class="math display">\[
 \frac{\partial\rho}{\partial t} = 0 \ .
-\]</span> This implies that the charge distribution must be time-independent, with <span class="math inline">\(\rho = \rho(\mathbf{x})\)</span>, which also implies that <span class="math inline">\(\mathbf{J} = \rho \mathbf{v}\)</span> is also time independent, with <span class="math inline">\(\mathbf{J} = \mathbf{J}(\mathbf{x})\)</span>. This isn’t to say that charges isn’t moving, only they’re moving in such a way that the charge distribution throughout space isn’t changing. The only way this can be true is if any charges leaving any given region are getting replaced by other charges moving into that region. Of course, this is an abstraction. Yet in many physical situations, for example with current moving through a wire, this is approximately the case. This situation of course contrasts with electrostatics, where the charge distribution was also time independent. In that setting, the charges were indeed assumed to be stationary.</p>
-<p>One immediately implication of the steady current condition is that point charges must be excluded. Indeed, the density of a moving point charge is constantly changing. If a charge <span class="math inline">\(q\)</span> is moving at a velocity <span class="math inline">\(\mathbf{v}\)</span>, then its source point <span class="math inline">\(\mathbf{x}' = \mathbf{v} t\)</span> becomes time dependent, which means the density <span class="math inline">\(\rho(\mathbf{x},t) = q \delta(\mathbf{x} - \mathbf{v}t)\)</span> is necessarily time-dependent. This means when enforcing the steady current condition, we <em>must</em> only consider extended distributions of charge, so that the movement of each charge cancels out the movement of the others on average. We’ll come back to moving point charges later in electrodynamics.</p>
+\]</span> That is, the charge distribution must be time-independent. That is, we must have <span class="math inline">\(\rho = \rho(\mathbf{x})\)</span> and <span class="math inline">\(\mathbf{J} = \mathbf{J}(\mathbf{x})\)</span>, which means neither density is allowed to depend explicitly on time in magnetostatics. If they do, we violate the steady current condition.</p>
+<p>Note fact that <span class="math inline">\(\rho = \rho(\mathbf{x})\)</span> does <em>not</em> imply that charges aren’t moving around in space, only that they’re moving in such a way that <span class="math inline">\(\rho\)</span> itself isn’t changing explicitly with time. The only way this can be true is if any charges flowing out a given region are being replaced by charges flowing back into the region at the same rate. Of course, this is an abstraction. Yet in many physical situations, for example when we have current moving through a wire, this is indeed approximately the case.</p>
+<p>Though seemingly similar, this situation contrasts with electrostatics, where we also had <span class="math inline">\(\rho = \rho(\mathbf{x})\)</span>. In that setting, the charges were indeed assumed to be stationary. Charges placed at a point stayed there. They didn’t move around.</p>
+<p>One immediately implication of all this is that point charges can never generate steady currents. To see why this is the case, suppose a point charge <span class="math inline">\(q\)</span> is moving through space with some trajectory <span class="math inline">\(\mathbf{x}'(t)\)</span>. Then its charge density is <span class="math display">\[
+\rho(\mathbf{x},t) = q \delta\big(\mathbf{x} - \mathbf{x}'(t)\big) \ .
+\]</span> This necessarily means that the charge density of a moving point charge must be an explicit function of time, which already violates the steady current condition.</p>
+<p>An immediate implication of this is that, when enforcing the steady current condition, we must consider extended distributions of charge from the outset. We can’t start with moving point charges and build up steady currents from there. This is the major reason why magnetostatics is often much more cumbersome to introduce than electrostatics. In electrostatics, we could start by stating Coulomb’s law for a point charge, and from there extend to continuous distributions. In magnetostatics, we have to start immediately from continuous distributions and go from there.</p>
 </section>
 </section>
 <section id="magnetic-fields" class="level2">
@@ -565,9 +575,9 @@ d\mathbf{B} = \frac{1}{c} d\ell' \ \mathbf{I} \times \frac{\mathbf{x} - \mathbf{
 <p>Since the far field falls off like <span class="math inline">\(1/r^3\)</span>, in this limit the B-field seems to behave like a dipole field.</p>
 <hr>
 <p>In fact, the lowest non-vanishing moment of the B-field will <em>always</em> be at least a dipole field, as we’ll see later. There will never be a monopole field contribution. Said equivalently, there is no such thing as a magnetic monopole, as far as we can tell based on all experiments done up to this day. More advanced theories predict that they could exist, but experiments have never found them. Until found, we’re left to assume based on all experimental evidence that no magnetic monopoles exist in nature.</p>
-<p>It’s tempting to ask whether we can use the Biot-Savart law to calculate the B-field generated by a moving point charge. If we naively attempted to apply the Biot-Savart law to a moving point charge <span class="math inline">\(q\)</span> of velocity <span class="math inline">\(\mathbf{v}\)</span>, we’d find a B-field <span class="math display">\[
+<p>It’s tempting to ask whether we can use the Biot-Savart law to calculate the B-field generated by a moving point charge. If we naively attempted to apply the Biot-Savart law to a point charge <span class="math inline">\(q\)</span> moving at constant velocity <span class="math inline">\(\mathbf{v}\)</span>, we’d find that <span class="math display">\[
 \mathbf{B}(\mathbf{x}) = q \frac{\mathbf{v}}{c} \times \frac{\mathbf{x} - \mathbf{v}t}{|\mathbf{x} - \mathbf{v}t|^3} \ .
-\]</span> But this can’t be true, since the Biot-Savart law requires that B-field only be a function of position and not time. The only way the B-field can be time-independent is if the steady current condition is imposed, which means the Biot-Savart law implicitly assumes the steady current condition is true. We thus cannot use the Biot-Savart law on point charges, at least without there being so many of them that we can meaningfully impose the steady current condition. To deal with point charges we’ll necessarily need electrodynamics, where we allow the electric and magnetic fields to both be time-dependent.</p>
+\]</span> But this can’t be true, since the Biot-Savart law requires that B-field only be a function of position and not time. The only way the B-field can be time-independent is if the steady current condition is imposed, which means the Biot-Savart law implicitly assumes the steady current condition is true. We thus cannot use the Biot-Savart law on moving point charges. It only holds for continuous distributions of steady currents. We’ll revisit the magnetic field of a moving point charge in a later chapter.</p>
 </section>
 <section id="example-infinite-conducting-wire-of-constant-current" class="level5">
 <h5 class="anchored" data-anchor-id="example-infinite-conducting-wire-of-constant-current">Example: Infinite conducting wire of constant current</h5>
@@ -594,7 +604,9 @@ f = \frac{2 I_1 I_2}{c^2 d} \ .
 \]</span> Later on in the century, Lorentz formulated a precise statement of the force on a moving point charge in a magnetic field. Suppose a point charge <span class="math inline">\(q\)</span> is moving at a velocity <span class="math inline">\(\mathbf{v}\)</span> in the presence of some external B-field <span class="math inline">\(\mathbf{B}\)</span>. This charge will feel a force due to the B-field given by the <em>Lorentz Force Law</em>, <span class="math display">\[
 \mathbf{F} = \alpha q \mathbf{v} \times \mathbf{B} \ .
 \]</span> Here <span class="math inline">\(\alpha\)</span> is yet another proportionality constant that depends on the choice of units. In the Gaussian system we choose <span class="math inline">\(\alpha = 1/c\)</span>, which again ensures <span class="math inline">\(\mathbf{E}\)</span> and <span class="math inline">\(\mathbf{B}\)</span> carry the same dimensions. In these units, we get <span class="math display">\[
-\mathbf{F} = q \frac{\mathbf{v}}{c} \times \mathbf{B} \ .
+\boxed{
+\mathbf{F} = q \frac{\mathbf{v}}{c} \times \mathbf{B}
+} \ .
 \]</span> Evidently, the force due to a B-field will always be perpendicular to both the velocity of the charge as well as the B-field. This fact immediately implies something interesting, magnetic fields can only change the direction of a moving charge, not speed it up or slow it down. Said differently, magnetic forces do no work.</p>
 <p>To see why this is true, consider the work done in moving a charge along some path <span class="math inline">\(\mathcal{C}\)</span> in the presence of a B-field <span class="math inline">\(\mathbf{B}\)</span>. Plugging in the Lorentz force law and noting that <span class="math inline">\(d\boldsymbol{\ell} = \mathbf{v} dt\)</span>, the work <span class="math inline">\(W\)</span> done in moving the charge along the path must be <span class="math display">\[
 W = \int_\mathcal{C} \mathbf{F} \cdot d\boldsymbol{\ell} = \int_\mathcal{C} \bigg(q \frac{\mathbf{v}}{c} \times \mathbf{B}\bigg) \cdot d\boldsymbol{\ell} = \frac{q}{c} \int dt \ \big(\mathbf{v} \times \mathbf{B}\big) \cdot \mathbf{v} = 0 \ .
@@ -605,15 +617,17 @@ W = \int_\mathcal{C} \mathbf{F} \cdot d\boldsymbol{\ell} = \int_\mathcal{C} \big
 } \ .
 \]</span> Notice that we can immediately deduce something about scales from this equation. For a given field strength, the magnetic force on a charged particle will typically be <em>much</em> smaller than the electric force, unless the particle is moving at velocity that’s an appreciable fraction of the speed of light <span class="math inline">\(c\)</span>.</p>
 <p>The Lorentz force law can easily be stated for continuous charge distributions as well. Consider an infinitesimal unit of charge <span class="math inline">\(dq = \rho d^3\mathbf{x}\)</span>. This must obey the above force law, giving rise to an infinitesimal force <span class="math inline">\(d\mathbf{F}\)</span> given by <span class="math display">\[
-d\mathbf{F} = d^3\mathbf{x} \ \bigg(\rho\mathbf{E} + \rho \frac{\mathbf{v}}{c} \times \mathbf{B} \bigg) \ .
-\]</span> Since <span class="math inline">\(\mathbf{J} = \rho \mathbf{v}\)</span> is the current density, when we integrate over the entire charge distribution we get <span class="math display">\[
-\mathbf{F} = \int d^3\mathbf{x} \ \bigg(\rho(\mathbf{x})\mathbf{E}(\mathbf{x}) + \frac{1}{c} \mathbf{J}(\mathbf{x}) \times \mathbf{B}(\mathbf{x})\bigg) \ .
+d\mathbf{F} = d^3\mathbf{x} \ \bigg[\rho\mathbf{E} + \rho \frac{\mathbf{v}}{c} \times \mathbf{B} \bigg] \ .
+\]</span> Since <span class="math inline">\(\mathbf{J} = \rho \mathbf{v}\)</span> is the current density, when we integrate over the entire distribution we get <span class="math display">\[
+\mathbf{F} = \int d^3\mathbf{x} \ \bigg[\rho\mathbf{E} + \frac{1}{c} \mathbf{J} \times \mathbf{B}\bigg] \ .
 \]</span> This is the most general form of the Lorentz force law we can write down in electromagnetism. Remember that this is the force on a charge distribution due to <em>external fields</em>, not the force due to any fields the charge distribution itself may create. The issue of self fields is a delicate question in electromagnetism, one we’ve seen arise and will arise several times in the course.</p>
-<p>As is typical in field theories, everything of interest is inside the integrand. It’s useful to give that a name, the <em>force density</em> <span class="math inline">\(\mathbf{f}\)</span>, <span class="math display">\[
+<p>As is typical in field theories, everything of interest is inside the integrand. The integrand is just the force per unit volume, which is called the <em>force density</em> <span class="math inline">\(\mathbf{f}\)</span>. For the Lorentz force, the force density is clearly <span class="math display">\[
 \boxed{
-\mathbf{f} \equiv \rho(\mathbf{x})\mathbf{E}(\mathbf{x}) + \frac{1}{c} \mathbf{J}(\mathbf{x}) \times \mathbf{B}(\mathbf{x})
+\mathbf{f} = \rho\mathbf{E} + \frac{1}{c} \mathbf{J} \times \mathbf{B}
 } \ .
-\]</span> The force <span class="math inline">\(\mathbf{F}\)</span> is then just the volume integral of the force density over the entire charge distribution.</p>
+\]</span> Clearly, when only B-fields are present, which we assume in magnetostatics, then the Lorentz force density reduces to <span class="math display">\[
+\mathbf{f} = \frac{1}{c} \mathbf{J} \times \mathbf{B} \ .
+\]</span> The total Lorentz force <span class="math inline">\(\mathbf{F}\)</span> for a continuous distribution is then the volume integral of <span class="math inline">\(\mathbf{f}\)</span> over the entire distribution.</p>
 <section id="example-amperes-current-law" class="level5">
 <h5 class="anchored" data-anchor-id="example-amperes-current-law">Example: Ampere’s Current Law</h5>
 <p>We’ll now derive Ampere’s current law between two current carrying wires. Suppose two parallel wires are separated by some distance <span class="math inline">\(d\)</span>, where the first wire carries a current <span class="math inline">\(I_1\)</span> and the second wire carries a current <span class="math inline">\(I_2\)</span>. We mentioned above that the following result was found empirically, <span class="math display">\[
@@ -638,7 +652,7 @@ d\mathbf{F} = \frac{1}{c} \mathbf{I}_2 \times \mathbf{B}_1 d\ell = \frac{1}{c} (
 </section>
 <section id="field-equations" class="level2">
 <h2 class="anchored" data-anchor-id="field-equations">Field Equations</h2>
-<p>Just as it wasn’t convenient or illuminating in electrostatics to use Coulomb’s law to calculate and study electric fields, it’s not convenient in magnetostatics to use the Biot-Savart law to calculate or study magnetic fields. We’ll thus want to re-cast the Biot-Savart law as a set of field equations.</p>
+<p>Just as it wasn’t convenient or illuminating in electrostatics to use Coulomb’s law to calculate and study electric fields, it’s not convenient in magnetostatics to use the Biot-Savart law to calculate or study magnetic fields. We’ll want to instead re-cast the Biot-Savart law as a set of field equations.</p>
 <section id="divergence-of-mathbfb" class="level3">
 <h3 class="anchored" data-anchor-id="divergence-of-mathbfb">Divergence of <span class="math inline">\(\mathbf{B}\)</span></h3>
 <p>By the Biot-Savart law, the B-field created by a volume of steady current is given by <span class="math display">\[
@@ -746,8 +760,8 @@ B(\varrho) = \frac{4\pi}{c} \frac{I_\text{enc}}{L} = \frac{4\pi}{c} \frac{I}{2\p
 B(z) = \frac{2\pi K}{c} \ ,
 \]</span> which means the magnetic field of the infinite sheet of current is evidently <span class="math display">\[
 \mathbf{B}(\mathbf{x}) = \begin{cases}
-2\pi K/c &amp; z &gt; 0 \ , \\
--2\pi K/c &amp; z &lt; 0 \ .
+2\pi K/c \ \mathbf{e}_y &amp; z &gt; 0 \ , \\
+-2\pi K/c \ \mathbf{e}_y &amp; z &lt; 0 \ .
 \end{cases}
 \]</span> Thus, the B-field strength is constant at any point above or below the sheet, just as the electric field of an infinite sheet of charge is constant. Since <span class="math inline">\(B(-z) = -B(z)\)</span>, the field strength experiences a discontinuity when crossing the sheet. The B-field strength changes discontinuously by exactly <span class="math inline">\(\Delta B = 4\pi K/c\)</span>. We saw this behavior in electrostatics as well, where the E-field through an infinite sheet of charge changes by a discontinuous amount <span class="math inline">\(\Delta E = 4\pi \sigma\)</span> when crossing the sheet.</p>
 </section>
@@ -794,30 +808,29 @@ B = \frac{4\pi}{c} n I \ .
 \]</span> where the scalar potential <span class="math inline">\(\phi(\mathbf{x})\)</span> could be expressed via the integral <span class="math display">\[
 \phi(\mathbf{x}) = \int d^3 \mathbf{x}' \ \frac{\rho(\mathbf{x}')}{|\mathbf{x} - \mathbf{x}'|} \ .
 \]</span> Notice the similarities and differences between these two settings. In electrostatics, the <em>electric</em> field is the <em>gradient</em> of a <em>scalar</em> potential, while in magnetostatics the <em>magnetic</em> field is the <em>curl</em> of a <em>vector</em> potential. In a sense, the differences between the two are what gives rise to the differences in behavior we see between electric and magnetic fields. But on another hand the two expressions for the potentials look quite similar, except with <span class="math inline">\(\rho\)</span> replaced by <span class="math inline">\(\mathbf{J}/c\)</span>.</p>
-<p>Since <span class="math inline">\(\rho\)</span> and <span class="math inline">\(\mathbf{J}/c\)</span> have the same units, this evidently means the scalar potential and the vector potential also have the same units in Gaussian units. The vector potential evidently carries units of <span class="math inline">\(\text{erg} / \text{esu}\)</span>, or equivalently units of <span class="math inline">\(\text{G} \cdot \text{cm}\)</span>.</p>
+<p>Since <span class="math inline">\(\rho\)</span> and <span class="math inline">\(\mathbf{J}/c\)</span> have the same dimensions, evidently the scalar potential and the vector potential must also have the same dimensions in Gaussian units, or units of statvolts. In practice though, we tend to express the units of vector potential in <span class="math inline">\(\text{G} \cdot \text{cm}\)</span>, which is equivalent to statvolts. In SI units, the vector potential and scalar potential unfortunately have different dimensions. In those units, the scalar potential has units of volts, while the vector potential has units of <span class="math inline">\(\text{T} \cdot \text{m}\)</span>.</p>
 </section>
 <section id="gauge-transformations" class="level3">
 <h3 class="anchored" data-anchor-id="gauge-transformations">Gauge Transformations</h3>
-<p>In electrostatics, we saw that we could add any constant to the scalar potential and it wouldn’t affect the physics, since in the end the E-field is the gradient of the scalar potential. A similar concept exists in magnetostatics, except it’s more subtle. What physically matters is the B-field, since it’s the B-field that gives rise to the forces.</p>
-<p>This means we can add anything we like to the vector potential, so long as its curl vanishes. It turns out that the most general thing we can add to the vector potential whose curl vanishes is the gradient of some scalar field <span class="math inline">\(\chi(\mathbf{x})\)</span>, called a <em>gauge potential</em>.</p>
-<p>Suppose we transform some given vector potential <span class="math inline">\(\mathbf{A}\)</span> by <span class="math display">\[
+<p>In electrostatics, we saw that we could add any constant to the scalar potential and it wouldn’t effect the E-field, which is the essential physical quantity of interest since the E-field is what gives rise to forces. A similar concept exists in magnetostatics, except it’s more subtle. What physically matters is the B-field, since it’s the B-field that gives rise to forces.</p>
+<p>Suppose we have a vector potential <span class="math inline">\(\mathbf{A}\)</span> whose magnetic field is <span class="math inline">\(\mathbf{B} = \nabla \times \mathbf{A}\)</span>. What operations can we do to <span class="math inline">\(\mathbf{A}\)</span> so that <span class="math inline">\(\mathbf{B}\)</span> itself doesn’t change? Clearly we can add any constant vector to <span class="math inline">\(\mathbf{A}\)</span>, but that’s not all. Generally speaking we can add anything we like to <span class="math inline">\(\mathbf{A}\)</span> whose curl vanishes. The most general thing we can add would be the gradient of some scalar field. Suppose we transform <span class="math inline">\(\mathbf{A}\)</span> by adding to it the gradient of some scalar field <span class="math inline">\(\chi(\mathbf{x})\)</span>, <span class="math display">\[
 \mathbf{A}' = \mathbf{A} + \nabla \chi \ .
-\]</span> If we take the curl of <span class="math inline">\(\mathbf{A}'\)</span>, we see that <span class="math display">\[
-\nabla \times \mathbf{A}' = \nabla \times \mathbf{A} + \nabla \times \nabla \chi \ .
-\]</span> Since the curl of the gradient of a scalar field must vanish, for any choice of <span class="math inline">\(\chi(\mathbf{x})\)</span> we have <span class="math display">\[
+\]</span> Since the curl of a gradient must always vanish we have <span class="math display">\[
 \mathbf{B} = \nabla \times \mathbf{A} = \nabla \times \mathbf{A}' \ .
-\]</span> Thus, any transformation <span class="math inline">\(\mathbf{A} \to \mathbf{A}'\)</span> that adds the gradient of any gauge potential <span class="math inline">\(\chi\)</span> won’t alter the underlying physics. We call any transformation of this form a <em>gauge transformation</em>. This means that given any vector potential <span class="math inline">\(\mathbf{A}\)</span>, we can always do a gauge transformation without altering the B-field <span class="math inline">\(\mathbf{B}\)</span>. In particular, this means any two given vector potentials may look very different, yet still be <em>gauge equivalent</em>, in the sense that they give rise to the same B-field. This is very different to what we saw in electrostatics, where the scalar potential of a given E-field could only differ by an additive constant.</p>
-<p>All of this begs the question though of which gauge potential we should choose, and how we should choose it. In magnetostatics, the natural choice of gauge potential is one such that the vector potential can always be gauge transformed into the integral <span class="math display">\[
-\mathbf{A}(\mathbf{x}) = \frac{1}{c} \int d^3 \mathbf{x}' \ \frac{\mathbf{J}(\mathbf{x}')}{|\mathbf{x} - \mathbf{x}'|} \ .
-\]</span> It turns out that the only gauge potentials that meet this condition are those satisfying Laplace’s equation <span class="math inline">\(\nabla^2 \chi = 0\)</span>. If the integral is over all space, as it typically is, this condition implies the gauge potential itself must be constant as well.</p>
-<p>Typically, when choosing a gauge potential, or <em>gauge fixing</em>, we don’t specify the gauge potential directly, but instead specify a condition on the divergence of the vector potential. This is equivalent to specifying the <em>Laplacian</em> of the gauge potential, since if <span class="math inline">\(\mathbf{A}' = \mathbf{A} + \nabla \chi\)</span>, then the divergence is <span class="math display">\[
+\]</span> We call such a transformation <span class="math inline">\(\mathbf{A} \to \mathbf{A}'\)</span> a <em>gauge transformation</em>, and the scalar field <span class="math inline">\(\chi(\mathbf{x})\)</span> a <em>gauge potential</em>. Evidently, there is no physical information contained in the gauge potential. We’re free to choose any <span class="math inline">\(\chi\)</span> we like without changing <span class="math inline">\(\mathbf{B}\)</span>.</p>
+<p>An interesting consequence of this is that two vector potentials may look very different from each other, yet still give rise to the same B-field. When this happens, we say <span class="math inline">\(\mathbf{A}\)</span> and <span class="math inline">\(\mathbf{A}'\)</span> are <em>gauge equivalent</em>.</p>
+<p>Since we’re free to choose or <em>fix</em> whatever gauge we wish, we might as well choose a gauge that simplifies our theory. Typically, when fixing a gauge potential in a given theory, for example in magnetostatics, we don’t specify a gauge potential directly like this. Instead, we specify a condition on the <em>divergence</em> of the vector potential. To see why this is equivalent, remember that <span class="math inline">\(\mathbf{A}\)</span> is a vector field. From the Helmholtz theorem, we know we can uniquely specify any vector field in terms of its divergence and its curl. With the vector potential we specify the curl by requiring that <span class="math inline">\(\mathbf{B} = \nabla \times \mathbf{A}\)</span>, but we still have freedom to choose <span class="math inline">\(\nabla \cdot \mathbf{A}\)</span>.</p>
+<p>Specifying the divergence of <span class="math inline">\(\mathbf{A}\)</span> turns out to be equivalent to specifying a condition on the <em>Laplacian</em> of the gauge potential. Indeed, if <span class="math inline">\(\mathbf{A}' = \mathbf{A} + \nabla \chi\)</span>, then <span class="math inline">\(\nabla \cdot \mathbf{A}'\)</span> must satisfy <span class="math display">\[
 \nabla \cdot \mathbf{A}' = \nabla \cdot \mathbf{A} + \nabla^2 \chi \ .
-\]</span> Since we require that <span class="math inline">\(\nabla^2 \chi = 0\)</span> in magnetostatics, this is equivalent to requiring that <span class="math inline">\(\nabla \cdot \mathbf{A}' = \nabla \cdot \mathbf{A}\)</span> for any choice of gauge, where <span class="math inline">\(\mathbf{A}\)</span> is given by the integral above. But in the previous section we already showed the divergence of this integral must vanish for any localized current distribution. Thus, in magnetostatics we assume the gauge condition <span class="math display">\[
+\]</span> If we now fix a gauge by requiring that <span class="math inline">\(\nabla \cdot \mathbf{A}' = \nabla \cdot \mathbf{A}\)</span>, what we’re left with is <span class="math inline">\(\nabla^2 \chi = 0\)</span>. Thus, fixing a gauge with the divergence of the vector potential is equivalent to requiring that any valid gauge potential satisfy Laplace’s equation.</p>
+<p>In magnetostatics, we know that we can always just choose the vector potential given by the integral <span class="math display">\[
+\mathbf{A}(\mathbf{x}) = \frac{1}{c} \int d^3 \mathbf{x}' \ \frac{\mathbf{J}(\mathbf{x}')}{|\mathbf{x} - \mathbf{x}'|} \ .
+\]</span> It’s thus natural in magnetostatics to fix a gauge whose divergence is the same as the divergence of this integral. But we showed in the previous section that the divergence of this integral is zero for any localized current distribution. This means the natural choice of gauge is one where the divergence of the vector potential is always zero. In magnetostatics, we thus choose <span class="math display">\[
 \boxed{
 \nabla \cdot \mathbf{A} = 0
 } \ .
-\]</span> This is called the <em>Coulomb gauge</em>. There are other gauge conditions one could choose as well. As a general rule, we want to choose a gauge that will simplify the theory in a particular setting. In magnetostatics, the simplest choice of gauge is the Coulomb gauge, so that the vector potential is given by the integral above. But in other settings a different choice of gauge may be more useful. For instance, when we get to electrodynamics we’ll find it more useful to choose a different gauge, namely the <em>Lorentz gauge</em>.</p>
-<p>At any rate, the gauge invariance of the vector potential makes it much more complicated to interpret physically. In electrostatics, we could interpret the scalar potential simply as the energy per unit charge relative to some ground point. But with the vector potential things are much more subtle. In a loose sense, the vector potential can be thought of as a kind of momentum per unit charge, but not always. Nevertheless, the vector potential still has great theoretical importance.</p>
+\]</span> We call this choice of gauge the <em>Coulomb gauge</em>. We’ll see more on why the Coulomb gauge is a convenient choice for magnetostatics in the next section.</p>
+<p>The gauge invariance of the vector potential makes it much more complicated to interpret physically what exactly the vector potential is. This wasn’t the case in electrostatics, where we found we could interpret the scalar potential naturally as the potential energy per unit charge of a distribution. The vector potential is much more subtle. Sometimes the vector potential can be thought of as a kind of momentum per unit charge, but not always. Despite its difficulty to physically interpret though, the vector potential still has great theoretical importance in the theory of electromagnetism, as we’ll see.</p>
 </section>
 <section id="poissons-equation" class="level3">
 <h3 class="anchored" data-anchor-id="poissons-equation">Poisson’s Equation</h3>
@@ -835,22 +848,54 @@ B = \frac{4\pi}{c} n I \ .
 \end{cases}
 \]</span> By writing <span class="math inline">\(\mathbf{B} = \nabla \times \mathbf{A}\)</span>, we automatically get the first field equation for free. All we need to do now is plug the vector potential into Ampere’s law. To do that, we’ll use the identity <span class="math display">\[
 \nabla \times \mathbf{B} = \nabla \times (\nabla \times \mathbf{A}) = \nabla(\nabla \cdot \mathbf{A}) - \nabla^2 \mathbf{A} \ .
-\]</span> The left-hand side is just <span class="math inline">\(\nabla \times \mathbf{B}\)</span>, which by Ampere’s law is <span class="math inline">\(4\pi/c \ \mathbf{J}\)</span>. On the right-hand side we know <span class="math inline">\(\nabla \cdot \mathbf{A} = 0\)</span>, which means all that remains is <span class="math inline">\(-\nabla^2 \mathbf{A}\)</span>. We thus end up with the equation <span class="math display">\[
+\]</span> The left-hand side is just <span class="math inline">\(\nabla \times \mathbf{B}\)</span>, which by Ampere’s law is <span class="math inline">\(4\pi/c \ \mathbf{J}\)</span>. This means in general we have <span class="math display">\[
+\nabla^2 \mathbf{A} - \nabla(\nabla \cdot \mathbf{A}) = -\frac{4\pi}{c} \mathbf{J} \ .
+\]</span> Now we can see why specifying the divergence of <span class="math inline">\(\mathbf{A}\)</span> is a sensible way to fix a gauge, and why the Coulomb potential is so natural in magnetostatics. For if we fix <span class="math inline">\(\nabla(\nabla \cdot \mathbf{A})\)</span>, then the above equation reduces to <span class="math display">\[
 \boxed{
 \nabla^2 \mathbf{A} = -\frac{4\pi}{c} \mathbf{J}
 } \ .
-\]</span> We’ve thus managed to reduce the two first order PDEs for <span class="math inline">\(\mathbf{B}\)</span> into a single second order PDE for <span class="math inline">\(\mathbf{A}\)</span>. Notice that this is again just Poisson’s equation, except we now have one Poisson equation to solve for each vector component. In particular, this means the Green’s function of this differential equation is the same as the one in electrostatics, <span class="math display">\[
+\]</span> This is just a Poisson equation in each component of <span class="math inline">\(\mathbf{A}\)</span>, which is analogous to what we saw in electrostatics where we had <span class="math display">\[
+\nabla^2 \phi = -4\pi\rho \ .
+\]</span> In particular, this means the Green’s function for the vector potential (in the Coulomb gauge) is the same as the Green’s function for the scalar potential in electrostatics, <span class="math display">\[
 G(\mathbf{x} - \mathbf{x}') = \frac{1}{|\mathbf{x} - \mathbf{x}'|} \ .
-\]</span> Any particular solution to the differential equation will be the convolution of the Green’s function with <span class="math inline">\(\mathbf{J}/c\)</span>, which of course gives back the integral we derived before, <span class="math display">\[
+\]</span> Any particular solution to Poisson’s equation will be the convolution of the Green’s function with <span class="math inline">\(\mathbf{J}/c\)</span>, which of course gives back the integral we derived before, <span class="math display">\[
 \mathbf{A}(\mathbf{x}) = \frac{1}{c} \int d^3 \mathbf{x}' \ \frac{\mathbf{J}(\mathbf{x}')}{|\mathbf{x} - \mathbf{x}'|} \ .
 \]</span> For a given boundary value problem, the general solution will be this particular solution summed with any solution to the vector Laplace’s equation <span class="math inline">\(\nabla^2 \mathbf{A} = 0\)</span> subject to any given boundary conditions.</p>
-<p>Unfortunately, unlike Poisson’s equation for the scalar potential, solving Poisson’s equation directly for the vector potential is rarely useful as a means to solve a given problem. This is due to the fact that we now have a <em>coupled</em> vector differential equation to solve, which is much more difficult. The coupling comes from the fact that any solution to Poisson’s equation must <em>also</em> satisfy the gauge condition <span class="math inline">\(\nabla \cdot \mathbf{A} = 0\)</span>. Even worse, the boundary conditions for magnetostatics problems are often much less trivial. For instance, the B-field on the surface of a conductor need not vanish, nor is it physically realistic to fix a constant vector potential on the surface of a given material. We’ll cover some ways to calculate the vector potential using other methods below.</p>
+<p>Unfortunately, unlike Poisson’s equation for the scalar potential, solving Poisson’s equation directly for the vector potential is rarely useful as a means to solve a given problem. This is due to the fact that we now have a <em>coupled</em> vector differential equation to solve, which is much more difficult. The coupling comes from the fact that any solution must <em>also</em> satisfy the Coulomb gauge condition <span class="math inline">\(\nabla \cdot \mathbf{A} = 0\)</span>. Even worse, the boundary conditions for magnetostatics problems are often much less trivial. For instance, the B-field on the surface of a conductor need not vanish, nor is it physically realistic to fix a constant vector potential on the surface of a given material. We’ll cover some ways to calculate the vector potential using other methods below.</p>
 </section>
-<section id="boundary-conditions" class="level3">
-<h3 class="anchored" data-anchor-id="boundary-conditions">Boundary Conditions</h3>
-<ul>
-<li>Derive surface boundary conditions for <span class="math inline">\(B\)</span> and <span class="math inline">\(A\)</span></li>
-</ul>
+<section id="surface-boundary-conditions" class="level3">
+<h3 class="anchored" data-anchor-id="surface-boundary-conditions">Surface Boundary Conditions</h3>
+<p>We saw in a few earlier examples in the chapter that the magnetic field across a surface of current changes discontinuously by an amount <span class="math inline">\(4\pi / c \ |\mathbf{K}|\)</span>. We will now prove this fact more generally. Specifically, we’ll show that only the <em>tangential</em> part of the B-field changes discontinuously when crossing a surface of current, while the <em>normal</em> part of the B-field remains continuous.</p>
+<p>FIGURE (surface of current with normal and tangential B-field)</p>
+<p>Suppose <span class="math inline">\(\mathcal{S}\)</span> is some smooth surface of current with a surface current density <span class="math inline">\(\mathbf{K}(\mathbf{x})\)</span>, where <span class="math inline">\(\mathbf{x}\)</span> is some point on the surface. The magnetic field <span class="math inline">\(\mathbf{B}(\mathbf{x})\)</span> at this point can be decomposed into two vectors, one vector <span class="math inline">\(\mathbf{B}^\perp(\mathbf{x})\)</span> normal to the surface, and another vector <span class="math inline">\(\mathbf{B}^\parallel(\mathbf{x})\)</span> tangential to the surface, <span class="math display">\[
+\mathbf{B}(\mathbf{x}) = \mathbf{B}^\perp(\mathbf{x}) + \mathbf{B}^\parallel(\mathbf{x}) \ .
+\]</span> Let’s first show the normal vector is continuous across the surface. Since <span class="math inline">\(\nabla \cdot \mathbf{B} = 0\)</span>, by the divergence theorem the surface integral of the B-field through any Gaussian surface must always satisfy <span class="math display">\[
+\oint \mathbf{B} \cdot d\mathbf{a} = 0 \ .
+\]</span> We can now apply Gauss’s law exactly the same way we did with the E-field before. Choose an infinitesimally high and very thin pillbox with top and bottom areas <span class="math inline">\(\delta A\)</span> as the Gaussian surface, where <span class="math inline">\(\delta A\)</span> is so small that any deviations in the curvature of the surface <span class="math inline">\(\mathcal{S}\)</span> are negligible inside the Gaussian surface. If <span class="math inline">\(B_+\)</span> is the value of the B-field above the surface and <span class="math inline">\(B_-\)</span> is the value of the B-field below the surface, by Gauss’s Law we must have <span class="math display">\[
+(B_+^\perp - B_-^\perp) \delta A \approx \int \mathbf{B} \cdot d\mathbf{a} = 0 \ .
+\]</span> Assuming <span class="math inline">\(\delta A\)</span> is infinitesimal, we thus have <span class="math inline">\(B_+^\perp(\mathbf{x}) = B_-^\perp(\mathbf{x})\)</span>. That is, the normal component of the B-field remains continuous across the surface of current.</p>
+<p>Let’s now deal with the tangential vector. This time we’ll apply Ampere’s law. For the Amperian loop we choose a square with infinitesimal side lengths <span class="math inline">\(\delta\ell\)</span>, oriented with the face of the perpendicular to the direction of <span class="math inline">\(\mathbf{K}\)</span> as shown below.</p>
+<p>FIGURE (show amperian loop)</p>
+<p>When we calculate the circulation integral, only the sides parallel to the surface contribute. Since <span class="math inline">\(I_{\text{enc}} \approx |\mathbf{K}| \delta\ell\)</span>, by Ampere’s law we thus have <span class="math display">\[
+(B_+^\parallel - B_-^\parallel) \delta\ell \approx \int \mathbf{B} \cdot d\boldsymbol{\ell} = \frac{4\pi}{c} |\mathbf{K}| \delta\ell \ .
+\]</span> Assuming <span class="math inline">\(\delta\ell\)</span> is infinitesimal, we thus have <span class="math display">\[
+B_+^\parallel(\mathbf{x}) - B_-^\parallel(\mathbf{x}) = \frac{4\pi}{c} |\mathbf{K}(\mathbf{x})| \ .
+\]</span> That is, the tangential part of the B-field changes discontinuously across the surface by an amount <span class="math inline">\(\frac{4\pi}{c} |\mathbf{K}|\)</span>.</p>
+<p>We can combine these results together into a single equation. Notice both conditions are equivalent to the statement that <span class="math display">\[
+\mathbf{B}_+(\mathbf{x}) - \mathbf{B}_-(\mathbf{x}) = \frac{4\pi}{c} \mathbf{K}(\mathbf{x}) \times \mathbf{n} \ .
+\]</span> In a similar manner, one can show that the vector potential <span class="math inline">\(\mathbf{A}(\mathbf{x})\)</span> across the surface is always continuous, both its tangential and normal parts. That is, for the vector potential we have <span class="math display">\[
+\mathbf{A}_+(\mathbf{x}) = \mathbf{A}_-(\mathbf{x}) \ .
+\]</span> That the tangential part remains continuous follows from the fact that <span class="math inline">\(\mathbf{B} = \nabla \times \mathbf{A}\)</span>. The normal part is only continuous in the Coulomb gauge, since we require <span class="math inline">\(\nabla \cdot \mathbf{A} = 0\)</span> for this to be true.</p>
+<p>We can also express the discontinuity of the B-field across the surface using the normal derivative of the vector potential. We’ll define the normal derivative of the vector potential in terms of its components by <span class="math display">\[
+\frac{\partial A_i}{\partial n} \equiv \partial_j A_i n_j \ .
+\]</span> One can then show that the B-field relations above are equivalent to the statement that <span class="math display">\[
+\frac{\partial}{\partial n} \mathbf{A}_+(\mathbf{x}) - \frac{\partial}{\partial n} \mathbf{A}_-(\mathbf{x}) = -\frac{4\pi}{c} \mathbf{K}(\mathbf{x}) \ .
+\]</span> Together, we thus have the following boundary conditions for the vector potential across a surface of current, <span class="math display">\[
+\begin{align*}
+\mathbf{A}_+(\mathbf{x}) - \mathbf{A}_-(\mathbf{x}) &amp;= \mathbf{0} \ , \\
+\frac{\partial}{\partial n} \mathbf{A}_+(\mathbf{x}) - \frac{\partial}{\partial n} \mathbf{A}_-(\mathbf{x}) &amp;= -\frac{4\pi}{c} \mathbf{K}(\mathbf{x}) \ .
+\end{align*}
+\]</span> While these boundary conditions for the vector potential are nice to know, we rarely use them in practice since we rarely solve the vector Poisson equation for reasons described in the previous section.</p>
 </section>
 <section id="calculating-vector-potentials" class="level3">
 <h3 class="anchored" data-anchor-id="calculating-vector-potentials">Calculating Vector Potentials</h3>
@@ -880,22 +925,31 @@ G(\mathbf{x} - \mathbf{x}') = \frac{1}{|\mathbf{x} - \mathbf{x}'|} \ .
 </section>
 <section id="example-vector-potential-of-a-rotating-charged-sphere" class="level5">
 <h5 class="anchored" data-anchor-id="example-vector-potential-of-a-rotating-charged-sphere">Example: Vector potential of a rotating charged sphere</h5>
-<p>Suppose a hollow sphere of radius <span class="math inline">\(R\)</span> is rotating with some constant angular velocity <span class="math inline">\(\omega\)</span> about some axis. On the sphere is a uniform surface charge density <span class="math inline">\(\sigma\)</span>. We’d like to calculate the vector potential and magnetic field of this rotating sphere.</p>
+<p>Suppose a sphere of radius <span class="math inline">\(R\)</span> is rotating with some constant angular velocity <span class="math inline">\(\boldsymbol{\omega}\)</span> about some axis. On the sphere is a uniform surface charge density <span class="math inline">\(\sigma\)</span>. We’d like to calculate the vector potential outside this rotating sphere, when <span class="math inline">\(r &gt; R\)</span>.</p>
 <p>FIGURE (rotating sphere)</p>
 <p>To calculate the vector potential, we need to evaluate the vector integral <span class="math display">\[
 \mathbf{A}(\mathbf{x}) = \frac{1}{c} \int da' \ \frac{\mathbf{K}(\mathbf{x}')}{|\mathbf{x} - \mathbf{x}'|} \ .
-\]</span> Now, by definition <span class="math inline">\(\mathbf{K}(\mathbf{x}') = \sigma \mathbf{v}'\)</span>, and since <span class="math inline">\(|\mathbf{x}'| = R\)</span> we have <span class="math display">\[
+\]</span> Now, the area element in this case is <span class="math inline">\(da' = R^2 \sin\theta' d\theta'd\varphi'\)</span>, and since <span class="math inline">\(|\mathbf{x}'| = R\)</span> we have <span class="math display">\[
 |\mathbf{x} - \mathbf{x}'| = \sqrt{r^2 + R^2 - 2 \mathbf{x} \cdot \mathbf{x}'} \ .
-\]</span> At this point we need to choose a coordinate system to do the integration. Obviously spherical coordinates makes the most sense, but rather than orient the angular velocity vector <span class="math inline">\(\boldsymbol{\omega}\)</span> along the <span class="math inline">\(z\)</span>-axis like we normally would, it turns out to be easier to orient the coordinate system so that the field point <span class="math inline">\(\mathbf{x}\)</span> is oriented along the <span class="math inline">\(z\)</span>-axis and <span class="math inline">\(\boldsymbol{\omega}\)</span> is in the <span class="math inline">\(xy\)</span>-plane. This means we have <span class="math inline">\(\mathbf{x} \cdot \mathbf{x}' = rR\cos\theta'\)</span>, and so <span class="math display">\[
-|\mathbf{x} - \mathbf{x}'| = \sqrt{r^2 + R^2 -2rR\cos\theta'} \ .
-\]</span> The velocity vector <span class="math inline">\(\mathbf{v}'\)</span> is given by the cross product <span class="math inline">\(\boldsymbol{\omega} \times \mathbf{x}'\)</span>, which is evidently <span class="math display">\[
-\mathbf{v}' = \boldsymbol{\omega} \times \mathbf{x}' = \omega R \mathbf{e}_\varrho \times \mathbf{e}_{r'}
-\]</span> This means the surface current density is then <span class="math inline">\(\mathbf{K}(\mathbf{x}') = R\sigma\omega \cdot\)</span>, and so the vector potential can be written <span class="math display">\[
-\mathbf{A}(\mathbf{x}) = \frac{4\pi R^3 \sigma\omega}{c} \int_0^\pi \sin\theta' d\theta' \ \frac{\cdot}{\sqrt{r^2 + R^2 -2rR\cos\theta'}} \mathbf{e}_\cdot \ .
-\]</span></p>
-<ul>
-<li>This is not finished…</li>
-</ul>
+\]</span> By definition <span class="math inline">\(\mathbf{K}(\mathbf{x}') = \sigma \mathbf{v}'\)</span>. Since the sphere is rigid and rotating with the same angular velocity <span class="math inline">\(\boldsymbol{\omega}\)</span>, the velocity <span class="math inline">\(\mathbf{v}'\)</span> is given by <span class="math display">\[
+\mathbf{v}' = \boldsymbol{\omega} \times \mathbf{x}' \ .
+\]</span> Since the surface charge density <span class="math inline">\(\sigma\)</span> is constant on the sphere, we thus have <span class="math display">\[
+\mathbf{A}(\mathbf{x}) = \frac{R^2\sigma}{c} \int_0^\pi \sin\theta' d\theta' \int_0^{2\pi} d\varphi' \ \frac{\boldsymbol{\omega} \times\mathbf{x}'}{\sqrt{r^2 + R^2 - 2 \mathbf{x} \cdot \mathbf{x}'}} \ .
+\]</span> At this point we need to choose how we’d like to align the coordinate axes to perform the integration. While it seems natural to align axes such that the axis of rotation is the <span class="math inline">\(z\)</span>-axis, it turns out to be much easier to evaluate the integral if we let <span class="math inline">\(\mathbf{x}\)</span> lie on the <span class="math inline">\(z\)</span>-axis instead, so that <span class="math display">\[
+\mathbf{x} \cdot \mathbf{x}' = rR \cos\theta' \ .
+\]</span> But this still leaves a choice as to how to align the axes in the <span class="math inline">\(xy\)</span>-plane. It’ll be most convenient to orient the <span class="math inline">\(xy\)</span>-plane such that the axis of rotation lies in the <span class="math inline">\(xz\)</span>-plane. If <span class="math inline">\(\boldsymbol{\omega}\)</span> lies at a constant angle <span class="math inline">\(\gamma\)</span> from the <span class="math inline">\(z\)</span>-axis, we have <span class="math display">\[
+\boldsymbol{\omega} \times \mathbf{x}' = R\omega[-\cos\gamma\sin\theta'\sin\varphi' \mathbf{e}_x + (\cos\gamma\sin\theta'\cos\varphi' - \sin\gamma\cos\theta') \mathbf{e}_y + \sin\gamma\sin\theta'\sin\varphi' \mathbf{e}_z] \ .
+\]</span> Now, notice that each component of <span class="math inline">\(\mathbf{A}\)</span> containing a <span class="math inline">\(\sin\varphi'\)</span> or <span class="math inline">\(\cos\varphi'\)</span> will vanish when integrated over <span class="math inline">\(\varphi'\)</span>. The only component without such a term will be <span class="math inline">\(A_y\)</span>, which upon integrating over <span class="math inline">\(\varphi'\)</span> reduces to <span class="math display">\[
+A_y(\mathbf{x}) = -\frac{2\pi R^3\omega\sigma}{c} \sin\gamma \int_0^\pi d\theta' \ \frac{\sin\theta'\cos\theta'}{\sqrt{r^2 + R^2 - 2 \cos\theta'}} \ .
+\]</span> The remaining integral over <span class="math inline">\(\theta'\)</span> can be done by substituting <span class="math inline">\(u = \cos\theta'\)</span>. For <span class="math inline">\(r &gt; R\)</span>, the result will be <span class="math inline">\(2R/3r^2\)</span>. We thus have <span class="math display">\[
+A_y(\mathbf{x}) = -\frac{4\pi R^4\sigma}{3cr^2} \omega\sin\gamma \ .
+\]</span> Now, notice that in our choice of coordinates we have <span class="math inline">\(\boldsymbol{\omega} \times \mathbf{x} = -\omega r \sin\gamma \mathbf{e}_y\)</span>. This means we can write the vector potential as <span class="math display">\[
+\mathbf{A}(\mathbf{x}) = \frac{4\pi R^4 \sigma}{3cr^3} \boldsymbol{\omega} \times \mathbf{x} \ .
+\]</span> In this notation we can now easily rotate the coordinate axes if we like so that <span class="math inline">\(\boldsymbol{\omega}\)</span> is along the <span class="math inline">\(z\)</span>-axis. Then we have <span class="math display">\[
+\mathbf{A}(\mathbf{x}) = \frac{4\pi R^4 \sigma\omega}{3cr^2} \sin\theta\mathbf{e}_\varphi \ .
+\]</span> Thus, the vector potential of a rotation sphere moves in the direction the sphere is rotating, and falls off like <span class="math inline">\(1/r^2\)</span> outside the sphere. In fact, this is exactly the behavior of a magnetic dipole field, which we’ll study in the next section. From the multipole expansion we’ll soon derive, the magnetic dipole moment <span class="math inline">\(\mathbf{m}\)</span> for this rotating sphere can easily be identified as <span class="math display">\[
+\mathbf{m} = \frac{4\pi R^4 \sigma}{3c} \boldsymbol{\omega} \ .
+\]</span> One can also show the vector potential inside the sphere is the same, except multiplied by <span class="math inline">\(r^3/R^3\)</span>. This means the magnetic field inside the sphere will be constant and pointed along the axis of rotation.</p>
 </section>
 </section>
 </section>
@@ -1025,41 +1079,47 @@ d\mathbf{m} = \frac{dI}{c} (\pi \varrho'^2) \mathbf{e}_z \ .
 <section id="currents-in-external-magnetic-fields" class="level3">
 <h3 class="anchored" data-anchor-id="currents-in-external-magnetic-fields">Currents in External Magnetic Fields</h3>
 <p>Thus far we’ve studied the multipole expansion of a localized current distribution in free space, assuming no external fields are present. Similar to what we did in electrostatics, we now want to ask how the potential energy of localized current distribution depends on the presence of an external B-field, particular its multipole moments. We’ll assume the external B-field is strong enough that we can neglect any self fields created by the current distribution of interest.</p>
-<p>Suppose we have a localized current distribution <span class="math inline">\(\mathbf{J}(\mathbf{x})\)</span> about the origin, and in the background we’ll suppose there is an external B-field <span class="math inline">\(\mathbf{B}_{\text{ext}}(\mathbf{x})\)</span> acting on this distribution. Assuming we can Taylor expand this field about the origin, we get <span class="math display">\[
+<p>Suppose we have a localized current distribution <span class="math inline">\(\mathbf{J}(\mathbf{x}')\)</span> about the origin, and in the background we’ll suppose there is an external B-field <span class="math inline">\(\mathbf{B}_{\text{ext}}(\mathbf{x})\)</span> acting on this distribution. Assuming we can Taylor expand this field about the origin, we get <span class="math display">\[
 \mathbf{B}_{\text{ext}}(\mathbf{x}) = \mathbf{B}_{\text{ext}}(\mathbf{0}) + (\mathbf{x} \cdot \nabla) \mathbf{B}_{\text{ext}}(\mathbf{x}) \bigg|_{\mathbf{x} = \mathbf{0}}  + \cdots \ .
 \]</span> Now, this external field will create a force on the current distribution given by the Lorentz force law, <span class="math display">\[
-\mathbf{F} = \frac{1}{c} \int_\mathcal{V} d^3\mathbf{x} \ \mathbf{J}(\mathbf{x}) \times \mathbf{B}_{\text{ext}}(\mathbf{x}) \ ,
-\]</span> where <span class="math inline">\(\mathcal{V}\)</span> is the enclosed volume of the current distribution. If we plug in the Taylor expansion above into the force law and group terms, we have <span class="math display">\[
+\mathbf{F} = \frac{1}{c} \int d^3\mathbf{x}' \ \mathbf{J}(\mathbf{x}') \times \mathbf{B}_{\text{ext}}(\mathbf{x}) \ ,
+\]</span> where <span class="math inline">\(\mathcal{V}\)</span> is the enclosed volume of the current distribution. If we plug in the Taylor expansion above into the force law and group terms, we have to leading order <span class="math display">\[
 \begin{align*}
-\mathbf{F} &amp;= \frac{1}{c} \int_\mathcal{V} d^3\mathbf{x} \ \mathbf{J}(\mathbf{x}) \times \bigg[\mathbf{B}_{\text{ext}}(\mathbf{0}) + (\mathbf{x} \cdot \nabla) \mathbf{B}_{\text{ext}}(\mathbf{x}) \bigg|_{\mathbf{x} = \mathbf{0}} + \cdots \bigg] \\
-&amp;= -\frac{1}{c} \mathbf{B}_{\text{ext}}(\mathbf{0}) \times \int_\mathcal{V} d^3\mathbf{x} \ \mathbf{J}(\mathbf{x}) + \frac{1}{c} \int_\mathcal{V} d^3\mathbf{x} \ \mathbf{J}(\mathbf{x}) \times(\mathbf{x} \cdot \nabla) \mathbf{B}_{\text{ext}}(\mathbf{x}) \bigg|_{\mathbf{x} = \mathbf{0}} + \cdots \ .
+\mathbf{F} &amp;= \frac{1}{c} \int d^3\mathbf{x}' \ \mathbf{J}(\mathbf{x}') \times \bigg[\mathbf{B}_{\text{ext}}(\mathbf{0}) + (\mathbf{x} \cdot \nabla) \mathbf{B}_{\text{ext}}(\mathbf{x}) \bigg|_{\mathbf{x} = \mathbf{0}} + \cdots \bigg] \\
+&amp;\approx -\frac{1}{c} \mathbf{B}_{\text{ext}}(\mathbf{0}) \times \int d^3\mathbf{x}' \ \mathbf{J}(\mathbf{x}') + \frac{1}{c} \int d^3\mathbf{x}' \ \mathbf{J}(\mathbf{x}') \times(\mathbf{x} \cdot \nabla) \mathbf{B}_{\text{ext}}(\mathbf{x}) \bigg|_{\mathbf{x} = \mathbf{0}} + \cdots \ .
 \end{align*}
-\]</span> Now, the first term will vanish. Indeed, for a localized distribution of steady current we’ve already shown that <span class="math display">\[
-\int_\mathcal{V} d^3\mathbf{x} \ \mathbf{J}(\mathbf{x}) = \mathbf{0} \ .
-\]</span> We’ll thus focus on the second term. Recall how we derived the magnetic monopole moment before. We showed that <span class="math display">\[
-\frac{1}{c} \mathbf{x} \cdot \int d^3\mathbf{x}' \ \mathbf{x}' J_i = (\mathbf{m} \times \mathbf{x})_i \ .
-\]</span> In that derivation there was nothing special about <span class="math inline">\(\mathbf{x}\)</span>. We could replace it with any vector we like. Notice if we replace <span class="math inline">\(\mathbf{x} \to \nabla B_k\)</span> and <span class="math inline">\(\mathbf{x}' \to \mathbf{x}\)</span> in the above relation, we get <span class="math display">\[
-\frac{1}{c} \bigg[\int d^3\mathbf{x} \ J_i \mathbf{x}\bigg] \cdot \nabla B_k = (\mathbf{m} \times \nabla B_k)_i \ .
-\]</span> On the left-hand side is just the second term. We thus have <span class="math display">\[
-\mathbf{F} = (\mathbf{m} \times \nabla) \times \mathbf{B}
+\]</span> Now, the first term will vanish, since if <span class="math inline">\(\mathbf{J}\)</span> is a localized steady current we’ve already shown that <span class="math display">\[
+\int d^3\mathbf{x}' \ \mathbf{J}(\mathbf{x}') = \mathbf{0} \ .
+\]</span> We’ll thus focus on the second term. To simplify this term it’ll be helpful to rewrite the force in index notation as <span class="math display">\[
+F_i \approx \frac{1}{c} \varepsilon_{ijk} \int d^3\mathbf{x}' \ J_j (x_\ell \partial_\ell) B_k = \varepsilon_{ijk} \bigg(\frac{1}{c} \int d^3\mathbf{x}' \ J_j x_\ell\bigg) \partial_\ell B_k \ ,
+\]</span> where <span class="math inline">\(B_k\)</span> is the <span class="math inline">\(k\)</span><sup>th</sup> component of <span class="math inline">\(\mathbf{B}_{\text{ext}}(\mathbf{x}) \big|_{\mathbf{x} = \mathbf{0}}\)</span>. Now, we’ve studied the integral in parenthesis already and showed that <span class="math display">\[
+\frac{1}{c} \int d^3\mathbf{x}' \ J_j x_\ell = \varepsilon_{\ell j n} m_n \ ,
+\]</span> where <span class="math inline">\(m_n\)</span> is the <span class="math inline">\(n\)</span><sup>th</sup> component of the magnetic dipole moment <span class="math inline">\(\mathbf{m}\)</span>. Plugging this in and using the identity to convert the contraction of two Levi-Civita symbols into delta functions, we have <span class="math display">\[
+\begin{align*}
+F_i &amp;\approx \varepsilon_{ijk} \varepsilon_{\ell j n} m_n \partial_\ell B_k \\
+&amp;\approx \varepsilon_{ikj} \varepsilon_{j \ell n} m_n \partial_\ell B_k \\
+&amp;\approx (\delta_{i\ell} \delta_{kn} - \delta_{in} \delta_{k\ell}) m_n \partial_\ell B_k \\
+&amp;\approx m_k \partial_i B_k - m_i \partial_k B_k \ .
+\end{align*}
+\]</span> Notice that the second term is proportional to <span class="math inline">\(\nabla \cdot \mathbf{B}_\text{ext} = 0\)</span>, so the second term vanishes. Since the dipole moment <span class="math inline">\(\mathbf{m}\)</span> doesn’t depend on <span class="math inline">\(\mathbf{x}\)</span>, we can finally pull the derivative out of the product to get <span class="math display">\[
+\mathbf{F} \approx \nabla \big(\mathbf{m} \cdot \mathbf{B}_\text{ext}(0)\big) \ .
+\]</span> We now want to convert this into an expansion for the potential energy <span class="math inline">\(U\)</span>. Since <span class="math inline">\(\mathbf{F} = -\nabla U\)</span>, we immediately get <span class="math display">\[
+U \approx - \mathbf{m} \cdot \mathbf{B}_\text{ext}(0) \ .
+\]</span> Thus, to first order the potential energy of a current distribution in the presence of an external B-field is just the negative dot product of the magnetic dipole moment with the external field evaluated at the origin.</p>
+<p>We can also calculate the torque exerted on the current distribution in the presence of an external B-field. By definition, the torque at each source point <span class="math inline">\(\mathbf{x}'\)</span> is given by <span class="math inline">\(d\mathbf{N} = d(\mathbf{x}' \times \mathbf{F})\)</span>, which means the total torque is <span class="math display">\[
+\mathbf{N} = \frac{1}{c} \int d^3\mathbf{x}' \ \mathbf{x}' \times [\mathbf{J}(\mathbf{x}') \times \mathbf{B}_{\text{ext}}(\mathbf{x})] \ .
+\]</span> If we again substitute in the Taylor expansion for <span class="math inline">\(\mathbf{B}_\text{ext}(\mathbf{x})\)</span>, to leading order we have <span class="math display">\[
+\mathbf{N} \approx \frac{1}{c} \int d^3\mathbf{x}' \ \mathbf{x}' \times [\mathbf{J}(\mathbf{x}') \times \mathbf{B}_{\text{ext}}(\mathbf{0})] \ .
+\]</span> This time we only kept the first leading term, since as we’ll see this term will not vanish. We can simplify the triple product inside the integrand using the BAC-CAB rule, <span class="math display">\[
+\mathbf{x}' \times [\mathbf{J} \times \mathbf{B}_{\text{ext}}(\mathbf{0})] = (\mathbf{x}' \cdot \mathbf{B}_\text{ext}(0)) \mathbf{J} - (\mathbf{x}' \cdot \mathbf{J}) \mathbf{B}_\text{ext}(0) \ ,
+\]</span> which means we have <span class="math display">\[
+\mathbf{N} \approx \frac{1}{c} \int d^3\mathbf{x}' \ \big[(\mathbf{x}' \cdot \mathbf{B}_\text{ext}(0)) \mathbf{J} - (\mathbf{x}' \cdot \mathbf{J}) \mathbf{B}_\text{ext}(0) \big] \ .
 \]</span></p>
 <ul>
-<li>This still isn’t quite right. The final step is true, but the derivation isn’t. Dig deeper here. It’s a huge pain in the ass.</li>
+<li>First term simplifies by prior argument, second term vanishes by prior argument. See Jackson.</li>
 </ul>
 <p><span class="math display">\[
-F_i \approx \frac{1}{c} \int_\mathcal{V} d^3\mathbf{x} \ \varepsilon_{ijk} J_j (\mathbf{x} \cdot \nabla) B_k^{\text{ext}} \ .
-\]</span></p>
-<ul>
-<li>Continue on with lectures. Don’t feel like it tonight.</li>
-</ul>
-<p><span class="math display">\[
-U = - \mathbf{m} \cdot \mathbf{B}(\mathbf{0}) + \cdots
-\]</span></p>
-<p><span class="math display">\[
-\mathbf{F} = \nabla (\mathbf{m} \cdot \mathbf{B}) = -\frac{1}{2c} \nabla \int d^3\mathbf{x} \ (\mathbf{J}(\mathbf{x}) \times\mathbf{x}) \cdot \mathbf{B}
-\]</span></p>
-<p><span class="math display">\[
-F_i = \partial_i (m_\ell B_\ell) = -\frac{1}{2c} \partial_i \int d^3\mathbf{x} \ \varepsilon_{\ell j k} J_j x_k B_\ell
+\mathbf{N} \approx \mathbf{m} \times \mathbf{B}_\text{ext}(0) \ .
 \]</span></p>
 </section>
 <section id="spherical-multipole-expansion" class="level3">
@@ -1496,8 +1556,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../electrodynamics/maxwell-equations.html" class="pagination-link" aria-label="Maxwell's Equations">
-        <span class="nav-page-text"><span class="chapter-title">Maxwell’s Equations</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../electrodynamics/circuits-and-emf.html" class="pagination-link" aria-label="Circuits and Electromotive Force">
+        <span class="nav-page-text"><span class="chapter-title">Circuits and Electromotive Force</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

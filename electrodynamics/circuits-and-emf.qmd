@@ -34,9 +34,9 @@ This means inside an Ohmic material with steady current we can assume $\rho = 0$
 
 ### V = IR
 
-Of course, the version of Ohm's law given above isn't the one most of us are probably familiar with. We're used to seeing Ohm's law in terms of voltage and current, not E-field and current density. To see how we get the more familiar version of Ohm's law, suppose we have a piece of cylindrically symmetric conducting material with some cross-sectional area $A$ and length $L$. We now take this material and hook both ends up to terminals held at fixed potentials $\phi_\pm$. Since no charges can accumulate inside the conductor, the potential inside the conductor must satisfy Laplace's equation $\nabla^2 \phi = 0$.
+Of course, the version of Ohm's law given above isn't the one most of us are probably familiar with. We're used to seeing Ohm's law in terms of voltage and current, not E-field and current density. To see how we get the more familiar version of Ohm's law, suppose we have a piece of cylindrically symmetric conducting material with some cross-sectional area $A$ and length $L$. We now take this material and hook both ends up to voltage terminals held at fixed potentials $\phi_\pm$.
 
-This means we can formulate the problem as an electrostatics BVP. Supposing the cylinder lies along the $z$-axis, we have
+Since no charges can accumulate inside the conductor, the potential inside the conductor must satisfy Laplace's equation $\nabla^2 \phi = 0$. This means we can formulate the problem as a boundary value problem as we did in electrostatics. Supposing the cylinder lies along the $z$-axis with one end located at the origin, we have
 $$
 \begin{cases}
 \nabla^2 \phi = 0 \ , \\
@@ -44,25 +44,25 @@ $$
 \phi(\varrho,\varphi,L) = \phi_- \ .
 \end{cases}
 $$
-We will also assume that $\phi(\mathbf{x}) = 0$ outside the conductor. This can be ensured, for instance, by wrapping the sides of the conducting cylinder in a good insulating material like rubber. Now, solving this BVP is a trivial matter. By the uniqueness theorem, if we can guess a correct solution satisfying the boundary conditions, it must be *the* unique solution. An obvious guess is
+We will also assume that $\phi(\mathbf{x}) = 0$ outside the conductor. This can be done, for instance, by wrapping the sides of the conducting cylinder in a good insulating material like rubber. Solving this BVP is a trivial matter. By the uniqueness theorem, if we can guess a correct solution satisfying the boundary conditions, it must be *the* unique solution. An obvious guess inside the conductor is
 $$
 \phi(\mathbf{x}) = \frac{\phi_+ - \phi_-}{L} z + \phi_- \ .
 $$
-This choice of potential turns out to satisfy both boundary conditions, and hence must be the unique solution to the BVP. Now, this potential will give rise to an induced electric field inside the conductor of the form
+This choice of potential turns out to satisfy both boundary conditions, and hence must be the unique solution. Now, this potential will give rise to an induced electric field inside the conductor of the form
 $$
-\mathbf{E}(\mathbf{x}) = -\nabla \phi(\mathbf{x}) = -\frac{\phi_+ - \phi_-}{L} \mathbf{e}_z \ .
+\mathbf{E}(\mathbf{x}) = -\nabla \phi(\mathbf{x}) = -\frac{\phi_+ - \phi_-}{L} \mathbf{e}_z = -\frac{V}{L} \mathbf{e}_z \ .
 $$
 Evidently then, the induced E-field inside the conductor will be uniform along the axis of the cylinder, and be proportional to the potential difference $V \equiv \phi_+ - \phi_-$ across the two terminals. The field strength is thus constant inside the conductor, with
 $$
 |\mathbf{E}| = \frac{V}{L} \ .
 $$
-The presence of this E-field will cause the free charges inside the conductor to move, creating a current density $\mathbf{J}$ that satisfies Ohm's law,
+Now, the presence of this induced E-field will cause the free charges inside the conductor to move, creating a current density $\mathbf{J}$ inside the conductor that at least approximately satisfies Ohm's law,
 $$
 \mathbf{J} = \sigma \mathbf{E} \ .
 $$
-Since the E-field is uniform, the current density will be uniform as well. This means the current $I$ flowing through each cross-sectional area $A$ inside the cylinder will be uniform as well, with
+Since the E-field is uniform, the current density will clearly be uniform as well. This means the current $I$ flowing through each cross-sectional area $A$ inside the cylinder will be also be uniform, with
 $$
-I = |\mathbf{J}| A \ .
+I = \int \mathbf{J} \cdot d\mathbf{a} = |\mathbf{J}| A \ .
 $$
 If we now substitute these formulas into Ohm's law and solve for $V$, we get
 $$
@@ -84,7 +84,7 @@ Notice the resistance $R$ depends on both the material's conductivity as well as
 
 In Gaussian units, resistance has dimensions of time over distance, or units of $\text{s}/\text{cm}$. In SI units, resistance has units of volts per amp, which is commonly called an *Ohm*, denoted $\Omega$, with $1 \ \Omega \approx 10^{-12} \ \text{s}/\text{cm}$. As an example, a copper wire with a length of $1 \ \text{m}$ and a cross-sectional area of $1 \ \text{mm}$ would have a resistance of $R \approx 10^{-2} \ \Omega \approx 10^{-14} \ \text{s}/\text{cm}$. In contrast, an insulating glass tube with the same length and cross-sectional area would have a much higher resistance of $R \approx 10^{14} \ \Omega \approx 100 \ \text{s}/\text{cm}$.
 
-It's worth briefly saying a few words about what would happen outside the conductor. The free charges will always arrange themselves so that the E-field inside the conductor is uniform to satisfy Laplace's equation, but we can still have free charges that accumulate on the sides of the cylinder, creating a surface charge density $\sigma$ on the surface. Calculating $\sigma$ it turns out can be done, but it's quite difficult to do. At any rate, the presence of surface charges will produce an E-field outside the conductor. This is why we typically coat wires in insulating material like rubber, to ensure that the E-field quickly falls to zero outside the wire.
+It's worth briefly saying a few words about what would happen outside the conductor. The free charges inside will always arrange themselves so that the E-field inside the conductor is uniform to satisfy Laplace's equation, but we can still have free charges that accumulate on the surface of the cylinder, creating a surface charge density $\sigma$. Calculating $\sigma$ it turns out can be done, but it's quite difficult to do. At any rate, the presence of surface charges will produce an E-field outside the conductor that falls off approximately like $1/r$. This can all be mitigated, for instance, by coating the wires in insulating material like rubber.
 
 ### Drude Model
 
@@ -222,13 +222,51 @@ Of course, we still haven't answered an important question: If energy is being d
 
 In practice, when we create electrical devices we usually do so through the use of *circuits*. An electrical circuit can be thought of as a set of electrical components with fixed properties that are connected together by conducting wires to form closed loops of current. The electrical components include things like power supplies, resistors, capacitors, inductors, gates, diodes, transistors, and so on. In this course we'll focus on circuits containing simpler components, usually single loops hooked up to a single power supply, where on that loop we may attach some number of resistors, capacitors, or inductors.
 
-### Wires and Resistors
+### Circuit Elements
 
-- Discuss wires and resistors here
+The most fundamental element of a circuit is conducting wire. Typically we assume the wire is a perfect conductor, which insures it has negligible resistance, though in practice a wire will have some small resistance. For example, a 1-millimeter thick copper wire that's one centimeter long has a resistance of around $R \approx 50 \ \mu\Omega \approx 5 \cdot 10^{-17} \ \text{s}/\text{cm}$. Compared to other circuit elements this resistance is usually quite negligible, which means we can safely treat the wire as a perfect conductor. This resistance is no longer negligible, however, for very long or very thick wires, like one might find in power lines.
 
-### Electromotive Force
+#### Power Supplies
 
-The next electrical component we'll discuss is the *power supply*. A power supply is any device capable of producing a current flow across a circuit. The source of this power can be anything, for instance a battery, a generator, or an electrical outlet attached to the wall. What matters is that the power supply is somehow capable of producing a potential difference across the circuit, which then drives a current through the circuit according to Ohm's law or some other dynamics.
+The second electrical element is the *power supply* or *voltage source*. A power supply is any device capable of producing a current flow across a circuit. The source of this power can be anything, for instance a battery, an electric generator, or an electrical outlet attached to the wall. What matters is that the power supply is somehow capable of producing a potential difference across the circuit, which then drives a current through the circuit according to Ohm's law or some other dynamics. The source of this potential difference is the *electromotive force* of the power supply, something we'll discuss more in the next section.
+
+#### Resistors
+
+The third important element of a circuit is a *resistor*. A resistor is some type of Ohmic material capable of creating a specified fixed resistance, though one can have resistors with variable resistance as well. The primary purpose of a resistor is to regulate the amount of current flowing through part of the circuit. An ideal resistor with some fixed resistance $R$ will always satisfy Ohm's law $V = IR$, at least at typical temperatures and currents. The canonical example of a resistor we saw above. It's a cylinder with some cross-sectional area $A$, length $L$, and resistivity $\rho$. In that case $R$ is given by the formula
+$$
+R = \frac{\rho L}{A} \ .
+$$
+In practice, resistors are often made out of carbon-based materials like graphite.
+
+#### Capacitors
+
+The fourth important circuit element is a *capacitor*. A capacitor is any device capable of storing charge when a potential difference is applied across it. The canonical example of a capacitor is the parallel plate capacitor
+$$
+C = \frac{A}{d}
+$$
+
+#### Inductors
+
+
+$$
+L = \frac{4\pi n^2 \ell A}{c^2}
+$$
+
+$$
+V = -L \frac{dI}{dt}
+$$
+
+$$
+\Phi = cLC
+$$
+
+
+
+### Kirkhoff's Laws
+
+
+
+## Electromotive Force
 
 Suppose we have a closed loop circuit of some kind hooked up to a power supply with a *negative terminal* at a point $\mathbf{a}$ on the circuit and a *positive terminal* at a point $\mathbf{b}$. If $q$ is some free charge moving across the circuit, the work per unit charge to move the free charge all the way around the circuit is
 $$
@@ -362,29 +400,3 @@ $$
 
 
 
-Thus far we've spent a considerable amount of time studying *statics*, focusing on fields that are time-independent. We will now begin turning our attention to *dynamics*, where we allow the fields to depend explicitly on time. This leads us into the subject of *electrodynamics*, which we will study in depth for the rest of the course. To begin our study of this topic we will discuss a few important concepts that will lead us in the next chapter to Maxwell's equations, the crown jewel of electromagnetism.
-
-- State quasistatic field equations
-- Introduce the displacement current to maintain charge conservation
-
-
-$$
-\begin{align*}
-\nabla \cdot \mathbf{E} &= 4\pi \rho \ , \\
-\nabla \times \mathbf{E} &= \frac{1}{c} \frac{\partial \mathbf{B}}{\partial t} \ , \\
-\nabla \cdot \mathbf{B} &= 0 \ , \\
-\nabla \times \mathbf{B} &= \frac{4\pi}{c} \mathbf{J} - \frac{1}{c} \frac{\partial \mathbf{E}}{\partial t} \ . \\
-\end{align*}
-$$
-
-$$
-\begin{align*}
-\mathbf{E} &= -\nabla\phi + \frac{1}{c} \frac{\partial \mathbf{A}}{\partial t} \ , \\
-\mathbf{B} &= \nabla \cdot \mathbf{A} \ .
-\end{align*}
-$$
-
-
-$$
-\frac{\partial \rho}{\partial t} + \nabla \cdot \mathbf{J} = 0 \ .
-$$

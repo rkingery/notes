@@ -248,7 +248,12 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../electrodynamics/maxwell-equations.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Maxwell’s Equations</span></a>
+  <a href="../electrodynamics/circuits-and-emf.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Circuits and Electromotive Force</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../electrodynamics/electrodynamics.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Electrodynamics</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -420,7 +425,7 @@ window.Quarto = {
   <li><a href="#scalar-potential-1" id="toc-scalar-potential-1" class="nav-link" data-scroll-target="#scalar-potential-1">Scalar Potential</a></li>
   <li><a href="#integral-formula" id="toc-integral-formula" class="nav-link" data-scroll-target="#integral-formula">Integral Formula</a></li>
   <li><a href="#poissons-equation" id="toc-poissons-equation" class="nav-link" data-scroll-target="#poissons-equation">Poisson’s Equation</a></li>
-  <li><a href="#surfaces-of-charge" id="toc-surfaces-of-charge" class="nav-link" data-scroll-target="#surfaces-of-charge">Surfaces of Charge</a></li>
+  <li><a href="#surface-boundary-conditions" id="toc-surface-boundary-conditions" class="nav-link" data-scroll-target="#surface-boundary-conditions">Surface Boundary Conditions</a></li>
   </ul></li>
   <li><a href="#field-energy" id="toc-field-energy" class="nav-link" data-scroll-target="#field-energy">Field Energy</a></li>
   <li><a href="#conductors-and-capacitance" id="toc-conductors-and-capacitance" class="nav-link" data-scroll-target="#conductors-and-capacitance">Conductors and Capacitance</a>
@@ -936,31 +941,33 @@ v &amp;= \frac{1}{2} \bigg( \sqrt{\varrho^2 + (z + L/2)^2} - \sqrt{\varrho^2 + (
 \end{align*}
 \]</span> We’ve thus shown that Coulomb’s law satisfies Poisson’s equation, as we’d expect. In fact, if the charge distribution is localized and there are no boundary conditions present, like say a set of background conductors, then Coulomb’s law is the only valid solution. If boundary conditions are present we have to modify things slightly. We’ll see more on this in the next few chapters.</p>
 </section>
-<section id="surfaces-of-charge" class="level3">
-<h3 class="anchored" data-anchor-id="surfaces-of-charge">Surfaces of Charge</h3>
-<p>Recall from our discussion of Gauss’s Law that we saw something seemingly peculiar: The electric field of an infinite sheet of uniform charge is discontinuous at the surface. Below the surface the field is <span class="math inline">\(\mathbf{E} = -2\pi\sigma \mathbf{e}_z\)</span>, while above the surface the field is <span class="math inline">\(\mathbf{E} = +2\pi\sigma \mathbf{e}_z\)</span>. Evidently, crossing the surface causes the field to change discontinuously by an amount <span class="math inline">\(\Delta |\mathbf{E}| = 4\pi\sigma\)</span>.</p>
-<p>In fact this is generally true for surfaces of charge. To see why, suppose <span class="math inline">\(\mathcal{S}\)</span> is some smooth surface of arbitrary shape carrying a surface charge density <span class="math inline">\(\sigma\)</span>. Pick a point <span class="math inline">\(\mathbf{x}\)</span> on this surface. Since the field for a general surface can point in any direction, what we can do is decompose it into two components, one perpendicular to <span class="math inline">\(\mathcal{S}\)</span> and one parallel to <span class="math inline">\(\mathcal{S}\)</span>​, <span class="math display">\[
-\mathbf{E} = \mathbf{E}^\perp + \mathbf{E}^\parallel \ .
-\]</span> To deal with the perpendicular component, what we can do is apply Gauss’s Law just like we did with the infinite sheet. We’ll choose an infinitesimally high and very thin pillbox with top and bottom areas <span class="math inline">\(\delta A\)</span> as the Gaussian surface, where <span class="math inline">\(\delta A\)</span> is so small that any deviations in the curvature of the surface <span class="math inline">\(\mathcal{S}\)</span> are negligible inside the Gaussian surface. If <span class="math inline">\(E_+\)</span> is the value of the field above the surface and <span class="math inline">\(E_-\)</span> is the value of the field below the surface, by Gauss’s Law we must have <span class="math display">\[
-4\pi\sigma \delta A = \int \mathbf{E} \cdot d\mathbf{a} \approx (E_+^\perp - E_-^\perp) \delta A \ .
-\]</span> That is, the perpendicular component of the field again undergoes a discontinuous change of <span class="math inline">\(4\pi\sigma\)</span> crossing the surface, <span class="math display">\[
-E_+^\perp - E_-^\perp = 4\pi\sigma \ .
-\]</span> What about the parallel component? Suppose <span class="math inline">\(\mathcal{C}\)</span> is some small closed loop around the point <span class="math inline">\(\mathbf{x}\)</span> on the surface, so small the curvature of <span class="math inline">\(\mathcal{S}\)</span> is negligible. We’ve already seen that the circulation integral must be vanish. This means we have <span class="math display">\[
-0 = \oint_\mathcal{C} \mathbf{E} \cdot d\boldsymbol{\ell} \approx (E_+^\parallel - E_-^\parallel) \ell \ .
-\]</span> From this we must conclude that the parallel component is indeed continuous on the surface, with <span class="math inline">\(\mathbf{E}_+^\parallel = \mathbf{E}_-^\parallel\)</span>. We can put these two results together by using the normal vector <span class="math inline">\(\mathbf{n}\)</span>​ to write <span class="math display">\[
-\mathbf{E}_+ - \mathbf{E}_- = 4\pi\sigma \mathbf{n} \ .
-\]</span> What about the scalar potential? In fact the potential <em>is</em> continuous across the surface of charge. To see why, suppose <span class="math inline">\(\mathbf{x}_-\)</span> is some point infinitesimally below the surface and <span class="math inline">\(\mathbf{x}_+\)</span> some other point infinitesimally above the surface. If the two points are separated by a distance <span class="math inline">\(\delta\ell\)</span>, the potential difference between these two points must be given by <span class="math display">\[
+<section id="surface-boundary-conditions" class="level3">
+<h3 class="anchored" data-anchor-id="surface-boundary-conditions">Surface Boundary Conditions</h3>
+<p>Recall from earlier the infinite sheet of charge example. Specifically, we saw that the electric field across the sheet of charge changes discontinuously across the surface by an amount <span class="math inline">\(4\pi\sigma\)</span>. In fact this is generally true for E-fields across surfaces of charge. Specifically, when crossing a surface of charge, the normal part of the E-field changes discontinuously, while the tangential part of the E-field changes continuously.</p>
+<p>FIGURE (show surface of charge with normal and tangential E-fields)</p>
+<p>To see why this is the case, suppose <span class="math inline">\(\mathcal{S}\)</span> is some smooth surface carrying a surface charge density <span class="math inline">\(\sigma(\mathbf{x})\)</span>. Suppose <span class="math inline">\(\mathbf{x}\)</span> is some point on this surface. The E-field <span class="math inline">\(\mathbf{E}(\mathbf{x})\)</span> at this point can then be decomposed into two parts, one vector <span class="math inline">\(\mathbf{E}^\perp(\mathbf{x})\)</span> normal to the surface at this point, and another vector <span class="math inline">\(\mathbf{E}^\parallel(\mathbf{x})\)</span> tangential to the surface at this point, <span class="math display">\[
+\mathbf{E}(\mathbf{x}) = \mathbf{E}^\perp(\mathbf{x}) + \mathbf{E}^\parallel(\mathbf{x}) \ .
+\]</span> To deal with the normal vector, what we can do is apply Gauss’s Law just like we did with the infinite sheet. We’ll choose an infinitesimally high and very thin pillbox with top and bottom areas <span class="math inline">\(\delta A\)</span> as the Gaussian surface, where <span class="math inline">\(\delta A\)</span> is so small that any deviations in the curvature of the surface <span class="math inline">\(\mathcal{S}\)</span> are negligible inside the Gaussian surface. If <span class="math inline">\(E_+\)</span> is the value of the E-field above the surface and <span class="math inline">\(E_-\)</span> is the value of the E-field below the surface, by Gauss’s Law we must have <span class="math display">\[
+(E_+^\perp - E_-^\perp) \delta A \approx \int \mathbf{E} \cdot d\mathbf{a} = 4\pi\sigma \delta A \ .
+\]</span> That is, the normal part of the E-field changes discontinuously across the surface by an amount <span class="math display">\[
+E_+^\perp(\mathbf{x}) - E_-^\perp(\mathbf{x}) = 4\pi\sigma(\mathbf{x}) \ .
+\]</span> What about the parallel part? To handle this case, we can place an infinitesimally small closed loop of size <span class="math inline">\(\delta\ell\)</span> on the surface centered at the point <span class="math inline">\(\mathbf{x}\)</span>. Since the circulation integral of the E-field is zero, we must have <span class="math display">\[
+(E_+^\parallel - E_-^\parallel) \delta\ell = \oint_\mathcal{C} \mathbf{E} \cdot d\boldsymbol{\ell} = 0 \ .
+\]</span> Assuming <span class="math inline">\(\delta\ell\)</span> is infinitesimal, we have <span class="math inline">\(E_+^\parallel(\mathbf{x}) = E_-^\parallel(\mathbf{x})\)</span>. That is, the tangential part of the E-field remains continuous when crossing the surface of charge.</p>
+<p>We can put these two results together by using the (upward) normal vector <span class="math inline">\(\mathbf{n}\)</span>​ to write <span class="math display">\[
+\mathbf{E}_+(\mathbf{x}) - \mathbf{E}_-(\mathbf{x}) = 4\pi\sigma(\mathbf{x}) \mathbf{n} \ .
+\]</span> What about the scalar potential? In fact the potential <em>is</em> continuous across the surface of charge. To see why, suppose <span class="math inline">\(\mathbf{x}_-\)</span> is some point infinitesimally below the surface and <span class="math inline">\(\mathbf{x}_+\)</span> some other point infinitesimally above the surface. If the two points are separated by a small distance <span class="math inline">\(\delta\ell\)</span>, the potential difference between these two points must be given by <span class="math display">\[
 \phi_+ - \phi_- = -\int_{\mathbf{x}_-}^{\mathbf{x}_+} \mathbf{E} \cdot d\boldsymbol{\ell} \approx -(E_+  + E_-) \delta\ell \ .
-\]</span> Since the right-hand side is infinitesimal, we can conclude that the potential difference crossing the surface must be zero, <span class="math display">\[
-\phi_+ = \phi_- \ .
-\]</span> Since we’ll be solving Poisson’s equation in the next few chapters, let’s go ahead and formulate these conditions as a set of boundary conditions for the potential and its gradient. For that purpose it’ll be convenient to express the condition for the electric field as a <em>normal derivative</em> of the potential. If we define the normal derivative by <span class="math display">\[
-\frac{\partial \phi}{\partial n} \equiv \nabla \phi \cdot \mathbf{n} \ ,
-\]</span> we can write the two boundary conditions for the potential across a surface of charge as <span class="math display">\[
+\]</span> Assuming <span class="math inline">\(\delta\ell\)</span> infinitesimal, the right-hand side will be much much smaller than the left-hand side. In this limit, we thus have <span class="math display">\[
+\phi_+(\mathbf{x}) = \phi_-(\mathbf{x}) \ .
+\]</span> Since need them to solve boundary value problems in the next few chapters, let’s go ahead and formulate these surface conditions as a set of boundary conditions for the potential. For that purpose it’ll be convenient to express the condition for the electric field as a normal derivative of the potential. The <em>normal derivative</em> of a scalar field on a surface is defined as the component of the scalar field’s gradient in the normal direction, <span class="math display">\[
+\frac{\partial \phi}{\partial n} \equiv \nabla \phi \cdot \mathbf{n} \ .
+\]</span> We can thus write the two boundary conditions for the potential across a surface of charge as <span class="math display">\[
 \begin{align*}
-\phi_+ - \phi_- &amp;= 0 \ , \\
-\frac{\partial \phi_+}{\partial n} - \frac{\partial \phi_-}{\partial n} &amp;= -4\pi\sigma \ .
+\phi_+(\mathbf{x}) - \phi_-(\mathbf{x}) &amp;= 0 \ , \\
+\frac{\partial}{\partial n} \phi_+(\mathbf{x}) - \frac{\partial}{\partial n} \phi_-(\mathbf{x}) &amp;= -4\pi\sigma(\mathbf{x}) \ .
 \end{align*}
-\]</span> Here it’s of course understood that <span class="math inline">\(\phi_+\)</span> and <span class="math inline">\(\phi_-\)</span> refer to points infinitesimally above and below the surface, respectively.</p>
+\]</span> Here it’s of course understood that <span class="math inline">\(\phi_+(\mathbf{x})\)</span> and <span class="math inline">\(\phi_-(\mathbf{x})\)</span> refer to points infinitesimally above and below the surface, respectively.</p>
 </section>
 </section>
 <section id="field-energy" class="level2">

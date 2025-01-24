@@ -294,6 +294,52 @@ $$
 $$
 The total Lorentz force $\mathbf{F}$ for a continuous distribution is then the volume integral of $\mathbf{f}$ over the entire distribution.
 
+##### Example: Charged particle in a magnetic field
+
+Suppose a particle with charge $q$ and mass $m$ is moving at some velocity $\mathbf{v}$ in the presence of some B-field $\mathbf{B}$. We'd like to analyze the motion of the charged particle in the presence of this B-field. To simplify the discussion somewhat, we'll assume the B-field is uniform with constant field strength $B$.
+
+Assuming any other forces acting on the charged particle are negligible, the force acting on the particle will be the Lorentz force
+$$
+\mathbf{F} = q\frac{\mathbf{v}}{c} \times \mathbf{B} \ .
+$$
+Suppose the B-field is directed along the $z$-direction, so that $\mathbf{B} = B \mathbf{e}_z$. Then in Cartesian coordinates we have
+$$
+\mathbf{v} \times \mathbf{B} = B(\dot y \mathbf{e}_x - \dot x \mathbf{e}_y) \ .
+$$
+Now, by Newton's second law we must have $\mathbf{F} = m \mathbf{\ddot x}$, which means
+$$
+\ddot x \mathbf{e}_x + \ddot y \mathbf{e}_y + \ddot z \mathbf{e}_z = \frac{qB}{mc} (\dot y \mathbf{e}_x - \dot x \mathbf{e}_y) \ .
+$$
+For reasons we'll see in a moment, we define an angular frequency $\omega \equiv qB/mc$, which we'll call the *cyclotron frequency*. Collecting together each component, we thus end up with the following three equations of motion for the charged particle,
+$$
+\ddot x = \omega \dot y \quad , \quad \ddot y = -\omega \dot x \quad , \quad \ddot z = 0 \ .
+$$
+The last equation $\ddot z = 0$ implies the particle will maintain its initial velocity in the $z$-direction. This is just a reflection of the fact that magnetic forces do no work. B-fields can only deflect a particle's trajectory. We can see this deflection happening in the first two equations, which are coupled to each other. 
+
+We can decouple the first equation for $\ddot x$ by differentiating both sides again and substituting in the equation for $\ddot y$, and similarly for the second equation. We then end up with two decoupled equations of the form
+$$
+\ddot x + \omega^2 x = 0 \quad , \quad \ddot y + \omega^2 y = 0 \ .
+$$
+Clearly we now have two simple harmonic oscillators to solve, which is easy. The solutions to these equations can be written
+$$
+x(t) = A \cos(\omega t - \delta) \quad , \quad y(t) = A\sin(\omega t - \delta) \ .
+$$
+Note the amplitudes for $x(t)$ and $y(t)$ must be the same, and their phases must differ by $\pi/2$. Both of these follow from the fact that each trajectory must also satisfy the conditions $\ddot x = \omega \dot y$ and $\ddot y = -\omega \dot x$.
+
+Now, observe that these trajectories together imply that the motion in the $xy$-plane must lie on a circle of radius $A$, since
+$$
+x^2 + y^2 = A^2 \cos^2(\omega t - \delta) + A^2 \sin^2(\omega t - \delta) = A^2 \ .
+$$
+Thus, if the charged particle has zero velocity in the $z$-direction, it will just orbit in a circle about the origin in the $xy$-plane, with the radius of that circle determined by the particle's initial radius from the origin. The speed at which the particle orbits is
+
+- Still not finished. Mention the implications of circular motion, like $v = \omega / r$ and $E = 1/2 \ mv^2$
+
+ determined by the cyclotron frequency $\omega = qB/mc$. Clearly, the stronger the B-field or the higher the particle's charge to mass ratio $q/m$, the faster it will orbit.
+
+If the particle *does* have an initial velocity in the $z$-direction, it will maintain that velocity while still orbiting in a circle in the $xy$-plane. This will result in a helical motion, with the helix oriented in the direction of the B-field.
+
+The example we described above is commonly used to accelerate charged particles with a device known as a *cyclotron*. The idea is to use a B-field to keep the particle confined to a circular path, while applying a varying E-field in the normal direction to force the particle to accelerate outward in a spiral motion. This technique was used in the early days of nuclear physics to build particle accelerators, which could be used to collide particles together at high energies and study their nuclear properties.
+
 ##### Example: Ampere's Current Law
 
 We'll now derive Ampere's current law between two current carrying wires. Suppose two parallel wires are separated by some distance $d$, where the first wire carries a current $I_1$ and the second wire carries a current $I_2$. We mentioned above that the following result was found empirically,

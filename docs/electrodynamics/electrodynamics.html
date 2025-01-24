@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Personal Notes - Maxwell’s Equations</title>
+<title>Personal Notes - Electrodynamics</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -31,7 +31,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
 <link href="../electrodynamics/orthogonal-functions.html" rel="next">
-<link href="../electrodynamics/magnetostatics.html" rel="prev">
+<link href="../electrodynamics/circuits-and-emf.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -110,7 +110,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../electrodynamics/preliminaries.html">Electromagnetism</a></li><li class="breadcrumb-item"><a href="../electrodynamics/maxwell-equations.html"><span class="chapter-title">Maxwell’s Equations</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../electrodynamics/preliminaries.html">Electromagnetism</a></li><li class="breadcrumb-item"><a href="../electrodynamics/electrodynamics.html"><span class="chapter-title">Electrodynamics</span></a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -248,7 +248,12 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../electrodynamics/maxwell-equations.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">Maxwell’s Equations</span></a>
+  <a href="../electrodynamics/circuits-and-emf.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Circuits and Electromotive Force</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../electrodynamics/electrodynamics.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">Electrodynamics</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -393,15 +398,7 @@ window.Quarto = {
   </li>
     </ul>
     </div>
-    <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">Table of contents</h2>
-   
-  <ul>
-  <li><a href="#faradays-law" id="toc-faradays-law" class="nav-link active" data-scroll-target="#faradays-law">Faraday’s Law</a></li>
-  <li><a href="#maxwells-equations" id="toc-maxwells-equations" class="nav-link" data-scroll-target="#maxwells-equations">Maxwell’s Equations</a></li>
-  <li><a href="#conservation-laws" id="toc-conservation-laws" class="nav-link" data-scroll-target="#conservation-laws">Conservation Laws</a></li>
-  </ul>
-</nav>
+    
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
@@ -410,9 +407,9 @@ window.Quarto = {
 <!-- main -->
 <main class="content column-page-right" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../electrodynamics/preliminaries.html">Electromagnetism</a></li><li class="breadcrumb-item"><a href="../electrodynamics/maxwell-equations.html"><span class="chapter-title">Maxwell’s Equations</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../electrodynamics/preliminaries.html">Electromagnetism</a></li><li class="breadcrumb-item"><a href="../electrodynamics/electrodynamics.html"><span class="chapter-title">Electrodynamics</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-title">Maxwell’s Equations</span></h1>
+<h1 class="title"><span class="chapter-title">Electrodynamics</span></h1>
 </div>
 
 
@@ -429,21 +426,11 @@ window.Quarto = {
 </header>
 
 
-<p>Thus far we’ve spent a considerable amount of time studying <em>statics</em>, focusing on fields that are time-independent. We will now turn our attention to <em>dynamics</em>, where we allow the fields to depend explicitly on time. This leads us into the subject of <em>electrodynamics</em>, which we will study in depth for the rest of the course. In this first chapter on electrodynamics we will study Faraday’s law and then finally proceed to introduce Maxwell’s equations, which together with the continuity equation and the Lorentz force law provide a complete description of classical electrodynamics at the microscopic scale. We’ll defer the macroscopic description of materials to the next chapter.</p>
-<section id="faradays-law" class="level2">
-<h2 class="anchored" data-anchor-id="faradays-law">Faraday’s Law</h2>
-<p><span class="math display">\[
-\mathcal{E} = \int \mathbf{E} \cdot d\boldsymbol{\ell} = \frac{1}{c} \frac{\partial \Phi_B}{\partial t}
-\]</span></p>
-<p><span class="math display">\[
-\nabla \times \mathbf{E} = \frac{1}{c} \frac{\partial \mathbf{B}}{\partial t}
-\]</span></p>
-<p><span class="math display">\[
-\mathcal{E} = \frac{L \Phi_B}{c}
-\]</span></p>
-</section>
-<section id="maxwells-equations" class="level2">
-<h2 class="anchored" data-anchor-id="maxwells-equations">Maxwell’s Equations</h2>
+<p>Thus far we’ve spent a considerable amount of time studying <em>statics</em>, focusing on fields that are time-independent. We will now begin turning our attention to <em>dynamics</em>, where we allow the fields to depend explicitly on time. This leads us into the subject of <em>electrodynamics</em>, which we will study in depth for the rest of the course. To begin our study of this topic we will discuss a few important concepts that will lead us in the next chapter to Maxwell’s equations, the crown jewel of electromagnetism.</p>
+<ul>
+<li>State quasistatic field equations</li>
+<li>Introduce the displacement current to maintain charge conservation</li>
+</ul>
 <p><span class="math display">\[
 \begin{align*}
 \nabla \cdot \mathbf{E} &amp;= 4\pi \rho \ , \\
@@ -458,15 +445,11 @@ window.Quarto = {
 \mathbf{B} &amp;= \nabla \cdot \mathbf{A} \ .
 \end{align*}
 \]</span></p>
-</section>
-<section id="conservation-laws" class="level2">
-<h2 class="anchored" data-anchor-id="conservation-laws">Conservation Laws</h2>
 <p><span class="math display">\[
 \frac{\partial \rho}{\partial t} + \nabla \cdot \mathbf{J} = 0 \ .
 \]</span></p>
 
 
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -880,8 +863,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation column-page-right">
   <div class="nav-page nav-page-previous">
-      <a href="../electrodynamics/magnetostatics.html" class="pagination-link" aria-label="Magnetostatics">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Magnetostatics</span></span>
+      <a href="../electrodynamics/circuits-and-emf.html" class="pagination-link" aria-label="Circuits and Electromotive Force">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Circuits and Electromotive Force</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
