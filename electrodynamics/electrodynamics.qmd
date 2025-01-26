@@ -1,30 +1,378 @@
 # Electrodynamics
 
-Thus far we've spent a considerable amount of time studying *statics*, focusing on fields that are time-independent. We will now begin turning our attention to *dynamics*, where we allow the fields to depend explicitly on time. This leads us into the subject of *electrodynamics*, which we will study in depth for the rest of the course. To begin our study of this topic we will discuss a few important concepts that will lead us in the next chapter to Maxwell's equations, the crown jewel of electromagnetism.
-
-- State quasistatic field equations
-- Introduce the displacement current to maintain charge conservation
-
-
+In the previous chapter we started moving away from statics, and started our study of electrodynamics, the study of time-varying electric and magnetic fields. We finished that chapter with the following quasistatic field equations
 $$
 \begin{align*}
-\nabla \cdot \mathbf{E} &= 4\pi \rho \ , \\
-\nabla \times \mathbf{E} &= \frac{1}{c} \frac{\partial \mathbf{B}}{\partial t} \ , \\
-\nabla \cdot \mathbf{B} &= 0 \ , \\
-\nabla \times \mathbf{B} &= \frac{4\pi}{c} \mathbf{J} - \frac{1}{c} \frac{\partial \mathbf{E}}{\partial t} \ . \\
+&\nabla \cdot \mathbf{E} = 4\pi \rho \ ,\\
+&\nabla \times \mathbf{E} = -\frac{1}{c} \frac{\partial\mathbf{B}}{\partial t} \ ,\\
+&\nabla \cdot \mathbf{B} = 0 \ ,\\
+&\nabla \times \mathbf{B} = \frac{4\pi}{c} \mathbf{J} \ . \\
 \end{align*}
 $$
+In this chapter we will continue on with the topic of electrodynamics by allowing the final equation for $\nabla \times \mathbf{B}$ to depend on a time-varying E-field, just as in the previous chapter we modifying $\nabla \times \mathbf{E}$ to depend on a time-varying B-field. This will lead us to the notion of displacement current, and finally to Maxwell's equations, the crown jewel of electromagnetism.
 
-$$
-\begin{align*}
-\mathbf{E} &= -\nabla\phi + \frac{1}{c} \frac{\partial \mathbf{A}}{\partial t} \ , \\
-\mathbf{B} &= \nabla \cdot \mathbf{A} \ .
-\end{align*}
-$$
+Once we finally derive Maxwell's equations we will study their implications pretty much for the rest of this course. We will start by studying the conservation laws they imply for charge, energy, and momentum. We will then to show how Maxwell's equations become wave equations, which leads to the topic of electromagnetic radiation, something that we'll see in a future chapter is the underlying theory of classical optics.
 
+From now on in this course, we'll always assume that all fields and distributions depend explicitly on time unless otherwise stated. That is, we'll assume that $\mathbf{E} = \mathbf{E}(\mathbf{x},t)$ and $\mathbf{B} = \mathbf{B}(\mathbf{x},t)$, and that $\rho = \rho(\mathbf{x},t)$ and $\mathbf{J} = \mathbf{J}(\mathbf{x},t)$ as well. This pulls us away from statics and puts us squarely in the realm of electrodynamics. An immediate implication of this is that many of the expressions we derived before for the fields in terms of source distributions will no longer apply, in particular Coulomb's law and the Biot-Savart law. We'll see in later chapters how these formulas can be modified to account for electrodynamics.
 
+## Maxwell's Equations
+
+Before studying the implications of Maxwell's equations we first need to finalize them by introducing the *displacement current*, which modifies the equation for $\nabla \times \mathbf{B}$ to allow for a time-varying E-field. 
+
+### Displacement Current
+
+In the mid 19th century, Maxwell observed that the quasistatic equations as modified by Faraday were mathematically inconsistent with the most fundamental principle of electromagnetism, namely conservation of charge. Specifically, Maxwell noticed that Ampere's law was inconsistent with the continuity equation
 $$
 \frac{\partial \rho}{\partial t} + \nabla \cdot \mathbf{J} = 0 \ .
 $$
+To see why this is the case, recall that the differential form of Ampere's states that
+$$
+\nabla \times \mathbf{B} = \frac{4\pi}{c} \mathbf{J} \ .
+$$
+If we take the divergence of both sides of this equation, we get
+$$
+\nabla \cdot (\nabla \times \mathbf{B}) = \frac{4\pi}{c} \nabla \cdot \mathbf{J} \ .
+$$
+Now, the divergence of a curl must always vanish, which means the left-hand side must be zero. We thus must evidently conclude from Ampere's law that
+$$
+\nabla \cdot \mathbf{J} = 0 \ .
+$$
+But, as we saw in the chapter on magnetostatics, this can only be consistent with conservation of charge when the current density is time-independent. Of course, there's no reason at all to assume the current density must always be time-independent. In fact if it is we necessarily get a steady current, which means the B-field must be time-independent, which necessarily conflicts with Faraday's law.
 
+To resolve this problem, Maxwell proposed adding a new term to Ampere's law, which he called the *displacement current*,
+$$
+\nabla \times \mathbf{B} = \frac{4\pi}{c} (\mathbf{J} + \mathbf{J}_d) \ .
+$$
+If we now take the divergence of both sides as we did above, we get
+$$
+0 = \nabla \cdot \mathbf{J} + \nabla \cdot \mathbf{J}_d \ .
+$$
+We can now make this equation consistent with the continuity equation by insisting that
+$$
+\nabla \cdot \mathbf{J}_d = \frac{\partial \rho}{\partial t} \ .
+$$
+But since Gauss's law requires that $\nabla \cdot \mathbf{E} = 4\pi\rho$, we also have
+$$
+\nabla \cdot \mathbf{J}_d = \frac{1}{4\pi} \frac{\partial}{\partial t} \nabla \cdot \mathbf{E} \ .
+$$
+This means, up to an additive constant that we can set to zero, the displacement current must then be
+$$
+\mathbf{J}_d = \frac{1}{4\pi} \frac{\partial \mathbf{E}}{\partial t} \ .
+$$
+Plugging this into the modified Ampere's law above, we finally have
+$$
+\boxed{
+\nabla \times \mathbf{B} = \frac{4\pi}{c} \mathbf{J} + \frac{1}{c} \frac{\partial \mathbf{E}}{\partial t}
+} \ .
+$$
+With this modification, we've thus managed to make the field equations consistent with the conservation of charge. Just as Faraday's law allows $\nabla \times \mathbf{E}$ to depend on a time-varying E-field, this modified Ampere's law allows $\nabla \times \mathbf{B}$ to depend on a time-varying E-field, thus coupling together the four field equations and making them self-consistent.
+
+Of course, it's worth asking why the displacement current wasn't first detected in experiments like the other laws were? Why was it only found from theory alone? To understand why we need to analyze the displacement current a bit.
+
+- Finish this part (see notes)
+
+### Maxwell's Equations
+
+With the final modification to Ampere's law in place, we're finally able to state *Maxwell's Equations*, the fundamental field equations of classical electromagnetism. In a nutshell, these equations say that E-fields are caused by exactly two things: charges and changing B-fields. Similarly, B-fields are caused by exactly two things: currents and changing E-fields. 
+
+In differential form, Maxwell's equations are
+
+$$
+\boxed{
+\begin{align*}
+&\nabla \cdot \mathbf{E} = 4\pi \rho \\
+&\nabla \times \mathbf{E} = -\frac{1}{c} \frac{\partial \mathbf{B}}{\partial t} \\
+&\nabla \cdot \mathbf{B} = 0 \\
+&\nabla \times \mathbf{B} = \frac{4\pi}{c} \mathbf{J} + \frac{1}{c} \frac{\partial \mathbf{E}}{\partial t} \\
+\end{align*}
+} \ .
+$$
+
+
+
+Aside from the Lorentz force law, Maxwell's equations encapsulate all of the theory of classical electromagnetism, at least in principle. The only thing missing at this point is how these equations change in the presence of electromagnetic materials, something we'll discuss in a future chapter.
+
+We can also state Maxwell's equations in integral form if we like,
+$$
+\begin{align*}
+&\oint \mathbf{E} \cdot d\mathbf{a} = 4\pi Q_{\text{enc}} \ , \\
+&\oint \mathbf{E} \cdot d\boldsymbol{\ell} = -\frac{1}{c} \frac{d\Phi_B}{dt} \ , \\
+&\oint \mathbf{B} \cdot d\mathbf{a} = 0 \ , \\
+&\oint \mathbf{B} \cdot d\boldsymbol{\ell} = \frac{4\pi}{c} I_{\text{enc}} + \frac{1}{c} \frac{d\Phi_E}{dt} \ . \\
+\end{align*}
+$$
+Here $Q_{\text{enc}}$ refers as usual to the charges enclosed in a closed surface, and $I_{\text{enc}}$ to the currents enclosed inside a closed loop, while $\Phi_E$ and $\Phi_B$ refers to the flux of electric and magnetic fields through any surfaces bounded by a closed loop.
+
+## Electromagnetic Potentials
+
+Just as in statics it was useful to express the EM fields in terms of potentials, it'll be useful to do the same in electrodynamics. Recall that we derived the scalar potential $\phi(\mathbf{x})$ from the assumption that $\nabla \times \mathbf{E} = \mathbf{0}$, and the vector potential $\mathbf{A}(\mathbf{x})$ from the assumption that $\nabla \cdot \mathbf{B} = 0$. Provided these equations hold, we can write
+$$
+\mathbf{E} = -\nabla \phi \quad , \quad \mathbf{B} = \nabla \times \mathbf{A} \ .
+$$
+As we'll see, we need to modify these relations somewhat in electrodynamics, which will lead to different behaviors.
+
+### Modified Potentials
+
+In electrodynamics it's still true that $\nabla \cdot \mathbf{B} = 0$ even for time-varying B-fields, which means we can still find a time-varying vector field $\mathbf{A}(\mathbf{x},t)$ such that $\mathbf{B} = \nabla \times \mathbf{A}$. We will still refer to $\mathbf{A}(\mathbf{x},t)$ as the *vector potential*.
+
+However, it's no longer true that $\nabla \times \mathbf{E} = \mathbf{0}$ for time-varying E-fields, which means we no longer find a time-varying scalar field $\phi(\mathbf{x},t)$ such that $\mathbf{E} = -\nabla \phi$. However, we can still find a related vector field whose curl vanishes. Consider Faraday's law,
+$$
+\nabla \times \mathbf{E} = -\frac{1}{c} \frac{\partial \mathbf{B}}{\partial t} \ .
+$$
+If we write $\mathbf{B} = \nabla \times \mathbf{A}$ and move everything to the left-hand side, we have
+$$
+\nabla \times \bigg(\mathbf{E} + \frac{1}{c} \frac{\partial \mathbf{A}}{\partial t}\bigg) = 0 \ .
+$$
+Since we now have a vector field whose curl vanishes, we can find a scalar field $\phi(\mathbf{x},t)$ such that
+$$
+\mathbf{E} + \frac{1}{c} \frac{\partial \mathbf{A}}{\partial t} = -\nabla \phi \ .
+$$
+This means we can express $\mathbf{E}(\mathbf{x},t)$ in terms of the time-varying scalar and vector potentials as
+$$
+\mathbf{E} = -\nabla \phi - \frac{1}{c} \frac{\partial \mathbf{A}}{\partial t} \ .
+$$
+As before, we call $\phi(\mathbf{x},t)$ the *scalar potential*. Thus, in electrodynamics we relate the EM fields to the potentials by
+$$
+\boxed{
+\begin{align*}
+\mathbf{E} &= -\nabla \phi - \frac{1}{c} \frac{\partial \mathbf{A}}{\partial t} \\ 
+\mathbf{B} &= \nabla \times \mathbf{A}
+\end{align*}
+} \ .
+$$
+The dynamical behavior of these potentials must then be satisfied by the remaining two Maxwell equations.
+
+### Differential Equations
+
+We still have two more of Maxwell's equations that the potentials need to satisfy, namely the inhomogeneous equations
+$$
+\nabla \cdot \mathbf{E} = 4\pi \rho \quad , \quad \nabla \times \mathbf{B} = \frac{4\pi}{c} \mathbf{J} + \frac{1}{c} \frac{\partial \mathbf{E}}{\partial t} \ .
+$$
+If we plug the expression for $\mathbf{E}$ in terms of the potentials into the first equation, we must have
+$$
+\nabla \cdot \bigg(\nabla \phi + \frac{1}{c} \frac{\partial \mathbf{A}}{\partial t}\bigg) = -4\pi \rho \ .
+$$
+Simplifying the left-hand side, this gives the following differential equation for the scalar potential,
+$$
+\nabla^2 \phi + \frac{1}{c} \frac{\partial}{\partial t} \nabla \cdot \mathbf{A} = -4\pi \rho \ .
+$$
+Similarly, if we plug the expressions for both $\mathbf{E}$ and $\mathbf{B}$ into the second inhomogeneous equation, we have
+$$
+\nabla \times (\nabla \times \mathbf{A}) = \frac{4\pi}{c} \mathbf{J} - \frac{1}{c} \frac{\partial}{\partial t} \bigg(\nabla \phi + \frac{1}{c} \frac{\partial \mathbf{A}}{\partial t}\bigg) \ .
+$$
+Since $\nabla \times (\nabla \times \mathbf{A}) = \nabla (\nabla \cdot \mathbf{A}) - \nabla^2 \mathbf{A}$, upon rearranging we get
+$$
+\nabla^2 \mathbf{A} - \frac{1}{c^2} \frac{\partial^2 \mathbf{A}}{\partial t^2} - \nabla \bigg(\nabla \cdot \mathbf{A} + \frac{1}{c} \frac{\partial \phi}{\partial t} \bigg) = -\frac{4\pi}{c} \mathbf{J} \ .
+$$
+As things stand, the differential equations for $\phi$ and $\mathbf{A}$ look quite different, but notice each equation contains a term proportional to $\nabla \cdot \mathbf{A}$, which means we can potentially make them have the same form by exploiting gauge invariance.
+
+### Gauge Invariance
+
+Recall that we can always add to the vector potential the gradient of any scalar field $\chi$ without changing the underlying B-field,
+$$
+\mathbf{A}' = \mathbf{A} + \nabla \chi \ .
+$$
+This is called a *gauge transformation*. This follows from the relation $\mathbf{B} = \nabla \times \mathbf{A}$ along with the fact that the curl of any gradient is always zero. This is still true in electrodynamics, except now when we do a gauge transformation we have to be careful not to alter the E-field as well. The only way we can ensure this is to require that $\phi$ also gauge transform simultaneously as
+$$
+\phi' = \phi - \frac{1}{c} \frac{\partial \chi}{\partial t} \ .
+$$
+Thus, in electrodynamics, a gauge transformation is any transformation on both the scalar and vector potentials of the form
+$$
+\begin{align*}
+\phi' &= \phi -\frac{1}{c} \frac{\partial \chi}{\partial t} \ , \\ 
+\mathbf{A}' &= \mathbf{A} + \nabla \chi \ .
+\end{align*}
+$$
+As we mentioned in magnetostatics, we can uniquely specify a given gauge by fixing $\chi$, or equivalently by fixing $\nabla \cdot \mathbf{A}$. This ability to specify the divergence of the vector potential gives us a gauge freedom we can use to simplify various formulas without altering any of the underlying physics. We can fix $\nabla \cdot \mathbf{A}$ to be anything we like so long as we're consistent within a given theory.
+
+In magnetostatics we fixed the gauge by choosing the *Coulomb gauge* $\nabla \cdot \mathbf{A} = 0$, which was a natural choice in that setting. We could still do that in electrodynamics as well if we like. If we did, the differential equations for the potentials could be written
+$$
+\begin{align*}
+\nabla^2 \phi &= -4\pi \rho \ , \\
+\nabla^2 \mathbf{A} - \frac{1}{c^2} \frac{\partial^2 \mathbf{A}}{\partial t^2} &= -\frac{4\pi}{c} \mathbf{J} + \frac{1}{c} \nabla \frac{\partial \phi}{\partial t} \ .
+\end{align*}
+$$
+This choice of gauge makes the equation for the scalar potential especially simple. We just recover Poisson's equation, the same equation we saw in electrostatics. In the absence of boundary conditions, the solution to Poisson's equation is just given by
+$$
+\phi(\mathbf{x},t) = \int d^3\mathbf{x}' \frac{\rho(\mathbf{x},t)}{|\mathbf{x} - \mathbf{x}'|} \ .
+$$
+However, the equation for the vector potential $\mathbf{A}$ is much more complex. It's coupled to the scalar potential $\phi$, which means we need to first solve for $\phi$ before we can solve for $\mathbf{A}$. Assuming we've done so, we can treat $4\pi\mathbf{J}_\ell \equiv \nabla \partial_t \phi$ as a kind of current and solve for $\mathbf{A}$ that way.
+
+While this is physically allowed though it's not intuitively pleasing. For one thing, we'd like the equations for $\phi$ and $\mathbf{A}$ to have the same form if possible. But more importantly, Poisson's equation when $\phi$ is time dependent is *instantaneous*. It suggests that the scalar potential can propagate at infinite speeds, which violates special relativity if we insist $\phi$ have any physical meaning at all.  Thus, in electrodynamics we'd prefer to choose a different gauge that fixes both of these issues.
+
+By staring at the original differential equations for the potentials in the previous section one can identify such a gauge,
+$$
+\boxed{
+\nabla \cdot \mathbf{A} = - \frac{1}{c} \frac{\partial \phi}{\partial t} 
+} \ .
+$$
+This choice of gauge is called the *Lorentz gauge*, because it makes both potentials Lorentz invariant. That is, it ensures that both potentials can only propagate at finite speeds. In this gauge, the differential equations for the potentials can be written
+$$
+\boxed{
+\begin{align*}
+&\nabla^2 \phi - \frac{1}{c^2} \frac{\partial^2 \phi}{\partial t^2} = -4\pi \rho \\ 
+&\nabla^2 \mathbf{A} - \frac{1}{c^2} \frac{\partial^2 \mathbf{A}}{\partial t^2} = -\frac{4\pi}{c} \mathbf{J}
+\end{align*}
+} \ .
+$$
+Differential equations of this form are known as *inhomogeneous wave equations*. They're just wave equations with a source term. As we'll see, functions satisfying the inhomogeneous wave equation necessarily must propagate at a finite speed, namely $c$.
+
+To see what kind of condition the Lorentz gauge places on $\chi$, suppose
+$$
+\nabla \cdot \mathbf{A}' = - \frac{1}{c} \frac{\partial \phi'}{\partial t} \ ,
+$$
+where $\mathbf{A}' = \mathbf{A} + \nabla \chi$ and $\phi' = \phi - \partial_t \chi / c$ is some gauge transformation. Plugging in and simplifying, we get
+$$
+\nabla^2 \chi - \frac{1}{c^2} \frac{\partial^2 \chi}{\partial t^2} = -\nabla \cdot \mathbf{A} - \frac{1}{c} \frac{\partial \phi}{\partial t} \ .
+$$
+Provided we can find a gauge potential $\chi$ that solves this inhomogeneous wave equation, any gauge transformed potentials with this choice of $\chi$ will also yield potentials satisfying the same differential equations.
+
+At any rate, 
+$$
+
+$$
+
+
+### Green's Function
+
+Suppose $\phi(\mathbf{x},t)$ is some arbitrary scalar field that happens to satisfy the inhomogeneous wave equation
+$$
+\nabla^2 \phi - \frac{1}{c^2} \frac{\partial^2 \phi}{\partial t^2} = -4\pi \rho(\mathbf{x},t) \ ,
+$$
+where $\rho(\mathbf{x},t)$ is some arbitrary source function. Here we don't assume $\phi$ is scalar potential. It could be any scalar field, or even one of the components of some other vector (or tensor) field. Just as we did with Poisson's equation, we can build a solution to this equation by first finding a Green's function $G(\mathbf{x}-\mathbf{x}', t-t')$ that solves the equation
+$$
+\nabla^2 G - \frac{1}{c^2} \frac{\partial^2 G}{\partial t^2} = -4\pi\delta(\mathbf{x}-\mathbf{x}')\delta(t-t') \ .
+$$
+As usual, we'll require that the Green's function go to zero at infinity, both in space and in time. Notice that now the Green's function depends on both position and time since the wave equation itself involves both position and time. 
+
+Assuming we can find such a Green's function we can obtain a particular solution $\phi(\mathbf{x},t)$ via space-time convolution of the Green's function with the source function $\rho(\mathbf{x},t)$,
+$$
+\phi(\mathbf{x},t) = \int d^3\mathbf{x}' dt' \ \rho(\mathbf{x}', t') G(\mathbf{x}-\mathbf{x}', t-t') \ .
+$$
+To find the Green's function we'll use the same approach we did to find the Green's function for Poisson's equation in electrostatics. That is, we'll take the Fourier transform of both sides of the wave equation, solve for the Green's function in the frequency domain, and then inverse transform to get the original Green's function in the space-time domain.
+
+To that end, suppose we wish to solve the following PDE for the Green's function $G(\mathbf{x},t)$ located at $\mathbf{x}'=0$ and $t='0$,
+$$
+\nabla^2 G - \frac{1}{c^2} \frac{\partial^2 G}{\partial t^2} = -4\pi\delta(\mathbf{x})\delta(t) \ .
+$$
+When working in space and time, we can get a suitable Fourier transform by multiplying both sides by $e^{-i (\mathbf{k} \cdot \mathbf{x} - \omega t)}$ and integrating with respect to both $\mathbf{x}$ and $t$. We'll denote the Fourier transform of $G(\mathbf{x},t)$ by
+$$
+G(\mathbf{k},\omega) \equiv \int d^3\mathbf{x} dt \ G(\mathbf{x},t) e^{-i (\mathbf{k} \cdot \mathbf{x} - \omega t)} \ .
+$$
+Now, if we apply this Fourier transform to both sides of the wave equation above, we end up with
+$$
+\bigg(-|\mathbf{k}|^2 + \frac{\omega^2}{c^2}\bigg) G(\mathbf{k}, \omega) = -4\pi \ .
+$$
+The left-hand side follows by using integration by parts inside the Fourier transform, and the right-hand side follows from the fact that the integral of a delta function over all space and time is one. Thus, the Green's function in frequency space is given by
+$$
+G(\mathbf{k}, \omega) = -\frac{4\pi}{(\omega/c)^2 - c^2|\mathbf{k}|^2} = -\frac{4\pi c^2}{(\omega - c|\mathbf{k}|)(\omega + c|\mathbf{k}|)} \ .
+$$
+To recover the original Green's function we need to take the inverse Fourier transform of this function, which can be found by multiplying both sides by $1/(2\pi)^4 \ e^{i(\mathbf{k} \cdot \mathbf{x} - \omega t)}$ and integrating over all $\mathbf{k}$ and $\omega$,
+$$
+G(\mathbf{x},t) = \int \frac{d^3\mathbf{k}d\omega}{(2\pi)^4} \ G(\mathbf{k},\omega) e^{i(\mathbf{k} \cdot \mathbf{x} - \omega t)} \ .
+$$
+All that remains now is to perform this integration. We'll find it convenient to integrate over $\omega$ first. We'll thus write
+$$
+G(\mathbf{x},t) = -\frac{4\pi c^2}{(2\pi)^4} \int d^3\mathbf{k} \  e^{i\mathbf{k} \cdot \mathbf{x}} \int_{-\infty}^\infty d\omega \ \frac{e^{-i\omega t}}{(\omega - c|\mathbf{k}|)(\omega + c|\mathbf{k}|)} \ .
+$$
+To do the integration over $\omega$ we'll need to use the tools of complex analysis. We showed in the appendix that
+$$
+\int_{-\infty}^\infty d\omega \ \frac{e^{-i\omega t}}{(\omega - \omega_0)(\omega + \omega_0)} = 
+$$
+
+
+
+
+To that end, suppose for now that $\omega$ is complex-valued, and consider instead the complex closed loop integral
+$$
+\oint d\omega \ f_t(\omega) \equiv \oint d\omega \ \frac{e^{-i\omega t}}{(\omega - c|\mathbf{k}|)(\omega + c|\mathbf{k}|)} \ .
+$$
+First, note that this function $f(\omega)$ has two poles at the points $\omega_\pm = \pm c|\mathbf{k}|$ on the real axis. These poles will each have residues
+$$
+a_{-1}(\omega_\pm) = \pm \frac{1}{2c|\mathbf{k}|} e^{\mp ic|\mathbf{k}|t} \ .
+$$
+By the residue theorem, we know that around any *counterclockwise* closed loop in the complex plane we must have
+$$
+\oint d\omega \ f_t(\omega) = 2\pi i \sum_j a_{-1}(\omega_j) \ ,
+$$
+where $a_{-1}(\omega_j)$ are the residues of each pole $\omega_j$ contained inside the closed loop.
+
+Now, to use the residue theorem to solve our original real integral of interest we need to integrate over some kind of semi-circular closed loop whose center lies on the real axis. The problem then lies in 
+
+
+
+- We have to consider the two cases $t > 0$ and $t < 0$ separately
+- See David Tong notes for this…
+
+
+
+We'll define a closed loop in the complex plane by choosing a semi-circle of radius $R$ in the upper half plane. In the end we'll want to send $R \to \infty$ and argue that only the real part of the integral remains, leaving the solution to the original real integral. 
+
+However, we run into a slight problem: the residues of the integrand occur at the singularities $\omega_\pm = \pm c|\mathbf{k}|$, and these both lie along the path of integration. We can handle this problem by modifying the segment $-R \leq \omega \leq R$ to go around $\omega_\pm$. To that end, we add two other semi-circular paths of radius $\varepsilon$ around these singularities, as shown below.
+
+FIGURE (complex integration path)
+
+In the end we'll send $\varepsilon \to 0$ to make these modifications disappear. Notice that we have a few choices on how we can go around these singularities. We can either go above both of them, below both of them, or above one and under the other. We'll find it more convenient to choose the last option, by going above $\omega_-$ and below $\omega_+$. This means $\omega_-$ will lie outside the closed loop, while $\omega_+$ will lie inside the closed loop. By the residue theorem, only the residue $a_{-1}(\omega_+)$ will contribute, and so
+$$
+\oint d\omega \ f(\omega) = 2\pi i a_{-1}(\omega_+) = 2\pi i \frac{e^{-ic|\mathbf{k}|t}}{2c|\mathbf{k}|} = \frac{\pi i}{c} \frac{e^{-ic|\mathbf{k}|t}}{|\mathbf{k}|} \ .
+$$
+Now, we can decompose the closed loop integral into its path segment integrals as
+$$
+\oint d\omega \ f(\omega) = \bigg(\int_{-R}^{\omega_-} + \int_{\mathcal{C}_-} + \int_{\omega_-}^{\omega_+} + \int_{\mathcal{C}_+} + \int_{\omega_+}^R + \int_\mathcal{C} \bigg) d\omega \ f(\omega) \ ,
+$$
+where $\mathcal{C}_\pm$ is the semi-circular paths of radius $\varepsilon$ around $\omega_\pm$ and $\mathcal{C}$ is the larger semi-circular path from $R$ to $-R$. Suppose we now let $\varepsilon \to 0$. Then the path integrals over $\mathcal{C}_\pm$ will go to zero since ???. Suppose we now let $R \to \infty$. Then the path integral over $\mathcal{C}$ will also go to zero since ???. We thus have that
+
+ 
+
+
+
+For now, we'll just state without proof that 3-dimensional wave equation has two Green's functions $G_\pm(\mathbf{x} - \mathbf{x}', t - t')$ of the form
+$$
+G_\pm(\mathbf{x} - \mathbf{x}', t - t') = \frac{\delta(|\mathbf{x} - \mathbf{x}'| - c|t \pm t'|)}{|\mathbf{x} - \mathbf{x}'|} \ ,
+$$
+where $G_-(\mathbf{x} - \mathbf{x}', t - t')$ is known as the *retarded Green's function* and $G_+(\mathbf{x} - \mathbf{x}', t - t')$ is the *advanced Green's function*. This means there will be two possible solutions for the potential depending on which Green's function we choose, a *retarded potential* and an *advanced potential* respectively. As usual these are obtained by convolution of the Green's function with the source,
+$$
+\begin{align*}
+&\phi_\pm(\mathbf{x},t) = \int d^3\mathbf{x}' \ \rho(\mathbf{x}',t') \frac{\delta(|\mathbf{x} - \mathbf{x}'|/c - |t \pm t'|)}{|\mathbf{x} - \mathbf{x}'|} \ , \\ 
+&\mathbf{A}_\pm(\mathbf{x},t) = \frac{1}{c} \int d^3\mathbf{x}' \ \mathbf{J}(\mathbf{x}',t') \frac{\delta(|\mathbf{x} - \mathbf{x}'|/c - |t \pm t'|)}{|\mathbf{x} - \mathbf{x}'|}  \ .
+\end{align*}
+$$
+We'll say much more about these solutions and the solution to the homogenous wave equation in a later chapter.
+
+## Conservation Laws
+
+- Conservation of energy (Poynting's theorem), conservation of momentum
+
+## Electromagnetic Waves
+
+- Free space field equations to decoupled wave equations
+- How to modify when not in free space
+- Maybe should put this under Maxwell's equations section
+- B-field
+
+$$
+\nabla \times (\nabla \times \mathbf{B}) = \frac{4\pi}{c} \nabla \times \mathbf{J} + \frac{1}{c} \frac{\partial}{\partial t} \nabla \times \mathbf{E}
+$$
+
+$$
+\nabla(\nabla \cdot \mathbf{B}) - \nabla^2 \mathbf{B} = \frac{4\pi}{c} \nabla \times \mathbf{J} - \frac{1}{c^2} \frac{\partial^2 \mathbf{B}}{\partial t^2}
+$$
+
+$$
+\frac{1}{c^2} \frac{\partial^2 \mathbf{B}}{\partial t^2} - \nabla^2 \mathbf{B} = \frac{4\pi}{c} \nabla \times \mathbf{J}
+$$
+
+- E-field
+
+$$
+\nabla \times (\nabla \times \mathbf{E}) = -\frac{1}{c} \frac{\partial}{\partial t} \nabla \times \mathbf{B}
+$$
+
+$$
+\nabla(\nabla \cdot \mathbf{E}) - \nabla^2 \mathbf{E} = -\frac{1}{c} \frac{\partial}{\partial t} \bigg[\frac{4\pi}{c} \mathbf{J} + \frac{1}{c} \frac{\partial \mathbf{E}}{\partial t}\bigg]
+$$
+
+$$
+\frac{1}{c^2} \frac{\partial^2 \mathbf{E}}{\partial t^2} - \nabla^2 \mathbf{E} = -\frac{4\pi}{c^2} \frac{\partial \mathbf{J}}{\partial t} - 4\pi \nabla \rho
+$$
 
