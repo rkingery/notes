@@ -903,15 +903,23 @@ $$
 $$
 Integrals of this type usually show up as Fourier transforms, and thus occur quite often in physics. We can solve integrals of this type in a similar was as the previous class of integrals, except with some slight modifications. We again extend $f(x)$ to a complex function $f(z)$, and require $f(z)$ be meromorphic. We also require that $f(z)$ vanish at infinity, but place no restriction on how fast $f(z)$ decays at infinity.
 
-As before, we consider a semicircular loop $\mathcal{C}$ of radius $R$ whose diameter lies on the real axis, and whose circular part $\mathcal{C}'$ is traversed counterclockwise if in the upper half plane, and clockwise if in the lower half plane. Then we can write
+As before, we consider a semicircular loop $\mathcal{C}$ of radius $R$ whose diameter lies on the real axis, and whose circular part $\mathcal{C}_R$ is traversed counterclockwise if in the upper half plane, and clockwise if in the lower half plane. Then we can write
 $$
 \oint_\mathcal{C} dz \ f(z) = \int_{-R}^R dx \ f(x) e^{iax} + \int_{\mathcal{C}_R} dz \ f(z) e^{iaz} \ .
 $$
-Now, before we took $R \to \infty$ and argued that the circular part of the integral vanishes, leaving the original definite integral. This time though we can't easily follow the same argument. Instead we appeal to *Jordan's Lemma*, which says that so long as $f(z)$ is continuous along a circular path and goes to zero at infinity, then the circular part vanishes, leaving
+Now, before we took $R \to \infty$ and argued ad hoc that the circular part of the integral vanishes, leaving the original definite integral. This time though we can't easily follow the same argument. Instead we appeal to *Jordan's Lemma*, which says that so long as $f(z)$ is continuous along a circular path and goes to zero at infinity, then the circular part vanishes, leaving
 $$
 \oint_\mathcal{C} dz \ f(z) = \int_{-\infty}^\infty dx \ f(x) e^{iax} \ .
 $$
 Provided this is the case, we can again use the residue theorem to evaluate the definite integral as before.
+
+Another issue that frequently arises with integrals of this type is that the poles will often lie on the real axis. Since the residue theorem requires that $f(z)$ to be continuous along the integration contour, when a pole shows up along the contour we have a problem. There are a couple of ways to deal with poles that lie on the real axis. One method is to integrate around them using a semicircular arc of infinitesimal radius. If $f(z)$ has a pole at the real point $x_0$ and $\mathcal{C}_r$ is a counterclockwise semicircular arc of infinitesimal radius $r \ll 1$, then we must have
+$$
+\int_{\mathcal{C}_1} dz \ f(z) = \pi i a_{-1}(x_0).
+$$
+That is, a residue whose pole that lies along the real axis will contribute *half* the weight of a residue that lies inside the closed contour. We'll show how this process works in the next couple of examples.
+
+Another way to deal with these types of poles is to lift them off the real axis by letting $x_0 \to x_0 + i\varepsilon$, where the sign of $\varepsilon$ is chosen so that the pole lies inside the closed contour. Strictly speaking, integrals of this type aren't well-defined in the usual sense. They're so-called *principal value* integrals obtained via a limiting process. Nevertheless, we encounter them a good bit, especially when doing Fourier analysis.
 
 ##### Example: Evaluate $\int_0^\infty dx \ \sin x / x$
 
@@ -945,7 +953,7 @@ $$
 $$
 Along the inner path $\mathcal{C}_r$, notice that integral is just *half* that of a counterclockwise circular loop of radius $r$ centered at the origin, which means by the residue theorem we must have
 $$
-\int_{\mathcal{C}_r} dz \ f(z) = \frac{1}{2} \oint dz \ f(z) = -\pi i,
+\int_{\mathcal{C}_r} dz \ f(z) = -\frac{1}{2} \oint dz \ f(z) = -\pi i,
 $$
 where the minus sign comes from traversing the inner loop clockwise. This is true for any radius $r \ll 1$.
 
@@ -958,6 +966,56 @@ $$
 \int_0^\infty dx \ \frac{\sin x}{x} = \frac{\pi}{2} \ .
 $$
 Definite integral turn out to be important in physics and engineering. They're known as *Dirichlet integrals*. We'll make use of this result in other sections in this course, for example in deriving the Green's function of Laplace's equation in electrostatics.
+
+##### Example: Evaluate $\int_{-\infty}^\infty dx \ e^{-itx}/(x^2 - a^2)$
+
+Suppose we wish to integrate the following real function over the real line,
+$$
+f(x) = \frac{e^{-itx}}{x^2 - a^2} = \frac{e^{-itx}}{(x - a)(x + a)} \ ,
+$$
+where $a > 0$ and $t$ is a real parameter. To do so, we'll consider instead the complex function
+$$
+f(z) = \frac{e^{-itz}}{(z - a)(z + a)} \ .
+$$
+This function has two simple poles $\pm a$ that both lie on the real-axis, with residues
+$$
+a_{-1}(\pm a) = \pm \frac{1}{2a} e^{\mp iat} \ .
+$$
+As usual, we want to evaluate the closed loop integral of $f(z)$ over a semicircular arc of radius $R$ centered at the origin. Eventually, we'll send $R \to \infty$ to recover the original real integral. However, we need to be careful about two things. First, the sign of $t$ will affect the choice of closed loop. Second, the poles both lie on the real axis, which means we need to integrate around them as we did in the previous example.
+
+For the first issue, recall that we require that $|f(z)| \to \infty$ as $R \to \infty$ so we can use Jordan's lemma to neglect the semicircular arc portion of the integral. Along this arc we can parametrize $z(\varphi) = Re^{i\varphi}$, where $-\pi \leq \varphi \leq 0$ if the arc is in the lower half plane, or $0 \leq \varphi \leq \pi$ if the arc is in the upper half plane. In either case, along this arc we have
+$$
+e^{-itz(\varphi)} = e^{-itR(cos\varphi + i\sin\varphi)} = e^{-itR \cos\varphi} e^{tR\sin\varphi} \ .
+$$
+To ensure that $|f(z)| \to 0$ at infinity, we require that $|e^{-i\alpha z(\varphi)}| \to 0$, which can only happen if $t\sin\varphi < 0$. If $t > 0$, this can only be true if we choose an arc in the *lower* half plane. If $t > 0$, it can only be true if we choose an arc in the *upper* half plane.
+
+FIGURE (show the two arcs with the poles)
+
+For the second issue, we can again place small semicircular arcs $\mathcal{C}_r$ of radius $r \ll 1$ over each of the poles and integrate around them. As $r \to 0$, each pole will yield a *counterclockwise* integral that's half of $2\pi i$ times the enclosed residue,
+$$
+\int_{\mathcal{C}_r} dz \ f(z) = \frac{1}{2} \cdot 2\pi i a_{-1}(\pm a) = \pm \frac{\pi i}{2a} e^{\mp iat} \ .
+$$
+Now, when $t > 0$ we choose a counterclockwise loop in the lower half plane. Since there are no residues inside the loop, we have
+$$
+0 = \oint dz \ f(z) = \int_{-R}^R dx \ f(x) + \frac{\pi i}{2a} e^{-iat} - \frac{\pi i}{2a} e^{iat} - \int_{\mathcal{C}_R} dz \ f(z) \ .
+$$
+Sending $R \to \infty$, the semicircular integral vanishes by Jordan's theorem. Thus, when $t > 0$ we have
+$$
+\int_{-\infty}^\infty dx \ f(x) = \frac{\pi i}{2a} (e^{iat} - e^{-iat}) = -\frac{\pi}{a} \sin at \ .
+$$
+When $t < 0$ we do the exact same thing, except on a counterclockwise loop in the upper half plane. This time we have
+$$
+0 = \oint dz \ f(z) = \int_{-R}^R dx \ f(x) - \frac{\pi i}{2a} e^{-iat} + \frac{\pi i}{2a} e^{iat} - \int_{\mathcal{C}_R} dz \ f(z) \ .
+$$
+Again, the semicircular integral vanishes as $R \to \infty$ by Jordan's theorem. Thus, when $t < 0$ we have
+$$
+\int_{-\infty}^\infty dx \ f(x) = -\frac{\pi i}{2a} (e^{iat} - e^{-iat}) = \frac{\pi}{a} \sin at \ .
+$$
+Combining these results together, the original integral is thus
+$$
+\int_{-\infty}^\infty dx \ \frac{e^{-itx}}{x^2 - a^2} = -\frac{\pi}{a} \sin a|t| \ .
+$$
+We'll see an integral of this form arise when trying to compute the Green's function for the inhomogeneous wave equation.
 
 ## Transformations
 

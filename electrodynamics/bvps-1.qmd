@@ -96,10 +96,10 @@ Putting both sides together, we end up with an algebraic equation in $k$-space t
 $$
 -|\mathbf{k}|^2 G(\mathbf{k}) = -4\pi \quad \Longrightarrow \quad G(\mathbf{k}) = \frac{4\pi}{|\mathbf{k}|^2} \ .
 $$
-Now, we want the Green's function in terms of $\mathbf{x}$, not in terms of $\mathbf{k}$. We can get that by now taking the inverse Fourier transform. That is, we multiply $G(\mathbf{k})$ by $\frac{1}{(2\pi)^3} e^{i \mathbf{k} \cdot \mathbf{x}}$ and integrate with respect to $\mathbf{k}$ over all $k$-space to get
+Now, we want the Green's function in terms of $\mathbf{x}$, not in terms of $\mathbf{k}$. We can get that by now taking the inverse Fourier transform. That is, we multiply $G(\mathbf{k})$ by $(2\pi)^{-3} e^{i \mathbf{k} \cdot \mathbf{x}}$ and integrate with respect to $\mathbf{k}$ over all $k$-space to get
 $$
-G(\mathbf{x}) = \int \frac{d^3\mathbf{k}}{(2\pi)^3} \ G(\mathbf{k}) e^{-i \mathbf{k} \cdot \mathbf{x}} 
-= 4\pi \int \frac{d^3\mathbf{k}}{(2\pi)^3} \ \frac{e^{-i \mathbf{k} \cdot \mathbf{x}}}{|\mathbf{k}|^2} \ .
+G(\mathbf{x}) = \int \frac{d^3\mathbf{k}}{(2\pi)^3} \ G(\mathbf{k}) e^{i \mathbf{k} \cdot \mathbf{x}} 
+= 4\pi \int \frac{d^3\mathbf{k}}{(2\pi)^3} \ \frac{e^{i \mathbf{k} \cdot \mathbf{x}}}{|\mathbf{k}|^2} \ .
 $$
 We're now left with an integral to evaluate that's quite non-trivial. First, we observe that the integrand depends on two things, the squared norm $|\mathbf{k}|^2$ and the dot product $\mathbf{k} \cdot \mathbf{x}$. Now, we're free to orient $\mathbf{x}$ along any direction of $k$-space we like. Without loss of generality then, let's suppose $\mathbf{x}$ is oriented along the $k_z$-axis, so that $\mathbf{x} = r \mathbf{e}_{k_z}$. Then $\mathbf{k} \cdot \mathbf{x} = kr\cos\theta_k$, where $k = |\mathbf{k}|$ and $\theta_k$ is the usual polar angle of spherical coordinates in $k$-space. This strongly suggests we should do the integration in $k$-space spherical coordinates $(k, \theta_k, \varphi_k)$. This means the volume element $d^3\mathbf{k}$ becomes
 $$
@@ -107,11 +107,11 @@ d^3 \mathbf{k} = k^2 \sin\theta_k dk d\theta_k d\phi_k \ .
 $$
 Plugging this all into the integral and evaluating the trivial integral over $\varphi_k$, we thus have
 $$
-G(\mathbf{x}) = 4\pi \int_0^\infty dk \int_0^\pi d\theta_k \int_0^{2\pi} d\varphi_k \ \frac{k^2 \sin\theta_k}{(2\pi)^3} \frac{e^{-i kr \cos\theta_k}}{k^2} = \frac{1}{\pi} \int_0^\infty dk \int_0^\pi d\theta_k \ \sin\theta_k \ e^{-i kr \cos\theta_k} \ .
+G(\mathbf{x}) = 4\pi \int_0^\infty dk \int_0^\pi d\theta_k \int_0^{2\pi} d\varphi_k \ \frac{k^2 \sin\theta_k}{(2\pi)^3} \frac{e^{i kr \cos\theta_k}}{k^2} = \frac{1}{\pi} \int_0^\infty dk \int_0^\pi d\theta_k \ \sin\theta_k \ e^{i kr \cos\theta_k} \ .
 $$
 Next, we need to evaluate the integral over $\theta_k$. This is most easily done by making the useful substitution $\mu = \cos\theta_k$ to get
 $$
-G(\mathbf{x}) = \frac{1}{\pi} \int_0^\infty dk \int_{-1}^1 d\mu \ e^{-i kr \mu} = \frac{1}{\pi} \int_0^\infty dk \ \frac{e^{-ikr} - e^{ikr}}{-ikr} = \frac{2}{\pi} \int_0^\infty dk \ \frac{\sin kr}{kr} \ .
+G(\mathbf{x}) = \frac{1}{\pi} \int_0^\infty dk \int_{-1}^1 d\mu \ e^{i kr \mu} = \frac{1}{\pi} \int_0^\infty dk \ \frac{e^{ikr} - e^{-ikr}}{ikr} = \frac{2}{\pi} \int_0^\infty dk \ \frac{\sin kr}{kr} \ .
 $$
 All that remains now is the integral over $k$. We'll simplify this remaining integral slightly by substituting $u=kr$ to write
 $$

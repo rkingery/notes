@@ -650,29 +650,29 @@ Since the curl of a gradient must always vanish we have
 $$
 \mathbf{B} = \nabla \times \mathbf{A} = \nabla \times \mathbf{A}' \ .
 $$
-We call such a transformation $\mathbf{A} \to \mathbf{A}'$ a *gauge transformation*, and the scalar field $\chi(\mathbf{x})$ a *gauge potential*. Evidently, there is no physical information contained in the gauge potential. We're free to choose any $\chi$ we like without changing $\mathbf{B}$.
+We call such a transformation $\mathbf{A} \to \mathbf{A}'$ a *gauge transformation*, and the scalar field $\chi(\mathbf{x})$ a *gauge potential*. Evidently, there is no physical information contained in the gauge potential. We're free to choose any $\chi$ we like without changing $\mathbf{B}$. An interesting consequence of this is that two vector potentials may look very different from each other, yet still give rise to the same B-field. When this happens, we say $\mathbf{A}$ and $\mathbf{A}'$ are *gauge equivalent*.
 
-An interesting consequence of this is that two vector potentials may look very different from each other, yet still give rise to the same B-field. When this happens, we say $\mathbf{A}$ and $\mathbf{A}'$ are *gauge equivalent*.
+Since we're free to choose or *fix* whatever gauge we wish, we might as well choose a gauge that simplifies our theory. Typically, when fixing a gauge potential in a given theory, for example in magnetostatics, we don't specify a gauge potential directly like this. Instead, we specify a condition on the *divergence* of the vector potential. This isn't one-to-one equivalent to choosing a gauge potential, but it's usually good enough for our purposes. From the Helmholtz theorem, we know we can uniquely specify any vector field in terms of its divergence and its curl. With the vector potential we specify the curl by requiring that $\mathbf{B} = \nabla \times \mathbf{A}$, but we still have freedom to choose $\nabla \cdot \mathbf{A}$. If we fix the divergence, we thus fix what $\mathbf{A}$ can be for all useful purposes.
 
-Since we're free to choose or *fix* whatever gauge we wish, we might as well choose a gauge that simplifies our theory. Typically, when fixing a gauge potential in a given theory, for example in magnetostatics, we don't specify a gauge potential directly like this. Instead, we specify a condition on the *divergence* of the vector potential. To see why this is equivalent, remember that $\mathbf{A}$ is a vector field. From the Helmholtz theorem, we know we can uniquely specify any vector field in terms of its divergence and its curl. With the vector potential we specify the curl by requiring that $\mathbf{B} = \nabla \times \mathbf{A}$, but we still have freedom to choose $\nabla \cdot \mathbf{A}$.
-
-Specifying the divergence of $\mathbf{A}$ turns out to be equivalent to specifying a condition on the *Laplacian* of the gauge potential. Indeed, if $\mathbf{A}' = \mathbf{A} + \nabla \chi$, then $\nabla \cdot \mathbf{A}'$ must satisfy
-$$
-\nabla \cdot \mathbf{A}' = \nabla \cdot \mathbf{A} + \nabla^2 \chi \ .
-$$
-If we now fix a gauge by requiring that $\nabla \cdot \mathbf{A}' = \nabla \cdot \mathbf{A}$, what we're left with is $\nabla^2 \chi = 0$. Thus, fixing a gauge with the divergence of the vector potential is equivalent to requiring that any valid gauge potential satisfy Laplace's equation.
-
-In magnetostatics, we know that we can always just choose the vector potential given by the integral
+In magnetostatics, we can always just choose the vector potential given by the integral
 $$
 \mathbf{A}(\mathbf{x}) = \frac{1}{c} \int d^3 \mathbf{x}' \ \frac{\mathbf{J}(\mathbf{x}')}{|\mathbf{x} - \mathbf{x}'|} \ .
 $$
-It's thus natural in magnetostatics to fix a gauge whose divergence is the same as the divergence of this integral. But we showed in the previous section that the divergence of this integral is zero for any localized current distribution. This means the natural choice of gauge is one where the divergence of the vector potential is always zero. In magnetostatics, we thus choose
+It's thus natural in magnetostatics to fix a gauge whose divergence is the same as the divergence of this integral. We showed in the previous section that such a vector potential satisfies $\nabla \cdot \mathbf{A} = 0$, at least for finite current distributions. It's thus natural to choose a gauge satisfying this same condition as well. This choice of gauge is called the *Coulomb gauge*,
 $$
 \boxed{
-\nabla \cdot \mathbf{A} = 0 
+\nabla \cdot \mathbf{A} = 0
 } \ .
 $$
-We call this choice of gauge the *Coulomb gauge*. We'll see more on why the Coulomb gauge is a convenient choice for magnetostatics in the next section.
+If for some reason we have a vector potential that doesn't satisfy the Coulomb gauge, we can always do a gauge transformation to convert it into a form that does. To see how we might do this, suppose $\nabla \cdot \mathbf{A}' = 0$, where $\mathbf{A}' = \mathbf{A} + \nabla \chi$ is some gauge transformation. Then
+$$
+0 = \nabla \cdot \mathbf{A}' = \nabla \cdot (\mathbf{A} + \nabla \chi) = \nabla \cdot \mathbf{A} + \nabla^2 \chi \ .
+$$
+Thus for any given vector potential $\mathbf{A}$, as long as we can find a gauge potential $\chi$ that solves the Poisson equation
+$$
+\nabla^2 \chi = - \nabla \cdot \mathbf{A} \ ,
+$$
+then we can find a new vector potential $\mathbf{A}'$ that satisfies the Coulomb gauge.
 
 The gauge invariance of the vector potential makes it much more complicated to interpret physically what exactly the vector potential is. This wasn't the case in electrostatics, where we found we could interpret the scalar potential naturally as the potential energy per unit charge of a distribution. The vector potential is much more subtle. Sometimes the vector potential can be thought of as a kind of momentum per unit charge, but not always. Despite its difficulty to physically interpret though, the vector potential still has great theoretical importance in the theory of electromagnetism, as we'll see.
 

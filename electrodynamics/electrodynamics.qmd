@@ -215,9 +215,9 @@ $$
 \end{align*}
 } \ .
 $$
-Differential equations of this form are known as *inhomogeneous wave equations*. They're just wave equations with a source term. As we'll see, functions satisfying the inhomogeneous wave equation necessarily must propagate at a finite speed, namely $c$.
+Differential equations of this form are known as *inhomogeneous wave equations*. As we'll soon see, functions satisfying this kind of partial differential equation necessarily must propagate at a finite speed, namely $c$.
 
-To see what kind of condition the Lorentz gauge places on $\chi$, suppose
+To see what kind of condition the Lorentz gauge places on the gauge potential $\chi$, suppose
 $$
 \nabla \cdot \mathbf{A}' = - \frac{1}{c} \frac{\partial \phi'}{\partial t} \ ,
 $$
@@ -225,21 +225,72 @@ where $\mathbf{A}' = \mathbf{A} + \nabla \chi$ and $\phi' = \phi - \partial_t \c
 $$
 \nabla^2 \chi - \frac{1}{c^2} \frac{\partial^2 \chi}{\partial t^2} = -\nabla \cdot \mathbf{A} - \frac{1}{c} \frac{\partial \phi}{\partial t} \ .
 $$
-Provided we can find a gauge potential $\chi$ that solves this inhomogeneous wave equation, any gauge transformed potentials with this choice of $\chi$ will also yield potentials satisfying the same differential equations.
+Thus, if we have potentials $\phi$ and $\mathbf{A}$ that don't satisfy the Lorentz gauge, we can always convert them into potentials that do by finding a gauge potential $\chi$ that solves this inhomogeneous wave equation.
 
-At any rate, 
-$$
+## Wave Equation
 
-$$
+We now want to better understand the solutions of the wave equation, both its homogeneous and inhomogeneous form. We'll see that this discussion applies not just to the potentials, but the fields as well in certain cases. Indeed, the wave equation shows up all over physics, so understanding its solutions is very important.
 
-
-### Green's Function
+### Initial-Boundary Value Problem
 
 Suppose $\phi(\mathbf{x},t)$ is some arbitrary scalar field that happens to satisfy the inhomogeneous wave equation
 $$
 \nabla^2 \phi - \frac{1}{c^2} \frac{\partial^2 \phi}{\partial t^2} = -4\pi \rho(\mathbf{x},t) \ ,
 $$
-where $\rho(\mathbf{x},t)$ is some arbitrary source function. Here we don't assume $\phi$ is scalar potential. It could be any scalar field, or even one of the components of some other vector (or tensor) field. Just as we did with Poisson's equation, we can build a solution to this equation by first finding a Green's function $G(\mathbf{x}-\mathbf{x}', t-t')$ that solves the equation
+where $\rho(\mathbf{x},t)$ is some arbitrary source function. Here we don't assume $\phi$ is scalar potential. It could be any scalar field, or even one of the components of some other vector (or tensor) field.
+
+The wave equation is a second order linear partial differential equation. Since it involves time and not just space, the exact form of any particular solution depends on both the initial conditions of the field
+$$
+\phi(\mathbf{x}, 0) \quad , \quad \frac{\partial}{\partial t} \bigg|_{t=0} \phi(\mathbf{x}, t) \ ,
+$$
+as well as any imposed boundary conditions, be they Dirichlet, Neumann, or mixed boundary conditions. A PDE that satisfies both initial and boundary conditions is usually called an *initial-boundary value problem*, or *IBVP*.
+
+As with any linear PDE, the general solution to the wave equation can be express as the sum of a homogeneous solution and a particular solution, where the particular solution $\phi_p(\mathbf{x},t)$ is the solution to the inhomogeneous wave equation in the absence of the boundary conditions, and the homogeneous solution $\phi_h(\mathbf{x},t)$ is any solution to the *homogeneous* wave equation
+$$
+\nabla^2 \phi - \frac{1}{c^2} \frac{\partial^2 \phi}{\partial t^2} = 0
+$$
+subject to the imposed boundary conditions.
+
+Note that when dealing with the wave equation, one often defines the *wave operator* or *d'Alembertian* $\square$ by
+$$
+\square \equiv \nabla^2 - \frac{1}{c^2} \frac{\partial^2}{\partial t^2} \ .
+$$
+ In this notation the inhomogeneous wave equation is then written simply as
+$$
+\square \phi = -4\pi\rho(\mathbf{x}, t) \ .
+$$
+Let's now investigate the homogeneous and inhomogeneous solutions to the wave equation.
+
+### Homogeneous Solution
+
+Suppose that $\phi(\mathbf{x}, t)$ satisfies the homogeneous wave equation
+$$
+\nabla^2 \phi - \frac{1}{c^2} \frac{\partial^2 \phi}{\partial t^2} = 0
+$$
+subject to some set of initial conditions. For now we'll ignore any boundary conditions.
+
+Using separation of variables, it's not difficult to show that the solutions to this PDE must have the form
+$$
+\phi(\mathbf{x}, t) = \phi_+(r - ct) + \phi_-(r + ct) \ ,
+$$
+where $\phi_\pm$ are arbitrary functions that depend only on the difference $r \pm ct$.
+
+
+$$
+\bigg(\nabla^2 + \frac{\omega^2}{c^2}\bigg) \phi(\mathbf{x}, \omega) = 0
+$$
+
+$$
+\nabla^2 \phi = -\frac{\omega^2}{c^2} \phi
+$$
+
+
+
+
+
+### Green's Function
+
+Just as we did with Poisson's equation, we can build a solution to this equation by first finding a Green's function $G(\mathbf{x}-\mathbf{x}', t-t')$ that solves the equation
 $$
 \nabla^2 G - \frac{1}{c^2} \frac{\partial^2 G}{\partial t^2} = -4\pi\delta(\mathbf{x}-\mathbf{x}')\delta(t-t') \ .
 $$
@@ -265,7 +316,7 @@ $$
 $$
 The left-hand side follows by using integration by parts inside the Fourier transform, and the right-hand side follows from the fact that the integral of a delta function over all space and time is one. Thus, the Green's function in frequency space is given by
 $$
-G(\mathbf{k}, \omega) = -\frac{4\pi}{(\omega/c)^2 - c^2|\mathbf{k}|^2} = -\frac{4\pi c^2}{(\omega - c|\mathbf{k}|)(\omega + c|\mathbf{k}|)} \ .
+G(\mathbf{k}, \omega) = -\frac{4\pi}{(\omega/c)^2 - |\mathbf{k}|^2} = -\frac{4\pi c^2}{\omega^2 - c^2|\mathbf{k}|^2} \ .
 $$
 To recover the original Green's function we need to take the inverse Fourier transform of this function, which can be found by multiplying both sides by $1/(2\pi)^4 \ e^{i(\mathbf{k} \cdot \mathbf{x} - \omega t)}$ and integrating over all $\mathbf{k}$ and $\omega$,
 $$
@@ -273,82 +324,85 @@ G(\mathbf{x},t) = \int \frac{d^3\mathbf{k}d\omega}{(2\pi)^4} \ G(\mathbf{k},\ome
 $$
 All that remains now is to perform this integration. We'll find it convenient to integrate over $\omega$ first. We'll thus write
 $$
-G(\mathbf{x},t) = -\frac{4\pi c^2}{(2\pi)^4} \int d^3\mathbf{k} \  e^{i\mathbf{k} \cdot \mathbf{x}} \int_{-\infty}^\infty d\omega \ \frac{e^{-i\omega t}}{(\omega - c|\mathbf{k}|)(\omega + c|\mathbf{k}|)} \ .
+G(\mathbf{x},t) = -\frac{4\pi c^2}{(2\pi)^4} \int d^3\mathbf{k} \  e^{i\mathbf{k} \cdot \mathbf{x}} \int_{-\infty}^\infty d\omega \ \frac{e^{-i\omega t}}{\omega^2 - c^2|\mathbf{k}|^2} \ .
 $$
-To do the integration over $\omega$ we'll need to use the tools of complex analysis. We showed in the appendix that
+Performing the integration over $\omega$ requires the tools of complex analysis. We showed in the appendix that
 $$
-\int_{-\infty}^\infty d\omega \ \frac{e^{-i\omega t}}{(\omega - \omega_0)(\omega + \omega_0)} = 
+\int_{-\infty}^\infty dx \ \frac{e^{-itx}}{x^2 - a^2} = -\frac{\pi}{a} \sin a|t| \ .
+$$
+Identifying $x \leftrightarrow \omega$ and $a \leftrightarrow c|\mathbf{k}|$, we can see that the solution to the $\omega$ integral is thus
+$$
+\int_{-\infty}^\infty d\omega \ \frac{e^{-i\omega t}}{\omega^2 - c^2|\mathbf{k}|^2} = -\frac{\pi}{c|\mathbf{k}|} \sin c|\mathbf{k}t| \ .
 $$
 
-
-
-
-To that end, suppose for now that $\omega$ is complex-valued, and consider instead the complex closed loop integral
+Plugging this result back into the Green's function and simplifying, we have
 $$
-\oint d\omega \ f_t(\omega) \equiv \oint d\omega \ \frac{e^{-i\omega t}}{(\omega - c|\mathbf{k}|)(\omega + c|\mathbf{k}|)} \ .
+G(\mathbf{x},t) = \frac{c}{(2\pi)^2} \int d^3\mathbf{k} \  e^{i\mathbf{k} \cdot \mathbf{x}} \frac{\sin c|\mathbf{k}t|}{|\mathbf{k}|} \ .
 $$
-First, note that this function $f(\omega)$ has two poles at the points $\omega_\pm = \pm c|\mathbf{k}|$ on the real axis. These poles will each have residues
+All that remains now is the integral over $\mathbf{k}$. We'll orient the axes in $\mathbf{k}$ space so that $\mathbf{x} = r\mathbf{e}_z$ and $\mathbf{k} \cdot \mathbf{x} = kr\cos\theta_k$, where $k = |\mathbf{k}|$. Writing the volume element in spherical coordinates $(k, \theta_k, \varphi_k)$ as $d^3 \mathbf{k} = k^2 \sin\theta_k dk d\theta_k d\varphi_k$ and integrating over $\varphi_k$, we get
 $$
-a_{-1}(\omega_\pm) = \pm \frac{1}{2c|\mathbf{k}|} e^{\mp ic|\mathbf{k}|t} \ .
+G(\mathbf{x},t) = \frac{c}{2\pi} \int_0^\infty k^2 dk \ \frac{\sin ck|t|}{k} \int_0^\pi d\theta_k \  \sin\theta_k e^{ikr\cos\theta_k} \ .
 $$
-By the residue theorem, we know that around any *counterclockwise* closed loop in the complex plane we must have
+We saw this same $\theta_k$ integral before when calculating the Green's function in electrostatics, where we showed
 $$
-\oint d\omega \ f_t(\omega) = 2\pi i \sum_j a_{-1}(\omega_j) \ ,
+\int_0^\pi d\theta_k \  \sin\theta_k e^{ikr\cos\theta_k} = \int_{-1}^1 d\mu \ e^{ikr\mu} = 2\frac{\sin kr}{kr} \ .
 $$
-where $a_{-1}(\omega_j)$ are the residues of each pole $\omega_j$ contained inside the closed loop.
-
-Now, to use the residue theorem to solve our original real integral of interest we need to integrate over some kind of semi-circular closed loop whose center lies on the real axis. The problem then lies in 
-
-
-
-- We have to consider the two cases $t > 0$ and $t < 0$ separately
-- See David Tong notes for this…
-
-
-
-We'll define a closed loop in the complex plane by choosing a semi-circle of radius $R$ in the upper half plane. In the end we'll want to send $R \to \infty$ and argue that only the real part of the integral remains, leaving the solution to the original real integral. 
-
-However, we run into a slight problem: the residues of the integrand occur at the singularities $\omega_\pm = \pm c|\mathbf{k}|$, and these both lie along the path of integration. We can handle this problem by modifying the segment $-R \leq \omega \leq R$ to go around $\omega_\pm$. To that end, we add two other semi-circular paths of radius $\varepsilon$ around these singularities, as shown below.
-
-FIGURE (complex integration path)
-
-In the end we'll send $\varepsilon \to 0$ to make these modifications disappear. Notice that we have a few choices on how we can go around these singularities. We can either go above both of them, below both of them, or above one and under the other. We'll find it more convenient to choose the last option, by going above $\omega_-$ and below $\omega_+$. This means $\omega_-$ will lie outside the closed loop, while $\omega_+$ will lie inside the closed loop. By the residue theorem, only the residue $a_{-1}(\omega_+)$ will contribute, and so
+All that remains now is the integral over $k$. Canceling the factors of $k^2$, we have
 $$
-\oint d\omega \ f(\omega) = 2\pi i a_{-1}(\omega_+) = 2\pi i \frac{e^{-ic|\mathbf{k}|t}}{2c|\mathbf{k}|} = \frac{\pi i}{c} \frac{e^{-ic|\mathbf{k}|t}}{|\mathbf{k}|} \ .
+G(\mathbf{x},t) = \frac{c}{\pi r} \int_0^\infty dk \ \sin ck|t| \sin kr \ .
 $$
-Now, we can decompose the closed loop integral into its path segment integrals as
-$$
-\oint d\omega \ f(\omega) = \bigg(\int_{-R}^{\omega_-} + \int_{\mathcal{C}_-} + \int_{\omega_-}^{\omega_+} + \int_{\mathcal{C}_+} + \int_{\omega_+}^R + \int_\mathcal{C} \bigg) d\omega \ f(\omega) \ ,
-$$
-where $\mathcal{C}_\pm$ is the semi-circular paths of radius $\varepsilon$ around $\omega_\pm$ and $\mathcal{C}$ is the larger semi-circular path from $R$ to $-R$. Suppose we now let $\varepsilon \to 0$. Then the path integrals over $\mathcal{C}_\pm$ will go to zero since ???. Suppose we now let $R \to \infty$. Then the path integral over $\mathcal{C}$ will also go to zero since ???. We thus have that
-
- 
-
-
-
-For now, we'll just state without proof that 3-dimensional wave equation has two Green's functions $G_\pm(\mathbf{x} - \mathbf{x}', t - t')$ of the form
-$$
-G_\pm(\mathbf{x} - \mathbf{x}', t - t') = \frac{\delta(|\mathbf{x} - \mathbf{x}'| - c|t \pm t'|)}{|\mathbf{x} - \mathbf{x}'|} \ ,
-$$
-where $G_-(\mathbf{x} - \mathbf{x}', t - t')$ is known as the *retarded Green's function* and $G_+(\mathbf{x} - \mathbf{x}', t - t')$ is the *advanced Green's function*. This means there will be two possible solutions for the potential depending on which Green's function we choose, a *retarded potential* and an *advanced potential* respectively. As usual these are obtained by convolution of the Green's function with the source,
+This integral can be done by writing the expanding the sines in terms of complex exponentials and exploiting the properties of the delta function. We have
 $$
 \begin{align*}
-&\phi_\pm(\mathbf{x},t) = \int d^3\mathbf{x}' \ \rho(\mathbf{x}',t') \frac{\delta(|\mathbf{x} - \mathbf{x}'|/c - |t \pm t'|)}{|\mathbf{x} - \mathbf{x}'|} \ , \\ 
-&\mathbf{A}_\pm(\mathbf{x},t) = \frac{1}{c} \int d^3\mathbf{x}' \ \mathbf{J}(\mathbf{x}',t') \frac{\delta(|\mathbf{x} - \mathbf{x}'|/c - |t \pm t'|)}{|\mathbf{x} - \mathbf{x}'|}  \ .
+G(\mathbf{x},t) &= \frac{c}{\pi r} \int_0^\infty dk \ \frac{1}{2i} \big(e^{ick|t|} - e^{-ick|t|}\big) \frac{1}{2i} \big(e^{ikr} - e^{-ikr}\big) \\
+&= -\frac{c}{4\pi r} \int_0^\infty dk \ \big[e^{ik(c|t| + r)} - e^{ik(c|t| - r)} - e^{ik(-c|t| + r)} + e^{ik(-c|t| - r)}\big] \\
+&= -\frac{c}{4\pi r} \big[2\pi\delta(c|t| + r) - 2\pi\delta(c|t| - r) - 2\pi\delta(-c|t| + r) + 2\pi\delta(-c|t| - r)\big] \\
+&= \frac{c}{2r} \big[\delta(c|t| - r) - \delta(c|t| + r)\big] \\
+&= \frac{1}{2r} \big[\delta(|t| - r/c) - \delta(|t| + r/c)\big] \ .
 \end{align*}
 $$
-We'll say much more about these solutions and the solution to the homogenous wave equation in a later chapter.
+Now, since $|t| > 0$ and $r > 0$, the second delta function must vanish since we can never have $|t| = -r/c$, which means
+$$
+G(\mathbf{x},t) = \frac{1}{2r} \delta(|t| - r/c) = \frac{1}{2r} [\delta(t - r/c) + \delta(t + r/c)] \ .
+$$
+While this result is strictly speaking mathematically correct, it turns out it's not yet physically correct, as we'll see.
+
+### Causality
+
+Strictly speaking, the Green's function we derived above is *symmetrized*. That is, it's an average of two functions,
+$$
+G_\pm(\mathbf{x},t) = \frac{\delta\big(t \mp r/c\big)}{r} \ .
+$$
+In fact, both $G_+(\mathbf{x},t)$ and $G_-(\mathbf{x},t)$ each individually satisfy the inhomogeneous wave equation
+$$
+\nabla^2 G - \frac{1}{c^2} \frac{\partial^2 G}{\partial t^2} = -4\pi\delta(\mathbf{x})\delta(t) \ .
+$$
+Since this is the case, by the superposition principle any sum of these two functions will also satisfy the inhomogeneous wave equation. Such a sum will also be a valid Green's function so long as their weights sum to one.
+
+If we shift these functions back to the points $\mathbf{x}'$ and $t'$, we have
+$$
+G_\pm(\mathbf{x} - \mathbf{x}', t-t') = \frac{\delta\big(|t-t'| \mp |\mathbf{x} - \mathbf{x}'|/c\big)}{|\mathbf{x} - \mathbf{x}'|} \ .
+$$
+By convention, we call $G_+(\mathbf{x} - \mathbf{x}', t-t')$ the *retarded Green's function*, and $G_-(\mathbf{x} - \mathbf{x}', t-t')$ the *advanced Green's function*. It'll also be useful to give the arguments inside the delta functions a name. Define
+$$
+t_{\text{ret}} \equiv t' - \frac{1}{c}|\mathbf{x} - \mathbf{x}'| \quad , \quad t_{\text{adv}} \equiv t' + \frac{1}{c}|\mathbf{x} - \mathbf{x}'| \ .
+$$
+
+
+
+
+
+$$
+\begin{align*}
+&\phi(\mathbf{x},t) = \int d^3\mathbf{x}' \frac{\rho(\mathbf{x}',t_\text{ret})}{|\mathbf{x} - \mathbf{x}'|} \ , \\ 
+&\mathbf{A}(\mathbf{x},t) = \frac{1}{c} \int d^3\mathbf{x}' \frac{\mathbf{J}(\mathbf{x}',t_\text{ret})}{|\mathbf{x} - \mathbf{x}'|}  \ .
+\end{align*}
+$$
+
 
 ## Conservation Laws
 
 - Conservation of energy (Poynting's theorem), conservation of momentum
-
-## Electromagnetic Waves
-
-- Free space field equations to decoupled wave equations
-- How to modify when not in free space
-- Maybe should put this under Maxwell's equations section
-- B-field
 
 $$
 \nabla \times (\nabla \times \mathbf{B}) = \frac{4\pi}{c} \nabla \times \mathbf{J} + \frac{1}{c} \frac{\partial}{\partial t} \nabla \times \mathbf{E}
