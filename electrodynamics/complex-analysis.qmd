@@ -913,6 +913,25 @@ $$
 $$
 Provided this is the case, we can again use the residue theorem to evaluate the definite integral as before.
 
+### Principal Value Integrals
+
+Quite often in physics we find ourselves integrating functions that don't converge, either at some point or at infinity. A good example of such a function is the real-valued function $f(x) = 1/x$. If we tried to evaluate for instance the integral
+$$
+\int_{-1}^1 \frac{dx}{x} = \log |x| \bigg|_{x=-1}^1 \ ,
+$$
+we'd get $\infty - \infty$, which is undefined. This is due to the fact that $f(x)$ has a pole at $x=0$. However we can do something clever. Consider instead the following expression,
+$$
+\lim_{\varepsilon \to 0} \bigg[\int_{-1}^{-\varepsilon} \frac{dx}{x} + \int_\varepsilon^1 \frac{dx}{x}\bigg] \ .
+$$
+As $\varepsilon \to 0$ this sum becomes the original integral we had above. However,
+$$
+\int_{-1}^{-\varepsilon} \frac{dx}{x} + \int_\varepsilon^1 \frac{dx}{x} = \log x \bigg|_{x=-1}^{-\varepsilon} + \log x \bigg|_{x=\varepsilon}^1 =
+$$
+
+- This is a bad choice maybe. The log is comlex-valued when $x < 0$.
+
+
+
 Another issue that frequently arises with integrals of this type is that the poles will often lie on the real axis. Since the residue theorem requires that $f(z)$ to be continuous along the integration contour, when a pole shows up along the contour we have a problem. There are a couple of ways to deal with poles that lie on the real axis. One method is to integrate around them using a semicircular arc of infinitesimal radius. If $f(z)$ has a pole at the real point $x_0$ and $\mathcal{C}_r$ is a counterclockwise semicircular arc of infinitesimal radius $r \ll 1$, then we must have
 $$
 \int_{\mathcal{C}_1} dz \ f(z) = \pi i a_{-1}(x_0).

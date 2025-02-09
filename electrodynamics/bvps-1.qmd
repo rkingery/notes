@@ -306,11 +306,11 @@ $$
 &= \int_\mathcal{V} d^3 \mathbf{x}' \ \rho(\mathbf{x}') G_N(\mathbf{x} - \mathbf{x}') + \frac{1}{4\pi} \oint_\mathcal{S} da' \ G_N \frac{\partial \phi}{\partial n'} + \frac{1}{S} \oint_\mathcal{S} da' \phi \ .
 \end{align*}
 $$
-Notice the last term is just the average value of the potential along the boundary surface, a constant. We'll let
+Notice the last term is just the average value of the potential along the boundary surface, a constant. We'll denote this term by
 $$
-\langle \phi \rangle_\mathcal{S} \equiv \frac{1}{S} \oint_\mathcal{S} da' \phi
+\langle \phi \rangle_\mathcal{S} \equiv \frac{1}{S} \oint_\mathcal{S} da' \phi \ .
 $$
-denote this constant term. Like all additive constants, this term is irrelevant to the physics and can be absorbed into the potential if we like. We thus finally have the correct formal solution for a potential under Neumann boundary conditions,
+Like all additive constants, this term is irrelevant to the physics and can be absorbed into the potential if we like. We thus finally have the correct formal solution for a potential under Neumann boundary conditions,
 $$
 \boxed{
 \phi(\mathbf{x}) = \langle \phi \rangle_\mathcal{S} + \int_\mathcal{V} d^3 \mathbf{x}' \ \rho(\mathbf{x}') G_N(\mathbf{x} - \mathbf{x}') + \frac{1}{4\pi} \oint_\mathcal{S} da' \ G_N \frac{\partial \phi}{\partial n'}
@@ -324,33 +324,39 @@ For the special case of the Laplacian operator, there's an easier way to find th
 $$
 \nabla^2 G(|\mathbf{x} - \mathbf{x}'|) = -\delta(\mathbf{x} - \mathbf{x}') \ .
 $$
-Here the Laplacian operator is assumed to be defined in $n$ dimensions as well, i.e. $\nabla^2 = \partial_i \partial_i$ in summation notation.
+Here $\nabla^2 = \nabla \cdot \nabla$, where the del operator $\nabla$ is now $n$ dimensional, with
+$$
+\nabla = \sum_{i=1}^n \frac{\partial}{\partial x_i} \mathbf{e}_i \ .
+$$
+Let's recall the divergence theorem in 3-dimensions, which says for any vector field $\mathbf{F}(\mathbf{x})$ we have
+$$
+\int_\mathcal{V} d^3 \mathbf{x} \ \nabla \cdot \mathbf{F} = \oint_\mathcal{S} da \ \mathbf{F} \cdot \mathbf{n} \ ,
+$$
+where $\mathcal{V}$ is some volume and $\mathcal{S}$ is the closed surface bounding that volume.
 
-Let's now recall the divergence theorem in 3-dimensions, which says for any vector field $\mathbf{F}(\mathbf{x})$ we have
+It turns out the divergence theorem holds in any number of dimensions. In $n$ dimensions we have
 $$
-\int_\mathcal{V} d^3 \mathbf{x} \ \nabla \cdot \mathbf{F} = \oint_\mathcal{S} da \ \mathbf{F} \cdot \mathbf{n} \ .
+\int_{\mathcal{V}_n} d^n \mathbf{x} \ \nabla \cdot \mathbf{F} = \oint_{\mathcal{S}_{n-1}} da^{n-1} \ \mathbf{F} \cdot \mathbf{n} \ ,
 $$
-This theorem can be written in any number of dimensions if we think of $\mathcal{V}_n$ as an $n$-dimensional volume and $\mathcal{S}_{n-1}$ as the closed boundary containing that volume in $n$-dimensional space. Then we have
-$$
-\int_{\mathcal{V}_n} d^n \mathbf{x} \ \nabla \cdot \mathbf{F} = \oint_{\mathcal{S}_{n-1}} da^{n-1} \ \mathbf{F} \cdot \mathbf{n} \ .
-$$
-Now, let $\mathbf{F} = \nabla G(|\mathbf{x} - \mathbf{x}'|)$. If we plug this in and integrate with respect to the field point $\mathbf{x}$. If we do that, the left-hand side becomes an $n$-dimensional Laplacian $\nabla^2 G$, while the right-hand side becomes the normal derivative $\frac{\partial G}{\partial n}$ through the $(n-1)$-dimensional surface $\mathcal{S}_{n-1}$,
+where $\mathcal{V}_n$ is an $n$-dimensional volume and $\mathcal{S}_{n-1}$ is the closed $n-1$ dimensional surface bounding the volume $\mathcal{V}_n$.
+
+In our case, we'll choose $\mathbf{F} = \nabla G$. If we plug this into the divergence theorem above and integrate both sides, the left-hand side becomes the Laplacian $\nabla^2 G$ and the right-hand side becomes the normal derivative $\frac{\partial G}{\partial n}$,
 $$
 \int_{\mathcal{V}_n} d^n \mathbf{x} \ \nabla^2 G = \oint_{\mathcal{S}_{n-1}} da^{n-1} \ \frac{\partial G}{\partial n} \ .
 $$
-Now we'll apply this divergence theorem to the Poisson's equation above. If we suppose $\mathcal{V}_n$ is a volume centered at $\mathbf{x}'$ and use the divergence theorem to replace the volume integral with a surface integral, we have
+Now, by Poisson's equation we have $\nabla^2 G = -4\pi \delta(\mathbf{x}-\mathbf{x}')$. If the volume contains the point $\mathbf{x}'$ we thus get
 $$
-\oint_{\mathcal{S}_{n-1}} da^{n-1} \ \frac{\partial G}{\partial n} = -1 \ .
+-1 = \oint_{\mathcal{S}_{n-1}} da^{n-1} \ \frac{\partial G}{\partial n}\ .
 $$
-Now, we can pick any Gaussian surface we like so long as its volume includes $\mathbf{x}'$. Let's suppose $\mathcal{S}_{n-1}$ is an $(n-1)$-dimensional sphere centered at $\mathbf{x}'$. If this sphere has a radius $r$, we can write the area element as
+Now, we can pick any Gaussian surface we like containing $\mathbf{x}'$. We'll thus choose an $n-1$ dimensional sphere of radius $r$ centered at the point $\mathbf{x}'$. In that case we can write the area element $da^{n-1}$ as
 $$
 da^{n-1} = r^{n-1} d\Omega^{n-1} \ ,
 $$
-where $d\Omega^{n-1}$ is the $(n-1)$-dimensional solid angle. Since $G(|\mathbf{x}|)$ is radial by assumption, its normal derivative with the sphere will just be its derivative with respect to $r$ and we can pull it out of the integral to write
+where $d\Omega^{n-1}$ is the $(n-1)$-dimensional solid angle. Since $G(|\mathbf{x}|)$ is radial by assumption, its normal derivative with the sphere will just be its derivative with respect to $r$, meaning we can pull $G(|\mathbf{x}|)$ out of the surface integral to get
 $$
 \oint_{\mathcal{S}_{n-1}} da^{n-1}  \ \frac{\partial G}{\partial n} = r^{n-1}  \frac{\partial G}{\partial r}\oint_{\mathcal{S}_{n-1}} d\Omega^{n-1} = r^{n-1} \frac{\partial G}{\partial r} \Omega_{n-1} \ ,
 $$
-where $\Omega_{n-1}$ is the area of an $(n-1)$-dimensional unit sphere. Putting this all together, we have
+where $\Omega_{n-1}$ is the surface area of the sphere in $n-1$ dimensions. Putting this all together, we have
 $$
 \frac{\partial G}{\partial r} = -\frac{1}{\Omega_{n-1} r^{n-1}} \ .
 $$
@@ -366,7 +372,7 @@ When $n=2$ we do get a proper function, but it looks different than the rest. In
 $$
 G_2(|\mathbf{x} - \mathbf{x}'|) = -\frac{1}{2\pi} \log |\mathbf{x} - \mathbf{x}'| \ .
 $$
-Finally, when $n=1$, $\Omega_0$ is just the size of a point, which is zero. This means that $G_1(|\mathbf{x} - \mathbf{x}'|) = \infty$, hence the Green's function isn't well-defined in 1-dimension.
+Finally, when $n=1$, $\Omega_0$ is just the size of a point, which is zero. This means that $G_1(|\mathbf{x} - \mathbf{x}'|) = \infty$, meaning the Green's function isn't well-defined in 1-dimension.
 
 In practice, aside from the 3-dimensional Green's function we already studied in depth, it's the 2-dimensional Green's function that's likely to be of most use to use in electromagnetism. It can be useful, for instance, in solving electrostatics problems where we're only interested in the fields and potentials along some flat 2-dimensional surface.
 

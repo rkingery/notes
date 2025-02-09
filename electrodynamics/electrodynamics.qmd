@@ -67,13 +67,31 @@ $$
 $$
 With this modification, we've thus managed to make the field equations consistent with the conservation of charge. Just as Faraday's law allows $\nabla \times \mathbf{E}$ to depend on a time-varying E-field, this modified Ampere's law allows $\nabla \times \mathbf{B}$ to depend on a time-varying E-field, thus coupling together the four field equations and making them self-consistent.
 
-Of course, it's worth asking why the displacement current wasn't first detected in experiments like the other laws were? Why was it only found from theory alone? To understand why we need to analyze the displacement current a bit.
+So why wasn't the displacement current noticed in the experiments that established Ampere's law. Why did it take Maxwell's use of theory to establish its existence? Fundamentally, the reason has to do with the fact that the displacement current in typical settings is much smaller than the ordinary current. To see why this is the case, consider the following dimensional analysis.
 
-- Finish this part (see notes)
+Suppose the EM fields both change on some characteristic distance scale $L$ and some characteristic time scale $T$. In terms of these dimensions, the generalized Ampere's law essentially says
+$$
+\frac{B}{L} \sim \frac{J}{c} + \frac{E}{cT} \ .
+$$
+Similarly, Faraday's law says
+$$
+\frac{E}{L} \sim \frac{B}{cT} \ .
+$$
+Now, in typical experimental settings we have $B/L \sim J/c$. Putting all of this information together we then have
+$$
+\frac{B}{L} \sim \bigg[1 + \bigg(\frac{L}{cT}\bigg)^2\bigg] \frac{B}{L} \ .
+$$
+Thus, for the displacement current to be experimentally significant in a lab setting we'd need $L/cT \sim 1$, or
+$$
+L \sim cT \ .
+$$
+Now, in a typical lab setting the distance scales of measurement are often fairly small, usually on the order of meters or less, and the time scales of measurement are usually on the order of seconds. This means $L/T$ is usually on the order of $1 \ \text{m}/\text{s}$ or so. But the speed of light $c$ is on the order of $10^{8} \ \text{m}/\text{s}$, meaning $L/T \ll c$. Thus, for all practical purposes, in most lab experiments we can completely neglect the displacement current and just use the quasistatic equations instead.
+
+There are two situations where we can't neglect the displacement current. One is when doing measurements on large distance scales, say on the order of miles. Eventually, $L$ will be large enough so that $L \sim cT$, so as long as we measure far enough away we will need to worry about the displacement current contribution. The other scenario is when $L/T \sim c$. This is essentially a relativistic limit, where the effects of special relativity start to become important.
 
 ### Maxwell's Equations
 
-With the final modification to Ampere's law in place, we're finally able to state *Maxwell's Equations*, the fundamental field equations of classical electromagnetism. In a nutshell, these equations say that E-fields are caused by exactly two things: charges and changing B-fields. Similarly, B-fields are caused by exactly two things: currents and changing E-fields. 
+With the final modification to Ampere's law in place, we're finally able to state *Maxwell's Equations*, the fundamental field equations of classical electrodynamics. In a nutshell, these equations say that E-fields are caused by exactly two things: charges and changing B-fields. Similarly, B-fields are caused by exactly two things: currents and changing E-fields. 
 
 In differential form, Maxwell's equations are
 
@@ -88,11 +106,7 @@ $$
 } \ .
 $$
 
-
-
-Aside from the Lorentz force law, Maxwell's equations encapsulate all of the theory of classical electromagnetism, at least in principle. The only thing missing at this point is how these equations change in the presence of electromagnetic materials, something we'll discuss in a future chapter.
-
-We can also state Maxwell's equations in integral form if we like,
+We can also state Maxwell's equations in integral form if we like by using the divergence and Stokes theorems in reverse,
 $$
 \begin{align*}
 &\oint \mathbf{E} \cdot d\mathbf{a} = 4\pi Q_{\text{enc}} \ , \\
@@ -101,17 +115,89 @@ $$
 &\oint \mathbf{B} \cdot d\boldsymbol{\ell} = \frac{4\pi}{c} I_{\text{enc}} + \frac{1}{c} \frac{d\Phi_E}{dt} \ . \\
 \end{align*}
 $$
-Here $Q_{\text{enc}}$ refers as usual to the charges enclosed in a closed surface, and $I_{\text{enc}}$ to the currents enclosed inside a closed loop, while $\Phi_E$ and $\Phi_B$ refers to the flux of electric and magnetic fields through any surfaces bounded by a closed loop.
+Here $Q_{\text{enc}}$ refers as usual to the charges enclosed in a closed surface, and $I_{\text{enc}}$ to the currents enclosed inside a closed loop, while $\Phi_E$ and $\Phi_B$ refers to the flux of electric and magnetic fields through any surface bounded by the closed loop.
 
-## Electromagnetic Potentials
+Maxwell's equations provide us with eight linear partial differential equations for the EM fields, two equations from the divergences and six equations from the curls. The entire dynamics of the EM fields is contained in these equations.
+
+In fact, Maxwell's equations almost complete the theory of classical electromagnetism. There are only a few other things we need to add to complete the theory. First, we need to say how the fields modify the dynamics of moving particles. This coupling between particles and fields is of course is done via the Lorentz force law,
+$$
+\mathbf{F} = q\mathbf{E} + q\frac{\mathbf{v}}{c} \times \mathbf{B} \ .
+$$
+Second, we need to say something about how the fields get modified in the presence of electromagnetic materials. This we will spend a whole chapter on. Last, we need to say something about how exactly the source charges give rise to the fields. This is known as *causality*. It's one of the most fundamental principles in physics. Causality states that past actions can impact future actions, but future actions can never impact past actions.
+
+### Time Reversal
+
+To see why causality is an issue we will now show that Maxwell's equations have no sense of the arrow of time, of what causes what. That is, they're *time-reversal invariant*, meaning the equations remain unchanged under a *time reversal* transformation $t \to -t$. To show this is the case, we first need to figure out how the fields and distributions behave under time reversal.
+
+First let's ask how the position $\mathbf{x}$ changes under time reversal. Since the position is only a function of the underlying coordinate system, under a time reversal the position $\mathbf{x}(t)$ of any particle must remain unchanged. That is, $\mathbf{x}(t) \to \mathbf{x}(-t)$. In particular, this means that the *velocity* $\mathbf{v}(t)$ of a particle must transform under time reversal as
+$$
+\mathbf{v}(t) = \frac{d\mathbf{x}(t)}{dt} \to \frac{d\mathbf{x}(-t)}{d(-t)} = -\frac{d\mathbf{x}(t)}{dt} = -\mathbf{v}(-t) \ .
+$$
+Similarly, the *acceleration* $\mathbf{a}(t)$ of a particle must transform under time reversal as
+$$
+\mathbf{a}(t) = \frac{d^2\mathbf{x}(t)}{dt^2} \to \frac{d^2\mathbf{x}(-t)}{d(-t)^2} = \frac{d^2\mathbf{x}(t)}{dt^2} = \mathbf{a}(-t) \ .
+$$
+Thus, the position and acceleration of a particle remain *invariant* under time-reversal, while the velocity of a particle changes sign.
+
+What about scalar quantities like the mass $m$ or charge $q$ of a moving particle? Since both mass and charge are conserved (at least in classical dynamics), they can't suddenly change with time, meaning these must also be invariant under time reversal. By implication, this means the charge density $\rho(\mathbf{x},t)$ must be invariant as well since it's proportional to charge. In fact, *all* scalar quantities must be time-reversal invariant.
+
+The current density $\mathbf{J}(\mathbf{x},t)$, however, is a different story. Since $\mathbf{J} = \rho\mathbf{v}$, we must have the current density like the velocity must change sign under time reversal,
+$$
+\mathbf{J}(\mathbf{x},t) \to -\mathbf{J}(\mathbf{x},-t) \ .
+$$
+Now that we know how the distributions behave under time reversal, we can now ask how the fields behave. By Gauss's law we must have $\nabla \cdot \mathbf{E} = 4\pi\rho$. Since both position and charge density are invariant, the E-field must evidently be invariant as well,
+$$
+\mathbf{E}(\mathbf{x},t) \to \mathbf{E}(\mathbf{x},-t) \ .
+$$
+We might suspect the B-field to be invariant as well, but surprisingly that's not the case. By the generalized Ampere's law we have
+$$
+\nabla \times \mathbf{B} = \frac{4\pi}{c} \mathbf{J} + \frac{1}{c} \frac{\partial \mathbf{E}}{\partial t} \ .
+$$
+Since $\mathbf{J}$ reverses direction under time reversal and $\mathbf{B}$ is proportional to $\mathbf{J}$, it too must reverse sign,
+$$
+\mathbf{B}(\mathbf{x},t) \to -\mathbf{B}(\mathbf{x},-t) \ .
+$$
+We've thus now established how the distributions and fields behave under time reversal, which means we can now ask how Maxwell's equations themselves behave. For Gauss's law, we have
+$$
+\nabla \cdot \mathbf{E}(\mathbf{x},-t) = 4\pi \rho(\mathbf{x},-t) \ .
+$$
+This means Gauss's law is invariant under time reversal, meaning it has the same functional from.
+
+Next we have Faraday's law, which under a time reversal transformation gives
+$$
+\nabla \times \mathbf{E}(\mathbf{x},-t) = -\frac{1}{c} \frac{\partial}{\partial(-t)} \big[-\mathbf{B}(\mathbf{x},-t)\big] \ .
+$$
+Since the minus signs cancel, we see that Faraday's law is invariant under time reversal as well.
+
+Next we have Gauss's law for magnetism, which under time reversal gives
+$$
+-\nabla \cdot \mathbf{B}(\mathbf{x},-t) = 0 \ .
+$$
+Since we can multiply both sides by $-1$, we see that this equation is also invariant.
+
+Finally we have the generalized Ampere's law, which under time reversal says
+$$
+-\nabla \times \mathbf{B}(\mathbf{x},-t) = \frac{4\pi}{c} \big[-\mathbf{J}(\mathbf{x},-t)\big] + \frac{1}{c} \frac{\partial}{\partial(-t)} \mathbf{E}(\mathbf{x},-t) \ .
+$$
+Again, multiplying both sides by $-1$ we see that this equation is invariant as well. We've thus managed to show that all six of Maxwell's equations are time-reversal invariant, and by implication that the continuity equation is also invariant.
+
+For what it's worth, the Lorentz force law is also time-reversal invariant, since by Newton's second law we have
+$$
+m\mathbf{a}(\mathbf{x},-t) = q\mathbf{E}(\mathbf{x},-t) + q\frac{\mathbf{v}(\mathbf{x},-t)}{c} \times \mathbf{B}(\mathbf{x},-t) \ .
+$$
+Here, everything is invariant except $\mathbf{v}$ and $\mathbf{B}$, but the minus signs in $\mathbf{v}$ and $\mathbf{B}$ cancel out, leaving the Lorentz force law invariant. 
+
+Taken together, these mean that neither Maxwell's equations nor the Lorentz force law contain any understanding of the arrow of time, of what causes what. That is, they have no notion of causality. However, we intuitively expect that it's the source charges that should give rise to the fields and not the other way around. If we want to bake this requirement into the theory we'll need to do it in some other way, which we'll discuss later.
+
+## Electrodynamic Potentials
 
 Just as in statics it was useful to express the EM fields in terms of potentials, it'll be useful to do the same in electrodynamics. Recall that we derived the scalar potential $\phi(\mathbf{x})$ from the assumption that $\nabla \times \mathbf{E} = \mathbf{0}$, and the vector potential $\mathbf{A}(\mathbf{x})$ from the assumption that $\nabla \cdot \mathbf{B} = 0$. Provided these equations hold, we can write
 $$
 \mathbf{E} = -\nabla \phi \quad , \quad \mathbf{B} = \nabla \times \mathbf{A} \ .
 $$
-As we'll see, we need to modify these relations somewhat in electrodynamics, which will lead to different behaviors.
+As we'll see, we need to modify these relations somewhat in electrodynamics.
 
-### Modified Potentials
+### Electrodynamic Potentials
 
 In electrodynamics it's still true that $\nabla \cdot \mathbf{B} = 0$ even for time-varying B-fields, which means we can still find a time-varying vector field $\mathbf{A}(\mathbf{x},t)$ such that $\mathbf{B} = \nabla \times \mathbf{A}$. We will still refer to $\mathbf{A}(\mathbf{x},t)$ as the *vector potential*.
 
@@ -142,7 +228,7 @@ $$
 $$
 The dynamical behavior of these potentials must then be satisfied by the remaining two Maxwell equations.
 
-### Differential Equations
+### Field Equations for Potentials
 
 We still have two more of Maxwell's equations that the potentials need to satisfy, namely the inhomogeneous equations
 $$
@@ -231,68 +317,82 @@ Thus, if we have potentials $\phi$ and $\mathbf{A}$ that don't satisfy the Loren
 
 We now want to better understand the solutions of the wave equation, both its homogeneous and inhomogeneous form. We'll see that this discussion applies not just to the potentials, but the fields as well in certain cases. Indeed, the wave equation shows up all over physics, so understanding its solutions is very important.
 
-### Initial-Boundary Value Problem
+### Initial-Boundary Value Problems
 
 Suppose $\phi(\mathbf{x},t)$ is some arbitrary scalar field that happens to satisfy the inhomogeneous wave equation
 $$
 \nabla^2 \phi - \frac{1}{c^2} \frac{\partial^2 \phi}{\partial t^2} = -4\pi \rho(\mathbf{x},t) \ ,
 $$
-where $\rho(\mathbf{x},t)$ is some arbitrary source function. Here we don't assume $\phi$ is scalar potential. It could be any scalar field, or even one of the components of some other vector (or tensor) field.
+where $\rho(\mathbf{x},t)$ is some arbitrary source function. Here we assume $\phi(\mathbf{x},t)$ is some arbitrary scalar field, or perhaps one of the components of some other vector (or tensor) field. Such solutions are sometimes called *wave functions* for reasons we'll soon see.
 
-The wave equation is a second order linear partial differential equation. Since it involves time and not just space, the exact form of any particular solution depends on both the initial conditions of the field
-$$
-\phi(\mathbf{x}, 0) \quad , \quad \frac{\partial}{\partial t} \bigg|_{t=0} \phi(\mathbf{x}, t) \ ,
-$$
-as well as any imposed boundary conditions, be they Dirichlet, Neumann, or mixed boundary conditions. A PDE that satisfies both initial and boundary conditions is usually called an *initial-boundary value problem*, or *IBVP*.
+The wave equation is a second order linear partial differential equation. Since it involves time and not just space, the exact solution for a given source will depend both on the initial conditions of $\phi(\mathbf{x},t)$ and its time derivative, as well as any imposed boundary conditions. A PDE subject to both initial conditions and boundary conditions is often called an *initial-boundary value problem*, or *IBVP* for short.
 
-As with any linear PDE, the general solution to the wave equation can be express as the sum of a homogeneous solution and a particular solution, where the particular solution $\phi_p(\mathbf{x},t)$ is the solution to the inhomogeneous wave equation in the absence of the boundary conditions, and the homogeneous solution $\phi_h(\mathbf{x},t)$ is any solution to the *homogeneous* wave equation
-$$
-\nabla^2 \phi - \frac{1}{c^2} \frac{\partial^2 \phi}{\partial t^2} = 0
-$$
-subject to the imposed boundary conditions.
-
-Note that when dealing with the wave equation, one often defines the *wave operator* or *d'Alembertian* $\square$ by
+Note that people often denote the *wave operator* above using the short-hand symbol $\square$, with
 $$
 \square \equiv \nabla^2 - \frac{1}{c^2} \frac{\partial^2}{\partial t^2} \ .
 $$
- In this notation the inhomogeneous wave equation is then written simply as
+This operator is called the *d'Alembertian*. In this notation the inhomogeneous wave equation is then written simply as
 $$
 \square \phi = -4\pi\rho(\mathbf{x}, t) \ .
 $$
-Let's now investigate the homogeneous and inhomogeneous solutions to the wave equation.
+As with any linear PDE, the general solution $\phi(\mathbf{x},t)$ to the wave equation can be express as the sum of two solutions, a *particular solution* $\phi_p(\mathbf{x},t)$ that satisfies the inhomogeneous wave equation $\square \phi_p = -4\pi\rho$ free of any conditions, and a *homogeneous solution* $\phi_h(\mathbf{x},t)$ that satisfies the *homogeneous wave equation* $\square \phi_h = 0$ subject to the initial and boundary conditions of the problem. Provided we can find such solutions, we can always then write
+$$
+\phi(\mathbf{x},t) = \phi_h(\mathbf{x},t) + \phi_p(\mathbf{x},t) \ .
+$$
+That we can always express the general solution as the sum of a particular and homogeneous solution follows as usual from the principle of superposition, which applies to *any* linear PDE.
 
-### Homogeneous Solution
+Let's now investigate the nature of these solutions one by one, starting with the homogeneous solution.
 
-Suppose that $\phi(\mathbf{x}, t)$ satisfies the homogeneous wave equation
-$$
-\nabla^2 \phi - \frac{1}{c^2} \frac{\partial^2 \phi}{\partial t^2} = 0
-$$
-subject to some set of initial conditions. For now we'll ignore any boundary conditions.
+### Homogeneous Wave Equation
 
-Using separation of variables, it's not difficult to show that the solutions to this PDE must have the form
+Suppose that $\phi(\mathbf{x},t)$ is some scalar field satisfying the *homogeneous wave equation*
 $$
-\phi(\mathbf{x}, t) = \phi_+(r - ct) + \phi_-(r + ct) \ ,
+\nabla^2 \phi - \frac{1}{c^2} \frac{\partial^2 \phi}{\partial t^2} = 0 \ ,
 $$
-where $\phi_\pm$ are arbitrary functions that depend only on the difference $r \pm ct$.
+subject to some set of given initial conditions
+$$
+\phi_0 = \phi(\mathbf{x}, 0) \quad , \quad \psi_0 = \frac{\partial}{\partial t} \bigg|_{t=0} \phi(\mathbf{x}, t) \ .
+$$
+We could impose boundary conditions as well, but for now we'll ignore them.
+
+First, we'll show that any function of the form $\phi_{\mathbf{k},\omega}(\mathbf{x},t) = e^{i (\mathbf{k} \cdot \mathbf{x} - \omega t)}$ satisfies the inhomogeneous wave equation under certain conditions. Differentiating twice with respect to space and time, it's easy to see that
+$$
+\nabla^2 \phi_{\mathbf{k},\omega} = -\mathbf{k}^2 \phi_{\mathbf{k},\omega} \quad , \quad \frac{\partial^2 \phi_{\mathbf{k},\omega}}{\partial t^2} = -\omega^2 \phi_{\mathbf{k},\omega} \ .
+$$
+Plugging this into the wave equation, we then have
+$$
+\bigg(-\mathbf{k}^2 + \frac{\omega^2}{c^2}\bigg) \phi_{\mathbf{k},\omega}(\mathbf{x},t) = 0 \ .
+$$
+Now, notice that $\phi_{\mathbf{k},\omega}(\mathbf{x},t)$ can never be zero since we always have $|\phi_{\mathbf{k},\omega}| = 1$. The only way $\phi_{\mathbf{k},\omega}(\mathbf{x},t)$ can satisfy the wave equation then is if we require that the parameters $\mathbf{k}$ and $\omega$ satisfy $\mathbf{k}^2 - \omega^2/c^2 = 0$, or equivalently that
+$$
+\omega(\mathbf{k}) = \pm \frac{|\mathbf{k}|}{c} \ .
+$$
+ Such a relation between $\omega$ and $\mathbf{k}$ is called a *dispersion* relation for reasons we'll understand more in later chapters.
+
+At any rate, we've now found *two* linearly independent solutions to the homogeneous wave equation. This means any linear superposition of these two solutions will also be a solution,
+$$
+\phi_{\omega(\mathbf{k})}(\mathbf{x},t) \equiv Ae^{i [\mathbf{k} \cdot \mathbf{x} - \omega(\mathbf{k}) t]} + Be^{i [\mathbf{k} \cdot \mathbf{x} + \omega(\mathbf{k}) t]} \ .
+$$
+
+- Clean this up some more and verify.
+- Make sure to plug in the initial conditions at some point.
+- Don't forget to mention what $k$ and $\omega$ are somewhere, and the relation to wavelength and period
+- Consider some simple examples, and maybe mention the relation to separation of variables
+- Mention spherical harmonics version of the solution as well
 
 
 $$
-\bigg(\nabla^2 + \frac{\omega^2}{c^2}\bigg) \phi(\mathbf{x}, \omega) = 0
+\phi(\mathbf{x},t) = \int \frac{d^3\mathbf{k}d\omega}{(2\pi)^4} \big[A(\mathbf{k},\omega) e^{i [\mathbf{k} \cdot \mathbf{x} - \omega(\mathbf{k})t]} + B(\mathbf{k},\omega) e^{i [\mathbf{k} \cdot \mathbf{x} + \omega(\mathbf{k})t]}\big] \ .
 $$
-
-$$
-\nabla^2 \phi = -\frac{\omega^2}{c^2} \phi
-$$
-
 
 
 
 
 ### Green's Function
 
-Just as we did with Poisson's equation, we can build a solution to this equation by first finding a Green's function $G(\mathbf{x}-\mathbf{x}', t-t')$ that solves the equation
+Just as we did with Poisson's equation, we can find the particular solution to the inhomogeneous equation by first finding the Green's function $G(\mathbf{x}, t)$ that solves the wave equation
 $$
-\nabla^2 G - \frac{1}{c^2} \frac{\partial^2 G}{\partial t^2} = -4\pi\delta(\mathbf{x}-\mathbf{x}')\delta(t-t') \ .
+\nabla^2 G - \frac{1}{c^2} \frac{\partial^2 G}{\partial t^2} = -4\pi\delta(\mathbf{x})\delta(t) \ .
 $$
 As usual, we'll require that the Green's function go to zero at infinity, both in space and in time. Notice that now the Green's function depends on both position and time since the wave equation itself involves both position and time. 
 
@@ -302,15 +402,11 @@ $$
 $$
 To find the Green's function we'll use the same approach we did to find the Green's function for Poisson's equation in electrostatics. That is, we'll take the Fourier transform of both sides of the wave equation, solve for the Green's function in the frequency domain, and then inverse transform to get the original Green's function in the space-time domain.
 
-To that end, suppose we wish to solve the following PDE for the Green's function $G(\mathbf{x},t)$ located at $\mathbf{x}'=0$ and $t='0$,
-$$
-\nabla^2 G - \frac{1}{c^2} \frac{\partial^2 G}{\partial t^2} = -4\pi\delta(\mathbf{x})\delta(t) \ .
-$$
 When working in space and time, we can get a suitable Fourier transform by multiplying both sides by $e^{-i (\mathbf{k} \cdot \mathbf{x} - \omega t)}$ and integrating with respect to both $\mathbf{x}$ and $t$. We'll denote the Fourier transform of $G(\mathbf{x},t)$ by
 $$
 G(\mathbf{k},\omega) \equiv \int d^3\mathbf{x} dt \ G(\mathbf{x},t) e^{-i (\mathbf{k} \cdot \mathbf{x} - \omega t)} \ .
 $$
-Now, if we apply this Fourier transform to both sides of the wave equation above, we end up with
+Here the spatial Fourier conjugate $\mathbf{k}$ represents the usual wave vector, and the time Fourier conjugate $\omega$ represents the usual angular frequency. Now, if we apply this Fourier transform to both sides of the wave equation above, we get
 $$
 \bigg(-|\mathbf{k}|^2 + \frac{\omega^2}{c^2}\bigg) G(\mathbf{k}, \omega) = -4\pi \ .
 $$
@@ -365,40 +461,75 @@ Now, since $|t| > 0$ and $r > 0$, the second delta function must vanish since we
 $$
 G(\mathbf{x},t) = \frac{1}{2r} \delta(|t| - r/c) = \frac{1}{2r} [\delta(t - r/c) + \delta(t + r/c)] \ .
 $$
-While this result is strictly speaking mathematically correct, it turns out it's not yet physically correct, as we'll see.
+This is called the *symmetrized Green's function* for the wave equation for reasons we'll understand in a moment.
+### Retarded and Advanced Solutions
 
-### Causality
-
-Strictly speaking, the Green's function we derived above is *symmetrized*. That is, it's an average of two functions,
+Let's now examine each term in this Green's function more closely. It'll be useful to define
 $$
-G_\pm(\mathbf{x},t) = \frac{\delta\big(t \mp r/c\big)}{r} \ .
+t_\text{ret} \equiv t - \frac{r}{c} \quad , \quad t_\text{adv} \equiv t + \frac{r}{c} \ .
 $$
-In fact, both $G_+(\mathbf{x},t)$ and $G_-(\mathbf{x},t)$ each individually satisfy the inhomogeneous wave equation
+We call $t_\text{ret}$ the *retarded time* and $t_\text{adv}$ the *advanced time* for reasons that'll become clear in a moment. Similarly, we define
+$$
+\begin{align*}
+&G_\text{ret}(\mathbf{x}, t) \equiv \frac{\delta(t - r/c)}{r} = \frac{\delta(t_\text{ret})}{r} \ , \\
+&G_\text{adv}(\mathbf{x}, t) \equiv \frac{\delta(t + r/c)}{r} = \frac{\delta(t_\text{adv})}{r} \ ,
+\end{align*}
+$$
+where $G_\text{ret}(\mathbf{x}, t)$ is called the *retarded Green's function* and $G_\text{adv}(\mathbf{x}, t)$ the *advanced Green's function*. In this notation, we can rewrite the symmetrized Green's function found above as the average of the retarded and advanced Green's functions,
+$$
+G(\mathbf{x}, t) = \frac{1}{2}[G_\text{ret}(\mathbf{x}, t) + G_\text{adv}(\mathbf{x}, t)] \ .
+$$
+Now, one can easily verify that both $G_\text{ret}(\mathbf{x}, t)$ and $G_\text{adv}(\mathbf{x}, t)$ each individually satisfy the wave equation
 $$
 \nabla^2 G - \frac{1}{c^2} \frac{\partial^2 G}{\partial t^2} = -4\pi\delta(\mathbf{x})\delta(t) \ .
 $$
-Since this is the case, by the superposition principle any sum of these two functions will also satisfy the inhomogeneous wave equation. Such a sum will also be a valid Green's function so long as their weights sum to one.
+That is, the retarded and advanced Green's functions are each individually valid Green's function. By the principle of superposition then, any weighted average of the two will also be a valid Green's function to the wave equation. This means that in some sense the retarded and Green's functions are more fundamental than the symmetrized Green's function found before.
 
-If we shift these functions back to the points $\mathbf{x}'$ and $t'$, we have
+Physically, the *retarded* Green's function $G_\text{ret}(\mathbf{x}, t) = \delta(t_\text{ret})/r$ represents a *spherical wave* propagating *outwards* from the origin at time $t = 0$ with increasing time at speed $c$. That is, the retarded Green's function represents a spherical wave moving *forward* from a unit source with time.
+
+Similarly, the *advanced* Green's function $G_\text{adv}(\mathbf{x}, t) = \delta(t_\text{adv}) / r$ represents a spherical wave propagating *inward* from infinity toward the origin at speed $c$, reaching the origin at time $t=0$. Equivalently, the advanced Green's function represents a spherical  wave moving *backwards* from a unit source with time.
+
+Now, in electromagnetism we like to think of the source as being the *cause* of a field and not the field as being the cause of the source. The retarded Green's function satisfies this idea. It's *causal*. However, the advanced Green's function does not. It's *acausal*. For this reason, we must reject the advanced Green's function on physical grounds, and insist that only the retarded Green's function be chosen. This causality requirement is another ingredient to the theory that we need to add in. As we said before, it doesn't follow from Maxwell's equations or the Lorentz force law, which are both time-reversal invariant.
+
+Thus, from here on we will *always* assume that the only valid Green's function for the wave equation is the *retarded* Green's function. That is, we'll set $G(\mathbf{x}, t) \equiv G_\text{ret}(\mathbf{x}, t)$. Shifting the Green's function back to $\mathbf{x}'$ and $t'$, we thus finally have
 $$
-G_\pm(\mathbf{x} - \mathbf{x}', t-t') = \frac{\delta\big(|t-t'| \mp |\mathbf{x} - \mathbf{x}'|/c\big)}{|\mathbf{x} - \mathbf{x}'|} \ .
+\boxed{
+G(\mathbf{x} - \mathbf{x}', t - t') \equiv \frac{\delta(t' - t_\text{ret})}{|\mathbf{x} - \mathbf{x}'|}
+} \ ,
 $$
-By convention, we call $G_+(\mathbf{x} - \mathbf{x}', t-t')$ the *retarded Green's function*, and $G_-(\mathbf{x} - \mathbf{x}', t-t')$ the *advanced Green's function*. It'll also be useful to give the arguments inside the delta functions a name. Define
+where the retarded time $t_\text{ret}$ is now given by
 $$
-t_{\text{ret}} \equiv t' - \frac{1}{c}|\mathbf{x} - \mathbf{x}'| \quad , \quad t_{\text{adv}} \equiv t' + \frac{1}{c}|\mathbf{x} - \mathbf{x}'| \ .
+\boxed{
+t_\text{ret} \equiv t - \frac{|\mathbf{x} - \mathbf{x}'|}{c}
+} \ .
 $$
-
-
-
-
-
+We can now convolve this Green's function with the source function $\rho(\mathbf{x},t)$ to get the particular solution for the wave equation,
 $$
-\begin{align*}
-&\phi(\mathbf{x},t) = \int d^3\mathbf{x}' \frac{\rho(\mathbf{x}',t_\text{ret})}{|\mathbf{x} - \mathbf{x}'|} \ , \\ 
-&\mathbf{A}(\mathbf{x},t) = \frac{1}{c} \int d^3\mathbf{x}' \frac{\mathbf{J}(\mathbf{x}',t_\text{ret})}{|\mathbf{x} - \mathbf{x}'|}  \ .
-\end{align*}
+\phi(\mathbf{x},t) = \int d^3\mathbf{x}' dt' \ \rho(\mathbf{x}', t') G(\mathbf{x}-\mathbf{x}', t-t') = \int d^3\mathbf{x}' dt' \ \rho(\mathbf{x}', t') \frac{\delta(\mathbf{x} - \mathbf{x}', t' - t_\text{ret})}{|\mathbf{x} - \mathbf{x}'|} \ .
 $$
+Notice that we can go ahead and integrate with respect to $t'$ to get a volume integral. If we do that we get
+$$
+\phi(\mathbf{x},t) = \int d^3\mathbf{x}' \ \frac{\rho(\mathbf{x}', t_\text{ret})}{|\mathbf{x} - \mathbf{x}'|} \ .
+$$
+Evidently, the particular solution to the wave equation looks exactly like the one for Poisson's equation, except that now there's a time delay $|\mathbf{x} - \mathbf{x}'|/c$ for the source at $\mathbf{x}'$ to affect the field at $\mathbf{x}$. That is, at time $t'$, the field propagates outward from $\mathbf{x}'$ as a wave traveling at a finite speed $c$. This means any source disturbance will take time to affect the field. Nothing is instantaneous.
 
+With this particular solution in hand we can now immediately write down the particular solutions for the scalar and vector potentials in terms of the source charges. For the scalar potential $\phi(\mathbf{x},t)$, we have exactly what we wrote down above,
+$$
+\boxed{
+\phi(\mathbf{x},t) = \int d^3\mathbf{x}' \frac{\rho(\mathbf{x}',t_\text{ret})}{|\mathbf{x} - \mathbf{x}'|}
+} \ .
+$$
+For the vector potential $\mathbf{A}(\mathbf{x},t)$, each component $A_i$ will satisfy its own inhomogeneous wave equation
+$$
+\square A_i = -\frac{4\pi}{c} J_i \ .
+$$
+Identifying the source as $J_i/c$, we can thus express the particular solution for the vector potential in vector form as
+$$
+\boxed{
+\mathbf{A}(\mathbf{x},t) = \frac{1}{c} \int d^3\mathbf{x}' \frac{\mathbf{J}(\mathbf{x}',t_\text{ret})}{|\mathbf{x} - \mathbf{x}'|} 
+} \ .
+$$
+Again, each potential depends on the value of the source at a time in the past, meaning as the source changes a wave disturbance will propagate outward from the source and eventually affect the field. The speed of propagation of this disturbance is evidently just the speed of light $c$. As we'll see later, this disturbance is in fact what we call *electromagnetic radiation*, or *light*.
 
 ## Conservation Laws
 
