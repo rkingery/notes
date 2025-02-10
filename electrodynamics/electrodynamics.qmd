@@ -365,13 +365,13 @@ $$
 $$
 Now, notice that $\phi_{\mathbf{k},\omega}(\mathbf{x},t)$ can never be zero since we always have $|\phi_{\mathbf{k},\omega}| = 1$. The only way $\phi_{\mathbf{k},\omega}(\mathbf{x},t)$ can satisfy the wave equation then is if we require that the parameters $\mathbf{k}$ and $\omega$ satisfy $\mathbf{k}^2 - \omega^2/c^2 = 0$, or equivalently that
 $$
-\omega(\mathbf{k}) = \pm \frac{|\mathbf{k}|}{c} \ .
+\omega = \pm c|\mathbf{k}| \ .
 $$
  Such a relation between $\omega$ and $\mathbf{k}$ is called a *dispersion* relation for reasons we'll understand more in later chapters.
 
-At any rate, we've now found *two* linearly independent solutions to the homogeneous wave equation. This means any linear superposition of these two solutions will also be a solution,
+At any rate, we've now found *two* linearly independent solutions to the homogeneous wave equation, one when $\omega = c|\mathbf{k}|$ and one when $\omega = -c|\mathbf{k}|$. This means any linear superposition of these two solutions will also be a solution,
 $$
-\phi_{\omega(\mathbf{k})}(\mathbf{x},t) \equiv Ae^{i [\mathbf{k} \cdot \mathbf{x} - \omega(\mathbf{k}) t]} + Be^{i [\mathbf{k} \cdot \mathbf{x} + \omega(\mathbf{k}) t]} \ .
+\phi_\mathbf{k}(\mathbf{x},t) \equiv A(\mathbf{k}) e^{i [\mathbf{k} \cdot \mathbf{x} - |\mathbf{k}| ct]} + B(\mathbf{k}) e^{i [\mathbf{k} \cdot \mathbf{x} + |\mathbf{k}| ct]} \ .
 $$
 
 - Clean this up some more and verify.
@@ -379,11 +379,62 @@ $$
 - Don't forget to mention what $k$ and $\omega$ are somewhere, and the relation to wavelength and period
 - Consider some simple examples, and maybe mention the relation to separation of variables
 - Mention spherical harmonics version of the solution as well
+- You won't really use this general solution in this course probably. Maybe just do separation of variables examples.
 
 
 $$
-\phi(\mathbf{x},t) = \int \frac{d^3\mathbf{k}d\omega}{(2\pi)^4} \big[A(\mathbf{k},\omega) e^{i [\mathbf{k} \cdot \mathbf{x} - \omega(\mathbf{k})t]} + B(\mathbf{k},\omega) e^{i [\mathbf{k} \cdot \mathbf{x} + \omega(\mathbf{k})t]}\big] \ .
+\phi(\mathbf{x},t) = \int \frac{d^3\mathbf{k}}{(2\pi)^3} \big[A(\mathbf{k}) e^{i [\mathbf{k} \cdot \mathbf{x} - |\mathbf{k}| ct]} + B(\mathbf{k}) e^{i [\mathbf{k} \cdot \mathbf{x} + |\mathbf{k}| ct]}\big] \ .
 $$
+
+
+$$
+\partial_t \phi(\mathbf{x},t) = \int \frac{d^3\mathbf{k}d\omega}{(2\pi)^4} i|\mathbf{k}|c \big[- A(\mathbf{k},\omega) e^{i [\mathbf{k} \cdot \mathbf{x} - |\mathbf{k}| ct]} + B(\mathbf{k},\omega) e^{i [\mathbf{k} \cdot \mathbf{x} + |\mathbf{k}| ct]}\big] \ .
+$$
+
+$$
+\phi(\mathbf{x},t) = \int \frac{d^3\mathbf{k}}{(2\pi)^3} \big[A(\mathbf{k}) e^{-i|\mathbf{k}| ct} + B(\mathbf{k}) e^{i|\mathbf{k}| ct}\big] e^{i [\mathbf{k} \cdot \mathbf{x}} \ .
+$$
+
+$$
+\phi(\mathbf{x},0) = \int \frac{d^3\mathbf{k}}{(2\pi)^3} \big[A(\mathbf{k}) + B(\mathbf{k})\big] e^{i [\mathbf{k} \cdot \mathbf{x}} = A(\mathbf{x}) + B(\mathbf{x}) \ .
+$$
+
+$$
+\partial_t \phi(\mathbf{x},t) = ic\int \frac{d^3\mathbf{k}}{(2\pi)^3} \big[-|\mathbf{k}| A(\mathbf{k}) e^{-i|\mathbf{k}| ct} + |\mathbf{k}| B(\mathbf{k}) e^{i|\mathbf{k}| ct}\big] e^{i [\mathbf{k} \cdot \mathbf{x}} = ?
+$$
+
+
+$$
+\nabla^2 \phi - \frac{1}{c^2} \frac{\partial^2 \phi}{\partial t^2} = 0
+$$
+
+$$
+T\bigg[YZ\frac{d^2 X}{dx^2} + XZ\frac{d^2 Y}{dy^2} + XY\frac{d^2 Z}{dz^2}\bigg] - \frac{1}{c^2} XYZ \frac{d^2 T}{dt^2} = 0
+$$
+
+$$
+\frac{1}{X}\frac{d^2 X}{dx^2} + \frac{1}{Y}\frac{d^2 Y}{dy^2} + \frac{1}{Z}\frac{d^2 Z}{dz^2} - \frac{1}{c^2} \frac{1}{T}\frac{d^2 T}{dt^2} = 0
+$$
+
+$$
+X'' = -k_x^2 X \\
+Y'' = -k_y^2 Y \\
+Z'' = -k_z^2 Z \\
+\ddot T = -c^2 \omega^2 T \\
+-\mathbf{k}^2 + \omega^2/c^2 = 0
+$$
+
+$$
+X_{k_x}(x) = \sin k_x x \quad , \quad Y_{k_y}(y) = \sin k_y y \quad , \quad Z_{k_z}(z) = \sin k_z z \quad , \quad T_k(t) = \sin \omega_k t
+$$
+
+$$
+\phi(\mathbf{x},t) = \sum_{\mathbf{k}} c(\mathbf{k}) \sin k_x x \sin k_y y \sin k_z z \sin \omega_k t
+$$
+
+
+
+
 
 
 
