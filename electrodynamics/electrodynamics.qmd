@@ -680,7 +680,7 @@ Provided the particle is moving slowly relative to the speed of light, we have $
 $$
 \phi(\mathbf{x},t) \approx \frac{q}{|\mathbf{x} - \mathbf{x}_p(t_\text{ret})|} \ .
 $$
-In this limit the equipotentials propagate outward from the moving charge as spherical waves moving at the speed of light. However, when $|\mathbf{v}_p| \sim c$ these waves are no longer spherical. In this limit, we have two cases. In the plane normal to the charge's motion, $\mathcal{R} = 1$ at all speeds, which means the field lines in this plane still move outward as circular waves. However, outside this normal plane the equipotentials get *contracted* near the moving charge since $\mathcal{R} \to \infty$.
+In this limit the equipotentials propagate outward from the moving charge as spherical waves moving at the speed of light. However, when $|\mathbf{v}_p| \sim c$ these waves are no longer spherical. In this limit, we have two cases. In the plane normal to the charge's motion, $\mathcal{R} = 1$ at all speeds, which means the field lines in this plane still move outward as circular waves. However, outside this normal plane the equipotentials get *contracted* near the moving charge, with $\mathcal{R} \to \infty$ as $|\mathbf{v}_p| \to c$.
 
 FIGURE (equipotentials of moving point charge)
 
@@ -794,7 +794,7 @@ Unlike with conservation of charge, conservation of energy contains a dissipatio
 
 ### Conservation of Momentum
 
-Let's now turn our attention to conservation of EM field momentum. It may be surprising that EM fields contain momentum at all. After all, in classical mechanics we defined momentum as the product of mass and velocity, yet we've not said anything about whether EM fields have mass (they don't). Nevertheless, that EM fields have momentum is a necessarily consequence of the Lorentz force law.
+Let's now turn our attention to conservation of EM field momentum. It may be surprising that EM fields have momentum. After all, in classical mechanics momentum is defined as mass times velocity. EM fields don't have mass, but they do indeed have momentum. This surprising fact is a direct consequence of the Lorentz force law.
 
 Recall that the force acting on a charge $q$ moving at a velocity $\mathbf{v}$ in an external EM field is given by
 $$
@@ -804,54 +804,59 @@ By extension, the force on an arbitrary charge distribution due to an external E
 $$
 \mathbf{F} = \int d^3\mathbf{x} \ \bigg(\rho\mathbf{E} + \frac{\mathbf{J}}{c} \times \mathbf{B}\bigg) \ .
 $$
-Inside the integrand we again see a density, this time the *force density* $\mathbf{f}$ on the charge distribution due to the EM field,
-$$
-\mathbf{f}(\mathbf{x},t) \equiv \rho(\mathbf{x},t) \mathbf{E}(\mathbf{x},t) + \frac{\mathbf{J}(\mathbf{x},t)}{c} \times \mathbf{B}(\mathbf{x},t) \ .
-$$
-Now, recall that the force is by definition the time derivative of *mechanical momentum*,
+Now, according to Newton's second law, this force is also the time derivative of the mechanical momentum,
 $$
 \mathbf{F} = \frac{d\mathbf{P}_\text{mech}}{dt} \ .
 $$
-This means if we pull the derivative inside the above integral then we can think of the force density as the partial time derivative of a mechanical *momentum density* $\mathbf{g}_\text{mech}$. This means we have
+This means we have
 $$
-\frac{\partial\mathbf{g}_\text{mech}}{\partial t} = \mathbf{f} = \rho \mathbf{E} + \frac{\mathbf{J}}{c} \times \mathbf{B} \ .
+\frac{d\mathbf{P}_\text{mech}}{dt} = \int d^3\mathbf{x} \bigg(\rho\mathbf{E} + \frac{\mathbf{J}}{c} \times \mathbf{B}\bigg) \ .
 $$
-Now we'll apply Maxwell's equations to convert the densities into fields to get
+We'd now like to more closely examine the integrand, which is just the *force density* $\mathbf{f}$,
+$$
+\mathbf{f} \equiv \rho \mathbf{E} + \frac{\mathbf{J}}{c} \times \mathbf{B} \ .
+$$
+If we apply Maxwell's equations to the right-hand side to eliminate the densities, we get
 $$
 \begin{align*}
-\frac{\partial\mathbf{g}_\text{mech}}{\partial t} &= \frac{1}{4\pi} (\nabla \cdot \mathbf{E}) \mathbf{E} + \frac{1}{c} \bigg(\frac{c}{4\pi}\nabla \times \mathbf{B} - \frac{1}{4\pi} \frac{\partial \mathbf{E}}{\partial t} \bigg) \times \mathbf{B} \\
-&= \frac{1}{4\pi} \bigg[(\nabla \cdot \mathbf{E}) \mathbf{E} + (\nabla \times \mathbf{B}) \times \mathbf{B} - \frac{1}{c} \frac{\partial \mathbf{E}}{\partial t} \times \mathbf{B} \bigg]
+\mathbf{f} &= \frac{1}{4\pi} (\nabla \cdot \mathbf{E}) \mathbf{E} + \frac{1}{c} \bigg(\frac{c}{4\pi}\nabla \times \mathbf{B} - \frac{1}{4\pi} \frac{\partial \mathbf{E}}{\partial t} \bigg) \times \mathbf{B} \\
+&= \frac{1}{4\pi} \bigg[(\nabla \cdot \mathbf{E}) \mathbf{E} + (\nabla \times \mathbf{B}) \times \mathbf{B} - \frac{1}{c} \frac{\partial \mathbf{E}}{\partial t} \times \mathbf{B} \bigg] \\
+&= \frac{1}{4\pi} \bigg[(\nabla \cdot \mathbf{E}) \mathbf{E} + (\nabla \cdot \mathbf{B}) \mathbf{B} + (\nabla \times \mathbf{B}) \times \mathbf{B} - \frac{1}{c} \frac{\partial \mathbf{E}}{\partial t} \times \mathbf{B} \bigg]
 \end{align*}
 $$
-Next, observe by applying both the product rule and Faraday's law we can write
+In the last step we used the fact that $\nabla \cdot \mathbf{B} = 0$ to insert a vanishing term $(\nabla \times \mathbf{B}) \times \mathbf{B}$. This will be useful in a moment. Next, notice we can simplify the cross product $(\partial_t \mathbf{E}) \times \mathbf{B}$ by applying the product rule along with Faraday's law to get
 $$
 \frac{\partial\mathbf{E}}{\partial t} \times \mathbf{B} = \frac{\partial}{\partial t} (\mathbf{E} \times \mathbf{B}) - \mathbf{E} \times \frac{\partial \mathbf{B}}{\partial t} = \frac{\partial}{\partial t} (\mathbf{E} \times \mathbf{B}) - c (\nabla \times \mathbf{E}) \times \mathbf{E} \ .
 $$
-Now, since $\nabla \cdot \mathbf{B} = 0$ we can add any function of $\nabla \cdot \mathbf{B}$ to the force density without changing its value. If we add $(\nabla \cdot \mathbf{B})\mathbf{B}$ to the inside of the brackets above and insert the above product rule identity, we can thus write
+Plugging this into $\mathbf{f}$, we now have
 $$
-\frac{\partial\mathbf{g}_\text{mech}}{\partial t} = \frac{1}{4\pi} \big[(\nabla \cdot \mathbf{E}) \mathbf{E} + (\nabla \cdot \mathbf{B})\mathbf{B} - \mathbf{B} \times (\nabla \times \mathbf{B}) - \mathbf{E} \times (\nabla \times \mathbf{E})\big] - \frac{1}{4\pi c} \frac{\partial}{\partial t} (\mathbf{E} \times \mathbf{B}) \ .
+\mathbf{f} = \frac{1}{4\pi} \big[(\nabla \cdot \mathbf{E}) \mathbf{E} + (\nabla \cdot \mathbf{B})\mathbf{B} - \mathbf{B} \times (\nabla \times \mathbf{B}) - \mathbf{E} \times (\nabla \times \mathbf{E})\big] - \frac{1}{4\pi c} \frac{\partial}{\partial t} (\mathbf{E} \times \mathbf{B}) \ .
 $$
-Moving the time derivative of $\mathbf{E} \times \mathbf{B}$ to the left-hand side, this then becomes
+Next, we'll move the $\partial_t (\mathbf{E} \times \mathbf{B})$ to the left-hand side to write
 $$
-\frac{\partial\mathbf{g}_\text{mech}}{\partial t} + \frac{\partial}{\partial t} \bigg(\frac{\mathbf{E} \times \mathbf{B}}{4\pi c}\bigg) = \frac{1}{4\pi} \big[(\nabla \cdot \mathbf{E}) \mathbf{E} + (\nabla \cdot \mathbf{B})\mathbf{B} - \mathbf{B} \times (\nabla \times \mathbf{B}) - \mathbf{E} \times (\nabla \times \mathbf{E})\big] \ .
+\mathbf{f} + \frac{\partial}{\partial t} \bigg(\frac{\mathbf{E} \times \mathbf{B}}{4\pi c}\bigg) = \frac{1}{4\pi} \big[(\nabla \cdot \mathbf{E}) \mathbf{E} + (\nabla \cdot \mathbf{B})\mathbf{B} - \mathbf{B} \times (\nabla \times \mathbf{B}) - \mathbf{E} \times (\nabla \times \mathbf{E})\big] \ .
 $$
-On the left-hand side we now have a partial derivative of the mechanical momentum density $\mathbf{g}_\text{mech}$ plus some other momentum density $\mathbf{g}$, which we interpret to be the density of momentum stored in the EM fields themselves,
+On the left-hand side we now have what appear to be two force density terms, one the mechanical force density $\mathbf{f}$, and the other the partial time derivative of some quantity
 $$
 \boxed{
 \mathbf{g} \equiv \frac{1}{4\pi c} \mathbf{E} \times \mathbf{B}
 } \ .
 $$
-Notice that the momentum density is proportional to the Poynting vector, with
+Since $\mathbf{g}$ comes purely from the EM field and its time derivative is some kind of force density, we can interpret $\mathbf{g}$ as being the *momentum density* of the EM field. Indeed, observe that the dimensions of momentum density are clearly momentum per unit volume, or $\text{erg} \cdot \text{s} / \text{cm}^3$ in Gaussian units. The momentum stored in the field is then given by the volume integral
+$$
+\mathbf{P}_\text{EM} = \int d^3\mathbf{x} \ \mathbf{g} = \frac{1}{4\pi c} \int d^3\mathbf{x} \ (\mathbf{E} \times \mathbf{B}) \ .
+$$
+Notice that the momentum density $\mathbf{g}$ is evidently proportional to the Poynting vector, with
 $$
 \mathbf{g} = \frac{\mathbf{S}}{c^2} \ .
 $$
-This means the EM field momentum will move in the same direction as the energy, both perpendicular to both $\mathbf{E}$ and $\mathbf{B}$. The dimensions of momentum density are clearly momentum per unit volume, or $\text{erg} \cdot \text{s} / \text{cm}^3$ in Gaussian units.
+In particular, this means the field's momentum will move along with the Poynting vector, perpendicular to the fields.
 
-The total momentum $\mathbf{P}_\text{EM}$ stored in the fields is evidently given by the volume integral
+We now need to address the right-hand side of the continuity equation above,
 $$
-\mathbf{P}_\text{EM} = \frac{1}{4\pi c} \int d^3\mathbf{x} \ (\mathbf{E} \times \mathbf{B}) \ .
+\mathbf{f} + \frac{\partial \mathbf{g}}{\partial t} = \frac{1}{4\pi} \big[(\nabla \cdot \mathbf{E}) \mathbf{E} + (\nabla \cdot \mathbf{B})\mathbf{B} - \mathbf{B} \times (\nabla \times \mathbf{B}) - \mathbf{E} \times (\nabla \times \mathbf{E})\big] \ .
 $$
-We now must deal with the right-hand side. The goal is to extract from this term the divergence of something that we can identify as a momentum flux density. Since $\mathbf{g}$ is a vector, there will be one flux density vector per component of $\mathbf{g}$, or equivalently a rank-2 tensor for the entire vector, which we'll denote by $\mathbf{T}$.
+The goal is to extract from the right-hand side the divergence of something that we can identify as a momentum flux density. Since $\mathbf{g}$ is a vector, there will be one flux density vector per component of $\mathbf{g}$, or equivalently a rank-2 tensor for the entire vector, which we'll denote by $\mathbf{T}$.
 
 At this point it makes sense to proceed in index notation. Observe that
 $$
@@ -900,23 +905,116 @@ We could argue, correctly, that this momentum comes from this charge's interacti
 
 ### Conservation of Angular Momentum
 
-Finally, we'll consider the remaining quantity that's often conserved in classical mechanics, angular momentum. Recall that the mechanical angular momentum $\mathbf{L}_\text{mech}$ is defined in terms of the ordinary linear momentum by
+Finally, we'll consider the remaining quantity that's often conserved in classical mechanics, angular momentum. Let's first consider again a single charged particle moving in the presence of an EM field. It will experience a Lorentz force
 $$
-\mathbf{L}_\text{mech} \equiv \mathbf{x} \times \mathbf{P}_\text{mech} \ .
+\mathbf{F} = q\mathbf{E} + q\frac{\mathbf{v}}{c} \times \mathbf{B} \ .
 $$
-We can convert this formula into a statement about densities as well. If we let
+Now, there will also be a *Lorentz torque* $\mathbf{N}$ on the particle due to the field given by
 $$
-\mathbf{P}_\text{mech} = \int d^3 \mathbf{x} \ \mathbf{g}_\text{mech} \ ,
+\mathbf{N} = \mathbf{x} \times \mathbf{F} = q\mathbf{x} \times\mathbf{E} + q \mathbf{x} \times\bigg(\frac{\mathbf{v}}{c} \times \mathbf{B}\bigg) \ .
 $$
-we have
+If we now consider an extended distribution of charge instead of a single point charge, the Lorentz torque becomes an integral
 $$
-\mathbf{L}_\text{mech} = \int d^3 \mathbf{x} \ (\mathbf{x}' \times \mathbf{g}_\text{mech})
+\mathbf{N} = \int d^3 \mathbf{x} \ \bigg[\rho \mathbf{x} \times\mathbf{E} + \mathbf{x} \times\bigg(\frac{\mathbf{J}}{c} \times \mathbf{B}\bigg)\bigg] \ .
+$$
+The integrand of this torque we'll call the *torque density* $\boldsymbol{\nu}$,
+$$
+\boldsymbol{\nu} = \mathbf{x} \times \mathbf{f} = \rho \mathbf{x} \times\mathbf{E} + \mathbf{x} \times\bigg(\frac{\mathbf{J}}{c} \times \mathbf{B}\bigg) \ .
+$$
+From classical mechanics, we also know the torque is the time derivative of the mechanical angular momentum, which means
+$$
+\frac{d\mathbf{L}_\text{mech}}{dt} = \int d^3\mathbf{x} \ \boldsymbol{\nu} = \int d^3 \mathbf{x} \ \bigg[\rho \mathbf{x} \times\mathbf{E} + \mathbf{x} \times\bigg(\frac{\mathbf{J}}{c} \times \mathbf{B}\bigg)\bigg] \ .
+$$
+Now, we'll use our result from the previous section to rewrite the force density $\mathbf{f}$ as
+$$
+\mathbf{f} = \frac{1}{4\pi} \big[(\nabla \cdot \mathbf{E}) \mathbf{E} + (\nabla \cdot \mathbf{B})\mathbf{B} - \mathbf{B} \times (\nabla \times \mathbf{B}) - \mathbf{E} \times (\nabla \times \mathbf{E})\big] - \frac{1}{4\pi c} \frac{\partial}{\partial t} (\mathbf{E} \times \mathbf{B}) \ .
+$$
+If we again move the $\partial_t (\mathbf{E} \times \mathbf{B})$ term to the left-hand side and take the cross-product of $\mathbf{x}$ with each term, we get
+$$
+\boldsymbol{\nu} + \frac{\partial}{\partial t} \bigg(\frac{\mathbf{x} \times (\mathbf{E} \times \mathbf{B})}{4\pi c}\bigg) = \frac{1}{4\pi} \mathbf{x} \times \big[(\nabla \cdot \mathbf{E}) \mathbf{E} + (\nabla \cdot \mathbf{B})\mathbf{B} - \mathbf{B} \times (\nabla \times \mathbf{B}) - \mathbf{E} \times (\nabla \times \mathbf{E})\big] \ .
+$$
+On the left-hand side we have the angular momentum density along with the time derivative of some vector
+$$
+\boldsymbol{\mathcal{L}} \equiv \frac{1}{4\pi c} \mathbf{x} \times (\mathbf{E} \times \mathbf{B}) \ .
+$$
+This time derivative behaves as if it were the torque density of the field itself. We can thus interpret $\boldsymbol{\mathcal{L}}$ to be the *angular momentum density* stored in the field. Notice $\boldsymbol{\mathcal{L}}$ is clearly related to the ordinary momentum density $\mathbf{g}$, with
+$$
+\boldsymbol{\mathcal{L}} = \mathbf{x} \times \mathbf{g} \ .
+$$
+As we'd expect $\boldsymbol{\mathcal{L}}$ has the dimensions of angular momentum per unit volume, and its volume integral is the angular momentum stored in the field,
+$$
+\mathbf{L}_\text{EM} = \int d^3\mathbf{x} \ \boldsymbol{\mathcal{L}} \ .
+$$
+With this notation, the conservation law for angular momentum now has the form
+$$
+\boldsymbol{\nu} + \frac{\partial \boldsymbol{\mathcal{L}}}{\partial t} = \frac{1}{4\pi} \mathbf{x} \times \big[(\nabla \cdot \mathbf{E}) \mathbf{E} + (\nabla \cdot \mathbf{B})\mathbf{B} - \mathbf{B} \times (\nabla \times \mathbf{B}) - \mathbf{E} \times (\nabla \times \mathbf{E})\big] \ .
+$$
+Now, notice that the right-hand side apart from the $\mathbf{x} \times$ part is just the stress tensor $\mathbf{T}$ we derived before,
+$$
+\mathbf{T} = \frac{1}{4\pi} \bigg[\mathbf{E} \otimes \mathbf{E} + \mathbf{B} \otimes \mathbf{B} - \frac{1}{2}(\mathbf{E} \cdot \mathbf{E} + \mathbf{B} \cdot \mathbf{B}) \mathbf{1}\bigg] \ .
+$$
+We thus have
+$$
+\boldsymbol{\nu} + \frac{\partial \boldsymbol{\mathcal{L}}}{\partial t} = \nabla \cdot (\mathbf{x} \times \mathbf{T}) \ ,
+$$
+where we interpret $-\mathbf{x} \times \mathbf{T}$ as the antisymmetric rank-2 tensor whose components are given by
+$$
+M_{ij} \equiv T_{ij} x_k - T_{ik} x_j \ .
+$$
+The tensor $\mathbf{M} \equiv \mathbf{T} \times \mathbf{x}$ then represents the flux density of EM field's angular momentum.
+
+Putting this all together, we've derived the following conservation law for the electromagnetic angular momentum,
+$$
+\frac{\partial \boldsymbol{\mathcal{L}}}{\partial t} + \nabla \cdot \mathbf{M} = -\boldsymbol{\nu} \ .
 $$
 
-- Be more careful here. Follow Jackson + notes.
+- These last steps here are sloppy. The divergence now depends on the $\mathbf{x} \times$ part as well. Be more careful…
+- Evidently $\mathbf{M}$ is a rank-3 tensor, which should mean $\nabla \cdot \mathbf{M}$ is rank-2? Figure this out…
+
+
+$$
+\frac{\partial \mathcal{L}_i}{\partial t} + \partial_i M_{ij} = -\nu_i
+$$
+
+$$
+\frac{\partial \boldsymbol{\mathcal{L}}}{\partial t} + \nabla \cdot \mathbf{M} = -\boldsymbol{\nu}
+$$
+
+$$
+\mathbf{N} = \int d^3\mathbf{x} \ \boldsymbol{\nu}(\mathbf{x},t) = \int d^3\mathbf{x} \ \frac{\partial \boldsymbol{\mathcal{L}}_\text{mech}}{\partial t}
+$$
+
+$$
+\mathbf{M} = \mathbf{T} \times \mathbf{x} \quad \Longleftrightarrow \quad M_{ijk} = T_{ij} x_k - T_{ik} x_j
+$$
+
+$$
+\boldsymbol{\mathcal{L}} = \mathbf{x} \times \mathbf{g} = \frac{1}{4\pi c} \mathbf{x} \times (\mathbf{E} \times \mathbf{B}) = \frac{1}{c^2} \mathbf{x} \times \mathbf{S}
+$$
 
 
 
+$$
+\begin{align*}
+\big[\mathbf{x} \times [(\nabla \cdot \mathbf{E}) \mathbf{E} - \mathbf{E} \times (\nabla \times \mathbf{E})]\big]_a &= \varepsilon_{abi} x_b [(\nabla \cdot \mathbf{E}) \mathbf{E} - \mathbf{E} \times (\nabla \times \mathbf{E})]_i \\
+&= \varepsilon_{abi} x_b [E_i \partial_j E_j - \varepsilon_{ijk} \varepsilon_{k\ell m} E_j \partial_\ell E_m] \\
+&= \varepsilon_{abi} x_b [E_i \partial_j E_j - (\delta_{i\ell} \delta_{jm} - \delta_{im} \delta_{j\ell}) E_j \partial_\ell E_m] \\
+&= \varepsilon_{abi} x_b [E_i \partial_j E_j - E_j \partial_i E_j + E_j \partial_j E_i] \\
+&= \varepsilon_{abi} x_b [\partial_j (E_i E_j) - E_j \partial_j E_i - E_j \partial_i E_j + E_j \partial_j E_i] \\
+&= \varepsilon_{abi} x_b [\partial_j (E_i E_j) - E_k \partial_i E_k] \\
+&= \varepsilon_{abi} x_b \partial_j \bigg(E_i E_j - \frac{1}{2} E_k E_k \delta_{ij} \bigg) \ .
+\end{align*}
+$$
+
+$$
+\partial_j x_b T_{ij} = \delta_{jb} T_{ij} + x_b \partial_j T_{ij} \\
+= \bigg(E_i E_b + B_i B_b - \frac{1}{2} (E_k E_k + B_k B_k) \delta_{ib} \bigg) + x_b \partial_j T_{ij}
+$$
+
+
+$$
+\partial_j M_{ijk} = \partial_j(T_{ij} x_k - T_{ik} x_j) = x_k \partial_j T_{ij} - T_{ik} \partial_j x_j = x_k \partial_j T_{ij} - 3 T_{ik}
+$$
 
 
 
