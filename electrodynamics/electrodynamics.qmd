@@ -511,32 +511,11 @@ $$
 \mathbf{A}(\mathbf{x},t) = \frac{1}{c} \int d^3\mathbf{x}' \frac{\mathbf{J}(\mathbf{x}',t_\text{ret})}{|\mathbf{x} - \mathbf{x}'|} 
 } \ .
 $$
-Notice that now the equipotentials at any given point in time are now a function of the source at a previous time, not the value of the source at the current time. If a source is disturbed, it will take a finite amount of time for this disturbance to propagate out to a given field point and change the equipotentials. This lag time is of course just the time $|\mathbf{x} - \mathbf{x}'|/c$ for the disturbance to propagate from the source point to the field point when moving at the speed of light $c$.
-
-### Coulomb Gauge
-
-Remember that the particular solutions for the potentials above are only true in the Lorentz gauge, since only in the Lorentz gauge do the potentials satisfy the inhomogeneous wave equation. If one chooses another gauge the solutions will look different. For instance, in the Coulomb gauge $\nabla \cdot \mathbf{A} = 0$, the potentials instead satisfy the equations
+Notice that now the equipotentials at any given point in time are now a function of the source evaluated at the retarded time
 $$
-\begin{align*}
-
-\nabla^2 \phi &= -4\pi\rho \ , \\
-\nabla^2 \mathbf{A} - \frac{1}{c^2} \frac{\partial^2 \mathbf{A}}{\partial t^2} &= -\frac{4\pi}{c} \mathbf{J} + \frac{1}{c} \frac{\partial}{\partial t} \nabla\phi \ .
-
-\end{align*}
+t_\text{ret} = t - \frac{|\mathbf{x} - \mathbf{x}'|}{c} \ .
 $$
-This means the scalar potential will satisfy Poisson's equation, which means we get what the same solution we got in electrostatics, except that the charge density now depends on the *current* time $t$,
-$$
-\phi(\mathbf{x},t) = \int d^3\mathbf{x}' \frac{\rho(\mathbf{x}',t)}{|\mathbf{x} - \mathbf{x}'|} \ .
-$$
-Assuming we first solve for $\phi(\mathbf{x},t)$, the vector potential would again solve the inhomogeneous wave equation, except with the usual current density $\mathbf{J}(\mathbf{x},t)$ replaced by the *transverse current density* defined by
-$$
-\mathbf{J}_T(\mathbf{x},t) \equiv \mathbf{J}(\mathbf{x},t) - \frac{1}{4\pi} \frac{\partial}{\partial t} \nabla\phi(\mathbf{x},t) \ .
-$$
-This means in the Coulomb gauge the vector potential would have the particular solution
-$$
-\mathbf{A}(\mathbf{x},t) = \frac{1}{c} \int d^3\mathbf{x}' \frac{\mathbf{J}_T(\mathbf{x}',t_\text{ret})}{|\mathbf{x} - \mathbf{x}'|} \ .
-$$
-While this is a perfectly valid choice of gauge, its disadvantage is that it seems to suggest the scalar potential depends instantaneously on the charge density, while the vector potential depends on the transverse current density at a time in the past, thus breaking the symmetry between the behavior of the two fields and the intuitive sense that signals should only affect fields at a finite propagation speed. Nevertheless, the fields will still be the same in either choice of gauge, as they must.
+In particular, this means the fields will not respond instantaneously to changes to the sources, but instead to changes to the sources that happened at a lagged time $\Delta t = |\mathbf{x} - \mathbf{x}'|/c$ seconds in the past. This lag time is of course the time it takes for a disturbance to propagate from the source point $\mathbf{x}'$ to the find point $\mathbf{x}$ when traveling at the speed of light $c$. If a disturbance to the sources happens sooner, the field won't yet know that it's happened until the disturbance is able to reach it.
 
 ### Jefimenko Equations
 
@@ -565,7 +544,7 @@ $$
 Plugging these back into the above integral, we finally get
 $$
 \boxed{
-\mathbf{E}(\mathbf{x},t) = \int d^3\mathbf{x}' \bigg[\rho(\mathbf{x}',t_\text{ret}) \frac{\mathbf{x}-\mathbf{x}'}{|\mathbf{x}-\mathbf{x}'|^3} + \frac{\partial_t \rho(\mathbf{x}',t_\text{ret})}{c} \frac{\mathbf{x}-\mathbf{x}'}{|\mathbf{x}-\mathbf{x}'|^2} - \frac{\partial_t \mathbf{J}(\mathbf{x}',t_\text{ret})}{c^2} \frac{1}{|\mathbf{x}-\mathbf{x}'|} \bigg]
+\mathbf{E}(\mathbf{x},t) = \int d^3\mathbf{x}' \bigg[\rho(\mathbf{x}',t_\text{ret}) \frac{\mathbf{x}-\mathbf{x}'}{|\mathbf{x}-\mathbf{x}'|^3} + \frac{1}{c} \frac{\partial \rho(\mathbf{x}',t_\text{ret})}{\partial t} \frac{\mathbf{x}-\mathbf{x}'}{|\mathbf{x}-\mathbf{x}'|^2} - \frac{1}{c^2} \frac{\partial \mathbf{J}(\mathbf{x}',t_\text{ret})}{\partial t} \frac{1}{|\mathbf{x}-\mathbf{x}'|} \bigg]
 } \ .
 $$
 Notice when the source distributions are *static* the time derivative terms both vanish, leaving us with Coulomb's law from electrostatics as we'd expect. Provided $|\mathbf{x}-\mathbf{x}'| \ll ct$, we can set $t_\text{ret} \approx t$ and assume the source distributions affect the E-field instantaneously, which is what we implicitly assume in electrostatics.
@@ -590,16 +569,333 @@ $$
 Plugging this back in to the integral, we finally get
 $$
 \boxed{
-\mathbf{B}(\mathbf{x},t) = \frac{1}{c} \int d^3\mathbf{x}' \bigg[\mathbf{J}(\mathbf{x}',t_\text{ret}) \times \frac{\mathbf{x}-\mathbf{x}'}{|\mathbf{x}-\mathbf{x}'|^3} + \frac{\partial_t \mathbf{J}(\mathbf{x}',t_\text{ret})}{c} \times \frac{\mathbf{x}-\mathbf{x}'}{|\mathbf{x}-\mathbf{x}'|^2} \bigg]
+\mathbf{B}(\mathbf{x},t) = \frac{1}{c} \int d^3\mathbf{x}' \bigg[\mathbf{J}(\mathbf{x}',t_\text{ret}) \times \frac{\mathbf{x}-\mathbf{x}'}{|\mathbf{x}-\mathbf{x}'|^3} + \frac{1}{c} \frac{\partial \mathbf{J}(\mathbf{x}',t_\text{ret})}{\partial t} \times \frac{\mathbf{x}-\mathbf{x}'}{|\mathbf{x}-\mathbf{x}'|^2} \bigg]
 } \ .
 $$
 Notice that in the static case the time derivative in the second term vanishes, leaving us with the Biot-Savart law from magnetostatics provided $t_\text{ret} \approx t$. Indeed, this is the electrodynamics generalization of the Biot-Savart law, now accounting for the fact that the current density can vary with time. Since the second term contains an extra factor of $c$ in the denominator, it won't appreciably affect the B-field unless the current density is varying rapidly relative to the speed of light.
 
 Both of these equations together are known as the *Jefimenko equations*. Curiously, these equations were evidently never formally written down until the 1960s. Perhaps the main reason for this is that, while these equations are nice to be aware of, they're not particularly useful in practice to calculate the EM fields in electrodynamics. Indeed, it's usually much easier just to calculate the potentials explicitly and then differentiate them to find the fields.
 
+### Coulomb Gauge
+
+Remember that the particular solutions for the potentials above are only true in the Lorentz gauge, since only in the Lorentz gauge do the potentials satisfy the inhomogeneous wave equation. If one chooses another gauge the solutions will look different. For instance, in the Coulomb gauge $\nabla \cdot \mathbf{A} = 0$, the potentials instead satisfy the equations
+$$
+\begin{align*}
+
+\nabla^2 \phi &= -4\pi\rho \ , \\
+\nabla^2 \mathbf{A} - \frac{1}{c^2} \frac{\partial^2 \mathbf{A}}{\partial t^2} &= -\frac{4\pi}{c} \mathbf{J} + \frac{1}{c} \frac{\partial}{\partial t} \nabla\phi \ .
+
+\end{align*}
+$$
+This means the scalar potential will satisfy Poisson's equation, which means we get what the same solution we got in electrostatics, except that the charge density now depends on the *current* time $t$,
+$$
+\phi(\mathbf{x},t) = \int d^3\mathbf{x}' \frac{\rho(\mathbf{x}',t)}{|\mathbf{x} - \mathbf{x}'|} \ .
+$$
+Assuming we first solve for $\phi(\mathbf{x},t)$, the vector potential would again solve the inhomogeneous wave equation, except with the usual current density $\mathbf{J}(\mathbf{x},t)$ replaced by the *transverse current density* defined by
+$$
+\mathbf{J}_T(\mathbf{x},t) \equiv \mathbf{J}(\mathbf{x},t) - \frac{1}{4\pi} \frac{\partial}{\partial t} \nabla\phi(\mathbf{x},t) \ .
+$$
+This means in the Coulomb gauge the vector potential would have the particular solution
+$$
+\mathbf{A}(\mathbf{x},t) = \frac{1}{c} \int d^3\mathbf{x}' \frac{\mathbf{J}_T(\mathbf{x}',t_\text{ret})}{|\mathbf{x} - \mathbf{x}'|} \ .
+$$
+While this is a perfectly valid choice of gauge, its disadvantage is that it seems to suggest the scalar potential depends instantaneously on the charge density, while the vector potential depends on the transverse current density at a time in the past, thus breaking the symmetry between the behavior of the two fields and the intuitive sense that signals should only affect fields at a finite propagation speed. Nevertheless, the fields will still be the same in either choice of gauge, as they must.
+
+
+## Conservation Laws
+
+We'll now derive the important conservation laws of electrodynamics. We've already shown, rather required, that the conservation of charge be satisfied in electrodynamics via the continuity equation
+$$
+\frac{\partial \rho}{\partial t} + \nabla \cdot \mathbf{J} = 0 \ .
+$$
+We now want to see what the conservation laws look like for the other quantities of interest, namely electromagnetic energy,  momentum, and angular momentum. 
+
+Before exploring these, it'll be helpful to analyze the general form of a local conservation law. Suppose $Q(t)$ is the amount of some scalar quantity of interest enclosed in some given closed region $\mathcal{V}$ of space at a given time $t$. This could be for instance the total charge inside the region, the total energy, or a component of a field's momentum. Now, $Q(t)$ can only change in one of two possible ways, either $Q$ flows out of (or into) the region, or $Q$ gets created (or destroyed) inside the region via some source. In mathematical terms, we can express this conservation law by writing
+$$
+\frac{dQ}{dt} = -(\text{rate of flow out}) + (\text{rate of creation}) \ .
+$$
+The minus sign reflects the fact that $Q$ will decrease if it flows out of the region. Now, assuming we can define $Q$ in terms of some density function $\rho_Q(\mathbf{x},t)$, we can write
+$$
+Q(t) = \int_\mathcal{V} d^3\mathbf{x} \ \rho_Q(\mathbf{x},t) \ .
+$$
+Similarly, if $Q$ flows out of the volume with some flow velocity $\mathbf{v}_Q(\mathbf{x},t)$, we can express the rate of flow of $Q$ out of the region in terms of a flux density vector $\mathbf{J}_Q(\mathbf{x},t)$ defined by $\mathbf{J}_Q \equiv \rho_Q \mathbf{v}_Q$. Then we have
+$$
+\text{rate of flow out} = \int_\mathcal{S} \mathbf{J}_Q \cdot d\mathbf{a} \ .
+$$
+If we now define $R_Q(\mathbf{x},t)$ to be the creation of $Q(t)$ per unit volume inside $\mathcal{V}$, we can write the conservation law above as
+$$
+\frac{d}{dt} \int_\mathcal{V} d^3\mathbf{x} \ \rho_Q(\mathbf{x},t) = -\int_\mathcal{S} \mathbf{J}_Q \cdot d\mathbf{a} + \int_\mathcal{V} d^3\mathbf{x} \ R_Q(\mathbf{x},t) \ .
+$$
+Moving the time derivative inside the integral on the left and then using the divergence theorem to rewrite the surface integral on the right as a volume integral, we finally arrive at the following continuity equation for $Q(t)$,
+$$
+\frac{\partial \rho_Q}{\partial t} + \nabla \cdot \mathbf{J}_Q = R_Q \ .
+$$
+This continuity equation looks exactly like the one for conservation of charge, except we generalize it by allowing for the possibility that $Q$ can be spontaneously created inside the region due to some source. For charge, we require that charge can never be spontaneously created since there's no way to create charge in classical physics. However, for other quantities like energy or momentum there are indeed sources that can create them.
+
+### Conservation of Energy
+
+Recall from the previous chapter that the potential energy $\mathcal{U}$ stored in an EM field is given by
+$$
+\mathcal{U} = \frac{1}{8\pi} \int d^3\mathbf{x} \ (\mathbf{E}^2 + \mathbf{B}^2) \ .
+$$
+The energy density $u(\mathbf{x},t)$ of the EM field is of course
+$$
+u = \frac{1}{8\pi}(\mathbf{E}^2 + \mathbf{B}^2) \ .
+$$
+Let's look at the time derivative of the energy density and see what we find. By the product rule, we can write
+$$
+\frac{\partial u}{\partial t} = \frac{1}{4\pi} \bigg(\mathbf{E} \cdot \frac{\partial \mathbf{E}}{\partial t} + \mathbf{B} \cdot \frac{\partial \mathbf{B}}{\partial t}\bigg) \ .
+$$
+From Maxwell's equations, we know that
+$$
+\frac{\partial \mathbf{E}}{\partial t} = c \nabla \times \mathbf{B} - 4\pi \mathbf{J} \quad , \quad \frac{\partial \mathbf{B}}{\partial t} = -c \nabla \times \mathbf{E} \ .
+$$
+Substituting these back in, we have
+$$
+\frac{\partial u}{\partial t} = \frac{c}{4\pi} \bigg(\mathbf{E} \cdot (\nabla \times \mathbf{B}) - \mathbf{B} \cdot (\nabla \times \mathbf{E})\bigg) - \mathbf{J} \cdot \mathbf{E} \ .
+$$
+Now, one can easily show using index notation that the following vector calculus identity holds,
+$$
+\nabla \cdot (\mathbf{E} \times \mathbf{B}) = -\mathbf{E} \cdot (\nabla \times \mathbf{B}) + \mathbf{B} \cdot (\nabla \times \mathbf{E}) \ .
+$$
+We thus evidently have the following conservation law for the potential energy stored in an EM field,
+$$
+\frac{\partial u}{\partial t} + \nabla \cdot \bigg(\frac{c}{4\pi}\mathbf{E} \times \mathbf{B}\bigg) = - \mathbf{J} \cdot \mathbf{E} \ .
+$$
+Inside the divergence must be the energy flux density, which we call the *Poynting vector* $\mathbf{S}$,
+$$
+\boxed{
+\mathbf{S} \equiv \frac{c}{4\pi}\mathbf{E} \times \mathbf{B}
+} \ .
+$$
+By definition, the Poynting vector has dimensions of energy flux density, or energy per unit time per unit area, or power per unit area. This is true in every system of units, which means $\mathbf{S}$ has units $\text{erg}/\text{s} \cdot \text{cm}^2$ in Gaussian units, and units of $\text{W}/\text{m}^2$ in SI units.
+
+The Poynting vector represents the direction of EM field energy flow. Since $\mathbf{S} \propto \mathbf{E} \times \mathbf{B}$, the field energy will always flow in a direction perpendicular to the plane spanned by $\mathbf{E}(\mathbf{x},t)$ and $\mathbf{B}(\mathbf{x},t)$ at a given instant of time. This flow of EM energy we call *electromagnetic radiation*. As we'll see later, EM energy is propagated in the form of EM waves. The total amount of energy radiated through a fixed volume per unit time, or *total power radiated*, is given by the closed surface integral
+$$
+P = \oint_\mathcal{S} \mathbf{S} \cdot d\mathbf{a} \ .
+$$
+The conservation law for electromagnetic potential energy is known as *Poynting's theorem*, given by
+$$
+\boxed{
+\frac{\partial u}{\partial t} + \nabla \cdot \mathbf{S} = - \mathbf{J} \cdot \mathbf{E} 
+} \ .
+$$
+Unlike with conservation of charge, conservation of energy contains a creation term $R = -\mathbf{J} \cdot \mathbf{E}$ on the right-hand side, reflecting the fact that the energy inside a given volume can change if currents are running through it. If $R < 0$ then energy is being dissipated inside the volume. We saw this, for instance, when discussing Ohmic heating, where a resistor dissipates heat when a current is pumped through it. If $R > 0$ then energy is being created inside the volume. This happens, for instance, when charging a capacitor. Let's look at both of these examples in more detail.
+
+##### Example: Energy dissipation in a resistor
+
+In the previous chapter, we showed that when an Ohmic material is hooked up to a voltage source it undergoes Ohmic heating. As a current is pumped through the resistor, it dissipates energy according to the formula $P = IV = I^2 R$. We can prove this is the case using the conservation of energy as well.
+
+To that end, suppose we have a cylindrical Ohmic material hooked up to a voltage source in the manner shown below.
+
+FIGURE (resistor cylinder with all the fields and currents shown)
+
+
+
+
+
+##### Example: Energy storage in a capacitor
+
+blah
+
+### Conservation of Momentum
+
+Let's now turn our attention to conservation of EM field momentum. It may be surprising that EM fields have momentum. After all, in classical mechanics momentum is defined as mass times velocity. EM fields don't have mass, but they do indeed have momentum. This surprising fact is a direct consequence of insisting that momentum be conserved when charges move in the presence of an EM field.
+
+Recall that the force acting on a charge $q$ moving at a velocity $\mathbf{v}$ in an external EM field is given by the Lorentz force law,
+$$
+\mathbf{F} = q\mathbf{E} + q\frac{\mathbf{v}}{c} \times \mathbf{B} \ .
+$$
+According to Newton's second law, this force is also the time derivative of the mechanical momentum $\mathbf{P}_\text{mech}$,
+$$
+\mathbf{F} = \frac{d\mathbf{P}_\text{mech}}{dt} \ .
+$$
+If we insist that momentum be conserved, then there must be some other added momentum to compensate the field momentum. This extra momentum $\mathbf{P}_\text{field}$ we call the momentum of the EM field. For the total momentum to be conserved, we thus require that
+$$
+\frac{d\mathbf{P}_\text{mech}}{dt} + \frac{d\mathbf{P}_\text{field}}{dt} = 0 \ .
+$$
+That is, we require that
+$$
+\frac{d\mathbf{P}_\text{field}}{dt} = -\mathbf{F} \ .
+$$
+For an arbitrary charge distribution, the Lorentz force law becomes
+$$
+\mathbf{F} = \int d^3\mathbf{x} \ \bigg(\rho\mathbf{E} + \frac{\mathbf{J}}{c} \times \mathbf{B}\bigg) \ ,
+$$
+where the integrand $\mathbf{f}(\mathbf{x},t)$ is the force per unit volume or *force density*
+$$
+\mathbf{f} \equiv \rho \mathbf{E} + \frac{\mathbf{J}}{c} \times \mathbf{B} \ .
+$$
+We thus have that
+$$
+\frac{d\mathbf{P}_\text{field}}{dt} = -\int d^3\mathbf{x} \ \mathbf{f}(\mathbf{x},t) \ .
+$$
+That is, the momentum in the EM field is being created or destroyed inside a given volume via the creation function $\mathbf{R} = -\mathbf{f}$, which is now evidently a vector instead of a scalar.
+
+Let's now analyze this force density more closely. If we apply Maxwell's equations, we can write
+$$
+\begin{align*}
+\mathbf{f} &= \frac{1}{4\pi} (\nabla \cdot \mathbf{E}) \mathbf{E} + \frac{1}{c} \bigg(\frac{c}{4\pi}\nabla \times \mathbf{B} - \frac{1}{4\pi} \frac{\partial \mathbf{E}}{\partial t} \bigg) \times \mathbf{B} \\
+&= \frac{1}{4\pi} \bigg[(\nabla \cdot \mathbf{E}) \mathbf{E} + (\nabla \times \mathbf{B}) \times \mathbf{B} - \frac{1}{c} \frac{\partial \mathbf{E}}{\partial t} \times \mathbf{B} \bigg] \\
+&= \frac{1}{4\pi} \bigg[(\nabla \cdot \mathbf{E}) \mathbf{E} + (\nabla \cdot \mathbf{B}) \mathbf{B} + (\nabla \times \mathbf{B}) \times \mathbf{B} - \frac{1}{c} \frac{\partial \mathbf{E}}{\partial t} \times \mathbf{B} \bigg]
+\end{align*}
+$$
+In the last step we used the fact that $\nabla \cdot \mathbf{B} = 0$ to insert a vanishing term $(\nabla \times \mathbf{B}) \times \mathbf{B}$. This will be useful in a moment. Next, notice we can simplify the cross product $(\partial_t \mathbf{E}) \times \mathbf{B}$ by applying the product rule along with Faraday's law to get
+$$
+\frac{\partial\mathbf{E}}{\partial t} \times \mathbf{B} = \frac{\partial}{\partial t} (\mathbf{E} \times \mathbf{B}) - \mathbf{E} \times \frac{\partial \mathbf{B}}{\partial t} = \frac{\partial}{\partial t} (\mathbf{E} \times \mathbf{B}) - c (\nabla \times \mathbf{E}) \times \mathbf{E} \ .
+$$
+Plugging this into $\mathbf{f}$, we now have
+$$
+\mathbf{f} = \frac{1}{4\pi} \big[(\nabla \cdot \mathbf{E}) \mathbf{E} + (\nabla \cdot \mathbf{B})\mathbf{B} - \mathbf{B} \times (\nabla \times \mathbf{B}) - \mathbf{E} \times (\nabla \times \mathbf{E})\big] - \frac{1}{4\pi c} \frac{\partial}{\partial t} (\mathbf{E} \times \mathbf{B}) \ .
+$$
+Now, notice the right-most term has the units of force density. It's the partial time derivative of a vector field $\mathbf{g}(\mathbf{x},t)$ carrying units of momentum per unit volume, or *momentum density*,
+$$
+\boxed{
+\mathbf{g} \equiv \frac{1}{4\pi c} \mathbf{E} \times \mathbf{B}
+} \ .
+$$
+We can thus interpret $\mathbf{g}$ as being the density of the field momentum $\mathbf{P}_\text{field}$,
+$$
+\mathbf{P}_\text{field} = \int d^3\mathbf{x} \ \mathbf{g}(\mathbf{x},t) = \frac{1}{4\pi c} \int d^3\mathbf{x} \ (\mathbf{E} \times \mathbf{B}) \ .
+$$
+We thus now know that the density of the field momentum is $\mathbf{g}$ and its creation function is $-\mathbf{f}$. Notice that $\mathbf{g}$ is also directly proportional to the Poynting vector or energy flux density $\mathbf{S}$, with
+$$
+\mathbf{g} = \frac{\mathbf{S}}{c^2} \ .
+$$
+This implies that the momentum will flow through the volume as an EM wave in the same direction as the energy does, perpendicular to the directions of both the E-field and the B-field.
+
+All that remains now is to figure out what the flux density of the field momentum is. To do that, consider now the remaining term in the conservation law above,
+$$
+\nabla \cdot \mathbf{T} \equiv \frac{1}{4\pi} \big[(\nabla \cdot \mathbf{E}) \mathbf{E} + (\nabla \cdot \mathbf{B})\mathbf{B} - \mathbf{B} \times (\nabla \times \mathbf{B}) - \mathbf{E} \times (\nabla \times \mathbf{E})\big] \ .
+$$
+The goal is to extract from this remaining piece the divergence of some quantity $\mathbf{T}$ that we can identify as a momentum flux density. Since $\mathbf{g}$ is a vector, there will be one flux density vector per component of $\mathbf{g}$, or equivalently a rank-2 tensor.
+
+At this point it makes sense to proceed in index notation. Observe that
+$$
+\begin{align*}
+[(\nabla \cdot \mathbf{E}) \mathbf{E} - \mathbf{E} \times (\nabla \times \mathbf{E})]_i &= E_i \partial_j E_j - \varepsilon_{ijk} \varepsilon_{k\ell m} E_j \partial_\ell E_m \\
+&= E_i \partial_j E_j - (\delta_{i\ell} \delta_{jm} - \delta_{im} \delta_{j\ell}) E_j \partial_\ell E_m \\
+&= E_i \partial_j E_j - E_j \partial_i E_j + E_j \partial_j E_i \\
+&= \partial_j (E_i E_j) - E_j \partial_j E_i - E_j \partial_i E_j + E_j \partial_j E_i \\
+&= \partial_j (E_i E_j) - E_k \partial_i E_k \\
+&= \partial_j \bigg(E_i E_j - \frac{1}{2} E_k E_k \delta_{ij} \bigg) \ .
+\end{align*}
+$$
+Similarly, we have
+$$
+[(\nabla \cdot \mathbf{B}) \mathbf{B} - \mathbf{B} \times (\nabla \times \mathbf{B})]_i = \partial_j \bigg(B_i B_j - \frac{1}{2} B_k B_k \delta_{ij} \bigg) \ .
+$$
+Putting these together, we have
+$$
+(\nabla \cdot \mathbf{T})_i = \frac{1}{4\pi} \partial_j \bigg[E_i E_j - B_i B_j - \frac{1}{2} (E_k E_k + B_k B_k) \delta_{ij} \bigg] \ .
+$$
+We've thus managed to reduce the remaining term in the conservation law to the divergence of a rank-2 tensor, which we've denoted by $\mathbf{T}$. That $\mathbf{T}$ is in fact a valid tensor follows from the fact that it's a sum of outer products with a scalar multiplied by the identity tensor. In component notation, this tensor is given by
+$$
+T_{ij} = \frac{1}{4\pi} \bigg[E_i E_j + B_i B_j - \frac{1}{2}(E_k E_k + B_k B_k) \delta_{ij}\bigg] \ .
+$$
+We call $\mathbf{T}$ the *Maxwell stress tensor*. In abstract notation, we can write
+$$
+\boxed{
+\mathbf{T} = \frac{1}{4\pi} \bigg[\mathbf{E} \otimes \mathbf{E} + \mathbf{B} \otimes \mathbf{B} - \frac{\mathbf{E}^2 + \mathbf{B}^2}{2} \mathbf{1}\bigg]
+} \ .
+$$
+The stress tensor evidently has dimensions of energy density, or equivalently dimensions of *pressure*, carrying units of $\text{dyne}/\text{cm}^2$ in Gaussian units or $\text{N}/\text{m}^2$ in SI units. Since $\mathbf{T}$ is a linear combination of valid rank-2 tensors, it must indeed be a valid rank-2 tensor as we claimed. Moreover, $\mathbf{T}$ is a symmetric tensor since $T_{ij} = T_{ji}$.
+
+Notice that the divergence of a rank-2 tensor is evidently a vector since we contract over only one of the indices. Since $\mathbf{T}$ is symmetric we have $\partial_j T_{ij} = \partial_i T_{ij}$, which means we can take the divergence by contracting over either index, meaning the notation $\nabla \cdot \mathbf{T}$ is unambiguous.
+
+The fact that the stress tensor has dimensions of pressure suggests that not only do EM fields have energy and momentum, but they also have pressure. These pressures are given by the diagonals of the stress tensor. The off-diagonal components of the stress tensor represent shearing.
+
+The closed surface integral of the stress tensor represents the total force flowing out of a given fixed volume,
+$$
+\mathbf{F} = \oint_\mathcal{S} \mathbf{T} \cdot d\mathbf{a} \ .
+$$
+We've thus shown that the conservation law for field momentum is given by
+$$
+\boxed{
+\frac{\partial\mathbf{g}}{\partial t} - \nabla \cdot \mathbf{T} = -\mathbf{f} 
+} \ .
+$$
+This says that the field momentum can change in one of two ways, either by flowing into or out of a fixed volume according to the divergence of the stress tensor $\mathbf{T}$, or by being created or dissipated through the field's coupling with particles inside the volume via the Lorentz force law.
+
+- Talk more about EM pressure, maybe illustrate with a simple example or figure.
+- Consider working an example, e.g. Coulomb's law the hard way
+- Why does $\nabla \cdot \mathbf{T}$ carry a minus sign in the conservation law?
+
+$$
+T_{xx} = \frac{1}{4\pi} \bigg[E_x^2 + B_x^2 - \frac{1}{2}(E_k E_k + B_k B_k)\bigg] = \frac{1}{8\pi} \bigg[(E_x^2 - E_y^2 - E_z^2) + (B_x^2 - B_y^2 - B_z^2)\bigg]
+$$
+
+
+
+
+
+### Conservation of Angular Momentum
+
+Finally, we'll consider the remaining quantity that's often conserved in classical mechanics, angular momentum. When a charged particle is moving in an EM field, it will also experience a torque $\mathbf{N}$ given by
+$$
+\mathbf{N} = \mathbf{x} \times \mathbf{F} = \mathbf{x} \times \bigg(q\mathbf{E} + q\frac{\mathbf{v}}{c} \times \mathbf{B}\bigg) \ .
+$$
+The torque is also the time derivative of the mechanical angular momentum $\mathbf{L}_\text{mech}$,
+$$
+\mathbf{N} = \frac{d\mathbf{L}_\text{mech}}{dt} \ .
+$$
+If we insist that angular momentum be conserved, then there must be some other angular momentum to compensate. This extra angular momentum $\mathbf{L}_\text{mech}$ we call the angular momentum of the EM field. For the *total* angular momentum of the system to be conserved, we thus require that
+$$
+\frac{d\mathbf{L}_\text{mech}}{dt} + \frac{d\mathbf{L}_\text{field}}{dt} = 0 \ ,
+$$
+or equivalently that
+$$
+\frac{d\mathbf{L}_\text{field}}{dt} = -\mathbf{N} \ .
+$$
+For an arbitrary charge distribution, we can write the torque as an integral
+$$
+\mathbf{N} = \int d^3\mathbf{x} \ \mathbf{x} \times \bigg(\rho\mathbf{E} + \frac{\mathbf{J}}{c} \times \mathbf{B}\bigg) \ ,
+$$
+where the integrand is the torque per unit volume or *torque density*
+$$
+\mathbf{x} \times \mathbf{f} = \mathbf{x} \times \bigg(\rho \mathbf{E} + \frac{\mathbf{J}}{c} \times \mathbf{B}\bigg) \ .
+$$
+We thus have that
+$$
+\frac{d\mathbf{L}_\text{field}}{dt} = -\int d^3\mathbf{x} \ \mathbf{x} \times \mathbf{f}(\mathbf{x},t) \ .
+$$
+That is, the angular momentum in the EM field is being created or destroyed inside a given fixed volume through the coupling of the field with a particle inside the volume via the torque.
+
+Now, according to the conservation of momentum law we found in the previous section, we can write
+$$
+\mathbf{f} = \frac{1}{4\pi} \big[(\nabla \cdot \mathbf{E}) \mathbf{E} + (\nabla \cdot \mathbf{B})\mathbf{B} - \mathbf{B} \times (\nabla \times \mathbf{B}) - \mathbf{E} \times (\nabla \times \mathbf{E})\big] - \frac{\partial \mathbf{g}}{\partial t} \ .
+$$
+This means we have
+$$
+\mathbf{x} \times \mathbf{f} = \frac{1}{4\pi} \mathbf{x} \times \big[(\nabla \cdot \mathbf{E}) \mathbf{E} + (\nabla \cdot \mathbf{B})\mathbf{B} - \mathbf{B} \times (\nabla \times \mathbf{B}) - \mathbf{E} \times (\nabla \times \mathbf{E})\big] - \frac{\partial}{\partial t} (\mathbf{x} \times\mathbf{g}) \ .
+$$
+The partial derivative of $\mathbf{x} \times\mathbf{g}$ must evidently have dimensions of torque density, when means $\mathbf{x} \times\mathbf{g}$ itself must evidently have dimensions of an angular momentum density. We thus define
+$$
+\boldsymbol{\mathcal{L}} \equiv \mathbf{x} \times \mathbf{g} \ ,
+$$
+and interpret $\boldsymbol{\mathcal{L}}(\mathbf{x},t)$ as the density of the field angular momentum $\mathbf{L}_\text{field}$,
+$$
+\mathbf{L}_\text{field} = \int d^3\mathbf{x} \ \boldsymbol{\mathcal{L}}(\mathbf{x},t) \ .
+$$
+All that remains in the conservation law is the term
+$$
+\nabla \cdot \mathbf{M} \equiv \frac{1}{4\pi} \mathbf{x} \times \big[(\nabla \cdot \mathbf{E}) \mathbf{E} + (\nabla \cdot \mathbf{B})\mathbf{B} - \mathbf{B} \times (\nabla \times \mathbf{B}) - \mathbf{E} \times (\nabla \times \mathbf{E})\big] \ .
+$$
+One can show that $\mathbf{M}$ is a rank-2 *pseudo-tensor* given by the tensor curl $\mathbf{M} = \mathbf{T} \times \mathbf{x}$, which is abstract notation for the rank-2 pseudo-tensor whose components $M_{ij}$ are given by
+$$
+M_{ij} = \varepsilon_{jk\ell} T_{ik} x_\ell \ . 
+$$
+The term pseudo-tensor is used here instead of tensor because, like any cross product, the result doesn't transform normally under spatial rotations. Instead of having $\mathbf{M} \to \mathbf{R} \cdot \mathbf{M}$ under a spatial rotation $\mathbf{R}$, we instead have $\mathbf{M} \to -\mathbf{R} \cdot \mathbf{M}$.
+
+Letting $\nabla \cdot \mathbf{M}$ denote the vector whose components are $-\partial_j M_{ij}$, we can thus express the conservation law for angular momentum as
+$$
+\frac{\partial \boldsymbol{\mathcal{L}}}{\partial t} + \nabla \cdot \mathbf{M} = -\mathbf{x} \times \mathbf{f} \ .
+$$
+In this form, the conservation law for angular momentum looks analogous to the one we derived for ordinary momentum, except that each quantity now contains a cross product with $\mathbf{x}$.
+
 ## Lienard-Wiechert Potentials
 
-We'd now like to calculate the potentials for what should be the simplest problem in electrodynamics, the moving point charge. As we'll see, even the potentials and fields for such a simple problem turn out to be surprisingly complicated compared to those for the stationary point charge from electrostatics. However, they contain a powerful implication: Namely, moving charges *radiate*. That is, they emit electromagnetic energy.
+We'd now like to calculate the potentials and fields for what should be the simplest problem in electrodynamics, the moving point charge. As we'll see, even the potentials and fields for such a simple problem turn out to be surprisingly complicated compared to those for the stationary point charge. However, in them we'll see an important implication: moving charges radiate energy.
 
 ### Potentials
 
@@ -712,310 +1008,3 @@ In this form it's understood that the arguments inside the brackets are evaluate
 
 - Follow wikipedia article for more here. Seems like the simplest approach.
 - There are different retarded times in this problem, one that depends on $t'$ and one that doesn't. Figure this out.
-
-
-
-
-## Conservation Laws
-
-We'll now derive the important conservation laws of electrodynamics. We've already shown, rather required, that the conservation of charge be satisfied in electrodynamics via the continuity equation
-$$
-\frac{\partial \rho}{\partial t} + \nabla \cdot \mathbf{J} = 0 \ .
-$$
-We now want to see what the conservation laws look like for the other quantities of interest, namely electromagnetic energy,  momentum, and angular momentum. 
-
-Before exploring these, it'll be helpful to analyze the general form of a local conservation law. Suppose $Q(t)$ is the amount of some scalar quantity of interest enclosed in some given closed region $\mathcal{V}$ of space at a given time $t$. This could be for instance the total charge inside the region, the total energy, or a component of a field's momentum. Now, $Q(t)$ can only change in one of two possible ways, either $Q$ flows out of (or into) the region, or $Q$ gets created (or destroyed) inside the region via some source. In mathematical terms, we can express this conservation law by writing
-$$
-\frac{dQ}{dt} = -(\text{rate of flow out}) + (\text{rate of creation}) \ .
-$$
-The minus sign reflects the fact that $Q$ will decrease if it flows out of the region. Now, assuming we can define $Q$ in terms of some density function $\rho_Q(\mathbf{x},t)$, we can write
-$$
-Q(t) = \int_\mathcal{V} d^3\mathbf{x} \ \rho_Q(\mathbf{x},t) \ .
-$$
-Similarly, if $Q$ flows out of the volume with some flow velocity $\mathbf{v}_Q(\mathbf{x},t)$, we can express the rate of flow of $Q$ out of the region in terms of a flux density vector $\mathbf{J}_Q(\mathbf{x},t)$ defined by $\mathbf{J}_Q \equiv \rho_Q \mathbf{v}_Q$. Then we have
-$$
-\text{rate of flow out} = \int_\mathcal{S} \mathbf{J}_Q \cdot d\mathbf{a} \ .
-$$
-If we now define $R_Q(\mathbf{x},t)$ to be the creation of $Q(t)$ per unit volume inside $\mathcal{V}$, we can write the conservation law above as
-$$
-\frac{d}{dt} \int_\mathcal{V} d^3\mathbf{x} \ \rho_Q(\mathbf{x},t) = -\int_\mathcal{S} \mathbf{J}_Q \cdot d\mathbf{a} + \int_\mathcal{V} d^3\mathbf{x} \ R_Q(\mathbf{x},t) \ .
-$$
-Moving the time derivative inside the integral on the left and then using the divergence theorem to rewrite the surface integral on the right as a volume integral, we finally arrive at the following continuity equation for $Q(t)$,
-$$
-\frac{\partial \rho_Q}{\partial t} + \nabla \cdot \mathbf{J}_Q = R_Q \ .
-$$
-This continuity equation looks exactly like the one for conservation of charge, except we generalize it by allowing for the possibility that $Q$ can be spontaneously created inside the region due to some source. For charge, we require that charge can never be spontaneously created since there's no way to create charge in classical physics. However, for other quantities like energy or momentum there are indeed sources that can create them.
-
-### Conservation of Energy
-
-Recall from the previous chapter that the potential energy $\mathcal{U}$ stored in an EM field is given by
-$$
-\mathcal{U} = \frac{1}{8\pi} \int d^3\mathbf{x} \ (\mathbf{E}^2 + \mathbf{B}^2) \ .
-$$
-The energy density $u(\mathbf{x},t)$ of the EM field is of course
-$$
-u = \frac{1}{8\pi}(\mathbf{E}^2 + \mathbf{B}^2) \ .
-$$
-Let's look at the time derivative of the energy density and see what we find. By the product rule, we can write
-$$
-\frac{\partial u}{\partial t} = \frac{1}{4\pi} \bigg(\mathbf{E} \cdot \frac{\partial \mathbf{E}}{\partial t} + \mathbf{B} \cdot \frac{\partial \mathbf{B}}{\partial t}\bigg) \ .
-$$
-From Maxwell's equations, we know that
-$$
-\frac{\partial \mathbf{E}}{\partial t} = c \nabla \times \mathbf{B} - 4\pi \mathbf{J} \quad , \quad \frac{\partial \mathbf{B}}{\partial t} = -c \nabla \times \mathbf{E} \ .
-$$
-Substituting these back in, we have
-$$
-\frac{\partial u}{\partial t} = \frac{c}{4\pi} \bigg(\mathbf{E} \cdot (\nabla \times \mathbf{B}) - \mathbf{B} \cdot (\nabla \times \mathbf{E})\bigg) - \mathbf{J} \cdot \mathbf{E} \ .
-$$
-Now, one can easily show using index notation that the following vector calculus identity holds,
-$$
-\nabla \cdot (\mathbf{E} \times \mathbf{B}) = -\mathbf{E} \cdot (\nabla \times \mathbf{B}) + \mathbf{B} \cdot (\nabla \times \mathbf{E}) \ .
-$$
-We thus evidently have the following conservation law for the potential energy stored in an EM field,
-$$
-\frac{\partial u}{\partial t} + \nabla \cdot \bigg(\frac{c}{4\pi}\mathbf{E} \times \mathbf{B}\bigg) = - \mathbf{J} \cdot \mathbf{E} \ .
-$$
-Inside the divergence must be the energy flux density, which we call the *Poynting vector* $\mathbf{S}$,
-$$
-\boxed{
-\mathbf{S} \equiv \frac{c}{4\pi}\mathbf{E} \times \mathbf{B}
-} \ .
-$$
-We'll see the Poynting vector several times in this course. For now observe a couple of things. First, since $\mathbf{S} \propto \mathbf{E} \times \mathbf{B}$, the energy will always flow *perpendicular* to the direction of both EM fields in a direction determined by the right-hand rule. Second, notice the Poynting vector has dimensions of energy flux density, which is energy per unit area per unit time, or equivalently power per unit area. This is true in every unit system, which means $\mathbf{S}$ has units $\text{erg}/\text{s} \cdot \text{cm}^2$ in Gaussian units, and units of $\text{W}/\text{m}^2$ in SI units.
-
-The conservation law for electromagnetic potential energy is known as *Poynting's theorem*, given by
-$$
-\boxed{
-\frac{\partial u}{\partial t} + \nabla \cdot \mathbf{S} = - \mathbf{J} \cdot \mathbf{E} 
-} \ .
-$$
-Unlike with conservation of charge, conservation of energy contains a dissipation term on the right-hand side, reflecting the fact that currents can cause fields to dissipate energy. That energy is dissipated from the field rather than created is reflected in the minus sign. We've seen this dissipation term before. It's known as *Ohmic heating*. We saw that when an E-field is applied across a material it induces a current density inside the material which causes energy to dissipate out of the material at a rate $\mathbf{J} \cdot \mathbf{E}$, usually by heating up the material. This is just the generalization of the familiar $I^2R$ rate of energy dissipation of a resistor.
-
-### Conservation of Momentum
-
-Let's now turn our attention to conservation of EM field momentum. It may be surprising that EM fields have momentum. After all, in classical mechanics momentum is defined as mass times velocity. EM fields don't have mass, but they do indeed have momentum. This surprising fact is a direct consequence of the Lorentz force law.
-
-Recall that the force acting on a charge $q$ moving at a velocity $\mathbf{v}$ in an external EM field is given by
-$$
-\mathbf{F} = q\mathbf{E} + q\frac{\mathbf{v}}{c} \times \mathbf{B} \ .
-$$
-By extension, the force on an arbitrary charge distribution due to an external EM field is given by
-$$
-\mathbf{F} = \int d^3\mathbf{x} \ \bigg(\rho\mathbf{E} + \frac{\mathbf{J}}{c} \times \mathbf{B}\bigg) \ .
-$$
-Now, according to Newton's second law, this force is also the time derivative of the mechanical momentum,
-$$
-\mathbf{F} = \frac{d\mathbf{P}_\text{mech}}{dt} \ .
-$$
-This means we have
-$$
-\frac{d\mathbf{P}_\text{mech}}{dt} = \int d^3\mathbf{x} \bigg(\rho\mathbf{E} + \frac{\mathbf{J}}{c} \times \mathbf{B}\bigg) \ .
-$$
-We'd now like to more closely examine the integrand, which is just the *force density* $\mathbf{f}$,
-$$
-\mathbf{f} \equiv \rho \mathbf{E} + \frac{\mathbf{J}}{c} \times \mathbf{B} \ .
-$$
-If we apply Maxwell's equations to the right-hand side to eliminate the densities, we get
-$$
-\begin{align*}
-\mathbf{f} &= \frac{1}{4\pi} (\nabla \cdot \mathbf{E}) \mathbf{E} + \frac{1}{c} \bigg(\frac{c}{4\pi}\nabla \times \mathbf{B} - \frac{1}{4\pi} \frac{\partial \mathbf{E}}{\partial t} \bigg) \times \mathbf{B} \\
-&= \frac{1}{4\pi} \bigg[(\nabla \cdot \mathbf{E}) \mathbf{E} + (\nabla \times \mathbf{B}) \times \mathbf{B} - \frac{1}{c} \frac{\partial \mathbf{E}}{\partial t} \times \mathbf{B} \bigg] \\
-&= \frac{1}{4\pi} \bigg[(\nabla \cdot \mathbf{E}) \mathbf{E} + (\nabla \cdot \mathbf{B}) \mathbf{B} + (\nabla \times \mathbf{B}) \times \mathbf{B} - \frac{1}{c} \frac{\partial \mathbf{E}}{\partial t} \times \mathbf{B} \bigg]
-\end{align*}
-$$
-In the last step we used the fact that $\nabla \cdot \mathbf{B} = 0$ to insert a vanishing term $(\nabla \times \mathbf{B}) \times \mathbf{B}$. This will be useful in a moment. Next, notice we can simplify the cross product $(\partial_t \mathbf{E}) \times \mathbf{B}$ by applying the product rule along with Faraday's law to get
-$$
-\frac{\partial\mathbf{E}}{\partial t} \times \mathbf{B} = \frac{\partial}{\partial t} (\mathbf{E} \times \mathbf{B}) - \mathbf{E} \times \frac{\partial \mathbf{B}}{\partial t} = \frac{\partial}{\partial t} (\mathbf{E} \times \mathbf{B}) - c (\nabla \times \mathbf{E}) \times \mathbf{E} \ .
-$$
-Plugging this into $\mathbf{f}$, we now have
-$$
-\mathbf{f} = \frac{1}{4\pi} \big[(\nabla \cdot \mathbf{E}) \mathbf{E} + (\nabla \cdot \mathbf{B})\mathbf{B} - \mathbf{B} \times (\nabla \times \mathbf{B}) - \mathbf{E} \times (\nabla \times \mathbf{E})\big] - \frac{1}{4\pi c} \frac{\partial}{\partial t} (\mathbf{E} \times \mathbf{B}) \ .
-$$
-Next, we'll move the $\partial_t (\mathbf{E} \times \mathbf{B})$ to the left-hand side to write
-$$
-\mathbf{f} + \frac{\partial}{\partial t} \bigg(\frac{\mathbf{E} \times \mathbf{B}}{4\pi c}\bigg) = \frac{1}{4\pi} \big[(\nabla \cdot \mathbf{E}) \mathbf{E} + (\nabla \cdot \mathbf{B})\mathbf{B} - \mathbf{B} \times (\nabla \times \mathbf{B}) - \mathbf{E} \times (\nabla \times \mathbf{E})\big] \ .
-$$
-On the left-hand side we now have what appear to be two force density terms, one the mechanical force density $\mathbf{f}$, and the other the partial time derivative of some quantity
-$$
-\boxed{
-\mathbf{g} \equiv \frac{1}{4\pi c} \mathbf{E} \times \mathbf{B}
-} \ .
-$$
-Since $\mathbf{g}$ comes purely from the EM field and its time derivative is some kind of force density, we can interpret $\mathbf{g}$ as being the *momentum density* of the EM field. Indeed, observe that the dimensions of momentum density are clearly momentum per unit volume, or $\text{erg} \cdot \text{s} / \text{cm}^3$ in Gaussian units. The momentum stored in the field is then given by the volume integral
-$$
-\mathbf{P}_\text{EM} = \int d^3\mathbf{x} \ \mathbf{g} = \frac{1}{4\pi c} \int d^3\mathbf{x} \ (\mathbf{E} \times \mathbf{B}) \ .
-$$
-Notice that the momentum density $\mathbf{g}$ is evidently proportional to the Poynting vector, with
-$$
-\mathbf{g} = \frac{\mathbf{S}}{c^2} \ .
-$$
-In particular, this means the field's momentum will move along with the Poynting vector, perpendicular to the fields.
-
-We now need to address the right-hand side of the continuity equation above,
-$$
-\mathbf{f} + \frac{\partial \mathbf{g}}{\partial t} = \frac{1}{4\pi} \big[(\nabla \cdot \mathbf{E}) \mathbf{E} + (\nabla \cdot \mathbf{B})\mathbf{B} - \mathbf{B} \times (\nabla \times \mathbf{B}) - \mathbf{E} \times (\nabla \times \mathbf{E})\big] \ .
-$$
-The goal is to extract from the right-hand side the divergence of something that we can identify as a momentum flux density. Since $\mathbf{g}$ is a vector, there will be one flux density vector per component of $\mathbf{g}$, or equivalently a rank-2 tensor for the entire vector, which we'll denote by $\mathbf{T}$.
-
-At this point it makes sense to proceed in index notation. Observe that
-$$
-\begin{align*}
-[(\nabla \cdot \mathbf{E}) \mathbf{E} - \mathbf{E} \times (\nabla \times \mathbf{E})]_i &= E_i \partial_j E_j - \varepsilon_{ijk} \varepsilon_{k\ell m} E_j \partial_\ell E_m \\
-&= E_i \partial_j E_j - (\delta_{i\ell} \delta_{jm} - \delta_{im} \delta_{j\ell}) E_j \partial_\ell E_m \\
-&= E_i \partial_j E_j - E_j \partial_i E_j + E_j \partial_j E_i \\
-&= \partial_j (E_i E_j) - E_j \partial_j E_i - E_j \partial_i E_j + E_j \partial_j E_i \\
-&= \partial_j (E_i E_j) - E_k \partial_i E_k \\
-&= \partial_j \bigg(E_i E_j - \frac{1}{2} E_k E_k \delta_{ij} \bigg) \ .
-\end{align*}
-$$
-Similarly, we have
-$$
-[(\nabla \cdot \mathbf{B}) \mathbf{B} - \mathbf{B} \times (\nabla \times \mathbf{B})]_i = \partial_j \bigg(B_i B_j - \frac{1}{2} B_k B_k \delta_{ij} \bigg) \ .
-$$
-Putting these together, we have
-$$
-[(\nabla \cdot \mathbf{E}) \mathbf{E} - \mathbf{E} \times (\nabla \times \mathbf{E}) + (\nabla \cdot \mathbf{B}) \mathbf{B} - \mathbf{B} \times (\nabla \times \mathbf{B})]_i = \partial_j \bigg[E_i E_j - B_i B_j - \frac{1}{2} (E_k E_k + B_k B_k) \delta_{ij} \bigg] \ .
-$$
-We've thus managed to reduce the entire right-hand side of the continuity equation above to the divergence of a rank-2 tensor, which we'll denote by $\mathbf{T}$. That $\mathbf{T}$ is in fact a valid tensor follows from the fact that it's a sum of outer products with a scalar multiplied by the identity tensor. In component notation, this tensor is given by
-$$
-T_{ij} = \frac{1}{4\pi} \bigg[E_i E_j + B_i B_j - \frac{1}{2}(E_k E_k + B_k B_k) \delta_{ij}\bigg] \ .
-$$
-Notice this tensor is also symmetric since $T_{ij} = T_{ji}$. We call $\mathbf{T}$ the *electromagnetic stress tensor* or the *momentum flux density tensor*. The conservation law for EM field momentum can thus be written in index notation as
-$$
-\frac{\partial g_i}{\partial t} - \partial_j T_{ij} = -f_i \ .
-$$
-In abstract notation, we can write the stress tensor as
-$$
-\boxed{
-\mathbf{T} = \frac{1}{4\pi} \bigg[\mathbf{E} \otimes \mathbf{E} + \mathbf{B} \otimes \mathbf{B} - \frac{1}{2}(\mathbf{E} \cdot \mathbf{E} + \mathbf{B} \cdot \mathbf{B}) \mathbf{1}\bigg]
-} \ .
-$$
-Similarly, the conservation law in abstract notation becomes
-$$
-\boxed{
-\frac{\partial\mathbf{g}}{\partial t} - \nabla \cdot \mathbf{T} = -\mathbf{f} 
-} \ .
-$$
-The fact that the divergence of $\mathbf{T}$ carries a minus sign is merely a convention of definition, ensuring that the stress tensor is positive definite and has a positive trace. However, the fact that the creation term $-\mathbf{f}$ has a minus sign reflects the fact that any charges moving through an EM field dissipate momentum from the fields rather than create momentum in the fields.
-
-At this point, it's worth asking what it actually means to say an EM field has momentum. After all the fields contain no mass, and usually momentum is the product of mass with velocity. What we really mean is this: We want to make sure that momentum is conserved in electromagnetism. Since a charge placed in the presence of an EM field will accelerate and thus gain mechanical momentum, this momentum must be coming from somewhere. 
-
-We could argue, correctly, that this momentum comes from this charge's interaction with the charge configurations creating the EM fields. This is completely equivalent to ignoring the charge configurations completely and assigning this missing momentum directly to the fields, which is what we mean. The utility of assigning this momentum to the fields rather than the charge configurations will make more sense when we discuss optics, where we'll see that even light can have momentum. A strong enough laser beam for instance can make a massive object move just like a mechanical contact force can.
-
-### Conservation of Angular Momentum
-
-Finally, we'll consider the remaining quantity that's often conserved in classical mechanics, angular momentum. Let's first consider again a single charged particle moving in the presence of an EM field. It will experience a Lorentz force
-$$
-\mathbf{F} = q\mathbf{E} + q\frac{\mathbf{v}}{c} \times \mathbf{B} \ .
-$$
-Now, there will also be a *Lorentz torque* $\mathbf{N}$ on the particle due to the field given by
-$$
-\mathbf{N} = \mathbf{x} \times \mathbf{F} = q\mathbf{x} \times\mathbf{E} + q \mathbf{x} \times\bigg(\frac{\mathbf{v}}{c} \times \mathbf{B}\bigg) \ .
-$$
-If we now consider an extended distribution of charge instead of a single point charge, the Lorentz torque becomes an integral
-$$
-\mathbf{N} = \int d^3 \mathbf{x} \ \bigg[\rho \mathbf{x} \times\mathbf{E} + \mathbf{x} \times\bigg(\frac{\mathbf{J}}{c} \times \mathbf{B}\bigg)\bigg] \ .
-$$
-The integrand of this torque we'll call the *torque density* $\boldsymbol{\nu}$,
-$$
-\boldsymbol{\nu} = \mathbf{x} \times \mathbf{f} = \rho \mathbf{x} \times\mathbf{E} + \mathbf{x} \times\bigg(\frac{\mathbf{J}}{c} \times \mathbf{B}\bigg) \ .
-$$
-From classical mechanics, we also know the torque is the time derivative of the mechanical angular momentum, which means
-$$
-\frac{d\mathbf{L}_\text{mech}}{dt} = \int d^3\mathbf{x} \ \boldsymbol{\nu} = \int d^3 \mathbf{x} \ \bigg[\rho \mathbf{x} \times\mathbf{E} + \mathbf{x} \times\bigg(\frac{\mathbf{J}}{c} \times \mathbf{B}\bigg)\bigg] \ .
-$$
-Now, we'll use our result from the previous section to rewrite the force density $\mathbf{f}$ as
-$$
-\mathbf{f} = \frac{1}{4\pi} \big[(\nabla \cdot \mathbf{E}) \mathbf{E} + (\nabla \cdot \mathbf{B})\mathbf{B} - \mathbf{B} \times (\nabla \times \mathbf{B}) - \mathbf{E} \times (\nabla \times \mathbf{E})\big] - \frac{1}{4\pi c} \frac{\partial}{\partial t} (\mathbf{E} \times \mathbf{B}) \ .
-$$
-If we again move the $\partial_t (\mathbf{E} \times \mathbf{B})$ term to the left-hand side and take the cross-product of $\mathbf{x}$ with each term, we get
-$$
-\boldsymbol{\nu} + \frac{\partial}{\partial t} \bigg(\frac{\mathbf{x} \times (\mathbf{E} \times \mathbf{B})}{4\pi c}\bigg) = \frac{1}{4\pi} \mathbf{x} \times \big[(\nabla \cdot \mathbf{E}) \mathbf{E} + (\nabla \cdot \mathbf{B})\mathbf{B} - \mathbf{B} \times (\nabla \times \mathbf{B}) - \mathbf{E} \times (\nabla \times \mathbf{E})\big] \ .
-$$
-On the left-hand side we have the angular momentum density along with the time derivative of some vector
-$$
-\boldsymbol{\mathcal{L}} \equiv \frac{1}{4\pi c} \mathbf{x} \times (\mathbf{E} \times \mathbf{B}) \ .
-$$
-This time derivative behaves as if it were the torque density of the field itself. We can thus interpret $\boldsymbol{\mathcal{L}}$ to be the *angular momentum density* stored in the field. Notice $\boldsymbol{\mathcal{L}}$ is clearly related to the ordinary momentum density $\mathbf{g}$, with
-$$
-\boldsymbol{\mathcal{L}} = \mathbf{x} \times \mathbf{g} \ .
-$$
-As we'd expect $\boldsymbol{\mathcal{L}}$ has the dimensions of angular momentum per unit volume, and its volume integral is the angular momentum stored in the field,
-$$
-\mathbf{L}_\text{EM} = \int d^3\mathbf{x} \ \boldsymbol{\mathcal{L}} \ .
-$$
-With this notation, the conservation law for angular momentum now has the form
-$$
-\boldsymbol{\nu} + \frac{\partial \boldsymbol{\mathcal{L}}}{\partial t} = \frac{1}{4\pi} \mathbf{x} \times \big[(\nabla \cdot \mathbf{E}) \mathbf{E} + (\nabla \cdot \mathbf{B})\mathbf{B} - \mathbf{B} \times (\nabla \times \mathbf{B}) - \mathbf{E} \times (\nabla \times \mathbf{E})\big] \ .
-$$
-Now, notice that the right-hand side apart from the $\mathbf{x} \times$ part is just the stress tensor $\mathbf{T}$ we derived before,
-$$
-\mathbf{T} = \frac{1}{4\pi} \bigg[\mathbf{E} \otimes \mathbf{E} + \mathbf{B} \otimes \mathbf{B} - \frac{1}{2}(\mathbf{E} \cdot \mathbf{E} + \mathbf{B} \cdot \mathbf{B}) \mathbf{1}\bigg] \ .
-$$
-We thus have
-$$
-\boldsymbol{\nu} + \frac{\partial \boldsymbol{\mathcal{L}}}{\partial t} = \nabla \cdot (\mathbf{x} \times \mathbf{T}) \ ,
-$$
-where we interpret $-\mathbf{x} \times \mathbf{T}$ as the antisymmetric rank-2 tensor whose components are given by
-$$
-M_{ij} \equiv T_{ij} x_k - T_{ik} x_j \ .
-$$
-The tensor $\mathbf{M} \equiv \mathbf{T} \times \mathbf{x}$ then represents the flux density of EM field's angular momentum.
-
-Putting this all together, we've derived the following conservation law for the electromagnetic angular momentum,
-$$
-\frac{\partial \boldsymbol{\mathcal{L}}}{\partial t} + \nabla \cdot \mathbf{M} = -\boldsymbol{\nu} \ .
-$$
-
-- These last steps here are sloppy. The divergence now depends on the $\mathbf{x} \times$ part as well. Be more careful…
-- Evidently $\mathbf{M}$ is a rank-3 tensor, which should mean $\nabla \cdot \mathbf{M}$ is rank-2? Figure this out…
-
-
-$$
-\frac{\partial \mathcal{L}_i}{\partial t} + \partial_i M_{ij} = -\nu_i
-$$
-
-$$
-\frac{\partial \boldsymbol{\mathcal{L}}}{\partial t} + \nabla \cdot \mathbf{M} = -\boldsymbol{\nu}
-$$
-
-$$
-\mathbf{N} = \int d^3\mathbf{x} \ \boldsymbol{\nu}(\mathbf{x},t) = \int d^3\mathbf{x} \ \frac{\partial \boldsymbol{\mathcal{L}}_\text{mech}}{\partial t}
-$$
-
-$$
-\mathbf{M} = \mathbf{T} \times \mathbf{x} \quad \Longleftrightarrow \quad M_{ijk} = T_{ij} x_k - T_{ik} x_j
-$$
-
-$$
-\boldsymbol{\mathcal{L}} = \mathbf{x} \times \mathbf{g} = \frac{1}{4\pi c} \mathbf{x} \times (\mathbf{E} \times \mathbf{B}) = \frac{1}{c^2} \mathbf{x} \times \mathbf{S}
-$$
-
-
-
-$$
-\begin{align*}
-\big[\mathbf{x} \times [(\nabla \cdot \mathbf{E}) \mathbf{E} - \mathbf{E} \times (\nabla \times \mathbf{E})]\big]_a &= \varepsilon_{abi} x_b [(\nabla \cdot \mathbf{E}) \mathbf{E} - \mathbf{E} \times (\nabla \times \mathbf{E})]_i \\
-&= \varepsilon_{abi} x_b [E_i \partial_j E_j - \varepsilon_{ijk} \varepsilon_{k\ell m} E_j \partial_\ell E_m] \\
-&= \varepsilon_{abi} x_b [E_i \partial_j E_j - (\delta_{i\ell} \delta_{jm} - \delta_{im} \delta_{j\ell}) E_j \partial_\ell E_m] \\
-&= \varepsilon_{abi} x_b [E_i \partial_j E_j - E_j \partial_i E_j + E_j \partial_j E_i] \\
-&= \varepsilon_{abi} x_b [\partial_j (E_i E_j) - E_j \partial_j E_i - E_j \partial_i E_j + E_j \partial_j E_i] \\
-&= \varepsilon_{abi} x_b [\partial_j (E_i E_j) - E_k \partial_i E_k] \\
-&= \varepsilon_{abi} x_b \partial_j \bigg(E_i E_j - \frac{1}{2} E_k E_k \delta_{ij} \bigg) \ .
-\end{align*}
-$$
-
-$$
-\partial_j x_b T_{ij} = \delta_{jb} T_{ij} + x_b \partial_j T_{ij} \\
-= \bigg(E_i E_b + B_i B_b - \frac{1}{2} (E_k E_k + B_k B_k) \delta_{ib} \bigg) + x_b \partial_j T_{ij}
-$$
-
-
-$$
-\partial_j M_{ijk} = \partial_j(T_{ij} x_k - T_{ik} x_j) = x_k \partial_j T_{ij} - T_{ik} \partial_j x_j = x_k \partial_j T_{ij} - 3 T_{ik}
-$$
-
-
-
-
