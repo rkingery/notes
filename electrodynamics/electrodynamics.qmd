@@ -125,7 +125,7 @@ $$
 $$
 Second, we need to say something about how the fields get modified in the presence of electromagnetic materials. This we will spend a whole chapter on. Last, we need to say something about how exactly the source charges give rise to the fields. This is known as *causality*. It's one of the most fundamental principles in physics. Causality states that past actions can impact future actions, but future actions can never impact past actions.
 
-### Time Reversal
+### Time Reversal Invariance
 
 To see why causality is an issue we will now show that Maxwell's equations have no sense of the arrow of time, of what causes what. That is, they're *time-reversal invariant*, meaning they remain unchanged under a *time reversal* transformation $t \to -t$. To show this is the case, we first need to figure out how the fields and distributions behave under time reversal.
 
@@ -187,420 +187,7 @@ m\mathbf{a}(\mathbf{x},-t) = q\mathbf{E}(\mathbf{x},-t) + q\frac{\mathbf{v}(\mat
 $$
 Here, everything is invariant except $\mathbf{v}$ and $\mathbf{B}$, but the minus signs in $\mathbf{v}$ and $\mathbf{B}$ cancel out, leaving the Lorentz force law invariant. 
 
-Taken together, these mean that neither Maxwell's equations nor the Lorentz force law contain any understanding of the arrow of time, of what causes what. That is, they have no notion of causality. However, we intuitively expect that it's the source charges that should give rise to the fields and not the other way around. If we want to bake this requirement into the theory we'll need to do it in some other way, which we'll discuss in a moment.
-
-## Electrodynamic Potentials
-
-Just as in statics it was useful to express the EM fields in terms of potentials, it'll be useful to do the same in electrodynamics. Recall that we derived the scalar potential $\phi(\mathbf{x})$ from the assumption that $\nabla \times \mathbf{E} = \mathbf{0}$, and the vector potential $\mathbf{A}(\mathbf{x})$ from the assumption that $\nabla \cdot \mathbf{B} = 0$. Provided these equations hold, we can write
-$$
-\mathbf{E} = -\nabla \phi \quad , \quad \mathbf{B} = \nabla \times \mathbf{A} \ .
-$$
-As we'll see, we need to modify these relations somewhat in electrodynamics.
-
-### Electrodynamic Potentials
-
-In electrodynamics it's still true that $\nabla \cdot \mathbf{B} = 0$ even for time-varying B-fields, which means we can still find a time-varying vector field $\mathbf{A}(\mathbf{x},t)$ such that $\mathbf{B} = \nabla \times \mathbf{A}$. We will still refer to $\mathbf{A}(\mathbf{x},t)$ as the *vector potential*.
-
-However, it's no longer true that $\nabla \times \mathbf{E} = \mathbf{0}$ for time-varying E-fields, which means we no longer find a time-varying scalar field $\phi(\mathbf{x},t)$ such that $\mathbf{E} = -\nabla \phi$. However, we can still find a related vector field whose curl vanishes. Consider Faraday's law,
-$$
-\nabla \times \mathbf{E} = -\frac{1}{c} \frac{\partial \mathbf{B}}{\partial t} \ .
-$$
-If we write $\mathbf{B} = \nabla \times \mathbf{A}$ and move everything to the left-hand side, we have
-$$
-\nabla \times \bigg(\mathbf{E} + \frac{1}{c} \frac{\partial \mathbf{A}}{\partial t}\bigg) = 0 \ .
-$$
-Since we now have a vector field whose curl vanishes, we can find a scalar field $\phi(\mathbf{x},t)$ such that
-$$
-\mathbf{E} + \frac{1}{c} \frac{\partial \mathbf{A}}{\partial t} = -\nabla \phi \ .
-$$
-This means we can express $\mathbf{E}(\mathbf{x},t)$ in terms of the time-varying scalar and vector potentials as
-$$
-\mathbf{E} = -\nabla \phi - \frac{1}{c} \frac{\partial \mathbf{A}}{\partial t} \ .
-$$
-As before, we call $\phi(\mathbf{x},t)$ the *scalar potential*. Thus, in electrodynamics we relate the EM fields to the potentials by
-$$
-\boxed{
-\begin{align*}
-\mathbf{E} &= -\nabla \phi - \frac{1}{c} \frac{\partial \mathbf{A}}{\partial t} \\ 
-\mathbf{B} &= \nabla \times \mathbf{A}
-\end{align*}
-} \ .
-$$
-The dynamical behavior of these potentials must then be satisfied by the remaining two Maxwell equations.
-
-### Field Equations for Potentials
-
-We still have two more of Maxwell's equations that the potentials need to satisfy, namely the inhomogeneous equations
-$$
-\nabla \cdot \mathbf{E} = 4\pi \rho \quad , \quad \nabla \times \mathbf{B} = \frac{4\pi}{c} \mathbf{J} + \frac{1}{c} \frac{\partial \mathbf{E}}{\partial t} \ .
-$$
-If we plug the expression for $\mathbf{E}$ in terms of the potentials into the first equation, we must have
-$$
-\nabla \cdot \bigg(\nabla \phi + \frac{1}{c} \frac{\partial \mathbf{A}}{\partial t}\bigg) = -4\pi \rho \ .
-$$
-Simplifying the left-hand side, this gives the following differential equation for the scalar potential,
-$$
-\nabla^2 \phi + \frac{1}{c} \frac{\partial}{\partial t} \nabla \cdot \mathbf{A} = -4\pi \rho \ .
-$$
-Similarly, if we plug the expressions for both $\mathbf{E}$ and $\mathbf{B}$ into the second inhomogeneous equation, we have
-$$
-\nabla \times (\nabla \times \mathbf{A}) = \frac{4\pi}{c} \mathbf{J} - \frac{1}{c} \frac{\partial}{\partial t} \bigg(\nabla \phi + \frac{1}{c} \frac{\partial \mathbf{A}}{\partial t}\bigg) \ .
-$$
-Since $\nabla \times (\nabla \times \mathbf{A}) = \nabla (\nabla \cdot \mathbf{A}) - \nabla^2 \mathbf{A}$, upon rearranging we get
-$$
-\nabla^2 \mathbf{A} - \frac{1}{c^2} \frac{\partial^2 \mathbf{A}}{\partial t^2} - \nabla \bigg(\nabla \cdot \mathbf{A} + \frac{1}{c} \frac{\partial \phi}{\partial t} \bigg) = -\frac{4\pi}{c} \mathbf{J} \ .
-$$
-As things stand, the differential equations for $\phi$ and $\mathbf{A}$ look quite different, but notice each equation contains a term proportional to $\nabla \cdot \mathbf{A}$, which means we can potentially make them have the same form by exploiting gauge invariance.
-
-### Gauge Invariance
-
-Recall that we can always add to the vector potential the gradient of any scalar field $\chi$ without changing the underlying B-field,
-$$
-\mathbf{A}' = \mathbf{A} + \nabla \chi \ .
-$$
-This is called a *gauge transformation*. This follows from the relation $\mathbf{B} = \nabla \times \mathbf{A}$ along with the fact that the curl of any gradient is always zero. This is still true in electrodynamics, except now when we do a gauge transformation we have to be careful not to alter the E-field as well. The only way we can ensure this is to require that $\phi$ also gauge transform simultaneously as
-$$
-\phi' = \phi - \frac{1}{c} \frac{\partial \chi}{\partial t} \ .
-$$
-Thus, in electrodynamics, a gauge transformation is any transformation on both the scalar and vector potentials of the form
-$$
-\begin{align*}
-\phi' &= \phi -\frac{1}{c} \frac{\partial \chi}{\partial t} \ , \\ 
-\mathbf{A}' &= \mathbf{A} + \nabla \chi \ .
-\end{align*}
-$$
-As we mentioned in magnetostatics, we can uniquely specify a given gauge by fixing $\chi$, or equivalently by fixing $\nabla \cdot \mathbf{A}$. This ability to specify the divergence of the vector potential gives us a gauge freedom we can use to simplify various formulas without altering any of the underlying physics. We can fix $\nabla \cdot \mathbf{A}$ to be anything we like so long as we're consistent within a given theory.
-
-In magnetostatics we fixed the gauge by choosing the *Coulomb gauge* $\nabla \cdot \mathbf{A} = 0$, which was a natural choice in that setting. We could still do that in electrodynamics as well if we like. If we did, the differential equations for the potentials could be written
-$$
-\begin{align*}
-\nabla^2 \phi &= -4\pi \rho \ , \\
-\nabla^2 \mathbf{A} - \frac{1}{c^2} \frac{\partial^2 \mathbf{A}}{\partial t^2} &= -\frac{4\pi}{c} \mathbf{J} + \frac{1}{c} \nabla \frac{\partial \phi}{\partial t} \ .
-\end{align*}
-$$
-This choice of gauge makes the equation for the scalar potential especially simple. We just recover Poisson's equation, the same equation we saw in electrostatics. In the absence of boundary conditions, the solution to Poisson's equation is just given by
-$$
-\phi(\mathbf{x},t) = \int d^3\mathbf{x}' \frac{\rho(\mathbf{x},t)}{|\mathbf{x} - \mathbf{x}'|} \ .
-$$
-However, the equation for the vector potential $\mathbf{A}$ is much more complex. It's coupled to the scalar potential $\phi$, which means we need to first solve for $\phi$ before we can solve for $\mathbf{A}$. Assuming we've done so, we can treat $4\pi\mathbf{J}_\ell \equiv \nabla \partial_t \phi$ as a kind of current and solve for $\mathbf{A}$ that way.
-
-While this is physically allowed though it's not intuitively pleasing. For one thing, we'd like the equations for $\phi$ and $\mathbf{A}$ to have the same form if possible. But more importantly, Poisson's equation when $\phi$ is time dependent is *instantaneous*. It suggests that the scalar potential can propagate at infinite speeds, which violates special relativity if we insist $\phi$ have any physical meaning at all.  Thus, in electrodynamics we'd prefer to choose a different gauge that fixes both of these issues.
-
-By staring at the original differential equations for the potentials in the previous section one can identify such a gauge,
-$$
-\boxed{
-\nabla \cdot \mathbf{A} = - \frac{1}{c} \frac{\partial \phi}{\partial t} 
-} \ .
-$$
-This choice of gauge is called the *Lorentz gauge*, because it makes both potentials Lorentz invariant. That is, it ensures that both potentials can only propagate at finite speeds. In this gauge, the differential equations for the potentials can be written
-$$
-\boxed{
-\begin{align*}
-&\nabla^2 \phi - \frac{1}{c^2} \frac{\partial^2 \phi}{\partial t^2} = -4\pi \rho \\ 
-&\nabla^2 \mathbf{A} - \frac{1}{c^2} \frac{\partial^2 \mathbf{A}}{\partial t^2} = -\frac{4\pi}{c} \mathbf{J}
-\end{align*}
-} \ .
-$$
-Differential equations of this form are known as *inhomogeneous wave equations*. As we'll soon see, functions satisfying this kind of partial differential equation necessarily must propagate at a finite speed, namely $c$.
-
-To see what kind of condition the Lorentz gauge places on the gauge potential $\chi$, suppose
-$$
-\nabla \cdot \mathbf{A}' = - \frac{1}{c} \frac{\partial \phi'}{\partial t} \ ,
-$$
-where $\mathbf{A}' = \mathbf{A} + \nabla \chi$ and $\phi' = \phi - \partial_t \chi / c$ is some gauge transformation. Plugging in and simplifying, we get
-$$
-\nabla^2 \chi - \frac{1}{c^2} \frac{\partial^2 \chi}{\partial t^2} = -\nabla \cdot \mathbf{A} - \frac{1}{c} \frac{\partial \phi}{\partial t} \ .
-$$
-Thus, if we have potentials $\phi$ and $\mathbf{A}$ that don't satisfy the Lorentz gauge, we can always convert them into potentials that do by finding a gauge potential $\chi$ that solves this inhomogeneous wave equation.
-
-## Green's Function
-
-Just as we characterized the solutions to Poisson's equation in electrostatics by first finding its Green's function, we'll want to do the same with the inhomogeneous wave equation. First, we'll want to understand the nature of wave equation problems, which are characterized by both boundary conditions as well as initial conditions.
-
-### Inhomogeneous Wave Equation
-
-Suppose $\phi(\mathbf{x},t)$ is some arbitrary scalar field that happens to satisfy the inhomogeneous wave equation
-$$
-\nabla^2 \phi - \frac{1}{c^2} \frac{\partial^2 \phi}{\partial t^2} = -4\pi \rho(\mathbf{x},t) \ ,
-$$
-where $\rho(\mathbf{x},t)$ is some arbitrary source function. Here we assume $\phi(\mathbf{x},t)$ is some arbitrary scalar field, or perhaps one of the components of some other vector (or tensor) field. Such solutions are sometimes called *wave functions* for reasons we'll soon see.
-
-The wave equation is a second order linear partial differential equation. Since it involves time and not just space, the exact solution for a given source will depend both on the initial conditions of $\phi(\mathbf{x},t)$ and its time derivative, as well as any imposed boundary conditions. A PDE subject to both initial conditions and boundary conditions is often called an *initial-boundary value problem*, or *IBVP* for short.
-
-We often denote the wave operator above using the short-hand symbol $\square$, called the *d'Alembertian*. That is, we define
-$$
-\square \equiv \nabla^2 - \frac{1}{c^2} \frac{\partial^2}{\partial t^2} \ .
-$$
-In this notation the inhomogeneous wave equation is then written simply as
-$$
-\square \phi = -4\pi\rho(\mathbf{x}, t) \ .
-$$
-As with any linear PDE, the general solution $\phi(\mathbf{x},t)$ to the wave equation can be express as the sum of two solutions, a *particular solution* $\phi_p(\mathbf{x},t)$ that satisfies the inhomogeneous wave equation $\square \phi_p = -4\pi\rho$ free of any boundary conditions, and a *homogeneous solution* $\phi_h(\mathbf{x},t)$ that satisfies the *homogeneous wave equation* $\square \phi_h = 0$ subject to the boundary conditions of the problem. Provided we can find such solutions, we can always then write
-$$
-\phi(\mathbf{x},t) = \phi_h(\mathbf{x},t) + \phi_p(\mathbf{x},t) \ .
-$$
-That we can always express the general solution as the sum of a particular and homogeneous solution follows as usual from the principle of superposition, which applies to *any* linear PDE.
-
-We'll discuss the homogeneous solutions in much more depth in later chapters when we study electromagnetic waves. For now, we'll focus on the particular solution, or equivalently its Green's function. The Green's function $G(\mathbf{x}, t)$ is defined to be the solution to the inhomogeneous wave equation for a unit point charge passing through the origin at time $t=0$,
-$$
-\nabla^2 G - \frac{1}{c^2} \frac{\partial^2 G}{\partial t^2} = -4\pi\delta(\mathbf{x})\delta(t) \ .
-$$
-Assuming we can find this Green's function, we can obtain the particular solution $\phi_p(\mathbf{x},t)$ via space-time convolution of $G(\mathbf{x}, t)$ with the source $\rho(\mathbf{x},t)$,
-$$
-\phi_p(\mathbf{x},t) = \int d^3\mathbf{x}' dt' \ \rho(\mathbf{x}', t') G(\mathbf{x}-\mathbf{x}', t-t') \ .
-$$
-Notice that we are now doing a 4-dimensional convolution over *both* space and time.
-
-
-### Green's Function
-
-Let's now try to find this Green's function. Suppose $G(\mathbf{x}, t)$ is the solution to the inhomogeneous wave equation
-$$
-\nabla^2 G - \frac{1}{c^2} \frac{\partial^2 G}{\partial t^2} = -4\pi\delta(\mathbf{x})\delta(t) \ .
-$$
-As with any Green's function, we'll require that $G(\mathbf{x}, t) \to 0$ as its arguments go to infinity, i.e. $r \to \infty$ and $t \to \infty$.
-
-To find $G(\mathbf{x}, t)$ we'll use the same approach we did to find the Green's function for Poisson's equation in electrostatics. That is, we'll take the Fourier transform of both sides of the wave equation, solve for the Green's function in the frequency domain, and then inverse transform to get the original Green's function in the space-time domain.
-
-By definition, the Fourier transform of a space-time dependent function $G(\mathbf{x}, t)$ is given by
-$$
-G(\mathbf{k},\omega) \equiv \int d^3\mathbf{x} dt \ G(\mathbf{x},t) e^{-i (\mathbf{k} \cdot \mathbf{x} - \omega t)} \ .
-$$
-Here the spatial Fourier conjugate $\mathbf{k}$ represents the usual wave vector, and the time Fourier conjugate $\omega$ represents the usual angular frequency. Note that as usual $\mathbf{k}$ has dimensions of inverse length, while $\omega$ has dimensions of inverse time.
-
-Now, we want to Fourier transform the wave equation above. This can be done by multiplying both sides by $e^{-i (\mathbf{k} \cdot \mathbf{x} - \omega t)}$ and integrating over all space and time,
-$$
-\int d^3\mathbf{x} dt \ \bigg[\nabla^2 G - \frac{1}{c^2} \frac{\partial^2 G}{\partial t^2}\bigg] e^{-i (\mathbf{k} \cdot \mathbf{x} - \omega t)} = -4\pi \int d^3\mathbf{x} dt \ \delta(\mathbf{x})\delta(t) e^{-i (\mathbf{k} \cdot \mathbf{x} - \omega t)} \ .
-$$
-The integral on the right-hand side is just one following the usual properties of the delta function, while the integral on the left-hand side can be simplified by applying integration by parts twice and noting the boundary terms vanish. All together, we get
-$$
-\bigg(-|\mathbf{k}|^2 + \frac{\omega^2}{c^2}\bigg) G(\mathbf{k}, \omega) = -4\pi \ .
-$$
-We thus have
-$$
-G(\mathbf{k}, \omega) = -\frac{4\pi}{(\omega/c)^2 - |\mathbf{k}|^2} = -\frac{4\pi c^2}{\omega^2 - c^2|\mathbf{k}|^2} \ .
-$$
-To recover $G(\mathbf{x},t)$ we now need to take the *inverse* Fourier transform of this function, which is defined as the integral
-$$
-G(\mathbf{x},t) = \int \frac{d^3\mathbf{k}d\omega}{(2\pi)^4} \ G(\mathbf{k},\omega) e^{i(\mathbf{k} \cdot \mathbf{x} - \omega t)} \ .
-$$
-All that remains now is to perform the integration. We'll find it convenient to integrate over $\omega$ first. We'll thus write
-$$
-G(\mathbf{x},t) = -\frac{4\pi c^2}{(2\pi)^4} \int d^3\mathbf{k} \  e^{i\mathbf{k} \cdot \mathbf{x}} \int_{-\infty}^\infty d\omega \ \frac{e^{-i\omega t}}{\omega^2 - c^2|\mathbf{k}|^2} \ .
-$$
-Performing the integration over $\omega$ requires the tools of complex analysis. We showed in the appendix that
-$$
-\int_{-\infty}^\infty dx \ \frac{e^{-itx}}{x^2 - a^2} = -\frac{\pi}{a} \sin a|t| \ .
-$$
-Identifying $x \leftrightarrow \omega$ and $a \leftrightarrow c|\mathbf{k}|$, we can see that the solution to the $\omega$ integral is thus
-$$
-\int_{-\infty}^\infty d\omega \ \frac{e^{-i\omega t}}{\omega^2 - c^2|\mathbf{k}|^2} = -\frac{\pi}{c|\mathbf{k}|} \sin c|\mathbf{k}t| \ .
-$$
-
-Plugging this result back into the Green's function and simplifying, we have
-$$
-G(\mathbf{x},t) = \frac{c}{(2\pi)^2} \int d^3\mathbf{k} \  e^{i\mathbf{k} \cdot \mathbf{x}} \frac{\sin c|\mathbf{k}t|}{|\mathbf{k}|} \ .
-$$
-All that remains now is the integral over $\mathbf{k}$. We'll orient the axes in $\mathbf{k}$ space so that $\mathbf{x} = r\mathbf{e}_z$ and $\mathbf{k} \cdot \mathbf{x} = kr\cos\theta_k$, where $k = |\mathbf{k}|$. Writing the volume element in spherical coordinates $(k, \theta_k, \varphi_k)$ as $d^3 \mathbf{k} = k^2 \sin\theta_k dk d\theta_k d\varphi_k$ and integrating over $\varphi_k$, we get
-$$
-G(\mathbf{x},t) = \frac{c}{2\pi} \int_0^\infty k^2 dk \ \frac{\sin ck|t|}{k} \int_0^\pi d\theta_k \  \sin\theta_k e^{ikr\cos\theta_k} \ .
-$$
-We saw this same $\theta_k$ integral before when calculating the Green's function in electrostatics, where we showed
-$$
-\int_0^\pi d\theta_k \  \sin\theta_k e^{ikr\cos\theta_k} = \int_{-1}^1 d\mu \ e^{ikr\mu} = 2\frac{\sin kr}{kr} \ .
-$$
-All that remains now is the integral over $k$. Canceling the factors of $k^2$, we have
-$$
-G(\mathbf{x},t) = \frac{c}{\pi r} \int_0^\infty dk \ \sin ck|t| \sin kr \ .
-$$
-This integral can be done by writing the expanding the sines in terms of complex exponentials and exploiting the properties of the delta function. We have
-$$
-\begin{align*}
-G(\mathbf{x},t) &= \frac{c}{\pi r} \int_0^\infty dk \ \frac{1}{2i} \big(e^{ick|t|} - e^{-ick|t|}\big) \frac{1}{2i} \big(e^{ikr} - e^{-ikr}\big) \\
-&= -\frac{c}{4\pi r} \int_0^\infty dk \ \big[e^{ik(c|t| + r)} - e^{ik(c|t| - r)} - e^{ik(-c|t| + r)} + e^{ik(-c|t| - r)}\big] \\
-&= -\frac{c}{4\pi r} \big[2\pi\delta(c|t| + r) - 2\pi\delta(c|t| - r) - 2\pi\delta(-c|t| + r) + 2\pi\delta(-c|t| - r)\big] \\
-&= \frac{c}{2r} \big[\delta(c|t| - r) - \delta(c|t| + r)\big] \\
-&= \frac{1}{2r} \big[\delta(|t| - r/c) - \delta(|t| + r/c)\big] \ .
-\end{align*}
-$$
-Now, since $|t| > 0$ and $r > 0$, the second delta function must vanish since we can never have $|t| = -r/c$, which means
-$$
-G(\mathbf{x},t) = \frac{1}{2r} \delta(|t| - r/c) = \frac{1}{2r} [\delta(t - r/c) + \delta(t + r/c)] \ .
-$$
-This is called the *symmetrized Green's function* for the wave equation for reasons we'll understand in a moment.
-### Retarded and Advanced Solutions
-
-Let's now examine each term in this Green's function more closely. It'll be useful to define
-$$
-t_\text{ret} \equiv t - \frac{r}{c} \quad , \quad t_\text{adv} \equiv t + \frac{r}{c} \ .
-$$
-We call $t_\text{ret}$ the *retarded time* and $t_\text{adv}$ the *advanced time* for reasons that'll become clear in a moment. Similarly, we define
-$$
-\begin{align*}
-&G_\text{ret}(\mathbf{x}, t) \equiv \frac{\delta(t - r/c)}{r} = \frac{\delta(t_\text{ret})}{r} \ , \\
-&G_\text{adv}(\mathbf{x}, t) \equiv \frac{\delta(t + r/c)}{r} = \frac{\delta(t_\text{adv})}{r} \ ,
-\end{align*}
-$$
-where $G_\text{ret}(\mathbf{x}, t)$ is called the *retarded Green's function* and $G_\text{adv}(\mathbf{x}, t)$ is the *advanced Green's function*. In this notation, we can then rewrite the symmetrized Green's function as the average of the retarded and advanced Green's functions,
-$$
-G(\mathbf{x}, t) = \frac{1}{2}[G_\text{ret}(\mathbf{x}, t) + G_\text{adv}(\mathbf{x}, t)] \ .
-$$
-Now, notice that both $G_\text{ret}(\mathbf{x}, t)$ and $G_\text{adv}(\mathbf{x}, t)$ each individually satisfy the inhomogeneous wave equation
-$$
-\nabla^2 G - \frac{1}{c^2} \frac{\partial^2 G}{\partial t^2} = -4\pi\delta(\mathbf{x})\delta(t) \ .
-$$
-That is, the retarded and advanced Green's functions are each individually valid Green's function. By the principle of superposition then, any weighted average of the two will also be a valid Green's function to the wave equation. This means that in some sense the retarded and Green's functions are more fundamental than the symmetrized Green's function found before.
-
-Now, let's ask how these retarded and advanced Green's functions behave physically with time. Let's first look at the retarded Green's function
-$$
-G_\text{ret}(\mathbf{x}, t) = \frac{\delta(t_\text{ret})}{r} = \frac{\delta(t - r/c)}{r} \ .
-$$
-Notice that this function is only non-zero when $t = r/c$. Since $r/c \geq 0$, this function can only be non-zero when $t \geq 0$. In particular, this means $G_\text{ret}(\mathbf{x}, t) = 0$ when $t < 0$. When $t \geq 0$, the function is only non-zero when $t = r/c$. This is known as a *wavefront*. As time increases, this wavefront propagates outward from the origin as a spherical wave with a constant speed $c$, reaching a radius $r$ at time $t = r/c$ and going to infinity as $t \to \infty$. We can thus think of the retarded Green's function as a spherical wave propagating outward in time from the origin at a constant speed.
-
-FIGURE (show outward spherical wave)
-
-What about the advanced Green's function? In that case, we instead have
-$$
-G_\text{adv}(\mathbf{x}, t) = \frac{\delta(t_\text{adv})}{r} = \frac{\delta(t + r/c)}{r} \ .
-$$
-Notice this function is only non-zero when $t = -r/c$. Since $r/c \geq 0$, $G_\text{adv}(\mathbf{x}, t)$ can only be non-zero when $t \leq 0$. Thus, we must have $G_\text{adv}(\mathbf{x}, t) = 0$ when $t > 0$. When $t \leq 0$, the wavefront of this function is only non-zero when $-t = r/c$. At time $t=0$, the wavefront propagates outward to infinity with *decreasing* time, at the same constant speed $c$. To an observer, it would seem like a wave is coming in from infinity and terminating at the origin at time $t=0$. Equivalently, we can think of the advanced Green's function as a spherical wave propagating out from the origin at constant speed, but *backward* in time instead of forward.
-
-FIGURE (show inward spherical wave)
-
-Now, from a physical perspective, only the *retarded* Green's function seems physical. If we want to think of the source charges as being the cause of an EM field, then we want to think of the field as propagating outward from the source as time increases, not propagating inward toward the source as time increases. This is the causality condition we mentioned before, which did not follow from Maxwell's equations alone. For this reason, on physical grounds we reject the advanced Green's function and insist that only the retarded Green's function be valid. Causality is thus an extra condition we impose on the theory, not one that follows from anything we've encountered before in the theory of electromagnetism.
-
-Thus, from here on we will *always* assume that the only valid Green's function for the wave equation is the *retarded* Green's function. That is, we'll set $G(\mathbf{x}, t) \equiv G_\text{ret}(\mathbf{x}, t)$. Shifting the Green's function back to $\mathbf{x}'$ and $t'$, we thus finally have
-$$
-\boxed{
-G(\mathbf{x} - \mathbf{x}', t - t') \equiv \frac{\delta(t' - t_\text{ret})}{|\mathbf{x} - \mathbf{x}'|}
-} \ ,
-$$
-where the retarded time $t_\text{ret}$ is given by
-$$
-\boxed{
-t_\text{ret} \equiv t - \frac{|\mathbf{x} - \mathbf{x}'|}{c}
-} \ .
-$$
-We can now convolve this Green's function with the source function $\rho(\mathbf{x},t)$ to get the particular solution for the wave equation,
-$$
-\phi(\mathbf{x},t) = \int d^3\mathbf{x}' dt' \ \rho(\mathbf{x}', t') G(\mathbf{x}-\mathbf{x}', t-t') = \int d^3\mathbf{x}' dt' \ \rho(\mathbf{x}', t') \frac{\delta(\mathbf{x} - \mathbf{x}', t' - t_\text{ret})}{|\mathbf{x} - \mathbf{x}'|} \ .
-$$
-Notice that we can go ahead and integrate with respect to $t'$ to get a volume integral. If we do that we get
-$$
-\phi(\mathbf{x},t) = \int d^3\mathbf{x}' \ \frac{\rho(\mathbf{x}', t_\text{ret})}{|\mathbf{x} - \mathbf{x}'|} \ .
-$$
-Evidently, the particular solution to the wave equation looks exactly like the one for Poisson's equation, except that now there's a time delay $|\mathbf{x} - \mathbf{x}'|/c$ for the source at $\mathbf{x}'$ to affect the field at $\mathbf{x}$. That is, at time $t'$, the field propagates outward from $\mathbf{x}'$ as a wave traveling at a finite speed $c$. This means any source disturbance will take time to affect the field. Nothing is instantaneous.
-
-## Retarded Potentials
-
-With the particular solution to the inhomogeneous wave equation in hand we can now immediately write down the particular solutions for the scalar and vector potentials in terms of the source distributions, provided we work in the Lorentz gauge.
-
-For the scalar potential $\phi(\mathbf{x},t)$, we have
-$$
-\boxed{
-\phi(\mathbf{x},t) = \int d^3\mathbf{x}' \frac{\rho(\mathbf{x}',t_\text{ret})}{|\mathbf{x} - \mathbf{x}'|}
-} \ .
-$$
-For the vector potential $\mathbf{A}(\mathbf{x},t)$, each component $A_i$ will satisfy its own inhomogeneous wave equation
-$$
-\square A_i = -\frac{4\pi}{c} J_i \ .
-$$
-Identifying the source as $J_i/c$, we can thus express the particular solution for the vector potential in vector form as
-$$
-\boxed{
-\mathbf{A}(\mathbf{x},t) = \frac{1}{c} \int d^3\mathbf{x}' \frac{\mathbf{J}(\mathbf{x}',t_\text{ret})}{|\mathbf{x} - \mathbf{x}'|} 
-} \ .
-$$
-Notice that now the equipotentials at any given point in time are now a function of the source evaluated at the retarded time
-$$
-t_\text{ret} = t - \frac{|\mathbf{x} - \mathbf{x}'|}{c} \ .
-$$
-In particular, this means the fields will not respond instantaneously to changes to the sources, but instead to changes to the sources that happened at a lagged time $\Delta t = |\mathbf{x} - \mathbf{x}'|/c$ seconds in the past. This lag time is of course the time it takes for a disturbance to propagate from the source point $\mathbf{x}'$ to the find point $\mathbf{x}$ when traveling at the speed of light $c$. If a disturbance to the sources happens sooner, the field won't yet know that it's happened until the disturbance is able to reach it.
-
-### Jefimenko Equations
-
-If we like, we can now use these particular solutions for the potentials to find the particular solutions for the EM fields, known as the *Jefimenko equations*. These equations are the electrodynamic generalization of the Coulomb and Biot-Savart laws from statics. We'll derive these equations in the Lorentz gauge. Since the fields must be the same in any gauge, their forms will still be the same whether we choose the Coulomb gauge or something else.
-
-Let's focus on the E-field first. Using the solutions above, we can express $\mathbf{E}(\mathbf{x},t)$ in terms of the scalar and vector potentials as
-$$
-\begin{align*}
-\mathbf{E}(\mathbf{x},t) &= -\nabla \phi(\mathbf{x},t) - \frac{1}{c} \frac{\partial}{\partial t} \mathbf{A}(\mathbf{x},t) \\
-&= -\nabla \int d^3\mathbf{x}' \frac{\rho(\mathbf{x}',t_\text{ret})}{|\mathbf{x} - \mathbf{x}'|} - \frac{1}{c^2} \frac{\partial}{\partial t} \int d^3\mathbf{x}' \frac{\mathbf{J}(\mathbf{x}',t_\text{ret})}{|\mathbf{x} - \mathbf{x}'|} \\
-&= - \int d^3\mathbf{x}' \bigg[\nabla \frac{\rho(\mathbf{x}',t_\text{ret})}{|\mathbf{x} - \mathbf{x}'|} + \frac{1}{c^2} \frac{\partial_t \mathbf{J}(\mathbf{x}',t_\text{ret})}{|\mathbf{x} - \mathbf{x}'|}\bigg] \ .
-\end{align*}
-$$
-We now need to evaluate the gradient in the first term. By the product rule for gradients we have
-$$
-\nabla \frac{\rho(\mathbf{x}',t_\text{ret})}{|\mathbf{x} - \mathbf{x}'|} = \frac{\nabla \rho(\mathbf{x}',t_\text{ret})}{|\mathbf{x} - \mathbf{x}'|} + \rho(\mathbf{x}',t_\text{ret}) \nabla \frac{1}{|\mathbf{x} - \mathbf{x}'|} \ .
-$$
-
-Now, recall that $\nabla r = \mathbf{x}/r$, $\nabla 1/r = -\mathbf{x}/r^3$, and $t_\text{ret} = t - |\mathbf{x} - \mathbf{x}'|/c$. This means by the chain rule we have
-$$
-\begin{align*}
-&\nabla \frac{1}{|\mathbf{x} - \mathbf{x}'|} = -\frac{\mathbf{x} - \mathbf{x}'}{|\mathbf{x} - \mathbf{x}'|^3} \ , \\
-&\nabla \rho(\mathbf{x}',t_\text{ret}) = -\frac{1}{c} \frac{\mathbf{x}-\mathbf{x}'}{|\mathbf{x}-\mathbf{x}'|} \partial_t \rho(\mathbf{x}',t_\text{ret}) \ .
-\end{align*}
-$$
-Plugging these back into the above integral, we finally get
-$$
-\boxed{
-\mathbf{E}(\mathbf{x},t) = \int d^3\mathbf{x}' \bigg[\rho(\mathbf{x}',t_\text{ret}) \frac{\mathbf{x}-\mathbf{x}'}{|\mathbf{x}-\mathbf{x}'|^3} + \frac{1}{c} \frac{\partial \rho(\mathbf{x}',t_\text{ret})}{\partial t} \frac{\mathbf{x}-\mathbf{x}'}{|\mathbf{x}-\mathbf{x}'|^2} - \frac{1}{c^2} \frac{\partial \mathbf{J}(\mathbf{x}',t_\text{ret})}{\partial t} \frac{1}{|\mathbf{x}-\mathbf{x}'|} \bigg]
-} \ .
-$$
-Notice when the source distributions are *static* the time derivative terms both vanish, leaving us with Coulomb's law from electrostatics as we'd expect. Provided $|\mathbf{x}-\mathbf{x}'| \ll ct$, we can set $t_\text{ret} \approx t$ and assume the source distributions affect the E-field instantaneously, which is what we implicitly assume in electrostatics.
-
-Indeed, this formula is the electrodynamic generalization of Coulomb's law. It now must also account for the fact that the E-field depends on time-varying charge and current distributions. Also notice the factors of $c$ in the time-dependent terms. This means these terms won't contribute much to the E-field *unless* the charge and current distributions are changing rapidly relative to the speed of light $c$. This is why we can often use Coulomb's law as an approximation for slowly varying charge distributions.
-
-Let's now focus on the B-field. We can express $\mathbf{B}(\mathbf{x},t)$ in terms of the vector potential as
-$$
-\mathbf{B}(\mathbf{x},t) = \nabla \times \mathbf{A}(\mathbf{x},t) = \nabla \times \frac{1}{c} \int d^3\mathbf{x}' \frac{\mathbf{J}(\mathbf{x}',t_\text{ret})}{|\mathbf{x} - \mathbf{x}'|} \ .
-$$
-Pulling the curl inside the integral and using the product rule for curls, we can write
-$$
-\begin{align*}
-\mathbf{B}(\mathbf{x},t) &= \frac{1}{c} \int d^3\mathbf{x}' \nabla \times \frac{\mathbf{J}(\mathbf{x}',t_\text{ret})}{|\mathbf{x} - \mathbf{x}'|} \\
-&= \frac{1}{c} \int d^3\mathbf{x}' \bigg[\nabla \frac{1}{|\mathbf{x} - \mathbf{x}'|} \times \mathbf{J}(\mathbf{x}',t_\text{ret}) + \frac{1}{|\mathbf{x} - \mathbf{x}'|} \nabla \times \mathbf{J}(\mathbf{x}',t_\text{ret})\bigg] \ .
-\end{align*}
-$$
-We again use the fact that $\nabla 1/r = -\mathbf{x}/r^3$, and use the chain rule for curls to write
-$$
-\nabla \times \mathbf{J}(\mathbf{x}',t_\text{ret}) = \frac{1}{c} \partial_t \mathbf{J}(\mathbf{x}',t_\text{ret}) \times \frac{\mathbf{x}-\mathbf{x}'}{|\mathbf{x}-\mathbf{x}'|} \ .
-$$
-Plugging this back in to the integral, we finally get
-$$
-\boxed{
-\mathbf{B}(\mathbf{x},t) = \frac{1}{c} \int d^3\mathbf{x}' \bigg[\mathbf{J}(\mathbf{x}',t_\text{ret}) \times \frac{\mathbf{x}-\mathbf{x}'}{|\mathbf{x}-\mathbf{x}'|^3} + \frac{1}{c} \frac{\partial \mathbf{J}(\mathbf{x}',t_\text{ret})}{\partial t} \times \frac{\mathbf{x}-\mathbf{x}'}{|\mathbf{x}-\mathbf{x}'|^2} \bigg]
-} \ .
-$$
-Notice that in the static case the time derivative in the second term vanishes, leaving us with the Biot-Savart law from magnetostatics provided $t_\text{ret} \approx t$. Indeed, this is the electrodynamics generalization of the Biot-Savart law, now accounting for the fact that the current density can vary with time. Since the second term contains an extra factor of $c$ in the denominator, it won't appreciably affect the B-field unless the current density is varying rapidly relative to the speed of light.
-
-Both of these equations together are known as the *Jefimenko equations*. Curiously, these equations were evidently never formally written down until the 1960s. Perhaps the main reason for this is that, while these equations are nice to be aware of, they're not particularly useful in practice to calculate the EM fields in electrodynamics. Indeed, it's usually much easier just to calculate the potentials explicitly and then differentiate them to find the fields.
-
-### Coulomb Gauge
-
-Remember that the particular solutions for the potentials above are only true in the Lorentz gauge, since only in the Lorentz gauge do the potentials satisfy the inhomogeneous wave equation. If one chooses another gauge the solutions will look different. For instance, in the Coulomb gauge $\nabla \cdot \mathbf{A} = 0$, the potentials instead satisfy the equations
-$$
-\begin{align*}
-
-\nabla^2 \phi &= -4\pi\rho \ , \\
-\nabla^2 \mathbf{A} - \frac{1}{c^2} \frac{\partial^2 \mathbf{A}}{\partial t^2} &= -\frac{4\pi}{c} \mathbf{J} + \frac{1}{c} \frac{\partial}{\partial t} \nabla\phi \ .
-
-\end{align*}
-$$
-This means the scalar potential will satisfy Poisson's equation, which means we get what the same solution we got in electrostatics, except that the charge density now depends on the *current* time $t$,
-$$
-\phi(\mathbf{x},t) = \int d^3\mathbf{x}' \frac{\rho(\mathbf{x}',t)}{|\mathbf{x} - \mathbf{x}'|} \ .
-$$
-Assuming we first solve for $\phi(\mathbf{x},t)$, the vector potential would again solve the inhomogeneous wave equation, except with the usual current density $\mathbf{J}(\mathbf{x},t)$ replaced by the *transverse current density* defined by
-$$
-\mathbf{J}_T(\mathbf{x},t) \equiv \mathbf{J}(\mathbf{x},t) - \frac{1}{4\pi} \frac{\partial}{\partial t} \nabla\phi(\mathbf{x},t) \ .
-$$
-This means in the Coulomb gauge the vector potential would have the particular solution
-$$
-\mathbf{A}(\mathbf{x},t) = \frac{1}{c} \int d^3\mathbf{x}' \frac{\mathbf{J}_T(\mathbf{x}',t_\text{ret})}{|\mathbf{x} - \mathbf{x}'|} \ .
-$$
-While this is a perfectly valid choice of gauge, its disadvantage is that it seems to suggest the scalar potential depends instantaneously on the charge density, while the vector potential depends on the transverse current density at a time in the past, thus breaking the symmetry between the behavior of the two fields and the intuitive sense that signals should only affect fields at a finite propagation speed. Nevertheless, the fields will still be the same in either choice of gauge, as they must.
-
+Taken together, these mean that neither Maxwell's equations nor the Lorentz force law contain any understanding of the arrow of time, of what causes what. That is, they have no notion of causality. However, we intuitively expect that it's the source charges that should give rise to the fields and not the other way around. If we want to bake this requirement into the theory we'll need to do it in some other way, which we'll discuss later.
 
 ## Conservation Laws
 
@@ -799,17 +386,30 @@ $$
 \mathbf{T} = \frac{1}{4\pi} \bigg[\mathbf{E} \otimes \mathbf{E} + \mathbf{B} \otimes \mathbf{B} - \frac{\mathbf{E}^2 + \mathbf{B}^2}{2} \mathbf{1}\bigg]
 } \ .
 $$
-The stress tensor evidently has dimensions of energy density, or equivalently dimensions of *pressure*, carrying units of $\text{dyne}/\text{cm}^2$ in Gaussian units or $\text{N}/\text{m}^2$ in SI units. Since $\mathbf{T}$ is a linear combination of valid rank-2 tensors, it must indeed be a valid rank-2 tensor as we claimed. Moreover, $\mathbf{T}$ is a symmetric tensor since $T_{ij} = T_{ji}$.
-
-Notice that the divergence of a rank-2 tensor is evidently a vector since we contract over only one of the indices. Since $\mathbf{T}$ is symmetric we have $\partial_j T_{ij} = \partial_i T_{ij}$, which means we can take the divergence by contracting over either index, meaning the notation $\nabla \cdot \mathbf{T}$ is unambiguous.
-
-The fact that the stress tensor has dimensions of pressure suggests that not only do EM fields have energy and momentum, but they also have pressure. These pressures are given by the diagonals of the stress tensor. The off-diagonal components of the stress tensor represent shearing.
-
-The closed surface integral of the stress tensor represents the total force flowing out of a given fixed volume,
+Since $\mathbf{T}$ is a linear combination of valid rank-2 tensors, it must indeed be a valid rank-2 tensor as we claimed. Writing $\mathbf{T}$ out as a matrix in terms of its Cartesian components, we have
 $$
-\mathbf{F} = \oint_\mathcal{S} \mathbf{T} \cdot d\mathbf{a} \ .
+\mathbf{T} = \frac{1}{4\pi} 
+\begin{pmatrix}
+E_x^2 + B_x^2 - \frac{1}{2}(\mathbf{E}^2 + \mathbf{B}^2) & E_x E_y + B_x B_y & E_x E_z + B_x B_z \\
+E_y E_x + B_y B_x & E_y^2 + B_y^2 - \frac{1}{2}(\mathbf{E}^2 + \mathbf{B}^2) & E_y E_z + B_y B_z \\
+E_z E_x + B_z B_x & E_z E_y + B_z B_y & E_z^2 + B_z^2 - \frac{1}{2}(\mathbf{E}^2 + \mathbf{B}^2) \\
+\end{pmatrix} \ .
 $$
-We've thus shown that the conservation law for field momentum is given by
+Notice that $\mathbf{T}$ is a symmetric tensor, meaning $T_{ij} = T_{ji}$. This means the stress tensor only has six independent components. It also means that the divergence operator $\nabla \cdot \mathbf{T}$ is unique, since
+$$
+\nabla \cdot \mathbf{T} = \partial_j T_{ij} = \partial_i T_{ij} = \partial_j T_{ij} \ .
+$$
+Also, notice that the trace of the stress tensor is in fact the energy density $u$, since
+$$
+T_{ii} = \frac{1}{4\pi} \bigg(\mathbf{E}^2 + \mathbf{B}^2 - \frac{1}{2}(\mathbf{E}^2 + \mathbf{B}^2)\bigg) = \frac{1}{8\pi}(\mathbf{E}^2 + \mathbf{B}^2) = u \ .
+$$
+The stress tensor has dimensions of energy density, or equivalently dimensions of *pressure*, carrying units of $\text{dyne}/\text{cm}^2$ in Gaussian units or $\text{N}/\text{m}^2$ in SI units. In fact, the components of $\mathbf{T}$ implies that EM fields contain pressure. The diagonal components of $\mathbf{T}$ represent pressures, while the off-diagonal components represent shearing. For example, $T_{xx}$ represents the pressure exerted by the $x$-components of the fields on surfaces in the $x$-direction, and $T_{xy}$ represents the tendency of the $x$-components of the fields to shear surfaces along the $y$-direction.
+
+This pressure even shows up in electrostatics, where it's known as *electrostatic pressure*. In that setting the B-fields vanish and the E-fields become time-independent, but the stress tensor doesn't vanish. As an example, consider two parallel capacitor plates with opposite surface charge densities $\pm \sigma$ separated by a distance $d$ in the $z$-direction. Consider the force the field exerted by the positively charged plate on the negatively charged plate. Since the positively charged plate has a field $\mathbf{E} = 2\pi\sigma \mathbf{e}_z$, the negatively charged plate will be attracted toward the positively charged plate with pressure
+$$
+T_{zz} = \frac{1}{8\pi} \mathbf{E}^2 = \frac{(2\pi\sigma)^2}{8\pi} = \frac{\pi}{2} \sigma^2 \ .
+$$
+At any rate, we've managed to show that the conservation law for field momentum is given by
 $$
 \boxed{
 \frac{\partial\mathbf{g}}{\partial t} - \nabla \cdot \mathbf{T} = -\mathbf{f} 
@@ -817,17 +417,7 @@ $$
 $$
 This says that the field momentum can change in one of two ways, either by flowing into or out of a fixed volume according to the divergence of the stress tensor $\mathbf{T}$, or by being created or dissipated through the field's coupling with particles inside the volume via the Lorentz force law.
 
-- Talk more about EM pressure, maybe illustrate with a simple example or figure.
-- Consider working an example, e.g. Coulomb's law the hard way
-- Why does $\nabla \cdot \mathbf{T}$ carry a minus sign in the conservation law?
-
-$$
-T_{xx} = \frac{1}{4\pi} \bigg[E_x^2 + B_x^2 - \frac{1}{2}(E_k E_k + B_k B_k)\bigg] = \frac{1}{8\pi} \bigg[(E_x^2 - E_y^2 - E_z^2) + (B_x^2 - B_y^2 - B_z^2)\bigg]
-$$
-
-
-
-
+- Consider working an example, e.g. Coulomb's law the hard way (or more interesting examples from Griffiths/Jackson)
 
 ### Conservation of Angular Momentum
 
@@ -893,118 +483,287 @@ $$
 $$
 In this form, the conservation law for angular momentum looks analogous to the one we derived for ordinary momentum, except that each quantity now contains a cross product with $\mathbf{x}$.
 
-## Lienard-Wiechert Potentials
+Just as the ordinary mechanical momentum can always be composed into two components, an *orbital angular momentum* and a *spin angular momentum*, the same is true for the field momentum. That is, we can write
+$$
+\boldsymbol{\mathcal{L}} = \boldsymbol{\mathcal{L}}_\text{orb} + \boldsymbol{\mathcal{L}}_\text{spin} \ ,
+$$
+where $\boldsymbol{\mathcal{L}}_\text{orb}$ is the orbital angular momentum density given by
+$$
+\boldsymbol{\mathcal{L}}_\text{orb} \equiv \frac{1}{4\pi c} E_\ell (\mathbf{x} \times \nabla) A_\ell \ ,
+$$
+where $\mathbf{A}$ is the usual vector potential, and $\boldsymbol{\mathcal{L}}_\text{spin}$ is the spin angular momentum density given by
+$$
+\boldsymbol{\mathcal{L}}_\text{spin} \equiv \frac{1}{4\pi c} \mathbf{E} \times \mathbf{A} \ .
+$$
+Deriving this decomposition is cumbersome and not terribly insightful to the theory, so we won't show the derivation here. Notice the spin component depends only on the intrinsic vector character of the field itself. Meanwhile, the orbital component depends on the spatial variation of the field via the operator $\mathbf{x} \times \nabla$. The appearance of this operator in $\boldsymbol{\mathcal{L}}_\text{orb}$ is no accident. Up to a factor of $-i\hbar$, the operator $\mathbf{x} \times \nabla$ is in fact the *definition* of the orbital angular momentum operator in quantum mechanics.
 
-We'd now like to calculate the potentials and fields for what should be the simplest problem in electrodynamics, the moving point charge. As we'll see, even the potentials and fields for such a simple problem turn out to be surprisingly complicated compared to those for the stationary point charge. However, in them we'll see an important implication: moving charges radiate energy.
+## Waves
 
-### Potentials
+Fundamentally, the study of electrodynamics turns out to be in large part about the study of *waves*. We'll see in this chapter and future chapters that the solutions to Maxwell's equations can be characterized by waves, i.e. solutions to the wave equation. Before discussing how this happens we will first review the study of the behavior of waves more generally.
 
-To start, suppose we have a point charge $q$ moving along some trajectory $\mathbf{x}_p(t)$ in space with velocity $\mathbf{v}_p(t)$. Then its charge and current distributions are given by
+### Waves in One Dimension
+
+- Rewrite to define a wave starting from the wave equation, and deducing its solutions.
+
+Intuitively, a *wave* can be thought of as any disturbance whose shape propagates in some direction at a given speed. Mathematically, a one-dimensional wave can be thought of as any time-dependent function of the form
 $$
-\rho(\mathbf{x}',t') = q \delta(\mathbf{x}' - \mathbf{x}_p(t')) \quad , \quad \mathbf{J}(\mathbf{x}',t') = q \mathbf{v}_p(t) \delta(\mathbf{x}' - \mathbf{x}_p(t')) \ .
+\phi(x,t) = f(x \pm vt) \ .
 $$
-Substituting these distributions into the potentials and evaluating the trajectory at the retarded time $t_\text{ret}$, we get
+If $\phi(x,t) = f(x - vt)$ we say the wave is moving to the *right* with speed $v$, and if $\phi(x,t) = f(x + vt)$ we say the wave is moving to the *left* at speed $v$. If the speed $v$ is constant, the wave will maintain its shape as it propagates. If not the wave will *disperse*, meaning its shape will spread out or contract over time.
+
+Observe that both left and right propagating waves satisfy the following partial differential equation,
 $$
-\phi(\mathbf{x},t) = \int d^3\mathbf{x}' q \frac{\delta\big(\mathbf{x}' - \mathbf{x}_p(t_\text{ret}(t'))\big)}{|\mathbf{x} - \mathbf{x}'|} \quad , \quad \mathbf{A}(\mathbf{x},t) = \frac{1}{c} \int d^3\mathbf{x}' q \mathbf{v}_p(t_\text{ret}) \frac{\delta\big(\mathbf{x}' - \mathbf{x}_p(t_\text{ret}(t'))\big)}{|\mathbf{x} - \mathbf{x}'|} \ .
+\frac{\partial^2 \phi}{\partial x^2} - \frac{1}{v^2} \frac{\partial^2 \phi}{\partial t^2} = 0 \ .
 $$
-Note that now the retarded time $t_\text{ret}$ will depend implicitly on the source time $t'$ since $\mathbf{x}_p$ depends on $t'$. Since we need to be very careful about this when doing the time integration, we'll explicitly write $t_\text{ret} = t_\text{ret}(t')$. To evaluate these integrals it'll be useful to rewrite the delta functions in the factored form
+This second order linear PDE is known as the *wave equation*. In fact, any solution to the wave equation must be a wave propagating either to the left or to the right at speed $v$, or both. That is, the general solution to this equation must have the form
 $$
-\delta\big(\mathbf{x}' - \mathbf{x}_p(t_\text{ret}(t'))\big) = \delta(\mathbf{x}' - \mathbf{x}_p(t')) \delta(t' - t_\text{ret}(t')) \ .
+\phi(x,t) = f(x - vt) + g(x + vt) \ ,
 $$
-This is completely equivalent to the original delta function provided we insert an integral over $t'$ into the potentials,
+where $f$ is an arbitrary right-propagating wave and $g$ is an arbitrary left-propagating wave, both moving at the same speed $v$. That this must be true can be seen using the *method of characteristics*. First, we factor the wave equation to write
+$$
+\bigg(\frac{\partial \phi}{\partial x} + \frac{1}{v} \frac{\partial \phi}{\partial t}\bigg) \bigg(\frac{\partial \phi}{\partial x} - \frac{1}{v} \frac{\partial \phi}{\partial t}\bigg) = 0 \ .
+$$
+Now, the wave equation will be satisfied provided at least one of these products is zero. If the first product is zero, we can reduce the wave equation into a first order linear PDE of the form
+$$
+\frac{\partial \phi}{\partial x} + \frac{1}{v} \frac{\partial \phi}{\partial t} = 0 \ .
+$$
+The solution $\phi(x,t)$ must always be constant along any curve where $d\phi = 0$. Assuming the above PDE holds, this says
+$$
+d\phi = \frac{\partial \phi}{\partial x} dx + \frac{\partial \phi}{\partial t} dt = \frac{\partial \phi}{\partial x} (dx - vdt) = 0 \ .
+$$
+Assuming $\phi(x,t)$ isn't a trivial constant, it can only be constant along curves where $dx - vt = 0$, or equivalently along curves where $x - vt$ is constant. The only way this can be true is if $\phi(x,t) = f(x-vt)$ for some function $f$. 
+
+By the exact same argument, the second product can only be zero provided $\phi(x,t) = g(x + vt)$ for some function $g$. Since the wave equation requires only one of these products to be zero, for either to be zero $\phi(x,t)$ can be the sum of the two forms,
+$$
+\phi(x,t) = f(x - vt) + g(x + vt) \ .
+$$
+Thus, any general solution to the wave equation be a sum of left and right propagating waves. Note the exact shape of $f$ and $g$ will depend on the initial and boundary conditions of a given problem.
+
+Perhaps the most intuitive example of a 1-dimensional wave in physics is the vibrating string. Suppose a long taut string with some tension $T$ runs along the $x$-axis. Suppose the string is displaced from equilibrium by some amount in the $y$-direction, with the displacement in this direction characterized by some time-dependent scalar field $y = y(x,t)$. For any point $x$ along this strong, an infinitesimal displacement $dy$ will take place of the form
+$$
+dy = y(x + dx,t) - y(x,t) \ .
+$$
+This displacement will be caused by a force proportional to the tension. The force $dF$ needed to displace the string between the points $x$ and $x + dx$ by an amount $dy$ will be given by
+$$
+dF = T dy = T \frac{\partial}{\partial x} [y(x + dx,t) - y(x,t)] = T \frac{\partial^2 y}{\partial x^2} dx \ .
+$$
+If $\mu$ is the mass per unit length, then $dm = \mu dx$ is the mass of the string along this infinitesimal interval. By Newton's second law, we must then have $dF = \ddot y dm$, or equivalently
+$$
+\mu dx \frac{\partial^2 y}{\partial t^2} = T \frac{\partial^2 y}{\partial x^2} dx \ .
+$$
+Canceling the $dx$ from both sides, we find the displacement of the string satisfies the wave equation with a velocity $v$ given by
+$$
+v = \sqrt{\frac{T}{\mu}} \ .
+$$
+Its general solution will depend on the initial and boundary conditions, but will still have the general form
+$$
+y(x,t) = f(x - vt) + g(x + vt) \ .
+$$
+In this case, the wave displacement is along the $y$-direction, even though the wave propagates along the $x$-direction. A wave whose displacement is perpendicular to the direction of propagation is called a *transverse wave*. If the displacement were instead along the direction of propagation instead we'd call it a *longitudinal wave*. Some waves can even have both transverse as well as longitudinal components.
+
+### Sinusoidal Waves
+
+In general, the shape of $f$ and $g$ could be essentially anything. Different shapes correspond to waves with different names. Some of the more common wave shapes we might encounter in one dimension are sinusoidal waves, rectangular waves, triangular waves, sawtooth waves, pulse waves, and so on. The most theoretically important class of waves, however, are the *sinusoidal waves*. After all, the theory of Fourier series guarantees we can build any shape of periodic wave as a series of sinusoids. 
+
+In one dimension, a sinusoidal wave has the general form
+$$
+\phi(x,t) = A \cos(kx - \omega t + \delta) \ ,
+$$
+where $A$ is called the *amplitude* of the wave, $\delta$ the *phase constant*, $k$ the *wavenumber*, and $\omega$ the *angular frequency*. Graphically, the amplitude $A$ represents the maximum height of the wave relative to the $x$-axis, while the phase constant $\delta$ represents the argument of the wave at position $x=0$ and time $t=0$,
+$$
+\phi(0,0) = A \cos\delta \ .
+$$
+The wavenumber $k$ is related to the *wavelength* $\lambda$ of the wave, which is the *length* of one full oscillation at a fixed time,
+$$
+k = \frac{2\pi}{\lambda} \ .
+$$
+The angular frequency $\omega$ is related to the *period* $T$ of the wave, which is the *time* of one full oscillation at a fixed spatial position,
+$$
+\omega = \frac{2\pi}{T} \ .
+$$
+For the sinusoid to satisfy the wave equation above, we require that $k$ and $\omega$ be related by the equation
+$$
+v = \frac{\omega}{k} \ .
+$$
+Here $v$ represents the speed at which the argument of the cosine, called the *phase* of the wave, propagates. For this reason we call $v$ the *phase velocity* of the wave, sometimes denoted $v_p$. The phase velocity is named to contrast it with a different type of wave velocity we'll discuss later known as the *group velocity* $v_g$. For the sinusoid it turns out they're the same, $v_p = v_g = v$.
+
+FIGURE (represent the different wave components above)
+
+Frequently we'll find it useful to express sinusoid waves as complex exponentials to simplify mathematical manipulations. We can do this thanks to two facts. First, Euler's identity says
+$$
+e^{ix} = \cos x + i \sin x \ .
+$$
+Second, observe $\phi(x,t) = A \cos(kx - \omega t + \delta)$ solves the wave equation if and only if its complex exponential also does,
+$$
+\Phi(x,t) \equiv \mathcal{A} e^{i(kx - \omega t)} \ .
+$$
+Here $\mathcal{A} \equiv A e^{i\delta}$ is known as the *complex amplitude*. It's just the ordinary real amplitude rotated counterclockwise in the complex plane by an angle $\delta$. The complex sinusoid $\Phi(x,t)$ is sometimes called the *analytic wave* of the *real wave* $\phi(x,t)$. We thus lose no information by treating sinusoids as complex exponentials. We can do all mathematical manipulations with complex exponentials, and in the end recover the real-valued sinusoid by taking its real part,
+$$
+\phi(x,t) = \text{Re} \ \Phi(x,t) \ .
+$$
+For this reason, in this course we'll frequently abuse notation by using the same notation for both the real-valued and complex-valued versions of a wave. It will always be understood that to get the *physical* wave we take the real part in the end.
+
+### Waves in Three Dimensions
+
+In electromagnetism we almost always find ourselves interested in waves in three dimensions, not in one dimension. We can extend our discussion above to three dimensions fairly easily. A scalar field $\phi(\mathbf{x},t)$ will be called a *wave* provided it satisfies the 3-dimensional wave equation for some constant velocity $v$,
+$$
+\nabla^2 \phi - \frac{1}{v^2} \frac{\partial^2 \phi}{\partial t^2} = 0 \ .
+$$
+Notice that the only difference between the 3-dimensional and 1-dimensional wave equation is the replacement
+$$
+\frac{\partial^2 \phi}{\partial x^2} \to \nabla^2 \phi \ .
+$$
+This one subtle change does make a difference: We can no longer characterize the solutions to the wave equation as a linear superposition of left and right propagating waves. Instead the general solutions will be much more complex, depending on both the initial conditions of the wave as well as any imposed boundary conditions.
+
+The 3-dimensional generalization of the sinusoid wave are functions of the form
+$$
+\phi(\mathbf{x},t) = A \cos(\mathbf{k} \cdot \mathbf{x} - \omega t + \delta) \ .
+$$
+Most terms remain the same as the 1-dimensional sinusoid, except now the wavenumber $k$ is replaced by a *wavevector* $\mathbf{k}$ and the product $kx$ is replaced by the dot product $\mathbf{k} \cdot \mathbf{x}$. Notice the Laplacian of this function is given by
+$$
+\nabla^2 \phi = \partial_i \partial_i \phi = k_i k_i \phi = -|\mathbf{k}|^2 \phi \ ,
+$$
+while its second partial time derivative is given by
+$$
+\frac{\partial^2 \phi}{\partial t^2} = -\omega^2 \phi \ .
+$$
+Plugging these into the wave equation, we see that the sinusoid can only be a valid solution provided we have
+$$
+v = \frac{|\mathbf{k}|}{\omega} \ .
+$$
+We can thus identify $k \equiv |\mathbf{k}|$ as the usual wavenumber which can be related to the wavelength $\lambda$ in the usual way.
+
+Just as we could equivalently express 1-dimensional sinusoid waves in terms of complex exponentials, we can do the same for 3-dimensional sinusoids. Given a real sinusoidal wave $\phi(\mathbf{x},t)$ defined as above, we define its analytic wave equivalent by
+$$
+\Phi(\mathbf{x},t) \equiv \mathcal{A} e^{i(\mathbf{k} \cdot \mathbf{x} - \omega t)} \ ,
+$$
+where $\mathcal{A} \equiv A e^{i\delta}$ is again the complex amplitude. It's easy to see the real wave is again the real part of the analytic wave,
+$$
+\phi(\mathbf{x},t) = \text{Re} \ \Phi(\mathbf{x},t) \ .
+$$
+Now, $\phi(\mathbf{x},t)$ will be a valid solution to the wave equation if and only if $\Phi(\mathbf{x},t)$ is a valid solution. This means we can work in either form equivalently. Since exponentials are more mathematically convenient we usually choose to work with the analytic wave. We'll often abuse notation by writing $\phi(\mathbf{x},t)$ for both forms, and assume it's understood that we must take the real part at the end to recover the standard sinusoidal solution.
+
+In the special case that the wave is spherically symmetric we have $\phi = \phi(r,t)$, which means the 3-dimensional wave equation simplifies to the form
+$$
+\frac{1}{r^2} \frac{\partial}{\partial r} \bigg(r^2 \frac{\partial \phi}{\partial r}\bigg) - \frac{1}{v^2} \frac{\partial^2 \phi}{\partial t^2} = 0 \ .
+$$
+This can be converted into a standard 1-dimensional wave equation by substituting $u = r\phi$ and simplifying to get
+$$
+\frac{\partial^2 u}{\partial r^2} - \frac{1}{v^2} \frac{\partial^2 u}{\partial t^2} = 0 \ .
+$$
+Since we know the solutions to this equation are of the form
+$$
+u(r,t) = f(r - vt) + g(r + vt) \ ,
+$$
+the solutions to the original equation must be
+$$
+\phi(r,t) = \frac{f(r - vt)}{r} + \frac{g(r + vt)}{r} \ .
+$$
+Solutions of this type are known as *spherical waves*. The first term represents a wave propagating outward from the origin to infinity in a spherical shape with speed $v$, while the second term represents a wave propagating inward toward the origin from infinity with the same speed $v$. These are the 3-dimensional analogue of the left and right propagating waves in one dimension.
+
+FIGURE (show spherical wave behavior)
+
+
+
+### Vector Waves
+
+Thus far we've focused on *scalar waves*, i.e. scalar fields that satisfy the wave equation. However, vector fields can behave as waves as well. These are *vector waves*. A vector wave is any vector field $\mathbf{F}(\mathbf{x},t)$ that satisfies the 3-dimensional vector wave equation for some constant speed $v$,
+$$
+\nabla^2 \mathbf{F} - \frac{1}{v^2} \frac{\partial^2 \mathbf{F}}{\partial t^2} = 0 \ .
+$$
+This is equivalent to the statement that each component of $\mathbf{F}(\mathbf{x},t)$ satisfies its own scalar wave equation. The primary difference between scalar waves and vector waves is that vector waves have a directionality associated to them, which we usually call the *polarization* of the wave.
+
+
+
+## Electromagnetic Waves
+
+No doubt the most profound impact of Maxwell's equations is that they imply the existence of electromagnetic radiation, or light. We will study electromagnetic radiation in much more detail in later chapters. For now we will show that in the absence of sources Maxwell's equations imply that the fields must satisfy the wave equation, which will imply the existence of electromagnetic waves that propagate at the speed of light.
+
+### Maxwell's Equations in Free Space
+
+Far away from the source charges generating an EM field we can treat Maxwell's equations as being source-free. In this setting they reduce to the *free space* Maxwell equations
 $$
 \begin{align*}
-&\phi(\mathbf{x},t) = \int d^3\mathbf{x}' dt' q \frac{\delta(\mathbf{x}' - \mathbf{x}_p(t'))}{|\mathbf{x} - \mathbf{x}'|} \delta(t' - t_\text{ret}(t')) \ , \\
-&\mathbf{A}(\mathbf{x},t) = \frac{1}{c} \int d^3\mathbf{x}' dt' q \mathbf{v}_p(t') \frac{\delta(\mathbf{x}' - \mathbf{x}_p(t'))}{|\mathbf{x} - \mathbf{x}'|} \delta(t' - t_\text{ret}(t')) \ .
+&\nabla \cdot \mathbf{E} = 0 \ , \qquad \nabla \times \mathbf{E} = -\frac{1}{c} \frac{\partial \mathbf{B}}{\partial t} \ ,& \\
+&\nabla \cdot \mathbf{B} = 0 \ , \qquad \nabla \times \mathbf{B} = \frac{1}{c} \frac{\partial \mathbf{E}}{\partial t} \ .& \\
 \end{align*}
 $$
-Now we can interchange the order of integration and evaluate the volume integrals first. Upon performing the volume integration, the delta function picks out $\mathbf{x}' = \mathbf{x}_s(t')$, leaving us with the following integrals over $t$',
+It turns out that the free space solutions can be reduced to two second order PDEs. To see why this is the case, suppose we take the curl of both $\nabla \times \mathbf{E}$ and $\nabla \times \mathbf{B}$. By the properties of the curl, we have
 $$
-\begin{align*}
-&\phi(\mathbf{x},t) = q \int dt' \frac{\delta(t' - t_\text{ret}(t'))}{|\mathbf{x} - \mathbf{x}_p(t')|} \ , \\
-&\mathbf{A}(\mathbf{x},t) = \frac{q}{c} \int dt' \mathbf{v}_p(t')\frac{\delta(t' - t_\text{ret}(t'))}{|\mathbf{x} - \mathbf{x}_p(t')|} \ .
-\end{align*}
+\nabla \times (\nabla \times \mathbf{E}) = \nabla (\nabla \cdot \mathbf{E}) - \nabla^2 \mathbf{E} \ .
 $$
-Let's now look closer at the argument $f(t')$ of these remaining delta functions. Writing out $t_\text{ret}(t')$ explicitly, we have
+Applying the free space equations above and interchanging derivatives, the left-hand side can be written
 $$
-f(t') \equiv t' - t_\text{ret}(t') = t' - \bigg(t - \frac{|\mathbf{x} - \mathbf{x}_p(t')|}{c}\bigg) \ .
+\nabla \times (\nabla \times \mathbf{E}) = -\frac{1}{c} \nabla \times \frac{\partial \mathbf{B}}{\partial t} = -\frac{1}{c} \frac{\partial}{\partial t} (\nabla \times \mathbf{B}) = -\frac{1}{c^2} \frac{\partial^2 \mathbf{E}}{\partial t^2}  \ .
 $$
-Now, we'd like to write the delta function $\delta(f(t'))$ inside the integrals above using the delta function identity
+Since $\nabla \cdot \mathbf{E} = 0$, we thus have
 $$
-\delta(f(t')) = \sum_i \frac{\delta(t' - t_i)}{\quad \big|\frac{\partial}{\partial t'} f(t')\big|_{t' = t_i}} \ ,
+\nabla^2 \mathbf{E} - \frac{1}{c^2} \frac{\partial^2 \mathbf{E}}{\partial t^2} = 0 \ .
 $$
-where $t' = t_i$ are the roots of $f(t')$. But first we need to figure out what the roots of $f(t')$ are. In principle, such a function could have no roots, or arbitrarily many arbitrary roots. But *physically*, we want to insist that $f(t') = 0$ only at some *unique* retarded time $t_\text{ret}$ which depends only on $\mathbf{x}$ and $t$, and not on $t'$. It can be proven that under certain regularity conditions on $f(t')$ that such a unique retarded time exists. In that case, $f(t') = 0$ only when $t' = t_\text{ret}$, and we can write
+In an analogous manner, for the B-field we have
 $$
-\delta(f(t')) = \frac{\delta(t' - t_\text{ret})}{\quad \frac{\partial}{\partial t'} f(t')\big|_{t' = t_\text{ret}}} \ .
+\nabla \times (\nabla \times \mathbf{B}) = \nabla (\nabla \cdot \mathbf{B}) - \nabla^2 \mathbf{B} \ .
 $$
-Note that now we're abusing notation a bit by now assuming $t_\text{ret}$ is a fixed value, not a function of $t'$. That is, $t_\text{ret}$ without the argument is now the (assumed to be unique) implicit solution to the equation
+Applying the free-space equations and interchanging derivatives, the left-hand side can be written
 $$
-t_\text{ret}(t_\text{ret}) = t - \frac{|\mathbf{x} - \mathbf{x}_p(t_\text{ret})|}{c} \ .
+\nabla \times (\nabla \times \mathbf{B}) = \frac{1}{c} \nabla \times \frac{\partial \mathbf{E}}{\partial t} = \frac{1}{c} \frac{\partial}{\partial t} (\nabla \times \mathbf{E}) = -\frac{1}{c^2} \frac{\partial^2 \mathbf{B}}{\partial t^2}  \ .
 $$
-Next, we need to evaluate the derivative in the denominator and set $t' = t_\text{ret}$. We have
+Since $\nabla \cdot \mathbf{B} = 0$, we thus have
 $$
-\begin{align*}
-\frac{\partial}{\partial t'} f(t') \bigg|_{t' = t_\text{ret}} &= \frac{\partial}{\partial t'} \bigg[t' - \bigg(t - \frac{|\mathbf{x} - \mathbf{x}_p(t')|}{c}\bigg)\bigg]_{t' = t_\text{ret}} \\
-&= 1 + \frac{1}{c} \frac{\partial}{\partial t'} |\mathbf{x} - \mathbf{x}_p(t')| \bigg|_{t' = t_\text{ret}} \\
-&= 1 - \frac{\mathbf{v}_p(t_\text{ret})}{c} \cdot \frac{\mathbf{x} - \mathbf{x}_p(t_\text{ret})}{|\mathbf{x} - \mathbf{x}_p(t_\text{ret})|} \ .
-\end{align*}
+\nabla^2 \mathbf{B} - \frac{1}{c^2} \frac{\partial^2 \mathbf{B}}{\partial t^2} = 0 \ .
 $$
-Plugging this back into the delta function identity, we have
-$$
-\delta(t-t_\text{ret}(t')) = \frac{\delta(t' - t_\text{ret})}{1 - \frac{\mathbf{v}_p(t_\text{ret})}{c} \cdot \frac{\mathbf{x} - \mathbf{x}_p(t_\text{ret})}{|\mathbf{x} - \mathbf{x}_p(t_\text{ret})|}} \ .
-$$
-Plugging this back into the integral and evaluating the delta function, the scalar potential becomes
-$$
-\begin{align*}
-\phi(\mathbf{x},t) &= q \int dt' \frac{\delta(t' - t_\text{ret}(t'))}{|\mathbf{x} - \mathbf{x}_p(t')|} \\
-&= q \int dt' \frac{\delta(t' - t_\text{ret})}{1 - \frac{\mathbf{v}_p(t_\text{ret})}{c} \cdot \frac{\mathbf{x} - \mathbf{x}_p(t_\text{ret})}{|\mathbf{x} - \mathbf{x}_p(t_\text{ret})|}} \frac{1}{|\mathbf{x} - \mathbf{x}_p(t')|} \\
-&= \frac{q}{|\mathbf{x} - \mathbf{x}_p(t_\text{ret})|} \bigg(1 - \frac{\mathbf{v}_p(t_\text{ret})}{c} \cdot \frac{\mathbf{x} - \mathbf{x}_p(t_\text{ret})}{|\mathbf{x} - \mathbf{x}_p(t_\text{ret})|}\bigg)^{-1} \ .
-\end{align*}
-$$
-
-Thus, the scalar potential for a moving point charge $q$ with trajectory $\mathbf{x}_p(t)$ and velocity $\mathbf{v}_p(t)$ is given by
+We've thus managed to the four coupled first-order PDEs of free space to two uncoupled second-order PDEs of identical form,
 $$
 \boxed{
-\phi(\mathbf{x},t) = \frac{q}{|\mathbf{x} - \mathbf{x}_p(t_\text{ret})|} \bigg(1 - \frac{\mathbf{v}_p(t_\text{ret})}{c} \cdot \frac{\mathbf{x} - \mathbf{x}_p(t_\text{ret})}{|\mathbf{x} - \mathbf{x}_p(t_\text{ret})|}\bigg)^{-1} 
-} \ .
-$$
-Notice we easily recover the Coulomb potential when the particle is at rest, as we'd expect. Interestingly, when the charge is moving we now have what appears to be a relativistic correction to the scalar potential given by the factor
-$$
-\mathcal{R} \equiv \bigg(1 - \frac{\mathbf{v}_p(t_\text{ret})}{c} \cdot \frac{\mathbf{x} - \mathbf{x}_p(t_\text{ret})}{|\mathbf{x} - \mathbf{x}_p(t_\text{ret})|}\bigg)^{-1} \ .
-$$
-Provided the particle is moving slowly relative to the speed of light, we have $|\mathbf{v}_p| \ll c$, which means $\mathcal{R} \to 1$, in which case we recover a Coulomb-like scalar potential,
-$$
-\phi(\mathbf{x},t) \approx \frac{q}{|\mathbf{x} - \mathbf{x}_p(t_\text{ret})|} \ .
-$$
-In this limit the equipotentials propagate outward from the moving charge as spherical waves moving at the speed of light. However, when $|\mathbf{v}_p| \sim c$ these waves are no longer spherical. In this limit, we have two cases. In the plane normal to the charge's motion, $\mathcal{R} = 1$ at all speeds, which means the field lines in this plane still move outward as circular waves. However, outside this normal plane the equipotentials get *contracted* near the moving charge, with $\mathcal{R} \to \infty$ as $|\mathbf{v}_p| \to c$.
-
-FIGURE (equipotentials of moving point charge)
-
-Similarly, the vector potential for a moving point charge is given by
-$$
-\boxed{
-\mathbf{A}(\mathbf{x},t) = \frac{\mathbf{v}_p(t_\text{ret})}{c} \frac{q}{|\mathbf{x} - \mathbf{x}_p(t_\text{ret})|} \bigg(1 - \frac{\mathbf{v}_p(t_\text{ret})}{c} \cdot \frac{\mathbf{x} - \mathbf{x}_p(t_\text{ret})}{|\mathbf{x} - \mathbf{x}_p(t_\text{ret})|}\bigg)^{-1} 
-} \ .
-$$
-Notice that when the velocity of the particle is zero the vector potential vanishes, reflecting the fact that only moving point charges can create magnetic fields. Notice the vector potential is directly proportional to the scalar potential above, with
-$$
-\mathbf{A}(\mathbf{x},t) = \frac{\mathbf{v}_p(t_\text{ret})}{c} \phi(\mathbf{x},t) \ .
-$$
-These two potentials for a moving point charge are known as the *Lienard-Wiechert potentials*. Together, these potentials are the electrodynamic generalization of the usual Coulomb potential for a stationary point charge. One immediate consequence of the Lienard-Wiechert potentials is that moving charges *radiate*. That is, they emit energy in the form of EM waves. We'll discuss this radiation in more detail later.
-
-Note that more commonly in textbooks, one defines $\mathbf{n}_p \equiv (\mathbf{x} - \mathbf{x}_p)/|\mathbf{x} - \mathbf{x}_p|$ and $\boldsymbol{\beta}_p \equiv \mathbf{v}_p / c$ and writes the Lienard-Wiechert potentials in the equivalent form
-$$
 \begin{align*}
-&\phi(\mathbf{x},t) = \bigg[\frac{q}{(1 - \boldsymbol{\beta}_p \cdot \mathbf{n}_p)|\mathbf{x} - \mathbf{x}_p|}\bigg]_{t_\text{ret}} \ , \\
-&\mathbf{A}(\mathbf{x},t) = \bigg[\frac{q\boldsymbol{\beta}_p}{(1 - \boldsymbol{\beta}_p \cdot \mathbf{n}_p)|\mathbf{x} - \mathbf{x}_p|}\bigg]_{t_\text{ret}} \ .
+\nabla^2 \mathbf{E} - \frac{1}{c^2} \frac{\partial^2 \mathbf{E}}{\partial t^2} = 0 \\
+\nabla^2 \mathbf{B} - \frac{1}{c^2} \frac{\partial^2 \mathbf{B}}{\partial t^2} = 0
 \end{align*}
+} \ .
 $$
-In this form it's understood that the arguments inside the brackets are evaluated at the retarded time $t_\text{ret}$.
+Note that we haven't completely been able to completely decouple $\mathbf{E}$ and $\mathbf{B}$ from each other. While these fields must both satisfy the wave equation in free space, they must *also* still satisfy the curl equations
+$$
+\nabla \times \mathbf{E} = -\frac{1}{c} \frac{\partial \mathbf{B}}{\partial t} \quad , \quad \nabla \times \mathbf{B} = \frac{1}{c} \frac{\partial \mathbf{E}}{\partial t} \ .
+$$
+The requirement that the fields also satisfy these constraints will imply something important about the *directional* relation between $\mathbf{E}$ and $\mathbf{B}$.
 
-### Fields
 
 
 
 
-- Follow wikipedia article for more here. Seems like the simplest approach.
-- There are different retarded times in this problem, one that depends on $t'$ and one that doesn't. Figure this out.
+
+- Consider working a standing wave example, perhaps mentioning separation of variables somewhere.
+- Talk about monochromatic EM waves and EM polarization.
+- Talk about the radiation spectrum somewhere?
+
+
+$$
+\mathbf{E}(\mathbf{x},t) = \mathbf{E}_0 e^{i(\mathbf{k} \cdot \mathbf{x} - \omega t)}
+$$
+
+$$
+\mathbf{B}(\mathbf{x},t) = \mathbf{B}_0 e^{i(\mathbf{k} \cdot \mathbf{x} - \omega t)}
+$$
+
+$$
+\omega = c|\mathbf{k}|
+$$
+
+$$
+\mathbf{E}_0 = E_0 \mathbf{n} = E_a \mathbf{e}_a + E_b \mathbf{e}_b + E_k \mathbf{e}_k
+$$
+
+$$
+\mathbf{B}_0 = \mathbf{k} \times \mathbf{E}_0 = B_0 (\mathbf{e}_k \times \mathbf{n}) = kE_0 (\mathbf{e}_k \times \mathbf{n})
+$$
+
+$$
+\phi(\mathbf{k}) = A(\mathbf{k}) e^{i(\mathbf{k} \cdot \mathbf{x} - \omega t)} + B(\mathbf{k}) e^{i(\mathbf{k} \cdot \mathbf{x} + \omega t)}
+$$
+
+$$
+\phi(\mathbf{x},t) = \int \frac{d^3\mathbf{k}}{(2\pi)^3} [A(\mathbf{k}) e^{i(\mathbf{k} \cdot \mathbf{x} - \omega t)} + B(\mathbf{k}) e^{i(\mathbf{k} \cdot \mathbf{x} + \omega t)}]
+$$
+
+>“The velocity of transverse undulations in our hypothetical medium, calculated from the electro-magnetic experiments of MM. Kohlrausch and Weber, agrees so exactly with the velocity of light calculated from the optical experiments of M. Fizeau, that we can scarcely avoid the inference that light consists in the transverse undulations of the same medium which is the cause of electric and magnetic phenomena” - J.C. Maxwell
+

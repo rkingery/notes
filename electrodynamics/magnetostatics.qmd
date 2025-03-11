@@ -12,7 +12,7 @@ Up until now we've always assumed that charges were *static*. Now we will allow 
 $$
 I \equiv \frac{dq}{dt} \ .
 $$
-Current must have dimensions of charge per unit time. In Gaussian units, current is measured in units of esu per second, which is also called a *statampere*. In SI units, current is measured in units of Coulombs per second, also called an *Ampere* or an *amp*. The two units are related by $1 \ \text{statamp} \approx 10^{-12} \ \text{A}$.
+Current must have dimensions of charge per unit time in any system of units. In Gaussian units, current is measured in units of esu per second, which is also called a *statampere*. In SI units, current is measured in units of Coulombs per second, which is called an *Ampere*, often shortened to *amp*. The two units are related by $1 \ \text{statamp} \approx 10^{-12} \ \text{A}$.
 
 Current was perhaps first understood in the context of conducting wires. When a potential difference is created across a wire, for example by hooking the wire up to a battery, the charges inside the wire experience an *electromotive force*, causing the charges to move in the direction of lowest potential, thus creating an electric current through the wire.
 
@@ -54,67 +54,55 @@ $$
 $$
 From the current vector, we can easily see the current $I$ at any point along the curve is just $I = \lambda |\mathbf{v}|$, as we defined before.
 
-See the figure below for a visual of these different types of current densities.
-
 FIGURE (show current densities)
 
 
 
 ### Conservation of Charge
 
-One fundamental law of classical electromagnetism is that charge is *conserved*. That is, inside any closed surface the total charge  $Q_{\text{enc}}$ inside can't spontaneously appear or disappear. It can only flow out of the surface with some current $I_{\text{out}}$.
-
-FIGURE (show charge and current through surface)
-
-We can express conservation of charge mathematically then by writing
+The most fundamental law of classical electromagnetism is that charge is *conserved*. Charge can neither be created nor destroyed in a given system. The total charge must always remain constant. We can express this mathematically by saying if $Q_{\text{enc}}$ is the total charge inside some closed volume $\mathcal{V}$, the only way that $Q_{\text{enc}}$ can change with time is if it flows into or out of the volume with some current $I_{\text{out}}$. That is, if
 $$
 \frac{dQ_{\text{enc}}}{dt} = -I_{\text{out}} \ .
 $$
-The minus sign expresses the fact that a current flowing out of the closed surface decreases the amount of enclosed charge inside the enclosed region.
+The minus sign expresses the fact that a current flowing out of the closed surface decreases the amount of enclosed charge inside the enclosed region. This statement of conservation of charge is known as a *global* conservation law.
 
-The statement of conservation of charge is stronger than this however. Not only is charged conserved *globally*, it's also conserved *locally*. That is, no matter how small a closed surface we choose, charge must be conserved in the sense defined above. We can formulate the statement of local charge conservation most conveniently using a *continuity equation*.
-
-To achieve this, we can express the enclosed charge as a volume integral over a charge density $\rho(\mathbf{x},t)$ and the outward current as a closed surface integral over the current density $\mathbf{J}(\mathbf{x},t)$,
+However, conservation of charge satisfies an even stronger condition. It must also be conserved *locally*. That is, for any infinitesimal volume we might choose, the above conservation law must still hold. We can express this idea using densities. If $\rho(\mathbf{x},t)$ is the charge density and $\mathbf{J}(\mathbf{x},t)$ is the current density inside a fixed volume $\mathcal{V}$, then by definition we have
 $$
 Q_{\text{enc}} = \int_\mathcal{V} d^3 \mathbf{x} \ \rho(\mathbf{x},t) \quad , \quad I_{\text{out}} = \oint_\mathcal{S} \mathbf{J}(\mathbf{x},t) \cdot d\mathbf{a} \ .
 $$
-As usual, we denote the closed surface by $\mathcal{S}$ and its enclosed volume by $\mathcal{V}$. Plugging these integrals into the conservation law above, we then have
+The global conservation law above can then be expressed as
 $$
 \frac{d}{dt} \int_\mathcal{V} d^3 \mathbf{x} \ \rho(\mathbf{x},t) = - \oint_\mathcal{S} \mathbf{J}(\mathbf{x},t) \cdot d\mathbf{a} \ .
 $$
-Now, we assume the closed surface $\mathcal{S}$ is fixed, which means we can pull the time derivative inside the integral. We can then use the divergence on the right-hand side to express the current as a divergence. All together, we get
+Pulling the time derivative inside the integral on the left-hand side and using the divergence theorem on the right-hand side, we then have
 $$
 \int_\mathcal{V} d^3 \mathbf{x} \ \frac{\partial\rho(\mathbf{x},t)}{\partial t} = - \int_\mathcal{V} d^3 \mathbf{x} \ \nabla \cdot \mathbf{J}(\mathbf{x},t) \ .
 $$
-Since the volume $\mathcal{V}$ is arbitrary, the only way this integral can hold is if the integrands equal. That is, if
+Since the volume $\mathcal{V}$ is arbitrary, the only way this relationship can hold for any volume is if the integrands equal, or equivalently
 $$
 \boxed{
 \frac{\partial\rho}{\partial t} + \nabla \cdot \mathbf{J} = 0
 } \ .
 $$
-This equation fully encapsulates the statement that charge is both locally and globally conserved. It's common to refer to this equation as both *conservation of charge* and the *continuity equation*, even though we could express conservation of charge globally, and there can be continuity equations for other conserved quantities as well.
+This is known as the *continuity equation*. It expresses the fact that charge must be conserved locally, not just globally. As we'll see in future chapters, other important conserved quantities like energy and momentum will also have continuity equations that take different forms.
 
-In this chapter, we will focus specifically on distributions in which $\nabla \cdot \mathbf{J} = 0$. That is, we focus only on distributions where the current neither converges nor diverges at any point. This is called the *steady current* condition. The study of electromagnetism in the special scenario of steady current is called *magnetostatics*, the whole subject of this chapter.
+In this chapter we'll only be interested in *steady currents*. A steady current is one where $\mathbf{J} = \mathbf{J}(\mathbf{x})$ is time-independent. The study of the electromagnetism of steady currents is known as *magnetostatics*. Magnetostatics is the magnetic analogue of electrostatics, where we study the behavior of time-independent magnetic fields in the presence of time-independent currents.
 
-FIGURE (show steady current flow, perhaps contrasting with non-steady current flow)
-
-From the continuity equation, if the steady current condition holds, we must also have
+Since $\mathbf{J} = \rho \mathbf{v}$, when the steady current condition holds it must immediately follow that both the charge density and the flow velocity are also time-independent, with $\rho = \rho(\mathbf{x})$ and $\mathbf{v} = \mathbf{v}(\mathbf{x})$. By the continuity equation, this then implies that the current density must be divergence-free, with
 $$
-\frac{\partial\rho}{\partial t} = 0 \ .
+\boxed{
+\nabla \cdot \mathbf{J} = 0
+} \ .
 $$
-That is, the charge distribution must be time-independent. That is, we must have $\rho = \rho(\mathbf{x})$ and  $\mathbf{J} = \mathbf{J}(\mathbf{x})$, which means neither density is allowed to depend explicitly on time in magnetostatics. If they do, we violate the steady current condition.
+Note that the time-independence of the charge density doesn't necessarily imply that charges must be stationary, as they were in electrostatics. Charges can freely move around, but they must do so in a way such that the charge *density* in a given region doesn't change. The only way this can be true is if any charges flowing out of a given region are being replaced by charges flowing back into the region at the same rate. Formally speaking, this can only be true for a continuum of charge. No finite collection of charge can satisfy the steady current condition.
 
-Note fact that $\rho = \rho(\mathbf{x})$ does *not* imply that charges aren't moving around in space, only that they're moving in such a way that $\rho$ itself isn't changing explicitly with time. The only way this can be true is if any charges flowing out a given region are being replaced by charges flowing back into the region at the same rate. Of course, this is an abstraction. Yet in many physical situations, for example when we have current moving through a wire, this is indeed approximately the case. 
-
-Though seemingly similar, this situation contrasts with electrostatics, where we also had $\rho = \rho(\mathbf{x})$. In that setting, the charges were indeed assumed to be stationary. Charges placed at a point stayed there. They didn't move around.
-
-One immediately implication of all this is that point charges can never generate steady currents. To see why this is the case, suppose a point charge $q$ is moving through space with some trajectory $\mathbf{x}'(t)$. Then its charge density is
+To see why this is the case, consider the case of a point charge $q$ moving through space with some trajectory $\mathbf{x}_p(t)$. The charge density of this moving charge is then
 $$
-\rho(\mathbf{x},t) = q \delta\big(\mathbf{x} - \mathbf{x}'(t)\big) \ .
+\rho(\mathbf{x},t) = q \delta\big(\mathbf{x} - \mathbf{x}_p(t)\big) \ .
 $$
-This necessarily means that the charge density of a moving point charge must be an explicit function of time, which already violates the steady current condition.
+This means the density of a point charge is necessarily time-dependent, which also implies that any sum of finitely many moving charges will also be time-dependent. Thus, for the charge density to remain time-independent we need a continuum of charge. This means that in magnetostatics we must necessarily contend with a continuum of charge from the beginning. We can't build up the theory using point charges the way we did in electrostatics.
 
-An immediate implication of this is that, when enforcing the steady current condition, we must consider extended distributions of charge from the outset. We can't start with moving point charges and build up steady currents from there. This is the major reason why magnetostatics is often much more cumbersome to introduce than electrostatics. In electrostatics, we could start by stating Coulomb's law for a point charge, and from there extend to continuous distributions. In magnetostatics, we have to start immediately from continuous distributions and go from there.
+It's fair to ask if the steady current condition is a valid physical assumption given that a continuum of charge is required. We know that in nature charges always come in discrete sets. As long as there are large numbers of charges moving around, in many cases of interest this condition will at least approximately be true. The canonical example is current flowing through a wire. In reality there are only finitely many charge carriers moving through any segment of wire at a given time. However, on typical scales of observation these charges are so close together that for all practical purposes they constitute a continuum of steady current.
 
 ## Magnetic Fields
 
@@ -122,44 +110,202 @@ Magnetism as a qualitative subject is at least as old as electricity. In the day
 
 In the 19th century, it was discovered that electric current gives rise to magnetic fields. The first discovery in this direction was by Oersted, who noticed that if he placed a compass in the vicinity of a current carrying wire that the needle no longer pointed north. He noticed that as he moved the needle around the wire, it tended to point azimuthally to the wire, suggesting that somehow the current in the wire was altering the magnetic forces acting on the needle.
 
-Not long after Oersted made his discovery, Biot and Savart were able to deduce a precise empirical relation between the magnetic field and the current flowing through a wire. They found that when a current was passed through a wire, a magnetic field strength was created due to the current. We will now present this law in more detail and derive its implications.
+Around the same time, Ampere observed that when a current is run through two parallel wires that they tended to attract or repel each other in a similar way that two charges attract or repel each other according to Coulomb's law. He deduced an empirical relation to characterize this force, now known as Ampere's force law. Eventually, Biot and Savart were able to generalize Ampere's force law to characterize the relation between the magnetic field and the current flowing through a substance, from which they established the important Biot-Savart law.
 
-### Biot-Savart Law
+### Ampere's Current Law
 
-We'll now present the Biot-Savart law, which provides a relation between the *magnetic field* $\mathbf{B}$ and the current. In a modern formulation we can express this law as follows. Suppose an infinitesimal length of wire $d\ell$ experiences a current $\mathbf{I}$ at the source point $\mathbf{x}'$. This will then give rise to an infinitesimal magnetic field $d\mathbf{B}$ at the field point $\mathbf{x}$ of the form
+In a series of experiments, Ampere established that two parallel current carrying wires exert a force on each other. In particular, he observed that the when two parallel wires have a current running through each of them that they tend to attract or repel each other, and the force per unit length of wire is proportional to the product of their currents and inversely proportional to the distance between the wires. If the currents are aligned the wires repel, and if they're anti-aligned the wires attract.
 
+More formally, suppose we have two parallel wires with currents $I_1$ and $I_2$ each of length $L$ separated by some distance $d \ll L$. Then the force strength $F$ per unit length $L$ between the wires is given by the relation
 $$
-d\mathbf{B} = k \mathbf{I}(\mathbf{x}') \times \frac{\mathbf{x} - \mathbf{x}'}{|\mathbf{x} - \mathbf{x}'|^3} \ .
+\frac{F}{L} = 2k_m \frac{I_1 I_2}{d} \ .
 $$
-The constant $k$ chosen depends on the choice of units. In Gaussian units we choose $k \equiv 1/c$, where $c$ is the speed of light. This strange choice of constant is needed to make sure the dimensions are consistent in the Gaussian system. Of course, one could argue that dividing by *any* characteristic velocity will work. Why exactly that velocity is the speed of light we'll see in a future chapter when we study electrodynamics. Nevertheless, it does hint at a connection between electromagnetism and optics.
+This is empirical relation is now known as *Ampere's Current Law*. The force per unit length $F/L$ will always be in the direction perpendicular to the wires and along the axis of their separation distance. If the two currents run in the same direction, $I_1 I_2$ will be *positive*, which means the wires will *repel*. If they run in opposite directions, $I_1 I_2$ will be *negative*, which means they'll *attract*.
 
-To find the magnetic field $\mathbf{B}(\mathbf{x})$ generated by the full wire we need only integrate both sides along the length of the wire. If the wire lies on a curve $\mathcal{C}$ in space, we have
+For comparison, let's compare Ampere's force law to its electrostatic equivalent, Coulomb's law. If two charges $q_1$ and $q_2$ are separated by a distance $d$, they attract or repel each other with a force strength
 $$
-\mathbf{B}(\mathbf{x}) = \frac{1}{c} \int_\mathcal{C} d\ell' \ \mathbf{I}(\mathbf{x}') \times \frac{\mathbf{x} - \mathbf{x}'}{|\mathbf{x} - \mathbf{x}'|^3} \ .
+F = k_e \frac{q_1 q_2}{d^2} \ .
 $$
-This empirical result is known as the *Biot-Savart Law*. If we like, we can think of this as the *definition* of the magnetic field in magnetostatics. Just as we sometimes call the electric field an *E-field* for short, we sometimes call the magnetic field the *B-field*.
+The Coulomb force is also directed along the line joining the two charges. Unlike Coulomb's law though, Ampere's force law states that the *force strength per unit length of wire* falls off like $1/d$, not like $1/d^2$.
 
-Evidently, the magnetic field in Gaussian units carries the same units as electric field. Indeed, this is by design. Even though the electric field has units of $\text{esu} / \text{cm}^2$, which means the magnetic field's units are the same, for historical reasons though we give the unit of magnetic field a different name, the *Gauss*, with $1 \ \text{G} = 1 \ \text{esu} / \text{cm}^2$ exactly. In SI units, the unit of magnetic field is called the *Tesla*, with $1 \ \text{T} = 10^4 \ \text{G}$ exactly. Note though that the *dimensions* of magnetic field are different in the two unit systems, as discussed in the first chapter.
+It's worth asking whether Ampere's force law could in fact be an electric phenomenon, not something new.
+
+- Finish this part. Will need to research first.
+
+The proportionality constant in Ampere's force law is traditionally written $2k_m$, and like $k_e$ is defined according to the choice of units. From dimensional analysis, $k_m$ must have dimensions of
+$$
+[k_m] = [F] \frac{[t]^2}{[q]^2} \ .
+$$
+Fixing the unit of charge thus fixes the units of $k_m$. In Gaussian units, charge has dimensions of $[q] = [F]^{1/2} [L]$, which means that $k_m$ must have units of inverse velocity squared to be dimensionally consistent. We thus define
+$$
+k_m \equiv \frac{1}{c^2} \ ,
+$$
+where $c$ is some constant that has units of velocity. This constant $c$ was later found to be the *speed of light*. The speed of light has been measured ever more precisely over the years since. Its value is now given *exactly* by
+$$
+c = 2.99792458 \cdot 10^{10} \ \frac{\text{cm}}{\text{s}} \ .
+$$
+It turns out the speed of light is one of the most fundamental constants in physics. That it's a constant is established by the laws of special relativity, which we'll get into in a later chapter. For now we just take this fact as a given to the theory. In future chapters we'll see why exactly it is that light is involved so intimately with electromagnetism.
+
+In Gaussian units, Ampere's force law is thus written
+$$
+\frac{F}{L} = 2 \frac{I_1 I_2}{c^2d} \ .
+$$
+In SI units a different convention is chosen to define $k_m$. In this system, current *by definition* has units of Amperes, which is assumed to be a completely independent unit. This means $k_m$ will have dimensions of $[k_m] = [F]/[I]^2$, and hence units of $\text{N}/\text{A}^2$. By convention one defines a new constant $\mu_0$, known as the *permeability of free space*, given exactly by the value
+$$
+\mu_0 \equiv 2\pi k_m \equiv 4\pi \cdot 10^{-7} \ \frac{\text{N}}{\text{A}^2} \ .
+$$
+In SI units, Ampere's force law thus has the form
+$$
+\frac{F}{L} = \frac{\mu_0}{2\pi} \frac{I_1 I_2}{d} \ .
+$$
+To convert any formula in magnetostatics from Gaussian to SI units, one need only make the substitution $c \to \mu_0/4\pi$ to make the formulas consistent. Just be aware that the *dimensions* in the two units are different as well.
+
+### Lorentz Force
+
+Ampere's current law only gives the force between two parallel wires of current. We'd now like to analyze the behavior of this force in more detail and understand how it is that one wire exerts a force on another. This leads us to the Lorentz force law and its relationship to the magnetic field, which we'll define using this force law.
+
+FIGURE (show two current carrying wires)
+
+To that end, let's suppose the two wires are oriented along the $z$-axis and separated by some distance $d$ along the $y$-axis, with the first wire passing through the origin. Ampere's current law then says the force on the second wire due to the first wire per unit length can be written
+$$
+\frac{d\mathbf{F}}{d\ell} = \frac{2I_1 I_2}{c^2 d} \mathbf{e}_y \ .
+$$
+For reasons that don't seem obvious at the moment, we'll write $\mathbf{e}_y = \mathbf{e}_z \times \mathbf{e}_x$ and multiply both sides by $d\ell$ to write
+$$
+d\mathbf{F} = \frac{2I_1 I_2}{c^2 d} (\mathbf{e}_z \times \mathbf{e}_x) = \frac{1}{c} (I_2 \mathbf{e}_z) \times \bigg(\frac{2I_1}{cd} \mathbf{e}_x\bigg) d\ell \ .
+$$
+Now, $\mathbf{I}_2 \equiv I_2 \mathbf{e}_z$ is just the current vector of the second wire, and $\mathbf{B}_1 \equiv 2I_1 / cd \ \mathbf{e}_x$ is some vector that depends only on the behavior of the first wire. Thus, the differential force on the second wire due to the first wire has the form
+$$
+d\mathbf{F} = \frac{\mathbf{I}_2}{c} \times \mathbf{B}_1 d\ell \ .
+$$
+More generally, we could ask what force the first wire running through the origin would exert on *any* parallel wire, not just a single second wire at a distance $d$ from it along the $y$-axis. We can do this by generalizing $\mathbf{B}_1$ to a vector field. Define
+$$
+\mathbf{B}(\mathbf{x}) \equiv \frac{2I_1}{c\varrho} \mathbf{e}_{\varphi} \ ,
+$$
+Then the force exerted by the first wire on *any* parallel wire with current $\mathbf{I}$ that intersects the $xy$-plane at $\mathbf{x} = \varrho \mathbf{e}_\varrho$ is given by
+$$
+d\mathbf{F} = \frac{\mathbf{I}}{c} \times \mathbf{B}(\mathbf{x}) d\ell \ .
+$$
+As one might already suspect, this field $\mathbf{B}(\mathbf{x})$ is what we call the *magnetic field*, or *B-field*. Effectively, we've just derived the B-field of a wire of current using Ampere's current law. Of course, the magnetic field is much more general than this. Any current source can create a magnetic field. We'll discuss this in more detail later.
+
+It's tempting to ask how general the above force law is. For instance, suppose instead of a wire of constant current we instead had a single point charge $q$ moving through space with some velocity $\mathbf{v}$ in the presence of some *arbitrary* external B-field $\mathbf{B}(\mathbf{x})$. We can then write $\mathbf{I} d\ell = q d\mathbf{v}$, which means if we integrate both sides we end up with the formula
+$$
+\boxed{
+\mathbf{F} = q \frac{\mathbf{v}}{c} \times \mathbf{B}
+} \ .
+$$
+That is, the force on a point charge moving in some external B-field is proportional to the cross product $\mathbf{v} \times \mathbf{B}$. This is known as the *Lorentz force law*. Note there's absolutely nothing we've said so far that should give us any reason to expect this law to hold. We just took a simple guess. But it turns out the Lorentz force law is indeed correct and very general. This law was established empirically by Faraday and others, and later formalized by Lorentz. We thus take this law from here as a given empirical fact, and yet another component we must add to the theory on top of Coulomb's law.
+
+The Lorentz force law also provides us a way to *define* what the magnetic field is. Recall this is how we defined the electric field back in electrostatics. We defined the E-field by the formula $\mathbf{F} = q\mathbf{E}$. Similarly, we'll define the B-field as whatever vector field $\mathbf{B}(\mathbf{x})$ can be inserted into the Lorentz force law such that $\mathbf{F} \propto q \mathbf{v} \times \mathbf{B}$. It's an experimental fact that there will always be such a field that satisfies this force law, so long as no other fields or forces are present to account for.
+
+The factor $1/c$ is inserted in the Lorentz force law to make sure the law has the correct dimensions in Gaussian units. From this force law, we see the dimensions of the B-field in Gaussian units must be
+$$
+[B] = \frac{[c] [F]}{[I]} = [E] \ .
+$$
+That is, the electric and magnetic fields have the *same dimensions* in Gaussian units. While the E-field has units of $\text{statvolt}/\text{cm}$, by convention we call the unit of magnetic field the *Gauss*, with $1 \ \text{G} \equiv \text{statvolt}/\text{cm}$.
+
+In SI units, the B-field has different dimensions. Instead of $[B] = [E]$ it turns out $[B] = [E]/[c]$. This means the B-field in SI units is effectively reduced by a factor of the speed of light. The SI unit for magnetic field is known as the *Tesla*, with $1 \ \text{T} = 10^4 \ \text{G}$.
 
 To get an idea for scales, the Earth's magnetic field strength at the surface is about $0.5 \ \text{G}$. A typical refrigerator magnet has a field strength of $\sim 50 \ \text{G}$. An MRI machine might have a field strength of at least $\sim 30 \ \text{kG}$, or $\sim 3 \ \text{T}$. The strongest continuous magnet produced in a lab thus far has a field strength of $\sim 450 \ \text{kG}$, or $\sim 45 \ \text{T}$.
 
-As written, the Biot-Savart law shows how to find the magnetic field due to a 1-dimensional wire. We can generalize the result immediately to 2-dimensional surfaces and 3-dimensional volumes in the usual way, by replacing a line density with a surface or volume density. The B-field due to a surface of current $\mathcal{S}$ can be stated by replacing $\mathbf{I} d\ell'$ with $\mathbf{K} da'$ in the formula above to get
+Since the Lorentz force law says that $\mathbf{F} \propto \mathbf{v} \times \mathbf{B}$, we can immediately conclude that the force caused by a B-field at a given point will always be perpendicular to *both* the particle's trajectory as well as the B-field line at that point. In particular, this means we must have that $\mathbf{F} \cdot \mathbf{v} = 0$ for magnetic forces. That is, the Lorentz force can only change the direction of a moving charge. It can ever speed a charge up or slow it down. That is, magnetic forces do no work, since work is proportional to $\mathbf{F} \cdot \mathbf{v}$, which is zero.
+
+##### Example: Charged particle in a magnetic field
+
+Suppose a particle with charge $q$ and mass $m$ is moving at some velocity $\mathbf{v}$ in the presence of some B-field $\mathbf{B}$, which we'll assume to be uniform for simplicity. Assuming no other forces are present, the only force on the charge will be the Lorentz force
+
+$$
+\mathbf{F} = q\frac{\mathbf{v}}{c} \times \mathbf{B} \ .
+$$
+Suppose the B-field is directed along the $z$-direction, so that $\mathbf{B} = B \mathbf{e}_z$. Then in Cartesian coordinates we have
+$$
+\mathbf{v} \times \mathbf{B} = B(\dot y \mathbf{e}_x - \dot x \mathbf{e}_y) \ .
+$$
+Now, by Newton's second law we must have $\mathbf{F} = m \mathbf{\ddot x}$, which means
+$$
+\ddot x \mathbf{e}_x + \ddot y \mathbf{e}_y + \ddot z \mathbf{e}_z = \frac{qB}{mc} (\dot y \mathbf{e}_x - \dot x \mathbf{e}_y) \ .
+$$
+Notice that the quantity $\omega \equiv qB/mc$ must have units of frequency. We call this constant the *cyclotron frequency*. As we'll see in a moment, it characterizes the particle's speed of motion.
+
+Collecting together each component, we thus end up with the following three equations of motion for the charged particle,
+$$
+\ddot x = \omega \dot y \quad , \quad \ddot y = -\omega \dot x \quad , \quad \ddot z = 0 \ .
+$$
+The last equation $\ddot z = 0$ implies the particle will maintain its initial velocity in the $z$-direction. This is just a reflection of the fact that magnetic forces do no work. B-fields can only deflect a particle's trajectory. We can see this deflection happening in the first two equations, which are coupled to each other. 
+
+We can decouple the first equation for $\ddot x$ by differentiating both sides again and substituting in the equation for $\ddot y$, and similarly for the second equation. We then end up with two decoupled equations of the form
+$$
+\ddot x + \omega^2 x = 0 \quad , \quad \ddot y + \omega^2 y = 0 \ .
+$$
+Clearly we now have two simple harmonic oscillators to solve, which is easy. The solutions to these equations can be written
+$$
+x(t) = \varrho \cos(\omega t - \delta) \quad , \quad y(t) = \varrho \sin(\omega t - \delta) \ .
+$$
+Note the amplitude $\varrho$ for $x(t)$ and $y(t)$ must be the same and their phases must differ by $\pi/2$. These follow from the fact that each trajectory must also satisfy the coupling conditions $\ddot x = \omega \dot y$ and $\ddot y = -\omega \dot x$.
+
+Now, observe that these trajectories together imply that the motion in the $xy$-plane must lie on a circle of radius $\varrho$, since
+$$
+x^2 + y^2 = A^2 \cos^2(\omega t - \delta) + \varrho^2 \sin^2(\omega t - \delta) = \varrho^2 \ .
+$$
+Thus, if the charged particle has zero velocity in the $z$-direction, it will just orbit in a circle about the origin in the $xy$-plane with a radius $\varrho$ determined by the particle's initial radius from the origin. If the particle *does* have an initial velocity in the $z$-direction, it will maintain that velocity while still orbiting in a circle in the $xy$-plane, resulting in a helical motion.
+
+For a general B-field that isn't necessarily uniform, a charged particle will move along the B-field lines in a helical motion, either towards or away from the field lines depending on the particle's initial tangential velocity.
+
+Since the motion transverse to the B-field is circular, the orbital speed of the charged particle is
+$$
+v = \omega \varrho = \frac{qB}{mc} \varrho \ .
+$$
+This means a charged particle will orbit faster if the B-field is stronger, the charge to mass ratio $q/m$ is higher, or the radius $\varrho$ is larger. Since the kinetic energy of the particle is $mv^2/2$, this also means the same factors above increase the kinetic energy.
+
+Commonly, this kind of orbit of a charged particle in an external B-field is known as *cyclotron motion*. A *cyclotron* is a device commonly used to accelerate charged particles. The idea is to use a B-field to keep the particle confined to a circular path, while applying a varying E-field perpendicular to the B-field, which forces the particle to accelerate outward in a spiral motion. This technique was used in the early days of nuclear physics to build particle accelerators, and is still used today in nuclear medicine.
+
+---
+
+More generally, if a charge is moving in the presence of *both* an E-field $\mathbf{E}(\mathbf{x})$ and a B-field $\mathbf{B}(\mathbf{x})$, we can obtain the total force on the moving charge simply by adding the two forces together. Since the electric force is $\mathbf{F} = q\mathbf{E}$, the combined force is evidently
+$$
+\boxed{
+\mathbf{F} = q \bigg(\mathbf{E} + \frac{\mathbf{v}}{c} \times \mathbf{B}\bigg) 
+} \ .
+$$
+This is the *generalized* Lorentz force law for a moving charge. Notice that the E-field can act to accelerate a moving charge while at the same time the B-field can change its direction. This combination of the two fields together is what produces cyclotron motion.
+
+The generalized Lorentz force law can be extended to cover arbitrary charge and current distributions as well. Using the usual trick of expressing the charge density of a point charge as a delta function and converting the sum over charges to an integral, the generalized Lorentz force law for an arbitrary distribution of charge and current can be written
+$$
+\boxed{
+\mathbf{F} = \int d^3\mathbf{x} \ \bigg[\rho(\mathbf{x}) \mathbf{E}(\mathbf{x}) + \frac{1}{c} \mathbf{J}(\mathbf{x}) \times \mathbf{B}(\mathbf{x}) \bigg] 
+} \ .
+$$
+The integrand is evidently the force per unit volume or *force density*, which we'll usually denote by $\mathbf{f}$. In this more general formulation, we define both the electric and magnetic fields as whatever vector fields are needed to satisfy this force law for a given charge and current distribution, assuming no other forces are present.
+
+Now, one could well argue that this isn't a satisfactory way to define these important fields. After all, shouldn't we think of the fields as being the *cause* of this force and not the other way around? In fact, it's more *natural* and correct to think of the electric and magnetic fields as a unified *electromagnetic field* encapsulated by a single object that transforms a certain way according to the rules of special relativity. This object, which turns out to be a rank-2 tensor, known as the *Faraday tensor*, should then be thought of as the *cause* of the Lorentz force. However, we can't discuss this until we cover special relativity and the field formulation of the principle of least action. We'll discuss those topics in much more detail in a future chapter.
+
+### Biot-Savart Law
+
+We'll now present the important Biot-Savart law, which is essentially the equivalent of Coulomb's law for magnetostatics. Biot and Savart were able to use the results of Ampere and others to find a mathematical relationship between the current and the B-field in a magnetostatic setting. As we'll see, this law looks somewhat more cumbersome than Coulomb's law. This is partly due to the fact that we have to work from the outset with a continuous current distribution for the reasons we described before.
+
+Suppose an infinitesimal length of wire $d\ell$ has some current $\mathbf{I}(\mathbf{x}')$ at a source point $\mathbf{x}'$. The *Biot-Savart Law* says that the magnetic field $d\mathbf{B}(\mathbf{x})$ at a field point $\mathbf{x}$ due to this current is proportional to the current, inversely proportional to the square of the distance between the source and field points, and points in a direction perpendicular to both the current and the separation vector $\mathbf{x} - \mathbf{x}'$ according to the right-hand rule. In Gaussian units, this says
+$$
+d\mathbf{B} = \frac{1}{c} \mathbf{I}(\mathbf{x}') \times \frac{\mathbf{x} - \mathbf{x}'}{|\mathbf{x} - \mathbf{x}'|^3} d\ell' \ .
+$$
+To find the full B-field due to the entire wire of current we need only integrate over the length of the wire to get
+$$
+\mathbf{B}(\mathbf{x}) = \frac{1}{c} \int_\mathcal{C} d\ell' \ \mathbf{I}(\mathbf{x}') \times \frac{\mathbf{x} - \mathbf{x}'}{|\mathbf{x} - \mathbf{x}'|^3} \ .
+$$
+Of course, this is only true for a one-dimensional wire. What about an arbitrary current distribution? We can generalize the result to higher dimensions in the usual way. By replacing $\mathbf{I} d\ell'$ with $\mathbf{K} da'$ we get the Biot-Savart law for surfaces of current, 
 $$
 \mathbf{B}(\mathbf{x}) = \frac{1}{c} \int_\mathcal{S} da' \ \mathbf{K}(\mathbf{x}') \times \frac{\mathbf{x} - \mathbf{x}'}{|\mathbf{x} - \mathbf{x}'|^3} \ .
 $$
-Finally, the B-field due to a volume of current is given by replacing $\mathbf{I} d\ell'$ with $\mathbf{J} d^3\mathbf{x}'$ to get
+Most importantly, by replacing $\mathbf{I} d\ell'$ with $\mathbf{J} d^3\mathbf{x}'$ we get the Biot-Savart law for volumes of current,
 $$
 \boxed{
-\mathbf{B}(\mathbf{x}) = \frac{1}{c} \int d^3 \mathbf{x}' \ \mathbf{J}(\mathbf{x}') \times \frac{\mathbf{x} - \mathbf{x}'}{|\mathbf{x} - \mathbf{x}'|^3}
+\mathbf{B}(\mathbf{x}) = \frac{1}{c} \int_\mathcal{V} d^3 \mathbf{x}' \ \mathbf{J}(\mathbf{x}') \times \frac{\mathbf{x} - \mathbf{x}'}{|\mathbf{x} - \mathbf{x}'|^3}
 } \ .
 $$
 It's worth comparing the Biot-Savart law above to the integral form of Coulomb's law in electrostatics. There, we had
 $$
-\mathbf{E}(\mathbf{x}) = \int d^3 \mathbf{x}' \ \rho(\mathbf{x}') \frac{\mathbf{x} - \mathbf{x}'}{|\mathbf{x} - \mathbf{x}'|^3} \ .
+\mathbf{E}(\mathbf{x}) = \int_\mathcal{V} d^3 \mathbf{x}' \ \rho(\mathbf{x}') \frac{\mathbf{x} - \mathbf{x}'}{|\mathbf{x} - \mathbf{x}'|^3} \ .
 $$
-Notice that up to a constant the two laws look exactly the same, except with $\rho(\mathbf{x}')$ replaced by the cross product $\mathbf{J}(\mathbf{x}') \times$. The appearance of a cross product is perhaps the most important mathematical difference in the formulas between electrostatics and magnetostatics. An immediate implication of this is that the magnetic field *never* points in the direction of the current, but rather in a direction perpendicular to the current, given by the direction of the cross product $\mathbf{J}(\mathbf{x}') \times (\mathbf{x} - \mathbf{x}')$.
-
-The appearance of the cross product also makes calculating the magnetic field from the Biot-Savart law much more cumbersome to use than Coulomb's law, which was itself already cumbersome. We'll thus quickly move to finding better ways to calculate magnetic fields. But first we'll show a relatively simple example of how to use the Biot-Savart law directly.
+Notice that the two laws look exactly the same, except with $\rho \to \mathbf{J}/c \times \bullet$. As we saw in electrostatics, calculating the E-field directly from the integral was already difficult except in simple cases. Having this extra cross product to deal with in magnetostatics makes it even more difficult to calculate the B-field directly from the integral. There are a few relatively simple cases where we can do so though, which we show in the examples below.
 
 ##### Example: Conducting loop of constant current
 
@@ -208,13 +354,15 @@ It's tempting to ask whether we can use the Biot-Savart law to calculate the B-f
 $$
 \mathbf{B}(\mathbf{x}) = q \frac{\mathbf{v}}{c} \times \frac{\mathbf{x} - \mathbf{v}t}{|\mathbf{x} - \mathbf{v}t|^3} \ .
 $$
-But this can't be true, since the Biot-Savart law requires that B-field only be a function of position and not time. The only way the B-field can be time-independent is if the steady current condition is imposed, which means the Biot-Savart law implicitly assumes the steady current condition is true. We thus cannot use the Biot-Savart law on moving point charges. It only holds for continuous distributions of steady currents. We'll revisit the magnetic field of a moving point charge in a later chapter.
+But this can't be true, since the Biot-Savart law already assumes a steady current, and point charges can't have a steady current. The only way to calculate the B-field of a point charge is to use electrodynamics. We'll come back to this in a later chapter.
 
 ##### Example: Infinite conducting wire of constant current
 
-Consider now an infinitely long conducting wire of constant current $I$. We'd again like to use the Biot-Savart law to find the B-field created due to this current-carrying wire.
-
-We'll assume the wire is oriented along the $z$-axis, which means $\mathbf{I} = I \mathbf{e}_z$ and $\mathbf{x}' = z' \mathbf{e}_z$. We'll find it convenient for this problem to work in cylindrical coordinates, so that $\mathbf{x} = \varrho \mathbf{e}_\varrho + z \mathbf{e}_z$. This means
+We already used Ampere's current law to deduce that the B-field for a long conducting wire is given by
+$$
+\mathbf{B}(\mathbf{x}) = \frac{2I}{c\varrho} \mathbf{e}_\varphi \ .
+$$
+We'll now derive this formula again directly from the Biot-Savart law. Suppose an infinitely long wire is oriented along the $z$-axis, and has a constant current $\mathbf{I} = I \mathbf{e}_z$ running through it. We'll find it natural to work in cylindrical coordinates. This means we'll write $\mathbf{x} = \varrho \mathbf{e}_\varrho + z \mathbf{e}_z$ and $\mathbf{x}' = z' \mathbf{e}_z$ so that the separation vector has the form
 $$
 \mathbf{x} - \mathbf{x}' = \varrho \mathbf{e}_\varrho + (z-z') \mathbf{e}_z \ .
 $$
@@ -234,155 +382,13 @@ Evaluating this integral can be done using elementary methods we've seen before 
 $$
 \mathbf{B}(\mathbf{x}) = \frac{2I}{c\varrho} \mathbf{e}_\varphi \ .
 $$
-Evidently, the B-field of an infinite wire of constant current falls off like $1/\varrho$, just like the E-field of an infinite wire of constant charge density. However, unlike the E-field, the B-field is directed *azimuthally* around the wire.
-
-### Lorentz Force Law
-
-Also in the early 19th century, Ampere observed that if two parallel current carrying wires were placed near each other, they tended to attract or repel each other depending on whether the currents were aligned or anti-aligned. More precisely, suppose the first wire carries a current $I_1$ and the second wire carries a current $I_2$. If the wires are separated by a distance $d$, Ampere found that the force per unit length $f$ is given by
-$$
-f = 2 k_m \frac{I_1 I_2}{d} \ .
-$$
-The constant of proportionality $k_m$ depends on the choice of units. In Gaussian units we choose $k_m \equiv 1/c^2$, where $c$ is again the speed of light, which means the above law becomes
-$$
-f = \frac{2 I_1 I_2}{c^2 d} \ .
-$$
-Later on in the century, Lorentz formulated a precise statement of the force on a moving point charge in a magnetic field. Suppose a point charge $q$ is moving at a velocity $\mathbf{v}$ in the presence of some external B-field $\mathbf{B}$. This charge will feel a force due to the B-field given by the *Lorentz Force Law*,
-$$
-\mathbf{F} = \alpha q \mathbf{v} \times \mathbf{B} \ .
-$$
-Here $\alpha$ is yet another proportionality constant that depends on the choice of units. In the Gaussian system we choose $\alpha = 1/c$, which again ensures $\mathbf{E}$ and $\mathbf{B}$ carry the same dimensions. In these units, we get
-$$
-\boxed{
-\mathbf{F} = q \frac{\mathbf{v}}{c} \times \mathbf{B}
-} \ .
-$$
-Evidently, the force due to a B-field will always be perpendicular to both the velocity of the charge as well as the B-field. This fact immediately implies something interesting, magnetic fields can only change the direction of a moving charge, not speed it up or slow it down. Said differently, magnetic forces do no work.
-
-To see why this is true, consider the work done in moving a charge along some path $\mathcal{C}$ in the presence of a B-field $\mathbf{B}$. Plugging in the Lorentz force law and noting that $d\boldsymbol{\ell} = \mathbf{v} dt$, the work $W$ done in moving the charge along the path must be
-$$
-W = \int_\mathcal{C} \mathbf{F} \cdot d\boldsymbol{\ell} = \int_\mathcal{C} \bigg(q \frac{\mathbf{v}}{c} \times \mathbf{B}\bigg) \cdot d\boldsymbol{\ell} = \frac{q}{c} \int dt \ \big(\mathbf{v} \times \mathbf{B}\big) \cdot \mathbf{v} = 0 \ .
-$$
-Thus, magnetic forces do no work. That is, they cannot change the kinetic energy of the moving charge. They can only deflect the moving charge in another direction.
-
-The Lorentz force law is more often stated in the more general setting where both an external electric and magnetic fields may be present. Recall from electrostatics that the force on a point charge $q$ due to an external E-field is given by $\mathbf{F} = q \mathbf{E}$. By the principle of superposition then, the combined force on a moving charge will be the sum of electric and magnetic forces,
-$$
-\boxed{
-\mathbf{F} = q \bigg(\mathbf{E} + \frac{\mathbf{v}}{c} \times \mathbf{B}\bigg) 
-} \ .
-$$
-Notice that we can immediately deduce something about scales from this equation. For a given field strength, the magnetic force on a charged particle will typically be *much* smaller than the electric force, unless the particle is moving at velocity that's an appreciable fraction of the speed of light $c$.
-
-The Lorentz force law can easily be stated for continuous charge distributions as well. Consider an infinitesimal unit of charge $dq = \rho d^3\mathbf{x}$. This must obey the above force law, giving rise to an infinitesimal force $d\mathbf{F}$ given by
-$$
-d\mathbf{F} = d^3\mathbf{x} \ \bigg[\rho\mathbf{E} + \rho \frac{\mathbf{v}}{c} \times \mathbf{B} \bigg] \ .
-$$
-Since $\mathbf{J} = \rho \mathbf{v}$ is the current density, when we integrate over the entire distribution we get
-$$
-\mathbf{F} = \int d^3\mathbf{x} \ \bigg[\rho\mathbf{E} + \frac{1}{c} \mathbf{J} \times \mathbf{B}\bigg] \ .
-$$
-This is the most general form of the Lorentz force law we can write down in electromagnetism. Remember that this is the force on a charge distribution due to *external fields*, not the force due to any fields the charge distribution itself may create. The issue of self fields is a delicate question in electromagnetism, one we've seen arise and will arise several times in the course.
-
-As is typical in field theories, everything of interest is inside the integrand. The integrand is just the force per unit volume, which is called the *force density* $\mathbf{f}$. For the Lorentz force, the force density is clearly
-$$
-\boxed{
-\mathbf{f} = \rho\mathbf{E} + \frac{1}{c} \mathbf{J} \times \mathbf{B}
-} \ .
-$$
-Clearly, when only B-fields are present, which we assume in magnetostatics, then the Lorentz force density reduces to
-$$
-\mathbf{f} = \frac{1}{c} \mathbf{J} \times \mathbf{B} \ .
-$$
-The total Lorentz force $\mathbf{F}$ for a continuous distribution is then the volume integral of $\mathbf{f}$ over the entire distribution.
-
-##### Example: Charged particle in a magnetic field
-
-Suppose a particle with charge $q$ and mass $m$ is moving at some velocity $\mathbf{v}$ in the presence of some B-field $\mathbf{B}$. We'd like to analyze the motion of the charged particle in the presence of this B-field. To simplify the discussion somewhat, we'll assume the B-field is uniform with constant field strength $B$.
-
-Assuming any other forces acting on the charged particle are negligible, the force acting on the particle will be the Lorentz force
-$$
-\mathbf{F} = q\frac{\mathbf{v}}{c} \times \mathbf{B} \ .
-$$
-Suppose the B-field is directed along the $z$-direction, so that $\mathbf{B} = B \mathbf{e}_z$. Then in Cartesian coordinates we have
-$$
-\mathbf{v} \times \mathbf{B} = B(\dot y \mathbf{e}_x - \dot x \mathbf{e}_y) \ .
-$$
-Now, by Newton's second law we must have $\mathbf{F} = m \mathbf{\ddot x}$, which means
-$$
-\ddot x \mathbf{e}_x + \ddot y \mathbf{e}_y + \ddot z \mathbf{e}_z = \frac{qB}{mc} (\dot y \mathbf{e}_x - \dot x \mathbf{e}_y) \ .
-$$
-For reasons we'll see in a moment, we define an angular frequency $\omega \equiv qB/mc$, which we'll call the *cyclotron frequency*. Collecting together each component, we thus end up with the following three equations of motion for the charged particle,
-$$
-\ddot x = \omega \dot y \quad , \quad \ddot y = -\omega \dot x \quad , \quad \ddot z = 0 \ .
-$$
-The last equation $\ddot z = 0$ implies the particle will maintain its initial velocity in the $z$-direction. This is just a reflection of the fact that magnetic forces do no work. B-fields can only deflect a particle's trajectory. We can see this deflection happening in the first two equations, which are coupled to each other. 
-
-We can decouple the first equation for $\ddot x$ by differentiating both sides again and substituting in the equation for $\ddot y$, and similarly for the second equation. We then end up with two decoupled equations of the form
-$$
-\ddot x + \omega^2 x = 0 \quad , \quad \ddot y + \omega^2 y = 0 \ .
-$$
-Clearly we now have two simple harmonic oscillators to solve, which is easy. The solutions to these equations can be written
-$$
-x(t) = \varrho \cos(\omega t - \delta) \quad , \quad y(t) = \varrho \sin(\omega t - \delta) \ .
-$$
-Note the amplitude $\varrho$ for $x(t)$ and $y(t)$ must be the same and their phases must differ by $\pi/2$. These follow from the fact that each trajectory must also satisfy the coupling conditions $\ddot x = \omega \dot y$ and $\ddot y = -\omega \dot x$.
-
-Now, observe that these trajectories together imply that the motion in the $xy$-plane must lie on a circle of radius $\varrho$, since
-$$
-x^2 + y^2 = A^2 \cos^2(\omega t - \delta) + \varrho^2 \sin^2(\omega t - \delta) = \varrho^2 \ .
-$$
-Thus, if the charged particle has zero velocity in the $z$-direction, it will just orbit in a circle about the origin in the $xy$-plane with a radius $\varrho$ determined by the particle's initial radius from the origin. If the particle *does* have an initial velocity in the $z$-direction, it will maintain that velocity while still orbiting in a circle in the $xy$-plane, resulting in a helical motion.
-
-For a general B-field that isn't necessarily uniform, a charged particle will move along the B-field lines in a helical motion, either towards or away from the field lines depending on the particle's initial tangential velocity.
-
-Since the motion transverse to the B-field is circular, the orbital speed of the charged particle is
-$$
-v = \omega \varrho = \frac{qB}{mc} \varrho \ .
-$$
-This means a charged particle will orbit faster if the B-field is stronger, the charge to mass ratio $q/m$ is higher, or the radius $\varrho$ is larger. Since the kinetic energy of the particle is $mv^2/2$, this also means the same factors above increase the kinetic energy.
-
-Commonly, this kind of orbit of a charged particle in an external B-field is known as *cyclotron motion*. A *cyclotron* is a device commonly used to accelerate charged particles. The idea is to use a B-field to keep the particle confined to a circular path, while applying a varying E-field perpendicular to the B-field, which forces the particle to accelerate outward in a spiral motion. This technique was used in the early days of nuclear physics to build particle accelerators, and is still used today in nuclear medicine.
-
-##### Example: Ampere's Current Law
-
-We'll now derive Ampere's current law between two current carrying wires. Suppose two parallel wires are separated by some distance $d$, where the first wire carries a current $I_1$ and the second wire carries a current $I_2$. We mentioned above that the following result was found empirically,
-$$
-f = \frac{2I_1 I_2}{c^2 d} \ ,
-$$
-where $f$ is the force per unit length between the two wires. It's pretty trivial to derive this result using the Lorentz force law.
-
-To do this it suffices to examine the force exerted by one wire on the other. We'll focus on finding the force exerted on the second wire by the first. Suppose the two wires are oriented in the $z$-direction, with the first wire exactly along the $z$-axis and the second wire translated by $d$ along the $y$-axis, as shown below.
-
-FIGURE (show two current carrying wires)
-
-Assuming both wires are sufficiently long that we can treat them as having infinite length. This means the first wire will produce a B-field of the form
-$$
-\mathbf{B}(\mathbf{x}) = \frac{2I_1}{c\varrho} \mathbf{e}_{\varphi} \ .
-$$
-To find the force the first wire exerts on the second wire we only care about field points $\mathbf{x} = z \mathbf{e}_z$ along the first wire. Along the first wire, $\varrho = d$ and $\mathbf{e}_\varphi = \mathbf{e}_x$, which means the B-field $\mathbf{B}_1$ experienced by the second wire due to the first wire is
-$$
-\mathbf{B}_1 = \frac{2I_1}{cd} \mathbf{e}_x \ .
-$$
-By the Lorentz force law, the force on the second wire due to the first wire will be given by integrating
-$$
-d\mathbf{F} = \frac{1}{c} \mathbf{I}_2 \times \mathbf{B}_1 d\ell = \frac{1}{c} (I_2 \mathbf{e}_z) \times \bigg(\frac{2I_1}{cd} \mathbf{e}_x\bigg) d\ell = \frac{2I_1 I_2}{c^2 d} \mathbf{e}_y d\ell \ .
-$$
-Now, if we were interested in the *total* force exerted on the second wire, we'd need to integrate along the full length of the first wire, which would be infinite. But we're only interested in the force per unit length $\mathbf{f}$, which is just
-$$
-\mathbf{f} = \frac{d\mathbf{F}}{d\ell} = \frac{2I_1 I_2}{c^2 d} \mathbf{e}_y \ .
-$$
-This is exactly Ampere's current law. Notice that the force between the two wires is in the direction of separation between them. By Newton's third law, the force felt by the first wire due to the second wire must be exactly the same. This means both wires are attracted are repelled by exactly the same force. The wires will attract if the two currents are opposite and repulse otherwise. This effect can be observed in the lab, though one would need to use pretty high currents to actually observe these forces by eye. For example, to create a force of $1 \ \text{lbf} \approx 4 \cdot 10^5 \ \text{dyne}$ between two wires of length $3 \ \text{ft} \approx 10^2 \ \text{cm}$ separated by a distance of $6 \ \text{in} \approx 15 \ \text{cm}$, one would need to use a huge current of about $2000$ amps!
-
-A similar result can be derived for the force between two arbitrary wires each of constant current. If the first wire has a current $\mathbf{I}_1$ along some curve $\mathcal{C}_1$ and the second wire has a current $\mathbf{I}_2$ along some curve $\mathcal{C}_2$, then the force $\mathbf{F}_{12}$ exerted on the first wire due to the second wire is given by
-$$
-\mathbf{F}_{12} = - \frac{1}{c^2} \int_{\mathcal{C}_1} d\ell_1 \int_{\mathcal{C}_2} d\ell_2 \ \mathbf{I}_1 \cdot \mathbf{I}_2 \frac{\mathbf{x}_1 - \mathbf{x}_2}{|\mathbf{x}_1 - \mathbf{x}_2|^3} \ ,
-$$
-where $\mathbf{x}_1 - \mathbf{x}_2$ is the separation vector between any two source points along the two wires. This can easily be derived by using the Biot-Savart law on the second wire. By symmetry, it's clear that the force $\mathbf{F}_{21}$ on the second wire due to the first wire is equal and opposite, with $\mathbf{F}_{21} = -\mathbf{F}_{12}$.
+As expected, the B-field of a long wire of constant current falls off like $1/\varrho$, just like the E-field of an infinite wire of constant charge density. However, unlike the E-field, the B-field is directed *azimuthally* around the wire.
 
 ## Field Equations
 
 Just as it wasn't convenient or illuminating in electrostatics to use Coulomb's law to calculate and study electric fields, it's not convenient in magnetostatics to use the Biot-Savart law to calculate or study magnetic fields. We'll want to instead re-cast the Biot-Savart law as a set of field equations.
 
-### Divergence of $\mathbf{B}$
+### Divergence of Magnetic Field
 
 By the Biot-Savart law, the B-field created by a volume of steady current is given by
 $$
@@ -420,7 +426,7 @@ $$
 $$
 Given the similarity to Gauss's law for electricity, this field equation is sometimes called Gauss's law for magnetism.
 
-### Curl of $\mathbf{B}$
+### Curl of Magnetic Field
 
 To derive the remaining field equation let's now look at the curl of the B-field. Recall from vector calculus that
 $$
@@ -468,7 +474,9 @@ So what do these tell us? Let's compare these with the field equations we found 
 $$
 \nabla \cdot \mathbf{E} = 4\pi \rho \quad , \quad \nabla \times \mathbf{E} = 0 \ .
 $$
-In electrostatics, it appears that it's the charge distribution that gives rise to the E-field. There are no currents present. Meanwhile, in magnetostatics it appears it's the current distribution that gives rise to the B-field. Evidently, in classical electromagnetism it's only electric currents that create B-fields. Magnetic charges do not exist, or equivalently, magnetic monopoles do not exist. It's entirely possible that magnetic monopoles *may* exist, in which case we'd need to modify the theory of electromagnetism, but we've never found them. Until that happens, we take these equations as reality.
+The electrostatic field equations can be interpreted as saying that the E-field is caused only by static charges, and the E-field is *conservative* and hence the gradient of a scalar potential. Similarly, the magnetostatic field equations can be interpreted as saying that the B-field is caused only by *electric currents*, and this B-field is *solenoidal* and hence the curl of some kind of vector field (called the vector potential, which we'll discuss later). 
+
+Most importantly, there is no notion of *magnetic charge* that is the cause of the B-field. That is, as far as we know, these so-called *magnetic monopoles* do not exist. We've never seen one in a lab or in observations. There are some more advanced theories in quantum mechanics that suggest magnetic monopoles *could* in principle exist, but we've never seen evidence for them. Thus, classical electromagnetism is formulated under an assumption they don't exist, which must be our null hypothesis until we find one. Even if we ever find one we still know they must be extremely rare, so even then this classical theory still appears to be a good approximation of reality as we see it.
 
 ## Ampere's Law
 
@@ -1154,27 +1162,14 @@ We can also calculate the torque exerted on the current distribution in the pres
 $$
 \mathbf{N} = \frac{1}{c} \int d^3\mathbf{x}' \ \mathbf{x}' \times [\mathbf{J}(\mathbf{x}') \times \mathbf{B}_{\text{ext}}(\mathbf{x})] \ .
 $$
-If we again substitute in the Taylor expansion for $\mathbf{B}_\text{ext}(\mathbf{x})$, to leading order we have
-$$
-\mathbf{N} \approx \frac{1}{c} \int d^3\mathbf{x}' \ \mathbf{x}' \times [\mathbf{J}(\mathbf{x}') \times \mathbf{B}_{\text{ext}}(\mathbf{0})] \ .
-$$
-This time we only kept the first leading term, since as we'll see this term will not vanish. We can simplify the triple product inside the integrand using the BAC-CAB rule,
-$$
-\mathbf{x}' \times [\mathbf{J} \times \mathbf{B}_{\text{ext}}(\mathbf{0})] = (\mathbf{x}' \cdot \mathbf{B}_\text{ext}(0)) \mathbf{J} - (\mathbf{x}' \cdot \mathbf{J}) \mathbf{B}_\text{ext}(0) \ ,
-$$
-which means we have
-$$
-\mathbf{N} \approx \frac{1}{c} \int d^3\mathbf{x}' \ \big[(\mathbf{x}' \cdot \mathbf{B}_\text{ext}(0)) \mathbf{J} - (\mathbf{x}' \cdot \mathbf{J}) \mathbf{B}_\text{ext}(0) \big] \ .
-$$
-
-- First term simplifies by prior argument, second term vanishes by prior argument. See Jackson.
-
-
-
+By Taylor expanding the external B-field in a similar way as above, one can show that to first order we have
 $$
 \mathbf{N} \approx \mathbf{m} \times \mathbf{B}_\text{ext}(0) \ .
 $$
 
+That is, the torque of a current distribution in an external B-field is approximately its dipole moment times the B-field, and the torque is perpendicular to both the dipole moment and the field according to the right-hand rule.
+
+In fact, this torque formula is a good approximation to how a compass works. We can model the Earth's magnetic field as a constant B-field pointing towards the North Pole, and the compass needle as having a constant magnetic dipole moment pointing along the direction of the needle. When this needle is placed in the Earth's field and allowed to rotate, it will experience a torque, causing the needle to rotate and align itself with the local field line, which points toward the North Pole.
 
 ### Spherical Multipole Expansion
 

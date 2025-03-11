@@ -258,6 +258,8 @@ According to Sturm Liouville theory, we've thus found a complete orthonormal set
 $$
 f_n(x) = \frac{1}{\sqrt{2L}} e^{in\pi x/L} \quad , \quad n = 0, \pm 1, \pm 2, \cdots \ .
 $$
+
+
 ### Complex Fourier Series
 
 This means we can do an orthogonal expansion any function $f(x)$ on this interval and write
@@ -439,6 +441,7 @@ From the definition, it's easy to see that the Fourier transform satisfies the f
 - Translation: $f(x-x') \leftrightarrow e^{ikx'} f(k)$.
 - Reversal: $f(-x) \leftrightarrow f(-k)$.
 - Complex Conjugation: $f^*(x) \leftrightarrow f^*(k)$.
+- If $f(x)$ is real-valued, then $f^*(k) = f(-k)$.
 
 ##### Example: Fourier transform of a Gaussian
 
@@ -485,7 +488,7 @@ h(k) &= \int_{-\infty}^\infty dx \bigg(\int_{-\infty}^\infty dx' \ f(x') g(x-x')
 &= f(k) g(k) \ .
 \end{align*}
 $$
-We've thus shown that the Fourier transform converts convolutions in $x$-space to products in $k$-space, with
+We've thus shown that the Fourier transform converts convolutions in $x$-space into products in $k$-space, with
 $$
 (f \ast g)(x) \leftrightarrow f(k) g(k) \ .
 $$
@@ -497,7 +500,11 @@ The next non-trivial property of the Fourier transform is that it preserves the 
 $$
 \langle f | g \rangle_x = \frac{1}{2\pi} \langle f | g \rangle_k \ .
 $$
-This result is known as *Parseval's Theorem*. To prove this theorem, we start with the inner product $\langle f | g \rangle_x$, take the inverse Fourier transform of $f(x)$ and $g(x)$, and then interchange the $x$ and $k$ integrals to get a delta function. We get
+This result is known as *Parseval's Theorem*. In terms of integrals, it says
+$$
+\int_{-\infty}^\infty dx \ f^*(x) g(x) = \frac{1}{2\pi} \int_{-\infty}^\infty dk \ f^*(k) g(k) \ .
+$$
+To prove Parseval's theorem, we start with the inner product $\langle f | g \rangle_x$, take the inverse Fourier transform of $f(x)$ and $g(x)$, and then interchange the $x$ and $k$ integrals to get a delta function. We get
 $$
 \begin{align*}
 \int_{-\infty}^\infty dx \ f^*(x) g(x) &= \int_{-\infty}^\infty dx \ \mathcal{F}^{-1}[f^*(k')](x) \cdot \mathcal{F}^{-1}[g(k)](x) \\
@@ -532,21 +539,21 @@ This property of the Fourier transform turns out to be extremely useful for solv
 
 Consider the following time-dependent initial value problem in one spatial dimension,
 $$
+\frac{\partial^2 u}{\partial x^2} - \frac{1}{c^2} \frac{\partial^2 u}{\partial t^2} = 0 \quad , \quad
 \begin{cases}
-\frac{\partial^2 u}{\partial x^2} = \frac{1}{c^2} \frac{\partial^2 u}{\partial t^2} \ , \\
 u(x,0) = \delta(x) \ , \\ 
 \frac{\partial}{\partial t} u(x,0) = 0 \ .
 \end{cases}
 $$
 This problem can be used to model a wave $u(x,t)$ propagating along the $x$-axis at a constant speed $c$, where an impulse response is applied at the origin at time $t=0$ and there is initially no wave propagation taking place before the impulse. The second order PDE is called the *wave equation* in one-dimension. We'll see wave equations a lot in this course. The goal of this problem is of course to solve this problem for the wavefunction $u(x,t)$.
 
-Now, let's take the Fourier transform of both sides of the wave equation with respect to $x$ only, leaving $t$ alone,
+Now, let's take the Fourier transform of of the wave equation with respect to $x$ only, leaving $t$ alone,
 $$
-\mathcal{F} \bigg[\frac{\partial^2 u}{\partial x^2}\bigg](k,t) = \mathcal{F}\bigg[\frac{1}{c^2} \frac{\partial^2 u}{\partial t^2}\bigg](k,t) \ .
+\mathcal{F} \bigg[\frac{\partial^2 u}{\partial x^2}\bigg](k,t) - \mathcal{F}\bigg[\frac{1}{c^2} \frac{\partial^2 u}{\partial t^2}\bigg](k,t) = 0 \ .
 $$
-The left-hand side involves a second derivative in $x$, so its Fourier transform will be $-k^2 u(k,t)$. The right-hand side involves a constant times a second derivative in $t$. Since we're taking the transform with respect to $x$, we can treat the time derivative as essentially a constant, and so by linearity the right-hand side will be $\frac{1}{c^2} \partial_t^2 u(k,t)$. Setting both sides must equal and multiplying through by $c^2$, we thus have
+The first term involves a second derivative in $x$, so its Fourier transform will be $-k^2 u(k,t)$. The second term involves a constant times a second derivative in $t$. Since we're taking the transform with respect to $x$, we can treat the time derivative as essentially a constant, and so by linearity the right-hand side will be $\frac{1}{c^2} \partial_t^2 u(k,t)$. Multiplying through by $-c^2$, we thus have
 $$
--c^2 k^2 u(x,t) = \frac{\partial^2}{\partial t^2} u(k,t) \ .
+\frac{\partial^2}{\partial t^2} u(k,t) + c^2 k^2 u(k,t) = 0 \ .
 $$
 We've thus used the Fourier transform to eliminate the derivatives in $x$. All that remains now is a second derivative in $t$, which we can easily solve for $u(k,t)$. This is just a simple harmonic oscillator with general solution
 $$
@@ -746,7 +753,7 @@ $$
 Thus, the Legendre polynomials aren't quite normalized. Instead we have the orthogonality condition
 $$
 \boxed{
-\langle P_k | P_n \rangle = \frac{2}{2n+1} \delta_{kn}
+\int_{-1}^1 dx \ P_k(x) P_n(x) = \frac{2}{2n+1} \delta_{kn}
 }\ .
 $$
 This means the coefficients in the orthogonal expansion are given in the usual way by
@@ -880,12 +887,12 @@ $$
 with $p(x) = 1-x^2$, $q(x) = m^2 (1-x^2)^{-1}$, and $w(x) = 1$. Notice that the eigenvalues are the same as they were for the ordinary Legendre equation, with $\lambda_n = n(n+1)$. This means that for each $n$, there will be $2n+1$ possible eigenfunctions, meaning this is a degenerate eigenvalue problem. For distinct $n$ and the same $m$, we can again guarantee from Sturm-Liouville theory that the associated Legendre functions form a complete orthogonal set on the interval $-1 \leq x \leq 1$. Indeed, it's possible to show that
 $$
 \boxed{
-\langle P_n^m | P_{n'}^m \rangle = \frac{2(n+m)!}{(2n+1)(n-m)!} \delta_{nn'}
-}\ .
+\langle P_n^m | P_{n'}^m \rangle = \int_{-1}^1 dx \ P_n^m(x) P_{n'}^m(x) = \frac{2(n+m)!}{(2n+1)(n-m)!} \delta_{nn'}
+} \ .
 $$
 Though more a mathematical curiosity than practically useful, it turns out that the associated Legendre functions are also orthogonal for fixed $n$ but distinct $m$. This can be done, for instance, by showing that for fixed $n$, each $P_n^m(x)$ can be constructed via the Gram-Schmidt procedure with a weighting function of $w(x) = 1-x^2$. In the end, we end up with the orthogonality relation
 $$
-\langle P_n^m | P_n^{m'} \rangle =  \frac{(n+m)!}{m(n-m)!} \delta_{mm'} \ .
+\langle P_n^m | P_n^{m'}\rangle = \int_{-1}^1 dx \ (1-x^2) P_n^m(x) P_n^{m'}(x) =  \frac{(n+m)!}{m(n-m)!} \delta_{mm'} \ .
 $$
 Note this relation technically only holds when $n \neq 0$, since $P_0^0(x) = 1$ implies that $\langle P_0^0 | P_0^0 \rangle = \infty$. Also note that it's *not* generally true that any $P_n^m(x)$ will be orthogonal to any $P_{n'}^{m'}(x)$.
 
@@ -898,6 +905,8 @@ It's easy to see that if we do a change of variables $x = \cos\theta$ this equat
 ## Bessel Functions
 
 We'll now consider a different class of orthogonal functions called *Bessel functions*. In physics, Bessel functions usually arise when working with the Laplacian in cylindrical coordinates.
+
+### Definition
 
 As with Legendre polynomials, there are any number of ways we can define Bessel functions. We'll again use the generating function approach since it's the easiest. Define
 $$
@@ -919,6 +928,8 @@ $$
 Unfortunately, the Bessel functions do not have a closed form expression, so we can't easily write down the first few functions like we did the Legendre polynomials. We can still plot them though. Below is a plot of $J_n(x)$ for $n=1,\cdots,5$.
 
 ![](../resources/image-20240822012913978.png){fig-align=center width=500}
+
+
 
 ### Properties
 
@@ -1010,7 +1021,7 @@ $$
 Putting this all together, we end up with the following simple orthogonality relation,
 $$
 \boxed{
-\langle J_{nm} | J_{nm'} \rangle = \frac{a}{2} J_{n+1}^2(x_{nm}) \delta_{mm'} 
+\langle J_{nm} | J_{nm'} \rangle = \int_0^a dx \ x \ J_n\bigg(\frac{x_{nm}}{a} x\bigg) J_n\bigg(\frac{x_{nm'}}{a} x\bigg) = \frac{a}{2} J_{n+1}^2(x_{nm}) \delta_{mm'} 
 } \ .
 $$
 With this information in hand, we know that the Bessel functions form a complete set on the interval $0 \leq x \leq a$, and hence any function $f(x)$ on that interval can be expanded as a linear superposition of them,
@@ -1094,6 +1105,64 @@ $$
 $$
 This equation is clearly just the Bessel's equation with an eigenvalue of $k^2$. Once we impose boundary conditions, we can solve this equation for a general solution that satisfies Laplace's equation.
 
+### Spherical Bessel Functions
+
+We can also define yet another class of Bessel functions by shifting and renormalizing the Bessel functions defined above. These are called the *spherical Bessel functions*. For each integer $n$ we define
+$$
+\boxed{
+\begin{align*}
+j_n(x) &\equiv \sqrt{\frac{\pi}{2x}} J_{n+1/2}(x) \\
+y_n(x) &\equiv \sqrt{\frac{\pi}{2x}} Y_{n+1/2}(x) \\
+h_n(x) &\equiv \sqrt{\frac{\pi}{2x}} H_{n+1/2}(x) \\
+\end{align*}
+} \ .
+$$
+Modified Bessel functions can be extended in a similar way by defining the modified spherical Bessel functions
+$$
+i_n(x) \equiv \sqrt{\frac{\pi}{2x}} I_{n+1/2}(x) \quad , \quad k_n(x) \equiv \sqrt{\frac{\pi}{2x}} K_{n+1/2}(x) \ .
+$$
+It's possible to show that the spherical Bessel functions $j_n(x)$ and $y_n(x)$ satisfy the following *Rayleigh formulas*,
+$$
+\begin{align*}
+j_n(x) &= (-x)^n \bigg(\frac{1}{x} \frac{d}{dx}\bigg)^n \frac{\sin x}{x} \ , \\
+y_n(x) &= -(-x)^n \bigg(\frac{1}{x} \frac{d}{dx}\bigg)^n \frac{\cos x}{x} \ .
+\end{align*}
+$$
+Unlike the ordinary Bessel functions, with spherical Bessel functions we can use the Rayleigh formulas to calculate closed form expressions. For example, the first few expressions for $j_n(x)$ are listed below.
+$$
+\begin{align*}
+j_0(x) &= \frac{\sin x}{x} \ , \\
+j_1(x) &= \frac{\sin x}{x^2} - \frac{\cos x}{x} \ , \\
+j_2(x) &= \bigg(\frac{3}{x^2} - 1\bigg) \frac{\sin x}{x} - \frac{3\cos x}{x^2} \ , \\
+j_3(x) &= \bigg(\frac{15}{x^3} - \frac{6}{x}\bigg) \frac{\sin x}{x} - \bigg(\frac{15}{x^2} - 1\bigg) \frac{\cos x}{x} \ .
+\end{align*}
+$$
+As with the ordinary Bessel functions, these functions can also be defined in terms of generating functions as well, with
+$$
+\begin{align*}
+g(x,t) &= \frac{1}{x} \cos(\sqrt{x^2 - 2 x t}) = \sum_{n=0}^\infty \frac{t^n}{n!} j_{n-1}(x) \ , \\
+g(x,t) &= \frac{1}{x} \sin(\sqrt{x^2 - 2 x t}) = \sum_{n=0}^\infty \frac{t^n}{n!} y_{n-1}(x) \ .
+\end{align*}
+$$
+Spherical Bessel functions inherit their orthogonality relations directly from the ordinary Bessel functions by substitution,
+$$
+\langle j_{nm} | j_{nm'} \rangle = \int_0^a dx \ x^2 \ j_n\bigg(\frac{x_{nm}}{a} x\bigg) j_n\bigg(\frac{x_{nm'}}{a} x\bigg) = \frac{a}{2} j_{n+1}^2(x_{nm}) \delta_{mm'}
+$$
+These don't satisfy the ordinary Bessel's equation exactly. Instead they solve the *spherical Bessel equation* given by
+$$
+\boxed{
+x^2 \frac{d^2 f}{dx^2} + 2x \frac{df}{dx} + \big[x^2 - n(n+1)\big]f(x) = 0 
+} \ .
+$$
+By making a change of variables $g(x) \equiv \sqrt{x} f(x)$, it's easy to see that $g(x)$ will solve Bessel's equation with $\nu = n + \frac{1}{2}$,
+$$
+x^2 \frac{d^2 g}{dx^2} + x \frac{dg}{dx} + \bigg[x^2 - \bigg(n + \frac{1}{2}\bigg)^2\bigg]g(x) = 0 \ .
+$$
+Since the general solution to this Bessel's equation is $g(x) = c_1 J_{n+1/2}(x) + c_2 Y_{n+1/2}(x)$, it's easy to see that the general solution to the spherical Bessel's equation will be a superposition of spherical Bessel functions,
+$$
+f(x) = c_1 j_n(x) + c_2 y_n(x) \ .
+$$
+In electromagnetism, we'll see spherical Bessel functions arise when solving the Helmholtz equation in spherical coordinates.
 ### Hankel Transform
 
 Just as we can define an integral transform from Fourier series, we can define a similar transform from a Bessel series. These are called *Hankel transforms*. Suppose we've expressed expanded some $f(x)$ on the interval $0 \leq x \leq a$ as a Bessel series with
@@ -1232,21 +1301,21 @@ Y_{\ell 0}(\theta,\varphi) = \sqrt{\frac{(2\ell+1)}{4\pi}} P_\ell(\cos\theta) \ 
 $$
 Evidently these harmonics are just normalized Legendre polynomials on the sphere.
 
-By construction, the spherical harmonics form a complete orthonormal set of functions on the sphere, which means they satisfy the orthonormality condition
+By construction, the spherical harmonics form a complete orthonormal set of functions on the sphere. If we define an inner product by integration over the unit sphere (with a unit weighting function),
+$$
+\langle f | g \rangle \equiv \int d\Omega \ f(\theta,\varphi) g(\theta,\varphi) \ ,
+$$
+then the spherical harmonics satisfy the orthogonality relation
 $$
 \boxed{
-\langle Y_{\ell m} | Y_{\ell' m'} \rangle = \delta_{\ell\ell'}\delta_{mm'}
+\int d\Omega \ Y_{\ell m}^*(\theta,\varphi) Y_{\ell' m'}(\theta,\varphi) = \delta_{\ell\ell'}\delta_{mm'}
 } \ ,
-$$
-where the inner product is defined by integration over the unit sphere with a unit weighting function,
-$$
-\langle Y_{\ell m} | Y_{\ell' m'} \rangle \equiv \int d\Omega \ Y_{\ell m}^*(\theta,\varphi) Y_{\ell' m'}(\theta,\varphi) \ .
 $$
 This means we can represent any well-behaved function $f(\theta,\varphi)$ on the sphere as a linear superposition of spherical harmonics,
 $$
 f(\theta,\varphi) = \sum_{\ell=0}^\infty \sum_{m=-\ell}^\ell c_{\ell m} Y_{\ell m}(\theta,\varphi) \ ,
 $$
-where the coefficients are given in the usual way by $c_{\ell m} = \langle Y_{\ell m} | f \rangle$, or written out,
+where the coefficients are given in the usual way by $c_{\ell m} = \langle Y_{\ell m} | f \rangle$, or
 $$
 c_{\ell m} = \int d\Omega \ f(\theta,\varphi) Y_{\ell m}^*(\theta,\varphi) \ .
 $$

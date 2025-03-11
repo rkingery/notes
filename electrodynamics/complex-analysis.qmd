@@ -915,38 +915,83 @@ Provided this is the case, we can again use the residue theorem to evaluate the 
 
 ### Principal Value Integrals
 
-Quite often in physics we find ourselves integrating functions that don't converge, either at some point or at infinity. A good example of such a function is the real-valued function $f(x) = 1/x$. If we tried to evaluate for instance the integral
+Suppose we were tasked with evaluating the following real integral,
 $$
-\int_{-1}^1 \frac{dx}{x} = \log |x| \bigg|_{x=-1}^1 \ ,
+\int_{-1}^1 \frac{dx}{x} \ .
 $$
-we'd get $\infty - \infty$, which is undefined. This is due to the fact that $f(x)$ has a pole at $x=0$. However we can do something clever. Consider instead the following expression,
+Notice this integrand $f(x) = 1/x$ has a singularity at $x=0$, making this integral improper. If we tried to account for this singularity by splitting the integral up into positive and negative parts and adding them together, we'd get
 $$
-\lim_{\varepsilon \to 0} \bigg[\int_{-1}^{-\varepsilon} \frac{dx}{x} + \int_\varepsilon^1 \frac{dx}{x}\bigg] \ .
+\int_{-1}^1 \frac{dx}{x} = \int_{-1}^{0^-} \frac{dx}{x} + \int_{0^+}^1 \frac{dx}{x} = \infty - \infty \ ,
 $$
-As $\varepsilon \to 0$ this sum becomes the original integral we had above. However,
+which is undefined. However, $f(x)$ is an odd function, meaning any symmetric integral about $x=0$ *should* be zero in some sense. Indeed, if we "skipped" the singularity by removing the infinitesimal interval $-\varepsilon \leq x \leq \varepsilon$ around $x=0$, we'd find
 $$
-\int_{-1}^{-\varepsilon} \frac{dx}{x} + \int_\varepsilon^1 \frac{dx}{x} = \log x \bigg|_{x=-1}^{-\varepsilon} + \log x \bigg|_{x=\varepsilon}^1 =
+\int_{-1}^1 \frac{dx}{x} \approx \int_{-1}^{-\varepsilon} \frac{dx}{x} + \int_{\varepsilon}^1 \frac{dx}{x} = \log\varepsilon - \log\varepsilon = 0 \ .
 $$
+So which is correct? Is this integral undefined, or is it zero? It turns out it's both in some sense. The value of this integral depends on the particular method one uses to evaluate it.
 
-- This is a bad choice maybe. The log is comlex-valued when $x < 0$.
-
-
-
-Another issue that frequently arises with integrals of this type is that the poles will often lie on the real axis. Since the residue theorem requires that $f(z)$ to be continuous along the integration contour, when a pole shows up along the contour we have a problem. There are a couple of ways to deal with poles that lie on the real axis. One method is to integrate around them using a semicircular arc of infinitesimal radius. If $f(z)$ has a pole at the real point $x_0$ and $\mathcal{C}_r$ is a counterclockwise semicircular arc of infinitesimal radius $r \ll 1$, then we must have
+We'd like to be able to assign values to improper integrals like this in some systematic way. The standard way to do so is known as the *Cauchy principal value* method. Suppose a real-valued function $f(x)$ has a singularity $s$ inside some interval $a \leq x \leq b$, so that the standard integral
 $$
-\int_{\mathcal{C}_1} dz \ f(z) = \pi i a_{-1}(x_0).
+F(x) \equiv \int_{a}^b dx \ f(x)
 $$
-That is, a residue whose pole that lies along the real axis will contribute *half* the weight of a residue that lies inside the closed contour. We'll show how this process works in the next couple of examples.
-
-Another way to deal with these types of poles is to lift them off the real axis by letting $x_0 \to x_0 + i\varepsilon$, where the sign of $\varepsilon$ is chosen so that the pole lies inside the closed contour. Strictly speaking, integrals of this type aren't well-defined in the usual sense. They're so-called *principal value* integrals obtained via a limiting process. Nevertheless, we encounter them a good bit, especially when doing Fourier analysis.
-
-##### Example: Evaluate $\int_0^\infty dx \ \sin x / x$
-
-Notice that the integrand $f(x)$ is *even* since $f(-x) = f(x)$. This means we have
+is undefined in the sense that $F(b) - F(a) = \infty - \infty$. We define the *Cauchy principal value* of $f(x)$ on this interval to then be
 $$
-\int_0^\infty dx \ \frac{\sin x}{x} = \frac{1}{2} \int_{-\infty}^\infty dx \ \frac{\sin x}{x} \ .
+PV \int_{a}^b dx \ f(x) \equiv \lim_{\varepsilon \to 0} \bigg(\int_{a}^{\varepsilon-s} \frac{dx}{x} + \int_{s+\varepsilon}^b \frac{dx}{x}\bigg) \ .
 $$
-We can thus focus on evaluating the definite integral of $f(x)$ over the whole real line. Consider the complex function
+The principal value is prescription described here just formalizes what we did above for $f(x)=1/x$, where we removed the infinitesimal interval around $x=0$ and computed the integral over the remaining interval. We'd thus write
+$$
+PV \int_{-1}^1 \frac{dx}{x} = 0 \ .
+$$
+If instead $f(x)$ has a singularity is at $\pm \infty$, we define its Cauchy principal value over the real line by
+$$
+PV \int_{-\infty}^\infty dx \ f(x) \equiv \lim_{M \to \infty} \int_{-M}^M \frac{dx}{x} \ .
+$$
+Note that the principal value integral reduces to the usual standard integral when the standard integral is well-defined on the interval. We thus encounter no ambiguity in definitions at all for well-behaved integrals.
+
+So why do we bring this topic up in a section on complex analysis? The reason is because it turns out many of the integrals we'll need to use the residue theorem to evaluate in electromagnetism are ones whose integrands have poles on the real line. This occurs, for example, when trying to evaluate the integral of the *sinc function* $f(x) = \sin(x)/x$ over the real line,
+$$
+\int_{-\infty}^\infty dx \ \frac{\sin x}{x} \ .
+$$
+If we extend this function into the complex plane we find ourselves needing to integrate $f(z) = e^{iz}/z$ over a semicircular closed loop containing the real line. But $f(z)$ has a simple pole at $z=0$, which lies directly on the contour of integration. We can resolve this problem using the principle value method.
+
+Suppose a complex function $f(z)$ has an isolated singularity at some point $z=a$ lying directly on an integration contour $\mathcal{C}$, causing the contour integral to become undefined. Then we define the principle value integral of $f(z)$ along this contour by
+$$
+PV \int_\mathcal{C} dz \ f(z) \equiv \lim_{\varepsilon \to 0} \int_{\mathcal{C}-\mathcal{C}_\varepsilon(z_0)} dz \ f(z) \ ,
+$$
+where $\mathcal{C}-\mathcal{C}_\varepsilon(z_0)$ is the same integration contour $\mathcal{C}$ except with the disk $\mathcal{C}_\varepsilon(z_0)$ of radius $\varepsilon$ centered at $z=z_0$ removed.
+
+Suppose now that we wish to integrate $f(z)$ a meromorphic function over a closed loop. For instance, suppose $f(z)$ has the form
+$$
+f(z) = \frac{g(z)}{z - z_0} \ ,
+$$
+where $g(z)$ is analytic on the closed loop. If $z_0$ lies on the contour of integration the integral will be undefined, in which case we can use the principle value method above to break the closed loop integral up into two pieces, one the principal value portion that ignores the pole, and another the integrates around the pole in a semicircular arc of radius $\varepsilon$ to close the loop,
+$$
+\oint_{\mathcal{C}'} dz \ f(z) = PV \oint_\mathcal{C} dz \ f(z) + \lim_{\varepsilon \to 0} \int_{\mathcal{C}_\varepsilon(z_0)} dz \ f(z) \ .
+$$
+This modified closed loop now removes the pole from the contour, which means we can apply the residue theorem. Assuming the semicircular arc $\mathcal{C}_\varepsilon(z_0)$ is chosen to run on the inside of the pole, there won't be any poles remaining inside the closed loop, which means by the residue theorem the left-hand side is zero,
+$$
+\oint_{\mathcal{C}'} dz \ f(z) = 0 \ .
+$$
+We now need to deal with the semicircular arc. To do so we parametrize $z(\varphi) = z_0 + \varepsilon e^{i\varphi}$ and integrate *clockwise* to get
+$$
+\int_{\mathcal{C}_\varepsilon(z_0)} dz \ f(z) = \int_{\varphi_0}^{\varphi_0-\pi} d\varphi \ f(z_0 + \varepsilon e^{i\varphi}) i\varepsilon e^{i\varphi} = i \int_0^{-\pi} d\varphi \ \frac{g(z_0 + \varepsilon e^{i\varphi})}{(z_0 + \varepsilon e^{i\varphi}) - z_0} \varepsilon e^{i\varphi} = -i \int_0^\pi d\varphi \ g(z_0 + \varepsilon e^{i\varphi}) \ .
+$$
+As $\varepsilon \to 0$ the integral on the right-hand side then becomes just $-\pi i g(z_0)$. We thus have
+$$
+PV \oint_\mathcal{C} dz \ \frac{g(z)}{z - z_0} = \pi i g(z_0) \ .
+$$
+Notice that $g(z_0)$ is just the residue of $f(z)$ at the pole $z=z_0$. We could thus also write
+$$
+PV \oint_\mathcal{C} dz \ \frac{g(z)}{z - z_0} = \pi i a_{-1}(z_0) \ .
+$$
+Evidently then, the principle value method is equivalent to counting residues that lie along a closed loop as contributing *half* their value when using the residue theorem. In a way this makes sense. When a pole lies along the closed loop, in some sense half of it lies *inside* the loop and should count in the sum of residues, and the other half lies *outside* the loop and should be ignored. We thus have two ways to deal with poles that lie on the closed loop of integration: We could use the principal value method directly, or we could just count the residues of those poles as half their value and directly use the residue theorem.
+
+##### Example: Evaluate $PV \int_0^\infty dx \ \sin x / x$
+
+Let's revisit the sinc integral mentioned above,
+$$
+\int_{-\infty}^\infty dx \ \frac{\sin x}{x} \ .
+$$
+Consider instead the complex function
 $$
 f(z) = \frac{e^{iz}}{z} = \frac{\cos z}{z} + i \frac{\sin z}{z} \ .
 $$
@@ -954,39 +999,45 @@ Evidently, the original real function $f(x)$ is the imaginary part of the comple
 $$
 a_{-1}(0) = z f(z) \bigg|_{z=0} = 1 \ .
 $$
-However, we run into a slight problem, in that the pole $z=0$ lies on the real axis. To deal with this problem, we place a third clockwise circular path $\mathcal{C}_r$ of radius $r \ll 1$ around $z=0$. The rest of the closed loop will again be a counterclockwise semicircular loop $\mathcal{C}$ of radius $R \gg 1$ with diameter along the real axis.
+Now, as mentioned before, this pole lies directly on the real line, which means if we choose the usual semicircular closed loop we have to contend with a pole lying directly along the integration path.
 
-FIGURE
+Decomposing the closed loop into its usual real and semicircular arc portions, we have
+$$
+\oint_{\mathcal{C}'} dz \ f(z) = PV \int_{-R}^{-R} dx \ f(x) + \lim_{\varepsilon \to 0} \int_{\mathcal{C}_\varepsilon(0)} dz \ f(z) + \int_{\mathcal{C}_R} dz \ f(z) \ .
+$$
+Since there are no residues inside the closed loop once we integrate around the pole at $x=0$, we have
+$$
+\oint_{\mathcal{C}'} dz \ f(z) = 0 \ .
+$$
+By the discussion above, the integral around the pole is just minus half the residue of the pole $z=0$, or
+$$
+\lim_{\varepsilon \to 0} \int_{\mathcal{C}_\varepsilon(0)} dz \ f(z) = -\pi i \ .
+$$
+Now, notice along the semicircular arc $\mathcal{C}_R$ we can parametrize $z(\varphi) = Re^{i\varphi}$ to write
+$$
+f(z(\varphi)) = \frac{e^{iRe^{i\varphi}}}{Re^{i\varphi}} = e^{iR\cos\varphi} \frac{e^{-R\sin\varphi}}{Re^{i\varphi}} \ .
+$$
+ As $R \to \infty$, $|f(z)|$ will thus go to zero only when $\sin\varphi > 0$, or equivalently when $0 \leq \varphi < \pi$. Provided we choose the semicircular arc to lie in the upper half plane, this integral will then vanish as $R \to \infty$ by Jordan's lemma,
+$$
+\lim_{R \to \infty} \int_{\mathcal{C}_R} dz \ f(z) = 0 \ .
+$$
+Putting this all together, we thus get
+$$
+PV \int_{-\infty}^\infty dx \ f(x) = \pi i \ .
+$$
+Finally, taking the imaginary part of both sides to recover the original real integral we have
+$$
+PV \int_{-\infty}^\infty dx \ \frac{\sin x}{x} = \pi \ .
+$$
+Integrals of this type show up all over physics and engineering. They're known as *Dirichlet integrals*.
 
-We can then decompose $\mathcal{C}$ as follows,
+Notice that since this function is odd we immediately also have that
 $$
-\oint_\mathcal{C} dz \ f(z) = \int_{-R}^{-r} dx \ f(x) + \int_r^R dx \ f(x) + \int_{\mathcal{C}_r} dz \ f(z) + \int_{\mathcal{C}_R} dz \ f(z) \ .
+PV \int_0^\infty dx \ \frac{\sin x}{x} = \frac{\pi}{2} \ .
 $$
-First, notice that along this closed loop there are no residues inside, which means we have
-$$
-\oint_\mathcal{C} dz \ f(z) = 0 \ .
-$$
-In the end we'll send $r \to 0$ and $R \to \infty$ to recover the original definite integral, but first we need to deal with the two circular integrals over $\mathcal{C}_r$ and $\mathcal{C}_R$. Now, clearly $f(z) \to 0$ at infinity and is continuous along the outer path $\mathcal{C}_R$, which means by Jordan's Lemma the outer $\mathcal{C}_R$ integral vanishes at infinity,
-$$
-\int_{\mathcal{C}_R} dz \ f(z) \to 0 \ .
-$$
-Along the inner path $\mathcal{C}_r$, notice that integral is just *half* that of a counterclockwise circular loop of radius $r$ centered at the origin, which means by the residue theorem we must have
-$$
-\int_{\mathcal{C}_r} dz \ f(z) = -\frac{1}{2} \oint dz \ f(z) = -\pi i,
-$$
-where the minus sign comes from traversing the inner loop clockwise. This is true for any radius $r \ll 1$.
+We'll see this exact integral show up again when trying to calculate the Green's function for Poisson's equation.
 
-Sending $r \to 0$ and $R \to \infty$, we thus have
-$$
-0 = \int_{-\infty}^\infty dx \ \frac{\sin x}{x} - \pi i \ .
-$$
-Moving $\pi i$ to the left-hand side, taking its imaginary part, and dividing by a half, we finally see that
-$$
-\int_0^\infty dx \ \frac{\sin x}{x} = \frac{\pi}{2} \ .
-$$
-Definite integral turn out to be important in physics and engineering. They're known as *Dirichlet integrals*. We'll make use of this result in other sections in this course, for example in deriving the Green's function of Laplace's equation in electrostatics.
-
-##### Example: Evaluate $\int_{-\infty}^\infty dx \ e^{-itx}/(x^2 - a^2)$
+##### Example: Evaluate $PV \int_{-\infty}^\infty dx \ e^{-itx}/(x^2 - a^2)$
 
 Suppose we wish to integrate the following real function over the real line,
 $$
@@ -1000,42 +1051,39 @@ This function has two simple poles $\pm a$ that both lie on the real-axis, with 
 $$
 a_{-1}(\pm a) = \pm \frac{1}{2a} e^{\mp iat} \ .
 $$
-As usual, we want to evaluate the closed loop integral of $f(z)$ over a semicircular arc of radius $R$ centered at the origin. Eventually, we'll send $R \to \infty$ to recover the original real integral. However, we need to be careful about two things. First, the sign of $t$ will affect the choice of closed loop. Second, the poles both lie on the real axis, which means we need to integrate around them as we did in the previous example.
+As usual, we want to evaluate the closed loop integral of $f(z)$ over a semicircular arc of radius $R$ centered at the origin. Eventually, we'll send $R \to \infty$ to recover the original real integral. However, we need to be careful about two things. First, the sign of $t$ will affect the choice of closed loop. Second, both poles lie on the real axis, which means we need to use the principal value method to evaluate the integral, or equivalently count their residues as half their value when using the residue theorem.
 
-For the first issue, recall that we require that $|f(z)| \to \infty$ as $R \to \infty$ so we can use Jordan's lemma to neglect the semicircular arc portion of the integral. Along this arc we can parametrize $z(\varphi) = Re^{i\varphi}$, where $-\pi \leq \varphi \leq 0$ if the arc is in the lower half plane, or $0 \leq \varphi \leq \pi$ if the arc is in the upper half plane. In either case, along this arc we have
+We first need to contend with the sign of $t$ when decomposing the closed loop. For Jordan's theorem to apply so we can drop the semicircular arc part of the integral, we require that $|f(z)| \to 0$ as $R \to \infty$. If we parametrize the arc by $z(\varphi) = Re^{i\varphi}$, we find
 $$
-e^{-itz(\varphi)} = e^{-itR(cos\varphi + i\sin\varphi)} = e^{-itR \cos\varphi} e^{tR\sin\varphi} \ .
+f(z(\varphi)) = \frac{e^{-itRe^{i\varphi}}}{(Re^{i\varphi} - a)(Re^{i\varphi} + a)} = e^{-itR\cos\varphi} \frac{e^{tR\sin\varphi}}{(Re^{i\varphi} - a)(Re^{i\varphi} + a)} \ .
 $$
-To ensure that $|f(z)| \to 0$ at infinity, we require that $|e^{-i\alpha z(\varphi)}| \to 0$, which can only happen if $t\sin\varphi < 0$. If $t > 0$, this can only be true if we choose an arc in the *lower* half plane. If $t > 0$, it can only be true if we choose an arc in the *upper* half plane.
+To ensure that $|f(z)| \to 0$ at infinity, we require that $|e^{-it z(\varphi)}| \to 0$, which can only happen if $t\sin\varphi < 0$. If $t < 0$, this can only be true if we choose an arc in the *lower* half plane. Similarly, if $t > 0$, this can only be true if we choose an arc in the *upper* half plane.
 
-FIGURE (show the two arcs with the poles)
-
-For the second issue, we can again place small semicircular arcs $\mathcal{C}_r$ of radius $r \ll 1$ over each of the poles and integrate around them. As $r \to 0$, each pole will yield a *counterclockwise* integral that's half of $2\pi i$ times the enclosed residue,
+Suppose first that $t < 0$. In this case we can again choose a counterclockwise semicircular closed loop in the upper half plane. Decomposing the closed loop, we have
 $$
-\int_{\mathcal{C}_r} dz \ f(z) = \frac{1}{2} \cdot 2\pi i a_{-1}(\pm a) = \pm \frac{\pi i}{2a} e^{\mp iat} \ .
+\oint_{\mathcal{C}'} dz \ f(z) = PV\int_{-R}^R dx \ f(x) + \int_{\mathcal{C}_R} dz \ f(z) \ .
 $$
-Now, when $t > 0$ we choose a counterclockwise loop in the lower half plane. Since there are no residues inside the loop, we have
+To deal with the poles on the closed loop this time we'll use the "half-residue trick" mentioned above to write
 $$
-0 = \oint dz \ f(z) = \int_{-R}^R dx \ f(x) + \frac{\pi i}{2a} e^{-iat} - \frac{\pi i}{2a} e^{iat} - \int_{\mathcal{C}_R} dz \ f(z) \ .
+\oint_{\mathcal{C}'} dz \ f(z) = \pi i [a_{-1}(-a) + i a_{-1}(a)] = \frac{\pi i}{2a} (e^{iat} - e^{-iat}) = \frac{\pi}{a} \sin at \ .
 $$
-Sending $R \to \infty$, the semicircular integral vanishes by Jordan's theorem. Thus, when $t > 0$ we have
+Plugging in the results above and ending $R \to \infty$, we thus get
 $$
-\int_{-\infty}^\infty dx \ f(x) = \frac{\pi i}{2a} (e^{iat} - e^{-iat}) = -\frac{\pi}{a} \sin at \ .
+PV \int_{-\infty}^\infty dx \ f(x) = \frac{\pi}{a} \sin at \quad , \quad t < 0 \ .
 $$
-When $t < 0$ we do the exact same thing, except on a counterclockwise loop in the upper half plane. This time we have
+Similarly, when $t > 0$ we choose a *clockwise* semicircular closed loop in the *lower* half plane and decompose as
 $$
-0 = \oint dz \ f(z) = \int_{-R}^R dx \ f(x) - \frac{\pi i}{2a} e^{-iat} + \frac{\pi i}{2a} e^{iat} - \int_{\mathcal{C}_R} dz \ f(z) \ .
+\oint_{\mathcal{C}'} dz \ f(z) = -PV\int_{-R}^R dx \ f(x) + \int_{\mathcal{C}_R} dz \ f(z) \ .
 $$
-Again, the semicircular integral vanishes as $R \to \infty$ by Jordan's theorem. Thus, when $t < 0$ we have
+Here we use the convention that the closed loop integral is taken counterclockwise and add a minus sign to the principal value integral to account for the reverse in direction. As $R \to \infty$ we thus get
 $$
-\int_{-\infty}^\infty dx \ f(x) = -\frac{\pi i}{2a} (e^{iat} - e^{-iat}) = \frac{\pi}{a} \sin at \ .
+PV \int_{-\infty}^\infty dx \ f(x) = -\frac{\pi}{a} \sin at \quad , \quad t > 0 \ .
 $$
-Combining these results together, the original integral is thus
+Since the sine function is odd we can combine these results together into a single expression to finally get
 $$
-\int_{-\infty}^\infty dx \ \frac{e^{-itx}}{x^2 - a^2} = -\frac{\pi}{a} \sin a|t| \ .
+PV \int_{-\infty}^\infty dx \ \frac{e^{-itx}}{x^2 - a^2} = -\frac{\pi}{a} \sin a|t| \ \ .
 $$
 We'll see an integral of this form arise when trying to compute the Green's function for the inhomogeneous wave equation.
-
 ## Transformations
 
 Thus far we've said little about the *geometry* of complex functions, that is, how complex functions change the geometry of the complex plane under transformations. We will now introduce the idea of complex transformations, and show how they can be used to visualize complex functions. We will also introduce the important idea of conformal mappings. We'll find these ideas quite useful to electromagnetism, since they allow us to transform many boundary value problems into simpler boundary value problems that are much more easily solved in a different space.
@@ -1198,34 +1246,5 @@ $$
 Evidently, an infinitesimal patch of area in the $z$-plane gets transformed to an infinitesimal patch of area in the $w$-plane that's rescaled by a factor of $|dw/dz|^2$. Evidently, when $|dw/dz|^2 < 1$ this scaling is contracts the area element, and when $|dw/dz|^2 > 1$ it dilates the area element. Only in the special situation where $|dw/dz|^2 = 1$ does the area element stay the same, hence in general a conformal mapping is not area preserving (and hence not an orthogonal transformation).
 
 Note that as with all area elements, this scale factor only says how infinitesimal patches of areas change under transformation, not how larger patches of areas change. One needs to integrate the area element over a region to see how its area changes.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
