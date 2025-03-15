@@ -1,19 +1,8 @@
 # Electrodynamics
 
-In the previous chapter we started moving away from statics, and started our study of electrodynamics, the study of time-varying electric and magnetic fields. We finished that chapter with the following quasistatic field equations
-$$
-\begin{align*}
-&\nabla \cdot \mathbf{E} = 4\pi \rho \ ,\\
-&\nabla \times \mathbf{E} = -\frac{1}{c} \frac{\partial\mathbf{B}}{\partial t} \ ,\\
-&\nabla \cdot \mathbf{B} = 0 \ ,\\
-&\nabla \times \mathbf{B} = \frac{4\pi}{c} \mathbf{J} \ . \\
-\end{align*}
-$$
-In this chapter we will continue on with the topic of electrodynamics by allowing the final equation for $\nabla \times \mathbf{B}$ to depend on a time-varying E-field, just as in the previous chapter we modifying $\nabla \times \mathbf{E}$ to depend on a time-varying B-field. This will lead us to the notion of displacement current, and finally to Maxwell's equations, the crown jewel of electromagnetism.
+In the previous chapter we started moving away from statics, and started our study of electrodynamics, the electromagnetism of time-varying electric and magnetic fields. We showed that the electric field couples with time-varying magnetic fields according to Faraday's law. In this chapter we will show that the magnetic field also couple with a time-varying electric field by generalizing Ampere's law. This will finally lead us to the important Maxwell's equations, which are four vector field equations that completely capture the behavior of classical electromagnetic fields. Next, we'll derive the conservation laws for field energy and momentum, and then proceed to discuss the wave equation and how Maxwell's equations imply the existence of electromagnetic waves.
 
-Once we finally derive Maxwell's equations we will study their implications pretty much for the rest of this course. We will start by studying the conservation laws they imply for charge, energy, and momentum. We will then to show how Maxwell's equations become wave equations, which leads to the topic of electromagnetic radiation, something that we'll see in a future chapter is the underlying theory of classical optics.
-
-From now on in this course, we'll assume that all fields and distributions depend explicitly on time unless otherwise stated. That is, we'll assume that $\mathbf{E} = \mathbf{E}(\mathbf{x},t)$ and $\mathbf{B} = \mathbf{B}(\mathbf{x},t)$, and that $\rho = \rho(\mathbf{x},t)$ and $\mathbf{J} = \mathbf{J}(\mathbf{x},t)$. This pulls us away from statics and puts us squarely in the realm of electrodynamics. An immediate implication of this is that many of the expressions we derived before for the fields in terms of source distributions will no longer apply, in particular Coulomb's law and the Biot-Savart law. We'll see in later chapters how these formulas can be modified to account for electrodynamics.
+From now on in this course, we'll assume that all fields and distributions depend explicitly on time unless otherwise stated. That is, we'll assume that $\mathbf{E} = \mathbf{E}(\mathbf{x},t)$, $\mathbf{B} = \mathbf{B}(\mathbf{x},t)$, $\rho = \rho(\mathbf{x},t)$ and $\mathbf{J} = \mathbf{J}(\mathbf{x},t)$. This finally pulls us away from statics and puts us squarely in the realm of electrodynamics. An immediate implication of this is that many of the important relations we derived in electrostatics and magnetostatics will no longer apply, in particular Coulomb's law and the Biot-Savart law.
 
 ## Maxwell's Equations
 
@@ -106,16 +95,16 @@ $$
 } \ .
 $$
 
-We can also state Maxwell's equations in integral form if we like by using the divergence and Stokes theorems in reverse,
+We can also state Maxwell's equations in integral form if we like by applying the divergence and Stokes theorems to get
 $$
 \begin{align*}
-&\oint \mathbf{E} \cdot d\mathbf{a} = 4\pi Q_{\text{enc}} \ , \\
-&\oint \mathbf{E} \cdot d\boldsymbol{\ell} = -\frac{1}{c} \frac{d\Phi_B}{dt} \ , \\
-&\oint \mathbf{B} \cdot d\mathbf{a} = 0 \ , \\
-&\oint \mathbf{B} \cdot d\boldsymbol{\ell} = \frac{4\pi}{c} I_{\text{enc}} + \frac{1}{c} \frac{d\Phi_E}{dt} \ . \\
+&\oint_\mathcal{S} \mathbf{E} \cdot d\mathbf{a} = 4\pi Q_{\text{enc}} \ , \\
+&\oint_\mathcal{C} \mathbf{E} \cdot d\boldsymbol{\ell} = -\frac{1}{c} \frac{d\Phi_B}{dt} \ , \\
+&\oint_\mathcal{S} \mathbf{B} \cdot d\mathbf{a} = 0 \ , \\
+&\oint_\mathcal{C} \mathbf{B} \cdot d\boldsymbol{\ell} = \frac{4\pi}{c} I_{\text{enc}} + \frac{1}{c} \frac{d\Phi_E}{dt} \ . \\
 \end{align*}
 $$
-Here $Q_{\text{enc}}$ refers as usual to the charges enclosed in a closed surface, and $I_{\text{enc}}$ to the currents enclosed inside a closed loop, while $\Phi_E$ and $\Phi_B$ refers to the flux of electric and magnetic fields through any surface bounded by the closed loop.
+Here $Q_{\text{enc}}$ refers to the total net charge enclosed by a closed surface $\mathcal{S}$ and $I_{\text{enc}}$ to the currents enclosed inside a closed loop $\mathcal{C}$, while $\Phi_E$ and $\Phi_B$ refers to the flux of electric and magnetic fields through any surface bounded by a closed loop $\mathcal{C}$.
 
 Maxwell's equations provide us with eight linear partial differential equations for the EM fields, two equations from the divergences and six equations from the curls. The entire dynamics of the EM fields is contained in these equations.
 

@@ -114,23 +114,19 @@ Around the same time, Ampere observed that when a current is run through two par
 
 ### Ampere's Current Law
 
-In a series of experiments, Ampere established that two parallel current carrying wires exert a force on each other. In particular, he observed that the when two parallel wires have a current running through each of them that they tend to attract or repel each other, and the force per unit length of wire is proportional to the product of their currents and inversely proportional to the distance between the wires. If the currents are aligned the wires repel, and if they're anti-aligned the wires attract.
+In a series of experiments, Ampere established that two parallel current carrying wires exert a force on each other. In particular, he observed that the when two parallel wires have a current running through each of them that they tend to attract or repel each other, and the force per unit length of wire is proportional to the product of their currents and inversely proportional to the distance between the wires. If the currents are aligned the wires repel, and if they're anti-aligned the wires attract. If no current is running through either wire, no force is measured at all.
 
-More formally, suppose we have two parallel wires with currents $I_1$ and $I_2$ each of length $L$ separated by some distance $d \ll L$. Then the force strength $F$ per unit length $L$ between the wires is given by the relation
+More formally, suppose we have two parallel wires with constant currents $I_1$ and $I_2$ each of length $L$ separated by some distance $d \ll L$. Then the force strength $F$ per unit length $L$ between the wires is given by the *Ampere's Current Law*,
 $$
 \frac{F}{L} = 2k_m \frac{I_1 I_2}{d} \ .
 $$
-This is empirical relation is now known as *Ampere's Current Law*. The force per unit length $F/L$ will always be in the direction perpendicular to the wires and along the axis of their separation distance. If the two currents run in the same direction, $I_1 I_2$ will be *positive*, which means the wires will *repel*. If they run in opposite directions, $I_1 I_2$ will be *negative*, which means they'll *attract*.
+This mathematical relation fully encapsulates what Ampere observed. First, the force per unit length $F/L \sim 1/d$, meaning the force per unit length is inversely proportional to their distance. Second, if the two currents run in the same direction, $I_1 I_2$ will be *positive*, which means the wires will *repel*. Third, If they run in opposite directions, $I_1 I_2$ will be *negative*, which means they'll *attract*. Last, if $I_1 = 0$ or $I_2 = 0$, then $F = 0$, so the wires will feel no force between.
 
 For comparison, let's compare Ampere's force law to its electrostatic equivalent, Coulomb's law. If two charges $q_1$ and $q_2$ are separated by a distance $d$, they attract or repel each other with a force strength
 $$
 F = k_e \frac{q_1 q_2}{d^2} \ .
 $$
 The Coulomb force is also directed along the line joining the two charges. Unlike Coulomb's law though, Ampere's force law states that the *force strength per unit length of wire* falls off like $1/d$, not like $1/d^2$.
-
-It's worth asking whether Ampere's force law could in fact be an electric phenomenon, not something new.
-
-- Finish this part. Will need to research first.
 
 The proportionality constant in Ampere's force law is traditionally written $2k_m$, and like $k_e$ is defined according to the choice of units. From dimensional analysis, $k_m$ must have dimensions of
 $$
@@ -160,9 +156,15 @@ $$
 $$
 To convert any formula in magnetostatics from Gaussian to SI units, one need only make the substitution $c \to \mu_0/4\pi$ to make the formulas consistent. Just be aware that the *dimensions* in the two units are different as well.
 
+So which force exactly is giving rise to Ampere's current law? That is, what kind of field is causing the wires to attract or repel each other? One might initially suspect this force to be electrostatic. But this can't be true. If the force were electrostatic, we'd have
+$$
+\frac{F}{L} = \frac{\lambda_1 \lambda_2}{d} \ ,
+$$
+where $\lambda_1$ and $\lambda_2$ are the line charge densities in each wire. While this force still goes like $F \sim 1/d$, it does not go like $F \sim I_1 I_2$, since this also must imply that $F \sim v_1 v_2$, where $v_1$ and $v_2$ are the flow velocities of the charges in each wire. The product of flow velocities $v_1 v_2$ is why we see zero force when there are no currents running through each wire. Indeed, the wires also satisfy the steady current condition, which means $\lambda_1$ and $\lambda_2$ must be time-independent, hence even if $v_1 v_2 = 0$ we'd still have $F \neq 0$. That is, if the force were electrostatic, we'd see a force even if the charges were stationary, which is not what we observe. Thus, whatever causes the wires to attract or repel cannot be due to electrostatic forces. In fact, as we'll see in the next section, this force must be due to a *magnetic field*.
+
 ### Lorentz Force
 
-Ampere's current law only gives the force between two parallel wires of current. We'd now like to analyze the behavior of this force in more detail and understand how it is that one wire exerts a force on another. This leads us to the Lorentz force law and its relationship to the magnetic field, which we'll define using this force law.
+Ampere's current law only gives the force between two parallel wires of current. We'd now like to analyze the behavior of this force in more detail and understand how it is that one wire exerts a force on another. This leads us to the Lorentz force law and its relationship to the magnetic field, which we'll define in this section.
 
 FIGURE (show two current carrying wires)
 
@@ -249,6 +251,8 @@ x^2 + y^2 = A^2 \cos^2(\omega t - \delta) + \varrho^2 \sin^2(\omega t - \delta) 
 $$
 Thus, if the charged particle has zero velocity in the $z$-direction, it will just orbit in a circle about the origin in the $xy$-plane with a radius $\varrho$ determined by the particle's initial radius from the origin. If the particle *does* have an initial velocity in the $z$-direction, it will maintain that velocity while still orbiting in a circle in the $xy$-plane, resulting in a helical motion.
 
+FIGURE (charge in a uniform B-field, orbiting in a circle/helix)
+
 For a general B-field that isn't necessarily uniform, a charged particle will move along the B-field lines in a helical motion, either towards or away from the field lines depending on the particle's initial tangential velocity.
 
 Since the motion transverse to the B-field is circular, the orbital speed of the charged particle is
@@ -281,7 +285,7 @@ Now, one could well argue that this isn't a satisfactory way to define these imp
 
 ### Biot-Savart Law
 
-We'll now present the important Biot-Savart law, which is essentially the equivalent of Coulomb's law for magnetostatics. Biot and Savart were able to use the results of Ampere and others to find a mathematical relationship between the current and the B-field in a magnetostatic setting. As we'll see, this law looks somewhat more cumbersome than Coulomb's law. This is partly due to the fact that we have to work from the outset with a continuous current distribution for the reasons we described before.
+We'll now present the important Biot-Savart law, which is the analogue of Coulomb's law for magnetostatics. As we'll see, this law looks somewhat more cumbersome than Coulomb's law, partly due to the fact that we have to work from the outset with a continuous current distribution for the reasons we described before.
 
 Suppose an infinitesimal length of wire $d\ell$ has some current $\mathbf{I}(\mathbf{x}')$ at a source point $\mathbf{x}'$. The *Biot-Savart Law* says that the magnetic field $d\mathbf{B}(\mathbf{x})$ at a field point $\mathbf{x}$ due to this current is proportional to the current, inversely proportional to the square of the distance between the source and field points, and points in a direction perpendicular to both the current and the separation vector $\mathbf{x} - \mathbf{x}'$ according to the right-hand rule. In Gaussian units, this says
 $$
@@ -354,7 +358,7 @@ It's tempting to ask whether we can use the Biot-Savart law to calculate the B-f
 $$
 \mathbf{B}(\mathbf{x}) = q \frac{\mathbf{v}}{c} \times \frac{\mathbf{x} - \mathbf{v}t}{|\mathbf{x} - \mathbf{v}t|^3} \ .
 $$
-But this can't be true, since the Biot-Savart law already assumes a steady current, and point charges can't have a steady current. The only way to calculate the B-field of a point charge is to use electrodynamics. We'll come back to this in a later chapter.
+But this can't be true, since the Biot-Savart law already assumes a steady current, and point charges can't have a steady current. Thus, the only way to calculate the B-field of a moving point charge is to use electrodynamics, which we'll do in a later chapter.
 
 ##### Example: Infinite conducting wire of constant current
 

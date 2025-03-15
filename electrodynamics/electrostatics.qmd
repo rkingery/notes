@@ -4,42 +4,80 @@ As is custom, we'll begin our study of electromagnetism with *electrostatics*. E
 
 We can approach the subject in several ways, for instance by stating Maxwell's equations as fact and studying their implications, or by starting from special relativity and the principle of least action. Instead we'll bow to historical convention and build the theory empirically, starting from some experimental facts about electrical charges and the forces between them.
 
-- Start rewriting here.
-- Describe the history of electricity up to the 19th century.
-- Reformulate Coulomb's law and E-field sections to better align with future chapters.
-- Get rid of all the test charge discussion for E-field and define it for a point charge by $F = qE$, then extend to continuous distributions.
-- Consider integrating Coulomb and E-field sections together. Define everything for a point charge first, then generalize.
-- Peruse and update the later sections.
-- Consider moving conductor discussion to the next chapter, since that's where it's used. Maybe move capacitance to the Faraday's law chapter where circuits are discussed.
-
 ## Coulomb's Law
 
+Electrostatic phenomena have been known about for millennia. In Ancient Greek times, it was known that when an amber stone was polished that small objects tended to cling to it via what we now commonly call static electricity or electrostatic attraction. Indeed, the Ancient Greek word for amber is *elektron*, from which we've derive the words *electricity* and even *electron*.
 
+Little else was known about electric phenomena until the 17th century when scientists such as Priestly, Franklin, and Coulomb started to rigorously investigate the properties of charged objects. Within a few decades, the laws of electrostatics were largely worked out, though it took many more decades before they were recast into their modern form.
 
-We'll assume that forces are *vectors*, meaning they have magnitude and direction. Being vectors, forces obey the principle of *superposition*, meaning the combined effect of two forces exerted on a body is given by their vector sum.
+### Coulomb's Law
 
-In the 18th century, it was discovered that aside from mass, every physical body has associated to it another scalar quantity called *electric charge*, which can take on any real value, positive, negative, or zero. From these facts and other experiments, Coulomb discovered that the force between two static, charged bodies satisfies the following properties:
+Electrostatics rests on two important facts about nature: the existence of and the conservation of charge, and Coulomb's law. We postulate that aside from mass, every physical body has associated to it another scalar quantity known as *electric charge*, where charge can be positive, negative, or zero. Moreover, we postulate that in a closed system charge is *conserved*. It cannot be created or destroyed, but only transferred between particles within the system.
+
+Next, we postulate that the force between charged objects is given by *Coulomb's Law*. Through a series of experiments, Coulomb was able to deduce the following facts about the forces between charged objects:
 
 - The force between the two charges depends linearly on the magnitude of each charge. The larger the magnitude, the stronger the force between them.
 - The force obeys an inverse square law nature similar to gravity. That is, the strength of the force between the two charges varies with the inverse square of the distance between them.
 - As with gravity, the force is directed along the line of force joining the two charges.
 - The force is *attractive* if the two bodies have charges of *opposite* sign, and *repulsive* if the two bodies have charges of the *same* sign. If either body has zero charge there is no force between them.
 
-### Coulomb's Law
+Let's now formulate this as a mathematical law. Suppose two charged objects with charges $q_1$ and $q_2$ are located at fixed positions in space $\mathbf{x}_1$ and $\mathbf{x}_2$ respectively. Then the force $\mathbf{F}_{12}$ charge $q_1$ experiences due to charge $q_2$ is given by
+$$
+\mathbf{F}_{12} = k_e \frac{q_1 q_2}{|\mathbf{x}_1 - \mathbf{x}_2|^2} \mathbf{e}_{12} \ ,
+$$
+where $\mathbf{e}_{12}$ is the unit vector pointing in the direction of the separation vector $\mathbf{x}_1 - \mathbf{x}_2$,
+$$
+\mathbf{e}_{12} \equiv \frac{\mathbf{x}_1 - \mathbf{x}_2}{|\mathbf{x}_1 - \mathbf{x}_2|} \ .
+$$
+This formula captures all of the observations made by Coulomb. Since $\mathbf{F}_{12} \propto q_1$ and $\mathbf{F}_{12} \propto q_2$, the force depends linearly on each individual charge. Since $\mathbf{F}_{12} \propto |\mathbf{x}_1 - \mathbf{x}_2|^{-2}$, the force is inversely proportional to the squared distance between the charges. Since $\mathbf{F}_{12} \propto \mathbf{e}_{12}$, the force is directed along the line joining the two charges. If $q_1 q_2 > 0$ then the force between them is positive, meaning charges with like sign repel each other, and if $q_1 q_2 < 0$ then the force between them is negative, meaning charges of opposite sign attract each other. Last, if either $q_1$ or $q_2$ is zero then there is no electrostatic force between the two charges.
 
-Putting all of these properties together we get *Coulomb's Law*. Suppose we have two point particles with charges $q_1$ and $q_2$ located at positions $\mathbf{x}_1$ and $\mathbf{x}_2$ respectively. Then according to Coulomb's Law, the force charge $q_1$ experiences due to charge $q_2$ is given by
-$$
-\mathbf{F}_{12} = k_e \frac{q_1 q_2}{|\mathbf{x}_1 - \mathbf{x}_2|^2} \mathbf{e}_{12} \ .
-$$
-Here $\mathbf{e}_{12}$ is the unit vector pointing from $q_2$ to $q_1$. By Newton's third law, the force $q_2$ experiences due to $q_1$ is equal and opposite, with $\mathbf{F}_{21} = -\mathbf{F}_{12}$. Since this force depends only on the distance between the two point charges it's a *central force*, which implies that energy is conserved in electrostatics. We'll say more about elecrostatic energy later.
+From Coulomb's law and the general properties of forces we can immediately deduce a few important facts:
 
-The proportionality constant $k_e$ depends on the choice of units used. In this course we'll use the *Gaussian* system of units, where $k_e \equiv 1$ and the mechanical units are measured in CGS units. This means force is measured in *dynes* and distance in *centimeters*. Evidently then, in the Gaussian system of units charge must have units of $\sqrt{\text{dyne} \cdot \text{cm}^2}$. We give this unit of charge a name, called the *electrostatic unit* or *esu*, where $1 \ \text{esu} \approx 3.3 \cdot 10^{-10} \ \text{C}$ in SI units. 
+- The Coulomb force is *conservative* since $\mathbf{F}_{12}$ doesn't depend explicitly on time. In particular, this means we can define a potential energy $U$, where $\mathbf{F}_{12} = -\nabla U$.
+- The Coulomb force is a *central force*, since $\mathbf{F}_{12}$ depends only on the relative distance between the two charges, not their absolute positions or orientation in space.
+- By Newton's third law, the force $q_2$ experiences due to $q_1$ is equal and opposite. That is, $\mathbf{F}_{21} = -\mathbf{F}_{12}$.
+- Since Coulomb's law is a statement about forces, it obeys the *principle of superposition*, meaning the net Coulomb force on any one charge due to any set of other charges is just the vector sum of the Coulomb force on that charge due to each other individual charge. For example, the total force on charge $q_1$ due to $n$ other charges $q_2, q_3, \cdots, q_n$ is given by the vector sum of each individual force on $q_1$,
 
-In Gaussian units, Coulomb's Law thus simplifies to
 $$
-\mathbf{F}_{12} = \frac{q_1 q_2}{|\mathbf{x}_1 - \mathbf{x}_2|^2} \mathbf{e}_{12} \ .
+\mathbf{F}_{1} = \mathbf{F}_{12} + \mathbf{F}_{13} + \cdots + \mathbf{F}_{1n} \ .
 $$
-Note that as defined Coulomb's Law really only holds for *point charges*. That is, for point particles where all charge is localized at a single point. This is of course an abstraction. In reality we deal with larger bodies where the charge may be distributed across the body in some way. We'll see how to modify Coulomb's Law the work with more arbitrary distributions of charge below.
+
+Note that Coulomb's Law as stated above only holds between *point charges*. That is, we implicitly have assumed that the charge of each object brought into contact can each be localized at a single point. They can't be diffused over the object in some non-uniform way. This of course is an abstraction. For simple electrostatic bodies this is a decent assumption to make, but for more complicated bodies it is not. We'll see how to modify Coulomb's law to deal with extended distributions of charge later.
+
+### Units
+
+Notice we haven't yet said anything about the dimensions or units of charge. In mechanics one can fix every mechanical quantity using only the fundamental dimensions of mass, distance, and time. In electromagnetism however, we now have the freedom to choose the dimensions of charge by fixing the dimensions of the proportionality constant $k_e$ in Coulomb's law. Notice that the product $k_e q_1 q_2$ must necessarily have dimensions of force times area for the law to be dimensionally consistent, or
+$$
+[k_e] [q]^2 = [F] [L]^2 \ .
+$$
+Thus, assigning dimensions to $k_e$ is essentially equivalent to specifying what the dimensions of charge should be. As we described in the previous chapter, there are different conventions for doing this, each corresponding to a different system of units. 
+
+In Gaussian units, which are the units we will use in this course, we choose $k_e$ to be dimensionless by setting $k_e \equiv 1$. From the dimensional relation above, this implies that charge must then have dimensions of $[q] = [L] [F]^{1/2}$. In these units, we call the base unit of charge the *electrostatic unit* or *esu*, where evidently $1 \ \text{esu} \equiv \sqrt{\text{dyne} \cdot \text{cm}^2}$. That is, one esu of charge is defined as the amount of charge such that when two charges of one esu are placed a distance of one centimeter apart the force on them is exactly one dyne. In these units, Coulomb's law takes the especially simple form
+$$
+\mathbf{F}_{12} = \frac{q_1 q_2}{|\mathbf{x}_1 - \mathbf{x}_2|^2} \mathbf{e}_{12} \ ,
+$$
+where it's necessarily understood that charge is measured in esu, distances in centimeters, and forces in dynes.
+
+While Gaussian units are very convenient to study the theory of electromagnetism, they are unfortunately not the units usually used in the lab, largely for historical reasons. In the lab one generally uses SI units. In these units the dimension of charge isn't tied to mechanical units at all, but instead becomes a standalone unit. One defines a new constant $\varepsilon_0$, which is anachronistically called the *permittivity of free space*, and sets
+$$
+k_e \equiv \frac{1}{4\pi\varepsilon_0} \ .
+$$
+In SI units, $\varepsilon_0 \approx 8.854 \cdot 10^{-12} \ \text{N}/\text{A}^2$, where $A$ is defined to be a new fundamental unit known as the *Ampere*. The Ampere is a unit of electric current, or charge per unit time. From this unit one then defines the fundamental unit of charge to be the *Coulomb*, where $1 \ \text{C} \equiv 1 \ \text{A} \cdot \text{s}$. In these units, Coulomb's law takes the somewhat cumbersome form
+$$
+\mathbf{F}_{12} = \frac{1}{4\pi\varepsilon_0} \frac{q_1 q_2}{|\mathbf{x}_1 - \mathbf{x}_2|^2} \mathbf{e}_{12} \ ,
+$$
+where it's necessarily understood that charge is measured in Coulomb, distances in meters, and forces in Newtons. Since the dimensions are incompatible, one can't strictly speaking convert charges between the two unit systems. However, apart from their dimensions the numerical values can still be compared. In this sense we can say that $1 \ \text{esu} \approx 3.3 \cdot 10^{-10} \ \text{C}$.
+
+To get a feel for the scale of everyday charges, the static electricity between two large objects rubbed together may produce a charge of a few micro-Coulomb, or $\sim 10^4 \ \text{esu}$. The amount of charge in a bolt of lightning may be as high as 15 to 350 Coulomb, or $\sim 10^{5}-10^{6} \ \text{esu}$. A modern smartphone battery can hold a huge charge of 10 kilo-Coulomb, or $\sim 10^{8} \ \text{esu}$. Indeed, charge in everyday settings can range from very small to very large, making it difficult for any chosen unit of charge to seem natural.
+
+- Start rewriting here.
+- Mention the quantization of charge somewhere in units of $e$.
+- Move gravity vs coulomb comparison to come before units, and reword to sound more natural.
+- Reformulate E-field sections to better align with future chapters.
+- Get rid of all the test charge discussion for E-field and define it for a point charge by $F = qE$, then extend to continuous distributions.
+- Consider integrating Coulomb and E-field sections together. Define everything for a point charge first, then generalize.
+- Peruse and update the later sections.
+- Consider moving conductor discussion to the next chapter, since that's where it's used. Maybe move capacitance to the Faraday's law chapter where circuits are discussed.
 
 ### Origins of Charge
 
@@ -66,6 +104,9 @@ $$
 \frac{|\mathbf{F}_e|}{|\mathbf{F}_g|} = \frac{e^2}{G m_e^2} \approx 4 \cdot 10^{42} \ .
 $$
 That is, for two electrons the Coulomb force is 42 orders of magnitude stronger than the gravitational force. The difference between the two forces is so stark we can practically speaking neglect the effects of gravity when studying the interactions between electrons, or indeed any small particles. Indeed, this is one reason why in quantum mechanics we rarely consider gravity. On the other hand, larger objects like people, planets, or galaxies tend to be electrically neutral or very close to it. This means in those cases gravity is all there is, and for large masses gravity can obviously be quite substantial.
+
+- Say what $m$ would have to be for this force ratio to make gravity become important.
+- Move this section up.
 
 ## Electric Fields
 
