@@ -8,7 +8,7 @@ We can approach the subject in several ways, for instance by stating Maxwell's e
 
 Electrostatic phenomena have been known about for millennia. In Ancient Greek times, it was known that when an amber stone was polished that small objects tended to cling to it via what we now commonly call static electricity or electrostatic attraction. Indeed, the Ancient Greek word for amber is *elektron*, from which we've derive the words *electricity* and even *electron*.
 
-Little else was known about electric phenomena until the 17th century when scientists such as Priestly, Franklin, and Coulomb started to rigorously investigate the properties of charged objects. Within a few decades, the laws of electrostatics were largely worked out, though it took many more decades before they were recast into their modern form.
+Little else was known about electricity until the 17th century when scientists such as Priestly, Franklin, and Coulomb started to rigorously investigate the properties of charged objects. Within a few decades, the laws of electrostatics were largely worked out, though it took many more decades before they were recast into their modern form.
 
 ### Coulomb's Law
 
@@ -23,30 +23,36 @@ Next, we postulate that the force between charged objects is given by *Coulomb's
 
 Let's now formulate this as a mathematical law. Suppose two charged objects with charges $q_1$ and $q_2$ are located at fixed positions in space $\mathbf{x}_1$ and $\mathbf{x}_2$ respectively. Then the force $\mathbf{F}_{12}$ charge $q_1$ experiences due to charge $q_2$ is given by
 $$
-\mathbf{F}_{12} = k_e \frac{q_1 q_2}{|\mathbf{x}_1 - \mathbf{x}_2|^2} \mathbf{e}_{12} \ ,
+\mathbf{F}_{12} = k_e \frac{q_1 q_2}{r_{12}^2} \mathbf{e}_{12} \ ,
 $$
-where $\mathbf{e}_{12}$ is the unit vector pointing in the direction of the separation vector $\mathbf{x}_1 - \mathbf{x}_2$,
+where $r_{12} \equiv |\mathbf{x}_1 - \mathbf{x}_2|$ is the distance between the charges and $\mathbf{e}_{12}$ is the unit vector in the $\mathbf{x}_1 - \mathbf{x}_2$ direction,
 $$
 \mathbf{e}_{12} \equiv \frac{\mathbf{x}_1 - \mathbf{x}_2}{|\mathbf{x}_1 - \mathbf{x}_2|} \ .
 $$
-This formula captures all of the observations made by Coulomb. Since $\mathbf{F}_{12} \propto q_1$ and $\mathbf{F}_{12} \propto q_2$, the force depends linearly on each individual charge. Since $\mathbf{F}_{12} \propto |\mathbf{x}_1 - \mathbf{x}_2|^{-2}$, the force is inversely proportional to the squared distance between the charges. Since $\mathbf{F}_{12} \propto \mathbf{e}_{12}$, the force is directed along the line joining the two charges. If $q_1 q_2 > 0$ then the force between them is positive, meaning charges with like sign repel each other, and if $q_1 q_2 < 0$ then the force between them is negative, meaning charges of opposite sign attract each other. Last, if either $q_1$ or $q_2$ is zero then there is no electrostatic force between the two charges.
+This formula captures all of the observations made by Coulomb. Since $\mathbf{F}_{12} \propto q_1$ and $\mathbf{F}_{12} \propto q_2$, the force depends linearly on each individual charge. Since $\mathbf{F}_{12} \propto 1/r_{12}^2$, the force is inversely proportional to the squared distance between the charges. Since $\mathbf{F}_{12} \propto \mathbf{e}_{12}$, the force is directed along the line joining the two charges. If $q_1 q_2 > 0$ then the force between them is positive, meaning charges with like sign repel each other, and if $q_1 q_2 < 0$ then the force between them is negative, meaning charges of opposite sign attract each other. Last, if either $q_1$ or $q_2$ is zero then there is no electrostatic force between the two charges.
 
 From Coulomb's law and the general properties of forces we can immediately deduce a few important facts:
 
-- The Coulomb force is *conservative* since $\mathbf{F}_{12}$ doesn't depend explicitly on time. In particular, this means we can define a potential energy $U$, where $\mathbf{F}_{12} = -\nabla U$.
-- The Coulomb force is a *central force*, since $\mathbf{F}_{12}$ depends only on the relative distance between the two charges, not their absolute positions or orientation in space.
-- By Newton's third law, the force $q_2$ experiences due to $q_1$ is equal and opposite. That is, $\mathbf{F}_{21} = -\mathbf{F}_{12}$.
-- Since Coulomb's law is a statement about forces, it obeys the *principle of superposition*, meaning the net Coulomb force on any one charge due to any set of other charges is just the vector sum of the Coulomb force on that charge due to each other individual charge. For example, the total force on charge $q_1$ due to $n$ other charges $q_2, q_3, \cdots, q_n$ is given by the vector sum of each individual force on $q_1$,
+- The Coulomb force is *conservative* since $\mathbf{F}_{12}$ doesn't depend explicitly on time. In particular, this means we can define a potential energy $U$ such that $\mathbf{F}_{12} = -\nabla_1 U$, where $U$ is given by
+  $$
+  U(\mathbf{x}_1, \mathbf{x}_2) = k_e \frac{q_1 q_2}{r_{12}} \ .
+  $$
+
+- The Coulomb force is a *central force*, meaning $\mathbf{F}_{12}$ depends only on the relative distance $r_{12}$ between the two charges and not their absolute positions in space. This also means $U = U(r_{12})$, which can be seen above.
+
+- The force of charge $q_1$ on charge $q_2$ is equal and opposite to the force of $q_2$ on $q_1$, with $\mathbf{F}_{21} = -\mathbf{F}_{12}$.
+
+- Since Coulomb's law is a statement about forces, it obeys the *principle of superposition*, meaning the net Coulomb force on any one charge due to any set of other charges is just the vector sum of the Coulomb force on that charge due to each other individual charge. For example, the total force on charge $q_1$ due to $n$ other charges $q_2, q_3, \cdots, q_n$ is given by the vector sum of each individual force $\mathbf{F}_{1i}$ on $q_1$ due to each other charge $q_i$,
 
 $$
 \mathbf{F}_{1} = \mathbf{F}_{12} + \mathbf{F}_{13} + \cdots + \mathbf{F}_{1n} \ .
 $$
 
-Note that Coulomb's Law as stated above only holds between *point charges*. That is, we implicitly have assumed that the charge of each object brought into contact can each be localized at a single point. They can't be diffused over the object in some non-uniform way. This of course is an abstraction. For simple electrostatic bodies this is a decent assumption to make, but for more complicated bodies it is not. We'll see how to modify Coulomb's law to deal with extended distributions of charge later.
+Note that strictly speaking Coulomb's Law as stated only holds between *point charges*. That is, we implicitly have assumed that the charge of each object brought into contact can each be localized at a single point. They can't be diffused over the object in some non-uniform way. This of course is an abstraction. For simple electrostatic bodies this is a decent assumption to make, but for more complicated bodies it is not. We'll see how to modify Coulomb's law to deal with extended distributions of charge soon.
 
 ### Units
 
-Notice we haven't yet said anything about the dimensions or units of charge. In mechanics one can fix every mechanical quantity using only the fundamental dimensions of mass, distance, and time. In electromagnetism however, we now have the freedom to choose the dimensions of charge by fixing the dimensions of the proportionality constant $k_e$ in Coulomb's law. Notice that the product $k_e q_1 q_2$ must necessarily have dimensions of force times area for the law to be dimensionally consistent, or
+We haven't yet said anything about the dimensions or units of charge. In mechanics one can assign units to every mechanical quantity using only units of mass, distance, and time. In electromagnetism however, we now have the freedom to choose the dimensions of charge by fixing the dimensions of the proportionality constant $k_e$ in Coulomb's law. Notice that the product $k_e q_1 q_2$ must necessarily have dimensions of force times area for the law to be dimensionally consistent, or
 $$
 [k_e] [q]^2 = [F] [L]^2 \ .
 $$
@@ -54,101 +60,222 @@ Thus, assigning dimensions to $k_e$ is essentially equivalent to specifying what
 
 In Gaussian units, which are the units we will use in this course, we choose $k_e$ to be dimensionless by setting $k_e \equiv 1$. From the dimensional relation above, this implies that charge must then have dimensions of $[q] = [L] [F]^{1/2}$. In these units, we call the base unit of charge the *electrostatic unit* or *esu*, where evidently $1 \ \text{esu} \equiv \sqrt{\text{dyne} \cdot \text{cm}^2}$. That is, one esu of charge is defined as the amount of charge such that when two charges of one esu are placed a distance of one centimeter apart the force on them is exactly one dyne. In these units, Coulomb's law takes the especially simple form
 $$
-\mathbf{F}_{12} = \frac{q_1 q_2}{|\mathbf{x}_1 - \mathbf{x}_2|^2} \mathbf{e}_{12} \ ,
+\mathbf{F}_{12} = \frac{q_1 q_2}{r_{12}^2} \mathbf{e}_{12} \ ,
 $$
 where it's necessarily understood that charge is measured in esu, distances in centimeters, and forces in dynes.
 
-While Gaussian units are very convenient to study the theory of electromagnetism, they are unfortunately not the units usually used in the lab, largely for historical reasons. In the lab one generally uses SI units. In these units the dimension of charge isn't tied to mechanical units at all, but instead becomes a standalone unit. One defines a new constant $\varepsilon_0$, which is anachronistically called the *permittivity of free space*, and sets
+While Gaussian units are very convenient to study the theory of electromagnetism, they are unfortunately not the units usually used in the lab, largely for historical reasons. In the lab one generally uses SI units. In these units the dimension of charge isn't tied to mechanical units at all, but instead becomes a standalone unit. One defines a new constant $\varepsilon_0$, which is anachronistically called the *permittivity of free space*, where $\varepsilon_0 \approx 8.854 \cdot 10^{-12} \ \text{N}/\text{A}^2$, and sets
 $$
-k_e \equiv \frac{1}{4\pi\varepsilon_0} \ .
+k_e \equiv \frac{1}{4\pi\varepsilon_0} \approx 8.987 \cdot 10^9 \ \frac{\text{A}^2}{N} \ .
 $$
-In SI units, $\varepsilon_0 \approx 8.854 \cdot 10^{-12} \ \text{N}/\text{A}^2$, where $A$ is defined to be a new fundamental unit known as the *Ampere*. The Ampere is a unit of electric current, or charge per unit time. From this unit one then defines the fundamental unit of charge to be the *Coulomb*, where $1 \ \text{C} \equiv 1 \ \text{A} \cdot \text{s}$. In these units, Coulomb's law takes the somewhat cumbersome form
+The unit $A$ is defined to be a new fundamental unit known as the *Ampere*, often abbreviate *amp*. The Ampere is the SI unit of electric current, or charge per unit time. From the Ampere, one then defines the base unit of charge to be the *Coulomb*, where $1 \ \text{C} \equiv 1 \ \text{A} \cdot \text{s}$. In these units, Coulomb's law then takes on the somewhat cumbersome form
 $$
-\mathbf{F}_{12} = \frac{1}{4\pi\varepsilon_0} \frac{q_1 q_2}{|\mathbf{x}_1 - \mathbf{x}_2|^2} \mathbf{e}_{12} \ ,
+\mathbf{F}_{12} = \frac{1}{4\pi\varepsilon_0} \frac{q_1 q_2}{r_{12}^2} \mathbf{e}_{12} \ ,
 $$
-where it's necessarily understood that charge is measured in Coulomb, distances in meters, and forces in Newtons. Since the dimensions are incompatible, one can't strictly speaking convert charges between the two unit systems. However, apart from their dimensions the numerical values can still be compared. In this sense we can say that $1 \ \text{esu} \approx 3.3 \cdot 10^{-10} \ \text{C}$.
+where it's necessarily understood that charge is measured in Coulomb, distances in meters, and forces in Newtons. Since the dimensions are incompatible, one can't strictly speaking convert charges between the two unit systems. Apart from their dimensions though their numerical values can still be compared. In this sense we can say that $1 \ \text{esu} \approx 3.3 \cdot 10^{-10} \ \text{C}$. When converting between Gaussian and SI units we'll frequently show unit conversions for some quantity in this manner, even though it should always be understood that a given quantity may have different dimensions in the two systems of units.
 
-To get a feel for the scale of everyday charges, the static electricity between two large objects rubbed together may produce a charge of a few micro-Coulomb, or $\sim 10^4 \ \text{esu}$. The amount of charge in a bolt of lightning may be as high as 15 to 350 Coulomb, or $\sim 10^{5}-10^{6} \ \text{esu}$. A modern smartphone battery can hold a huge charge of 10 kilo-Coulomb, or $\sim 10^{8} \ \text{esu}$. Indeed, charge in everyday settings can range from very small to very large, making it difficult for any chosen unit of charge to seem natural.
+To get a feel for the scale of everyday charges, the static electricity between two large objects rubbed together may produce a charge of a few $\mu \text{C}$, or $\sim 10^4 \ \text{esu}$. The amount of charge in a bolt of lightning may be as high as $15-350 \ \text{C}$, or $\sim 10^{5}-10^{6} \ \text{esu}$. A modern smartphone battery can hold a huge charge of $10 \ \text{kC}$, or $\sim 10^{8} \ \text{esu}$. Indeed, charge in everyday settings can range from very small to very large, making it difficult for any chosen unit of charge to seem natural.
 
-- Start rewriting here.
-- Mention the quantization of charge somewhere in units of $e$.
-- Move gravity vs coulomb comparison to come before units, and reword to sound more natural.
-- Reformulate E-field sections to better align with future chapters.
-- Get rid of all the test charge discussion for E-field and define it for a point charge by $F = qE$, then extend to continuous distributions.
-- Consider integrating Coulomb and E-field sections together. Define everything for a point charge first, then generalize.
-- Peruse and update the later sections.
-- Consider moving conductor discussion to the next chapter, since that's where it's used. Maybe move capacitance to the Faraday's law chapter where circuits are discussed.
+### Charge Quantization
 
-### Origins of Charge
+Today, we know more about the properties of charge than was known at the time of Coulomb. This is largely due to the gradual discovery of atomic theory in the 19th and early 20th centuries. The idea that objects were composed of atoms is very old, going all the way back to Democritus in the 5th century BC. However, this idea wasn't taken seriously by the scientific community until Dalton postulated the idea again around the start of the 19th century. Indeed, Dalton is the one who coined the term *atom* from the Ancient Greek word *atomos*, meaning *indivisible*. As the 19th century progressed, more and more evidence grew to support the atomic hypothesis, eventually culminating in the discoveries of the electron by Thompson and the nucleus by Rutherford in the early 20th century. From these discoveries, quantum theory was introduced to explain the behavior of atoms, which ultimately culminated in the laws of quantum mechanics and eventually the Standard Model of particle physics we have today.
 
-Before moving on, it's worth stopping to ask what exactly it is we mean when we say a particle has charge. Mathematically, we can think of charge similar to how we think of mass. It's a scalar quantity associated with a particle, except unlike mass it can take on any real value, positive or negative. More fundamentally though, the charge of a particle is really an aggregate of charge due to more atomic particles inside the particle like electrons and protons. 
+We know today that charge is *quantized* in integer unit of the charge of the proton,
+$$
+e \approx 4.8 \cdot 10^{-10} \ \text{esu} \approx 1.6 \cdot 10^{-19} \ \text{C} \ .
+$$
+That is, all charges we measure in nature are integer units of $e$. The only known exception to this fact are the fundamental particles that make up the proton and the neutron, known as *quarks*. Each proton and neutron is composed of three quarks, where each quark has a charge of $\pm e/3$. Due to a nuclear process known as *confinement*, these quarks are bound to the inside of their proton or neutron, meaning it's impossible to isolate them or measure their charges directly in the lab.
 
-A particle is really a collection of atoms held together by attractive internal forces, each with some number of protons and electrons.  What we think of as charge is really how the electrons and protons are distributed inside the body. Electrons and protons carry the same charge but with opposite sign. In practice most large particles are at least approximately charge neutral, meaning they contain the same number of protons and electrons. If there are more electrons than protons the particle has negative charge. If there are fewer electrons than protons the particle has positive charge.
+Fundamentally, physical objects are composed of atoms bound together by electrical forces. Each atom is composed of some number of protons and neutrons bound tightly inside a nucleus by a nuclear or *strong interaction*, and some number of electrons orbiting the nucleus according to the laws of quantum mechanics. Each proton has a charge of exactly $e$, each neutron has exactly zero charge, and each electron has a charge of exactly $-e$.
 
-In practice, it's the movement of electrons that control how a material is charged. In some materials, called *conductors* these electrons move freely around the material, while for materials, called *insulators*, these electrons stay locked into their respective atoms and only move inside their confined electron clouds. In either case, if the body is charged it implies some deficit or surplus of electrons.
+In most cases an atom has the same number of protons and electrons, in which case its net charge is zero, or *charge neutral*. Since protons can't easily be removed from a nucleus, the only way atoms typically acquire charge is by exchanging electrons with other neighboring atoms through *ionization*. Those electrons don't just spontaneously appear or disappear. They just move between nearby atoms. It's in precisely this sense that charge is conserved at the atomic level, and fundamentally it's why charge is also conserved at the macroscopic level as well.
 
-One would think that we should think of charge in terms of electrons and define charge in units of the number of surplus electrons present in the particle. However, atomic structure wasn't known at the time the theory of electromagnetism was first formulated. It was only known that there was a scalar quantity called charge associated to the particle, with no understanding of what gives rise to it. It's for these largely historical reasons that we continue to think of positive charge as moving around inside a body, even though physically it's really the negatively charged electrons that move around.
+This also explains why the charge we observe on macroscopic objects is very tiny. Almost all atoms or molecules inside the object are charge neutral and hence contribute nothing to the object's charge. When we do measure a charge, what it usually means is that some of the surface atoms have become ionized, either exchanging electrons with the air or with a neighboring object via friction. Indeed, a typical charged object might have a net charge of only $\sim 10^4 \ \text{esu}$. Since charge is quantized, this means
+$$
+n \sim \frac{10^4 \ \text{esu}}{4.8 \cdot 10^{-10} \ \text{esu}} \sim 10^{14}
+$$
+of its atoms have become ionized. While this might seem like a lot, note that a typical macroscopic object will contain something like $N \sim 10^{23}$ total atoms. This means only $n/N \sim 10^{-9}$, or one part in a billion, of the atoms making up the object have been ionized and thus contributing anything to the object's net charge.
+
+### Conductors and Insulators
+
+Even though all macroscopic objects are composed of atoms, they don't all behave the same. In electromagnetism, we find it useful to separate macroscopic materials into two broad categories that encapsulate much of how they interact with electromagnetic forces, known as *conductors* and *insulators*. Conductors are strong conductors of electric current. Insulators are the polar opposite of conductors, weak conductors of electric current.
+
+At an atomic level, the difference between conductors and insulators lies in whether they have *free electrons*, or electrons not attached to any given atom that are allowed to move freely throughout the material. Conductors typically have many free electrons while insulators have few if any. The canonical examples of conductors are *metals* like iron, copper, or gold. The canonical examples of insulators are non-metallic materials glass, quartz, or rubber. 
+
+There are also materials that act as conductors in some settings but insulators in others. These are known as *semiconductors*. The canonical example of a semiconductor is silicon, which is the material used to build most modern computer chips. While semiconductors are very important, particularly in chip design, we won't spend much time talking about them in this course, since understanding when they conduct and when they don't requires physics well beyond the scope of electromagnetism.
 
 ### Comparison with Gravity
 
-Given that Coulomb's Law looks so similar to Newton's law of gravitation, it's fair to ask how the forces compare to each other. Let's suppose we have two particles separated by a distance $r$ with masses $m_1, m_2$ and charges $q_1, q_2$ respectively. Since the particles have both mass and charge they'll feel both a gravitational force $\mathbf{F}_g$ and a Coulomb force $\mathbf{F}_e$. We can get an idea of the relative strengths of these two forces by looking at their ratio. In Gaussian units, this is given by
-$$
-\frac{|\mathbf{F}_e|}{|\mathbf{F}_g|} = \frac{q_1 q_2}{r} \bigg / G \frac{m_1 m_2}{r} = \frac{q_1 q_2}{G m_1 m_2} \ .
-$$
-To get a feel for these values let's pick a representative particle, the *electrons*. Then we'd have masses $m_1 = m_2 = m_e$ and charges $q_1 = q_2 = e$. In Gaussian units, these values are
-$$
-\ G \approx 6.7 \cdot 10^{-8} \ , \ m_e \approx 9 \cdot 10^{-28} \ , \ e \approx -5 \cdot 10^{-10} \ .
-$$
-Plugging these numbers in, we get
-$$
-\frac{|\mathbf{F}_e|}{|\mathbf{F}_g|} = \frac{e^2}{G m_e^2} \approx 4 \cdot 10^{42} \ .
-$$
-That is, for two electrons the Coulomb force is 42 orders of magnitude stronger than the gravitational force. The difference between the two forces is so stark we can practically speaking neglect the effects of gravity when studying the interactions between electrons, or indeed any small particles. Indeed, this is one reason why in quantum mechanics we rarely consider gravity. On the other hand, larger objects like people, planets, or galaxies tend to be electrically neutral or very close to it. This means in those cases gravity is all there is, and for large masses gravity can obviously be quite substantial.
+It's worth taking a minute to ask how the electrostatic and gravitational forces between two objects compare to each other. After all, in typical lab settings it seems like gravity is much more powerful than electrostatic forces. We could thus be led to the conclusion that gravity is a much stronger force than the electrostatic force, but it turns out this isn't the case.
 
-- Say what $m$ would have to be for this force ratio to make gravity become important.
-- Move this section up.
-
-## Electric Fields
-
-While we could proceed to study this force between charges just as we did in with gravity in classical mechanics, we'll find it's useful in electromagnetism to make a further abstraction, the *field abstraction*. The reason for this is that we want to think of all interactions as *local*. That is, a particle should only feel the presence of things near by, not things far away. If we think in terms of forces we have to give locality up, since two charges will feel a force no matter how far away they are, so-called "action at a distance".
-
-### Electric Field
-
-Instead what we'll do is imagine that particles interact due to the presence of background fields, and think of these fields as giving rise to forces. Suppose we have a charge $q'$ sitting in space at some position $\mathbf{x}'$. Suppose we then place an infinitesimal *test charge* $q$ at some other position $\mathbf{x}$. By Coulomb's Law, the test charge will feel a force $\mathbf{F}$ due to $q'$. We'll define a vector-valued function of position known as the *electric field* by the ratio
+We'll first restate Coulomb's law. If two charges $q_1$ and $q_2$ are separated by some distance $r_{12}$, the electrostatic force strength $F_e$ between them is given (in Gaussian units) by
 $$
-\mathbf{E}(\mathbf{x}) \equiv \frac{\mathbf{F}}{q} \ .
+F_e = \frac{q_1 q_2}{r_{12}^2} \ .
 $$
-Empirically this ratio is found to be well-defined and independent of the value of $q$ so long as $q$ is infinitesimal, with
+However, these charges will also have mass, meaning there will be a gravitational attraction between them as well given by Newton's law of gravitation. If the first charge has a mass $m_1$ and the second charge has a mass $m_2$, the gravitational force strength $F_g$ between them will be
 $$
-\mathbf{E}(\mathbf{x}) = \frac{q'}{|\mathbf{x} - \mathbf{x}'|^2} \mathbf{e}_\xi \ .
+F_g = G \frac{m_1 m_2}{r_{12}^2} \ ,
 $$
-Here for convenience we define the separation vector $\boldsymbol{\xi} \equiv \mathbf{x} - \mathbf{x}'$, so that the field always points from the location $\mathbf{x}'$ of the *source charge* $q'$ to the *field point* $\mathbf{x}$ where we imagine placing the test charge $q$. The relationship between all these points is shown in the figure below.
+where $G \approx 6.7 \cdot 10^{-8} \ \text{dyne} \cdot \text{cm}^2 / \text{g}^2$ is Newton's gravitational constant.
 
+Notice that Coulomb's law and Newton's law of gravitation have exactly the same form except with $q_1 q_2 \leftrightarrow G m_1 m_2$. This means if we look at the strength ratio $F_e / F_g$ between the two forces the $1/r_{12}^2$ dependence cancels, and we have
+$$
+\frac{F_e}{F_g} = \frac{q_1 q_2}{G m_1 m_2} \ .
+$$
+To get a feel for this ratio, let's consider two specific examples. First, let's consider the case of two interacting electrons. Since each electron has a of charge $-e \approx -4.8 \cdot 10^{-10} \ \text{esu}$ and a mass $m_e \approx 9.1 \cdot 10^{-28} \ \text{g}$, we have
+$$
+\frac{F_e}{F_g} = \frac{(-4.8 \cdot 10^{-10})^2}{(6.7 \cdot 10^{-8}) (9.1 \cdot 10^{-28})^2} \approx 4 \cdot 10^{42} \ .
+$$
+Thus, for two interacting electrons, the electrostatic force is 42 orders of magnitude greater than their gravitational force. For all practical purposes, when dealing with electrons the electrostatic force is the only force that matters. We can pretty much neglect their gravitational force completely.
 
+This may seem counterintuitive. It's not what we see in everyday experience. To that end let's consider the completely different case of two orbiting planets. We'll assume they both have the properties of the Earth. Roughly speaking, the Earth (when including its atmosphere) is slightly negatively charged, with a charge of about $-10^5 \ \text{esu}$. Since the mass of the Earth is about $6 \cdot 10^{27} \ \text{g}$, for two interacting Earth-like planets we have
+$$
+\frac{F_e}{F_g} = \frac{(-10^5)^2}{(6.7 \cdot 10^{-8}) (6 \cdot 10^{27})^2} \approx 2.5 \cdot 10^{-34} \ .
+$$
+Thus, for two orbiting planets, the gravitational force is about 34 orders of magnitude greater than their electrostatic force. For all practical purposes, when dealing with planets the gravitational force is the only one that matters, and we can neglect the electrostatic force completely. This explains why at the atomic level we can usually ignore gravity and focus only on electrostatic forces, and why at the astronomical level we can usually ignore electrostatics and focus only on gravitational forces. 
 
-![](../resources/image-20240616171528590.png){fig-align=center width=500}
+Evidently, the point where gravitational forces start to overcome electrostatic forces occurs when $|q_1 q_2| \sim G m_1 m_2$. For comparably sized masses and charges, this transition point occurs when
+$$
+|q|/m \sim \sqrt{G} \approx 3863 \ \text{esu}/\text{g} \ ,
+$$
+where $|q|/m$ is known as the *charge to mass ratio*. It occurs quite often in whenever electromagnetism and mechanics interact. When $|q|/m$ is large the electrostatic forces dominate, and when $|q|/m$ is small gravitational forces dominate. For example, the charge to mass ratio of the electron is $e/m_e \approx 5 \cdot 10^{17} \ \text{esu}/\text{g}$, which is clearly much larger than $\sqrt{G}$.
 
-Notice that the electric field doesn't depend on $q$ at all. It has a value at every point in space. When a test charge $q$ is brought in and placed at a position $\mathbf{x}$ it feels a force due to an external electric field $\mathbf{E}$ of the form
+## Electric Field
+
+In some sense our understanding of electrostatics is already finished. All of electrostatics is already incapsulated in Coulomb's law. However, we'll find it convenient and insightful to recast Coulomb's law in terms of other quantities that turn out to be much more useful to work with than forces. Indeed, much of the rest of electrostatics is just recasting Coulomb's law in other forms that each illuminate different aspects of the theory. First, we'll recast the law in terms of electric fields.
+
+### Definition
+
+If $q$ and $q'$ are two point charges located at positions $\mathbf{x}$ and $\mathbf{x}'$ respectively, the force $\mathbf{F}$ on $q$ due to $q'$ is given by Coulomb's law,
+$$
+\mathbf{F} = qq' \frac{\mathbf{x} - \mathbf{x}'}{|\mathbf{x} - \mathbf{x}'|^3} \ .
+$$
+Notice if we divide both sides by $q$ we get a vector field $\mathbf{E} = \mathbf{E}(\mathbf{x})$ that depends only on $q'$,
+$$
+\mathbf{E}(\mathbf{x}) \equiv \frac{\mathbf{F}}{q} = q' \frac{\mathbf{x} - \mathbf{x}'}{|\mathbf{x} - \mathbf{x}'|^3} \ .
+$$
+This vector field we call the *electric field* or *E-field* generated by $q'$. Since $\mathbf{E}$ doesn't depend on $q$, we can think of it as a vector field, taking on a value at each $\mathbf{x}$ in space. When another charge $q$ is placed in the presence of this E-field at a point $\mathbf{x}$, it will feel a force
 $$
 \boxed{
 \mathbf{F} = q \mathbf{E}
 } \ .
 $$
-Note that the requirement that $q$ be an infinitesimal charge in this definition is important. If test charge is high enough, it will distort the background electric field through its presence, in effect making *both* charges source charges for the field. Also, note that this doesn't mean that the charge will move in the direction of the electric field. All that will be true is that its force vector will be tangential to the electric field at that point, pointing in the direction of the field if $q$ is negative, and opposite the field if $q$ is opposite. The path the charge actually follows through the field may be quite complicated.
+Notice that this is completely equivalent to Coulomb's law. In this sense, the physics is exactly the same. So why would we bother to introduce a new field if the physics is the same? The reason is that it allows us to assign a different *interpretation* to Coulomb's law. Instead of saying that two charges interact at a distance to produce a force, we think of one charge as producing an E-field at all points in space, and the other charge interacts with the *field* to produce a force instead of with the other charge directly.  The benefit of this *field interpretation* is it allows us to think of Coulomb's law as being *local*. That is, the force felt by a charge is due to its interaction with something nearby, the E-field, rather some far away charge via a so-called "action at a distance".
 
-We'll often find it more useful to express the electric field formula in a slightly different way by getting rid of the unit vector. Using the fact that the separation vector can be written $\boldsymbol{\xi} = |\mathbf{x}-\mathbf{x}'| \mathbf{e}_\xi$ we can write the same electric field in the equivalent form
+Indeed, pretty much all of modern physics is cast in terms of local *field theories* like this. Nowadays, we think of these fields as being fundamental physical objects, not just mathematical conveniences. A major benefit of such a local theory is that it allows us to recast many physical laws in terms of differential equations, which makes solving more complicated problems much easier.
+
+By definition, the electric field has dimensions of force per unit charge, or units of $\text{dyne}/\text{esu}$ in Gaussian units. By convention though, we state the units of electric field in terms of $\text{statvolt}/\text{cm}$ in Gaussian units, where a *statvolt* is defined as one erg per esu. Of course, one statvolt per centimeter is exactly one dyne per esu. It's just a convention. Similarly, in SI units, the units of electric field are conventionally given in $\text{V}/\text{m}$, where $\text{V}$ is the *volt*, defined as one Joule per Coulomb.
+
+As an aside, notice that Newton's law of gravitation looks almost identical to Coulomb's law. This means we can define a field interpretation for gravity in an almost identical manner to electrostatics, except with charges replaced by masses. In this setting, the analogue of the E-field is the *gravitational field* $\mathbf{g}$. If a mass $m$ is brought into the presence of a gravitational field, it feels a force $\mathbf{F} = m\mathbf{g}$. Indeed, much of the theory of electrostatics that we'll develop in the next few chapters can be mapped almost one-to-one onto the theory of Newtonian gravity as well.
+
+### Charge Distributions
+
+Since forces obey the principle of superposition and E-fields are just forces per unit charge, E-fields must also obey the principle of superposition. That is, if $q_1', q_2', \cdots, q_n'$ are $n$ point charges located at positions $\mathbf{x}_1', \mathbf{x}_2', \cdots, \mathbf{x}_n'$ respectively, then total E-field due to the combined set of charges is given by the vector sum
 $$
-\mathbf{E}(\mathbf{x}) = q' \frac{\mathbf{x}-\mathbf{x}'}{|\mathbf{x}-\mathbf{x}'|^3} \ .
+\mathbf{E} = \mathbf{E}_1 + \mathbf{E}_2 + \cdots \mathbf{E}_n \ ,
 $$
-This only defines the electric field due to a single point charge $q'$. What if instead we have multiple source charges spread out in space. Suppose we instead have $N$ point source charges $q_1, q_2, \cdots, q_N$ located at positions $\mathbf{x}_1, \mathbf{x}_2, \cdots, \mathbf{x}_N$ respectively. Since forces obey the principle of superposition, we know we can add the force due to each source charge to get the total force,
+where each $\mathbf{E}_i$ is what the E-field due to each individual charge $q_i'$ would be in the absence of any other charges, i.e.
 $$
-\mathbf{F} = \mathbf{F}_1 + \mathbf{F}_2 + \cdots + \mathbf{F}_N \ .
+\mathbf{E}_i(\mathbf{x}) = q_i' \frac{\mathbf{x} - \mathbf{x}_i'}{|\mathbf{x} - \mathbf{x}_i'|^3} \ .
 $$
-Since the electric field is proportional to the force it must evidently obey the superposition principle as well. Then the combined electric field due to the presence of all of these charges must be given by the sum of each individual field,
+The total E-field of the combined set of charges is evidently then
 $$
-\mathbf{E}(\mathbf{x}) = \sum_{i=1}^N \mathbf{E}_i(\mathbf{x}) = \sum_{i=1}^N q_i \frac{\mathbf{x}-\mathbf{x}_i}{|\mathbf{x}-\mathbf{x}_i|^3} \ .
+\mathbf{E}(\mathbf{x}) = \sum_{i=1}^n q_i' \frac{\mathbf{x} - \mathbf{x}_i'}{|\mathbf{x} - \mathbf{x}_i'|^3} \ .
 $$
-Again, the combined electric field does not depend on the test charge, only the source charges. If we imagine placing an infinitesimal test charge $q$ at $\mathbf{x}$ it will still feel the combined force $\mathbf{F} = q \mathbf{E}$.
+This of course is only true for discrete point charges. In classical electromagnetism however, we find ourselves more often dealing with macroscopic objects made up of a huge number of atoms. In this scenario it's more convenient to speak of a continuum of charge. Instead of treating an object as consisting of a bunch of discrete charges, we instead find it useful to treat the object as having a continuum of charge defined by some *charge distribution*.
+
+To that end, suppose a charged, stationary, macroscopic object takes up some volume $\mathcal{V}$ in space. Inside $\mathcal{V}$, each infinitesimal volume $d^3 \mathbf{x}'$ will have some infinitesimal amount of charge $dq'$. We can relate the two by defining a *charge density* $\rho(\mathbf{x}')$ by
+$$
+dq' = d^3 \mathbf{x}' \ \rho(\mathbf{x}') \ .
+$$
+Loosely speaking, we can think of the charge density $\rho = \rho(\mathbf{x}')$ as the differential charge per unit volume, or
+$$
+\rho = \frac{dq}{dV} \ .
+$$
+This means the units of charge density would be $\text{esu}/\text{cm}^3$ in Gaussian units. Note that $\rho$ isn't a "proper" density function in the mathematical sense since it's not non-negative. Since $q$ can be positive or negative, $\rho$ can take on any real value. 
+
+The total amount of net charge $Q$ contained inside the macroscopic object will then be given by the volume integral
+$$
+Q = \int_\mathcal{V} d^3\mathbf{x}' \ \rho(\mathbf{x}') \ .
+$$
+By convention, we typically extend the charge density function to cover all space by defining $\rho(\mathbf{x}') = 0$ for any $\mathbf{x}'$ not in $\mathcal{V}$. This means we can and will often omit the $\mathcal{V}$ from integrals and implicitly it's non-zero only when $\mathbf{x}'$ is in $\mathcal{V}$.
+
+Now, for a continuous charge distribution each $dq'$ will give rise to an infinitesimal E-field $d\mathbf{E}(\mathbf{x})$ given by
+$$
+d\mathbf{E}(\mathbf{x}) = dq' \frac{\mathbf{x}-\mathbf{x}'}{|\mathbf{x}-\mathbf{x}'|^3} \ .
+$$
+By the principle of superposition then, the total E-field overall space will then be given by integrating over each $dq'$. In terms of the charge density this means we have
+$$
+\boxed{
+\mathbf{E}(\mathbf{x}) = \int d^3 \mathbf{x}' \ \rho(\mathbf{x}') \frac{\mathbf{x}-\mathbf{x}'}{|\mathbf{x}-\mathbf{x}'|^3} 
+}\ .
+$$
+We've thus managed to recast Coulomb's law into a form that also works for continuous distributions of charge. When a *test charge* $q$ is placed in the presence of some charge distribution, it will feel a force $\mathbf{F} = q\mathbf{E}$, where $\mathbf{E}$ is given by the integral above.
+
+It turns out we can express the E-field for a point charge in terms of this integral as well by using the Dirac delta function. To see why this is the case, suppose a point charge $q_0'$ is placed at position $\mathbf{x}_0'$. We can then define a charge density for $q_0'$ by
+$$
+\rho(\mathbf{x}') = q_0' \delta(\mathbf{x}_0' - \mathbf{x}') \ .
+$$
+If we plug this into the integral above, the delta function will pick out the point $\mathbf{x}_0'$ from the integral and give
+$$
+\mathbf{E}(\mathbf{x}) = \int d^3 \mathbf{x}' \ q_0' \delta(\mathbf{x}_0' - \mathbf{x}') \frac{\mathbf{x}-\mathbf{x}'}{|\mathbf{x}-\mathbf{x}'|^3} = q_0' \frac{\mathbf{x}-\mathbf{x}_0'}{|\mathbf{x}-\mathbf{x}_0'|^3} \ ,
+$$
+which is the same E-field for a point charge given before. In this way, we can use the delta function to easily convert integrals into sums or vice versa, and thus avoid the need to state the formulas for discrete and continuous charge distributions separately.
+
+### Line and Surface Charge Distributions
+
+In defining the charge density above, we implicitly assumed that the charges were spread across 3-dimensional space. Sometimes we'll find it convenient to assume the charges are all concentrated along some 1-dimensional *curve* in space, for instance when modeling a wire of charge where the wire has a negligible thickness compared to its length. Other times we'll find it convenient to assume the charges are all concentrated along some 2-dimensional *surface* in space, for instance when modeling a flat sheet of charge where the length and width of the sheet are much larger than its height. In these situations it's thus often much more convenient to define charge distributions in one or two dimensions.
+
+Suppose we have a distribution of charges concentrated along some 1-dimensional curve $\mathcal{C}$ in space. Along each infinitesimal segment $d\ell'$ of the curve there will be some amount of charge $dq'$. We then define the *line charge density* function $\lambda(\mathbf{x}')$ by
+$$
+dq' = d\ell' \lambda(\mathbf{x}') \ .
+$$
+To find the total net charge $Q$ contained on the curve we need only integrate over each $dq'$ along the curve to get
+$$
+Q = \int_\mathcal{C} d\ell' \lambda(\mathbf{x}') \ .
+$$
+By Coulomb's law, each charge $dq'$ along the curve will give rise to some E-field $d\mathbf{E}(\mathbf{x})$, where
+$$
+d\mathbf{E}(\mathbf{x}) = dq' \frac{\mathbf{x}-\mathbf{x}'}{|\mathbf{x}-\mathbf{x}'|^3} \ .
+$$
+By the principle of superposition, the E-field generated by the entire line charge distribution can be found by integrating along the entire length of the curve to get
+$$
+\boxed{
+\mathbf{E}(\mathbf{x}) = \int_\mathcal{C} d\ell' \ \lambda(\mathbf{x}') \frac{\mathbf{x}-\mathbf{x}'}{|\mathbf{x}-\mathbf{x}'|^3} 
+} \ .
+$$
+Notice this looks exactly like the integral for $\mathbf{E}(\mathbf{x})$ we derived before, except with $d^3\mathbf{x}' \rho(\mathbf{x}') \to d\ell' \lambda(\mathbf{x}')$. The dimensions of line charge density must evidently be charge per unit *length*, or units of of $\text{esu}/\text{cm}$ in Gaussian units.
+
+In an analogous manner, suppose now that we have a distribution of charges concentrated along some 2-dimensional surface $\mathcal{S}$ in space. Along this surface, each infinitesimal patch of area $da'$ will have some amount of charge $dq'$. We then define the *surface charge density* $\sigma(\mathbf{x}')$ by
+$$
+dq' = da' \sigma(\mathbf{x}') \ .
+$$
+To find the total net charge $Q$ contained on the surface we need only integrate over all $dq'$ along the surface to get
+$$
+Q = \int_\mathcal{S} da' \sigma(\mathbf{x}') \ .
+$$
+Each charge $dq'$ along the surface will give rise to some E-field $d\mathbf{E}(\mathbf{x})$ according to Coulomb's law. By the principle of superposition, we can thus find the E-field due to the entire surface charge distribution by integrating over the surface to get
+$$
+\boxed{
+\mathbf{E}(\mathbf{x}) = \int_\mathcal{S} da' \ \sigma(\mathbf{x}') \frac{\mathbf{x}-\mathbf{x}'}{|\mathbf{x}-\mathbf{x}'|^3} 
+} \ .
+$$
+Again, this looks exactly like the original integral for $\mathbf{E}(\mathbf{x})$, except with $d^3\mathbf{x}' \rho(\mathbf{x}') \to da' \sigma(\mathbf{x}')$. The dimensions of surface charge density must evidently be charge per unit *area*, or units of $\text{esu}/\text{cm}^2$ in Gaussian units.
+
+
+
+- Start rewriting here…
+
+### Field Lines
+
+- Peruse and update the later sections.
+- Move capacitance section into field energy section (maybe rename section). Move conductor discussion to potential section.
+
+### Examples
+
+- Infinite line charge, hollow/solid sphere, show there's no electrostatic equilibrium
+
+Note that the requirement that $q$ be an infinitesimal charge in this definition is important. If test charge is high enough, it will distort the background electric field through its presence, in effect making *both* charges source charges for the field. Also, note that this doesn't mean that the charge will move in the direction of the electric field. All that will be true is that its force vector will be tangential to the electric field at that point, pointing in the direction of the field if $q$ is negative, and opposite the field if $q$ is opposite. The path the charge actually follows through the field may be quite complicated.
 
 The most typical way to visualize vector fields in electromagnetism is via *field lines*. We imagine that any positive charge emits from it a bunch of lines, called field lines. These field lines follow the direction of the vector field in space, only terminating at negative charges or at infinity. Field lines should never cross each other. The direction of a field line is always from positive charges to negative charges. The strength of the field is captured by the density of field lines. The more field lines there are surrounding a given point in space, the stronger the field at that point. Indeed, we can informally *define* a vector field as the *flux density* of field lines, i.e. the number of field lines per unit volume.
 
@@ -158,21 +285,9 @@ FIGURE
 
 
 
-### Charge Distributions
 
-In classical electromagnetism we rarely find ourselves dealing with point charges. We're generally dealing with *macroscopic* materials containing many charged particles packed densely together. In such cases it's more convenient to treat those charges not as a sum over all the point charges, but instead as a continuous *charge distribution*.
 
-A charge distribution can be thought of as a large number of charged point particles packed densely together. Provided the charges are dense enough that we can treat them as continuous, we can define a *charge density* $\rho(\mathbf{x}')$ by
-$$
-dq = d^3 \mathbf{x}' \ \rho(\mathbf{x}') \ .
-$$
-Each $dq$ will give rise to an infinitesimal electric field $d\mathbf{E}$ defined by Coulomb's Law. Using the principle of superposition, we can then integrate over all these charges over all space to get the electric field of the distribution,
-$$
-\boxed{
-\mathbf{E}(\mathbf{x}) = \int d^3 \mathbf{x}' \ \rho(\mathbf{x}') \frac{\mathbf{x}-\mathbf{x}'}{|\mathbf{x}-\mathbf{x}'|^3} 
-}\ .
-$$
-Strictly speaking we should only integrate over the volume $\mathcal{V}$ of the distribution, but since we can freely define the density to be zero outside the distribution we'll usually omit this from the formula and assume we're integrating over all space.
+
 
 This idea can be seen in the figure below. Here the gray blob is some charge distribution, and $dq$ some infinitesimal element of it. Adding up, or integrating, over all these charges will give the full electric field $\mathbf{E}(\mathbf{x})$.
 
@@ -182,34 +297,9 @@ This idea can be seen in the figure below. Here the gray blob is some charge dis
 
 The field lines for the electric fields of continuous distributions work the same way they do for point charges. The main new thing to be aware of is that field lines will always point *normal* to the surface of the charge distribution. Again, the field lines will point away from positive charge distributions, and toward negative charge distributions or out to infinity, never crossing.
 
-We'll often be interested in charge distributions of lower dimension as well, for example lines of charge and sheets of charge. For this reason it's useful to define charge densities in these dimensions as well. The simplest case is the point charge, which we can think of as a zero-dimensional density. If $q'$ is some point charge located at $\mathbf{x}'$, we can use the delta function to write
-$$
-dq = d^3 \mathbf{x} \ q \delta(\mathbf{x} - \mathbf{x}') \ .
-$$
-Indeed, we get
-$$
-\mathbf{E}(\mathbf{x}) = \int d^3 \mathbf{x}'' \ q \delta(\mathbf{x}'' - \mathbf{x}') \frac{\mathbf{x}-\mathbf{x}''}{|\mathbf{x}-\mathbf{x}''|^3} = q \frac{\mathbf{x}-\mathbf{x}'}{|\mathbf{x}-\mathbf{x}'|^3} \ ,
-$$
-which agrees with our original formula for the electric field of a point charge.
 
-Stepping up to one-dimension, we can imagine a line of charge in space, for example a long, thin charged wire. If $d\ell'$ is an infinitesimal line element of this line of charge, we can define a *line charge density* $\lambda(\mathbf{x}')$ by the formula
-$$
-dq = d\ell' \ \lambda(\mathbf{x}') \ .
-$$
-Then the formula for the electric field becomes
-$$
-\mathbf{E}(\mathbf{x}) = \int_\mathcal{C} d\ell' \ \lambda(\mathbf{x}') \frac{\mathbf{x}-\mathbf{x}'}{|\mathbf{x}-\mathbf{x}'|^3} \ .
-$$
-Last, we can imagine a two-dimensional *surface of charge* in space, for example a thin sheet of charge. If $da'$ is the area element along this surface of charge, we can define a *surface charge density* $\sigma(\mathbf{x}')$ by the formula
 
-$$
-dq = d\mathcal{a}' \ \sigma(\mathbf{x}') \ .
-$$
-Then the formula for the electric field becomes
-$$
-\mathbf{E}(\mathbf{x}) = \int_\mathcal{S} da' \ \sigma(\mathbf{x}') \frac{\mathbf{x}-\mathbf{x}'}{|\mathbf{x}-\mathbf{x}'|^3} \ .
-$$
-We could in principle define charge densities in higher dimensions as well, though we won't since we won't need them. Each of the cases we discussed can be visualized using the figure below.
+
 
 ![](../resources/image-20240616171649819.png){fig-align=center width=600}
 
