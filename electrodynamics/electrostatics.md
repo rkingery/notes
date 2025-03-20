@@ -253,7 +253,14 @@ Evidently, in the far field limit the E-field falls off like $1/r^3$, not like $
 
 ### Field Lines
 
+- Should probably move this discussion to preliminaries section since it's mathematical and general
+- Will need to fill in field line discussion above/below (show some plots, E-field is electric flux density, etc)
 
+Thus far we haven't said anything about how to visualize electric fields, or any vector field. Any vector field $\mathbf{F}(\mathbf{x})$ is a function of position, meaning each point $\mathbf{x}$ in space will take on a vector value $\mathbf{F}$. This means each $\mathbf{F}$ will have both a magnitude and a direction associated to it, not just a scalar value. There are two main ways one can visualize vector fields, *quiver plots* and *field line plots*. We'll describe both briefly here, though in this course we'll mainly use field line plots.
+
+One way to visualize a vector field is to choose a bunch of points $\mathbf{x}$ and space. For each $\mathbf{x}$, we then calculate each vector $\mathbf{F} = \mathbf{F}(\mathbf{x})$. At the point $\mathbf{x}$, we then draw its $\mathbf{F}$ as an arrow whose tail sits at $\mathbf{x}$. Provided we do this for enough points in space, we can get an idea what the vector field behavior looks like. This is sometimes known as a *quiver plot*.
+
+The problem with quiver plots is we only get an idea of what the vector field looks like at a few discrete points we choose. It's difficult to see how the vector field actually flows through space. To visualize this flow behavior better we can do something slightly different. Instead of plotting a bunch of vectors at each point, we plot *field lines*.
 
 ### Charge Distributions
 
@@ -345,6 +352,131 @@ $$
 $$
 With charge densities now defined in different dimensions we're now finally in a position to work a few problems. Unfortunately, calculating the E-field directly from this integral is usually quite cumbersome, in part due to the fact that we have to solve an for each of the three components of $\mathbf{E}$. In some cases we can do so, particularly if the charge distribution is highly symmetric in some system of coordinates. We'll illustrate three such examples below, the infinite wire of uniform charge, the infinite sheet of uniform charge, and the sphere of uniform charge.
 
+##### Example: Infinite wire of uniform charge
+
+Suppose we have a very long, straight conducting wire on which we place a uniform charge per unit length $\lambda$. We'll assume the wire is so long that we can approximate its length as infinite, and that the wire is so thin that we can assume it's a one dimensional line of charge with a constant line charge density $\lambda$. 
+
+To calculate the E-field of this wire, we need to evaluate the line integral
+$$
+\mathbf{E}(\mathbf{x}) = \int d\ell' \ \lambda(\mathbf{x}') \frac{\mathbf{x}-\mathbf{x}'}{|\mathbf{x}-\mathbf{x}'|^3} \ .
+$$
+Now, the most important observation we need to get started on this problem is to observe this charge distribution has a cylindrical symmetry to it. Suppose the wire is oriented along the $z$-axis. Since the wire is 1-dimensional, its corresponding E-field must necessarily be azimuthally symmetric, meaning $\mathbf{E}(\mathbf{x}) = \mathbf{E}(\varrho, z)$ in cylindrical coordinates. Next, since $\lambda$ is constant along the wire and the wire is infinitely long, the wire must also be cylindrically symmetric, meaning $\mathbf{E}(\mathbf{x}) = \mathbf{E}(\varrho)$. That is, the E-field can only depend on the field point's radial distance from the wire. Moreover, the E-field must always point in the $\varrho$-direction for this exact same reason, since the $z$-component of any $d\mathbf{E}$ at some point the wire will cancel with the $z$-component of another $d\mathbf{E}$ at some other point on the wire, leaving only the $\varrho$-component to contribute, as shown in the figure below. 
+
+FIGURE
+
+We can thus argue by symmetry alone that we must have
+$$
+\mathbf{E}(\mathbf{x}) = E(\varrho) \mathbf{e}_\varrho \ .
+$$
+This means to find $\mathbf{E}(\mathbf{x})$ we only need to evaluate the $\varrho$ component of the integral above, or
+$$
+E(\varrho) = \mathbf{E}(\mathbf{x}) \cdot \mathbf{e}_\varrho = \int d\ell' \ \lambda(\mathbf{x}') \frac{(\mathbf{x}-\mathbf{x}') \cdot \mathbf{e}_\varrho}{|\mathbf{x}-\mathbf{x}'|^3} \ .
+$$
+We now need to figure out what the separation vector $\mathbf{x}-\mathbf{x}'$ is. Since all the charges lie on the $z$-axis, we can write each source point $\mathbf{x}'$ as $\mathbf{x}' = z' \mathbf{e}_z$, where $z'$ is the $z$-coordinate of the source point on the wire. Since the field point $\mathbf{x}$ could in principle be any point in space, when written out in cylindrical coordinates we'd in general have
+$$
+\mathbf{x} = \varrho \mathbf{e}_\varrho + z \mathbf{e}_z \ .
+$$
+However, we can simplify this a little. Since the wire is infinitely long and the E-field is independent of $z$, it suffices to calculate the E-field in the $xy$-plane since this will be the same E-field for all $z$. We can thus assume without loss of generality that $z = 0$, and write $\mathbf{x} = \varrho \mathbf{e}_\varrho$. This means the separation vector becomes
+$$
+\mathbf{x}-\mathbf{x}' = \varrho \mathbf{e}_\varrho - z' \mathbf{e}_z \ ,
+$$
+and hence $(\mathbf{x}-\mathbf{x}') \cdot \mathbf{e}_\varrho = \varrho$. The separation distance $|\mathbf{x}-\mathbf{x}'|$ is then simply
+$$
+|\mathbf{x}-\mathbf{x}'| = \sqrt{\varrho^2 + z'^2} \ .
+$$
+Since the wire runs along the $z$-axis and $\lambda$ is constant, we can write $d\ell' \ \lambda(\mathbf{x}') = \lambda dz'$. We thus finally end up with the integral
+$$
+E(\varrho) = \lambda \int_{-\infty}^\infty dz' \ \frac{\varrho}{(\varrho^2 + z'^2)^{3/2}} \ .
+$$
+This integral can easily be evaluated by substitution. If we let $u = z'/\varrho$, then $du = dz'/\varrho$, and so we have
+$$
+\begin{align*}
+E(\varrho) &= \lambda \int_{-\infty}^\infty dz' \ \frac{\varrho}{(\varrho^2 + z'^2)^{3/2}} \\
+&= \frac{\lambda}{\varrho^2} \int_{-\infty}^\infty \frac{dz'}{\big(1 + (z'/\varrho)^2\big)^{3/2}} \\
+&= \frac{\lambda}{\varrho} \int_{-\infty}^\infty \frac{du}{(1 + u^2)^{3/2}} \\
+&= \frac{\lambda}{\varrho} \frac{u}{\sqrt{1 + u^2}} \bigg|_{u=-\infty}^{u=\infty} \\
+&= \frac{2\lambda}{\varrho}
+\ .
+\end{align*}
+$$
+Thus, the E-field of an infinitely long wire of with a uniform charge per unit length $\lambda$ is just
+$$
+\mathbf{E}(\mathbf{x}) = \frac{2\lambda}{\varrho} \mathbf{e}_\varrho \ .
+$$
+As expected, the E-field depends only on the radial distance from the wire. If the wire is positively charged, then $\lambda > 0$, which means the E-field will point radially *outward* from the wire. If it's negatively charged, then $\lambda < 0$, which means the E-field will point radially *inward* toward the wire. 
+
+FIGURE
+
+Perhaps unexpectedly though, the field falls off like $1/\varrho$ and not like $1/\varrho^2$ as we might expect from Coulomb's law. Why is this the case? The reason is because we assumed the wire was infinitely long. This means the wire will always appear infinitely long no matter how far we are away from the wire. That is, it'll never look like a point charge no matter how far we are away from it, and only point charges obey Coulomb's law. If the wire were finite, which is of course always the case in reality, eventually we would be able to move far enough from the wire that it would behave as a point charge. Then it would fall off like $1/\varrho^2$ far away. However, near the wire the field would still fall off like $1/\varrho$ even if the wire has a finite length.
+
+##### Example: Infinite sheet of uniform charge
+
+Suppose we have a very large square conducting sheet on which we place a uniform charge per unit area $\sigma$. We'll assume that the sheet is so large that its area is infinite, and that the sheet is so thin that we can neglect its depth and model the sheet as having a 2-dimensional charge distribution with a constant surface density $\sigma$.
+
+To calculate the E-field of this infinite sheet, we thus need to evaluate the surface integral
+$$
+\mathbf{E}(\mathbf{x}) = \int da' \ \sigma(\mathbf{x}') \frac{\mathbf{x}-\mathbf{x}'}{|\mathbf{x}-\mathbf{x}'|^3} \ .
+$$
+Now, observe that this sheet also has a symmetry, this time a *planar symmetry*. Since the charge per unit area is uniform across the sheet, the E-field must be the same for any points the same distance above or below the sheet. That is, the E-field at any given point must only depend on the point's distance from the sheet. If we suppose the sheet lies in the $xy$-plane, this means we must have that $\mathbf{E}(\mathbf{x}) = \mathbf{E}(z)$.
+
+What about the direction of the E-field at each $z$ though? It's easy to see that the field must always point in the $z$-direction, since the planar components of the field vector $d\mathbf{E}$ at any $(x',y')$ on the sheet must cancel with the planar components of some other field vector at some other point, leaving only their vector sum in the $z$-direction to contribute. Also, since $\sigma$ is constant, the field lines must always point either away from or into the sheet, with the field lines pointing *outward* if $\sigma > 0$ and *inward* if $\sigma < 0$. Thus, the E-field vectors above the sheet will always point in the opposite direction to the E-field vectors below the sheet.
+
+Mathematically, we can express these arguments by saying by symmetry the E-field must satisfy
+$$
+\mathbf{E}(\mathbf{x}) = \text{sgn}(z) E(z) \mathbf{e}_z \ ,
+$$
+where we use $\text{sgn}(z)$ to indicate that the direction of the field below the $xy$-plane is opposite the direction of the field above. 
+
+It thus suffices to compute $E(z)$ for some $z > 0$ above the sheet and we're basically done,
+$$
+E(z) = \mathbf{E}(\mathbf{x}) \cdot \mathbf{e}_z = \int da' \ \sigma(\mathbf{x}') \frac{(\mathbf{x}-\mathbf{x}') \cdot \mathbf{e}_z}{|\mathbf{x}-\mathbf{x}'|^3} \ .
+$$
+Now, since the sheet is infinite, it suffices to compute $E(z)$ at the point $(0,0,z)$, since by symmetry $E(z)$ will be the same for any other point $(x,y,z)$ at the same height. This means we can set $\mathbf{x} = z \mathbf{e}_z$. Since the source points $\mathbf{x}'$ are in the $xy$-plane at some point $(x',y',0)$, we could write
+$$
+\mathbf{x}' = x' \mathbf{e}_x + y' \mathbf{e}_y \ .
+$$
+However, we'll see it's more convenient for the integration to write $\mathbf{x}'$ in cylindrical coordinates as $\mathbf{x}' = \varrho' \mathbf{e}_\varrho$. This means the separation vector is then just
+$$
+\mathbf{x} - \mathbf{x}' = z \mathbf{e}_z - \varrho' \mathbf{e}_\varrho \ ,
+$$
+which means $(\mathbf{x} - \mathbf{x}') \cdot \mathbf{e}_z = z$, and
+$$
+|\mathbf{x} - \mathbf{x}'| = \sqrt{z^2 + \varrho'^2} \ .
+$$
+Since the sheet is flat and $\sigma$ is constant, in cylindrical coordinates we have $da' \ \sigma(\mathbf{x}') = \sigma \varrho' d\varrho' d\varphi'$. Plugging all of this back into the integral we thus need to solve the following,
+$$
+E(z) = \sigma \int_0^\infty \varrho' d\varrho' \int_0^{2\pi} d\varphi' \ \frac{z}{(z^2 + \varrho'^2)^{3/2}} \ .
+$$
+Notice the integrand doesn't depend on the angle $\varphi'$, which means we can immediately evaluate the $\varphi'$ integral to get
+$$
+E(z) = 2\pi\sigma \int_0^\infty d\varrho' \frac{z\varrho'}{(z^2 + \varrho'^2)^{3/2}} \ .
+$$
+We can now evaluate the remaining integral by substituting $u = \varrho'/z$ to get
+$$
+\begin{align*}
+E(z) &= 2\pi\sigma \int_0^\infty d\varrho' \frac{z\varrho'}{(z^2 + \varrho'^2)^{3/2}} \\
+&= \frac{2\pi\sigma}{z^2} \int_0^\infty d\varrho' \ \frac{\varrho'}{\big(1 + (\varrho'/z)^2\big)^{3/2}} \\
+&= 2\pi\sigma \int_0^\infty du \ \frac{u}{(1 + u^2)^{3/2}} \\
+&= 2\pi\sigma \frac{-1}{\sqrt{1 + u^2}} \bigg|_{u=0}^{u=\infty} \\
+&= 2\pi\sigma
+\ .
+\end{align*}
+$$
+Thus, the E-field of an infinite sheet of uniform charge per unit area is given by
+$$
+\mathbf{E}(\mathbf{x}) = \begin{cases}
+2\pi\sigma \mathbf{e}_z \ , & z > 0 \\
+-2\pi\sigma \mathbf{e}_z \ , & z < 0
+\end{cases} \ .
+$$
+Notice that perhaps surprisingly the E-field doesn't seem to depend on $z$ at all. The field strength is a constant $2\pi\sigma$ for all $z$, no matter how far we are away from the sheet. The only thing that changes is the direction of the field, depending on whether we're above or below the sheet. Just as in the previous example, the reason for this lies in the assumption that the sheet is infinite. If the sheet had a finite size, then far away from the sheet it would behave as a point charge and fall off like $1/z^2$ in accordance with Coulomb's law. However, close to the sheet the E-field will *still* approximately be constant even for a finite sheet.
+
+Here's something else worth noticing. The E-field changes discontinuously when crossing the sheet. Indeed, if $\mathbf{x}_+$ is some point above the sheet and $\mathbf{x}_-$ is some point below the sheet, then the difference between the E-field vectors of these two points is always a constant,
+$$
+\Delta\mathbf{E} = \mathbf{E}(\mathbf{x}_+) - \mathbf{E}(\mathbf{x}_-) = 4\pi\sigma \mathbf{e}_z \ .
+$$
+This is curious… PICK UP HERE DON'T FEEL LIKE IT RIGHT NOW (SEE BELOW FOR HELP)
+
 
 
 - Start rewriting here…
@@ -377,11 +509,11 @@ The field lines for the electric fields of continuous distributions work the sam
 
 
 
-##### Example: Sphere with uniform charge
+##### Example: Hollow sphere of uniform charge
 
-As a useful example of how to calculate the electric field of a charge distribution, let's consider the case of a uniformly charged sphere. We'll first suppose the sphere is *hollow* with a radius $R$ and a uniform charge $Q = 4\pi R^2 \sigma$ where $\sigma$ is a constant surface density.
+As our last example for this section, suppose now we have a *hollow* conducting sphere of radius $R$ on which we've placed some constant amount of charge $Q$ across the surface, so that its charge per unit area is a constant $\sigma = Q/4\pi R^2$.
 
-Given the symmetry of the problem it's natural to work in spherical coordinates. By symmetry, it's not hard to see that the electric field for the hollow sphere must *always* point in the radial direction. To see why, notice that any source point we pick on the sphere will have an opposite point $180^\circ$ away at the same altitude. Since the charge is uniform both source points will cancel all but the radial component of the field when added together. We thus just need to find the single scalar $E(r)$, where
+Given the symmetry of the problem it's natural to work in spherical coordinates. By symmetry, it's not hard to see that the electric field for the hollow sphere must *always* point in the radial direction. Indeed, notice that any source point we pick on the sphere will have an opposite point $180^\circ$ away at the same altitude. Since the charge is uniform, both source points will cancel all but the radial component of the field when added together. We thus just need to find the single scalar $E(r)$, where
 $$
 \mathbf{E}(\mathbf{x}) = E(r) \mathbf{e}_r \ .
 $$
