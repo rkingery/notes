@@ -147,7 +147,7 @@ u(r) \approx - k_B T \log\big( 1 + \eta e^{-2\pi r^2 / \lambda_T^2}\big) \ .
 $$
 This effective potential $u(r)$ arises purely from the quantum mechanical behavior of identical particles, even if we assume they're completely non-interacting as we would for the ideal gas. If we plot $u(r)$ for $\eta = \pm 1$ we get two potential curves like the ones shown in the following figure.
 
-![](../resources/image-20231014133317922.png){fig-align=center width=400}
+![](../resources/image-20231014133317922.png)
 
 For fermions, $u(r)$ goes to zero exponentially fast as $r \rightarrow \infty$ and blows up as $r \rightarrow 0$. This reflects the exclusion principle, which essentially forbids fermions from getting too close to each other. As the particles get farther apart this fermionic repulsion dies off exponentially fast. 
 
@@ -289,7 +289,7 @@ $$
 $$
 Evidently when $z=1$ we just get back the zeta functions, i.e. $\text{Li}_s(1) = \zeta_s$. Polylogarithms only converge in general when $|z| < 1$, though they can be analytically continued to cover almost all of real $z$. When $z > 0$ the functions asymptote at $z=1$ when $s \leq 1$, otherwise they meet the $z=1$ line at some finite value, which is of course $\zeta_s$. Here's a plot of the polylogarithms for a few different values of $s$. The curves for $s=0,\frac{1}{2},1$ go to infinity at $z=1$, while those for $s=\frac{3}{2},2,\frac{5}{2}$ are finite-valued at $z=1$.
 
-![](../resources/image-20231231093336020.png){fig-align=center width=400}
+![](../resources/image-20231231093336020.png)
 
 Since there's no constant term in the series it evidently must be the case that $\text{Li}_s(0)=0$. Moreover, when $z$ is small we must have $\text{Li}_s(z) \approx z$, which as we'll soon see turns out to be important to us.
 
@@ -319,7 +319,7 @@ f_s^\eta(z) = \eta \text{Li}_s(\eta z) = \sum_{n=1}^\infty \frac{\eta^{n+1} z^n}
 $$
 That is, the functions $f_s^\eta(z)$ we're seeing fall out of quantum statistics are just polylogarithms, with the caveat that when $\eta=-1$ the series is alternating on even powers. This alternating behavior for $\eta=-1$ means that those functions turn out to be defined for all $z$, not just when $|z| < 1$. In fact, we'll see later that $f_s^{-}(z) \sim \frac{1}{s!} (\log z)^s$ when $z$ is really large.
 
-![](../resources/image-20231231094231897.png){fig-align=center width=400}
+![](../resources/image-20231231094231897.png)
 
 In either case, we can see that $f_s^\eta(z) \approx z$ when $z$ is small. Treating $z$ as the fugacity, $z$ will be small at high temperatures, meaning in the high temperature limit our equation of state becomes $\beta P \approx n$. This expression is of course none other the classical ideal gas law $PV = N k_B T$. Evidently the quantum ideal gases reduces to the classical ideal gas in the high temperature limit, as we'd expect, both for fermions as well as bosons. The distinction between the two types of particles washes out in a sense with higher temperatures.
 
@@ -372,7 +372,7 @@ f_s^{-}(z) = \frac{1}{(s-1)!} \int_0^{\infty} dx \ \frac{x^{s-1}}{z^{-1} e^x + 1
 $$
 Now, observe that the integrand has the form $x^{s-1} \langle n \rangle$ where $\langle n \rangle = (z^{-1} e^x + 1)^{-1}$ is the expected occupation number. We know that for fermions the occupation number should change abruptly from one to zero at low temperatures. If we plot $\langle n \rangle$as a function of $x$ we get something like the figure shown below. As $z$ gets larger the curve of $\langle n \rangle$ approaches more and more of a step function that goes rapidly to zero around $x \approx \log z$.
 
-![](../resources/image-20231224204858169.png){fig-align=center width=400}
+![](../resources/image-20231224204858169.png)
 
 This means that to a crude approximation we can treat $\langle n \rangle$ as a step function that jumps from one to zero at $x = \log z$, which means near zero temperature we can approximately say
 $$
@@ -472,7 +472,7 @@ $$
 $$
 This means the chemical potential is evidently a downward-sloping parabola at low temperatures with a vertex at the Fermi energy $\varepsilon_F$. We also expect classically that $\mu \sim -T \log T$ at high temperatures, so the two curves should smoothly interpolate somehow, as shown in the figure below. The transition regime occurs somewhere around the Fermi temperature $T_F$.
 
-![](../resources/image-20231227185844239.png){fig-align=center width=400}
+![](../resources/image-20231227185844239.png)
 
 Next up, we can find the pressure by using the above expansion for $\mu$ to get
 $$
@@ -486,7 +486,7 @@ P &= \frac{g}{\beta\lambda_T^3} f_{5/2}^\eta(z) \\
 $$
 Evidently the correction to the pressure is also quadratic, but this time the parabola is *upward sloping*, causing pressure to increase with temperature. In the classical limit of course we expect pressure to become linear $P \sim T$, with a turning point occurring again around the Fermi temperature $T_F$. This is shown in the figure below.
 
-![](../resources/image-20231227185927048.png){fig-align=center width=400}
+![](../resources/image-20231227185927048.png)
 
 With the pressure in hand we can now proceed to calculate the average internal energy using the formula $E = \frac{3}{2} PV$. We get
 $$
@@ -498,7 +498,7 @@ C = \frac{\partial E}{\partial T} = N k_B \frac{\pi^2}{2} \bigg(\frac{T}{T_F}\bi
 $$
 Importantly, notice that at low temperatures the heat capacity of a Fermi gas is *linear* with a cubic correction. As $T$ approaches the Fermi temperature $T_F$ the heat capacity turns over and starts to behave classically, as shown in the figure below.
 
-![](../resources/image-20231227190008267.png){fig-align=center width=400}
+![](../resources/image-20231227190008267.png)
 
 Perhaps the most important application of this result is to *metals*. Metals can be thought of as solids where internal electrons are allowed to move freely as an interacting Fermi gas. We already saw in a previous chapter that typical non-conducting solids are dominated by *phonon* effects at low temperatures, causing $C \sim T^3$ when $T \ll T_D$, where $T_D$ is the solid's *Debeye temperature*. Metals slightly modify this result by having
 $$
@@ -582,7 +582,7 @@ $$
 $$
 As we'd expect, the susceptibility goes to a positive constant $\chi_F$ in the low temperature limit. The first quadratic correction is negative, meaning $\chi(T)$ will decrease and eventually go like $\chi(T) \sim \frac{C}{T}$ in the high temperature limit, as shown below.
 
-![](../resources/image-20240102161803194.png){fig-align=center width=400}
+![](../resources/image-20240102161803194.png)
 
 
 
@@ -626,7 +626,7 @@ $$
 $$
 Notice $N_> \approx N$ when $T \geq T_c$, so we need only worry about the excited states. But when $T \approx 0$ the opposite is true, with all particles crowding into the ground state to give $N \approx N_0$. We can see this tradeoff between occupied states in the figure below.
 
-![](../resources/image-20240108183024966.png){fig-align=center width=400}
+![](../resources/image-20240108183024966.png)
 
 This phenomenon where bosons all pile into their ground state below some temperature is called **Bose-Einstein Condensation** or **BEC**. Note that critical temperatures are generally very close to zero, for example water has a critical temperature of about $T_c \approx 0.06 \ ^\circ\text{K}$. This means for BEC to be seen at all a gas needs to be cooled to almost exactly $T=0$.
 
@@ -640,7 +640,7 @@ P = k_B T \frac{g}{\lambda_T^3} \zeta_{5/2} \quad , \quad E = \frac{3}{2} k_B T 
 $$
 In particular, notice that when $T < T_c$ both the pressure and energy go like $T^{5/2}$, while perhaps strangely the pressure doesn't depend at all on the density $n=\frac{N}{V}$ anymore since the ground state particles no longer contribute to the pressure. This means even though $P = n k_B T$ in the high temperature limit, at low temperatures it always follows the same curve, as shown below.
 
-![](../resources/image-20240111193827524.png){fig-align=center width=400}
+![](../resources/image-20240111193827524.png)
 
 As is pretty much custom by now, we'll differentiate energy with respect to temperature to get the heat capacity. To do this we need to keep the $f_{5/2}^{+}(z)$ in the formula even below $T_c$ since $z$ itself depends implicitly on temperature. One can then show using the relation $N = \frac{gV}{\lambda_T^3} f_{3/2}^{+}(z)$ and the ladder relationship $\frac{d}{dz} f_s^{+}(z) = \frac{1}{z} f_{s-1}^{+}(z)$ that
 $$
@@ -655,7 +655,7 @@ C = \frac{15}{4} k_B \frac{gV}{\lambda_T^3} \zeta_{5/2} = \frac{15}{4} \frac{\ze
 $$
 Evidently near zero temperature the heat capacity of a boson goes like $T^{3/2}$, which is very different from fermions. The way the two limits join in this case though is particularly interesting. It turns out they join at a kink above $\frac{3}{2} Nk_B$ as shown below.
 
-![](../resources/image-20240108182053102.png){fig-align=center width=400}
+![](../resources/image-20240108182053102.png)
 
 To see why this is true we need to study the behavior when $T > T_c$ but $T \approx T_c$. This can be seen by expanding the heat capacity when $T > T_c$ and observing that the corrections increase the heat capacity from $\frac{3}{2} N k_B$. This expansion turns out to be
 $$

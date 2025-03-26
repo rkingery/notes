@@ -12,14 +12,14 @@ Little else was known about electricity until the 17th century when scientists s
 
 ### Coulomb's Law
 
-Electrostatics rests on two important facts about nature: the existence of and the conservation of charge, and Coulomb's law. We postulate that aside from mass, every physical body has associated to it another scalar quantity known as *electric charge*, where charge can be positive, negative, or zero. Moreover, we postulate that in a closed system charge is *conserved*. It cannot be created or destroyed, but only transferred between particles within the system.
+Electrostatics rests on two important facts about nature: the existence of and the conservation of charge, and Coulomb's law. We postulate that aside from mass, every physical body has associated to it another scalar quantity known as *electric charge*. Electric charge is observed to come in two varieties, which we call *positive* and *negative*. By historical convention, positive charge turns out to be the charge of the proton, and negative charge turns out to be the charge of the electron. We also postulate that in any closed system charge is *conserved*. It cannot be created or destroyed, only transferred within the closed system.
 
 Next, we postulate that the force between charged objects is given by *Coulomb's Law*. Through a series of experiments, Coulomb was able to deduce the following facts about the forces between charged objects:
 
 - The force between the two charges depends linearly on the magnitude of each charge. The larger the magnitude, the stronger the force between them.
 - The force obeys an inverse square law nature similar to gravity. That is, the strength of the force between the two charges varies with the inverse square of the distance between them.
 - As with gravity, the force is directed along the line of force joining the two charges.
-- The force is *attractive* if the two bodies have charges of *opposite* sign, and *repulsive* if the two bodies have charges of the *same* sign. If either body has zero charge there is no force between them.
+- The force is *attractive* if the two bodies have charges of *opposite* sign, and *repulsive* if the two bodies have charges of the *same* sign. If either body has zero charge, then there is no force between them.
 
 Let's now formulate this as a mathematical law. Suppose two charged objects with charges $q_1$ and $q_2$ are located at fixed positions in space $\mathbf{x}_1$ and $\mathbf{x}_2$ respectively. Then the force $\mathbf{F}_{12}$ charge $q_1$ experiences due to charge $q_2$ is given by
 $$
@@ -76,25 +76,34 @@ where it's necessarily understood that charge is measured in Coulomb, distances 
 
 To get a feel for the scale of everyday charges, the static electricity between two large objects rubbed together may produce a charge of a few $\mu \text{C}$, or $\sim 10^4 \ \text{esu}$. The amount of charge in a bolt of lightning may be as high as $15-350 \ \text{C}$, or $\sim 10^{5}-10^{6} \ \text{esu}$. A modern smartphone battery can hold a huge charge of $10 \ \text{kC}$, or $\sim 10^{8} \ \text{esu}$. Indeed, charge in everyday settings can range from very small to very large, making it difficult for any chosen unit of charge to seem natural.
 
+Coulomb's law has been used to establish the limits on the validity of classical electromagnetism. Experiments and observations have well established that Coulomb's law is highly accurate for distance scales at all orders of magnitude, with the loan exception being very small distances much smaller than the atom. When distance scales get down to around $10^{-13} \ \text{cm}$, the laws of classical electromagnetism finally break down and a quantum description is needed. Classical electromagnetism is thus an extremely precise description of nature for any distance scale larger than this, even on scales as large as the distance of the universe.
+
 ### Charge Quantization
 
 Today, we know more about the properties of charge than was known at the time of Coulomb. This is largely due to the gradual discovery of atomic theory in the 19th and early 20th centuries. The idea that objects were composed of atoms is very old, going all the way back to Democritus in the 5th century BC. However, this idea wasn't taken seriously by the scientific community until Dalton postulated the idea again around the start of the 19th century. Indeed, Dalton is the one who coined the term *atom* from the Ancient Greek word *atomos*, meaning *indivisible*. As the 19th century progressed, more and more evidence grew to support the atomic hypothesis, eventually culminating in the discoveries of the electron by Thompson and the nucleus by Rutherford in the early 20th century. From these discoveries, quantum theory was introduced to explain the behavior of atoms, which ultimately culminated in the laws of quantum mechanics and eventually the Standard Model of particle physics we have today.
 
-We know today that charge is *quantized* in integer unit of the charge of the proton,
+- Redo this section starting here.
+- Maybe rename the section something more encompassing. Atoms or something like that.
+- First describe the state of today's knowledge. All materials are made of atoms. Each atom contains some number of protons, neutrons, and electrons. Charge is quantized in units of $e$. Most atoms are electrically neutral.
+- Consider using the fact that Coulomb's law is a central force to model the electron orbiting a nucleus, mentioning that this model breaks down since moving charges radiate, causing electrons to spiral into the nucleus in a fraction of a second.
+
+We know today that charge is *quantized* in integer units of the charge $e$ of the proton,
 $$
 e \approx 4.8 \cdot 10^{-10} \ \text{esu} \approx 1.6 \cdot 10^{-19} \ \text{C} \ .
 $$
-That is, all charges we measure in nature are integer units of $e$. The only known exception to this fact are the fundamental particles that make up the proton and the neutron, known as *quarks*. Each proton and neutron is composed of three quarks, where each quark has a charge of $\pm e/3$. Due to a nuclear process known as *confinement*, these quarks are bound to the inside of their proton or neutron, meaning it's impossible to isolate them or measure their charges directly in the lab.
+All charges we measure in nature are integer units of $e$. The only known exception to this fact are the fundamental particles that make up the proton and the neutron, known as *quarks*. Each proton and neutron is composed of three quarks, where each quark has a charge of $\pm e/3$. Due to a nuclear process known as *confinement*, these quarks are bound to the inside of their proton or neutron, meaning it's impossible to isolate them or measure their charges directly in the lab.
 
 Fundamentally, physical objects are composed of atoms bound together by electrical forces. Each atom is composed of some number of protons and neutrons bound tightly inside a nucleus by a nuclear or *strong interaction*, and some number of electrons orbiting the nucleus according to the laws of quantum mechanics. Each proton has a charge of exactly $e$, each neutron has exactly zero charge, and each electron has a charge of exactly $-e$.
 
-In most cases an atom has the same number of protons and electrons, in which case its net charge is zero, or *charge neutral*. Since protons can't easily be removed from a nucleus, the only way atoms typically acquire charge is by exchanging electrons with other neighboring atoms through *ionization*. Those electrons don't just spontaneously appear or disappear. They just move between nearby atoms. It's in precisely this sense that charge is conserved at the atomic level, and fundamentally it's why charge is also conserved at the macroscopic level as well.
+In most cases an atom has the same number of protons and electrons, in which case its net charge is zero, or *charge neutral*. Since protons can't be removed from a nucleus unless very high energies are applied to overcome the nuclear forces, the only way atoms will typically become charged is by exchanging electrons with other neighboring atoms through *ionization*. Due to charge conservation, these electrons don't spontaneously appear or disappear. They can only move between atoms.
 
 This also explains why the charge we observe on macroscopic objects is very tiny. Almost all atoms or molecules inside the object are charge neutral and hence contribute nothing to the object's charge. When we do measure a charge, what it usually means is that some of the surface atoms have become ionized, either exchanging electrons with the air or with a neighboring object via friction. Indeed, a typical charged object might have a net charge of only $\sim 10^4 \ \text{esu}$. Since charge is quantized, this means
 $$
 n \sim \frac{10^4 \ \text{esu}}{4.8 \cdot 10^{-10} \ \text{esu}} \sim 10^{14}
 $$
-of its atoms have become ionized. While this might seem like a lot, note that a typical macroscopic object will contain something like $N \sim 10^{23}$ total atoms. This means only $n/N \sim 10^{-9}$, or one part in a billion, of the atoms making up the object have been ionized and thus contributing anything to the object's net charge.
+of its atoms have become charged. While this might seem like a lot, a typical macroscopic object will contain something like $N \sim 10^{23}$ total atoms. This means only $n/N \sim 10^{-9}$, or one part in a billion, of the atoms making up the object have been charged and thus contributing anything to the total net charge.
+
+It's in precisely this sense that charge is conserved at the atomic level, and fundamentally it's why charge is also conserved at the macroscopic level as well. In fact, charge conservation is a universal law of nature, even holding for subatomic particles. In that case, charge conservation comes down to the properties of particles and antiparticles, a topic we won't go into in this course.
 
 ### Conductors and Insulators
 
@@ -251,16 +260,62 @@ E(z) &= q \bigg|\frac{1}{(z - d/2)^2} - \frac{1}{(z + d/2)^2}\bigg| \\
 $$
 Evidently, in the far field limit the E-field falls off like $1/r^3$, not like $1/r^2$. But why did this happen? The reason is because if we did indeed treat both charges as a single point charge then we have to use their *net charge*, and their net charge is $q - q = 0$. Said differently, the E-field of a dipole has no $1/r^2$ dependence because this term vanishes when we expand the E-field in powers of $d/r$. We thus have to go to the next term, which falls off like $1/r^3$. This behavior is characteristic of a dipole. In future chapters we'll show a systematic way to do an expansion of this kind and show that any field that falls off like $1/r^3$ *must* be that of a dipole.
 
-### Field Lines
+---
 
-- Should probably move this discussion to preliminaries section since it's mathematical and general
-- Will need to fill in field line discussion above/below (show some plots, E-field is electric flux density, etc)
+As with any vector field, it's best to visualize the behavior of electric fields using field lines. The field lines represent the direction of the E-field at each point in space. This means if an infinitesimal test charge $q$ were placed at rest at some point $\mathbf{x}$ in an external E-field, we'd expect it to feel a force $\mathbf{F} = q\mathbf{E}(\mathbf{x})$, causing the charge to move along the field line passing through the point $\mathbf{x}$.
 
-Thus far we haven't said anything about how to visualize electric fields, or any vector field. Any vector field $\mathbf{F}(\mathbf{x})$ is a function of position, meaning each point $\mathbf{x}$ in space will take on a vector value $\mathbf{F}$. This means each $\mathbf{F}$ will have both a magnitude and a direction associated to it, not just a scalar value. There are two main ways one can visualize vector fields, *quiver plots* and *field line plots*. We'll describe both briefly here, though in this course we'll mainly use field line plots.
+Unlike with general vector fields, sketching the field lines for electric fields is usually fairly simple, especially when dealing with point charges. To see why, suppose $q$ is a point charge located at the origin, meaning $\mathbf{x}' = \mathbf{0}$. Then its E-field would just be
+$$
+\mathbf{E}(\mathbf{x}) = q' \frac{\mathbf{x}}{|\mathbf{x}|^3} = \frac{q'}{r^2} \mathbf{e}_r \ .
+$$
+Thus, the direction of $\mathbf{E}(\mathbf{x})$ will always be radial. That is, its field lines will always be directed radially inward or outward from the origin. If we sketched these field lines in two dimensions, we'd get a field line plot like the one shown below.
 
-One way to visualize a vector field is to choose a bunch of points $\mathbf{x}$ and space. For each $\mathbf{x}$, we then calculate each vector $\mathbf{F} = \mathbf{F}(\mathbf{x})$. At the point $\mathbf{x}$, we then draw its $\mathbf{F}$ as an arrow whose tail sits at $\mathbf{x}$. Provided we do this for enough points in space, we can get an idea what the vector field behavior looks like. This is sometimes known as a *quiver plot*.
+<img src="../resources/image-20250320131634964.png" style="zoom:50%;" />
 
-The problem with quiver plots is we only get an idea of what the vector field looks like at a few discrete points we choose. It's difficult to see how the vector field actually flows through space. To visualize this flow behavior better we can do something slightly different. Instead of plotting a bunch of vectors at each point, we plot *field lines*.
+Whether the field lines point in or out of the origin depends on the sign of the charge $q'$, with the field lines flowing *outward* from the charge if $q'$ is *positive*, and flowing *inward* toward the charge if $q'$ is *negative*. This will also be true for any point charge located at some arbitrary point $\mathbf{x}'$, except now the field lines will point radially outward or inward from the point $\mathbf{x}'$ instead of the origin.
+
+As with any vector field, the *density* of field lines will represent the strength of the field at any given point. This provides us with an intuitive interpretation of what the E-field represents. It's the number of field lines per unit area around a given point. In 3-dimensional space, it would be the number of field lines per unit volume, or *flux density*, around a given point.
+
+Since the strength of the field at any fixed point is proportional to the charge, the field lines emanating from a given charge $q'$ should be proportional to the size of $q'$. For example, if we choose to draw $k$ field lines outward from a charge of size $q = +1$, then we should draw $2k$ field lines outward from a charge of size $q = +2$.
+
+Now suppose we have $n$ distinct point charges instead of just one. As mentioned above, the E-field of this combined set of charges will be given by the vector sum of each individual E-field $\mathbf{E}_i(\mathbf{x})$,
+$$
+\mathbf{E}(\mathbf{x}) = \sum_{i=1}^n q_i' \frac{\mathbf{x} - \mathbf{x}_i'}{|\mathbf{x} - \mathbf{x}_i'|^3} \ .
+$$
+Provided we're close to any one of these charges, say $q_j'$. Since each $\mathbf{E}_i(\mathbf{x})$ falls off rapidly like $1/|\mathbf{x} - \mathbf{x}_i'|^2$, when $\mathbf{x} \approx \mathbf{x}_j'$ the combined E-field $\mathbf{E}(\mathbf{x})$ will be approximately that of $\mathbf{E}_j(\mathbf{x})$,
+$$
+\mathbf{E}(\mathbf{x}) \approx \mathbf{E}_j(\mathbf{x}) = q_j' \frac{\mathbf{x} - \mathbf{x}_j'}{|\mathbf{x} - \mathbf{x}_j'|^3} \ .
+$$
+From this we can conclude that the field lines around each source point $\mathbf{x}_i'$ will also be radial very close to $q_i'$.
+
+Finally, since $\mathbf{E}(\mathbf{x})$ is continuous for each $\mathbf{x} \neq \mathbf{x}_i'$, we must conclude that the field lines will also be continuous at any point away from the point charges. Moreover, the field lines can never cross each other since at each $\mathbf{x}$ we can have only one E-field vector.
+
+We can thus summarize the behavior of electric field lines for discrete point charges with the following rules:
+
+- A small test charge placed at rest in the presence of an electric field will follow the direction of the field line at that point.
+- Around each point charge the field lines will point radially inward or outward from the location of the point charge.
+- The density of field lines emanating from a given point charge should be proportional to the size of the charge.
+- The field lines will always start at positive charges and terminate either at negative charges or infinity.
+- The field lines must be continuous at every point in space except right at the point charges.
+- The field lines can never cross each other except where they meet at a point charge.
+
+Using these rules we can quickly sketch the field lines of arbitrarily complicated configurations of point charges, and hence get a quick intuitive idea of how the field for that configuration behaves even without doing any math. For example, the field lines of the physical dipole example above would look something like the plot below. The $+q$ charge is represented in red and the $-q$ charge is represented in black.
+
+<img src="../resources/image-20250321182042456.png" alt="image-20250321182042456" style="zoom:50%;" />
+
+If the charges in this example were instead the same sign, for example both positive, we'd instead get a field like the one below. Notice that now the field lines from one charge never flow into another since they're both the same sign. This is just a reflection of the statement that like charges repel and opposite charges attract.
+
+<img src="../resources/image-20250322045800650.png" alt="image-20250322045800650" style="zoom:50%;" />
+
+If the charges were of opposite sign but one was larger than the other, for example if $q_+ = +4$ and $q_- = -1$, we'd get a much more different looking field with field lines something like this. In fact, this field will fall off like $1/r^2$ instead of like $1/r^3$ like the ordinary physical dipole does, since the total net charge is now $q = +3$ instead of zero.
+
+<img src="../resources/image-20250321182157297.png" alt="image-20250321182157297" style="zoom:50%;" />
+
+If we had four charges of the same size but alternating signs arranged in an a square we'd get field lines that look something like shown below. This sort of charge configuration is known as a *physical quadrupole*.
+
+<img src="../resources/image-20250321182255291.png" alt="image-20250321182255291" style="zoom:50%;" />
+
+Hopefully by now we get the idea. Field lines are quite easy to draw for an arbitrary charge configuration, at least approximately. From now on, when working out the E-field of some distribution of charges, it's a good idea to first sketch the field lines to get an idea of how the field should intuitively behave. We can then calculate the field and make sure that it behaves as expected. If the calculated field doesn't have the same field line behavior, we probably made a mistake in the calculation.
 
 ### Charge Distributions
 
@@ -350,7 +405,11 @@ In this course we'll find ourselves frequently needing to go back and forth betw
 $$
 \int_\mathcal{C} d\ell' \lambda(\mathbf{x}') \leftrightarrow \int_\mathcal{S} da' \sigma(\mathbf{x}') \leftrightarrow \int_\mathcal{V} d^3\mathbf{x}' \rho(\mathbf{x}') \ .
 $$
-With charge densities now defined in different dimensions we're now finally in a position to work a few problems. Unfortunately, calculating the E-field directly from this integral is usually quite cumbersome, in part due to the fact that we have to solve an for each of the three components of $\mathbf{E}$. In some cases we can do so, particularly if the charge distribution is highly symmetric in some system of coordinates. We'll illustrate three such examples below, the infinite wire of uniform charge, the infinite sheet of uniform charge, and the sphere of uniform charge.
+With charge densities now defined in different dimensions we're now finally in a position to work a few problems. Unfortunately, calculating the E-field directly from this integral is usually quite cumbersome, in part due to the fact that we have to solve an for each of the three components of $\mathbf{E}$. In some cases we can do so, particularly if the charge distribution is highly symmetric in some system of coordinates. 
+
+### Examples
+
+We'll now show a few examples of how to calculate the electric field of a continuous charge distribution directly from the integrals given above. We'll focus in particular on three well-known and illustrative examples, the infinite wire of uniform charge, the infinite sheet of uniform charge, and the sphere of uniform charge. We'll see that calculating the E-field directly from the integral is in fact quite cumbersome, since to do so we usually need to rely on the charges having a high degree of symmetry. In later sections and chapters, we'll focus on finding much easier ways to calculate electric fields for more complicated distributions.
 
 ##### Example: Infinite wire of uniform charge
 
@@ -388,7 +447,7 @@ Since the wire runs along the $z$-axis and $\lambda$ is constant, we can write $
 $$
 E(\varrho) = \lambda \int_{-\infty}^\infty dz' \ \frac{\varrho}{(\varrho^2 + z'^2)^{3/2}} \ .
 $$
-This integral can easily be evaluated by substitution. If we let $u = z'/\varrho$, then $du = dz'/\varrho$, and so we have
+This integral can easily be evaluated via substitution. If we let $u = z'/\varrho$, then $du = dz'/\varrho$, and so we have
 $$
 \begin{align*}
 E(\varrho) &= \lambda \int_{-\infty}^\infty dz' \ \frac{\varrho}{(\varrho^2 + z'^2)^{3/2}} \\
@@ -399,19 +458,27 @@ E(\varrho) &= \lambda \int_{-\infty}^\infty dz' \ \frac{\varrho}{(\varrho^2 + z'
 \ .
 \end{align*}
 $$
-Thus, the E-field of an infinitely long wire of with a uniform charge per unit length $\lambda$ is just
+Note that the $u$-integral can be evaluated either by looking it up in a table of integrals, or by substituting $u = \tan\theta$ and reducing the integral to $\int \cos\theta d\theta$. Thus, the E-field of an infinitely long wire of with a uniform charge per unit length $\lambda$ is just
 $$
 \mathbf{E}(\mathbf{x}) = \frac{2\lambda}{\varrho} \mathbf{e}_\varrho \ .
 $$
-As expected, the E-field depends only on the radial distance from the wire. If the wire is positively charged, then $\lambda > 0$, which means the E-field will point radially *outward* from the wire. If it's negatively charged, then $\lambda < 0$, which means the E-field will point radially *inward* toward the wire. 
+As expected, the E-field depends only on the radial distance from the wire. If the wire is positively charged, then $\lambda > 0$, which means the field lines will point radially *outward* from the wire. If it's negatively charged, then $\lambda < 0$, which means the field lines will point radially *inward* toward the wire.  Along any radial cross section the field lines will look something like this when $\lambda > 0$.
 
-FIGURE
+<img src="../resources/image-20250321184702740.png" alt="image-20250321184702740" style="zoom:50%;" />
 
-Perhaps unexpectedly though, the field falls off like $1/\varrho$ and not like $1/\varrho^2$ as we might expect from Coulomb's law. Why is this the case? The reason is because we assumed the wire was infinitely long. This means the wire will always appear infinitely long no matter how far we are away from the wire. That is, it'll never look like a point charge no matter how far we are away from it, and only point charges obey Coulomb's law. If the wire were finite, which is of course always the case in reality, eventually we would be able to move far enough from the wire that it would behave as a point charge. Then it would fall off like $1/\varrho^2$ far away. However, near the wire the field would still fall off like $1/\varrho$ even if the wire has a finite length.
+Perhaps unexpectedly, the field falls off like $1/\varrho$ and not like $1/\varrho^2$ as we might expect from Coulomb's law. Why is this the case? The reason is because we assumed the wire was infinitely long. This means the wire will always appear infinitely long no matter how far we are away from the wire. That is, it'll never look like a point charge no matter how far we are away from it, and only point charges obey Coulomb's law. 
+
+If the wire were finite, which is of course always the case in reality, eventually we would be able to move far enough from the wire that it would behave as a point charge. Here's what its field line plot might look like for some radial cross section. Notice that in the middle of the wire the field is still radial, but near the ends of the wire it changes, leading to so-called *fringe field* behavior.
+
+<img src="../resources/image-20250321185127873.png" alt="image-20250321185127873" style="zoom:50%;" />
+
+In this more realistic case the field would indeed fall off like $1/\varrho^2$ far away, in accordance with Coulomb's law. However, near the wire the field would still fall off like $1/\varrho$ at the center of the wire.
 
 ##### Example: Infinite sheet of uniform charge
 
 Suppose we have a very large square conducting sheet on which we place a uniform charge per unit area $\sigma$. We'll assume that the sheet is so large that its area is infinite, and that the sheet is so thin that we can neglect its depth and model the sheet as having a 2-dimensional charge distribution with a constant surface density $\sigma$.
+
+FIGURE
 
 To calculate the E-field of this infinite sheet, we thus need to evaluate the surface integral
 $$
@@ -419,7 +486,7 @@ $$
 $$
 Now, observe that this sheet also has a symmetry, this time a *planar symmetry*. Since the charge per unit area is uniform across the sheet, the E-field must be the same for any points the same distance above or below the sheet. That is, the E-field at any given point must only depend on the point's distance from the sheet. If we suppose the sheet lies in the $xy$-plane, this means we must have that $\mathbf{E}(\mathbf{x}) = \mathbf{E}(z)$.
 
-What about the direction of the E-field at each $z$ though? It's easy to see that the field must always point in the $z$-direction, since the planar components of the field vector $d\mathbf{E}$ at any $(x',y')$ on the sheet must cancel with the planar components of some other field vector at some other point, leaving only their vector sum in the $z$-direction to contribute. Also, since $\sigma$ is constant, the field lines must always point either away from or into the sheet, with the field lines pointing *outward* if $\sigma > 0$ and *inward* if $\sigma < 0$. Thus, the E-field vectors above the sheet will always point in the opposite direction to the E-field vectors below the sheet.
+What about the direction of the E-field at each $z$ though? It's easy to see that the field must always point in the $z$-direction, since the planar components of the field vector at any $(x',y')$ on the sheet must cancel with the planar components of some other field vector at some other point, leaving only their vector sum in the $z$-direction to contribute. Also, since $\sigma$ is constant, the field lines must always point either away from or into the sheet, with the field lines pointing *outward* if $\sigma > 0$ and *inward* if $\sigma < 0$. Thus, the E-field vectors above the sheet will always point in the opposite direction to the E-field vectors below the sheet.
 
 Mathematically, we can express these arguments by saying by symmetry the E-field must satisfy
 $$
@@ -431,7 +498,7 @@ It thus suffices to compute $E(z)$ for some $z > 0$ above the sheet and we're ba
 $$
 E(z) = \mathbf{E}(\mathbf{x}) \cdot \mathbf{e}_z = \int da' \ \sigma(\mathbf{x}') \frac{(\mathbf{x}-\mathbf{x}') \cdot \mathbf{e}_z}{|\mathbf{x}-\mathbf{x}'|^3} \ .
 $$
-Now, since the sheet is infinite, it suffices to compute $E(z)$ at the point $(0,0,z)$, since by symmetry $E(z)$ will be the same for any other point $(x,y,z)$ at the same height. This means we can set $\mathbf{x} = z \mathbf{e}_z$. Since the source points $\mathbf{x}'$ are in the $xy$-plane at some point $(x',y',0)$, we could write
+Now, since the sheet is infinite, it suffices to compute $E(z)$ at the point $(0,0,z)$, since by symmetry $E(z)$ will be the same for any other point $(x,y,z)$ at the same height. This means we can without loss of generality set $\mathbf{x} = z \mathbf{e}_z$. Since the source points $\mathbf{x}'$ are in the $xy$-plane at some arbitrary point $(x',y',0)$, we have
 $$
 \mathbf{x}' = x' \mathbf{e}_x + y' \mathbf{e}_y \ .
 $$
@@ -443,15 +510,15 @@ which means $(\mathbf{x} - \mathbf{x}') \cdot \mathbf{e}_z = z$, and
 $$
 |\mathbf{x} - \mathbf{x}'| = \sqrt{z^2 + \varrho'^2} \ .
 $$
-Since the sheet is flat and $\sigma$ is constant, in cylindrical coordinates we have $da' \ \sigma(\mathbf{x}') = \sigma \varrho' d\varrho' d\varphi'$. Plugging all of this back into the integral we thus need to solve the following,
+Since the sheet is flat and $\sigma$ is constant, in cylindrical coordinates we have $da' \ \sigma(\mathbf{x}') = \sigma \varrho' d\varrho' d\varphi'$. Plugging all of this back into the integral above, we're left to evaluate the double integral
 $$
 E(z) = \sigma \int_0^\infty \varrho' d\varrho' \int_0^{2\pi} d\varphi' \ \frac{z}{(z^2 + \varrho'^2)^{3/2}} \ .
 $$
-Notice the integrand doesn't depend on the angle $\varphi'$, which means we can immediately evaluate the $\varphi'$ integral to get
+Notice the integrand doesn't depend on the angle $\varphi'$, which means we can immediately evaluate the $\varphi'$-integral to get
 $$
 E(z) = 2\pi\sigma \int_0^\infty d\varrho' \frac{z\varrho'}{(z^2 + \varrho'^2)^{3/2}} \ .
 $$
-We can now evaluate the remaining integral by substituting $u = \varrho'/z$ to get
+We can now evaluate the remaining integral by substituting $u = \varrho'/z$ and $du = d\varrho'/z$ to get
 $$
 \begin{align*}
 E(z) &= 2\pi\sigma \int_0^\infty d\varrho' \frac{z\varrho'}{(z^2 + \varrho'^2)^{3/2}} \\
@@ -469,128 +536,167 @@ $$
 -2\pi\sigma \mathbf{e}_z \ , & z < 0
 \end{cases} \ .
 $$
-Notice that perhaps surprisingly the E-field doesn't seem to depend on $z$ at all. The field strength is a constant $2\pi\sigma$ for all $z$, no matter how far we are away from the sheet. The only thing that changes is the direction of the field, depending on whether we're above or below the sheet. Just as in the previous example, the reason for this lies in the assumption that the sheet is infinite. If the sheet had a finite size, then far away from the sheet it would behave as a point charge and fall off like $1/z^2$ in accordance with Coulomb's law. However, close to the sheet the E-field will *still* approximately be constant even for a finite sheet.
+Perhaps surprisingly, the E-field doesn't seem to depend on $z$ at all. The field strength is a constant $2\pi\sigma$ for all $z$, no matter how far we are away from the sheet. Just as in the previous example, the reason for this lies in the assumption that the sheet is infinite in size. If the sheet had a finite size, then far away from the sheet it would behave as a point charge and fall off like $1/z^2$ in accordance with Coulomb's law. However, close to the sheet the E-field will *still* approximately be constant even for a finite sheet.
 
-Here's something else worth noticing. The E-field changes discontinuously when crossing the sheet. Indeed, if $\mathbf{x}_+$ is some point above the sheet and $\mathbf{x}_-$ is some point below the sheet, then the difference between the E-field vectors of these two points is always a constant,
+The field lines of the infinite sheet thus must point uniformly upward or downward since the E-field is constant along the $z$-direction. If $\sigma > 0$ the field lines will point away from the sheet, upward when $z < 0$ and downward when $z < 0$. If $\sigma < 0$ the field lines will reverse direction and instead point inward toward the sheet. The field line plot looks something like this when $\sigma > 0$. Here we're looking at the sheet from the side, with the direction of the field lines assumed to be *outward* from the sheet.
+
+<img src="../resources/image-20250321183322875.png" alt="image-20250321183322875" style="zoom:50%;" />
+
+If the sheet were not infinite in extent but finite, the field lines near the center of the sheet would look the same, but the field lines near the edge of the sheet would look different due to fringe field behavior. Here's what that might look like.
+
+<img src="../resources/image-20250321184012961.png" alt="image-20250321184012961" style="zoom:50%;" />
+
+Evidently, the E-field seems to change discontinuously when crossing the sheet, since the direction of the field suddenly flips when crossing the $xy$-plane. Indeed, if $\mathbf{x}_+$ is any point above the sheet and $\mathbf{x}_-$ is any point below the sheet, we have
 $$
-\Delta\mathbf{E} = \mathbf{E}(\mathbf{x}_+) - \mathbf{E}(\mathbf{x}_-) = 4\pi\sigma \mathbf{e}_z \ .
+\mathbf{E}(\mathbf{x}_+) - \mathbf{E}(\mathbf{x}_-) = 2\pi\sigma \mathbf{e}_z + 2\pi\sigma \mathbf{e}_z = 4\pi\sigma \mathbf{e}_z \ .
 $$
-This is curious… PICK UP HERE DON'T FEEL LIKE IT RIGHT NOW (SEE BELOW FOR HELP)
-
-
-
-- Start rewriting here…
-- Fill in field lines section above first.
-- Infinite line charge, hollow/solid sphere, show there's no electrostatic equilibrium
-- Peruse and update the later sections.
-- Move capacitance section into field energy section (maybe rename section). Move conductor discussion to potential section.
-
-Note that the requirement that $q$ be an infinitesimal charge in this definition is important. If test charge is high enough, it will distort the background electric field through its presence, in effect making *both* charges source charges for the field. Also, note that this doesn't mean that the charge will move in the direction of the electric field. All that will be true is that its force vector will be tangential to the electric field at that point, pointing in the direction of the field if $q$ is negative, and opposite the field if $q$ is opposite. The path the charge actually follows through the field may be quite complicated.
-
-The most typical way to visualize vector fields in electromagnetism is via *field lines*. We imagine that any positive charge emits from it a bunch of lines, called field lines. These field lines follow the direction of the vector field in space, only terminating at negative charges or at infinity. Field lines should never cross each other. The direction of a field line is always from positive charges to negative charges. The strength of the field is captured by the density of field lines. The more field lines there are surrounding a given point in space, the stronger the field at that point. Indeed, we can informally *define* a vector field as the *flux density* of field lines, i.e. the number of field lines per unit volume.
-
-Here are some examples of electric field line sketches for a few different configurations of point charges. Notice it's usually fairly easy to sketch field lines for a given charge configuration, even if finding an expression for the actual electric field of that configuration might be difficult. We'll see field lines sketched in many figures throughout this course.
-
-FIGURE
-
-
-
-
-
-
-
-This idea can be seen in the figure below. Here the gray blob is some charge distribution, and $dq$ some infinitesimal element of it. Adding up, or integrating, over all these charges will give the full electric field $\mathbf{E}(\mathbf{x})$.
-
-
-
-The field lines for the electric fields of continuous distributions work the same way they do for point charges. The main new thing to be aware of is that field lines will always point *normal* to the surface of the charge distribution. Again, the field lines will point away from positive charge distributions, and toward negative charge distributions or out to infinity, never crossing.
-
-
-
-
+The reason for this sudden discontinuity in the field is because we made the assumption that the sheet was infinitely thin, so that we could treat the sheet as 2-dimensional. If we allowed it to have some thickness this issue would disappear. Inside the sheet, the field would in fact linearly increase from $-2\pi\sigma \mathbf{e}_z$ at the bottom of the sheet to $+2\pi\sigma \mathbf{e}_z$ at the top of the sheet. We'll see later that this discontinuity issue is in fact universal, and always arises when dealing with 2-dimensional surfaces of charge.
 
 ##### Example: Hollow sphere of uniform charge
 
-As our last example for this section, suppose now we have a *hollow* conducting sphere of radius $R$ on which we've placed some constant amount of charge $Q$ across the surface, so that its charge per unit area is a constant $\sigma = Q/4\pi R^2$.
-
-Given the symmetry of the problem it's natural to work in spherical coordinates. By symmetry, it's not hard to see that the electric field for the hollow sphere must *always* point in the radial direction. Indeed, notice that any source point we pick on the sphere will have an opposite point $180^\circ$ away at the same altitude. Since the charge is uniform, both source points will cancel all but the radial component of the field when added together. We thus just need to find the single scalar $E(r)$, where
-$$
-\mathbf{E}(\mathbf{x}) = E(r) \mathbf{e}_r \ .
-$$
-To find $E(r)$ we need to take the inner product of $\mathbf{E}$ with $\mathbf{e}_r$. In terms of the separation vector $\boldsymbol{\xi} = \mathbf{x} - \mathbf{x}'$, we have
-$$
-E(r) = \int da' \ \frac{\sigma}{\xi^3} \boldsymbol{\xi} \cdot \mathbf{e}_r \ .
-$$
-To make headway we need to find the area element $da'$, the relative distance $\xi = |\boldsymbol{\xi}|$, and the dot product $\boldsymbol{\xi} \cdot \mathbf{e}_r$. Starting with the area element, for a sphere it's simply the volume element in spherical coordinates with $r=R$ and without the $dr$ integral,
-$$
-da' = R^2 \sin\theta' d\theta' d\phi' \ .
-$$
-Now we need to find $\xi \equiv |\mathbf{x} - \mathbf{x}'|$, which is somewhat trickier. Without loss of generality we can assume that the field point lies on the $z$-axis, so that $\mathbf{x} = r \mathbf{e}_z$. Then an arbitrary source point $\mathbf{x}' = R \mathbf{e}_r$ on the sphere will subtend a polar angle $\theta'$ with the $z$-axis. Using the law of cosines on the triangle shown in the figure below, we can see that
-$$
-\xi^2 = r^2 + R^2 - 2Rr \cos\theta' \ .
-$$
-
-
-![](../resources/image-20240602122925138.png){fig-align=center width=500}
-
-Next we need to calculate the dot product $\boldsymbol{\xi} \cdot \mathbf{e}_r$. Using the geometric formula for the dot product and the above triangle, we see
-$$
-\boldsymbol{\xi} \cdot \mathbf{e}_r = \xi \cos\alpha = \frac{r - R\cos\theta'}{\xi} \ .
-$$
-We can now plug all of these values into the electric field integral and just plug away. We'll integrate over the whole sphere,
-$$
-\begin{align*}
-E(r) &= \int da' \ \frac{\sigma}{\xi^3} \boldsymbol{\xi} \cdot \mathbf{e}_r \\
-&= \int \sigma R^2 \sin\theta' d\phi' d\theta' \frac{r - R\cos\theta'}{\xi^3} \\
-&= R^2 \sigma \int_0^{2\pi} \sin\theta' d\phi' \int_0^{\pi} d\theta' \frac{r - R\cos\theta'}{(r^2 + R^2 - 2Rr \cos\theta')^{3/2}} \\
-&= 2\pi R^2 \sigma \int_0^{\pi} \sin\theta' d\theta' \frac{r - R\cos\theta'}{(r^2 + R^2 - 2Rr \cos\theta')^{3/2}} \ .
-\end{align*}
-$$
-To evaluate the remaining integral we make use of a very common substitution in electrostatics. Supposing $f(\cos\theta)$ is some function we'd like to integrate in spherical coordinates, we can always let $\mu = \cos\theta'$ and $d\mu = -\sin\theta' d\theta'$. Then we have
-$$
-\int_0^\pi \sin\theta d\theta \ f(\cos\theta) = \int_{-1}^1 d\mu \ f(\mu) \ .
-$$
-Using this useful trick, the integral for the field simplifies slightly to
-$$
-E(r) = 2\pi R^2 \sigma \int_{-1}^1 d\mu \ \frac{r - R\mu}{(r^2 + R^2 - 2Rr \mu)^{3/2}} \ .
-$$
-The remaining integral can be done by breaking up the numerator and doing another substitution. In the end we get
-$$
-\begin{align*}
-E(r) &= \frac{2\pi R^2 \sigma}{r^2} \bigg[\frac{r\mu - R}{\sqrt{r^2 + R^2 - 2R\mu}} \bigg]_{\mu=-1}^1 \\
-&= \frac{2\pi R^2 \sigma}{r^2} \bigg[\frac{r-R}{|r-R|} + 1 \bigg] \ .
-
-\end{align*}
-$$
-Now, notice that the first term in the brackets will always be $\pm 1$ depending on the sign of $r-R$. When we're inside the sphere $r < R$, and so this term is $-1$. This means that inside the sphere the electric field must vanish, with $E(r) = 0$.
-
-Outside the sphere $r > R$, and so the first term is $+1$​. In this case we have
-$$
-E(r) = \frac{4\pi R^2 \sigma}{r^2} = \frac{Q}{r^2} \ .
-$$
-Notice that this looks identical to Coulomb's Law for the electric field. Evidently, a hollow sphere behaves as a point charge $Q$​ for any field points outside the sphere.
-
-Using the result we have for the hollow sphere, let's quickly figure out what the electric field should be for a *solid sphere* of uniform charge. The only difference now is that the sphere is 3-dimensional. We can work directly from our previous solution. We just have to replace $\sigma$ with $\rho$ and $R$ by an integration variable $r'$. However we do have to be slightly careful, since the charge density is only nonzero inside the sphere. This means we integrate up to $R$ for field points outside the sphere, and up to $r$ otherwise. We can take care of both cases by integrating up to $r_{\min} \equiv \min(r, R)$. Then we have
-$$
-E(r) = \frac{4\pi\rho}{r^2} \int_0^{r_{\min}} dr' \ r'^2 = \frac{4\pi\rho}{3} \frac{r_{\min}^3}{r^2} \ .
-$$
-Now, if $r > R$ we're outside the sphere, and $r_{\min} = R$. In that case we have
-$$
-E(r) = \frac{4\pi R^3 \rho}{3r^2} = \frac{Q}{r^2} \ .
-$$
-Here we used the fact that in 3 dimensions the total charge of the sphere becomes $Q = \frac{4\pi}{3} R^3 \rho$​. Notice that we get the same result we got in the hollow sphere. The electric field is again that of a point charge outside the sphere.
-
-Inside the sphere, however, things change. When $r \leq R$ we have $r_{\min} = r$, in which case
-$$
-E(r) = \frac{4\pi\rho}{3} r = \frac{Qr}{R^3} \ .
-$$
-Now the electric field inside the sphere is apparently linear in $r$, not zero. It's easy to check that the two results match at the boundary of the sphere where $r=R$. Note that in either case the electric field is still just the enclosed charge $Q_{\text{enc}} = \frac{4\pi}{3} r_{\min}^3 \rho$ divided by $r^2$. This means any charge outside the enclosed sphere contributes nothing to the field. In the figure below we plot the field strengths $E(r)$ for both the hollow and solid spheres to show the difference between the two.
+Suppose now we have a hollow conducting sphere of some radius $R$, upon which we've placed a constant amount of charge per unit area $\sigma$, and we wish to calculate its E-field both inside and outside the hollow sphere. It will be natural for this problem to work in spherical coordinates, with the sphere centered at the origin. We'll assume the sphere is of negligible thickness so that we can model the charge distribution as being 2-dimensional.
 
 FIGURE
 
-This was clearly a difficult integration problem. We'll see a *much* easier way to find the electric field of a sphere shortly. For now, just be aware that in practice calculating the electric field of a charge distribution straight from the definition is almost always very challenging, and often impossible. Indeed, much of the rest of our study of electrostatics from here on will be about finding simpler ways to calculate the electric field of an arbitrary charge distribution.
+Notice first that the sphere has a high degree of symmetry. Since the sphere is uniformly charged, the E-field can only be a function of the field point's radial distance, meaning $\mathbf{E}(\mathbf{x}) = \mathbf{E}(r)$. Moreover, the field lines must be radial as well both inside and outside the sphere. To see why this is the case, notice that for each field point we choose, there will always be some other field point of the same radius that will cancel out their combined fields in all but their radial direction. Thus, we must have
+$$
+\mathbf{E}(\mathbf{x}) = E(r) \mathbf{e}_r \ ,
+$$
+where $E(r) = \mathbf{E}(\mathbf{x}) \cdot \mathbf{e}_r$ will be given by the integral
+$$
+E(r) = \int da' \ \sigma(\mathbf{x}') \frac{(\mathbf{x}-\mathbf{x}') \cdot \mathbf{e}_r}{|\mathbf{x}-\mathbf{x}'|^3} \ .
+$$
+First let's address the easy part. Since the surface is a sphere and $\sigma$ is constant, we have $da' = R^2 \sin\theta' d\theta' d\varphi'$, and so
+$$
+\int da' \ \sigma(\mathbf{x}') = \sigma R^2 \int_0^\pi \sin\theta' d\theta' \int_0^{2\pi} d\varphi' \ .
+$$
+Now we need to figure out how to deal with the separation vector $\mathbf{x}-\mathbf{x}'$. This will be the most difficult part. Let's first address the field point $\mathbf{x}$. Since $E(r)$ depends only on $r$, it will be the same for any field point $\mathbf{x}$ of the same radius. This means we can without loss of generality fix $\mathbf{x}$ to lie on some particular axis for convenience. Since we want to work in spherical coordinates, the most natural choice is to place $\mathbf{x}$ on the $z$-axis, so that $\mathbf{x} = r \mathbf{e}_z$ and $\mathbf{e}_r = \mathbf{e}_z$. 
+
+Now we need to deal with the source point $\mathbf{x}'$. All we know is that $\mathbf{x}'$ is constrained to the surface of the sphere. This means the most we can say is $\mathbf{x}' = R \mathbf{e}_{r'}$, where $\mathbf{e}_{r'}$ is the unit vector in the $r'$-direction. Note that it would be a mistake to set $\mathbf{e}_{r'} = \mathbf{e}_r$ here since these are different unit vectors pointing in different directions. However, to calculate the integral for $E(r)$ we'll still need to convert $\mathbf{e}_{r'}$ into a vector in terms of the field coordinates $(r,\theta,\varphi)$. It's possible to show that in this special case we have
+$$
+\mathbf{e}_{r'} = \cos\theta' \mathbf{e}_r - \sin\theta' \mathbf{e}_\theta \ .
+$$
+Plugging these in then, the separation vector $\mathbf{x} - \mathbf{x}'$ is
+$$
+\mathbf{x} - \mathbf{x}' = (r - R\cos\theta') \mathbf{e}_r - R\sin\theta' \mathbf{e}_\theta \ ,
+$$
+which means $(\mathbf{x} - \mathbf{x}') \cdot \mathbf{e}_r = r - R\cos\theta'$ and
+$$
+|\mathbf{x} - \mathbf{x}'| = \sqrt{(r - R\cos\theta')^2 + (R\sin\theta')^2} = \sqrt{R^2 + r^2 - 2Rr\sin\theta'} \ .
+$$
+Note we could've also obtained these same results by using the law of cosines. See the figure above to understand why. At any rate, the integral we're left to evaluate is thus
+$$
+E(r) = \sigma R^2 \int_0^{\pi} \sin\theta' d\theta' \int_0^{2\pi} d\varphi' \frac{r - R\cos\theta'}{(r^2 + R^2 - 2Rr \cos\theta')^{3/2}} \ .
+$$
+Now, notice the integrand doesn't depend on $\varphi'$, which means the $\varphi'$-integral just gives a factor of $2\pi$. Next, notice that we can simplify the remaining $\theta'$-integral by using the substitution $\mu = \cos\theta'$  and $d\mu = -\sin\theta d\theta$. We thus have
+$$
+E(r) = 2\pi\sigma R^2 \int_{-1}^1 d\mu \frac{r - R\mu}{(r^2 + R^2 - 2Rr \mu')^{3/2}} \ .
+$$
+This integral can be evaluated by splitting up the numerator and doing another substitution. In the end, we get
+$$
+E(r) = \frac{2\pi R^2 \sigma}{r^2} \bigg[\frac{r\mu - R}{\sqrt{r^2 + R^2 - 2R\mu}} \bigg]_{\mu=-1}^1 = \frac{2\pi R^2 \sigma}{r^2} \big[\text{sgn}(r-R) + 1 \big] \ .
+$$
+We thus have two separate cases to consider depending on whether we're inside the sphere where $r < R$, or we're outside the sphere where $r \geq R$. When we're inside the sphere $\text{sgn}(r-R) = -1$, which means the term in brackets vanishes and we're left with the surprising result that $E(r) = 0$ inside the sphere. We'll come back to the physics behind this in a second.
+
+When we're outside the sphere however, we have $\text{sgn}(r-R) = +1$, which means we instead have
+$$
+E(r) = \frac{4\pi\sigma R^2}{r^2} \quad , \quad r \geq R \ .
+$$
+This result also says something interesting that we'll come back to in a second. At any rate, the E-field of a uniformly hollow sphere is thus given by
+$$
+\mathbf{E}(\mathbf{x}) = \begin{cases}
+\mathbf{0} \ , & r < R \\
+4\pi\sigma (R/r)^2 \mathbf{e}_r \ , & r \geq R
+\end{cases} \ .
+$$
+Each 2-dimensional field line plot of this E-field will thus look something like this, with no E-field inside the hollow sphere and a radial field that falls off like $1/r^2$ outside the sphere.
+
+<img src="../resources/image-20250321152930837.png" style="zoom:50%;" />
+
+Let's now look deeper at this result, since it says something very interesting about the physics of uniform spheres. First, is it true that the electric field inside the hollow sphere exactly zero? It all comes down to the superposition principle. If $\mathbf{x}$ is some point inside the sphere, its field $\mathbf{E}(\mathbf{x})$ will be the vector sum of each $d\mathbf{E}$ due to each source point on the sphere, and by symmetry these $d\mathbf{E}$ must conspire in such a way that when they're all added together over the whole sphere we end up with $\mathbf{E}(\mathbf{x}) = \mathbf{0}$.
+
+An interesting physical consequence of this fact is that any particle inside a uniformly charged hollow sphere will be *electrically shielded*, meaning no amount of charge outside the sphere can exert a force on the particle inside the sphere. It's as if the particle were sitting in empty space with no other charges around it at all. In fact, as we'll see, not only do hollow spheres have this property, but so does any hollow conducting object of any shape. These are known as *Faraday cages*. If one wanted to shield himself from electromagnetic effects, he need only place himself inside a conducting cage to be fully shielded.
+
+In fact, a similar argument applies to gravity. Since the gravitational field has the same functional form as the electric field, if we did the exact same calculation but instead with a hollow spherical planet whose mass was uniformly distributed on the surface of the planet, we'd find there to be zero gravitational field inside the hollow planet. Interestingly, Newton was able to prove this fact about gravity many years before vector calculus was even invented and the laws of electrostatics written down.
+
+We also showed that the field strength outside the sphere is non-zero, with $E(r) = 4\pi\sigma (R/r)^2$. What does this tell us? Here it'll be helpful here to rewrite the surface charge density $\sigma$ in terms of the total charge on the sphere. Since the sphere is uniformly charged, the total charge $Q$ on the sphere is just $\sigma$ times the surface area of the sphere, or
+$$
+Q = \sigma A = 4\pi R^2 \sigma \ .
+$$
+If we plug this back into $E(r)$, we'd find that
+$$
+E(r) = \frac{Q}{r^2} \ .
+$$
+But this is exactly the field strength of a point charge $Q$ centered at the origin! Thus, outside the sphere it behaves as if it were a point charge. This justifies why Coulomb's law is so useful, and why it was discovered as early as it was. Even if we can't realize a point particle in the lab, we can observe the exact same behavior by placing charge on a conducting sphere and observing the forces it exerts on small charged objects.
+
+This behavior outside the sphere also has an interesting analogue to gravity. If we were outside a hollow planet (or even a solid planet as we'll see in the next example), we'd find that the gravitational field created by the planet acts as if it were a point particle with all its mass concentrated at the center of the sphere, i.e. its center of mass. This fact is what enabled us to solve the two-body problem in classical mechanics and show that the stable planetary orbits must be ellipses, thus obeying Kepler's laws.
+
+Last, notice that we again have a discontinuity in the E-field when crossing the surface of the sphere, but this time it's more transparent. The field is zero all the way up to the surface of the sphere before immediately changing by an amount $4\pi\sigma$ when crossing the surface of the sphere. Yet again we see the same factor $4\pi\sigma$ associated with a surface discontinuity in the field.
+
+##### Example: Solid sphere of uniform charge
+
+As our final example, let's consider now the case of a *solid* conducting sphere of radius $R$ and a uniform volume charge density $\rho$. Fortunately, in this case we don't have to work the problem from scratch. We can use the previous result for the hollow sphere to more quickly find the E-field of the solid sphere.
+
+By the same argument as in the previous problem, the E-field of the solid sphere will be radial, with
+$$
+\mathbf{E}(\mathbf{x}) = E(r) \mathbf{e}_r \ .
+$$
+In the previous problem, we found
+
+where $E(r) = \mathbf{E}(\mathbf{x}) \cdot \mathbf{e}_r$ will be given by the integral
+$$
+E(r) = \int d^3\mathbf{x}' \ \rho(\mathbf{x}') \frac{(\mathbf{x}-\mathbf{x}') \cdot \mathbf{e}_r}{|\mathbf{x}-\mathbf{x}'|^3} \ .
+$$
+Now, the separation vector portion is exactly the same as in the previous problem except with $R$ replaced by $r'$ and $\sigma da'$ replaced by its 3-dimensional equivalent in spherical coordinates,
+$$
+\rho d^3\mathbf{x}' = \rho r'^2 \sin\theta' dr d\theta' d\varphi' \ .
+$$
+Now we need to integrate not just over the angular variables $\theta'$ and $\varphi'$ but also over $r'$. However, this new integration will also depend on whether $r < R$ or $r \geq R$ since the upper integration limit needs to be the minimum of the two, $r_{\min} \equiv \min(r, R)$, so
+$$
+E(r) = \rho \int_0^{r_{\min}} r'^2 dr' \int_0^{\pi} \sin\theta' d\theta' \int_0^{2\pi} d\varphi' \frac{r - r'\cos\theta'}{(r^2 + r'^2 - 2r'r \cos\theta')^{3/2}} \ .
+$$
+The two angular integrals evaluate in exactly the same way as the previous problem. Since we necessarily must have $r > r'$ in this integration, $\text{sgn}(r-r')$ will always be $+1$. We thus have
+$$
+E(r) = \frac{4\pi\rho}{r^2}\int_0^{r_{\min}} dr' \ r'^2 = \frac{4\pi\rho}{3} \frac{r_{\min}^3}{r^2} \ .
+$$
+Notice that now the E-field is never zero except at the origin, since $r_\text{min} = 0$ only if $r = 0$ or $R = 0$. However, we still have two different cases to consider since $r_\text{min} = r$ when $r < R$ and $r_\text{min} = R$ when $r \geq R$. When $r < R$ we have
+$$
+E(r) = \frac{4\pi\rho}{3} r \ ,
+$$
+and when $r \geq R$ we have
+$$
+E(r) = \frac{4\pi\rho R^3}{3r^2} \ .
+$$
+Since the charge on the sphere is uniform, the total charge on the sphere is just its charge density times its volume, or
+$$
+Q = \rho V = \frac{4}{3} R^3 \rho \ .
+$$
+In terms of the total charge, the E-field of the solid sphere of uniform charge is thus given by
+$$
+\mathbf{E}(\mathbf{x}) = \begin{cases}
+Qr / R^3 \ \mathbf{e}_r \ , & r < R \\
+Q / r^2 \ \mathbf{e}_r \ , & r \geq R
+\end{cases} \ .
+$$
+Outside the sphere the E-field looks exactly the same as that of the hollow sphere, falling off like $1/r^2$ in accordance with Coulomb's law. However, inside the sphere the E-field is now *linear* in $r$. In fact, in the field strength in either case is just  $E(r) = Q_\text{enc}(r)/r^2$, where $Q_\text{enc}(r)$ is the total *enclosed charge* contained inside the sphere of radius $r$,
+$$
+Q_{\text{enc}}(r) \equiv \frac{4\pi}{3} r_{\min}^3 \rho \ .
+$$
+Notice that when $r=R$ the two limits agree since $Q_{\text{enc}}(R) = Q$. This means the E-field of the solid sphere is now continuous at the surface of the sphere instead of discontinuous as it was with the hollow sphere. We can compare the two cases by looking at their field strengths $E(r)$ as a function of $r$, shown below.
+
+FIGURE
+
+Notice both plots look exactly the same in the case that $r \geq R$. It's only when $r < R$ that we see the difference.
 
 ## Gauss's Law
+
+- Restart here…
+- Structure this section more like the magnetostatics equivalent (derive both differential equations first)
+  -  Field equations (divergence, curl), Gauss's law (with examples), Scalar potential
+
+- Any vector field can be fully specified by its divergence and its curl (integral equation <-> divergence + curl equations)
+- Entire essence of Gauss's law is contained in the flux through a sphere surrounding a point charge. Mention that.
+- Mention that from here on we're just finding more and more clever ways to understand the theory and solve harder problems
 
 While Coulomb's Law is perhaps more directly connected to experiment and the historical progression of electromagnetism, it's usually not the most illuminating nor useful way to understand and calculate electric fields. Just as in classical mechanics we found it useful to express Newton's law as an ordinary differential equation for the trajectory of a particle, in electromagnetism we'll find it more useful to express Coulomb's Law as a set of *partial differential equations* for the electric field.
 
@@ -634,7 +740,7 @@ This is only true though when the charge is contained *inside* the surface. What
 
 
 
-![](../resources/image-20240616173508660.png){fig-align=center width=600}
+![](../resources/image-20240616173508660.png)
 
 Putting these two results together, we've shown that if $q$ is a point charge and $\mathcal{S}$ is some closed surface, then
 $$
@@ -668,7 +774,7 @@ For this to work though the charge distribution really needs to have a high leve
 
 Consider a line of charge of infinite length and infinitesimal width, so we can treat the line as one-dimensional. We'll suppose the line is oriented along the $z$-axis and carries a constant charge per unit length of $\lambda$​. Our goal is to find its electric field. We could do this the hard way as before, but in this case we can do it much more easily using Gauss's Law, so that's what we'll do.
 
-![](../resources/image-20240616180813782.png){fig-align=center width=400}
+![](../resources/image-20240616180813782.png)
 
 By symmetry, the electric field should depend only on the cylindrical radius $\varrho$. To see why, pick a random field point in the $xy$-plane. Now pick a random source point at a height $z'$ along the wire. Then there must also be an opposite source point at a height $-z'$. If we add the two field vectors together, their $z$-components will cancel, leaving only a contribution in the $\varrho$-direction. We thus must conclude that the electric field has the property that
 $$
@@ -696,7 +802,7 @@ Clearly the field lines point radially outward from the wire (or inward if $\lam
 
 We'll now consider not an infinite *line* of uniform charge, but an infinite *flat sheet* of uniform charge. We'll suppose this sheet is oriented in the $xy$-plane and has infinitesimal thickness, so we can treat the sheet as 2-dimensional with a constant surface charge density $\sigma$​.
 
-![](../resources/image-20240616180900393.png){fig-align=center width=500}
+![](../resources/image-20240616180900393.png)
 
 By symmetry, we'll argue that the electric field must always point away from the sheet in the $z$ direction. To see why, pick a random field point at a height $z$ above (or below) the sheet, centered at the origin. Pick a random source point $(r',\varphi')$ along the sheet. Now, there must be an opposite source point at $(r',\varphi'+\pi)$ for which the two field vectors will cancel in all but the $z$-direction. This means
 $$
@@ -729,7 +835,7 @@ Notice also that the electric field appears to change discontinuously crossing t
 
 As our final example in this section we'll consider an example we've already seen, the uniformly charged sphere. In a previous section we worked out its electric field with great pain. Here we'll show that Gauss's Law gives a much simpler way. We'll again suppose that the charge lies on a hollow sphere of radius $R$​ centered at the origin.
 
-![](../resources/image-20240616180936896.png){fig-align=center width=500}
+![](../resources/image-20240616180936896.png)
 
 As argued before, symmetry requires that the electric field point in the radial $r$-direction, with
 $$
@@ -967,7 +1073,7 @@ Let's now work some examples to show how much nicer this integral formula is to 
 
 Let's find the potential of a uniformly charged wire of finite length. Suppose a wire of length $L$ has a uniform charge $Q = \lambda L$. We'll assume that it is oriented along the $z$-axis with its center at the origin.
 
-![](../resources/image-20240811130653319.png){fig-align=center width=400}
+![](../resources/image-20240811130653319.png)
 
 Assuming the wire has negligible thickness we can use the $1$-dimensional version of the integral formula for the potential,
 $$
@@ -1259,7 +1365,7 @@ $$
 $$
 for any two points $\mathbf{a}$ and $\mathbf{b}$ on the surface of the conductor, meaning $\phi(\mathbf{a}) = \phi(\mathbf{b})$ is constant on the surface. Since the surface of the conductor is an equipotential, this also means that the field lines at the surface must be perpendicular to the surface, since $\mathbf{E} = -\nabla \phi$​ and we know that gradients are perpendicular to their equipotential surfaces.
 
-![](../resources/image-20240703155651920.png){fig-align=center width=500}
+![](../resources/image-20240703155651920.png)
 
 We'll find it convenient to express these results as a set of boundary conditions for conductors. Surface boundary conditions require that $\mathbf{E}_+ - \mathbf{E}_- = 4\pi\sigma \mathbf{n}$. Since the field inside the conductor is zero, $\mathbf{E}_- = \mathbf{0}$. Thus, just outside the surface we must have
 $$

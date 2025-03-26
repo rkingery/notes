@@ -350,7 +350,7 @@ $$
 $$
 The field lines for the monopole look exactly as we'd expect. We show a plot of these field lines below to compare with the field lines of the higher order multipole terms in the next few sections. As usual, the field lines are assume to point outward for a positive point charge, and inward for a negative point charge.
 
-![](../resources/image-20241108234730808.png){fig-align=center width=400}
+![](../resources/image-20241108234730808.png)
 
 Naturally, the best physical model of the monopole moment is just a point charge $q$ centered at the origin, which exactly reproduces the field lines shown above.
 
@@ -381,7 +381,7 @@ Notice that, while the dipole potential falls off like $1/r^2$ that, the dipole 
 
 The field lines of the dipole field are those of a *pure dipole*, shown below. Unlike the field lines of the monopole field, the field lines of the dipole field never terminate at infinity except along the axis of the dipole moment $\mathbf{p}$. The other field lines instead wrap back around on the source in the opposite direction.
 
-![](../resources/image-20241103011630525.png){fig-align=center width=400}
+![](../resources/image-20241103011630525.png)
 
 
 
@@ -405,7 +405,7 @@ $$
 $$
 As formidable as this look, we can still plot the field lines numerically. Below is a plot of these field lines for the physical dipole, with the $+q$ charge shown in red and the $-q$ charge shown in blue. As always, the field lines go from positive charges to negative charges, and the equipotential curves are tangent to the field lines.
 
-![](../resources/image-20241103010905701.png){fig-align=center width=400}
+![](../resources/image-20241103010905701.png)
 
 Compare these field lines for the physical dipole to those of the *pure dipole* field $\mathbf{E}^{(1)}$ given before. Notice that near the source charges they two fields look nothing alike, but far away from the point charges the field lines look basically the same.
 
@@ -557,7 +557,7 @@ $$
 $$
 As expected, the quadrupole field falls off like $1/r^4$. A plot of the field lines is shown below. Notice that, like the dipole field, most of the field lines begin and end at the source, with the exception of the field lines along the diagonal.
 
-![](../resources/image-20241103010154876.png){fig-align=center width=400}
+![](../resources/image-20241103010154876.png)
 
 ##### Example: Physical Quadrupole
 
@@ -586,7 +586,7 @@ $$
 $$
 As complicated as this looks, we can still plot the field lines numerically. Below is a plot of these field lines, with the positive charges are shown in red and the negative charges in blue. As usual, the equipotentials curves are tangential to the field lines.
 
-![](../resources/image-20241103012027269.png){fig-align=center width=400}
+![](../resources/image-20241103012027269.png)
 
 Now, compare this plot to the ones shown for the *pure quadrupole* previously. Close to the charges the field lines look nothing alike, while far away from the point charges they look practically identical, exactly like we saw with the physical dipole before. This suggests that the physical quadrupole may provide a good approximation to the pure quadrupole in the far field limit $r \gg d$.
 
@@ -859,7 +859,7 @@ $$
 $$
 Notice that the shape of each equipotential surface of $\phi^{(\ell,m)}(\mathbf{x})$ is determined mainly by the spherical harmonic $Y_{\ell m}(\theta,\varphi)$. To that end, we can immediately visualize the equipotential surfaces of each multipole potential by plotting the spherical harmonics. Below is a plot of the spherical harmonics for $\ell = 0, 1, 2, 3$, shown top to bottom with $m$ running left to right from $-\ell$ to $\ell$. The positive equipotential surfaces are shown in blue, and the negative equipotential surfaces are shown in yellow.
 
-![](../resources/2560px-Spherical_Harmonics.png){fig-align=center width=600}
+![](../resources/2560px-Spherical_Harmonics.png)
 
 Notice that the lone $\ell = 0$ equipotentials are spheres, which are the equipotentials of the monopole potential $q/r$. In fact the $\ell = 0$ term corresponds *exactly* to the monopole potential, as we'll show below. Similarly, the $\ell=1$ equipotentials correspond to the equipotentials of a dipole oriented along one of the axial directions. The $\ell = 2$ terms start to look more complicated, but they look basically like the equipotentials of a quadrupole. The $\ell = 3$ terms are more complicated still. Those represent the equipotentials of an octupole. In this sense, the spherical harmonics provide the best way to visualize the multipole potentials.
 

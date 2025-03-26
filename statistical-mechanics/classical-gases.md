@@ -142,7 +142,7 @@ $$
 $$
 Now, define $b_\ell$ to be the sum of all connected components connecting exactly $\ell$ points. That is, $b_1$ is the sum over all completely disconnected clusters, $b_2$ is the sum over all pairs of connected edges, $b_3$ is the sum over all triplets of connected points, and so on. Diagrammatically these might look as follows.
 
-![](.../resources/image-20230718004825738.png){fig-align=center width=500}
+![](.../resources/image-20230718004825738.png)
 
 Note how the number of terms in the sum blows up with increasing $\ell$. For example, $b_1$ and $b_2$ each contain one configuration, $b_3$ contains $4$ configurations. It turns out that $b_4$ contains $24$ different terms. That is, there are $24$ ways to connect $4$ points with all possible configurations of edges. Etc.
 
@@ -254,7 +254,7 @@ u(r) =
 $$
 At close distances we'll assume the force is infinitely repulsive when $r < r_0$. This *hard wall* idea approximates the effect that particles will bounce off each other if they get too close, within some distance $r_0$ that's usually on the order of Angstroms for atoms or molecules. When $r \gg r_0$ the force becomes weakly attractive, with the potential falling off like $r^{-6}$. The remaining positive constant $u_0$ characterizes the strength of the interaction, usually around room temperature in temperature units.
 
-![](.../resources/image-20230817091608554.png){fig-align=center width=400}
+![](.../resources/image-20230817091608554.png)
 
 We can now proceed to calculate the virial coefficients for such an interaction. We already know $B_1 = 1$, so there's nothing to do there. We'll recover the ideal gas law at low densities as expected. For $B_2$, we need to find the integral of $f(r)$, which is
 $$
@@ -319,7 +319,7 @@ In typical conditions the pressure correction will often be much larger than the
 
 The fact that the van der Waals equation only seems to become important as a gas starts to liquify suggests that we should study this transition region from gas to liquid. This is one of many examples of a **phase transition**, a discontinuous change in the properties of a system as a state variable changes. When dealing with gases, phase transitions often manifest as sharp lines in the *phase diagram*, i.e. the diagram of pressure vs temperature. Recall such a diagram looks very roughly like the following.
 
-![](.../resources/image-20230812012625268.png){fig-align=center width=400}
+![](.../resources/image-20230812012625268.png)
 
 Phase diagrams often show similar patterns. At low $T$ and $P$ the gas is in its *solid phase*. All the particles are aligned in something like a crystal lattice. As $T$ increases the gas moves into its *liquid phase*. In this phase, the particles are still close together, but they're no longer locked into a lattice anymore. They're allowed to move around on top of each other. As $T$ increases further the gas moves into its *gas phase*. In this phase the particles start to move apart from each other, behaving more like an ideal gas.
 
@@ -333,7 +333,7 @@ P = \frac{Nk_B T}{V-Nb} - a \frac{N^2}{V^2}.
 $$
 If we plot the isotherms of this equation for different values of $T$, we get something roughly like the following.
 
-![](.../resources/image-20230812014318099.png){fig-align=center width=400}
+![](.../resources/image-20230812014318099.png)
 
 First, notice that all the isotherms asymptotically approach the reduced volume $Nb=\frac{N\omega}{2}$ as $V \rightarrow 0$. This is a consequence of the physical fact that the gas becomes incompressible once it reaches its liquid phase. The isotherms separate into three distinct regimes depending on whether $T$ is greater than some special **critical temperature** $T_c$,
 
@@ -405,7 +405,7 @@ $$
 $$
 Let's stop and think about what this integration is doing. It's summing up horizontal slices under the isotherm from $P_0$ to $P$. As long as $V(P)$ is single-valued this is perfectly fine. But inside the coexistence region $V(P)$ is *not* single-valued, which means the integral will be *path-dependent*. For example, consider the following situation. Suppose we wanted to find the chemical potential from the point $A$ to the point $F$ along the isotherm shown below.
 
-![](.../resources/image-20230809010422210.png){fig-align=center width=600}
+![](.../resources/image-20230809010422210.png)
 
 Along the path $ABC$ the chemical potential $\mu$ keeps increasing since $dP$ is positive. Along $CD$ though $dP$ is negative, which means $\mu$ goes back down. Then, along $DF$, $dP$ is positive again, causing $\mu$ to again start increasing. The trajectory $\mu(P)$ will cross at the points $B$ and $E$, causing the chemical potential to seemingly be multiple-valued in the region between $C$ and $D$. This crossing point occurs at the coexistence pressure $P_{co}=P_E=P_B$.
 
@@ -451,7 +451,7 @@ $$
 $$
 Such a curve has the interesting behavior of being convex near $T \approx T_0$ before eventually turning over like $P \sim -\frac{1}{T}$. Typically $T_0$ is some reference temperature like the triple point of the gas. Of course, the curve completely stops at the critical temperature $T_c$ anyway, so the high-temperature behavior of the curve is often unimportant.
 
-![](.../resources/image-20230827155744011.png){fig-align=center width=400}
+![](.../resources/image-20230827155744011.png)
 
 Note that this formula can also be used just as well for gas-solid phase transitions, except with $L$ taking on a different value due to the different type of chemical equilibrium in that case. The solid-liquid transition is a different story. There we can't use these approximations at all. These coexistence curves can take on very different shapes. For example, the coexistence curve between water and ice is *negatively-sloped*. This means ice is *less* dense than water, which is why ice floats on water.
 
@@ -529,7 +529,7 @@ Z_G \sim e^{\psi(V_{liq})} + e^{\psi(V_{gas})} \ .
 $$
 Typically one of these peaks will be exponentially larger than the other for a given pressure, but as the pressure changes the two peaks may flip, corresponding to a phase transition. What about the third extremum? In fact it's a *minimum* on the $Z_G$ curve, which is why we can think of it as a non-physical (i.e. highly improbable) state.
 
-![](.../resources/image-20230817092202783.png){fig-align=center width=700}
+![](.../resources/image-20230817092202783.png)
 
 Note that by extensivity we can also write $Z_G \approx e^{-\beta \mu N}$. This means that maximizing $Z_G$ is equivalent to *minimizing* the chemical potential $\mu$. This is in a sense the statistical justification behind the Maxwell construction, which we got by picking the part of the integration path of $\mu(P,T)$ with the lowest chemical potential.
 
@@ -599,13 +599,13 @@ Let's start with the simplest case where there's no external field, so $h=0$. In
 - When $T < T_c$ the two curves still intersect at $m=0$, except now they intersect at two other symmetric points $m = \pm m_0$. The solution at the origin turns out to be unstable, leaving only the two points $\pm m_0$. Here we see the effects of the interactions between the spins begin to win over temperature. As $T \rightarrow 0$ it seems $m_0 \approx \pm 1$. That is, at zero temperature all the spins are aligned in the same direction, either all up or all down. This is analogous to the subcritical isotherms we saw.
 - When $T = T_c$ the two curves are basically the exact same line near the origin, but not exactly due to second order error. This means the curves only intersect at $m=0$, but if $T$ decreases any infinitesimal amount the two other solutions will appear. This is analogous to the critical isotherm we saw.
 
-![](.../resources/image-20231030021029738.png){fig-align=center width=500}
+![](.../resources/image-20231030021029738.png)
 
 The results described above are perhaps rather surprising. Based on the intuition that things in physics always happen smoothly, one might have thought that $m$ would decrease slowly to zero as $T \rightarrow \infty$. But that's not what happens. Instead $m$ turns off abruptly at some finite temperature $T_c$. This is the characteristic behavior of a phase transition. Because it arises from the first derivative of the free energy it's by convention called a *first-order phase transition*. This contrasts with higher-order phase transitions, which arise from discontinuities in higher derivatives of the free energy.
 
 What happens now if we turn on an external field, allowing $h \neq 0$? If we look at the above equation, we can see that the presence of $h$ seems to shift the zero point of the $\tanh$ function left or right depending on the sign of $h$. Meanwhile the left-hand line doesn't shift at all. What does this do to the system? It breaks the symmetry. For *any* $T < \infty$ it's impossible to get $m=0$. Moreover, since the shift $\frac{h}{k_B T} \rightarrow 0$ as $T \rightarrow \infty$, $m$ will now go smoothly to zero, meaning there is no longer a phase transition. In fact, it's possible to show that when $T < T_c$ only one of the intersection endpoints will be stable, which means the spins will always prefer one state over the other. This sort of phenomenon is called *spontaneous symmetry breaking*. Even the slightest stray external field is enough to ruin the ability of a phase transition to occur.
 
-![](.../resources/image-20231030021001401.png){fig-align=center width=500}
+![](.../resources/image-20231030021001401.png)
 
 It's worth mentioning that strictly speaking the mean field approximation only holds as $d \rightarrow \infty$ due to the law of large numbers. In fact, the mean field approximation doesn't work *at all* when $d=1$. It can even be shown that phase transitions cannot exist in one-dimension. Yet, for $d \geq 2$ it's perhaps surprising that the approximation is okay, at least qualitatively. Even by $d=2$ and $d=3$ phase transitions already start to occur in the Ising model. Proving phase transitions indeed occur in these lower dimensions is somewhat more difficult and beyond the scope of this lesson.
 

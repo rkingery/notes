@@ -396,7 +396,7 @@ $$
 $$
 The potential of this image problem just happens to solve the original boundary conditions, since $\phi(x,y,0) = 0$. By the uniqueness theorem, then, this same potential must *also* be the solution to the original BVP. See the figure below.
 
-![](../resources/image-20240811130344134.png){fig-align=center width=400}
+![](../resources/image-20240811130344134.png)
 
 From this potential we can also easily find the Green's function satisfying the boundary conditions. For a point charge $q$ located at a position $\mathbf{x}_0$, we have $\rho(\mathbf{x}') = q \delta(\mathbf{x}' - \mathbf{x}_0)$, meaning
 $$
@@ -448,7 +448,7 @@ We'll now work through a few more complicated examples to help solidify these id
 
 Suppose we have a point charge $q$ located at some distance $d$ outside a grounded conducting sphere of radius $R$. This means that the boundary surface is just the surface of the sphere, where we must have $\phi = 0$. To find the potential of this BVP, we'll suppose there is a single image charge $q'$ located inside the sphere at some distance $d' \leq R$ from the center.
 
-![](../resources/image-20240811130410188.png){fig-align=center width=400}
+![](../resources/image-20240811130410188.png)
 
 If we ignore the presence of the sphere and focus on these two charges alone, the potential will be
 $$
@@ -553,7 +553,7 @@ q''' = q \quad &, \quad \mathbf{d}''' = (-a,-b) \ . \\
 $$
 This configuration of charges is called the *simple quadrupole*, a concept we'll return to in more generality later.
 
-![](../resources/image-20240811130516105.png){fig-align=center width=400}
+![](../resources/image-20240811130516105.png)
 
 Now, observe if we plug these values back into the potential we get
 $$

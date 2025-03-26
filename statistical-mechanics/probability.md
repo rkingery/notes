@@ -134,7 +134,7 @@ It's not obvious what this represents, but it turns out to represent the **skewn
 
 There's a useful graphical trick that can be used to quickly find the relationship between cumulants and moments. The idea is to represent the n<sup>th</sup> cumulant $\kappa_n$ is a *bag* of $n$ points. Then we can get the n<sup>th</sup> *moment* by summing over all possible ways of distributing $n$ points among all possible bags $1, 2, \cdots, n$. It's easiest to show this by example. Here's how to get the first few moments from the first few cumulants:
 
-![](.../resources/image-20230406152112380.png){fig-align=center width=450}
+![](.../resources/image-20230406152112380.png)
 
 ### Change of Variables
 
@@ -151,7 +151,7 @@ $$
 \boxed{p_F(f) = \sum p_X(x_i) \bigg|\bigg(\frac{dx}{df}\bigg)_{x=x_i}\bigg|} \ .
 $$
 
-![](.../resources/image-20230402072420947.png){fig-align=center width=350}
+![](.../resources/image-20230402072420947.png)
 
 ---
 
@@ -179,7 +179,7 @@ Suppose $p(x) \propto e^{-\lambda |x|}$ where $\lambda > 0$ is some scale parame
    $$
    Note that this new PDF is only defined when $f \geq 0$ due to the square root.
 
-![](.../resources/image-20230402072235128.png){fig-align=center width=500}
+![](.../resources/image-20230402072235128.png)
 
 ## Probability Distributions
 
@@ -591,7 +591,7 @@ e^{N\phi(x_{max}')} \ll e^{N\phi(x_{max})}.
 $$
 In the limit where $N \rightarrow \infty$, the correction term $e^{-N\big(\phi(x_{max})-\phi(x_{max}')\big)} \rightarrow 0$. In this sense, we can indeed neglect the other local maxima as long as they're less than $\phi(x_{max})$ and $N \gg 1$.
 
-![](.../resources/image-20230406152315205.png){fig-align=center width=400}
+![](.../resources/image-20230406152315205.png)
 
 By far the most useful corollary to this result for our purposes is the *Stirling Approximation*.
 

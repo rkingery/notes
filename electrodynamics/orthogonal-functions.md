@@ -360,7 +360,7 @@ Notice that each term in the series decays as $\frac{1}{n}$. This means we can a
 
 Below we show a plot $f(x)$ where $h=1$ and $L=2$ along with its Fourier approximations $S_N$ for $N=1, 5, 10, 100$. Notice that as we keep more terms, the series better and better approximates the behavior of $f(x)$, which is what we'd expect.
 
-![](../resources/image-20240827120157126.png){fig-align=center width=500}
+![](../resources/image-20240827120157126.png)
 
 Notice something curious from this plot. Around the discontinuous points at $x = \pm \frac{L}{2}$ the series never seems to converge at those two points. In fact, the series approximations seem to have a spike around $y \approx 1.09h$ near $x = \pm \frac{L}{2}$, or about $9\%$ of the gap. In fact, these spikes persists no matter how high we take $N$ to be in the series approximation. It's known as the *Gibb's phenomenon*, and can be proven analytically. 
 
@@ -662,7 +662,7 @@ P_5(x) &= \frac{1}{8} (63x^5 - 70x^3 + 15x) \ .
 $$
 As the name suggests, the Legendre polynomials are all polynomials, with each $P_n(x)$ being a polynomial of degree $n$. We can see a plot of the first few polynomials in the figure below.
 
-![](../resources/image-20240820193434775.png){fig-align=center width=500}
+![](../resources/image-20240820193434775.png)
 
 Notice that $P_n(x)$ is odd when $n$ is odd, and even when $n$ is even. That is, $P_n(x)$ satisfies the parity relation
 $$
@@ -820,7 +820,7 @@ f(x) = \sum_{n=1,3,\cdots}^\infty \bigg(\frac{-1}{2}\bigg)^{\frac{n-1}{2}} \frac
 $$
 To visually verify that this expansion is sensible, we show a plot below of the series approximations for different partial sums $S_N$, for $N=3,5,7,99$. Notice again as $N$ increases that the expansion gets better and better at approximating the step function. Also, similar to what we saw with Fourier series, the expansion doesn't do well near the discontinuity at $x=0$, even when $N=99$. In fact, the Gibbs phenomenon seems to carry over as well, given we see spikes forming around $x=0$.
 
-![](../resources/image-20240901222511254.png){fig-align=center width=500}
+![](../resources/image-20240901222511254.png)
 
 ### Associated Legendre Functions
 
@@ -927,7 +927,7 @@ $$
 
 Unfortunately, the Bessel functions do not have a closed form expression, so we can't easily write down the first few functions like we did the Legendre polynomials. We can still plot them though. Below is a plot of $J_n(x)$ for $n=1,\cdots,5$.
 
-![](../resources/image-20240822012913978.png){fig-align=center width=500}
+![](../resources/image-20240822012913978.png)
 
 
 
@@ -1067,7 +1067,7 @@ Y_n(x) = \frac{2}{\pi} \bigg[J_n(x) \log\frac{x}{2} - \frac{1}{n} \sum_{k=0}^{n-
 $$
 An implication of this expansion is that evidently $Y_n(x) \sim x^n \log x$ as $x \rightarrow 0$, which means these functions will diverge at $x=0$. When $x$ is large these functions behave similarly to $J_n(x)$, acting as damped oscillations. We illustrate these behavior below with a plot of $Y_n(x)$ for the first few non-negative values of $n$.
 
-![](../resources/image-20240825013654236.png){fig-align=center width=500}
+![](../resources/image-20240825013654236.png)
 
 Since $Y_\nu(x)$ is just a weighted sum of $J_\nu(x)$ and $J_{-\nu}(x)$, it's easy to show that all of the recursive formulas that hold for $J_\nu(x)$ also must hold for $Y_\nu(x)$ as well. This means that $Y_\nu(x)$ also solves Bessel's equation, and since $Y_\nu(x)$ is now an independent function of $J_\nu(x)$ even for integer $\nu$, we can express any solution to Bessel's equation as a linear superposition of these two,
 $$
@@ -1293,7 +1293,7 @@ Y_{\ell m}(-\theta,\varphi) = (-1)^m Y_{\ell m}(\theta,\varphi) \quad , \quad Y_
 $$
 It's common to visualize the spherical harmonics by doing a 3D surface plot. For a given harmonic, these surfaces represent the size of the absolute value of the real part of $Y_{\ell m}(\theta,\varphi)$ at a given solid angle $(\theta,\varphi)$. We show such a plot below for the first few harmonics. The blue surfaces represent surfaces with positive $Y_{\ell m}(\theta,\varphi)$, while the yellow surfaces represent surfaces with negative $Y_{\ell m}(\theta,\varphi)$. The harmonics are ordered top-to-bottom as $\ell=0,1,2,3$, and left-to-right as $m=-\ell,\cdots,\ell$.
 
-![](../resources/2560px-Spherical_Harmonics.png){fig-align=center width=600}
+![](../resources/2560px-Spherical_Harmonics.png)
 
 Notice that only the middle harmonics where $m=0$ have azimuthally symmetric surfaces. This just follows from the fact that $e^{im\varphi} = 0$ when $m=0$. In this simple case, the spherical harmonics can be written in the somewhat simpler form
 $$

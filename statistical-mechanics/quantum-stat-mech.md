@@ -437,7 +437,7 @@ C_1 \approx \frac{\partial E_1}{\partial T} = k_B \bigg(\frac{E_0}{k_B T}\bigg)^
 $$
 If we join this with the classical heat capacity line $C_1 = \frac{3}{2}$ at high temperatures we get a plot something like the one below. Notice that $C_1 \rightarrow 0$ as $T \rightarrow 0$ in agreement with the third law of thermodynamics. In fact, it goes to zero *exponentially*. The interpolation region seems to occur around a characteristic temperature $\theta$ given by $k_B \theta \equiv E_0$.
 
-![](../resources/image-20230907032630658.png){fig-align=center width=500}
+![](../resources/image-20230907032630658.png)
 
 We can also calculate the density operator in some basis. Let's look at the diagonal and off diagonal elements of $\rho$ in the position basis. We'll assume we're at temperatures $T \gg \theta$ so that we can approximate $Z_1 \approx \frac{V}{\lambda_T^3}$. In that case, we have
 $$
@@ -500,7 +500,7 @@ C_1 \approx k_B \bigg(\frac{\hbar\omega}{k_B T}\bigg)^2 \frac{e^{-\hbar\omega/k_
 $$
 Again, we can see that the heat capacity goes to zero exponentially in accordance with the third law. Connecting the two limits, we get a similar curve to the particle in the box heat capacity, except with a characteristic temperature given by $k_B \theta = \hbar\omega$.
 
-![](../resources/image-20230907042555442.png){fig-align=center width=500}
+![](../resources/image-20230907042555442.png)
 
 ## Three Classic Problems
 
@@ -523,7 +523,7 @@ From here, we were able to show the diatomic gas had average energy $E=\frac{7}{
 
 Great, so what's the problem? It turns out that if we were to go out and actually *measure* the ratio $\frac{C}{k_B}$ for a gas of some given diatomic molecule, most of the time we won't get $\frac{7}{2}$. In fact, around room temperature we'll usually get something closer to $\frac{5}{2}$. If we reduce the temperature to around $10 \ ^\circ \text{K}$ and measure again, we instead get something close to $\frac{3}{2}$. If we increase the temperature to around $1000 \ ^\circ \text{K}$ and measure again, we get the $\frac{7}{2}$ factor that the classical theory predicts. It's almost as if degrees of freedom are *frozen out* at lower temperatures, and only activate one by one as the temperature increases. This gives heat capacity curves that looks something like the following.
 
-![](../resources/image-20230827161631218.png){fig-align=center width=500}
+![](../resources/image-20230827161631218.png)
 
 Clearly the classical theory isn't able to account for such a strange heat capacity curve. It's not able to predict this freezing out of degrees of freedom. We'll show that the quantum theory can by looking at each mode one by one. Let's first rewrite the diatomic gas Hamiltonian in a slightly different form. We'll ignore the added constant $u(d)$ from now on since it contributes nothing to the dynamics. We can explicitly split off the rotational contribution to the relative coordinates by factoring the $\mathbf{p}^2$ to get
 $$
@@ -606,7 +606,7 @@ C = 3Nk_B \bigg(\frac{\hbar\omega}{k_B T}\bigg)^2 \frac{e^{\hbar\omega/k_B T}}{\
 $$
 This is the same heat capacity we saw for the vibrational modes of a diatomic gas, except with $3N$ degrees of freedom instead of $N$ degrees of freedom. This means in the high temperature limit $C \approx 3Nk_B T$ in accordance with the law of Dulong-Petit, while in the low temperature limit $C \sim e^{-\hbar\omega / T}$. So now $C \rightarrow 0$ like we'd expect. But is this *right*? It turns out not. Experimentally it turns out the heat capacity of a solid goes to zero like $C \sim T^3$, not like an exponential. This is illustrated in the figure below.
 
-![](../resources/image-20230827162956919.png){fig-align=center width=500}
+![](../resources/image-20230827162956919.png)
 
 How can we change our model of a solid to get this cubic heat capacity behavior? We're already using quantum mechanics. We need something more. In fact, the main thing we're missing is that solids have *sound modes*. When you bang on a solid, each particle in the lattice jiggles in a wave pattern, creating sound waves that propagate through the solid at some speed. This modification of the Einstein model produces what's known as the *Debye model* of a solid.
 
@@ -674,7 +674,7 @@ I(\lambda) = \frac{2\pi c k_B T}{\lambda^4} \ .
 $$
 Let's take a look at this expression. Remember, it's a plot of the color spectrum of light. We should thus expect it to behave kind of like a probability density. The conservation of energy requires there to be a finite area under the curve. But if we attempt to integrate the Rayleigh-Jeans law what do we get for the total radiance? Infinity! The integral diverges as $\lambda \rightarrow 0$. Since lower wavelengths fall on the *ultraviolet* side of visible light, this blowing up of the spectrum is called the *ultraviolet catastrophe*. Simply put, there's no physical reason it can happen for a system with finite energy. It was already known in the 19th century via spectral measurements that the actual blackbody spectrum turns over and goes to zero as $\lambda \rightarrow 0$ like the solid line in the figure below.
 
-![](../resources/image-20230827164841925.png){fig-align=center width=500}
+![](../resources/image-20230827164841925.png)
 
 It was Planck who realized originally that we could get the correct blackbody spectrum by making use of the fact that energy be quantized in units of $E = \hbar\omega$. As we've seen over and over, the way to fix things is to treat the classical harmonic oscillators quantum mechanically. Instead of assuming each particle has an average energy $k_B T$, we assume each has the average energy given by a quantum harmonic oscillator, i.e. $\frac{\hbar \omega}{2} + \frac{\hbar \omega}{e^{\hbar \omega / k_B T} - 1}$. Since the first term doesn't depend on temperature it can be thought of as an added constant to the energy. If we ignore this term and focus only on the temperature dependent part, we can write
 $$

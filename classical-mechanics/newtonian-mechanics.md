@@ -122,7 +122,7 @@ $$
 W = \int_A^B \mathbf{F} \cdot d\mathbf{x}.
 $$
 
-![](../resources/image-20230212032859080.png){fig-align=center width=200}
+![](../resources/image-20230212032859080.png)
 
 In general, work depends on the path taken to get from $A$ to $B$, hence it isn't a unique property of the system. 
 
@@ -529,7 +529,7 @@ $$
 \end{align*}
 $$
 
-![](../resources/image-20230213071525149.png){fig-align=center width=200}
+![](../resources/image-20230213071525149.png)
 
 Let's re-write the total angular momentum $\mathbf{L}$ in terms of these vectors,
 

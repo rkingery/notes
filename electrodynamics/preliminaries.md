@@ -109,7 +109,7 @@ $$
 $$
 
 
-![](../resources/image-20240126183306137.png){fig-align=center width=300}
+![](../resources/image-20240126183306137.png)
 
 The second representation of using numerical indices to represent the components in order will be useful for us, as we'll often express superpositions like this using summation notation, or more conveniently using the *Einstein summation convention*,
 $$
@@ -295,7 +295,7 @@ d\mathbf{a} \equiv \mathbf{n} \ da \ .
 $$
 It's fair to ask how $da$ itself is determined. When the surface is the $xy$-plane it's clear $da = dxdy$. But for more general surfaces we'd need to parametrize $\mathcal{S}$ with two relative coordinates and express $da$ in terms of those. Evidently the area element $d\mathbf{a}$ is a kind of vector. We can thus also think of it as the cross product of two infinitesimal vectors on the surface. Importantly, this means $d\mathbf{a}$ will have both a magnitude and a direction that depend on where we are along the surface. When we require the surface be orientable, we mean that we can always use the right-hand rule to find the direction of $\mathbf{n}$.
 
-![](../resources/image-20240126183636267.png){fig-align=center width=300}
+![](../resources/image-20240126183636267.png)
 
 To get the *surface integral* of a vector field $\mathbf{F}$ along the surface $\mathcal{S}$ we'd typically write
 $$
