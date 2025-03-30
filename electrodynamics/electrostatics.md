@@ -866,7 +866,7 @@ In a similar manner one can solve for the E-field of the *solid sphere* of unifo
 
 ## Scalar Potential
 
-Now that we've calculated the field equation for the divergence of the electric field, namely Gauss's law, we'll now turn our attention to finding the field equation for the curl of the electric field. This will lead us to the scalar potential, which provides as we'll see provides us a much more useful way to solve more and more complicated electrostatics problems.
+Now that we've calculated the field equation for the divergence of the electric field, namely Gauss's law, we'll now turn our attention to finding the curl of the electric field. This will then enable us to define the scalar potential. As we'll see, the scalar potential will provide us with a way to define energy in electrostatics, along with a much more useful way to solve increasingly sophisticated types of electrostatics problems.
 
 ### Differential Form
 
@@ -878,13 +878,13 @@ We will now take the *curl* of both sides with respect to the field point $\math
 $$
 \nabla \times \mathbf{E}(\mathbf{x}) = \int d^3 \mathbf{x}' \ \rho(\mathbf{x}') \ \nabla \times \bigg(\frac{\mathbf{x} - \mathbf{x}'}{|\mathbf{x} - \mathbf{x}'|^3}\bigg) \ .
 $$
-Now, the curl inside the integrand turns out to be zero. We showed this in the previous chapter. This means the entire integral must be zero, which means the curl of the E-field is simply zero in electrostatics,
+Now, the remaining curl inside the integrand is zero. We showed this in the previous chapter. This means the entire integral must be zero, which means the curl of the E-field is simply zero in electrostatics,
 $$
 \boxed{
 \nabla \times \mathbf{E} = \mathbf{0}
 } \ .
 $$
-Thus, in electrostatics the E-field is always *irrotational*. That is, the field lines will never rotate around any point in space. They can only converge or diverge from source charges.
+Thus, in electrostatics the E-field is always *irrotational*. That is, the field lines will never rotate around any point in space. They can only converge or diverge from source charges. While perhaps not obvious, this is a fact we already knew. We mentioned earlier in the chapter that the electrostatic force $\mathbf{F} = q\mathbf{E}$ is conservative, which means $\nabla \times \mathbf{F} = \mathbf{0}$ and hence $\nabla \times \mathbf{E} = \mathbf{0}$. Thus, the statement that $\mathbf{E}$ has vanishing curl is just an equivalent way of saying that $\mathbf{F} = q\mathbf{E}$ is conservative.
 
 From the Helmholtz theorem, we know that any irrotational vector field must be the gradient of some scalar field. This means in electrostatics we can always define a *scalar potential* $\phi(\mathbf{x})$ satisfying
 $$
@@ -894,7 +894,17 @@ $$
 $$
 This means all three components of the E-field of electrostatics are completely determined by a single scalar function, the scalar potential. This turns out to be a very useful simplification of the laws electrostatics. Instead of having to calculate each component of the E-field, we need only calculate the scalar potential and take its gradient to get the E-field. Indeed, much of the rest of the theory of electrostatics is just about finding more and more clever ways to calculate the scalar potential.
 
-From dimensional analysis, we see that the scalar potential must have dimensions of electric field times distance. In Gaussian units, the E-field has units of $\text{statvolt}/\text{cm}$, which evidently means the scalar potential must have units of $\text{statvolt}$, or $\text{erg}/\text{esu}$. Similarly, in SI units, the E-field has units of $\text{V}/\text{m}$, which means the scalar potential must have units of *volts*, or $\text{J}/\text{C}$. Recall the statvolt and the volt are numerically related by $1 \ \text{statvolt} \approx 300 \ \text{V}$, but their dimensions differ due to the different ways the units of charge is defined in the two systems of units.
+Since the electrostatic force is conservative, it must be the gradient of some electrostatic potential energy $U(\mathbf{x})$, with
+$$
+\mathbf{F} = -\nabla U \ .
+$$
+By comparison, this means that for a point charge $q$ the potential energy is related to the scalar potential by
+$$
+U(\mathbf{x}) = q\phi(\mathbf{x}) \ .
+$$
+We can thus assign a physical meaning to the electrostatic scalar potential by thinking of it as the potential energy per unit charge. That is, the scalar potential can be thought of as the work per unit charge required to move a charge $q$ from a point with zero potential energy to the point $\mathbf{x}$ in the presence of an external E-field $\mathbf{E}(\mathbf{x})$.
+
+From dimensional analysis, we see that the scalar potential must have dimensions of energy per unit charge. This is true in each system of units. In Gaussian units this means the scalar potential has units of $\text{erg}/\text{esu}$, which we call the *statvolt*. In SI units the scalar potential has units of *volts*, where $1 \ \text{V} \equiv 1 \ \text{J}/\text{C}$. Their numerical conversion factor is $1 \ \text{statvolt} \approx 300 \ \text{V}$, though again keep in mind their dimensions differ due to the different ways the dimension of charge is determined in the two systems.
 
 ### Integral Form
 
@@ -910,45 +920,39 @@ Plugging this in, the integral form of $\nabla \times \mathbf{E} = \mathbf{0}$ i
 $$
 \oint_\mathcal{C} \mathbf{E} \cdot d\boldsymbol{\ell} = 0 \ .
 $$
-That is, the *circulation* of the E-field around any closed loop in space is zero in electrostatics. In particular, this means the circulation is *path-independent*, since for any closed loop $\mathcal{C}$ connecting two points $\mathbf{x}_a$ and $\mathbf{x}_b$ , we can break up the circulation integral into two pieces as
+That is, the *circulation* of the E-field around *any* closed loop in space is zero in electrostatics. Recall that any circulation integral satisfying this property is *path-independent*. That is, between any two points $\mathbf{x}_1$ and $\mathbf{x}_2$ the value of the integral
 $$
-\oint_\mathcal{C} \mathbf{E} \cdot d\boldsymbol{\ell} = \int_{\mathbf{x}_a}^{\mathbf{x}_b} \mathbf{E} \cdot d\boldsymbol{\ell} - \int_{\mathbf{x}_a}^{\mathbf{x}_b} \mathbf{E} \cdot d\boldsymbol{\ell} = 0 \ .
+-\int_{\mathbf{x}_1}^{\mathbf{x}_2} \mathbf{E} \cdot d\boldsymbol{\ell}
+$$
+is independent of the integration path chosen to go from $\mathbf{x}_1$ to $\mathbf{x}_2$. This means the integral is a *state function*, and hence must be the antiderivative of some scalar field $\phi(\mathbf{x})$, where
+$$
+\phi(\mathbf{x}_2) - \phi(\mathbf{x}_1) = -\int_{\mathbf{x}_1}^{\mathbf{x}_2} \mathbf{E} \cdot d\boldsymbol{\ell} \ .
+$$
+Of course, $\phi(\mathbf{x})$ is exactly just the scalar potential defined before, which can easily be seen by substituting $\mathbf{E} = -\nabla \phi$ into the integral above and using the fundamental theorem of calculus. The difference
+$$
+V \equiv \phi(\mathbf{x}_2) - \phi(\mathbf{x}_1)
+$$
+is usually called the *potential difference* or *voltage* between $\mathbf{x}_1$ and $\mathbf{x}_2$. The potential difference or voltage between any two points is thus just the difference in electrostatic potential energy per unit charge between those two points.
+
+Since the scalar potential is only defined in terms of differences, we can always add a global constant to the potential without changing the value of $\mathbf{E}$, and hence of the force $\mathbf{F}$. This means we're always free to choose a *ground point* $\mathbf{g}$ where $\phi(\mathbf{g}) \equiv 0$. By convention we usually choose this ground point to be some point at infinity, so that
+$$
+\phi(\mathbf{x}) \equiv \int_{\mathbf{x}}^{\infty} \mathbf{E} \cdot d\boldsymbol{\ell} \ .
+$$
+In this convention, the scalar potentially physically represents the electrostatic potential energy per unit charge required to move that charge from infinity and place it at a given point $\mathbf{x}$ in the presence of $\mathbf{E}$. Choosing the ground point at infinity can be done whenever the charge distribution giving rise to the E-field doesn't itself extend to infinity, which is always the case in practice. Nevertheless it can sometimes be useful to choose the ground point to be something else. For example, when dealing with electronics equipment it's common to define the negative terminal, or *ground*, to have zero voltage.
+
+Provided we already have an expression for the E-field of some distribution, calculating the scalar potential is particularly easy. We need only choose a ground point (usually infinity) and evaluate the integral above. For example, we already know that the E-field for a point charge located at the origin is given by
+$$
+\mathbf{E}(\mathbf{x}) = \frac{q}{r^2} \mathbf{e}_r \ .
+$$
+If we choose a radial integration path from infinity to $\mathbf{x}$, which we're free to do since the integral is path independent, we get
+$$
+\phi(\mathbf{x}) = \int_{\mathbf{x}}^{\infty} \frac{q}{r'^2} \mathbf{e}_r \cdot d\boldsymbol{\ell} = \int_{r}^{\infty} \frac{q}{r'^2} = -\frac{q}{r'} \bigg|_r^\infty \ .
+$$
+Choosing $\phi \equiv 0$ at infinity, which we're also always free to do, the scalar potential for a point charge at the origin becomes
+$$
+\phi(\mathbf{x}) = \frac{q}{r} \ .
 $$
 
-
-
-
-Notice if we plug in the scalar potential using $\mathbf{E} = -\nabla \phi$, we get
-$$
-\oint_\mathcal{C} \nabla \phi \cdot d\boldsymbol{\ell}
-$$
-
-
-
-
-While seemingly innocent, this formula is actually just a restatement of something we already knew: Coulomb's law is a conservative force. To see why this is the case, suppose $q$ is some point charge placed into the presence of the E-field. Then the force on this charge due to the E-field is simply $\mathbf{F} = q\mathbf{E}$. This means the *work* $W$ done on the charge by the E-field over the closed loop is by definition
-$$
-W = \oint_\mathcal{C} \mathbf{F} \cdot d\boldsymbol{\ell} = q\oint_\mathcal{C} \mathbf{E} \cdot d\boldsymbol{\ell} = 0 \ .
-$$
-Since this is true for *any* closed loop, this means the work done to move the charge between any two points $\mathbf{x}_a$ and $\mathbf{x}_b$ is
-$$
-W = q \int_{\mathbf{x}_a}^{\mathbf{x}_b} \mathbf{E} \cdot d\boldsymbol{\ell} = q \phi(\mathbf{x}_b) - q \phi(\mathbf{x}_a) \ .
-$$
-That is, the work done by the E-field on the point charge is *path-independent*. Its value depends only on the endpoints. This is of course just the definition of what it means for $\mathbf{F}$ to be a conservative force.
-
-Since the force is conservative, this means we can also define an electrostatic potential energy $U$ by $\mathbf{F} = -\nabla U$, where the potential energy between any two points is
-$$
-U = \int_{\mathbf{x}_a}^{\mathbf{x}_b} \mathbf{F} \cdot d\boldsymbol{\ell}
-$$
-
-
-
-
-But since $\mathbf{F} = q\mathbf{E}$ and $\mathbf{E} = -\nabla \phi$, we have
-$$
-U = q [\phi(\mathbf{x}_b) - \phi(\mathbf{x}_a)] \ .
-$$
-That is, the electrostatic potential energy required to move a point charge $q$ between any two points is just the difference in potential between the two endpoints.
 
 
 
@@ -959,61 +963,9 @@ That is, the electrostatic potential energy required to move a point charge $q$ 
 - Then proceed to derive the integral formula, Poisson's equation, and the associated boundary conditions
 - Move conductor section up to this one since it follows immediately from Gauss's law and the boundary conditions.
 
-Recall that we're trying to find a way to fully characterize the electric field with a set of field equations. We know it's sufficient for this purpose to find formulas for the divergence and curl of the field in terms of the source charges. We just found a formula for the divergence, which gave us Gauss's Law. We'll now see what the curl of the electric field should be and see what that implies.
 
-### Curl of Electric Field
 
-From vector calculus, we know that finding the curl of a vector field is in some sense equivalent to finding the line integral of the field around a closed path. More formally, Stoke's theorem says that if $\mathcal{C}$ is some closed loop with interior surface $\mathcal{S}$, we have
-$$
-\oint_\mathcal{C} \mathbf{E} \cdot d\boldsymbol{\ell} =  \int_\mathcal{S} (\nabla \times \mathbf{E}) \cdot d\mathbf{a} \ .
-$$
-What we'll thus do is first find the line integral and from that get the curl. As we did with Gauss's Law, we'll start with the simplest case of a point charge $q$ centered at the origin. This means we have
-$$
-\mathbf{E} \cdot d\boldsymbol{\ell} = \frac{q}{r^2} \mathbf{e}_r \cdot d\boldsymbol{\ell} = \frac{q}{r^2} dr \ .
-$$
-Here we used the fact that in spherical coordinates the line element is $d\boldsymbol{\ell} = dr \mathbf{e}_r + rd\theta \mathbf{e}_\theta + r \sin\theta d\varphi \mathbf{e}_\varphi$. This means that between any two points on the line $\mathbf{a}$ and $\mathbf{b}$ we have
-$$
-\int_\mathbf{a}^\mathbf{b} \mathbf{E} \cdot d\boldsymbol{\ell} = \frac{q}{|\mathbf{a}|} - \frac{q}{|\mathbf{b}|} \ .
-$$
-In particular, if we integrate around a closed loop $\mathcal{C}$ we must conclude that the line integral vanishes. The line integral over a closed loop is often called the *circulation integral*. It represents the total contribution of the field in moving around the closed loop, or equivalently the work per unit charge done in moving around the closed loop. Evidently for a point charge this circulation integral must be zero.
 
-Of course, there is nothing special about a point charge. By the principle of superposition we can consider any arbitrary distribution of charges as well by summing the contribution of each of the point charges inside. We thus conclude that for *any* distribution of charge giving rise to a total electric field $\mathbf{E}$ the circulation integral must vanish in electrostatics,
-$$
-\boxed{
-\oint_\mathcal{C} \mathbf{E} \cdot d\boldsymbol{\ell} = 0
-} \ .
-$$
-We can recover the curl of the field by apply Stoke's theorem, from which we immediately see that the curl vanishes as well,
-$$
-\boxed{
-\nabla \times \mathbf{E} = \mathbf{0}
-} \ .
-$$
-Note that this was perhaps a long-winded way of saying something that should already be obvious to us: We know from classical mechanics that any *conservative force* has the property that its curl vanishes. Since the Coulomb force is a central force we know it must be conservative, and hence its curl must vanish, but since the electric field is just force per unit charge, its curl must vanish as well, which is what we just proved.
-
-### Scalar Potential
-
-From vector calculus, we know that any vector field whose curl vanishes must be the gradient of some scalar field. This follows from the fact that the circulation integral vanishes, and hence the line integral between any two points must be path independent and hence a well defined function of the two endpoints. If we call this scalar field $\phi$, this means we have
-$$
-\boxed{
-\mathbf{E} = - \nabla \phi
-}\ .
-$$
-Note the minus sign is merely a convention. We'll see why we include this in a moment. In electromagnetism we call $\phi$ the *scalar potential*, or more simply the *potential* depending on the context. The dimensions of scalar potential are evidently energy per unit charge. In SI units the scalar potential has units of *volts*, or Joules per Coulomb. In Gaussian units the potential has units of ergs per esu, sometimes called the *statvolt*, with $1 \ \frac{\text{erg}}{\text{esu}} \approx 300 \ \text{V}$.
-
-Using the fundamental theorem of calculus we can invert the previous formula to get the potential in terms of the field. If $\mathbf{x}$ is the field point of interest and $\mathbf{g}$ is some fixed reference point, often called the *ground point*, we have
-$$
-\phi(\mathbf{x}) = -\int_\mathbf{g}^\mathbf{x} \mathbf{E} \cdot d\boldsymbol{\ell} \ .
-$$
-In much of theoretical electromagnetism we choose the ground point to be at infinity, where we insist the scalar potential must vanish for localized charge distributions. In this scenario, we then have
-$$
-\phi(\mathbf{x}) = \int_\mathbf{x}^\infty \mathbf{E} \cdot d\boldsymbol{\ell} \ .
-$$
-If $\mathbf{a}$ and $\mathbf{b}$ are two points in space, the potential between them, or *potential difference*, is given by
-$$
-\phi(\mathbf{b}) - \phi(\mathbf{a}) = -\int_\mathbf{a}^\mathbf{b} \mathbf{E} \cdot d\boldsymbol{\ell} \ .
-$$
-The potential difference is often called the *voltage* in more applied fields since it's measured in volts, often denoted by $V$ or $\Delta V$ when the context is clear. The voltage is what is typically measured in the lab, for example by differencing the potential between the positive and negative terminals of some power source.
 
 Notice that the integral formula for the scalar potential looks an awful lot like the formula for work in terms of force. Recall that the work done in moving a particle from a point $\mathbf{a}$ to a point $\mathbf{b}$ via an exerted force $\mathbf{F}_{\text{ex}}$ is given by
 $$
@@ -1501,3 +1453,10 @@ $$
 C = \frac{C_{11} V_1 + C_{12} V_2}{V_2 - V_1} = -\frac{C_{12} V_1 + C_{22} V_2}{V_2 - V_1} \ .
 $$
 We don't tend to use mutual capacitance as much in practice, nor will we see it again in this course.
+
+
+$$
+\text{Know:} \ \nabla \times \mathbf{F}(\mathbf{x}) = \mathbf{0} \\
+\text{Claim:} \ \nabla \times \mathbf{F}(\mathbf{x} - \mathbf{a}) = \mathbf{0} \\
+\text{Proof:} \ (\nabla \times \mathbf{F}')_i = \varepsilon_{ijk} \partial_j F_k' = \varepsilon_{ijk} \partial_\ell' F_k' \partial_j (x_\ell - a_\ell) = \varepsilon_{ijk} \partial_\ell' F_k' \delta_{j\ell} = \varepsilon_{ijk} \partial_j' F_k' = (\nabla' \times \mathbf{F}')_i = 0 \quad \square
+$$
