@@ -598,7 +598,7 @@ $$
 $$
 Note for this to be well-defined we require that $f(x)$ vanish as $x \to \pm \infty$.
 
-We can also define the delta function in another useful way using the *Fourier transform*. We won't go into details on the Fourier transform here. See the appendix for details. In brief, the Fourier transform of a function $f(x)$ can be obtained by multiplying by $e^{-ikx}$ and integrating over the real line to get another function $f(k)$ in terms of this new variable $k$,
+We can obtained a closed form expression for the delta function using the *Fourier transform*. We won't go into details on the Fourier transform here. See the appendix for details. In brief, the Fourier transform of a function $f(x)$ can be obtained by multiplying by $e^{-ikx}$ and integrating over the real line to get another function $f(k)$ in terms of this new variable $k$,
 $$
 f(k) \equiv \int_{-\infty}^\infty dx \ f(x) e^{-ikx} \ .
 $$
@@ -617,7 +617,7 @@ $$
 The only way this can be true evidently is if the inner integral is the delta function $\delta(x-x')$. We thus must have
 $$
 \boxed{
-\delta(x-x') = \int_{-\infty}^\infty \frac{dk}{2\pi} \ e^{ik(x-x')}
+\delta(x-x') = \frac{1}{2\pi} \int_{-\infty}^\infty dk \ e^{ik(x-x')}
 } \ .
 $$
 Note that this integral isn't well-defined in the usual sense, since the complex exponentials are oscillating sine and cosine functions, and hence don't converge at infinity. We think of this integral instead as a formal relation that tells us when we can justify replacing it by a delta function.
@@ -648,7 +648,7 @@ $$
 $$
 Let's now work a simple example that puts together some of the topics covered in this chapter.
 
-##### Example: Divergence of Inverse Square Fields
+##### Example: Derivatives of inverse square fields
 
 Suppose we wanted to calculate the divergence of the following vector field,
 $$

@@ -10,11 +10,43 @@ Electrostatic phenomena have been known about for millennia. In Ancient Greek ti
 
 Little else was known about electricity until the 17th century when scientists such as Priestly, Franklin, and Coulomb started to rigorously investigate the properties of charged objects. Within a few decades, the laws of electrostatics were largely worked out, though it took many more decades before they were recast into their modern form.
 
+### Electric Charge
+
+Electrostatics rests on two important facts about nature: the existence of electric charge, and Coulomb's law. First, we postulate that aside from mass, every physical body has associated to it another scalar quantity known as *electric charge*. Electric charge is observed to come in two varieties, which we call *positive* and *negative*. If two charges are of the same sign they repel each other, and if two charges are of the opposite sign they attract each other.
+
+The total charge inside any given region of space is just the sum total of all charges within. If a given region contains some amount of charge $q_1, q_2, \cdots, q_n$, then the total charge $Q$ inside that region is just the sum of each charge,
+$$
+Q = q_1 + q_2 + \cdots q_n \ .
+$$
+Since each charge can be positive, negative, or even zero, the total charge can also be positive, negative, or zero.
+
+A fundamental fact about charge is that it's *conserved*. Charge in the universe can't be created or destroyed. If the universe contains a total amount of charge now, it must have had the same charge in the past, and will have the same charge in the future. This is known as *global charge conservation*. Charge isn't just conserved globally however, but also *locally*. That is, in any given region of space no matter how small, the only way the total charge in that region can change is if it flows into or out of that region via an *electric current*. This is known as *local charge conservation*, which we'll discuss in greater detail in later chapters.
+
+Today, we know more about the properties of charge than was known at the time of Coulomb. This is largely due to the gradual discovery of atomic theory in the 19th and early 20th centuries. The idea that objects were composed of atoms is very old, going all the way back to Democritus in the 5th century BC. However, this idea wasn't taken seriously by the scientific community until Dalton postulated the idea again around the start of the 19th century. Indeed, Dalton is the one who coined the term *atom* from the Ancient Greek word *atomos*, meaning *indivisible*. As the 19th century progressed, more and more evidence grew to support the atomic hypothesis, eventually culminating in the discoveries of the electron by Thompson and the nucleus by Rutherford in the early 20th century. From these discoveries, quantum theory was introduced to explain the behavior of atoms, which ultimately culminated in the laws of quantum mechanics and eventually the Standard Model of particle physics we have today.
+
+While it wasn't known at the time the laws of electrostatics were first written down, nowadays we know that charge is *quantized* in units of a fundamental unit of charge, usually denoted $e$, where
+$$
+e \approx 4.8 \cdot 10^{-10} \ \text{esu} \approx 1.6 \cdot 10^{-19} \ \text{C} \ .
+$$
+This means every charge we observe in nature, apart from one minor exception, is some integer multiple of $e$. We'll discuss the units of charge in more detail below.
+
+Any macroscopic material we observe in nature is made of *atoms*. Each atom contains some number of negatively-charged *electrons* that orbit a *nucleus* containing some number of positively-charged *protons* and charge-neutral *neutrons* held together by a force much stronger than electric forces, known as the *strong force*. All electrons and protons in nature have exactly the same absolute value of charge, namely the fundamental charge $e$. The proton has charge $+e$, while the electron has charge $-e$.
+
+In most cases, a given atom will contain the same number of electrons as protons, making that atom charge neutral. This means when we observe a charged material in nature it's because of one or two reasons. First, each atom could gain or lose one or more electrons through *ionization*. When this happens, the lost electron could attach to another atom, or in the case of metals or plasmas remain unattached and flow freely through the material. Second, the electron orbits could become *polarized* in response to some external field, causing each atom to have a slight charge pointing in some particular direction.
+
+In the vast majority of everyday cases, the materials we observe are either charge neutral or very close to it. This explains why we don't see materials flying around space attracting or repelling each other at high speeds, and why gravity tends to dominate electrical forces at macroscopic scales. When we do observe a charged material it's usually because some of the surface atoms have become ionized via friction, creating a slight but measurable charge.
+
+Of course, charge is a universal property of nature. It doesn't just apply to materials made of atoms, but all particles observed in nature. According to the Standard Model of particle physics, all particles must be either one of the following fundamental particles or some composition of them.
+
+<img src="../resources/image-20250403124033756.png" style="zoom:50%;" />
+
+In this figure, all of the known fundamental particles of nature are shown along with their masses, charge, and spin, with the charge shown in units of $e$. For example, the electron, muon, and tau particle are all fundamental particles with charge $-e$. The photon, or *light*, is charge neutral, and so is the gluon and Higgs boson. Notice that the *quarks* don't have integer units of charge like we said they should. The reason for this is that protons and neutrons aren't fundamental particles. Each is composed of exactly three quarks, and those quarks *must* satisfy the condition that their total charge is an integer multiple of $e$. This isn't a problem however, since as far as we know quarks are always *confined* inside their respective proton or neutron, meaning we can never in practice directly measure the charge of a single quark, only infer it.
+
 ### Coulomb's Law
 
-Electrostatics rests on two important facts about nature: the existence of and the conservation of charge, and Coulomb's law. We postulate that aside from mass, every physical body has associated to it another scalar quantity known as *electric charge*. Electric charge is observed to come in two varieties, which we call *positive* and *negative*. By historical convention, positive charge turns out to be the charge of the proton, and negative charge turns out to be the charge of the electron. We also postulate that in any closed system charge is *conserved*. It cannot be created or destroyed, only transferred within the closed system.
+Next, we postulate that the force between charged objects is given by *Coulomb's Law*. Fundamentally, this law says that charges of like sign *repel* each other and charges of opposite sign *attract* each other, and this force of attraction or repulsion obeys an inverse square law analogous to that of Newton's law of gravitation between masses.
 
-Next, we postulate that the force between charged objects is given by *Coulomb's Law*. Through a series of experiments, Coulomb was able to deduce the following facts about the forces between charged objects:
+More formally, we deduce the following facts as given from experiment:
 
 - The force between the two charges depends linearly on the magnitude of each charge. The larger the magnitude, the stronger the force between them.
 - The force obeys an inverse square law nature similar to gravity. That is, the strength of the force between the two charges varies with the inverse square of the distance between them.
@@ -33,16 +65,16 @@ This formula captures all of the observations made by Coulomb. Since $\mathbf{F}
 
 From Coulomb's law and the general properties of forces we can immediately deduce a few important facts:
 
-- The Coulomb force is *conservative* since $\mathbf{F}_{12}$ doesn't depend explicitly on time. In particular, this means we can define a potential energy $U$ such that $\mathbf{F}_{12} = -\nabla_1 U$, where $U$ is given by
+- The Coulomb force is *conservative* since $\mathbf{F}_{12}$ depends only on the positions of the charges, not their velocities. In particular, this means we can define a potential energy $U$ such that $\mathbf{F}_{12} = -\nabla_1 U$, where $U$ is given by
   $$
   U(\mathbf{x}_1, \mathbf{x}_2) = k_e \frac{q_1 q_2}{r_{12}} \ .
   $$
 
-- The Coulomb force is a *central force*, meaning $\mathbf{F}_{12}$ depends only on the relative distance $r_{12}$ between the two charges and not their absolute positions in space. This also means $U = U(r_{12})$, which can be seen above.
+- The Coulomb force is a *central force*, since $\mathbf{F}_{12}$ depends only on the relative distance $r_{12}$. . This means $U = U(r_{12})$.
 
 - The force of charge $q_1$ on charge $q_2$ is equal and opposite to the force of $q_2$ on $q_1$, with $\mathbf{F}_{21} = -\mathbf{F}_{12}$.
 
-- Since Coulomb's law is a statement about forces, it obeys the *principle of superposition*, meaning the net Coulomb force on any one charge due to any set of other charges is just the vector sum of the Coulomb force on that charge due to each other individual charge. For example, the total force on charge $q_1$ due to $n$ other charges $q_2, q_3, \cdots, q_n$ is given by the vector sum of each individual force $\mathbf{F}_{1i}$ on $q_1$ due to each other charge $q_i$,
+- Since Coulomb's law is a statement about forces, and forces are vectors, it obeys the *principle of superposition*. This means the net Coulomb force on any one charge due to any set of other charges is just the vector sum of the Coulomb force on that charge due to each other individual charge. For example, the total force on charge $q_1$ due to $n$ other charges $q_2, q_3, \cdots, q_n$ is given by the vector sum of each individual force $\mathbf{F}_{1i}$ on $q_1$ due to each other charge $q_i$,
 
 $$
 \mathbf{F}_{1} = \mathbf{F}_{12} + \mathbf{F}_{13} + \cdots + \mathbf{F}_{1n} \ .
@@ -52,7 +84,7 @@ Note that strictly speaking Coulomb's Law as stated only holds between *point ch
 
 ### Units
 
-We haven't yet said anything about the dimensions or units of charge. In mechanics one can assign units to every mechanical quantity using only units of mass, distance, and time. In electromagnetism however, we now have the freedom to choose the dimensions of charge by fixing the dimensions of the proportionality constant $k_e$ in Coulomb's law. Notice that the product $k_e q_1 q_2$ must necessarily have dimensions of force times area for the law to be dimensionally consistent, or
+We haven't yet said anything about the units of charge. In mechanics one can assign units to every mechanical quantity using only units of mass, distance, and time. In electromagnetism however, we now have the freedom to choose the dimensions of charge by fixing the dimensions of the proportionality constant $k_e$ in Coulomb's law. Notice that the product $k_e q_1 q_2$ must necessarily have dimensions of force times area for the law to be dimensionally consistent, or
 $$
 [k_e] [q]^2 = [F] [L]^2 \ .
 $$
@@ -77,33 +109,6 @@ where it's necessarily understood that charge is measured in Coulomb, distances 
 To get a feel for the scale of everyday charges, the static electricity between two large objects rubbed together may produce a charge of a few $\mu \text{C}$, or $\sim 10^4 \ \text{esu}$. The amount of charge in a bolt of lightning may be as high as $15-350 \ \text{C}$, or $\sim 10^{5}-10^{6} \ \text{esu}$. A modern smartphone battery can hold a huge charge of $10 \ \text{kC}$, or $\sim 10^{8} \ \text{esu}$. Indeed, charge in everyday settings can range from very small to very large, making it difficult for any chosen unit of charge to seem natural.
 
 Coulomb's law has been used to establish the limits on the validity of classical electromagnetism. Experiments and observations have well established that Coulomb's law is highly accurate for distance scales at all orders of magnitude, with the loan exception being very small distances much smaller than the atom. When distance scales get down to around $10^{-13} \ \text{cm}$, the laws of classical electromagnetism finally break down and a quantum description is needed. Classical electromagnetism is thus an extremely precise description of nature for any distance scale larger than this, even on scales as large as the distance of the universe.
-
-### Charge Quantization
-
-Today, we know more about the properties of charge than was known at the time of Coulomb. This is largely due to the gradual discovery of atomic theory in the 19th and early 20th centuries. The idea that objects were composed of atoms is very old, going all the way back to Democritus in the 5th century BC. However, this idea wasn't taken seriously by the scientific community until Dalton postulated the idea again around the start of the 19th century. Indeed, Dalton is the one who coined the term *atom* from the Ancient Greek word *atomos*, meaning *indivisible*. As the 19th century progressed, more and more evidence grew to support the atomic hypothesis, eventually culminating in the discoveries of the electron by Thompson and the nucleus by Rutherford in the early 20th century. From these discoveries, quantum theory was introduced to explain the behavior of atoms, which ultimately culminated in the laws of quantum mechanics and eventually the Standard Model of particle physics we have today.
-
-- Redo this section starting here.
-- Maybe rename the section something more encompassing. Atoms or something like that.
-- First describe the state of today's knowledge. All materials are made of atoms. Each atom contains some number of protons, neutrons, and electrons. Charge is quantized in units of $e$. Most atoms are electrically neutral.
-- Consider using the fact that Coulomb's law is a central force to model the electron orbiting a nucleus, mentioning that this model breaks down since moving charges radiate, causing electrons to spiral into the nucleus in a fraction of a second.
-
-We know today that charge is *quantized* in integer units of the charge $e$ of the proton,
-$$
-e \approx 4.8 \cdot 10^{-10} \ \text{esu} \approx 1.6 \cdot 10^{-19} \ \text{C} \ .
-$$
-All charges we measure in nature are integer units of $e$. The only known exception to this fact are the fundamental particles that make up the proton and the neutron, known as *quarks*. Each proton and neutron is composed of three quarks, where each quark has a charge of $\pm e/3$. Due to a nuclear process known as *confinement*, these quarks are bound to the inside of their proton or neutron, meaning it's impossible to isolate them or measure their charges directly in the lab.
-
-Fundamentally, physical objects are composed of atoms bound together by electrical forces. Each atom is composed of some number of protons and neutrons bound tightly inside a nucleus by a nuclear or *strong interaction*, and some number of electrons orbiting the nucleus according to the laws of quantum mechanics. Each proton has a charge of exactly $e$, each neutron has exactly zero charge, and each electron has a charge of exactly $-e$.
-
-In most cases an atom has the same number of protons and electrons, in which case its net charge is zero, or *charge neutral*. Since protons can't be removed from a nucleus unless very high energies are applied to overcome the nuclear forces, the only way atoms will typically become charged is by exchanging electrons with other neighboring atoms through *ionization*. Due to charge conservation, these electrons don't spontaneously appear or disappear. They can only move between atoms.
-
-This also explains why the charge we observe on macroscopic objects is very tiny. Almost all atoms or molecules inside the object are charge neutral and hence contribute nothing to the object's charge. When we do measure a charge, what it usually means is that some of the surface atoms have become ionized, either exchanging electrons with the air or with a neighboring object via friction. Indeed, a typical charged object might have a net charge of only $\sim 10^4 \ \text{esu}$. Since charge is quantized, this means
-$$
-n \sim \frac{10^4 \ \text{esu}}{4.8 \cdot 10^{-10} \ \text{esu}} \sim 10^{14}
-$$
-of its atoms have become charged. While this might seem like a lot, a typical macroscopic object will contain something like $N \sim 10^{23}$ total atoms. This means only $n/N \sim 10^{-9}$, or one part in a billion, of the atoms making up the object have been charged and thus contributing anything to the total net charge.
-
-It's in precisely this sense that charge is conserved at the atomic level, and fundamentally it's why charge is also conserved at the macroscopic level as well. In fact, charge conservation is a universal law of nature, even holding for subatomic particles. In that case, charge conservation comes down to the properties of particles and antiparticles, a topic we won't go into in this course.
 
 ### Conductors and Insulators
 
@@ -264,31 +269,31 @@ Evidently, in the far field limit the E-field falls off like $1/r^3$, not like $
 
 As with any vector field, it's best to visualize the behavior of electric fields using field lines. The field lines represent the direction of the E-field at each point in space. This means if an infinitesimal test charge $q$ were placed at rest at some point $\mathbf{x}$ in an external E-field, we'd expect it to feel a force $\mathbf{F} = q\mathbf{E}(\mathbf{x})$, causing the charge to move along the field line passing through the point $\mathbf{x}$.
 
-Unlike with general vector fields, sketching the field lines for electric fields is usually fairly simple, especially when dealing with point charges. To see why, suppose $q$ is a point charge located at the origin, meaning $\mathbf{x}' = \mathbf{0}$. Then its E-field would just be
+Unlike with general vector fields, sketching the field lines for electric fields is usually fairly simple, especially when dealing with point charges. To see why, suppose $q$ is a point charge located at the origin, so that $\mathbf{x}' = \mathbf{0}$. Then its E-field would just be
 $$
-\mathbf{E}(\mathbf{x}) = q' \frac{\mathbf{x}}{|\mathbf{x}|^3} = \frac{q'}{r^2} \mathbf{e}_r \ .
+\mathbf{E}(\mathbf{x}) = q \frac{\mathbf{x}}{|\mathbf{x}|^3} = \frac{q}{r^2} \mathbf{e}_r \ .
 $$
-Thus, the direction of $\mathbf{E}(\mathbf{x})$ will always be radial. That is, its field lines will always be directed radially inward or outward from the origin. If we sketched these field lines in two dimensions, we'd get a field line plot like the one shown below.
+Evidently, the direction of $\mathbf{E}(\mathbf{x})$ will always be radial from the origin, meaning its field lines will be radial from the origin. If we sketched these field lines in two dimensions, we'd get a field line plot like the one shown below.
 
 <img src="../resources/image-20250320131634964.png" style="zoom:50%;" />
 
-Whether the field lines point in or out of the origin depends on the sign of the charge $q'$, with the field lines flowing *outward* from the charge if $q'$ is *positive*, and flowing *inward* toward the charge if $q'$ is *negative*. This will also be true for any point charge located at some arbitrary point $\mathbf{x}'$, except now the field lines will point radially outward or inward from the point $\mathbf{x}'$ instead of the origin.
+Whether the field lines point in or out of the origin depends on the sign of the charge $q$, with the field lines flowing *outward* from the charge if $q$ is *positive*, and flowing *inward* toward the charge if $q$ is *negative*. This will also be true for any point charge located at some arbitrary point $\mathbf{x}'$, except now the field lines will point radially outward or inward from the point $\mathbf{x}'$ instead of the origin.
 
 As with any vector field, the *density* of field lines will represent the strength of the field at any given point. This provides us with an intuitive interpretation of what the E-field represents. It's the number of field lines per unit area around a given point. In 3-dimensional space, it would be the number of field lines per unit volume, or *flux density*, around a given point.
 
-Since the strength of the field at any fixed point is proportional to the charge, the field lines emanating from a given charge $q'$ should be proportional to the size of $q'$. For example, if we choose to draw $k$ field lines outward from a charge of size $q = +1$, then we should draw $2k$ field lines outward from a charge of size $q = +2$.
+Since the strength of the field at any fixed point is proportional to the charge, the field lines emanating from a given charge $q$ should be proportional to the size of $q$. For example, if we choose to draw $k$ field lines outward from a charge of size $q = +1$, then we should draw $2k$ field lines outward from a charge of size $q = +2$.
 
 Now suppose we have $n$ distinct point charges instead of just one. As mentioned above, the E-field of this combined set of charges will be given by the vector sum of each individual E-field $\mathbf{E}_i(\mathbf{x})$,
 $$
-\mathbf{E}(\mathbf{x}) = \sum_{i=1}^n q_i' \frac{\mathbf{x} - \mathbf{x}_i'}{|\mathbf{x} - \mathbf{x}_i'|^3} \ .
+\mathbf{E}(\mathbf{x}) = \sum_{i=1}^n q_i \frac{\mathbf{x} - \mathbf{x}_i}{|\mathbf{x} - \mathbf{x}_i|^3} \ .
 $$
-Provided we're close to any one of these charges, say $q_j'$. Since each $\mathbf{E}_i(\mathbf{x})$ falls off rapidly like $1/|\mathbf{x} - \mathbf{x}_i'|^2$, when $\mathbf{x} \approx \mathbf{x}_j'$ the combined E-field $\mathbf{E}(\mathbf{x})$ will be approximately that of $\mathbf{E}_j(\mathbf{x})$,
+Provided we're close to any one of these charges, say $q_j$. Since each $\mathbf{E}_i(\mathbf{x})$ falls off rapidly like $1/|\mathbf{x} - \mathbf{x}_i|^2$, when $\mathbf{x} \approx \mathbf{x}_j$ the combined E-field $\mathbf{E}(\mathbf{x})$ will be approximately that of $\mathbf{E}_j(\mathbf{x})$,
 $$
-\mathbf{E}(\mathbf{x}) \approx \mathbf{E}_j(\mathbf{x}) = q_j' \frac{\mathbf{x} - \mathbf{x}_j'}{|\mathbf{x} - \mathbf{x}_j'|^3} \ .
+\mathbf{E}(\mathbf{x}) \approx \mathbf{E}_j(\mathbf{x}) = q_j \frac{\mathbf{x} - \mathbf{x}_j}{|\mathbf{x} - \mathbf{x}_j|^3} \ .
 $$
-From this we can conclude that the field lines around each source point $\mathbf{x}_i'$ will also be radial very close to $q_i'$.
+From this we can conclude that the field lines around each source point $\mathbf{x}_i$ will also be radial very close to $q_i$.
 
-Finally, since $\mathbf{E}(\mathbf{x})$ is continuous for each $\mathbf{x} \neq \mathbf{x}_i'$, we must conclude that the field lines will also be continuous at any point away from the point charges. Moreover, the field lines can never cross each other since at each $\mathbf{x}$ we can have only one E-field vector.
+Finally, since $\mathbf{E}(\mathbf{x})$ is continuous for each $\mathbf{x} \neq \mathbf{x}_i$, we must conclude that the field lines will also be continuous at any point away from the point charges. Moreover, the field lines can never cross each other since at each $\mathbf{x}$ we can have only one E-field vector.
 
 We can thus summarize the behavior of electric field lines for discrete point charges with the following rules:
 
@@ -333,9 +338,9 @@ $$
 $$
 This means the units of charge density would be $\text{esu}/\text{cm}^3$ in Gaussian units. Note that $\rho$ isn't a "proper" density function in the mathematical sense since it's not non-negative. Since $q$ can be positive or negative, $\rho$ can take on any real value.
 
-The total amount of net charge $Q$ contained inside the macroscopic object will then be given by the volume integral
+The total amount of net charge $q$ contained inside the macroscopic object will then be given by the volume integral
 $$
-Q = \int_\mathcal{V} d^3\mathbf{x}' \ \rho(\mathbf{x}') \ .
+q = \int_\mathcal{V} d^3\mathbf{x}' \ \rho(\mathbf{x}') \ .
 $$
 By convention, we typically extend the charge density function to cover all space by defining $\rho(\mathbf{x}') = 0$ for any $\mathbf{x}'$ not in $\mathcal{V}$. This means we can and will often omit the $\mathcal{V}$ from integrals and implicitly it's non-zero only when $\mathbf{x}'$ is in $\mathcal{V}$.
 
@@ -351,13 +356,13 @@ $$
 $$
 We've thus managed to recast Coulomb's law into a form that also works for continuous distributions of charge. When a *test charge* $q$ is placed in the presence of some charge distribution, it will feel a force $\mathbf{F} = q\mathbf{E}$, where $\mathbf{E}$ is given by the integral above.
 
-It turns out we can express the E-field for a point charge in terms of this integral as well by using the Dirac delta function. To see why this is the case, suppose a point charge $q_0'$ is placed at position $\mathbf{x}_0'$. We can then define a charge density for $q_0'$ by
+It turns out we can express the E-field for a point charge in terms of this integral as well by using the Dirac delta function. To see why this is the case, suppose a point charge $q$ is placed at position $\mathbf{x}_0$. We can then define a charge density for $q$ by
 $$
-\rho(\mathbf{x}') = q_0' \delta(\mathbf{x}_0' - \mathbf{x}') \ .
+\rho(\mathbf{x}') = q \delta(\mathbf{x}' - \mathbf{x}_0) \ .
 $$
-If we plug this into the integral above, the delta function will pick out the point $\mathbf{x}_0'$ from the integral and give
+If we plug this into the integral above, the delta function will pick out the point $\mathbf{x}_0$ from the integral and give
 $$
-\mathbf{E}(\mathbf{x}) = \int d^3 \mathbf{x}' \ q_0' \delta(\mathbf{x}_0' - \mathbf{x}') \frac{\mathbf{x}-\mathbf{x}'}{|\mathbf{x}-\mathbf{x}'|^3} = q_0' \frac{\mathbf{x}-\mathbf{x}_0'}{|\mathbf{x}-\mathbf{x}_0'|^3} \ ,
+\mathbf{E}(\mathbf{x}) = \int d^3 \mathbf{x}' \ q \delta(\mathbf{x}' - \mathbf{x}_0) \frac{\mathbf{x}-\mathbf{x}'}{|\mathbf{x}-\mathbf{x}'|^3} = q \frac{\mathbf{x}-\mathbf{x}_0}{|\mathbf{x}-\mathbf{x}_0|^3} \ ,
 $$
 which is the same E-field for a point charge given before. In this way, we can use the delta function to easily convert integrals into sums or vice versa, and thus avoid the need to state the formulas for discrete and continuous charge distributions separately.
 
@@ -369,9 +374,9 @@ Suppose we have a distribution of charges concentrated along some 1-dimensional 
 $$
 dq' = d\ell' \lambda(\mathbf{x}') \ .
 $$
-To find the total net charge $Q$ contained on the curve we need only integrate over each $dq'$ along the curve to get
+To find the total net charge $q$ contained on the curve we need only integrate over each $dq'$ along the curve to get
 $$
-Q = \int_\mathcal{C} d\ell' \lambda(\mathbf{x}') \ .
+q = \int_\mathcal{C} d\ell' \lambda(\mathbf{x}') \ .
 $$
 By Coulomb's law, each charge $dq'$ along the curve will give rise to some E-field $d\mathbf{E}(\mathbf{x})$, where
 $$
@@ -389,9 +394,9 @@ In an analogous manner, suppose now that we have a distribution of charges conce
 $$
 dq' = da' \sigma(\mathbf{x}') \ .
 $$
-To find the total net charge $Q$ contained on the surface we need only integrate over all $dq'$ along the surface to get
+To find the total net charge $q$ contained on the surface we need only integrate over all $dq'$ along the surface to get
 $$
-Q = \int_\mathcal{S} da' \sigma(\mathbf{x}') \ .
+q = \int_\mathcal{S} da' \sigma(\mathbf{x}') \ .
 $$
 Each charge $dq'$ along the surface will give rise to some E-field $d\mathbf{E}(\mathbf{x})$ according to Coulomb's law. By the principle of superposition, we can thus find the E-field due to the entire surface charge distribution by integrating over the surface to get
 $$
@@ -403,7 +408,7 @@ The dimensions of surface charge density must evidently be charge per unit *area
 
 In this course we'll find ourselves frequently needing to go back and forth between densities of different dimension depending on the given problem at hand. For charge densities, the easiest way to do so is to remember the following equivalence,
 $$
-\int_\mathcal{C} d\ell' \lambda(\mathbf{x}') \leftrightarrow \int_\mathcal{S} da' \sigma(\mathbf{x}') \leftrightarrow \int_\mathcal{V} d^3\mathbf{x}' \rho(\mathbf{x}') \ .
+\int_\mathcal{C} d\ell' \ \lambda(\mathbf{x}') \leftrightarrow \int_\mathcal{S} da' \ \sigma(\mathbf{x}') \leftrightarrow \int_\mathcal{V} d^3\mathbf{x}' \ \rho(\mathbf{x}') \ .
 $$
 With charge densities now defined in different dimensions we're now finally in a position to work a few problems. Unfortunately, calculating the E-field directly from this integral is usually quite cumbersome, in part due to the fact that we have to solve an for each of the three components of $\mathbf{E}$. In some cases we can do so, particularly if the charge distribution is highly symmetric in some system of coordinates. 
 
@@ -886,6 +891,8 @@ $$
 $$
 Thus, in electrostatics the E-field is always *irrotational*. That is, the field lines will never rotate around any point in space. They can only converge or diverge from source charges. While perhaps not obvious, this is a fact we already knew. We mentioned earlier in the chapter that the electrostatic force $\mathbf{F} = q\mathbf{E}$ is conservative, which means $\nabla \times \mathbf{F} = \mathbf{0}$ and hence $\nabla \times \mathbf{E} = \mathbf{0}$. Thus, the statement that $\mathbf{E}$ has vanishing curl is just an equivalent way of saying that $\mathbf{F} = q\mathbf{E}$ is conservative.
 
+### Scalar Potential
+
 From the Helmholtz theorem, we know that any irrotational vector field must be the gradient of some scalar field. This means in electrostatics we can always define a *scalar potential* $\phi(\mathbf{x})$ satisfying
 $$
 \boxed{
@@ -906,6 +913,22 @@ We can thus assign a physical meaning to the electrostatic scalar potential by t
 
 From dimensional analysis, we see that the scalar potential must have dimensions of energy per unit charge. This is true in each system of units. In Gaussian units this means the scalar potential has units of $\text{erg}/\text{esu}$, which we call the *statvolt*. In SI units the scalar potential has units of *volts*, where $1 \ \text{V} \equiv 1 \ \text{J}/\text{C}$. Their numerical conversion factor is $1 \ \text{statvolt} \approx 300 \ \text{V}$, though again keep in mind their dimensions differ due to the different ways the dimension of charge is determined in the two systems.
 
+Since E-fields obey the principle of superposition and the scalar potential is just the gradient of the E-field, the scalar potential must obey the superposition principle as well. This means if we have $n$ charge distributions $\rho_i(\mathbf{x})$ each giving rise to their own individual E-fields $\mathbf{E}_i = -\nabla \phi_i$, then the potential $\phi(\mathbf{x})$ of the total E-field is just the sum of each individual potential,
+$$
+\phi(\mathbf{x}) = \phi_1(\mathbf{x}) + \phi_2(\mathbf{x}) + \cdots \phi_n(\mathbf{x}) \ .
+$$
+Visualizing potentials is done in a similar manner to visualizing E-fields using field lines. Recall from vector calculus that the gradient of any scalar field is always perpendicular to the surfaces where the scalar field is constant. When that scalar field is the scalar potential, we call these constant surfaces *equipotentials*. Since the E-field points along the direction of the field lines, the equipotentials must always be perpendicular to the field lines. This makes them fairly easy to plot. For example, here's the field line plot of a positive point charge again, this time with the equipotentials shown in green.
+
+<img src="../resources/image-20250403150930257.png" alt="" style="zoom:50%;" />
+
+Notice that the equipotentials are all circular, or really spherical when viewed in 3-dimensional space. Moreover, the equipotentials spread farther apart away from the point charge. In fact they fall off like $1/r$, which we'll show shortly.
+
+Here's the field line plot for the physical dipole again except with the equipotentials shown. In this case the equipotentials still spread out far away from the charges, except their curves are no longer circular except when close to the point charges. The equipotentials for the negative point charge are shown using dashed instead of solid lines, indicating those equipotentials are negative instead of positive.
+
+<img src="../resources/image-20250403151035704.png" style="zoom:50%;" />
+
+We'll see a lot more examples of equipotential plots like these throughout the course.
+
 ### Integral Form
 
 The integral form of $\nabla \times \mathbf{E} = \mathbf{0}$ can be obtained by integrating both sides over some open surface $\mathcal{S}$ to get
@@ -920,431 +943,347 @@ Plugging this in, the integral form of $\nabla \times \mathbf{E} = \mathbf{0}$ i
 $$
 \oint_\mathcal{C} \mathbf{E} \cdot d\boldsymbol{\ell} = 0 \ .
 $$
-That is, the *circulation* of the E-field around *any* closed loop in space is zero in electrostatics. Recall that any circulation integral satisfying this property is *path-independent*. That is, between any two points $\mathbf{x}_1$ and $\mathbf{x}_2$ the value of the integral
+That is, the *circulation* of the E-field around *any* closed loop in space is zero in electrostatics. Recall that any circulation integral satisfying this property is *path-independent*. This means the circulation integral is a *state function*, and thus must be the antiderivative of some scalar field $\phi(\mathbf{x})$, which is of course just the scalar potential defined above. We can thus write
 $$
--\int_{\mathbf{x}_1}^{\mathbf{x}_2} \mathbf{E} \cdot d\boldsymbol{\ell}
+\phi(\mathbf{x}) \equiv -\int_{\mathbf{g}}^{\mathbf{x}} \mathbf{E} \cdot d\boldsymbol{\ell} \ ,
 $$
-is independent of the integration path chosen to go from $\mathbf{x}_1$ to $\mathbf{x}_2$. This means the integral is a *state function*, and hence must be the antiderivative of some scalar field $\phi(\mathbf{x})$, where
-$$
-\phi(\mathbf{x}_2) - \phi(\mathbf{x}_1) = -\int_{\mathbf{x}_1}^{\mathbf{x}_2} \mathbf{E} \cdot d\boldsymbol{\ell} \ .
-$$
-Of course, $\phi(\mathbf{x})$ is exactly just the scalar potential defined before, which can easily be seen by substituting $\mathbf{E} = -\nabla \phi$ into the integral above and using the fundamental theorem of calculus. The difference
-$$
-V \equiv \phi(\mathbf{x}_2) - \phi(\mathbf{x}_1)
-$$
-is usually called the *potential difference* or *voltage* between $\mathbf{x}_1$ and $\mathbf{x}_2$. The potential difference or voltage between any two points is thus just the difference in electrostatic potential energy per unit charge between those two points.
+where $\mathbf{g}$ is some arbitrary *ground point* where we define $\phi(\mathbf{g}) = 0$. Equivalently, this says that we can define the scalar potential only up to an additive constant, which we can specify by fixing a ground point somewhere. Since the real physical information is contained in the forces, the electrostatic force is proportional to the E-field, and the E-field is the gradient of the potential, we can add any constant to the potential without changing the E-field and hence the forces. Indeed, this is completely analogous to the fact that we can always add a constant to the energy of a system without changing the underlying physics.
 
-Since the scalar potential is only defined in terms of differences, we can always add a global constant to the potential without changing the value of $\mathbf{E}$, and hence of the force $\mathbf{F}$. This means we're always free to choose a *ground point* $\mathbf{g}$ where $\phi(\mathbf{g}) \equiv 0$. By convention we usually choose this ground point to be some point at infinity, so that
+We can thus set the ground point $\mathbf{g}$ to be whatever we wish for convenience. By convention, in electromagnetism we'll almost always choose $\mathbf{g}$ to be a point at infinity, so that the potential takes the form
 $$
-\phi(\mathbf{x}) \equiv \int_{\mathbf{x}}^{\infty} \mathbf{E} \cdot d\boldsymbol{\ell} \ .
+\phi(\mathbf{x}) = \int_{\mathbf{x}}^{\infty} \mathbf{E} \cdot d\boldsymbol{\ell} \ .
 $$
-In this convention, the scalar potentially physically represents the electrostatic potential energy per unit charge required to move that charge from infinity and place it at a given point $\mathbf{x}$ in the presence of $\mathbf{E}$. Choosing the ground point at infinity can be done whenever the charge distribution giving rise to the E-field doesn't itself extend to infinity, which is always the case in practice. Nevertheless it can sometimes be useful to choose the ground point to be something else. For example, when dealing with electronics equipment it's common to define the negative terminal, or *ground*, to have zero voltage.
+Using this convention, the electrostatic potential physically represents the potential energy required to move a unit point charge from infinity and place it at the point $\mathbf{x}$ in the presence of some external E-field $\mathbf{E}(\mathbf{x})$.
 
-Provided we already have an expression for the E-field of some distribution, calculating the scalar potential is particularly easy. We need only choose a ground point (usually infinity) and evaluate the integral above. For example, we already know that the E-field for a point charge located at the origin is given by
+Sometimes we'll find it more convenient to choose a different ground point, particularly when calculating the potential for an infinite charge distribution. We'll see some examples of how to do this below.
+
+The difference $V = \Delta \phi$ in potential between any two points $\mathbf{x}_1$ and $\mathbf{x}_2$ is evidently just the path integral from $\mathbf{x}_1$ to $\mathbf{x}_2$,
+$$
+V \equiv \phi(\mathbf{x}_2) - \phi(\mathbf{x}_1) = -\int_{\mathbf{x}_1}^{\mathbf{x}_2} \mathbf{E} \cdot d\boldsymbol{\ell} \ .
+$$
+By path independence, this integral must be the same for *any* path chosen to go from  $\mathbf{x}_1$ to $\mathbf{x}_2$, which means $V$ will always be unique for any chosen ground point. We call the difference in potential between two points the *potential difference* or *voltage* between those points. When we measure the voltage across a battery for instance, what we're really measuring is this difference in potential between the two terminals of the battery, not the absolute potential of the battery.
+
+Provided we already have an expression for the E-field of some charge distribution, calculating the scalar potential is particularly easy. We need only choose a ground point and evaluate the integral above. For example, we already know that the E-field for a point charge located at the origin is given by
 $$
 \mathbf{E}(\mathbf{x}) = \frac{q}{r^2} \mathbf{e}_r \ .
 $$
-If we choose a radial integration path from infinity to $\mathbf{x}$, which we're free to do since the integral is path independent, we get
+We'll take the ground point at infinity and choose a radial integration path from infinity to $\mathbf{x}$, which we're free to do by path independence. Then $d\boldsymbol{\ell} = \mathbf{e}_r dr$, and we have
 $$
-\phi(\mathbf{x}) = \int_{\mathbf{x}}^{\infty} \frac{q}{r'^2} \mathbf{e}_r \cdot d\boldsymbol{\ell} = \int_{r}^{\infty} \frac{q}{r'^2} = -\frac{q}{r'} \bigg|_r^\infty \ .
+\phi(\mathbf{x}) = \int_r^{\infty} dr' \ \frac{q}{r'^2} = \frac{q}{r} .
 $$
-Choosing $\phi \equiv 0$ at infinity, which we're also always free to do, the scalar potential for a point charge at the origin becomes
-$$
-\phi(\mathbf{x}) = \frac{q}{r} \ .
-$$
+Let's now look at a few other examples.
 
+##### Example: Sphere of uniform charge
 
-
-
-- This section is awful, probably error ridden, and disorganized. Redo most of it.
-
-- Conclude first that the curl of E is zero since Coulomb's law is conservative, then prove it again the usual way.
-- Have an early section (after the potential is defined) discussing the potential energy of a charge distribution. This will be easy to deduce from the fact that $\mathbf{F} = -\nabla U$ and $\mathbf{E} = -\nabla \phi$. Maybe calculate the potential energy of an easy problem.
-- Then proceed to derive the integral formula, Poisson's equation, and the associated boundary conditions
-- Move conductor section up to this one since it follows immediately from Gauss's law and the boundary conditions.
-
-
-
-
-
-Notice that the integral formula for the scalar potential looks an awful lot like the formula for work in terms of force. Recall that the work done in moving a particle from a point $\mathbf{a}$ to a point $\mathbf{b}$ via an exerted force $\mathbf{F}_{\text{ex}}$ is given by
-$$
-W = \int_\mathbf{a}^\mathbf{b} \mathbf{F}_{\text{ex}} \cdot d\boldsymbol{\ell} \ .
-$$
-Since the force one must exert to move against the field is just minus the force generated by the field itself, we must evidently have $\mathbf{F}_{\text{ex}} = -q\mathbf{E}$. Plugging this in and factoring out the charge from both sides, we can see that the work done is proportional to the potential difference between the two points,
-$$
-W = -q \int_\mathbf{a}^\mathbf{b} \mathbf{E} \cdot d\boldsymbol{\ell} = q \big[\phi(\mathbf{b}) - \phi(\mathbf{a})\big] \ .
-$$
-This means we can think of the scalar potential as the work done in moving a unit charge from infinity to its current location in the presence of an external electric field $\mathbf{E}$. Indeed, this is why we include the minus sign in the definition of the scalar potential as $\mathbf{E} = - \nabla \phi$​, to ensure that the potential has the same sign as the work done on the charge.
-
-Provided we set the ground point at infinity, the work done in moving the charge from infinity to some location $\mathbf{x}$ must evidently be $W = q\phi(\mathbf{x})$. This is of course just the potential energy $U$, provided we define $U(\infty)\equiv 0$. Thus, for a point charge moving in the presence of an external field, its potential energy is just $U = q\phi$. For a general charge distribution we need only use the superposition principle to replace the charge $q$ by a volume integral over the charge density $\rho(\mathbf{x})$, in which case we have
-$$
-\boxed{
-U = \int d^3 \mathbf{x} \ \rho(\mathbf{x}) \phi(\mathbf{x})
-} \ .
-$$
-Remember, this is only true for charges moving in the presence of an external electric field. This is *not* true for the charges used to assemble the distribution giving rise to the field itself. We'll see what that potential energy must be momentarily.
-
-#### Example: Hollow sphere with uniform charge
-
-Let's now try to calculate the scalar potential for the uniformly charged hollow sphere. Since we already know what the electric field should be, all we need to do is calculate the line integral. Recall the electric field for a uniformly charged hollow sphere of radius $R$ and charge $Q$ centered at the origin is given by
+Let's consider again the uniformly charged hollow sphere with radius $R$ and total charge $Q = 4\pi R^2 \sigma$. We've calculated the E-field of this charge distribution multiple times now, showing that
 $$
 \mathbf{E}(\mathbf{x}) = 
 \begin{cases}
 \mathbf{0} \ , & r < R \ , \\
-\frac{Q}{r^2} \mathbf{e}_r \ , & r \geq R \ . \\
+Q/r^2 \ \mathbf{e}_r \ , & r \geq R \ . \\
 \end{cases}
 $$
-To find the potential at a given field point $\mathbf{x}$ we need to integrate from $\mathbf{x}$ to infinity. Since the field is radially symmetric, we can write $\mathbf{E} \cdot d\boldsymbol{\ell} = E(r) dr$. When the field point lies outside the sphere $r \geq R$, and we get
+Just as we did the point charge, we can calculate the scalar potential for this distribution by choosing the ground point at infinity and taking a radial path from infinity to $\mathbf{x}$ so that $d\boldsymbol{\ell} = \mathbf{e}_r dr$, so that
 $$
-\begin{align*}
-\phi(\mathbf{x}) &= \int_\mathbf{x}^\infty \mathbf{E} \cdot d\boldsymbol{\ell} \\
-&= Q \int_r^\infty \frac{dr}{r^2} \\
-&= \frac{Q}{r} \ .
-\end{align*}
+\phi(\mathbf{x}) = \int_{r}^{\infty} dr' \ E(r') \ ,
 $$
-For field points inside the sphere we have to integrate the field inside the sphere as well. When $r > R$ we get
+where $E(r) = |\mathbf{E}(\mathbf{x})|$. Just as we did when calculating the E-field, we need to consider two cases. When $r \geq R$ we have
 $$
-\begin{align*}
-\phi(\mathbf{x}) &= \int_\mathbf{x}^\infty \mathbf{E} \cdot d\boldsymbol{\ell} \\
-&= \int_r^R dr \ 0 + Q \int_R^\infty \frac{dr}{r^2} \\
-&= \frac{Q}{R} \ .
-\end{align*}
+\phi(\mathbf{x}) = \int_{r}^{\infty} dr' \ \frac{Q}{r'^2} = \frac{Q}{r} \ ,
 $$
-Thus, the potential for a solid sphere is evidently given by
-$$
-\phi(\mathbf{x}) = 
-\begin{cases}
-\frac{Q}{R} \ , & r < R \ , \\
-\frac{Q}{r} \ , & r \geq R \ . \\
-\end{cases}
-$$
-We can verify we got the correct answer if we wish by taking the gradient to recover the field. For example, outside the sphere we have
-$$
-\mathbf{E}(\mathbf{x}) = -\nabla \phi(\mathbf{x}) = - \frac{d}{dr} \frac{Q}{r} \mathbf{e}_r = \frac{Q}{r^2} \mathbf{e}_r \ .
-$$
-Notice that while the electric field is zero inside the sphere, the potential is not. It's a constant value throughout. Also notice that the two sides match at $r=R$, meaning the potential is continuous even though the field is not at $r=R$.
+which is exactly what we'd expect since the hollow sphere acts as a point charge when $r \geq R$. 
 
-##### Example: Solid sphere with uniform charge
+Since we're integrating to infinity, when $r < R$ we have to split the integral into the regions $r < R$ and $r \geq R$. We thus have
+$$
+\phi(\mathbf{x}) = \int_{r}^R dr' \ 0 + \int_{R}^\infty dr' \ \frac{Q}{r'^2} = \frac{Q}{R} \ .
+$$
+Evidently the potential inside the hollow sphere is now nonzero but constant. In fact, the potential inside the sphere is exactly the same as the potential on the surface of the sphere, which from the first integral we see is just $Q/R$. This means the potential is continuous at the surface even though the E-field is discontinuous.
 
-We can also calculate the potential of the solid sphere if we wish. Outside the sphere the result is the same. Inside the sphere we have to use the fact that the field is no longer zero, but linear in $r$, with $\mathbf{E}(\mathbf{x}) = \frac{Qr}{R^3} \mathbf{e}_r$. When $r < R$ we thus have
+Something similar holds for the uniformly charged solid sphere where $Q = 4/3 \pi R^3 \rho$. In that case, the potential outside the sphere is still $\phi(\mathbf{x}) = Q/R$, but inside the sphere we instead need to use $E(r) = Qr / R^3$. Inside the sphere we then get
 $$
-\begin{align*}
-\phi(\mathbf{x}) &= \int_\mathbf{x}^\infty \mathbf{E} \cdot d\boldsymbol{\ell} \\
-&= \frac{Q}{R^3} \int_r^R dr \ r + Q \int_R^\infty \frac{dr}{r^2} \\
-&=  \frac{Q}{R^3} \bigg(\frac{R^2}{2} - \frac{r^2}{2}\bigg) + \frac{Q}{R} \\
-&= \frac{Q}{2R} \bigg(3 - \frac{r^2}{R^2}\bigg) \ .
-\end{align*}
+\phi(\mathbf{x}) = \int_{r}^R dr' \frac{Qr}{R^3} + \int_{R}^\infty dr' \frac{Q}{r'^2} = \frac{Q}{2R} \bigg[3 - \frac{r^2}{R^2} \bigg] \ .
 $$
-Thus, for a solid sphere the potential is evidently given by
-$$
-\phi(\mathbf{x}) = 
-\begin{cases}
-\frac{Q}{2R}\bigg(3 - \frac{r^2}{R^2}\bigg) \ &, & r < R \ , \\
-\frac{Q}{r} \ &, & r \geq R \ . \\
-\end{cases}
-$$
-Again, the potential is continuous at $r=R$. In fact so is its gradient since the field is also continuous at $r=R$.
+Thus, the potential of the solid sphere is now a quadratic function of $r$, decreasing from $\phi(0) = 3Q/2R^3$ at the origin down to $\phi(R) = Q/R$ at the surface of the sphere, thus agreeing with the value of $\phi(R)$ outside the sphere and ensuring the potential remains continuous at the boundary.
 
-##### Example: Infinite sheet with uniform charge
+##### Example: Infinite sheet of uniform charge
 
-Let's briefly work an example involving an infinite charge distribution. We'll choose the uniformly charged infinite sheet. In this case we can no longer take infinity as the ground point. Instead we'll choose $\mathbf{g} = \mathbf{0}$ as the ground point. Recall for the infinite sheet the electric field for $z \geq 0$ is given by $\mathbf{E}(\mathbf{x}) = 2\pi\sigma \mathbf{e}_z$. This means $\mathbf{E} \cdot d\boldsymbol{\ell} = E(z) dz$, and so we have
+As an example of how to deal with infinite charge distributions, let's now consider again the infinite sheet with a uniform surface charge density $\sigma$. We've shown multiple times that the E-field of this distribution is
 $$
-\phi(\mathbf{x}) = -\int_\mathbf{0}^\mathbf{x} \mathbf{E} \cdot d\boldsymbol{\ell} = -2\pi\sigma \int_0^z dz = -2\pi\sigma z \ 
+\mathbf{E}(\mathbf{x}) = \begin{cases}
+2\pi\sigma \mathbf{e}_z \ , & z > 0 \\
+-2\pi\sigma \mathbf{e}_z \ , & z < 0
+\end{cases} \ .
 $$
-One can quickly check that we'd get the same result when $z < 0$. Thus, the potential for the infinite sheet is just
+Now, if we tried to choose infinity as the ground point here we'd have a problem. For instance, suppose we choose the ground point at $z = +\infty$ and integrated along the $z$-direction so that $d\boldsymbol{\ell} = \mathbf{e}_z dz$. Then when $z > 0$ we'd have
 $$
-\phi(\mathbf{x}) = -2\pi\sigma z \ ,
+\phi(\mathbf{x}) = \int_z^\infty dz' \ 2\pi\sigma = \infty \ .
 $$
-which is what we'd expect since its gradient must be constant.
+Thus, we'd get an infinite potential if we tried to use infinity as the ground point here. The reason for this is that the sheet is infinite, and hence its E-field doesn't fall off like $1/r^2$ and so the integral diverges. 
 
-### Integral Formula
+We thus need to choose a different ground point. The next best choice is the origin. If we set $\mathbf{g} = \mathbf{0}$, when $z > 0$ we now get
+$$
+\phi(\mathbf{x}) = -\int_0^z dz' \ 2\pi\sigma = -2\pi\sigma z \ ,
+$$
+which is clearly finite. It's easy to see we get the same answer when $z < 0$. Thus, for all $z$ the potential for the uniformly charged infinite sheet, when the ground point is the origin, is simply
+$$
+\phi(\mathbf{x}) = -2\pi\sigma z \ .
+$$
+Notice again that the potential is continuous near the surface of the sheet since $\phi \to 0$ as $z \to 0$ from either direction, despite the fact that the E-field is clearly discontinuous at $z=0$. Also notice that unlike the sphere, the potential for the infinite sheet doesn't go to zero at infinity, but instead diverges. Clearly this is non-physical, and due entirely to the infinite size assumption. If the sheet were of some finite size, the potential would indeed go to zero in accordance with Coulomb's law.
 
-We'll now see what Coulomb's Law looks like in terms of the scalar potential. In the previous chapter we proved the identity
+##### Example: Infinite wire of uniform charge
+
+As our final example we'll consider again the infinite wire with uniform line charge density $\lambda$. We already showed that
 $$
-\nabla \frac{1}{|\mathbf{x} - \mathbf{x}'|} = -\frac{\mathbf{x} - \mathbf{x}'}{|\mathbf{x} - \mathbf{x}'|^3} \ .
+\mathbf{E}(\mathbf{x}) = \frac{2\lambda}{\varrho} \mathbf{e}_\varrho \ .
 $$
-Multiplying both sides by the charge density $-\rho(\mathbf{x}')$ and integrating over $\mathbf{x}'$, we have
+Again, since this distribution is infinite we can't choose the ground point at infinity. However, we can't choose the origin either. To see why, suppose we fix the ground point at some $\mathbf{g} = \varrho_0 \mathbf{e}_\varrho$ and integrate along a radial path $d\boldsymbol{\ell} = \mathbf{e}_\varrho d\varrho$. Then we have
 $$
--\nabla \int d^3 \mathbf{x}' \ \frac{\rho(\mathbf{x}')}{|\mathbf{x} - \mathbf{x}'|} = \int d^3 \mathbf{x}' \ \rho(\mathbf{x}') \frac{\mathbf{x} - \mathbf{x}'}{|\mathbf{x} - \mathbf{x}'|^3} \ .
+\phi(\mathbf{x}) = -\int_{\varrho_0}^\varrho d\varrho' \frac{2\lambda}{\varrho'} = -2\lambda \log\frac{\varrho}{\varrho_0} \ .
 $$
-Recognizing that the righthand side is just the electric field and matching with the formula $\mathbf{E} = - \nabla \phi$, we thus have
+Notice if we tried to choose $\varrho_0 = 0$ the log would diverge, again giving an infinite potential. We can set $\varrho_0$ to be any other finite value though and we'd be fine. The simplest choice is evidently $\varrho_0 = 1$, in which case we have
+$$
+\phi(\mathbf{x}) = -2\lambda \log\varrho \ .
+$$
+Since $\log\varrho \to \infty$ as $\varrho \to \infty$, this potential doesn't go to zero at infinity but instead diverges. Clearly this is non-physical, and due entirely to the infinite length assumption. The potential of a finite length wire would indeed go to zero, which we'll see shortly.
+
+### Coulomb's Law for Potentials
+
+In practice it's not terribly useful to calculate the potential from a known E-field, since the E-field and hence the force is usually what we're trying to find to begin with. We'd instead like a way to calculate the potential directly from the charge distribution. Once we have the potential we can then easily calculate the E-field by taking its gradient.
+
+To seek such an expression let's consider again the integral formula for the E-field of a localized charge distribution,
+$$
+\mathbf{E}(\mathbf{x}) = \int d^3 \mathbf{x}' \ \rho(\mathbf{x}') \frac{\mathbf{x}-\mathbf{x}'}{|\mathbf{x}-\mathbf{x}'|^3} \ .
+$$
+Now, recall again from the previous chapter that we showed
+$$
+\frac{\mathbf{x} - \mathbf{x}'}{|\mathbf{x} - \mathbf{x}'|^3} = -\nabla \frac{1}{|\mathbf{x} - \mathbf{x}'|} \ .
+$$
+Inserting this expression into the integral and pulling the gradient out of the integral, we thus have
+$$
+\mathbf{E}(\mathbf{x}) = - \nabla \int d^3 \mathbf{x}' \ \frac{\rho(\mathbf{x}')}{|\mathbf{x} - \mathbf{x}'|} \ .
+$$
+We've thus been able to write the E-field in terms of the gradient of some scalar field, which must clearly be the potential,
 $$
 \boxed{
 \phi(\mathbf{x}) = \int d^3 \mathbf{x}' \ \frac{\rho(\mathbf{x}')}{|\mathbf{x}-\mathbf{x}'|} 
 }\ .
 $$
-This is the generalized form of Coulomb's Law expressed for the scalar potential. Note by replacing $d^3 \mathbf{x}' \ \rho(\mathbf{x}')$ with $da \ \sigma(\mathbf{x}')$ or $d\ell \ \lambda(\mathbf{x}')$ we can get the equivalent integrals for the potential of surface or line charge distributions. Do be advised, however, that these formulas *only* hold for *localized* charge distributions. For charge distributions that extend to infinity we may need to modify these equations, for example by choosing a different ground point than infinity for our calculations.
+We now have an integral expression for the potential directly in terms of the charge distribution, which is what we were seeking to find. If the charge distribution is one or two dimensional we make the appropriate substitutions described before. Note that since this integral is derived from Coulomb's law it only holds for *localized* charge distributions. It doesn't work for infinite charge distributions, in which case we'd have to calculate the potential some other way.
 
-We can use this formula to calculate the potential directly from the charge density itself rather than having to first calculate the electric field. Indeed this is extremely useful. Recall for the electric field we needed to calculate *three* integrals, one for each component. Since the potential is a scalar we only need to calculate a single integral without needing to worry about the vector $\mathbf{x} - \mathbf{x}'$ at all. Once we have the potential, we can easily calculate the electric field.
+That the potential should have this form should be intuitive. After all, we showed the potential of a point charge $q'$ at the origin is just $q'/r$. If we were to translate the charge away from the origin to some other point $\mathbf{x}'$, we'd instead have
+$$
+\phi(\mathbf{x}) = \frac{q'}{|\mathbf{x}-\mathbf{x}'|} \ .
+$$
+By the principle of superposition, the potential of a set of $n$ point charges $q_i'$ located at positions $\mathbf{x}_i'$ would then be
+$$
+\phi(\mathbf{x}) = \sum_{i=0}^n \frac{q_i'}{|\mathbf{x}-\mathbf{x}_i'|} \ .
+$$
+In the continuum limit we'd replace this sum over each $q_i'$ with an integral over $dq' = \rho(\mathbf{x}') d^3\mathbf{x}'$, recovering the integral above.
 
-Before working a few examples, let's try to get a visual understanding of what the potential of a charge distribution looks like. We already have an idea how to visualize the electric field of a distribution using field lines. Since the field is just the gradient of the potential, we know from vector calculus that the field must always point perpendicular to surfaces of constant potential. These constant potential surfaces are called *equipotentials*. Indeed, it's just as easy to draw equipotentials as it is to draw field lines. For example, the equipotential surfaces of a point charge are shown in the figure below.
+We'll study this formula a lot in the next several chapters. For now, the primary utility of this formula is that we can use it to calculate the scalar potential of more complicated charge distributions where it would've been impossible to calculate the E-field directly from its own integral formula. Let's work a quick example.
 
-FIGURE
+##### Example: Finite wire of uniform charge
 
-Let's now work some examples to show how much nicer this integral formula is to use than the one for the electric field.
-
-##### Example: Finite wire with uniform charge
-
-Let's find the potential of a uniformly charged wire of finite length. Suppose a wire of length $L$ has a uniform charge $Q = \lambda L$. We'll assume that it is oriented along the $z$-axis with its center at the origin.
-
-![](../resources/image-20240811130653319.png)
-
-Assuming the wire has negligible thickness we can use the $1$-dimensional version of the integral formula for the potential,
+Suppose again we have a wire with some uniform line charge density $\lambda$, except instead of assuming the wire is infinitely long we'll make the more realistic assumption that the wire has some finite length $L$. Since this charge distribution is now localized we can use the integral formula above, replacing $\rho(\mathbf{x}') d^3\mathbf{x}'$ with $\lambda(\mathbf{x}') d\ell'$ to write
 $$
 \phi(\mathbf{x}) = \int d\ell' \ \frac{\lambda(\mathbf{x}')}{|\mathbf{x} - \mathbf{x}'|} \ .
 $$
-Since $\lambda$ is constant along the wire and the wire is centered on the $z$-axis we can set $d\ell' = dz'$ and write the integral as
+Since the charge density is constant we can immediately pull it out of the integral. If we assume again the wire is oriented along the $z$-axis we can again set $d\ell' = dz'$. To calculate $|\mathbf{x} - \mathbf{x}'|$ we again use cylindrical coordinates with $\mathbf{x} = \varrho \mathbf{e}_\varrho + z \mathbf{e}_z$ and $\mathbf{x}' = z' \mathbf{e}_z$. Then
 $$
-\phi(\mathbf{x}) = \lambda \int_{-L/2}^{L/2} \frac{dz'}{|\mathbf{x} - \mathbf{x}'|} \ .
+|\mathbf{x} - \mathbf{x}'| = \sqrt{\varrho^2 + (z - z')^2} \ .
 $$
-All that remains now is to find $\xi = |\mathbf{x} - \mathbf{x}'|$. We'll work in cylindrical coordinates. Since each source point is along the $z$-axis we can write $\mathbf{x}' = z' \mathbf{e}_z$. For the field point we'll write $\mathbf{x} = \varrho \mathbf{e}_\varrho + z \mathbf{e}_z$, where $r$ is the radial cylindrical coordinate. This means we have
+Assuming the wire is centered at the origin, the integral we now need to calculate is thus
 $$
-\xi^2 = \varrho^2 + (z - z')^2 \ .
+\phi(\mathbf{x}) = \lambda \int_{-L/2}^{L/2} \frac{dz'}{\sqrt{\varrho^2 + (z - z')^2}} \ .
 $$
-Plugging this into the integral for the potential, we're left to evaluate the following integral,
+We can evaluate this integral by making the substitution $u = \frac{z - z'}{\varrho}$ and $du = -\frac{z'}{\varrho}$ to get
 $$
-\phi(\mathbf{x}) = \lambda \int_{-L/2}^{L/2} \frac{dz}{\sqrt{\varrho^2 + (z - z')^2}} \ .
+\phi(\mathbf{x}) = -\lambda \int_{\frac{z+L/2}{\varrho}}^{\frac{z-L/2}{\varrho}} \frac{du}{\sqrt{1 + u^2}} = -\lambda \log(\sqrt{1 + u^2} + u) \bigg |_{u=(z+L/2)/\varrho}^{(z-L/2)/\varrho} \ .
 $$
-We can evaluate this integral by making the substitution $x = \frac{z - z'}{\varrho}$ and $dx = -\frac{z'}{\varrho}$ to get
-$$
-\phi(\mathbf{x}) = -\lambda \int_{\frac{z+L/2}{\varrho}}^{\frac{z-L/2}{\varrho}} \frac{dx}{\sqrt{1 + x^2}} = -\lambda \log(\sqrt{1 + x^2} + x) \bigg |_{x=\frac{z+L/2}{\varrho}}^{\frac{z-L/2}{\varrho}} \ .
-$$
-Evaluating the endpoints and simplifying a bit, we get
+Evaluating the endpoints and simplifying a bit, we finally end up the following scalar potential
 $$
 \phi(\mathbf{x}) = \lambda \log\bigg[\frac{\sqrt{\varrho^2 + (z + L/2)^2} - (z - L/2)}{\sqrt{\varrho^2 + (z - L/2)^2} - (z + L/2)}\bigg] \ .
 $$
-This is the full potential in terms of a general field point $\mathbf{x}$ in cylindrical coordinates. We still don't easily have an idea what this potential looks like. Let's try to find its equipotentials. To do that we'll need to introduce *elliptical coordinates*. Define
-$$
-\begin{align*}
-u &= \frac{1}{2} \bigg( \sqrt{\varrho^2 + (z + L/2)^2} + \sqrt{\varrho^2 + (z - L/2)^2}\bigg)  \ , \\
-v &= \frac{1}{2} \bigg( \sqrt{\varrho^2 + (z + L/2)^2} - \sqrt{\varrho^2 + (z - L/2)^2}\bigg) \ .\\
-\end{align*}
-$$
-If we plug these new coordinates into the potential and simplify, a little tedious algebra will show that the potential is given by
-$$
-\phi(\mathbf{x}) = \lambda \log\bigg[\frac{u + L/2}{u - L/2}\bigg] \ .
-$$
-Now, we can immediately see from this result that the equipotentials will be the curves such that $u$ is constant. Though perhaps not obvious, the constant surfaces of $u$ are ellipsoids of revolution about the $z$-axis. This means that the equipotentials are just ellipsoids. This should be intuitively obvious. Since the wire has a uniform charge, its equipotentials should be surfaces of constant distance from the wire, which would be ellipsoids. These equipotentials are shown in the figure below.
+This is a complicated expression as is, and it's not easy to see what the equipotentials look like. Intuitively though, we expect that the equipotentials should have an equipotential shape around the wire as shown below.
 
 FIGURE
 
-We can further verify the correctness of this result by considering two limits: the infinite wire limit where $|\mathbf{x}| \ll L$, and the far field limit where $|\mathbf{x}| \gg L$. In the infinite wire limit we have $\varrho, z \ll L$. In that limit we can neglect $z$ and use the binomial approximation then to write
-$$
-\phi(\mathbf{x}) \approx \lambda \log\bigg[\frac{\sqrt{\varrho^2 + (L/2)^2} + L/2}{\sqrt{\varrho^2 + (L/2)^2} - L/2}\bigg] \approx \lambda \log\bigg[\frac{L/2 + L/2}{L/2 - L/2 + 2\varrho^2/L}\bigg] \approx \lambda \log \frac{L^2}{2\varrho^2} \ .
-$$
-Simplifying this expression a bit, we get
-$$
-\phi(\mathbf{x}) \approx -2\lambda \log \frac{\varrho}{L} - \lambda \log 2 \ .
-$$
-To verify whether this is correct we can take its gradient to recover the electric field, in which case we get
-$$
-\mathbf{E}(\mathbf{x}) \approx - \frac{\partial \phi}{\partial \varrho} \mathbf{e}_r \approx \frac{2\lambda}{\varrho} \mathbf{e}_\varrho \ .
-$$
-This is of course exactly what we should expect for an infinite wire of uniform charge, as we've derived before.
-
-In the far field limit we have $r, z \gg L$. For convenience let's suppose $z=0$. In that case, we can neglect the $L/2$ terms inside the roots and use the Taylor series approximation $\log(1+x) \approx x$ when $x$ is small to write
-$$
-\phi(\mathbf{x}) \approx \lambda \log\bigg[\frac{\sqrt{\varrho^2 + (L/2)^2} + L/2}{\sqrt{\varrho^2 + (L/2)^2} - L/2}\bigg] \approx \lambda \log\bigg[\frac{\varrho + L/2}{\varrho - L/2}\bigg] \approx \lambda \log\bigg[1 + \frac{L}{\varrho}\bigg] \approx \frac{\lambda L}{r} \ .
-$$
-Since $Q = \lambda L$ is just the total charge of the wire, we get the Coulomb potential $\phi(\mathbf{x}) = \frac{Q}{r}$ in the far field limit, as we'd expect.
-
-### Poisson's Equation
-
-We've now found the following two field equations for the electric field of electrostatics,
+Given this intuition, it makes sense to do a change of coordinates to *elliptical coordinates*. Define
 $$
 \begin{align*}
-\nabla \cdot \mathbf{E} &= 4\pi\rho \ , \\
-\nabla \times \mathbf{E} &= \mathbf{0} \ .
+u &\equiv \frac{1}{2} \bigg( \sqrt{\varrho^2 + (z + L/2)^2} + \sqrt{\varrho^2 + (z - L/2)^2}\bigg)  \ , \\
+v &\equiv \frac{1}{2} \bigg( \sqrt{\varrho^2 + (z + L/2)^2} - \sqrt{\varrho^2 + (z - L/2)^2}\bigg) \ . \\
 \end{align*}
 $$
-We can use the scalar potential to combine these two first-order field equations into a single second-order equation for the scalar potential. We've already shown the curl equation is equivalent to the formula $\mathbf{E} = -\nabla \phi$. Plugging this into Gauss's Law, we get
+In this coordinate system, curves of constant $u$ turn out to be ellipses in the $\varrho z$-plane of the form
 $$
-\nabla \cdot \mathbf{E} = \nabla \cdot (-\nabla \phi) = 4\pi\rho \ .
+\frac{\varrho^2}{u^2 - (L/2)^2} + \frac{z^2}{u^2} = 1 \ ,
 $$
-Recognizing that this is just the Laplacian of the scalar potential, we thus have
+and curves of constant $v$ turn out to be hyperbolas in the $\varrho z$-plane of the form
+$$
+\frac{\varrho^2}{u^2 - (L/2)^2} - \frac{z^2}{u^2} = 1 \ .
+$$
+Under this change of coordinates, after a bit of algebra we get the following expression for the potential in terms of $u$ and $v$,
+$$
+\phi(\mathbf{x}) = \lambda \log\bigg[\frac{u + L/2}{u - L/2}\bigg] \ .
+$$
+Notice the potential depends only on $u$ and not at all on $v$. Since $\phi(\mathbf{x})$ is constant whenever $u$ is constant, the equipotentials must be curves where $u$ is constant. That is, the equipotentials are indeed ellipses as we intuitively expected. These ellipses are all centered at the origin, with the semi-major axes oriented along the $z$-axis and the semi-minor axes oriented along the $\varrho$-axis.
+
+In these coordinates we can also easily inspect the near and far field limits. When $u \gg L/2$, we have
+$$
+u = \frac{1}{2} \bigg( \sqrt{\varrho^2 + (z + L/2)^2} + \sqrt{\varrho^2 + (z - L/2)^2}\bigg) \approx \sqrt{\varrho^2 + z^2} = r \ ,
+$$
+which means in the far field limit we have
+$$
+\phi(\mathbf{x}) \approx \lambda \log\bigg[\frac{r + L/2}{r - L/2}\bigg] \approx \lambda \log\bigg[1 + \frac{L}{2r}\bigg] - \lambda \log\bigg[1 - \frac{L}{2r}\bigg] \approx \frac{\lambda L}{r} \ .
+$$
+Here we used the usual Taylor series approximation $\log(1 + x) \approx x$ when $|x| \ll 1$. Notice that $Q = \lambda L$ is just the total charge of the wire since it's uniformly charged. Unlike the infinite wire, the potential of the wire indeed goes like $Q/r$ in the far field limit as we'd expect according to Coulomb's law, thus resolving the strange paradox we encountered earlier.
+
+To analyze the near field limit let's suppose that $z=0$. When $u \ll L/2$ we can then use the binomial approximation to approximate $u$ as
+$$
+u = \sqrt{\varrho^2 + \frac{L^2}{4}} \approx \frac{L}{2} + \frac{\varrho^2}{L} \ .
+$$
+Then the potential in the near field limit becomes
+$$
+\phi(\mathbf{x}) \approx \lambda \log\bigg[\frac{(L/2 + \varrho^2/L) + L/2}{(L/2 + \varrho^2/L) - L/2}\bigg] \approx \lambda \log\bigg[\frac{L/2 + L/2}{\varrho^2/L}\bigg] \approx -2\lambda \log \frac{2\varrho}{L} \ .
+$$
+We recognize this near field approximation as the potential of the infinite wire with a ground point $\varrho_0 = L/2$. Thus, in the near field limit we recover the potential of the infinite wire, at least when $z=0$. Indeed, this justifies why the infinite wire assumption is often a valid approximation. As long as we're only interested in field points close to the wire, we can assume it's infinite.
+
+## Potential Energy
+
+When dealing with fields of any kind we have to think about two different types of potential energy. First is the potential energy of a particle moving in an external field. Second, and perhaps more subtle, is the potential energy stored in the field itself, which is equivalent to the total potential energy required to create the field from nothing. As we'll see, the formulas for the two notions of potential energy are different even in electrostatics.
+
+### Energy of a Charge Distribution in an External Field
+
+The first and most intuitive type of potential energy in electrostatics is the potential energy experienced by a charged particle due to an external field. Recall that a charge $q$ in the presence of an external E-field $\mathbf{E}(\mathbf{x})$ has a potential energy $U$ given by
+$$
+U = q \phi(\mathbf{x}) \ ,
+$$
+where $\phi(\mathbf{x})$ is the scalar potential of the external E-field. Assuming we fix the ground point at infinity, the potential energy is assumed to be zero at infinity.
+
+By the superposition principle, the total potential energy of $n$ charges $q_i$ each located at position $\mathbf{x}_i$ is just the sum of the potential energy due to each individual charge,
+$$
+U = \sum_{i=1}^n q_i \phi_i(\mathbf{x}_i) \ .
+$$
+Similarly, in the continuous limit the potential energy of a continuous charge distribution $\rho(\mathbf{x})$ in the presence of an external E-field is given by the volume integral
 $$
 \boxed{
-\nabla^2 \phi = -4\pi\rho
+U = \int d^3 \mathbf{x} \ \rho(\mathbf{x}) \phi(\mathbf{x})
 } \ .
 $$
-This second-order differential equation is called *Poisson's Equation*. It's fully equivalent to the two field equations we derived before. This means that instead of solving two vector first order differential equations to find the electric field, we need only solve Poisson's equation subject to any boundary conditions and then take the gradient to get the electric field. Indeed, for this reason Poisson's equation is perhaps the most important equation in electrostatics. It's the most generally useful way to find the electric field of a charge distribution. We'll  spend considerable time analyzing and solving this equation in the next chapter.
 
-For now, just observe that Coulomb's Law is indeed a solution of Poisson's equation. If we express Coulomb's law as
-$$
-\mathbf{E}(\mathbf{x}) = \int d^3 \mathbf{x}' \ \rho(\mathbf{x}') \frac{\mathbf{x} - \mathbf{x}'}{|\mathbf{x} - \mathbf{x}'|^3} \ ,
-$$
-then the Laplacian of the potential is given by
-$$
-\begin{align*}
-\nabla^2 \phi(\mathbf{x}) &= -\nabla \cdot \mathbf{E}(\mathbf{x}) \\
-&= -\nabla \cdot \int d^3 \mathbf{x}' \ \rho(\mathbf{x}') \frac{\mathbf{x} - \mathbf{x}'}{|\mathbf{x} - \mathbf{x}'|^3} \\
-&= -\int d^3 \mathbf{x}' \ \rho(\mathbf{x}') \nabla \cdot \frac{\mathbf{x} - \mathbf{x}'}{|\mathbf{x} - \mathbf{x}'|^3} \\
-&= -\int d^3 \mathbf{x}' \ \rho(\mathbf{x}') 4\pi \delta(\mathbf{x} - \mathbf{x}') \\
-&= -4\pi \rho(\mathbf{x}) \ .
-\end{align*}
-$$
-We've thus shown that Coulomb's law satisfies Poisson's equation, as we'd expect. In fact, if the charge distribution is localized and there are no boundary conditions present, like say a set of background conductors, then Coulomb's law is the only valid solution. If boundary conditions are present we have to modify things slightly. We'll see more on this in the next few chapters.
+The integrand $\rho(\mathbf{x}) \phi(\mathbf{x})$ can be thought of as an *energy density*, with dimensions of energy per unit volume. In Gaussian units, the potential energy is measured in *ergs*, and the energy density in $\text{erg}/\text{cm}^3$. In SI units, the potential energy is measured in  *Joules*, and the energy density in $\text{J}/\text{m}^3$. Since energy is a mechanical unit, the *dimensions* in the two systems must be the same.
 
-### Surface Boundary Conditions
+### Energy Stored in the Electric Field
 
-Recall from earlier the infinite sheet of charge example. Specifically, we saw that the electric field across the sheet of charge changes discontinuously across the surface by an amount $4\pi\sigma$. In fact this is generally true for E-fields across surfaces of charge. Specifically, when crossing a surface of charge, the normal part of the E-field changes discontinuously, while the tangential part of the E-field changes continuously.
+We'll now analyze the second notion of potential energy in electrostatics, namely the potential energy required to generate a given E-field. In electrostatics, E-fields are always generated from charges. This means analyzing the potential energy required to generate a given E-field is equivalent to analyzing the potential energy required to assemble the charges that create the E-field.
 
-FIGURE (show surface of charge with normal and tangential E-fields)
+To answer this question we'll assume that the E-field is created by $n$ discrete charges. For a continuous charge distribution we thus make the approximation that the total charge that generates the field is just the sum of a large number of charges,
+$$
+\int d^3 \mathbf{x} \ \rho(\mathbf{x}) \approx q_1 + q_2 + \cdots + q_n \ .
+$$
+Now, suppose initially that all $n$ charges are at infinity and separated from each other by an infinite distance. Assuming we fix the ground point at infinity, this means the potential energy due to each individually charge is zero initially. Now, what we'll do is bring in each charge $q_i$ in from infinity one-by-one, place that charge at its position $\mathbf{x}_i$ in space, and calculate the work done to move this charge to this position assuming the first $i-1$ charges are already in place.
 
-To see why this is the case, suppose $\mathcal{S}$ is some smooth surface carrying a surface charge density $\sigma(\mathbf{x})$. Suppose $\mathbf{x}$ is some point on this surface. The E-field $\mathbf{E}(\mathbf{x})$ at this point can then be decomposed into two parts, one vector $\mathbf{E}^\perp(\mathbf{x})$ normal to the surface at this point, and another vector $\mathbf{E}^\parallel(\mathbf{x})$ tangential to the surface at this point,
-$$
-\mathbf{E}(\mathbf{x}) = \mathbf{E}^\perp(\mathbf{x}) + \mathbf{E}^\parallel(\mathbf{x}) \ .
-$$
-To deal with the normal vector, what we can do is apply Gauss's Law just like we did with the infinite sheet. We'll choose an infinitesimally high and very thin pillbox with top and bottom areas $\delta A$ as the Gaussian surface, where $\delta A$ is so small that any deviations in the curvature of the surface $\mathcal{S}$ are negligible inside the Gaussian surface. If $E_+$ is the value of the E-field above the surface and $E_-$ is the value of the E-field below the surface, by Gauss's Law we must have
-$$
-(E_+^\perp - E_-^\perp) \delta A \approx \int \mathbf{E} \cdot d\mathbf{a} = 4\pi\sigma \delta A \ .
-$$
-That is, the normal part of the E-field changes discontinuously across the surface by an amount
-$$
-E_+^\perp(\mathbf{x}) - E_-^\perp(\mathbf{x}) = 4\pi\sigma(\mathbf{x}) \ .
-$$
-What about the parallel part? To handle this case, we can place an infinitesimally small closed loop of size $\delta\ell$ on the surface centered at the point $\mathbf{x}$. Since the circulation integral of the E-field is zero, we must have
-$$
-(E_+^\parallel - E_-^\parallel) \delta\ell = \oint_\mathcal{C} \mathbf{E} \cdot d\boldsymbol{\ell} = 0 \ .
-$$
-Assuming $\delta\ell$ is infinitesimal, we have $E_+^\parallel(\mathbf{x}) = E_-^\parallel(\mathbf{x})$. That is, the tangential part of the E-field remains continuous when crossing the surface of charge.
+Without loss of generality, suppose we first bring in the first charge $q_1$ and place it at position $\mathbf{x}_1$. Since there is no field initially present, there won't be a force on this charge when moving it from infinity to $\mathbf{x}_1$, and hence no work will be done when moving this charge to its position. That is, $W_1 = 0$.
 
-We can put these two results together by using the (upward) normal vector $\mathbf{n}$​ to write
+Next, with $q_1$ already in place at $\mathbf{x}_1$, suppose we now bring in the second charge $q_2$ and place it at position $\mathbf{x}_2$. Since the first charge is already in place, there will now be a field present due to this first charge. This means the second charge will now feel a force when moving it from infinity to $\mathbf{x}_2$. The work $W_2$ to move $q_2$ to its position will be the work done to move a charge in the presence of the other point charge $q_1$, namely
 $$
-\mathbf{E}_+(\mathbf{x}) - \mathbf{E}_-(\mathbf{x}) = 4\pi\sigma(\mathbf{x}) \mathbf{n} \ .
+W_2 = q_2 \phi_1(\mathbf{x}_1) = q_2 \frac{q_1}{|\mathbf{x}_2 - \mathbf{x}_1|} \ .
 $$
-What about the scalar potential? In fact the potential *is* continuous across the surface of charge. To see why, suppose $\mathbf{x}_-$ is some point infinitesimally below the surface and $\mathbf{x}_+$ some other point infinitesimally above the surface. If the two points are separated by a small distance $\delta\ell$, the potential difference between these two points must be given by
+Next, with $q_1$ in place at $\mathbf{x}_1$ and with $q_2$ already in place at $\mathbf{x}_2$, suppose we now bring in the third charge $q_3$ and place it at position $\mathbf{x}_3$. The work $W_3$ done to move $q_3$ to its position will now depend on the fields generated by both $q_1$ and $q_2$,
 $$
-\phi_+ - \phi_- = -\int_{\mathbf{x}_-}^{\mathbf{x}_+} \mathbf{E} \cdot d\boldsymbol{\ell} \approx -(E_+  + E_-) \delta\ell \ .
+W_3 = q_3 \phi_1(\mathbf{x}_3) + q_3 \phi_2(\mathbf{x}_3) = q_3 \bigg(\frac{q_1}{|\mathbf{x}_3 - \mathbf{x}_1|} + \frac{q_2}{|\mathbf{x}_3 - \mathbf{x}_1|}\bigg) \ .
 $$
-Assuming $\delta\ell$ infinitesimal, the right-hand side will be much much smaller than the left-hand side. In this limit, we thus have
+By now the pattern should hopefully be clear. Suppose now that the first $i-1$ charges $q_1, q_2, \cdots, q_{i-1}$ are already in place, and we then bring in the next charge $q_i$ from infinity and place it at position $\mathbf{x}_i$. The work $W_i$ required to place $q_i$ at its position with the first $i-1$ charges already in place will thus be
 $$
-\phi_+(\mathbf{x}) = \phi_-(\mathbf{x}) \ .
+W_i = q_i \sum_{j<i} \phi_j(\mathbf{x}_i) = q_i \sum_{j=1}^{i-1} \frac{q_j}{|\mathbf{x}_i - \mathbf{x}_j|} \ .
 $$
-Since need them to solve boundary value problems in the next few chapters, let's go ahead and formulate these surface conditions as a set of boundary conditions for the potential. For that purpose it'll be convenient to express the condition for the electric field as a normal derivative of the potential. The *normal derivative* of a scalar field on a surface is defined as the component of the scalar field's gradient in the normal direction,
-$$
-\frac{\partial \phi}{\partial n} \equiv \nabla \phi \cdot \mathbf{n} \ .
-$$
-We can thus write the two boundary conditions for the potential across a surface of charge as
-$$
-\begin{align*}
-\phi_+(\mathbf{x}) - \phi_-(\mathbf{x}) &= 0 \ , \\
-\frac{\partial}{\partial n} \phi_+(\mathbf{x}) - \frac{\partial}{\partial n} \phi_-(\mathbf{x}) &= -4\pi\sigma(\mathbf{x}) \ .
-\end{align*}
-$$
-Here it's of course understood that $\phi_+(\mathbf{x})$ and $\phi_-(\mathbf{x})$ refer to points infinitesimally above and below the surface, respectively.
+Here the sum over $j < i$ means to sum from $j=1$ to $j=i-1$. This is to make sure we're only summing over the charges already in place, not the remaining charges still at infinity.
 
-## Field Energy
+Now, what we're really interested in is the *total* potential energy $\mathcal{U}$ required to bring in all $n$ charges from infinity and place them at their respective positions. This will just be the sum of each amount of work $W_i$ done above to move all $n$ charges one-by-one,
+$$
+\mathcal{U} = \sum_{i=1}^n W_i = \sum_{i=1}^n q_i \sum_{j<i} \phi_j(\mathbf{x}_i) \ .
+$$
+We now want to convert this awkward triangular sum into a regular double sum, since our ultimate goal is to pass to the continuous limit and convert the sum into an integral. To that end, observe that
+$$
+q_i \phi_j(\mathbf{x}_i) = \frac{q_i q_j}{|\mathbf{x}_i - \mathbf{x}_j|} = q_j \phi_i(\mathbf{x}_j) \ .
+$$
+That is, the product $q_i \phi_j(\mathbf{x}_i)$ is symmetric under the interchange $i \leftrightarrow j$. This means the triangular sum above must be *half* the double sum over both $i$ and $j$, except that we can't have $j = i$ since a charge shouldn't be allowed to experience a force due to its own presence. We can thus write
+$$
+\mathcal{U} = \frac{1}{2} \sum_{i=1}^n q_i \bigg(\sum_{\substack{j=1 \\ j \neq i}}^n \phi_j(\mathbf{x}_i)\bigg) \ .
+$$
+Now, observe that the interior sum is just the total scalar potential $\phi(\mathbf{x}_i)$ exerted on $q_i$ due to all the other charges, which we now assume have all been brought in from infinity already and put in place at their respective positions,
+$$
+\phi(\mathbf{x}_i) = \sum_{\substack{j=1 \\ j \neq i}}^n \phi_j(\mathbf{x}_i) = \phi_1(\mathbf{x}_i) + \cdots + \phi_{i-1}(\mathbf{x}_i) + \phi_{i+1}(\mathbf{x}_i) + \cdots + \phi_n(\mathbf{x}_i) \ .
+$$
+Thus, the total potential energy required to assemble the $n$ charges in their respective positions is given by
+$$
+\mathcal{U} = \frac{1}{2} \sum_{i=1}^n q_i \phi(\mathbf{x}_i) \ .
+$$
+Since by assumption these are the charges assumed to generate the field $\mathbf{E}(\mathbf{x})$ we can think of $\mathcal{U}$ as the potential energy required to generate the E-field. Equivalently, we can think of $\mathcal{U}$  as being the potential energy *stored* in the E-field itself, since the E-field is essentially one-to-one equivalent to the charges that generate the field.
 
-- Fold capacitance into this section and simplify / streamline that discussion to bare essentials
-
-We've already discussed the idea of potential energy in electrostatics. In particular, for a point charge $q$ moving in the presence of an external electric field $\mathbf{E}$ that's generated by some charge distribution $\rho$, its potential energy $U$ is given by
-$$
-U = \int d^3 \mathbf{x} \ \rho(\mathbf{x}) \phi(\mathbf{x}) \ .
-$$
-This is not the only form of potential energy we can ask about however when it comes to a field. We can also ask a slightly different question: What is the work done required to assemble the source charge distribution to begin with, or equivalently, what is the potential energy stored in the source charge distribution?
-
-To make a start at answering this question we'll suppose the charge distribution is discrete, so that the total charge $Q$ is just a sum of $N$​ point charges,
-$$
-Q = \int d^3 \mathbf{x} \ \rho(\mathbf{x}) \approx q_1 + q_2 + \cdots + q_N \ .
-$$
-We'll suppose that initially all point charges are at infinity, separated from each other by an infinite distance. This means that initially there is no potential present in space. What we'll now do is bring the point charges in from infinity one at a time and place them at their respective locations in space and calculate the work done, hence the potential energy, to assemble each charge in the presence of the charges already in place.
-
-First, suppose we bring in charge $q_1$ from infinity and place it at its source point $\mathbf{x}_1$. Since there is no potential present initially, the work done to move this charge to $\mathbf{x}_1$ must evidently be zero. The work done is evidently thus $U_1 = 0$.
-
-Now, with $q_1$ in position we'll bring in $q_2$. Suppose we bring in $q_2$ from infinity and place it at $\mathbf{x}_2$. This time, however, there is a potential generated by the presence of $q_1$,
-$$
-\phi_1(\mathbf{x}_2) = \frac{q_1}{|\mathbf{x}_2 - \mathbf{x}_1|} \ .
-$$
-This means the work done to bring in charge $q_2$ in the presence of $q_1$ is
-$$
-U_2 = q_2 \phi_1(\mathbf{x}_2) = q_2 \frac{q_1}{|\mathbf{x}_2 - \mathbf{x}_1|} \ .
-$$
-With $q_1$ and $q_2$ in place we'll now bring in $q_3$ and place it at $\mathbf{x}_3$. This time there are now two potentials we need to deal with, the potentials of both $q_1$ and $q_2$. By superposition, the work done to bring in charge $q_3$ must be
-$$
-U_3 = q_3 \phi_1(\mathbf{x}_3) + q_3 \phi_2(\mathbf{x}_3) = q_3 \bigg(\frac{q_1}{|\mathbf{x}_3 - \mathbf{x}_1|} + \frac{q_2}{|\mathbf{x}_3 - \mathbf{x}_1|}\bigg) \ .
-$$
-Hopefully by now we can spot the pattern. If the first $i-1$ charges $q_1, q_2, \cdots, q_{i-1}$ are already in place and we then bring in charge $q_i$ from infinity and place it at position $\mathbf{x}_i$, the work done must be
-$$
-U_i = q_i \sum_{j<i} \phi_j(\mathbf{x}_i) = q_i \sum_{j=1}^{i-1} \frac{q_j}{|\mathbf{x}_i - \mathbf{x}_j|} \ .
-$$
-Here the sum over $j < i$ means to sum from $j=1$ to $j=i-1$. This is to make sure we only sum over the point charges already in place, not the ones we haven't brought in yet. 
-
-Now, the *total* potential energy $\mathcal{U}$ to assemble *all* of these charges into place is just the sum of each of these contributions,
-$$
-\mathcal{U} = \sum_{i=1}^N U_i = \sum_{i=1}^N q_i \sum_{j<i} \phi_j(\mathbf{x}_i) \ .
-$$
-It'll be useful to rewrite the sum over all $j < i$ in a slightly different way by observing that the potential is symmetric in $i$ and $j$, so that $\phi_j(\mathbf{x}_i) = \phi_i(\mathbf{x}_j)$. This means we can write the same sum by summing over all $j \neq i$ and dividing by two to avoid double counting,
-$$
-\mathcal{U} = \frac{1}{2} \sum_{i=1}^N q_i \bigg(\sum_{\substack{j=1 \\ j \neq i}}^{N} \phi_j(\mathbf{x}_i)\bigg) \ .
-$$
-Observe next that the interior sum is just the *total* potential exerted on charge $q_i$ due to all other charges $q_j$. Call this potential $\phi(\mathbf{x}_i)$. We can now transition back to the continuum by making the replacement $\sum q_i \rightarrow \int d^3 \mathbf{x} \ \rho(\mathbf{x})$​ to get
+In the continuum limit where the $n$ discrete charges becomes a charge distribution $\rho(\mathbf{x})$, we make the usual substitution to get
 $$
 \boxed{
 \mathcal{U} = \frac{1}{2} \int d^3 \mathbf{x} \ \rho(\mathbf{x}) \phi(\mathbf{x})
 }\ .
 $$
-This is the potential energy stored in the entire charge distribution. Notice how similar it looks to the potential energy we derived before for a charge distribution in the presence of an external electric field, $U = \int d^3 \mathbf{x} \ \rho(\mathbf{x}) \phi(\mathbf{x})$. On the surface, the only difference between the two evidently is the factor of $\frac{1}{2}$. However, we must keep in mind that the $\rho$ used to find $\mathcal{U}$ is the *source* charge distribution, not an external charge distribution like the one used to find $U$​.
+Notice how similar this expression looks to the potential energy $U$ of a charge distribution in an external E-field. The only difference we see in the two formulas is the curious factor of $1/2$. However, the interpretations are very different. In the first case, $\rho(\mathbf{x})$ refers to the charge distribution brought into contact with an external field potential $\phi(\mathbf{x})$. In the second case, $\rho(\mathbf{x})$ refers to the *source* charge distribution that *generates* the field potential $\phi(\mathbf{x})$. Keep this distinction in mind.
 
-We can think of $\mathcal{U}$ as the potential energy stored in the source charge distribution, but we can also think of it equivalently as the potential energy stored in the electric field itself. To see why it's helpful to rewrite the integral in a slightly different way. From Gauss's Law, we know that $\nabla \cdot \mathbf{E} = 4\pi \rho$. Plugging this into the formula for $\mathcal{U}$ we have
+While this is a perfectly good and correct expression, if we want to think of $\mathcal{U}$ as being the energy stored in the E-field, we'd like to express $\mathcal{U}$ in terms of the E-field $\mathbf{E}(\mathbf{x})$ directly. To achieve this we can make use of Gauss's law to express $\rho(\mathbf{x})$ in terms of $\mathbf{E}(\mathbf{x})$. Since $\nabla \cdot \mathbf{E} = 4\pi\rho$, we have
 $$
-\mathcal{U} = \frac{1}{8\pi} \int d^3\mathbf{x} \ \phi \nabla \cdot \mathbf{E} \ .
+\mathcal{U} = \frac{1}{2} \int d^3 \mathbf{x} \ \bigg(\frac{1}{4\pi} \nabla \cdot \mathbf{E}(\mathbf{x})\bigg) \phi(\mathbf{x}) = \frac{1}{8\pi} \int d^3\mathbf{x} \ \phi(\mathbf{x}) \nabla \cdot \mathbf{E}(\mathbf{x}) \ .
 $$
-As a brief aside, let's recall the following vector calculus identity between a scalar field $f$ and a vector field $\mathbf{F}$,
+We still need to eliminate the potential from the integrand. To do this we can use integration by parts to write
 $$
-\nabla (f \mathbf{F}) = \nabla f \cdot \mathbf{F} + f \nabla \cdot \mathbf{F} \ .
+\mathcal{U} = \frac{1}{8\pi}\bigg[\oint_\mathcal{S} \phi(\mathbf{x}) \mathbf{E}(\mathbf{x}) \cdot d\mathbf{a} - \int d^3\mathbf{x} \ \nabla \phi(\mathbf{x}) \cdot \mathbf{E}(\mathbf{x})\bigg] \ .
 $$
-Rearranging terms and integrating over some volume $\mathcal{V}$, we have
-$$
-\begin{align*}
-\int_\mathcal{V} d^3\mathbf{x} \ f \nabla \cdot \mathbf{F} &= \int_\mathcal{V} d^3\mathbf{x} \ \nabla (f \mathbf{F}) - \int_\mathcal{V} d^3\mathbf{x} \ \nabla f \cdot \mathbf{F} \\
-&= \oint_\mathcal{S} f \mathbf{F} \cdot d\mathbf{a} - \int_\mathcal{V} d^3\mathbf{x} \ \nabla f \cdot \mathbf{F} \ .
-\end{align*}
-$$
-In the last line we used the fundamental theorem of vector calculus to rewrite the volume integral over $\nabla (f \mathbf{F})$ as an integral over $f \mathbf{F}$ evaluated at the volume's surface $\mathcal{S}$. Now, if we send the volume to infinity, we can neglect the surface term so long as $f\mathbf{F}$ vanishes at infinity faster than $\frac{1}{r^2}$. This means if integrating over all space we'd simply have
-$$
-\int d^3\mathbf{x} \ f \nabla \cdot \mathbf{F} = - \int d^3\mathbf{x} \ \nabla f \cdot \mathbf{F} \ .
-$$
-Let's now apply this result to our integral expression for the field potential energy $\mathcal{U}$. Since $\mathbf{E} = -\nabla\phi$, we have
-$$
-\mathcal{U} = - \frac{1}{8\pi} \int d^3\mathbf{x} \ \nabla \phi \cdot \mathbf{E} = \frac{1}{8\pi} \int d^3\mathbf{x} \ \mathbf{E} \cdot \mathbf{E} \ .
-$$
-Note that this will only be true if the boundary term vanishes. We can be sure this is true so long as the charge distribution is localized, since in that case we expect $\phi \mathbf{E} \sim \frac{1}{r^3}$. It may *not* be true, however, for charge distributions that extend to infinity, in which case we'd have to be more careful with ignoring boundary term. Of course, such cases aren't *really* physical anyway.
-
-At any rate, we've derived the following interesting result, which says the potential energy stored in the source charge distribution depends only on the square of the electric field,
+Since $\mathbf{E} = -\nabla \phi$ the second integrand is just the square of the E-field, or $\mathbf{E}^2 = \mathbf{E} \cdot \mathbf{E}$. Assuming the surface integral term vanishes, which we'll justify shortly, the potential energy stored in the E-field can thus be written in the simple form
 $$
 \boxed{
-\mathcal{U} = \frac{1}{8\pi} \int d^3\mathbf{x} \ |\mathbf{E}|^2
+\mathcal{U} = \frac{1}{8\pi} \int d^3\mathbf{x} \ \mathbf{E}^2(\mathbf{x})
 }\ .
 $$
-This is why we can think of the potential energy $\mathcal{U}$ as the energy stored in the field. That's all it depends on. It'll be useful to give the integrand a name. It's called the *energy density* $u(\mathbf{x})$. It's the potential energy per unit volume stored in the electric field,
-$$
-u(\mathbf{x}) \equiv \frac{1}{8\pi} |\mathbf{E}(\mathbf{x})|^2 \ .
-$$
-We'll find the idea of energy density perhaps most useful in electrodynamics, where we'll need to modify the above result to also account for magnetic field effects as well.
 
-Note that neither the field energy nor the energy density satisfy the principle of superposition since they're quadratic in the field, not linear. For example, the energy density due to two fields $\mathbf{E}$ and $\mathbf{E}'$ would be given by
+Let's briefly discuss why we can drop the surface integral term. We're typically interested in the volume integral over all space. This means we can treat the boundary surface $\mathcal{S}$ as a sphere whose radius goes to infinity. For the surface integral to converge at infinity we need the integrand $\phi \mathbf{E}$ to fall off faster than $1/r^2$. So long as the charge distribution is localized and not extending off to infinity though, by Coulomb's law we have $\phi \sim 1/r$ and $\mathbf{E} \sim 1/r^2$, which means $\phi \mathbf{E} \sim 1/r^3$. Thus, we can be assured that for a localized charge distribution the surface integral will indeed vanish. If, however, the charge distribution turns out to be infinite, then we'd have to be more careful when dealing with the surface term.
+
+The integrand $u(\mathbf{x})$ evidently represents the *energy density* of the potential energy stored in the E-field,
 $$
-u = \frac{1}{8\pi} |\mathbf{E} + \mathbf{E}'|^2 = \frac{1}{8\pi}|\mathbf{E}|^2 + \frac{1}{8\pi}|\mathbf{E}'|^2 + \frac{1}{8\pi}\mathbf{E} \cdot \mathbf{E}' \ .
+\boxed{
+u(\mathbf{x}) = \frac{1}{2} \rho(\mathbf{x}) \phi(\mathbf{x}) = \frac{1}{8\pi} \mathbf{E}^2(\mathbf{x}) 
+} \ .
 $$
-Last, it's worth pointing out a very important but subtle issue that arises in going from
+This is a nice and aesthetically pleasing result. The potential energy stored in an E-field is proportional to the square of the field. Indeed, this is a common fact about many other fields in physics. For instance, we'll see later on that the potential energy stored in a magnetic field is also proportional to the square of the field, and the potential energy stored in an electromagnetic field is proportional to the sum of the squares of the electric and magnetic fields.
+
+Note that since the field potential energy depends on the *square* of the field, it doesn't obey the principle of superposition in the sense that the potential energy stored in two added fields is just the sum of the potential energy stored in each individual field. Indeed, if we had two fields $\mathbf{E}(\mathbf{x})$ and $\mathbf{E}'(\mathbf{x})$, the total field would be $\mathbf{E}(\mathbf{x}) + \mathbf{E}'(\mathbf{x})$, but the total energy density would be
 $$
-\mathcal{U} = \frac{1}{2} \int d^3 \mathbf{x} \ \rho(\mathbf{x}) \phi(\mathbf{x}) \ \rightarrow \ \frac{1}{8\pi} \int d^3\mathbf{x} \ |\mathbf{E}|^2 \ .
+\frac{1}{8\pi} [\mathbf{E}(\mathbf{x}) + \mathbf{E}'(\mathbf{x})]^2 = \frac{1}{8\pi} [\mathbf{E}^2(\mathbf{x}) + \mathbf{E}'^2(\mathbf{x})] + \frac{1}{8\pi}\mathbf{E}(\mathbf{x}) \cdot \mathbf{E}'(\mathbf{x}) \neq \frac{1}{8\pi} [\mathbf{E}^2(\mathbf{x}) + \mathbf{E}'^2(\mathbf{x})] \ .
 $$
-The problem is that of *self energy*. According to Coulomb's Law, a charge does not exert a force on itself. It only exerts a force on other charges. However, the second formula includes forces that a charge exerts on itself. To see why, consider the example of a point charge $q$ centered at the origin. According to the second formula, we have
-$$
-\mathcal{U} = \int d^3\mathbf{x} \ \frac{1}{8\pi} |\mathbf{E}(\mathbf{x})|^2 = \int_0^\infty 4\pi r^2 dr \ \frac{1}{8\pi} \bigg(\frac{q}{r^2}\bigg)^2 = \infty \ .
-$$
-However, if we use the first formula we get
+
+Finally, we'll mention a subtle point to be aware of that arises primarily when dealing with the potential energy of point charges, namely the issue of *self energy*. As an example, suppose we were interested in calculating the potential energy stored in the E-field of a point charge $q$ centered at the origin. We have two ways to calculate this energy though.
+
+Since $\rho(\mathbf{x}) = q \delta(\mathbf{x})$ is the charge density and $\phi(\mathbf{x}) = q/r$ is the potential for this example, we should have
 $$
 \mathcal{U} = \frac{1}{2} \int d^3\mathbf{x} \ \rho(\mathbf{x}) \phi(\mathbf{x}) = \frac{1}{2} \int_0^\infty 4\pi r^2 dr \ q \delta(\mathbf{x}) \frac{q}{r} = 0 \ .
 $$
-As we've defined the potential energy it's the latter that should be correct. There's no potential energy stored in a single point charge since no work was required to bring it in from infinity and place it at the origin. So what's going on?
+However, we also know that $\mathbf{E}(\mathbf{x}) = q/r^2 \ \mathbf{e}_r$, which means we must also have that
+$$
+\mathcal{U} = \int d^3\mathbf{x} \ \frac{1}{8\pi} |\mathbf{E}(\mathbf{x})|^2 = \int_0^\infty 4\pi r^2 dr \ \frac{1}{8\pi} \bigg(\frac{q}{r^2}\bigg)^2 = \infty \ .
+$$
+The two results don't agree at all, as we'd expect they must. The first integral suggests there is no potential energy stored in the field, and the second integral claims there's an infinite amount of potential energy stored in the field. Which is correct? In fact both are. It's just that each integral is giving us different versions of what we mean by the potential energy stored in the field.
+
+On one hand, as we've defined it, the first integral is correct. Suppose we brought in the charge $q$ from infinity and placed it at the origin. Since there are no other charges present, no work is done to move the charge, and hence there's no potential energy.
+
+On the other hand, when bringing the charges in from infinity one-by-one and assembling them we neglected one important fact. How did the charges get created to begin with? We just assumed they always existed and we brought them in from infinity. We could thus ask a different question. What is the energy required to *first* create the charges from nothing and *then* bring them in and assemble them one-by-one. The energy required to create a charge from nothing is known as *self energy*.
+
+It turns out that this self energy is entirely responsible for the difference in the two answers. To see how this happened, recall that when deriving the first formula we were only allowed to sum over charges where $i \neq j$. This prescription essentially told us to ignore any self energy effects. However, when deriving the second formula this requirement got smeared out so to speak.
+
+
+- Continue here…
 
 We made a subtle error of sorts when we transitioned from a sum over discrete charges to an integral over a charge distribution. Recall that in the sum version we used $j \neq i$ to enforce the requirement that a charge couldn't affect itself. When we moved to the integral form though this distinction got lost. It turns out that this issue only affects the second formula though. In fact, it only affects distributions of *point charges*. For continuous distributions the formulas will generally agree.
 
-This doesn't necessarily mean, however, that the second formula is not *correct*. It's just counting something that the first formula isn't. Namely, it's also counting the energy required to *create* the charges, not just assemble them in place. The first formula only counts the energy to assemble the charges, not create them. In this sense they're both correct, they just mean slightly different things. Indeed, the second formula ties in with the question of whether empty space has energy, the so-called *vacuum energy*. This topic is a major issue in quantum electrodynamics. In classical dynamics we ignore this distinction, but we do occasionally have to be careful when subtleties like this arise.
+Indeed, the second formula ties in with the question of whether empty space has energy, the so-called *vacuum energy*. This topic is a major issue in quantum electrodynamics. In classical dynamics we ignore this distinction, but we do occasionally have to be careful when subtleties like this arise.
 
 ##### Example: Field energy of a hollow sphere
 
@@ -1366,95 +1305,83 @@ $$
 $$
 As we can see, the two results agree as expected.
 
-## Conductors and Capacitance
-
-Electromagnetic materials can often be thought of one of two types: *conductors* and *insulators*. Both are just materials composed of almost all neutral atoms, and hence charge neutral. They differ in one subtle way. Unlike insulators, conductors have a small fraction of *unbound electrons* that are unbound to their nuclei and free to move around the material, causing the material to *conduct* in the presence of an external field by moving its unbound electrons around. Insulators don't have these unbound electrons. The only way an insulator can respond to an external field is by distorting its electron clouds. We'll talk more about insulators in a future chapter. For now we'll just focus on conductors, which are a bit easier to understand macroscopically.
-
-### Conductors
-
-Suppose we have a conductor with some given charge distribution. We place that conductor in the presence of an external electric field and wait for the system to come to electrostatic equilibrium. Once this happens, the electric field becomes time independent, and hence electrostatic. When this happens, the unbound electrons will move in the direction of the external field, creating an internal field inside the conductor of the same strength as the external field, but in opposite direction. The net result is that once the conductor is in electrostatic equilibrium, the net electric field will vanish. Thus, conductors will have the property that the electric field is zero inside the conductor.
-
-In fact, if there is no electric field inside the conductor it must be the case that all the unbound electrons will reside on the surface of the conductor. Indeed, this follows immediately from Gauss's Law. If there is no internal electric field in the conductor, then any Gaussian surface chosen inside the conductor must have $\rho = 0$​. Thus, the only place left for the charge to go is on the surface, where it will distribute itself such that the internal field vanishes.
-
-This also implies that the surface of a conductor must be an *equipotential surface*. Since the internal field is zero, we must have
-$$
-\phi(\mathbf{b}) - \phi(\mathbf{a}) = -\int_\mathbf{a}^\mathbf{b} \mathbf{E} \cdot d\boldsymbol{\ell} = 0
-$$
-for any two points $\mathbf{a}$ and $\mathbf{b}$ on the surface of the conductor, meaning $\phi(\mathbf{a}) = \phi(\mathbf{b})$ is constant on the surface. Since the surface of the conductor is an equipotential, this also means that the field lines at the surface must be perpendicular to the surface, since $\mathbf{E} = -\nabla \phi$​ and we know that gradients are perpendicular to their equipotential surfaces.
-
-![](../resources/image-20240703155651920.png)
-
-We'll find it convenient to express these results as a set of boundary conditions for conductors. Surface boundary conditions require that $\mathbf{E}_+ - \mathbf{E}_- = 4\pi\sigma \mathbf{n}$. Since the field inside the conductor is zero, $\mathbf{E}_- = \mathbf{0}$. Thus, just outside the surface we must have
-$$
-\mathbf{E}_+ = 4\pi\sigma \mathbf{n} \ ,
-$$
-or, in terms of the normal derivative of the potential, we must have
-$$
-\frac{\partial\phi}{\partial n} = -4\pi\sigma \ .
-$$
-This gives us a way to find the surface charge on a conductor if we know the potential, something we'll find useful later on.
-
 ### Capacitance
 
-When discussing conductors it's typical to also discuss their *capacitance*, or ability to store charge. A conductor with this property is often called a *capacitor*. Suppose we have some conductor with charge $Q$ and potential $V$ relative to some ground point. Since its electric field must be proportional to $Q$, so must the potential. This means we can write
-$$
-\boxed{
-Q = CV
-} \ ,
-$$
-where $C$ is some proportionality constant, called the *capacitance* or *self capacitance*. This means we can also think of the capacitance as the amount of charge stored in a conductor held at unit potential.
-
-The capacitance incapsulates all the geometric information encoded in the conductor needed to relate its charge to its potential. In Gaussian units this is obvious, since by dimensional analysis the capacitance must evidently carry dimensions of *length*. In SI units, capacitance has units of Volts per Coulomb, called the *Farad*, with $1 \ \text{F} \approx 9 \cdot 10^{11} \ \text{cm}$. An implication of this is that a Farad is a very large unit of capacitance. In laboratory settings, most capacitors have capacitances in the range of $10^{-12}$ to $10^{-6}$ Farads.
-
-As a quick example, let's consider a conducting sphere of radius $R$ and total charge $Q$. Since the potential inside the sphere is $\frac{Q}{R}$, we can easily see that $C = R$, meaning the capacitance of a conducting sphere is just its radius.
-
-In practice, it's more common to talk about the capacitance between multiple conductors, usually two conductors. The combined set of conductors becomes the capacitor in this case. Suppose we have two conductors of opposite charge $Q$ and $-Q$ with a potential difference $V$ between them. We again define the capacitance, or *mutual capacitance*, by the formula $Q = CV$.
-
-The classic example of a capacitor involving two conductors is two parallel conducting plates with area $A$ and opposite charges $Q$ and $-Q$ separated by a distance $d$. If we neglect the boundary of the plates by assuming $A \gg d^2$, their electric field strengths are approximately $|\mathbf{E}| \approx 2\pi\sigma$. By superposition, the combined field will have a strength of $|\mathbf{E}| = 4\pi\sigma$ between the plates and zero outside the plates. This means the potential difference between the plates must be $V = 4\pi\sigma d$. 
+We'll now briefly mention the concept of *capacitance*. In electrical circuits one of the most common ways to store charge or energy in a circuit is through the use of *capacitors*. A capacitor is typically made up of two conductors separated by some distance either by vacuum, air, or some kind of insulating material. Each conductor is hooked up to a voltage source, for example a battery, with one conductor connected to the *positive terminal* and the other to the *negative terminal*. When the voltage source is turned on, some amount of positive charge will build up on the conductor hooked up to the positive terminal until a limiting amount of charge is reached. At the same time, some amount of negative charge will build up on the opposite conductor until it also reaches a limiting amount of charge. At equilibrium the two conductors will thus have equal but opposite charge.
 
 FIGURE
 
-Since the charges themselves must relate to $\sigma$ via the formula $Q = \sigma A$, we must have
-$$
-Q = \sigma A = 4\pi\sigma d C = CV \ ,
-$$
-which means the capacitance between the two plates is given by
-$$
-C = \frac{A}{4\pi d} \ .
-$$
-Notice how the capacitance again captures the geometric properties of the conductors, namely the area of the sheets and the distance between them.
+The canonical example of a capacitor is the parallel plate capacitor. Suppose two conducting parallel sheets each of area $A$ and separated by some distance $d$ are hooked up to a voltage source as described above. At equilibrium, the positive sheet will have some amount of positive charge $Q = \sigma A$ and the negative sheet will have an opposite charge $-Q = -\sigma A$. 
 
-Capacitors like the previous example are popular ways to store charge inside of electric circuits. The higher the capacitance, the more charge we say a capacitor can store at a given voltage. The capacitors used in practice usually aren't parallel plates, but more complex designs like overlapping cylinders, but the same idea holds.
+We can ask what the E-field of this parallel plate capacitor is, assuming we can neglect any stray fields arising from the rest of the circuit. Assuming the sheets are much larger than the distance between them, which is typically the case, we have $d \ll \sqrt{A}$, which means we can approximate each sheet as an infinite sheet with a constant surface charge density. 
 
-We can also derive a formula for the energy stored in a capacitor. We'll focus on a single conductor, though the same results easily carry over to multiple conductors as well. Consider again a single conductor with total charge $Q$ and potential $V$. We've already shown that the energy stored in this conductor must be $\mathcal{U} = \frac{1}{2} QV$. Using the fact that $Q = CV$, we get
+We've already shown that the E-field strength of a single infinite sheet lying in the $xy$-plane is given by
+$$
+E(z) = \begin{cases}
+2\pi\sigma \ , & z > 0 \ , \\
+-2\pi\sigma \ , & z < 0 \ .
+\end{cases}
+$$
+From this we can immediately conclude what the E-fields of the positive and negative sheets are, and then use the principle of superposition to get the E-field for the capacitor. Assuming the positive sheet lies on the $z=d$ plane, its E-field strength $E_+(z)$ will then be
+$$
+E_+(z) = \begin{cases}
+2\pi\sigma \ , & z > d \ , \\
+-2\pi\sigma \ , & z < d \ .
+\end{cases}
+$$
+This means sheet must lie in the $z = 0$ plane, and its E-field strength $E_-(z)$ will be
+$$
+E_-(z) = \begin{cases}
+2\pi\sigma \ , & z > 0 \ , \\
+-2\pi\sigma \ , & z < 0 \ .
+\end{cases}
+$$
+This means the total E-field strength $E(z)$ of the capacitor will just be the sum of the two. When added together, the fields when $|z| > d$ cancel each other, and the fields when $0 < z < d$ add together, giving
+$$
+E(z) = E_+(z) + E_-(z) = \begin{cases}
+4\pi\sigma \ , & 0 < z < d \ , \\
+0 \ , & |z| > d \ .
+\end{cases}
+$$
+That is, the field *inside* the capacitor will be uniform with $E(z) = 4\pi \sigma$, and *outside* the capacitor the field will vanish. Remember, we're ignoring fringe effects here. In reality there will typically be small fringe fields near the edges of each sheet, but inside the sheets the field will very much be uniform.
+
+The voltage $V$ across the capacitor will just be the potential difference between the two sheets. Since the field is uniform inside the capacitor, the potential between the plates is just $\phi(z) = E(z) \cdot z$, which means the voltage across the capacitor is just
+$$
+V = 4\pi\sigma d \ .
+$$
+But since the total charge on each sheet, up to a sign, is $Q = \sigma A$, we have $V = 4\pi d Q/A$, or
+$$
+Q = \frac{A}{4\pi d} V \ .
+$$
+Thus, the voltage across the parallel plate capacitor is directly proportional to the charge on each sheet. The proportionality constant $C \equiv A/4\pi d$ evidently depends only on the geometry of the sheets and not at all on their electrical properties. We call this proportionality constant the *capacitance*. We've thus derived the important capacitor relationship
+$$
+\boxed{
+Q = CV
+} \ .
+$$
+In fact, this relationship holds for any general capacitor even whose conductors have arbitrary geometries. The only thing that changes is the relationship between the capacitance and the geometric constants involved. Indeed, we can argue that this must be the case with a simple argument. Since the E-field of a charge object will always be proportional to its charge by Coulomb's law, so too will the potential, and hence the potential difference. Thus, $Q \propto V$. Moreover, the proportionality constant $C$ between them can only depend on the distance between the conductors and their shapes. Thus, $Q = CV$.
+
+The capacitance evidently represents the ability of a capacitor to store charge when a given potential difference is applied across it. Indeed, it's just the total charge on the capacitor when a unit voltage is applied across it. The dimensions of capacitance must be charge per unit potential. This is true in both Gaussian and SI units. In Gaussian units the dimensions of charge per unit potential are just distance, which means capacitance is just measured in *centimeters*. In SI units this relationship isn't so simple, as charge per unit potential can't be easily reduced to other dimensions. Thus, in SI units the capacitance carries units of Coulombs per Volt, which is called a *Farad*. That is, $1 \ \text{F} \equiv 1 \ \text{C}/\text{V}$, where $1 \ \text{F} \approx 9 \cdot 10^{11} \ \text{cm}$. 
+
+In typical lab settings, most capacitors are built to run at fixed capacitances, though one can have capacitors with variable capacitances as well. In a classical capacitor design, two thin conducting films separated by some kind of insulating material are rolled up tightly into a packaged cylinder. When the capacitor becomes charged, each film will acquire opposite charges with $Q = CV$, where $C$ is determined by the rating of the capacitor and $V$ by the applied voltage. Even with these rolled up capacitors it's still a good approximation to treat them as parallel plate conductors with $C \approx \varepsilon A/4\pi d$, where $A$ is the surface area of each film (typically many meters), $d$ is the distance between the films (typically on the order of microns), and $\varepsilon$ is the *dielectric constant* of the insulating material separating the two films. We'll discuss the electromagnetic properties of insulating materials in a later chapter. A typical capacitor used in a circuit might have capacitances in the range of $10^{-12}$ to $10^{-6}$ Farads.
+
+Since capacitors can be used to store charge, they can also be used to store potential energy. Indeed, since $Q = CV$ and $\mathcal{U} \sim Q V$, intuitively we should expect that the potential energy stored in a capacitor goes like $\mathcal{U} \sim CV^2$. In fact this is almost the exact answer apart from a missing factor of $1/2$. To see where this factor comes from,
+
+- Fill this in…
+
+Thus, the potential energy stored in a capacitor is exactly
 $$
 \boxed{
 \mathcal{U} = \frac{1}{2} C V^2
-}\ .
+} \ .
 $$
-Thus, the energy stored in a capacitor is proportional to the capacitance and the square of the potential. A capacitor that can store more charge also stores more energy. Unlike, say batteries, however, capacitors can only store energy while they're actively charged. If the capacitor discharges, for example by turning off its voltage source, it almost instantly dissipates all its energy.
+One immediate implication of this fact is that to double the amount of potential energy stored in a capacitor, we'd need to quadrupole the voltage applied across it.
 
-##### Example: Capacitance between two charged cylinders
+Note that since the potential energy depends on the voltage, a capacitor is only able to store energy while a voltage is maintained across it. If the source of the voltage, for instance a battery, is turned off,  the capacitor discharges and the energy quickly dissipates. Capacitors can thus only be used to store energy in a running circuit. They can't store energy in isolation like a battery.
 
-Suppose we have oppositely charged cylinders, one inside the other. The inner cylinder has a radius $a$ and a charge $-Q$, while the outer cylinder has a radius $b$ and a charge $Q$.
+----
 
-- Finish this example. See Griffiths or Greiner.
-
-### Mutual Capacitance
-
-Though less common, we can define the mutual capacitance between any number of conductors, not just two. Suppose we have $n$ conductors with charges $Q_i$ and potentials $V_i$ relative to some ground. We can then write
-$$
-Q_i = \sum_{i=1}^n C_{i j} V_j \ .
-$$
-Here each coefficient $C_{ij}$ is called the *mutual capacitance* between conductor $i$ and conductor $j$.
-
-We can relate the mutual capacitance between two oppositely charged conductors with the previous definition of capacitance by setting $Q_1 = Q$,  $Q_2 = -Q$, and $V = V_2 - V_1$. It's not hard to see that we get
-$$
-C = \frac{C_{11} V_1 + C_{12} V_2}{V_2 - V_1} = -\frac{C_{12} V_1 + C_{22} V_2}{V_2 - V_1} \ .
-$$
-We don't tend to use mutual capacitance as much in practice, nor will we see it again in this course.
-
-
+We'll focus on a single conductor, though the same results easily carry over to multiple conductors as well. Consider again a single conductor with total charge $Q$ and potential $V$. We've already shown that the energy must be $\mathcal{U} = \frac{1}{2} QV$.
 $$
 \text{Know:} \ \nabla \times \mathbf{F}(\mathbf{x}) = \mathbf{0} \\
 \text{Claim:} \ \nabla \times \mathbf{F}(\mathbf{x} - \mathbf{a}) = \mathbf{0} \\
