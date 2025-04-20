@@ -692,3 +692,10 @@ We will make good use of these formulas in the rest of this course, particularly
 $$
 \nabla \times \bigg(\frac{\mathbf{e}_r}{r^2}\bigg) = 
 $$
+
+$$
+\text{Know:} \ \nabla \times \mathbf{F}(\mathbf{x}) = \mathbf{0} \\
+\text{Claim:} \ \nabla \times \mathbf{F}(\mathbf{x} - \mathbf{a}) = \mathbf{0} \\
+\text{Proof:} \ (\nabla \times \mathbf{F}')_i = \varepsilon_{ijk} \partial_j F_k' = \varepsilon_{ijk} \partial_\ell' F_k' \partial_j (x_\ell - a_\ell) = \varepsilon_{ijk} \partial_\ell' F_k' \delta_{j\ell} = \varepsilon_{ijk} \partial_j' F_k' = (\nabla' \times \mathbf{F}')_i = 0 \quad \square
+$$
+

@@ -1,12 +1,33 @@
 # Boundary Value Problems I
 
-In this chapter and the next, we will continue on with the subject of electrostatics by solving electrostatics problems in the presence of boundary conditions. These are called *boundary value problems*, or BVPs. Many of the things we cover in these two chapters will also apply to other areas of electromagnetism as well, like magnetostatics and electrodynamics, with minor modifications here and there that we'll touch on in future chapters. 
-
-In this chapter, we will derive the formal solution for Poisson's equation using the theory of Green's functions. Once we've done that, we will introduce the closely-related method of images, a technique that can be used to solve electrostatics problems when there are certain symmetries present.
+With the foundations of electrostatics in place, we will now turn our attention to more advanced methods for understanding and solving electrostatics problems. In this chapter and the next we will concern ourselves mainly with *boundary value problems*, or *BVPs*. We will show that electrostatics can be recast in terms of a single scalar partial differential equation, or *PDE*, for the scalar potential, known as *Poisson's equation*. In this chapter we will show how to solve the inhomogeneous Poisson equation using Green's functions and the related method of images. In the next chapter we will focus on solution methods for *Laplace's equation*, which is the homogeneous version of Poisson's equation. It'll turn out that many of the solution methods we introduce here will also apply beyond electrostatics, including to magnetostatics and electrodynamics.
 
 ## Poisson's Equation
 
-### Poisson's Equation
+In the previous chapter we showed that in electrostatics the electric field satisfies the two field equations
+$$
+\begin{align*}
+\nabla \cdot \mathbf{E} &= 4\pi\rho \ , \\
+\nabla \times \mathbf{E} &= \mathbf{0} \ .
+\end{align*}
+$$
+We'll now convert these field equations into a single PDE for the scalar potential, known as Poisson's equation.
+
+### Derivation
+
+From the equation $\nabla \times \mathbf{E} = \mathbf{0}$ we know that in electrostatics the E-field $\mathbf{E}(\mathbf{x})$ is by definition irrotational, and hence must be the gradient of some scalar field, which we call the scalar potential $\phi(\mathbf{x})$,
+$$
+\mathbf{E}(\mathbf{x}) = -\nabla \phi(\mathbf{x}) \ .
+$$
+This means all relevant physical information about the E-field is contained in the scalar potential. To calculate the E-field for a given charge distribution it suffices to instead calculate the scalar potential and then take its gradient to recover the field. Given this is the case it makes sense to convert the field equations for the E-field in terms of a field equation for the potential.
+
+Since $\mathbf{E} = -\nabla \phi$ already guarantees that $\nabla \times \mathbf{E} = \mathbf{0}$, we need only substitute this gradient into Gauss's law $\nabla \cdot \mathbf{E} = 4\pi\rho$ to get a field equation for the potential. Performing this substitution, we have
+$$
+\nabla \cdot \mathbf{E} = \nabla \cdot (-\nabla \phi) = -\nabla^2 \ 4\pi\rho
+$$
+
+
+
 
 We've now found the following two field equations for the electric field of electrostatics,
 $$

@@ -1266,48 +1266,39 @@ Since $\rho(\mathbf{x}) = q \delta(\mathbf{x})$ is the charge density and $\phi(
 $$
 \mathcal{U} = \frac{1}{2} \int d^3\mathbf{x} \ \rho(\mathbf{x}) \phi(\mathbf{x}) = \frac{1}{2} \int_0^\infty 4\pi r^2 dr \ q \delta(\mathbf{x}) \frac{q}{r} = 0 \ .
 $$
-However, we also know that $\mathbf{E}(\mathbf{x}) = q/r^2 \ \mathbf{e}_r$, which means we must also have that
+However, we also know that $\mathbf{E}(\mathbf{x}) = q/r^2 \ \mathbf{e}_r$, which means we should also have that
 $$
 \mathcal{U} = \int d^3\mathbf{x} \ \frac{1}{8\pi} |\mathbf{E}(\mathbf{x})|^2 = \int_0^\infty 4\pi r^2 dr \ \frac{1}{8\pi} \bigg(\frac{q}{r^2}\bigg)^2 = \infty \ .
 $$
-The two results don't agree at all, as we'd expect they must. The first integral suggests there is no potential energy stored in the field, and the second integral claims there's an infinite amount of potential energy stored in the field. Which is correct? In fact both are. It's just that each integral is giving us different versions of what we mean by the potential energy stored in the field.
+Puzzlingly, the two results for the potential energy don't agree. The first result suggests there is no potential energy stored in the field, and the second result claims there's an infinite amount of potential energy stored in the field. Which is correct? In fact both are. It's just that each integral is giving us different versions of what we mean by the potential energy stored in the field.
 
 On one hand, as we've defined it, the first integral is correct. Suppose we brought in the charge $q$ from infinity and placed it at the origin. Since there are no other charges present, no work is done to move the charge, and hence there's no potential energy.
 
-On the other hand, when bringing the charges in from infinity one-by-one and assembling them we neglected one important fact. How did the charges get created to begin with? We just assumed they always existed and we brought them in from infinity. We could thus ask a different question. What is the energy required to *first* create the charges from nothing and *then* bring them in and assemble them one-by-one. The energy required to create a charge from nothing is known as *self energy*.
+On the other hand, when bringing the charges in from infinity one-by-one and assembling them we neglected one important fact. How did the charges get created to begin with? We just assumed they always existed and we brought them in from infinity. We could thus ask a different question. What is the energy required to *first* create the charges from nothing and *then* bring them in and assemble them one-by-one. The energy required to create a charge from nothing is known as *self energy*. It turns out this self energy effect is entirely responsible for the difference in the two answers. 
 
-It turns out that this self energy is entirely responsible for the difference in the two answers. To see how this happened, recall that when deriving the first formula we were only allowed to sum over charges where $i \neq j$. This prescription essentially told us to ignore any self energy effects. However, when deriving the second formula this requirement got smeared out so to speak.
+To see how this happened, recall that when deriving the first formula we were only allowed to sum over charges where $i \neq j$. When calculating the energy density using $\rho \phi$ this distinction is maintained since for a discrete point charge $q$ located at $\mathbf{x}'$ we have $\rho \sim \delta(\mathbf{x} - \mathbf{x}')$, which cancels out the effect of $\phi$ blowing up at $\mathbf{x}'$. But when calculating the energy density using $\mathbf{E}^2$ this canceling effect disappears since $\mathbf{E}^2$ is now allowed to blow up at $\mathbf{x}'$. Of course, this only happens for discrete point charges. For continuous charge distributions the answers will indeed be the same, as the following example shows.
 
+##### Example: Potential energy of a hollow sphere
 
-- Continue here…
-
-We made a subtle error of sorts when we transitioned from a sum over discrete charges to an integral over a charge distribution. Recall that in the sum version we used $j \neq i$ to enforce the requirement that a charge couldn't affect itself. When we moved to the integral form though this distinction got lost. It turns out that this issue only affects the second formula though. In fact, it only affects distributions of *point charges*. For continuous distributions the formulas will generally agree.
-
-Indeed, the second formula ties in with the question of whether empty space has energy, the so-called *vacuum energy*. This topic is a major issue in quantum electrodynamics. In classical dynamics we ignore this distinction, but we do occasionally have to be careful when subtleties like this arise.
-
-##### Example: Field energy of a hollow sphere
-
-Recall that the uniformly charged hollow sphere with radius $R$ has an electric field given by
+Consider again the uniformly charged hollow sphere of radius $R$. We've now seen multiple times that the E-field of the hollow sphere is $\mathbf{E}(\mathbf{x}) = \mathbf{0}$ when $r < R$, and
 $$
-\mathbf{E}(\mathbf{x}) = \frac{Q}{r^2} \ \mathbf{e}_r \ ,
+\mathbf{E}(\mathbf{x}) = \frac{Q}{r^2} \ \mathbf{e}_r \
 $$
-where $Q = 4\pi R^2 \sigma$ when $r \geq R$ and zero otherwise. Thus, according to the second formula for the field energy we have
-$$
-\mathcal{U} = \frac{1}{8\pi}\int d^3\mathbf{x} \ |\mathbf{E}(\mathbf{x})|^2 = \frac{1}{8\pi}\int_R^\infty 4\pi r^2 dr \ \bigg(\frac{Q}{r^2}\bigg)^2 = \frac{Q^2}{2R} \ .
-$$
-Since this isn't a point charge, we should expect to get the same result with the first formula as well. Since this is a 2-dimensional distribution we need to replace $\int d^3\mathbf{x} \ \rho(\mathbf{x})$ with $\int \sigma(\mathbf{x}) \ da$. At the surface of the sphere we have 
-$$
-\phi(\mathbf{x}) = \frac{Q}{R} \ .
-$$
-Thus, integrating over the surface of the sphere we have
+when $r \geq R$, where $Q = 4\pi R^2 \sigma$ is the total charge on the surface of the sphere. We've also seen the potential is a constant $\phi(\mathbf{x}) = Q/R$ inside the sphere, and $\phi(\mathbf{x}) = Q/r$ when $r > R$. 
+
+Let's now calculate the potential energy stored in the sphere using both approaches. Using the first approach in terms of the density and potential and replacing $\rho \phi$ with $\sigma \phi$, we have
 $$
 \mathcal{U} = \frac{1}{2} \int \sigma(\mathbf{x}) \phi(\mathbf{x}) \ da = \frac{1}{2} \int \sigma \frac{Q}{R} \ da = \frac{Q}{2R} 4\pi R^2 \sigma = \frac{Q^2}{2R} \ .
 $$
-As we can see, the two results agree as expected.
+Using the second approach in terms of the square of the E-field, we have
+$$
+\mathcal{U} = \frac{1}{8\pi}\int d^3\mathbf{x} \ |\mathbf{E}(\mathbf{x})|^2 = \frac{1}{8\pi}\int_R^\infty 4\pi r^2 dr \ \bigg(\frac{Q}{r^2}\bigg)^2 = \frac{Q^2}{2R} \ .
+$$
+As expected, the two approaches give the same potential energy $\mathcal{U} = Q^2 / 2R$.
 
 ### Capacitance
 
-We'll now briefly mention the concept of *capacitance*. In electrical circuits one of the most common ways to store charge or energy in a circuit is through the use of *capacitors*. A capacitor is typically made up of two conductors separated by some distance either by vacuum, air, or some kind of insulating material. Each conductor is hooked up to a voltage source, for example a battery, with one conductor connected to the *positive terminal* and the other to the *negative terminal*. When the voltage source is turned on, some amount of positive charge will build up on the conductor hooked up to the positive terminal until a limiting amount of charge is reached. At the same time, some amount of negative charge will build up on the opposite conductor until it also reaches a limiting amount of charge. At equilibrium the two conductors will thus have equal but opposite charge.
+We'll now briefly mention the concept of *capacitance*. In electrical circuits one of the most common way to store charge and potential energy in a circuit is through the use of *capacitors*. A capacitor is typically made up of two conductors separated by some distance either by vacuum, air, or some kind of insulating material. Each conductor is hooked up to a voltage source, for example a battery, with one conductor connected to the *positive terminal* and the other to the *negative terminal*. When the voltage source is turned on, some amount of positive charge will build up on the conductor hooked up to the positive terminal until a limiting amount of charge is reached. At the same time, some amount of negative charge will build up on the opposite conductor until it also reaches a limiting amount of charge. At equilibrium the two conductors will thus have equal but opposite charge.
 
 FIGURE
 
@@ -1365,25 +1356,20 @@ The capacitance evidently represents the ability of a capacitor to store charge 
 
 In typical lab settings, most capacitors are built to run at fixed capacitances, though one can have capacitors with variable capacitances as well. In a classical capacitor design, two thin conducting films separated by some kind of insulating material are rolled up tightly into a packaged cylinder. When the capacitor becomes charged, each film will acquire opposite charges with $Q = CV$, where $C$ is determined by the rating of the capacitor and $V$ by the applied voltage. Even with these rolled up capacitors it's still a good approximation to treat them as parallel plate conductors with $C \approx \varepsilon A/4\pi d$, where $A$ is the surface area of each film (typically many meters), $d$ is the distance between the films (typically on the order of microns), and $\varepsilon$ is the *dielectric constant* of the insulating material separating the two films. We'll discuss the electromagnetic properties of insulating materials in a later chapter. A typical capacitor used in a circuit might have capacitances in the range of $10^{-12}$ to $10^{-6}$ Farads.
 
-Since capacitors can be used to store charge, they can also be used to store potential energy. Indeed, since $Q = CV$ and $\mathcal{U} \sim Q V$, intuitively we should expect that the potential energy stored in a capacitor goes like $\mathcal{U} \sim CV^2$. In fact this is almost the exact answer apart from a missing factor of $1/2$. To see where this factor comes from,
-
-- Fill this in…
-
-Thus, the potential energy stored in a capacitor is exactly
+Since capacitors can be used to store charge, they can also be used to store potential energy. Indeed, since $Q = CV$ and $\mathcal{U} \sim Q V$, intuitively we should expect that the potential energy stored in a capacitor goes like $\mathcal{U} \sim CV^2$. In fact this is almost the exact answer apart from a missing factor of $1/2$. To see where this factor comes from, suppose we apply a voltage $V$ across a capacitor and let it charge up from an initial charge $q=0$ to a final charge $q=Q$. Each infinitesimal charge increase $dq$ on the capacitor will increase the potential energy of the capacitor by an amount
+$$
+d\mathcal{U} = V dq = \frac{q}{C} dq \ .
+$$
+The total potential energy stored in the capacitor will then be
+$$
+\mathcal{U} = \int_0^Q dq \ \frac{q}{C} = \frac{1}{2} \frac{Q^2}{C} = \frac{1}{2} QV = \frac{1}{2} CV^2 \ .
+$$
+Thus, the total potential energy stored in the capacitor is exactly
 $$
 \boxed{
 \mathcal{U} = \frac{1}{2} C V^2
 } \ .
 $$
-One immediate implication of this fact is that to double the amount of potential energy stored in a capacitor, we'd need to quadrupole the voltage applied across it.
+One immediate implication of this relationship is that to double the amount of potential energy stored in a capacitor, we'd need to quadrupole the voltage applied across it.
 
 Note that since the potential energy depends on the voltage, a capacitor is only able to store energy while a voltage is maintained across it. If the source of the voltage, for instance a battery, is turned off,  the capacitor discharges and the energy quickly dissipates. Capacitors can thus only be used to store energy in a running circuit. They can't store energy in isolation like a battery.
-
-----
-
-We'll focus on a single conductor, though the same results easily carry over to multiple conductors as well. Consider again a single conductor with total charge $Q$ and potential $V$. We've already shown that the energy must be $\mathcal{U} = \frac{1}{2} QV$.
-$$
-\text{Know:} \ \nabla \times \mathbf{F}(\mathbf{x}) = \mathbf{0} \\
-\text{Claim:} \ \nabla \times \mathbf{F}(\mathbf{x} - \mathbf{a}) = \mathbf{0} \\
-\text{Proof:} \ (\nabla \times \mathbf{F}')_i = \varepsilon_{ijk} \partial_j F_k' = \varepsilon_{ijk} \partial_\ell' F_k' \partial_j (x_\ell - a_\ell) = \varepsilon_{ijk} \partial_\ell' F_k' \delta_{j\ell} = \varepsilon_{ijk} \partial_j' F_k' = (\nabla' \times \mathbf{F}')_i = 0 \quad \square
-$$
