@@ -2,18 +2,18 @@
 
 With the foundations of electrostatics in place, we will now turn our attention to more advanced methods for understanding and solving electrostatics problems. In this chapter and the next we will concern ourselves mainly with *boundary value problems*, or *BVPs*. We will show that electrostatics can be recast in terms of a single scalar partial differential equation, or *PDE*, for the scalar potential, known as *Poisson's equation*. In this chapter we will show how to solve the inhomogeneous Poisson equation using Green's functions and the related method of images. In the next chapter we will focus on solution methods for *Laplace's equation*, which is the homogeneous version of Poisson's equation. It'll turn out that many of the solution methods we introduce here will also apply beyond electrostatics, including to magnetostatics and electrodynamics.
 
-## Poisson's Equation
+## Boundary Value Problems
 
-In the previous chapter we showed that in electrostatics the electric field satisfies the two field equations
+In the previous chapter we showed that in electrostatics the electric field is completely summarized by the field equations
 $$
 \begin{align*}
 \nabla \cdot \mathbf{E} &= 4\pi\rho \ , \\
 \nabla \times \mathbf{E} &= \mathbf{0} \ .
 \end{align*}
 $$
-We'll now convert these field equations into a single PDE for the scalar potential, known as Poisson's equation.
+We'll now convert these field equations into a single PDE for the scalar potential, known as Poisson's equation, and show how to recast electrostatics problems in the form of boundary value problems.
 
-### Derivation
+### Poisson Equation
 
 From the equation $\nabla \times \mathbf{E} = \mathbf{0}$ we know that in electrostatics the E-field $\mathbf{E}(\mathbf{x})$ is by definition irrotational, and hence must be the gradient of some scalar field, which we call the scalar potential $\phi(\mathbf{x})$,
 $$
@@ -23,145 +23,282 @@ This means all relevant physical information about the E-field is contained in t
 
 Since $\mathbf{E} = -\nabla \phi$ already guarantees that $\nabla \times \mathbf{E} = \mathbf{0}$, we need only substitute this gradient into Gauss's law $\nabla \cdot \mathbf{E} = 4\pi\rho$ to get a field equation for the potential. Performing this substitution, we have
 $$
-\nabla \cdot \mathbf{E} = \nabla \cdot (-\nabla \phi) = -\nabla^2 \ 4\pi\rho
+\nabla \cdot \mathbf{E} = \nabla \cdot (-\nabla \phi) = -\nabla^2 \phi = 4\pi\rho \ .
 $$
-
-
-
-
-We've now found the following two field equations for the electric field of electrostatics,
-$$
-\begin{align*}
-\nabla \cdot \mathbf{E} &= 4\pi\rho \ , \\
-\nabla \times \mathbf{E} &= \mathbf{0} \ .
-\end{align*}
-$$
-We can use the scalar potential to combine these two first-order field equations into a single second-order equation for the scalar potential. We've already shown the curl equation is equivalent to the formula $\mathbf{E} = -\nabla \phi$. Plugging this into Gauss's Law, we get
-$$
-\nabla \cdot \mathbf{E} = \nabla \cdot (-\nabla \phi) = 4\pi\rho \ .
-$$
-Recognizing that this is just the Laplacian of the scalar potential, we thus have
+Thus, the two electrostatic field equations for the E-field are entirely contained in the single equation
 $$
 \boxed{
 \nabla^2 \phi = -4\pi\rho
 } \ .
 $$
-This second-order differential equation is called *Poisson's Equation*. It's fully equivalent to the two field equations we derived before. This means that instead of solving two vector first order differential equations to find the electric field, we need only solve Poisson's equation subject to any boundary conditions and then take the gradient to get the electric field. Indeed, for this reason Poisson's equation is perhaps the most important equation in electrostatics. It's the most generally useful way to find the electric field of a charge distribution. We'll  spend considerable time analyzing and solving this equation in the next chapter.
+A PDE of this form is known as *Poisson's equation*. It's a single scalar second order spatial PDE for the potential. Given some charge distribution, we in principle need only solve this PDE for the corresponding scalar potential and E-field. Indeed, much of the remainder of electrostatics is about finding more and more ways to solve Poisson's equation for the scalar potential.
 
-For now, just observe that Coulomb's Law is indeed a solution of Poisson's equation. If we express Coulomb's law as
+When we're only interested in the potential in some region of space where no charges are present, $\rho = 0$ and Poisson's equation reduces to a simpler PDE known as *Laplace's equation*,
+$$
+\boxed{
+\nabla^2 \phi = 0
+} \ .
+$$
+We'll discuss solution methods to Laplace's equation in great depth in the next chapter.
+
+### Boundary Conditions
+
+Poisson's equation (and Laplace's equation) allows us to incorporate a new feature into our problem solving methods, namely *boundary conditions*. Boundary conditions are conditions that the potential must satisfy on some given spatial surface. These can be useful whenever we have some charged surfaces in space that will affect the value of the potential, but whose charge densities are too complicated or too inconvenient to model directly. Solving a differential equation when boundary conditions are also imposed is known as a *boundary value problem*, or *BVP*. These BVPs will be our primary focus for the next two chapters.
+
+As an example, suppose we're interested in the potential of a point charge located some distance outside of the surface of a sphere, where we happen to know that the surface of the sphere is held at some fixed potential $\phi(\mathbf{x}) = V$. Instead of writing the charge density as the sum of the density of a point charge and the density of a sphere, we could neglect the sphere from the charge density and instead impose the boundary condition on Poisson's equation that the solution must satisfy the boundary condition $\phi(\mathbf{x}) = V$ on the surface of the sphere. This is an example of a *Dirichlet boundary condition*. Dirichlet boundary conditions are boundary conditions where the *value* of the potential itself is assumed to be fixed on some known surface.
+
+Poisson BVPs with only Dirichlet boundary conditions all have the general form
+$$
+\begin{align*}
+\begin{cases}
+\nabla^2 \phi = -4\pi\rho \ \text{in} \ \mathcal{V} \ , \\
+\text{where} \ \phi = V \ \text{on} \ \mathcal{S} \ .
+\end{cases}
+\end{align*}
+$$
+In the previous example, the region $\mathcal{V}$ would be the region outside the sphere where $r > R$, and the surface $\mathcal{S}$ would be a sphere of radius $R$ centered at the origin, in which case the boundary condition might be that $\phi(\mathbf{x}) = V$ when $r = R$. This means whichever solutions we find to Poisson's equation, the only solution that will work in the end is the one whose potential is exactly $V$ on the surface of the sphere.
+
+As another example, instead of knowing that the potential is fixed on the surface of the sphere, we might instead happen to know that the surface charge density $\sigma(\mathbf{x})$ on the surface of the sphere is constant instead. This turns out to be equivalent to the statement that the E-field itself is constant on the surface, or equivalently that the gradient of the potential is constant. This is an example of a *Neumann boundary condition*. Neumann boundary conditions are those where the *derivative* of the potential is assumed to be fixed on some known surface.
+
+Poisson BVPs with only Neumann boundary conditions all have the general form
+$$
+\begin{align*}
+\begin{cases}
+\nabla^2 \phi = -4\pi\rho \ \text{in} \ \mathcal{V} \ , \\
+\text{where} \ \frac{\partial \phi}{\partial n} = -E \ \text{on} \ \mathcal{S} \ .
+\end{cases}
+\end{align*}
+$$
+Here we've introduced the *normal derivative* $\partial \phi / \partial n$, defined by
+$$
+\frac{\partial \phi}{\partial n} \equiv \nabla \phi \cdot \mathbf{n} \ .
+$$
+As the name suggests, the normal derivative is just the derivative of the potential in the direction normal to the surface $\mathcal{S}$. Since $\mathbf{E} = -\nabla \phi$, the normal derivative of the potential is also $-\mathbf{E} \cdot \mathbf{n}$, or the component of the (negative) E-field normal to the surface. For instance, in the previous example, the boundary condition might be that $\mathbf{E}(\mathbf{x}) \cdot \mathbf{n} = E$ whenever $r = R$.
+
+We could also imagine problems where the potential is fixed on some part of a surface and the charge density is fixed on some other part of a surface. For instance, we could have two spheres where one is held at a fixed potential and the other at a fixed surface charge density. Boundary conditions of this kind are known as *mixed boundary conditions*. 
+
+Poisson BVPs with mixed boundary conditions all have the general form
+$$
+\begin{align*}
+\begin{cases}
+\nabla^2 \phi = -4\pi\rho \ \text{in} \ \mathcal{V} \ , \\
+\text{where} \ \phi = V \ \text{on} \ \mathcal{S}_D \ , \\
+\text{and} \ \frac{\partial \phi}{\partial n} = -E \ \text{on} \ \mathcal{S}_N \ .
+\end{cases}
+\end{align*}
+$$
+In principle there could be other types of boundary conditions as well, though in practice Dirichlet, Neumann, and mixed boundary conditions are all we'll see. There's a good reason for this, for as we'll see these conditions are precisely the ones that guarantee the solution to Poisson's equation is unique, and hence that the potential obtained is physically meaningful.
+
+### Uniqueness Theorem
+
+As previously mentioned, the three types of BVPs mentioned above are guaranteed to have unique solutions. We want to know that the potential we solve for is the one that gives rise to the E-field and the forces we'd physically measure in the lab if we were to do experiments. It's thus good to know in what situations the solutions to Poisson's equation will be unique (at least up to an additive constant) so we don't have to worry about this issue every time we solve a given BVP. It turns out if we stick to Poisson BVPs with only Dirichlet, Neumann, or mixed boundary conditions, we can indeed be assured the solution found is indeed unique. This fact follows from the *uniqueness theorem*, which we will now prove.
+
+To that end, suppose first that $\phi(\mathbf{x})$ and $\psi(\mathbf{x})$ are each potentially distinct solutions to a Dirichlet BVP of the form
+$$
+\begin{align*}
+\begin{cases}
+\nabla^2 \phi = \nabla^2 \psi = -4\pi\rho \ \text{in} \ \mathcal{V} \ , \\
+\text{where} \ \phi = \psi = V \ \text{on} \ \mathcal{S} \ .
+\end{cases}
+\end{align*}
+$$
+Now, let $u = \phi - \psi$. Then we have $\nabla^2 u = \nabla^2 \phi - \nabla^2 \psi = 0$, which means $u(\mathbf{x})$ must satisfy Laplace's equation inside the enclosed volume $\mathcal{V}$. Moreover, on the boundary surface $\mathcal{S}$ we have $\phi = \psi = V$, which means $u = 0$ on $\mathcal{S}$. We thus obtain a new Dirichlet BVP for $u(\mathbf{x})$ of the form
+$$
+\begin{cases}
+\nabla^2 u = 0 \ \text{in} \ \mathcal{V} \ , \\
+\text{where} \ u = 0 \ \text{on} \ \mathcal{S} \ .
+\end{cases}
+$$
+Similarly, if $\phi(\mathbf{x})$ and $\psi(\mathbf{x})$ are each potentially distinct solutions to a Neumann BVP inside the same region $\mathcal{V}$ we have
+$$
+\begin{cases}
+\nabla^2 \phi = \nabla^2 \psi = -4\pi\rho \ \text{in} \ \mathcal{V} \ , \\
+\text{where} \ \frac{\partial \phi}{\partial n} = \frac{\partial \psi}{\partial n} = -E \ \text{on} \ \mathcal{S} \ ,
+\end{cases}
+$$
+then $u(\mathbf{x})$ again satisfies Laplace's equation inside $\mathcal{V}$, and on the boundary surface $\mathcal{S}$ we have $\partial u / \partial n = 0$, so we instead obtain a Neumann BVP for $u(\mathbf{x})$ of the form
+$$
+\begin{cases}
+\nabla^2 u = 0 \ \text{in} \ \mathcal{V} \ , \\
+\text{where} \ \frac{\partial u}{\partial n} = 0 \ \text{on} \ \mathcal{S} \ .
+\end{cases}
+$$
+Now recall Green's first identity from vector calculus, which says for any two smooth scalar fields $f(\mathbf{x})$ and $g(\mathbf{x})$ we have
+$$
+\int_\mathcal{V} d^3 \mathbf{x} \ (\nabla f \cdot \nabla g + g \nabla^2 f) = \oint_\mathcal{S} da \ g \frac{\partial f}{\partial n} \ .
+$$
+If we now set $f = g = u$, we have
+$$
+\int_\mathcal{V} d^3 \mathbf{x} \ (|\nabla u|^2 + u \nabla^2 u) = \oint_\mathcal{S} da \ u \frac{\partial u}{\partial n} \ .
+$$
+But we know $\nabla^2 u = 0$ inside $\mathcal{V}$, and one or the other of $u$ or $\partial u / \partial n$ is zero on $\mathcal{S}$ depending on whether the BVP is Cauchy or Neumann. For either type of BVP, we thus have
+$$
+\int_\mathcal{V} d^3 \mathbf{x} \ |\nabla u|^2 = 0 \ .
+$$
+However, $|\nabla u|^2 \geq 0$ by definition, and the only way the integral of a non-negative function can be zero is if the function itself is also zero. That is, we must have $|\nabla u|^2 = 0$, which can only be true if $\nabla u = \mathbf{0}$ by the definition of the norm. But the only way the gradient of a function can be zero is if the function itself is constant, meaning $u(\mathbf{x})$ must be constant. We thus must have that
+$$
+\phi(\mathbf{x}) - \psi(\mathbf{x}) = \text{constant} \ .
+$$
+Thus, if both $\phi(\mathbf{x})$ and $\psi(\mathbf{x})$ are solutions to the same Dirichlet or Neumann BVP, then they must be identical up to an additive constant. This means *any* solution to a Dirichlet or Neumann BVP must be unique up to an additive constant. In fact, for a Dirichlet BVP we can be assured that this additive constant is always zero, since  $\phi(\mathbf{x})$ and $\psi(\mathbf{x})$ must agree on the boundary. In practice though it doesn't much matter, since as discussed in the previous chapter we're always free to add an arbitrary constant to the potential without changing the E-field. This is just equivalent to shifting the ground point of the potential.
+
+In a similar manner, one can show that solutions to mixed BVPs are also unique up to an additive constant. All one needs to do is apply the proof above to the Dirichlet portion of the surface $\mathcal{S}_D$ and to the Neumann portion of the surface $\mathcal{S}_N$.
+
+As mentioned above, this result is known as the uniqueness theorem. Provided we can find *any* solution to a given BVP of the above types, whether by guessing or some other method, we know that must be *the* solution up to an additive constant. We'll find this theorem a powerful tool in electrostatics, most importantly when discussing the method of images. Incidentally, since Laplace's equation is just a special case of Poisson's equation the same facts we just prove also hold for Laplace BVPs.
+
+### Surface Boundary Conditions
+
+The discussion of Poisson BVPs so far has been quite general. We now want to specialize the discussion of boundary conditions specifically to electrostatic potentials. Recall in the previous chapter that we saw for the infinite sheet and hollow sphere examples that the E-field changes discontinuously by an amount $4\pi\sigma$ when crossing the surface, while the potential remains continuous when crossing the surface. We will now show these are general facts for any 2-dimensional surface of charge. We'll then use these facts to derive a general set of boundary conditions any potential must satisfy on a boundary surface.
+
+To that end, suppose $\mathcal{S}$ is some smooth surface carrying a potentially non-constant surface charge density $\sigma(\mathbf{x})$. Suppose $\mathbf{x}$ is some arbitrary point on the surface at which we're interested in calculating the E-field $\mathbf{E}(\mathbf{x})$. It'll be useful to break up the E-field into two vector components, one component $\mathbf{E}_\perp(\mathbf{x})$ normal to the surface and the remaining component $\mathbf{E}_\parallel(\mathbf{x})$ tangential to it,
+$$
+\mathbf{E}(\mathbf{x}) = \mathbf{E}_\perp(\mathbf{x}) + \mathbf{E}_\parallel(\mathbf{x}) \ .
+$$
+For example, if the surface $\mathcal{S}$ were an infinite sheet in the $xy$-plane, $\mathbf{E}_\perp = E_z \mathbf{e}_z$ is the normal component to the sheet pointing along the $z$-axis, and $\mathbf{E}_\parallel = E_x \mathbf{e}_x + E_y \mathbf{e}_y$ is the tangential component in the $xy$-plane. Clearly $\mathbf{E}_\perp$ and $\mathbf{E}_\parallel$ must be orthogonal.
+
+We'll now focus on analyzing the normal and tangential components separately using the field equations for the E-field. We'll focus first on the normal component $\mathbf{E}_\perp(\mathbf{x})$. We can do so using the integral form of Gauss's law. Suppose we zoom in on the point $\mathbf{x}$ so close that the surface $\mathcal{S}$ looks approximately flat. Suppose we place a pillbox Gaussian surface around $\mathbf{x}$ similar to the one we used for the infinite sheet in the previous chapter. Suppose the pillbox has infinitesimal areas $\delta A$ on the end-caps above and below the surface, and an infinitesimal height $\delta x$ joining the caps normal to the surface. Since $\mathbf{E}_\perp(\mathbf{x})$ is normal to the end-caps apart from second-order curvature effects we'll ignore, by Gauss's law we have
+$$
+\Delta E_\perp(\mathbf{x}) \delta A = 4\pi\sigma(\mathbf{x}) \delta A \ ,
+$$
+where $\Delta E_\perp(\mathbf{x})$ is the change in the normal field strength when crossing the surface at $\mathbf{x}$. Cancelling the $\delta A$ from both sides, we've thus shown that the normal component $\mathbf{E}_\perp(\mathbf{x})$ changes by exactly an amount
+$$
+\Delta E_\perp(\mathbf{x}) = 4\pi\sigma(\mathbf{x})
+$$
+when crossing the surface of the sheet. Thus, what we saw in the previous chapter was indeed a general fact, but only for the component of the E-field normal to the surface.
+
+But what about the tangential component of the E-field? We never said anything about that. It turns out it's because we didn't need to. The tangential component of the field always remains continuous along the sheet. To see why, we can employ the integral form of the remaining field equation $\nabla \times \mathbf{E} = \mathbf{0}$ to the tangential component $\mathbf{E}_\parallel(\mathbf{x})$. Suppose we again zoom in on $\mathbf{x}$ and place a closed loop of infinitesimal radius around this point. Since the circulation integral always vanishes in electrostatics,
+$$
+\oint_\mathcal{C} \mathbf{E} \cdot d\boldsymbol{\ell} = 0 \ ,
+$$
+then neglecting second order curvature effects the change in the tangential field strength $\Delta E_\parallel(\mathbf{x})$ around the loop will satisfy
+$$
+\Delta E_\parallel(\mathbf{x}) \delta\ell = 0 \ .
+$$
+That is, $\Delta E_\parallel(\mathbf{x}) = 0$. This means the tangential component of the E-field remains continuous along the surface. 
+
+We can combine both the tangential and normal results together by writing
+$$
+\Delta\mathbf{E}(\mathbf{x}) = 4\pi\sigma(\mathbf{x}) \mathbf{n} \ ,
+$$
+where $\mathbf{n}$ is the outward unit normal from the surface $\mathcal{S}$ at the point $\mathbf{x}$.
+
+Now that we've shown how the E-field changes across a surface of charge quickly let's look at how the potential behaves. Since the potential $\phi(\mathbf{x})$ is a scalar we don't need to decompose it into pieces. Recall that the potential difference $\Delta \phi(\mathbf{x})$ between any two points $\mathbf{x}_1$ and $\mathbf{x}_2$ can be obtained from the E-field by evaluating any path integral between the two points,
+$$
+\Delta \phi(\mathbf{x}) = -\int_{\mathbf{x}_1}^{\mathbf{x}_2} \mathbf{E}(\mathbf{x}) \cdot d\boldsymbol{\ell} \ .
+$$
+We can use this to calculate the potential difference across two points arbitrarily close to our point $\mathbf{x}$ on the surface of charge. Suppose $\mathbf{x}_\pm = \mathbf{x} \pm \delta\mathbf{x}$ are any two points infinitesimally close to this point $\mathbf{x}$. Then to first order in $\delta\ell$ we have
+$$
+\Delta \phi(\mathbf{x}) = -\int_{\mathbf{x}_-}^{\mathbf{x}_+} \mathbf{E}(\mathbf{x}) \cdot d\boldsymbol{\ell} \approx -\Delta E(\mathbf{x}) \delta\ell \ .
+$$
+Since $\delta\ell$ is infinitesimal though, the right-hand side will be much smaller than the left-hand side. In the limit $\delta\mathbf{x} \to \mathbf{0}$ we then have
+$$
+\Delta \phi(\mathbf{x}) = 0 \ .
+$$
+That is, the potential remains continuous on the surface of charge, no matter which path we choose.
+
+Let's now formulate these results as a set of boundary conditions for the potential in electrostatics, since we'll use them a good bit over the next couple of chapters. First, since the potential remains continuous across a surface of charge, the value of the potential on one side of the boundary must always match the value of the potential on the other side of the boundary. That is,
+$$
+\boxed{
+\phi_+(\mathbf{x}) = \phi_-(\mathbf{x}) 
+} \ .
+$$
+Here it's understood that $\phi_+(\mathbf{x})$ and $\phi_-(\mathbf{x})$ refer to any points infinitesimally above and below the surface, respectively. When we specify Dirichlet boundary conditions in electrostatics, we're thus specifying what the potential must be on the boundary surface. We're guaranteed that the potential will be the same on both sides of the surface, ensuring this specified value is unique.
+
+Second, since the E-field changes by an amount $\Delta\mathbf{E} = 4\pi\sigma \mathbf{n}$ across any boundary surface of charge, and
+$$
+\frac{\partial \phi}{\partial n} = -\mathbf{E} \cdot \mathbf{n} \ ,
+$$
+the normal derivative of the potential must satisfy the following condition across the boundary surface,
+$$
+\boxed{
+\frac{\partial \phi_+}{\partial n} - \frac{\partial \phi_-}{\partial n} = -4\pi\sigma(\mathbf{x}) 
+} \ .
+$$
+Thus, Neumann boundary conditions in electrostatics are essentially equivalent to specifying the surface charge density on the boundary surface. Since the normal derivative must be proportional to the same surface charge density $\sigma(\mathbf{x})$ on both sides of the surface, we can be sure that this density uniquely specifies a Neumann boundary condition.
+
+### Boundary Conditions for Conductors
+
+The boundary value problem formulation of electrostatics is perhaps most useful when we wish to find the potential or E-field of a charge distribution in the presence of conducting materials. Trying to explicitly model the charge distribution of a conductor is quite difficult since free charges are allowed to move around in response to external fields. We'll now derive some important facts about conductors, and show how we can model the behavior of conductors using boundary conditions. 
+
+When we speak of conductors in this chapter and much of classical electromagnetism, what we are really speaking about are *ideal* conductors, or conductors with an infinite supply of available free charge. Real-life conductors of course aren't exactly ideal since they contain a finite amount of free charge, but the amount of free charge they contain is so high that they can often be treated as ideal conductors anyway. For instance, a typical metal like copper might contain one or two free electrons per atom, which translates to something like $10^{28}$ free electrons per cubic centimeter.
+
+Suppose an ideal conductor is brought into contact with some external E-field. When this happens, the free charges inside the conductor will rearrange themselves in response to the field until the following conditions are satisfied:
+
+1. The electric field inside the conductor is exactly zero.
+
+2. The surface of the conductor is an equipotential.
+
+3. All free charges reside on the surface of the conductor.
+
+This is easy enough to prove. Suppose we bring the conductor into contact with some external E-field $\mathbf{E}_\text{ext}$. When this happens, the free charges inside the conductor will move in response to the field, creating their own internal E-field $\mathbf{E}_\text{int}$ to oppose their change in momentum. Since the supply of free charge is unlimited, eventually there will reach a time when $\mathbf{E}_\text{int} = -\mathbf{E}_\text{ext}$ inside the conductor. This is known as *electrostatic equilibrium*. By the principle of superposition, the *net* E-field inside the conductor will then be the sum of the external and internal fields,
+$$
+\mathbf{E} = \mathbf{E}_\text{ext} + \mathbf{E}_\text{int} = \mathbf{0} \ .
+$$
+Thus, the net E-field inside the conductor will vanish at equilibrium. Since $\mathbf{E} = -\nabla \phi$, the potential inside the conductor must then be constant and thus an equipotential. Moreover, since the potential is continuous at the surface of the conductor, the surface must evidently be an equipotential as well, which means the net E-field lines must be normal to the surface.
+
+<img src="../resources/image-20240703155651920.png" style="zoom:50%;" />
+
+To see why any free charges must reside on the surface at electrostatic equilibrium we can use the integral form of Gauss's law. For any closed Gaussian surface $\mathcal{S}$, the total amount of charge $Q_\text{enc}$ must be given by
+$$
+\oint_\mathcal{S} \mathbf{E}_\text{net} \cdot d\mathbf{a} = 4\pi Q_\text{enc} \ .
+$$
+In particular, if we choose any Gaussian surface $\mathcal{S}$ that lies completely inside the conductor then $\mathbf{E}_\text{net} = \mathbf{0}$, in which case we must have $Q_\text{enc} = 0$. Thus, at equilibrium there can be no net enclosed charge inside the conductor. Since any free charges are bound to the conductor and can't jump off, the only place left for them to go is the surface, where they will distribute themselves in such a way as to ensure that $\mathbf{E} = \mathbf{0}$ inside the conductor.
+
+Incidentally, this also implies that at the boundary of the conductor we must have $\mathbf{E} = 4\pi\sigma \mathbf{n}$, or
+$$
+\frac{\partial\phi}{\partial n} = -4\pi\sigma \ ,
+$$
+where $\sigma(\mathbf{x})$ is the surface charge density of the free charges on the surface of the conductor. Since this surface density is created from bringing the conductor into contact with an external E-field, we call it the *induced surface charge density*. That is, the external field *induces* the free charges to distribute themselves in such a way as to create a surface density $\sigma(\mathbf{x})$ on the surface.
+
+## Green's Functions
+
+Thus far we've only showed how to reformulate electrostatics problems in terms of a Poisson BVP. We've said nothing about how to actually solve a BVP. In this section we'll start taking steps in that direction by introducing the *Green's function*. We'll first define what we mean by a Green's function and then derive the Green's function for Poisson's equation when there are no boundary conditions imposed. Later in the section we'll show how to incorporate boundary conditions into the Green's function.
+
+### Free Solution
+
+Suppose we want to solve Poisson's equation in the case that no boundary conditions are imposed,
+$$
+\nabla^2 \phi(\mathbf{x}) = -4\pi\rho(\mathbf{x}) \ .
+$$
+As is typically the case, we assume that we know what the charge density $\rho(\mathbf{x})$ of interest is and seek to solve for the potential $\phi(\mathbf{x})$ this charge density generates.
+
+Provided the charge distribution is *localized* and doesn't go off to infinity we know how to do this already. Indeed, we showed in the previous chapter that the potential can be found by evaluating the integral
+$$
+\phi(\mathbf{x}) = \int d^3 \mathbf{x}' \ \frac{\rho(\mathbf{x}')}{|\mathbf{x} - \mathbf{x}'|} \ .
+$$
+Let's first quickly verify that this integral is indeed the unique solution to Poisson's equation free of boundary conditions.
+$$
+\nabla^2 \phi(\mathbf{x}) = \nabla^2 \int d^3 \mathbf{x}' \ \frac{\rho(\mathbf{x}')}{|\mathbf{x} - \mathbf{x}'|} = \int d^3 \mathbf{x}' \ \nabla \cdot \nabla \frac{\rho(\mathbf{x}')}{|\mathbf{x} - \mathbf{x}'|}
+$$
+
+
+
+
+
+
+
+
+By Gauss's law we know $\nabla \cdot \mathbf{E} = 4\pi\rho$. If we solve for $\rho(\mathbf{x})$ and insert the divergence inside the integral, we get
+$$
+\nabla^2 \phi(\mathbf{x}) = -\nabla \cdot \mathbf{E}(\mathbf{x}) \ .
+$$
+Now, we know that the E-field can also be related to the charge density via the integral
 $$
 \mathbf{E}(\mathbf{x}) = \int d^3 \mathbf{x}' \ \rho(\mathbf{x}') \frac{\mathbf{x} - \mathbf{x}'}{|\mathbf{x} - \mathbf{x}'|^3} \ ,
 $$
-then the Laplacian of the potential is given by
+Plugging this integral into the previous equation and using the usual identity $\nabla \cdot \mathbf{x}/r = 4\pi\delta(\mathbf{x})$, we then have
 $$
 \begin{align*}
-\nabla^2 \phi(\mathbf{x}) &= -\nabla \cdot \mathbf{E}(\mathbf{x}) \\
-&= -\nabla \cdot \int d^3 \mathbf{x}' \ \rho(\mathbf{x}') \frac{\mathbf{x} - \mathbf{x}'}{|\mathbf{x} - \mathbf{x}'|^3} \\
+\nabla^2 \phi(\mathbf{x}) &= -\nabla \cdot \int d^3 \mathbf{x}' \ \rho(\mathbf{x}') \frac{\mathbf{x} - \mathbf{x}'}{|\mathbf{x} - \mathbf{x}'|^3} \\
 &= -\int d^3 \mathbf{x}' \ \rho(\mathbf{x}') \nabla \cdot \frac{\mathbf{x} - \mathbf{x}'}{|\mathbf{x} - \mathbf{x}'|^3} \\
 &= -\int d^3 \mathbf{x}' \ \rho(\mathbf{x}') 4\pi \delta(\mathbf{x} - \mathbf{x}') \\
 &= -4\pi \rho(\mathbf{x}) \ .
 \end{align*}
 $$
+
+
+
+
 We've thus shown that Coulomb's law satisfies Poisson's equation, as we'd expect. In fact, if the charge distribution is localized and there are no boundary conditions present, like say a set of background conductors, then Coulomb's law is the only valid solution. If boundary conditions are present we have to modify things slightly. We'll see more on this in the next few chapters.
-
-### Surface Boundary Conditions
-
-Recall from earlier the infinite sheet of charge example. Specifically, we saw that the electric field across the sheet of charge changes discontinuously across the surface by an amount $4\pi\sigma$. In fact this is generally true for E-fields across surfaces of charge. Specifically, when crossing a surface of charge, the normal part of the E-field changes discontinuously, while the tangential part of the E-field changes continuously.
-
-FIGURE (show surface of charge with normal and tangential E-fields)
-
-To see why this is the case, suppose $\mathcal{S}$ is some smooth surface carrying a surface charge density $\sigma(\mathbf{x})$. Suppose $\mathbf{x}$ is some point on this surface. The E-field $\mathbf{E}(\mathbf{x})$ at this point can then be decomposed into two parts, one vector $\mathbf{E}^\perp(\mathbf{x})$ normal to the surface at this point, and another vector $\mathbf{E}^\parallel(\mathbf{x})$ tangential to the surface at this point,
-$$
-\mathbf{E}(\mathbf{x}) = \mathbf{E}^\perp(\mathbf{x}) + \mathbf{E}^\parallel(\mathbf{x}) \ .
-$$
-To deal with the normal vector, what we can do is apply Gauss's Law just like we did with the infinite sheet. We'll choose an infinitesimally high and very thin pillbox with top and bottom areas $\delta A$ as the Gaussian surface, where $\delta A$ is so small that any deviations in the curvature of the surface $\mathcal{S}$ are negligible inside the Gaussian surface. If $E_+$ is the value of the E-field above the surface and $E_-$ is the value of the E-field below the surface, by Gauss's Law we must have
-$$
-(E_+^\perp - E_-^\perp) \delta A \approx \int \mathbf{E} \cdot d\mathbf{a} = 4\pi\sigma \delta A \ .
-$$
-That is, the normal part of the E-field changes discontinuously across the surface by an amount
-$$
-E_+^\perp(\mathbf{x}) - E_-^\perp(\mathbf{x}) = 4\pi\sigma(\mathbf{x}) \ .
-$$
-What about the parallel part? To handle this case, we can place an infinitesimally small closed loop of size $\delta\ell$ on the surface centered at the point $\mathbf{x}$. Since the circulation integral of the E-field is zero, we must have
-$$
-(E_+^\parallel - E_-^\parallel) \delta\ell = \oint_\mathcal{C} \mathbf{E} \cdot d\boldsymbol{\ell} = 0 \ .
-$$
-Assuming $\delta\ell$ is infinitesimal, we have $E_+^\parallel(\mathbf{x}) = E_-^\parallel(\mathbf{x})$. That is, the tangential part of the E-field remains continuous when crossing the surface of charge.
-
-We can put these two results together by using the (upward) normal vector $\mathbf{n}$​ to write
-$$
-\mathbf{E}_+(\mathbf{x}) - \mathbf{E}_-(\mathbf{x}) = 4\pi\sigma(\mathbf{x}) \mathbf{n} \ .
-$$
-What about the scalar potential? In fact the potential *is* continuous across the surface of charge. To see why, suppose $\mathbf{x}_-$ is some point infinitesimally below the surface and $\mathbf{x}_+$ some other point infinitesimally above the surface. If the two points are separated by a small distance $\delta\ell$, the potential difference between these two points must be given by
-$$
-\phi_+ - \phi_- = -\int_{\mathbf{x}_-}^{\mathbf{x}_+} \mathbf{E} \cdot d\boldsymbol{\ell} \approx -(E_+  + E_-) \delta\ell \ .
-$$
-Assuming $\delta\ell$ infinitesimal, the right-hand side will be much much smaller than the left-hand side. In this limit, we thus have
-$$
-\phi_+(\mathbf{x}) = \phi_-(\mathbf{x}) \ .
-$$
-Since need them to solve boundary value problems in the next few chapters, let's go ahead and formulate these surface conditions as a set of boundary conditions for the potential. For that purpose it'll be convenient to express the condition for the electric field as a normal derivative of the potential. The *normal derivative* of a scalar field on a surface is defined as the component of the scalar field's gradient in the normal direction,
-$$
-\frac{\partial \phi}{\partial n} \equiv \nabla \phi \cdot \mathbf{n} \ .
-$$
-We can thus write the two boundary conditions for the potential across a surface of charge as
-$$
-\begin{align*}
-\phi_+(\mathbf{x}) - \phi_-(\mathbf{x}) &= 0 \ , \\
-\frac{\partial}{\partial n} \phi_+(\mathbf{x}) - \frac{\partial}{\partial n} \phi_-(\mathbf{x}) &= -4\pi\sigma(\mathbf{x}) \ .
-\end{align*}
-$$
-Here it's of course understood that $\phi_+(\mathbf{x})$ and $\phi_-(\mathbf{x})$ refer to points infinitesimally above and below the surface, respectively.
-
-### Conductors
-
-Electromagnetic materials can often be thought of one of two types: *conductors* and *insulators*. Both are just materials composed of almost all neutral atoms, and hence charge neutral. They differ in one subtle way. Unlike insulators, conductors have a small fraction of *unbound electrons* that are unbound to their nuclei and free to move around the material, causing the material to *conduct* in the presence of an external field by moving its unbound electrons around. Insulators don't have these unbound electrons. The only way an insulator can respond to an external field is by distorting its electron clouds. We'll talk more about insulators in a future chapter. For now we'll just focus on conductors, which are a bit easier to understand macroscopically.
-
-Suppose we have a conductor with some given charge distribution. We place that conductor in the presence of an external electric field and wait for the system to come to electrostatic equilibrium. Once this happens, the electric field becomes time independent, and hence electrostatic. When this happens, the unbound electrons will move in the direction of the external field, creating an internal field inside the conductor of the same strength as the external field, but in opposite direction. The net result is that once the conductor is in electrostatic equilibrium, the net electric field will vanish. Thus, conductors will have the property that the electric field is zero inside the conductor.
-
-In fact, if there is no electric field inside the conductor it must be the case that all the unbound electrons will reside on the surface of the conductor. Indeed, this follows immediately from Gauss's Law. If there is no internal electric field in the conductor, then any Gaussian surface chosen inside the conductor must have $\rho = 0$​. Thus, the only place left for the charge to go is on the surface, where it will distribute itself such that the internal field vanishes.
-
-This also implies that the surface of a conductor must be an *equipotential surface*. Since the internal field is zero, we must have
-$$
-\phi(\mathbf{b}) - \phi(\mathbf{a}) = -\int_\mathbf{a}^\mathbf{b} \mathbf{E} \cdot d\boldsymbol{\ell} = 0
-$$
-for any two points $\mathbf{a}$ and $\mathbf{b}$ on the surface of the conductor, meaning $\phi(\mathbf{a}) = \phi(\mathbf{b})$ is constant on the surface. Since the surface of the conductor is an equipotential, this also means that the field lines at the surface must be perpendicular to the surface, since $\mathbf{E} = -\nabla \phi$​ and we know that gradients are perpendicular to their equipotential surfaces.
-
-![](../resources/image-20240703155651920.png)
-
-We'll find it convenient to express these results as a set of boundary conditions for conductors. Surface boundary conditions require that $\mathbf{E}_+ - \mathbf{E}_- = 4\pi\sigma \mathbf{n}$. Since the field inside the conductor is zero, $\mathbf{E}_- = \mathbf{0}$. Thus, just outside the surface we must have
-$$
-\mathbf{E}_+ = 4\pi\sigma \mathbf{n} \ ,
-$$
-or, in terms of the normal derivative of the potential, we must have
-$$
-\frac{\partial\phi}{\partial n} = -4\pi\sigma \ .
-$$
-This gives us a way to find the surface charge on a conductor if we know the potential, something we'll find useful later on.
-
----
-
-We saw in the previous chapter that we can in principle calculate the scalar potential $\phi$ due to the presence of a localized charge distribution $\rho$ by evaluating the following integral,
-$$
-\phi(\mathbf{x}) = \int d^3 \mathbf{x}' \ \frac{\rho(\mathbf{x}')}{|\mathbf{x} - \mathbf{x}'|} \ .
-$$
-In principle, this integral formula will work as long as the charge distribution is localized, there are no other sources of charge, and we've already specified in advance what the charge density $\rho(\mathbf{x}')$ actually is. Unfortunately, in practice there are often other sources of charge present, and we often don't know what the charge density is for those. For example, there may be background conductors or other charged materials present that are too difficult to model, but we know the potential on those surfaces. We can model situations like this by incorporating them into the problem as *boundary conditions*.
-
-Recall from the previous chapter that we can express the solution for the potential in an equivalent way to the integral given above via a partial differential equation (PDE) known as *Poisson's Equation*,
-$$
-\nabla^2 \phi = -4\pi\rho \ .
-$$
-As we can clearly see, Poisson's equation is a linear, second-order PDE that depends only on spatial coordinates. Note that in the absence of source charges, Poisson's equation reduces to another important equation we'll study known as *Laplace's Equation*,
-$$
-\nabla^2 \phi = 0 \ .
-$$
-To solve Poisson's equation, it's sufficient to specify some set of *boundary conditions*, or conditions that the solution must satisfy on some given boundary surface $\mathcal{S}$. We imagine the charge distribution $\rho$ lies inside the surface $\mathcal{S}$, which may or may not be closed. On the surface, we know before-hand that some condition is satisfied, for example the value of the potential or the electric field on $\mathcal{S}$.
-
-A problem of this kind is known as a *boundary value problem* or BVP. The entire goal of this chapter and the next will be devoted to solving BVPs of this type in various ways. The first way we will do so is via Green's function methods.
-
-## Green's Functions
-
-We will now introduce the idea of a *Green's Function*, which is a very useful and important concept in electromagnetism and many other field theories, as well as the theory of partial differential equations. We'll see that the Green's function provides a general method for solving Poisson's equation, and indeed for solving any linear differential equation.
 
 We already know that for a localized charge distribution in the absense of boundary conditions that the potential can be found by
 $$
@@ -303,74 +440,6 @@ $$
 \nabla^2 \phi = 0 \ .
 $$
 We can solve many electrostatics problems just by solving Laplace's equation subject to boundary conditions, allowing us to avoid having to specify ahead what the charge distributions are. We'll return to this idea later.
-
-### Uniqueness Theorem
-
-In fact, the formal solution we derived above is redundant. We don't need all of the information encoded in the surface integral to solve Poisson's equation. It turns out we only need one of the two terms, either the value term or the normal derivative term. In fact, including both terms as boundary conditions can result in the problem having no solution at all.
-
-When we solve Poisson's equation with only the *value* of the potential specified on the boundary surface, we say we are using *Dirichlet boundary conditions*. In a Dirichlet problem, we seek to solve the *boundary value problem* (BVP)
-$$
-\begin{align*}
-\begin{cases}
-\nabla^2 \phi = -4\pi\rho \ , \\
-\text{where} \ \phi = \phi_0 \ \text{on} \ \mathcal{S} \ .
-\end{cases}
-\end{align*}
-$$
-On the other hand, when we solve Poisson's equation with only the *normal derivative* specified on the boundary surface, we say we are using *Neumann boundary conditions*. In a Neumann problem, we seek to solve the BVP
-$$
-\begin{align*}
-\begin{cases}
-\nabla^2 \phi = -4\pi\rho \ , \\
-\text{where} \ \frac{\partial \phi}{\partial n'} = -E_0 \ \text{on} \ \mathcal{S} \ .
-\end{cases}
-\end{align*}
-$$
-Here $E_0$ is used to denote the value of the electric field normal to the boundary surface, i.e. $E_0 = \mathbf{E} \cdot \mathbf{n}'$.
-
-We will now show that provided either Cauchy or Neumann boundary conditions are used, the Poisson equation with boundary conditions will yield a unique solution for the potential. Suppose we have two solutions $\phi_1$ and $\phi_2$ to Poisson's equation subject to either Cauchy or Neumann boundary conditions, but not both. That is, we have
-$$
-\begin{align*}
-\begin{cases}
-\nabla^2 \phi_1 = \nabla^2 \phi_2 = -4\pi\rho \ , \\
-\text{where} \ \phi_1 = \phi_2 = \phi_0 \ \text{on} \ \mathcal{S} \ , \\
-\text{or} \ \frac{\partial \phi_1}{\partial n'} = \frac{\partial \phi_1}{\partial n'} = -E_0 \ \text{on} \ \mathcal{S} \ .
-\end{cases}
-\end{align*}
-$$
-Now, let $u = \phi_2 - \phi_1$. Then $\nabla^2 u = 0$ by linearity and either $u$ or $\frac{\partial u}{\partial n'}$ equal zero along the boundary surface, so we have
-$$
-\begin{align*}
-\begin{cases}
-\nabla^2 u = 0 \ , \\
-\text{where} \ u = 0 \ \text{on} \ \mathcal{S} \ , \\
-\text{or} \ \frac{\partial u}{\partial n'} = 0 \ \text{on} \ \mathcal{S} \ .
-\end{cases}
-\end{align*}
-$$
-This means the BVP for $u$ involves only solving Laplace's equation subject to the condition that either $u$ vanishes along the boundary or its normal derivative does.
-
-Next we'll employ Green's first identity. Recall from the first chapter that this identity says
-$$
-\int_\mathcal{V} d^3 \mathbf{x}' \ (\nabla' \psi \cdot \nabla' \phi + \psi \nabla'^2 \phi) = \oint_\mathcal{S} da' \ \psi \frac{\partial \phi}{\partial n'} \ .
-$$
-Again we interpret this identity as $\mathcal{S}$ being a closed boundary surface enclosing a volume $\mathcal{V}$, and each scalar field being a function of the source position $\mathbf{x}'$. What we'll do this time is let $u = \psi = \phi$ in this equation to get
-$$
-\int_\mathcal{V} d^3 \mathbf{x}' \ \big((\nabla' u)^2 + u \nabla'^2 u\big) = \oint_\mathcal{S} da' \ u \frac{\partial u}{\partial n'} \ .
-$$
-Now, according to Laplace's equation $\nabla'^2 u = 0$. Also, according to the boundary conditions, either $u$ or $\frac{\partial u}{\partial n'}$ must vanish on the boundary surface, which means the surface integral on the right-hand side must also vanish. We're thus left with
-$$
-\int_\mathcal{V} d^3 \mathbf{x}' \ |\nabla' u|^2 = 0 \ .
-$$
-Finally, since $|\nabla' u|^2$ is strictly non-negative, the integral can only vanish if its integrand does. This means we must have
-$$
-\nabla' u = 0 \ .
-$$
-The only way the gradient can vanish is if $u$ is constant, meaning $u = \phi_2 - \phi_1 + \text{const}$. Under Dirichlet boundary conditions, this additive constant must in fact be zero since if $\nabla' u = 0$ and $u = 0$ on the boundary, then $u=0$ everywhere. Under Neumann boundary conditions, however, this additive constant can be anything. 
-
-In either case it's physically immaterial what the additive constant is. Since the physical quantity of interest is the electric field, the additions of an additive constant to the potential doesn't physically matter. All together, this means that the solution to Poisson's equation subject to either Cauchy or Neumann boundary conditions must be unique up to an unimportant constant, which is what we wanted to show.
-
-Note that the same proof holds if the problem has *mixed boundary conditions*, where on some parts of the boundary surface the potential is specified, and on other parts the normal derivative is specified. In this case, we only need to break the boundary up into these two pieces and argue the proof for each part.
 
 ### Green's Function with Boundary Conditions
 
