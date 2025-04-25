@@ -265,35 +265,55 @@ Provided the charge distribution is *localized* and doesn't go off to infinity w
 $$
 \phi(\mathbf{x}) = \int d^3 \mathbf{x}' \ \frac{\rho(\mathbf{x}')}{|\mathbf{x} - \mathbf{x}'|} \ .
 $$
-Let's first quickly verify that this integral is indeed the unique solution to Poisson's equation free of boundary conditions.
+Let's first quickly verify that this integral is indeed the unique solution to Poisson's equation free of boundary conditions. Pulling the Laplacian $\nabla^2 = \nabla \cdot \nabla$ inside the integral and using the identity $\nabla 1/r = \mathbf{x}/r^3$, we have
 $$
-\nabla^2 \phi(\mathbf{x}) = \nabla^2 \int d^3 \mathbf{x}' \ \frac{\rho(\mathbf{x}')}{|\mathbf{x} - \mathbf{x}'|} = \int d^3 \mathbf{x}' \ \nabla \cdot \nabla \frac{\rho(\mathbf{x}')}{|\mathbf{x} - \mathbf{x}'|}
+\nabla^2 \phi(\mathbf{x}) = \int d^3 \mathbf{x}' \ \rho(\mathbf{x}') \nabla \cdot \nabla \frac{1}{|\mathbf{x} - \mathbf{x}'|} = \int d^3 \mathbf{x}' \ \rho(\mathbf{x}') \nabla \cdot \frac{\mathbf{x} - \mathbf{x}'}{|\mathbf{x} - \mathbf{x}'|^3} \ .
+$$
+Finally, using the related identity $\nabla \cdot \mathbf{x}/r^3 = -4\pi\delta(\mathbf{x})$ and evaluating the integral, we get
+$$
+\nabla^2 \phi(\mathbf{x}) = -4\pi \int d^3 \mathbf{x}' \ \rho(\mathbf{x}') \delta(\mathbf{x} - \mathbf{x}') = -4\pi\rho(\mathbf{x}) \ .
+$$
+We've thus found a solution to Poisson's equation free of boundary conditions. In fact it's the *unique* solution. This follows from the uniqueness theorem. We can think of the free solution as a special case of a Dirichlet BVP where the boundary surface is at infinity and the potential is zero on this infinite boundary surface. Uniqueness then immediately follows.
+
+### Green's Function
+
+Now that we have the unique solution to Poisson equation free of boundary conditions we're in principle done with this case. However, we'll find it insightful to analyze the structure of this solution a bit before moving on to more complicated BVPs. 
+
+To that end, let's consider the simplest non-trivial charge distribution of all, the unit point charge at the origin. In this special case we simply have $\rho(\mathbf{x}) = \delta(\mathbf{x})$, and Poisson's equation becomes
+$$
+\nabla^2 \phi(\mathbf{x}) = -4\pi\delta(\mathbf{x}) \ ,
+$$
+We already know the potential of a point charge though. In this case we just have $\phi(\mathbf{x}) = 1/r$. This potential is so fundamental that we give it a special name. We call it the *Green's function* and denote it by $G(\mathbf{x})$.
+
+Suppose we shift the unit point charge from the origin to some other point $\mathbf{x}'$. Then Poisson's equation becomes
+$$
+\nabla^2 \phi(\mathbf{x}) = -4\pi\delta(\mathbf{x} - \mathbf{x}') \ ,
+$$
+and the solution becomes $\phi(\mathbf{x}) = 1/|\mathbf{x} - \mathbf{x}'|$. But this is just the same Green's function above translated by $\mathbf{x}'$, or
+$$
+\boxed{
+G(\mathbf{x} - \mathbf{x}') = \frac{1}{|\mathbf{x} - \mathbf{x}'|}
+} \ .
+$$
+So why do we care about this? Notice we can substitute this Green's function directly into the free solution above to write
+$$
+\phi(\mathbf{x}) = \int d^3 \mathbf{x}' \ \rho(\mathbf{x}') G(\mathbf{x} - \mathbf{x}') \ .
+$$
+That is, we can think of any free solution to Poisson's equation as the *convolution* of the charge density with the Green's function. 
+
+The key insight here is that the Green's function is a property only of a given PDE's differential operator. For Poisson's equation that operator is the Laplacian $\nabla^2$. Each linear operator has its own unique Green's function. More generally, we define the Green's function of any linear operator $\mathcal{L}$ as the solution to the PDE
+$$
+\mathcal{L} G(\mathbf{x}) = -4\pi \delta(\mathbf{x}) \ .
+$$
+To obtain any particular solution $\phi(\mathbf{x})$ to a PDE of the form $\mathcal{L} \phi(\mathbf{x}) = -4\pi f(\mathbf{x})$ we need only convolve the source function $f(\mathbf{x})$ on the right-hand side with the Green's function,
+$$
+\phi(\mathbf{x}) = \int d^3\mathbf{x}' f(\mathbf{x}') G(\mathbf{x} - \mathbf{x}') \ .
 $$
 
 
+- Continue here…
+- Redo this section better. Feels scattered and poorly motivated.
 
-
-
-
-
-
-By Gauss's law we know $\nabla \cdot \mathbf{E} = 4\pi\rho$. If we solve for $\rho(\mathbf{x})$ and insert the divergence inside the integral, we get
-$$
-\nabla^2 \phi(\mathbf{x}) = -\nabla \cdot \mathbf{E}(\mathbf{x}) \ .
-$$
-Now, we know that the E-field can also be related to the charge density via the integral
-$$
-\mathbf{E}(\mathbf{x}) = \int d^3 \mathbf{x}' \ \rho(\mathbf{x}') \frac{\mathbf{x} - \mathbf{x}'}{|\mathbf{x} - \mathbf{x}'|^3} \ ,
-$$
-Plugging this integral into the previous equation and using the usual identity $\nabla \cdot \mathbf{x}/r = 4\pi\delta(\mathbf{x})$, we then have
-$$
-\begin{align*}
-\nabla^2 \phi(\mathbf{x}) &= -\nabla \cdot \int d^3 \mathbf{x}' \ \rho(\mathbf{x}') \frac{\mathbf{x} - \mathbf{x}'}{|\mathbf{x} - \mathbf{x}'|^3} \\
-&= -\int d^3 \mathbf{x}' \ \rho(\mathbf{x}') \nabla \cdot \frac{\mathbf{x} - \mathbf{x}'}{|\mathbf{x} - \mathbf{x}'|^3} \\
-&= -\int d^3 \mathbf{x}' \ \rho(\mathbf{x}') 4\pi \delta(\mathbf{x} - \mathbf{x}') \\
-&= -4\pi \rho(\mathbf{x}) \ .
-\end{align*}
-$$
 
 
 
