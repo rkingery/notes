@@ -34,9 +34,9 @@ Any macroscopic material we observe in nature is made of *atoms*. Each atom cont
 
 In most cases, a given atom will contain the same number of electrons as protons, making that atom charge neutral. This means when we observe a charged material in nature it's because of one or two reasons. First, each atom could gain or lose one or more electrons through *ionization*. When this happens, the lost electron could attach to another atom, or in the case of metals or plasmas remain unattached and flow freely through the material. Second, the electron orbits could become *polarized* in response to some external field, causing each atom to have a slight charge pointing in some particular direction.
 
-In the vast majority of everyday cases, the materials we observe are either charge neutral or very close to it. This explains why we don't see materials flying around space attracting or repelling each other at high speeds, and why gravity tends to dominate electrical forces at macroscopic scales. When we do observe a charged material it's usually because some of the surface atoms have become ionized via friction, creating a slight but measurable charge.
+In the vast majority of everyday cases, the materials we observe are either charge neutral or very close to it. This explains why we don't tend to see objects flying around through space attracting or repelling each other at high speeds, and also why gravity tends to dominate electrical forces at macroscopic scales. When we do observe a charged material it's usually because some of the surface atoms have become ionized via friction, creating a slight but measurable amounts of charge.
 
-Of course, charge is a universal property of nature. It doesn't just apply to materials made of atoms, but all particles observed in nature. According to the Standard Model of particle physics, all particles must be either one of the following fundamental particles or some composition of them.
+Charge is a universal property of nature. It doesn't just apply to materials made of atoms, but all particles observed in nature. According to the Standard Model of particle physics, all particles must be either one of the following fundamental particles or some composition of them.
 
 <img src="../resources/image-20250403124033756.png" style="zoom:50%;" />
 
@@ -48,12 +48,12 @@ Next, we postulate that the force between charged objects is given by *Coulomb's
 
 More formally, we deduce the following facts as given from experiment:
 
-- The force between the two charges depends linearly on the magnitude of each charge. The larger the magnitude, the stronger the force between them.
+- The force between the two stationary charges depends linearly on the magnitude of each charge. The larger the magnitude, the stronger the force between them.
 - The force obeys an inverse square law nature similar to gravity. That is, the strength of the force between the two charges varies with the inverse square of the distance between them.
 - As with gravity, the force is directed along the line of force joining the two charges.
 - The force is *attractive* if the two bodies have charges of *opposite* sign, and *repulsive* if the two bodies have charges of the *same* sign. If either body has zero charge, then there is no force between them.
 
-Let's now formulate this as a mathematical law. Suppose two charged objects with charges $q_1$ and $q_2$ are located at fixed positions in space $\mathbf{x}_1$ and $\mathbf{x}_2$ respectively. Then the force $\mathbf{F}_{12}$ charge $q_1$ experiences due to charge $q_2$ is given by
+Let's now formulate this as a mathematical law. Suppose two stationary charges $q_1$ and $q_2$ are located at fixed positions in space $\mathbf{x}_1$ and $\mathbf{x}_2$ respectively. Then the force $\mathbf{F}_{12}$ charge $q_1$ experiences due to charge $q_2$ is given by
 $$
 \mathbf{F}_{12} = k_e \frac{q_1 q_2}{r_{12}^2} \mathbf{e}_{12} \ ,
 $$
@@ -81,6 +81,8 @@ $$
 $$
 
 Note that strictly speaking Coulomb's Law as stated only holds between *point charges*. That is, we implicitly have assumed that the charge of each object brought into contact can each be localized at a single point. They can't be diffused over the object in some non-uniform way. This of course is an abstraction. For simple electrostatic bodies this is a decent assumption to make, but for more complicated bodies it is not. We'll see how to modify Coulomb's law to deal with extended distributions of charge soon.
+
+Also note that the requirement that the charges be stationary with respect to each other is important. That is, Coulomb's law requires that the difference $\Delta \mathbf{v}$ in velocities between the two charges is zero. If it's not the law will fail for a couple of reasons. First, moving charges also have magnetic forces acting on them that we're not accounting for. Second, due to relativistic effects there are correction terms in powers of $\Delta \mathbf{v}$ that we're ignoring. We'll discuss the forces on moving charges in electrodynamics.
 
 ### Units
 
