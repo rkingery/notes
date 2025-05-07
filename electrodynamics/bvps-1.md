@@ -45,45 +45,45 @@ We'll discuss solution methods to Laplace's equation in great depth in the next 
 
 Poisson's equation (and Laplace's equation) allows us to incorporate a new feature into our problem solving methods, namely *boundary conditions*. Boundary conditions are conditions that the potential must satisfy on some given spatial surface. These can be useful whenever we have some charged surfaces in space that will affect the value of the potential, but whose charge densities are too complicated or too inconvenient to model directly. Solving a differential equation when boundary conditions are also imposed is known as a *boundary value problem*, or *BVP*. These BVPs will be our primary focus for the next two chapters.
 
-As an example, suppose we're interested in the potential of a point charge located some distance outside of the surface of a sphere, where we happen to know that the surface of the sphere is held at some fixed potential $\phi(\mathbf{x}) = V$. Instead of writing the charge density as the sum of the density of a point charge and the density of a sphere, we could neglect the sphere from the charge density and instead impose the boundary condition on Poisson's equation that the solution must satisfy the boundary condition $\phi(\mathbf{x}) = V$ on the surface of the sphere. This is an example of a *Dirichlet boundary condition*. Dirichlet boundary conditions are boundary conditions where the *value* of the potential itself is assumed to be fixed on some known surface.
+As an example, suppose we're interested in the potential of a point charge located some distance outside of the surface of a sphere, where we happen to know that the surface of the sphere is held at some fixed potential $\phi(\mathbf{x}) = V$. Instead of writing the charge density as the sum of the density of a point charge and the density of a sphere, we could neglect the sphere from the charge density and instead impose the boundary condition on Poisson's equation that the solution must satisfy the boundary condition $\phi(\mathbf{x}) = V$ on the surface of the sphere. This is an example of a *Dirichlet boundary condition*. Dirichlet boundary conditions are boundary conditions where the solution takes on some known fixed value on some known surface.
 
 Poisson BVPs with only Dirichlet boundary conditions all have the general form
 $$
 \begin{align*}
 \begin{cases}
 \nabla^2 \phi = -4\pi\rho \ \text{in} \ \mathcal{V} \ , \\
-\text{where} \ \phi = V \ \text{on} \ \mathcal{S} \ .
+\text{where} \ \phi = V(\mathbf{x}) \ \text{on} \ \mathcal{S} \ .
 \end{cases}
 \end{align*}
 $$
 In the previous example, the region $\mathcal{V}$ would be the region outside the sphere where $r > R$, and the surface $\mathcal{S}$ would be a sphere of radius $R$ centered at the origin, in which case the boundary condition might be that $\phi(\mathbf{x}) = V$ when $r = R$. This means whichever solutions we find to Poisson's equation, the only solution that will work in the end is the one whose potential is exactly $V$ on the surface of the sphere.
 
-As another example, instead of knowing that the potential is fixed on the surface of the sphere, we might instead happen to know that the surface charge density $\sigma(\mathbf{x})$ on the surface of the sphere is constant instead. This turns out to be equivalent to the statement that the E-field itself is constant on the surface, or equivalently that the gradient of the potential is constant. This is an example of a *Neumann boundary condition*. Neumann boundary conditions are those where the *derivative* of the potential is assumed to be fixed on some known surface.
+As another example, instead of knowing that the potential is fixed on the surface of the sphere, we might instead happen to know that the surface charge density $\sigma(\mathbf{x})$ on the surface of the sphere is constant instead. This turns out to be equivalent to the statement that the E-field itself is constant on the surface, or equivalently that the gradient of the potential is constant. This is an example of a *Neumann boundary condition*. Neumann boundary conditions are those where the *normal derivative* of the solution is a known function on some known surface.
 
 Poisson BVPs with only Neumann boundary conditions all have the general form
 $$
 \begin{align*}
 \begin{cases}
 \nabla^2 \phi = -4\pi\rho \ \text{in} \ \mathcal{V} \ , \\
-\text{where} \ \frac{\partial \phi}{\partial n} = -E \ \text{on} \ \mathcal{S} \ .
+\text{where} \ \frac{\partial \phi}{\partial n} = -E(\mathbf{x}) \ \text{on} \ \mathcal{S} \ .
 \end{cases}
 \end{align*}
 $$
-Here we've introduced the *normal derivative* $\partial \phi / \partial n$, defined by
+Here we've introduced the *normal derivative* $\partial \phi / \partial n$, defined to be the component of the gradient normal to the surface,
 $$
 \frac{\partial \phi}{\partial n} \equiv \nabla \phi \cdot \mathbf{n} \ .
 $$
-As the name suggests, the normal derivative is just the derivative of the potential in the direction normal to the surface $\mathcal{S}$. Since $\mathbf{E} = -\nabla \phi$, the normal derivative of the potential is also $-\mathbf{E} \cdot \mathbf{n}$, or the component of the (negative) E-field normal to the surface. For instance, in the previous example, the boundary condition might be that $\mathbf{E}(\mathbf{x}) \cdot \mathbf{n} = E$ whenever $r = R$.
+Since $\mathbf{E} = -\nabla \phi$, the normal derivative of the potential is also $-\mathbf{E} \cdot \mathbf{n}$, or the component of the (negative) E-field normal to the surface. For instance, in the previous example, the boundary condition might be that $\mathbf{E}(\mathbf{x}) \cdot \mathbf{n} = E$ whenever $r = R$.
 
-We could also imagine problems where the potential is fixed on some part of a surface and the charge density is fixed on some other part of a surface. For instance, we could have two spheres where one is held at a fixed potential and the other at a fixed surface charge density. Boundary conditions of this kind are known as *mixed boundary conditions*. 
+We could also imagine problems where the solution is known on one surface, while its normal derivative is known on some other surface. For instance, we could have two spheres where one is held at a fixed potential and the other at a fixed surface charge density. Boundary conditions of this kind are known as *mixed boundary conditions*. 
 
 Poisson BVPs with mixed boundary conditions all have the general form
 $$
 \begin{align*}
 \begin{cases}
 \nabla^2 \phi = -4\pi\rho \ \text{in} \ \mathcal{V} \ , \\
-\text{where} \ \phi = V \ \text{on} \ \mathcal{S}_D \ , \\
-\text{and} \ \frac{\partial \phi}{\partial n} = -E \ \text{on} \ \mathcal{S}_N \ .
+\text{where} \ \phi = V(\mathbf{x}) \ \text{on} \ \mathcal{S}_D \ , \\
+\text{and} \ \frac{\partial \phi}{\partial n} = -E(\mathbf{x}) \ \text{on} \ \mathcal{S}_N \ .
 \end{cases}
 \end{align*}
 $$
@@ -98,7 +98,7 @@ $$
 \begin{align*}
 \begin{cases}
 \nabla^2 \phi = \nabla^2 \psi = -4\pi\rho \ \text{in} \ \mathcal{V} \ , \\
-\text{where} \ \phi = \psi = V \ \text{on} \ \mathcal{S} \ .
+\text{where} \ \phi = \psi = V(\mathbf{x}) \ \text{on} \ \mathcal{S} \ .
 \end{cases}
 \end{align*}
 $$
@@ -113,7 +113,7 @@ Similarly, if $\phi(\mathbf{x})$ and $\psi(\mathbf{x})$ are each potentially dis
 $$
 \begin{cases}
 \nabla^2 \phi = \nabla^2 \psi = -4\pi\rho \ \text{in} \ \mathcal{V} \ , \\
-\text{where} \ \frac{\partial \phi}{\partial n} = \frac{\partial \psi}{\partial n} = -E \ \text{on} \ \mathcal{S} \ ,
+\text{where} \ \frac{\partial \phi}{\partial n} = \frac{\partial \psi}{\partial n} = -E(\mathbf{x}) \ \text{on} \ \mathcal{S} \ ,
 \end{cases}
 $$
 then $u(\mathbf{x})$ again satisfies Laplace's equation inside $\mathcal{V}$, and on the boundary surface $\mathcal{S}$ we have $\partial u / \partial n = 0$, so we instead obtain a Neumann BVP for $u(\mathbf{x})$ of the form
@@ -144,28 +144,6 @@ Thus, if both $\phi(\mathbf{x})$ and $\psi(\mathbf{x})$ are solutions to the sam
 In a similar manner, one can show that solutions to mixed BVPs are also unique up to an additive constant. All one needs to do is apply the proof above to the Dirichlet portion of the surface $\mathcal{S}_D$ and to the Neumann portion of the surface $\mathcal{S}_N$.
 
 As mentioned above, this result is known as the uniqueness theorem. Provided we can find *any* solution to a given BVP of the above types, whether by guessing or some other method, we know that must be *the* solution up to an additive constant. We'll find this theorem a powerful tool in electrostatics, most importantly when discussing the method of images. Incidentally, since Laplace's equation is just a special case of Poisson's equation the same facts we just prove also hold for Laplace BVPs.
-
-### Harmonic Functions
-
-Any function $\phi(\mathbf{x})$ satisfying Laplace's equation $\nabla^2 \phi(\mathbf{x}) = 0$ is called a *harmonic function*. We can think of harmonic functions as a kind of higher-dimensional generalization of affine functions $f(x) = a x + b$. In one dimension, the Laplacian $\nabla^2$ reduces to just the ordinary second derivative $d^2/dx^2$, and only affine functions satisfy Laplace's equation $d^2 /dx^2 f(x) = 0$ in one dimension.
-
-
-
-Harmonic functions satisfy several useful properties that are worth briefly mentioning here.
-
-The first fact, which we won't prove, is that harmonic functions are *analytic*. That is, they are infinitely differentiable, and we can always expand them as a Taylor series. A Taylor series expansion of a harmonic function is called a *multipole expansion*. We'll spend a whole chapter later talking about the multipole expansion of potentials in electrostatics.
-
-Second, harmonic functions satisfy a *maximum principle*. That is, inside any closed region, the maximum (and minimum) value of any harmonic function $\phi(\mathbf{x})$ will always occur on the boundary of that region.
-
-- Prove
-
-Third, harmonic functions satisfy the *mean value property*. That is, the value of any harmonic function $\phi(\mathbf{x})$ at some point $\mathbf{x}$ will always be equal to the average value of $\phi(\mathbf{x})$ on any spherical surface centered at $\mathbf{x}$.
-
-- Prove
-
-One useful corollary of the mean value property that we'll make use of is that any bounded harmonic function must be constant. That is, either $\phi(\mathbf{x}) \to \infty$ as $r \to \infty$ or $\phi(\mathbf{x})$ is a constant function.
-
-- Prove: Given two points, choose two balls with the given points as centers and of equal radius. If the radius is large enough, the two balls will coincide except for an arbitrarily small proportion of their volume. Since *f* is bounded, the averages of it over the two balls are arbitrarily close, and so *f* assumes the same value at any two points.
 
 ### Linear PDEs
 
@@ -466,7 +444,7 @@ Now that we've obtained the particular solution to Poisson's equation we'll now 
 
 ### Formal Solution to Poisson's Equation
 
-Thus far we've only focused on the free solution to Poisson's equation, ignoring any potential boundary conditions. We'll now add these boundary conditions back in and derive the general solution of an arbitrary Poisson BVP. We call this solution the *formal solution* to the Poisson BVP, since in practice we'd rarely ever use it directly to find the potential of a charge distribution in the presence of boundary conditions. Nevertheless this formal solution is of theoretical interest to electrostatics, particularly in the development of the much more practical method of images approach we'll discuss later.
+Thus far we've only focused on the free solution to Poisson's equation, ignoring any potential boundary conditions. We'll now add these boundary conditions back in and derive the general solution of an arbitrary Poisson BVP. We call this solution the *formal solution* to the Poisson BVP, since as we'll see it's formally correct but ill-posed, meaning the solution isn't always unique. We'll see how to recast it in a form that is unique in the next section.
 
 The easiest way to derive the formula solution is to start by recalling Green's second identity,
 $$
@@ -486,115 +464,112 @@ $$
 \phi(\mathbf{x}) = \int_\mathcal{V} d^3 \mathbf{x}' \ \rho(\mathbf{x}') G(\mathbf{x} - \mathbf{x}') + \frac{1}{4\pi} \oint_\mathcal{S} da' \ \bigg[G(\mathbf{x} - \mathbf{x}') \frac{\partial}{\partial n'} \phi(\mathbf{x}') - \phi(\mathbf{x}') \frac{\partial}{\partial n'} G(\mathbf{x} - \mathbf{x}') \bigg]
 }\ .
 $$
-This is the formal solution, the general solution to Poisson's equation in integral form. We can interpret this result as follows: Suppose we wish to solve a Poisson BVP inside some region $\mathcal{V}$ with mixed boundary conditions on some surface $\mathcal{S}$. Then the volume integral term represents the particular solution $\phi_p(\mathbf{x})$ to Poisson's equation for a given charge density $\rho(\mathbf{x})$ sitting inside $\mathcal{V}$. This term vanishes if there are no charges enclosed in $\mathcal{V}$, leaving only the remaining surface integral term. 
+This is the formal solution, or the general solution to Poisson's equation in integral form. We can interpret this result as follows: Suppose we wish to solve a Poisson BVP inside some region $\mathcal{V}$ with mixed boundary conditions on some surface $\mathcal{S}$. Then the volume integral term represents the particular solution $\phi_p(\mathbf{x})$ to Poisson's equation for a given charge density $\rho(\mathbf{x})$ sitting inside $\mathcal{V}$. This term vanishes if there are no charges enclosed in $\mathcal{V}$, leaving only the remaining surface integral term.
 
 The surface integral term represents the homogeneous solution $\phi_h(\mathbf{x})$ obtained by solving Laplace's equation subject to the same mixed boundary conditions on the boundary surface $\mathcal{S}$,
 $$
 \phi_h(\mathbf{x}) = \frac{1}{4\pi} \oint_\mathcal{S} da' \ \bigg[G(\mathbf{x} - \mathbf{x}') \frac{\partial}{\partial n'} \phi(\mathbf{x}') - \phi(\mathbf{x}') \frac{\partial}{\partial n'} G(\mathbf{x} - \mathbf{x}') \bigg] \ .
 $$
-This term encodes all information about the boundary conditions in the problem, since the boundary conditions are encoded directly into the surface integral. Notice if we send $\mathcal{S}$ to infinity both terms fall off like $1/r^3$, in which case the surface integral vanishes and we recover the free solution derived before.
+This term encodes all information about the boundary conditions in the problem, since the boundary conditions are encoded directly into the surface integral. Notice if we send $\mathcal{S}$ to infinity both terms fall off like $1/r'^3$, in which case the surface integral vanishes and we recover the free solution derived before.
 
 The first term in the surface integral is the convolution of the Green's function with the normal derivative of $\phi(\mathbf{x})$ on the boundary surface. This term reflects any Neumann boundary conditions being imposed, where $\partial \phi / \partial n$ represents a specified value of the normal derivative of $\phi(\mathbf{x})$ on the boundary surface.
 
 Similarly, the second term in the surface integral is the convolution of $\phi(\mathbf{x})$ with the normal derivative of the Green's function on the boundary surface. This term reflects any Dirichlet boundary conditions, where $\phi(\mathbf{x})$ itself has a specified value on the boundary surface. For mixed boundary conditions both terms will contribute on some part of the boundary surface.
 
-### Generalized Green's Function
+Note that according to this integral outside the boundary surface the solution must vanish since both integrals vanish for field points $\mathbf{x}$ outside $\mathcal{S}$. What this really says is that when we formulate Poisson BVPs, we have no information about what's going on outside the boundary surface aside from what's being provided by the boundary conditions. If we were interested in this exterior region we'd need to solve a separate BVP to get the exterior solution and join it with the interior solution given above.
 
-As defined, the Green's function is a characteristic of a specific linear differential operator, not of a given BVP. The Green's function for a given BVP is the same no matter what the boundary conditions are. It only gives the particular solution, not the homogeneous solution which does depend on the boundary conditions. Sometimes though it's useful to generalize the Green's function to also incorporate the boundary conditions directly.
+### Generalized Green's Functions
 
-Suppose for instance we want to solve some Poisson BVP inside some region $\mathcal{V}$ bounded by some boundary surface $\mathcal{S}$, where we assume there are either Dirichlet or Neumann boundary conditions on $\mathcal{S}$,
+As we mentioned above, the formal solution above is *ill-posed*, meaning it isn't guaranteed to be the unique solution for a given BVP. This is due to the fact that *both* $\phi(\mathbf{x})$ and its normal derivative are specified on a boundary, while the uniqueness theorem only guarantees uniqueness when one or the other is specified on some section of the boundary surface. In order to impose uniqueness we'll thus need to modify the Green's function in a way that forces one of the surface terms vanish.
+
+We can do this as follows. Suppose $\phi(\mathbf{x})$ satisfies a Poisson BVP inside some region $\mathcal{V}$ bounded by some boundary surface $\mathcal{S}$, where the boundary conditions on $\mathcal{S}$ are either strictly Dirichlet or Neumann. That is,
 $$
 \begin{cases}
 \nabla^2 \phi(\mathbf{x}) = -4\pi\rho(\mathbf{x}) \ \text{in} \ \mathcal{V} \\
-\text{where} \ \phi(\mathbf{x}) = V \ \text{on} \ \mathcal{S}
+\text{where} \ \phi(\mathbf{x}) = V(\mathbf{x}) \ \text{on} \ \mathcal{S}
 \end{cases}
 \ \ , \ \ \text{or} \ \
 \begin{cases}
 \nabla^2 \phi(\mathbf{x}) = -4\pi\rho(\mathbf{x}) \ \text{in} \ \mathcal{V} \\
-\text{where} \ \partial \phi/\partial n = -E  \ \text{on} \ \mathcal{S}
+\text{where} \ \partial \phi/\partial n = -E(\mathbf{x})  \ \text{on} \ \mathcal{S}
 \end{cases} \ \ .
 $$
-We can define a *modified Green's function* $\mathcal{G}(\mathbf{x})$ that directly incorporates either of these boundary conditions as follows. Let
+We want to define a *generalized Green's function* $\mathcal{G}(\mathbf{x})$ such that $\mathcal{G}(\mathbf{x})$ satisfies its own boundary conditions that can be used to cancel out one of the surface terms in the formal solution. We can do that by defining
 $$
 \mathcal{G}(\mathbf{x}) \equiv G(\mathbf{x}) + F(\mathbf{x}) \ ,
 $$
-where $G(\mathbf{x}) = 1/r$ is the ordinary Green's function for the Laplacian and $F(\mathbf{x})$ is some added function related somehow to the particular set of boundary conditions. Inside $\mathcal{V}$ we require that $\mathcal{G}(\mathbf{x})$ satisfy the same PDE as the ordinary Green's function,
+where $G(\mathbf{x}) = 1/r$ is the ordinary Green's function for the Laplacian and $F(\mathbf{x})$ is some added function related somehow to the particular set of boundary conditions. Inside $\mathcal{V}$ we require that $\mathcal{G}(\mathbf{x} - \mathbf{x}')$ satisfy the usual Green's function PDE inside $\mathcal{V}$, but with respect to the source point $\mathbf{x}'$,
 $$
-\nabla^2 \mathcal{G}(\mathbf{x}) = \nabla^2 G(\mathbf{x}) = -4\pi\delta(\mathbf{x}) \ .
+\nabla'^2 \mathcal{G}(\mathbf{x} - \mathbf{x}') = -4\pi\delta(\mathbf{x} - \mathbf{x}') \ \ \text{in} \ \mathcal{V} \ .
 $$
-The only way this can be true evidently is if $F(\mathbf{x})$ satisfies Laplace's equation $\nabla^2 F(\mathbf{x}) = 0$ inside $\mathcal{V}$.
+The only way this can be true evidently is if $F(\mathbf{x} - \mathbf{x}')$ satisfies Laplace's equation $\nabla'^2 F(\mathbf{x} - \mathbf{x}') = 0$ in $\mathcal{V}$ with respect to $\mathbf{x}'$.
 
-It's not difficult to see from Green's second identity that $F(\mathbf{x})$ must satisfy the integral equation
+It's not difficult to see from Green's second identity that $F(\mathbf{x})$ must evidently satisfy the integral equation
 $$
 \int_\mathcal{V} d^3 \mathbf{x}' \ \rho(\mathbf{x}') F(\mathbf{x} - \mathbf{x}') + \frac{1}{4\pi} \oint_\mathcal{S} da' \ \bigg[F(\mathbf{x} - \mathbf{x}') \frac{\partial}{\partial n'} \phi(\mathbf{x}') - \phi(\mathbf{x}') \frac{\partial}{\partial n'} F(\mathbf{x} - \mathbf{x}') \bigg] = 0 \ .
 $$
-Indeed, just set $f(\mathbf{x}') = \phi(\mathbf{x}')$ and $g(\mathbf{x}')$, and use the fact that $\nabla^2 F(\mathbf{x}) = 0$ and $\nabla^2 \phi(\mathbf{x}) = -4\pi\rho(\mathbf{x})$.
+Indeed, just set $f(\mathbf{x}') = \phi(\mathbf{x}')$ and $g(\mathbf{x}')$, and use the fact that $\nabla'^2 F(\mathbf{x} - \mathbf{x}') = 0$ and $\nabla'^2 \phi(\mathbf{x}') = -4\pi\rho(\mathbf{x})$ in $\mathcal{V}$. This then implies that the formal solution for $\phi(\mathbf{x})$ is the same whether we use $G(\mathbf{x})$ or $\mathcal{G}(\mathbf{x})$,
 
-Since $\mathcal{G}(\mathbf{x}) = G(\mathbf{x}) + F(\mathbf{x})$, this implies that the formal solution for $\phi(\mathbf{x})$ is the same whether we use $G(\mathbf{x})$ or $\mathcal{G}(\mathbf{x})$,
 $$
 \phi(\mathbf{x}) = \int_\mathcal{V} d^3 \mathbf{x}' \ \rho(\mathbf{x}') \mathcal{G}(\mathbf{x} - \mathbf{x}') + \frac{1}{4\pi} \oint_\mathcal{S} da' \ \bigg[\mathcal{G}(\mathbf{x} - \mathbf{x}') \frac{\partial}{\partial n'} \phi(\mathbf{x}') - \phi(\mathbf{x}') \frac{\partial}{\partial n'} \mathcal{G}(\mathbf{x} - \mathbf{x}') \bigg] \ .
 $$
-Now, the advantage of using the modified Green's function $\mathcal{G}(\mathbf{x})$ instead of the ordinary Green's function $G(\mathbf{x})$ in the formal solution is that we can impose boundary conditions on $\mathcal{G}(\mathbf{x})$ that simplify the surface integral term. This is particularly helpful when dealing with Dirichlet or Neumann type problems.
+Now, recall the entire purpose of adding $F(\mathbf{x})$ to the Green's function is to give us extra freedom to impose boundary conditions on $\mathcal{G}(\mathbf{x})$. We'd further like the boundary conditions we impose on $\mathcal{G}(\mathbf{x})$ to be general and not specific to the boundary surface.
 
-First, suppose we have a Dirichlet BVP for $\phi(\mathbf{x})$. In this case we can define a Dirichlet BVP for $\mathcal{G}(\mathbf{x} - \mathbf{x}')$ with simple vanishing boundary conditions on the same boundary surface $\mathcal{S}$,
+For a Dirichlet BVP this is easy. For a given boundary surface $\mathcal{S}$, we choose $F(\mathbf{x} - \mathbf{x}')$ so that $\mathcal{G}_D(\mathbf{x} - \mathbf{x}')$ vanishes on $\mathcal{S}$,
 $$
 \begin{cases}
-\nabla^2 \mathcal{G}(\mathbf{x} - \mathbf{x}') = -4\pi\delta(\mathbf{x} - \mathbf{x}') \ \text{in} \ \mathcal{V} \\
-\text{where} \ \mathcal{G}(\mathbf{x} - \mathbf{x}') = 0 \ \text{on} \ \mathcal{S}
+\nabla^2 \mathcal{G}_D(\mathbf{x} - \mathbf{x}') = -4\pi\delta(\mathbf{x} - \mathbf{x}') \ \text{in} \ \mathcal{V} \\
+\text{where} \ \mathcal{G}_D(\mathbf{x} - \mathbf{x}') = 0 \ \text{on} \ \mathcal{S}
 \end{cases} \ .
 $$
-If we plug this into the formal solution we find that the first surface integral term vanishes since $\mathcal{G}(\mathbf{x} - \mathbf{x}') = 0$, giving
+If we plug this into the formal solution we find that the first surface integral term vanishes since $\mathcal{G}_D(\mathbf{x} - \mathbf{x}') = 0$, giving
 $$
-\phi(\mathbf{x}) = \int_\mathcal{V} d^3 \mathbf{x}' \ \rho(\mathbf{x}') \mathcal{G}(\mathbf{x} - \mathbf{x}') - \frac{1}{4\pi} \oint_\mathcal{S} da' \ \phi(\mathbf{x}') \frac{\partial}{\partial n'} \mathcal{G}(\mathbf{x} - \mathbf{x}')\ .
+\boxed{
+\phi(\mathbf{x}) = \int_\mathcal{V} d^3 \mathbf{x}' \ \rho(\mathbf{x}') \mathcal{G}_D(\mathbf{x} - \mathbf{x}') - \frac{1}{4\pi} \oint_\mathcal{S} da' \ \phi(\mathbf{x}') \frac{\partial}{\partial n'} \mathcal{G}_D(\mathbf{x} - \mathbf{x}') 
+} \ .
 $$
-This is the formal solution to a general Dirichlet BVP. If we assume $\phi(\mathbf{x}') = V$ is constant on $\mathcal{S}$ we can simplify this even further. Recall from our discussion of Green's functions in $n$ dimensions that the closed surface integral of the normal derivative of the Green's function is $-\Omega_n$, which is $-4\pi$ in three dimensions, is given by
+This is the *unique* formal solution to the general Dirichlet BVP. Notice that as the radius of $\mathcal{S}$ goes to infinity, the surface integral term vanishes since the integrand goes to zero faster than $1/r'^2$, thus recovering the unbounded solution from before.
+
+As an example, suppose $\phi(\mathbf{x}') = V$ is constant on $\mathcal{S}$. Recall from our discussion of Green's functions in $n$ dimensions that the closed surface integral of the normal derivative of $G(\mathbf{x})$ is just $-4\pi$ in three dimensions. For the generalized Green's function $\mathcal{G}(\mathbf{x})$ the result will be the same,
 $$
-\oint_\mathcal{S} da' \ \frac{\partial \mathcal{G}}{\partial n'} = -4\pi \ .
+\oint_\mathcal{S} da' \ \frac{\partial}{\partial n'} \mathcal{G}(\mathbf{x} - \mathbf{x}') = \oint_\mathcal{S} da' \ \frac{\partial}{\partial n'} G(\mathbf{x} - \mathbf{x}') = -4\pi \ .
 $$
-Plugging this back into the formal solution, we have simply
+This follows from the fact that the surface integral term over $F(\mathbf{x} - \mathbf{x}')$ vanishes since $\nabla'^2 F(\mathbf{x} - \mathbf{x}') = 0$ in $\mathcal{V}$. Plugging this back in, the solution to the Dirichlet BVP finally satisfies the following integral relation,
 $$
-\phi(\mathbf{x}) = V + \int_\mathcal{V} d^3 \mathbf{x}' \ \rho(\mathbf{x}') \mathcal{G}(\mathbf{x} - \mathbf{x}') \ .
+\phi(\mathbf{x}) = V + \int_\mathcal{V} d^3 \mathbf{x}' \ \rho(\mathbf{x}') \mathcal{G}_D(\mathbf{x} - \mathbf{x}') \ .
 $$
 Since $\rho(\mathbf{x})$ is only non-zero inside $\mathcal{V}$, on the boundary surface the volume integral vanishes, thus ensuring $\phi(\mathbf{x}) = V$ on $\mathcal{S}$.
 
-Next, suppose we have a Neumann BVP for $\phi(\mathbf{x})$. In this case it would be tempting to define a Neumann BVP for $\mathcal{G}(\mathbf{x} - \mathbf{x}')$ where $\partial/\partial n' \mathcal{G}(\mathbf{x} - \mathbf{x}') = 0$ on $\mathcal{S}$. But this is impossible since from above we see that $\mathcal{G}(\mathbf{x} - \mathbf{x}')$ must also satisfy
-$$
-\oint_\mathcal{S} da' \ \frac{\partial \mathcal{G}}{\partial n'} = -4\pi \ ,
-$$
-Instead we set $\partial/\partial n' \mathcal{G}(\mathbf{x} - \mathbf{x}') = -4\pi/S$, where $S$ is the surface area of the boundary surface, and insist that the modified Green's function satisfy the Neumann BVP
+Let's now consider the case of a Neumann BVP for $\phi(\mathbf{x})$. It would be tempting to insist $\partial/\partial n' \mathcal{G}_N(\mathbf{x} - \mathbf{x}') = 0$ on $\mathcal{S}$ in a similar manner to what we did for the Dirichlet BVP. But this is impossible since we already know the normal derivative of the Green's function on the boundary surface must integrate to $-4\pi$. Thus, instead we choose $F(\mathbf{x})$ such that $\partial/\partial n' \mathcal{G}_N(\mathbf{x} - \mathbf{x}') = -4\pi/S$, where $S$ is the surface area of the boundary surface $\mathcal{S}$. Then we have
 $$
 \begin{cases}
-\nabla^2 \mathcal{G}(\mathbf{x} - \mathbf{x}') = -4\pi\delta(\mathbf{x} - \mathbf{x}') \ \text{in} \ \mathcal{V} \\
-\text{where} \ \frac{\partial}{\partial n'} \mathcal{G}(\mathbf{x} - \mathbf{x}') = -4\pi/S  \ \text{on} \ \mathcal{S}
+\nabla^2 \mathcal{G}_N(\mathbf{x} - \mathbf{x}') = -4\pi\delta(\mathbf{x} - \mathbf{x}') \ \text{in} \ \mathcal{V} \\
+\text{where} \ \frac{\partial}{\partial n'} \mathcal{G}_N(\mathbf{x} - \mathbf{x}') = -4\pi/S  \ \text{on} \ \mathcal{S}
 \end{cases} \ .
 $$
 Plugging this back into the formal solution, the second surface integral term now reduces to a constant $\langle \phi \rangle_\mathcal{S}$ given by
 $$
-\langle \phi \rangle_\mathcal{S} = -\frac{1}{4\pi} \oint_\mathcal{S} da' \ \phi(\mathbf{x}') \frac{\partial}{\partial n'} \mathcal{G}(\mathbf{x} - \mathbf{x}') = \frac{1}{S} \oint_\mathcal{S} da' \ \phi(\mathbf{x}') \ .
+\langle \phi \rangle_\mathcal{S} \equiv -\frac{1}{4\pi} \oint_\mathcal{S} da' \ \phi(\mathbf{x}') \frac{\partial}{\partial n'} \mathcal{G}_N(\mathbf{x} - \mathbf{x}') = \frac{1}{S} \oint_\mathcal{S} da' \ \phi(\mathbf{x}') \ .
 $$
-Notice the remaining integral is just the average value of $\phi(\mathbf{x})$ on the boundary surface, hence the notation. If we plug this back into the formal solution we thus get
+Notice the remaining integral is just the average value of $\phi(\mathbf{x})$ on the boundary surface, hence the notation. Plugging this back into the formal solution we get
 $$
-\phi(\mathbf{x}) = \langle \phi \rangle_\mathcal{S} + \int_\mathcal{V} d^3 \mathbf{x}' \ \rho(\mathbf{x}') \mathcal{G}(\mathbf{x} - \mathbf{x}') + \frac{1}{4\pi} \oint_\mathcal{S} da' \ \mathcal{G}(\mathbf{x} - \mathbf{x}') \frac{\partial}{\partial n'} \phi(\mathbf{x}') \ .
+\boxed{
+\phi(\mathbf{x}) = \langle \phi \rangle_\mathcal{S} + \int_\mathcal{V} d^3 \mathbf{x}' \ \rho(\mathbf{x}') \mathcal{G}_N(\mathbf{x} - \mathbf{x}') + \frac{1}{4\pi} \oint_\mathcal{S} da' \ \mathcal{G}_N(\mathbf{x} - \mathbf{x}') \frac{\partial}{\partial n'} \phi(\mathbf{x}') 
+} \ .
 $$
-This is the formal solution to a general Neumann BVP. If we assume $\partial \phi / \partial n' = -E$ is constant on $\mathcal{S}$ we can simplify this even further. 
+This is the *unique* formal solution to the general Neumann BVP. Notice if we send the radius of $\mathcal{S}$ to infinity the surface term will vanish since the integrand falls off faster than $1/r'^2$, again giving us the unbounded solution from before.
 
-
-
-Denote the remaining surface integral by
+As an example, suppose $\partial \phi / \partial n' = -E$ is constant on $\mathcal{S}$, leaving a function in $\mathbf{x}$ of the form
 $$
-H(\mathbf{x}) \equiv \oint_\mathcal{S} da' \ \mathcal{G}(\mathbf{x} - \mathbf{x}') \ .
+g(\mathbf{x}) \equiv -\frac{E}{4\pi} \oint_\mathcal{S} da' \ \mathcal{G}_N(\mathbf{x} - \mathbf{x}') \ .
 $$
-Suppose we take the Laplacian of $H(\mathbf{x})$. Since $\mathbf{x}$ must be a field point inside the boundary surface, we have
+Note that $g(\mathbf{x})$ is just $-E S/4\pi$ times the average of the Green's function on the boundary surface. We thus have
 $$
-\nabla^2 H(\mathbf{x}) = \oint_\mathcal{S} da' \ \nabla^2 \mathcal{G}(\mathbf{x} - \mathbf{x}') = -4\pi \oint_\mathcal{S} da' \ \delta(\mathbf{x} - \mathbf{x}') = 0 \ .
+\phi(\mathbf{x}) = \langle \phi \rangle_\mathcal{S} + g(\mathbf{x}) + \int_\mathcal{V} d^3 \mathbf{x}' \ \rho(\mathbf{x}') \mathcal{G}_N(\mathbf{x} - \mathbf{x}') \ .
 $$
-The only way this can be true though is if $H(\mathbf{x})$ is constant inside $\mathcal{V}$, and by continuity also on $\mathcal{S}$. We're 
+Note that specifying $g(\mathbf{x})$ is essentially equivalent to specifying $F(\mathbf{x})$, and as such we can't really reduce it further without knowing the specific boundary surface or boundary condition on that surface.
 
-
-
-- I don't like the proof of the surface integral of the Green's function. Too abstract and not sure it's even correct. Work on it…
-
-
+We've thus achieved our goal of reformulating the formal solution in a form that's unique for a given Dirichlet or Neumann (or indeed mixed) BVP. Note that finding the generalized Green's function to achieve this in practice can usually be quite difficult to do. Often it's just easier to calculate the solution directly from the BVP, for instance using separation of variables or complex methods, both of which we'll discuss in later chapters. However, there is one case where it's quite easy to write down the generalized Green's function, the *method of images*. We'll discuss this method toward the end of this chapter.
 
 ## Boundary Conditions in Electrostatics
 
@@ -703,6 +678,9 @@ $$
 \frac{\partial\phi}{\partial n} = -4\pi\sigma \ ,
 $$
 where $\sigma(\mathbf{x})$ is the surface charge density of the free charges on the surface of the conductor. Since this surface density is created from bringing the conductor into contact with an external E-field, we call it the *induced surface charge density*. That is, the external field *induces* the free charges to distribute themselves in such a way as to create a surface density $\sigma(\mathbf{x})$ on the surface.
+
+- Discuss dipole layers (see Jackson)
+- Recast the formal solution of electrostatics in terms of surface charge densities and dipole densities (see Jackson)
 
 ## Method of Images
 
@@ -1020,7 +998,43 @@ The further we are from the sphere, the better we can approximate this series so
 
 
 
+---
 
+Harmonic Functions
+
+Any function $\phi(\mathbf{x})$ satisfying Laplace's equation $\nabla^2 \phi(\mathbf{x}) = 0$ is called a *harmonic function*. We can think of harmonic functions as a kind of higher-dimensional generalization of affine functions $f(x) = a x + b$. In one dimension, the Laplacian $\nabla^2$ reduces to the ordinary second derivative $d^2/dx^2$, and only affine functions satisfy Laplace's equation $d^2 /dx^2 f(x) = 0$ in one dimension.
+
+Notice that affine functions $f(x) = a x + b$ trivially satisfy the following properties:
+
+- Maximum Principle: The maximum (and minimum) of $f(x)$ on any closed interval $x_1 \leq x \leq x_2$ must occur at the endpoints $x_1$ or $x_2$. This is obvious, since a line is always either strictly increasing, strictly decreasing, or horizontal. In the degenerate case where $f(x)$ is constant, i.e. $a=0$, the maximum and minimum will both trivially occur at every point on the interval.
+
+- Mean Value Property: At any point $x$, the value of $f(x)$ is equal to the average of the value of the function evaluated at the endpoints of any closed interval centered at the point $x$. That is, for any symmetric interval $x - d \leq x \leq x + d$ we have
+  $$
+  f(x) = \frac{f(x - d) + f(x + d)}{2} \ .
+  $$
+
+- Liouville's Property: The only *bounded* affine function on the real line is the constant function $f(x) = b$. If $a \neq 0$, an affine function will always be unbounded, with $|f(x)| \to \infty$ as $|x| \to \infty$.
+
+All of these properties turn out to hold for higher-dimensional harmonic functions as well. We'll focus on three dimensions here. In three dimensions we state the above properties as follows:
+
+- Maximum Principle: Inside any closed region, the maximum (and minimum) value of any harmonic function $\phi(\mathbf{x})$ will always occur along the boundary of that region.
+
+- Mean Value Property: At any point $\mathbf{x}$, the value of a harmonic function $\phi(\mathbf{x})$ at that point is equal to the average value of $\phi(\mathbf{x})$ on any sphere centered at that point. That is, for any sphere of radius $R$ centered at $\mathbf{x}$ we have
+  $$
+  \phi(\mathbf{x}) = \frac{1}{4\pi} \oint d\Omega' \ \phi(\mathbf{x}') \ .
+  $$
+
+- Liouville's Property: The only bounded harmonic function in 3-dimensional space is a constant function. That is, either $|\phi(\mathbf{x})| \to \infty$ as $r \to \infty$ or $\phi(\mathbf{x})$ is constant.
+
+Let's quickly prove these. Suppose $\phi(\mathbf{x})$ is harmonic inside some region $\mathcal{V}$ bounded by a surface $\mathcal{S}$, so $\nabla^2 \phi(\mathbf{x}) = 0$ in $\mathcal{V}$.
+
+
+
+- Prove: The "soap film" fact about harmonic functions: A harmonic function that's constant on a boundary curve is the surface of minimum surface area connecting the curve.
+
+- Prove: Given two points, choose two balls with the given points as centers and of equal radius. If the radius is large enough, the two balls will coincide except for an arbitrarily small proportion of their volume. Since *f* is bounded, the averages of it over the two balls are arbitrarily close, and so *f* assumes the same value at any two points.
+- The descriptor "harmonic" in the name "harmonic function" originates from a point on a taut string which is undergoing [harmonic motion](https://en.wikipedia.org/wiki/Simple_harmonic_motion). The solution to the differential equation for this type of motion can be written in terms of sines and cosines, functions which are thus referred to as "harmonics." [Fourier analysis](https://en.wikipedia.org/wiki/Fourier_analysis) involves expanding functions on the unit circle in terms of a series of these harmonics. Considering higher dimensional analogues of the harmonics on the unit [*n*-sphere](https://en.wikipedia.org/wiki/N-sphere), one arrives at the [spherical harmonics](https://en.wikipedia.org/wiki/Spherical_harmonics). These functions satisfy Laplace's equation and, over time, "harmonic" was [used to refer to all](https://en.wikipedia.org/wiki/Synecdoche) functions satisfying Laplace's equation.
+- You may need to abandon this or move it, since some of the proofs assume things we haven't yet covered (multipole expansion or Green's third identity, i.e. the "surface term" of the formal solution).
 
 
 
