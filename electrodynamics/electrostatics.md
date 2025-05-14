@@ -259,10 +259,8 @@ Notice that we can think of the E-field as pointing *away* from the positive cha
 Finally, let's look at what happens in the *far field limit*, when $r = |z| \gg d$. What should we expect to happen in this limit? Intuitively, one might expect that if we're far away from the source charges we can treat them both as a single point charge and use Coulomb's law to conclude that $E(z) \sim 1/r^2$. But this isn't the case for the dipole. To see why, let's do a binomial expansion of the field strength $E(z)$ in the case that $r > d/2$. We have
 $$
 \begin{align*}
-E(z) &= q \bigg|\frac{1}{(z - d/2)^2} - \frac{1}{(z + d/2)^2}\bigg| \\
-&= \frac{q}{z^2} \bigg|\frac{1}{(1 - d/2z)^2} - \frac{1}{(1 + d/2z)^2}\bigg| \\
-&\approx \frac{q}{z^2} \big|(1 + d/z) - (1 - d/z) \big| \\
-&\approx \frac{qd}{2r^3} \ .
+E(z) &= q \bigg|\frac{1}{(z - d/2)^2} - \frac{1}{(z + d/2)^2}\bigg| = \frac{q}{z^2} \bigg|\frac{1}{(1 - d/2z)^2} - \frac{1}{(1 + d/2z)^2}\bigg| \\
+&\approx \frac{q}{z^2} \big|(1 + d/z) - (1 - d/z) \big| \approx \frac{qd}{2r^3} \ .
 \end{align*}
 $$
 Evidently, in the far field limit the E-field falls off like $1/r^3$, not like $1/r^2$. But why did this happen? The reason is because if we did indeed treat both charges as a single point charge then we have to use their *net charge*, and their net charge is $q - q = 0$. Said differently, the E-field of a dipole has no $1/r^2$ dependence because this term vanishes when we expand the E-field in powers of $d/r$. We thus have to go to the next term, which falls off like $1/r^3$. This behavior is characteristic of a dipole. In future chapters we'll show a systematic way to do an expansion of this kind and show that any field that falls off like $1/r^3$ *must* be that of a dipole.
@@ -457,11 +455,8 @@ $$
 This integral can easily be evaluated via substitution. If we let $u = z'/\varrho$, then $du = dz'/\varrho$, and so we have
 $$
 \begin{align*}
-E(\varrho) &= \lambda \int_{-\infty}^\infty dz' \ \frac{\varrho}{(\varrho^2 + z'^2)^{3/2}} \\
-&= \frac{\lambda}{\varrho^2} \int_{-\infty}^\infty \frac{dz'}{\big(1 + (z'/\varrho)^2\big)^{3/2}} \\
-&= \frac{\lambda}{\varrho} \int_{-\infty}^\infty \frac{du}{(1 + u^2)^{3/2}} \\
-&= \frac{\lambda}{\varrho} \frac{u}{\sqrt{1 + u^2}} \bigg|_{u=-\infty}^{u=\infty} \\
-&= \frac{2\lambda}{\varrho}
+E(\varrho) &= \lambda \int_{-\infty}^\infty dz' \ \frac{\varrho}{(\varrho^2 + z'^2)^{3/2}} = \frac{\lambda}{\varrho^2} \int_{-\infty}^\infty \frac{dz'}{\big(1 + (z'/\varrho)^2\big)^{3/2}} \\
+&= \frac{\lambda}{\varrho} \int_{-\infty}^\infty \frac{du}{(1 + u^2)^{3/2}} = \frac{\lambda}{\varrho} \frac{u}{\sqrt{1 + u^2}} \bigg|_{u=-\infty}^{u=\infty} = \frac{2\lambda}{\varrho}
 \ .
 \end{align*}
 $$
@@ -528,11 +523,8 @@ $$
 We can now evaluate the remaining integral by substituting $u = \varrho'/z$ and $du = d\varrho'/z$ to get
 $$
 \begin{align*}
-E(z) &= 2\pi\sigma \int_0^\infty d\varrho' \frac{z\varrho'}{(z^2 + \varrho'^2)^{3/2}} \\
-&= \frac{2\pi\sigma}{z^2} \int_0^\infty d\varrho' \ \frac{\varrho'}{\big(1 + (\varrho'/z)^2\big)^{3/2}} \\
-&= 2\pi\sigma \int_0^\infty du \ \frac{u}{(1 + u^2)^{3/2}} \\
-&= 2\pi\sigma \frac{-1}{\sqrt{1 + u^2}} \bigg|_{u=0}^{u=\infty} \\
-&= 2\pi\sigma
+E(z) &= 2\pi\sigma \int_0^\infty d\varrho' \frac{z\varrho'}{(z^2 + \varrho'^2)^{3/2}} = \frac{2\pi\sigma}{z^2} \int_0^\infty d\varrho' \ \frac{\varrho'}{\big(1 + (\varrho'/z)^2\big)^{3/2}} \\
+&= 2\pi\sigma \int_0^\infty du \ \frac{u}{(1 + u^2)^{3/2}} = 2\pi\sigma \frac{-1}{\sqrt{1 + u^2}} \bigg|_{u=0}^{u=\infty} = 2\pi\sigma
 \ .
 \end{align*}
 $$
@@ -798,10 +790,8 @@ FIGURE
 Since $\mathbf{E} \propto \mathbf{e}_\varrho$ we must have $\mathbf{E} \cdot \mathbf{n} = 0$ for any normal on the caps of the cylinder. This means only the walls of the cylinder contribute anything to the flux like we wanted. Along the walls of the cylinder we have $\mathbf{E} \cdot \mathbf{n} = E(\varrho)$, which is constant along the surface. We can thus factor out the field strength from the flux integral to get
 $$
 \begin{align*}
-\Phi_E &= \int_\mathcal{S} da \ \mathbf{E} \cdot \mathbf{n} \\
-&= \int_\text{caps} da \ \mathbf{E} \cdot \mathbf{n} + \int_\text{sides} da \ \mathbf{E} \cdot \mathbf{n} \\
-&= \int_\text{walls} da \ \mathbf{E} \cdot \mathbf{n} \\
-&= E(\varrho) \int_\text{walls} da \ .
+\Phi_E &= \int_\mathcal{S} da \ \mathbf{E} \cdot \mathbf{n} = \int_\text{caps} da \ \mathbf{E} \cdot \mathbf{n} + \int_\text{sides} da \ \mathbf{E} \cdot \mathbf{n} \\
+&= \int_\text{walls} da \ \mathbf{E} \cdot \mathbf{n} = E(\varrho) \int_\text{walls} da \ .
 \end{align*}
 $$
 Since the surface area of the walls of the cylinder is just $a = 2\pi\varrho L$, we get

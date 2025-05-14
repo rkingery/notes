@@ -28,7 +28,7 @@ $$
 Thus, the two electrostatic field equations for the E-field are entirely contained in the single equation
 $$
 \boxed{
-\nabla^2 \phi = -4\pi\rho
+\nabla^2 \phi(\mathbf{x}) = -4\pi\rho(\mathbf{x})
 } \ .
 $$
 A PDE of this form is known as *Poisson's equation*. It's a single scalar second order spatial PDE for the potential. Given some charge distribution, we in principle need only solve this PDE for the corresponding scalar potential and E-field. Indeed, much of the remainder of electrostatics is about finding more and more ways to solve Poisson's equation for the scalar potential.
@@ -36,7 +36,7 @@ A PDE of this form is known as *Poisson's equation*. It's a single scalar second
 When we're only interested in the potential in some region of space where no charges are present, $\rho = 0$ and Poisson's equation reduces to a simpler PDE known as *Laplace's equation*,
 $$
 \boxed{
-\nabla^2 \phi = 0
+\nabla^2 \phi(\mathbf{x}) = 0
 } \ .
 $$
 We'll discuss solution methods to Laplace's equation in great depth in the next chapter.
@@ -51,7 +51,7 @@ Poisson BVPs with only Dirichlet boundary conditions all have the general form
 $$
 \begin{align*}
 \begin{cases}
-\nabla^2 \phi = -4\pi\rho \ \text{in} \ \mathcal{V} \ , \\
+\nabla^2 \phi(\mathbf{x}) = -4\pi\rho(\mathbf{x}) \ \text{in} \ \mathcal{V} \ , \\
 \text{where} \ \phi = V(\mathbf{x}) \ \text{on} \ \mathcal{S} \ .
 \end{cases}
 \end{align*}
@@ -64,7 +64,7 @@ Poisson BVPs with only Neumann boundary conditions all have the general form
 $$
 \begin{align*}
 \begin{cases}
-\nabla^2 \phi = -4\pi\rho \ \text{in} \ \mathcal{V} \ , \\
+\nabla^2 \phi(\mathbf{x}) = -4\pi\rho(\mathbf{x}) \ \text{in} \ \mathcal{V} \ , \\
 \text{where} \ \frac{\partial \phi}{\partial n} = -E(\mathbf{x}) \ \text{on} \ \mathcal{S} \ .
 \end{cases}
 \end{align*}
@@ -81,8 +81,8 @@ Poisson BVPs with mixed boundary conditions all have the general form
 $$
 \begin{align*}
 \begin{cases}
-\nabla^2 \phi = -4\pi\rho \ \text{in} \ \mathcal{V} \ , \\
-\text{where} \ \phi = V(\mathbf{x}) \ \text{on} \ \mathcal{S}_D \ , \\
+\nabla^2 \phi(\mathbf{x}) = -4\pi\rho(\mathbf{x}) \ \text{in} \ \mathcal{V} \ , \\
+\text{where} \ \phi(\mathbf{x}) = V(\mathbf{x}) \ \text{on} \ \mathcal{S}_D \ , \\
 \text{and} \ \frac{\partial \phi}{\partial n} = -E(\mathbf{x}) \ \text{on} \ \mathcal{S}_N \ .
 \end{cases}
 \end{align*}
@@ -97,43 +97,43 @@ To that end, suppose first that $\phi(\mathbf{x})$ and $\psi(\mathbf{x})$ are ea
 $$
 \begin{align*}
 \begin{cases}
-\nabla^2 \phi = \nabla^2 \psi = -4\pi\rho \ \text{in} \ \mathcal{V} \ , \\
-\text{where} \ \phi = \psi = V(\mathbf{x}) \ \text{on} \ \mathcal{S} \ .
+\nabla^2 \phi(\mathbf{x}) = \nabla^2 \psi(\mathbf{x}) = -4\pi\rho(\mathbf{x}) \ \ \text{in} \ \mathcal{V} \ , \\
+\text{where} \ \phi(\mathbf{x}) = \psi(\mathbf{x}) = V(\mathbf{x}) \ \ \text{on} \ \mathcal{S} \ .
 \end{cases}
 \end{align*}
 $$
-Now, let $u = \phi - \psi$. Then we have $\nabla^2 u = \nabla^2 \phi - \nabla^2 \psi = 0$, which means $u(\mathbf{x})$ must satisfy Laplace's equation inside the enclosed volume $\mathcal{V}$. Moreover, on the boundary surface $\mathcal{S}$ we have $\phi = \psi = V$, which means $u = 0$ on $\mathcal{S}$. We thus obtain a new Dirichlet BVP for $u(\mathbf{x})$ of the form
+Now, let $u(\mathbf{x}) = \phi(\mathbf{x}) - \psi(\mathbf{x})$. Then we have $\nabla^2 u = \nabla^2 \phi - \nabla^2 \psi = 0$, which means $u(\mathbf{x})$ must satisfy Laplace's equation inside the enclosed volume $\mathcal{V}$. Moreover, on the boundary surface $\mathcal{S}$ we have $\phi(\mathbf{x}) = \psi(\mathbf{x}) = V(\mathbf{x})$, which means $u(\mathbf{x}) = 0$ on $\mathcal{S}$. We thus obtain a new Dirichlet BVP for $u(\mathbf{x})$ of the form
 $$
 \begin{cases}
-\nabla^2 u = 0 \ \text{in} \ \mathcal{V} \ , \\
-\text{where} \ u = 0 \ \text{on} \ \mathcal{S} \ .
+\nabla^2 u(\mathbf{x}) = 0 \ \text{in} \ \mathcal{V} \ , \\
+\text{where} \ u(\mathbf{x}) = 0 \ \text{on} \ \mathcal{S} \ .
 \end{cases}
 $$
 Similarly, if $\phi(\mathbf{x})$ and $\psi(\mathbf{x})$ are each potentially distinct solutions to a Neumann BVP inside the same region $\mathcal{V}$ we have
 $$
 \begin{cases}
-\nabla^2 \phi = \nabla^2 \psi = -4\pi\rho \ \text{in} \ \mathcal{V} \ , \\
+\nabla^2 \phi(\mathbf{x}) = \nabla^2 \psi(\mathbf{x}) = -4\pi\rho(\mathbf{x}) \ \text{in} \ \mathcal{V} \ , \\
 \text{where} \ \frac{\partial \phi}{\partial n} = \frac{\partial \psi}{\partial n} = -E(\mathbf{x}) \ \text{on} \ \mathcal{S} \ ,
 \end{cases}
 $$
 then $u(\mathbf{x})$ again satisfies Laplace's equation inside $\mathcal{V}$, and on the boundary surface $\mathcal{S}$ we have $\partial u / \partial n = 0$, so we instead obtain a Neumann BVP for $u(\mathbf{x})$ of the form
 $$
 \begin{cases}
-\nabla^2 u = 0 \ \text{in} \ \mathcal{V} \ , \\
+\nabla^2 u(\mathbf{x}) = 0 \ \text{in} \ \mathcal{V} \ , \\
 \text{where} \ \frac{\partial u}{\partial n} = 0 \ \text{on} \ \mathcal{S} \ .
 \end{cases}
 $$
 Now recall Green's first identity from vector calculus, which says for any two smooth scalar fields $f(\mathbf{x})$ and $g(\mathbf{x})$ we have
 $$
-\int_\mathcal{V} d^3 \mathbf{x} \ (\nabla f \cdot \nabla g + g \nabla^2 f) = \oint_\mathcal{S} da \ g \frac{\partial f}{\partial n} \ .
+\int_\mathcal{V} d^3 \mathbf{x} \ [\nabla f(\mathbf{x}) \cdot \nabla g(\mathbf{x}) + g(\mathbf{x}) \nabla^2 f(\mathbf{x})] = \oint_\mathcal{S} da \ g(\mathbf{x}) \frac{\partial f}{\partial n} \ .
 $$
-If we now set $f = g = u$, we have
+If we now set $f(\mathbf{x}) = g(\mathbf{x}) = u(\mathbf{x})$, we have
 $$
-\int_\mathcal{V} d^3 \mathbf{x} \ (|\nabla u|^2 + u \nabla^2 u) = \oint_\mathcal{S} da \ u \frac{\partial u}{\partial n} \ .
+\int_\mathcal{V} d^3 \mathbf{x} \ [|\nabla u(\mathbf{x})|^2 + u(\mathbf{x}) \nabla^2 u(\mathbf{x})] = \oint_\mathcal{S} da \ u(\mathbf{x}) \frac{\partial u}{\partial n} \ .
 $$
-But we know $\nabla^2 u = 0$ inside $\mathcal{V}$, and one or the other of $u$ or $\partial u / \partial n$ is zero on $\mathcal{S}$ depending on whether the BVP is Cauchy or Neumann. For either type of BVP, we thus have
+But we know $\nabla^2 u(\mathbf{x}) = 0$ inside $\mathcal{V}$, and one or the other of $u(\mathbf{x})$ or $\partial u / \partial n$ is zero on $\mathcal{S}$ depending on whether the BVP is Cauchy or Neumann. For either type of BVP, we thus have
 $$
-\int_\mathcal{V} d^3 \mathbf{x} \ |\nabla u|^2 = 0 \ .
+\int_\mathcal{V} d^3 \mathbf{x} \ |\nabla u(\mathbf{x})|^2 = 0 \ .
 $$
 However, $|\nabla u|^2 \geq 0$ by definition, and the only way the integral of a non-negative function can be zero is if the function itself is also zero. That is, we must have $|\nabla u|^2 = 0$, which can only be true if $\nabla u = \mathbf{0}$ by the definition of the norm. But the only way the gradient of a function can be zero is if the function itself is constant, meaning $u(\mathbf{x})$ must be constant. We thus must have that
 $$
@@ -142,6 +142,8 @@ $$
 Thus, if both $\phi(\mathbf{x})$ and $\psi(\mathbf{x})$ are solutions to the same Dirichlet or Neumann BVP, then they must be identical up to an additive constant. This means *any* solution to a Dirichlet or Neumann BVP must be unique up to an additive constant. In fact, for a Dirichlet BVP we can be assured that this additive constant is always zero, since  $\phi(\mathbf{x})$ and $\psi(\mathbf{x})$ must agree on the boundary. In practice though it doesn't much matter, since as discussed in the previous chapter we're always free to add an arbitrary constant to the potential without changing the E-field. This is just equivalent to shifting the ground point of the potential.
 
 In a similar manner, one can show that solutions to mixed BVPs are also unique up to an additive constant. All one needs to do is apply the proof above to the Dirichlet portion of the surface $\mathcal{S}_D$ and to the Neumann portion of the surface $\mathcal{S}_N$.
+
+Finally, note this also implies that the solution to the Poisson equation free of any boundary conditions must be unique. To see why, notice we can cast this as a Dirichlet problem. Suppose $\nabla^2 \phi(\mathbf{x}) = -4\pi \rho(\mathbf{x})$, where $\phi(\mathbf{x}) = 0$ on some sphere of radius $R$. This is clearly a Dirichlet BVP, and its solution must thus be unique for any fixed $R$, even as $R \to \infty$. From this the claim follows.
 
 As mentioned above, this result is known as the uniqueness theorem. Provided we can find *any* solution to a given BVP of the above types, whether by guessing or some other method, we know that must be *the* solution up to an additive constant. We'll find this theorem a powerful tool in electrostatics, most importantly when discussing the method of images. Incidentally, since Laplace's equation is just a special case of Poisson's equation the same facts we just prove also hold for Laplace BVPs.
 
@@ -201,7 +203,7 @@ Applying this problem solving method to Poisson BVPs yields the following approa
 
 We'll show how to find the particular and general solutions to Poisson's equation later in the chapter. In the next chapter we'll focus on other, more practical ways, of finding the general solution for a given BVP.
 
-## Particular Solution
+## Green's Functions
 
 Thus far we've only showed how to reformulate electrostatics problems in terms of a Poisson BVP. We've said little about how to actually solve a BVP. In this section we'll start taking steps in that direction by introducing the *Green's function*, which provides a very efficient way to find the particular solution of a given linear PDE. We'll also discuss various ways to find Green's functions.
 
@@ -230,69 +232,61 @@ $$
 $$
 We've thus found a particular solution to Poisson's equation free of boundary conditions. But why is it unique? Suppose we place a large sphere of radius $R$ around the origin and require that $\phi(\mathbf{x}) = 0$ on the surface of the sphere. This is a Dirichlet boundary condition, which means by the uniqueness theorem whatever solution satisfies this boundary condition must be unique. Of course, the particular solution doesn't satisfy this condition for any finite $R$. However, if we send $R \to \infty$ it does, since the above integral satisfies $\phi(\mathbf{x}) \to 0$ at infinity. Placing this boundary at infinity thus turns the unbounded problem above into a Dirichlet BVP, and since we already have a solution that matches the boundary condition at infinity it must be the unique solution.
 
-### Green's Function
+### Green's Functions
 
-Now that we already have the particular solution to Poisson's equation and we know that it's also the general solution for BVPs free of boundary conditions, we're in principle done with this case. However, we'll find it insightful to analyze the structure of this solution a bit before moving on to BVPs with more complicated sets of boundary conditions. 
+Now that we already have the particular solution to Poisson's equation and we know that it's also the general solution for BVPs free of boundary conditions, we're in principle done with this case. However, it's insightful to analyze the structure of this solution a bit before moving on to BVPs with boundary conditions. 
 
-To that end, let's consider again the simplest non-trivial charge distribution of all, the point charge. We already know the potential for a point charge $q$ located at the origin is simply $\phi(\mathbf{x}) = q/r$, and the charge density is $\rho(\mathbf{x}) = q\delta(\mathbf{x})$. This potential must thus be the solution to the Poisson equation
+Let's consider again the simplest non-trivial charge distribution of all, the point charge. Suppose we had a unit point charge $q=1$ located at some point $\mathbf{x}'$. We already know its potential is just $1/|\mathbf{x} - \mathbf{x}'|$. We denote this special potential by $G(\mathbf{x}, \mathbf{x}')$, and call it a *Green's function*. This Green's function is evidently the unique solution to the Poisson equation
 $$
-\nabla^2 \phi(\mathbf{x}) = -4\pi q\delta(\mathbf{x}) \ .
+\nabla^2 G(\mathbf{x}, \mathbf{x}') = -4\pi \delta(\mathbf{x} - \mathbf{x}') \ .
 $$
-It turns out that solutions to this particular equation are fundamental in the sense that we can use the solutions to this one special form of Poisson's equation to assemble the solution to any Poisson equation with an arbitrary charge density.
+In physics, we call any solution to a linear PDE with a delta function source a Green's function. It turns out that Green's functions are special, in that we can use them to assemble the particular solution for any arbitrary source function on the right-hand side.
 
-To see why this is the case, suppose we set $q=1$. For reasons we'll understand in a moment we'll denote this potential by $G(\mathbf{x})$ and call it a *Green's function*. Thus, $G(\mathbf{x}) \equiv 1/r$ is the potential corresponding to the Poisson equation for a unit point charge,
+More generally, for a given linear differential operator $\mathcal{L}$, we define its associated *Green's function* $G(\mathbf{x},\mathbf{x}')$ to be the solution, if it exists, to the linear PDE
 $$
-\nabla^2 G(\mathbf{x}) = -4\pi \delta(\mathbf{x}) \ .
+\mathcal{L} G(\mathbf{x}, \mathbf{x}') = k \delta(\mathbf{x} - \mathbf{x}') \ .
 $$
-Now suppose we have some arbitrary charge distribution $\rho(\mathbf{x})$ giving rise to some potential $\phi(\mathbf{x})$. Using the delta function we can trivially express the charge density in the form of an integral,
+For regularity reasons we typically impose the extra requirement that $G(\mathbf{x}, \mathbf{x}') \to 0$ when either $\mathbf{x}$ or $\mathbf{x}'$ go to infinity. The dimensionless constant $k$ is chosen purely based on convention. For an arbitrary $\mathcal{L}$ we typically set $k=1$. When $\mathcal{L}$ is the Laplacian $\nabla^2$ in three dimensions we typically set $k = -4\pi$ so that $G(\mathbf{x}, \mathbf{x}')$ is identical to the potential of a unit point charge located at $\mathbf{x}'$. This constant doesn't really do anything other than rescale the Green's function by $1/k$, so it doesn't matter much.
+
+Provided the linear operator satisfies certain regularity assumptions, if we know its Green's function we can use it to immediately write down the particular solution $\phi_p(\mathbf{x})$ to the analogous linear PDE
 $$
-\rho(\mathbf{x}) = \int d^3\mathbf{x}' \rho(\mathbf{x}') \delta(\mathbf{x} - \mathbf{x}') \ .
+\mathcal{L} \phi(\mathbf{x}) = k f(\mathbf{x}) \ .
 $$
-By Poisson's equation, the charge density must also be $\rho(\mathbf{x}) = -1/4\pi \ \nabla^2 \phi(\mathbf{x})$, and also $\delta(\mathbf{x}) = -1/4\pi \ \nabla^2 G(\mathbf{x})$. Substituting these into the above integral, cancelling common terms, and pulling the Laplacian out of the integral, we thus find
+Assuming there are no boundary conditions imposed, the particular solution to this PDE can be written as an integral involving the associated Green's function $G(\mathbf{x}, \mathbf{x}')$ and the source function $f(\mathbf{x})$,
 $$
-\nabla^2 \phi(\mathbf{x}) = \nabla^2 \int d^3\mathbf{x}' \rho(\mathbf{x}') G(\mathbf{x} - \mathbf{x}') \ .
+\phi_p(\mathbf{x}) = \int d^3\mathbf{x}' f(\mathbf{x}') G(\mathbf{x}, \mathbf{x}') \ .
 $$
-Moving everything to one side, we have
+Let's check this. First, it's not hard to see that the particular solution will be unique by following the same argument we did before when proving the uniqueness theorem. Thus, we need only show that the above integral satisfies the PDE and we're done. Indeed, if we plug the integral into the above PDE and use the fact that $\mathcal{L}$ depends only on $\mathbf{x}$ and not $\mathbf{x}'$, we get
 $$
-\nabla^2 \bigg[\phi(\mathbf{x}) - \int d^3\mathbf{x}' \rho(\mathbf{x}') G(\mathbf{x} - \mathbf{x}')\bigg] = 0 \ .
+\mathcal{L} \phi_p(\mathbf{x}) = \int d^3\mathbf{x}' f(\mathbf{x}') \mathcal{L} G(\mathbf{x}, \mathbf{x}') = k \int d^3\mathbf{x}' f(\mathbf{x}') \delta(\mathbf{x} - \mathbf{x}') = k f(\mathbf{x}) \ .
 $$
-This inner function must thus satisfy Laplace's equation. However, the only solution to Laplace's equation over all space when no other boundary conditions are imposed is a constant. In fact this constant must be zero since both the potential and the charge density go to zero at infinity for a localized charge distribution. We thus have
+This result is important because the Green's function is a property only of the linear differential operator $\mathcal{L}$. This means we can use the same Green's function to solve $\mathcal{L} \phi(\mathbf{x}) = k f(\mathbf{x})$ for any given $f(\mathbf{x})$. Once we now the Green's function we only need to evaluate the integral above to find the particular solution and we're done. This provides us with a powerful tool to solve many types linear inhomogeneous PDEs.
+
+If the operator $\mathcal{L}$ also happens to be *translation invariant*, meaning it's only a linear superposition of partial derivatives, then we can always write the Green's function as a univariate function $G(\mathbf{x},\mathbf{x}') = G(\mathbf{x} - \mathbf{x}')$. The Laplacian satisfies this property, as does the gradient, divergence, and curl. When we can do this the particular solution reduces to a simple *convolution* of the source function $f(\mathbf{x})$ with the Green's function $G(\mathbf{x}) \equiv G(\mathbf{x}, \mathbf{0})$ corresponding to a delta function at the origin,
 $$
-\boxed{
-\phi_p(\mathbf{x}) = \int d^3\mathbf{x}' \rho(\mathbf{x}') G(\mathbf{x} - \mathbf{x}')
-} \ .
+\phi_p(\mathbf{x}) = \int d^3\mathbf{x}' f(\mathbf{x}') G(\mathbf{x} - \mathbf{x}') \ .
 $$
-That is, the particular solution to Poisson's equation can be expressed as the convolution of the charge density with this special Green's function. In some sense we've just restated the obvious, since $G(\mathbf{x} - \mathbf{x}')$ is just the potential for a unit point charge located at some shifted position $\mathbf{x}'$, which is
+In the case of electrostatics of course, we're mainly interested in the Laplacian $\mathcal{L} = \nabla^2$. In that case we have
+$$
+\phi_p(\mathbf{x}) = \int d^3\mathbf{x}' \rho(\mathbf{x}') G(\mathbf{x} - \mathbf{x}') \ .
+$$
+Comparing this with the particular solution we found in the previous section it's immediately clear what the Green's function associated to the Laplacian must be,
 $$
 \boxed{
 G(\mathbf{x} - \mathbf{x}') = \frac{1}{|\mathbf{x} - \mathbf{x}'|} 
 } \ .
 $$
-Inserting this into the integral above, we just recover the same particular solution we had before,
-$$
-\phi_p(\mathbf{x}) = \int d^3 \mathbf{x}' \ \frac{\rho(\mathbf{x}')}{|\mathbf{x} - \mathbf{x}'|} \ ,
-$$
-So why did we bother doing this? For one, we've managed to decouple the behavior of the charge distribution from the behavior of the linear operator $\mathcal{L} = \nabla^2$. The Green's function is a property only of the linear operator. It knows nothing about the charge distribution. Only by convolving the two together do we get the potential for that particular distribution.
+This also matches our previous statement that the Green's function of the Laplacian is the potential of a unit point charge at $\mathbf{x}'$. Frequently we'll write this Green's function as $G(\mathbf{x}) = 1/r$, where it's understood that the general form can be obtained simply by shifting $\mathbf{x} \to \mathbf{x}'$. Thus, we may use any of the notations $G(\mathbf{x}, \mathbf{x}')$, $G(\mathbf{x} - \mathbf{x}')$, or $G(\mathbf{x})$ to refer to the same Green's function.
 
-Every linear differential operator has an associated Green's function, assuming it exists. The form of this function will be unique to each operator. For an arbitrary linear differential operator $\mathcal{L}$, we define its Green's function $G(\mathbf{x})$ as the particular solution to its inhomogeneous PDE with a unit delta function source,
-$$
-\mathcal{L} G(\mathbf{x}) = \delta(\mathbf{x}) \ .
-$$
-For regularity reasons we also require that $G(\mathbf{x}) \to 0$ at infinity. This makes physical sense as well, since any physical field of interest should always go to zero at infinity to avoid infinite energies.
+Notice that the Green's function of the Laplacian depends only on the relative distance $|\mathbf{x} - \mathbf{x}'|$. This follows from the fact that the Laplacian is also rotationally invariant, not just translationally invariant. We showed that in our vector calculus discussion.
 
-Note that the general convention is to place only a delta function on the right-hand side with no other constants. Poisson's equation by convention also includes a factor of $-4\pi$ so its Green's function is also the potential of a unit point charge. It doesn't matter much though, since we could always divide both sides by $-4\pi$ and redefine the Green's function accordingly.
+Note that not all linear differential operators will have a Green's function since the solution to $\mathcal{L} G(\mathbf{x}, \mathbf{x}') = k \delta(\mathbf{x} - \mathbf{x}')$ may in fact not exist for some linear operator, particularly when no boundary conditions are imposed. For instance, we'll see later that the the second derivative operator $\mathcal{L} = d^2/dx^2$ doesn't have a Green's function on the entire real line. 
 
-By the same logic we used above for Poisson's equation, one can show that the particular solution to $\mathcal{L} \phi(\mathbf{x}) = f(\mathbf{x})$ can be found by convolving the source function $f(\mathbf{x})$ of interest with this Green's function $G(\mathbf{x})$,
-$$
-\phi_p(\mathbf{x}) = \int d^3\mathbf{x}' f(\mathbf{x}') G(\mathbf{x} - \mathbf{x}') \ .
-$$
-This means if we already know what the Green's function is for a given linear differential operator then solving for a particular solution $\phi(\mathbf{x})$ is in principle easy. Given some source function of interest one needs only evaluate the integral above.
-
-Note that not all linear differential operators will have a Green's function. For instance, we'll see later that the second derivative operator $\mathcal{L} = d^2/dx^2$, which is also the 1-dimensional Laplacian, in fact doesn't have a Green's function. Also note that only for *linear* differential operators can we obtain the particular solution through convolution with a Green's function. For instance, we couldn't do this even with a simple non-linear operator like the squared gradient operator $\mathcal{L} \phi = |\nabla \phi|^2$.
+Also, note that the operator $\mathcal{L}$ must be linear for the Green's function to have any utility. Even if we can solve for $G(\mathbf{x}, \mathbf{x}')$, only for a linear PDE can we guarantee that it's unique and that the particular solution can be obtained by the above integral. For example, the non-linear squared gradient operator $\mathcal{L} \phi = |\nabla \phi|^2$ doesn't satisfy this property. If we wanted to solve the non-linear PDE $|\nabla \phi|^2 = f(\mathbf{x})$ we'd have to do so separately for each different source function $f(\mathbf{x})$.
 
 ### Fourier Transform Methods
 
-We were easily able to find the Green's function for Poisson's equation by noting that $\nabla^2 G = -4\pi \delta(\mathbf{x})$ was just the equation for the potential of a unit point charge, which we already knew was just $G(\mathbf{x}) = 1/r$. But suppose we didn't know this and had to solve the PDE directly to find the Green's function. How would we do that? Indeed, for most linear operators this is what we'd have to do. In this section we'll show how to do this by finding the Green's function for Poisson's equation again, but this time by directly solving the PDE. We'll find the methods described here helpful in future chapters when need to find the Green's functions of more complicated linear operators.
+We were easily able to find the Green's function for the Laplacian by noting that $\nabla^2 G(\mathbf{x} - \mathbf{x}') = -4\pi \delta(\mathbf{x} - \mathbf{x}')$ was just the PDE for the potential of a unit point charge at $\mathbf{x}'$. But suppose we didn't know this and had to solve the above PDE directly to find this Green's function. How would we do that? For most linear operators this is what we'd have to do. In this section we'll show how to do this by finding the Green's function for Poisson's equation again, this time by directly solving the PDE. We'll find the methods described helpful in future chapters when need to find the Green's functions of more complicated linear operators.
 
 The primary method for solving linear PDEs of the form $\mathcal{L} G(\mathbf{x}) = \delta(\mathbf{x})$ is through the *Fourier transform method*, which we'll describe now. Recall from the appendix that the Fourier transform $G(\mathbf{k})$ of a scalar field $G(\mathbf{x})$ is given by the integral
 $$
@@ -366,9 +360,9 @@ Evaluating this remaining integral isn't trivial though. One approach,  which we
 $$
 G(\mathbf{x}) = \frac{1}{r} \ ,
 $$
-which of course is exactly what we found before using the point charge trick. The key takeaway here shouldn't be that we found the same Green's function, but that this same method can be used to find the Green's function of any linear differential operator.
+which of course is exactly what we found before using the point charge trick. The more general Green's function $G(\mathbf{x} - \mathbf{x}')$ is then obtained simply by sending $\mathbf{x} \to \mathbf{x}'$ as usual. The key takeaway here though is that this Fourier transform method is a powerful way find the Green's function of any linear differential operator, especially if it's translation invariant.
 
-### Green's Function in $n$-Dimensions
+### Green's Functions in $n$-Dimensions
 
 In general, the form of the Green's function for a given operator will depend on the number of dimensions there are since the operator itself changes in different dimensions. For example, consider the Laplacian operator $\mathcal{L} = \nabla^2 = \partial_i \partial_i$. In one dimension this operator is $\nabla_1^2 = d^2/dx^2$, in two dimensions it's $\nabla_2^2 = \partial_x^2 + \partial_y^2$, and in 3 dimensions it's $\nabla_3^2 = \partial_x^2 + \partial_y^2 + \partial_z^2$. Setting each of these equal to a delta function would each result in a different PDE and hence give a different Green's function.
 
@@ -380,11 +374,11 @@ $$
 $$
 For this section only, we'll use the notation that $\mathbf{v} = v_i \mathbf{e}_i$ represents an $n$-dimensional real vector, $\mathcal{V}$ is an $n$-dimensional volume, and $\mathcal{S}$ is its corresponding $n-1$ dimensional closed surface.
 
-To find the Green's function $G_n(\mathbf{x})$ corresponding to this Laplacian we by definition need to solve a PDE of the form
+To find the Green's function $G_n(\mathbf{x})$ corresponding to this Laplacian we need to solve a PDE of the form
 $$
 \nabla_n^2 G_n(\mathbf{x}) = -\Omega_n \delta(\mathbf{x}) \ .
 $$
-Here we insert an arbitrary factor of $\Omega_n$ instead of $4\pi$ on the right-hand side. We do so because this factor is supposed to represent the surface area of an $n-1$ dimensional unit sphere. For example, the surface area of a 2-dimensional unit sphere is indeed $\Omega_3 = 4\pi$, but the "surface area" of a 1-dimensional sphere is just the circumference of a unit circle, which is $\Omega_2 = 2\pi$.
+Here we insert a factor of $\Omega_n$ instead of $4\pi$ on the right-hand side. We do so because this factor is supposed to represent the surface area of an $n-1$ dimensional unit sphere. For example, the surface area of a 2-dimensional unit sphere is indeed $\Omega_3 = 4\pi$, but the "surface area" of a 1-dimensional sphere is just the circumference of a unit circle, which is $\Omega_2 = 2\pi$.
 
 Now, the trick here is to convert the above PDE into an integral and use the divergence theorem, which turns out to hold in any number of dimensions. Suppose we take the $n$-dimensional volume integral of both sides of the above PDE. Then we have
 $$
@@ -412,33 +406,33 @@ $$
 $$
 Thus, to find the Green's function $G_n(\mathbf{x})$, we need only to integrate both sides of the equation
 $$
-\frac{\partial G_n}{\partial r} = -r^{-(n-1)} \ .
+\frac{\partial G_n}{\partial r} = -\frac{1}{r^{n-1}} \ .
 $$
 Doing so, we'll finally obtain the Green's function for the Laplacian operator in $n$ dimensions, 
 $$
-G_n(\mathbf{x}) = - \int dr \ r^{-(n-1)} \ .
+G_n(r) = - \int \frac{dr}{r^{n-1}} \ .
 $$
 In general there would be an additive constant to worry about here. If we require that $G_n \to 0$ at infinity this added constant must be zero, which means for any dimension $n \geq 3$ the Green's function is just
 $$
-G_n(\mathbf{x}) = \frac{(-1)^{n+1}}{n-2} \frac{1}{r^{n-2}} \ .
+G_n(r) = \frac{(-1)^{n+1}}{n-2} \frac{1}{r^{n-2}}  \quad \Longrightarrow \quad G_n(\mathbf{x} - \mathbf{x}') = \frac{(-1)^{n+1}}{n-2} \frac{1}{|\mathbf{x} - \mathbf{x}'|^{n-2}} \ .
 $$
 For example, in three dimensions we get $G_3(\mathbf{x}) = 1/r$, which is the same Green's function we found before. But in four dimensions we instead get an inverse square Green's function,
 $$
-G_4(\mathbf{x}) = -\frac{1}{2 r^2} \ .
+G_4(r) = -\frac{1}{2 r^2} \quad \Longrightarrow \quad G_4(\mathbf{x} - \mathbf{x}') = -\frac{1}{2|\mathbf{x} - \mathbf{x}'|^2} \ .
 $$
 In two dimensions we instead need to integrate $-1/r$, which gives
 $$
-G_2(\mathbf{x}) = -\log r \ .
+G_2(r) = -\log r \quad \Longrightarrow \quad G_2(\mathbf{x} - \mathbf{x}') = -\log|\mathbf{x} - \mathbf{x}'| \ .
 $$
-Notice this Green's function blows up at infinity, which means it's not a proper Green's function in the usual sense.
+Notice this Green's function blows up at infinity, which means it's not a proper Green's function in the usual sense. Nevertheless we could still convolve it with the charge density to find the potential for a 2-dimensional charge distribution, though the potential we get may be a generalized function rather than an ordinary function.
 
-In one dimension the situation is even worse. It turns out this Green's function doesn't even exist. We can't see this from the integral we just derived. Instead we have to revisit the PDE we're trying to solve. In one dimension the Laplacian is just the second derivative $\nabla_1^2 = d^2/dx^2$, which means the Green's function PDE collapses into an ordinary differential equation of the form
+A similar story occurs in one dimension, where we'd get
 $$
-\frac{d^2}{dx^2} G_1(x) = -\Omega_1 \delta(x) \ .
+G_1(r) = -r \quad \Longrightarrow \quad G_1(x - x') = -|x - x'| \ .
 $$
-The problem here turns out to be the solid angle factor $\Omega_1$ on the right-hand side. The solid angle in one dimension would just be the "surface area" of a 0-dimensional unit sphere, which would be the "surface area" of a point. Since a point has no size, $\Omega_1 = 0$. But if $\Omega_1 = 0$ the right-hand side of the PDE is zero, which means we no longer have an equation for the Green's function at all.
+Clearly this function blows up at infinity as well. Note that strictly speaking the above PDE is undefined when $n=1$ since $\Omega_0$ is just the surface area of a point, which is zero. We can easily get around this though by solving $\nabla_1^2 G(r) = -\delta(r)$ directly instead.
 
-## General Solution
+## Formal Solution
 
 Now that we've obtained the particular solution to Poisson's equation we'll now discuss the general solution for a Poisson BVP. We'll first derive the general solution directly, obtaining the *formal solution*, and then show how to "mock up" the Green's function to include the boundary conditions directly.
 
@@ -494,80 +488,82 @@ $$
 \text{where} \ \partial \phi/\partial n = -E(\mathbf{x})  \ \text{on} \ \mathcal{S}
 \end{cases} \ \ .
 $$
-We want to define a *generalized Green's function* $\mathcal{G}(\mathbf{x})$ such that $\mathcal{G}(\mathbf{x})$ satisfies its own boundary conditions that can be used to cancel out one of the surface terms in the formal solution. We can do that by defining
+We want to define a *generalized Green's function* $\mathcal{G}(\mathbf{x},\mathbf{x}')$ which satisfies boundary conditions that can be used to cancel out one of the surface terms in the formal solution. We can do that by defining
 $$
-\mathcal{G}(\mathbf{x}) \equiv G(\mathbf{x}) + F(\mathbf{x}) \ ,
+\mathcal{G}(\mathbf{x},\mathbf{x}') \equiv G(\mathbf{x} - \mathbf{x}') + F(\mathbf{x},\mathbf{x}') \ ,
 $$
-where $G(\mathbf{x}) = 1/r$ is the ordinary Green's function for the Laplacian and $F(\mathbf{x})$ is some added function related somehow to the particular set of boundary conditions. Inside $\mathcal{V}$ we require that $\mathcal{G}(\mathbf{x} - \mathbf{x}')$ satisfy the usual Green's function PDE inside $\mathcal{V}$, but with respect to the source point $\mathbf{x}'$,
-$$
-\nabla'^2 \mathcal{G}(\mathbf{x} - \mathbf{x}') = -4\pi\delta(\mathbf{x} - \mathbf{x}') \ \ \text{in} \ \mathcal{V} \ .
-$$
-The only way this can be true evidently is if $F(\mathbf{x} - \mathbf{x}')$ satisfies Laplace's equation $\nabla'^2 F(\mathbf{x} - \mathbf{x}') = 0$ in $\mathcal{V}$ with respect to $\mathbf{x}'$.
+where $G(\mathbf{x} - \mathbf{x}') = 1/|\mathbf{x} - \mathbf{x}'|$ is the ordinary Green's function and $F(\mathbf{x},\mathbf{x}')$ is some added bivariate function related to the particular set of boundary conditions. Note that unlike the ordinary Green's function, the generalized Green's function $\mathcal{G}(\mathbf{x},\mathbf{x}')$ will not in general be translation invariant, which is why we write $\mathcal{G}(\mathbf{x},\mathbf{x}')$ instead of $\mathcal{G}(\mathbf{x} - \mathbf{x}')$. We can, however, always impose the requirement that $\mathcal{G}(\mathbf{x},\mathbf{x}')$ be symmetric in the sense that $\mathcal{G}(\mathbf{x},\mathbf{x}') = \mathcal{G}(\mathbf{x}',\mathbf{x})$.
 
-It's not difficult to see from Green's second identity that $F(\mathbf{x})$ must evidently satisfy the integral equation
+Inside $\mathcal{V}$ we require that $\mathcal{G}(\mathbf{x},\mathbf{x}')$ satisfy the usual Green's function PDE inside $\mathcal{V}$, but with respect to the source point $\mathbf{x}'$,
 $$
-\int_\mathcal{V} d^3 \mathbf{x}' \ \rho(\mathbf{x}') F(\mathbf{x} - \mathbf{x}') + \frac{1}{4\pi} \oint_\mathcal{S} da' \ \bigg[F(\mathbf{x} - \mathbf{x}') \frac{\partial}{\partial n'} \phi(\mathbf{x}') - \phi(\mathbf{x}') \frac{\partial}{\partial n'} F(\mathbf{x} - \mathbf{x}') \bigg] = 0 \ .
+\nabla'^2 \mathcal{G}(\mathbf{x},\mathbf{x}') = -4\pi\delta(\mathbf{x} - \mathbf{x}') \ \ \text{in} \ \mathcal{V} \ .
 $$
-Indeed, just set $f(\mathbf{x}') = \phi(\mathbf{x}')$ and $g(\mathbf{x}')$, and use the fact that $\nabla'^2 F(\mathbf{x} - \mathbf{x}') = 0$ and $\nabla'^2 \phi(\mathbf{x}') = -4\pi\rho(\mathbf{x})$ in $\mathcal{V}$. This then implies that the formal solution for $\phi(\mathbf{x})$ is the same whether we use $G(\mathbf{x})$ or $\mathcal{G}(\mathbf{x})$,
+The only way this can be true evidently is if $F(\mathbf{x},\mathbf{x}')$ satisfies Laplace's equation $\nabla'^2 F(\mathbf{x},\mathbf{x}') = 0$ in $\mathcal{V}$ with respect to $\mathbf{x}'$.
+
+It's not difficult to see from Green's second identity that $F(\mathbf{x},\mathbf{x}')$ must evidently satisfy the integral equation
+$$
+\int_\mathcal{V} d^3 \mathbf{x}' \ \rho(\mathbf{x}') F(\mathbf{x},\mathbf{x}') + \frac{1}{4\pi} \oint_\mathcal{S} da' \ \bigg[F(\mathbf{x},\mathbf{x}') \frac{\partial}{\partial n'} \phi(\mathbf{x}') - \phi(\mathbf{x}') \frac{\partial}{\partial n'} F(\mathbf{x},\mathbf{x}') \bigg] = 0 \ .
+$$
+Indeed, just set $f(\mathbf{x}') = \phi(\mathbf{x}')$ and $g(\mathbf{x}')$, and use the fact that $\nabla'^2 F(\mathbf{x} - \mathbf{x}') = 0$ and $\nabla'^2 \phi(\mathbf{x}') = -4\pi\rho(\mathbf{x})$ in $\mathcal{V}$. This then implies that the formal solution for $\phi(\mathbf{x})$ is the same whether we use $G(\mathbf{x} - \mathbf{x}')$ or $\mathcal{G}(\mathbf{x},\mathbf{x}')$,
 
 $$
-\phi(\mathbf{x}) = \int_\mathcal{V} d^3 \mathbf{x}' \ \rho(\mathbf{x}') \mathcal{G}(\mathbf{x} - \mathbf{x}') + \frac{1}{4\pi} \oint_\mathcal{S} da' \ \bigg[\mathcal{G}(\mathbf{x} - \mathbf{x}') \frac{\partial}{\partial n'} \phi(\mathbf{x}') - \phi(\mathbf{x}') \frac{\partial}{\partial n'} \mathcal{G}(\mathbf{x} - \mathbf{x}') \bigg] \ .
+\phi(\mathbf{x}) = \int_\mathcal{V} d^3 \mathbf{x}' \ \rho(\mathbf{x}') \mathcal{G}(\mathbf{x},\mathbf{x}') + \frac{1}{4\pi} \oint_\mathcal{S} da' \ \bigg[\mathcal{G}(\mathbf{x},\mathbf{x}') \frac{\partial}{\partial n'} \phi(\mathbf{x}') - \phi(\mathbf{x}') \frac{\partial}{\partial n'} \mathcal{G}(\mathbf{x},\mathbf{x}') \bigg] \ .
 $$
-Now, recall the entire purpose of adding $F(\mathbf{x})$ to the Green's function is to give us extra freedom to impose boundary conditions on $\mathcal{G}(\mathbf{x})$. We'd further like the boundary conditions we impose on $\mathcal{G}(\mathbf{x})$ to be general and not specific to the boundary surface.
+Now, recall the entire purpose of adding $F(\mathbf{x},\mathbf{x}')$ to the Green's function is to give us extra freedom to impose boundary conditions on $\mathcal{G}(\mathbf{x},\mathbf{x}')$. We'd further like the boundary conditions we impose on $\mathcal{G}(\mathbf{x},\mathbf{x}')$ to be general and not specific to the boundary surface.
 
-For a Dirichlet BVP this is easy. For a given boundary surface $\mathcal{S}$, we choose $F(\mathbf{x} - \mathbf{x}')$ so that $\mathcal{G}_D(\mathbf{x} - \mathbf{x}')$ vanishes on $\mathcal{S}$,
+For a Dirichlet BVP, it suffices to insist that its generalized Green's function, which we denote $\mathcal{G}_D(\mathbf{x},\mathbf{x}')$, vanishes on $\mathcal{S}$,
 $$
 \begin{cases}
-\nabla^2 \mathcal{G}_D(\mathbf{x} - \mathbf{x}') = -4\pi\delta(\mathbf{x} - \mathbf{x}') \ \text{in} \ \mathcal{V} \\
-\text{where} \ \mathcal{G}_D(\mathbf{x} - \mathbf{x}') = 0 \ \text{on} \ \mathcal{S}
+\nabla^2 \mathcal{G}_D(\mathbf{x},\mathbf{x}') = -4\pi\delta(\mathbf{x} - \mathbf{x}') \ \text{in} \ \mathcal{V} \\
+\text{where} \ \mathcal{G}_D(\mathbf{x},\mathbf{x}') = 0 \ \text{on} \ \mathcal{S}
 \end{cases} \ .
 $$
-If we plug this into the formal solution we find that the first surface integral term vanishes since $\mathcal{G}_D(\mathbf{x} - \mathbf{x}') = 0$, giving
+If we plug this into the formal solution we find that the first surface integral term vanishes since $\mathcal{G}_D(\mathbf{x},\mathbf{x}') = 0$, giving
 $$
 \boxed{
-\phi(\mathbf{x}) = \int_\mathcal{V} d^3 \mathbf{x}' \ \rho(\mathbf{x}') \mathcal{G}_D(\mathbf{x} - \mathbf{x}') - \frac{1}{4\pi} \oint_\mathcal{S} da' \ \phi(\mathbf{x}') \frac{\partial}{\partial n'} \mathcal{G}_D(\mathbf{x} - \mathbf{x}') 
+\phi(\mathbf{x}) = \int_\mathcal{V} d^3 \mathbf{x}' \ \rho(\mathbf{x}') \mathcal{G}_D(\mathbf{x},\mathbf{x}') - \frac{1}{4\pi} \oint_\mathcal{S} da' \ \phi(\mathbf{x}') \frac{\partial}{\partial n'} \mathcal{G}_D(\mathbf{x},\mathbf{x}') 
 } \ .
 $$
 This is the *unique* formal solution to the general Dirichlet BVP. Notice that as the radius of $\mathcal{S}$ goes to infinity, the surface integral term vanishes since the integrand goes to zero faster than $1/r'^2$, thus recovering the unbounded solution from before.
 
-As an example, suppose $\phi(\mathbf{x}') = V$ is constant on $\mathcal{S}$. Recall from our discussion of Green's functions in $n$ dimensions that the closed surface integral of the normal derivative of $G(\mathbf{x})$ is just $-4\pi$ in three dimensions. For the generalized Green's function $\mathcal{G}(\mathbf{x})$ the result will be the same,
+As an example, suppose $\phi(\mathbf{x}') = V$ is constant on $\mathcal{S}$. Recall from our discussion of Green's functions in $n$ dimensions that the closed surface integral of the normal derivative of $G(\mathbf{x} - \mathbf{x}')$ is just $-4\pi$ in three dimensions. For the generalized Green's function $\mathcal{G}(\mathbf{x},\mathbf{x}')$ the result will be the same,
 $$
-\oint_\mathcal{S} da' \ \frac{\partial}{\partial n'} \mathcal{G}(\mathbf{x} - \mathbf{x}') = \oint_\mathcal{S} da' \ \frac{\partial}{\partial n'} G(\mathbf{x} - \mathbf{x}') = -4\pi \ .
+\oint_\mathcal{S} da' \ \frac{\partial}{\partial n'} \mathcal{G}(\mathbf{x},\mathbf{x}') = \oint_\mathcal{S} da' \ \frac{\partial}{\partial n'} G(\mathbf{x} - \mathbf{x}') = -4\pi \ .
 $$
-This follows from the fact that the surface integral term over $F(\mathbf{x} - \mathbf{x}')$ vanishes since $\nabla'^2 F(\mathbf{x} - \mathbf{x}') = 0$ in $\mathcal{V}$. Plugging this back in, the solution to the Dirichlet BVP finally satisfies the following integral relation,
+This follows from the fact that the surface integral term over $F(\mathbf{x},\mathbf{x}')$ vanishes since $\nabla'^2 F(\mathbf{x},\mathbf{x}') = 0$ in $\mathcal{V}$. Plugging this back in, the solution to the Dirichlet BVP finally satisfies the following integral relation,
 $$
-\phi(\mathbf{x}) = V + \int_\mathcal{V} d^3 \mathbf{x}' \ \rho(\mathbf{x}') \mathcal{G}_D(\mathbf{x} - \mathbf{x}') \ .
+\phi(\mathbf{x}) = V + \int_\mathcal{V} d^3 \mathbf{x}' \ \rho(\mathbf{x}') \mathcal{G}_D(\mathbf{x},\mathbf{x}') \ .
 $$
 Since $\rho(\mathbf{x})$ is only non-zero inside $\mathcal{V}$, on the boundary surface the volume integral vanishes, thus ensuring $\phi(\mathbf{x}) = V$ on $\mathcal{S}$.
 
-Let's now consider the case of a Neumann BVP for $\phi(\mathbf{x})$. It would be tempting to insist $\partial/\partial n' \mathcal{G}_N(\mathbf{x} - \mathbf{x}') = 0$ on $\mathcal{S}$ in a similar manner to what we did for the Dirichlet BVP. But this is impossible since we already know the normal derivative of the Green's function on the boundary surface must integrate to $-4\pi$. Thus, instead we choose $F(\mathbf{x})$ such that $\partial/\partial n' \mathcal{G}_N(\mathbf{x} - \mathbf{x}') = -4\pi/S$, where $S$ is the surface area of the boundary surface $\mathcal{S}$. Then we have
+Let's now consider the case of a Neumann BVP for $\phi(\mathbf{x})$. It would be tempting to insist the normal derivative of its generalized Green's function, which we'll denote as $\mathcal{G}_N(\mathbf{x},\mathbf{x}')$, vanishes on $\mathcal{S}$. But this is impossible since we already know the normal derivative of the Green's function on the boundary surface must integrate to $-4\pi$. Thus, instead we choose $F(\mathbf{x})$ such that $\partial/\partial n' \mathcal{G}_N(\mathbf{x},\mathbf{x}') = -4\pi/S$, where $S$ is the surface area of the boundary surface $\mathcal{S}$. Then we have
 $$
 \begin{cases}
-\nabla^2 \mathcal{G}_N(\mathbf{x} - \mathbf{x}') = -4\pi\delta(\mathbf{x} - \mathbf{x}') \ \text{in} \ \mathcal{V} \\
-\text{where} \ \frac{\partial}{\partial n'} \mathcal{G}_N(\mathbf{x} - \mathbf{x}') = -4\pi/S  \ \text{on} \ \mathcal{S}
+\nabla^2 \mathcal{G}_N(\mathbf{x},\mathbf{x}') = -4\pi\delta(\mathbf{x} - \mathbf{x}') \ \text{in} \ \mathcal{V} \\
+\text{where} \ \frac{\partial}{\partial n'} \mathcal{G}_N(\mathbf{x},\mathbf{x}') = -4\pi/S  \ \text{on} \ \mathcal{S}
 \end{cases} \ .
 $$
 Plugging this back into the formal solution, the second surface integral term now reduces to a constant $\langle \phi \rangle_\mathcal{S}$ given by
 $$
-\langle \phi \rangle_\mathcal{S} \equiv -\frac{1}{4\pi} \oint_\mathcal{S} da' \ \phi(\mathbf{x}') \frac{\partial}{\partial n'} \mathcal{G}_N(\mathbf{x} - \mathbf{x}') = \frac{1}{S} \oint_\mathcal{S} da' \ \phi(\mathbf{x}') \ .
+\langle \phi \rangle_\mathcal{S} \equiv -\frac{1}{4\pi} \oint_\mathcal{S} da' \ \phi(\mathbf{x}') \frac{\partial}{\partial n'} \mathcal{G}_N(\mathbf{x},\mathbf{x}') = \frac{1}{S} \oint_\mathcal{S} da' \ \phi(\mathbf{x}') \ .
 $$
 Notice the remaining integral is just the average value of $\phi(\mathbf{x})$ on the boundary surface, hence the notation. Plugging this back into the formal solution we get
 $$
 \boxed{
-\phi(\mathbf{x}) = \langle \phi \rangle_\mathcal{S} + \int_\mathcal{V} d^3 \mathbf{x}' \ \rho(\mathbf{x}') \mathcal{G}_N(\mathbf{x} - \mathbf{x}') + \frac{1}{4\pi} \oint_\mathcal{S} da' \ \mathcal{G}_N(\mathbf{x} - \mathbf{x}') \frac{\partial}{\partial n'} \phi(\mathbf{x}') 
+\phi(\mathbf{x}) = \langle \phi \rangle_\mathcal{S} + \int_\mathcal{V} d^3 \mathbf{x}' \ \rho(\mathbf{x}') \mathcal{G}_N(\mathbf{x},\mathbf{x}') + \frac{1}{4\pi} \oint_\mathcal{S} da' \ \mathcal{G}_N(\mathbf{x},\mathbf{x}') \frac{\partial}{\partial n'} \phi(\mathbf{x}') 
 } \ .
 $$
 This is the *unique* formal solution to the general Neumann BVP. Notice if we send the radius of $\mathcal{S}$ to infinity the surface term will vanish since the integrand falls off faster than $1/r'^2$, again giving us the unbounded solution from before.
 
 As an example, suppose $\partial \phi / \partial n' = -E$ is constant on $\mathcal{S}$, leaving a function in $\mathbf{x}$ of the form
 $$
-g(\mathbf{x}) \equiv -\frac{E}{4\pi} \oint_\mathcal{S} da' \ \mathcal{G}_N(\mathbf{x} - \mathbf{x}') \ .
+g(\mathbf{x}) \equiv -\frac{E}{4\pi} \oint_\mathcal{S} da' \ \mathcal{G}_N(\mathbf{x},\mathbf{x}') \ .
 $$
 Note that $g(\mathbf{x})$ is just $-E S/4\pi$ times the average of the Green's function on the boundary surface. We thus have
 $$
-\phi(\mathbf{x}) = \langle \phi \rangle_\mathcal{S} + g(\mathbf{x}) + \int_\mathcal{V} d^3 \mathbf{x}' \ \rho(\mathbf{x}') \mathcal{G}_N(\mathbf{x} - \mathbf{x}') \ .
+\phi(\mathbf{x}) = \langle \phi \rangle_\mathcal{S} + g(\mathbf{x}) + \int_\mathcal{V} d^3 \mathbf{x}' \ \rho(\mathbf{x}') \mathcal{G}_N(\mathbf{x},\mathbf{x}') \ .
 $$
-Note that specifying $g(\mathbf{x})$ is essentially equivalent to specifying $F(\mathbf{x})$, and as such we can't really reduce it further without knowing the specific boundary surface or boundary condition on that surface.
+Note that specifying $g(\mathbf{x})$ is essentially equivalent to specifying $F(\mathbf{x},\mathbf{x}')$, and as such we can't really reduce it further without knowing the specific boundary surface or boundary condition on that surface.
 
 We've thus achieved our goal of reformulating the formal solution in a form that's unique for a given Dirichlet or Neumann (or indeed mixed) BVP. Note that finding the generalized Green's function to achieve this in practice can usually be quite difficult to do. Often it's just easier to calculate the solution directly from the BVP, for instance using separation of variables or complex methods, both of which we'll discuss in later chapters. However, there is one case where it's quite easy to write down the generalized Green's function, the *method of images*. We'll discuss this method toward the end of this chapter.
 
@@ -645,7 +641,7 @@ $$
 $$
 Thus, Neumann boundary conditions in electrostatics are essentially equivalent to specifying the surface charge density on the boundary surface. Since the normal derivative must be proportional to the same surface charge density $\sigma(\mathbf{x})$ on both sides of the surface, we can be sure that this density uniquely specifies a Neumann boundary condition.
 
-### Boundary Conditions for Conductors
+### Boundary Conditions on Conductors
 
 The boundary value problem formulation of electrostatics is perhaps most useful when we wish to find the potential or E-field of a charge distribution in the presence of conducting materials. Trying to explicitly model the charge distribution of a conductor is quite difficult since free charges are allowed to move around in response to external fields. We'll now derive some important facts about conductors, and show how we can model the behavior of conductors using boundary conditions. 
 
@@ -677,80 +673,113 @@ Incidentally, this also implies that at the boundary of the conductor we must ha
 $$
 \frac{\partial\phi}{\partial n} = -4\pi\sigma \ ,
 $$
-where $\sigma(\mathbf{x})$ is the surface charge density of the free charges on the surface of the conductor. Since this surface density is created from bringing the conductor into contact with an external E-field, we call it the *induced surface charge density*. That is, the external field *induces* the free charges to distribute themselves in such a way as to create a surface density $\sigma(\mathbf{x})$ on the surface.
+where $\sigma(\mathbf{x})$ is the surface charge density of the free charges on the surface of the conductor. This surface charge density represents the *induced charge* on the surface of the conductor from bringing it in contact with an external E-field. The external field induces the free charges on the surface to rearrange themselves in such a way as to zero out the total net E-field inside the conductor, thus creating the surface density $\sigma(\mathbf{x})$.
+
+### Dipole Layers
+
+Another kind of electrostatic surface we haven't encountered yet that's worth briefly mention is the *dipole layer*. A dipole layer can be thought of as two identical surfaces of charge glued together on one side, where each surface has equal and opposite surface charge density to the other.
+
+More formally, suppose $\mathcal{S}$ is some surface with surface charge density $\sigma(\mathbf{x})$, and $\mathcal{S}'$ is the same surface translated in the surface normal direction by some infinitesimal distance $d$, where $\mathcal{S}'$ has an equal but opposite surface charge density $-\sigma(\mathbf{x})$. We call this combination of charge surfaces a *dipole layer*.
 
 - Discuss dipole layers (see Jackson)
 - Recast the formal solution of electrostatics in terms of surface charge densities and dipole densities (see Jackson)
 
 ## Method of Images
 
-- Most useful when dealing with simple distributions (spheres, point charges) in the presence of some other distribution more easily treated as boundary conditions when symmetry is applied.
+Perhaps the most obvious way to solve a BVP in electrostatics is to simply guess the solution and check that it's correct. So long as the boundary conditions are of the right kind, we can guarantee that the solution is the unique potential satisfying the BVP. Of course, in general there's no good rule of thumb for guessing the correct solution. But there is one method for doing so that sometimes works provided the problem has the right kind of symmetry. This is known as the *method of images* technique.
 
-Thus far, we've yet to show any practical ways to find the potential in a given boundary value problem. In this section we'll introduce the first method, the powerful *method of images*. This method exploits the uniqueness theorem and the geometry of a problem to quickly find the potential. It doesn't always work, but when it does it can be quite useful.
+### General Method
 
-From the previous section, we know we can express the Green's function satisfying the boundary conditions by letting
+The whole idea of the method of images is to replace the given BVP with an equivalent *image problem* that just so happens to satisfy the same boundary conditions as the original BVP. Provided we can find the solution to the image problem, by the uniqueness theorem we know it must also be the solution to the original BVP as well since it satisfies exactly the same set of boundary conditions.
+
+The method of images works best when the boundary surface is symmetric, and when the inside of the boundary surface consists only of some number of discrete point charges. Let's illustrate how this method works with a simple example.
+
+Consider the problem of a point charge $q$ located some distance $d$ above an infinite conducting sheet. We assume the sheet is *grounded*, meaning the conducting sheet is held at a fixed potential $\phi(\mathbf{x}) = 0$. If we orient the sheet to lie in the $xy$-plane and suppose the charge $q$ lies above the plane along the $z$-axis at $\mathbf{d} = d\mathbf{e}_z$, we get a Dirichlet BVP for the potential of the form
 $$
-G(\mathbf{x} - \mathbf{x}') = \frac{1}{|\mathbf{x} - \mathbf{x}'|} + F(\mathbf{x} - \mathbf{x}') \ ,
+\begin{cases}
+\nabla^2 \phi(\mathbf{x}) = -4\pi q\delta(\mathbf{x} - \mathbf{d}) \ \text{when} \ z > 0 \ , \\
+\text{where} \ \phi(\mathbf{x}) = 0 \ \text{when} \ z = 0 \ .
+\end{cases}
 $$
-where the homogeneous part $F(\mathbf{x} - \mathbf{x}')$ is any function that satisfies Laplace's equation subject to the boundary conditions. By the uniqueness theorem, we know that if we can find such a function $F(\mathbf{x} - \mathbf{x}')$, it will be unique up to an unimportant additive constant to the potential, provided Dirichlet or Neumann (or mixed) boundary conditions are used.
+Trying to solve this BVP directly isn't exactly trivial. But what we can do is recast the problem into a new image problem that also satisfy $\phi(\mathbf{x}) = 0$ in the $xy$-plane. The idea is to place an *image charge* $q'$ below the sheet in such a way that the potential of the two charges $q$ and $q'$ just so happen to have a vanishing potential when $z=0$. Since points below the sheet lie outside the boundary surface, we're free to do whatever we like here. What we *cannot* do is place image charges above the sheet.
 
-The method of images exploits this property of uniqueness by converting the original boundary value problem into an equivalent unbounded problem that still just happens to satisfy the same boundary conditions. Suppose we have one or more point charges in the presence of some set of boundary conditions, for example a set of conductors held at some fixed potentials. In many cases, we can exploit the geometry of the problem to convert this problem into an equivalent unbounded problem by introducing pseudo-charges outside the boundary surface, called *image charges*, such that when added to the problem the combination of original and image charges together happens to satisfy the original boundary conditions. By the uniqueness theorem, we know that if we find such a solution, it must be the unique solution, even for the original BVP.
-
-### Examples
-
-For example, suppose we wanted to find the potential for a point charge $q$ located at a distance $z=d$ above an infinite grounded sheet, meaning $\phi = 0$ at $z=0$. What we can do is pretend the grounded sheet wasn't there, and instead introduce an image charge $-q$ below the sheet at $z = -d$, which is outside the boundary surface. The potential of this new image problem is just
+Suppose we place the image charge $q'$ at some position $\mathbf{d}'$ below the $xy$-plane and ignore the conducting sheet all together. Then we're left with the potential of the two point charges $q$ and $q'$, which according to the superposition principle is just
 $$
-\phi(\mathbf{x}) = \frac{q}{|\mathbf{x} - d \mathbf{e}_z|} - \frac{q}{|\mathbf{x} + d \mathbf{e}_z|} = \frac{q}{\sqrt{x^2 + y^2 + (z-d)^2}} - \frac{q}{\sqrt{x^2 + y^2 + (z+d)^2}} \ .
+\phi(\mathbf{x}) = \frac{q}{|\mathbf{x} - \mathbf{d}|} + \frac{q'}{|\mathbf{x} - \mathbf{d}'|} \ .
 $$
-The potential of this image problem just happens to solve the original boundary conditions, since $\phi(x,y,0) = 0$. By the uniqueness theorem, then, this same potential must *also* be the solution to the original BVP. See the figure below.
+Now, we want to choose $q'$ and $\mathbf{d}'$ such that $\phi(\mathbf{x}) = 0$ when $z=0$. The obvious choice is to let $q' = -q$ and $\mathbf{d}' = -\mathbf{d}$. This is valid since the image charge lies below the $xy$-plane and hence outside the boundary surface. The solution is then
+$$
+\phi(\mathbf{x}) = \frac{q}{|\mathbf{x} - d \mathbf{e}_z|} - \frac{q}{|\mathbf{x} + d \mathbf{e}_z|} = q\bigg[\frac{1}{\sqrt{\varrho^2 + (z-d)^2}} - \frac{1}{\sqrt{\varrho^2 + (z+d)^2}}\bigg] \ .
+$$
+Plugging in $z=0$ it's now clear this potential vanishes in the $xy$-plane. We've thus managed to guess a solution that satisfies the given boundary condition. And by uniqueness we can be assured it's the general solution to the original Dirichlet BVP as well. 
 
-![](../resources/image-20240811130344134.png)
+Here's what the equipotentials look like for this problem, with the image charge equipotentials shown in dashes. Note that the potential below the sheet is *not* actually what the dashed equipotentials show. Notice how the equipotentials flatten the closer they get to the horizontal axis, which represents the infinite sheet. This is a result of the boundary conditions on the sheet.
 
-From this potential we can also easily find the Green's function satisfying the boundary conditions. For a point charge $q$ located at a position $\mathbf{x}_0$, we have $\rho(\mathbf{x}') = q \delta(\mathbf{x}' - \mathbf{x}_0)$, meaning
+<img src="../resources/image-20250506204512240.png" alt="image-20250506204512240" style="zoom:50%;" />
+
+In reality the BVP can only tell us the potential above the sheet. The potential below the sheet is completely unknown. It depends on what the charge distribution is below the sheet, which we don't assume to know anything about. For instance, if the sheet were infinitely thick the potential below the sheet would be everywhere zero, but if the sheet were infinitely thin with the same image charge as shown below it, then the equipotentials plotted would indeed be correct even below the sheet.
+
+Let's now stare at this solution a bit and see if we can pick out the meaning of each term. The first term is clearly just the potential of the original point charge $q$. This is just the *particular solution*,
+$$
+\phi_p(\mathbf{x}) = \frac{q}{|\mathbf{x} - \mathbf{d}|} = \frac{q}{\sqrt{\varrho^2 + (z - d)^2}} \ .
+$$
+This term must be the convolution of the charge density $\rho(\mathbf{x}) = q\delta(\mathbf{x} - \mathbf{d})$ with the ordinary Green's function $G(\mathbf{x}) = 1/r$.
+
+The remaining term in the general solution must then necessarily be the *homogeneous solution*,
+$$
+\phi_h(\mathbf{x}) = -\frac{q}{|\mathbf{x} + \mathbf{d}|} = -\frac{q}{\sqrt{\varrho^2 + (z + d)^2}} \ .
+$$
+We also know that $\phi(\mathbf{x})$ should also satisfy the formal Dirichlet solution
+$$
+\phi(\mathbf{x}) = \int_\mathcal{V} d^3 \mathbf{x}' \ \rho(\mathbf{x}') \mathcal{G}_D(\mathbf{x} - \mathbf{x}') - \frac{1}{4\pi} \oint_\mathcal{S} da' \ \phi(\mathbf{x}') \frac{\partial}{\partial n'} \mathcal{G}_D(\mathbf{x} - \mathbf{x}') \ ,
+$$
+where $\mathcal{G}_D(\mathbf{x}, \mathbf{x}')$ is the Dirichlet Green's function on the infinite sheet $\mathcal{S}$. Since $\phi(\mathbf{x}) = 0$ on $\mathcal{S}$, the surface term vanishes for this particular problem, hence we have
+$$
+\phi(\mathbf{x}) = \int_\mathcal{V} d^3 \mathbf{x}' \ \rho(\mathbf{x}') \mathcal{G}_D(\mathbf{x}, \mathbf{x}') \ .
+$$
+Matching this with the solution above and noting that $\rho(\mathbf{x}') = q\delta(\mathbf{x}' - \mathbf{d})$, the Dirichlet Green's function must be
+$$
+\mathcal{G}_D(\mathbf{x}, \mathbf{x}') = \frac{1}{|\mathbf{x} - \mathbf{x}'|} - \frac{1}{|\mathbf{x} - \mathbf{x}_*'|} = \frac{1}{\sqrt{(x - x')^2 + (y - y')^2 + (z - z')^2}} - \frac{1}{\sqrt{(x - x')^2 + (y - y')^2 + (z + z')^2}} \ ,
+$$
+
+where $\mathbf{x}_*' = (x', y', -z')$ is the reflection of $\mathbf{x}'$ across the $z$-axis. The first term is of course the ordinary Green's function $G(\mathbf{x} - \mathbf{x}')$, hence the second term must be $F(\mathbf{x}, \mathbf{x}')$. Notice that $\mathcal{G}_D(\mathbf{x}, \mathbf{x}')$ indeed vanishes on the boundary surface as required, since on the sheet we have $z'=0$ and hence $\mathbf{x}'_* = \mathbf{x}'$.
+
+This in a nutshell is how the method of images works. Given a BVP, reformulate the problem as an image problem involving the original charges plus any new image charges required to give the correct boundary conditions on the boundary surface. By the uniqueness theorem, the solution found will also be the solution to the original BVP. Once we have the potential we can then easily figure out what its generalized Green's function will be as well.
+
+### Induced Charge on Conducting Boundaries
+
+When dealing with conducting boundaries we're often interested in calculating the induced surface charge density $\sigma(\mathbf{x})$ on the surface of each conductor. We can do that using the surface boundary formula derived above on the surface of each conductor,
+$$
+\frac{\partial \phi}{\partial n} = -4\pi\sigma(\mathbf{x}) \ .
+$$
+Once we know the potential, all we need to do is calculate its normal derivative on the surface of each conductor and divide by $-4\pi$ to get $\sigma(\mathbf{x})$. If we also want the total induced charge $Q$ on the surface we need only integrate this surface density over the full boundary surface to get $Q$,
+$$
+Q = \oint_\mathcal{S} da \ \sigma(\mathbf{x}) \ .
+$$
+For the infinite sheet example we only have one conducting boundary, the infinite sheet. Its surface normal is just $\mathbf{n} = \mathbf{e}_z$, which means $\partial \phi / \partial n = \partial \phi / \partial z$. The induced surface charge density on the sheet is thus
 $$
 \begin{align*}
-\phi(\mathbf{x}) &= \int d^3\mathbf{x}' \ \rho(\mathbf{x}') G(\mathbf{x} - \mathbf{x}') \\
-&= \int d^3\mathbf{x}' \ q \delta(\mathbf{x}' - \mathbf{x}_0) G(\mathbf{x} - \mathbf{x}') \\
-&= q G(\mathbf{x} - \mathbf{x}_0) \ .
+\sigma(\mathbf{x}) &= -\frac{1}{4\pi} \frac{\partial \phi}{\partial z} = -\frac{q}{4\pi} \frac{\partial}{\partial z} \bigg(\frac{1}{\sqrt{\varrho^2 + (z-d)^2}} - \frac{1}{\sqrt{\varrho^2 + (z+d)^2}}\bigg) \\
+&= -\frac{q}{4\pi} \bigg(\frac{z-d}{(\varrho^2 + (z-d)^2)^{3/2}} - \frac{z+d}{(\varrho^2 + (z+d)^2)^{3/2}}\bigg) \\
+&= -\frac{qd}{2\pi}\frac{1}{(\varrho^2 + d^2)^{3/2}} \ .
 \end{align*}
 $$
-This means that to get the Green's function all we need to do is divide the potential by $q$ to get
-$$
-G_D(\mathbf{x} - d\mathbf{e}_z) = \frac{q}{\sqrt{x^2 + y^2 + (z-d)^2}} - \frac{q}{\sqrt{x^2 + y^2 + (z+d)^2}} \ .
-$$
-Notice that the first term is just the unbounded Green's function. The second term is the homogeneous part
-$$
-F(\mathbf{x} - d \mathbf{e}_z) = -\frac{q}{\sqrt{x^2 + y^2 + (z+d)^2}} \ .
-$$
-It's important to note that the potential and Green's function we found is *only* valid above the sheet, where $z > 0$. Below the sheet these formulas will *not* hold. The method of images only guarantees a solution *inside* the boundary surface. If we wanted to know what the potential was beyond the boundary surface as well we'd need to use some other approach.
+To get an idea what this induced charge distribution looks like it can be helpful to plot its 2-dimensional *heat map*, which is shown below. Notice the surface density is the highest near the origin $\rho = 0$, which is the point on the sheet closest to the charge $q$. As we move away from the origin the distribution on the sheet quickly falls off to zero like $1/\varrho^3$. Intuitively, the negative free charges on the conductor are being attracted to $q$ (assuming $q$ is positive), and try to get as close as they can to this charge.
 
-This in a nutshell is how we use the method of images. Given some problem involving a set of point charges subject to some set of boundary conditions, we convert the problem into an unbounded problem by introducing image charges, find the image charges needed to satisfy the boundary conditions, write down the potential for this image problem and if desired the Green's function. Note that for the method of images to work, it's important that the images charges be *outside* the boundary surface. If we can't find image charges outside the surface that satisfy the boundary conditions, we can't proceed.
+<img src="../resources/image-20250511205602559.png" alt="image-20250511205602559" style="zoom:50%;" />
 
-Before moving on, it's insightful to calculate the total induced charge on the boundary surface, in this case on the sheet. Using the relation between the surface charge density $\sigma$ and the normal derivative of $\phi$ from the previous chapter, we can find the total charge *induced* on the sheet due to the presence of the point charge $q$. Recall that near the surface the normal derivative must satisfy the condition
+Integrating $\sigma(\mathbf{x})$ over the surface of the sheet in polar coordinates, the total induced charge on the infinite sheet must thus be
 $$
-\frac{\partial \phi}{\partial n} = -4\pi\sigma \ .
+Q = \oint_\mathcal{S} da \ \sigma(\mathbf{x}) = -\frac{qd}{2\pi} \int_0^{2\pi} d\varphi \int_0^\infty \varrho d\varrho \ \frac{1}{(\varrho^2 + d^2)^{3/2}} = \frac{qd}{\sqrt{\varrho^2 + d^2}} \bigg |_{\varrho=0}^\infty = -q \ .
 $$
-Since the normal vector for the sheet is $\mathbf{n} = z \mathbf{e}_z$, the induced surface charge density is given by
-$$
-\begin{align*}
-\sigma &= -\frac{1}{4\pi} \frac{\partial \phi}{\partial z} \\
-&= -\frac{1}{4\pi} \frac{\partial}{\partial z} \bigg(\frac{q}{\sqrt{x^2 + y^2 + (z-d)^2}} - \frac{q}{\sqrt{x^2 + y^2 + (z+d)^2}}\bigg) \\
-&= -\frac{1}{4\pi} \bigg(\frac{q(z-d)}{(x^2 + y^2 + (z-d)^2)^{3/2}} - \frac{q(z+d)}{(x^2 + y^2 + (z+d)^2)^{3/2}}\bigg) \\
-&= -\frac{qd}{2\pi}\frac{1}{(x^2 + y^2 + d^2)^{3/2}} \ .
-\end{align*}
-$$
-Using this information we can then find the total induced charge $Q$ on the sheet by integrating $\sigma$ along the surface of the sheet. Since the surface is just the entire $xy$-plane. We'll use polar coordinates for the integration since it's slightly easier. Writing $da = r dr d\varphi$ and $r^2 = x^2 + y^2$, we have
-$$
-\begin{align*}
-Q &= \oint_\mathcal{S} da \ \sigma \\
-&= -\frac{qd}{2\pi} \int_0^{2\pi} d\varphi \int_0^\infty r dr \ \frac{1}{(r^2 + d^2)^{3/2}} \\
-&= \frac{qd}{\sqrt{r^2 + d^2}} \bigg |_{r=0}^\infty \\
-&= -q \ .
-\end{align*}
-$$
-Notice that the induced charge on the surface is just the image charge, with $Q = -q$. This will be generally true in method of images problems. In fact it *must* be this way, since the image charges are just a reformulation of the boundary conditions. The net charge in the original BVP should be the same as the net charge in the corresponding image problem.
+Evidently, the total induced charge on the sheet is just the charge of image charge, $Q = -q$. This will generally be true of method of images problems involving only conducting boundaries. The total induced charge on the surface of all the conductors must be the sum total of all the image charges. Indeed, it *must* be this way, since the image charges are just a reformulation of the boundary conditions, hence the net charge in each case must be the same.
 
-We'll now work through a few more complicated examples to help solidify these ideas.
+### Other Examples
+
+With the method of images laid out we can now proceed to find the potential of a few more complicated problems.
+
+- Continue here…
+- Consider splitting into sections (conducting sphere, corners, green's function of a sphere), in some order or another.
 
 ##### Example: Point charge near a grounded conducting sphere
 
@@ -758,7 +787,7 @@ Suppose we have a point charge $q$ located at some distance $d$ outside a ground
 
 ![](../resources/image-20240811130410188.png)
 
-If we ignore the presence of the sphere and focus on these two charges alone, the potential will be
+If we ignore the presence of the sphere and focus on these two charges alone, the potential would be
 $$
 \phi(\mathbf{x}) = \frac{q}{|\mathbf{x} - \mathbf{d}|} + \frac{q'}{|\mathbf{x} - \mathbf{d}'|} \ ,
 $$
