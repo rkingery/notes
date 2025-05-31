@@ -290,19 +290,19 @@ We were easily able to find the Green's function for the Laplacian by noting tha
 
 The primary method for solving linear PDEs of the form $\mathcal{L} G(\mathbf{x}) = \delta(\mathbf{x})$ is through the *Fourier transform method*, which we'll describe now. Recall from the appendix that the Fourier transform $G(\mathbf{k})$ of a scalar field $G(\mathbf{x})$ is given by the integral
 $$
-G(\mathbf{k}) = \mathcal{F}[G(\mathbf{x})](\mathbf{k}) = \int d^3\mathbf{x} \ G(\mathbf{x}) e^{-i \mathbf{k} \cdot \mathbf{x}} \ .
+G(\mathbf{k}) = \mathcal{F}\left[G(\mathbf{x})\right](\mathbf{k}) = \int d^3\mathbf{x} \ G(\mathbf{x}) e^{-i \mathbf{k} \cdot \mathbf{x}} \ .
 $$
 If $\mathbf{x}$ is a position vector, its Fourier conjugate $\mathbf{k}$ is called the *wave-vector*, which has dimensions of inverse length. Given a Fourier transformed function $G(\mathbf{k})$ we can recover the original function $G(\mathbf{x})$ by taking its *inverse Fourier transform*,
 $$
-G(\mathbf{x}) = \mathcal{F}^{-1}[G(\mathbf{k})](\mathbf{x}) = \int \frac{d^3\mathbf{k}}{(2\pi)^3} \ G(\mathbf{k}) e^{i \mathbf{k} \cdot \mathbf{x}} \ .
+G(\mathbf{x}) = \mathcal{F}^{-1}\left[G(\mathbf{k})\right](\mathbf{x}) = \int \frac{d^3\mathbf{k}}{(2\pi)^3} \ G(\mathbf{k}) e^{i \mathbf{k} \cdot \mathbf{x}} \ .
 $$
 The main reason Fourier transforms are useful for solving linear PDEs is that they convert linear PDEs in position space into algebraic equations in Fourier space. To see how this happens, suppose we take the Fourier transform of $\nabla^2 G(\mathbf{x})$ to get
 $$
-\mathcal{F}[\nabla^2 G(\mathbf{x})](\mathbf{k}) = \int d^3\mathbf{x} \ \nabla^2 G(\mathbf{x}) e^{-i \mathbf{k} \cdot \mathbf{x}} \ .
+\mathcal{F}\left[\nabla^2 G(\mathbf{x})\right](\mathbf{k}) = \int d^3\mathbf{x} \ \nabla^2 G(\mathbf{x}) e^{-i \mathbf{k} \cdot \mathbf{x}} \ .
 $$
 By Green's second identity, equivalent to using integration by parts twice to move the Laplacian from $G(\mathbf{x})$ to $e^{-i \mathbf{k} \cdot \mathbf{x}}$, we get
 $$
-\mathcal{F}[\nabla^2 G(\mathbf{x})](\mathbf{k}) = \int d^3\mathbf{x} \ G(\mathbf{x}) \nabla^2 e^{-i \mathbf{k} \cdot \mathbf{x}} + \oint_\mathcal{S} da \ \bigg[e^{-i \mathbf{k} \cdot \mathbf{x}} \frac{\partial}{\partial n} G(\mathbf{x}) - G(\mathbf{x}) \frac{\partial}{\partial n} e^{-i \mathbf{k} \cdot \mathbf{x}} \bigg] \ .
+\mathcal{F}\left[\nabla^2 G(\mathbf{x})\right](\mathbf{k}) = \int d^3\mathbf{x} \ G(\mathbf{x}) \nabla^2 e^{-i \mathbf{k} \cdot \mathbf{x}} + \oint_\mathcal{S} da \ \left[e^{-i \mathbf{k} \cdot \mathbf{x}} \frac{\partial}{\partial n} G(\mathbf{x}) - G(\mathbf{x}) \frac{\partial}{\partial n} e^{-i \mathbf{k} \cdot \mathbf{x}} \right] \ .
 $$
 Since we require that $G(\mathbf{x}) \to 0$ at infinity the surface integral term vanishes. For the remaining volume integral we can use the easy to prove fact that $\nabla^2 e^{-i \mathbf{k} \cdot \mathbf{x}} = -\mathbf{k}^2 e^{-i \mathbf{k} \cdot \mathbf{x}}$ to finally get
 $$
@@ -442,20 +442,20 @@ Thus far we've only focused on the free solution to Poisson's equation, ignoring
 
 The easiest way to derive the formula solution is to start by recalling Green's second identity,
 $$
-\int_\mathcal{V} d^3 \mathbf{x} \ [f(\mathbf{x}) \nabla^2 g(\mathbf{x}) - g(\mathbf{x}) \nabla^2 f(\mathbf{x})] = \oint_\mathcal{S} da \ \bigg[f(\mathbf{x}) \frac{\partial}{\partial n} g(\mathbf{x}) - g(\mathbf{x}) \frac{\partial}{\partial n} f(\mathbf{x}) \bigg] \ .
+\int_\mathcal{V} d^3 \mathbf{x} \ [f(\mathbf{x}) \nabla^2 g(\mathbf{x}) - g(\mathbf{x}) \nabla^2 f(\mathbf{x})] = \oint_\mathcal{S} da \ \left[f(\mathbf{x}) \frac{\partial}{\partial n} g(\mathbf{x}) - g(\mathbf{x}) \frac{\partial}{\partial n} f(\mathbf{x}) \right] \ .
 $$
 Letting $f(\mathbf{x}') = \phi(\mathbf{x}')$ and $g(\mathbf{x}') = G(\mathbf{x},\mathbf{x}')$ and integrating and differentiating with respect to $\mathbf{x}'$, this identity becomes
 $$
-\int_\mathcal{V} d^3 \mathbf{x}' \ [\phi(\mathbf{x}') \nabla'^2 G(\mathbf{x},\mathbf{x}') - G(\mathbf{x}, \mathbf{x}') \nabla'^2 \phi(\mathbf{x}')] = \oint_\mathcal{S} da' \ \bigg[\phi \frac{\partial}{\partial n'} G(\mathbf{x}, \mathbf{x}') - G(\mathbf{x}, \mathbf{x}') \frac{\partial}{\partial n'} \phi(\mathbf{x}') \bigg] \ .
+\int_\mathcal{V} d^3 \mathbf{x}' \ [\phi(\mathbf{x}') \nabla'^2 G(\mathbf{x},\mathbf{x}') - G(\mathbf{x}, \mathbf{x}') \nabla'^2 \phi(\mathbf{x}')] = \oint_\mathcal{S} da' \ \left[\phi \frac{\partial}{\partial n'} G(\mathbf{x}, \mathbf{x}') - G(\mathbf{x}, \mathbf{x}') \frac{\partial}{\partial n'} \phi(\mathbf{x}') \right] \ .
 $$
 We now interpret $\phi(\mathbf{x}')$ as the potential at $\mathbf{x}'$ and $G(\mathbf{x}, \mathbf{x}')$ as the Green's function. If we do that, we can use Poisson's equation to write $\nabla'^2 \phi(\mathbf{x}') = -4\pi\rho(\mathbf{x}')$ and $\nabla'^2 G(\mathbf{x}, \mathbf{x}') = -4\pi\delta(\mathbf{x} - \mathbf{x}')$. Plugging these in, we have
 $$
--4\pi \int_\mathcal{V} d^3 \mathbf{x}' \ [\phi(\mathbf{x}') \delta(\mathbf{x} - \mathbf{x}') - G(\mathbf{x}, \mathbf{x}') \rho(\mathbf{x}')] = \oint_\mathcal{S} da' \ \bigg[\phi(\mathbf{x}') \frac{\partial}{\partial n'} G(\mathbf{x}, \mathbf{x}') - G(\mathbf{x}, \mathbf{x}') \frac{\partial}{\partial n'} \phi(\mathbf{x}') \bigg] \ .
+-4\pi \int_\mathcal{V} d^3 \mathbf{x}' \ [\phi(\mathbf{x}') \delta(\mathbf{x} - \mathbf{x}') - G(\mathbf{x}, \mathbf{x}') \rho(\mathbf{x}')] = \oint_\mathcal{S} da' \ \left[\phi(\mathbf{x}') \frac{\partial}{\partial n'} G(\mathbf{x}, \mathbf{x}') - G(\mathbf{x}, \mathbf{x}') \frac{\partial}{\partial n'} \phi(\mathbf{x}') \right] \ .
 $$
 On the left-hand side, the first term in the integral evaluates to the potential $\phi(\mathbf{x})$. Dividing both sides by $-4\pi$ and moving the second term on the left-hand side over to the right-hand side, we finally get
 $$
 \boxed{
-\phi(\mathbf{x}) = \int_\mathcal{V} d^3 \mathbf{x}' \ \rho(\mathbf{x}') G(\mathbf{x}, \mathbf{x}') + \frac{1}{4\pi} \oint_\mathcal{S} da' \ \bigg[G(\mathbf{x}, \mathbf{x}') \frac{\partial}{\partial n'} \phi(\mathbf{x}') - \phi(\mathbf{x}') \frac{\partial}{\partial n'} G(\mathbf{x}, \mathbf{x}') \bigg]
+\phi(\mathbf{x}) = \int_\mathcal{V} d^3 \mathbf{x}' \ \rho(\mathbf{x}') G(\mathbf{x}, \mathbf{x}') + \frac{1}{4\pi} \oint_\mathcal{S} da' \ \left[G(\mathbf{x}, \mathbf{x}') \frac{\partial}{\partial n'} \phi(\mathbf{x}') - \phi(\mathbf{x}') \frac{\partial}{\partial n'} G(\mathbf{x}, \mathbf{x}') \right]
 }\ .
 $$
 This is the formal solution, or the general solution to Poisson's equation in integral form. This also often called *Green's third identity*, because it follows immediately from Green's first and second identities whenever the Green's function is used as one of the candidate functions. All of these identities are a direct consequence of the divergence theorem.
@@ -464,7 +464,7 @@ In our setting though we can interpret the formal solution as follows: Suppose w
 
 The surface integral term represents the homogeneous solution $\phi_h(\mathbf{x})$ obtained by solving Laplace's equation subject to the same mixed boundary conditions on the boundary surface $\mathcal{S}$,
 $$
-\phi_h(\mathbf{x}) = \frac{1}{4\pi} \oint_\mathcal{S} da' \ \bigg[G(\mathbf{x}, \mathbf{x}') \frac{\partial}{\partial n'} \phi(\mathbf{x}') - \phi(\mathbf{x}') \frac{\partial}{\partial n'} G(\mathbf{x}, \mathbf{x}') \bigg] \ .
+\phi_h(\mathbf{x}) = \frac{1}{4\pi} \oint_\mathcal{S} da' \ \left[G(\mathbf{x}, \mathbf{x}') \frac{\partial}{\partial n'} \phi(\mathbf{x}') - \phi(\mathbf{x}') \frac{\partial}{\partial n'} G(\mathbf{x}, \mathbf{x}') \right] \ .
 $$
 This term encodes all information about the boundary conditions in the problem, since the boundary conditions are encoded directly into the surface integral. Notice if we send $\mathcal{S}$ to infinity both terms fall off like $1/r'^3$, in which case the surface integral vanishes and we recover the free solution derived before.
 
@@ -504,12 +504,12 @@ The only way this can be true evidently is if $F(\mathbf{x},\mathbf{x}')$ satisf
 
 It's not difficult to see from Green's second identity that $F(\mathbf{x},\mathbf{x}')$ must evidently satisfy the integral equation
 $$
-\int_\mathcal{V} d^3 \mathbf{x}' \ \rho(\mathbf{x}') F(\mathbf{x},\mathbf{x}') + \frac{1}{4\pi} \oint_\mathcal{S} da' \ \bigg[F(\mathbf{x},\mathbf{x}') \frac{\partial}{\partial n'} \phi(\mathbf{x}') - \phi(\mathbf{x}') \frac{\partial}{\partial n'} F(\mathbf{x},\mathbf{x}') \bigg] = 0 \ .
+\int_\mathcal{V} d^3 \mathbf{x}' \ \rho(\mathbf{x}') F(\mathbf{x},\mathbf{x}') + \frac{1}{4\pi} \oint_\mathcal{S} da' \ \left[F(\mathbf{x},\mathbf{x}') \frac{\partial}{\partial n'} \phi(\mathbf{x}') - \phi(\mathbf{x}') \frac{\partial}{\partial n'} F(\mathbf{x},\mathbf{x}') \right] = 0 \ .
 $$
 Indeed, just set $f(\mathbf{x}') = \phi(\mathbf{x}')$ and $g(\mathbf{x}')$, and use the fact that $\nabla'^2 F(\mathbf{x} - \mathbf{x}') = 0$ and $\nabla'^2 \phi(\mathbf{x}') = -4\pi\rho(\mathbf{x})$ in $\mathcal{V}$. This then implies that the formal solution for $\phi(\mathbf{x})$ is the same whether we use $G(\mathbf{x} - \mathbf{x}')$ or $\mathcal{G}(\mathbf{x},\mathbf{x}')$,
 
 $$
-\phi(\mathbf{x}) = \int_\mathcal{V} d^3 \mathbf{x}' \ \rho(\mathbf{x}') \mathcal{G}(\mathbf{x},\mathbf{x}') + \frac{1}{4\pi} \oint_\mathcal{S} da' \ \bigg[\mathcal{G}(\mathbf{x},\mathbf{x}') \frac{\partial}{\partial n'} \phi(\mathbf{x}') - \phi(\mathbf{x}') \frac{\partial}{\partial n'} \mathcal{G}(\mathbf{x},\mathbf{x}') \bigg] \ .
+\phi(\mathbf{x}) = \int_\mathcal{V} d^3 \mathbf{x}' \ \rho(\mathbf{x}') \mathcal{G}(\mathbf{x},\mathbf{x}') + \frac{1}{4\pi} \oint_\mathcal{S} da' \ \left[\mathcal{G}(\mathbf{x},\mathbf{x}') \frac{\partial}{\partial n'} \phi(\mathbf{x}') - \phi(\mathbf{x}') \frac{\partial}{\partial n'} \mathcal{G}(\mathbf{x},\mathbf{x}') \right] \ .
 $$
 Now, recall the entire purpose of adding $F(\mathbf{x},\mathbf{x}')$ to the Green's function is to give us extra freedom to impose boundary conditions on $\mathcal{G}(\mathbf{x},\mathbf{x}')$. We'd further like the boundary conditions we impose on $\mathcal{G}(\mathbf{x},\mathbf{x}')$ to be general and not specific to the boundary surface.
 
@@ -711,7 +711,7 @@ $$
 $$
 Now, we want to choose $q'$ and $\mathbf{d}'$ such that $\phi(\mathbf{x}) = 0$ when $z=0$. The obvious choice is to let $q' = -q$ and $\mathbf{d}' = -\mathbf{d}$. This is valid since the image charge lies below the $xy$-plane and hence outside the boundary surface. The solution is then
 $$
-\phi(\mathbf{x}) = \frac{q}{|\mathbf{x} - d \mathbf{e}_z|} - \frac{q}{|\mathbf{x} + d \mathbf{e}_z|} = q\bigg[\frac{1}{\sqrt{\varrho^2 + (z-d)^2}} - \frac{1}{\sqrt{\varrho^2 + (z+d)^2}}\bigg] \ .
+\phi(\mathbf{x}) = \frac{q}{|\mathbf{x} - d \mathbf{e}_z|} - \frac{q}{|\mathbf{x} + d \mathbf{e}_z|} = q\left[\frac{1}{\sqrt{\varrho^2 + (z-d)^2}} - \frac{1}{\sqrt{\varrho^2 + (z+d)^2}}\right] \ .
 $$
 Plugging in $z=0$ it's now clear this potential vanishes in the $xy$-plane. We've thus managed to guess a solution that satisfies the given boundary condition. And by uniqueness we can be assured it's the general solution to the original Dirichlet BVP as well. 
 
@@ -761,8 +761,8 @@ $$
 For the infinite sheet example we only have one conducting boundary, the infinite sheet. Its surface normal is just $\mathbf{n} = \mathbf{e}_z$, which means $\partial \phi / \partial n = \partial \phi / \partial z$. The induced surface charge density on the sheet is thus
 $$
 \begin{align*}
-\sigma(\mathbf{x}) &= -\frac{1}{4\pi} \frac{\partial \phi}{\partial z} = -\frac{q}{4\pi} \frac{\partial}{\partial z} \bigg(\frac{1}{\sqrt{\varrho^2 + (z-d)^2}} - \frac{1}{\sqrt{\varrho^2 + (z+d)^2}}\bigg) \\
-&= -\frac{q}{4\pi} \bigg(\frac{z-d}{(\varrho^2 + (z-d)^2)^{3/2}} - \frac{z+d}{(\varrho^2 + (z+d)^2)^{3/2}}\bigg) \\
+\sigma(\mathbf{x}) &= -\frac{1}{4\pi} \frac{\partial \phi}{\partial z} = -\frac{q}{4\pi} \frac{\partial}{\partial z} \left[\frac{1}{\sqrt{\varrho^2 + (z-d)^2}} - \frac{1}{\sqrt{\varrho^2 + (z+d)^2}}\right] \\
+&= -\frac{q}{4\pi} \left[\frac{z-d}{(\varrho^2 + (z-d)^2)^{3/2}} - \frac{z+d}{(\varrho^2 + (z+d)^2)^{3/2}}\right] \\
 &= -\frac{qd}{2\pi}\frac{1}{(\varrho^2 + d^2)^{3/2}} \ .
 \end{align*}
 $$
@@ -826,7 +826,7 @@ $$
 $$
 where $\alpha$ is the angle between $\mathbf{x}$ and $\mathbf{d}$. The potential above can then be written as
 $$
-\phi(\mathbf{x}) = q\bigg[\frac{1}{\sqrt{r^2 + d^2 - 2rd\cos\alpha}} - \frac{1}{\sqrt{(d/R)^2 r^2 + d^2 - 2(d/R)rd\cos\alpha}}\bigg] \ .
+\phi(\mathbf{x}) = q\left[\frac{1}{\sqrt{r^2 + d^2 - 2rd\cos\alpha}} - \frac{1}{\sqrt{(d/R)^2 r^2 + d^2 - 2(d/R)rd\cos\alpha}}\right] \ .
 $$
 Using this formula we can quickly sketch the equipotential surfaces. Notice again how the equipotentials of the image problem seem to match the boundary conditions. The image charge inside the sphere is also shown. Inside the sphere of course these equipotentials won't be correct since $\phi(\mathbf{x}) = 0$ when $r < R$.
 
@@ -846,7 +846,7 @@ Incidentally, the point $\mathbf{x}_\ast'$ is called the *inversion* of $\mathbf
 
 Since the surface normal is radial, the normal derivative becomes just $\partial \phi / \partial n = \partial \phi / \partial r$, which means the induced surface charge density on the sphere is given by
 $$
-\sigma(\mathbf{x}) = -\frac{1}{4\pi} \frac{\partial \phi}{\partial r} = -\frac{q}{4\pi R^2} \frac{R}{d} \frac{1 - (R/d)^2}{\big[1 + (R/d)^2 - 2 (R/d) \cos\alpha \big]^{3/2}} \ .
+\sigma(\mathbf{x}) = -\frac{1}{4\pi} \frac{\partial \phi}{\partial r} = -\frac{q}{4\pi R^2} \frac{R}{d} \frac{1 - (R/d)^2}{\left[1 + (R/d)^2 - 2 (R/d) \cos\alpha \right]^{3/2}} \ .
 $$
 In this case, $\sigma(\mathbf{x})$ will be the strongest at two points, at the point on the surface closest to $q$ where $\alpha = 0$, and also its antipodal point on the opposite side of the sphere where $\alpha = \pi$. This can be seen by solving $\partial \sigma / \partial \alpha = 0$ and showing the two critical points occur at $\alpha = 0$ and $\alpha = \pi$. One will turn out to be a maximum and the other a minimum. Assuming $q$ is positive, the maximum will occur at $\alpha = 0$, while the minimum will occur at $\alpha = \pi$. Intuitively this again reflects the fact that the negative free charges on the conductor will be attracted to $q$ while the positive charges will be repelled by $q$.
 
@@ -858,7 +858,7 @@ thus again demonstrating that the induced charge on the surface is the same as t
 
 Similarly, the force the point charge feels in response to the conducting sphere will be given by using Coulomb's law again on the equivalent image problem, where we have
 $$
-\mathbf{F} = \frac{qq'}{|\mathbf{d} - \mathbf{d}'|^2} \mathbf{n} = -\frac{q^2 R}{d^3\big[1 - (R/d)^2\big]^2} \mathbf{n} \ .
+\mathbf{F} = \frac{qq'}{|\mathbf{d} - \mathbf{d}'|^2} \mathbf{n} = -\frac{q^2 R}{d^3\left[1 - (R/d)^2\right]^2} \mathbf{n} \ .
 $$
 Again, this force will always be attractive since $|\mathbf{F}| < 0$ regardless of whether $q$ is positive or negative. Notice that far away from the sphere the force falls off like $1/d^3$, not like $1/d^2$ like we'd expect from Coulomb's law, instead showing dipole-like behavior. Meanwhile, near the surface of the sphere where the force falls off instead like $-q^2/2d^2$, matching the charge above an infinite, grounded, conducting plane example we saw above.
 
@@ -878,7 +878,7 @@ q' = -\frac{R}{d} q \quad , \quad \mathbf{d}' = \frac{R^2}{d} \mathbf{n} \ .
 $$
 This means the potential must be exactly the same as well, except now it's only valid when $r < R$,
 $$
-\phi(\mathbf{x}) = q\bigg[\frac{1}{|\mathbf{x} - d \mathbf{n}|} - \frac{1}{|(d/R)^2 \mathbf{x} - d \mathbf{n}|}\bigg] = q\bigg[\frac{1}{\sqrt{r^2 + d^2 - 2rd\cos\alpha}} - \frac{1}{\sqrt{(d/R)^2 r^2 + d^2 - 2(d/R)rd\cos\alpha}}\bigg] \ .
+\phi(\mathbf{x}) = q\left[\frac{1}{|\mathbf{x} - d \mathbf{n}|} - \frac{1}{|(d/R)^2 \mathbf{x} - d \mathbf{n}|}\right] = q\left[\frac{1}{\sqrt{r^2 + d^2 - 2rd\cos\alpha}} - \frac{1}{\sqrt{(d/R)^2 r^2 + d^2 - 2(d/R)rd\cos\alpha}}\right] \ .
 $$
 From here it follows that the Dirichlet Green's function must be exactly the same as well, except now with $r' < R < r$. The induced surface charge density must of course be the same as well. Outside the sphere the potential must be zero since the potential is zero on the surface and the conductor shields the outside of the sphere from the charge inside.
 
@@ -893,11 +893,11 @@ $$
 $$
 Now, we already know that the grounded potential
 $$
-\phi_0(\mathbf{x}) = q\bigg[\frac{1}{|\mathbf{x} - d \mathbf{n}|} - \frac{1}{|(d/R)^2 \mathbf{x} - d \mathbf{n}|}\bigg]
+\phi_0(\mathbf{x}) = q\left[\frac{1}{|\mathbf{x} - d \mathbf{n}|} - \frac{1}{|(d/R)^2 \mathbf{x} - d \mathbf{n}|}\right]
 $$
 is zero on the surface of the sphere. All we need to do evidently is add some term to $\phi_0(\mathbf{x})$ that evaluates to $V$ when $r = R$. One's first guess might be to simply add $V$ to $\phi_0(\mathbf{x})$, but this won't work. After all, if the point charge weren't there at all, outside the sphere the potential must fall off like $Q/r$, where $Q = VR$ is the charge on the conductor due to its fixed potential. A better candidate term to add would thus be $VR/r$. Suppose then that the potential has the form
 $$
-\phi(\mathbf{x}) = q\bigg[\frac{1}{|\mathbf{x} - d \mathbf{n}|} - \frac{1}{|(d/R)^2 \mathbf{x} - d \mathbf{n}|}\bigg] + \frac{VR}{r} \ .
+\phi(\mathbf{x}) = q\left[\frac{1}{|\mathbf{x} - d \mathbf{n}|} - \frac{1}{|(d/R)^2 \mathbf{x} - d \mathbf{n}|}\right] + \frac{VR}{r} \ .
 $$
 When $r = R$ the first two terms cancel, and the second term just becomes $V$. Thus, $\phi(\mathbf{x})$ satisfies the Dirichlet BVP and by the uniqueness theorem must be its unique solution.
 
@@ -915,12 +915,12 @@ $$
 $$
 For this problem, the total charge $Q$ on the surface of the conductor is now the image charge plus the charge required to maintain the constant potential $V$. That is, $Q = q' + VR$. The surface charge density on the sphere will thus be simply
 $$
-\sigma(\mathbf{x}) = -\frac{q}{4\pi R^2} \frac{R}{d} \frac{1 - (R/d)^2}{\big[1 + (R/d)^2 - 2 (R/d) \cos\alpha \big]^{3/2}} + \frac{V}{4\pi R} \ .
+\sigma(\mathbf{x}) = -\frac{q}{4\pi R^2} \frac{R}{d} \frac{1 - (R/d)^2}{\left[1 + (R/d)^2 - 2 (R/d) \cos\alpha \right]^{3/2}} + \frac{V}{4\pi R} \ .
 $$
 
 The first term is the same induced surface charge density for the grounded conductor, and the second term is just $V$ divided by the surface area of the sphere. By the same logic, the force on $q$ due to the conductor is now the force due to the image charge $q'$ plus the force due to the charge on the surface $VR$,
 $$
-\mathbf{F} = q\bigg(\frac{q'}{|\mathbf{d} - \mathbf{d}'|^2} + \frac{VR}{d^2}\bigg)\mathbf{n} = \frac{q}{d^2} \bigg(VR - \frac{qRd^3}{\big(d^2 - R^2\big)^2}\bigg) \mathbf{n} \ .
+\mathbf{F} = q\left(\frac{q'}{|\mathbf{d} - \mathbf{d}'|^2} + \frac{VR}{d^2}\right)\mathbf{n} = \frac{q}{d^2} \left(VR - \frac{qRd^3}{\big(d^2 - R^2\big)^2}\right) \mathbf{n} \ .
 $$
 This time, far away from the sphere where $d \gg R$, the force will now fall off like $1/d^2$ due to the first term, in accordance with Coulomb's law. In this limit, the force will be attractive unless $q$ and $V$ have the same sign, in which case it will be repulsive. Near the surface of the sphere though things get more interesting. Setting $\mathbf{F} = \mathbf{0}$, one can show an unstable equilibrium occurs when
 $$
@@ -941,7 +941,7 @@ $$
 
 Now, it turns out we can mock up the behavior of the uniform E-field as follows. Suppose we place two equal and opposite image charges $\pm q$ along the $z$-axis some large distance $2d \gg R$ apart, with the $+q$ charge at $d \mathbf{e}_z$ and the $-q$ charge at $-d \mathbf{e}_z$, creating a physical dipole between the two image charges. We know the E-field strength of the physical dipole, which in this case is
 $$
-E_0(z) = q \bigg[\frac{z - d}{|z - d|^3} - \frac{z + d}{|z + d|^3}\bigg] \ .
+E_0(z) = q \left[\frac{z - d}{|z - d|^3} - \frac{z + d}{|z + d|^3}\right] \ .
 $$
 When $|z| \ll d$, we can neglect the $z$-dependence completely and assume the E-field is uniform, with
 $$
@@ -957,9 +957,9 @@ With these image charges in hand we can quickly write down the image potential, 
 $$
 \begin{align*}
 \phi(\mathbf{x}) &= \frac{q}{|\mathbf{x} - d \mathbf{e}_z|} - \frac{q}{|\mathbf{x} + d\mathbf{e}_z|} + \frac{q_+'}{|\mathbf{x} - d_+' \mathbf{e}_z|} + \frac{q_-'}{|\mathbf{x} - d_-' \mathbf{e}_z|} \\
-&= q\bigg[\frac{1}{|\mathbf{x} - d \mathbf{e}_z|} - \frac{1}{|(d/R)^2 \mathbf{x} - d \mathbf{e}_z|}\bigg] - q\bigg[\frac{1}{|\mathbf{x} + d \mathbf{e}_z|} - \frac{1}{|(d/R)^2 \mathbf{x} + d \mathbf{e}_z|}\bigg] \\
-&= q\bigg[\frac{1}{\sqrt{r^2 + d^2 - 2rd\cos\theta}} - \frac{1}{\sqrt{(d/R)^2 r^2 + d^2 - 2(d/R)rd\cos\theta}}\bigg] \\
-&\quad + q\bigg[\frac{1}{\sqrt{r^2 + d^2 + 2rd\cos\theta}} - \frac{1}{\sqrt{(d/R)^2 r^2 + d^2 + 2(d/R)rd\cos\theta}}\bigg] \ .
+&= q\left[\frac{1}{|\mathbf{x} - d \mathbf{e}_z|} - \frac{1}{|(d/R)^2 \mathbf{x} - d \mathbf{e}_z|}\right] - q\left[\frac{1}{|\mathbf{x} + d \mathbf{e}_z|} - \frac{1}{|(d/R)^2 \mathbf{x} + d \mathbf{e}_z|}\right] \\
+&= q\left[\frac{1}{\sqrt{r^2 + d^2 - 2rd\cos\theta}} - \frac{1}{\sqrt{(d/R)^2 r^2 + d^2 - 2(d/R)rd\cos\theta}}\right] \\
+&\quad + q\left[\frac{1}{\sqrt{r^2 + d^2 + 2rd\cos\theta}} - \frac{1}{\sqrt{(d/R)^2 r^2 + d^2 + 2(d/R)rd\cos\theta}}\right] \ .
 \end{align*}
 $$
 To make this potential fit the boundary conditions we need to send $d \to \infty$. Assuming $r \ll d$ and doing a binomial expansion in powers of $r/d$, we can expand this image potential as
@@ -968,13 +968,13 @@ $$
 $$
 The higher powers of $r/d$ all vanish as $d \to \infty$. Identifying $E_0 = -2q/d^2$ and factoring this out, we finally have
 $$
-\phi(\mathbf{x}) = E_0 \bigg(-r \cos\theta + \frac{R^3}{r^2} \cos\theta\bigg) \ .
+\phi(\mathbf{x}) = E_0 \left[-r \cos\theta + \frac{R^3}{r^2} \cos\theta\right] \ .
 $$
 Since $z = r\cos\theta$, as $r \to \infty$ we have $\phi(\mathbf{x}) \to -E_0 z$. Also notice that the potential also vanishes on the surface of the sphere where $r = R$, reflecting the fact that the conductor must be grounded. Thus, this potential satisfies the original Dirichlet BVP, and hence by the uniqueness theorem must be the potential satisfying the BVP as well.
 
 Since the first term in the potential is just the potential of the external field $\mathbf{E}_0$, the second term must be the potential associated with the induced charge on the conducting sphere. The induced surface charge density on the sphere is thus found by looking at the normal derivative of only this second term in the potential,
 $$
-\sigma(\mathbf{x}) = -\frac{1}{4\pi} \frac{\partial}{\partial r} \bigg[\frac{R^3}{r^2} E_0 \cos\theta\bigg]_{r=R} = \frac{3}{4\pi} E_0 \cos\theta \ .
+\sigma(\mathbf{x}) = -\frac{1}{4\pi} \frac{\partial}{\partial r} \left[\frac{R^3}{r^2} E_0 \cos\theta\right]_{r=R} = \frac{3}{4\pi} E_0 \cos\theta \ .
 $$
 Notice that $\sigma(\mathbf{x})$ is strongest in the direction of the external E-field, with the negative free charges concentrated at $\theta = 0$, along the direction of the E-field, and vice versa for the positive free charges at $\theta = \pi$. Note there is no net induced charge on the sphere since the image charges all cancel each other out. The external E-field has thus managed to polarize the free charges on the conductor in the direction of the field, effectively turning the conductor into a dipole.
 
@@ -1005,7 +1005,7 @@ $$
 Finally, putting this all together, the formal solution for a charge distribution outside a conducting sphere becomes
 $$
 \begin{align*}
-\phi(\mathbf{x}) = &\int_\mathcal{V} r'^2 dr' d\Omega' \ \rho(r', \theta', \varphi') \bigg[\frac{1}{\sqrt{r^2 + r'^2 - 2rr'\cos\alpha}} - \frac{1}{\sqrt{(r'/R)^2 r^2 + r'^2 - 2(r'/R)rr'\cos\alpha}}\bigg] \\
+\phi(\mathbf{x}) = &\int_\mathcal{V} r'^2 dr' d\Omega' \ \rho(r', \theta', \varphi') \left[\frac{1}{\sqrt{r^2 + r'^2 - 2rr'\cos\alpha}} - \frac{1}{\sqrt{(r'/R)^2 r^2 + r'^2 - 2(r'/R)rr'\cos\alpha}}\right] \\
 &+ \frac{R(r^2 - R^2)}{4\pi} \oint_\mathcal{S} d\Omega' \ \frac{V(\theta',\varphi')}{(r^2 + R^2 - 2Rr \cos\alpha)^{3/2}} \ ,
 \end{align*}
 $$
@@ -1019,9 +1019,9 @@ This special case formula alone can be used to solve some interesting problems. 
 
 ##### Example: Conducting sphere with hemispheres held at opposite potentials
 
-Suppose we have a hollow conducting sphere of radius $R$, where on its surface its two hemispheres are held at equal but opposite constant potentials $\pm V_0$. If we like, we can assume the hemispheres are held together by a thin insulating material that prevents any free charges on one hemisphere from moving to the other.
+Suppose we have a hollow conducting sphere of radius $R$, where on its surface its two hemispheres are held at equal but opposite constant potentials $\pm V_0$. Assume the hemispheres are held together by a thin ribbon of highly insulated material that prevents any free charges on one hemisphere from moving to the other. We'd like to know the potential outside this sphere.
 
-There are actually several ways to solve this problem. The easiest way in fact is to observe that the total charge on the sphere must be $Q = C (V_0 - V_0) = 0$, where $C$ is the capacitance between the two hemispheres. The fact that there is no net charge on the sphere means the potential must fall off like at least $\phi(\mathbf{x}) \sim 1/r^2$. That is, to lowest order the potential must be a *dipole*.
+There are actually several ways to solve this problem. The easiest way in fact is to observe that the total charge $Q$ on each hemisphere must be $Q = C (V_0 - V_0) = 0$, where $C$ is the capacitance between the two hemispheres. Since there is no net charge on the sphere, the potential must fall off at least as $\phi(\mathbf{x}) \sim 1/r^2$. That is, to lowest order the potential must be a *dipole*.
 
 Of course, in this section we want to show how to compute the potential using the Green's function. Let's first find the potential outside the sphere where $r > R$. Since there are no charges outside the sphere, the Dirichlet BVP we evidently need to solve is
 $$
@@ -1040,11 +1040,11 @@ $$
 
 Since we know that $V(\theta, \varphi) = +V_0$ when $0 \leq \theta \leq \pi/2$ and $V(\theta, \varphi) = -V_0$ when $\pi/2 \leq \theta \leq \pi$, we can break up the integral over $\theta'$ into two separate integrals and pull out the factor of $V(\theta, \varphi)$ from each to write
 $$
-\phi(\mathbf{x}) = \frac{V_0 R(r^2 - R^2)}{4\pi} \bigg[\int_0^{2\pi} d\varphi' \int_0^{\pi/2} \frac{\sin\theta' d\theta'}{(r^2 + R^2 - 2Rr \cos\alpha)^{3/2}} - \int_0^{2\pi} d\varphi'\int_{\pi/2}^\pi \frac{\sin\theta' d\theta'}{(r^2 + R^2 - 2Rr \cos\alpha)^{3/2}}\bigg] \ .
+\phi(\mathbf{x}) = \frac{V_0 R(r^2 - R^2)}{4\pi} \left[\int_0^{2\pi} d\varphi' \int_0^{\pi/2} \frac{\sin\theta' d\theta'}{(r^2 + R^2 - 2Rr \cos\alpha)^{3/2}} - \int_0^{2\pi} d\varphi'\int_{\pi/2}^\pi \frac{\sin\theta' d\theta'}{(r^2 + R^2 - 2Rr \cos\alpha)^{3/2}}\right] \ .
 $$
 We can re-combine these two inner integrals by making a change of variable on the second integral by letting $\theta' \to \pi - \theta'$ and $\varphi' \to \varphi' + \varphi'$. We can then do the usual substitution $\mu' = \cos\theta'$ to get
 $$
-\phi(\mathbf{x}) = \frac{V_0 R(r^2 - R^2)}{4\pi} \int_0^{2\pi} d\varphi' \int_0^1 d\mu' \bigg[\frac{1}{(r^2 + R^2 - 2Rr \cos\alpha)^{3/2}} - \frac{1}{(r^2 + R^2 + 2Rr \cos\alpha)^{3/2}}\bigg] \ .
+\phi(\mathbf{x}) = \frac{V_0 R(r^2 - R^2)}{4\pi} \int_0^{2\pi} d\varphi' \int_0^1 d\mu' \left[\frac{1}{(r^2 + R^2 - 2Rr \cos\alpha)^{3/2}} - \frac{1}{(r^2 + R^2 + 2Rr \cos\alpha)^{3/2}}\right] \ .
 $$
 We still, however, have to contend with the $\cos\alpha$ terms in the denominators, which involves the complicated expression
 $$
@@ -1052,28 +1052,33 @@ $$
 $$
 In general such an integral would be extremely difficult to evaluate, but there is one case where it's fairly easy to do, namely when the field point lies on the positive $z$-axis. Then we have $r = z$ and $\theta = 0$, which means $\cos\alpha = \mu'$ and the $\varphi'$ integration becomes trivial. We're thus left with only the integrals over $\mu'$,
 $$
-\phi(z) = \frac{V_0 R(r^2 - R^2)}{2} \int_0^1 d\mu' \bigg[\frac{1}{(z^2 + R^2 - 2Rz \mu')^{3/2}} - \frac{1}{(z^2 + R^2 + 2Rz \mu')^{3/2}}\bigg] \ .
+\phi(z) = \frac{V_0 R(r^2 - R^2)}{2} \int_0^1 d\mu' \left[\frac{1}{(z^2 + R^2 - 2Rz \mu')^{3/2}} - \frac{1}{(z^2 + R^2 + 2Rz \mu')^{3/2}}\right] \ .
 $$
-Each remaining integral can be solved by making substitutions of the form $u = r^2 + R^2 \mp 2Rr \mu'$. In the end, we get
+Each remaining integral can be solved by making substitutions of the form $u_\mp = r^2 + R^2 \mp 2Rr \mu'$. In the end, we get
 $$
-\phi(z) = V_0 \bigg[1 - \frac{z^2 - R^2}{z\sqrt{z^2 + R^2}}\bigg] \ .
+\phi(z) = V_0 \left[1 - \frac{z^2 - R^2}{z\sqrt{z^2 + R^2}}\right] \ .
 $$
 Note that this satisfies the boundary condition at $z = R$ since the second term vanishes, leaving $\phi(R) = +V_0$. It's easy to see that in the far field limit $z \gg R$ we have $\phi(z) \sim 1/z^2$, which agrees with our guess above that the potential of this problem should be that of a dipole. By the uniqueness theorem, we've thus found the unique solution, at least along the positive $z$-axis.
 
-What about points off the positive $z$-axis though? In this case we can no longer get a closed form solution to the integral due to the complicated dependence on $\cos\alpha$. However, it turns out we can get a series solution. It's possible to expand the general integral in powers of $R/r$ and evaluate each integral term by term. Doing so, we end up with a Legendre series of the form
+What about points off the positive $z$-axis though? In this case we can no longer get a closed form solution to the integral due to the complicated dependence on $\cos\alpha$. However, it turns out we can get a series solution. It's possible to expand the general integral in powers of $R/r$ and evaluate each integral term by term. Doing so, we end up with a series expansion of the form
 $$
-\phi(\mathbf{x}) = \frac{3V_0 R^2}{2r^2} \bigg[P_1(\cos\theta) - \frac{7R^2}{12r^2} P_3(\cos\theta) + \cdots\bigg] \ ,
+\phi(\mathbf{x}) = V_0 \left[\frac{3}{2} P_1(\cos\theta) \left(\frac{R}{r}\right)^2 - \frac{7}{8} P_3(\cos\theta) \left(\frac{R}{r}\right)^4 + \cdots\right] \ ,
 $$
-where each $P_\ell(\cos\theta)$ is the *Legendre polynomial* of degree $\ell$. We cover Legendre polynomials in detail in the appendix. Recall that the Legendre polynomials for $\ell = 1, 3$ are given by $P_1(\cos\theta) = \cos\theta$ and $P_3(\cos\theta) = (1/2) (5\cos^3\theta - 3\cos\theta)$ respectively. Up to order $1/r^4$, we can thus write the general potential in expanded form if we like as
+where each $P_\ell(\cos\theta)$ is the *Legendre polynomial* of degree $\ell$. We cover Legendre polynomials in detail in the appendix. Recall that the Legendre polynomials for $\ell = 1, 3$ are given by $P_1(\cos\theta) = \cos\theta$ and $P_3(\cos\theta) = (1/2) (5\cos^3\theta - 3\cos\theta)$ respectively. Since $P_\ell(\cos 0) = 1$ for all $\ell$, along the $z$-axis we evidently have
 $$
-\phi(\mathbf{x}) = \frac{3V_0 R^2}{2r^2} \bigg[\cos\theta - \frac{7R^2}{24r^2} (5\cos^3\theta - 3\cos\theta) + \cdots\bigg] \ .
+\phi(z) = V_0 \left[\frac{3}{2} \left(\frac{R}{z}\right)^2 - \frac{7}{8} \left(\frac{R}{z}\right)^4 + \cdots\right] \ .
 $$
-Notice that each term in this series is even in powers of $1/r$. This comes from the physical fact that the problem is azimuthally symmetric, something we could've deduced before even working through the math. In fact, what we've just written down is the multipole expansion for this potential, a topic we'll discuss in much greater detail in a later chapter.
+Indeed, it's not hard to show this is precisely what we'd get from doing a binomial expansion of the closed form for $\phi(z)$ derived above. Evidently, the expression for $\phi(-z)$ can be obtained simply by replacing $V_0 \to -V_0$, as one would expect from symmetry.
+
+Below is a plot of the equipotential surfaces outside the sphere, with the $+V_0$ hemisphere shown in red and the $-V_0$ hemisphere shown in black. Assuming $V_0$ is positive, the potential will be positive in the upper half plane and negative in the lower half plane. Notice the potential is exactly zero everywhere in the $z = 0$ plane. This follows from the fact that $P_\ell(\cos \pi/2) = 0$ for all odd $\ell$.
+
+<img src="../resources/image-20250529201642647.png" style="zoom:50%;" />
+
+Note each term in the series expansion is even in powers of $1/r$. This comes from the physical fact that the problem is azimuthally symmetric, something we could've deduced before even working through the math. In fact, what we've just written down is the multipole expansion for this potential, a topic we'll discuss in much greater detail in a later chapter.
 
 ### Conducting Corners
 
 - Continue here…
-- Consider adding a python figure to the previous hemisphere example (towards the end).
 - Work the corners case in greater detail, across multiple angles. Can take your time now that it's a full section.
 
 Another class of problems where the method of images is quite useful is in studying the behavior of fields near the corner of conducting surfaces.

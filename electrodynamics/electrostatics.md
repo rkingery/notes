@@ -212,19 +212,19 @@ $$
 $$
 By the superposition principle then, the combined E-field of the physical dipole is given by their vector sum,
 $$
-\mathbf{E}(\mathbf{x}) = \mathbf{E}_+(\mathbf{x}) + \mathbf{E}_-(\mathbf{x}) = q \bigg[\frac{\mathbf{x} - \mathbf{x}_+}{|\mathbf{x} - \mathbf{x}_+|^3} + \frac{\mathbf{x} - \mathbf{x}_-}{|\mathbf{x} - \mathbf{x}_-|^3}\bigg] \ .
+\mathbf{E}(\mathbf{x}) = \mathbf{E}_+(\mathbf{x}) + \mathbf{E}_-(\mathbf{x}) = q \left[\frac{\mathbf{x} - \mathbf{x}_+}{|\mathbf{x} - \mathbf{x}_+|^3} + \frac{\mathbf{x} - \mathbf{x}_-}{|\mathbf{x} - \mathbf{x}_-|^3}\right] \ .
 $$
 In this general form it's hard to understand what's going on. To that end, let's make the specific assumption that the charges both lie along the $z$-axis, with $+q$ located at position $\mathbf{x}_+ = (d/2) \mathbf{e}_z$ and $-q$ located at position $\mathbf{x}_- = -(d/2) \mathbf{e}_z$. Suppose further that we're interested only in field points $\mathbf{x}$ that lie directly along the $z$-axis, so that $\mathbf{x} = z\mathbf{e}_z$. Then we have
 $$
-\mathbf{x} - \mathbf{x}_+ = \bigg(z - \frac{d}{2}\bigg) \mathbf{e}_z \quad , \quad \mathbf{x} - \mathbf{x}_- = \bigg(z + \frac{d}{2}\bigg) \mathbf{e}_z \ .
+\mathbf{x} - \mathbf{x}_+ = \left(z - \frac{d}{2}\right) \mathbf{e}_z \quad , \quad \mathbf{x} - \mathbf{x}_- = \left(z + \frac{d}{2}\right) \mathbf{e}_z \ .
 $$
 The distances between the $\mathbf{x}$ and each source point $\mathbf{x}_\pm$ are then just
 $$
-|\mathbf{x} - \mathbf{x}_+| = \bigg|z - \frac{d}{2}\bigg| \quad , \quad |\mathbf{x} - \mathbf{x}_-| = \bigg|z + \frac{d}{2}\bigg| \ .
+|\mathbf{x} - \mathbf{x}_+| = \left|z - \frac{d}{2}\right| \quad , \quad |\mathbf{x} - \mathbf{x}_-| = \left|z + \frac{d}{2}\right| \ .
 $$
 Plugging all of this back into the E-field and simplifying, along the $z$-axis we have
 $$
-\mathbf{E}(z) = q \bigg[\frac{z - d/2}{|z - d/2|^3} - \frac{z + d/2}{|z + d/2|^3}\bigg] \mathbf{e}_z = q \bigg[\frac{\text{sgn}(z - d/2)}{(z - d/2)^2} - \frac{\text{sgn}(z + d/2)}{(z + d/2)^2}\bigg] \mathbf{e}_z \ .
+\mathbf{E}(z) = q \left[\frac{z - d/2}{|z - d/2|^3} - \frac{z + d/2}{|z + d/2|^3}\right] \mathbf{e}_z = q \left[\frac{\text{sgn}(z - d/2)}{(z - d/2)^2} - \frac{\text{sgn}(z + d/2)}{(z + d/2)^2}\right] \mathbf{e}_z \ .
 $$
 For convenience we've introduced the *sign function* $\text{sgn}(x)$, defined by $\text{sgn}(x) = 1$ if $x > 0$ and $\text{sgn}(x) = -1$ if $x < 0$. 
 
@@ -240,7 +240,7 @@ $$
 $$
 In both cases, the magnitude of the E-field vector $E(z) = |\mathbf{E}(z)|$, called the *field strength*, will be given by the absolute value
 $$
-E(z) = q \bigg|\frac{1}{(z - d/2)^2} - \frac{1}{(z + d/2)^2}\bigg| \ .
+E(z) = q \left|\frac{1}{(z - d/2)^2} - \frac{1}{(z + d/2)^2}\right| \ .
 $$
 Meanwhile, if $-d/2 < z < d/2$ the E-field vector will point *downward* since $\text{sgn}(z - d/2) = -1$, $\text{sgn}(z + d/2) = 1$, and
 $$
@@ -248,7 +248,7 @@ $$
 $$
 In this case, the field strength will instead be given by
 $$
-E(z) = q \bigg|\frac{1}{(z - d/2)^2} + \frac{1}{(z + d/2)^2}\bigg| \ .
+E(z) = q \left|\frac{1}{(z - d/2)^2} + \frac{1}{(z + d/2)^2}\right| \ .
 $$
 For example, at the origin $z=0$ we'd have $E(z) = 8q/d^2$, with a downward-pointing E-field vector
 $$
@@ -259,8 +259,8 @@ Notice that we can think of the E-field as pointing *away* from the positive cha
 Finally, let's look at what happens in the *far field limit*, when $r = |z| \gg d$. What should we expect to happen in this limit? Intuitively, one might expect that if we're far away from the source charges we can treat them both as a single point charge and use Coulomb's law to conclude that $E(z) \sim 1/r^2$. But this isn't the case for the dipole. To see why, let's do a binomial expansion of the field strength $E(z)$ in the case that $r > d/2$. We have
 $$
 \begin{align*}
-E(z) &= q \bigg|\frac{1}{(z - d/2)^2} - \frac{1}{(z + d/2)^2}\bigg| = \frac{q}{z^2} \bigg|\frac{1}{(1 - d/2z)^2} - \frac{1}{(1 + d/2z)^2}\bigg| \\
-&\approx \frac{q}{z^2} \big|(1 + d/z) - (1 - d/z) \big| \approx \frac{qd}{2r^3} \ .
+E(z) &= q \left|\frac{1}{(z - d/2)^2} - \frac{1}{(z + d/2)^2}\right| = \frac{q}{z^2} \left|\frac{1}{(1 - d/2z)^2} - \frac{1}{(1 + d/2z)^2}\right| \\
+&\approx \frac{q}{z^2} \left|(1 + d/z) - (1 - d/z) \right| \approx \frac{qd}{2r^3} \ .
 \end{align*}
 $$
 Evidently, in the far field limit the E-field falls off like $1/r^3$, not like $1/r^2$. But why did this happen? The reason is because if we did indeed treat both charges as a single point charge then we have to use their *net charge*, and their net charge is $q - q = 0$. Said differently, the E-field of a dipole has no $1/r^2$ dependence because this term vanishes when we expand the E-field in powers of $d/r$. We thus have to go to the next term, which falls off like $1/r^3$. This behavior is characteristic of a dipole. In future chapters we'll show a systematic way to do an expansion of this kind and show that any field that falls off like $1/r^3$ *must* be that of a dipole.
@@ -455,7 +455,7 @@ $$
 This integral can easily be evaluated via substitution. If we let $u = z'/\varrho$, then $du = dz'/\varrho$, and so we have
 $$
 \begin{align*}
-E(\varrho) &= \lambda \int_{-\infty}^\infty dz' \ \frac{\varrho}{(\varrho^2 + z'^2)^{3/2}} = \frac{\lambda}{\varrho^2} \int_{-\infty}^\infty \frac{dz'}{\big(1 + (z'/\varrho)^2\big)^{3/2}} \\
+E(\varrho) &= \lambda \int_{-\infty}^\infty dz' \ \frac{\varrho}{(\varrho^2 + z'^2)^{3/2}} = \frac{\lambda}{\varrho^2} \int_{-\infty}^\infty \frac{dz'}{\left(1 + (z'/\varrho)^2\right)^{3/2}} \\
 &= \frac{\lambda}{\varrho} \int_{-\infty}^\infty \frac{du}{(1 + u^2)^{3/2}} = \frac{\lambda}{\varrho} \frac{u}{\sqrt{1 + u^2}} \bigg|_{u=-\infty}^{u=\infty} = \frac{2\lambda}{\varrho}
 \ .
 \end{align*}
@@ -523,7 +523,7 @@ $$
 We can now evaluate the remaining integral by substituting $u = \varrho'/z$ and $du = d\varrho'/z$ to get
 $$
 \begin{align*}
-E(z) &= 2\pi\sigma \int_0^\infty d\varrho' \frac{z\varrho'}{(z^2 + \varrho'^2)^{3/2}} = \frac{2\pi\sigma}{z^2} \int_0^\infty d\varrho' \ \frac{\varrho'}{\big(1 + (\varrho'/z)^2\big)^{3/2}} \\
+E(z) &= 2\pi\sigma \int_0^\infty d\varrho' \frac{z\varrho'}{(z^2 + \varrho'^2)^{3/2}} = \frac{2\pi\sigma}{z^2} \int_0^\infty d\varrho' \ \frac{\varrho'}{\left(1 + (\varrho'/z)^2\right)^{3/2}} \\
 &= 2\pi\sigma \int_0^\infty du \ \frac{u}{(1 + u^2)^{3/2}} = 2\pi\sigma \frac{-1}{\sqrt{1 + u^2}} \bigg|_{u=0}^{u=\infty} = 2\pi\sigma
 \ .
 \end{align*}
@@ -593,7 +593,7 @@ E(r) = 2\pi\sigma R^2 \int_{-1}^1 d\mu \frac{r - R\mu}{(r^2 + R^2 - 2Rr \mu')^{3
 $$
 This integral can be evaluated by splitting up the numerator and doing another substitution. In the end, we get
 $$
-E(r) = \frac{2\pi R^2 \sigma}{r^2} \bigg[\frac{r\mu - R}{\sqrt{r^2 + R^2 - 2R\mu}} \bigg]_{\mu=-1}^1 = \frac{2\pi R^2 \sigma}{r^2} \big[\text{sgn}(r-R) + 1 \big] \ .
+E(r) = \frac{2\pi R^2 \sigma}{r^2} \left[\frac{r\mu - R}{\sqrt{r^2 + R^2 - 2R\mu}} \right]_{\mu=-1}^1 = \frac{2\pi R^2 \sigma}{r^2} \left[\text{sgn}(r-R) + 1 \right] \ .
 $$
 We thus have two separate cases to consider depending on whether we're inside the sphere where $r < R$, or we're outside the sphere where $r \geq R$. When we're inside the sphere $\text{sgn}(r-R) = -1$, which means the term in brackets vanishes and we're left with the surprising result that $E(r) = 0$ inside the sphere. We'll come back to the physics behind this in a second.
 
@@ -701,11 +701,11 @@ $$
 $$
 We now want to take the divergence of both sides of this integral with respect to the *field point* $\mathbf{x}$. Since the volume integral depends on the source points $\mathbf{x}'$ rather than $\mathbf{x}$, we can pull the divergence inside the integral to write
 $$
-\nabla \cdot \mathbf{E} = \int d^3 \mathbf{x}' \ \rho(\mathbf{x}') \ \nabla \cdot \bigg(\frac{\mathbf{x} - \mathbf{x}'}{|\mathbf{x} - \mathbf{x}'|^3}\bigg) \ .
+\nabla \cdot \mathbf{E} = \int d^3 \mathbf{x}' \ \rho(\mathbf{x}') \ \nabla \cdot \left(\frac{\mathbf{x} - \mathbf{x}'}{|\mathbf{x} - \mathbf{x}'|^3}\right) \ .
 $$
 All we need to do now is evaluate the divergence inside the integrand. We actually calculated what this is in the previous chapter. The answer we found was
 $$
-\nabla \cdot \bigg(\frac{\mathbf{x} - \mathbf{x}'}{|\mathbf{x} - \mathbf{x}'|^3}\bigg) = 4\pi \delta(\mathbf{x} - \mathbf{x}') \ ,
+\nabla \cdot \left(\frac{\mathbf{x} - \mathbf{x}'}{|\mathbf{x} - \mathbf{x}'|^3}\right) = 4\pi \delta(\mathbf{x} - \mathbf{x}') \ ,
 $$
 where $\delta(\mathbf{x} - \mathbf{x}')$ is the delta function centered at $\mathbf{x}'$. Plugging this back into the integral and using the definition of the delta function, the integral just picks out the charge density at $\mathbf{x}$, giving
 $$
@@ -820,7 +820,7 @@ FIGURE
 
 Suppose the top and bottom of the pillbox each have some arbitrary area $A$, and the height of the pillbox is $z$. Since $\mathbf{E} \propto \mathbf{e}_z$, along the sides of the pillbox we must have $\mathbf{E} \cdot \mathbf{n} = 0$, which means only the caps of the pillbox contribute anything to the flux. Along these caps we have $\mathbf{E} \cdot \mathbf{n} = E(z)$, which is constant on each cap and can hence be pulled outside the flux integral. The electric flux through the pillbox must then be
 $$
-\Phi_E = E(z) \bigg[\int_\text{top} da + \int_\text{bottom} da\bigg] = 2A E(z) \ .
+\Phi_E = E(z) \left[\int_\text{top} da + \int_\text{bottom} da\right] = 2A E(z) \ .
 $$
 The enclosed charge inside the pillbox is just $Q_\text{enc} = \sigma A$. Setting these equal by Gauss's law, we see the $A$ cancels from both sides, giving $E(z) = 4\pi\sigma$. The E-field for the infinite sheet of uniform charge is thus just
 $$
@@ -873,7 +873,7 @@ $$
 $$
 We will now take the *curl* of both sides with respect to the field point $\mathbf{x}$. Pulling the curl inside the integral, we have
 $$
-\nabla \times \mathbf{E}(\mathbf{x}) = \int d^3 \mathbf{x}' \ \rho(\mathbf{x}') \ \nabla \times \bigg(\frac{\mathbf{x} - \mathbf{x}'}{|\mathbf{x} - \mathbf{x}'|^3}\bigg) \ .
+\nabla \times \mathbf{E}(\mathbf{x}) = \int d^3 \mathbf{x}' \ \rho(\mathbf{x}') \ \nabla \times \left(\frac{\mathbf{x} - \mathbf{x}'}{|\mathbf{x} - \mathbf{x}'|^3}\right) \ .
 $$
 Now, the remaining curl inside the integrand is zero. We showed this in the previous chapter. This means the entire integral must be zero, which means the curl of the E-field is simply zero in electrostatics,
 $$
@@ -993,7 +993,7 @@ Evidently the potential inside the hollow sphere is now nonzero but constant. In
 
 Something similar holds for the uniformly charged solid sphere where $Q = 4/3 \pi R^3 \rho$. In that case, the potential outside the sphere is still $\phi(\mathbf{x}) = Q/R$, but inside the sphere we instead need to use $E(r) = Qr / R^3$. Inside the sphere we then get
 $$
-\phi(\mathbf{x}) = \int_{r}^R dr' \frac{Qr}{R^3} + \int_{R}^\infty dr' \frac{Q}{r'^2} = \frac{Q}{2R} \bigg[3 - \frac{r^2}{R^2} \bigg] \ .
+\phi(\mathbf{x}) = \int_{r}^R dr' \frac{Qr}{R^3} + \int_{R}^\infty dr' \frac{Q}{r'^2} = \frac{Q}{2R} \left[3 - \frac{r^2}{R^2} \right] \ .
 $$
 Thus, the potential of the solid sphere is now a quadratic function of $r$, decreasing from $\phi(0) = 3Q/2R^3$ at the origin down to $\phi(R) = Q/R$ at the surface of the sphere, thus agreeing with the value of $\phi(R)$ outside the sphere and ensuring the potential remains continuous at the boundary.
 
@@ -1094,7 +1094,7 @@ $$
 $$
 Evaluating the endpoints and simplifying a bit, we finally end up the following scalar potential
 $$
-\phi(\mathbf{x}) = \lambda \log\bigg[\frac{\sqrt{\varrho^2 + (z + L/2)^2} - (z - L/2)}{\sqrt{\varrho^2 + (z - L/2)^2} - (z + L/2)}\bigg] \ .
+\phi(\mathbf{x}) = \lambda \log\left[\frac{\sqrt{\varrho^2 + (z + L/2)^2} - (z - L/2)}{\sqrt{\varrho^2 + (z - L/2)^2} - (z + L/2)}\right] \ .
 $$
 This is a complicated expression as is, and it's not easy to see what the equipotentials look like. Intuitively though, we expect that the equipotentials should have an equipotential shape around the wire as shown below.
 
@@ -1103,8 +1103,8 @@ FIGURE
 Given this intuition, it makes sense to do a change of coordinates to *elliptical coordinates*. Define
 $$
 \begin{align*}
-u &\equiv \frac{1}{2} \bigg( \sqrt{\varrho^2 + (z + L/2)^2} + \sqrt{\varrho^2 + (z - L/2)^2}\bigg)  \ , \\
-v &\equiv \frac{1}{2} \bigg( \sqrt{\varrho^2 + (z + L/2)^2} - \sqrt{\varrho^2 + (z - L/2)^2}\bigg) \ . \\
+u &\equiv \frac{1}{2} \left( \sqrt{\varrho^2 + (z + L/2)^2} + \sqrt{\varrho^2 + (z - L/2)^2}\right)  \ , \\
+v &\equiv \frac{1}{2} \left( \sqrt{\varrho^2 + (z + L/2)^2} - \sqrt{\varrho^2 + (z - L/2)^2}\right) \ . \\
 \end{align*}
 $$
 In this coordinate system, curves of constant $u$ turn out to be ellipses in the $\varrho z$-plane of the form
@@ -1117,17 +1117,17 @@ $$
 $$
 Under this change of coordinates, after a bit of algebra we get the following expression for the potential in terms of $u$ and $v$,
 $$
-\phi(\mathbf{x}) = \lambda \log\bigg[\frac{u + L/2}{u - L/2}\bigg] \ .
+\phi(\mathbf{x}) = \lambda \log\left[\frac{u + L/2}{u - L/2}\right] \ .
 $$
 Notice the potential depends only on $u$ and not at all on $v$. Since $\phi(\mathbf{x})$ is constant whenever $u$ is constant, the equipotentials must be curves where $u$ is constant. That is, the equipotentials are indeed ellipses as we intuitively expected. These ellipses are all centered at the origin, with the semi-major axes oriented along the $z$-axis and the semi-minor axes oriented along the $\varrho$-axis.
 
 In these coordinates we can also easily inspect the near and far field limits. When $u \gg L/2$, we have
 $$
-u = \frac{1}{2} \bigg( \sqrt{\varrho^2 + (z + L/2)^2} + \sqrt{\varrho^2 + (z - L/2)^2}\bigg) \approx \sqrt{\varrho^2 + z^2} = r \ ,
+u = \frac{1}{2} \left( \sqrt{\varrho^2 + (z + L/2)^2} + \sqrt{\varrho^2 + (z - L/2)^2}\right) \approx \sqrt{\varrho^2 + z^2} = r \ ,
 $$
 which means in the far field limit we have
 $$
-\phi(\mathbf{x}) \approx \lambda \log\bigg[\frac{r + L/2}{r - L/2}\bigg] \approx \lambda \log\bigg[1 + \frac{L}{2r}\bigg] - \lambda \log\bigg[1 - \frac{L}{2r}\bigg] \approx \frac{\lambda L}{r} \ .
+\phi(\mathbf{x}) \approx \lambda \log\left[\frac{r + L/2}{r - L/2}\right] \approx \lambda \log\left[1 + \frac{L}{2r}\right] - \lambda \log\left[1 - \frac{L}{2r}\right] \approx \frac{\lambda L}{r} \ .
 $$
 Here we used the usual Taylor series approximation $\log(1 + x) \approx x$ when $|x| \ll 1$. Notice that $Q = \lambda L$ is just the total charge of the wire since it's uniformly charged. Unlike the infinite wire, the potential of the wire indeed goes like $Q/r$ in the far field limit as we'd expect according to Coulomb's law, thus resolving the strange paradox we encountered earlier.
 
@@ -1137,7 +1137,7 @@ u = \sqrt{\varrho^2 + \frac{L^2}{4}} \approx \frac{L}{2} + \frac{\varrho^2}{L} \
 $$
 Then the potential in the near field limit becomes
 $$
-\phi(\mathbf{x}) \approx \lambda \log\bigg[\frac{(L/2 + \varrho^2/L) + L/2}{(L/2 + \varrho^2/L) - L/2}\bigg] \approx \lambda \log\bigg[\frac{L/2 + L/2}{\varrho^2/L}\bigg] \approx -2\lambda \log \frac{2\varrho}{L} \ .
+\phi(\mathbf{x}) \approx \lambda \log\left[\frac{(L/2 + \varrho^2/L) + L/2}{(L/2 + \varrho^2/L) - L/2}\right] \approx \lambda \log\left[\frac{L/2 + L/2}{\varrho^2/L}\right] \approx -2\lambda \log \frac{2\varrho}{L} \ .
 $$
 We recognize this near field approximation as the potential of the infinite wire with a ground point $\varrho_0 = L/2$. Thus, in the near field limit we recover the potential of the infinite wire, at least when $z=0$. Indeed, this justifies why the infinite wire assumption is often a valid approximation. As long as we're only interested in field points close to the wire, we can assume it's infinite.
 
@@ -1184,7 +1184,7 @@ W_2 = q_2 \phi_1(\mathbf{x}_1) = q_2 \frac{q_1}{|\mathbf{x}_2 - \mathbf{x}_1|} \
 $$
 Next, with $q_1$ in place at $\mathbf{x}_1$ and with $q_2$ already in place at $\mathbf{x}_2$, suppose we now bring in the third charge $q_3$ and place it at position $\mathbf{x}_3$. The work $W_3$ done to move $q_3$ to its position will now depend on the fields generated by both $q_1$ and $q_2$,
 $$
-W_3 = q_3 \phi_1(\mathbf{x}_3) + q_3 \phi_2(\mathbf{x}_3) = q_3 \bigg(\frac{q_1}{|\mathbf{x}_3 - \mathbf{x}_1|} + \frac{q_2}{|\mathbf{x}_3 - \mathbf{x}_1|}\bigg) \ .
+W_3 = q_3 \phi_1(\mathbf{x}_3) + q_3 \phi_2(\mathbf{x}_3) = q_3 \left(\frac{q_1}{|\mathbf{x}_3 - \mathbf{x}_1|} + \frac{q_2}{|\mathbf{x}_3 - \mathbf{x}_1|}\right) \ .
 $$
 By now the pattern should hopefully be clear. Suppose now that the first $i-1$ charges $q_1, q_2, \cdots, q_{i-1}$ are already in place, and we then bring in the next charge $q_i$ from infinity and place it at position $\mathbf{x}_i$. The work $W_i$ required to place $q_i$ at its position with the first $i-1$ charges already in place will thus be
 $$
@@ -1202,7 +1202,7 @@ q_i \phi_j(\mathbf{x}_i) = \frac{q_i q_j}{|\mathbf{x}_i - \mathbf{x}_j|} = q_j \
 $$
 That is, the product $q_i \phi_j(\mathbf{x}_i)$ is symmetric under the interchange $i \leftrightarrow j$. This means the triangular sum above must be *half* the double sum over both $i$ and $j$, except that we can't have $j = i$ since a charge shouldn't be allowed to experience a force due to its own presence. We can thus write
 $$
-\mathcal{U} = \frac{1}{2} \sum_{i=1}^n q_i \bigg(\sum_{\substack{j=1 \\ j \neq i}}^n \phi_j(\mathbf{x}_i)\bigg) \ .
+\mathcal{U} = \frac{1}{2} \sum_{i=1}^n q_i \left(\sum_{\substack{j=1 \\ j \neq i}}^n \phi_j(\mathbf{x}_i)\right) \ .
 $$
 Now, observe that the interior sum is just the total scalar potential $\phi(\mathbf{x}_i)$ exerted on $q_i$ due to all the other charges, which we now assume have all been brought in from infinity already and put in place at their respective positions,
 $$
@@ -1224,11 +1224,11 @@ Notice how similar this expression looks to the potential energy $U$ of a charge
 
 While this is a perfectly good and correct expression, if we want to think of $\mathcal{U}$ as being the energy stored in the E-field, we'd like to express $\mathcal{U}$ in terms of the E-field $\mathbf{E}(\mathbf{x})$ directly. To achieve this we can make use of Gauss's law to express $\rho(\mathbf{x})$ in terms of $\mathbf{E}(\mathbf{x})$. Since $\nabla \cdot \mathbf{E} = 4\pi\rho$, we have
 $$
-\mathcal{U} = \frac{1}{2} \int d^3 \mathbf{x} \ \bigg(\frac{1}{4\pi} \nabla \cdot \mathbf{E}(\mathbf{x})\bigg) \phi(\mathbf{x}) = \frac{1}{8\pi} \int d^3\mathbf{x} \ \phi(\mathbf{x}) \nabla \cdot \mathbf{E}(\mathbf{x}) \ .
+\mathcal{U} = \frac{1}{2} \int d^3 \mathbf{x} \ \left(\frac{1}{4\pi} \nabla \cdot \mathbf{E}(\mathbf{x})\right) \phi(\mathbf{x}) = \frac{1}{8\pi} \int d^3\mathbf{x} \ \phi(\mathbf{x}) \nabla \cdot \mathbf{E}(\mathbf{x}) \ .
 $$
 We still need to eliminate the potential from the integrand. To do this we can use integration by parts to write
 $$
-\mathcal{U} = \frac{1}{8\pi}\bigg[\oint_\mathcal{S} \phi(\mathbf{x}) \mathbf{E}(\mathbf{x}) \cdot d\mathbf{a} - \int d^3\mathbf{x} \ \nabla \phi(\mathbf{x}) \cdot \mathbf{E}(\mathbf{x})\bigg] \ .
+\mathcal{U} = \frac{1}{8\pi}\left[\oint_\mathcal{S} \phi(\mathbf{x}) \mathbf{E}(\mathbf{x}) \cdot d\mathbf{a} - \int d^3\mathbf{x} \ \nabla \phi(\mathbf{x}) \cdot \mathbf{E}(\mathbf{x})\right] \ .
 $$
 Since $\mathbf{E} = -\nabla \phi$ the second integrand is just the square of the E-field, or $\mathbf{E}^2 = \mathbf{E} \cdot \mathbf{E}$. Assuming the surface integral term vanishes, which we'll justify shortly, the potential energy stored in the E-field can thus be written in the simple form
 $$
@@ -1260,7 +1260,7 @@ $$
 $$
 However, we also know that $\mathbf{E}(\mathbf{x}) = q/r^2 \ \mathbf{e}_r$, which means we should also have that
 $$
-\mathcal{U} = \int d^3\mathbf{x} \ \frac{1}{8\pi} |\mathbf{E}(\mathbf{x})|^2 = \int_0^\infty 4\pi r^2 dr \ \frac{1}{8\pi} \bigg(\frac{q}{r^2}\bigg)^2 = \infty \ .
+\mathcal{U} = \int d^3\mathbf{x} \ \frac{1}{8\pi} |\mathbf{E}(\mathbf{x})|^2 = \int_0^\infty 4\pi r^2 dr \ \frac{1}{8\pi} \left(\frac{q}{r^2}\right)^2 = \infty \ .
 $$
 Puzzlingly, the two results for the potential energy don't agree. The first result suggests there is no potential energy stored in the field, and the second result claims there's an infinite amount of potential energy stored in the field. Which is correct? In fact both are. It's just that each integral is giving us different versions of what we mean by the potential energy stored in the field.
 
@@ -1284,7 +1284,7 @@ $$
 $$
 Using the second approach in terms of the square of the E-field, we have
 $$
-\mathcal{U} = \frac{1}{8\pi}\int d^3\mathbf{x} \ |\mathbf{E}(\mathbf{x})|^2 = \frac{1}{8\pi}\int_R^\infty 4\pi r^2 dr \ \bigg(\frac{Q}{r^2}\bigg)^2 = \frac{Q^2}{2R} \ .
+\mathcal{U} = \frac{1}{8\pi}\int d^3\mathbf{x} \ |\mathbf{E}(\mathbf{x})|^2 = \frac{1}{8\pi}\int_R^\infty 4\pi r^2 dr \ \left(\frac{Q}{r^2}\right)^2 = \frac{Q^2}{2R} \ .
 $$
 As expected, the two approaches give the same potential energy $\mathcal{U} = Q^2 / 2R$.
 
