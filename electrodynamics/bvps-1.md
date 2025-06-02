@@ -1050,7 +1050,7 @@ We still, however, have to contend with the $\cos\alpha$ terms in the denominato
 $$
 \cos\alpha = \cos\theta \cos\theta' + \sin\theta \sin\theta' \cos(\varphi-\varphi') \ .
 $$
-In general such an integral would be extremely difficult to evaluate, but there is one case where it's fairly easy to do, namely when the field point lies on the positive $z$-axis. Then we have $r = z$ and $\theta = 0$, which means $\cos\alpha = \mu'$ and the $\varphi'$ integration becomes trivial. We're thus left with only the integrals over $\mu'$,
+Before addressing the general case, let's first focus on the simple case where $\mathbf{x}$ lies on the $z$-axis, so $r = z$ and $\theta = 0$. In this case, we have simply $\cos\alpha = \mu'$. The $\phi'$ integration becomes trivial, which means the potential becomes
 $$
 \phi(z) = \frac{V_0 R(r^2 - R^2)}{2} \int_0^1 d\mu' \left[\frac{1}{(z^2 + R^2 - 2Rz \mu')^{3/2}} - \frac{1}{(z^2 + R^2 + 2Rz \mu')^{3/2}}\right] \ .
 $$
@@ -1058,28 +1058,41 @@ Each remaining integral can be solved by making substitutions of the form $u_\mp
 $$
 \phi(z) = V_0 \left[1 - \frac{z^2 - R^2}{z\sqrt{z^2 + R^2}}\right] \ .
 $$
-Note that this satisfies the boundary condition at $z = R$ since the second term vanishes, leaving $\phi(R) = +V_0$. It's easy to see that in the far field limit $z \gg R$ we have $\phi(z) \sim 1/z^2$, which agrees with our guess above that the potential of this problem should be that of a dipole. By the uniqueness theorem, we've thus found the unique solution, at least along the positive $z$-axis.
+Note that this satisfies the boundary condition at $z = R$ since the second term vanishes, leaving $\phi(R) = +V_0$.
 
-What about points off the positive $z$-axis though? In this case we can no longer get a closed form solution to the integral due to the complicated dependence on $\cos\alpha$. However, it turns out we can get a series solution. It's possible to expand the general integral in powers of $R/r$ and evaluate each integral term by term. Doing so, we end up with a series expansion of the form
+In the more general case, we can no longer get a closed form solution to the integral due to the complicated dependence on $\cos\alpha$. However, it turns out we can get a series solution. To do so, we'll first factor out $r^2 + R^2$ from each denominator to write
 $$
-\phi(\mathbf{x}) = V_0 \left[\frac{3}{2} P_1(\cos\theta) \left(\frac{R}{r}\right)^2 - \frac{7}{8} P_3(\cos\theta) \left(\frac{R}{r}\right)^4 + \cdots\right] \ ,
+\phi(\mathbf{x}) = \frac{V_0 R(r^2 - R^2)}{4\pi(r^2 +R^2)^{3/2}} \int_0^{2\pi} d\varphi' \int_0^1 d\mu' \left[\frac{1}{(1 - 2a\cos\alpha)^{3/2}} - \frac{1}{(1 + 2a\cos\alpha)^{3/2}}\right] \ ,
 $$
-where each $P_\ell(\cos\theta)$ is the *Legendre polynomial* of degree $\ell$. We cover Legendre polynomials in detail in the appendix. Recall that the Legendre polynomials for $\ell = 1, 3$ are given by $P_1(\cos\theta) = \cos\theta$ and $P_3(\cos\theta) = (1/2) (5\cos^3\theta - 3\cos\theta)$ respectively. Since $P_\ell(\cos 0) = 1$ for all $\ell$, along the $z$-axis we evidently have
+where $a \equiv rR / (r^2 + R^2)$. If we now do a binomial expansion of the integrand, we get
 $$
-\phi(z) = V_0 \left[\frac{3}{2} \left(\frac{R}{z}\right)^2 - \frac{7}{8} \left(\frac{R}{z}\right)^4 + \cdots\right] \ .
+\frac{1}{(1 - 2a\cos\alpha)^{3/2}} - \frac{1}{(1 + 2a\cos\alpha)^{3/2}} = 6a\cos\alpha + 35a^3\cos^3\alpha + \cdots \ .
 $$
-Indeed, it's not hard to show this is precisely what we'd get from doing a binomial expansion of the closed form for $\phi(z)$ derived above. Evidently, the expression for $\phi(-z)$ can be obtained simply by replacing $V_0 \to -V_0$, as one would expect from symmetry.
+Notice all the even powers cancel out, leaving a series expansion in only odd powers of $2a\cos\alpha$. Indeed, this is required by the symmetry of the problem. Integrating the first two terms in this expansion, we get
+$$
+\int_0^{2\pi} d\varphi' \int_0^1 d\mu' \ 6a \cos\alpha = 6a\pi \cos\theta \quad , \quad \int_0^{2\pi} d\varphi' \int_0^1 d\mu' \ 35a^3\cos^3\alpha = \frac{35\pi a^3}{4} \cos \theta (3 - \cos^2\theta) \ .
+$$
+Thus, up to the first few powers in $2a\cos\alpha$, the general potential can be written
+$$
+\phi(\mathbf{x}) = \frac{3 V_0 R a(r^2 - R^2)}{2(r^2 +R^2)^{3/2}} \left[\cos\theta + \frac{35}{24} a^2 \cos \theta (3 - \cos^2\theta) + \cdots\right] \ .
+$$
+In the limit $r \gg R$ we can approximate $a \approx R/r$ and $r^2 \pm R^2 \approx r^2$, in which case the potential simplifies to
+$$
+\phi(\mathbf{x}) = \frac{3V_0 R^2}{2r^2} \left[\cos\theta - \frac{7 R^2}{12 r^2} \left(\frac{5}{2} \cos^3\theta - \frac{3}{2} \cos\theta\right) + \cdots\right] \ .
+$$
+Notice what we've effectively done is an alternating expansion of the potential in terms of the odd Legendre polynomials. Indeed, recall from the appendix that $P_1(\cos\theta) = \cos\theta$ and $P_3(\cos\theta) = (5/2) \cos^3\theta - (3/2) \cos\theta$. Thus, the next correction term inside the brackets will evidently be proportional to $(R/r)^4 P_5(\cos\theta)$, and so on.
 
-Below is a plot of the equipotential surfaces outside the sphere, with the $+V_0$ hemisphere shown in red and the $-V_0$ hemisphere shown in black. Assuming $V_0$ is positive, the potential will be positive in the upper half plane and negative in the lower half plane. Notice the potential is exactly zero everywhere in the $z = 0$ plane. This follows from the fact that $P_\ell(\cos \pi/2) = 0$ for all odd $\ell$.
+As a quick sanity check, notice in the far field limit the potential falls off like $1/r^2$, agreeing with our claim earlier that the potential should behave to lowest order in $1/r$ like a dipole. In fact, the far field expansion of the potential we've just written down is its *multipole expansion*, a topic we'll discuss in much greater detail in a later chapter.
 
 <img src="../resources/image-20250529201642647.png" style="zoom:50%;" />
 
-Note each term in the series expansion is even in powers of $1/r$. This comes from the physical fact that the problem is azimuthally symmetric, something we could've deduced before even working through the math. In fact, what we've just written down is the multipole expansion for this potential, a topic we'll discuss in much greater detail in a later chapter.
+Shown above is a plot of the equipotential surfaces outside the sphere, with the $+V_0$ hemisphere shown in red and the $-V_0$ hemisphere shown in black. Assuming $V_0$ is positive, the potential will be positive in the upper half plane and negative in the lower half plane. Notice the potential is exactly zero everywhere in the $z = 0$ plane, since $\cos\pi/2 = 0$.
 
 ### Conducting Corners
 
 - Continue here…
 - Work the corners case in greater detail, across multiple angles. Can take your time now that it's a full section.
+- Maybe mention the general problem first (corners at arbitrary angle, behavior near the corner), then specialize.
 
 Another class of problems where the method of images is quite useful is in studying the behavior of fields near the corner of conducting surfaces.
 
