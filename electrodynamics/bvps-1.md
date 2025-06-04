@@ -1,6 +1,6 @@
 # Boundary Value Problems I
 
-With the foundations of electrostatics in place, we will now turn our attention to more advanced methods for understanding and solving electrostatics problems. In this chapter and the next we will concern ourselves mainly with *boundary value problems*, or *BVPs*. We will show that electrostatics can be recast in terms of a single scalar partial differential equation, or *PDE*, for the scalar potential, known as *Poisson's equation*. In this chapter we will show how to solve the inhomogeneous Poisson equation using Green's functions and the related method of images. In the next chapter we will focus on solution methods for *Laplace's equation*, which is the homogeneous version of Poisson's equation. It'll turn out that many of the solution methods we introduce here will also apply beyond electrostatics, including to magnetostatics and electrodynamics.
+With the foundations of electrostatics in place, we will now turn our attention to more advanced methods for understanding and solving electrostatics problems. In this chapter and the next we will concern ourselves mainly with *boundary value problems*, or *BVPs*. We will show that electrostatics can be recast in terms of a scalar inhomogeneous partial differential equation, or *PDE*, for the scalar potential, known as *Poisson's equation*. In this chapter we will show how to solve the inhomogeneous Poisson equation using Green's functions and the related method of images. In the next chapter we will focus on solution methods for *Laplace's equation*, which is the homogeneous version of Poisson's equation. It'll turn out that many of the solution methods we introduce here will also apply beyond electrostatics, including to magnetostatics and electrodynamics.
 
 ## Boundary Value Problems
 
@@ -39,11 +39,13 @@ $$
 \nabla^2 \phi(\mathbf{x}) = 0
 } \ .
 $$
-We'll discuss solution methods to Laplace's equation in great depth in the next chapter.
+We'll discuss the properties and solution methods for Laplace's equation specifically in the next chapter.
 
 ### Boundary Conditions
 
-Poisson's equation (and Laplace's equation) allows us to incorporate a new feature into our problem solving methods, namely *boundary conditions*. Boundary conditions are conditions that the potential must satisfy on some given spatial surface. These can be useful whenever we have some charged surfaces in space that will affect the value of the potential, but whose charge densities are too complicated or too inconvenient to model directly. Solving a differential equation when boundary conditions are also imposed is known as a *boundary value problem*, or *BVP*. These BVPs will be our primary focus for the next two chapters.
+Poisson's equation (and Laplace's equation) allows us to incorporate a new feature into our problem solving methods, namely *boundary conditions*. Boundary conditions are conditions that the potential must satisfy on some given spatial surface.  Solving a differential equation when boundary conditions are also imposed is known as a *boundary value problem*, or *BVP*. These BVPs will be our primary focus for the next two chapters.
+
+Boundary conditions are most useful when we have a problem involving a charged surface where the charge distribution on the surface isn't known, but something else is known, like the value of the potential or E-field on the surface. Conductors are the canonical example of this in electrostatics. It's very difficult to model how the charges on a conductor arrange themselves in response to an external field, but easy to state what the potential or E-field is on the surface of the conductor.
 
 As an example, suppose we're interested in the potential of a point charge located some distance outside of the surface of a sphere, where we happen to know that the surface of the sphere is held at some fixed potential $\phi(\mathbf{x}) = V$. Instead of writing the charge density as the sum of the density of a point charge and the density of a sphere, we could neglect the sphere from the charge density and instead impose the boundary condition on Poisson's equation that the solution must satisfy the boundary condition $\phi(\mathbf{x}) = V$ on the surface of the sphere. This is an example of a *Dirichlet boundary condition*. Dirichlet boundary conditions are boundary conditions where the solution takes on some known fixed value on some known surface.
 
@@ -748,6 +750,48 @@ where $\mathbf{x}_*' = (x', y', -z')$ is the reflection of $\mathbf{x}'$ across 
 
 This in a nutshell is how the method of images works. Given a BVP, reformulate the problem as an image problem involving the original charges plus any new image charges required to give the correct boundary conditions on the boundary surface. By the uniqueness theorem, the solution found will also be the solution to the original BVP. Once we have the potential we can then easily figure out what its generalized Green's function will be as well.
 
+##### Example: Point charge near two grounded perpendicular conducting sheets
+
+Suppose a point charge $q$ is located some distance away from two conducting sheets. Both sheets are grounded, intersect each other at right angles, and are infinitely long and wide. We'll assume one sheet lies in the $xz$-plane and the other in the $yz$-plane, the sheets intersect at the origin, and the point charge lies at the point $\mathbf{d} = (a,b)$ in the $xy$-plane. Our goal is to find the potential in the $xy$-plane. To do so can formulate the problem as a 2-dimensional Dirichlet BVP,
+$$
+\begin{cases}
+\nabla^2 \phi(\mathbf{x}) = -4\pi q\delta(\mathbf{x} - \mathbf{d}) \ \text{when} \ x > 0 \ \text{and} \ y > 0 \ , \\
+\text{where} \ \phi(\mathbf{x}) = 0 \ \text{when} \ x = 0 \ \text{or} \ y = 0 \ .
+\end{cases}
+$$
+Here, the boundary surface is the positive $x$ and $y$ axes, and the interior region is the upper right quadrant of the $xy$-plane.
+
+To use the method of images on this problem we'll need not just one image charge but three. To see why, suppose we placed two image charges reflected across each axis like we did with the infinite sheet, both with opposite charge $-q$. This will
+
+- Continue here…
+
+
+
+Consider an equivalent problem where we have 3 image charges $q',q'',q'''$ located at positions $\mathbf{d}'$, $\mathbf{d}''$, and $\mathbf{d}'''$ respectively. The potential of this configuration is evidently given by
+
+$$
+\phi(\mathbf{x}) = \frac{q}{|\mathbf{x}-\mathbf{d}|} + \frac{q'}{|\mathbf{x}-\mathbf{d}'|} + \frac{q''}{|\mathbf{x}-\mathbf{d}''|} + \frac{q'''}{|\mathbf{x}-\mathbf{d}'''|} \ .
+$$
+To arrange these image charges in a way that satisfies the boundary condition $\phi(0,y)=\phi(x,0)=0$, we'll choose
+$$
+\begin{align*}
+q' = -q \quad &, \quad \mathbf{d}' = (-a,b) \ , \\
+q'' = -q \quad &, \quad \mathbf{d}'' = (a,-b) \ , \\
+q''' = q \quad &, \quad \mathbf{d}''' = (-a,-b) \ . \\
+\end{align*}
+$$
+This configuration of charges is called the *simple quadrupole*, a concept we'll return to in more generality later.
+
+Now, observe if we plug these values back into the potential we get
+$$
+\phi(\mathbf{x}) = \frac{q}{\sqrt{(x-a)^2+(y-b)^2}} - \frac{q}{\sqrt{(x+a)^2+(y-b)^2}} - \frac{q}{\sqrt{(x-a)^2+(y+b)^2}} + \frac{q}{\sqrt{(x+a)^2+(y+b)^2}} \ .
+$$
+Observe now that if we set $\mathbf{x}=(x,0)$ or $\mathbf{x}=(0,y)$ the potential vanishes, meaning this potential satisfies the boundary conditions, and hence by uniqueness must also be the correct potential for the original BVP. Dividing by $q$ will again give us the Green's function as usual.
+
+Interestingly, this exact same problem can attempt to be carried out for two conducting sheets separated by an angle $\theta$. One can be convinced that in this general case, the method of images will only work for angles $\theta = \frac{\pi}{4}, \frac{\pi}{3}, \frac{\pi}{2}, \pi$. The lower the angle, the more image charges will be needed to match the problem configuration. If any other angles are tried, one is forced to place image charges inside the boundary surface, which of course is not allowed for the method of images are work.
+
+
+
 ### Induced Charge on Conductors
 
 When dealing with conducting boundaries we're often interested in calculating the induced surface charge density $\sigma(\mathbf{x})$ on the surface of each conductor. We can do that using the surface boundary formula derived above on the surface of each conductor,
@@ -758,7 +802,7 @@ Once we know the potential, all we need to do is calculate its normal derivative
 $$
 Q = \oint_\mathcal{S} da \ \sigma(\mathbf{x}) \ .
 $$
-For the infinite sheet example we only have one conducting boundary, the infinite sheet. Its surface normal is just $\mathbf{n} = \mathbf{e}_z$, which means $\partial \phi / \partial n = \partial \phi / \partial z$. The induced surface charge density on the sheet is thus
+As an example, consider again the point charge above an infinite conducting sheet from the previous section. In this case, the only conducting boundary is the sheet itself, with surface normal $\mathbf{e}_z$. The induced surface charge density on the sheet is thus
 $$
 \begin{align*}
 \sigma(\mathbf{x}) &= -\frac{1}{4\pi} \frac{\partial \phi}{\partial z} = -\frac{q}{4\pi} \frac{\partial}{\partial z} \left[\frac{1}{\sqrt{\varrho^2 + (z-d)^2}} - \frac{1}{\sqrt{\varrho^2 + (z+d)^2}}\right] \\
@@ -1088,48 +1132,6 @@ As a quick sanity check, notice in the far field limit the potential falls off l
 
 Shown above is a plot of the equipotential surfaces outside the sphere, with the $+V_0$ hemisphere shown in red and the $-V_0$ hemisphere shown in black. Assuming $V_0$ is positive, the potential will be positive in the upper half plane and negative in the lower half plane. Notice the potential is exactly zero everywhere in the $z = 0$ plane, since $\cos\pi/2 = 0$.
 
-### Conducting Corners
-
-- Continue here…
-- Work the corners case in greater detail, across multiple angles. Can take your time now that it's a full section.
-- Maybe mention the general problem first (corners at arbitrary angle, behavior near the corner), then specialize.
-
-Another class of problems where the method of images is quite useful is in studying the behavior of fields near the corner of conducting surfaces.
-
-##### Example: Point charge near two grounded conducting perpendicular sheets
-
-Suppose we have a point charge $q$ located at point $\mathbf{d} = (a,b)$ above two perpendicular grounded conducting sheets in the $xy$-plane. It's not too hard to see that using a single image charge for this problem won't work, no matter what its charge or position is. We'll need multiple. But how many? It turns out we'll need 3 image charges.
-
-Consider an equivalent problem where we have 3 image charges $q',q'',q'''$ located at positions $\mathbf{d}'$, $\mathbf{d}''$, and $\mathbf{d}'''$ respectively. The potential of this configuration is evidently given by
-$$
-\phi(\mathbf{x}) = \frac{q}{|\mathbf{x}-\mathbf{d}|} + \frac{q'}{|\mathbf{x}-\mathbf{d}'|} + \frac{q''}{|\mathbf{x}-\mathbf{d}''|} + \frac{q'''}{|\mathbf{x}-\mathbf{d}'''|} \ .
-$$
-To arrange these image charges in a way that satisfies the boundary condition $\phi(0,y)=\phi(x,0)=0$, we'll choose
-$$
-\begin{align*}
-q' = -q \quad &, \quad \mathbf{d}' = (-a,b) \ , \\
-q'' = -q \quad &, \quad \mathbf{d}'' = (a,-b) \ , \\
-q''' = q \quad &, \quad \mathbf{d}''' = (-a,-b) \ . \\
-\end{align*}
-$$
-This configuration of charges is called the *simple quadrupole*, a concept we'll return to in more generality later.
-
-![](../resources/image-20240811130516105.png)
-
-Now, observe if we plug these values back into the potential we get
-$$
-\phi(\mathbf{x}) = \frac{q}{\sqrt{(x-a)^2+(y-b)^2}} - \frac{q}{\sqrt{(x+a)^2+(y-b)^2}} - \frac{q}{\sqrt{(x-a)^2+(y+b)^2}} + \frac{q}{\sqrt{(x+a)^2+(y+b)^2}} \ .
-$$
-Observe now that if we set $\mathbf{x}=(x,0)$ or $\mathbf{x}=(0,y)$ the potential vanishes, meaning this potential satisfies the boundary conditions, and hence by uniqueness must also be the correct potential for the original BVP. Dividing by $q$ will again give us the Green's function as usual.
-
-The force between the point charge and the two sheets is given in the usual way. We end up with
-$$
-\mathbf{F} = q^2 \bigg(\frac{a}{(a^2+b^2)^{3/2}} - \frac{1}{a^2}\bigg)\mathbf{e}_x + q^2 \bigg(\frac{b}{(a^2+b^2)^{3/2}} - \frac{1}{b^2}\bigg)\mathbf{e}_y \ .
-$$
-Interestingly, this exact same problem can attempt to be carried out for two conducting sheets separated by an angle $\theta$. One can be convinced that in this general case, the method of images will only work for angles $\theta = \frac{\pi}{4}, \frac{\pi}{3}, \frac{\pi}{2}, \pi$. The lower the angle, the more image charges will be needed to match the problem configuration. If any other angles are tried, one is forced to place image charges inside the boundary surface, which of course is not allowed for the method of images are work.
-
-
-
 
 
 ---
@@ -1164,7 +1166,7 @@ Let's quickly prove these. Suppose $\phi(\mathbf{x})$ is harmonic inside some re
 
 
 
-- Prove: The "soap film" fact about harmonic functions: A harmonic function that's constant on a boundary curve is the surface of minimum surface area connecting the curve.
+- Prove: The "soap film" fact about harmonic functions: A harmonic function that's constant on a boundary curve is the surface of minimum surface area connecting the curve. See ChatGPT. Minimizing the electrostatic energy as a functional results in an Euler-Lagrange equation that's just Laplace's equation subject to the boundary conditions. Correct statement is thus that the solution to Laplace's equation is the "minimum energy potential" that fits the boundary conditions.
 
 - Prove: Given two points, choose two balls with the given points as centers and of equal radius. If the radius is large enough, the two balls will coincide except for an arbitrarily small proportion of their volume. Since *f* is bounded, the averages of it over the two balls are arbitrarily close, and so *f* assumes the same value at any two points.
 - The descriptor "harmonic" in the name "harmonic function" originates from a point on a taut string which is undergoing [harmonic motion](https://en.wikipedia.org/wiki/Simple_harmonic_motion). The solution to the differential equation for this type of motion can be written in terms of sines and cosines, functions which are thus referred to as "harmonics." [Fourier analysis](https://en.wikipedia.org/wiki/Fourier_analysis) involves expanding functions on the unit circle in terms of a series of these harmonics. Considering higher dimensional analogues of the harmonics on the unit [*n*-sphere](https://en.wikipedia.org/wiki/N-sphere), one arrives at the [spherical harmonics](https://en.wikipedia.org/wiki/Spherical_harmonics). These functions satisfy Laplace's equation and, over time, "harmonic" was [used to refer to all](https://en.wikipedia.org/wiki/Synecdoche) functions satisfying Laplace's equation.
