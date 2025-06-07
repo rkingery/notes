@@ -750,47 +750,39 @@ where $\mathbf{x}_*' = (x', y', -z')$ is the reflection of $\mathbf{x}'$ across 
 
 This in a nutshell is how the method of images works. Given a BVP, reformulate the problem as an image problem involving the original charges plus any new image charges required to give the correct boundary conditions on the boundary surface. By the uniqueness theorem, the solution found will also be the solution to the original BVP. Once we have the potential we can then easily figure out what its generalized Green's function will be as well.
 
-##### Example: Point charge near two grounded perpendicular conducting sheets
+##### Example: Point charge near two intersecting grounded conducting sheets
 
-Suppose a point charge $q$ is located some distance away from two conducting sheets. Both sheets are grounded, intersect each other at right angles, and are infinitely long and wide. We'll assume one sheet lies in the $xz$-plane and the other in the $yz$-plane, the sheets intersect at the origin, and the point charge lies at the point $\mathbf{d} = (a,b)$ in the $xy$-plane. Our goal is to find the potential in the $xy$-plane. To do so can formulate the problem as a 2-dimensional Dirichlet BVP,
+Suppose a point charge $q$ is located some distance $d$ away from two grounded conducting sheets. The sheets intersect each other along the $z$-axis at some angle $\alpha$. Since the sheets are symmetric along the $z$-axis, we'll assume without loss of generality that $q$ is located in the $xy$-plane at some point $\mathbf{d} = (a, b)$. Formulated as a Dirichlet BVP, we want to find the potential that solves
 $$
 \begin{cases}
-\nabla^2 \phi(\mathbf{x}) = -4\pi q\delta(\mathbf{x} - \mathbf{d}) \ \text{when} \ x > 0 \ \text{and} \ y > 0 \ , \\
-\text{where} \ \phi(\mathbf{x}) = 0 \ \text{when} \ x = 0 \ \text{or} \ y = 0 \ .
+\nabla^2 \phi(\mathbf{x}) = -4\pi q\delta(\mathbf{x} - \mathbf{d}) \ \text{when} \ \delta < \varphi < \alpha + \delta \ , \\
+\text{where} \ \phi(\mathbf{x}) = 0 \ \text{when} \ \varphi = \delta, \alpha+\delta  \ ,
 \end{cases}
 $$
-Here, the boundary surface is the positive $x$ and $y$ axes, and the interior region is the upper right quadrant of the $xy$-plane.
+where $\delta$ is the complementary half-angle satisfying $\alpha + 2\delta = \pi/2$. We'll first focus on the case where the planes intersect each other at right angles, so $\alpha = \pi/2$ and $\delta = 0$. We'll comment on the more general case at the end.
 
-To use the method of images on this problem we'll need not just one image charge but three. To see why, suppose we placed two image charges reflected across each axis like we did with the infinite sheet, both with opposite charge $-q$. This will
-
-- Continue here…
-
-
-
-Consider an equivalent problem where we have 3 image charges $q',q'',q'''$ located at positions $\mathbf{d}'$, $\mathbf{d}''$, and $\mathbf{d}'''$ respectively. The potential of this configuration is evidently given by
-
-$$
-\phi(\mathbf{x}) = \frac{q}{|\mathbf{x}-\mathbf{d}|} + \frac{q'}{|\mathbf{x}-\mathbf{d}'|} + \frac{q''}{|\mathbf{x}-\mathbf{d}''|} + \frac{q'''}{|\mathbf{x}-\mathbf{d}'''|} \ .
-$$
-To arrange these image charges in a way that satisfies the boundary condition $\phi(0,y)=\phi(x,0)=0$, we'll choose
+In this setting, to use the method of images we need to find some number of image charges that cause the potential to vanish along the positive $x$ and $y$ axes. In analogy with the charge above an infinite grounded sheet example shown above, it makes sense to place two images charges each of charge $-q$ reflected across the two axes, one at $(-a,b)$ and the other at $(a,-b)$. However, it's not hard to see that for this to work we'll need to place a third image charge $+q$ at $(-a,-b)$ to ensure that the potential vanishes along both positive axes. The potential is thus
 $$
 \begin{align*}
-q' = -q \quad &, \quad \mathbf{d}' = (-a,b) \ , \\
-q'' = -q \quad &, \quad \mathbf{d}'' = (a,-b) \ , \\
-q''' = q \quad &, \quad \mathbf{d}''' = (-a,-b) \ . \\
+\phi(\mathbf{x}) &= \frac{q}{\sqrt{(x-a)^2+(y-b)^2 + z^2}} - \frac{q}{\sqrt{(x+a)^2+(y-b)^2 + z^2}} \\
+&- \frac{q}{\sqrt{(x-a)^2+(y+b)^2 + z^2}} + \frac{q}{\sqrt{(x+a)^2+(y+b)^2 + z^2}} \ .
 \end{align*}
 $$
-This configuration of charges is called the *simple quadrupole*, a concept we'll return to in more generality later.
+When $\mathbf{x} = (x, 0,z)$ and $\mathbf{x} = (0, y, z)$ the boundary conditions are indeed satisfied since in either case the four terms cancel out in pairs. By the uniqueness theorem, we've thus found the potential that satisfies the original BVP as well when $\alpha = \pi/2$.
 
-Now, observe if we plug these values back into the potential we get
-$$
-\phi(\mathbf{x}) = \frac{q}{\sqrt{(x-a)^2+(y-b)^2}} - \frac{q}{\sqrt{(x+a)^2+(y-b)^2}} - \frac{q}{\sqrt{(x-a)^2+(y+b)^2}} + \frac{q}{\sqrt{(x+a)^2+(y+b)^2}} \ .
-$$
-Observe now that if we set $\mathbf{x}=(x,0)$ or $\mathbf{x}=(0,y)$ the potential vanishes, meaning this potential satisfies the boundary conditions, and hence by uniqueness must also be the correct potential for the original BVP. Dividing by $q$ will again give us the Green's function as usual.
+FIGURE
 
-Interestingly, this exact same problem can attempt to be carried out for two conducting sheets separated by an angle $\theta$. One can be convinced that in this general case, the method of images will only work for angles $\theta = \frac{\pi}{4}, \frac{\pi}{3}, \frac{\pi}{2}, \pi$. The lower the angle, the more image charges will be needed to match the problem configuration. If any other angles are tried, one is forced to place image charges inside the boundary surface, which of course is not allowed for the method of images are work.
+The equipotentials of the image problem are shown above, with the sheets shown to visually confirm that the image problem indeed appears to match the boundary conditions. For what it's worth, this configuration of image charges is known as the *physical quadrupole*. Just as the physical dipole could be thought of as two opposite charges separated by some distance, the physical quadrupole can be thought of as two opposite dipoles placed parallel to each other and separated by the same distance.
 
+By doing a binomial expansion in the limit $r \gg d$, it's possible to show that $\phi(\mathbf{x}) \sim 1/r^3$ in the far field limit. Evidently, the physical quadrupole falls off even faster than the physical dipole. This is fundamentally because the monopole contribution cancel since the net charge is zero, and the dipole contribution also cancels since the net dipole moment is also zero. Once these contributions both cancel, the next remaining term is the quadrupole contribution. We could thus imagine expanding any given potential in terms of its monopole term, dipole term, quadrupole term, etc. Indeed, we'll show how to do so in a few chapters.
 
+What about the more general case when the sheets intersect at some arbitrary angle $\alpha$? Here things get more interesting. When $\alpha = \pi$, we just have two sheets grounded sheets intersecting in a way that forms a single infinite plane. This problem we saw required a single opposite image charge, and its image charge configuration was the physical dipole. When $\alpha = \pi/2$, we required three opposite image charges, and its charge configuration was the physical quadrupole.
+
+By the same logic, it's not hard to see that when $\alpha = \pi/4$ we'd need seven opposite image charges, each reflections of $q$ across the eight lines intersecting the faces of an octagon. This configuration is called the *physical octupole*. It turns out though that $\alpha = \pi/3$ also has an image problem, consisting of reflecting $q$ across the six lines intersecting the faces of a hexagon.
+
+FIGURE
+
+Interestingly, these are the only $\alpha$ to which we can apply the method of images. No other choice of $\alpha$ will work, even obvious choices like $\pi/6$ or $\pi/8$. The fundamental reason for this is that as we introduce more image charges, to satisfy the boundary conditions we'd need to place them in between the two sheets where $\delta < \varphi < \alpha + \delta$, and this isn't allowed by the method of images since the image charges are always required to lie strictly outside the boundary surface.
 
 ### Induced Charge on Conductors
 
