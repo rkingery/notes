@@ -719,7 +719,7 @@ Plugging in $z=0$ it's now clear this potential vanishes in the $xy$-plane. We'v
 
 Here's what the equipotentials look like for this problem, with the image charge equipotentials shown in dashes. Note that the potential below the sheet is *not* actually what the dashed equipotentials show. Notice how the equipotentials flatten the closer they get to the horizontal axis, which represents the infinite sheet. This is a result of the boundary conditions on the sheet.
 
-<img src="../resources/image-20250506204512240.png" alt="image-20250506204512240" style="zoom:50%;" />
+<img src="../resources/image-20250608212209076.png" alt="" style="zoom:50%;" />
 
 In reality the BVP can only tell us the potential above the sheet. The potential below the sheet is completely unknown. It depends on what the charge distribution is below the sheet, which we don't assume to know anything about. For instance, if the sheet were infinitely thick the potential below the sheet would be everywhere zero, but if the sheet were infinitely thin with the same image charge as shown below it, then the equipotentials plotted would indeed be correct even below the sheet.
 
@@ -770,7 +770,7 @@ $$
 $$
 When $\mathbf{x} = (x, 0,z)$ and $\mathbf{x} = (0, y, z)$ the boundary conditions are indeed satisfied since in either case the four terms cancel out in pairs. By the uniqueness theorem, we've thus found the potential that satisfies the original BVP as well when $\alpha = \pi/2$.
 
-FIGURE
+<img src="../resources/image-20250608213356505.png" alt="" style="zoom:50%;" />
 
 The equipotentials of the image problem are shown above, with the sheets shown to visually confirm that the image problem indeed appears to match the boundary conditions. For what it's worth, this configuration of image charges is known as the *physical quadrupole*. Just as the physical dipole could be thought of as two opposite charges separated by some distance, the physical quadrupole can be thought of as two opposite dipoles placed parallel to each other and separated by the same distance.
 
@@ -778,9 +778,9 @@ By doing a binomial expansion in the limit $r \gg d$, it's possible to show that
 
 What about the more general case when the sheets intersect at some arbitrary angle $\alpha$? Here things get more interesting. When $\alpha = \pi$, we just have two sheets grounded sheets intersecting in a way that forms a single infinite plane. This problem we saw required a single opposite image charge, and its image charge configuration was the physical dipole. When $\alpha = \pi/2$, we required three opposite image charges, and its charge configuration was the physical quadrupole.
 
-By the same logic, it's not hard to see that when $\alpha = \pi/4$ we'd need seven opposite image charges, each reflections of $q$ across the eight lines intersecting the faces of an octagon. This configuration is called the *physical octupole*. It turns out though that $\alpha = \pi/3$ also has an image problem, consisting of reflecting $q$ across the six lines intersecting the faces of a hexagon.
+By the same logic, it's not hard to see that when $\alpha = \pi/4$ we'd need seven opposite image charges, each reflections of $q$ across the eight lines intersecting the faces of an octagon. This is called the *physical octupole*. It turns out though that $\alpha = \pi/3$ also has an image problem, the *physical hexapole*, consisting of reflecting $q$ across the six lines intersecting the faces of a hexagon.
 
-FIGURE
+<img src="../resources/image-20250608213043538.png" alt="" style="zoom:50%;" />
 
 Interestingly, these are the only $\alpha$ to which we can apply the method of images. No other choice of $\alpha$ will work, even obvious choices like $\pi/6$ or $\pi/8$. The fundamental reason for this is that as we introduce more image charges, to satisfy the boundary conditions we'd need to place them in between the two sheets where $\delta < \varphi < \alpha + \delta$, and this isn't allowed by the method of images since the image charges are always required to lie strictly outside the boundary surface.
 
@@ -1123,62 +1123,4 @@ As a quick sanity check, notice in the far field limit the potential falls off l
 <img src="../resources/image-20250529201642647.png" style="zoom:50%;" />
 
 Shown above is a plot of the equipotential surfaces outside the sphere, with the $+V_0$ hemisphere shown in red and the $-V_0$ hemisphere shown in black. Assuming $V_0$ is positive, the potential will be positive in the upper half plane and negative in the lower half plane. Notice the potential is exactly zero everywhere in the $z = 0$ plane, since $\cos\pi/2 = 0$.
-
-
-
----
-
-Harmonic Functions
-
-Any function $\phi(\mathbf{x})$ satisfying Laplace's equation $\nabla^2 \phi(\mathbf{x}) = 0$ is called a *harmonic function*. We can think of harmonic functions as a kind of higher-dimensional generalization of affine functions $f(x) = a x + b$. In one dimension, the Laplacian $\nabla^2$ reduces to the ordinary second derivative $d^2/dx^2$, and only affine functions satisfy Laplace's equation $d^2 /dx^2 f(x) = 0$ in one dimension.
-
-Notice that affine functions $f(x) = a x + b$ trivially satisfy the following properties:
-
-- Maximum Principle: The maximum (and minimum) of $f(x)$ on any closed interval $x_1 \leq x \leq x_2$ must occur at the endpoints $x_1$ or $x_2$. This is obvious, since a line is always either strictly increasing, strictly decreasing, or horizontal. In the degenerate case where $f(x)$ is constant, i.e. $a=0$, the maximum and minimum will both trivially occur at every point on the interval.
-
-- Mean Value Property: At any point $x$, the value of $f(x)$ is equal to the average of the value of the function evaluated at the endpoints of any closed interval centered at the point $x$. That is, for any symmetric interval $x - d \leq x \leq x + d$ we have
-  $$
-  f(x) = \frac{f(x - d) + f(x + d)}{2} \ .
-  $$
-
-- Liouville's Property: The only *bounded* affine function on the real line is the constant function $f(x) = b$. If $a \neq 0$, an affine function will always be unbounded, with $|f(x)| \to \infty$ as $|x| \to \infty$.
-
-All of these properties turn out to hold for higher-dimensional harmonic functions as well. We'll focus on three dimensions here. In three dimensions we state the above properties as follows:
-
-- Maximum Principle: Inside any closed region, the maximum (and minimum) value of any harmonic function $\phi(\mathbf{x})$ will always occur along the boundary of that region.
-
-- Mean Value Property: At any point $\mathbf{x}$, the value of a harmonic function $\phi(\mathbf{x})$ at that point is equal to the average value of $\phi(\mathbf{x})$ on any sphere centered at that point. That is, for any sphere of radius $R$ centered at $\mathbf{x}$ we have
-  $$
-  \phi(\mathbf{x}) = \frac{1}{4\pi} \oint d\Omega' \ \phi(\mathbf{x}') \ .
-  $$
-
-- Liouville's Property: The only bounded harmonic function in 3-dimensional space is a constant function. That is, either $|\phi(\mathbf{x})| \to \infty$ as $r \to \infty$ or $\phi(\mathbf{x})$ is constant.
-
-Let's quickly prove these. Suppose $\phi(\mathbf{x})$ is harmonic inside some region $\mathcal{V}$ bounded by a surface $\mathcal{S}$, so $\nabla^2 \phi(\mathbf{x}) = 0$ in $\mathcal{V}$.
-
-
-
-- Prove: The "soap film" fact about harmonic functions: A harmonic function that's constant on a boundary curve is the surface of minimum surface area connecting the curve. See ChatGPT. Minimizing the electrostatic energy as a functional results in an Euler-Lagrange equation that's just Laplace's equation subject to the boundary conditions. Correct statement is thus that the solution to Laplace's equation is the "minimum energy potential" that fits the boundary conditions.
-
-- Prove: Given two points, choose two balls with the given points as centers and of equal radius. If the radius is large enough, the two balls will coincide except for an arbitrarily small proportion of their volume. Since *f* is bounded, the averages of it over the two balls are arbitrarily close, and so *f* assumes the same value at any two points.
-- The descriptor "harmonic" in the name "harmonic function" originates from a point on a taut string which is undergoing [harmonic motion](https://en.wikipedia.org/wiki/Simple_harmonic_motion). The solution to the differential equation for this type of motion can be written in terms of sines and cosines, functions which are thus referred to as "harmonics." [Fourier analysis](https://en.wikipedia.org/wiki/Fourier_analysis) involves expanding functions on the unit circle in terms of a series of these harmonics. Considering higher dimensional analogues of the harmonics on the unit [*n*-sphere](https://en.wikipedia.org/wiki/N-sphere), one arrives at the [spherical harmonics](https://en.wikipedia.org/wiki/Spherical_harmonics). These functions satisfy Laplace's equation and, over time, "harmonic" was [used to refer to all](https://en.wikipedia.org/wiki/Synecdoche) functions satisfying Laplace's equation.
-- You may need to abandon this or move it, since some of the proofs assume things we haven't yet covered (multipole expansion or Green's third identity, i.e. the "surface term" of the formal solution).
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
