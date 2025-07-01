@@ -2,7 +2,7 @@
 
 In this chapter, we continue on with our discussion of boundary value problems in electrostatics. In the previous chapter we examined solution methods to the inhomogeneous Poisson equation subject to boundary conditions, particularly through the use of Green's functions and the method of images. In this chapter we will focus on solution methods to the homogeneous Laplace equation, which is used for boundary value problems where no charges lie inside the boundary surface. The primary solution method we will examine to solve these problems is the powerful separation of variables method.
 
-## Laplace Equation
+## Harmonic Functions
 
 In general, the potential for some arbitrary charge distribution $\rho(\mathbf{x})$ inside a boundary region $\mathcal{V}$ is given by the Poisson equation
 $$
@@ -26,106 +26,57 @@ In this special case, the volume integral term vanishes in the formal solution, 
 $$
 \phi(\mathbf{x}) = \frac{1}{4\pi} \oint_\mathcal{S} da' \ \bigg[\mathcal{G}(\mathbf{x}, \mathbf{x}') \frac{\partial}{\partial n'} \phi(\mathbf{x}') - \phi(\mathbf{x}') \frac{\partial}{\partial n'} \mathcal{G}(\mathbf{x}, \mathbf{x}') \bigg] \ .
 $$
-We will now analyze some of the properties of solutions to Laplace's equation, and later look at ways to find them.
+Solutions to Laplace's equation are known as *harmonic functions*. The term *harmonic* comes from considering a taut string undergoing harmonic motion. The points on the string that remain stationary are called *nodes* or *harmonics*. The solution to the differential equation for this string involves a linear superposition of sines and cosines, which are called harmonic functions. In Cartesian coordinates, any solution to Laplace's equation also satisfies this property, something we'll illustrate later. Thus, we say that a function $\phi(\mathbf{x})$ is *harmonic* inside some region $\mathcal{V}$ provided it satisfies Laplace's equation $\nabla^2 \phi(\mathbf{x}) = 0$ everywhere inside $\mathcal{V}$.
 
-### Harmonic Functions
+We will now briefly analyze some of the other properties of harmonic functions, and later look at ways to solve for them under specific sets of boundary conditions.
 
-Solutions to Laplace's equation are known as *harmonic functions*. We say a function $\phi(\mathbf{x})$ is *harmonic* inside some region $\mathcal{V}$ provided it satisfies Laplace's equation $\nabla^2 \phi(\mathbf{x}) = 0$ everywhere inside $\mathcal{V}$. Harmonic functions turn out to have several interesting properties, some of which we will now briefly describe.
+### Properties
 
-We can think of harmonic functions as generalizations of 1-dimensional *affine functions*, i.e. functions of the form $f(x) = a x + b$. Geometrically, affine functions represent lines in the plane, reducing to linear functions $f(x) = a x$ when $b = 0$. It's easy to see that affine functions trivially satisfy the following properties:
+Harmonic functions are in a sense generalizations of 1-dimensional *affine functions* to non-planar surfaces. An affine function in one dimension is a function of the form $f(x) = a x + b$. Geometrically, affine functions represent lines in the plane with slope $a$ and intercept $b$. It's easy to see that affine functions trivially satisfy the following three properties:
 
 - *Maximum Principle*: The maximum of $f(x)$ inside any closed interval will always occur at one of the endpoints of the interval. When $a < 0$ the maximum will occur at the left endpoint, and when $a > 0$ it will occur at the right endpoint. The minimum will similarly occur at the opposite endpoint. In the special case where $a = 0$, all points in the closed interval are both maxima and minima, including the endpoints.
 
-- *Mean Value Property*: At any point $x$, the value of $f(x)$ at that point is the average of the value of the endpoints of any closed interval centered at $x$. That is, for any $d \geq 0$ we have
+- *Liouville Property*: The only *bounded* affine function on the entire real line is the constant function $f(x) = b$. If $a \neq 0$, an affine function will always be unbounded in both directions, meaning $|f(x)| \to \infty$ as $|x| \to \infty$.
+
+- *Mean Value Property*: At any point $x$, the value of $f(x)$ at that point is the average of the value of the endpoints of any closed interval centered at $x$. That is, for any radius $R \geq 0$ we have
   $$
-  f(x) = \frac{f(x - d) + f(x + d)}{2} \ .
+  f(x) = \frac{f(x - R) + f(x + R)}{2} \ .
   $$
 
-- *Liouville Property*: The only *bounded* affine function on the real line is the constant function $f(x) = b$. If $a \neq 0$, an affine function will always satisfy $|f(x)| \to \infty$ as $|x| \to \infty$, resulting in an unbounded function.
-- *Geodesic Property*: An affine function between any two points in the plane is the minimal curve connecting the two points. That is, the shortest distance between any two points in the plane is a straight line.
+Harmonic functions are a generalization of affine functions in the sense that this class of functions satisfies these three properties when generalized beyond the plane. We'll focus on the 3-dimensional generalization. Suppose $\phi(\mathbf{x})$ is harmonic inside some region $\mathcal{V}$, where $\mathcal{V}$ is bounded by some closed surface $\mathcal{S}$. Then $\phi(\mathbf{x})$ must satisfy the following properties:
 
-Harmonic functions are a higher-dimensional generalization of affine functions in this sense. Suppose $\phi(\mathbf{x})$ is harmonic inside some region $\mathcal{V}$, where $\mathcal{V}$ is bounded by some closed surface $\mathcal{S}$. Then one can show that $\phi(\mathbf{x})$ satisfies the following properties:
+- *Maximum Principle*: The maximum (and minimum) of a harmonic function will always occur on the boundary surface. That is, the maximum and minimum of $\phi(\mathbf{x})$ must always occur on $\mathcal{S}$, and never in $\mathcal{V}$. Only when $\phi(\mathbf{x})$ is constant will the maximum also occur inside the region $\mathcal{V}$, in which case it will trivially occur at every point inside $\mathcal{V}$ and on $\mathcal{S}$.
 
-- *Maximum Principle*: The maximum (and minimum) of $\phi(\mathbf{x})$ must always occur on $\mathcal{S}$. That is, the maximum (and minimum) of a harmonic function will always occur on the boundary surface. Only when $\phi(\mathbf{x})$ is constant will the maximum also occur inside the region $\mathcal{V}$, in which case it will trivially occur at every point inside $\mathcal{V}$ and on $\mathcal{S}$.
+- *Liouville Property*: The only bounded harmonic function over all space is a constant function $\phi(\mathbf{x}) = c$. Any non-constant harmonic function must thus be unbounded, meaning for some $\mathbf{x}$ we must have $|\phi(\mathbf{x})| \to \infty$ as $|\mathbf{x}| \to \infty$.
 
 - *Mean Value Property*: At any point $\mathbf{x}$ inside $\mathcal{V}$, the value of $\phi(\mathbf{x})$ at that point will always be the average value of $\phi(\mathbf{x})$ along any spherical surface centered at $\mathbf{x}$. That is, for any sphere of radius $R$ centered at $\mathbf{x}$, $\phi(\mathbf{x})$ must satisfy
   $$
   \phi(\mathbf{x}) = \frac{1}{4\pi} \oint d\Omega' \ \phi(\mathbf{x}') \ .
   $$
-  
 
+These properties are easily verified when we interpret $\phi(\mathbf{x})$ in electrostatics language as the potential inside some empty region surrounded by a conducting surface of charge. The maximum principle just says that the potential in this region will always be the highest on the boundary surface, which is clear since that's the only place there are any charges. The Liouville property just says that if there are no conductors or free charges present anywhere in space, then the E-field throughout all space must be zero, which means the potential must be constant. This is also obvious. Finally, the mean value property just says that we can interpret the potential at any point as the potential of a thin spherical conducting shell of the same charge centered at that point. This follows from the fact that near that point we can think of the potential as that of a point charge, something we'll justify more rigorously in the next chapter with the multipole expansion.
 
+Incidentally, the maximum principle can be used to prove something perhaps surprising about electrostatics: Stable equilibrium is impossible in electrostatics. That is, an electrostatic force can't be used to keep a charge at rest in a stable way, no matter what kind of charge configuration is used to generate the force. This result is known as *Earnshaw's theorem*.
 
-Harmonic Functions
+To see why, suppose we place $n$ point charges $q_1, q_2, \cdots, q_n$ in some region of space. We can think of these charges as point boundary conditions. In the region between the charges, any potential must satisfy Laplace's equation and thus be harmonic. By the maximum principle, the minimum value of the potential, and hence the electrostatic force, must occur either at one of these point charges or at infinity. But the potential is infinite at any point charge, meaning the minimum can occur at infinity. Thus, there can be no stable equilibrium in finite space.
 
-Any function $\phi(\mathbf{x})$ satisfying Laplace's equation $\nabla^2 \phi(\mathbf{x}) = 0$ is called a *harmonic function*. We can think of harmonic functions as a kind of higher-dimensional generalization of affine functions $f(x) = a x + b$. In one dimension, the Laplacian $\nabla^2$ reduces to the ordinary second derivative $d^2/dx^2$, and only affine functions satisfy Laplace's equation $d^2 /dx^2 f(x) = 0$ in one dimension.
+### Minimum Energy Principle
 
+Harmonic functions also satisfy another interesting property. Imagine we took a curved wire and dipped it in soap film. When we pull the wire out, we'll see a surface of soap film adhering to the wire. The shape of that surface turns out to be a 2-dimensional harmonic function. It's the surface of minimal surface area that matches the boundary conditions along the wire. This idea holds for harmonic functions of any dimension. We'll call it the *minimum energy principle*. A harmonic function is the function of minimum potential energy that matches the boundary conditions.
 
-
-All of these properties turn out to hold for higher-dimensional harmonic functions as well. We'll focus on three dimensions here. In three dimensions we state the above properties as follows:
-
-- Maximum Principle: Inside any closed region, the maximum (and minimum) value of any harmonic function $\phi(\mathbf{x})$ will always occur along the boundary of that region.
-
-- Mean Value Property: At any point $\mathbf{x}$, the value of a harmonic function $\phi(\mathbf{x})$ at that point is equal to the average value of $\phi(\mathbf{x})$ on any sphere centered at that point. That is, for any sphere of radius $R$ centered at $\mathbf{x}$ we have
-
-- Liouville's Property: The only bounded harmonic function in 3-dimensional space is a constant function. That is, either $|\phi(\mathbf{x})| \to \infty$ as $r \to \infty$ or $\phi(\mathbf{x})$ is constant.
-
-Let's quickly prove these. Suppose $\phi(\mathbf{x})$ is harmonic inside some region $\mathcal{V}$ bounded by a surface $\mathcal{S}$, so $\nabla^2 \phi(\mathbf{x}) = 0$ in $\mathcal{V}$.
-
-
-
-- Prove: The "soap film" fact about harmonic functions: A harmonic function that's constant on a boundary curve is the surface of minimum surface area connecting the curve. See ChatGPT. Minimizing the electrostatic energy as a functional results in an Euler-Lagrange equation that's just Laplace's equation subject to the boundary conditions. Correct statement is thus that the solution to Laplace's equation is the "minimum energy potential" that fits the boundary conditions.
-
-- Prove: Given two points, choose two balls with the given points as centers and of equal radius. If the radius is large enough, the two balls will coincide except for an arbitrarily small proportion of their volume. Since *f* is bounded, the averages of it over the two balls are arbitrarily close, and so *f* assumes the same value at any two points.
-- The descriptor "harmonic" in the name "harmonic function" originates from a point on a taut string which is undergoing [harmonic motion](https://en.wikipedia.org/wiki/Simple_harmonic_motion). The solution to the differential equation for this type of motion can be written in terms of sines and cosines, functions which are thus referred to as "harmonics." [Fourier analysis](https://en.wikipedia.org/wiki/Fourier_analysis) involves expanding functions on the unit circle in terms of a series of these harmonics. Considering higher dimensional analogues of the harmonics on the unit [*n*-sphere](https://en.wikipedia.org/wiki/N-sphere), one arrives at the [spherical harmonics](https://en.wikipedia.org/wiki/Spherical_harmonics). These functions satisfy Laplace's equation and, over time, "harmonic" was [used to refer to all](https://en.wikipedia.org/wiki/Synecdoche) functions satisfying Laplace's equation.
-- You may need to abandon this or move it, since some of the proofs assume things we haven't yet covered (multipole expansion or Green's third identity, i.e. the "surface term" of the formal solution).
-
-
-
-### General Problem
-
-Another way we can proceed is to solve Poisson's equation directly using standard PDE methods. Suppose we have a linear PDE of the form
+We can state this property more formally using the calculus of variations. A harmonic function is the scalar field $\phi(\mathbf{x})$ that minimizes the electrostatic field energy functional $\mathcal{U}$ in $\mathcal{V}$ while also satisfying the appropriate boundary conditions on $\mathcal{S}$,
 $$
-\mathcal{L} \phi(\mathbf{x}) = f(\mathbf{x}) \ ,
+\mathcal{U}[\phi(\mathbf{x})] = \frac{1}{8\pi} \int_\mathcal{V} d^3 \mathbf{x} \ |\nabla \phi(\mathbf{x})|^2 \ .
 $$
-where $\mathcal{L}$ is a linear partial differential operator and $f(\mathbf{x})$ is some source term, e.g. the charge density $\rho(\mathbf{x})$. We assume that some set of boundary conditions may be given implicitly.
+This can be verified using the principle of least action for classical fields, which we covered in depth in the classical mechanics course. We won't do it here since the ideas are basically the same.
 
-When we say $\mathcal{L}$ is a linear operator, we mean that for any two functions $\phi_1(\mathbf{x})$ and $\phi_2(\mathbf{x})$ and constants $\alpha$ and $\beta$, we have 
-$$
-\mathcal{L} \big(\alpha\phi_1(\mathbf{x}) + \beta\phi_2(\mathbf{x})\big) = \alpha\mathcal{L} \phi_1(\mathbf{x}) + \beta\mathcal{L} \phi_2(\mathbf{x}) \ .
-$$
-Linearity means we can compose solutions to a linear PDE using the principle of superposition. In fact we can say more than this. The theory of linear PDEs guarantees that we can solve *any* linear PDE by finding two solutions of a particular kind and summing them together:
+In intuitive terms, the minimum energy property says the following: Suppose we have some conducting boundary, and we're interested in the potential that fits the boundary conditions on the conductor while also minimizing the energy. The minimum energy principle says that the potential that satisfies this property will always be the potential for a BVP free of any other charges. Adding charges can only act to increase the electrostatic energy, never decrease it.
 
-- A general *homogeneous solution* $\phi_h(\mathbf{x})$ that solves the homogeneous PDE $\mathcal{L} \phi_h(\mathbf{x}) = 0$ subject to the boundary conditions.
-- A *particular solution* $\phi_p(\mathbf{x})$ that solves the inhomogeneous PDE $\mathcal{L} \phi_p(\mathbf{x}) = f(\mathbf{x})$ in the absence of boundary conditions.
+- Clarify Earnshaw proof further. Feel like I'm missing a subtle point (e.g. stability, relation between potential and force).
+- Mention the analytic property of harmonic functions (from the next chapter).
+- Shorten SoV section with fewer examples and add conformal mapping section after.
 
-Provided we can find these two solutions, the most general solution to $\mathcal{L} \phi(\mathbf{x}) = f(\mathbf{x})$ can be written in the form
-$$
-\phi(\mathbf{x}) = \phi_h(\mathbf{x}) + \phi_p(\mathbf{x}) \ .
-$$
-All of the PDEs we'll see in electromagnetism, and indeed in most of physics, turn out to be linear second-order PDEs. The most general spatial second-order linear partial differential operator we can write down is a linear superposition of first and second partial derivatives, plus an ordinary function. We can write this with summation notation in the form
-$$
-\mathcal{L} = a_{ij}(\mathbf{x}) \frac{\partial^2}{\partial x_i \partial x_j} + b_i(\mathbf{x}) \frac{\partial}{\partial x_i} + c(\mathbf{x}) \ .
-$$
-In particular, we can see that the Laplacian $\nabla^2$ is a linear operator if we take $a_{ij} = \delta_{ij}$ and $b_i = c = 0$. This means we can solve Poisson's equation in the way specified before, by finding a homogeneous solution that solves Laplace's equation subject to the boundary conditions, and a particular solution that solves Poisson's equation with a given charge density $\rho(\mathbf{x})$.
 
-For a localized charge distribution, we already know how to find the particular solution via the integral
-$$
-\phi_p(\mathbf{x}) = \int d^3 \mathbf{x}' \ \frac{\rho(\mathbf{x}')}{|\mathbf{x} - \mathbf{x}'|} \ .
-$$
-This means to solve the general PDE we only need to find the homogeneous solution $\phi_h(\mathbf{x})$ that solves Laplace's equation $\nabla^2 \phi_h = 0$ subject to the given boundary conditions, and we'll have a general solution to Poisson's equation subject to those boundary conditions.
-
-Notice how similar this looks to the formal solution approach we took before using Green's functions. In fact the two approaches are completely equivalent, as they should be. Recall the formal solution could be written
-$$
-\phi(\mathbf{x}) = \int_\mathcal{V} d^3 \mathbf{x}' \ \rho(\mathbf{x}') G(\mathbf{x} - \mathbf{x}') + \frac{1}{4\pi} \oint_\mathcal{S} da' \ \bigg[G \frac{\partial \phi}{\partial n'} - \phi \frac{\partial G}{\partial n'} \bigg] \ ,
-$$
-where the Green's function is given by
-$$
-G(\mathbf{x} - \mathbf{x}') = \frac{1}{|\mathbf{x} - \mathbf{x}'|} + F(\mathbf{x} - \mathbf{x}') \ .
-$$
-The first integral is just the particular solution $\phi_p(\mathbf{x})$. The second integral is in fact the homogeneous solution $\phi_h(\mathbf{x})$, which is evidently closely related to the homogeneous part of the Green's function, $F(\mathbf{x} - \mathbf{x}')$.
-
-Since we know how to find the particular solution, what remains is finding the homogeneous solution. This involves solving Laplace's equation subject to the given boundary conditions. This is what the rest of this chapter will focus on.
 
 ## Separation of Variables
 
