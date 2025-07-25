@@ -54,9 +54,9 @@ Harmonic functions are a generalization of affine functions in the sense that th
   \phi(\mathbf{x}) = \frac{1}{4\pi} \oint d\Omega' \ \phi(\mathbf{x}') \ .
   $$
 
-These properties are easily verified when we interpret $\phi(\mathbf{x})$ in electrostatics language as the potential inside some empty region surrounded by a conducting surface of charge. The maximum principle just says that the potential in this region will always be the highest on the boundary surface, which is clear since that's the only place there are any charges. The Liouville property just says that if there are no conductors or free charges present anywhere in space, then the E-field throughout all space must be zero, which means the potential must be constant. This is also obvious. Finally, the mean value property just says that we can interpret the potential at any point as the potential of a thin spherical conducting shell of the same charge centered at that point. This follows from the fact that near that point we can think of the potential as that of a point charge, something we'll justify more rigorously in the next chapter with the multipole expansion.
+These properties are easily verified when we interpret $\phi(\mathbf{x})$ in as the potential inside some empty region surrounded by a conducting surface of charge. The maximum principle just says that the potential in this region will always be the highest on the boundary surface, which is clear since that's the only place there are any charges. The Liouville property just says that if there are no conductors or free charges present anywhere in space, then the E-field throughout all space must be zero, which means the potential must be constant. This is also obvious. Finally, the mean value property just says that we can interpret the potential at any point as the potential of a thin spherical conducting shell of the same charge centered at that point. This follows from the fact that near that point we can think of the potential as that of a point charge, something we'll justify more rigorously in the next chapter with the multipole expansion.
 
-Incidentally, the maximum principle can be used to prove something perhaps surprising about electrostatics: Stable equilibrium is impossible in electrostatics. That is, an electrostatic force can't be used to keep a charge at rest in a stable way, no matter what kind of charge configuration is used to generate the force. This result is known as *Earnshaw's theorem*.
+Incidentally, the maximum principle can be used to prove something surprising about electrostatics: Stable equilibrium is impossible in electrostatics. That is, an electrostatic force can't be used to keep a charge at rest in a stable way, no matter what kind of charge configuration is used to generate the force. This result is known as *Earnshaw's theorem*.
 
 To see why, suppose we place $n$ point charges $q_1, q_2, \cdots, q_n$ in some region of space. We can think of these charges as point boundary conditions. In the region between the charges, any potential must satisfy Laplace's equation and thus be harmonic. By the maximum principle, the minimum value of the potential, and hence the electrostatic force, must occur either at one of these point charges or at infinity. But the potential is infinite at any point charge, meaning the minimum can occur at infinity. Thus, there can be no stable equilibrium in finite space.
 
@@ -66,9 +66,25 @@ Harmonic functions also satisfy another interesting property. Imagine we took a 
 
 We can state this property more formally using the calculus of variations. A harmonic function is the scalar field $\phi(\mathbf{x})$ that minimizes the electrostatic field energy functional $\mathcal{U}$ in $\mathcal{V}$ while also satisfying the appropriate boundary conditions on $\mathcal{S}$,
 $$
-\mathcal{U}[\phi(\mathbf{x})] = \frac{1}{8\pi} \int_\mathcal{V} d^3 \mathbf{x} \ |\nabla \phi(\mathbf{x})|^2 \ .
+\mathcal{U}[\phi] = \frac{1}{8\pi} \int_\mathcal{V} d^3 \mathbf{x} \ |\nabla \phi(\mathbf{x})|^2 \ .
 $$
-This can be verified using the principle of least action for classical fields, which we covered in depth in the classical mechanics course. We won't do it here since the ideas are basically the same.
+This can be verified using the principle of least action for classical fields, which we covered in the classical mechanics course. Briefly, assuming we can write the action $S$ as the space-time integral of a Lagrangian density $\mathcal{L}$,
+$$
+S[\phi] = \int dt \ d^3\mathbf{x} \ \mathcal{L}(\phi, \nabla \phi, \partial_t \phi) \ ,
+$$
+the stationary solution can be found by solving the field Euler-Lagrange equation for the scalar field $\phi$,
+$$
+\frac{\partial \mathcal{L}}{\partial \phi} = \partial_i \frac{\partial \mathcal{L}}{\partial (\partial_i \phi)} - \partial_t \frac{\partial \mathcal{L}}{\partial (\partial_t \phi)} \ .
+$$
+In our case, the field action is just the field potential energy $\mathcal{U}$, and the Lagrangian density is
+$$
+\mathcal{L} = \frac{1}{8\pi} |\nabla \phi|^2 = \frac{1}{8\pi} \partial_j \phi \partial_j \phi \ .
+$$
+Plugging this into the Euler-Lagrange equation, it's easy to see that the left-hand side vanishes, and so does the time derivative term on the right-hand side. All we're left to solve is the gradient term,
+$$
+0 = \frac{1}{8\pi} \partial_i \frac{\partial}{\partial (\partial_i \phi)} \left(\partial_j \phi \partial_j \phi \right) = \frac{1}{4\pi} \partial_i \partial_i \phi = \frac{1}{4\pi} \nabla^2 \phi \ .
+$$
+We've thus shown that the stationary solution to this energy functional is indeed just Laplace's equation $\nabla^2 \phi(\mathbf{x}) = 0$. In fact, it's not just the stationary solution, but the *minimum* solution. This follows simply from the fact that $\mathcal{L}$ is a convex function of $\phi$, which means any stationary solution must automatically be the global minimum solution.
 
 In intuitive terms, the minimum energy property says the following: Suppose we have some conducting boundary, and we're interested in the potential that fits the boundary conditions on the conductor while also minimizing the energy. The minimum energy principle says that the potential that satisfies this property will always be the potential for a BVP free of any other charges. Adding charges can only act to increase the electrostatic energy, never decrease it.
 
