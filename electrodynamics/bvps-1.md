@@ -19,7 +19,7 @@ From the equation $\nabla \times \mathbf{E} = \mathbf{0}$ we know that in electr
 $$
 \mathbf{E}(\mathbf{x}) = -\nabla \phi(\mathbf{x}) \ .
 $$
-This means all relevant physical information about the E-field is contained in the scalar potential. To calculate the E-field for a given charge distribution it suffices to instead calculate the scalar potential and then take its gradient to recover the field. Given this is the case it makes sense to convert the field equations for the E-field in terms of a field equation for the potential.
+This means all relevant physical information about the E-field is contained in the scalar potential. To calculate the E-field for a given charge distribution it suffices to instead calculate the scalar potential and then take its gradient to recover the field. Given this is the case it makes sense to re-express the field equations for the E-field in terms of a field equation for the potential.
 
 Since $\mathbf{E} = -\nabla \phi$ already guarantees that $\nabla \times \mathbf{E} = \mathbf{0}$, we need only substitute this gradient into Gauss's law $\nabla \cdot \mathbf{E} = 4\pi\rho$ to get a field equation for the potential. Performing this substitution, we have
 $$
