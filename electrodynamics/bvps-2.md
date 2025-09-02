@@ -4,11 +4,11 @@ In this chapter, we continue on with our discussion of boundary value problems i
 
 ## Harmonic Functions
 
-In general, the potential for some arbitrary charge distribution $\rho(\mathbf{x})$ inside a boundary region $\mathcal{V}$ is given by the Poisson equation
+Recall the potential for an arbitrary charge distribution $\rho(\mathbf{x})$ inside a boundary region $\mathcal{V}$ is given by the Poisson equation
 $$
 \nabla^2 \phi(\mathbf{x}) = -4\pi\rho(\mathbf{x}) \ .
 $$
-We saw in the previous chapter that the formal, general solution to a Poisson BVP is given by the integral
+We saw in the previous chapter that the general or *formal* solution to a Poisson BVP is given by the integral
 $$
 \phi(\mathbf{x}) = \int_\mathcal{V} d^3 \mathbf{x}' \ \rho(\mathbf{x}') \mathcal{G}(\mathbf{x}, \mathbf{x}') + \frac{1}{4\pi} \oint_\mathcal{S} da' \ \bigg[\mathcal{G}(\mathbf{x}, \mathbf{x}') \frac{\partial}{\partial n'} \phi(\mathbf{x}') - \phi \frac{\partial}{\partial n'} \mathcal{G}(\mathbf{x}, \mathbf{x}') \bigg] \ ,
 $$
@@ -26,13 +26,13 @@ In this special case, the volume integral term vanishes in the formal solution, 
 $$
 \phi(\mathbf{x}) = \frac{1}{4\pi} \oint_\mathcal{S} da' \ \bigg[\mathcal{G}(\mathbf{x}, \mathbf{x}') \frac{\partial}{\partial n'} \phi(\mathbf{x}') - \phi(\mathbf{x}') \frac{\partial}{\partial n'} \mathcal{G}(\mathbf{x}, \mathbf{x}') \bigg] \ .
 $$
-Solutions to Laplace's equation are known as *harmonic functions*. The term *harmonic* comes from considering a taut string undergoing harmonic motion. The points on the string that remain stationary are called *nodes* or *harmonics*. The solution to the differential equation for this string involves a linear superposition of sines and cosines, which are called harmonic functions. In Cartesian coordinates, any solution to Laplace's equation also satisfies this property, something we'll illustrate later. Thus, we say that a function $\phi(\mathbf{x})$ is *harmonic* inside some region $\mathcal{V}$ provided it satisfies Laplace's equation $\nabla^2 \phi(\mathbf{x}) = 0$ everywhere inside $\mathcal{V}$.
+Solutions to Laplace's equation are known as *harmonic functions*. The term *harmonic* comes from considering a taut string undergoing harmonic motion. The points on the string that remain stationary are called *nodes* or *harmonics*. The solution to the differential equation for this string involves a linear superposition of sines and cosines, which are called harmonic functions. In Cartesian coordinates, any solution to Laplace's equation also satisfies this property, something we'll see later. Thus, we say that a function $\phi(\mathbf{x})$ is *harmonic* inside some region $\mathcal{V}$ provided it satisfies Laplace's equation $\nabla^2 \phi(\mathbf{x}) = 0$ everywhere inside $\mathcal{V}$.
 
 We will now briefly analyze some of the other properties of harmonic functions, and later look at ways to solve for them under specific sets of boundary conditions.
 
-### Properties
+### Basic Properties
 
-Harmonic functions are in a sense generalizations of 1-dimensional *affine functions* to non-planar surfaces. An affine function in one dimension is a function of the form $f(x) = a x + b$. Geometrically, affine functions represent lines in the plane with slope $a$ and intercept $b$. It's easy to see that affine functions trivially satisfy the following three properties:
+Harmonic functions are in one sense are generalizations of 1-dimensional *affine functions* to non-planar surfaces. An affine function in one dimension is a function of the form $f(x) = a x + b$. Geometrically, affine functions represent lines in the plane with slope $a$ and intercept $b$. It's easy to see that affine functions trivially satisfy the following three properties:
 
 - *Maximum Principle*: The maximum of $f(x)$ inside any closed interval will always occur at one of the endpoints of the interval. When $a < 0$ the maximum will occur at the left endpoint, and when $a > 0$ it will occur at the right endpoint. The minimum will similarly occur at the opposite endpoint. In the special case where $a = 0$, all points in the closed interval are both maxima and minima, including the endpoints.
 
@@ -43,32 +43,32 @@ Harmonic functions are in a sense generalizations of 1-dimensional *affine funct
   f(x) = \frac{f(x - R) + f(x + R)}{2} \ .
   $$
 
-Harmonic functions are a generalization of affine functions in the sense that this class of functions satisfies these three properties when generalized beyond the plane. We'll focus on the 3-dimensional generalization. Suppose $\phi(\mathbf{x})$ is harmonic inside some region $\mathcal{V}$, where $\mathcal{V}$ is bounded by some closed surface $\mathcal{S}$. Then $\phi(\mathbf{x})$ must satisfy the following properties:
+Harmonic functions are a generalization of affine functions in the sense that they inherit these three properties when generalized beyond the plane. We'll focus on the 3-dimensional generalization. Suppose $\phi(\mathbf{x})$ is harmonic inside some region $\mathcal{V}$, where $\mathcal{V}$ is bounded by some closed surface $\mathcal{S}$. Then $\phi(\mathbf{x})$ must satisfy the following properties:
 
-- *Maximum Principle*: The maximum (and minimum) of a harmonic function will always occur on the boundary surface. That is, the maximum and minimum of $\phi(\mathbf{x})$ must always occur on $\mathcal{S}$, and never in $\mathcal{V}$. Only when $\phi(\mathbf{x})$ is constant will the maximum also occur inside the region $\mathcal{V}$, in which case it will trivially occur at every point inside $\mathcal{V}$ and on $\mathcal{S}$.
+- *Maximum Principle*: The maximum (and minimum) of a harmonic function will always occur on the boundary surface. That is, the maximum (and minimum) of $\phi(\mathbf{x})$ must always occur on $\mathcal{S}$, and never in $\mathcal{V}$. Only when $\phi(\mathbf{x})$ is constant will the maximum (or minimum) occur inside the region $\mathcal{V}$, in which case it will trivially occur at every point inside $\mathcal{V}$ and on $\mathcal{S}$.
 
-- *Liouville Property*: The only bounded harmonic function over all space is a constant function $\phi(\mathbf{x}) = c$. Any non-constant harmonic function must thus be unbounded, meaning for some $\mathbf{x}$ we must have $|\phi(\mathbf{x})| \to \infty$ as $|\mathbf{x}| \to \infty$.
+- *Liouville Property*: The only bounded harmonic functions over all space are constant functions $\phi(\mathbf{x}) = c$. Any non-constant harmonic function must thus be unbounded, meaning for some $\mathbf{x}$ we must have $|\phi(\mathbf{x})| \to \infty$ as $|\mathbf{x}| \to \infty$.
 
 - *Mean Value Property*: At any point $\mathbf{x}$ inside $\mathcal{V}$, the value of $\phi(\mathbf{x})$ at that point will always be the average value of $\phi(\mathbf{x})$ along any spherical surface centered at $\mathbf{x}$. That is, for any sphere of radius $R$ centered at $\mathbf{x}$, $\phi(\mathbf{x})$ must satisfy
   $$
   \phi(\mathbf{x}) = \frac{1}{4\pi} \oint d\Omega' \ \phi(\mathbf{x}') \ .
   $$
 
-These properties are easily verified when we interpret $\phi(\mathbf{x})$ in as the potential inside some empty region surrounded by a conducting surface of charge. The maximum principle just says that the potential in this region will always be the highest on the boundary surface, which is clear since that's the only place there are any charges. The Liouville property just says that if there are no conductors or free charges present anywhere in space, then the E-field throughout all space must be zero, which means the potential must be constant. This is also obvious. Finally, the mean value property just says that we can interpret the potential at any point as the potential of a thin spherical conducting shell of the same charge centered at that point. This follows from the fact that near that point we can think of the potential as that of a point charge, something we'll justify more rigorously in the next chapter with the multipole expansion.
+These properties are easily verified when we interpret $\phi(\mathbf{x})$ as the electrostatic potential of some charge distribution $\rho(\mathbf{x})$. In this setting, the Liouville property just says that if there are no charges present anywhere in space then there's no E-field either, meaning the potential must be constant. The maximum principle just says that if there are charges present, then the potential will take on its maximum and minimum values either inside the charge distribution or at infinity, never in any charge-free region of space. Finally, the mean value property says that we can interpret the potential at any point in space as the potential of a thin spherical conducting shell of the same net charge centered at that point, a fact we'll justify later with the multipole expansion.
 
-Incidentally, the maximum principle can be used to prove something surprising about electrostatics: Stable equilibrium is impossible in electrostatics. That is, an electrostatic force can't be used to keep a charge at rest in a stable way, no matter what kind of charge configuration is used to generate the force. This result is known as *Earnshaw's theorem*.
+We can use the maximum principle to prove an interesting result of electrostatics: *Earnshaw's theorem*. This theorem states that there can be no stable electrostatic equilibrium in a charge-free region of space where only a static, external E-field is applied. If we tried to place a test charge anywhere in this charge-free region, the external E-field alone will never be able to keep it stable. More formally, suppose $\mathcal{V}$ is some open region free of charges and an external, static E-field is applied to $\mathcal{V}$ due to charges that lie outside $\mathcal{V}$. Earnshaw's theorem states that there can be no stable equilibrium inside $\mathcal{V}$.
 
-To see why, suppose we place $n$ point charges $q_1, q_2, \cdots, q_n$ in some region of space. We can think of these charges as point boundary conditions. In the region between the charges, any potential must satisfy Laplace's equation and thus be harmonic. By the maximum principle, the minimum value of the potential, and hence the electrostatic force, must occur either at one of these point charges or at infinity. But the potential is infinite at any point charge, meaning the minimum can occur at infinity. Thus, there can be no stable equilibrium in finite space.
+To see why this is true, recall from classical mechanics that a force has a stable equilibrium wherever its potential energy $U$ is minimized. Suppose we place a test charge $q$ inside $\mathcal{V}$. Since the potential energy of a point charge in an external E-field is given by $U(\mathbf{x}) = q\phi(\mathbf{x})$, a stable equilibrium can only exist where the potential $\phi(\mathbf{x})$ itself is minimized or maximized (minimized if $q > 0$ or maximized if $q < 0$). However, $\phi(\mathbf{x})$ must be harmonic in $\mathcal{V}$, which by the maximum principle means its maxima and minima must occur outside $\mathcal{V}$. Thus, there can be no stable equilibrium inside $\mathcal{V}$. Incidentally, this is true of Newtonian gravity as well by a similar argument.
 
 ### Minimum Energy Principle
 
-Harmonic functions also satisfy another interesting property. Imagine we took a curved wire and dipped it in soap film. When we pull the wire out, we'll see a surface of soap film adhering to the wire. The shape of that surface turns out to be a 2-dimensional harmonic function. It's the surface of minimal surface area that matches the boundary conditions along the wire. This idea holds for harmonic functions of any dimension. We'll call it the *minimum energy principle*. A harmonic function is the function of minimum potential energy that matches the boundary conditions.
+Harmonic functions also satisfy another interesting property. Imagine we took a curved wire and dipped it in soap film. When we pull the wire out, we'll see a surface of soap film adhering to the wire. The function describing that surface turns out to be a 2-dimensional harmonic function. In fact, it's the surface of *minimal surface area* that matches the boundary conditions along the wire. This basic idea holds for harmonic functions of any dimension. We'll call it the *minimum energy principle*. A harmonic function is the function of minimum potential energy that matches the boundary conditions.
 
-We can state this property more formally using the calculus of variations. A harmonic function is the scalar field $\phi(\mathbf{x})$ that minimizes the electrostatic field energy functional $\mathcal{U}$ in $\mathcal{V}$ while also satisfying the appropriate boundary conditions on $\mathcal{S}$,
+We can state this property formally using the calculus of variations. Any harmonic function is a scalar field $\phi(\mathbf{x})$ that minimizes the electrostatic field energy functional $\mathcal{U}[\phi]$ in $\mathcal{V}$ subject to appropriate boundary conditions on the boundary surface $\mathcal{S}$,
 $$
 \mathcal{U}[\phi] = \frac{1}{8\pi} \int_\mathcal{V} d^3 \mathbf{x} \ |\nabla \phi(\mathbf{x})|^2 \ .
 $$
-This can be verified using the principle of least action for classical fields, which we covered in the classical mechanics course. Briefly, assuming we can write the action $S$ as the space-time integral of a Lagrangian density $\mathcal{L}$,
+This can be verified using the principle of least action for classical fields, which we covered in the classical mechanics course. Briefly, assuming we can write the action $S[\phi]$ as the space-time integral of a Lagrangian density $\mathcal{L}$,
 $$
 S[\phi] = \int dt \ d^3\mathbf{x} \ \mathcal{L}(\phi, \nabla \phi, \partial_t \phi) \ ,
 $$
