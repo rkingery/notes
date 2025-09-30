@@ -32,11 +32,11 @@ We will now briefly analyze some of the other properties of harmonic functions, 
 
 ### Basic Properties
 
-Harmonic functions are in one sense are generalizations of 1-dimensional *affine functions* to non-planar surfaces. An affine function in one dimension is a function of the form $f(x) = a x + b$. Geometrically, affine functions represent lines in the plane with slope $a$ and intercept $b$. It's easy to see that affine functions trivially satisfy the following three properties:
-
-- *Maximum Principle*: The maximum of $f(x)$ inside any closed interval will always occur at one of the endpoints of the interval. When $a < 0$ the maximum will occur at the left endpoint, and when $a > 0$ it will occur at the right endpoint. The minimum will similarly occur at the opposite endpoint. In the special case where $a = 0$, all points in the closed interval are both maxima and minima, including the endpoints.
+Harmonic functions in one sense are generalizations of 1-dimensional *affine functions* to non-planar surfaces. An affine function in one dimension is a function of the form $f(x) = a x + b$. Geometrically, affine functions represent lines in the plane with slope $a$ and intercept $b$. It's easy to see that affine functions trivially satisfy the following three properties:
 
 - *Liouville Property*: The only *bounded* affine function on the entire real line is the constant function $f(x) = b$. If $a \neq 0$, an affine function will always be unbounded in both directions, meaning $|f(x)| \to \infty$ as $|x| \to \infty$.
+
+- *Maximum Principle*: The maximum of $f(x)$ inside any closed interval will always occur at one of the endpoints of the interval. When $a < 0$ the maximum will occur at the left endpoint, and when $a > 0$ it will occur at the right endpoint. The minimum will similarly occur at the opposite endpoint. In the special case where $a = 0$, all points in the closed interval are both maxima and minima, including the endpoints.
 
 - *Mean Value Property*: At any point $x$, the value of $f(x)$ at that point is the average of the value of the endpoints of any closed interval centered at $x$. That is, for any radius $R \geq 0$ we have
   $$
@@ -45,9 +45,9 @@ Harmonic functions are in one sense are generalizations of 1-dimensional *affine
 
 Harmonic functions are a generalization of affine functions in the sense that they inherit these three properties when generalized beyond the plane. We'll focus on the 3-dimensional generalization. Suppose $\phi(\mathbf{x})$ is harmonic inside some region $\mathcal{V}$, where $\mathcal{V}$ is bounded by some closed surface $\mathcal{S}$. Then $\phi(\mathbf{x})$ must satisfy the following properties:
 
-- *Maximum Principle*: The maximum (and minimum) of a harmonic function will always occur on the boundary surface. That is, the maximum (and minimum) of $\phi(\mathbf{x})$ must always occur on $\mathcal{S}$, and never in $\mathcal{V}$. Only when $\phi(\mathbf{x})$ is constant will the maximum (or minimum) occur inside the region $\mathcal{V}$, in which case it will trivially occur at every point inside $\mathcal{V}$ and on $\mathcal{S}$.
-
 - *Liouville Property*: The only bounded harmonic functions over all space are constant functions $\phi(\mathbf{x}) = c$. Any non-constant harmonic function must thus be unbounded, meaning for some $\mathbf{x}$ we must have $|\phi(\mathbf{x})| \to \infty$ as $|\mathbf{x}| \to \infty$.
+
+- *Maximum Principle*: The maximum (and minimum) of a harmonic function will always occur on the boundary surface. That is, the maximum (and minimum) of $\phi(\mathbf{x})$ must always occur on $\mathcal{S}$, and never in $\mathcal{V}$. Only when $\phi(\mathbf{x})$ is constant will the maximum (or minimum) occur inside the region $\mathcal{V}$, in which case it will trivially occur at every point inside $\mathcal{V}$ and on $\mathcal{S}$.
 
 - *Mean Value Property*: At any point $\mathbf{x}$ inside $\mathcal{V}$, the value of $\phi(\mathbf{x})$ at that point will always be the average value of $\phi(\mathbf{x})$ along any spherical surface centered at $\mathbf{x}$. That is, for any sphere of radius $R$ centered at $\mathbf{x}$, $\phi(\mathbf{x})$ must satisfy
   $$
@@ -62,21 +62,25 @@ To see why this is true, recall from classical mechanics that a force has a stab
 
 ### Minimum Energy Principle
 
-Harmonic functions also satisfy another interesting property. Imagine we took a curved wire and dipped it in soap film. When we pull the wire out, we'll see a surface of soap film adhering to the wire. The function describing that surface turns out to be a 2-dimensional harmonic function. In fact, it's the surface of *minimal surface area* that matches the boundary conditions along the wire. This basic idea holds for harmonic functions of any dimension. We'll call it the *minimum energy principle*. A harmonic function is the function of minimum potential energy that matches the boundary conditions.
+Harmonic functions also satisfy another interesting property. Imagine we took a wire of arbitrary shape and dipped it in soap film. When we pull the wire out, we'll see a surface of soap film adhering to the wire. The function describing that surface turns out to be a 2-dimensional harmonic function. In fact, it's the surface of *minimal surface area* that satisfies the boundary conditions along the wire. This basic idea holds for harmonic functions of any dimension. We'll call it the *minimum energy principle*. A harmonic function is the function of *minimum potential energy* that satisfies the appropriate boundary conditions.
 
-We can state this property formally using the calculus of variations. Any harmonic function is a scalar field $\phi(\mathbf{x})$ that minimizes the electrostatic field energy functional $\mathcal{U}[\phi]$ in $\mathcal{V}$ subject to appropriate boundary conditions on the boundary surface $\mathcal{S}$,
+We can state this property formally using the calculus of variations. Any harmonic function is a scalar field $\phi(\mathbf{x})$ that minimizes the electrostatic field energy functional $\mathcal{U}[\phi]$ in $\mathcal{V}$ subject to appropriate boundary conditions on the boundary surface,
 $$
 \mathcal{U}[\phi] = \frac{1}{8\pi} \int_\mathcal{V} d^3 \mathbf{x} \ |\nabla \phi(\mathbf{x})|^2 \ .
 $$
-This can be verified using the principle of least action for classical fields, which we covered in the classical mechanics course. Briefly, assuming we can write the action $S[\phi]$ as the space-time integral of a Lagrangian density $\mathcal{L}$,
+To verify this property we need to recall from classical mechanics the principle of least action for classical fields. Suppose we have some scalar field $\phi(\mathbf{x},t)$ whose behavior can be described by a *Lagrangian density* $\mathcal{L}$, where
 $$
-S[\phi] = \int dt \ d^3\mathbf{x} \ \mathcal{L}(\phi, \nabla \phi, \partial_t \phi) \ ,
+\mathcal{L} = \mathcal{L}(\phi, \nabla \phi, \partial_t \phi)
 $$
-the stationary solution can be found by solving the field Euler-Lagrange equation for the scalar field $\phi$,
+is assumed to depend only on the field itself, its gradient, and its partial time derivative. Integrating the Lagrangian density over all space and time gives the *action*, a functional of the field that depends on the field only through the Lagrangian density,
+$$
+S[\phi] = \int dt \ d^3\mathbf{x} \ \mathcal{L}(\phi, \nabla \phi, \partial_t \phi) \ .
+$$
+By the principal of least action for fields, the correct field solution is obtained by extremizing the action functional among all choices of $\phi(\mathbf{x},t)$ satisfying the appropriate boundary conditions. One can show that the stationary field solution is the one obtained from solving the field Euler-Lagrange equation,
 $$
 \frac{\partial \mathcal{L}}{\partial \phi} = \partial_i \frac{\partial \mathcal{L}}{\partial (\partial_i \phi)} - \partial_t \frac{\partial \mathcal{L}}{\partial (\partial_t \phi)} \ .
 $$
-In our case, the field action is just the field potential energy $\mathcal{U}$, and the Lagrangian density is
+In our case, the action we want to extremize is just the field potential energy $\mathcal{U}[\phi]$, which means the Lagrangian density is
 $$
 \mathcal{L} = \frac{1}{8\pi} |\nabla \phi|^2 = \frac{1}{8\pi} \partial_j \phi \partial_j \phi \ .
 $$
@@ -86,13 +90,42 @@ $$
 $$
 We've thus shown that the stationary solution to this energy functional is indeed just Laplace's equation $\nabla^2 \phi(\mathbf{x}) = 0$. In fact, it's not just the stationary solution, but the *minimum* solution. This follows simply from the fact that $\mathcal{L}$ is a convex function of $\phi$, which means any stationary solution must automatically be the global minimum solution.
 
-In intuitive terms, the minimum energy property says the following: Suppose we have some conducting boundary, and we're interested in the potential that fits the boundary conditions on the conductor while also minimizing the energy. The minimum energy principle says that the potential that satisfies this property will always be the potential for a BVP free of any other charges. Adding charges can only act to increase the electrostatic energy, never decrease it.
+In electrostatics language the minimum energy property says the following: Suppose we have some conducting boundary and we're interested in finding the potential of *least field energy* that satisfies the appropriate boundary conditions on the surface of the conductor. By the minimum energy principle, this potential will always be whatever harmonic function matches the boundary conditions. This means adding new charges inside the region can only ever *increase* the field energy, never decrease it, since this would result in a potential that isn't harmonic.
 
-- Clarify Earnshaw proof further. Feel like I'm missing a subtle point (e.g. stability, relation between potential and force).
-- Mention the analytic property of harmonic functions (from the next chapter).
+### Analytic Property
+
+Harmonic functions have another interesting and powerful property that we'll call the *analytic property*. Just as harmonic functions can be thought of as generalizations of affine functions, they can also be thought of as a generalization of complex analytic functions. It'll be particularly useful in this discussion to focus on 2-dimensional harmonic functions, in part because as we'll see later the analytic property will yield a powerful way to solve 2-dimensional Laplace BVPs known as *conformal mapping*.
+
+Recall from the appendix that 2-dimensional harmonic functions are closely related to complex analytic functions. First, recall that any complex-valued function $f(z)$ of a complex variable $z= x + iy$ can always be decomposed into the form
+$$
+f(z) = u(x,y) + i v(x,y) \ ,
+$$
+where $u(x, y)$ and $v(x, y)$ are both bivariate real-valued functions. We say such a complex function is *analytic* provided $f(z)$ is differentiable with respect to $z$ in some open region $\mathcal{R}$ of the complex plane. Recall this is equivalent to requiring that the functions $u(x,y)$ and $v(x,y)$ satisfy the *Cauchy-Riemann equations* inside $\mathcal{R}$,
+$$
+\frac{\partial u}{\partial x} = \frac{\partial v}{\partial y} \quad , \quad
+\frac{\partial u}{\partial y} = -\frac{\partial v}{\partial x} \ .
+$$
+By differentiating these equations a second time with respect to $x$ and $y$, interchanging derivatives, and substituting one equation into the other, we can immediately conclude that both $u(x,y)$ and $v(x,y)$ must each be harmonic in the same region $\mathcal{R}$ of the 2-dimensional real plane. That is, they each must separately satisfy the 2-dimensional Laplace's equation inside $\mathcal{R}$,
+$$
+\frac{\partial^2 u}{\partial x^2} + \frac{\partial^2 u}{\partial y^2} = 0 \quad , \quad \frac{\partial^2 v}{\partial x^2} + \frac{\partial^2 v}{\partial y^2} = 0 \ .
+$$
+In fact, *any* 2-dimensional harmonic function *must* be the real (or imaginary) part of *some* analytic function. Moreover, given one harmonic function $u(x,y)$, we can always find its *harmonic conjugate* $v(x,y)$ that reconstructs $f(z)$. Indeed, by integrating the Cauchy-Riemann equations, it's not hard to show that
+$$
+v(x,y) = -\int dx \ \frac{\partial u}{\partial y} + \int dy \ \frac{\partial u}{\partial x} \ .
+$$
+This means that analytic functions and 2-dimensional harmonic functions are in some sense isomorphic. They're basically the same thing for all practical purposes, since we can always obtain one if we know the other. In particular, this means we can leverage the powerful tools of complex analysis to solve many interesting 2-dimensional Laplace BVPs.
+
+Suppose we have some 2-dimensional potential $\phi(x, y)$ that's known to be harmonic inside some region $\mathcal{R}$ while satisfying appropriate boundary conditions on the region's boundary curve $\mathcal{C}$. We can use this potential to define an analytic function
+$$
+F(z) = \phi(x,y) + i \psi(x,y) \ .
+$$
+Here, the analytic function $F(z)$ is called the *complex potential*, and the harmonic conjugate $\psi(x,y)$ is called the *stream function*. By the integral relation above, the stream function is completely determined by the potential, up to an additive constant.
+
+
+
+- Finish carrying over the complex methods info from the multipole expansion chapter.
+
 - Shorten SoV section with fewer examples and add conformal mapping section after.
-
-
 
 ## Separation of Variables
 
