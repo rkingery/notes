@@ -12,12 +12,12 @@ To deal with these more general kinds of vectors, we assume they live in special
 
 We'll define the postulates of quantum mechanics in a later chapter, so for now we'll assume only a few things for mathematical purposes. First, we'll assume that quantum mechanical states, whatever these are, correspond to vectors that live in some Hilbert space, denoted $\mathcal{H}$. In Dirac notation, we denote state vectors by the symbol $\ket{v}$, called a *ket* vector. To be explicit that a state vector $\ket{v}$ belongs to a specific Hilbert space $\mathscr{H}$, we'll use the notation $\ket{v} \in \mathscr{H}$, which you can read as "$\ket{v}$ is in $\mathscr{H}$".
 
-We require that a Hilbert space satisfy all the properties of a mathematical vector space. It must contain a zero vector $\ket{0}$, we should be able to add and subtract vectors, we should be able to multiply them by scalars, etc. We can summarize these requirements by requiring that $\mathscr{H}$ contain a zero vector $\ket{0}$ and be closed under linear superposition. For any two state vectors $\ket{v} \in \mathscr{H}$ and $\ket{u} \in \mathscr{H}$, and any two complex scalars $\alpha$ and $\beta$, we require that the linear superposition $\alpha \ket{u} + \beta \ket{v}$ be in $\mathscr{H}$.
+We require that a Hilbert space satisfy all the properties of a mathematical vector space. It must contain a zero vector, we should be able to add and subtract vectors, we should be able to multiply them by scalars, etc. We can summarize these requirements by requiring that $\mathscr{H}$ contain a zero vector and be closed under linear superposition. For any two state vectors $\ket{v} \in \mathscr{H}$ and $\ket{u} \in \mathscr{H}$, and any two complex scalars $\alpha$ and $\beta$, we require that the linear superposition $\alpha \ket{u} + \beta \ket{v}$ be in $\mathscr{H}$.
 
 Next, we require that the Hilbert space be endowed with an inner product. That is, $\mathscr{H}$ is not just a vector space, but a vector space that comes with a special function attached to it called an *inner product* that maps pairs of state vectors to a complex number. Formally, an inner product is a function attached to $\mathscr{H}$ that maps any two state vectors $\ket{u}, \ket{v} \in \mathscr{H}$ to a special complex number $\ip{u}{v}$, which you can read as "$u$ bracket $v$", respecting the following properties:
 
-- Positive Definite: For any state vector $\ket{v} \in \mathscr{H}$, $\ip{v}{v} \geq 0$. Moreover, $\ip{v}{v} = 0$ only when $\ket{v} = \ket{0}$.
-- Skew Symmetry: For any two state vectors $\ket{u}, \ket{v} \in \mathscr{H}$, $\ip{u}{v} = \ip{v}{u}^*$.
+- Positive Definite: For any state vector $\ket{v} \in \mathscr{H}$, $\ip{v}{v} \geq 0$. Moreover, $\ip{v}{v} = 0$ only when $\ket{v} = 0$.
+- Anti-Symmetry: For any two state vectors $\ket{u}, \ket{v} \in \mathscr{H}$, $\ip{u}{v} = \ip{v}{u}^*$.
 
 - Linearity: For any three state vectors  $\ket{u}, \ket{v}, \ket{w} \in \mathscr{H}$, and any two complex numbers $\alpha$ and $\beta$,
 
@@ -25,11 +25,11 @@ $$
 \ip{u}{\alpha v + \beta w} = \alpha \ip{u}{v} + \beta \ip{u}{w} \ .
 $$
 
-The positive definite property says that the inner product of a vector with itself should always be non-negative. The skew symmetry property says that if we reverse the order of the inner product then we have to complex conjugate it. The linearity property says that the inner product is linear over vectors and scalars, except with one caveat: Due to skew symmetry, if we reverse the order then we have to complex conjugate the scalars $\alpha$ and $\beta$ when we pull them out of the inner product,
+The positive definite property says that the inner product of a vector with itself should always be non-negative. The anti-symmetry property says that if we reverse the order of the inner product then we have to complex conjugate it. The linearity property says that the inner product is linear over vectors and scalars, except with one caveat: Due to anti-symmetry, if we reverse the order then we have to complex conjugate the scalars $\alpha$ and $\beta$ when we pull them out of the inner product,
 $$
 \ip{\alpha v + \beta w}{u} = \alpha^* \ip{v}{u} + \beta^* \ip{w}{u} \ .
 $$
-Though it's perhaps not obvious, these are exactly the properties we need to define the usual inner products we're used to. The positive definite property is what allows us to define a notion of vector norm or length. The linearity property is what gives us the usual linearity property that inner products satisfy. The skew symmetry property is a quirk of dealing with complex-valued vectors, where we have to multiply complex numbers by their complex conjugates to get real numbers.
+Though it's perhaps not obvious, these are exactly the properties we need to define the usual inner products we're used to. The positive definite property is what allows us to define a notion of vector norm or length. The linearity property is what gives us the usual linearity property that inner products satisfy. The anti-symmetry property is a quirk of dealing with complex-valued vectors, where we have to multiply complex numbers by their complex conjugates to get real numbers.
 
 From the inner product, we define the norm of a state vector in the usual way. Given a vector $\ket{v} \in \mathscr{H}$, its *norm* is defined as
 $$
@@ -158,7 +158,7 @@ Dual vectors obey the same linear superposition property that state vectors do: 
 
 In Dirac notation, we call these dual vectors *bra* vectors, and always use the symbol $\bra{u}$ for these dual vectors. Indeed, this is why we denote the inner product as $\ip{u}{v}$ in Dirac notation, and why we call it a *bra-ket* or bracket. Notationally, $\ip{u}{v}$ is literally the application of the *bra* vector $\bra{u}$ on the *ket* vector $\ket{v}$ to produce the *bra-ket* $\bra{u}(\ket{v}) = \ip{u}{v}$. This is one reason Dirac notation is so intuitive and powerful once you get used to it. Going forward we'll use the terms *ket* and *ket vector* interchangeably with *state vector*, and the terms *bra* and *bra vector* interchangeably with *dual vector*.
 
-We can always convert state vectors into dual vectors and vice versa, but when doing so we must respect the skew symmetry property: Anytime we convert a linear superposition $\alpha \ket{u} + \beta \ket{v}$ into a dual vector or vice versa, we must be sure to complex conjugate all the scalar factors,
+We can always convert state vectors into dual vectors and vice versa, but when doing so we must respect the anti-symmetry property: Anytime we convert a linear superposition $\alpha \ket{u} + \beta \ket{v}$ into a dual vector or vice versa, we must be sure to complex conjugate all the scalar factors,
 $$
 \alpha \ket{u} + \beta \ket{v} \quad \leftrightarrow \quad \alpha^* \bra{u} + \beta^* \bra{v} \ .
 $$
@@ -175,21 +175,13 @@ An *operator* is a function $\mathcal{O}$ that maps state vectors in the Hilbert
 $$
 \mathcal{O}: \mathscr{H} \to \mathscr{H} \quad , \quad \ket{w} = \mathcal{O} \ket{v} \ .
 $$
-The most important class of operators to us is the linear operator. A *linear operator* is an operator $\mathcal{L}: \mathscr{H} \to \mathscr{H}$ that satisfies the property of *linearity*. That is, for any two state vectors $\ket{u}, \ket{v} \in \mathscr{H}$ and any two complex numbers $\alpha, \beta$, the linear operator must satisfy the linearity property
+*Note*: A common convention in lower-level quantum mechanics texts is to always write operators using hats. For example, they'd typically write an operator $\mathcal{O}$ as $\mathcal{\hat O}$. They prefer this convention to avoid confusing operators with their eigenvalues, which they often like using the same letter for. I find this notation cumbersome and will largely avoid it. When confusion arises in these notes as to whether a given symbol represents an operator or its eigenvalues I'll make it clear which I'm referring to.
+
+The most important class of operators to us are linear operators. A *linear operator* is an operator $\mathcal{L}: \mathscr{H} \to \mathscr{H}$ that satisfies the property of *linearity*. That is, for any two state vectors $\ket{u}, \ket{v} \in \mathscr{H}$ and any two complex numbers $\alpha$ and $\beta$, a linear operator $\mathcal{L}$ must satisfy the property
 $$
 \mathcal{L} (\alpha \ket{u} + \beta \ket{v}) = \alpha \mathcal{L} \ket{u} + \beta \mathcal{L} \ket{v} \ .
 $$
-In other words, a linear operator is an operator that distributes over sums and scalars can be factored out from. This, of course, is exactly the fundamental property that matrices must satisfy as well. Indeed, linear operators are essentially matrices, as we'll show when we discuss representations.
-
-Since linear operators are essentially matrices, they possess the usual algebraic properties of matrices. We can linearly superpose them, and we can multiply them together to get new linear operators. If $\mathcal{L}$ and $\mathcal{K}$ are two linear operators acting on $\mathscr{H}$, we can get a new linear operator $\mathcal{M}: \mathscr{H} \to \mathscr{H}$ by taking any linear superposition of them,
-$$
-\mathcal{M} = \alpha \mathcal{L} + \beta \mathcal{K} \ .
-$$
-We can also define a notion of multiplication for linear operators by composing them as functions. For example, the operator product $\mathcal{K} \mathcal{L}$ is defined by first applying $\mathcal{L}$ to some ket $\ket{v}$, and then applying $\mathcal{K}$ to the intermediate ket $\ket{w} = \mathcal{L} \ket{v}$,
-$$
-\mathcal{K} \mathcal{L} \ket{v} \equiv \mathcal{K} \big(\mathcal{L} \ket{v} \big) = \mathcal{K} \ket{w} \ .
-$$
-Since both operators act on the same Hilbert space with the same dimension, the operator product will always exist, similar to how we can always multiply together two square matrices.
+In other words, a linear operator is an operator that distributes over sums and scalars can be factored out from. This is exactly the fundamental property that matrices must satisfy as well. Indeed, linear operators are in a certain sense matrices, as we'll show when we discuss representations shortly.
 
 ### Identity and Projection Operators
 
@@ -342,11 +334,165 @@ $$
 $$
 Expanding linear operators as a basis expansion in terms of its matrix elements like this will often be useful to us.
 
-### Adjoint and Inverse Operators
+##### Example: Pauli Operators
 
-We can use matrix representations to extend the important notions of matrix adjoints and inverses to linear operators. Suppose a linear operator $\mathcal{L}: \mathcal{H} \to \mathcal{H}$ has a matrix representation $L_{ij} = \bra{e_i} \mathcal{L} \ket{e_j}$ in some orthonormal basis $\{\ket{e_i}\}$.
+In quantum mechanics, spin-half states are represented as state vectors in the Hilbert space $\mathbb{C}^2$. Conventionally, the standard basis when dealing with spins is written $\{\ket{+}, \ket{-}\}$, where the $\ket{+}$ state represents spin up along the $z$-direction and $\ket{-}$ represents spin down along the $z$-direction. This basis is orthonormal, so $\ip{+}{+} = \ip{-}{-} = 1$ and $\ip{+}{-} = 0$.
 
-We define the *adjoint* of $\mathcal{L}$ as the unique operator $\mathcal{L}^\dagger$ satisfying the following relation between any two vectors $\ket{u}$ and $\ket{v}$,
+From these basis vectors we can define the following three useful operators, known as the *Pauli operators*,
+$$
+\begin{align*}
+\sigma_x &= \op{+}{-} \ + \ \op{-}{+} \ , \\
+\sigma_y &= -i\op{+}{-} \ + \ i \op{-}{+} \ ,\\
+\sigma_z &= \op{+}{+} \ - \ \op{-}{-} \ .
+\end{align*}
+$$
+We'd like a matrix representation for the Pauli operators in terms of this $z$-basis. By convention, we'll assume $\ket{+}$ is represented by the column vector $(1 \ 0)^T$ and $\ket{-}$ is represented by the column vector $(0 \ 1)^T$. In this basis, each $\sigma_i$ has the representation
+$$
+\sigma_i \doteq \begin{pmatrix}
+\bra{+} \sigma_i \ket{+} & \bra{+} \sigma_i \ket{-} \\
+\bra{-} \sigma_i \ket{+} & \bra{-} \sigma_i \ket{-}
+\end{pmatrix} \ .
+$$
+The matrix elements are easy enough to calculate through direct algebra. In the end, we get
+$$
+\sigma_x \doteq \begin{pmatrix}
+0 & 1 \\
+1 & 0
+\end{pmatrix} \ , \ 
+\sigma_y \doteq \begin{pmatrix}
+0 & -i \\
+i & 0
+\end{pmatrix} \ , \ 
+\sigma_z \doteq \begin{pmatrix}
+1 & 0 \\
+0 & -1
+\end{pmatrix} \ .
+$$
+These are known as the *Pauli matrices*. The Pauli operators have some interesting properties. For example, they're Hermitian, unitary, and traceless. They're fundamental to the theory of spin-half particles, which we'll explore in a later chapter.
+
+### Operator Algebra
+
+We know from linear algebra that matrices have certain algebraic properties. We can linearly superpose two matrices. We can define a notion of matrix multiplication, which is associative but not commutative. We can take transpose matrices or take their adjoint. And so on. Linear operators share these algebraic operations as well.
+
+Just like matrices, linear operators obey the principle of superposition. That is, we can always linearly superpose two linear operators to get a new linear operator. If $\mathcal{L}$ and $\mathcal{K}$ are two linear operators acting on $\mathscr{H}$, we can get a new linear operator $\mathcal{M}: \mathscr{H} \to \mathscr{H}$ by taking any linear superposition of them,
+$$
+\mathcal{M} = \alpha \mathcal{L} + \beta \mathcal{K} \ .
+$$
+Linear operators also have the same notion of multiplication as matrices. We can define the product between two linear operators via function composition on a vector. If $\mathcal{L}$ and $\mathcal{K}$ are two linear operators, we can define their product $\mathcal{L} \mathcal{K}$ by first applying $\mathcal{K}$ to some $\ket{v}$, and then applying $\mathcal{L}$ to the intermediate vector $\mathcal{K} \ket{v}$,
+$$
+\mathcal{L} \mathcal{K} \ket{v} \equiv \mathcal{L} \big(\mathcal{K} \ket{v} \big) \ .
+$$
+To see that operator multiplication reduces to matrix multiplication when we represent the operators in some basis, suppose $\{\ket{e_i}\}$ is some basis. The matrix elements of $\mathcal{L} \mathcal{K}$ are of course just $\bra{e_i} \mathcal{L}\mathcal{K} \ket{e_j}$. Now, we can use the resolution of the identity to write $\mathcal{L} \mathcal{K} = \mathcal{L} \mathbb{1} \mathcal{K}$, and then expand $\mathbb{1}$ in the same basis to get
+$$
+\bra{e_i} \mathcal{L}\mathcal{K} \ket{e_j} = \bra{e_i} \mathcal{L} \left(\sum_k \op{e_k}{e_k} \right)\mathcal{K} \ket{e_j} = \sum_k \bra{e_i} \mathcal{L} \ket{e_k} \bra{e_k} \mathcal{K} \ket{e_j} \ .
+$$
+This is just matrix multiplication written in Dirac notation. On the left we have the matrix element $(LK)_{ij}$, and on the write we have the product of the two matrix elements $L_{ik}$ and $K_{kj}$, meaning we have the usual matrix multiplication rule
+$$
+(LK)_{ij} = \sum_k L_{ik} K_{kj} \ .
+$$
+Just like matrix multiplication, operator multiplication is associative but *non-commutative*. By associative, we mean that for any three operators we can group their products however we like,
+$$
+(\mathcal{L} \mathcal{K}) \mathcal{M} = \mathcal{L} (\mathcal{K} \mathcal{M}) \ ,
+$$
+By non-commutative, we mean that operator multiplication is not commutative, meaning we can't swap the order of a matrix product and get the same result,
+$$
+\mathcal{L} \mathcal{K} \neq \mathcal{K} \mathcal{L} \ .
+$$
+When it *is* true that $\mathcal{L} \mathcal{K} = \mathcal{K} \mathcal{L}$, which usually won't be the case, we say the operators $\mathcal{L}$ and $\mathcal{K}$ *commute*. For operators that don't commute, we can describe how much they don't commute by defining a new operator called the *commutator*,
+$$
+[\mathcal{L}, \mathcal{K}] \equiv \mathcal{L} \mathcal{K} - \mathcal{K} \mathcal{L} \ .
+$$
+Clearly, if $\mathcal{L}$ and $\mathcal{K}$ commute then their commutator must be zero, $[\mathcal{L}, \mathcal{K}] = 0$. As a simple example of two operators that do commute, note that $[\mathcal{L},\mathcal{L}] = 0$ for any $\mathcal{L}$, so an operator will always commute with itself.
+
+In the general non-commutative case, we'd instead have
+$$
+\mathcal{L} \mathcal{K} = \mathcal{K} \mathcal{L} + [\mathcal{L}, \mathcal{K}] \ .
+$$
+The commutator turns out to be very important to quantum mechanics since we can use it's essentially the math behind the Heisenberg uncertainty principle. If two observables don't commute, then we can't simultaneously measure both observables exactly. For example, the position and momentum operators don't commute, which means it's impossible to simultaneously measure both the position and momentum of a particle and quantum mechanics. The more precise we measure the particle's position, the less precisely we can measure its momentum, and vice versa. More on this in a later chapter.
+
+The commutator obeys several useful properties that are worth remembering, all of which are easy to prove:
+
+- Linearity: $[\mathcal{L}, \alpha \mathcal{K} + \beta \mathcal{M}] = \alpha [\mathcal{L}, \mathcal{K}] + \beta [\mathcal{L},\mathcal{M}]$.
+- Anti-Symmetry: $[\mathcal{L}, \mathcal{K}] = -[\mathcal{K}, \mathcal{L}]$.
+- Product Rule: $[\mathcal{L}, [\mathcal{K}, \mathcal{M}]] = [\mathcal{L}, \mathcal{K}] \mathcal{M} + \mathcal{K} [\mathcal{L}, \mathcal{M}]$.
+- Jacobi Identity: $[\mathcal{L}, [\mathcal{K}, \mathcal{M}]] + [\mathcal{K}, [\mathcal{M}, \mathcal{L}]] + [\mathcal{M}, [\mathcal{L}, \mathcal{K}]] = 0$.
+
+The linearity property just says the commutator can be split up over linear superpositions of operators in either bracket. The anti-symmetry property just says if we swap the order of the commutator we get a minus sign.
+
+The product rule says that the commutator obeys the same kind of product rule that differentials do, e.g. $d(uv) = udv + vdu$. Note that since the commutator is an operator, we have to be careful with the operator ordering on the right-hand side. 
+
+Last, the Jacobi identity says if we cycle the arguments of $[\mathcal{L}, [\mathcal{K}, \mathcal{M}]]$ and sum them together we get zero. We won't use the Jacobi identity much in practice, but the fact that the commutator satisfies this identity is important theoretically, since it implies the commutator forms a *Lie bracket* on the Hilbert space, which means the Hilbert space becomes a *Lie algebra*. Spaces with Lie algebras are interesting because we can define infinitesimal transformations on these spaces. This is very important to the theory of quantum mechanics and symmetries, which we'll discuss in more detail later.
+
+As a final brief mention, we can define a related operator to the commutator called the anti-commutator. The *anti-commutator* between two operators $\mathcal{L}$ and $\mathcal{K}$ is defined by
+$$
+\{\mathcal{L}, \mathcal{K}\} \equiv \mathcal{L} \mathcal{K} + \mathcal{K} \mathcal{L} \ .
+$$
+The anti-commutator respects all the properties of the ordinary commutator except it's symmetric: $\{\mathcal{L}, \mathcal{K}\} = \{\mathcal{K}, \mathcal{L}\}$. The anti-commutator seems like an odd operation to even bother defining since it doesn't seem useful for anything, but as we'll see in later chapters it is indeed important for the theory of fermions. The anti-commutator behaves for fermions analogously to how the ordinary commutator behaves for bosons.
+
+##### Example: Pauli Operator Commutation Relations
+
+Let's calculate the commutator and anti-commutator relations between each pair of Pauli operators defined before. This time, we'll use the Pauli matrix representation we found before since the math is a little easier.
+
+First, since an operator always commutes with itself, we can immediately conclude without any work that
+$$
+[\sigma_x, \sigma_x] = [\sigma_y, \sigma_y] = [\sigma_z, \sigma_z] = 0 \ .
+$$
+Let's now consider the commutator $[\sigma_x, \sigma_y]$. To calculate this, we first need to calculate the products $\sigma_x \sigma_y$ and $\sigma_y \sigma_x$. We could do this directly with the operators, but this time we'll do it using the Pauli matrices this time. We have
+$$
+\begin{align*}
+\sigma_x \sigma_y &\doteq 
+\begin{pmatrix}
+0 & 1 \\
+1 & 0
+\end{pmatrix}
+\begin{pmatrix}
+0 & -i \\
+i & 0
+\end{pmatrix}
+= \begin{pmatrix}
+i & 0 \\
+0 & -i
+\end{pmatrix} \ , \\
+\sigma_x \sigma_y &\doteq 
+\begin{pmatrix}
+0 & -i \\
+i & 0
+\end{pmatrix}
+\begin{pmatrix}
+0 & 1 \\
+1 & 0
+\end{pmatrix}
+= \begin{pmatrix}
+-i & 0 \\
+0 & i
+\end{pmatrix} \ .
+\end{align*}
+$$
+Notice the product $\sigma_x \sigma_y$ is just $i\sigma_z$, and the product $\sigma_y \sigma_x$ is just $-i\sigma_z$. Thus, we have
+$$
+[\sigma_x, \sigma_y] = \sigma_x \sigma_y - \sigma_y \sigma_x = 2i\sigma_z \ .
+$$
+From this result we can use anti-symmetry to immediately conclude its reversed commutator is $[\sigma_y, \sigma_x] = -2i\sigma_z$.
+
+We can proceed through the same process to calculate $[\sigma_y, \sigma_z]$ and $[\sigma_z, \sigma_x]$. In the end, we'd get
+$$
+[\sigma_y, \sigma_z] = 2i\sigma_x \quad , \quad [\sigma_z, \sigma_x] = 2i\sigma_y \ .
+$$
+Notice all these commutation relations just cycle the loop $x \to y \to z$. We can thus combine them together by writing
+$$
+[\sigma_i, \sigma_j] = 2i \varepsilon_{ijk} \sigma_k \ ,
+$$
+where $i=1,2,3$ represents the coordinates $x,y,z$ and $\varepsilon_{ijk}$ is the usual Levi-Civita symbol. Since $\varepsilon_{ijk}$ is zero when any index is repeated, $+1$ under positive permutations of $(i,j,k)$, and $-1$ under negative permutations of $(i,j,k)$, this formula efficiently captures all of the commutation relations we just derived.
+
+It's worth mentioning what the anti-commutator relations for the Pauli operators are as well. We can calculate these the exact same way through the Pauli matrices. In the end, we'd get the similar formula
+$$
+\{\sigma_i, \sigma_j\} = 2\delta_{ij} \mathbb{1} \ .
+$$
+Unlike the commutation relations, the anti-commutation relations are only non-zero when $i=j$, not when $i \neq j$.
+
+### Adjoints and Inverses
+
+We can use matrix representations to extend the important notions of matrix adjoints and inverses to linear operators. Suppose a linear operator $\mathcal{L}: \mathcal{H} \to \mathcal{H}$ has a matrix representation $L_{ij} = \bra{e_i} \mathcal{L} \ket{e_j}$ in some orthonormal basis $\{\ket{e_i}\}$. We define the *adjoint* of $\mathcal{L}$ as the unique operator $\mathcal{L}^\dagger$ satisfying the following relation between any two vectors $\ket{u}$ and $\ket{v}$,
 $$
 \bra{u} \mathcal{L}^\dagger \ket{v} = \bra{v} \mathcal{L} \ket{u} \ .
 $$
@@ -382,12 +528,14 @@ $$
 $$
 That the inverse is unique and two-sided follows from the fact that the inverse of a matrix is unique and two-sided. We'll assume the inverse exists only when its matrix representation exists, i.e. when the determinant of its matrix representation is non-zero.
 
-Finally, both the adjoint and inverse operators inherit the usual property that the adjoint or inverse of a product is equal to the adjoint or inverse of each operator, but in reverse order. That is, for any two operators $\mathcal{L}$ and $\mathcal{K}$ we have
+Finally, the adjoint operator inherits the usual property that the adjoint of a product is equal to the adjoint of each operator, but in reverse order. The same is true for inverses. If, for any two operators $\mathcal{L}$ and $\mathcal{K}$ we have
 $$
 (\mathcal{L} \mathcal{K})^\dagger = \mathcal{K}^\dagger \mathcal{L}^\dagger \quad , \quad (\mathcal{L} \mathcal{K})^{-1} = \mathcal{K}^{-1} \mathcal{L}^{-1} \ .
 $$
 
-### Hermitian and Anti-Hermitian Operators
+This property extends to commutators as well. For example, it's easy to show that $[\mathcal{L}, \mathcal{K}]^\dagger = -[\mathcal{L}^\dagger, \mathcal{K}^\dagger]$.
+
+### Hermitian Operators
 
 We'll now introduce the special class of linear operators known as *Hermitian operators*.  A linear operator $\mathcal{H}: \mathscr{H} \to \mathscr{H}$ is called *Hermitian* or *self-adjoint* if the operator equals its adjoint, i.e.
 $$
@@ -481,15 +629,69 @@ It turns out that any Hermitian operator $\mathcal{H}$ has an associated unitary
 $$
 \mathcal{U} = e^{i\mathcal{H}} = \sum_{n=0}^\infty \frac{(i\mathcal{H})^n}{n!} = \mathbb{1} + i\mathcal{H} - \frac{1}{2} \mathcal{H}^2 + \cdots \ .
 $$
-We often say that Hermitian operators *generate* unitary transformations, in the sense that we can think of any infinitesimal shift $\delta\mathcal{H}$ in $\mathcal{H}$ as generating an infinitesimal transformation $\delta\mathcal{U}$ in $\mathcal{U}$ of the form $\delta\mathcal{U} = \mathbb{1} + i\delta\mathcal{H}$. Of course, for this to make sense the Hermitian operator $\mathcal{H}$ needs to be continuous. We'll revisit this issue later.
+We often say that Hermitian operators *generate* unitary transformations, in the sense that we can think of any infinitesimal shift $\delta\mathcal{H}$ in $\mathcal{H}$ as generating an infinitesimal transformation $\delta\mathcal{U}$ in $\mathcal{U}$ of the form $\delta\mathcal{U} = \mathbb{1} + i\delta\mathcal{H}$. Of course, for this to make sense the Hermitian operator $\mathcal{H}$ needs to be continuous. We'll revisit this topic of *Lie algebras* later when we discuss symmetries.
+
+## Eigenvalues and Eigenvectors
+
+Recall from linear algebra that any square matrix has associated to it *characteristic* directions where acting on any vector in that direction always produces another vector along that same direction. Along these characteristic directions, a square matrix $\mathbf{A}$ can only scale a vector $\mathbf{u}$ along that direction by some complex scalar $\lambda$,
+$$
+\mathbf{A} \mathbf{u} = \lambda \mathbf{u} \ .
+$$
+For a given matrix $\mathbf{A}$, its characteristic directions are called *eigenspaces* of $\mathbf{A}$, the vectors $\mathbf{u}$ along those directions are called the *eigenvectors* of $\mathbf{A}$, and the scale factors $\lambda$ are called the *eigenvalues* of $\mathbf{A}$. These are special properties inherent to the matrix itself. Different matrices will have different eigenspaces, eigenvectors, and eigenvalues.
+
+### Characteristic Equation
+
+Linear operators are just generalized abstractions of matrices, and as such have the same notion of eigenvalues and eigenvectors. Suppose $\mathcal{L}: \mathscr{H} \to \mathscr{H}$ is some linear operator and $\ket{u_\lambda} \in \mathscr{H}$ is some state vector. We say $\ket{u_\lambda}$ an *eigenvector* or *eigenstate* of $\mathcal{L}$ if
+$$
+\mathcal{L} \ket{u_\lambda} = \lambda \ket{u_\lambda}
+$$
+for some non-zero complex number $\lambda$, called the *eigenvalue* of $\mathcal{L}$ associated to the eigenvector $\ket{u_\lambda}$. By convention, we disallow the zero vector from being an eigenvector, since every operator acting on the zero vector returns a zero vector.
+
+Notice that per the definition, if we already know $\ket{u_\lambda}$ is an eigenvector of $\mathcal{L}$ we can always trivially multiply $\ket{u_\lambda}$ by any complex scalar $\alpha$ to get a new eigenvector $\alpha\ket{u_\lambda}$, since
+$$
+A(\alpha\ket{u_\lambda}) = \lambda (\alpha\ket{u_\lambda}) \ .
+$$
+Since we don't care about these trivially different eigenvectors, by convention we assume that eigenvectors are normalized with $\ip{u_\lambda}{u_\lambda} = 1$. Of course, $\alpha = |\alpha| e^{i\varphi}$, and requiring $\ip{u_\lambda}{u_\lambda} = 1$ only forces $|\alpha|=1$. This still  leaves the possibility of multiplying $\ket{u_\lambda}$ by a phase factor $e^{i\varphi}$ to get a "new" eigenvector $e^{i\varphi} \ket{u_\lambda}$. Strictly speaking we should also set $\varphi=0$ to make each eigenvector unique, but in quantum mechanics we typically ignore phase factors like this anyway.
+
+By rewriting the right-hand side of $\mathcal{L} \ket{u_\lambda} = \lambda \ket{u_\lambda}$ as $\lambda \mathbb{1} \ket{u_\lambda}$ and moving everything to the left-hand side, we get
+$$
+(\mathcal{L} - \lambda \mathbb{1}) \ket{u_\lambda} = 0 \ .
+$$
+Mathematically, this says the eigenvector $\ket{u_\lambda}$ lies in the *null space* of the shifted operator $\mathcal{L} - \lambda \mathbb{1}$. A linear operator with a non-zero null space is necessarily not invertible, since there's no way to invert any mapping to the zero vector. This means the shifted operator $\mathcal{L} - \lambda \mathbb{1}$ must then have a vanishing determinant,
+$$
+\boxed{
+\det(\mathcal{L} - \lambda \mathbb{1}) = 0 
+} \ .
+$$
+This formula is called the *characteristic equation*. It provides us with a way to algebraically solve for all the eigenvalues, and indirectly the eigenvectors, associated to a given linear operator. For a $d$-dimensional Hilbert space, the determinant $\det(\mathcal{L} - \lambda \mathbb{1})$ will always be at most a $d$-degree polynomial in powers of $\lambda$, called the *characteristic polynomial*,
+$$
+\det(\mathcal{L} - \lambda \mathbb{1}) = c_0 + c_1 \lambda + c_2 \lambda^2 + \cdots + c_d \lambda^d \ .
+$$
+The coefficients $c_0, c_1, \cdots, c_d$ will in general depend on the operator $\mathcal{L}$. By the fundamental theorem of algebra, we know any $d$-degree polynomial will have exactly $d$ complex roots, which may or may not be unique,
+$$
+(\lambda - \lambda_1)(\lambda - \lambda_2) \cdots (\lambda - \lambda_d) = 0 \ .
+$$
+These $d$ roots $\lambda_1, \lambda_2, \cdots, \lambda_d$ are the eigenvalues of the linear operator $\mathcal{L}$.
 
 
+
+However, it'll always be the case that the highest order coefficients will always be $c_d = (-1)^d$, $c_{d-1} = \tr(\mathcal{L})$, and the constant coefficient will be $c_0 = \det(\mathcal{L})$.
+
+
+
+However, it'll always be the case that $c_d = 1$ and $c_0 = (-1)^d \det(\mathcal{L})$.
+
+The $d$ roots of this *characteristic polynomial* are the $d$ eigenvalues of $\mathcal{L}$,
 $$
 
 $$
+Since the roots of a polynomial can take on any complex value, there's no requirement that the the eigenvalues $\lambda_1, \lambda_2, \cdots, \lambda_d$ be unique. 
 
 
 
+
+
+By enforcing the normalization requirement on eigenvectors, it's clear that any $d$-dimensional Hilbert space can have at most $d$ eigenvectors (up to ignored phase factors), since we can use those $d$ eigenvectors as a basis to span the entire Hilbert space. This does *not* however mean that the set of eigenvectors must form an orthonormal basis. The operator itself has to have a special form for that to be the case, which we'll explore below.
 
 
 
