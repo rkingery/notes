@@ -667,11 +667,64 @@ This formula is called the *characteristic equation*. It provides us with a way 
 $$
 \det(\mathcal{L} - \lambda \mathbb{1}) = c_0 + c_1 \lambda + c_2 \lambda^2 + \cdots + c_d \lambda^d \ .
 $$
-The coefficients $c_0, c_1, \cdots, c_d$ will in general depend on the operator $\mathcal{L}$. By the fundamental theorem of algebra, we know any $d$-degree polynomial will have exactly $d$ complex roots, which may or may not be unique,
+The coefficients $c_0, c_1, \cdots, c_d$ will in general depend on the operator $\mathcal{L}$. By the fundamental theorem of algebra, we know any $d$-degree polynomial will have exactly $d$ complex-valued roots, which may or may not be unique. When factored in this form, the characteristic equation can be written
 $$
-(\lambda - \lambda_1)(\lambda - \lambda_2) \cdots (\lambda - \lambda_d) = 0 \ .
+(\lambda - \lambda_1)(\lambda - \lambda_2) \cdots (\lambda - \lambda_d) = 0 \ ,
 $$
-These $d$ roots $\lambda_1, \lambda_2, \cdots, \lambda_d$ are the eigenvalues of the linear operator $\mathcal{L}$.
+where the $d$ roots $\lambda_1, \lambda_2, \cdots, \lambda_d$ are the eigenvalues of $\mathcal{L}$. If a given root $\lambda_k$ in the characteristic polynomial has multiplicity $k$, meaning one of the factors is repeated $k$ times as $(\lambda - \lambda_k)^k$, we say that eigenvalue is *degenerate* with order $k$. We'll return to the issue of degeneracy in more detail in a moment.
+
+While the value of the coefficients of the characteristic polynomial will depend $\mathcal{L}$, some of them have useful forms worth remembering. To see what they are, let's consider first the trivial case where $d=1$, and $\mathcal{L}$ is represented by the $1 \times 1$ matrix $\mathcal{L} \doteq (a)$. Then $\det(\mathcal{L} - \lambda\mathbb{1}) = a-\lambda$
+
+suppose $d=2$ and $\mathcal{L}$ is represented by the following $2 \times 2$ matrix in some basis,
+$$
+\mathcal{L} \doteq \begin{pmatrix}
+a & b \\
+c & d
+\end{pmatrix} \ .
+$$
+If we worked out the characteristic equation for this matrix explicitly, after grouping terms in powers of $\lambda$ we'd get
+$$
+\det(\mathcal{L} - \lambda \mathbb{1}) 
+= \begin{vmatrix}
+a - \lambda & b \\
+c & d - \lambda
+\end{vmatrix} 
+= (a-\lambda)(d-\lambda) - bc = (ad-bc) - (a+d) \lambda + \lambda^2 \ .
+$$
+We immediately recognize $c_0 = \det(\mathcal{L})$, $c_1 = -\tr(\mathcal{L})$, and $c_2 = 1$. Thus, for any $2 \times 2$ matrix its characteristic equation is
+$$
+\lambda^2 - \tr(\mathcal{L}) \lambda + \det(\mathcal{L}) = 0 \ .
+$$
+Consider now the case where $d=3$. Suppose $\mathcal{L}$ is represented by the following $3 \times 3$ matrix in some basis,
+$$
+\mathcal{L} \doteq \begin{pmatrix}
+a & b & c \\
+d & e & f \\
+g & h & i
+\end{pmatrix} \ .
+$$
+Using the properties of the determinant and again grouping terms in powers of $\lambda$, its characteristic equation then becomes
+$$
+\begin{align*}
+\det(\mathcal{L} - \lambda \mathbb{1}) 
+&= \begin{vmatrix}
+a - \lambda & b & c \\
+d & e - \lambda & f \\
+g & h & i - \lambda
+\end{vmatrix} = (a-\lambda) \begin{vmatrix}
+e - \lambda & f \\
+h & i - \lambda
+\end{vmatrix} - d \begin{vmatrix}
+b & c \\
+h & i - \lambda
+\end{vmatrix} + g \begin{vmatrix}
+b & c \\
+e - \lambda & f
+\end{vmatrix} \\
+&= (aei - afh - bdi + bfg + cdh - ceg) + (bd + cg + fh - ae - ai -ei) \lambda + (a + e + i) \lambda^2 - \lambda^3 \ .
+\end{align*}
+$$
+Notice again that $c_0 = \det(\mathcal{L})$, while order coefficient is now $c_3 = -1$ and the second highest is $c_2 = \tr(\mathcal{L})$.
 
 
 
