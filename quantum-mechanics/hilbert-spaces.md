@@ -8,6 +8,8 @@ The mathematical setting of quantum mechanics is essentially vector spaces. In p
 
 For these reasons, in quantum mechanics we'll want to be more intentionally abstract, and assume vectors can be essentially anything and live in spaces of any dimension. To deal with this fact, quantum mechanics uses a special notation introduced by Paul Dirac, known as *Dirac notation*. This notation makes no assumptions about what kinds of vectors we're dealing with, other than that we have some notion of inner product between vectors. All that's required is states behave abstractly like vectors belonging to some kind of vector space. Dirac notation has become so useful and powerful that it can be thought of as the de facto *language* of quantum mechanics.
 
+### State Vectors
+
 To deal with these more general kinds of vectors, we assume they live in special kind of vector space called a Hilbert space. Mathematically, a *Hilbert space* is a *complete inner product space*. For our purposes, we can think of a Hilbert space as a complex-valued vector space, endowed with an inner product, where every vector in the space has a finite norm. Whether these vectors are 3-dimensional or infinite sequences or continuous functions makes no material difference.
 
 We'll define the postulates of quantum mechanics in a later chapter, so for now we'll assume only a few things for mathematical purposes. First, we'll assume that quantum mechanical states, whatever these are, correspond to vectors that live in some Hilbert space, denoted $\mathcal{H}$. In Dirac notation, we denote state vectors by the symbol $\ket{v}$, called a *ket* vector. To be explicit that a state vector $\ket{v}$ belongs to a specific Hilbert space $\mathscr{H}$, we'll use the notation $\ket{v} \in \mathscr{H}$, which you can read as "$\ket{v}$ is in $\mathscr{H}$".
@@ -160,16 +162,18 @@ In Dirac notation, we call these dual vectors *bra* vectors, and always use the 
 
 We can always convert state vectors into dual vectors and vice versa, but when doing so we must respect the anti-symmetry property: Anytime we convert a linear superposition $\alpha \ket{u} + \beta \ket{v}$ into a dual vector or vice versa, we must be sure to complex conjugate all the scalar factors,
 $$
-\alpha \ket{u} + \beta \ket{v} \quad \leftrightarrow \quad \alpha^* \bra{u} + \beta^* \bra{v} \ .
+\alpha \ket{u} + \beta \ket{v} \quad \leftrightarrow \quad \bra{u} \alpha^* + \bra{v} \beta^* \ .
 $$
 With this caveat, dual vectors inherit all the usual properties that state vectors have. For example, if $\{\ket{e_\alpha}\}$ is a basis for the space of state vectors, then its dual basis $\{\bra{e_\alpha}\}$ is a state vector for the space of dual vectors. The expansion of any dual vector $\bra{v}$ looks the same except the basis components $v_\alpha = \ip{e_\alpha}{v}$ must be complex conjugated,
 $$
-\bra{v} = \sum_\alpha v_\alpha^* \bra{e_\alpha} \ .
+\bra{v} = \sum_\alpha \bra{e_\alpha} v_\alpha^* \ .
 $$
 
 ## Linear Operators
 
 In linear algebra, we know that matrices can act on vectors to produce other vectors. The extension of the notion of a matrix to Hilbert spaces is the *linear operator*. We'll first define the linear operator, introduce a few common operators we'll see a lot of, then show how to represent linear operators as matrices in the next section.
+
+### Definition
 
 An *operator* is a function $\mathcal{O}$ that maps state vectors in the Hilbert space $\mathscr{H}$ to other state vectors in $\mathscr{H}$,
 $$
@@ -633,15 +637,15 @@ We often say that Hermitian operators *generate* unitary transformations, in the
 
 ## Eigenvalues and Eigenvectors
 
-Recall from linear algebra that any square matrix has associated to it *characteristic* directions where acting on any vector in that direction always produces another vector along that same direction. Along these characteristic directions, a square matrix $\mathbf{A}$ can only scale a vector $\mathbf{u}$ along that direction by some complex scalar $\lambda$,
+Recall from linear algebra that any square matrix has associated to it *characteristic* directions that are left invariant when acted on by the matrix. Along these characteristic directions, a square matrix $\mathbf{A}$ can only scale a vector $\mathbf{v}$ along that direction by some complex scalar $\lambda$, not rotate it into a new direction,
 $$
-\mathbf{A} \mathbf{u} = \lambda \mathbf{u} \ .
+\mathbf{A} \mathbf{v} = \lambda \mathbf{v} \ .
 $$
-For a given matrix $\mathbf{A}$, its characteristic directions are called *eigenspaces* of $\mathbf{A}$, the vectors $\mathbf{u}$ along those directions are called the *eigenvectors* of $\mathbf{A}$, and the scale factors $\lambda$ are called the *eigenvalues* of $\mathbf{A}$. These are special properties inherent to the matrix itself. Different matrices will have different eigenspaces, eigenvectors, and eigenvalues.
+For a given matrix $\mathbf{A}$, its characteristic directions are called *eigenspaces* of $\mathbf{A}$, the vectors $\mathbf{v}$ along those directions are called the *eigenvectors* of $\mathbf{A}$, and the scale factors $\lambda$ are called the *eigenvalues* of $\mathbf{A}$. These are special properties inherent to the matrix itself. Different matrices will have different sets of eigenvalues and eigenvectors.
 
-### Characteristic Equation
+### Definition
 
-Linear operators are just generalized abstractions of matrices, and as such have the same notion of eigenvalues and eigenvectors. Suppose $\mathcal{L}: \mathscr{H} \to \mathscr{H}$ is some linear operator and $\ket{u_\lambda} \in \mathscr{H}$ is some state vector. We say $\ket{u_\lambda}$ an *eigenvector* or *eigenstate* of $\mathcal{L}$ if
+Linear operators are essentially generalized matrices, and as such have the same notion of eigenvalues and eigenvectors. Suppose $\mathcal{L}: \mathscr{H} \to \mathscr{H}$ is some linear operator and $\ket{u_\lambda} \in \mathscr{H}$ is some state vector. We say $\ket{u_\lambda}$ an *eigenvector* or *eigenstate* of $\mathcal{L}$ if
 $$
 \mathcal{L} \ket{u_\lambda} = \lambda \ket{u_\lambda}
 $$
@@ -653,36 +657,46 @@ A(\alpha\ket{u_\lambda}) = \lambda (\alpha\ket{u_\lambda}) \ .
 $$
 Since we don't care about these trivially different eigenvectors, by convention we assume that eigenvectors are normalized with $\ip{u_\lambda}{u_\lambda} = 1$. Of course, $\alpha = |\alpha| e^{i\varphi}$, and requiring $\ip{u_\lambda}{u_\lambda} = 1$ only forces $|\alpha|=1$. This still  leaves the possibility of multiplying $\ket{u_\lambda}$ by a phase factor $e^{i\varphi}$ to get a "new" eigenvector $e^{i\varphi} \ket{u_\lambda}$. Strictly speaking we should also set $\varphi=0$ to make each eigenvector unique, but in quantum mechanics we typically ignore phase factors like this anyway.
 
+### Characteristic Equation
+
 By rewriting the right-hand side of $\mathcal{L} \ket{u_\lambda} = \lambda \ket{u_\lambda}$ as $\lambda \mathbb{1} \ket{u_\lambda}$ and moving everything to the left-hand side, we get
 $$
 (\mathcal{L} - \lambda \mathbb{1}) \ket{u_\lambda} = 0 \ .
 $$
-Mathematically, this says the eigenvector $\ket{u_\lambda}$ lies in the *null space* of the shifted operator $\mathcal{L} - \lambda \mathbb{1}$. A linear operator with a non-zero null space is necessarily not invertible, since there's no way to invert any mapping to the zero vector. This means the shifted operator $\mathcal{L} - \lambda \mathbb{1}$ must then have a vanishing determinant,
+Mathematically, this says the eigenvector $\ket{u_\lambda}$ lies in the *null space* of the shifted operator $\mathcal{L} - \lambda \mathbb{1}$. A linear operator with a non-zero null space is necessarily not invertible, since there's no way to invert any mapping to the zero vector. This means the shifted operator $\mathcal{L} - \lambda \mathbb{1}$ when represented as a matrix must always have a vanishing determinant,
 $$
 \boxed{
 \det(\mathcal{L} - \lambda \mathbb{1}) = 0 
 } \ .
 $$
-This formula is called the *characteristic equation*. It provides us with a way to algebraically solve for all the eigenvalues, and indirectly the eigenvectors, associated to a given linear operator. For a $d$-dimensional Hilbert space, the determinant $\det(\mathcal{L} - \lambda \mathbb{1})$ will always be at most a $d$-degree polynomial in powers of $\lambda$, called the *characteristic polynomial*,
+This equation is known as the *characteristic equation*. It provides us with a way to algebraically solve for all the eigenvalues, and indirectly the eigenvectors, associated to a given linear operator. For a $d$-dimensional Hilbert space, the determinant $\det(\mathcal{L} - \lambda \mathbb{1})$ will always be at most a $d$-degree polynomial in powers of $\lambda$, called the *characteristic polynomial*,
 $$
 \det(\mathcal{L} - \lambda \mathbb{1}) = c_0 + c_1 \lambda + c_2 \lambda^2 + \cdots + c_d \lambda^d \ .
 $$
-The coefficients $c_0, c_1, \cdots, c_d$ will in general depend on the operator $\mathcal{L}$. By the fundamental theorem of algebra, we know any $d$-degree polynomial will have exactly $d$ complex-valued roots, which may or may not be unique. When factored in this form, the characteristic equation can be written
+The coefficients $c_0, c_1, \cdots, c_d$ will in general depend on the operator $\mathcal{L}$. By the fundamental theorem of algebra, any $d$-degree polynomial will have exactly $d$ complex-valued roots, which may or may not be real or unique. When factored in this form, the characteristic equation can be written
 $$
 (\lambda - \lambda_1)(\lambda - \lambda_2) \cdots (\lambda - \lambda_d) = 0 \ ,
 $$
-where the $d$ roots $\lambda_1, \lambda_2, \cdots, \lambda_d$ are the eigenvalues of $\mathcal{L}$. If a given root $\lambda_k$ in the characteristic polynomial has multiplicity $k$, meaning one of the factors is repeated $k$ times as $(\lambda - \lambda_k)^k$, we say that eigenvalue is *degenerate* with order $k$. We'll return to the issue of degeneracy in more detail in a moment.
+where the $d$ roots $\lambda_1, \lambda_2, \cdots, \lambda_d$ are the eigenvalues of $\mathcal{L}$. 
 
-While the value of the coefficients of the characteristic polynomial will depend $\mathcal{L}$, some of them have useful forms worth remembering. To see what they are, let's consider first the trivial case where $d=1$, and $\mathcal{L}$ is represented by the $1 \times 1$ matrix $\mathcal{L} \doteq (a)$. Then $\det(\mathcal{L} - \lambda\mathbb{1}) = a-\lambda$
+If a given root $\lambda$ in the characteristic polynomial has multiplicity $k$, meaning one of the factors is repeated $k$ times, we say that eigenvalue is *degenerate* with order $k$. The degenerate eigenvalue $\lambda$ will have associated to it a $k$-dimensional subspace of the Hilbert space, called the *eigenspace* of $\lambda$. Since any vector $\ket{u}$ in this subspace will satisfy $\mathcal{L} \ket{u} = \lambda \ket{u}$, we can choose any $k$ linearly independent vectors we like that span this subspace to be eigenvectors of $\lambda$. We'll return to the issue of degeneracy in more detail in a moment.
 
-suppose $d=2$ and $\mathcal{L}$ is represented by the following $2 \times 2$ matrix in some basis,
+##### Example: Characteristic Equation in Two Dimensions
+
+Suppose we have a Hilbert space of dimension $d=2$, for instance the complex vector space $\mathbb{C}^2$ or the real vector space $\mathbb{R}^2$. Suppose $\mathcal{L}$ is some linear operator on this Hilbert space. Suppose we've fixed some basis to represent $\mathcal{L}$ by the $2 \times 2$ matrix
 $$
 \mathcal{L} \doteq \begin{pmatrix}
 a & b \\
 c & d
-\end{pmatrix} \ .
+\end{pmatrix} \ ,
 $$
-If we worked out the characteristic equation for this matrix explicitly, after grouping terms in powers of $\lambda$ we'd get
+where $\binom{a}{c}$ and $\binom{b}{d}$ are the column vector representations of $\mathcal{L}$ in the chosen basis. Recall the determinant of a $2 \times 2$ matrix with these coefficients is given by $\det(\mathcal{L}) = ad - bc$, and its trace is given by $\tr(\mathcal{L}) = a + d$.
+
+We'd like a simple expression for the characteristic equation of $\mathcal{L}$. To get that, we need to solve
+$$
+\det(\mathcal{L} - \lambda \mathbb{1}) = c_0 + c_1 \lambda + c_2 \lambda^2 = 0 \ ,
+$$
+where $\mathbb{1}$ is represented by the $2 \times 2$ identity matrix. Expanding the left-hand side and grouping terms in powers of $\lambda$, we have
 $$
 \det(\mathcal{L} - \lambda \mathbb{1}) 
 = \begin{vmatrix}
@@ -691,61 +705,113 @@ c & d - \lambda
 \end{vmatrix} 
 = (a-\lambda)(d-\lambda) - bc = (ad-bc) - (a+d) \lambda + \lambda^2 \ .
 $$
-We immediately recognize $c_0 = \det(\mathcal{L})$, $c_1 = -\tr(\mathcal{L})$, and $c_2 = 1$. Thus, for any $2 \times 2$ matrix its characteristic equation is
+Matching coefficients, we immediately recognize
+$$
+c_0 = \det(\mathcal{L}) \quad , \quad c_1 = -\tr(\mathcal{L}) \quad , \quad c_2 = 1 \ .
+$$
+Thus, the $2 \times 2$ matrix representation of $\mathcal{L}$ has a characteristic equation of the form
 $$
 \lambda^2 - \tr(\mathcal{L}) \lambda + \det(\mathcal{L}) = 0 \ .
 $$
-Consider now the case where $d=3$. Suppose $\mathcal{L}$ is represented by the following $3 \times 3$ matrix in some basis,
+This formula is a useful shortcut for quickly finding the eigenvalues of a $2 \times 2$ matrix since it saves us the need to explicitly calculate the determinant $\det(\mathcal{L} - \lambda \mathbb{1})$ every single time.
+
+For example, consider the standard matrix representation of the Pauli operators
 $$
-\mathcal{L} \doteq \begin{pmatrix}
-a & b & c \\
-d & e & f \\
-g & h & i
+\sigma_x \doteq \begin{pmatrix}
+0 & 1 \\
+1 & 0
+\end{pmatrix} \ , \ 
+\sigma_y \doteq \begin{pmatrix}
+0 & -i \\
+i & 0
+\end{pmatrix} \ , \ 
+\sigma_z \doteq \begin{pmatrix}
+1 & 0 \\
+0 & -1
 \end{pmatrix} \ .
 $$
-Using the properties of the determinant and again grouping terms in powers of $\lambda$, its characteristic equation then becomes
+In all three cases we have $\det(\sigma_i) = -1$ and $\tr(\sigma_i) = 0$, so their characteristic equations are all $\lambda^2 - 1 = 0$. Hence the eigenvalues for each of the Paul operators are simply $\lambda = \pm 1$.
+
+One can use the properties of the determinant to show by induction that for any $d \times d$ matrix, its lowest order coefficient will always be $c_0 = \det(\mathcal{L})$, and its highest order coefficients will be $c_{d-1} = (-1)^{d-1} \tr(\mathcal{L})$ and $c_d = (-1)^d$,
 $$
-\begin{align*}
-\det(\mathcal{L} - \lambda \mathbb{1}) 
-&= \begin{vmatrix}
-a - \lambda & b & c \\
-d & e - \lambda & f \\
-g & h & i - \lambda
-\end{vmatrix} = (a-\lambda) \begin{vmatrix}
-e - \lambda & f \\
-h & i - \lambda
-\end{vmatrix} - d \begin{vmatrix}
-b & c \\
-h & i - \lambda
-\end{vmatrix} + g \begin{vmatrix}
-b & c \\
-e - \lambda & f
-\end{vmatrix} \\
-&= (aei - afh - bdi + bfg + cdh - ceg) + (bd + cg + fh - ae - ai -ei) \lambda + (a + e + i) \lambda^2 - \lambda^3 \ .
-\end{align*}
+(-1)^d \lambda^d + (-1)^{d-1} \tr(\mathcal{L}) + \cdots + \det(\mathcal{L}) = 0 \ .
 $$
-Notice again that $c_0 = \det(\mathcal{L})$, while order coefficient is now $c_3 = -1$ and the second highest is $c_2 = \tr(\mathcal{L})$.
+The intermediate coefficients $c_1, c_2, \cdots, c_{d-2}$ are related to the principal minors of the matrix and not as easy to write down.
 
+### Spectral Theorem
 
+By enforcing the normalization requirement on eigenvectors, it's clear that any $d$-dimensional Hilbert space can have at most $d$ eigenvectors (up to ignored phase factors), since we can use those $d$ eigenvectors as a basis to span the entire Hilbert space. This does *not* however mean the set of eigenvectors must form an orthonormal basis. However, if the operator is a *normal operator*, meaning it commutes with its adjoint, we *can* guarantee its $d$ eigenvectors will always form an orthonormal basis. Moreover, if an operator is also Hermitian, its eigenvalues will always be real-valued. This is known as the *spectral theorem*.
 
-However, it'll always be the case that the highest order coefficients will always be $c_d = (-1)^d$, $c_{d-1} = \tr(\mathcal{L})$, and the constant coefficient will be $c_0 = \det(\mathcal{L})$.
-
-
-
-However, it'll always be the case that $c_d = 1$ and $c_0 = (-1)^d \det(\mathcal{L})$.
-
-The $d$ roots of this *characteristic polynomial* are the $d$ eigenvalues of $\mathcal{L}$,
+Before stating the following theorem we need a couple of definitions. First, we say a linear operator $\mathcal{L}: \mathscr{H} \to \mathscr{H}$ is *normal* if the operator commutes with its adjoint, i.e. $[\mathcal{L}, \mathcal{L}^\dagger] = 0$. Normal operators it turns out covers the two classes of operators we care most about in quantum mechanics: Hermitian operators and unitary operators. Hermitian operators are clearly normal since if $\mathcal{L}$ is Hermitian, then $\mathcal{L} = \mathcal{L}^\dagger$, and hence $[\mathcal{L}, \mathcal{L}^\dagger] = [\mathcal{L}, \mathcal{L}] = 0$. Unitary operators are also normal, since if $\mathcal{L}$ is unitary we instead have $\mathcal{L}^\dagger = \mathcal{L}^{-1}$, which means
 $$
-
+[\mathcal{L}, \mathcal{L}^\dagger] = [\mathcal{L}, \mathcal{L}^{-1}] = \mathcal{L} \mathcal{L}^{-1} - \mathcal{L}^{-1} \mathcal{L} = \mathbb{1} - \mathbb{1} = 0 \ .
 $$
-Since the roots of a polynomial can take on any complex value, there's no requirement that the the eigenvalues $\lambda_1, \lambda_2, \cdots, \lambda_d$ be unique. 
+Second, we call the set of eigenvectors of $\mathcal{L}$ the *spectrum* of $\mathcal{L}$. If this set of eigenvectors contains $d$ independent eigenvectors that span the $d$-dimensional Hilbert space, we say the spectrum is a *complete eigenbasis* for the Hilbert space. If the spectrum also happens to be orthonormal, we say it's a *complete orthonormal eigenbasis* for the Hilbert space. We can now state the theorem.
+
+**Theorem:** Suppose $\mathcal{L}: \mathscr{H} \to \mathscr{H}$ is a linear operator acting on a Hilbert space $\mathscr{H}$ of finite dimension $d$. Then $\mathcal{L}$ has a complete orthonormal eigenbasis for $\mathscr{H}$ if and only if $\mathcal{L}$ is a normal operator.
+
+---
+
+*Proof:* Let's prove this important theorem. To do so we need to prove both directions of the "if and only if" condition:
+
+1. If $\mathcal{L}$ has a complete set of orthonormal eigenvectors that form a basis for $\mathscr{H}$, then $\mathcal{L}$ must be a normal operator.
+2. If $\mathcal{L}$ is a normal operator, then it has a complete set of orthonormal eigenvectors that form a basis for $\mathscr{H}$.
+
+Suppose first that $\mathcal{L}$ has a complete set $\{\ket{u_i}\}$ of orthonormal eigenvectors that form a basis for $\mathcal{H}$. Then for any state vector $\ket{v} \in \mathscr{H}$ we can expand this vector in terms of the eigenbasis $\{\ket{u_i}\}$,
+$$
+\ket{v} = \sum_{i=1}^d c_i \ket{u_i} \ ,
+$$
+where $\ip{u_i}{u_j} = \delta_{ij}$. To show this implies $\mathcal{L}$ is normal, we need to show $[\mathcal{L}, \mathcal{L}^\dagger] = 0$, or equivalently that $\mathcal{L} \mathcal{L}^\dagger = \mathcal{L}^\dagger \mathcal{L}$.
+
+Applying $\mathcal{L}$ to $\ket{v}$ and using the fact that each $\ket{u_i}$ is an eigenvector of $\mathcal{L}$ with eigenvalue $\lambda_i$, we have
+$$
+\mathcal{L} \ket{v} = \sum_{i=1}^d c_i \mathcal{L} \ket{u_i} = \sum_{i=1}^d c_i \lambda_i \ket{u_i} \ .
+$$
+By taking the adjoint of both sides, it's also clear that
+$$
+\mathcal{L}^\dagger \ket{v} = \sum_{i=1}^d c_i \mathcal{L}^\dagger \ket{u_i} = \sum_{i=1}^d c_i \lambda_i^* \ket{u_i} \ .
+$$
+Putting these together, we thus have
+$$
+\mathcal{L} \mathcal{L}^\dagger \ket{v} = \sum_{i=1}^d c_i \lambda_i^* \lambda_i \ket{u_i} = \mathcal{L}^\dagger \mathcal{L} \ket{v} \ .
+$$
+Since $\ket{v}$ is arbitrary, this means $\mathcal{L} \mathcal{L}^\dagger = \mathcal{L}^\dagger \mathcal{L}$. That is, $\mathcal{L}$ is a normal operator. This proves the first direction.
+
+Suppose now that $\mathcal{L}$ is a normal operator, so $[\mathcal{L}, \mathcal{L}^\dagger] = 0$. Now we need to show that $\mathcal{L}$ has a complete set of eigenvectors that span the Hilbert space.
 
 
 
+ 
 
 
-By enforcing the normalization requirement on eigenvectors, it's clear that any $d$-dimensional Hilbert space can have at most $d$ eigenvectors (up to ignored phase factors), since we can use those $d$ eigenvectors as a basis to span the entire Hilbert space. This does *not* however mean that the set of eigenvectors must form an orthonormal basis. The operator itself has to have a special form for that to be the case, which we'll explore below.
 
+This proves the theorem. $\square$
+
+---
+
+By extension, anti-Hermitian operators are normal as well, as are all the real-valued counterparts: symmetric, anti-symmetric, and orthogonal operators. Indeed, we'll rarely encounter operators in quantum mechanics that aren't normal. Even in infinite dimensions and function spaces we'll generally assume the operators we study have a complete set of orthonormal eigenvectors, even though rigorously establishing that such sets even exist in these infinite spaces can be quite challenging and subtle.
+
+It turns out that on top of their eigenvectors being orthonormal, Hermitian operators satisfy other useful properties. Their eigenvalues are always real, and their eigenvectors form a complete set, meaning they span the Hilbert space. This extension is known as the *spectral theorem*.
+
+**Spectral Theorem:** Suppose $\mathcal{H}$ is a Hermitian operator acting on some $d$-dimensional Hilbert space. Then
+
+1. The eigenvalues of $\mathcal{H}$ are all real-valued.
+2. The eigenvectors of $\mathcal{H}$ form a *complete set*, meaning they span the Hilbert space.
+3. The eigenvectors of $\mathcal{H}$ are orthonormal, hence also form an orthonormal basis for the Hilbert space.
+
+---
+
+*Proof:* We need only prove the first two statements, since statement three is already implied by the fact $\mathcal{H}$ is normal. To prove the first statement, assume $\ket{u}$ is an eigenvector of $\mathcal{H}$ with eigenvalue $\lambda$. If $\mathcal{H}$ is Hermitian, by definition we must have
+$$
+\bra{u} \mathcal{H} \ket{u} = \bra{u} \left(\mathcal{H} \ket{u}\right) = \left(\bra{u} \mathcal{H}\right) \ket{u} \ .
+$$
+Since $\mathcal{H} \ket{u} = \lambda \ket{u}$ and $\bra{u} \mathcal{H} = \bra{u} \lambda^*$, and since $\ip{u}{u} = 1$ by assumption, we have $\lambda = \lambda^*$. That is, $\lambda$ must be real-valued.
+
+- Either this proof or the previous proof is wrong. Look up what the actual eigenvalue relations are for adjoints/bras…
+
+
+
+---
 
 
 
