@@ -6,17 +6,17 @@ We've seen quantum phenomena involve two fundamental ideas: the superposition of
 
 The mathematical setting of quantum mechanics is essentially vector spaces. In physics, we're used to working in vector spaces like ordinary 3-dimensional real space, or 4-dimensional Minkowski spacetime. Quantum mechanics is fundamentally different though. We could be dealing with finite-dimensional vectors of any dimension, not just two or three or four. We could even be dealing with infinite dimensions of sequences, or even continuous spaces of functions. On top of that, in quantum mechanics we're almost always working in *complex* vector spaces, not the real vector spaces we're used to.
 
-For these reasons, in quantum mechanics we'll want to be more intentionally abstract, and assume vectors can be essentially anything and live in spaces of any dimension. To deal with this fact, quantum mechanics uses a special notation introduced by Paul Dirac, known as *Dirac notation*. This notation makes no assumptions about what kinds of vectors we're dealing with, other than that we have some notion of inner product between vectors. All that's required is states behave abstractly like vectors belonging to some kind of vector space. Dirac notation has become so useful and powerful that it can be thought of as the de facto *language* of quantum mechanics.
+For these reasons, in quantum mechanics we'll want to be more intentionally abstract and assume vectors can be essentially anything and live in spaces of any dimension. To deal with this abstraction, quantum mechanics uses a special notation introduced by Paul Dirac, known as *Dirac notation*. This notation makes no assumptions about what kinds of vectors we're dealing with, other than that we have some notion of inner product between vectors. All that's required is states behave abstractly like vectors belonging to some kind of vector space. Dirac notation has become so useful and powerful that it can be thought of as the *language* of quantum mechanics.
 
 ### State Vectors
 
 To deal with these more general kinds of vectors, we assume they live in special kind of vector space called a Hilbert space. Mathematically, a *Hilbert space* is a *complete inner product space*. For our purposes, we can think of a Hilbert space as a complex-valued vector space, endowed with an inner product, where every vector in the space has a finite norm. Whether these vectors are 3-dimensional or infinite sequences or continuous functions makes no material difference.
 
-We'll define the postulates of quantum mechanics in a later chapter, so for now we'll assume only a few things for mathematical purposes. First, we'll assume that quantum mechanical states, whatever these are, correspond to vectors that live in some Hilbert space, denoted $\mathcal{H}$. In Dirac notation, we denote state vectors by the symbol $\ket{v}$, called a *ket* vector. To be explicit that a state vector $\ket{v}$ belongs to a specific Hilbert space $\mathscr{H}$, we'll use the notation $\ket{v} \in \mathscr{H}$, which you can read as "$\ket{v}$ is in $\mathscr{H}$".
+We'll define the postulates of quantum mechanics in a later chapter, so for now we'll assume only a few things for mathematical purposes. First, we'll assume that quantum mechanical states, whatever these are, correspond to vectors that live in some Hilbert space, denoted $\mathscr{H}$. In Dirac notation, we denote state vectors by the symbol $\ket{v}$, called a *ket* vector. To be explicit that a state vector $\ket{v}$ belongs to a specific Hilbert space $\mathscr{H}$, we'll use the notation $\ket{v} \in \mathscr{H}$, which you can read as "$\ket{v}$ is in $\mathscr{H}$".
 
-We require that a Hilbert space satisfy all the properties of a mathematical vector space. It must contain a zero vector, we should be able to add and subtract vectors, we should be able to multiply them by scalars, etc. We can summarize these requirements by requiring that $\mathscr{H}$ contain a zero vector and be closed under linear superposition. For any two state vectors $\ket{v} \in \mathscr{H}$ and $\ket{u} \in \mathscr{H}$, and any two complex scalars $\alpha$ and $\beta$, we require that the linear superposition $\alpha \ket{u} + \beta \ket{v}$ be in $\mathscr{H}$.
+We require that a Hilbert space satisfy all the properties of a mathematical vector space. It must contain a zero vector, we should be able to add and subtract vectors, we should be able to multiply them by scalars, etc. We can summarize these requirements by requiring that $\mathscr{H}$ contain a zero vector $\ket{\emptyset}$ and be closed under linear superposition. For any two state vectors $\ket{v} \in \mathscr{H}$ and $\ket{u} \in \mathscr{H}$, and any two complex scalars $\alpha$ and $\beta$, we require that the linear superposition $\alpha \ket{u} + \beta \ket{v}$ be in $\mathscr{H}$.
 
-Next, we require that the Hilbert space be endowed with an inner product. That is, $\mathscr{H}$ is not just a vector space, but a vector space that comes with a special function attached to it called an *inner product* that maps pairs of state vectors to a complex number. Formally, an inner product is a function attached to $\mathscr{H}$ that maps any two state vectors $\ket{u}, \ket{v} \in \mathscr{H}$ to a special complex number $\ip{u}{v}$, which you can read as "$u$ bracket $v$", respecting the following properties:
+Next, we require that the Hilbert space be endowed with an inner product. That is, $\mathscr{H}$ is not just a vector space, but a vector space that comes with a special function attached to it called an inner product that maps pairs of state vectors to a complex number. Formally, an *inner product* is a function attached to $\mathscr{H}$ that maps any two state vectors $\ket{u}, \ket{v} \in \mathscr{H}$ to a special complex number $\ip{u}{v}$, which you can read as "$u$ bracket $v$", respecting the following properties:
 
 - Positive Definite: For any state vector $\ket{v} \in \mathscr{H}$, $\ip{v}{v} \geq 0$. Moreover, $\ip{v}{v} = 0$ only when $\ket{v} = 0$.
 - Anti-Symmetry: For any two state vectors $\ket{u}, \ket{v} \in \mathscr{H}$, $\ip{u}{v} = \ip{v}{u}^*$.
@@ -37,12 +37,12 @@ From the inner product, we define the norm of a state vector in the usual way. G
 $$
 \norm{v} \equiv \sqrt{\ip{v}{v}} \ .
 $$
-We can think of this definition of the norm as the most general form of the Pythagorean theorem. It gives us a notion of length for state vectors. Indeed, the requirement that Hilbert spaces have an inner product is equivalent to requiring that they have a *geometry*, since we can use the inner product to define a notion of length for objects in the space and a notion of angle between objects in the space. If we wanted to, we could define the angle $\vartheta$ between two state vectors $\ket{u}$ and $\ket{v}$ in the usual way,
+We can think of this definition of the norm as the most general form of the Pythagorean theorem. It gives us a notion of length for state vectors. Indeed, the requirement that Hilbert spaces have an inner product is equivalent to requiring that they have a *geometry*, since we can use the inner product to define a notion of length for objects in the space and a notion of angle between objects in the space. If we wanted to, we could define a (complex) angle $\vartheta$ between two state vectors $\ket{u}$ and $\ket{v}$ in the usual way,
 
 $$
 \cos\vartheta \equiv \frac{\ip{u}{v}}{\norm{u} \norm{v}} \ ,
 $$
-but we won't really use this property much in practice. The norm, however, is much more central to the theory.
+but we won't really use this property much in practice since we almost always work with unit vectors, where the inner product just corresponds directly to the cosine of the angle.
 
 We say a vector $\ket{v} \in \mathscr{H}$ is a *unit vector* if $\norm{v} = 1$, or equivalently if $\ip{v}{v} = 1$. Similarly, two vectors $\ket{u}, \ket{v} \in \mathscr{H}$ are called *orthogonal* when $\ip{u}{v} = 0$, and *orthonormal* when both $\norm{u} = \norm{v} = 1$ and $\ip{u}{v} = 0$.
 
@@ -98,7 +98,7 @@ This means that to form a valid Hilbert space out of $\mathbb{C}^\infty$ we have
 
 ##### Example: Function Spaces
 
-As our final example of a Hilbert space, and indeed the only remaining class of Hilbert spaces we'll see in this course, consider the vector space of complex-valued continuous functions of some real variable $0 \leq x \leq 1$. This is called continuous space, and sometimes denoted $\mathcal{C}[0,1]$.
+As our final example of a Hilbert space, and indeed the only remaining class of Hilbert spaces we'll see in this course, consider the vector space of complex-valued continuous functions of some real variable $0 \leq x \leq 1$. This is called the space of continuous functions defined on the interval $[0,1]$, and sometimes denoted $\mathcal{C}[0,1]$.
 
 To extend our previous notion of inner product to this space, we'll merely replace the sum by an integral over $x$, defining
 $$
@@ -114,7 +114,7 @@ $$
 $$
 Indeed, just as we did for $\mathbb{C}^\infty$ we have to exclude many functions from this space to make the space complete. Indeed, any function that's bounded inside the interval $0 \leq x \leq 1$ would be valid since its integral would be finite, but any function that's not square-normalizable would have to be excluded from the Hilbert space. This smaller space is often called $L_2$-space and denoted $L_2$ or $L_2[0,1]$. Proving that $L_2$ is indeed a valid Hilbert space is more subtle and not worth our focus here, but we'll assume it is.
 
-The example we gave was specifically for complex-valued functions defined on the interval $0 \leq x \leq 1$, but we can define $L_2$ spaces over any interval $a \leq x \leq b$ and even over the entire real line. The same discussion extends to these cases as well.
+The example we gave was specifically for complex-valued functions defined on the interval $0 \leq x \leq 1$, but we can define $L_2$ spaces over any interval $a \leq x \leq b$ as well as the entire real line. The same discussion extends to these cases as well.
 
 ### Basis Vectors
 
@@ -213,7 +213,7 @@ Since $\mathbb{1} \ket{v} = \ket{v}$, and since we can rewrite $\ip{e_i}{v} \ket
 $$
 \mathbb{1} \ket{v} = \sum_{i=1}^d \ket{e_i} \ip{e_i}{v} = \left(\sum_{i=1}^d \op{e_i}{e_i}\right) \ket{v} \ .
 $$
-Since both sides must equal for any $\ket{v}$, the operators acting on $\ket{v}$ must be equal as well. We've thus proven the following operator identity, known as the *resolution of the identity*,
+Since both sides must equal for any $\ket{v}$, the operators acting on $\ket{v}$ must be equal as well. We've thus proven the following operator identity, known as the *resolution of the identity* or the *insertion of a complete set*,
 $$
 \boxed{
 \mathbb{1} = \sum_{i=1}^d \op{e_i}{e_i}
@@ -227,7 +227,7 @@ we call them *projection operators*. The projection operator $\mathbb{P}_i \equi
 $$
 \mathbb{1} = \sum_{i=1}^d \mathbb{P}_i \ .
 $$
-This identity may seem quant, but as we'll see it's very useful in quantum mechanics, especially for proving other identities. The reason it's so useful is because we can always insert an identity operator into the middle of some bracket equation and expand it out, effectively forcing a basis expansion into the equation, which we can then manipulate to simplify the result.
+This identity may seem quaint, but as we'll see it's very useful in quantum mechanics for proving other identities. The reason it's so useful is because we can always insert an identity operator into the middle of some bracket operation and expand it, effectively forcing a basis expansion into the equation, which we can then manipulate to simplify the result.
 
 ### Representations
 
@@ -340,21 +340,25 @@ Expanding linear operators as a basis expansion in terms of its matrix elements 
 
 ##### Example: Pauli Operators
 
-In quantum mechanics, spin-half states are represented as state vectors in the Hilbert space $\mathbb{C}^2$. Conventionally, the standard basis when dealing with spins is written $\{\ket{+}, \ket{-}\}$, where the $\ket{+}$ state represents spin up along the $z$-direction and $\ket{-}$ represents spin down along the $z$-direction. This basis is orthonormal, so $\ip{+}{+} = \ip{-}{-} = 1$ and $\ip{+}{-} = 0$.
+In quantum computing, a qubit is a state vector representing a quantum bit, thought of as a quantum superposition of the classical bits $\ket{0}$ and $\ket{1}$. We can represent cubits as state vectors in the Hilbert space $\mathbb{C}^2$. A *qubit* is then a 2-dimensional complex state vector $\ket{v}$ of the form
+$$
+\ket{v} = \alpha \ket{0} + \beta \ket{1} \ ,
+$$
+where by convention we normalize $\ip{v}{v} = 1$, which forces $|\alpha|^2 + |\beta|^2 = 1$. We assume the classical bits $\{\ket{0}, \ket{1}\}$ form an orthonormal basis for the Hilbert space $\mathbb{C}^2$, so $\ip{0}{0} = \ip{1}{1} = 1$ and $\ip{0}{1} = 0$.
 
-From these basis vectors we can define the following three useful operators, known as the *Pauli operators*,
+Using this basis set, we can define the following three useful operators on this Hilbert space known as the *Pauli operators*,
 $$
 \begin{align*}
-\sigma_x &= \op{+}{-} \ + \ \op{-}{+} \ , \\
-\sigma_y &= -i\op{+}{-} \ + \ i \op{-}{+} \ ,\\
-\sigma_z &= \op{+}{+} \ - \ \op{-}{-} \ .
+\sigma_x &= \op{0}{1} + \op{1}{0} \ , \\
+\sigma_y &= -i\op{0}{1} + i \op{1}{0} \ ,\\
+\sigma_z &= \op{0}{0} - \op{1}{1} \ .
 \end{align*}
 $$
-We'd like a matrix representation for the Pauli operators in terms of this $z$-basis. By convention, we'll assume $\ket{+}$ is represented by the column vector $(1 \ 0)^T$ and $\ket{-}$ is represented by the column vector $(0 \ 1)^T$. In this basis, each $\sigma_i$ has the representation
+We'd like a matrix representation for the Pauli operators in terms of this basis. By convention, we'll assume $\ket{0}$ is represented by the column vector $\binom{1}{0}$ and $\ket{1}$ is represented by the column vector $\binom{0}{1}$. In this basis, each operator $\sigma_i$ has representation
 $$
 \sigma_i \doteq \begin{pmatrix}
-\bra{+} \sigma_i \ket{+} & \bra{+} \sigma_i \ket{-} \\
-\bra{-} \sigma_i \ket{+} & \bra{-} \sigma_i \ket{-}
+\bra{0} \sigma_i \ket{0} & \bra{0} \sigma_i \ket{1} \\
+\bra{1} \sigma_i \ket{0} & \bra{1} \sigma_i \ket{1}
 \end{pmatrix} \ .
 $$
 The matrix elements are easy enough to calculate through direct algebra. In the end, we get
@@ -372,7 +376,7 @@ i & 0
 0 & -1
 \end{pmatrix} \ .
 $$
-These are known as the *Pauli matrices*. The Pauli operators have some interesting properties. For example, they're Hermitian, unitary, and traceless. They're fundamental to the theory of spin-half particles, which we'll explore in a later chapter.
+These are known as the standard *Pauli matrices*. The Pauli operators have many interesting properties. For example, they're Hermitian, unitary, and traceless. The Pauli operators are fundamental to the theory of quantum computing, as well as to the theory of spin-1/2 particles which we'll explore in great detail in a later chapter.
 
 ### Operator Algebra
 
@@ -423,9 +427,9 @@ The commutator obeys several useful properties that are worth remembering, all o
 
 The linearity property just says the commutator can be split up over linear superpositions of operators in either bracket. The anti-symmetry property just says if we swap the order of the commutator we get a minus sign.
 
-The product rule says that the commutator obeys the same kind of product rule that differentials do, e.g. $d(uv) = udv + vdu$. Note that since the commutator is an operator, we have to be careful with the operator ordering on the right-hand side. 
+The product rule says that the commutator obeys the same kind of product rule that differentials do, $d(uv) = udv + vdu$. However, since the commutator is an operator, we have to be careful with the operator ordering on the right-hand side.
 
-Last, the Jacobi identity says if we cycle the arguments of $[\mathcal{L}, [\mathcal{K}, \mathcal{M}]]$ and sum them together we get zero. We won't use the Jacobi identity much in practice, but the fact that the commutator satisfies this identity is important theoretically, since it implies the commutator forms a *Lie bracket* on the Hilbert space, which means the Hilbert space becomes a *Lie algebra*. Spaces with Lie algebras are interesting because we can define infinitesimal transformations on these spaces. This is very important to the theory of quantum mechanics and symmetries, which we'll discuss in more detail later.
+Last, the Jacobi identity says if we cycle the arguments of $[\mathcal{L}, [\mathcal{K}, \mathcal{M}]]$ and sum them together we get zero. We won't use the Jacobi identity much in practice, but the fact that the commutator satisfies this identity is important theoretically, since it implies the commutator forms a *Lie bracket* on the Hilbert space, which means the Hilbert space becomes a *Lie algebra*. Spaces with Lie algebras are interesting because we can define infinitesimal transformations on these spaces. This is very important to the theory of symmetries in quantum mechanics, which we'll discuss in more detail in a later chapter.
 
 As a final brief mention, we can define a related operator to the commutator called the anti-commutator. The *anti-commutator* between two operators $\mathcal{L}$ and $\mathcal{K}$ is defined by
 $$
@@ -635,7 +639,7 @@ $$
 $$
 We often say that Hermitian operators *generate* unitary transformations, in the sense that we can think of any infinitesimal shift $\delta\mathcal{H}$ in $\mathcal{H}$ as generating an infinitesimal transformation $\delta\mathcal{U}$ in $\mathcal{U}$ of the form $\delta\mathcal{U} = \mathbb{1} + i\delta\mathcal{H}$. Of course, for this to make sense the Hermitian operator $\mathcal{H}$ needs to be continuous. We'll revisit this topic of *Lie algebras* later when we discuss symmetries.
 
-## Eigenvalues and Eigenvectors
+## Eigenvectors
 
 Recall from linear algebra that any square matrix has associated to it *characteristic* directions that are left invariant when acted on by the matrix. Along these characteristic directions, a square matrix $\mathbf{A}$ can only scale a vector $\mathbf{v}$ along that direction by some complex scalar $\lambda$, not rotate it into a new direction,
 $$
@@ -645,25 +649,25 @@ For a given matrix $\mathbf{A}$, its characteristic directions are called *eigen
 
 ### Definition
 
-Linear operators are essentially generalized matrices, and as such have the same notion of eigenvalues and eigenvectors. Suppose $\mathcal{L}: \mathscr{H} \to \mathscr{H}$ is some linear operator and $\ket{u_\lambda} \in \mathscr{H}$ is some state vector. We say $\ket{u_\lambda}$ an *eigenvector* or *eigenstate* of $\mathcal{L}$ if
+Linear operators are essentially generalized matrices, and as such have the same notion of eigenvalues and eigenvectors. Suppose $\mathcal{L}: \mathscr{H} \to \mathscr{H}$ is some linear operator and $\ket{u} \in \mathscr{H}$ is some state vector. We say $\ket{u}$ an *eigenvector* or *eigenstate* of $\mathcal{L}$ if
 $$
-\mathcal{L} \ket{u_\lambda} = \lambda \ket{u_\lambda}
+\mathcal{L} \ket{u} = \lambda \ket{u}
 $$
-for some non-zero complex number $\lambda$, called the *eigenvalue* of $\mathcal{L}$ associated to the eigenvector $\ket{u_\lambda}$. By convention, we disallow the zero vector from being an eigenvector, since every operator acting on the zero vector returns a zero vector.
+for some non-zero complex number $\lambda$, called the *eigenvalue* of $\mathcal{L}$ associated to the eigenvector $\ket{u}$. By convention, we disallow the zero vector from being an eigenvector, since every operator acting on the zero vector returns a zero vector.
 
-Notice that per the definition, if we already know $\ket{u_\lambda}$ is an eigenvector of $\mathcal{L}$ we can always trivially multiply $\ket{u_\lambda}$ by any complex scalar $\alpha$ to get a new eigenvector $\alpha\ket{u_\lambda}$, since
+Notice that per the definition, if we already know $\ket{u}$ is an eigenvector of $\mathcal{L}$ we can always trivially multiply $\ket{u}$ by any complex scalar $\alpha$ to get a new eigenvector $\alpha\ket{u}$, since
 $$
-A(\alpha\ket{u_\lambda}) = \lambda (\alpha\ket{u_\lambda}) \ .
+A(\alpha\ket{u}) = \lambda (\alpha\ket{u}) \ .
 $$
-Since we don't care about these trivially different eigenvectors, by convention we assume that eigenvectors are normalized with $\ip{u_\lambda}{u_\lambda} = 1$. Of course, $\alpha = |\alpha| e^{i\varphi}$, and requiring $\ip{u_\lambda}{u_\lambda} = 1$ only forces $|\alpha|=1$. This still  leaves the possibility of multiplying $\ket{u_\lambda}$ by a phase factor $e^{i\varphi}$ to get a "new" eigenvector $e^{i\varphi} \ket{u_\lambda}$. Strictly speaking we should also set $\varphi=0$ to make each eigenvector unique, but in quantum mechanics we typically ignore phase factors like this anyway.
+Since we don't care about these trivially different eigenvectors, by convention we assume that eigenvectors are normalized with $\ip{u}{u} = 1$. Of course, $\alpha = |\alpha| e^{i\varphi}$, and requiring $\ip{u}{u} = 1$ only forces $|\alpha|=1$. This still  leaves the possibility of multiplying $\ket{u}$ by a phase factor $e^{i\varphi}$ to get a "new" eigenvector $e^{i\varphi} \ket{u}$. Strictly speaking we should also set $\varphi=0$ to make each eigenvector unique, but in quantum mechanics we typically ignore phase factors like this anyway.
 
 ### Characteristic Equation
 
-By rewriting the right-hand side of $\mathcal{L} \ket{u_\lambda} = \lambda \ket{u_\lambda}$ as $\lambda \mathbb{1} \ket{u_\lambda}$ and moving everything to the left-hand side, we get
+By rewriting the right-hand side of $\mathcal{L} \ket{u} = \lambda \ket{u}$ as $\lambda \mathbb{1} \ket{u}$ and moving everything to the left-hand side, we get
 $$
-(\mathcal{L} - \lambda \mathbb{1}) \ket{u_\lambda} = 0 \ .
+(\mathcal{L} - \lambda \mathbb{1}) \ket{u} = 0 \ .
 $$
-Mathematically, this says the eigenvector $\ket{u_\lambda}$ lies in the *null space* of the shifted operator $\mathcal{L} - \lambda \mathbb{1}$. A linear operator with a non-zero null space is necessarily not invertible, since there's no way to invert any mapping to the zero vector. This means the shifted operator $\mathcal{L} - \lambda \mathbb{1}$ when represented as a matrix must always have a vanishing determinant,
+Mathematically, this says the eigenvector $\ket{u}$ lies in the *null space* of the shifted operator $\mathcal{L} - \lambda \mathbb{1}$. A linear operator with a non-zero null space is necessarily not invertible, since there's no way to invert any mapping to the zero vector. This means the shifted operator $\mathcal{L} - \lambda \mathbb{1}$ when represented as a matrix must always have a vanishing determinant,
 $$
 \boxed{
 \det(\mathcal{L} - \lambda \mathbb{1}) = 0 
@@ -679,7 +683,67 @@ $$
 $$
 where the $d$ roots $\lambda_1, \lambda_2, \cdots, \lambda_d$ are the eigenvalues of $\mathcal{L}$. 
 
+Once we know a given eigenvalue we can use it to solve for its associated eigenvector. The eigenvector $\ket{u_i}$ corresponding to a given eigenvalue $\lambda_i$ must be in the null space of the shifted operator $\mathcal{L} - \lambda_i \mathbb{1}$. Thus, if we already know $\lambda_i$, its eigenvector $\ket{u_i}$ can be found by using standard matrix methods to solve the null space equation
+$$
+(\mathcal{L} - \lambda_i \mathbb{1}) \ket{u_i} = 0 \ .
+$$
 If a given root $\lambda$ in the characteristic polynomial has multiplicity $k$, meaning one of the factors is repeated $k$ times, we say that eigenvalue is *degenerate* with order $k$. The degenerate eigenvalue $\lambda$ will have associated to it a $k$-dimensional subspace of the Hilbert space, called the *eigenspace* of $\lambda$. Since any vector $\ket{u}$ in this subspace will satisfy $\mathcal{L} \ket{u} = \lambda \ket{u}$, we can choose any $k$ linearly independent vectors we like that span this subspace to be eigenvectors of $\lambda$. We'll return to the issue of degeneracy in more detail in a moment.
+
+##### Example: 3-Dimensional Rotations
+
+Consider the operator $\mathcal{R}_z(\varphi)$, which rotates vectors in ordinary 3-dimensional Euclidean space about the $z$-axis by some angle $\varphi$. This operator is clearly unitary since $\mathcal{R}_z^{-1}(\varphi) = \mathcal{R}_z(-\varphi) = \mathcal{R}_z^\dagger(\varphi)$. In the standard Cartesian basis $\{\ket{e_x}, \ket{e_y}, \ket{e_z}\}$ we can represent this operator by the $3 \times 3$ matrix
+$$
+\mathcal{R}_z(\varphi) \doteq \begin{pmatrix}
+\cos\varphi & -\sin\varphi & 0 \\
+\sin\varphi & \cos\varphi & 0 \\
+0 & 0 & 1
+\end{pmatrix} \ .
+$$
+Let's find the eigenvalues and eigenvectors of this real matrix. We start by solving its characteristic equation,
+$$
+\det(\mathcal{R}_z(\varphi) - \lambda \mathbb{1}) = \begin{vmatrix}
+\cos\varphi - \lambda & -\sin\varphi & 0 \\
+\sin\varphi & \cos\varphi - \lambda & 0 \\
+0 & 0 & 1 - \lambda
+\end{vmatrix}
+= (1 - \lambda)\left[(\cos\varphi - \lambda)^2 + \sin^2\varphi\right] = 0 \ .
+$$
+Immediately we see $\lambda_z = 1$ must be an eigenvalue, while the other two are given by solving the quadratic
+$$
+(\cos\varphi - \lambda)^2 + \sin^2\varphi = \lambda^2 -2\lambda\cos\varphi + 1 = 0 \ .
+$$
+The roots of quadratic, and hence the remaining two eigenvalues, are
+$$
+\lambda_\pm = \frac{1}{2} \left(2\cos\varphi \pm \sqrt{4\cos^2\varphi - 4}\right) = \cos\varphi \pm i\sin\varphi = e^{\pm i\varphi} \ .
+$$
+Notice that despite the operator and its matrix representation being real, two of its eigenvalues are complex. Moreover, these two eigenvalues are complex conjugates of each other, with $\lambda_- = \lambda_+^*$. Also notice that all the eigenvalues have modulus one, which in fact will always be true of any unitary operator.
+
+What about the eigenvectors? Since the operator rotates vectors about the $z$-axis, it's clear that any vector along the $z$-axis will be left invariant under rotation by $\mathcal{R}_z(\varphi)$. This immediately implies the unit vector $\ket{e_z}$ will be the eigenvector of $\lambda_z = 1$, since
+$$
+\mathcal{R}_z(\varphi) \ket{e_z} = \ket{e_z} \doteq \begin{pmatrix} 0 \\ 0 \\ 1 \end{pmatrix} \ .
+$$
+The other two eigenvectors $\ket{e_\pm}$ are more subtle, since no real 3-dimensional vector is invariant to rotation except those along the $z$-axis, which the eigenvector $\ket{e_z}$ already covers. In fact, the other two eigenvectors will be complex vectors, with
+$$
+\ket{e_\pm} = \frac{\ket{e_x} \mp i\ket{e_y}}{\sqrt{2}} \doteq
+\frac{1}{\sqrt{2}} \begin{pmatrix} 1 \\ \mp i \\ 0 \end{pmatrix}
+\ .
+$$
+Note the $1/\sqrt{2}$ factor was inserted here to ensure each $\ket{e_\pm}$ is a unit vector. Let's quickly verify these are eigenvectors of $\lambda_\pm$. Writing out $\mathcal{R}_z(\varphi) \ket{e_\pm}$ in terms of the standard basis representation, we have
+$$
+\begin{pmatrix}
+\cos\varphi & -\sin\varphi & 0 \\
+\sin\varphi & \cos\varphi & 0 \\
+0 & 0 & 1
+\end{pmatrix}
+\begin{pmatrix} 1/\sqrt{2} \\ \mp i/\sqrt{2} \\ 0 \end{pmatrix}
+= \frac{1}{\sqrt{2}} \begin{pmatrix} \cos\varphi \pm i\sin\varphi \\ \sin\varphi \mp i\cos\varphi \\ 0 \end{pmatrix} 
+= e^{\pm i\varphi} \begin{pmatrix} 1/\sqrt{2} \\ \mp i/\sqrt{2} \\ 0 \end{pmatrix} \ .
+$$
+Thus, $\mathcal{R}_z(\varphi) \ket{e_\pm} = \lambda_\pm \ket{e_\pm}$, hence $\ket{e_\pm}$ are the eigenvectors of $\lambda_\pm$. The set of eigenvectors $\{\ket{e_+},\ket{e_-},\ket{e_z}\}$ have a special name. They're called the *spherical basis vectors*. In fact, the spherical basis vectors form an orthonormal basis for the 3-dimensional complex Hilbert space $\mathbb{C}^3$, since they're all unit vectors and mutually orthogonal,
+$$
+\ip{e_+}{e_-} = \ip{e_+}{e_z} = \ip{e_-}{e_z} = 0 \ .
+$$
+The spherical basis is in a sense the natural basis one would use to represent objects on a sphere. The relation of this basis to the sphere will become more obvious in later chapters when we discuss the spherical harmonics in detail.
 
 ##### Example: Characteristic Equation in Two Dimensions
 
@@ -732,23 +796,62 @@ i & 0
 $$
 In all three cases we have $\det(\sigma_i) = -1$ and $\tr(\sigma_i) = 0$, so their characteristic equations are all $\lambda^2 - 1 = 0$. Hence the eigenvalues for each of the Paul operators are simply $\lambda = \pm 1$.
 
-One can use the properties of the determinant to show by induction that for any $d \times d$ matrix, its lowest order coefficient will always be $c_0 = \det(\mathcal{L})$, and its highest order coefficients will be $c_{d-1} = (-1)^{d-1} \tr(\mathcal{L})$ and $c_d = (-1)^d$,
+---
+
+It turns out that any linear operator $\mathcal{L}$ acting on a $d$-dimensional Hilbert space has its determinant as its lowest coefficient in its characteristic polynomial, i.e. $c_0 = \det(\mathcal{L})$. This is easy to see, since setting $\lambda=0$ in the characteristic polynomial leaves only the determinant $\det(\mathcal{L})$ on one side and the coefficient $c_0$ on the other side, hence the two must equal. It's also possible to show that the highest coefficient in general is always $c_d = (-1)^d$, and the second highest is always $c_{d-1} = (-1)^{d-1} \tr(\mathcal{L})$. The characteristic equation for such a linear operator can thus be slightly simplified as
 $$
 (-1)^d \lambda^d + (-1)^{d-1} \tr(\mathcal{L}) + \cdots + \det(\mathcal{L}) = 0 \ .
 $$
 The intermediate coefficients $c_1, c_2, \cdots, c_{d-2}$ are related to the principal minors of the matrix and not as easy to write down.
 
+Using this formula we can immediately deduce two interesting results. First, the determinant of a linear operator will always be the product of all its eigenvalues,
+$$
+\det(\mathcal{L}) = \lambda_1 \lambda_2 \cdots \lambda_d \ .
+$$
+Second, the trace of a linear operator will always be the sum of all its eigenvalues,
+$$
+\tr(\mathcal{L}) = \lambda_1 + \lambda_2 + \cdots + \lambda_d \ .
+$$
+Both can be proven by setting the expanded characteristic polynomial given above equal to its factored product of eigenvalues, and grouping the factored products term by term to match $c_0$ with $\lambda_1 \lambda_2 \cdots \lambda_d$ and $c_{d-1}$ with $\lambda_1 + \lambda_2 + \cdots + \lambda_d$,
+$$
+c_0 + c_1 \lambda + \cdots + c_{d-1} \lambda^{d-1} + c_d \lambda^d = c_d (\lambda - \lambda_1) (\lambda - \lambda_2) \cdots (\lambda - \lambda_d) \ .
+$$
+Among other things, these imply an linear operator is invertible if and only if all its eigenvalues are non-zero.
+
 ### Spectral Theorem
 
-By enforcing the normalization requirement on eigenvectors, it's clear that any $d$-dimensional Hilbert space can have at most $d$ eigenvectors (up to ignored phase factors), since we can use those $d$ eigenvectors as a basis to span the entire Hilbert space. This does *not* however mean the set of eigenvectors must form an orthonormal basis. However, if the operator is a *normal operator*, meaning it commutes with its adjoint, we *can* guarantee its $d$ eigenvectors will always form an orthonormal basis. Moreover, if an operator is also Hermitian, its eigenvalues will always be real-valued. This is known as the *spectral theorem*.
+By enforcing the normalization requirement on eigenvectors, it's clear that any $d$-dimensional Hilbert space can have at most $d$ eigenvectors (up to ignored phase factors), since we can use those $d$ eigenvectors as a basis to span the entire Hilbert space. This does *not* however mean the set of eigenvectors must form an orthonormal basis. However, if the operator is a *normal operator*, meaning it commutes with its adjoint, we can *guarantee* its $d$ eigenvectors will always form an orthonormal basis, and we can *diagonalize* $\mathcal{L}$ by writing it as an expansion in terms of that basis. Moreover, if an operator is also Hermitian, its eigenvalues will always be real-valued. This collection of results is known as the *spectral theorem*.
 
-Before stating the following theorem we need a couple of definitions. First, we say a linear operator $\mathcal{L}: \mathscr{H} \to \mathscr{H}$ is *normal* if the operator commutes with its adjoint, i.e. $[\mathcal{L}, \mathcal{L}^\dagger] = 0$. Normal operators it turns out covers the two classes of operators we care most about in quantum mechanics: Hermitian operators and unitary operators. Hermitian operators are clearly normal since if $\mathcal{L}$ is Hermitian, then $\mathcal{L} = \mathcal{L}^\dagger$, and hence $[\mathcal{L}, \mathcal{L}^\dagger] = [\mathcal{L}, \mathcal{L}] = 0$. Unitary operators are also normal, since if $\mathcal{L}$ is unitary we instead have $\mathcal{L}^\dagger = \mathcal{L}^{-1}$, which means
+Before stating the following theorem we need a few definitions. First, we say a linear operator $\mathcal{L}: \mathscr{H} \to \mathscr{H}$ is *normal* if the operator commutes with its adjoint, i.e. $[\mathcal{L}, \mathcal{L}^\dagger] = 0$. Normal operators it turns out cover the two classes of operators we care most about in quantum mechanics: Hermitian operators and unitary operators. Hermitian operators are clearly normal since if $\mathcal{L}$ is Hermitian, then $\mathcal{L} = \mathcal{L}^\dagger$, and hence $[\mathcal{L}, \mathcal{L}^\dagger] = [\mathcal{L}, \mathcal{L}] = 0$. Unitary operators are also normal, since if $\mathcal{L}$ is unitary we instead have $\mathcal{L}^\dagger = \mathcal{L}^{-1}$, which means
 $$
 [\mathcal{L}, \mathcal{L}^\dagger] = [\mathcal{L}, \mathcal{L}^{-1}] = \mathcal{L} \mathcal{L}^{-1} - \mathcal{L}^{-1} \mathcal{L} = \mathbb{1} - \mathbb{1} = 0 \ .
 $$
-Second, we call the set of eigenvectors of $\mathcal{L}$ the *spectrum* of $\mathcal{L}$. If this set of eigenvectors contains $d$ independent eigenvectors that span the $d$-dimensional Hilbert space, we say the spectrum is a *complete eigenbasis* for the Hilbert space. If the spectrum also happens to be orthonormal, we say it's a *complete orthonormal eigenbasis* for the Hilbert space. We can now state the theorem.
+Second, we call the set of eigenvectors of $\mathcal{L}$ the *spectrum* of $\mathcal{L}$. If this set of eigenvectors contains $d$ independent eigenvectors that span the $d$-dimensional Hilbert space, we say this set is a *complete eigenbasis* for the Hilbert space. If this set also happens to be orthonormal, we say the spectrum is a *complete orthonormal eigenbasis* for the Hilbert space. We can now state the theorem.
 
-**Theorem:** Suppose $\mathcal{L}: \mathscr{H} \to \mathscr{H}$ is a linear operator acting on a Hilbert space $\mathscr{H}$ of finite dimension $d$. Then $\mathcal{L}$ has a complete orthonormal eigenbasis for $\mathscr{H}$ if and only if $\mathcal{L}$ is a normal operator.
+The final tool we'll need is the Schur decomposition from linear algebra, which we won't prove. The *Schur decomposition* is a theorem that guarantees that every $d \times d$ complex-valued matrix $L$ has a similarity transformation
+$$
+L = U D U^\dagger \ ,
+$$
+where $U$ is some $d \times d$ unitary matrix and $D$ is an upper triangular matrix whose diagonal entries are the eigenvalues of $L$,
+$$
+D = \begin{pmatrix}
+\lambda_1 & D_{12} & \cdots & D_{1d} \\
+0 & \lambda_2 & \cdots & D_{12} \\
+\vdots & \vdots & \ddots & \vdots \\
+0 & 0 & \cdots & \lambda_d \\
+\end{pmatrix} \ .
+$$
+In the special case that $D$ is a diagonal matrix, i.e. $D_{ij} = 0$ when $i \neq j$, we say the matrix $L$ is *diagonalizable*. In operator language, we say a linear operator $\mathcal{L}$ is *diagonalizable* in terms of some orthonormal basis $\{\ket{e_i}\}$ if we can write
+$$
+\mathcal{L} = \sum_{i=1}^d \lambda_i \op{e_i}{e_i} \ ,
+$$
+where $\lambda_1, \lambda_2, \cdots, \lambda_d$ are the eigenvalues of $\mathcal{L}$. This is just restating exactly the same thing we defined in matrix language in terms of linear operators. In general a linear operator is not diagonalizable, but normal operators it turns out can always be diagonalized, which we will now prove.
+
+**Theorem:** Suppose $\mathcal{L}: \mathscr{H} \to \mathscr{H}$ is a linear operator acting on a Hilbert space $\mathscr{H}$ of finite dimension $d$. Then $\mathcal{L}$ has a complete orthonormal eigenbasis $\{\ket{u_i}\}$ for $\mathscr{H}$ if and only if $\mathcal{L}$ is a normal operator. Moreover, we can diagonalize $\mathcal{L}$ in terms of its eigenbasis by writing
+$$
+\mathcal{L} = \sum_{i=1}^d \lambda_i \op{u_i}{u_i} \ ,
+$$
+where each $\lambda_i$ is the eigenvalue associated to the eigenvector $\ket{u_i}$.
 
 ---
 
@@ -775,43 +878,52 @@ Putting these together, we thus have
 $$
 \mathcal{L} \mathcal{L}^\dagger \ket{v} = \sum_{i=1}^d c_i \lambda_i^* \lambda_i \ket{u_i} = \mathcal{L}^\dagger \mathcal{L} \ket{v} \ .
 $$
-Since $\ket{v}$ is arbitrary, this means $\mathcal{L} \mathcal{L}^\dagger = \mathcal{L}^\dagger \mathcal{L}$. That is, $\mathcal{L}$ is a normal operator. This proves the first direction.
+Since $\ket{v}$ is arbitrary, this means $\mathcal{L} \mathcal{L}^\dagger = \mathcal{L}^\dagger \mathcal{L}$. That is, $\mathcal{L}$ is a normal operator. This proves the $(\Rightarrow)$ direction.
 
-Suppose now that $\mathcal{L}$ is a normal operator, so $[\mathcal{L}, \mathcal{L}^\dagger] = 0$. Now we need to show that $\mathcal{L}$ has a complete set of eigenvectors that span the Hilbert space.
-
-
-
- 
-
+Suppose now that $\mathcal{L}$ is a normal operator, so $[\mathcal{L}, \mathcal{L}^\dagger] = 0$. Now we need to show that $\mathcal{L}$ has a complete set of eigenvectors that span the H ilbert space. To prove this we'll make use of the Schur decomposition. Suppose in some orthonormal basis $\{\ket{e_i}\}$ we can represent $\mathcal{L}$ in terms of a generic $d \times d$ matrix whose entries are $L_{ij} = \bra{e_i} \mathcal{L} \ket{e_j}$. According to the Schur decomposition we can always diagonalize $\mathcal{L}$ in terms of its eigenvalues $\lambda_1, \lambda_2, \cdots, \lambda_d$ via the similarity transformation
+$$
+L_{ij} = U_{ik} D_{k\ell} U_{\ell j}^* = 
+$$
 
 
-This proves the theorem. $\square$
+
+
+This proves the $(\Leftarrow)$ direction, and hence the theorem. $\square$
 
 ---
 
 By extension, anti-Hermitian operators are normal as well, as are all the real-valued counterparts: symmetric, anti-symmetric, and orthogonal operators. Indeed, we'll rarely encounter operators in quantum mechanics that aren't normal. Even in infinite dimensions and function spaces we'll generally assume the operators we study have a complete set of orthonormal eigenvectors, even though rigorously establishing that such sets even exist in these infinite spaces can be quite challenging and subtle.
 
-It turns out that on top of their eigenvectors being orthonormal, Hermitian operators satisfy other useful properties. Their eigenvalues are always real, and their eigenvectors form a complete set, meaning they span the Hilbert space. This extension is known as the *spectral theorem*.
+It turns out Hermitian operators satisfy an additional important property in addition to their eigenvectors forming a complete orthonormal eigenbasis for the Hilbert space. Namely, their eigenvalues will always be real-valued. The combined result is known as the *spectral theorem*.
 
 **Spectral Theorem:** Suppose $\mathcal{H}$ is a Hermitian operator acting on some $d$-dimensional Hilbert space. Then
 
 1. The eigenvalues of $\mathcal{H}$ are all real-valued.
 2. The eigenvectors of $\mathcal{H}$ form a *complete set*, meaning they span the Hilbert space.
-3. The eigenvectors of $\mathcal{H}$ are orthonormal, hence also form an orthonormal basis for the Hilbert space.
+3. The eigenvectors of $\mathcal{H}$ are orthonormal, and hence form an orthonormal eigenbasis for the Hilbert space.
 
 ---
 
-*Proof:* We need only prove the first two statements, since statement three is already implied by the fact $\mathcal{H}$ is normal. To prove the first statement, assume $\ket{u}$ is an eigenvector of $\mathcal{H}$ with eigenvalue $\lambda$. If $\mathcal{H}$ is Hermitian, by definition we must have
+*Proof:* We need only prove the first statement, since the remaining two are already implied by the fact that $\mathcal{H}$ is normal. To prove the first statement, assume $\ket{u}$ is an eigenvector of $\mathcal{H}$ with eigenvalue $\lambda$. If $\mathcal{H}$ is Hermitian, by definition we must have
 $$
 \bra{u} \mathcal{H} \ket{u} = \bra{u} \left(\mathcal{H} \ket{u}\right) = \left(\bra{u} \mathcal{H}\right) \ket{u} \ .
 $$
-Since $\mathcal{H} \ket{u} = \lambda \ket{u}$ and $\bra{u} \mathcal{H} = \bra{u} \lambda^*$, and since $\ip{u}{u} = 1$ by assumption, we have $\lambda = \lambda^*$. That is, $\lambda$ must be real-valued.
-
-- Either this proof or the previous proof is wrong. Look up what the actual eigenvalue relations are for adjoints/bras…
-
-
+Since $\mathcal{H} \ket{u} = \lambda \ket{u}$ and $\bra{u} \mathcal{H} = \bra{u} \lambda^*$, and since $\ip{u}{u} = 1$ by assumption, we have $\lambda = \lambda^*$. That is, $\lambda$ must be real-valued. $\square$
 
 ---
+
+It's difficult to overstate how important the spectral theorem is to quantum mechanics.
+
+
+$$
+\lambda_i \lambda_j^* = \lambda_i^* \lambda_j = (\lambda_i \lambda_j^*)^* \Rightarrow \ \lambda_i \lambda_j^* \in \mathbb{R} \\
+
+\lambda_i = a + ib, \lambda_j = c + id \Rightarrow \lambda_i \lambda_j^* = (a + ib)(c - id) = (ac + bd) + i(bc - ad) \\
+\Rightarrow bc = ad \quad \text{or} \quad \frac{a}{b} = \frac{c}{d} \\
+\text{counter example: } \lambda_i = 1 + i , \lambda_j = 2 + 2i \Rightarrow \lambda_i \lambda_j^* = 4 = \lambda_i^* \lambda_j
+$$
+
+
 
 
 
