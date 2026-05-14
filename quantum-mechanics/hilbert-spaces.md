@@ -229,7 +229,7 @@ $$
 $$
 This identity may seem quaint, but as we'll see it's very useful in quantum mechanics for proving other identities. The reason it's so useful is because we can always insert an identity operator into the middle of some bracket operation and expand it, effectively forcing a basis expansion into the equation, which we can then manipulate to simplify the result.
 
-### Representations
+### Matrix Representations
 
 We've said that linear operators and matrices are closely related to each other and almost equivalent. Let's take a closer look now at how the two are related. To that end, suppose $\mathcal{L}: \mathscr{H} \to \mathscr{H}$ is some linear operator, and $\{\ket{e_i}\}$ is an orthonormal basis for $\mathscr{H}$. Since it doesn't really make sense to represent continuous objects like functions in matrix notation, in this section we'll assume $\mathscr{H}$ is a $d$-dimensional Hilbert space like $\mathbb{C}^d$, where $d$ could be finite or infinity.
 
@@ -498,6 +498,10 @@ $$
 $$
 Unlike the commutation relations, the anti-commutation relations are only non-zero when $i=j$, not when $i \neq j$.
 
+## Hermitian and Unitary Operators
+
+The two most important classes of linear operators in quantum mechanics are Hermitian operators and unitary operators. Both types of operators have special properties that we'll delve into in this section. In fact, Hermitian and unitary operators are closely related via the theory of Lie groups, as we'll illustrate.
+
 ### Adjoints and Inverses
 
 We can use matrix representations to extend the important notions of matrix adjoints and inverses to linear operators. Suppose a linear operator $\mathcal{L}: \mathcal{H} \to \mathcal{H}$ has a matrix representation $L_{ij} = \bra{e_i} \mathcal{L} \ket{e_j}$ in some orthonormal basis $\{\ket{e_i}\}$. We define the *adjoint* of $\mathcal{L}$ as the unique operator $\mathcal{L}^\dagger$ satisfying the following relation between any two vectors $\ket{u}$ and $\ket{v}$,
@@ -639,7 +643,7 @@ $$
 $$
 We often say that Hermitian operators *generate* unitary transformations, in the sense that we can think of any infinitesimal shift $\delta\mathcal{H}$ in $\mathcal{H}$ as generating an infinitesimal transformation $\delta\mathcal{U}$ in $\mathcal{U}$ of the form $\delta\mathcal{U} = \mathbb{1} + i\delta\mathcal{H}$. Of course, for this to make sense the Hermitian operator $\mathcal{H}$ needs to be continuous. We'll revisit this topic of *Lie algebras* later when we discuss symmetries.
 
-## Eigenvectors
+## Eigenvalues
 
 Recall from linear algebra that any square matrix has associated to it *characteristic* directions that are left invariant when acted on by the matrix. Along these characteristic directions, a square matrix $\mathbf{A}$ can only scale a vector $\mathbf{v}$ along that direction by some complex scalar $\lambda$, not rotate it into a new direction,
 $$
@@ -653,8 +657,12 @@ Linear operators are essentially generalized matrices, and as such have the same
 $$
 \mathcal{L} \ket{u} = \lambda \ket{u}
 $$
-for some non-zero complex number $\lambda$, called the *eigenvalue* of $\mathcal{L}$ associated to the eigenvector $\ket{u}$. By convention, we disallow the zero vector from being an eigenvector, since every operator acting on the zero vector returns a zero vector.
+for some non-zero complex number $\lambda$, called the *eigenvalue* of $\mathcal{L}$ associated to the eigenvector $\ket{u}$. By convention, we disallow the zero vector from being an eigenvector, since every operator acting on the zero vector returns a zero vector. 
 
+Note we can operate on the dual version of the eigenvector $\bra{u}$ in a similar way using the $\mathcal{L} \ket{u} \leftrightarrow \bra{u} \mathcal{L}^\dagger$ rule to get
+$$
+\bra{u} \mathcal{L}^\dagger = \bra{u} \lambda^* \ .
+$$
 Notice that per the definition, if we already know $\ket{u}$ is an eigenvector of $\mathcal{L}$ we can always trivially multiply $\ket{u}$ by any complex scalar $\alpha$ to get a new eigenvector $\alpha\ket{u}$, since
 $$
 A(\alpha\ket{u}) = \lambda (\alpha\ket{u}) \ .
@@ -818,40 +826,42 @@ c_0 + c_1 \lambda + \cdots + c_{d-1} \lambda^{d-1} + c_d \lambda^d = c_d (\lambd
 $$
 Among other things, these imply an linear operator is invertible if and only if all its eigenvalues are non-zero.
 
-### Spectral Theorem
+### Spectral Decomposition
 
-By enforcing the normalization requirement on eigenvectors, it's clear that any $d$-dimensional Hilbert space can have at most $d$ eigenvectors (up to ignored phase factors), since we can use those $d$ eigenvectors as a basis to span the entire Hilbert space. This does *not* however mean the set of eigenvectors must form an orthonormal basis. However, if the operator is a *normal operator*, meaning it commutes with its adjoint, we can *guarantee* its $d$ eigenvectors will always form an orthonormal basis, and we can *diagonalize* $\mathcal{L}$ by writing it as an expansion in terms of that basis. Moreover, if an operator is also Hermitian, its eigenvalues will always be real-valued. This collection of results is known as the *spectral theorem*.
+By enforcing the normalization requirement on eigenvectors, it's clear that any $d$-dimensional Hilbert space can have at most $d$ eigenvectors (up to ignored phase factors), since we can use those $d$ eigenvectors as a basis to span the entire Hilbert space. This does *not* however mean the set of eigenvectors must form an orthonormal basis. However, if the operator is a *normal operator*, meaning it commutes with its adjoint, we can *guarantee* its $d$ eigenvectors will always form an orthonormal basis, and we can *diagonalize* $\mathcal{L}$ by writing it as an expansion in terms of that basis.
 
-Before stating the following theorem we need a few definitions. First, we say a linear operator $\mathcal{L}: \mathscr{H} \to \mathscr{H}$ is *normal* if the operator commutes with its adjoint, i.e. $[\mathcal{L}, \mathcal{L}^\dagger] = 0$. Normal operators it turns out cover the two classes of operators we care most about in quantum mechanics: Hermitian operators and unitary operators. Hermitian operators are clearly normal since if $\mathcal{L}$ is Hermitian, then $\mathcal{L} = \mathcal{L}^\dagger$, and hence $[\mathcal{L}, \mathcal{L}^\dagger] = [\mathcal{L}, \mathcal{L}] = 0$. Unitary operators are also normal, since if $\mathcal{L}$ is unitary we instead have $\mathcal{L}^\dagger = \mathcal{L}^{-1}$, which means
+Before stating the main theorem we'll need a few definitions. First, we say a linear operator $\mathcal{L}: \mathscr{H} \to \mathscr{H}$ is *normal* if the operator commutes with its adjoint, i.e. $[\mathcal{L}, \mathcal{L}^\dagger] = 0$. Normal operators it turns out cover the two classes of operators we care most about in quantum mechanics: Hermitian operators and unitary operators. Hermitian operators are clearly normal since if $\mathcal{L}$ is Hermitian, then $\mathcal{L} = \mathcal{L}^\dagger$, and hence $[\mathcal{L}, \mathcal{L}^\dagger] = [\mathcal{L}, \mathcal{L}] = 0$. Unitary operators are also normal, since if $\mathcal{L}$ is unitary we instead have $\mathcal{L}^\dagger = \mathcal{L}^{-1}$, which means
 $$
 [\mathcal{L}, \mathcal{L}^\dagger] = [\mathcal{L}, \mathcal{L}^{-1}] = \mathcal{L} \mathcal{L}^{-1} - \mathcal{L}^{-1} \mathcal{L} = \mathbb{1} - \mathbb{1} = 0 \ .
 $$
-Second, we call the set of eigenvectors of $\mathcal{L}$ the *spectrum* of $\mathcal{L}$. If this set of eigenvectors contains $d$ independent eigenvectors that span the $d$-dimensional Hilbert space, we say this set is a *complete eigenbasis* for the Hilbert space. If this set also happens to be orthonormal, we say the spectrum is a *complete orthonormal eigenbasis* for the Hilbert space. We can now state the theorem.
+Second, if a linear operator $\mathcal{L}$ contains $d$ linearly independent eigenvectors that span the Hilbert space, we say this set is a *complete eigenbasis* for the Hilbert space. If this set also happens to be orthonormal, we say the spectrum is a *complete orthonormal eigenbasis* for the Hilbert space.
 
-The final tool we'll need is the Schur decomposition from linear algebra, which we won't prove. The *Schur decomposition* is a theorem that guarantees that every $d \times d$ complex-valued matrix $L$ has a similarity transformation
+The final tool we'll need is the Schur decomposition from linear algebra, which we'll state but not prove. The *Schur decomposition* is a theorem that guarantees that every $d \times d$ complex-valued matrix $L$ has a similarity transformation of the form
 $$
-L = U D U^\dagger \ ,
+L = U \Lambda U^\dagger \ ,
 $$
-where $U$ is some $d \times d$ unitary matrix and $D$ is an upper triangular matrix whose diagonal entries are the eigenvalues of $L$,
+where $U$ is some $d \times d$ unitary matrix and $\Lambda$ is an upper triangular matrix whose diagonal entries are the eigenvalues of $L$. That is, the lower diagonal elements of $\Lambda$ are all zero, $\Lambda_{ij} = 0$ when $i > j$, and its diagonal elements are $\Lambda_{ii} = \lambda_i$,
 $$
-D = \begin{pmatrix}
-\lambda_1 & D_{12} & \cdots & D_{1d} \\
-0 & \lambda_2 & \cdots & D_{12} \\
+\Lambda = \begin{pmatrix}
+\lambda_1 & \Lambda_{12} & \cdots & \Lambda_{1d} \\
+0 & \lambda_2 & \cdots & \Lambda_{12} \\
 \vdots & \vdots & \ddots & \vdots \\
 0 & 0 & \cdots & \lambda_d \\
 \end{pmatrix} \ .
 $$
-In the special case that $D$ is a diagonal matrix, i.e. $D_{ij} = 0$ when $i \neq j$, we say the matrix $L$ is *diagonalizable*. In operator language, we say a linear operator $\mathcal{L}$ is *diagonalizable* in terms of some orthonormal basis $\{\ket{e_i}\}$ if we can write
+If this matrix $\Lambda$ happens to be a diagonal matrix, meaning $\Lambda_{ij} = 0$ when $i \neq j$, we say the matrix $L$ is *diagonalizable*. In operator language, a linear operator $\mathcal{L}$ is said to be *diagonalizable* in terms of some orthonormal basis $\{\ket{e_i}\}$ if we can write
+$$
+\boxed{
+\mathcal{L} = \sum_{i=1}^d \lambda_i \op{e_i}{e_i} 
+} \ ,
+$$
+where $\lambda_1, \lambda_2, \cdots, \lambda_d$ are the eigenvalues of $\mathcal{L}$. If an operator $\mathcal{L}$ is diagonalizable, we call the above decomposition the *spectral decomposition* of $\mathcal{L}$. While most linear operators aren't diagonalizable, it turns out that normal operators always are. This is the main theorem we'll now prove.
+
+**Theorem:** Suppose $\mathcal{L}: \mathscr{H} \to \mathscr{H}$ is a linear operator acting on a Hilbert space $\mathscr{H}$ of finite dimension $d$. Then $\mathcal{L}$ has a complete orthonormal eigenbasis $\{\ket{e_i}\}$ for $\mathscr{H}$ if and only if $\mathcal{L}$ is a normal operator. Moreover, $\mathcal{L}$ is diagonalizable in terms of this eigenbasis with spectral decomposition
 $$
 \mathcal{L} = \sum_{i=1}^d \lambda_i \op{e_i}{e_i} \ ,
 $$
-where $\lambda_1, \lambda_2, \cdots, \lambda_d$ are the eigenvalues of $\mathcal{L}$. This is just restating exactly the same thing we defined in matrix language in terms of linear operators. In general a linear operator is not diagonalizable, but normal operators it turns out can always be diagonalized, which we will now prove.
-
-**Theorem:** Suppose $\mathcal{L}: \mathscr{H} \to \mathscr{H}$ is a linear operator acting on a Hilbert space $\mathscr{H}$ of finite dimension $d$. Then $\mathcal{L}$ has a complete orthonormal eigenbasis $\{\ket{u_i}\}$ for $\mathscr{H}$ if and only if $\mathcal{L}$ is a normal operator. Moreover, we can diagonalize $\mathcal{L}$ in terms of its eigenbasis by writing
-$$
-\mathcal{L} = \sum_{i=1}^d \lambda_i \op{u_i}{u_i} \ ,
-$$
-where each $\lambda_i$ is the eigenvalue associated to the eigenvector $\ket{u_i}$.
+where each $\lambda_i$ is the eigenvalue associated to the eigenvector $\ket{e_i}$.
 
 ---
 
@@ -860,67 +870,166 @@ where each $\lambda_i$ is the eigenvalue associated to the eigenvector $\ket{u_i
 1. If $\mathcal{L}$ has a complete set of orthonormal eigenvectors that form a basis for $\mathscr{H}$, then $\mathcal{L}$ must be a normal operator.
 2. If $\mathcal{L}$ is a normal operator, then it has a complete set of orthonormal eigenvectors that form a basis for $\mathscr{H}$.
 
-Suppose first that $\mathcal{L}$ has a complete set $\{\ket{u_i}\}$ of orthonormal eigenvectors that form a basis for $\mathcal{H}$. Then for any state vector $\ket{v} \in \mathscr{H}$ we can expand this vector in terms of the eigenbasis $\{\ket{u_i}\}$,
+Suppose first that $\mathcal{L}$ has a complete set $\{\ket{e_i}\}$ of orthonormal eigenvectors that form a basis for $\mathcal{H}$. Then for any state vector $\ket{v} \in \mathscr{H}$ we can expand this vector in terms of the eigenbasis $\{\ket{e_i}\}$,
 $$
-\ket{v} = \sum_{i=1}^d c_i \ket{u_i} \ ,
+\ket{v} = \sum_{i=1}^d c_i \ket{e_i} \ ,
 $$
-where $\ip{u_i}{u_j} = \delta_{ij}$. To show this implies $\mathcal{L}$ is normal, we need to show $[\mathcal{L}, \mathcal{L}^\dagger] = 0$, or equivalently that $\mathcal{L} \mathcal{L}^\dagger = \mathcal{L}^\dagger \mathcal{L}$.
+where $\ip{e_i}{e_j} = \delta_{ij}$. To show this implies $\mathcal{L}$ is normal, we need to show $[\mathcal{L}, \mathcal{L}^\dagger] = 0$, or equivalently that $\mathcal{L} \mathcal{L}^\dagger = \mathcal{L}^\dagger \mathcal{L}$.
 
-Applying $\mathcal{L}$ to $\ket{v}$ and using the fact that each $\ket{u_i}$ is an eigenvector of $\mathcal{L}$ with eigenvalue $\lambda_i$, we have
+Applying $\mathcal{L}$ to $\ket{v}$ and using the fact that each $\ket{e_i}$ is an eigenvector of $\mathcal{L}$ with eigenvalue $\lambda_i$, we have
 $$
-\mathcal{L} \ket{v} = \sum_{i=1}^d c_i \mathcal{L} \ket{u_i} = \sum_{i=1}^d c_i \lambda_i \ket{u_i} \ .
+\mathcal{L} \ket{v} = \sum_{i=1}^d c_i \mathcal{L} \ket{e_i} = \sum_{i=1}^d c_i \lambda_i \ket{e_i} \ .
 $$
 By taking the adjoint of both sides, it's also clear that
 $$
-\mathcal{L}^\dagger \ket{v} = \sum_{i=1}^d c_i \mathcal{L}^\dagger \ket{u_i} = \sum_{i=1}^d c_i \lambda_i^* \ket{u_i} \ .
+\mathcal{L}^\dagger \ket{v} = \sum_{i=1}^d c_i \mathcal{L}^\dagger \ket{e_i} = \sum_{i=1}^d c_i \lambda_i^* \ket{e_i} \ .
 $$
 Putting these together, we thus have
 $$
-\mathcal{L} \mathcal{L}^\dagger \ket{v} = \sum_{i=1}^d c_i \lambda_i^* \lambda_i \ket{u_i} = \mathcal{L}^\dagger \mathcal{L} \ket{v} \ .
+\mathcal{L} \mathcal{L}^\dagger \ket{v} = \sum_{i=1}^d c_i \lambda_i^* \lambda_i \ket{e_i} = \mathcal{L}^\dagger \mathcal{L} \ket{v} \ .
 $$
-Since $\ket{v}$ is arbitrary, this means $\mathcal{L} \mathcal{L}^\dagger = \mathcal{L}^\dagger \mathcal{L}$. That is, $\mathcal{L}$ is a normal operator. This proves the $(\Rightarrow)$ direction.
+Since $\ket{v}$ is arbitrary, we've shown $\mathcal{L} \mathcal{L}^\dagger = \mathcal{L}^\dagger \mathcal{L}$. That is, $\mathcal{L}$ is a normal operator. This proves the $(\Rightarrow)$ direction.
 
-Suppose now that $\mathcal{L}$ is a normal operator, so $[\mathcal{L}, \mathcal{L}^\dagger] = 0$. Now we need to show that $\mathcal{L}$ has a complete set of eigenvectors that span the H ilbert space. To prove this we'll make use of the Schur decomposition. Suppose in some orthonormal basis $\{\ket{e_i}\}$ we can represent $\mathcal{L}$ in terms of a generic $d \times d$ matrix whose entries are $L_{ij} = \bra{e_i} \mathcal{L} \ket{e_j}$. According to the Schur decomposition we can always diagonalize $\mathcal{L}$ in terms of its eigenvalues $\lambda_1, \lambda_2, \cdots, \lambda_d$ via the similarity transformation
+Suppose now that $\mathcal{L}$ is a normal operator, so $[\mathcal{L}, \mathcal{L}^\dagger] = 0$. Now we need to show that $\mathcal{L}$ has a complete set of eigenvectors that span the Hilbert space. To prove this we'll make use of the Schur decomposition. According to this decomposition, there exists a complete orthonormal basis $\{\ket{e_i}\}$ where the matrix representation of $\mathcal{L}$ is upper triangular and its diagonal entries are its eigenvalues. That is, $L_{ij} = 0$ whenever $i > j$, and $L_{ii} = \lambda_i$. Or, in matrix form,
 $$
-L_{ij} = U_{ik} D_{k\ell} U_{\ell j}^* = 
+\mathcal{L} \doteq \begin{pmatrix}
+\lambda_1 & L_{12} & \cdots & L_{1d} \\
+0 & \lambda_2 & \cdots & L_{12} \\
+\vdots & \vdots & \ddots & \vdots \\
+0 & 0 & \cdots & \lambda_d \\
+\end{pmatrix} \ .
 $$
-
-
-
-
-This proves the $(\Leftarrow)$ direction, and hence the theorem. $\square$
+Now, since $\mathcal{L}$ is normal, every matrix element of $\mathcal{L} \mathcal{L}^\dagger$ and $\mathcal{L}^\dagger \mathcal{L}$ must equal. In particular, their diagonal elements must equal,
+$$
+(LL^\dagger)_{ii} = \sum_{j=1}^d |L_{ij}|^2 = \sum_{j=1}^d |L_{ji}|^2 = (L^\dagger L)_{ii} \ .
+$$
+But $\mathcal{L}$ is also upper triangular, which means $L_{ij} = 0$ when $i > j$. The only way the two sums above can equal and $\mathcal{L}$ be upper triangular is if $\mathcal{L}$ is diagonal, meaning $L_{ij} = 0$ when $i \neq j$. To see why, suppose we fix $i=1$. Using the upper triangular property, the above expression becomes
+$$
+|L_{11}|^2 + 0 + \cdots + 0 = |L_{11}|^2 + |L_{12}|^2 + \cdots + |L_{1d}|^2 \ ,
+$$
+which can only be true if all terms are zero in the first row except $|L_{11}|^2 = |\lambda_1|^2$. Similarly for the other rows. Thus, in this matrix representation, if $\mathcal{L}$ is normal then its Schur decomposition must be the diagonal matrix of its eigenvalues,
+$$
+\mathcal{L} \doteq \begin{pmatrix}
+\lambda_1 & 0 & \cdots & 0 \\
+0 & \lambda_2 & \cdots & 0 \\
+\vdots & \vdots & \ddots & \vdots \\
+0 & 0 & \cdots & \lambda_d \\
+\end{pmatrix} \ .
+$$
+We've thus shown that $\mathcal{L}$ is diagonalizable in terms of this basis $\{\ket{e_i}\}$, which means it has a spectral decomposition
+$$
+\mathcal{L} = \sum_{i=1}^d \lambda_i \op{e_i}{e_i} \ .
+$$
+If this is true though, then each basis vector $\ket{e_i}$ must also be the eigenvector of $\mathcal{L}$ whose eigenvalue is $\lambda_i$, since
+$$
+\mathcal{L} \ket{e_j} = \sum_{i=1}^d \lambda_i \ket{e_i} \ip{e_i}{e_j} = \lambda_j \ket{e_j} \ .
+$$
+Since we assumed $\{\ket{e_i}\}$ is a complete orthonormal basis for the Hilbert space, and since each of these basis vectors is an eigenvector of $\mathcal{L}$, the eigenvectors of $\mathcal{L}$ form a complete eigenbasis for the Hilbert space. This proves the $(\Leftarrow)$ direction, and hence the theorem. $\square$
 
 ---
 
-By extension, anti-Hermitian operators are normal as well, as are all the real-valued counterparts: symmetric, anti-symmetric, and orthogonal operators. Indeed, we'll rarely encounter operators in quantum mechanics that aren't normal. Even in infinite dimensions and function spaces we'll generally assume the operators we study have a complete set of orthonormal eigenvectors, even though rigorously establishing that such sets even exist in these infinite spaces can be quite challenging and subtle.
-
-It turns out Hermitian operators satisfy an additional important property in addition to their eigenvectors forming a complete orthonormal eigenbasis for the Hilbert space. Namely, their eigenvalues will always be real-valued. The combined result is known as the *spectral theorem*.
-
-**Spectral Theorem:** Suppose $\mathcal{H}$ is a Hermitian operator acting on some $d$-dimensional Hilbert space. Then
-
-1. The eigenvalues of $\mathcal{H}$ are all real-valued.
-2. The eigenvectors of $\mathcal{H}$ form a *complete set*, meaning they span the Hilbert space.
-3. The eigenvectors of $\mathcal{H}$ are orthonormal, and hence form an orthonormal eigenbasis for the Hilbert space.
-
----
-
-*Proof:* We need only prove the first statement, since the remaining two are already implied by the fact that $\mathcal{H}$ is normal. To prove the first statement, assume $\ket{u}$ is an eigenvector of $\mathcal{H}$ with eigenvalue $\lambda$. If $\mathcal{H}$ is Hermitian, by definition we must have
+Normal operators are nice because we can always diagonalize them to get a spectral decomposition
 $$
-\bra{u} \mathcal{H} \ket{u} = \bra{u} \left(\mathcal{H} \ket{u}\right) = \left(\bra{u} \mathcal{H}\right) \ket{u} \ .
+\mathcal{L} = \sum_{i=1}^d \lambda_i \op{e_i}{e_i} \ .
 $$
-Since $\mathcal{H} \ket{u} = \lambda \ket{u}$ and $\bra{u} \mathcal{H} = \bra{u} \lambda^*$, and since $\ip{u}{u} = 1$ by assumption, we have $\lambda = \lambda^*$. That is, $\lambda$ must be real-valued. $\square$
+Since the two most important classes of operators in quantum mechanics, unitary and Hermitian operators, are both normal, from now on we'll always assume they have spectral decompositions like this.
 
----
+Now that we've established that Hermitian and unitary operators will always have a complete orthonormal set of eigenvectors, and that we can always diagonalize these operators in terms of their eigenvectors, let's analyze their eigenvalues. First let's look at the eigenvalues of a unitary operator. If $\mathcal{U}$ is unitary, then $\mathcal{U}^\dagger \mathcal{U} = \mathbb{1}$, which means for any (normalized) eigenvector $\ket{e_i}$ with eigenvalue $\lambda_i$ we have
+$$
+1 = \ip{e_i}{e_i} = \bra{e_i} \mathcal{U}^\dagger \mathcal{U} \ket{e_i} = |\lambda_i|^2 \ip{e_i}{e_i} = |\lambda_i|^2 \ .
+$$
+Since every eigenvalue must satisfy $|\lambda_i|^2 = 1$, the eigenvalues of a unitary operator must thus be pure phases, i.e. complex numbers of the form $\lambda_i = e^{i\varphi_i}$ where $\varphi_i$ is a real number.
 
-It's difficult to overstate how important the spectral theorem is to quantum mechanics.
+Let's now look at the eigenvalues of Hermitian operators. If $\mathcal{H}$ is Hermitian, then $\mathcal{H} = \mathcal{H}^\dagger$, which means for any (normalized) eigenvector $\ket{e_i}$ with eigenvalue $\lambda_i$ we have
+$$
+\bra{e_i} \mathcal{H} \ket{e_i} = \lambda_i \ip{e_i}{e_i} = \lambda_i \ ,
+$$
+and similarly
+$$
+\bra{e_i} \mathcal{H} \ket{e_i}^* = \bra{e_i} \mathcal{H}^\dagger \ket{e_i} = \lambda_i^* \ip{e_i}{e_i} = \lambda_i^* \ .
+$$
+However, since $\mathcal{H}$ is Hermitian, $\bra{e_i} \mathcal{H}^\dagger \ket{e_i} = \bra{e_i} \mathcal{H} \ket{e_i}$, which means $\lambda_i = \lambda_i^*$. That is, each eigenvalue $\lambda_i$ must be a real number. Thus, the eigenvalues of a Hermitian operator must be real numbers.
+
+Not only do Hermitian operators have orthonormal eigenvectors, but the eigenvectors corresponding to distinct eigenvalues *must* always be orthogonal. This is simple enough to show. Suppose $\lambda$ and $\lambda'$ are two distinct eigenvalues of a Hermitian operator $\mathcal{H}$, where $\lambda$ has some eigenvector $\ket{u}$ and $\lambda'$ has some eigenvector $\ket{u'}$. Since $\mathcal{H}$ is Hermitian, $\mathcal{H} \ket{u} = \lambda \ket{u}$ and $\bra{u'} \mathcal{H} = \bra{u'} \lambda'$, which means
+$$
+\begin{align*}
+\bra{u'} \mathcal{H} \ket{u} &= \bra{u'} \left(\mathcal{H} \ket{u}\right) = \lambda \ip{u'}{u} \ , \\
+\bra{u'} \mathcal{H} \ket{u} &= \left(\bra{u'} \mathcal{H}\right) \ket{u} = \lambda' \ip{u'}{u} \ .
+\end{align*}
+$$
+Since both expressions correspond to the same matrix element $\bra{u'} \mathcal{H} \ket{u}$, we can set them equal and write
+$$
+(\lambda - \lambda') \ip{u'}{u} = 0 \ .
+$$
+Since we assume the eigenvectors are extinct we know $\lambda \neq \lambda'$, which means we must have $\ip{u'}{u} = 0$. That is, the eigenvectors of these two distinct eigenvalues must be orthogonal.
+
+This combined set of results for Hermitian operators is known as the *spectral theorem*. The spectral theorem provides a more rigorous interpretation of what we mean when we say Hermitian operators behave like real numbers.
+
+**Spectral Theorem:** Suppose $\mathcal{H}: \mathscr{H} \to \mathscr{H}$ is a linear operator acting on a Hilbert space $\mathscr{H}$ of finite dimension $d$. Then,
+
+1. There exists a set of eigenvectors of $\mathcal{H}$ that form a complete orthonormal eigenbasis for the Hilbert space, and we can diagonalize $\mathcal{H}$ in terms of these eigenvectors.
+2. The eigenvalues of $\mathcal{H}$ are real-valued.
+3. The eigenvectors corresponding to distinct eigenvalues must be orthogonal.
+
+As usual, we'll assume without proof in quantum mechanics that the spectral theorem holds for infinite-dimensional Hilbert spaces as well, though we'll need to interpret the theorem with some degree of care. We'll return to this issue later.
+
+### Degeneracy
+
+Thus far we haven't focused on the issue of degenerate eigenvalues. Degeneracy raises a few subtleties we need to address. For example, the spectral theorem says that eigenvectors of a Hermitian operator corresponding to distinct eigenvalues must be orthogonal. But what about eigenvectors corresponding to the same eigenvalue? After all, Hermitian operators should have a complete orthonormal eigenbasis, so even for degenerate eigenvalues we should be able to get an orthonormal set somehow.
+
+Recall an eigenvalue $\lambda$ of a linear operator $\mathcal{L}$ is said to be *degenerate* with order $k$ if its characteristic polynomial contains $k$ roots all equal to the same eigenvalue $\lambda$. Consider the set of eigenvectors $\ket{u} \in \mathscr{H}$ corresponding to the same eigenvalue $\lambda$,
+$$
+\mathscr{H}_\lambda \equiv \{\ket{u} \in \mathscr{H}: \mathcal{L} \ket{u} = \lambda \ket{u}\} \ .
+$$
+In fact, the set $\mathscr{H}_\lambda$ forms a linear subspace of the Hilbert space $\mathscr{H}$. To see why, we need to show that this space is closed under superposition. Suppose $\ket{u}, \ket{v} \in \mathscr{H}_\lambda$ are both vectors in this set. By definition, both vectors must then be eigenvectors of the same eigenvalue $\lambda$, meaning $\mathcal{L} \ket{u} = \lambda \ket{u}$ and $\mathcal{L} \ket{v} = \lambda \ket{v}$. But for any superposition $\alpha \ket{u} + \beta \ket{v}$ we must also have
+$$
+\mathcal{L} (\alpha \ket{u} + \beta \ket{v}) = \lambda (\alpha \ket{u} + \beta \ket{v}) \ .
+$$
+Thus, if $\ket{u}$ and $\ket{v}$ are both eigenvectors of $\lambda$, then so is any superposition $\alpha \ket{u} + \beta \ket{v}$. That is, the set $\mathscr{H}_\lambda$ is closed under superposition, and is hence a linear subspace of the Hilbert space. This linear subspace $\mathscr{H}_\lambda$ is called the *eigenspace* of $\lambda$.
+
+A key fact about eigenspaces is their dimension equals the degeneracy of their corresponding eigenvalue. If $\lambda$ is degenerate with order $k$, then its eigenspace $\mathscr{H}_\lambda$ will be a $k$-dimensional subspace of the Hilbert space.
+
+- Figure out where this fact follows from. Schur decomposition? Spectral decomposition? Diagonalization?
+
+
 
 
 $$
-\lambda_i \lambda_j^* = \lambda_i^* \lambda_j = (\lambda_i \lambda_j^*)^* \Rightarrow \ \lambda_i \lambda_j^* \in \mathbb{R} \\
+\mathscr{H} = \mathscr{H}_{\lambda_1} \oplus \mathscr{H}_{\lambda_2} \oplus \cdots \oplus \mathscr{H}_{\lambda_n} \ .
+$$
 
-\lambda_i = a + ib, \lambda_j = c + id \Rightarrow \lambda_i \lambda_j^* = (a + ib)(c - id) = (ac + bd) + i(bc - ad) \\
-\Rightarrow bc = ad \quad \text{or} \quad \frac{a}{b} = \frac{c}{d} \\
-\text{counter example: } \lambda_i = 1 + i , \lambda_j = 2 + 2i \Rightarrow \lambda_i \lambda_j^* = 4 = \lambda_i^* \lambda_j
+$$
+d = d_1 + d_2 + \cdots + d_n
+$$
+
+$$
+\ket{v} = \alpha_1 \ket{u_{\lambda_1}} + \alpha_2 \ket{u_{\lambda_2}} + \cdots + \alpha_n \ket{u_{\lambda_n}}
+$$
+
+$$
+\mathcal{L} = \sum_{i=1}^n \sum_{j=1}^{d_i} \lambda_i \op{e_i^{(j)}}{e_i^{(j)}}
+$$
+
+$$
+\mathcal{L} \doteq \begin{pmatrix}
+\lambda_1 & 0 & 0 & 0 & 0 & 0 & \cdots & 0 \\
+0 & \lambda_2 & 0 & 0 & 0 & 0 & \cdots & 0 \\
+0 & 0 & \lambda_2 & 0 & 0 & 0 & \cdots & \vdots \\
+0 & 0 & 0 & \lambda_2 & 0 & 0 & \cdots & 0 \\
+0 & 0 & 0 & 0 & \lambda_3 & 0 & \cdots & 0 \\
+0 & 0 & 0 & 0 & 0 & \lambda_3 & \cdots & 0 \\
+\vdots & \vdots & \vdots & \vdots & \vdots & \vdots & \ddots & \vdots \\
+0 & 0 & 0 & 0 & 0 & 0 & \cdots & \lambda_n \\
+\end{pmatrix} \ .
+$$
+
+$$
+\mathcal{L} \doteq \begin{pmatrix}
+\lambda_1 \mathbb{1}_{d_1} & 0 & \cdots & 0 \\
+0 & \lambda_2 \mathbb{1}_{d_2} & \cdots & 0 \\
+\vdots & \vdots & \ddots & \vdots \\
+0 & 0 & \cdots & \lambda_n \mathbb{1}_{d_n} \\
+\end{pmatrix} \ .
 $$
 
 
