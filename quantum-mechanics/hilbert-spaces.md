@@ -2,23 +2,50 @@
 
 We've seen quantum phenomena involve two fundamental ideas: the superposition of probability amplitudes, and the notion of measurement as projection. The mathematical foundation for describing these ideas is linear algebra, specifically the theory of Hilbert spaces, the subject of this chapter.
 
+In this chapter, and indeed the rest of the course, we'll be using *Dirac notation*. Dirac notation is a special notation introduced by Paul Dirac for dealing with objects in Hilbert spaces. Indeed, Dirac notation has become so useful and powerful that it's essentially become the de facto *language* of quantum mechanics.
+
 ## Hilbert Spaces
 
-The mathematical setting of quantum mechanics is essentially vector spaces. In physics, we're used to working in vector spaces like ordinary 3-dimensional real space, or 4-dimensional Minkowski spacetime. Quantum mechanics is fundamentally different though. We could be dealing with finite-dimensional vectors of any dimension, not just two or three or four. We could even be dealing with infinite dimensions of sequences, or even continuous spaces of functions. On top of that, in quantum mechanics we're almost always working in *complex* vector spaces, not the real vector spaces we're used to.
+The mathematical setting of quantum mechanics is essentially vector spaces. In physics, we're used to working in vector spaces like ordinary 3-dimensional real space, or 4-dimensional Minkowski spacetime. Quantum mechanics is fundamentally different though. We could be dealing with finite-dimensional vectors of any dimension, not just two or three or four. We could even be dealing with infinite dimensions of sequences, or even continuous spaces of functions. On top of that, in quantum mechanics we're almost always working in *complex* vector spaces, not the real vector spaces we're used to. For these reasons, in quantum mechanics we'll need to be intentionally abstract and assume vectors live in complex spaces of any number of dimension.
 
-For these reasons, in quantum mechanics we'll want to be more intentionally abstract and assume vectors can be essentially anything and live in spaces of any dimension. To deal with this abstraction, quantum mechanics uses a special notation introduced by Paul Dirac, known as *Dirac notation*. This notation makes no assumptions about what kinds of vectors we're dealing with, other than that we have some notion of inner product between vectors. All that's required is states behave abstractly like vectors belonging to some kind of vector space. Dirac notation has become so useful and powerful that it can be thought of as the *language* of quantum mechanics.
+The natural setting for these more abstract types of vectors we need in quantum mechanics is complex Hilbert space. Formally, a *Hilbert space* is a *complete inner product space*. That is, it's a *vector space* that's endowed with a notion of *inner product*, and is *complete* in the sense that the space is closed under linear superposition even for infinite convergent sums of vectors. A *complex Hilbert space* is a Hilbert space where its field of scalars are the complex numbers.
 
-### State Vectors
+We'll usually denote an arbitrary Hilbert space by the calligraphic symbol $\mathscr{H}$. The vectors that live in the Hilbert space are called *state vectors*. In Dirac notation, we denote state vectors by the symbol $\ket{\cdot}$, called a *ket*. To indicate that a state vector $\ket{v}$ belongs to a specific Hilbert space $\mathscr{H}$ we'll sometimes write $\ket{v} \in \mathscr{H}$, which you can read as "$\ket{v}$ is in $\mathscr{H}$".
 
-To deal with these more general kinds of vectors, we assume they live in special kind of vector space called a Hilbert space. Mathematically, a *Hilbert space* is a *complete inner product space*. For our purposes, we can think of a Hilbert space as a complex-valued vector space, endowed with an inner product, where every vector in the space has a finite norm. Whether these vectors are 3-dimensional or infinite sequences or continuous functions makes no material difference.
+### Vector Spaces
 
-We'll define the postulates of quantum mechanics in a later chapter, so for now we'll assume only a few things for mathematical purposes. First, we'll assume that quantum mechanical states, whatever these are, correspond to vectors that live in some Hilbert space, denoted $\mathscr{H}$. In Dirac notation, we denote state vectors by the symbol $\ket{v}$, called a *ket* vector. To be explicit that a state vector $\ket{v}$ belongs to a specific Hilbert space $\mathscr{H}$, we'll use the notation $\ket{v} \in \mathscr{H}$, which you can read as "$\ket{v}$ is in $\mathscr{H}$".
+The first property of a complex Hilbert space $\mathscr{H}$ is that it must satisfy the usual properties of a complex vector space:
 
-We require that a Hilbert space satisfy all the properties of a mathematical vector space. It must contain a zero vector, we should be able to add and subtract vectors, we should be able to multiply them by scalars, etc. We can summarize these requirements by requiring that $\mathscr{H}$ contain a zero vector $\ket{\emptyset}$ and be closed under linear superposition. For any two state vectors $\ket{v} \in \mathscr{H}$ and $\ket{u} \in \mathscr{H}$, and any two complex scalars $\alpha$ and $\beta$, we require that the linear superposition $\alpha \ket{u} + \beta \ket{v}$ be in $\mathscr{H}$.
+- $\mathscr{H}$ is closed under scalar multiplication by complex numbers. 
+  - If $\ket{v} \in \mathscr{H}$, then so is $\alpha \ket{v}$ for any complex number $\alpha$.
+  - When $\alpha = 1$, then $1 \ket{v} = \ket{v}$.
+  - Multiplying on the left or the right by $\alpha$ must yield the same vector $\alpha \ket{v} = \ket{v} \alpha$. 
+  - Scalar multiplication satisfies the distributive property over vectors, meaning $(\alpha + \beta) \ket{v} = \alpha \ket{v} + \beta \ket{v}$ for any complex numbers $\alpha$ and $\beta$.
+- $\mathscr{H}$ has a notion of vector addition, and vectors in the space must be closed under vector addition. 
+  - For any two vectors $\ket{u}, \ket{v} \in \mathscr{H}$, their vector sum $\ket{u} + \ket{v} \in \mathscr{H}$. 
+  - This notion of vector addition must be commutative, meaning $\ket{u} + \ket{v} = \ket{v} + \ket{u}$.
+  - We can define the vector subtraction of two vectors by $\ket{u} - \ket{v} \equiv \ket{u} + (-1)\ket{v}$.
+- $\mathscr{H}$ contains a zero vector $\ket{\emptyset}$ satisfying $0 \ket{v} = \ket{\emptyset}$ for any $\ket{v} \in \mathscr{H}$.
+  - Subtracting a vector from itself always gives the zero vector, with $\ket{v} - \ket{u} = \ket{\emptyset}$. 
+  - We'll often denote the zero vector simply by $0$ when it makes sense.
 
-Next, we require that the Hilbert space be endowed with an inner product. That is, $\mathscr{H}$ is not just a vector space, but a vector space that comes with a special function attached to it called an inner product that maps pairs of state vectors to a complex number. Formally, an *inner product* is a function attached to $\mathscr{H}$ that maps any two state vectors $\ket{u}, \ket{v} \in \mathscr{H}$ to a special complex number $\ip{u}{v}$, which you can read as "$u$ bracket $v$", respecting the following properties:
+We can summarize these properties by saying that a complex vector space must contain a zero vector, and be closed under *linear superposition* by complex scalars. That is, for any two state vectors $\ket{u}, \ket{v} \in \mathscr{H}$ and any two complex numbers $\alpha$ and $\beta$, the linear superposition $\alpha\ket{u} + \beta\ket{v}$ must also belong to the vector space $\mathscr{H}$.
 
-- Positive Definite: For any state vector $\ket{v} \in \mathscr{H}$, $\ip{v}{v} \geq 0$. Moreover, $\ip{v}{v} = 0$ only when $\ket{v} = 0$.
+### Inner Product Spaces
+
+The second property of a complex Hilbert space is that it be an *inner product space*. That is, it must be a complex vector space that also has a well-defined notion of inner product. An *inner product* is a bivariate function $\ip{\cdot}{\cdot}$ that maps pairs of state vectors to complex numbers. A mathematician would express this statement using the notation
+$$
+\ip{\cdot}{\cdot}: \mathscr{H} \times \mathscr{H} \to \mathbb{C} \ .
+$$
+The inner product is thought of as attached to the space. We can't have multiple inner products for the same inner product space. Indeed, mathematicians will sometimes be pedantic and notate an inner product space $\mathscr{H}$ instead as $(\mathscr{H}, \ip{\cdot}{\cdot})$ to be explicit that it's a vector space $\mathscr{H}$ with an inner product attached $\ip{\cdot}{\cdot}$ to it.
+
+Given two state vectors $\ket{u}, \ket{v} \in \mathscr{H}$, the inner product maps these two vectors to a unique complex number denoted $\ip{u}{v}$,
+$$
+\ket{u}, \ket{v} \to \ip{u}{v} \ .
+$$
+The inner product can't just be any bivariate mapping of vectors to complex numbers though. It must satisfy specific properties. Specifically, the inner product must satisfy the following:
+
+- Positive Semidefinite: For any state vector $\ket{v} \in \mathscr{H}$, $\ip{v}{v} \geq 0$. Moreover, $\ip{v}{v} = 0$ only when $\ket{v} = 0$.
 - Anti-Symmetry: For any two state vectors $\ket{u}, \ket{v} \in \mathscr{H}$, $\ip{u}{v} = \ip{v}{u}^*$.
 
 - Linearity: For any three state vectors  $\ket{u}, \ket{v}, \ket{w} \in \mathscr{H}$, and any two complex numbers $\alpha$ and $\beta$,
@@ -27,26 +54,44 @@ $$
 \ip{u}{\alpha v + \beta w} = \alpha \ip{u}{v} + \beta \ip{u}{w} \ .
 $$
 
-The positive definite property says that the inner product of a vector with itself should always be non-negative. The anti-symmetry property says that if we reverse the order of the inner product then we have to complex conjugate it. The linearity property says that the inner product is linear over vectors and scalars, except with one caveat: Due to anti-symmetry, if we reverse the order then we have to complex conjugate the scalars $\alpha$ and $\beta$ when we pull them out of the inner product,
+The positive semidefinite property says that the inner product of a vector with itself should always be non-negative. The anti-symmetry property says that if we reverse the order of the inner product then we have to complex conjugate it. The linearity property says that the inner product is linear over vectors and scalars, except with one caveat: Due to anti-symmetry, if we reverse the order then we have to complex conjugate the scalars $\alpha$ and $\beta$ when we pull them out of the inner product,
 $$
 \ip{\alpha v + \beta w}{u} = \alpha^* \ip{v}{u} + \beta^* \ip{w}{u} \ .
 $$
-Though it's perhaps not obvious, these are exactly the properties we need to define the usual inner products we're used to. The positive definite property is what allows us to define a notion of vector norm or length. The linearity property is what gives us the usual linearity property that inner products satisfy. The anti-symmetry property is a quirk of dealing with complex-valued vectors, where we have to multiply complex numbers by their complex conjugates to get real numbers.
+Though perhaps not obvious, these are exactly the properties we need to define the usual inner products or dot products we're used to. The positive semidefinite property is what allows us to define a notion of vector norm or length. The linearity property is what gives us the usual linearity property that inner products satisfy. The anti-symmetry property is a quirk of dealing with complex-valued vectors, where we have to multiply complex numbers by their complex conjugates to get real numbers.
 
-From the inner product, we define the norm of a state vector in the usual way. Given a vector $\ket{v} \in \mathscr{H}$, its *norm* is defined as
+We can use the inner product to define a notion of vector length, or norm. Given a state vector $\ket{v} \in \mathscr{H}$, its *norm* is defined as
 $$
 \norm{v} \equiv \sqrt{\ip{v}{v}} \ .
 $$
-We can think of this definition of the norm as the most general form of the Pythagorean theorem. It gives us a notion of length for state vectors. Indeed, the requirement that Hilbert spaces have an inner product is equivalent to requiring that they have a *geometry*, since we can use the inner product to define a notion of length for objects in the space and a notion of angle between objects in the space. If we wanted to, we could define a (complex) angle $\vartheta$ between two state vectors $\ket{u}$ and $\ket{v}$ in the usual way,
+A state vector $\ket{v} \in \mathscr{H}$ is said to be a *unit vector*, or *normalized*, if it has unit norm $\norm{v} = 1$, or equivalently if $\ip{v}{v} = 1$.
 
+Technically speaking, what we've defined is a specific type of vector norm known as the $\ell_2$-norm or 2-norm. In mathematics we can define other types of vector norms as well. However, only the 2-norm can be defined via an inner product like this. Since the 2-norm corresponds to the intuitive geometric notion of vector length, in physics we're pretty much only ever interested in the 2-norm, and thus just call this norm "the norm" when the context is clear.
+
+We can think of this definition of the norm as the most general form of the Pythagorean theorem. It gives us a notion of magnitude or length for state vectors. Due to the positive semi-definiteness property of the inner product, the norm will always be a non-negative real number and hence behave like a typical notion of length. It's easy to check that only the zero vector has norm zero and that scalars pull out of the norm as $\norm{\alpha v} = |\alpha| \norm{v}$. The norm also satisfies the *triangle inequality*, which says
+$$
+\norm{u + v} \leq \norm{u} + \norm{v} \ .
+$$
+The requirement that Hilbert spaces have an inner product is equivalent to requiring that they have a *geometry*, as we can use the inner product to define a notion of length for objects in the space and a notion of angle between objects in the space. If we wanted to, we could define a (complex) angle $\vartheta$ between two state vectors $\ket{u}$ and $\ket{v}$ in the way we usually do in vector calculus,
 $$
 \cos\vartheta \equiv \frac{\ip{u}{v}}{\norm{u} \norm{v}} \ ,
 $$
 but we won't really use this property much in practice since we almost always work with unit vectors, where the inner product just corresponds directly to the cosine of the angle.
 
-We say a vector $\ket{v} \in \mathscr{H}$ is a *unit vector* if $\norm{v} = 1$, or equivalently if $\ip{v}{v} = 1$. Similarly, two vectors $\ket{u}, \ket{v} \in \mathscr{H}$ are called *orthogonal* when $\ip{u}{v} = 0$, and *orthonormal* when both $\norm{u} = \norm{v} = 1$ and $\ip{u}{v} = 0$.
+The inner product will always satisfy an inequality that will sometimes be useful to us, known as the *Schwarz inequality*. The Schwarz inequality says that any two state vectors $\ket{u}, \ket{v} \in \mathscr{H}$ must satisfy
+$$
+|\ip{u}{v}| \leq \norm{u} \norm{v} \ .
+$$
+Moreover, this inequality will only become an equality when either one of the vectors is zero or $\ket{u} = \ket{v}$.
 
-Using the norm, we can finally formally define what it means for a Hilbert space to be complete. We say an inner product space $\mathscr{H}$ is *complete* provided $\norm{v} < \infty$ for any state vector $\ket{v} \in \mathscr{H}$. State vectors that satisfy this property are called *square normalizable*. This may seem like an odd requirement for a Hilbert space, since we're used to working in finite-dimensional vector spaces where norms are always finite. However, the completeness requirement is important in infinite dimensions, as we'll show in the following examples.
+*TODO*:
+
+- Move Schwarz inequality to basis section (renamed orthogonality), and go ahead and prove it using projection vectors.
+- Create new section for completeness at the end. Then address continuous spaces after completeness in new section.
+- Simplify examples below and use them as examples of inner product spaces. Say more about the vector space part, at least appealing to complex space as tuples of complex numbers.
+- Clean up dual vector section. Define the adjoint of a vector here via the bra/ket identification. Then refine it again under representations in terms of components.
+
+We can use the norm to now formally define what it means for a Hilbert space to be complete. We say $\mathscr{H}$ is *complete* provided $\norm{v} < \infty$ for any state vector $\ket{v} \in \mathscr{H}$. State vectors satisfying this property are called *square normalizable*. This may seem like an odd requirement for a Hilbert space, since we're used to working in finite-dimensional vector spaces where norms are always finite. However, the completeness requirement is indeed important in infinite dimensions, as we'll now illustrate.
 
 ##### Example: 2-Dimensional Space
 
@@ -56,8 +101,8 @@ $$
 $$
 where $(u_1, u_2)$ are the components of $\ket{u}$ in some basis and $(v_1, v_2)$ are the components of $\ket{v}$ in the same basis. Verifying this inner product satisfies the required properties are fairly trivial. Using the properties of complex numbers, we have
 
-- Positive Definite: $\ip{v}{v} = v_1^* v_1 + v_2^* v_2 = |v_1|^2 + |v_2|^2 \geq 0$, and if $\ip{v}{v} = 0$ then $v_1 = v_2 = 0$ must hold.
-- Skew Symmetry: $\ip{u}{v} = u_1^* v_1 + u_2^* v_2 = (u_1 v_1^* + u_2 v_2^*)^* = \ip{v}{u}^*$.
+- Positive Semidefinite: $\ip{v}{v} = v_1^* v_1 + v_2^* v_2 = |v_1|^2 + |v_2|^2 \geq 0$, and if $\ip{v}{v} = 0$ then $v_1 = v_2 = 0$ must hold.
+- Anti-Symmetry: $\ip{u}{v} = u_1^* v_1 + u_2^* v_2 = (u_1 v_1^* + u_2 v_2^*)^* = \ip{v}{u}^*$.
 - Linearity: $\ip{u}{\alpha v + \beta w} = u_1^* (\alpha v_1 + \beta w_1) + u_2^* (\alpha v_2 + \beta w_2) = \alpha u_1^* v_1 + \alpha u_1^* v_1 + \beta u_2^* v_2 + \alpha u_2^* v_2 = \alpha \ip{u}{v} + \beta \ip{u}{w}$.
 
 We've thus showed that the inner product we defined on $\mathbb{C}^2$ is a valid inner product. This then defines a norm of the form
@@ -116,9 +161,11 @@ Indeed, just as we did for $\mathbb{C}^\infty$ we have to exclude many functions
 
 The example we gave was specifically for complex-valued functions defined on the interval $0 \leq x \leq 1$, but we can define $L_2$ spaces over any interval $a \leq x \leq b$ as well as the entire real line. The same discussion extends to these cases as well.
 
-### Basis Vectors
+### Orthogonality
 
-We can define the notion of a basis for Hilbert spaces in the usual way. Given a Hilbert space $\mathscr{H}$, we say that a set of state vectors $\{\ket{e_\alpha}\}$ is a *basis* for $\mathscr{H}$ provided we can represent any vector $\ket{v} \in \mathscr{H}$ as a linear superposition of the basis vectors $\ket{e_\alpha}$,
+We can use the inner product to define the important notion of orthogonality between vectors. Two state vectors $\ket{u}, \ket{v} \in \mathscr{H}$ are said to be *orthogonal* or *perpendicular* provided their inner product is zero, i.e. $\ip{u}{v} = 0$. If both vectors also happen to be unit vectors they're said to be *orthonormal*.
+
+We'll now define the notion of a basis for Hilbert spaces in the usual way. Given a Hilbert space $\mathscr{H}$, we say that a set of state vectors $\{\ket{e_\alpha}\}$ is a *basis* for $\mathscr{H}$ provided we can represent any vector $\ket{v} \in \mathscr{H}$ as a linear superposition of the basis vectors $\ket{e_\alpha}$,
 $$
 \ket{v} = \sum_\alpha v_\alpha \ket{e_\alpha} \ .
 $$
@@ -150,21 +197,21 @@ $$
 
 ### Dual Vectors
 
-Before moving on, we need to introduce the concept of a *dual vector*. Consider the inner product between two state vectors $\ket{u}$ and $\ket{v}$. Instead of thinking about the inner product as a function mapping two state vectors to a complex number, we can think about it equivalently as a function that maps a vector $\ket{v}$ to the complex number $\ip{u}{v}$. Such a mapping is called a *linear functional*. This functional depends on $\ket{u}$, since $\ip{u}{v}$ depends on both $\ket{u}$ and $\ket{v}$. We'll denote this functional by $\bra{u}$, where
+Let's now go ahead and introduce the concept of a *dual vector*. Consider the inner product between two state vectors $\ket{u}$ and $\ket{v}$. Instead of thinking about the inner product as a function mapping two state vectors to a complex number, we can think about it equivalently as a function that maps a vector $\ket{v}$ to the complex number $\ip{u}{v}$. Such a mapping is called a *linear functional*. This functional depends on $\ket{u}$, since $\ip{u}{v}$ depends on both $\ket{u}$ and $\ket{v}$. We'll denote this functional by $\bra{u}$, where
 $$
 \bra{u}: \mathscr{H} \to \mathbb{C}
 $$
-is a linear mapping from state vectors $\ket{v}$ to complex numbers $\ip{u}{v}$. The linear functional inherits all the linearity properties of a vector through the linearity property of the inner product. Indeed, for all intents and purposes the linear functional behaves like a vector, except it's not an ordinary state vector since it doesn't belong to the Hilbert space, but rather its *dual* space of linear functionals. For this reason, linear functionals are called *dual vectors*.
+is a linear mapping of state vectors $\ket{v} \in \mathscr{H}$ to the complex number $\ip{u}{v}$. The linear functional inherits the usual linearity properties of a vector from the linearity property of the inner product. Indeed, for all intents and purposes the linear functional behaves like a vector, except it's not an ordinary state vector since it doesn't belong to the Hilbert space, but rather its *dual space* of linear functionals, sometimes denoted $\mathscr{H}^\dagger$. For this reason, linear functionals are more often called *dual vectors*.
 
-Dual vectors obey the same linear superposition property that state vectors do: If $\bra{u}$ and $\bra{v}$ are dual vectors, any linear superposition $\bra{w} = \alpha \bra{u} + \beta \bra{v}$ is also a dual vector. When we discuss representations, we'll show that we can think of state vectors as behaving like the *column* vectors from ordinary linear algebra, while the dual vectors behave like *row* vectors.
+Dual vectors obey the same linear superposition property that state vectors do: If $\bra{u}, \bra{v} \in \mathscr{H}^\dagger$ are dual vectors, any linear superposition $\bra{w} = \alpha \bra{u} + \beta \bra{v}$ is also a dual vector. When we discuss representations, we'll show that we can think of state vectors as behaving like the *column* vectors from ordinary linear algebra, while the dual vectors behave like *row* vectors.
 
-In Dirac notation, we call these dual vectors *bra* vectors, and always use the symbol $\bra{u}$ for these dual vectors. Indeed, this is why we denote the inner product as $\ip{u}{v}$ in Dirac notation, and why we call it a *bra-ket* or bracket. Notationally, $\ip{u}{v}$ is literally the application of the *bra* vector $\bra{u}$ on the *ket* vector $\ket{v}$ to produce the *bra-ket* $\bra{u}(\ket{v}) = \ip{u}{v}$. This is one reason Dirac notation is so intuitive and powerful once you get used to it. Going forward we'll use the terms *ket* and *ket vector* interchangeably with *state vector*, and the terms *bra* and *bra vector* interchangeably with *dual vector*.
+In Dirac notation, we always denote dual vectors with the symbol $\bra{\cdot}$, called a *bra*. Indeed, this is why we denote the inner product as $\ip{u}{v}$ in Dirac notation, and why we often call the inner product a *bra-ket* or bracket. Notationally, $\ip{u}{v}$ is literally the application of the *bra* vector $\bra{u}$ on the *ket* vector $\ket{v}$ to produce the *bra-ket* $\bra{u}(\ket{v}) = \ip{u}{v}$. Going forward, we'll often use the terms *ket* and *ket vector* interchangeably with *state vector*, and the terms *bra* and *bra vector* interchangeably with *dual vector*.
 
 We can always convert state vectors into dual vectors and vice versa, but when doing so we must respect the anti-symmetry property: Anytime we convert a linear superposition $\alpha \ket{u} + \beta \ket{v}$ into a dual vector or vice versa, we must be sure to complex conjugate all the scalar factors,
 $$
 \alpha \ket{u} + \beta \ket{v} \quad \leftrightarrow \quad \bra{u} \alpha^* + \bra{v} \beta^* \ .
 $$
-With this caveat, dual vectors inherit all the usual properties that state vectors have. For example, if $\{\ket{e_\alpha}\}$ is a basis for the space of state vectors, then its dual basis $\{\bra{e_\alpha}\}$ is a state vector for the space of dual vectors. The expansion of any dual vector $\bra{v}$ looks the same except the basis components $v_\alpha = \ip{e_\alpha}{v}$ must be complex conjugated,
+With this caveat, dual vectors inherit all the usual properties that state vectors have. For example, if $\{\ket{e_\alpha}\}$ is a basis for the Hilbert space $\mathscr{H}$, then its dual basis $\{\bra{e_\alpha}\}$ is a state vector for the dual space $\mathscr{H}^\dagger$. The basis expansion of any dual vector $\bra{v} \in \mathscr{H}^\dagger$ looks the same except the basis components $v_\alpha = \ip{e_\alpha}{v}$ must be complex conjugated,
 $$
 \bra{v} = \sum_\alpha \bra{e_\alpha} v_\alpha^* \ .
 $$
@@ -504,7 +551,7 @@ The two most important classes of linear operators in quantum mechanics are Herm
 
 ### Adjoints and Inverses
 
-We can use matrix representations to extend the important notions of matrix adjoints and inverses to linear operators. Suppose a linear operator $\mathcal{L}: \mathcal{H} \to \mathcal{H}$ has a matrix representation $L_{ij} = \bra{e_i} \mathcal{L} \ket{e_j}$ in some orthonormal basis $\{\ket{e_i}\}$. We define the *adjoint* of $\mathcal{L}$ as the unique operator $\mathcal{L}^\dagger$ satisfying the following relation between any two vectors $\ket{u}$ and $\ket{v}$,
+We can use matrix representations to extend the important notions of matrix adjoints and inverses to linear operators. Suppose a linear operator $\mathcal{L}: \mathcal{H} \to \mathcal{H}$ has a matrix representation $L_{ij} = \bra{e_i} \mathcal{L} \ket{e_j}$ in some orthonormal basis $\{\ket{e_i}\}$. We define the *adjoint* of $\mathcal{L}$ as the associated operator $\mathcal{L}^\dagger$ satisfying the following relation between any two vectors $\ket{u}$ and $\ket{v}$,
 $$
 \bra{u} \mathcal{L}^\dagger \ket{v} = \bra{v} \mathcal{L} \ket{u} \ .
 $$
@@ -540,7 +587,7 @@ $$
 $$
 That the inverse is unique and two-sided follows from the fact that the inverse of a matrix is unique and two-sided. We'll assume the inverse exists only when its matrix representation exists, i.e. when the determinant of its matrix representation is non-zero.
 
-Finally, the adjoint operator inherits the usual property that the adjoint of a product is equal to the adjoint of each operator, but in reverse order. The same is true for inverses. If, for any two operators $\mathcal{L}$ and $\mathcal{K}$ we have
+Finally, the adjoint operator inherits the usual property that the adjoint of a product is equal to the adjoint of each operator, but in reverse order. The same is true for inverses. For any two linear operators $\mathcal{L}$ and $\mathcal{K}$, the product $\mathcal{L}\mathcal{K}$ transforms as
 $$
 (\mathcal{L} \mathcal{K})^\dagger = \mathcal{K}^\dagger \mathcal{L}^\dagger \quad , \quad (\mathcal{L} \mathcal{K})^{-1} = \mathcal{K}^{-1} \mathcal{L}^{-1} \ .
 $$
@@ -643,7 +690,7 @@ $$
 $$
 We often say that Hermitian operators *generate* unitary transformations, in the sense that we can think of any infinitesimal shift $\delta\mathcal{H}$ in $\mathcal{H}$ as generating an infinitesimal transformation $\delta\mathcal{U}$ in $\mathcal{U}$ of the form $\delta\mathcal{U} = \mathbb{1} + i\delta\mathcal{H}$. Of course, for this to make sense the Hermitian operator $\mathcal{H}$ needs to be continuous. We'll revisit this topic of *Lie algebras* later when we discuss symmetries.
 
-## Eigenvalues
+## Eigenspaces
 
 Recall from linear algebra that any square matrix has associated to it *characteristic* directions that are left invariant when acted on by the matrix. Along these characteristic directions, a square matrix $\mathbf{A}$ can only scale a vector $\mathbf{v}$ along that direction by some complex scalar $\lambda$, not rotate it into a new direction,
 $$
@@ -857,7 +904,7 @@ $$
 $$
 where $\lambda_1, \lambda_2, \cdots, \lambda_d$ are the eigenvalues of $\mathcal{L}$. If an operator $\mathcal{L}$ is diagonalizable, we call the above decomposition the *spectral decomposition* of $\mathcal{L}$. While most linear operators aren't diagonalizable, it turns out that normal operators always are. This is the main theorem we'll now prove.
 
-**Theorem:** Suppose $\mathcal{L}: \mathscr{H} \to \mathscr{H}$ is a linear operator acting on a Hilbert space $\mathscr{H}$ of finite dimension $d$. Then $\mathcal{L}$ has a complete orthonormal eigenbasis $\{\ket{e_i}\}$ for $\mathscr{H}$ if and only if $\mathcal{L}$ is a normal operator. Moreover, $\mathcal{L}$ is diagonalizable in terms of this eigenbasis with spectral decomposition
+**Theorem:** Suppose $\mathcal{L}: \mathscr{H} \to \mathscr{H}$ is a linear operator acting on a Hilbert space $\mathscr{H}$ of finite dimension $d$. Then $\mathcal{L}$ has a complete orthonormal eigenbasis $\{\ket{e_i}\}$ for $\mathscr{H}$ if and only if $\mathcal{L}$ is a normal operator. Moreover, $\mathcal{L}$ is diagonalizable in terms of this eigenbasis, with spectral decomposition
 $$
 \mathcal{L} = \sum_{i=1}^d \lambda_i \op{e_i}{e_i} \ ,
 $$
@@ -975,54 +1022,77 @@ As usual, we'll assume without proof in quantum mechanics that the spectral theo
 
 ### Degeneracy
 
-Thus far we haven't focused on the issue of degenerate eigenvalues. Degeneracy raises a few subtleties we need to address. For example, the spectral theorem says that eigenvectors of a Hermitian operator corresponding to distinct eigenvalues must be orthogonal. But what about eigenvectors corresponding to the same eigenvalue? After all, Hermitian operators should have a complete orthonormal eigenbasis, so even for degenerate eigenvalues we should be able to get an orthonormal set somehow.
+Thus far we haven't focused on the issue of degenerate eigenvalues. Degeneracy raises a few subtleties we need to address. For example, the spectral theorem says that eigenvectors of a Hermitian operator corresponding to distinct eigenvalues must be orthogonal. But what about eigenvectors corresponding to the same eigenvalue? After all, normal operators should have a complete orthonormal eigenbasis, so even for degenerate eigenvalues we should be able to get an orthonormal set somehow.
 
-Recall an eigenvalue $\lambda$ of a linear operator $\mathcal{L}$ is said to be *degenerate* with order $k$ if its characteristic polynomial contains $k$ roots all equal to the same eigenvalue $\lambda$. Consider the set of eigenvectors $\ket{u} \in \mathscr{H}$ corresponding to the same eigenvalue $\lambda$,
+Recall an eigenvalue $\lambda$ of a linear operator $\mathcal{L}$ is said to be *degenerate* of order $k$ if its characteristic polynomial contains $k$ roots all equal to the same eigenvalue $\lambda$. Consider the set of eigenvectors $\ket{u} \in \mathscr{H}$ corresponding to the same eigenvalue $\lambda$,
 $$
 \mathscr{H}_\lambda \equiv \{\ket{u} \in \mathscr{H}: \mathcal{L} \ket{u} = \lambda \ket{u}\} \ .
 $$
-In fact, the set $\mathscr{H}_\lambda$ forms a linear subspace of the Hilbert space $\mathscr{H}$. To see why, we need to show that this space is closed under superposition. Suppose $\ket{u}, \ket{v} \in \mathscr{H}_\lambda$ are both vectors in this set. By definition, both vectors must then be eigenvectors of the same eigenvalue $\lambda$, meaning $\mathcal{L} \ket{u} = \lambda \ket{u}$ and $\mathcal{L} \ket{v} = \lambda \ket{v}$. But for any superposition $\alpha \ket{u} + \beta \ket{v}$ we must also have
+In fact, the set $\mathscr{H}_\lambda$ forms a linear subspace of the Hilbert space $\mathscr{H}$. To see why, we need to show that this space is closed under superposition. Suppose $\ket{u}, \ket{v} \in \mathscr{H}_\lambda$ are both vectors in this set. By definition, both vectors must then be eigenvectors of the same eigenvalue $\lambda$, meaning $\mathcal{L} \ket{u} = \lambda \ket{u}$ and $\mathcal{L} \ket{v} = \lambda \ket{v}$. For any superposition $\alpha \ket{u} + \beta \ket{v}$ this then means
 $$
 \mathcal{L} (\alpha \ket{u} + \beta \ket{v}) = \lambda (\alpha \ket{u} + \beta \ket{v}) \ .
 $$
 Thus, if $\ket{u}$ and $\ket{v}$ are both eigenvectors of $\lambda$, then so is any superposition $\alpha \ket{u} + \beta \ket{v}$. That is, the set $\mathscr{H}_\lambda$ is closed under superposition, and is hence a linear subspace of the Hilbert space. This linear subspace $\mathscr{H}_\lambda$ is called the *eigenspace* of $\lambda$.
 
-A key fact about eigenspaces is their dimension equals the degeneracy of their corresponding eigenvalue. If $\lambda$ is degenerate with order $k$, then its eigenspace $\mathscr{H}_\lambda$ will be a $k$-dimensional subspace of the Hilbert space.
+A key fact about eigenspaces is their dimension equals the degeneracy of their corresponding eigenvalue. If $\lambda$ is degenerate of order $k$, then its eigenspace $\mathscr{H}_\lambda$ will be a $k$-dimensional subspace of the Hilbert space. This is easy enough to see from the spectral decomposition. To diagonalize a normal operator $\mathcal{L}$, we'd expand it in terms of its eigenbasis as
+$$
+\mathcal{L} = \sum_{i=1}^d \lambda_i \op{e_i}{e_i} \ .
+$$
+Supposing the eigenvalue $\lambda_1$ is degenerate with order $k$, we can split the first $k$ elements into its own sum to write
+$$
+\mathcal{L} = \lambda_1 \sum_{i=1}^k \op{e_i}{e_i} + \sum_{i=k+1}^d \lambda_i \op{e_i}{e_i} \ .
+$$
+The $k$ vectors $\ket{e_1}, \ket{e_2}, \cdots, \ket{e_k}$ are the $k$ eigenvectors associated to the degenerate eigenvalue $\lambda_1$. Since these eigenvectors must be linearly independent, they span a $k$-dimensional subspace of $\mathscr{H}$, namely the eigenspace $\mathscr{H}_{\lambda_1}$.
 
-- Figure out where this fact follows from. Schur decomposition? Spectral decomposition? Diagonalization?
+Recall that normal operators have the special property that they always have an orthonormal eigenbasis. We can use eigenspaces to express this property in an abstract but insightful way. To do so we need to define the notion of a direct sum of linear subspaces. We say a Hilbert space $\mathscr{H}$ decomposes into a *direct sum* of two linear subspaces $\mathscr{V}$ and $\mathscr{W}$, written $\mathscr{H} = \mathscr{V} \oplus \mathscr{W}$, provided any vector in $\mathscr{V}$ is orthogonal to any vector in $\mathscr{W}$, and the sum of any two such vectors spans the full Hilbert space $\mathscr{H}$. That is, 
 
+- Any vectors $\ket{v} \in \mathscr{V}$ and $\ket{w} \in \mathscr{W}$ are orthogonal, i.e. $\ip{v}{w} = 0$,
+- For any vector $\ket{h} \in \mathscr{H}$, we can find orthonormal vectors  $\ket{v} \in \mathscr{V}, \ket{w} \in \mathscr{W}$ such that $\ket{h} = \alpha \ket{v} + \beta \ket{w}$.
 
+You can think of the direct sum symbol $\oplus$ as meaning *orthogonal sum*. The direct sum is just an abstract way of saying that we can decompose the Hilbert space into orthogonal subspaces. As a simple example of such a decomposition, consider the ordinary 3-dimensional Euclidean space $\mathbb{R}^3$ of classical mechanics. On this space we impose the standard basis $\{\mathbf{e}_x, \mathbf{e}_y, \mathbf{e}_z\}$. We can think of these basis vectors though as spanning their own subspaces. For example, the $z$-axis spans a 1-dimensional subspace $\mathbb{R}_z$. Any pair of these basis vectors also span a 2-dimensional subspace. For example, the $xy$-plane spans a 2-dimensional subspace $\mathbb{R}_{xy}$. This means we can do a direct sum decomposition of Euclidean space in any number of ways. For example, we could decompose it into a direct sum of its individual axes,
+$$
+\mathbb{R}^3 = \mathbb{R}_x \oplus \mathbb{R}_y \oplus \mathbb{R}_z \ .
+$$
+Or we could decompose the space it into a direct sum of the $z$-axis and the $xy$-plane,
+$$
+\mathbb{R}^3 = \mathbb{R}_z \oplus \mathbb{R}_{xy} \ .
+$$
+In both cases the linear subspaces are orthogonal, and when direct summed together they generate Euclidean space. We've decomposed Euclidean space into orthogonal subspaces. That's all the direct sum is saying.
 
-
+Let's now apply this idea to normal operators and their eigenspaces. Suppose a normal operator $\mathcal{L}$ has $n$ distinct eigenvalues $\lambda_1, \lambda_2, \cdots, \lambda_n$, where each eigenvalue $\lambda_i$ is degenerate of some order $d_i$, and $d = d_1 + d_2 + \cdots + d_n$ is the dimension of the Hilbert space. Then we can decompose the Hilbert space $\mathscr{H}$ into a direct sum of its eigenspaces $\mathscr{H}_{\lambda_i}$,
 $$
 \mathscr{H} = \mathscr{H}_{\lambda_1} \oplus \mathscr{H}_{\lambda_2} \oplus \cdots \oplus \mathscr{H}_{\lambda_n} \ .
 $$
+Since the eigenvectors corresponding to distinct eigenvalues must be orthogonal for a normal operator, we know these eigenspaces are orthogonal and hence provide a valid direct sum decomposition. Thus, the requirement that normal operators have an orthonormal eigenbasis is equivalent to the statement that normal operators provide a direct sum decomposition of the Hilbert space into orthogonal eigenspaces.
 
-$$
-d = d_1 + d_2 + \cdots + d_n
-$$
+Now, any vector belonging to a degenerate eigenvalue's eigenspace must also be an eigenvector with that same eigenvalue. This just follows by definition of the vector belong to the eigenspace. In particular, this means if an eigenvalue is degenerate of order $k$, we're free to choose *any* $k$ vectors in its eigenspace we like to be the eigenvalue's associated set of eigenvectors. This will turn out to be a useful fact for the following reason.
 
-$$
-\ket{v} = \alpha_1 \ket{u_{\lambda_1}} + \alpha_2 \ket{u_{\lambda_2}} + \cdots + \alpha_n \ket{u_{\lambda_n}}
-$$
+While every normal operator has an orthonormal eigenbasis, that doesn't mean that any set of eigenvectors we choose will necessarily be orthonormal. It only means we can find such a set. For non-degenerate eigenvalues this isn't a problem, since their eigenspaces will always be one-dimensional, in which case there's only one associated normalized eigenvector to choose from. For degenerate eigenvalues though, we can choose any vectors we like from its eigenspace to be eigenvectors, and there's no requirement that these vectors be orthogonal. However, given a set of vectors that span the eigenspace, we can always orthogonalize them to get a new set of vectors that are orthogonal.
 
-$$
-\mathcal{L} = \sum_{i=1}^n \sum_{j=1}^{d_i} \lambda_i \op{e_i^{(j)}}{e_i^{(j)}}
-$$
+The canonical way to orthogonalize a set of $k$ independent vectors is via the *Gram-Schmidt procedure*. Suppose we have a $k$-dimensional eigenspace $\mathscr{H}_\lambda$, and suppose we have a set of $k$ known vectors $\ket{u_1}, \ket{u_2}, \cdots, \ket{u_k} \in \mathscr{H}_\lambda$ that span this eigenspace but may not be orthonormal. We can use this set of vectors to create a new set of $k$ orthonormal vectors as follows:
 
-$$
-\mathcal{L} \doteq \begin{pmatrix}
-\lambda_1 & 0 & 0 & 0 & 0 & 0 & \cdots & 0 \\
-0 & \lambda_2 & 0 & 0 & 0 & 0 & \cdots & 0 \\
-0 & 0 & \lambda_2 & 0 & 0 & 0 & \cdots & \vdots \\
-0 & 0 & 0 & \lambda_2 & 0 & 0 & \cdots & 0 \\
-0 & 0 & 0 & 0 & \lambda_3 & 0 & \cdots & 0 \\
-0 & 0 & 0 & 0 & 0 & \lambda_3 & \cdots & 0 \\
-\vdots & \vdots & \vdots & \vdots & \vdots & \vdots & \ddots & \vdots \\
-0 & 0 & 0 & 0 & 0 & 0 & \cdots & \lambda_n \\
-\end{pmatrix} \ .
-$$
+1. Normalize the first vector $\ket{u_1}$ so that $\ip{u_1}{u_1} = 1$. Call this normalized vector $\ket{e_\lambda^{(1)}}$.
+2. Use $\ket{e_\lambda^{(1)}}$ and $\ket{u_2}$ to create the projection vector $\ket{u_2^\perp} = \ket{u_2} - \ip{e_\lambda^{(1)}}{u_2} \ket{e_\lambda^{(1)}}$. Since $\ip{e_\lambda^{(1)}}{u_2^\perp} = 0$, this new projection vector $\ket{u_2^\perp}$ will be orthogonal to the first vector $\ket{e_\lambda^{(1)}}$.
 
+3. Normalize $\ket{u_2^\perp}$ so that $\ip{u_2^\perp}{u_2^\perp} = 1$. Call this normalized vector $\ket{e_\lambda^{(2)}}$.
+
+4. Iterate this procedure over the remaining vectors until we reach the final vector $\ket{e_\lambda^{(k)}}$. At each step, we use the previous normalized vector $\ket{e_\lambda^{(j-1)}}$ and the current vector $\ket{u_j}$ to get a projection vector
+   $$
+   \ket{u_j^\perp} = \ket{u_j} - \ip{e_\lambda^{(j-1)}}{u_j} \ket{e_\lambda^{(j-1)}} \ ,
+   $$
+   and then normalize this projection vector so that $\ip{u_j^\perp}{u_j^\perp} = 1$ to get the next orthogonal vector $\ket{e_\lambda^{(j)}}$.
+
+In the end, we arrive at an orthonormal set of $k$ vectors $\left\{\ket{e_\lambda^{(j)}}\right\}$ that span the eigenspace $\mathscr{H}_\lambda$. Using this procedure, we can always find an orthonormal set of eigenvectors associated to a given degenerate eigenvalue.
+
+Now, the statement that we've found an orthonormal basis for $\mathscr{H}_\lambda$ is equivalent to the statement that we've  found a resolution of the identity for the $k$-dimensional identity operator,
+$$
+\mathbb{1}_k = \sum_{j=1}^{k} \op{e_\lambda^{(j)}}{e_\lambda^{(j)}} \ .
+$$
+We can use this fact to provide a spectral decomposition for normal operators with degenerate eigenvalues. Suppose a normal operator $\mathcal{L}$ has $n$ distinct eigenvalues $\lambda_1, \lambda_2, \cdots, \lambda_n$, where each eigenvalue $\lambda_i$ is degenerate of some order $d_i$, and $d = d_1 + d_2 + \cdots + d_n$ is the dimension of the Hilbert space. Since the eigenspaces of $\mathcal{L}$ are orthogonal, we have
+$$
+\mathcal{L} = \sum_{i=1}^n \lambda_i \mathbb{1}_{d_i} = \sum_{i=1}^n \lambda_i \sum_{j=1}^{d_i} \op{e_i^{(j)}}{e_i^{(j)}} \ .
+$$
+In matrix form, the spectral decomposition still produces a diagonal matrix whose diagonal entries are the eigenvalues, but now each distinct eigenvalue $\lambda_i$ in the matrix has associated to it the $d_i \times d_i$ diagonal matrix block $\lambda_i \mathbb{1}_{d_i}$,
 $$
 \mathcal{L} \doteq \begin{pmatrix}
 \lambda_1 \mathbb{1}_{d_1} & 0 & \cdots & 0 \\
@@ -1031,10 +1101,31 @@ $$
 0 & 0 & \cdots & \lambda_n \mathbb{1}_{d_n} \\
 \end{pmatrix} \ .
 $$
+Once the eigenvectors in each eigenspace are properly orthogonalized, the full eigenbasis of the normal operator will again be orthonormal, both across eigenspaces and within eigenspaces. We can express this using two Kronecker deltas, one over the eigenspaces and the other over the eigenvectors within a given eigenspace,
+$$
+\ip{e_i^{(j)}}{e_{i'}^{(j')}} = \delta_{ii'} \delta_{jj'} \ ,
+$$
+where $i=1,2,\cdots,n$ is the index running over the distinct eigenspaces, and $j=1,2,\cdots,d_i$ is the index running over the set of eigenvectors spanning the eigenspace associated to the eigenvalue $\lambda_i$.
+
+### Compatible Operators
+
+In general, different linear operators will have different sets of eigenvectors. It's worth asking in what situations we might expect two normal operators to share the same set of eigenvectors. After all, if this were the case we could simultaneously diagonalize them using the same eigenbasis. If $\mathcal{L}$ and $\mathcal{K}$ are two normal operators with the same eigenbasis $\{\ket{e_i}\}$, we could write
+$$
+\mathcal{L} = \sum_{i=1}^d \lambda_i \op{e_i}{e_i} \quad , \quad \mathcal{K} = \sum_{i=1}^d \kappa_i \op{e_i}{e_i} \ ,
+$$
+where $\lambda_i$ are the eigenvalues of $\mathcal{L}$ and $\kappa_i$ are the eigenvalues of $\mathcal{K}$. When this happens, we say the two operators are *compatible* or *simultaneously diagonalizable*.
+
+It turns out two normal operators $\mathcal{L}$ and $\mathcal{K}$ are compatible if and only if they commute. Let's show this.
+
+
+$$
+\mathcal{L}\mathcal{K} = \sum_{i=1}^d \sum_{j=1}^d \lambda_i \kappa_j \ket{e_i} \ip{e_i}{e_j} \bra{e_j}  = \sum_{i=1}^d \lambda_i \kappa_i \op{e_i}{e_i} = \mathcal{K}\mathcal{L} \ .
+$$
 
 
 
 
+- Don't forget: continuous spaces (Dirac delta), tensor products, matrix exponentials and how to commute them
 
 $$
 \ket{v};
